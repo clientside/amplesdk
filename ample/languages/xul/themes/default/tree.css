@@ -1,0 +1,124 @@
+xul|tree {
+	cursor: default !important;
+	border: 1px solid #7F9DB9;
+	background-color: white;
+}
+
+xul|treecols {
+	line-height: 18px;
+}
+
+xul|treecols::settings {
+	width:	16px;
+	height:	16px;
+	background-image: url(media/treecols_settings.gif);
+}
+
+xul|treecol {
+	font-weight: normal;
+	background-image: url(media/treecol.gif);
+	background-repeat: repeat-x;
+	background-position: 0px -2px;
+}
+
+xul|treecol:hover {
+	background-position: 0px -22px;
+}
+
+xul|treecol:active {
+	background-position: 0px -40px;
+}
+
+xul|treecol::label {
+	padding: 0px;
+	background-image: url(media/treecol_splitter.gif);
+	background-repeat: no-repeat;
+	background-position: left center;
+}
+
+xul|treecol::command,
+xul|treeitem::command {
+	width:	16px;
+	height:	16px;
+	margin:	0px;
+	padding:0px;
+	vertical-align:	middle;
+	margin-left: 2px;
+}
+
+xul|treerow {
+	line-height:	18px;
+}
+
+xul|treerow:hover {
+	background-color: #cce1ff;
+}
+
+xul|treeitem:selected {
+	background-color: gray;
+	color: white;
+}
+
+xul|tree:focus xul|treeitem:selected {
+	background-color: #316AC5;
+}
+
+xul|treecell {
+	padding-right:	2px;
+	padding-left:	2px;
+	white-space:	nowrap;
+	vertical-align: middle;
+}
+
+xul|treecell::command {
+	width:	16px;
+	height:	16px;
+	margin:	0px;
+	padding:0px;
+	vertical-align: middle;
+}
+
+xul|treecell INPUT {
+	width:	14px;
+	height:	14px;
+	margin:	0px;
+	padding:0px;
+}
+
+xul|treecell-toc {
+	background-image:	url(media/treecell_toc.gif);
+	background-repeat:	no-repeat;
+	background-position:-72px center;
+	float: left;
+	width: 18px;
+	height: 18px;
+}
+
+xul|treecell-toc-opened {
+	background-position:-24px center;
+}
+
+xul|treecell-toc-closed {
+	background-position:0px center;
+}
+
+xul|treecell-line {
+	background-image:	url(media/treecell_line.gif);
+	background-repeat:	no-repeat;
+	background-position:-72px center;
+	float: left;
+	width: 18px;
+	height: 18px;
+}
+
+xul|treecell-line-regular {
+	background-position:0 center;
+}
+
+xul|treecell-line-next {
+	background-position:-24px center;
+}
+
+xul|treecell-line-last {
+	background-position:-48px center;
+}

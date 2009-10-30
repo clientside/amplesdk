@@ -1,0 +1,676 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	// =================================================================
+	// ANT Build Script for Ample SDK project
+	// =================================================================
+-->
+<project name="Project Build Script - Ample SDK" default="BUILD_AMPLESDK" basedir=".">
+	<!-- Define properties -->
+	<tstamp>
+		<format property="tstamp.full" pattern="yyyy-MM-dd HH:mm:ss" locale="en" />
+		<format property="tstamp.year" pattern="yyyy" locale="en" />
+		<format property="tstamp.stmp" pattern="ddSSS" locale="en" />
+	</tstamp>
+
+	<!-- Project-related -->
+	<property name="project.name" value="Ample" />
+	<property name="project.version" value="0.8.9" />
+	<property name="copyright.year" value="${tstamp.year}" />
+	<property name="copyright.name" value="Clientside OY" />
+
+	<!-- Build-related -->
+	<property name="build.package" value="ample-${project.version}" />
+	<property name="build.signature" value="${tstamp.full}" />
+
+	<property name="temp.dir" value="${basedir}/temp/"/>
+	<property name="work.dir" value="${basedir}/work/"/>
+	<property name="source.dir" value="${basedir}/../"/>
+
+	<property name="target.dir" value="${work.dir}/${build.package}/"/>
+	<property name="target.zip" value="${work.dir}/${build.package}.zip"/>
+
+	<property name="copying.js" value="resources/COPYING.js" />
+
+	<!-- Master build -->
+	<target name="BUILD_AMPLESDK" description="Builds Ample SDK project">
+
+		<property file="build.local.properties" />
+
+		<delete dir="${target.dir}" failonerror="false"/>
+		<delete file="${target.zip}" />
+
+		<mkdir dir="${temp.dir}" />
+		<mkdir dir="${target.dir}" />
+
+		<antcall target="BUILD_AMPLESDK_AMPLE" />
+		<antcall target="BUILD_AMPLESDK_EXAMPLES" />
+		<antcall target="BUILD_AMPLESDK_REFERENCE" />
+		<antcall target="BUILD_AMPLESDK_PLUGINS" />
+		<antcall target="BUILD_AMPLESDK_LICENSE" />
+
+		<copy file="${source.dir}/CONTRIBUTORS" tofile="${target.dir}/CONTRIBUTORS" />
+		<copy file="${source.dir}/COPYING" tofile="${target.dir}/COPYING" />
+		<copy file="${source.dir}/README" tofile="${target.dir}/README" />
+
+		<!-- Zip finally -->
+		<zip destfile="${target.zip}">
+			<zipfileset dir="${target.dir}" prefix="${build.package}"/>
+		</zip>
+	</target>
+
+	<!-- Ample -->
+	<target name="BUILD_AMPLESDK_AMPLE" unless="skip.ample">
+		<property name="source.ample.dir" value="${source.dir}/ample/" />
+		<property name="target.ample.dir" value="${target.dir}/ample/" />
+
+		<mkdir dir="${target.ample.dir}" />
+
+		<antcall target="BUILD_AMPLESDK_AMPLE_RUNTIME" />
+		<antcall target="BUILD_AMPLESDK_AMPLE_LANGUAGES" />
+	</target>
+
+	<target name="BUILD_AMPLESDK_AMPLE_RUNTIME" unless="skip.ample.runtime">
+		<property name="source.runtime.dir" value="${source.dir}/ample/runtime/" />
+		<property name="target.runtime.dir" value="${target.dir}/ample/" />
+		<property name="temp.runtime.dir" value="${temp.dir}/runtime/" />
+
+		<mkdir dir="${temp.runtime.dir}" />
+		<mkdir dir="${target.runtime.dir}" />
+
+		<antcall target="BUILD_AMPLESDK_AMPLE_RUNTIME_PREPARE" />
+		<antcall target="BUILD_AMPLESDK_AMPLE_RUNTIME_PRODUCTION" />
+		<antcall target="BUILD_AMPLESDK_AMPLE_RUNTIME_DEVELOPMENT" />
+
+		<!-- clean up temp dir -->
+		<delete dir="${temp.runtime.dir}" />
+	</target>
+
+	<target name="BUILD_AMPLESDK_AMPLE_RUNTIME_PREPARE">
+		<echo message="Merging into: ${temp.runtime.dir}/runtime-raw.js" level="info"/>
+		<concat destfile="${temp.runtime.dir}/runtime-raw.js" fixlastline="yes">
+			<filelist dir="${source.runtime.dir}/" files="
+				import.js"/>
+
+			<!-- Helper Objects -->
+			<filelist dir="${source.runtime.dir}/classes/" files="
+				AMLNamespace.js,
+				AMLSerializer.js"/>
+			<!-- DOM Core/Events/Selectors -->
+			<filelist dir="${source.runtime.dir}/classes/events/" files="
+				AMLEvent.js,
+				AMLCustomEvent.js,
+				AMLUIEvent.js,
+				AMLKeyboardEvent.js,
+				AMLTextEvent.js,
+				AMLMouseEvent.js,
+				AMLMouseWheelEvent.js,
+				AMLMutationEvent.js"/>
+			<filelist dir="${source.runtime.dir}/classes/core/" files="
+				AMLStringList.js,
+				AMLImplementation.js,
+				AMLConfiguration.js,
+				AMLException.js,
+				AMLError.js,
+				AMLNode.js,
+				AMLNodeList.js,
+				AMLAttr.js,
+				AMLElement.js,
+				AMLEntityReference.js,
+				AMLDocument.js,
+				AMLProcessingInstruction.js,
+				AMLDocumentFragment.js,
+				AMLCharacterData.js,
+				AMLText.js,
+				AMLCDATASection.js,
+				AMLComment.js"/>
+			<filelist dir="${source.runtime.dir}/classes/selectors/" files="
+				AMLNodeSelector.js"/>
+			<!-- Animation engine -->
+			<filelist dir="${source.runtime.dir}/classes/animation/" files="
+				AMLElementAnimation.js"/>
+			<!-- JS API Objects -->
+			<filelist dir="${source.runtime.dir}/classes/" files="
+				JSON.js"/>
+			<filelist dir="${source.runtime.dir}/classes/" files="
+				DOMParser.js,
+				XMLHttpRequest.js,
+				XMLSerializer.js,
+				XSLTProcessor.js"/>
+			<!-- Browser integration and runner -->
+			<filelist dir="${source.runtime.dir}/" files="
+				browser.js,
+				ample.js"/>
+
+			<!-- XIncldue 1.0 -->
+			<filelist dir="${source.runtime.dir}/processors/xinclude10/" files="
+				xinclude10.js"/>
+
+			<!-- XML Events 1.0 -->
+			<filelist dir="${source.runtime.dir}/processors/xmlevents10/" files="
+				xmlevents10.js"/>
+
+			<!-- SMIL 3.0 -->
+			<filelist dir="${source.runtime.dir}/processors/smil30/" files="
+				smil30.js,
+				smil30-timing.js,
+				smil30-animation.js"/>
+			<!--filelist dir="${source.runtime.dir}/processors/smil30/classes/" files="
+				cAMLTimeEvent.js"/-->
+
+			<!-- XML Schema 1.1 (core) -->
+			<!-- Temporary disabled
+			<filelist dir="${source.runtime.dir}/processors/xmlschema11/classes/" files="
+				cAMLXSConstants.js,
+				cAMLXSException.js,
+				cAMLXSObject.js,
+				cAMLXSModel.js,
+				cAMLXSNamedMap.js,
+				cAMLXSNamespaceItem.js,
+				cAMLXSNamespaceItemList.js,
+				cAMLXSObjectList.js,
+				cAMLXSTypeDefinition.js"/>
+			<filelist dir="${source.runtime.dir}/processors/xmlschema11/" files="
+				xmlschema11.js"/>
+			-->
+			<!-- XML Schema 1.1 (datatypes) -->
+			<!-- Temporary disabled
+			<filelist dir="${source.runtime.dir}/processors/xmlschema11/classes/datatypes/" files="
+				cAMLXSSimpleTypeDefinition.js,
+				cAMLXSMultiValueFacet.js,
+				cAMLXSFacet.js"/>
+			<filelist dir="${source.runtime.dir}/processors/xmlschema11/" files="
+				xmlschema11-datatypes.js"/>
+			<filelist dir="${source.runtime.dir}/processors/xmlschema11/builtin/" files="
+				xmlschema11-builtin.js"/>
+			-->
+			<!-- XML Schema 1.1 (structure) -->
+			<!--filelist dir="${source.runtime.dir}/processors/xmlschema11/" files="
+				xmlschema11-structures.js"/>
+			<filelist dir="${source.runtime.dir}/processors/xmlschema11-instance/" files="
+				xmlschema11-instance.js"/>
+			<filelist dir="${source.runtime.dir}/processors/xmlschema11/classes/structures/" files="
+				cAMLXSTerm.js,
+				cAMLXSAnnotation.js,
+				cAMLXSAttributeDeclaration.js,
+				cAMLXSAttributeGroupDefinition.js,
+				cAMLXSAttributeUse.js,
+				cAMLXSComplexTypeDefinition.js,
+				cAMLXSElementDeclaration.js,
+				cAMLXSModelGroup.js,
+				cAMLXSModelGroupDefinition.js,
+				cAMLXSNotationDeclaration.js,
+				cAMLXSParticle.js,
+				cAMLXSWildcard.js"/-->
+
+			<!-- UI Managers -->
+			<filelist dir="${source.runtime.dir}/managers/" files="
+				mAMLFocus.js,
+				mAMLResize.js,
+				mAMLDragAndDrop.js,
+				mAMLSelection.js,
+				mAMLUI.js,
+				mAMLCapture.js,
+				mAMLHistory.js"/>
+			<filelist dir="${source.runtime.dir}/" files="
+				export.js"/>
+		</concat>
+		<replace file="${temp.runtime.dir}/runtime-raw.js">
+			<replacefilter token="@project.version@"	value="${project.name}/${project.version} (build:${build.signature})"	/>
+			<replacefilter token="@project.userAgent@"	value="${project.name}/${project.version}"	/>
+		</replace>
+	</target>
+
+	<target name="BUILD_AMPLESDK_AMPLE_RUNTIME_PRODUCTION">
+		<exec executable="${executable.php}" failonerror="true">
+			<arg value="resources/obfuscator/obfuscate.php" />
+			<arg value="${temp.runtime.dir}/runtime-raw.js" />
+			<arg value="${temp.runtime.dir}/runtime.js" />
+			<arg value="--obfuscate" />
+			<arg value="--strip-Source" />
+			<arg value="--strip-Debug" />
+		</exec>
+		<concat destfile="${target.runtime.dir}/runtime.js" fixlastline="yes">
+			<fileset file="${copying.js}" />
+			<fileset file="${temp.runtime.dir}/runtime.js" />
+		</concat>
+	</target>
+
+	<target name="BUILD_AMPLESDK_AMPLE_RUNTIME_DEVELOPMENT">
+		<mkdir dir="${target.dir}/ample/" />
+		<exec executable="${executable.php}" failonerror="true">
+			<arg value="resources/obfuscator/obfuscate.php" />
+			<arg value="${temp.runtime.dir}/runtime-raw.js" />
+			<arg value="${temp.runtime.dir}/runtime-dev.js" />
+			<arg value="--obfuscate" />
+			<arg value="--strip-Source" />
+		</exec>
+		<concat destfile="${target.runtime.dir}/runtime-dev.js" fixlastline="yes">
+			<fileset file="${copying.js}" />
+			<fileset file="${temp.runtime.dir}/runtime-dev.js" />
+		</concat>
+	</target>
+
+	<target name="BUILD_AMPLESDK_AMPLE_LANGUAGES" unless="skip.ample.languages">
+		<property name="source.languages.dir" value="${source.ample.dir}/languages/" />
+		<property name="target.languages.dir" value="${target.ample.dir}/languages/" />
+		<property name="temp.languages.dir" value="${temp.dir}/languages/" />
+
+		<mkdir dir="${target.languages.dir}" />
+		<mkdir dir="${temp.languages.dir}" />
+
+		<antcall target="BUILD_AMPLESDK_AMPLE_LANGUAGES_AML" />
+		<antcall target="BUILD_AMPLESDK_AMPLE_LANGUAGES_XUL" />
+		<antcall target="BUILD_AMPLESDK_AMPLE_LANGUAGES_XHTML" />
+		<antcall target="BUILD_AMPLESDK_AMPLE_LANGUAGES_SVG" />
+		<antcall target="BUILD_AMPLESDK_AMPLE_LANGUAGES_HTML5" />
+		<antcall target="BUILD_AMPLESDK_AMPLE_LANGUAGES_MOBILE" />
+
+		<!-- clean up temp dir -->
+		<delete dir="${temp.languages.dir}" />
+	</target>
+
+	<target name="BUILD_AMPLESDK_AMPLE_LANGUAGES_XHTML" unless="skip.ample.languages.xhtml">
+		<property name="source.xhtml.dir" value="${source.languages.dir}/xhtml/" />
+		<property name="target.xhtml.dir" value="${target.languages.dir}/xhtml/" />
+
+		<echo message="Merging into: ${temp.languages.dir}/xhtml-raw.js" level="info"/>
+		<concat destfile="${temp.languages.dir}/xhtml-raw.js" fixlastline="yes">
+			<fileset file="${source.xhtml.dir}/implementation/xhtml.js" />
+			<fileset dir="${source.xhtml.dir}/implementation/classes/">
+				<include name="**" />
+			</fileset>
+			<fileset dir="${source.xhtml.dir}/implementation/elements/">
+				<include name="**" />
+			</fileset>
+		</concat>
+
+		<echo message="Wrapping into: ${temp.languages.dir}/xhtml-raw-wrapped.js" level="info"/>
+		<exec executable="${executable.php}" failonerror="true">
+			<arg value="resources/obfuscator/obfuscate.php" />
+			<arg value="${temp.languages.dir}/xhtml-raw.js" />
+			<arg value="${temp.languages.dir}/xhtml-raw-wrapped.js" />
+			<arg value="--strip-Source" />
+		</exec>
+
+		<!-- package -->
+		<mkdir dir="${target.xhtml.dir}" />
+		<concat destfile="${target.xhtml.dir}/xhtml.js" fixlastline="yes">
+			<fileset file="${copying.js}" />
+			<fileset file="${temp.languages.dir}/xhtml-raw-wrapped.js" />
+		</concat>
+	</target>
+
+	<target name="BUILD_AMPLESDK_AMPLE_LANGUAGES_HTML5" unless="skip.ample.languages.html5">
+		<property name="source.html5.dir" value="${source.languages.dir}/html5/" />
+		<property name="target.html5.dir" value="${target.languages.dir}/html5/" />
+
+		<echo message="Merging into: ${temp.languages.dir}/html5-raw.js" level="info"/>
+		<concat destfile="${temp.languages.dir}/html5-raw.js" fixlastline="yes">
+			<fileset file="${source.html5.dir}/implementation/html5.js" />
+			<fileset dir="${source.html5.dir}/implementation/classes/">
+				<include name="**" />
+			</fileset>
+			<fileset dir="${source.html5.dir}/implementation/elements/">
+				<include name="**" />
+			</fileset>
+		</concat>
+
+		<echo message="Wrapping into: ${temp.languages.dir}/html5-raw-wrapped.js" level="info"/>
+		<exec executable="${executable.php}" failonerror="true">
+			<arg value="resources/obfuscator/obfuscate.php" />
+			<arg value="${temp.languages.dir}/html5-raw.js" />
+			<arg value="${temp.languages.dir}/html5-raw-wrapped.js" />
+			<arg value="--strip-Source" />
+		</exec>
+
+		<!-- package -->
+		<mkdir dir="${target.html5.dir}" />
+		<concat destfile="${target.html5.dir}/html5.js" fixlastline="yes">
+			<fileset file="${copying.js}" />
+			<fileset file="${temp.languages.dir}/html5-raw-wrapped.js" />
+		</concat>
+	</target>
+
+	<target name="BUILD_AMPLESDK_AMPLE_LANGUAGES_AML" unless="skip.ample.languages.aml">
+		<property name="source.aml.dir" value="${source.languages.dir}/aml/" />
+		<property name="target.aml.dir" value="${target.languages.dir}/aml/" />
+
+		<echo message="Merging into: ${temp.languages.dir}/aml-raw.js" level="info"/>
+		<concat destfile="${temp.languages.dir}/aml-raw.js" fixlastline="yes">
+			<fileset file="${source.aml.dir}/implementation/aml.js" />
+			<fileset dir="${source.aml.dir}/implementation/classes/">
+				<include name="**" />
+			</fileset>
+			<fileset dir="${source.aml.dir}/implementation/attributes/">
+				<include name="**" />
+			</fileset>
+			<fileset dir="${source.aml.dir}/implementation/elements/">
+				<include name="**" />
+			</fileset>
+		</concat>
+
+		<echo message="Wrapping into: ${temp.languages.dir}/aml-raw-wrapped.js" level="info"/>
+		<exec executable="${executable.php}" failonerror="true">
+			<arg value="resources/obfuscator/obfuscate.php" />
+			<arg value="${temp.languages.dir}/aml-raw.js" />
+			<arg value="${temp.languages.dir}/aml-raw-wrapped.js" />
+			<arg value="--strip-Source" />
+		</exec>
+
+		<!-- package -->
+		<mkdir dir="${target.aml.dir}" />
+		<concat destfile="${target.aml.dir}/aml.js" fixlastline="yes">
+			<fileset file="${copying.js}" />
+			<fileset file="${temp.languages.dir}/aml-raw-wrapped.js" />
+		</concat>
+
+		<echo message="Copying default theme to: ${target.aml.dir}/themes/default/" level="info"/>
+		<mkdir dir="${target.aml.dir}/themes/default/" />
+		<concat destfile="${target.aml.dir}/themes/default/aml.css" fixlastline="yes">
+			<fileset dir="${source.aml.dir}/themes/default/">
+				<include name="*.css"/>
+			</fileset>
+		</concat>
+		<copy todir="${target.aml.dir}/themes/default/">
+			<fileset dir="${source.aml.dir}/themes/default/">
+				<include name="media/**"/>
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="BUILD_AMPLESDK_AMPLE_LANGUAGES_XUL" unless="skip.ample.languages.xul">
+		<property name="source.xul.dir" value="${source.languages.dir}/xul/" />
+		<property name="target.xul.dir" value="${target.languages.dir}/xul/" />
+
+		<echo message="Merging into: ${temp.languages.dir}/xul-raw.js" level="info"/>
+		<concat destfile="${temp.languages.dir}/xul-raw.js" fixlastline="yes">
+			<fileset file="${source.xul.dir}/implementation/xul.js" />
+			<fileset dir="${source.xul.dir}/implementation/classes/">
+				<include name="**" />
+				<exclude name="cXULController.js" />
+				<exclude name="cXULCommandDispatcher.js" />
+			</fileset>
+			<fileset dir="${source.xul.dir}/implementation/elements/">
+				<include name="**" />
+			</fileset>
+		</concat>
+
+		<echo message="Wrapping into: ${temp.languages.dir}/xul-raw-wrapped.js" level="info"/>
+		<exec executable="${executable.php}" failonerror="true">
+			<arg value="resources/obfuscator/obfuscate.php" />
+			<arg value="${temp.languages.dir}/xul-raw.js" />
+			<arg value="${temp.languages.dir}/xul-raw-wrapped.js" />
+			<arg value="--strip-Source" />
+		</exec>
+
+		<!-- package -->
+		<mkdir dir="${target.xul.dir}" />
+		<concat destfile="${target.xul.dir}/xul.js" fixlastline="yes">
+			<fileset file="${copying.js}" />
+			<fileset file="${temp.languages.dir}/xul-raw-wrapped.js" />
+		</concat>
+
+		<echo message="Copying default theme to: ${target.xul.dir}/themes/default/" level="info"/>
+		<mkdir dir="${target.xul.dir}/themes/default/" />
+		<concat destfile="${target.xul.dir}/themes/default/xul.css" fixlastline="yes">
+			<fileset file="${source.xul.dir}/themes/base.css" />
+			<fileset dir="${source.xul.dir}/themes/default/">
+				<include name="*.css"/>
+			</fileset>
+		</concat>
+		<copy todir="${target.xul.dir}/themes/default/">
+			<fileset dir="${source.xul.dir}/themes/default/">
+				<include name="media/**"/>
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="BUILD_AMPLESDK_AMPLE_LANGUAGES_MOBILE" unless="skip.ample.languages.mobile">
+		<property name="source.mobile.dir" value="${source.languages.dir}/mobile/" />
+		<property name="target.mobile.dir" value="${target.languages.dir}/mobile/" />
+
+		<echo message="Merging into: ${temp.languages.dir}/mobile-raw.js" level="info"/>
+		<concat destfile="${temp.languages.dir}/mobile-raw.js" fixlastline="yes">
+			<fileset file="${source.mobile.dir}/implementation/mobile.js" />
+			<fileset dir="${source.mobile.dir}/implementation/classes/">
+				<include name="**" />
+			</fileset>
+			<fileset dir="${source.mobile.dir}/implementation/elements/">
+				<include name="**" />
+			</fileset>
+		</concat>
+
+		<echo message="Wrapping into: ${temp.languages.dir}/mobile-raw-wrapped.js" level="info"/>
+		<exec executable="${executable.php}" failonerror="true">
+			<arg value="resources/obfuscator/obfuscate.php" />
+			<arg value="${temp.languages.dir}/mobile-raw.js" />
+			<arg value="${temp.languages.dir}/mobile-raw-wrapped.js" />
+			<arg value="--strip-Source" />
+		</exec>
+
+		<!-- package -->
+		<mkdir dir="${target.mobile.dir}" />
+		<concat destfile="${target.mobile.dir}/mobile.js" fixlastline="yes">
+			<fileset file="${copying.js}" />
+			<fileset file="${temp.languages.dir}/mobile-raw-wrapped.js" />
+		</concat>
+
+		<echo message="Copying default theme to: ${target.mobile.dir}/themes/default/" level="info"/>
+		<mkdir dir="${target.mobile.dir}/themes/default/" />
+		<concat destfile="${target.mobile.dir}/themes/default/mobile.css" fixlastline="yes">
+			<fileset file="${source.mobile.dir}/themes/base.css" />
+			<fileset dir="${source.mobile.dir}/themes/default/">
+				<include name="*.css"/>
+			</fileset>
+		</concat>
+		<copy todir="${target.mobile.dir}/themes/default/">
+			<fileset dir="${source.mobile.dir}/themes/default/">
+				<include name="media/**"/>
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="BUILD_AMPLESDK_AMPLE_LANGUAGES_SVG" unless="skip.ample.languages.svg">
+		<property name="source.svg.dir" value="${source.languages.dir}/svg/" />
+		<property name="target.svg.dir" value="${target.languages.dir}/svg/" />
+
+		<echo message="Merging into: ${temp.languages.dir}/svg-raw.js" level="info"/>
+		<concat destfile="${temp.languages.dir}/svg-raw.js" fixlastline="yes">
+			<fileset file="${source.svg.dir}/implementation/svg.js" />
+			<fileset dir="${source.svg.dir}/implementation/classes/">
+				<include name="**" />
+			</fileset>
+			<fileset dir="${source.svg.dir}/implementation/elements/">
+				<include name="**" />
+			</fileset>
+		</concat>
+
+		<echo message="Wrapping into: ${temp.languages.dir}/svg-raw-wrapped.js" level="info"/>
+		<exec executable="${executable.php}" failonerror="true">
+			<arg value="resources/obfuscator/obfuscate.php" />
+			<arg value="${temp.languages.dir}/svg-raw.js" />
+			<arg value="${temp.languages.dir}/svg-raw-wrapped.js" />
+			<arg value="--strip-Source" />
+		</exec>
+
+		<!-- package -->
+		<mkdir dir="${target.svg.dir}" />
+		<concat destfile="${target.svg.dir}/svg.js" fixlastline="yes">
+			<fileset file="${copying.js}" />
+			<fileset file="${temp.languages.dir}/svg-raw-wrapped.js" />
+		</concat>
+	</target>
+
+	<!-- Examples -->
+	<target name="BUILD_AMPLESDK_EXAMPLES" unless="skip.examples">
+		<copy todir="${target.dir}/examples/">
+			<fileset dir="${source.dir}/examples/">
+				<include name="helloworld.html" />
+				<include name="index.html" />
+				<include name="applications/**" />
+				<include name="extenders/**" />
+				<include name="languages/**" />
+				<include name="managers/**" />
+			</fileset>
+		</copy>
+	</target>
+
+	<!-- Reference -->
+	<target name="BUILD_AMPLESDK_REFERENCE" unless="skip.reference">
+		<property name="source.reference.dir" value="${source.dir}/reference/" />
+		<property name="target.reference.dir" value="${target.dir}/reference/" />
+		<!-- copy reference -->
+		<copy todir="${target.reference.dir}">
+			<fileset dir="${source.reference.dir}" />
+		</copy>
+		<!-- create index file -->
+		<xslt style="resources/reference/index.xsl"
+			in="${target.reference.dir}/books/ample.xml"
+			out="${target.reference.dir}/books/ample-index.xml"/>
+	</target>
+
+	<!-- Plugins -->
+	<target name="BUILD_AMPLESDK_PLUGINS" unless="skip.plugins">
+		<property name="source.plugins.dir" value="${source.dir}/plugins/"/>
+		<property name="target.plugins.dir" value="${target.dir}/plugins/" />
+
+		<mkdir dir="${target.plugins.dir}" />
+
+		<antcall target="BUILD_AMPLESDK_PLUGINS_FIREAMPLE" />
+		<antcall target="BUILD_AMPLESDK_PLUGINS_APTANA" />
+	</target>
+
+	<target name="BUILD_AMPLESDK_PLUGINS_FIREAMPLE" unless="skip.plugins.fireample">
+		<property name="source.fireample.dir" value="${source.plugins.dir}/fireample/" />
+		<property name="target.fireample.dir" value="${target.plugins.dir}/fireample/" />
+		<property name="temp.fireample.dir" value="${temp.dir}/fireample/" />
+
+		<!-- Bundle version/name -->
+		<property name="plugin.fireample.name" value="Fireample" />
+		<property name="plugin.fireample.version" value="${project.version}" />
+
+		<mkdir dir="${target.fireample.dir}/" />
+
+		<!-- copy plugin source -->
+		<copy todir="${temp.fireample.dir}">
+			<fileset dir="${source.fireample.dir}" />
+		</copy>
+
+		<!-- Replace version tokens -->
+		<replace file="${temp.fireample.dir}/install.rdf">
+			<replacefilter token="@plugin.fireample.name@"		value="${plugin.fireample.name}"	/>
+			<replacefilter token="@plugin.fireample.version@"	value="${plugin.fireample.version}"	/>
+		</replace>
+
+		<!-- package -->
+		<zip destfile="${target.fireample.dir}/fireample-${project.version}.xpi" basedir="${temp.fireample.dir}" />
+
+		<!-- clean up temp dir -->
+		<delete dir="${temp.fireample.dir}" />
+	</target>
+
+	<target name="BUILD_AMPLESDK_PLUGINS_APTANA" unless="skip.plugins.aptana">
+
+		<property name="source.aptana.dir" value="${source.plugins.dir}/aptana/" />
+		<property name="target.aptana.dir" value="${target.plugins.dir}/aptana/" />
+		<property name="temp.aptana.dir" value="${temp.dir}/aptana/" />
+
+		<!-- Bundle version/name -->
+		<property name="plugin.aptana.bundle.name" value="com.amplesdk" />
+		<property name="plugin.aptana.bundle.version" value="${project.version}.${tstamp.stmp}" />
+
+		<mkdir dir="${target.aptana.dir}" />
+
+		<!-- 1. Create plugin -->
+		<property name="source.aptana.plugin.dir" value="${source.aptana.dir}/plugins/com.amplesdk" />
+		<property name="temp.aptana.plugin.dir" value="${temp.aptana.dir}/plugin/" />
+
+		<mkdir dir="${temp.aptana.plugin.dir}" />
+
+		<!-- copy plugin source -->
+		<copy todir="${temp.aptana.plugin.dir}">
+			<fileset dir="${source.aptana.plugin.dir}" />
+		</copy>
+		<!-- copy Ample library -->
+		<copy todir="${temp.aptana.plugin.dir}/libraries/lib/ample/">
+			<fileset dir="${target.dir}/ample/" />
+		</copy>
+		<!-- copy Ample reference -->
+		<copy todir="${temp.aptana.plugin.dir}/docs/">
+			<fileset dir="${source.dir}/reference/">
+				<exclude name="index.html"/>
+			</fileset>
+		</copy>
+		<!-- create Aptana docs index file -->
+		<xslt style="resources/plugins/aptana/docs.xsl"
+			in="${source.dir}/reference/books/ample.xml"
+			out="${temp.aptana.plugin.dir}/docs/index.xml"/>
+		<!-- create Aptana support file -->
+		<xslt style="resources/plugins/aptana/support.xsl"
+			in="${source.dir}/reference/books/ample.xml"
+			out="${temp.aptana.plugin.dir}/support/ample.xml"/>
+
+		<!-- Replace version tokens -->
+		<replace file="${temp.aptana.plugin.dir}/plugin.xml">
+			<replacefilter token="@plugin.aptana.bundle.name@"		value="${plugin.aptana.bundle.name}"	/>
+			<replacefilter token="@plugin.aptana.bundle.version@"	value="${plugin.aptana.bundle.version}"	/>
+		</replace>
+		<replace file="${temp.aptana.plugin.dir}/META-INF/MANIFEST.MF">
+			<replacefilter token="@plugin.aptana.bundle.name@"		value="${plugin.aptana.bundle.name}"	/>
+			<replacefilter token="@plugin.aptana.bundle.version@"	value="${plugin.aptana.bundle.version}"	/>
+		</replace>
+
+		<!-- package plugin -->
+		<mkdir dir="${temp.aptana.dir}/plugins/" />
+		<zip destfile="${temp.aptana.dir}/plugins/${plugin.aptana.bundle.name}_${plugin.aptana.bundle.version}.jar" basedir="${temp.aptana.plugin.dir}" />
+
+		<delete dir="${temp.aptana.plugin.dir}" />
+
+		<!-- 2. Create feature -->
+		<property name="source.aptana.feature.dir" value="${source.aptana.dir}/features/com.amplesdk" />
+		<property name="temp.aptana.feature.dir" value="${temp.aptana.dir}/feature/" />
+
+		<mkdir dir="${temp.aptana.feature.dir}" />
+
+		<!-- copy feature source -->
+		<copy todir="${temp.aptana.feature.dir}">
+			<fileset dir="${source.aptana.feature.dir}" />
+		</copy>
+
+		<!-- Replace version tokens -->
+		<replace file="${temp.aptana.feature.dir}/feature.xml">
+			<replacefilter token="@plugin.aptana.bundle.name@"		value="${plugin.aptana.bundle.name}"	/>
+			<replacefilter token="@plugin.aptana.bundle.version@"	value="${plugin.aptana.bundle.version}"	/>
+		</replace>
+
+		<!-- package feature -->
+		<mkdir dir="${temp.aptana.dir}/features/" />
+		<zip destfile="${temp.aptana.dir}/features/${plugin.aptana.bundle.name}_${plugin.aptana.bundle.version}.jar" basedir="${temp.aptana.feature.dir}" />
+
+		<delete dir="${temp.aptana.feature.dir}" />
+
+		<!-- 3. Create site -->
+		<copy todir="${temp.aptana.dir}" file="${source.aptana.dir}/site.xml" />
+
+		<!-- Replace version tokens -->
+		<replace file="${temp.aptana.dir}/site.xml">
+			<replacefilter token="@plugin.aptana.bundle.name@"		value="${plugin.aptana.bundle.name}"	/>
+			<replacefilter token="@plugin.aptana.bundle.version@"	value="${plugin.aptana.bundle.version}"	/>
+		</replace>
+
+		<!-- 4. Package archive -->
+		<mkdir dir="${target.aptana.dir}" />
+		<zip destfile="${target.aptana.dir}/${plugin.aptana.bundle.name}_${plugin.aptana.bundle.version}.zip" basedir="${temp.aptana.dir}" />
+
+		<!-- clean up temp dir -->
+		<delete dir="${temp.aptana.dir}" />
+	</target>
+
+	<target name="BUILD_AMPLESDK_LICENSE" unless="skip.license">
+		<mkdir dir="${target.dir}/license/" />
+		<copy todir="${target.dir}/license/">
+			<fileset dir="${source.dir}/license/" />
+		</copy>
+	</target>
+
+</project>

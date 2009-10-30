@@ -1,0 +1,98 @@
+xul|page,
+xul|dialog,
+xul|wizard,
+xul|window {
+	position: absolute;
+	background-color: Window;/*#ECE9D8;*/
+}
+
+xul|dialog,
+xul|wizard,
+xul|window {
+	border: 1px #7F9DB9 outset;
+}
+
+xul|dialog::head,
+xul|wizard::head,
+xul|window::head {
+	cursor: default;
+	background-color:	#0033CC;
+}
+
+xul|dialog::body,
+xul|window::body,
+xul|wizard::body {
+    border-top: solid 1px #ffffff;
+	border-bottom:	solid 1px #aca899;
+}
+
+xul|wizard::body {
+	padding: 10px;
+	padding-left: 28px;
+	padding-right: 28px;
+}
+
+xul|wizard::foot,
+xul|dialog::foot {
+	height: 40px;
+    border-top: solid 1px #ffffff;
+}
+
+xul|dialog::button-accept,
+xul|dialog::button-cancel,
+xul|dialog::button-help,
+xul|wizard::button-back,
+xul|wizard::button-next,
+xul|wizard::button-finish,
+xul|wizard::button-cancel {
+    margin-right: 5px;
+	cursor: default !important;
+	width:	5em;
+}
+
+xul|dialog::title,
+xul|wizard::title,
+xul|window::title {
+	color: white;
+	font-weight: bold;
+	padding-left: 2px;
+	height: 1em;
+}
+
+xul|window::button-close {
+	width: 13px;
+	height:13px;
+	margin: 2px;
+	background-repeat: no-repeat;
+	background-image: url(media/button_close.gif);
+	background-position: 0px 0px;
+	font-size: 1px;
+}
+
+xul|window::button-close:hover {
+	background-position: 0px -13px;
+}
+
+xul|window::button-close:active {
+	background-position: 0px -26px;
+}
+
+xul|dialogheader,
+xul|wizardheader {
+	height: 60px;
+	border-bottom:	solid 1px #aca899;
+	background-color: #fff;
+	padding: 8px;
+	cursor: default !important;
+}
+
+xul|dialogheader::title,
+xul|wizardheader::title {
+	font-weight: bold;
+}
+
+xul|dialogheader::description,
+xul|wizardheader::description {
+	padding-top: 3px;
+	padding-left: 20px;
+}

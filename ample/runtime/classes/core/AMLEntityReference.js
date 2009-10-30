@@ -1,0 +1,20 @@
+/*
+ * Ample SDK - JavaScript GUI Framework
+ *
+ * Copyright (c) 2009 Sergey Ilinsky
+ * Dual licensed under the MIT and GPL licenses.
+ * See: http://www.amplesdk.com/ample/licensing/
+ *
+ */
+
+var cAMLEntityReference	= function(){};
+
+cAMLEntityReference.prototype	= new cAMLNode;
+cAMLEntityReference.prototype.nodeType	= cAMLNode.ENTITY_REFERENCE_NODE;
+
+/*
+cAMLEntityReference.prototype.$getTag	= function()
+{
+	return this.nodeValue;
+};
+*/

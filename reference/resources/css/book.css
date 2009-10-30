@@ -1,0 +1,46 @@
+BODY {
+	margin: 5px;
+	border: none;
+	background-color: #f6f6f6;
+	font-size: 70%;
+	font-family: Verdana;
+}
+UL {
+	list-style-type: none;
+	margin: 0px;
+	padding:0px;
+	padding-left: 20px;
+}
+UL.root {
+	padding-left: 0px;
+}
+LI {
+	padding:0px;
+	margin: 0px;
+	white-space: nowrap;
+}
+A {
+	color: black;
+	text-decoration: none;
+	padding: 1px;
+	padding-left: 2px;
+	padding-right: 2px;
+	height: 14px;
+	cursor: pointer;
+	margin-left: 4px;
+}
+A.active {
+	color: white;
+	border: solid 1px gray;
+	background-color: #316ac5;
+}
+A:hover {
+	color: black;
+	border: solid 1px black;
+	background-color: lightyellow;
+}
+A.active, A:hover {
+	padding:0px;
+	padding-left: 1px;
+	padding-right: 1px;
+}

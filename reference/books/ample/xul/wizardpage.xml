@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="wizardpage" type="regular">
+	<implements />
+	<abstract>
+		<locale xml:lang="ru">
+			Описывает страницу визарда (элемент <link type="element">wizard</link>).
+			Содержимое страницы должно быть помещено внутри элемента <b>wizardpage</b>.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="label" default="" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						Заголовок, который будет отобращен вверху визрда при отображении этой страницы.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="description" default="" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						Описание, которое отобразится в заголовке визарда при отображении этой страницы.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="next" default="" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						Указывает на идентификатор страницы, которая дожна быть показана после этой при нажатии пользователем кнопки <b>"next"</b>.
+						Это позволяет создавать визарды, в которых используются нелинейные переходы между страницами.
+						Если одна из страниц визарда имеет атрибут <b>"next"</b>, все остальный страницы, за исключением последней, так же должны иметь этот атрибут.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="pageid" default="" readonly="true">
+				<description>
+					<locale xml:lang="ru">
+						Определяет уникальный идентификатор для страницы визарда.
+						Используется для атрибута <b>"next"</b>.
+						Визард всегда начинается со своей первой дочерней страницы.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties />
+		<events>
+			<event name="pageadvanced" group="Event" cancelable="true" bubbles="false">
+				<description>
+					<locale xml:lang="ru">
+						Загорается непосредственно перед сменой страницы.
+						Если обработчик вернет <b>true</b>, будет отображена следующая страница;
+						если обработчик вернет <b>false</b>, переход вперед будет отменен.
+					</locale>
+				</description>
+			</event>
+			<event name="pagehide" group="Event" cancelable="true" bubbles="false">
+				<description>
+					<locale xml:lang="ru">
+						Загорается непосредственно перед тем, как страница будет спрятана.
+						Если обработчик вернет <b>true</b>, страница будет сменена сохранением всех введенных ранее данных;
+						если обработчик вернет <b>false</b>, страница не будет спрятана. Событие загорается перед событием <b>onwizardnext</b> элемента <link type="element">wizard</link>.
+					</locale>
+				</description>
+			</event>
+			<event name="pagerewound" group="Event" cancelable="true" bubbles="false">
+				<description>
+					<locale xml:lang="ru">
+						Загорается непосредственно перед сменой страницы.
+						Если обработчик вернет <b>true</b>, будет отображена предыдущая страница;
+						если обработчик вернет <b>false</b>, переход назад будет отменен.
+					</locale>
+				</description>
+			</event>
+			<event name="pageshow" group="Event" cancelable="false" bubbles="false">
+				<description>
+					<locale xml:lang="ru">
+						Загорается непосредственно перед показом страницы.
+					</locale>
+				</description>
+			</event>
+		</events>
+	</members>
+</element>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.help.toc">
+      <toc file="docs/index.xml"/>
+   </extension>
+<!--
+       <extension
+         point="org.eclipse.eclipsemonkey.scriptpath">
+      <scriptpath directory="scripts"/>
+   </extension>
+-->
+       <extension
+             point="com.aptana.ide.snippets.snippetspath">
+          <snippetsinfo
+                directory="snippets">
+          </snippetsinfo>
+       </extension>
+          <extension
+         point="com.aptana.ide.documentation.library">
+      <libraryinfo
+            directory="libraries"
+            iconFile="icons/ample_small.png"
+            name="Ample SDK"/>
+       </extension>
+
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            category="com.aptana.ide.documentation"
+            class="com.aptana.ide.core.ui.views.browser.DefaultBrowserView"
+            icon="icons/ample_small.png"
+            id="com.aptana.ide.documentation.ample.views.ample"
+            name="Ample SDK View">
+         <description>bundleresource://@plugin.aptana.bundle.name@/views/ample/view.htm</description>
+      </view>
+   </extension>
+
+	   <extension
+         point="com.aptana.ide.editor.js.scriptdoc">
+	      <xml-file
+            icon="icons/ample_small.png"
+            path="support/ample.xml"
+            user-agent="Ample SDK"/>
+   </extension>
+   	<extension
+		point="com.aptana.ide.samples.samplespath">
+		<samplesinfo
+			directory="samples"
+			iconFile="icons/ample_small.png"
+			infoFile="samples/index.htm"
+			name="Ample SDK Samples"
+			previewHandler="com.aptana.ide.documentation.samples.AjaxSamplesPreviewHandler">
+			<include path="libraries/lib"/>
+			<nature id="com.aptana.ide.project.nature.web"/>
+		</samplesinfo>
+	</extension>
+<!--
+	<extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            canFinishEarly="false"
+            category="com.aptana.ide.aptana.projects"
+            class="com.aptana.ide.framework.ample.wizards.AmpleSDKProjectCreationWizard"
+            finalPerspective="com.aptana.ide.js.ui.WebPerspective"
+            hasPages="true"
+            icon="icons/ample_small.png"
+            id="com.aptana.ide.ample.AmpleSDKProject"
+            name="Ample SDK Project"
+            project="true">
+         <description>
+            Creates a new Amlpe SDK project.
+         </description>
+      </wizard>
+   </extension>
+-->
+          		   <extension
+                point="com.aptana.ide.update.feature">
+             <feature
+                   id="@plugin.aptana.bundle.name@">
+             </feature>
+          </extension>
+</plugin>

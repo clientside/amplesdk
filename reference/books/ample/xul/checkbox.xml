@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="checkbox" type="regular">
+	<abstract>
+		<locale xml:lang="ru">
+			Элемент, который имеет два статуса: включен и выключен.
+			Как правило, отображается как пустой квадрат, если статус "выключено", и квадрат с пометкой,
+			если статус "включено". Статус может изменяться путем нажатия мышью на элементе.
+			Текст необходим для отображения назначения элемента.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="checked" default="" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						Указывает на статус элемента.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="label" default="" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						Текст, отображаемый рядом с элементом. Если недостаточно места для отображения текста, он будет перенесен.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties />
+		<events/>
+	</members>
+</element>

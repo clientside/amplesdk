@@ -1,0 +1,5 @@
+content	fireample	chrome/content/
+skin	fireample	classic/1.0	chrome/skin/classic/
+locale	fireample	en-US		chrome/locale/en-US/
+
+overlay chrome://firebug/content/firebugOverlay.xul		chrome://fireample/content/fireample.xul

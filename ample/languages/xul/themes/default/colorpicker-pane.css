@@ -1,0 +1,61 @@
+xul|colorpicker-pane {
+	display:inline-block;
+	cursor:	default;
+	vertical-align: top;
+}
+
+xul|colorpicker-pane::palette {
+	width:  256px;
+	height: 256px;
+	background-image: url(media/huesaturation.jpg);
+}
+
+xul|colorpicker-pane::palette-shader {
+	width:  256px;
+	height: 256px;
+	background-color: #000000;
+}
+
+xul|colorpicker-pane::palette-pointer {
+	width:	19px;
+	height: 19px;
+	background-image: url(media/huesaturation_pointer.gif);
+}
+
+xul|colorpicker-pane::brightness {
+	width:	19px;
+}
+
+xul|colorpicker-pane::brightness-shader {
+	width:	19px;
+	height:	256px;
+	background-image: url(media/brightness_shader.png);
+}
+
+xul|colorpicker-pane::brightness-pointer {
+	width:	37px;
+	height: 9px;
+	line-height: 9px;
+	background-image: url(media/brightness_pointer.gif);
+}
+
+xul|colorpicker-pane::palette,
+xul|colorpicker-pane::brightness,
+xul|colorpicker-pane::color,
+xul|colorpicker-pane::value {
+	border: 1px inset #000000;
+}
+
+xul|colorpicker-pane::color {
+	height: 50px;
+}
+
+xul|colorpicker-pane::value {
+	width:	80px;
+}
+
+/* buttons */
+xul|colorpicker-pane::button-accept,
+xul|colorpicker-pane::button-cancel {
+	width:	80px;
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="popupset" type="virtual">
+	<implements />
+	<abstract>
+		<locale xml:lang="ru">
+			Контейнер для элементов <link type="element">popup</link>.
+			Все всплывающие элементы должны быть объявлены в нем. Этот элемент не отображается.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes />
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

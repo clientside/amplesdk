@@ -1,0 +1,123 @@
+/* Content Debugging */
+xul|box[debug=true] {
+	border-width:	1px;
+	border-style:	dashed;
+}
+
+xul|box[debug=true] xul|box {
+	border: dotted 1px gray;
+}
+/*
+xul|box[debug=true] xul|vbox {
+	border: dotted 1px red;
+}
+xul|box[debug=true] xul|hbox {
+	border: dotted 1px blue;
+}
+*/
+xul|vbox[debug=true] {
+	border-color:	red;
+	border-left-width:	2px;
+	border-left-style:	solid;
+	background-color:	#fee;
+}
+
+xul|hbox[debug=true] {
+	border-color:	blue;
+	border-top-width:	2px;
+	border-top-style:	solid;
+	background-color:	#eef;
+}
+
+xul|box {
+
+}
+
+xul|deck {
+	width:100%;
+	height:100%;
+}
+
+xul|groupbox {
+
+}
+
+xul|groupbox-head {
+	background: url(media/groupbox_horizontal.gif) repeat-x 0px 6px;
+}
+
+xul|groupbox-head-left {
+	width:	11px;
+	height:	22px;
+	background: url(media/groupbox_corner.gif) no-repeat 0px 11px;
+}
+
+xul|groupbox-head-right {
+	width:	11px;
+	background: url(media/groupbox_corner.gif) no-repeat -11px 11px;
+}
+
+xul|groupbox-body-left {
+	background: url(media/groupbox_vertical.gif) repeat-y;
+}
+
+xul|groupbox-body-right {
+	background: url(media/groupbox_vertical.gif) repeat-y;
+}
+
+xul|groupbox-foot {
+	height:	11px;
+	background: url(media/groupbox_horizontal.gif) repeat-x 0px 5px;
+}
+
+xul|groupbox-foot-left {
+	background: url(media/groupbox_corner.gif) no-repeat 0 -11px;
+}
+
+xul|groupbox-foot-right {
+	background: url(media/groupbox_corner.gif) no-repeat -11px -11px;
+}
+
+xul|caption {
+	background-color: Window;
+	color: darkblue;
+	padding-right:4px;
+	padding-left: 4px;
+	cursor: default !important;
+}
+
+xul|iframe {
+
+}
+
+xul|image {
+
+}
+
+xul|label {
+
+}
+
+xul|description {
+
+}
+
+xul|spacer {
+
+}
+
+xul|stack {
+
+}
+
+xul|grid {
+
+}
+
+xul|rows {
+
+}
+
+xul|row {
+
+}

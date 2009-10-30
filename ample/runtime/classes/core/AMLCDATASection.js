@@ -1,0 +1,20 @@
+/*
+ * Ample SDK - JavaScript GUI Framework
+ *
+ * Copyright (c) 2009 Sergey Ilinsky
+ * Dual licensed under the MIT and GPL licenses.
+ * See: http://www.amplesdk.com/ample/licensing/
+ *
+ */
+
+var cAMLCDATASection	= function(){};
+
+cAMLCDATASection.prototype	= new cAMLText;
+cAMLCDATASection.prototype.nodeType	= cAMLNode.CDATA_SECTION_NODE;
+cAMLCDATASection.prototype.nodeName	= "#cdata";
+
+// nsIDOMCDATASection
+cAMLCDATASection.prototype.cloneNode	= function(bDeep)
+{
+	return this.ownerDocument.createCDATASection(this.data);
+};

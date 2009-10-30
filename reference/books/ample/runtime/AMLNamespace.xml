@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="AMLNamespace">
+	<abstract>
+    <locale>
+      Base class for mark-up language implementation.
+    </locale>
+    <locale xml:lang="ru">
+      Базовый класс для реализации языка разметки.
+    </locale>
+	</abstract>
+	<remarks />
+	<members>
+		<properties>
+			<property name="namespaceURI" type="String" readonly="true">
+				<description>
+					<locale>
+						Language namespace URI.
+					</locale>
+          <locale xml:lang="ru">
+            URI пространства имен языка разметки.
+          </locale>
+				</description>
+			</property>
+			<property name="elements" type="Hash" readonly="true">
+				<description>
+					<locale>
+						List of elements registered with language.
+					</locale>
+          <locale xml:lang="ru">
+            Список элементов, зарегистрированных в реализации языка разметки.
+          </locale>
+				</description>
+			</property>
+			<property name="attributes" type="Hash" readonly="true">
+				<description>
+					<locale>
+						List of attributes registered with language.
+					</locale>
+          <locale xml:lang="ru">
+            Список атрибутов, зарегистрированных в реализации языка разметки.
+          </locale>
+				</description>
+			</property>
+		</properties>
+		<methods>
+			<method name="setElement" type="Void">
+				<arguments>
+					<argument name="sName" type="String" required="true">
+						<description>
+							<locale>
+								Name of the element.
+							</locale>
+              <locale xml:lang="ru">
+                Имя элемента.
+              </locale>
+						</description>
+					</argument>
+					<argument name="cElement" type="Function" required="true">
+						<description>
+							<locale>
+								Element constructor.
+							</locale>
+              <locale xml:lang="ru">
+                Конструктор элемента.
+              </locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Associates element with language.
+					</locale>
+          <locale xml:lang="ru">
+            Устанавливает связь элемента с языком разметки.
+          </locale>
+				</description>
+			</method>
+			<method name="getElement" type="Function">
+				<arguments>
+					<argument name="sName" type="String" required="true">
+						<description>
+							<locale>
+								Name of the element.
+							</locale>
+              <locale xml:lang="ru">
+                Имя элемента.
+              </locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Retrieves element declaration.
+					</locale>
+          <locale xml:lang="ru">
+            Возвращает конструктор элемента.
+          </locale>
+				</description>
+			</method>
+			<method name="setAttribute" type="Void">
+				<arguments>
+					<argument name="sName" type="String" required="true">
+						<description>
+							<locale>
+								Name of the attribute.
+							</locale>
+              <locale xml:lang="ru">
+                Имя атрибута.
+              </locale>
+						</description>
+					</argument>
+					<argument name="cAttribute" type="Function" required="true">
+						<description>
+							<locale>
+								Attribute constructor.
+							</locale>
+              <locale xml:lang="ru">
+                Конструктор атрибута.
+              </locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Associates namespaced attribute with language.
+					</locale>
+          <locale xml:lang="ru">
+            Устанавливает связь между атрибутом и языком разметки.
+          </locale>
+				</description>
+			</method>
+			<method name="getAttribute" type="Function">
+				<arguments>
+					<argument name="sName" type="String" required="true">
+						<description>
+							<locale>
+								Name of the attribute.
+							</locale>
+              <locale xml:lang="ru">
+                Имя атрибута.
+              </locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Retrieves namespaced attribute declaration.
+					</locale>
+          <locale xml:lang="ru">
+            Возвращает конструктор атрибута.
+          </locale>
+				</description>
+			</method>
+		</methods>
+	</members>
+	<examples>
+		<example>
+			<code><![CDATA[
+// Create namespace object
+var oMyNamespace	= new AMLNamespace;
+
+// Register namespace object with implementation
+ample.domConfig.setNamespace("http://www.mybusiness.com/ns/ui", oMyNamespace);
+
+// Create elements and register them with the namespace
+var cMyComboBoxComponent	= function() {
+	this.options	= new AMLNodeList;
+}
+cMyComboBoxComponent.prototype	= new AMLElement;
+cMyComboBoxComponent.prototype.options	= null;
+cMyComboBoxComponent.prototype.addOption	= function(oOption) {
+	// method implementation
+}
+
+// Register component with namespace implementation
+oMyNamespace.setElement("combobox", cMyComboBoxComponent);
+			]]></code>
+		</example>
+	</examples>
+</object>

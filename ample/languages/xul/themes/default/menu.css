@@ -1,0 +1,94 @@
+xul|menupopup {
+    cursor:	default !important;
+    background-color: Menu;
+    border-width:	1px;
+    border-style: 	solid;
+    border-color:	ThreeDHighlight ThreeDShadow ThreeDShadow ThreeDHighlight;/*#aca899;*/
+    padding:	2px;
+	z-index:	100;
+}
+
+xul|menuitem {
+    color: black;
+}
+xul|menuitem:hover {
+    color: white;
+    background-color: pink;
+}
+xul|menuitem:selected {
+    color: HighlightText;
+    background-color: Highlight;
+}
+xul|menuitem:disabled {
+	color:	GrayText;
+}
+xul|menuitem[type]::image {
+	background-repeat: no-repeat;
+	width:	16px;
+	height:	16px;
+	vertical-align: middle;
+}
+xul|menuitem[type=checkbox]::image {
+	background-position: 0px 16px;	/* hidden */
+	background-image: url(media/menuitem_checkbox.gif);
+}
+xul|menuitem[type=radio]::image {
+	background-position: 0px 16px;	/* hidden */
+	background-image: url(media/menuitem_radio.gif);
+}
+xul|menuitem::image:checked {
+	background-position: 0px 0px;
+}
+xul|menu {
+	color: black;
+}
+xul|menu:hover {
+    color: white;
+    background-color: pink;
+}
+xul|menu:selected {
+    color: HighlightText;
+    background-color: Highlight;
+}
+xul|menu:disabled {
+	color: GrayText;
+}
+xul|menu::arrow {
+	background-image:	url(media/menuitem_arrow.gif);
+	background-repeat:	no-repeat;
+	background-position: 0px 0px;
+	vertical-align: middle;
+	width: 16px;
+	height:16px;
+}
+xul|menu::label {
+	padding-left:	5px;
+	padding-right:	5px;
+}
+xul|menuitem:selected xul|menuitem::image:checked,
+xul|menuitem:selected xul|menuitem::image:checked/*,
+xul|menu:selected xul|menu::arrow*/ {
+	background-position: 0px -16px;
+}
+xul|menuitem:disabled xul|menuitem::image:checked,
+xul|menuitem:disabled xul|menuitem::image:checked,
+xul|menu:disabled xul|menu::arrow {
+	background-position: 0px -48px;
+}
+xul|menuseparator {
+    border-top:	solid 1px ThreeDShadow;/*#ACA899;*/
+	background-color:	ThreeDHighlight;
+	margin-top:		2px;
+	margin-bottom:	1px;
+	height:	1px;
+	line-height:	1px;
+}
+
+xul|menu::gateway xul|menupopup {
+	margin-left: 0;
+	margin-top:	0;
+}
+xul|menupopup::gateway xul|menupopup {
+	margin-left:16px;
+	margin-top:	-3px;
+}

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object extends="runtime:AMLElement" name="AMLElement">
+	<implements />
+	<abstract>
+		<locale>
+			Represents the base object for all the elements from AML namespace.
+		</locale>
+		<locale xml:lang="ru">
+			Является базовым объектом для всех эдементов из пространства имен языка AML.
+		</locale>
+	</abstract>
+	<remarks>
+		<remark>
+			<locale>
+				All the attributes prefixes should be bound to AML namespace.
+			</locale>
+			<locale xml:lang="ru">
+				Все префиксы атрибутов должны быть привязаны к пространству имен языка AML.
+			</locale>
+		</remark>
+	</remarks>
+	<examples />
+	<members>
+		<attributes>
+			<!-- mResize -->
+			<attribute name="aml:resizable" readonly="false" default="false">
+				<values>
+					<value name="true">
+						<description>
+							<locale>
+								Elements boundaries can be modified.
+							</locale>
+							<locale xml:lang="ru">
+								Размеры элемента могут быть изменены пользователем.
+							</locale>
+						</description>
+					</value>
+					<value name="false">
+						<description>
+							<locale>
+								Elements boundaries can not be modified.
+							</locale>
+							<locale xml:lang="ru">
+								Размеры элемента не изменяемы.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale>
+						Specifies whether element boundaries can be modified by user.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает, может ли пользователь изменять размеры элемента.
+					</locale>
+				</description>
+			</attribute>
+
+			<attribute name="aml:resize-edges" readonly="false" default="false">
+				<description>
+					<locale>
+						Specifies what edges can be resized. The attribute value is a space separated list of "top", "right", "bottom" and "left" tokens.
+					</locale>
+				</description>
+			</attribute>
+
+			<!-- mDragAndDrop -->
+			<attribute name="aml:draggable" readonly="false" default="false">
+				<values>
+					<value name="true">
+						<description>
+							<locale>
+								Element can be dragged.
+							</locale>
+							<locale xml:lang="ru">
+								Элемент может перетаскиваться.
+							</locale>
+						</description>
+					</value>
+					<value name="false">
+						<description>
+							<locale>
+								Element can not be dragged.
+							</locale>
+							<locale xml:lang="ru">
+								Элемент не может перетаскиваться.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale>
+						Specifies wether element can be dragged by user.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает, может ли пользователь перетаскивать элемент или нет.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="aml:droppable" readonly="false" default="false">
+				<values>
+					<value name="true">
+						<description>
+							<locale>
+								Element can be used as drop target.
+							</locale>
+							<locale xml:lang="ru">
+								Элемент является местом оставления перетаскиваемого объекта.
+							</locale>
+						</description>
+					</value>
+					<value name="false">
+						<description>
+							<locale>
+								Element can not be used as drop target.
+							</locale>
+							<locale xml:lang="ru">
+								Элемент не является местом оставления перетаскиваемого объекта.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale>
+						Specifies wether element can be used as drop target.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает, является ли элемент местом оставления перетаскиваемого объекта.
+					</locale>
+				</description>
+			</attribute>
+
+			<!-- Selectable -->
+			<attribute name="aml:selectable" readonly="false" default="inherit">
+				<values>
+					<value name="true">
+						<description>
+							<locale>
+								Text selection is enabled on element
+							</locale>
+						</description>
+					</value>
+					<value name="false">
+						<description>
+							<locale>
+								Text selection is disabled on element
+							</locale>
+						</description>
+					</value>
+					<value name="inherit">
+						<description>
+							<locale>
+								Text selection behavior is inherited from its parent container.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale>
+						Enables/disables text selection on element.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties />
+		<events />
+	</members>
+</object>

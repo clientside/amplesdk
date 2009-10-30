@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="caption" type="regular">
+	<implements />
+	<abstract>
+		<locale xml:lang="ru">
+			Заголовок для элемента <link type="element">groupbox</link>.
+			Может содержать только текст, задаваемую атрибутом <link type="attribute">label</link>
+		</locale>
+	</abstract>
+	<remarks>
+		<remark>
+			<locale xml:lang="ru">
+				Реализация элемента <link type="element">caption</link> в <b>Ample SDK</b> не позволяет
+				задавать для него дочерние элементы.
+			</locale>
+		</remark>
+	</remarks>
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="label" default="" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						Текст заголовка. Если не указан, заголовок будет пустой.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="image" default="" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						URL пиктограммы для заголовка. Если не указан, пиктограмма будет отсутствовать.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="AMLDragEvent" extends="runtime:AMLUIEvent">
+	<abstract>
+		<locale>
+			The AMLDragEvent interface provides specific contextual information associated with Drag Events.
+		</locale>
+		<locale xml:lang="ru">
+			Интерфейс AMLDragEvent предоставляет контекстную информацию, специфичную для событий пользовательского интерфейса.
+		</locale>
+	</abstract>
+	<examples/>
+	<members>
+		<methods>
+			<method name="initDragEvent" type="Void">
+				<arguments>
+					<argument name="sEventType" type="String" required="true">
+						<description>
+							<locale>
+								Type of the event.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает на тип события (Event.type).
+							</locale>
+						</description>
+					</argument>
+					<argument name="bCanBubble" type="Boolean" required="true">
+						<description>
+							<locale xml:lang="ru">
+								Указывает, может ли событие распространяться в фазе "bubbling".
+							</locale>
+							<locale>
+								Specifies if event should have bubbling phase.
+							</locale>
+						</description>
+					</argument>
+					<argument name="bCancelable" type="Boolean" required="true">
+						<description>
+							<locale>
+								Specifies whether or not the event's default action can be prevented.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает, возможно ли отменить ответную реакцию браузера по умолчанию на событие.
+							</locale>
+						</description>
+					</argument>
+					<argument name="oView" type="Object" required="true">
+						<description>
+							<locale xml:lang="ru">
+								Указывает на обьект View, в котором произошло событие.
+							</locale>
+						</description>
+					</argument>
+					<argument name="nDetail" type="Number" required="true">
+						<description>
+							<locale xml:lang="ru">
+								Указывает дополнительное значение, ассоциированииое с данным событием.
+							</locale>
+						</description>
+					</argument>
+					<argument name="oDataTransfer" type="AMLDataTransfer" required="true">
+						<description>
+							<locale xml:lang="ru">
+								Указывает DataTransfer значение, ассоциированииое с данным событием.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Initializes attributes of a <link type="object">AMLDragEvent</link> object.
+					</locale>
+					<locale xml:lang="ru">
+						Метод initDragEvent используется для инициализации значения объекта DragEvent.
+					</locale>
+				</description>
+			</method>
+		</methods>
+		<properties>
+			<property name="dataTransfer" type="AMLDataTransfer">
+				<description>
+					<locale>
+						Keeps a reference to <link type="object">AMLDataTransfer</link> object, associated with this object.
+					</locale>
+					<locale xml:lang="ru">
+						Содержит <link type="object">AMLDataTransfer</link> object, ассоциированииое с данным событием.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<constants />
+	</members>
+	<remarks>
+		<remark>
+			<locale>Events of that type:</locale>
+      <locale xml:lang="ru">События этого типа:</locale>
+      <ul>
+        <li><link type="event" href="runtime:mDragAndDrop">drag</link></li>
+        <li><link type="event" href="runtime:mDragAndDrop">dragend</link></li>
+        <li><link type="event" href="runtime:mDragAndDrop">dragenter</link></li>
+        <li><link type="event" href="runtime:mDragAndDrop">dragleave</link></li>
+        <li><link type="event" href="runtime:mDragAndDrop">dragover</link></li>
+        <li><link type="event" href="runtime:mDragAndDrop">dragstart</link></li>
+        <li><link type="event" href="runtime:mDragAndDrop">drop</link></li>
+      </ul>
+		</remark>
+	</remarks>
+	<examples />
+</object>

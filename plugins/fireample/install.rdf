@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+	<RDF:Description about="urn:mozilla:install-manifest">
+		<em:id>fireample@amplesdk.com</em:id>
+		<em:version>@plugin.fireample.version@</em:version>
+		<em:type>2</em:type>
+
+	    <!-- Target Application this extension can install into,
+	         with minimum and maximum supported versions. -->
+	    <em:targetApplication>
+	      <RDF:Description>
+	        <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
+	        <em:minVersion>2.0</em:minVersion>
+	        <em:maxVersion>3.0.*</em:maxVersion>
+	      </RDF:Description>
+	    </em:targetApplication>
+		<em:targetPlatform/>
+
+	    <!-- Front End MetaData -->
+	    <em:name>@plugin.fireample.name@</em:name>
+	    <em:description>Extension to Firebug for Ample SDK applications</em:description>
+	    <em:creator>Clientside OY</em:creator>
+	    <em:homepageURL>http://www.amplesdk.com/</em:homepageURL>
+		<em:optionsURL/>
+		<em:iconURL/>
+		<em:updateURL/>
+		<em:updateKey/>
+		<em:hidden/>
+	</RDF:Description>
+</RDF>

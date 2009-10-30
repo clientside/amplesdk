@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element name="defs" extends="svg11:SVG11Element">
+	<abstract>
+		<locale>
+			The 'defs' element is a container element for referenced elements.
+		</locale>
+	</abstract>
+	<examples />
+	<members>
+		<attributes />
+	</members>
+</element>

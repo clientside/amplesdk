@@ -1,0 +1,6 @@
+<!--
+	category: Ample SDK
+	name: Resource Include: XHTML 1.0 language
+	toolTip: XHTML 1.0 language bundle (put it in the HEAD section)
+-->
+		<script type="text/javascript" src="lib/ample/languages/xhtml/xhtml.js"></script>

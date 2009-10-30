@@ -1,0 +1,108 @@
+xul|toolbox {
+
+}
+
+xul|toolbar,
+xul|menubar {
+	cursor: default !important;
+    background-color:	#F1F0E8;
+	border-bottom: solid 1px #D8D2BD;
+	border-top: solid 1px #FFF;
+}
+
+xul|toolbarseparator {
+	width:	3px;
+	height:	24px;
+	margin:	3px;
+	background:	url(media/toolbarseparator.gif) repeat-y;
+}
+
+xul|toolbargrippy {
+	width:	3px;
+	margin: 3px;
+	background: url(media/toolbargrippy.gif) repeat-y;
+}
+
+xul|toolbar xul|toolbargrippy {
+	line-height:	24px;
+}
+
+xul|menubar xul|toolbargrippy {
+	line-height:	14px;
+}
+
+xul|toolbarbutton {
+	height: 30px;
+	white-space: nowrap;
+}
+
+xul|toolbarbutton::gateway {
+	padding-right: 3px;
+	padding-left: 0px;
+	padding-bottom: 1px;
+}
+
+xul|toolbarbutton::arrow {
+	width:	8px;
+	background: url(media/toolbarbutton_arrow.gif) no-repeat center;
+}
+
+/* hover */
+xul|toolbarbutton:hover {
+	background-color: transparent;
+}
+
+xul|toolbarbutton:hover xul|toolbarbutton-top {
+	background: url(media/toolbarbutton_top_hover.gif) repeat-x top;
+}
+
+xul|toolbarbutton:hover xul|toolbarbutton-left {
+	background: #F1F0E8 url(media/toolbarbutton_left_hover.gif);
+}
+
+xul|toolbarbutton:hover xul|toolbarbutton-right {
+	background: #F1F0E8 url(media/toolbarbutton_right_hover.gif);
+}
+
+xul|toolbarbutton:hover xul|toolbarbutton-bottom {
+	background: url(media/toolbarbutton_bottom_hover.gif) repeat-x bottom;
+}
+
+/* active */
+xul|toolbarbutton:active {
+	background-color: #D8D2BD;
+}
+
+xul|toolbarbutton:active xul|toolbarbutton::gateway {
+	padding-right: 2px;
+	padding-left:  1px;
+	padding-top:   1px;
+	padding-bottom:0px;
+}
+
+xul|toolbarbutton:active xul|toolbarbutton-top {
+	background: url(media/toolbarbutton_top_pressed.gif) repeat-x top;
+}
+
+xul|toolbarbutton:active xul|toolbarbutton-left {
+	background: url(media/toolbarbutton_left_pressed.gif);
+}
+
+xul|toolbarbutton:active xul|toolbarbutton-right {
+	background: url(media/toolbarbutton_right_pressed.gif);
+}
+
+xul|toolbarbutton:active xul|toolbarbutton-bottom {
+	background: url(media/toolbarbutton_bottom_pressed.gif) repeat-x bottom;
+}
+
+/* disabled */
+xul|toolbarbutton:disabled {
+	color: GrayText;
+}
+xul|toolbarbutton:disabled xul|toolbarbutton-right,
+xul|toolbarbutton:disabled xul|toolbarbutton-top,
+xul|toolbarbutton:disabled xul|toolbarbutton-left,
+xul|toolbarbutton:disabled xul|toolbarbutton-bottom {
+	background: none;
+}

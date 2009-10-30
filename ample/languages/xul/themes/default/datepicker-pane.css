@@ -1,0 +1,75 @@
+xul|datepicker-pane {
+	cursor: default;
+	display:inline-block;
+	vertical-align: top;
+}
+xul|datepicker-pane::header {
+	background-color: #B4CBEA;
+	color: white;
+	text-align: center;
+	font-weight: bold;
+}
+xul|datepicker-pane::month {
+	height: 19px;
+	width: 84px;
+}
+xul|datepicker-pane::month-previous,
+xul|datepicker-pane::month-next {
+	width:	20px;
+	font-weight: bold;
+	text-align:	center;
+}
+xul|datepicker-pane::years-pane {
+	height:	17px;
+	line-height:17px;
+	width:	70px;
+	border: 1px solid #b4cbea;
+}
+xul|datepicker-pane::year {
+	vertical-align:	top;
+	padding:0;
+}
+xul|datepicker-pane::year-previous,
+xul|datepicker-pane::year-next {
+	height: 8px;
+	width: 16px;
+	line-height:	8px;
+	font-size: 1px;
+	background-image: url(media/spinbuttons.gif);
+	background-repeat: no-repeat;
+}
+xul|datepicker-pane::year-previous {
+	background-position: 0px 0px;
+}
+xul|datepicker-pane::year-next {
+	background-position: -16px 0px;
+}
+xul|datepicker-pane::year-previous:hover {
+	background-position: 0px -8px;
+}
+xul|datepicker-pane::year-next:hover {
+	background-position: -16px -8px;
+}
+
+xul|datepicker-pane:day {
+	width: 24px;
+	background-color: #f1f1f1;
+	color: black;
+}
+xul|datepicker-pane:day-weekend {
+	font-weight: bold;
+}
+xul|datepicker-pane:day-disabled {
+	background-color: #d0d0d0;
+	color: #F0F0F0;
+}
+xul|datepicker-pane:selected {
+	background-color: #B4CBEA;
+	color: white;
+}
+xul|datepicker-pane:week {
+	width: 1.5em;
+	/*height:18px;*/
+	color: gray;
+	font-style: italic;
+}

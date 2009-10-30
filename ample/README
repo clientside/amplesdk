@@ -1,0 +1,23 @@
+This folder contains raw source of the Ample SDK framework.
+
+When project is built the folders contents get concatenated
+into single files representing implementation of runtime and
+languages.
+
+For development purposes there is a simple mechanism implemented
+that invloves Apache's mod_rewrite to redirect requests for final
+files to a respectful PHP scripts that concatenate folders contents
+into single files on the fly. If you are using different web-server
+or/and different server-side language, you may want to look into
+the .htaccess file and PHP script and implement similar glueing
+mechanisms for the platform of your choice.
+
+Runtime:
+	ample/runtime.js
+ -> ample/runtime/**.js
+UI Language implementation:
+	ample/languages/{LANGUAGE}/{LANGUAGE}.js
+ -> ample/languages/{LANGUAGE}/implementation/**.js
+UI Language theme:
+	ample/languages/{LANGUAGE}/themes/{THEME}/{LANGUAGE}.css
+ -> ample/languages/{LANGUAGE}/themes/{THEME}/**.css

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element name="SVG11ShapeElement" extends="svg11:SVG11Element">
+	<abstract>
+		<locale>
+			Base class for all shape elements.
+		</locale>
+	</abstract>
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="fill">
+				<description>
+					<locale>
+						The 'fill' property specifies that the interior of the given graphical element must be painted.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="fill-opacity">
+				<description>
+					<locale>
+						The 'fill-opacity' specifies the opacity of the painting operation which shall be used to paint the interior the current object.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="stroke">
+				<description>
+					<locale>
+						The 'stroke' property shall paint along the outline of the given graphics element.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="stroke-linejoin">
+				<values>
+					<value name="miter">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</value>
+					<value name="round">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</value>
+					<value name="bevel">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale>
+						The 'stroke-linejoin' specifies the shape which shall be used at the corners of shapes when they are stroked.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="stroke-linecap">
+				<values>
+					<value name="butt">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</value>
+					<value name="round">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</value>
+					<value name="square">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale>
+						The 'stroke-linecap' specifies the shape which shall be used at the end of open subpaths when they are stroked.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="stroke-dasharray">
+				<description>
+					<locale>
+						The 'stroke-dasharray' specifies the pattern of dashes and gaps that shall be used to stroke paths.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="stroke-width">
+				<description>
+					<locale>
+						The 'stroke-width' specifies the width of the stroke which shall be used on the current object.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="stroke-opacity">
+				<description>
+					<locale>
+						The 'stroke-opacity' specifies the opacity of the painting operation used to stroke the current object.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="transform">
+				<values>
+					<value name="matrix(a b c d e f)">
+						<description>
+							<locale>
+								Specifies transformation matrix [a b c d e f]
+							</locale>
+						</description>
+					</value>
+					<value name="translate(tx [ty])">
+						<description>
+							<locale>
+								Specifies a translation by tx and ty.
+							</locale>
+						</description>
+					</value>
+					<value name="scale(sx [sy])">
+						<description>
+							<locale>
+								Specifies a scale operation by sx and sy.
+							</locale>
+						</description>
+					</value>
+					<value name="rotate(rotate-angle [cx cy])">
+						<description>
+							<locale>
+								Specifies a rotation by rotate-angle degrees about a given point.
+							</locale>
+						</description>
+					</value>
+					<value name="skewX(skew-angle)">
+						<description>
+							<locale>
+								Specifies a skew transformation along the x-axis.
+							</locale>
+						</description>
+					</value>
+					<value name="skewY(skew-angle)">
+						<description>
+							<locale>
+								Specifies a skew transformation along the y-axis.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale>
+						This attribute specifies a list of coordinate system transformations to apply to the element it appears on. The individual transform definitions are separated by white space and/or a comma.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+	</members>
+</element>

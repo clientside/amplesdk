@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: @plugin.aptana.bundle.name@;singleton:=true
+Bundle-Version: @plugin.aptana.bundle.version@
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.help,
+ com.aptana.ide.snippets,
+ com.aptana.ide.samples,
+ com.aptana.ide.documentation,
+ com.aptana.ide.core.ui,
+ com.aptana.ide.core,
+ com.aptana.ide.editor.js

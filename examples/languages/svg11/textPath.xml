@@ -1,0 +1,71 @@
+<?xml version="1.0" standalone="no"?>
+<svg:svg xmlns:svg="http://www.w3.org/2000/svg" viewBox="0,0 300,300" xmlns:smil="http://www.w3.org/2008/SMIL30/"
+     xmlns:xlink="http://www.w3.org/1999/xlink" width="600px" height="600px" style="border:solid 1px red">
+
+    <svg:defs>
+        <svg:path id="myTextPath" d="M75,20 a1,1 0 0,0 200,0 z" fill="gray" stroke="silver"/>
+		<svg:path id="myTextPath2" d="M0,50 H200,50 z" fill="gray" stroke="silver"/>
+
+		<svg:linearGradient id="linear" x1="0" x2="0" y1="1" y2="0">
+			<svg:stop stop-color="red" offset="0.2" />
+			<svg:stop stop-color="gold" offset="0.5" />
+		</svg:linearGradient>
+    </svg:defs>
+
+        <svg:path id="myTextPath3" d="M75,20 a1,1 0 0,0 200,0 z" fill="purple" stroke="magenta"/>
+		<svg:path id="myTextPath4" d="M0,50 H200,50 z" fill="purple" stroke="magenta"/>
+
+    <svg:text x="10" y="100" style="stroke: blue;">
+      <svg:textPath xlink:href="#myTextPath" stroke="green" fill="yellow">
+            Text along a curved path...
+      </svg:textPath>
+    </svg:text>
+
+    <svg:text x="10" y="150" style="stroke: blue;" fill="url(#linear)" font-size="30px" font-weight="600">
+      Text along a line path...
+    </svg:text>
+<!--
+<svg:path id="a" d="M0,100 s100,-100 200,0z" fil="none"/>
+    <svg:text x="10" y="50" style="stroke: blue;" stroke="green" fill="url(#linear)" font-size="30px" font-weight="600">
+    	<svg:textPath xlink:href="#a">
+      Text along a line path 2...
+      	</svg:textPath>
+    </svg:text>
+ -->
+	<svg:path id="linear2" d="M0,100 C0,0 50,0 150,100 S300,200 300,100 z" fill="black" />
+
+    <svg:text x="10" y="200" fill="url(#linear)" font-size="10px" font-weight="600">
+    	<svg:textPath xlink:href="#linear2" style="stroke: blue;">Text along a line path Text along a line path Text along a line path Text along a line path...</svg:textPath>
+    </svg:text>
+
+    <svg:text style="stroke: blue;" fill="url(#linear)">
+    	<svg:tspan x="10" y="250" style="font-size:30px;font-weight:600">
+      		Text along a line path...
+      	</svg:tspan>
+    </svg:text>
+
+    <svg:text style="stroke: blue;">
+      <svg:textPath xlink:href="#myTextPath2" stroke="green" fill="yellow">
+            Text along a horizontal path...
+      </svg:textPath>
+	<smil:animate begin="click" dur="1s" attributeName="font-size" from="2px" to="20px" attributeType="XML" />
+    </svg:text>
+
+<g xmlns="http://www.w3.org/2000/svg" transform="scale(0.2)">
+  <rect x="1" y="1" width="1198" height="398"
+        fill="none" stroke="blue" stroke-width="1" />
+
+  <path d="M300,200 h-150 a150,150 0 1,0 150,-150 z"
+        fill="red" stroke="blue" stroke-width="5" />
+  <path d="M275,175 v-150 a150,150 0 0,0 -150,150 z"
+        fill="yellow" stroke="blue" stroke-width="5" />
+
+  <path d="M100,600 l 50,-25
+           a25,25 -30 0,1 50,-25 l 50,-25
+           a25,50 -30 0,1 50,-25 l 50,-25
+           a25,75 -30 0,1 50,-25 l 50,-25
+           a25,100 -30 0,1 50,-25 l 50,-25"
+        fill="none" stroke="red" stroke-width="5"  />
+</g>
+
+</svg:svg>

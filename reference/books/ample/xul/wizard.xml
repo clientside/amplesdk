@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="wizard" type="regular">
+	<implements />
+	<abstract>
+		<locale xml:lang="ru">
+			Используется для создания пошагового визарда, который может быть использован для выполнения задач,
+			расположенных на нескольких страницах, пользователем в определенной последовательности.
+			Этот элемент предоставляет заголовок и кнопки, расположенные снизу, а так же обработку навигации между страницами.
+			Каждая страница должна быть сформирована с импользованием элемента <link type="element">wizardpage</link>.
+			Страницы отображаются в том же порядке, в котором они располагаются внутри элемента <link type="element">wizardpage</link>,
+			если не использованы атрибуты <b>next</b> и <b>pageid</b> для изменения последовательности.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="title" default="" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						Заголовок отображается сверху визарда.
+						Он может быть переопределен атрибутом <link type="attribute">label</link> на каждой странице.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="pagestep" default="" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						Порядковый номер текущей страницы.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods>
+			<method name="advance" type="Void">
+				<arguments>
+					<argument name="sPageID" type="String" required="false">
+						<description>
+							<locale xml:lang="ru">
+								Идентификатор страницы для перехода.
+								Если указать <b>null</b>, переход будет осуществлен на следующую страницу в последовательности.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale xml:lang="ru">
+						Используется для перехода на следующую страницу.
+						Эквивалентно нажатию кнопки "next".
+						До того, как страница сменится, вызывается код, указанный в атрибуте <link type="attribute">onwizardnext</link>.
+					</locale>
+				</description>
+			</method>
+			<method name="rewind" type="Void">
+				<arguments />
+				<description>
+					<locale xml:lang="ru">
+						Используется для перехода на предыдущую страницу.
+						Эквивалентно нажатию кнопки "back".
+						До того, как страница сменится, вызывается код, указанный в атрибуте <link type="attribute">onwizardback</link>.
+					</locale>
+				</description>
+			</method>
+			<method name="cancel" type="Void">
+				<arguments />
+				<description>
+					<locale xml:lang="ru">
+						Используется для отказа от визарда и его закрытия.
+						До того, как визард закроется, вызывается код, указанный в атрибуте <link type="attribute">onwizardcancel</link>.
+					</locale>
+				</description>
+			</method>
+			<method name="goTo" type="Void">
+				<arguments>
+					<argument name="sPageID" type="String" required="true">
+						<description>
+							<locale xml:lang="ru">
+								Идентификатор страницы, на которую следует перейти.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale xml:lang="ru">
+						Используется для перехода на другую страницу.
+						Код, указанный в атрибутах <link type="attribute">onwizardback</link> и <link type="attribute">onwizardnext</link> не исполняется.
+					</locale>
+				</description>
+			</method>
+			<method name="getPageById" type="AMLElement">
+				<arguments>
+					<argument name="sPageID" type="String" required="true">
+						<description>
+							<locale xml:lang="ru">
+								Идентификатор страницы.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale xml:lang="ru">
+						Возвращает элемент <link type="element">wizardpage</link>, который соответствует аргументу.
+					</locale>
+				</description>
+			</method>
+			<method name="getButton" type="AMLElement">
+				<arguments>
+					<argument name="sButtonType" type="String" required="true">
+						<description>
+							<locale xml:lang="ru">
+								Тип кнопки визарда.
+								Допустимые значения: "back", "next", "finish" или "cancel".
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale xml:lang="ru">
+						Возвращает элемент <link type="element">button</link> указанного типа из визарда.
+					</locale>
+				</description>
+			</method>
+		</methods>
+		<properties>
+			<property name="currentPage" type="AMLElement" readonly="true">
+				<description>
+					<locale xml:lang="ru">
+						Указывает на элемент <link type="element">wizardpage</link>,
+						который отображается в настоящее время.
+					</locale>
+				</description>
+			</property>
+			<property name="wizardPages" type="AMLNodeList" readonly="readonly">
+				<description>
+					<locale xml:lang="ru">
+						Содержит список элементов <link type="element">wizardpage</link> визарда.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<events>
+			<event name="wizardback" group="Event" cancelable="true" bubbles="false">
+				<description>
+					<locale xml:lang="ru">
+						Загорается непосредственно перед сменой страницы.
+						Если обработчик вернет <b>true</b>, будет отображена предыдущая страница;
+						если обработчик вернет <b>false</b>, переход назад будет отменен.
+					</locale>
+				</description>
+			</event>
+			<event name="wizardcancel" group="Event" cancelable="true" bubbles="false">
+				<description>
+					<locale xml:lang="ru">
+						Загорается непосредственно перед закрытием визарда.
+						Если обработчик вернет <b>true</b>, визард будет закрыт;
+						если обработчик вернет <b>false</b>, визард не будет закрыт.
+					</locale>
+				</description>
+			</event>
+			<event name="wizardfinish" group="Event" cancelable="true" bubbles="false">
+				<description>
+					<locale xml:lang="ru">
+						Загорается непосредственно перед закрытием визарда, сразу после того, как пользователь нажмет кнопку "finish" (отображается вместо кнопки "next" на последней странице визарда).
+						Если обработчик вернет <b>true</b>, визард будет закрыт с сохранением всех введенных ранее на страницах данных;
+						если обработчик вернет <b>false</b>, визард не будет закрыт.
+					</locale>
+				</description>
+			</event>
+			<event name="wizardnext" group="Event" cancelable="true" bubbles="false">
+				<description>
+					<locale xml:lang="ru">
+						Загорается непосредственно перед сменой страницы.
+						Если обработчик вернет <b>true</b>, будет отображена следующая страница;
+						если обработчик вернет <b>false</b>, переход вперед будет отменен.
+					</locale>
+				</description>
+			</event>
+			<event name="load" group="Event" cancelable="false" bubbles="false">
+				<description>
+					<locale xml:lang="ru">
+						Загорается сразу после того, как ядро загрузит объект.
+					</locale>
+				</description>
+			</event>
+			<event name="unload" group="Event" cancelable="false" bubbles="false">
+				<description>
+					<locale xml:lang="ru">
+						Загорается непосредственно перед тем, как объект будет выгружен.
+					</locale>
+				</description>
+			</event>
+		</events>
+	</members>
+</element>

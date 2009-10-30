@@ -1,0 +1,51 @@
+xul|tabbox {
+
+}
+
+xul|tabs {
+/*	border-bottom: solid 1px #919B9C;
+	margin-bottom: 1px;*/
+}
+
+xul|tab {
+	height:	20px;
+	padding-left:	5px;
+	padding-right:	10px;
+	padding-bottom:	1px;
+	vertical-align: bottom;
+	background: url(media/tab.gif) repeat-x 0px 0px;
+	white-space:	nowrap;
+	cursor:	default !important;
+}
+
+xul|tab:hover {
+	background-position: 0px -30px;
+}
+
+xul|tab:disabled {
+	background-position: 0px 0px;
+	color: gray;
+}
+
+xul|tab:selected {
+	background-position: 0px -60px;
+	padding-bottom: 3px;
+}
+
+xul|tab-separator {
+	width: 1px;
+	background: url(media/tab_separator.gif) no-repeat top;
+}
+
+xul|tab-remainder {
+
+}
+
+xul|tabpanels {
+	border: 1px solid #7F9DB9;
+	background-color: white;
+}
+
+xul|tabpanel {
+
+}

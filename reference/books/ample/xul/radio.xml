@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="radio" type="regular">
+	<implements />
+	<abstract>
+		<locale xml:lang="ru">
+			Элемент, который может быть включенным и выключенным.
+			Практически всегда элементы объединяются в группы.
+			Только один элемент <link type="element">radio</link> в одной группе (<link type="element">radiogroup</link>) может быть выделен одно и то же время.
+			При выделении одного из элементов <link type="element">radio</link>, все остальные из этой же группы становятся невыделенными.
+			Для описания назначения элемента, рядом с ним может быть размещен текст с использованием атрибута <link type="attribute">label</link>.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="selected" default="" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						Если атрибут выставлен в значение <b>true</b>, элемент выбран.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="value" default="" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						Данные, ассоциированные с элементом.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="label" default="" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						Текст, располагающийся рядом с элементом.
+						Если места для отображения текста не хватает, он будет перенесен.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods>
+		</methods>
+		<properties>
+			<property name="group" type="AMLElement">
+				<description>
+					<locale xml:lang="ru">
+						Ссылка на родительский элемент <link type="element">radiogroup</link>.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<events>
+		</events>
+	</members>
+</element>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element name="rect" extends="svg11:SVG11ShapeElement">
+	<abstract>
+		<locale>
+			The 'rect' element defines a rectangle which is axis-aligned with the current user coordinate system.
+		</locale>
+	</abstract>
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="x">
+				<description>
+					<locale>
+						The x-axis coordinate of the side of the rectangle which has the smaller x-axis coordinate value in the current user coordinate system.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="y">
+				<description>
+					<locale>
+						The y-axis coordinate of the side of the rectangle which has the smaller y-axis coordinate value in the current user coordinate system.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="width">
+				<description>
+					<locale>
+						The width of the rectangle.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="height">
+				<description>
+					<locale>
+						The height of the rectangle.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="rx">
+				<description>
+					<locale>
+						For rounded rectangles, the x-axis radius of the ellipse used to round off the corners of the rectangle.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="ry">
+				<description>
+					<locale>
+						For rounded rectangles, the y-axis radius of the ellipse used to round off the corners of the rectangle.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+	</members>
+</element>
