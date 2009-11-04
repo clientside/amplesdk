@@ -10,64 +10,30 @@
 var cXHTMLElement	= function(){};
 
 cXHTMLElement.prototype	= new AMLElement;
-cXHTMLElement.prototype.AMLElement	= new AMLElement;
 
-// Class event handlers
-/*
-cXHTMLElement.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target != oEvent.currentTarget)
-			return;
+// Static method
+cXHTMLElement.mapAttribute	= function(oElement, sName, sValue) {
+	switch (sName) {
+		case "tabIndex":
+			oElement.tabIndex	= isNaN(sValue) ? -1 : sValue * 1;
+			break;
 
-		switch (oEvent.attrName) {
-			case "tabIndex":
-				this.tabIndex	= window.isNaN(sValue) ? -1 : sValue * 1;
-				break;
+		case "accessKey":
+			oElement.accessKey	= sValue || null;
+			break;
 
-			case "accessKey":
-				this.accessKey	= sValue || null;
-				break;
-		}
+		case "id":
+		case "class":
+		case "style":
+			break;
+
+		default:
+			oElement.$getContainer()[sName]	= sValue;
 	}
-};
-*/
-
-// Public Properties
-cXHTMLElement.prototype.setAttribute	= function(sName, sValue)
-{
-	// Only set process own attributes
-	if (sName.indexOf(":") ==-1) {
-		if (sName == "tabIndex")
-			this.tabIndex	= isNaN(sValue) ? -1 : sValue * 1;
-		else
-		if (sName == "accessKey")
-			this.accessKey	= sValue;
-		else
-		if (sName != "id" && sName != "class" && sName != "style")
-			this.$getContainer()[sName]	= sValue;
-	}
-
-	this.AMLElement.setAttribute.call(this, sName, sValue);
-};
-
-cXHTMLElement.prototype.removeAttribute	= function(sName)
-{
-	if (sName.indexOf(":") ==-1) {
-		if (sName == "tabIndex")
-			this.tabIndex	=-1;
-		else
-		if (sName == "accessKey")
-			this.accessKey	= null;
-		else
-		if (sName != "id" && sName != "class" && sName != "style")
-			this.$getContainer()[sName]	= null;
-	}
-	this.AMLElement.removeAttribute.call(this, sName);
 };
 
 // Default Element Render: open
-cXHTMLElement.prototype.$getTagOpen	= function()
-{
+cXHTMLElement.prototype.$getTagOpen	= function() {
 	var sHtml   = '<' + this.localName;
 	for (var sName in this.attributes)
 		if (sName != "class" && sName != "id" && sName.indexOf(':') ==-1)
@@ -77,8 +43,7 @@ cXHTMLElement.prototype.$getTagOpen	= function()
 };
 
 // Default Element Render: close
-cXHTMLElement.prototype.$getTagClose	= function()
-{
+cXHTMLElement.prototype.$getTagClose	= function() {
     return '</' + this.localName + '>';
 };
 

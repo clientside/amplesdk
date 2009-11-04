@@ -7,11 +7,21 @@
  *
  */
 
-var cXHTMLElement_fieldset	= function()
-{
+var cXHTMLElement_fieldset	= function() {
 	this.elements	= new AMLNodeList;
 };
 cXHTMLElement_fieldset.prototype	= new cXHTMLElement;
+
+//Public Properties
+cXHTMLElement_fieldset.prototype.elements	= null;
+
+// Class Events Handlers
+cXHTMLElement_fieldset.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this)
+			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
+	}
+};
 
 // Register Element with language
 oXHTMLNamespace.setElement("fieldset", cXHTMLElement_fieldset);

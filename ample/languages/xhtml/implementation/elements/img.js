@@ -10,9 +10,16 @@
 var cXHTMLElement_img	= function(){};
 cXHTMLElement_img.prototype	= new cXHTMLElement;
 
-// Default Element Render: open
-cXHTMLElement_img.prototype.$getTagOpen	= function()
-{
+// Class Events Handlers
+cXHTMLElement_img.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this)
+			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
+	}
+};
+
+// Element Render: open
+cXHTMLElement_img.prototype.$getTagOpen	= function() {
     var sHtml   = '<' + this.localName + ' onmousedown="return '+ "false" + '" ondragstart="return '+ "false" + '"';
     for (var sName in this.attributes)
 		if (sName != "class" && sName != "id" && sName.indexOf(':') ==-1)
@@ -20,8 +27,8 @@ cXHTMLElement_img.prototype.$getTagOpen	= function()
 	sHtml	+= ' class="' + (this.prefix ? this.prefix + '-' : '') + this.localName + ("class" in this.attributes ? ' ' + this.attributes["class"] : '') + '"';
     return sHtml + '/>';
 };
-cXHTMLElement_img.prototype.$getTagClose	= function()
-{
+
+cXHTMLElement_img.prototype.$getTagClose	= function() {
 	return '';
 };
 

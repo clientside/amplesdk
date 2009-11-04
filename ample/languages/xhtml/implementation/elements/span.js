@@ -10,5 +10,13 @@
 var cXHTMLElement_span	= function(){};
 cXHTMLElement_span.prototype	= new cXHTMLElement;
 
+// Class Events Handlers
+cXHTMLElement_span.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this)
+			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
+	}
+};
+
 // Register Element with language
 oXHTMLNamespace.setElement("span", cXHTMLElement_span);

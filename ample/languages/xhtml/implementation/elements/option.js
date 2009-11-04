@@ -10,9 +10,11 @@
 var cXHTMLElement_option	= function(){};
 cXHTMLElement_option.prototype	= new cXHTMLElement;
 
+// Class Events Handlers
 cXHTMLElement_option.handlers	= {
-	"mousedown":	function(oEvent) {
-		oEvent.stopPropagation();	// What is this for?
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this)
+			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
 	}
 };
 

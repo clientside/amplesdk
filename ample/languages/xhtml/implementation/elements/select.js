@@ -7,8 +7,7 @@
  *
  */
 
-var cXHTMLElement_select	= function()
-{
+var cXHTMLElement_select	= function() {
     this.options	= new AMLNodeList;
 
     var oSelf	= this;
@@ -20,16 +19,14 @@ cXHTMLElement_select.prototype.tabIndex		= 0;
 
 // Public Properties
 cXHTMLElement_select.prototype.form		= null;
+cXHTMLElement_select.prototype.options	= null;
 
-cXHTMLElement_select.prototype.$isAccessible	= function()
-{
+cXHTMLElement_select.prototype.$isAccessible	= function() {
 	return !this.getAttribute("disabled");
 };
 
-cXHTMLElement_select.prototype.$getValue	= function()
-{
-	if (this.hasAttribute("multiple"))
-	{
+cXHTMLElement_select.prototype.$getValue	= function() {
+	if (this.hasAttribute("multiple")) {
 		var aValue	= [];
 		for (var nIndex = 0; nIndex < this.options.length; nIndex++)
 			if (this.options[nIndex].$getContainer().selected)
@@ -40,25 +37,21 @@ cXHTMLElement_select.prototype.$getValue	= function()
 		return this.$getContainer().value;
 };
 
-cXHTMLElement_select.prototype.$validate	= function()
-{
+cXHTMLElement_select.prototype.$validate	= function() {
 	return true;
 };
 
 // Public Methods
-cXHTMLElement_select.prototype.add		= function(oElement, nIndex)
-{
+cXHTMLElement_select.prototype.add		= function(oElement, nIndex) {
 	return this.appendChild(oElement);
 };
 
-cXHTMLElement_select.prototype.remove	= function(nIndex)
-{
+cXHTMLElement_select.prototype.remove	= function(nIndex) {
 	return this.removeChild(this.options[nIndex]);
 };
 
 // Events Handlers
-cXHTMLElement_select.prototype._onChange	= function(oEvent)
-{
+cXHTMLElement_select.prototype._onChange	= function(oEvent) {
     // Fire Event
     var oEvent2  = this.ownerDocument.createEvent("UIEvents");
     oEvent2.initUIEvent("change", true, false, window, null);
@@ -81,12 +74,15 @@ cXHTMLElement_select.handlers	= {
 	"DOMNodeRemoved":	function(oEvent) {
 		if (oEvent.target instanceof cXHTMLElement_option)
 			this.options.$remove(oEvent.target);
+	},
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this)
+			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
 	}
 };
 
 // Renderers
-cXHTMLElement_select.prototype.$getTagOpen	= function()
-{
+cXHTMLElement_select.prototype.$getTagOpen	= function() {
     var sHtml   = '<' + this.localName + ' onchange="ample.$instance(this)._onChange(event)"';
     for (var sName in this.attributes)
     	if (sName != "class" && sName != "id" && sName.indexOf(':') ==-1)

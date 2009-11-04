@@ -7,21 +7,21 @@
  *
  */
 
-var cXHTMLElement_thead	= function()
-{
+var cXHTMLElement_thead	= function() {
 	this.rows	= new AMLNodeList;
 };
 cXHTMLElement_thead.prototype	= new cXHTMLElement;
 
+// Public Properties
+cXHTMLElement_thead.prototype.rows	= null;
+
 // Public Methods
-cXHTMLElement_thead.prototype.insertRow	= function(nIndex)
-{
+cXHTMLElement_thead.prototype.insertRow	= function(nIndex) {
 	var oElement	= this.ownerDocument.createElementNS(this.namespaceURI, "tr");
 	return nIndex ==-1 ? this.appendChild(oElement) : this.insertBefore(oElement, this.rows[nIndex]);
 };
 
-cXHTMLElement_thead.prototype.deleteRow	= function(nIndex)
-{
+cXHTMLElement_thead.prototype.deleteRow	= function(nIndex) {
 	return this.removeChild(this.rows[nIndex]);
 };
 
@@ -36,6 +36,10 @@ cXHTMLElement_thead.handlers	= {
 		if (oEvent.target.parentNode == this)
 			if (oEvent.target instanceof cXHTMLElement_tr)
 				this.rows.$remove(oEvent.target);
+	},
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this)
+			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
 	}
 };
 

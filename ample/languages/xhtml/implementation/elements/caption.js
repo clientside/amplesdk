@@ -10,5 +10,13 @@
 var cXHTMLElement_caption	= function(){};
 cXHTMLElement_caption.prototype	= new cXHTMLElement;
 
+// Class Events Handlers
+cXHTMLElement_caption.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this)
+			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
+	}
+};
+
 // Register Element with language
 oXHTMLNamespace.setElement("caption", cXHTMLElement_caption);

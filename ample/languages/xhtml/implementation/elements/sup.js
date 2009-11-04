@@ -10,5 +10,13 @@
 var cXHTMLElement_sup	= function(){};
 cXHTMLElement_sup.prototype	= new cXHTMLElement;
 
+// Class Events Handlers
+cXHTMLElement_sup.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this)
+			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
+	}
+};
+
 // Register Element with language
 oXHTMLNamespace.setElement("sup", cXHTMLElement_sup);

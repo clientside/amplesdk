@@ -10,5 +10,13 @@
 var cXHTMLElement_blockquote	= function(){};
 cXHTMLElement_blockquote.prototype	= new cXHTMLElement;
 
+// Class Events Handlers
+cXHTMLElement_blockquote.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this)
+			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
+	}
+};
+
 // Register Element with language
 oXHTMLNamespace.setElement("blockquote", cXHTMLElement_blockquote);

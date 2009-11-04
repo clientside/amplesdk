@@ -10,5 +10,13 @@
 var cXHTMLElement_dfn	= function(){};
 cXHTMLElement_dfn.prototype	= new cXHTMLElement;
 
+// Class Events Handlers
+cXHTMLElement_dfn.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this)
+			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
+	}
+};
+
 // Register Element with language
 oXHTMLNamespace.setElement("dfn", cXHTMLElement_dfn);

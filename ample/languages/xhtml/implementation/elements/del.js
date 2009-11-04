@@ -10,5 +10,13 @@
 var cXHTMLElement_del	= function(){};
 cXHTMLElement_del.prototype	= new cXHTMLElement;
 
+// Class Events Handlers
+cXHTMLElement_del.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this)
+			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
+	}
+};
+
 // Register Element with language
 oXHTMLNamespace.setElement("del", cXHTMLElement_del);

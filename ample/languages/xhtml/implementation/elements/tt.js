@@ -10,5 +10,13 @@
 var cXHTMLElement_tt	= function(){};
 cXHTMLElement_tt.prototype	= new cXHTMLElement;
 
+// Class Events Handlers
+cXHTMLElement_tt.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this)
+			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
+	}
+};
+
 // Register Element with language
 oXHTMLNamespace.setElement("tt", cXHTMLElement_tt);

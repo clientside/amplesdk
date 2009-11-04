@@ -10,5 +10,13 @@
 var cXHTMLElement_area	= function(){};
 cXHTMLElement_area.prototype	= new cXHTMLElement;
 
+// Class Events Handlers
+cXHTMLElement_area.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this)
+			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
+	}
+};
+
 // Register Element with language
 oXHTMLNamespace.setElement("area", cXHTMLElement_area);

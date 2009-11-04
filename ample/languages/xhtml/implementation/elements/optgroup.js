@@ -10,5 +10,13 @@
 var cXHTMLElement_optgroup	= function(){};
 cXHTMLElement_optgroup.prototype	= new cXHTMLElement;
 
+// Class Events Handlers
+cXHTMLElement_optgroup.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this)
+			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
+	}
+};
+
 // Register Element with language
 oXHTMLNamespace.setElement("optgroup", cXHTMLElement_optgroup);

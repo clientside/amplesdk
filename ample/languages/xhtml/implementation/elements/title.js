@@ -10,5 +10,13 @@
 var cXHTMLElement_title	= function(){};
 cXHTMLElement_title.prototype	= new cXHTMLElement;
 
+// Class Events Handlers
+cXHTMLElement_title.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this)
+			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
+	}
+};
+
 // Register Element with language
 oXHTMLNamespace.setElement("title", cXHTMLElement_title);

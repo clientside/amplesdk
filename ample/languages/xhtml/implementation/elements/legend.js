@@ -10,5 +10,13 @@
 var cXHTMLElement_legend	= function(){};
 cXHTMLElement_legend.prototype	= new cXHTMLElement;
 
+// Class Events Handlers
+cXHTMLElement_legend.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this)
+			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
+	}
+};
+
 // Register Element with language
 oXHTMLNamespace.setElement("legend", cXHTMLElement_legend);

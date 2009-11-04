@@ -10,5 +10,13 @@
 var cXHTMLElement_cite	= function(){};
 cXHTMLElement_cite.prototype	= new cXHTMLElement;
 
+// Class Events Handlers
+cXHTMLElement_cite.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this)
+			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
+	}
+};
+
 // Register Element with language
 oXHTMLNamespace.setElement("cite", cXHTMLElement_cite);

@@ -10,5 +10,13 @@
 var cXHTMLElement_address	= function(){};
 cXHTMLElement_address.prototype	= new cXHTMLElement;
 
+// Class Events Handlers
+cXHTMLElement_address.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this)
+			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
+	}
+};
+
 // Register Element with language
 oXHTMLNamespace.setElement("address", cXHTMLElement_address);

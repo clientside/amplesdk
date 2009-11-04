@@ -11,8 +11,7 @@ var cXHTMLElement_button	= function(){};
 cXHTMLElement_button.prototype	= new cXHTMLElement;
 cXHTMLElement_button.prototype.tabIndex		= 0;
 
-cXHTMLElement_button.prototype.$isAccessible	= function()
-{
+cXHTMLElement_button.prototype.$isAccessible	= function() {
 	return !this.getAttribute("disabled");
 };
 
@@ -30,6 +29,10 @@ cXHTMLElement_button.handlers	= {
 	},
 	"blur":		function(oEvent) {
 		this.$getContainer().blur();
+	},
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this)
+			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
 	}
 };
 

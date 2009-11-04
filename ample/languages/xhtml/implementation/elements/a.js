@@ -21,8 +21,7 @@ cXHTMLElement_a.handlers	= {
 		this.$getContainer().blur();
 	},
 	"click":	function(oEvent) {
-		if (oEvent.button == 0)
-		{
+		if (oEvent.button == 0) {
 			var oDOMActivateEvent	= this.ownerDocument.createEvent("UIEvent");
 			oDOMActivateEvent.initUIEvent("DOMActivate", true, true, window, null);
 			if (!this.dispatchEvent(oDOMActivateEvent))
@@ -39,16 +38,18 @@ cXHTMLElement_a.handlers	= {
 		}
 
 		// Handle @target="#target"
-		var sTarget	= this.getAttribute("target"),
-			oTarget;
-		if (sTarget.match(/#(.+)$/) && (oTarget = this.ownerDocument.getElementById(window.RegExp.$1)))
-		{
+		var oTarget;
+		if (this.getAttribute("target").match(/#(.+)$/) && (oTarget = this.ownerDocument.getElementById(window.RegExp.$1)))	{
 			// Load content into target
 			oTarget.$load(this.getAttribute("href").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&'));
 
 			// Prevent following link
 			oEvent.preventDefault();
 		}
+	},
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this)
+			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
 	}
 }
 

@@ -10,5 +10,13 @@
 var cXHTMLElement_sub	= function(){};
 cXHTMLElement_sub.prototype	= new cXHTMLElement;
 
+// Class Events Handlers
+cXHTMLElement_sub.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this)
+			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
+	}
+};
+
 // Register Element with language
 oXHTMLNamespace.setElement("sub", cXHTMLElement_sub);

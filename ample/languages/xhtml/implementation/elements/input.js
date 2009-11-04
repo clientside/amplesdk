@@ -14,16 +14,13 @@ cXHTMLElement_input.prototype.tabIndex	= 0;
 // Public Properties
 cXHTMLElement_input.prototype.form	= null;
 
-cXHTMLElement_input.prototype.$isAccessible	= function()
-{
+cXHTMLElement_input.prototype.$isAccessible	= function() {
 	return !this.getAttribute("disabled") && this.attributes["type"] != "hidden";
 };
 
-cXHTMLElement_input.prototype.$getValue	= function()
-{
+cXHTMLElement_input.prototype.$getValue	= function() {
 	var vValue	= this.$getContainer().value;
-	switch (this.attributes["type"])
-	{
+	switch (this.attributes["type"]) {
 		case "radio":
 		case "checkbox":
 			return this.$getContainer().checked ? vValue : null;
@@ -66,14 +63,12 @@ cXHTMLElement_input.prototype.$validate	= function() {
 };
 
 // Public methods
-cXHTMLElement_input.prototype.select	= function()
-{
+cXHTMLElement_input.prototype.select	= function() {
 	this.$getContainer().select();
 };
 
 // Events Handlers
-cXHTMLElement_input.prototype._onChange	= function(oEvent)
-{
+cXHTMLElement_input.prototype._onChange	= function(oEvent) {
 /*
 	if (this.attributes["value"] == "checkbox")
 		this.attributes["value"]	= this.$getContainer().value;
@@ -104,12 +99,15 @@ cXHTMLElement_input.handlers	= {
 	},
 	"DOMNodeInsertedIntoDocument":	function() {
 		this.$validate();
+	},
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this)
+			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
 	}
 };
 
 // Element Render: open
-cXHTMLElement_input.prototype.$getTagOpen		= function()
-{
+cXHTMLElement_input.prototype.$getTagOpen		= function() {
     var sHtml   = '<' + this.localName + ' onchange="ample.$instance(this)._onChange(event)"';
     for (var sName in this.attributes)
     	if (sName != "class" && sName != "id" && sName.indexOf(':') ==-1)
@@ -119,8 +117,7 @@ cXHTMLElement_input.prototype.$getTagOpen		= function()
 };
 
 // Element Render: close (cancel double tag)
-cXHTMLElement_input.prototype.$getTagClose	= function()
-{
+cXHTMLElement_input.prototype.$getTagClose	= function() {
 	return '';
 };
 

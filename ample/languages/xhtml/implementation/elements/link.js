@@ -10,5 +10,13 @@
 var cXHTMLElement_link	= function(){};
 cXHTMLElement_link.prototype	= new cXHTMLElement;
 
+// Class Events Handlers
+cXHTMLElement_link.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this)
+			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
+	}
+};
+
 // Register Element with language
 oXHTMLNamespace.setElement("link", cXHTMLElement_link);

@@ -10,5 +10,13 @@
 var cXHTMLElement_col	= function(){};
 cXHTMLElement_col.prototype	= new cXHTMLElement;
 
+// Class Events Handlers
+cXHTMLElement_col.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this)
+			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
+	}
+};
+
 // Register Element with language
 oXHTMLNamespace.setElement("col", cXHTMLElement_col);

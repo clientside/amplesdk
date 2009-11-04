@@ -10,5 +10,13 @@
 var cXHTMLElement_abbr	= function(){};
 cXHTMLElement_abbr.prototype	= new cXHTMLElement;
 
+// Class Events Handlers
+cXHTMLElement_abbr.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this)
+			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
+	}
+};
+
 // Register Element with abbrinding
 oXHTMLNamespace.setElement("abbr", cXHTMLElement_abbr);

@@ -10,9 +10,16 @@
 var cXHTMLElement_br	= function(){};
 cXHTMLElement_br.prototype	= new cXHTMLElement;
 
+// Class Events Handlers
+cXHTMLElement_br.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this)
+			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
+	}
+};
+
 // Element Render: close (cancel double tag)
-cXHTMLElement_br.prototype.$getTagOpen	= function()
-{
+cXHTMLElement_br.prototype.$getTagOpen	= function() {
 	var sHtml   = '<' + this.localName;
 	for (var sName in this.attributes)
 		if (sName != "class" && sName != "id" && sName.indexOf(':') ==-1)

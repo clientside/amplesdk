@@ -9,15 +9,14 @@
 
 var cXHTMLElement_body	= function(){};
 cXHTMLElement_body.prototype	= new cXHTMLElement;
-cXHTMLElement_body.prototype.tabIndex	= 0;
-/*
-cXHTMLElement_body.prototype.$getTag	= function()
-{
-	var aHtml	= [];
-	for (var nIndex = 0; nIndex < this.childNodes.length; nIndex++)
-		aHtml[aHtml.length]	= this.childNodes[nIndex].$getTag();
-	return aHtml.join('');
+
+// Class Events Handlers
+cXHTMLElement_body.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this)
+			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
+	}
 };
-*/
+
 // Register Element with language
 oXHTMLNamespace.setElement("body", cXHTMLElement_body);

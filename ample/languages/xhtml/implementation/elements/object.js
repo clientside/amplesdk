@@ -10,10 +10,16 @@
 var cXHTMLElement_object	= function(){};
 cXHTMLElement_object.prototype	= new cXHTMLElement;
 
-cXHTMLElement_object.prototype.$getTag	= function()
-{
-	if (window.navigator.userAgent.indexOf("Gecko") >-1)
-	{
+// Class Events Handlers
+cXHTMLElement_object.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this)
+			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
+	}
+};
+
+cXHTMLElement_object.prototype.$getTag	= function() {
+	if (window.navigator.userAgent.indexOf("Gecko") >-1) {
 		var sHtml   = '<embed';
 		for (var sName in this.attributes)
 			if (sName != "class" && sName != "id" && sName.indexOf(':') ==-1)
@@ -24,7 +30,7 @@ cXHTMLElement_object.prototype.$getTag	= function()
 		return sHtml + ' />';
 	}
 	else
-		return this.AMLElement.$getTag.call(this);
+		return this.$getTag.call(this);
 };
 
 // Register Element with language
