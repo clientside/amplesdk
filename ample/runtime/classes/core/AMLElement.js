@@ -766,10 +766,11 @@ function fAMLElement_onReadyStateChange(oRequest, oElement)
 	    delete oElement._timeout;
 	    delete oElement._request;
 
-	    if (oRequest.responseXML && oRequest.responseXML.documentElement && !oRequest.responseXML.getElementsByTagName("parsererror")[0])
+	    var oDocument	= fAML_getResponseDocument(oRequest);
+	    if (oDocument)
 	    {
 			// Render Content
-			oElement.appendChild(fAML_import(oRequest.responseXML.documentElement, null));
+			oElement.appendChild(fAML_import(oDocument.documentElement, null));
 
 			// Dispatch load event
 			var oEvent	= new cAMLEvent;

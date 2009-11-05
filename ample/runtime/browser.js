@@ -671,6 +671,20 @@ function fAML_replaceNode(oOld, oNew) {
 	oOld.parentNode.removeChild(oOld);
 };
 
+function fAML_getResponseDocument(oRequest) {
+	var oDocument	= oRequest.responseXML;
+	// Try parsing responseText
+	if (bTrident && oDocument && !oDocument.documentElement && oRequest.getResponseHeader("Content-Type").match(/[^\/]+\/[^\+]+\+xml/)) {
+		oDocument	= new fActiveXObject("Microsoft.XMLDOM");
+		oDocument.loadXML(oRequest.responseText);
+	}
+	// Check if there is no error in document
+	if (oDocument)
+		if ((bTrident && oDocument.parseError != 0) || !oDocument.documentElement || (oDocument.documentElement && oDocument.documentElement.tagName == "parsererror"))
+			return null;
+	return oDocument;
+};
+
 function fAML_parseStyleSheet(sCSS, sUri) {
 	// 1. Remove namespace declarations
 	var aNameSpaces = sCSS.match(/@namespace\s+([\w-]+\s+)?(url\()?(['"])?[^'";\s]+(['"])?\)?;?/g);
@@ -749,12 +763,12 @@ function fAML_parseStyleSheet(sCSS, sUri) {
 };
 
 function fAML_loadStyleSheet(sUri) {
-	var oHttpRequest	= new cXMLHttpRequest;
-	oHttpRequest.open("GET", sUri, false);
-	oHttpRequest.setRequestHeader("Accept", "text/css" + ',*' + '/' + '*;q=0.1');
-	oHttpRequest.send(null);
+	var oRequest	= new cXMLHttpRequest;
+	oRequest.open("GET", sUri, false);
+	oRequest.setRequestHeader("Accept", "text/css" + ',*' + '/' + '*;q=0.1');
+	oRequest.send(null);
 
-	return oHttpRequest.responseText;
+	return oRequest.responseText;
 };
 
 function fAML_createStyleSheet(sCSS, sUri, sMedia) {

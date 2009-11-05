@@ -7,10 +7,8 @@
  *
  */
 
-if (!cXMLHttpRequest)
-{
-    cXMLHttpRequest = function()
-    {
+if (!cXMLHttpRequest) {
+    cXMLHttpRequest = function() {
         return new fActiveXObject("Microsoft.XMLHTTP");
     };
 };

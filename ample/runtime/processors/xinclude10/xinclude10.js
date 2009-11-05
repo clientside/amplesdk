@@ -13,16 +13,16 @@ var oAMLXInclude10_implementation	= {},
 // TODO: Consider changing "(a || b) == c" to "c == a || b"
 oAMLXInclude10_implementation.traverse	= function(oElementDOM, oNode) {
 	if ((oElementDOM.localName || oElementDOM.baseName) == "include") {
-		var oHttpRequest	= new cXMLHttpRequest,
+		var oRequest	= new cXMLHttpRequest,
+			oDocument,
 			sHref	= oElementDOM.getAttribute("href");
-		oHttpRequest.open("GET", sHref, false);
-		oHttpRequest.send(null);
-		if (oHttpRequest.responseXML && oHttpRequest.responseXML.documentElement && !oHttpRequest.responseXML.getElementsByTagName("parsererror")[0]) {
-			oElementDOM	= oHttpRequest.responseXML;
+		oRequest.open("GET", sHref, false);
+		oRequest.send(null);
+		if (oDocument = fAML_getResponseDocument(oRequest)) {
 			// set xml:base according to spec
-			if (!oElementDOM.documentElement.getAttribute("xml:base"))
-				oElementDOM.documentElement.setAttribute("xml:base", sHref);
-			return oElementDOM;
+			if (!oDocument.documentElement.getAttribute("xml:base"))
+				oDocument.documentElement.setAttribute("xml:base", sHref);
+			return oDocument;
 		}
 		else {
 			// lookup if there is fallback

@@ -518,12 +518,12 @@ function fAML_processScripts() {
 				oAttributes["xmlns"]	= "http://www.w3.org/1999/xhtml";
 
 			if (oElementDOM.getAttribute("src")) {
-				var oHttpRequest	= new cXMLHttpRequest;
-				oHttpRequest.open("get", oElementDOM.src, false);
-				oHttpRequest.send(null);
+				var oRequest	= new cXMLHttpRequest;
+				oRequest.open("GET", oElementDOM.src, false);
+				oRequest.send(null);
 
 				// loaded fragment
-				oDocument	= oHttpRequest.responseXML;
+				oDocument	= fAML_getResponseDocument(oRequest);
 				bReferenced	= true;
 			}
 			else {

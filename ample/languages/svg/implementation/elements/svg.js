@@ -30,7 +30,9 @@ if (!!document.namespaces) {
 			// Hiding SVG content initially and showing it after timeout improves performance!
 			var that	= this;
 			setTimeout(function() {
-				that.$getContainer("group").style.display	= "";
+				var oGroup	= that.$getContainer("group");
+				if (oGroup)
+					oGroup.style.display	= "";
 			}, 0);
 			// Resize synchronously
 			if (navigator.userAgent.match(/MSIE ([0-9.]+)/) && RegExp.$1 * 1 == 8)
