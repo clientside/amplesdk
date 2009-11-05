@@ -436,28 +436,6 @@
 				</description>
 			</method>
 			<!-- Ample Methods -->
-			<method name="$getElementPosition" type="Object">
-				<arguments>
-					<argument name="oElement" type="AMLElement" required="true">
-						<description>
-							<locale>
-								Element
-							</locale>
-							<locale xml:lang="ru">
-								Объект <link type="object">AMLElement</link>.
-							</locale>
-						</description>
-					</argument>
-				</arguments>
-				<description>
-					<locale>
-						Retrieves the object containing element absolute position/sizes in pixels.
-					</locale>
-					<locale xml:lang="ru">
-						Возвращает объект, содержащий абсолютные размеры и позиционирование элемента в документе.
-					</locale>
-				</description>
-			</method>
 			<method name="open" type="Void">
 				<description>
 					<locale>
