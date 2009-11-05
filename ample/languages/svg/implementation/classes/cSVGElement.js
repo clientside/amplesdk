@@ -696,18 +696,20 @@ if (!!document.namespaces) {
 }
 else {
 	cSVGElement.prototype.setAttribute	= function(sName, sValue) {
-		// Map attribute value
-		if (sName != "id" && sName != "class")
-			this.$getContainer().setAttribute(sName, sValue);
+		var oElementDOM	= this.$getContainer();
+		// Map attribute value (only when in the live tree)
+		if (oElementDOM && sName != "id" && sName != "class")
+			oElementDOM.setAttribute(sName, sValue);
 
 		//
 		AMLElement.prototype.setAttribute.call(this, sName, sValue);
 	};
 
 	cSVGElement.prototype.removeAttribute	= function(sName) {
-		// Map attribute value
-		if (sName != "id" && sName != "class")
-			this.$getContainer().removeAttribute(sName);
+		var oElementDOM	= this.$getContainer();
+		// Map attribute value (only when in the live tree)
+		if (oElementDOM && sName != "id" && sName != "class")
+			oElementDOM.removeAttribute(sName);
 
 		//
 		AMLElement.prototype.removeAttribute.call(this, sName);
