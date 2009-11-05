@@ -313,7 +313,7 @@ if (!!document.namespaces) {
 					nStrokeWidth	= aStroke[1] * oElement.getAspectValue(),
 					sStrokeUnit		= aStroke[2] || 'px';
 				oElementDOM.stroke.weight	= nStrokeWidth + sStrokeUnit;
-				if (nStrokeWidth < 1 && !(oElement instanceof cSVGElement_text || oElement instanceof cSVGElement_tspan))
+				if (nStrokeWidth < 1 && !(oElement instanceof cSVGElement_text || oElement instanceof cSVGElement_tspan || oElement instanceof cSVGElement_textPath))
 					oElementDOM.stroke.opacity	= (oElement.hasAttribute("stroke-opacity") ? oElement.getAttribute("stroke-opacity") : 1) * nStrokeWidth;
 				break;
 			case "stroke-opacity":
@@ -415,7 +415,7 @@ if (!!document.namespaces) {
 			if (sValue = oStyle["marker-end"])
 				cSVGElement.setStyle(oElement, "marker-end", sValue);
 			// Text module
-			if (oElement instanceof cSVGElement_text || oElement instanceof cSVGElement_tspan) {
+			if (oElement instanceof cSVGElement_text || oElement instanceof cSVGElement_tspan || oElement instanceof cSVGElement_textPath) {
 				if (!cSVGElement.getStyle(oElement, "text-anchor") && (sValue = oStyle["text-anchor"]))
 					cSVGElement.setStyle(oElement, "text-anchor", sValue);
 				if (!cSVGElement.getStyle(oElement, "font-weight") && (sValue = oStyle["fontWeight"]))
@@ -521,7 +521,7 @@ if (!!document.namespaces) {
 		var aStrokeWidth	= sStrokeWidth.match(/([\d.]*)(.*)/),
 			nStrokeWidthValue	=(aStrokeWidth[1] || 1) * oElement.getAspectValue(),
 			sStrokeWidthUnit	=(aStrokeWidth[2] || "px");
-		if (nStrokeWidthValue < 1 && !(oElement instanceof cSVGElement_text || oElement instanceof cSVGElement_tspan))
+		if (nStrokeWidthValue < 1 && !(oElement instanceof cSVGElement_text || oElement instanceof cSVGElement_tspan || oElement instanceof cSVGElement_textPath))
 			sStrokeOpacity	=(sStrokeOpacity == '' ? 1 : sStrokeOpacity) * nStrokeWidthValue;
 
 		return '<svg2vml:fill on="' + (sFill != "none" ? "true" : "false") + '" color="' + (sFill in oSVGElement_colors ? 'rgb(' + oSVGElement_colors[sFill] + ')' : sFill) + '"\
