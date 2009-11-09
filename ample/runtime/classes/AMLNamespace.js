@@ -8,7 +8,6 @@
  */
 
 var cAMLNamespace	= function(){
-	void 0;	// This solves a JavaScript problem of Google Chrome 4
 	this.attributes	= {};
 	this.elements	= {};
 };
