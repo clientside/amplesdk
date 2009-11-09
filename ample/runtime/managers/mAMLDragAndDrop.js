@@ -118,7 +118,7 @@ function fAMLDragAndDrop_onMouseUp(oEvent)
 		if (bTrident)
 			oElementDOM.releaseCapture();
 
-		oAMLDragAndDrop_dragSource.$releaseCapture();
+		oAMLDragAndDrop_dragSource.releaseCapture();
 	}
 
 	oAMLDragAndDrop_dragSource	= null;
@@ -161,7 +161,7 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
 		if (bTrident)
 			oElementDOM.setCapture();
 
-		oAMLDragAndDrop_dragSource.$setCapture(true);
+		oAMLDragAndDrop_dragSource.setCapture(true);
 
 
 		// fill in array with drag targets

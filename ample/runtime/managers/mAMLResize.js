@@ -71,7 +71,7 @@ function fAMLResize_onMouseDown(oEvent)
 		// Start session
 	    nAMLResize_resizeState	= nAMLResize_STATE_CAPTURED;
 
-		oAMLResize_resizeNode.$setCapture(true);
+		oAMLResize_resizeNode.setCapture(true);
 
 		return;
 	}
@@ -289,7 +289,7 @@ function fAMLResize_onMouseUp(oEvent)
 		if (bTrident)
 			oAMLResize_resizeNode.$getContainer().releaseCapture();
 
-		oAMLResize_resizeNode.$releaseCapture();
+		oAMLResize_resizeNode.releaseCapture();
 	}
 
     nAMLResize_resizeState	= nAMLResize_STATE_RELEASED;

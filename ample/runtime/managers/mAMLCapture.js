@@ -11,16 +11,23 @@ var aAMLCapture_modals	= [];
 
 // Attaching to impementation
 cAMLDocument.prototype.$releaseCapture	= function() {
-	if (oAML_captureNode)
-		oAML_captureNode.$releaseCapture();
+//->Debug
+	fAML_warn(nAML_FEATURE_DEPRECATED_WRN, ["$releaseCapture", "releaseCapture"]);
+//<-Debug
+	this.releaseCapture();
 };
 
-cAMLElement.prototype.$setCapture	= function(bCapture) {
+cAMLDocument.prototype.releaseCapture	= function() {
+	if (oAML_captureNode)
+		oAML_captureNode.releaseCapture();
+};
+
+cAMLElement.prototype.setCapture	= function(bCapture) {
 	if (oAML_captureNode != this) {
 		// Validate arguments
 		fAML_validate(arguments, [
 			["useCapture",	cBoolean, true]
-		], "$setCapture");
+		], "setCapture");
 
 		// Raise NOT_SUPPORTED_ERR exception in case setCapture(false) called
 		if (arguments.length && !bCapture)
@@ -29,14 +36,21 @@ cAMLElement.prototype.$setCapture	= function(bCapture) {
 		// Release capture from the previous element
 		var oElement	= oAML_captureNode;
 		if (oElement && oElement != this)
-			oElement.$releaseCapture();
+			oElement.releaseCapture();
 
 		//
 		oAML_captureNode	= this;
 	}
 };
 
-cAMLElement.prototype.$releaseCapture	= function() {
+cAMLElement.prototype.$setCapture	= function(bCapture) {
+//->Debug
+	fAML_warn(nAML_FEATURE_DEPRECATED_WRN, ["$setCapture", "setCapture"]);
+//<-Debug
+	this.setCapture(bCapture);
+};
+
+cAMLElement.prototype.releaseCapture	= function() {
 	if (oAML_captureNode == this) {
 		// Notify element on capture lose
 		var oEvent	= new cAMLUIEvent;
@@ -46,6 +60,13 @@ cAMLElement.prototype.$releaseCapture	= function() {
 		//
 		oAML_captureNode	= null;
 	}
+};
+
+cAMLElement.prototype.$releaseCapture	= function() {
+//->Debug
+	fAML_warn(nAML_FEATURE_DEPRECATED_WRN, ["$releaseCapture", "releaseCapture"]);
+//<-Debug
+	this.releaseCapture();
 };
 
 //Attach to the implementation

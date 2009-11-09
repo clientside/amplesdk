@@ -30,7 +30,7 @@ cXULElement_splitter.handlers	= {
 		if (oEvent.button != 0)
 			return;
 
-		this.$setCapture(true);
+		this.setCapture(true);
 		this.$setPseudoClass("active", true);
 		cXULElement_splitter.captured	= true;
 
@@ -45,7 +45,7 @@ cXULElement_splitter.handlers	= {
 		if (oEvent.button != 0)
 			return;
 
-		this.$releaseCapture();
+		this.releaseCapture();
 		this.$setPseudoClass("active", false);
 		cXULElement_splitter.captured	= false;
 	},

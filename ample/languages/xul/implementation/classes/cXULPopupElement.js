@@ -31,7 +31,7 @@ cXULPopupElement.prototype.showPopup	= function(oElement, nLeft, nTop, nType, oA
     // Show popup
     this.$getContainer().style.display	= "block";
 	if (this.popupType == cXULPopupElement.POPUP_TYPE_MODAL)
-		this.$setCapture(true);
+		this.setCapture(true);
 
     if ((!isNaN(nLeft) && nLeft !=-1) || (!isNaN(nTop) && nTop != -1))
     {
@@ -124,7 +124,7 @@ cXULPopupElement.prototype.hidePopup	= function()
     this.$getContainer().style.display	= "none";
 
 	if (this.popupType == cXULPopupElement.POPUP_TYPE_MODAL)
-		this.$releaseCapture();
+		this.releaseCapture();
 
     // fire event
     this._fireEventOnPopup("hidden");
