@@ -621,7 +621,8 @@ function fAML_processScripts() {
 					oElementNew.innerText	= 'XML Parsing Error: ' + oDocument.parseError.reason + '\n' +
 													'Location: ' + (oDocument.parseError.url || oLocation) + '\n' +
 													'Line Number: ' + oDocument.parseError.line + ', Column ' + oDocument.parseError.linepos + ':\n'+
-													oDocument.parseError.srcText;
+													oDocument.parseError.srcText + '\n' +
+													new cArray(oDocument.parseError.linepos).join('-') + '^';
 			    }
 //<-Debug
 
