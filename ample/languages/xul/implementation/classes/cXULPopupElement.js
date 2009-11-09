@@ -17,7 +17,7 @@ cXULPopupElement.POPUP_TYPE_MODAL	= 2;
 cXULPopupElement.POPUP_TYPE_BUBBLE	= 3;
 
 // Public Properties
-cXULPopupElement.popupType	= cXULPopupElement.POPUP_TYPE_POPUP;
+cXULPopupElement.prototype.popupType	= cXULPopupElement.POPUP_TYPE_POPUP;
 
 // Public Methods
 cXULPopupElement.prototype.showPopup	= function(oElement, nLeft, nTop, nType, oAnchor, sAlign)
