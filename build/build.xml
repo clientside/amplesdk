@@ -14,7 +14,7 @@
 
 	<!-- Project-related -->
 	<property name="project.name" value="Ample" />
-	<property name="project.version" value="0.8.9" />
+	<property name="project.version" value="0.9.0" />
 	<property name="copyright.year" value="${tstamp.year}" />
 	<property name="copyright.name" value="Clientside OY" />
 
