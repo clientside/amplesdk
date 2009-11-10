@@ -105,14 +105,44 @@
 	for ($nIndex = 0; $nIndex < count($aFiles); $nIndex++)
 		$sOutput	.= join('', file($aFiles[$nIndex])) . "\n";
 
-	// Add function names
-	$sOutput = preg_replace("/([a-z0-9\$_]+)(\.)" . "(prototype)?(\.)?" . "([a-z0-9\$_]+)" . "[ \t]*=[ \t]*function[ \t]*\(/i", "$1$2$3$4$5=function $1_$3_$5(", $sOutput);
-
 	header("Content-type: application/javascript");
 
-	echo 	"" .
-			"(function(){" .
-				$sOutput .
-			"})();".
-			"";
+	if (isset($_REQUEST["build"])) {
+		// include minifier
+		include("../build/resources/obfuscator/cJSObfuscator.php");
+
+		function fStripTags($sInput, $sTagName)	{
+        	return preg_replace('/\/\/\->' . $sTagName . '.+\/\/<\-' . $sTagName . '/Us', "", $sInput);
+		}
+
+		// Strip "Source"/"Debug" version tags
+		$sOutput	= fStripTags($sOutput, "Source");
+		if ($_REQUEST["build"] != "dev")
+			$sOutput	= fStripTags($sOutput, "Debug");
+
+		$oJSObfuscator	= new cJSObfuscator;
+		$oJSObfuscator->keyword	= "ampled";
+		$oJSObfuscator->readFromString($sOutput);
+
+		//
+		$oJSObfuscator->stripComments();
+		$oJSObfuscator->stripSpaces();
+
+		$oJSObfuscator->obfuscateStrings();
+		$oJSObfuscator->obfuscateVariables();
+		$oJSObfuscator->obfuscatePrivates();
+		$oJSObfuscator->obfuscate();
+
+		echo	$oJSObfuscator->getOutput();
+	}
+	else {
+		// Add function names
+		$sOutput = preg_replace("/([a-z0-9\$_]+)(\.)" . "(prototype)?(\.)?" . "([a-z0-9\$_]+)" . "[ \t]*=[ \t]*function[ \t]*\(/i", "$1$2$3$4$5=function $1_$3_$5(", $sOutput);
+
+		echo 	"" .
+				"(function(){" .
+					$sOutput .
+				"})();".
+				"";
+	}
 ?>
