@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<title>JsUnit testing page</title>
+    	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    	<!-- JsUnit resources -->
+		<script type="text/javascript" src="../jsunit/app/jsUnitCore.js"></script>
+
+		<!-- Suite definition -->
+		<script type="text/javascript">
+			function suite() {
+	            var suite = new JsUnitTestSuite();
+	            // Boot
+	            suite.addTestPage("boot.html");
+	            // Runtime
+	            suite.addTestPage("runtime/unit.html");
+	            // Languages
+	            suite.addTestPage("languages/unit.html");
+	            return suite;
+	        }
+    	</script>
+	</head>
+	<body>
+		<p>Ample SDK JsUnit suite page</p>
+	</body>
+</html>
