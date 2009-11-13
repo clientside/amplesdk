@@ -1,0 +1,19 @@
+ ------------------------------------
+ Ample SDK - JavaScript GUI Framework
+ http://www.amplesdk.com
+ ------------------------------------
+
+ This folder contains unit tests to be run with JsUnit testing framework.
+ - unit.html files in folders contain tests
+ - suite.html files in folders contain test suites
+ Note! The JsUnit framework used was tweaked (in two locations) in order to
+       support relative paths in urls.
+
+ Running:
+ - Access tests/jsunit/testRunner.html?testpage=../unit/suite.html&autorun=true
+
+ Adjusting:
+ - By default unit tests will run against raw source version.
+   If you want to run tests against build version, create build first, then
+   point directory in jsUnitClient.js file to the relative build folder location:
+   var sBaseUriAmple	= '../../build/work/ample-0.9.0/ample/';

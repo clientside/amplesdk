@@ -10,10 +10,10 @@
 			JsUnitClient.include("runtime.js");
 		</script>
 
-		<!-- Suite definition -->
+		<!-- Tests -->
 		<script type="text/javascript">
-			function testPage() {
-				assertNull(null);
+			function testXSLTProcessor() {
+				assertNotUndefined(XSLTProcessor);
 			}
     	</script>
 	</head>

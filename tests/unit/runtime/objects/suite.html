@@ -4,14 +4,18 @@
     	<title>JsUnit testing page</title>
     	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    	<!-- JsUnit resources -->
-		<script type="text/javascript" src="../../../jsunit/app/jsUnitCore.js"></script>
+    	<!-- JsUnitClient driver -->
+		<script type="text/javascript" src="../../jsUnitClient.js"></script>
 
 		<!-- Suite definition -->
 		<script type="text/javascript">
 			function suite() {
 	            var suite = new JsUnitTestSuite();
-//	            suite.addTestPage("elements/element.html");
+	            suite.addTestPage("DOMParser/unit.html");
+	            suite.addTestPage("JSON/unit.html");
+	            suite.addTestPage("XMLHttpRequest/unit.html");
+	            suite.addTestPage("XMLSerializer/unit.html");
+	            suite.addTestPage("XSLTProcessor/unit.html");
 	            return suite;
 	        }
     	</script>

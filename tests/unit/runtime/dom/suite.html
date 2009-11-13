@@ -4,17 +4,16 @@
     	<title>JsUnit testing page</title>
     	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    	<!-- JsUnit resources -->
-		<script type="text/javascript" src="../../../jsunit/app/jsUnitCore.js"></script>
+    	<!-- JsUnitClient driver -->
+		<script type="text/javascript" src="../../jsUnitClient.js"></script>
 
 		<!-- Suite definition -->
 		<script type="text/javascript">
 			function suite() {
 	            var suite = new JsUnitTestSuite();
-	            suite.addTestPage("smil30/unit.html");
-	            suite.addTestPage("xinclude10/unit.html");
-	            suite.addTestPage("xmlevents10/unit.html");
-	            suite.addTestPage("xmlschema11/unit.html");
+	            suite.addTestPage("core/unit.html");
+	            suite.addTestPage("events/unit.html");
+	            suite.addTestPage("selectors/unit.html");
 	            return suite;
 	        }
     	</script>

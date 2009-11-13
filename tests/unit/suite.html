@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<title>JsUnit testing page</title>
+    	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    	<!-- JsUnitClient driver -->
+		<script type="text/javascript" src="jsUnitClient.js"></script>
+
+		<!-- Suite definition -->
+		<script type="text/javascript">
+			function suite() {
+	            var suite = new JsUnitTestSuite();
+	            // Sanity check
+	            suite.addTestPage("unit.html");
+	            // Runtime
+	            suite.addTestPage("runtime/suite.html");
+	            // Languages
+	            suite.addTestPage("languages/suite.html");
+	            return suite;
+	        }
+    	</script>
+	</head>
+	<body>
+		<p>Ample SDK JsUnit suite page</p>
+	</body>
+</html>

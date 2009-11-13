@@ -4,16 +4,14 @@
     	<title>JsUnit testing page</title>
     	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    	<!-- JsUnit resources -->
-		<script type="text/javascript" src="../../../jsunit/app/jsUnitCore.js"></script>
+    	<!-- JsUnitClient driver -->
+		<script type="text/javascript" src="../../jsUnitClient.js"></script>
 
 		<!-- Suite definition -->
 		<script type="text/javascript">
 			function suite() {
 	            var suite = new JsUnitTestSuite();
-	            suite.addTestPage("core/unit.html");
-	            suite.addTestPage("events/unit.html");
-	            suite.addTestPage("selectors/unit.html");
+//	            suite.addTestPage("elements/element.html");
 	            return suite;
 	        }
     	</script>

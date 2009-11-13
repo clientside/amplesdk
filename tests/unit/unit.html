@@ -4,24 +4,34 @@
     	<title>JsUnit testing page</title>
     	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    	<!-- JsUnit resources -->
-		<script type="text/javascript" src="../jsunit/app/jsUnitCore.js"></script>
+    	<!-- JsUnitClient driver -->
+		<script type="text/javascript" src="jsUnitClient.js"></script>
+		<script type="text/javascript">
+			JsUnitClient.include("runtime.js");
+		</script>
 
 		<!-- Suite definition -->
 		<script type="text/javascript">
-			function suite() {
-	            var suite = new JsUnitTestSuite();
-	            // Boot
-	            suite.addTestPage("boot.html");
-	            // Runtime
-	            suite.addTestPage("runtime/unit.html");
-	            // Languages
-	            suite.addTestPage("languages/unit.html");
-	            return suite;
-	        }
+			var bFragmentLoaded	= false;
+
+			// Tests if load event was fired on ample fragment
+			function testFragmentLoadEvent() {
+				assertTrue(bFragmentLoaded);
+			}
+			function testFragmentsCount() {
+				assertEquals(ample.documentElement.childNodes.length, 2);
+			}
+			function testFragment1() {
+				assertEquals("fragment #1", ample.documentElement.childNodes[0].firstChild.nodeValue);
+			}
+			function testFragment2() {
+				assertEquals("fragment #2", ample.documentElement.childNodes[1].firstChild.nodeValue);
+			}
     	</script>
 	</head>
 	<body>
-		<p>Ample SDK JsUnit suite page</p>
+		<p>Ample SDK JsUnit test page</p>
+		<script type="application/ample+xml" onload="bFragmentLoaded = true">fragment #1</script>
+		<script type="text/javascript">ample.open()</script>fragment #2<script type="text/javascript">ample.close()</script>
 	</body>
 </html>

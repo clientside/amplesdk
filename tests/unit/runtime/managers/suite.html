@@ -4,17 +4,16 @@
     	<title>JsUnit testing page</title>
     	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    	<!-- JsUnit resources -->
-		<script type="text/javascript" src="../jsunit/app/jsUnitCore.js"></script>
-
-		<!-- Ample SDK framework -->
-		<script type="text/javascript" src="../../ample/runtime.js"></script>
+    	<!-- JsUnitClient driver -->
+		<script type="text/javascript" src="../../jsUnitClient.js"></script>
 
 		<!-- Suite definition -->
 		<script type="text/javascript">
-			function testAmpleObject() {
-				assertNotNull(ample);
-			}
+			function suite() {
+	            var suite = new JsUnitTestSuite();
+//	            suite.addTestPage("xhtml/suite.html");
+	            return suite;
+	        }
     	</script>
 	</head>
 	<body>
