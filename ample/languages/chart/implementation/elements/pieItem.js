@@ -7,8 +7,8 @@
  *
  */
 
-var cChartElement_item	= function(){};
-cChartElement_item.prototype	= new cChartElement;
+var cChartElement_pieItem	= function(){};
+cChartElement_pieItem.prototype	= new cChartElement;
 
 // Register Element with language
-oChartNamespace.setElement("item", cChartElement_item);
+oChartNamespace.setElement("pieItem", cChartElement_pieItem);
