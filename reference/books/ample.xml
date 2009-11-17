@@ -348,6 +348,7 @@
 						<node title="treeitem" url="ample/xul/treeitem.xml"/>
 						<node title="treerow" url="ample/xul/treerow.xml"/>
 					</node>
+					<node title="panel" url="ample/xul/panel.xml"/>
 					<node title="popupset" url="ample/xul/popupset.xml"/>
 					<node title="statusbar" url="ample/xul/statusbar.xml"/>
 					<node title="statusbarpanel" url="ample/xul/statusbarpanel.xml"/>
