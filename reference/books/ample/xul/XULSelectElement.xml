@@ -15,6 +15,9 @@
 			<method name="selectAll" type="Void">
 				<arguments />
 				<description>
+					<locale>
+						Selects all of the items. A select event is sent after the selection is made.
+					</locale>
 					<locale xml:lang="ru">
 						Выделяет все элементы. После выделения отсылается событие select.
 					</locale>
@@ -23,6 +26,10 @@
 			<method name="clearSelection" type="Void">
 				<arguments />
 				<description>
+					<locale>
+						Deselects all of the items.
+						A select event is sent before the items are deselected.
+					</locale>
 					<locale xml:lang="ru">
 						Снимает выделение со всех элементов.
 					</locale>
@@ -32,6 +39,9 @@
 				<arguments>
 					<argument name="oItem" type="AMLElement" required="true">
 						<description>
+							<locale>
+								Element to be selected.
+							</locale>
 							<locale xml:lang="ru">
 								Элемент, который следует выделить.
 							</locale>
@@ -39,6 +49,10 @@
 					</argument>
 				</arguments>
 				<description>
+					<locale>
+						Deselects all of the currently selected items and selects the given item.
+						A select event is sent after the selection is made.
+					</locale>
 					<locale xml:lang="ru">
 						Снимает выделение со всех элементов и выделяет заданный элемент.
 						После выделения отсылается событие <link type="event">select</link>.
@@ -49,6 +63,9 @@
 				<arguments>
 					<argument name="oItem" type="AMLElement" required="true">
 						<description>
+							<locale>
+								Element whose selection state to be inverted.
+							</locale>
 							<locale xml:lang="ru">
 								Элемент, статус которого необходимо инверсировать.
 							</locale>
@@ -56,6 +73,11 @@
 					</argument>
 				</arguments>
 				<description>
+					<locale>
+						If the specified item is selected, it is deselected.
+						If it is not selected, it is selected.
+						Other items in the list box that are selected are not affected, and retain their selected state.
+					</locale>
 					<locale xml:lang="ru">
 						Изменяет статус выделения элемента на противоположное:
 						если элемент выделен, выделение снимается, если элемент не выделен, он выделяется.
@@ -67,6 +89,9 @@
 				<arguments>
 					<argument name="oItem" type="AMLElement" required="true">
 						<description>
+							<locale>
+								Item to be added.
+							</locale>
 							<locale xml:lang="ru">
 								Элемент, который будет добавлен к выделению.
 							</locale>
@@ -74,6 +99,9 @@
 					</argument>
 				</arguments>
 				<description>
+					<locale>
+						Selects the given item, without deselecting any other items that are already selected.
+					</locale>
 					<locale xml:lang="ru">
 						Выделяет заданный элемент, не изменяя статус выделения остальных элементов.
 					</locale>
@@ -83,6 +111,9 @@
 				<arguments>
 					<argument name="oItem" type="AMLElement" required="true">
 						<description>
+							<locale>
+								Element to be removed from selection.
+							</locale>
 							<locale xml:lang="ru">
 								Элемент, который будет удален из выделения.
 							</locale>
@@ -90,6 +121,9 @@
 					</argument>
 				</arguments>
 				<description>
+					<locale>
+						Deselects the specified item without deselecting other items.
+					</locale>
 					<locale xml:lang="ru">
 						Снимает выделение заданного элемента, не изменяя статус выделения остальных элементов.
 					</locale>
@@ -99,6 +133,9 @@
 				<arguments>
 					<argument name="oItemFirst" type="AMLElement" required="true">
 						<description>
+							<locale>
+								First element from range.
+							</locale>
 							<locale xml:lang="ru">
 								Первый элемент из диапазона.
 							</locale>
@@ -106,6 +143,9 @@
 					</argument>
 					<argument name="oItemLast" type="AMLElement" required="true">
 						<description>
+							<locale>
+								Last element from range.
+							</locale>
 							<locale xml:lang="ru">
 								Последний элемент из диапазона.
 							</locale>
@@ -113,6 +153,12 @@
 					</argument>
 				</arguments>
 				<description>
+					<locale>
+						Selects the items between the two items given as arguments, including the start and end items.
+						All other items are deselected.
+						This method does nothing for single-selection list boxes.
+						A select event is sent after the selection is made.
+					</locale>
 					<locale xml:lang="ru">
 						Выделяет элементы между двумя заданными включительно.
 						Выделение со всех остальных элементов снимается.
@@ -125,6 +171,9 @@
 				<arguments>
 					<argument name="nIndex" type="Number" required="true">
 						<description>
+							<locale>
+								Element index.
+							</locale>
 							<locale xml:lang="ru">
 								Индекс элемента, до которого будет прокручен список.
 							</locale>
@@ -132,6 +181,9 @@
 					</argument>
 				</arguments>
 				<description>
+					<locale>
+						Scrolls the element to the specified index.
+					</locale>
 					<locale xml:lang="ru">
 						Прокручивает список до элемента с указанным индексом.
 					</locale>
@@ -141,6 +193,9 @@
 		<properties>
 			<property name="currentItem" type="AMLElement" readonly="true">
 				<description>
+					<locale>
+						Returns the last selected item in the list box, which is only useful in a multiple selection list box.
+					</locale>
 					<locale xml:lang="ru">
 						Указывает на последний выделенный элемент.
 					</locale>
@@ -148,6 +203,9 @@
 			</property>
 			<property name="selectedItems" type="AMLNodeList">
 				<description>
+					<locale>
+						Returns an array of the selected items in the list.
+					</locale>
 					<locale xml:lang="ru">
 						Коллекция выделенных элементов.
 					</locale>
@@ -159,6 +217,9 @@
 				<values>
 					<value name="single">
 						<description>
+							<locale>
+								Only one row may be selected at a time.
+							</locale>
 							<locale xml:lang="ru">
 								Можно выделить только одну строку.
 							</locale>
@@ -166,6 +227,9 @@
 					</value>
 					<value name="multiple">
 						<description>
+							<locale>
+								Multiple rows may be selected at once.
+							</locale>
 							<locale xml:lang="ru">
 								Можно выделить несколько строк.
 							</locale>
@@ -173,6 +237,9 @@
 					</value>
 				</values>
 				<description>
+					<locale>
+						Used to indicate whether multiple selection is allowed.
+					</locale>
 					<locale xml:lang="ru">
 						Указывает, возможно ли множественное выделение.
 					</locale>
@@ -182,6 +249,9 @@
 		<events>
 			<event name="select" group="Event" cancelable="false" bubbles="true">
 				<description>
+					<locale>
+						Fires when selection changes.
+					</locale>
 					<locale xml:lang="ru">
 						Загорается, когда изменяется выделение.
 					</locale>
