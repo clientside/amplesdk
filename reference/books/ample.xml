@@ -244,7 +244,7 @@
 			<!--node title="Objects">
 				<node title="XForms11Element" xurl="ample/svg11/XForms11Element.xml"/>
 			</node-->
-			<node title="Elements" />
+			<!-- node title="Elements" /-->
 		</node>
 		<!--node title="WebForms 2.0">
 			<node title="Overview" url="ample/webforms2/webforms2.xml"  />
@@ -283,15 +283,65 @@
 				<node title="XULControllers" xurl="ample/xul/XULControllers.xml"/>
 			</node>
 			<node title="Elements">
-				<node title="Events handling">
-					<node title="broadcaster" url="ample/xul/broadcaster.xml"/>
-					<node title="broadcasterset" url="ample/xul/broadcasterset.xml"/>
-					<node title="command" url="ample/xul/command.xml"/>
-					<node title="commandset" url="ample/xul/commandset.xml"/>
-					<node title="key" url="ample/xul/key.xml"/>
-					<node title="keyset" url="ample/xul/keyset.xml"/>
+				<node title="Windows">
+					<node title="dialog" url="ample/xul/dialog.xml"/>
+					<node title="overlay" xurl="ample/xul/overlay.xml"/>
+					<node title="preference" xurl="ample/xul/preference.xml"/>
+					<node title="preferences" xurl="ample/xul/preferences.xml"/>
+					<node title="prefpane" xurl="ample/xul/prefpane.xml"/>
+					<node title="prefwindow" xurl="ample/xul/prefwindow.xml"/>
+					<node title="page" url="ample/xul/page.xml"/>
+					<node title="window" url="ample/xul/window.xml"/>
+					<node title="wizard" url="ample/xul/wizard.xml"/>
+					<node title="wizardpage" url="ample/xul/wizardpage.xml"/>
 				</node>
-				<node title="Input Controls">
+				<node title="Window structure">
+					<node title="browser" xurl="ample/xul/browser.xml"/>
+					<node title="tabbrowser" xurl="ample/xul/tabbrowser.xml"/>
+					<!-- editor on Mozilla belongs here -->
+					<node title="iframe" url="ample/xul/iframe.xml"/>
+					<node title="titlebar" xurl="ample/xul/titlebar.xml"/>
+					<node title="dialogheader" url="ample/xul/dialogheader.xml"/>
+					<node title="resizer" xurl="ample/xul/resizer.xml"/>
+					<node title="statusbar" url="ample/xul/statusbar.xml"/>
+					<node title="statusbarpanel" url="ample/xul/statusbarpanel.xml"/>
+					<node title="notification" xurl="ample/xul/notification.xml"/>
+					<node title="notificationbox" xurl="ample/xul/notificationbox.xml"/>
+				</node>
+				<node title="Menus and popups">
+					<node title="menu" url="ample/xul/menu.xml"/>
+					<node title="menubar" url="ample/xul/menubar.xml"/>
+					<node title="menuitem" url="ample/xul/menuitem.xml"/>
+					<node title="menupopup" url="ample/xul/menupopup.xml"/>
+					<node title="menuseparator" url="ample/xul/menuseparator.xml"/>
+					<node title="panel" url="ample/xul/panel.xml"/>
+					<node title="popupset" url="ample/xul/popupset.xml"/>
+					<node title="tooltip" url="ample/xul/tooltip.xml"/>
+				</node>
+				<node title="Toolbars">
+					<node title="toolbar" url="ample/xul/toolbar.xml"/>
+					<node title="toolbarbutton" url="ample/xul/toolbarbutton.xml"/>
+					<node title="toolbargrippy" url="ample/xul/toolbargrippy.xml"/>
+					<node title="toolbaritem" xurl="ample/xul/toolbaritem.xml"/>
+					<node title="toolbarpalette" xurl="ample/xul/toolbarpalette.xml"/>
+					<node title="toolbarseparator" url="ample/xul/toolbarseparator.xml"/>
+					<node title="toolbarset" xurl="ample/xul/toolbarset.xml"/>
+					<node title="toolbarspacer" xurl="ample/xul/toolbarspacer.xml"/>
+					<node title="toolbarspring" xurl="ample/xul/toolbarspring.xml"/>
+					<node title="toolbox" url="ample/xul/toolbox.xml"/>
+				</node>
+				<node title="Tabs and grouping">
+					<node title="caption" url="ample/xul/caption.xml"/>
+					<node title="groupbox" url="ample/xul/groupbox.xml"/>
+					<node title="separator" url="ample/xul/separator.xml"/>
+					<node title="spacer" url="ample/xul/spacer.xml"/>
+					<node title="tabbox" url="ample/xul/tabbox.xml"/>
+					<node title="tab" url="ample/xul/tab.xml"/>
+					<node title="tabs" url="ample/xul/tabs.xml"/>
+					<node title="tabpanel" url="ample/xul/tabpanel.xml"/>
+					<node title="tabpanels" url="ample/xul/tabpanels.xml"/>
+				</node>
+				<node title="Controls">
 					<node title="button" url="ample/xul/button.xml"/>
 					<node title="checkbox" url="ample/xul/checkbox.xml"/>
 					<node title="colorpicker" url="ample/xul/colorpicker.xml"/>
@@ -303,106 +353,85 @@
 					<node title="radiogroup" url="ample/xul/radiogroup.xml"/>
 					<node title="scale" url="ample/xul/scale.xml"/>
 					<node title="spinbuttons" url="ample/xul/spinbuttons.xml"/>
+					<!-- splitter on Mozilla belongs here -->
 					<node title="textbox" url="ample/xul/textbox.xml"/>
 					<node title="timepicker" url="ample/xul/timepicker.xml"/>
 				</node>
-				<node title="Interaction Controls">
-					<node title="Listbox">
-						<node title="listbody" url="ample/xul/listbody.xml"/>
-						<node title="listbox" url="ample/xul/listbox.xml"/>
-						<node title="listcell" url="ample/xul/listcell.xml"/>
-						<node title="listcol" url="ample/xul/listcol.xml"/>
-						<node title="listcols" url="ample/xul/listcols.xml"/>
-						<node title="listhead" url="ample/xul/listhead.xml"/>
-						<node title="listheader" url="ample/xul/listheader.xml"/>
-						<node title="listitem" url="ample/xul/listitem.xml"/>
-					</node>
-					<node title="Menus">
-						<node title="menu" url="ample/xul/menu.xml"/>
-						<node title="menubar" url="ample/xul/menubar.xml"/>
-						<node title="menuitem" url="ample/xul/menuitem.xml"/>
-						<node title="menupopup" url="ample/xul/menupopup.xml"/>
-						<node title="menuseparator" url="ample/xul/menuseparator.xml"/>
-					</node>
-					<node title="Tabbox">
-						<node title="tabbox" url="ample/xul/tabbox.xml"/>
-						<node title="tab" url="ample/xul/tab.xml"/>
-						<node title="tabs" url="ample/xul/tabs.xml"/>
-						<node title="tabpanel" url="ample/xul/tabpanel.xml"/>
-						<node title="tabpanels" url="ample/xul/tabpanels.xml"/>
-					</node>
-					<node title="Toolbar">
-						<node title="toolbar" url="ample/xul/toolbar.xml"/>
-						<node title="toolbarbutton" url="ample/xul/toolbarbutton.xml"/>
-						<node title="toolbargrippy" url="ample/xul/toolbargrippy.xml"/>
-						<node title="toolbarseparator" url="ample/xul/toolbarseparator.xml"/>
-						<node title="toolbox" url="ample/xul/toolbox.xml"/>
-					</node>
-					<node title="Tree">
-						<node title="tree" url="ample/xul/tree.xml"/>
-						<node title="treebody" url="ample/xul/treebody.xml"/>
-						<node title="treecell" url="ample/xul/treecell.xml"/>
-						<node title="treechildren" url="ample/xul/treechildren.xml"/>
-						<node title="treecol" url="ample/xul/treecol.xml"/>
-						<node title="treecols" url="ample/xul/treecols.xml"/>
-						<node title="treeitem" url="ample/xul/treeitem.xml"/>
-						<node title="treerow" url="ample/xul/treerow.xml"/>
-					</node>
-					<node title="panel" url="ample/xul/panel.xml"/>
-					<node title="popupset" url="ample/xul/popupset.xml"/>
-					<node title="statusbar" url="ample/xul/statusbar.xml"/>
-					<node title="statusbarpanel" url="ample/xul/statusbarpanel.xml"/>
-					<node title="tooltip" url="ample/xul/tooltip.xml"/>
+				<node title="Text and images">
+					<node title="description" url="ample/xul/description.xml"/>
+					<node title="label" url="ample/xul/label.xml"/>
+					<node title="image" url="ample/xul/image.xml"/>
+				</node>
+				<node title="Lists">
+					<node title="listbody" url="ample/xul/listbody.xml"/>
+					<node title="listbox" url="ample/xul/listbox.xml"/>
+					<node title="listcell" url="ample/xul/listcell.xml"/>
+					<node title="listcol" xurl="ample/xul/listcol.xml"/>
+					<node title="listcols" xurl="ample/xul/listcols.xml"/>
+					<node title="listhead" url="ample/xul/listhead.xml"/>
+					<node title="listheader" url="ample/xul/listheader.xml"/>
+					<node title="listitem" url="ample/xul/listitem.xml"/>
+					<node title="richlistbox" xurl="ample/xul/richlistbox.xml"/>
+					<node title="richlistitem" xurl="ample/xul/richlistitem.xml"/>
+				</node>
+				<node title="Trees">
+					<node title="tree" url="ample/xul/tree.xml"/>
+					<node title="treebody" url="ample/xul/treebody.xml"/>
+					<node title="treecell" url="ample/xul/treecell.xml"/>
+					<node title="treechildren" url="ample/xul/treechildren.xml"/>
+					<node title="treecol" xurl="ample/xul/treecol.xml"/>
+					<node title="treecols" xurl="ample/xul/treecols.xml"/>
+					<node title="treeitem" url="ample/xul/treeitem.xml"/>
+					<node title="treerow" url="ample/xul/treerow.xml"/>
+					<node title="treeseparator" xurl="ample/xul/treeseparator.xml"/>
 				</node>
 				<node title="Layout">
-					<node title="grid">
-						<node title="column" url="ample/xul/column.xml"/>
-						<node title="columns" url="ample/xul/columns.xml"/>
-						<node title="grid" url="ample/xul/grid.xml"/>
-						<node title="row" url="ample/xul/row.xml"/>
-						<node title="rows" url="ample/xul/rows.xml"/>
-					</node>
-					<node title="arrowscrollbox" url="ample/xul/arrowscrollbox.xml"/>
 					<node title="box" url="ample/xul/box.xml"/>
-					<node title="caption" url="ample/xul/caption.xml"/>
-					<node title="deck" url="ample/xul/deck.xml"/>
-					<node title="description" url="ample/xul/description.xml"/>
-					<node title="groupbox" url="ample/xul/groupbox.xml"/>
 					<node title="hbox" url="ample/xul/hbox.xml"/>
-					<node title="iframe" url="ample/xul/iframe.xml"/>
-					<node title="image" url="ample/xul/image.xml"/>
-					<node title="label" url="ample/xul/label.xml"/>
-					<node title="scrollbox" url="ample/xul/scrollbox.xml"/>
-					<node title="separator" url="ample/xul/separator.xml"/>
-					<node title="spacer" url="ample/xul/spacer.xml"/>
-					<node title="splitter" url="ample/xul/splitter.xml"/>
-					<node title="stack" url="ample/xul/stack.xml"/>
 					<node title="vbox" url="ample/xul/vbox.xml"/>
+					<node title="bbox" xurl="ample/xul/bbox.xml"/>
+					<node title="deck" url="ample/xul/deck.xml"/>
+					<node title="stack" url="ample/xul/stack.xml"/>
+					<node title="grid" url="ample/xul/grid.xml"/>
+					<node title="column" url="ample/xul/column.xml"/>
+					<node title="columns" url="ample/xul/columns.xml"/>
+					<node title="row" url="ample/xul/row.xml"/>
+					<node title="rows" url="ample/xul/rows.xml"/>
+					<node title="scrollbox" url="ample/xul/scrollbox.xml"/>
+					<node title="splitter" url="ample/xul/splitter.xml"/>
 				</node>
-				<node title="Resources">
+				<node title="Scripting">
 					<node title="script" url="ample/xul/script.xml"/>
+					<node title="command" url="ample/xul/command.xml"/>
+					<node title="commandset" url="ample/xul/commandset.xml"/>
+					<node title="broadcaster" url="ample/xul/broadcaster.xml"/>
+					<node title="broadcasterset" url="ample/xul/broadcasterset.xml"/>
+					<node title="observes" xurl="ample/xul/observes.xml"/>
+					<node title="key" url="ample/xul/key.xml"/>
+					<node title="keyset" url="ample/xul/keyset.xml"/>
+					<node title="stringbundle" xurl="ample/xul/stringbundle.xml"/>
+					<node title="stringbundleset" xurl="ample/xul/stringbundleset.xml"/>
 				</node>
-				<node title="Dialogs">
-					<node title="dialog" url="ample/xul/dialog.xml"/>
-					<node title="dialogheader" url="ample/xul/dialogheader.xml"/>
-					<node title="wizard" url="ample/xul/wizard.xml"/>
-					<node title="wizardpage" url="ample/xul/wizardpage.xml"/>
+				<node title="Helper elements">
+					<node title="arrowscrollbox" url="ample/xul/arrowscrollbox.xml"/>
+					<node title="grippy" xurl="ample/xul/grippy.xml"/>
+					<node title="dropmarker" xurl="ample/xul/dropmarker.xml"/>
+					<node title="scrollbar" xurl="ample/xul/scrollbar.xml"/>
+					<node title="scrollcorner" xurl="ample/xul/scrollcorner.xml"/>
+					<!-- spinbuttons on Mozilla belongs here -->
 				</node>
-				<!--node title="overlay" url="ample/xul/overlay.xml"/-->
-				<node title="page" url="ample/xul/page.xml"/>
-				<node title="window" url="ample/xul/window.xml"/>
 			</node>
 		</node>
 		<node title="HTML 5">
 			<node title="Overview" url="ample/html5/html5.xml" />
 			<node title="XML Schema" xurl="ample/html5/html5.xsd"/>
-			<node title="Objects">
+			<!-- node title="Objects">
 				<node title="HTML5Element" xurl="ample/aml/AMLElement.xml"/>
 				<node title="HTML5Document" xurl="ample/aml/AMLDocument.xml"/>
-			</node>
-			<node title="Elements">
+			</node-->
+			<!-- node title="Elements">
 
-			</node>
+			</node-->
 		</node>
 		<node title="AML 1.0">
 			<node title="Overview" url="ample/aml/aml.xml" />
@@ -435,11 +464,6 @@
 				<node title="sound" url="ample/aml/sound.xml"/>
 				<node title="timer" url="ample/aml/timer.xml"/>
 				<node title="handler" url="ample/aml/handler.xml"/>
-				<!--node title="combobox" url="ample/aml/combobox.xml"/>
-				<node title="comboitem" url="ample/aml/comboitem.xml"/-->
-
-				<!--node title="sidebar" url="ample/aml/sidebar.xml"/>
-				<node title="filepicker" url="ample/aml/filepicker.xml"/-->
  			</node>
 		</node>
 	</node>
