@@ -450,7 +450,7 @@ function fAMLDocument_routeEvent(oEvent)
 //<-Source
 
 		// Handle event
-		oEvent.currentTarget.$handleEvent(oEvent);
+		fAMLNode_handleEvent(oEvent.currentTarget, oEvent);
 
 		// Break loop if propagation stopped
 		if (oEvent._stopped)

@@ -33,9 +33,9 @@ ample.addEventListener("load",		function(oEvent) {
 
 // XUL command handler
 ample.addEventListener("command",	function(oEvent) {
-	var oElement	= this.getElementById(oEvent.target.getAttribute("command"));
-	if (oElement)
-		oElement.$handleEvent(oEvent);
+//	var oElement	= this.getElementById(oEvent.target.getAttribute("command"));
+//	if (oElement)
+//		oElement.$handleEvent(oEvent);
 },	false);
 
 //

@@ -323,7 +323,7 @@ function fAML_register(oNode) {
 							oEvent.target	=
 							oEvent.currentTarget	= oAttribute;
 							oEvent.eventPhase		= cAMLEvent.AT_TARGET;
-							oAttribute.$handleEvent(oEvent);
+							fAMLNode_handleEvent(oAttribute, oEvent);
 						}
 //->Debug
 						else

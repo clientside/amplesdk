@@ -477,6 +477,37 @@ function fAMLNode_executeHandler(oNode, fHandler, oEvent) {
 	}
 };
 
+function fAMLNode_handleEvent(oNode, oEvent) {
+	// Process inline handler
+    if (oEvent.eventPhase != cAMLEvent.CAPTURING_PHASE && oNode["on" + oEvent.type])
+    	fAMLNode_executeHandler(oNode, oNode["on" + oEvent.type], oEvent);
+
+	// Notify listeners
+    if (oNode.$listeners && oNode.$listeners[oEvent.type])
+    	for (var nIndex = 0, aListeners = oNode.$listeners[oEvent.type]; nIndex < aListeners.length && !oEvent._stoppedImmediately; nIndex++)
+    		if (oEvent.eventPhase == cAMLEvent.AT_TARGET || aListeners[nIndex][1] == (oEvent.eventPhase == cAMLEvent.CAPTURING_PHASE))
+    			fAMLNode_executeHandler(oNode, aListeners[nIndex][0], oEvent);
+
+	var oNamespace,
+		cElement,
+		cAttribute;
+
+	// Event default actions implementation
+	if (oEvent.eventPhase != cAMLEvent.CAPTURING_PHASE && !oEvent.defaultPrevented) {
+		if (oNode instanceof cAMLElement) {
+			if ((oNamespace = oAML_namespaces[oNode.namespaceURI]) && (cElement = oNamespace.elements[oNode.localName]))
+				if (cElement.handlers && cElement.handlers[oEvent.type])
+					cElement.handlers[oEvent.type].call(oNode, oEvent);
+		}
+		else
+		if (oNode instanceof cAMLAttr) {
+			if ((oNamespace = oAML_namespaces[oNode.namespaceURI]) && (cAttribute = oNamespace.attributes[oNode.localName]))
+				if (cAttribute.handlers && cAttribute.handlers[oEvent.type])
+					cAttribute.handlers[oEvent.type].call(oNode, oEvent);
+		}
+	}
+};
+/*
 cAMLNode.prototype.$handleEvent	= function(oEvent)
 {
 	// Process inline handler
@@ -489,7 +520,7 @@ cAMLNode.prototype.$handleEvent	= function(oEvent)
     		if (oEvent.eventPhase == cAMLEvent.AT_TARGET || aListeners[nIndex][1] == (oEvent.eventPhase == cAMLEvent.CAPTURING_PHASE))
     			fAMLNode_executeHandler(this, aListeners[nIndex][0], oEvent);
 };
-
+*/
 cAMLNode.prototype.hasAttributes	= function()
 {
 	if (this.attributes)

@@ -297,7 +297,10 @@ cAMLElement.prototype.setAttributeNS	= function(sNameSpaceURI, sQName, sValue)
 			// Fire Mutation event (pseudo)
 			oEvent = new cAMLMutationEvent;
 			oEvent.initMutationEvent("DOMNodeInsertedIntoDocument", false, false, null, null, null, null, null);
-			oAttribute.$handleEvent(oEvent);
+			oEvent.target	=
+			oEvent.currentTarget	= oAttribute;
+			oEvent.eventPhase		= cAMLEvent.AT_TARGET;
+			fAMLNode_handleEvent(oAttribute, oEvent);
 		}
 	}
 
@@ -447,7 +450,10 @@ cAMLElement.prototype.removeAttributeNS	= function(sNameSpaceURI, sLocalName)
 			// Fire Mutation event (pseudo)
 			oEvent = new cAMLMutationEvent;
 			oEvent.initMutationEvent("DOMNodeRemovedFromDocument", false, false, null, null, null, null, null);
-			oAttribute.$handleEvent(oEvent);
+			oEvent.target	=
+			oEvent.currentTarget	= oAttribute;
+			oEvent.eventPhase		= cAMLEvent.AT_TARGET;
+			fAMLNode_handleEvent(oAttribute, oEvent);
 		}
 	}
 
@@ -520,21 +526,6 @@ cAMLElement.prototype.blur	= function()
 
 };
 */
-
-cAMLElement.prototype.$handleEvent	= function(oEvent)
-{
-	cAMLNode.prototype.$handleEvent.call(this, oEvent);
-
-	// Notify element event handlers
-	var oNamespace,
-		cElement;
-
-	// Event default actions implementation
-	if (oEvent.eventPhase != cAMLEvent.CAPTURING_PHASE && !oEvent.defaultPrevented)
-		if ((oNamespace = oAML_namespaces[this.namespaceURI]) && (cElement = oNamespace.elements[this.localName]))
-			if (cElement.handlers && cElement.handlers[oEvent.type])
-				cElement.handlers[oEvent.type].call(this, oEvent);
-};
 
 cAMLElement.prototype.$activate	= function()
 {
