@@ -607,4 +607,3 @@ cAMLNode.prototype.$getTag	= function()
 {
 	return '';
 };
-//<-Source
