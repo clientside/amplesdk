@@ -7,8 +7,19 @@
  *
  */
 
-var cSVGElement_path	= function(){};
+var cSVGElement_path	= function(){
+//	this.pathSeqList			= new cSVGPathSegList;
+//	this.normalizedPathSegList	= new cSVGPathSegList;
+//	this.animatedPathSegList			= new cSVGPathSegList;
+//	this.animatedNormalizedPathSegList	= new cSVGPathSegList;
+};
 cSVGElement_path.prototype	= new cSVGElement;
+
+//
+cSVGElement_path.prototype.pathSeqList				= null;
+//cSVGElement_path.prototype.normalizedPathSegList	= null;
+//cSVGElement_path.prototype.animatedPathSegList				= null;
+//cSVGElement_path.prototype.animatedNormalizedPathSegList	= null;
 
 if (!!document.namespaces) {
 	// Implementation for IE
@@ -318,6 +329,13 @@ if (!!document.namespaces) {
 
 	cSVGElement_path.prototype.$getTagClose	= function() {
 		return '</svg2vml:shape>';
+	};
+}
+else {
+	cSVGElement_path.handlers	= {
+		"DOMNodeInsertedIntoDocument":	function(oEvent) {
+			this.pathSeqList	= this.$getContainer().pathSeqList;
+		}
 	};
 };
 
