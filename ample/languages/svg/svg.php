@@ -3,6 +3,31 @@
     $aFiles[]	= "implementation/svg.js";
     $aFiles[]	= "implementation/classes/cSVGElement.js";
 
+    $aFiles[]	= "implementation/classes/cSVGRect.js";
+    $aFiles[]	= "implementation/classes/cSVGPathSeg.js";
+    $aFiles[]	= "implementation/classes/cSVGPathSegList.js";
+
+    // segments
+    $aFiles[]	= "implementation/classes/segments/cSVGPathSegArcAbs.js";
+    $aFiles[]	= "implementation/classes/segments/cSVGPathSegArcRel.js";
+    $aFiles[]	= "implementation/classes/segments/cSVGPathSegClosePath.js";
+    $aFiles[]	= "implementation/classes/segments/cSVGPathSegCurvetoCubicAbs.js";
+    $aFiles[]	= "implementation/classes/segments/cSVGPathSegCurvetoCubicRel.js";
+    $aFiles[]	= "implementation/classes/segments/cSVGPathSegCurvetoCubicSmoothAbs.js";
+    $aFiles[]	= "implementation/classes/segments/cSVGPathSegCurvetoCubicSmoothRel.js";
+    $aFiles[]	= "implementation/classes/segments/cSVGPathSegCurvetoQuadraticAbs.js";
+    $aFiles[]	= "implementation/classes/segments/cSVGPathSegCurvetoQuadraticRel.js";
+    $aFiles[]	= "implementation/classes/segments/cSVGPathSegCurvetoQuadraticSmoothAbs.js";
+    $aFiles[]	= "implementation/classes/segments/cSVGPathSegCurvetoQuadraticSmoothRel.js";
+    $aFiles[]	= "implementation/classes/segments/cSVGPathSegLinetoAbs.js";
+    $aFiles[]	= "implementation/classes/segments/cSVGPathSegLinetoRel.js";
+    $aFiles[]	= "implementation/classes/segments/cSVGPathSegLinetoHorizontalAbs.js";
+    $aFiles[]	= "implementation/classes/segments/cSVGPathSegLinetoHorizontalRel.js";
+    $aFiles[]	= "implementation/classes/segments/cSVGPathSegLinetoVerticalAbs.js";
+    $aFiles[]	= "implementation/classes/segments/cSVGPathSegLinetoVerticalRel.js";
+    $aFiles[]	= "implementation/classes/segments/cSVGPathSegMovetoAbs.js";
+    $aFiles[]	= "implementation/classes/segments/cSVGPathSegMovetoRel.js";
+
     // elements
 	// structure
 	$aFiles[]	= "implementation/elements/svg.js";

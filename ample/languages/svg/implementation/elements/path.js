@@ -8,7 +8,7 @@
  */
 
 var cSVGElement_path	= function(){
-//	this.pathSeqList			= new cSVGPathSegList;
+	this.pathSeqList			= new cSVGPathSegList;
 //	this.normalizedPathSegList	= new cSVGPathSegList;
 //	this.animatedPathSegList			= new cSVGPathSegList;
 //	this.animatedNormalizedPathSegList	= new cSVGPathSegList;
@@ -20,6 +20,96 @@ cSVGElement_path.prototype.pathSeqList				= null;
 //cSVGElement_path.prototype.normalizedPathSegList	= null;
 //cSVGElement_path.prototype.animatedPathSegList				= null;
 //cSVGElement_path.prototype.animatedNormalizedPathSegList	= null;
+
+cSVGElement_path.prototype.pathLength	= 0;
+
+cSVGElement_path.prototype.getTotalLength	= function() {
+	throw new AMLException(AMLException.NOT_SUPPORTED_ERR);
+};
+
+cSVGElement_path.prototype.getPointAtLength	= function(nDistance) {
+	throw new AMLException(AMLException.NOT_SUPPORTED_ERR);
+};
+
+cSVGElement_path.prototype.getPathSegAtLength	= function(nDistance) {
+	throw new AMLException(AMLException.NOT_SUPPORTED_ERR);
+};
+
+cSVGElement_path.prototype.createSVGPathSegClosePath	= function() {
+	return new cSVGPathSegClosePath;
+};
+
+cSVGElement_path.prototype.createSVGPathSegMovetoAbs	= function(nX, nY) {
+	return new cSVGPathSegMovetoAbs(nX, nY);
+};
+
+cSVGElement_path.prototype.createSVGPathSegMovetoRel	= function(nX, nY) {
+	return new cSVGPathSegMovetoRel(nX, nY);
+};
+
+cSVGElement_path.prototype.createSVGPathSegLinetoAbs	= function(nX, nY) {
+	return new cSVGPathSegLinetoAbs(nX, nY);
+};
+
+cSVGElement_path.prototype.createSVGPathSegLinetoRel	= function(nX, nY) {
+	return new cSVGPathSegLinetoRel(nX, nY);
+};
+
+cSVGElement_path.prototype.createSVGPathSegCurvetoCubicAbs	= function(nX, nY, nX1, nY1, nX2, nY2) {
+	return new cSVGPathSegCurvetoCubicAbs(nX, nY, nX1, nY1, nX2, nY2);
+};
+
+cSVGElement_path.prototype.createSVGPathSegCurvetoCubicRel	= function(nX, nY, nX1, nY1, nX2, nY2) {
+	return new cSVGPathSegCurvetoCubicRel(nX, nY, nX1, nY1, nX2, nY2);
+};
+
+cSVGElement_path.prototype.createSVGPathSegCurvetoQuadraticAbs	= function(nX, nY, nX1, nY1) {
+	return new cSVGPathSegCurvetoQuadraticAbs(nX, nY, nX1, nY1);
+};
+
+cSVGElement_path.prototype.createSVGPathSegCurvetoQuadraticRel	= function(nX, nY, nX1, nY1) {
+	return new cSVGPathSegCurvetoQuadraticRel(nX, nY, nX1, nY1);
+};
+
+cSVGElement_path.prototype.createSVGPathSegArcAbs	= function(nX, nY, nR1, nR2, nAngle, bLargeArc, bSweep) {
+	return new cSVGPathSegArcAbs(nX, nY, nR1, nR2, nAngle, bLargeArc, bSweep);
+};
+
+cSVGElement_path.prototype.createSVGPathSegArcRel	= function(nX, nY, nR1, nR2, nAngle, bLargeArc, bSweep) {
+	return new cSVGPathSegArcRel(nX, nY, nR1, nR2, nAngle, bLargeArc, bSweep);
+};
+
+cSVGElement_path.prototype.createSVGPathSegLinetoHorizontalAbs	= function(nX) {
+	return new cSVGPathSegLinetoHorizontalAbs(nX);
+};
+
+cSVGElement_path.prototype.createSVGPathSegLinetoHorizontalRel	= function(nX) {
+	return new cSVGPathSegLinetoHorizontalRel(nX);
+};
+
+cSVGElement_path.prototype.createSVGPathSegLinetoVerticalAbs	= function(nY) {
+	return new cSVGPathSegLinetoVerticalAbs(nY);
+};
+
+cSVGElement_path.prototype.createSVGPathSegLinetoVerticalRel	= function(nY) {
+	return new cSVGPathSegLinetoVerticalRel(nY);
+};
+
+cSVGElement_path.prototype.createSVGPathSegCurvetoCubicSmoothAbs	= function(nX, nY, nX2, nY2) {
+	return new cSVGPathSegCurvetoCubicSmoothAbs(nX, nY, nX2, nY2);
+};
+
+cSVGElement_path.prototype.createSVGPathSegCurvetoCubicSmoothRel	= function(nX, nY, nX2, nY2) {
+	return new cSVGPathSegCurvetoCubicSmoothRel(nX, nY, nX2, nY2);
+};
+
+cSVGElement_path.prototype.createSVGPathSegCurvetoQuadraticSmoothAbs	= function(nX, nY) {
+	return new cSVGPathSegCurvetoQuadraticSmoothAbs(nX, nY);
+};
+
+cSVGElement_path.prototype.createSVGPathSegCurvetoQuadraticSmoothRel	= function(nX, nY) {
+	return new cSVGPathSegCurvetoQuadraticSmoothRel(nX, nY);
+};
 
 if (!!document.namespaces) {
 	// Implementation for IE
@@ -333,6 +423,14 @@ if (!!document.namespaces) {
 }
 else {
 	cSVGElement_path.handlers	= {
+		"DOMAttrModified":	function(oEvent) {
+			if (oEvent.target == this) {
+				switch (oEvent.attrName) {
+					case "d":
+						break;
+				}
+			}
+		},
 		"DOMNodeInsertedIntoDocument":	function(oEvent) {
 			this.pathSeqList	= this.$getContainer().pathSeqList;
 		}

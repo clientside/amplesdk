@@ -14,27 +14,15 @@ if (!!document.namespaces) {
 	// Add namespace
 	document.namespaces.add("svg2vml", "urn:schemas-microsoft-com:vml", "#default#VML");
 
-	// SVGRect object
-	function cSVGRect() {
-
-	};
-	cSVGRect.prototype.x	= null;
-	cSVGRect.prototype.y	= null;
-	cSVGRect.prototype.width	= null;
-	cSVGRect.prototype.height	= null;
-
-	cSVGRect.prototype.toString	= function() {
-		return "[object SVGRect]";
-	};
-
 	cSVGElement.prototype.getBBox	= function() {
 		var oBCRectRoot	= cSVGElement.getViewportElement(this).$getContainer().getBoundingClientRect(),
 			oBCRectThis	= this.$getContainer().getBoundingClientRect(),
-			oSVGRect	= new cSVGRect;
-		oSVGRect.x	= oBCRectThis.left - oBCRectRoot.left + 1;	// Account for -0.75pt strange offset
-		oSVGRect.y	= oBCRectThis.top - oBCRectRoot.top + 1;	// Account for -0.75pt strange offset
-		oSVGRect.width	= oBCRectThis.right - oBCRectThis.left;
-		oSVGRect.height	= oBCRectThis.bottom - oBCRectThis.top;
+			oSVGRect	= new cSVGRect(
+								oBCRectThis.left - oBCRectRoot.left + 1,	// Account for -0.75pt strange offset
+								oBCRectThis.top - oBCRectRoot.top + 1,	// Account for -0.75pt strange offset
+								oBCRectThis.right - oBCRectThis.left,
+								oBCRectThis.bottom - oBCRectThis.top
+			);
 
 		return oSVGRect;
 	};
