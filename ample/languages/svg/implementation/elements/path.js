@@ -9,6 +9,12 @@
 
 var cSVGElement_path	= function(){
 	this.pathSegList			= new cSVGPathSegList;
+/*
+	// Register pathSegList changer
+	var that	= this;
+	this.pathSegList.$onchange	= function() {
+		this.$getContainer().path	=
+	};*/
 //	this.normalizedPathSegList	= new cSVGPathSegList;
 //	this.animatedPathSegList			= new cSVGPathSegList;
 //	this.animatedNormalizedPathSegList	= new cSVGPathSegList;
@@ -111,6 +117,15 @@ cSVGElement_path.prototype.createSVGPathSegCurvetoQuadraticSmoothRel	= function(
 	return new cSVGPathSegCurvetoQuadraticSmoothRel(nX, nY);
 };
 
+// Static Methods
+cSVGElement_path.d2PathSegList	= function(oInstance) {
+
+};
+
+cSVGElement_path.pathSegList2d	= function(oInstance) {
+
+};
+
 if (!!document.namespaces) {
 	// Implementation for IE
 
@@ -146,6 +161,70 @@ if (!!document.namespaces) {
 
 			// Apply CSS
 			cSVGElement.applyCSS(this);
+		}
+	};
+
+	cSVGElement_path.pathSegList2Path	= function(oPathSegList) {
+		var aPath	= [];
+		for (var nIndex = 0; nIndex < this.pathSeqList.numberOfItems; nIndex++) {
+			switch (this.pathSeqList[nIndex].pathSegType) {
+				case cSVGPathSeg.PATHSEG_CLOSEPATH:
+					break;
+
+				case cSVGPathSeg.PATHSEG_MOVETO_ABS:
+					break;
+
+				case cSVGPathSeg.PATHSEG_MOVETO_REL:
+					break;
+
+				case cSVGPathSeg.PATHSEG_LINETO_ABS:
+					break;
+
+				case cSVGPathSeg.PATHSEG_LINETO_REL:
+					break;
+
+				case cSVGPathSeg.PATHSEG_CURVETO_CUBIC_ABS:
+					break;
+
+				case cSVGPathSeg.PATHSEG_CURVETO_CUBIC_REL:
+					break;
+
+				case cSVGPathSeg.PATHSEG_CURVETO_QUADRATIC_ABS:
+					break;
+
+				case cSVGPathSeg.PATHSEG_CURVETO_QUADRATIC_REL:
+					break;
+
+				case cSVGPathSeg.PATHSEG_ARC_ABS:
+					break;
+
+				case cSVGPathSeg.PATHSEG_ARC_REL:
+					break;
+
+				case cSVGPathSeg.PATHSEG_LINETO_HORIZONTAL_ABS:
+					break;
+
+				case cSVGPathSeg.PATHSEG_LINETO_HORIZONTAL_REL:
+					break;
+
+				case cSVGPathSeg.PATHSEG_LINETO_VERTICAL_ABS:
+					break;
+
+				case cSVGPathSeg.PATHSEG_LINETO_VERTICAL_REL:
+					break;
+
+				case cSVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_ABS:
+					break;
+
+				case cSVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_REL:
+					break;
+
+				case cSVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS:
+					break;
+
+				case cSVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL:
+					break;
+			}
 		}
 	};
 
@@ -427,6 +506,7 @@ else {
 			if (oEvent.target == this) {
 				switch (oEvent.attrName) {
 					case "d":
+//						this.pathSegList.$items	=
 						break;
 				}
 			}
