@@ -71,9 +71,9 @@ cXULElement_dialog.prototype.cancelDialog    = function()
 cXULElement_dialog.prototype.centerWindowOnScreen    = function()
 {
 	var oElementDOM	= this.$getContainer(),
-    	oPosition	= this.ownerDocument.$getContainerPosition(oElementDOM);
-	oElementDOM.style.left	=(document.body.clientWidth - oPosition.width) / 2;
-	oElementDOM.style.top	=(document.body.clientHeight - oPosition.height) / 2;
+    	oPosition	= this.getBoundingClientRect();
+	oElementDOM.style.left	=(document.body.clientWidth - oPosition.right + oPosition.left) / 2;
+	oElementDOM.style.top	=(document.body.clientHeight - oPosition.bottom + oPosition.top) / 2;
 };
 
 // Events Handlers

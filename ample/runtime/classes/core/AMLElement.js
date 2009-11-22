@@ -569,12 +569,30 @@ cAMLElement.prototype.$getContainer	= function(sName)
 
 cAMLElement.prototype.getBoundingClientRect	= function(sPseudo)
 {
-	var oPosition	= this.ownerDocument.$getContainerPosition(this.$getContainer(sPseudo)),
+    var oElementDOM	= this.$getContainer(sPseudo),
+		oClientRect	= oElementDOM.getBoundingClientRect ? oElementDOM.getBoundingClientRect() : null,
 		oRectangle	= {};
-	oRectangle.top		= oPosition.top;
-	oRectangle.right	= oPosition.left + oPosition.width;
-	oRectangle.bottom	= oPosition.top + oPosition.height;
-	oRectangle.left		= oPosition.left;
+
+	// if 'getBoundingClientRect' is supported in the given browser
+	if (oClientRect) {
+		oRectangle.right	= oClientRect.right;
+		oRectangle.bottom	= oClientRect.bottom;
+		oRectangle.left		= oClientRect.left;
+		oRectangle.top		= oClientRect.top;
+	}
+	else {
+		var nWidth	= oElementDOM.offsetWidth,
+			nHeight	= oElementDOM.offsetHeight;
+		// Calculate offsets
+		oRectangle.left		= 0;
+		oRectangle.top		= 0;
+		for (; oElementDOM; oElementDOM = oElementDOM.offsetParent) {
+			oRectangle.left	+= oElementDOM.offsetLeft;
+			oRectangle.top 	+= oElementDOM.offsetTop;
+		}
+		oRectangle.right	= oRectangle.left + nWidth;
+		oRectangle.bottom	= oRectangle.top + nHeight;
+	}
 
 	return oRectangle;
 };

@@ -334,46 +334,6 @@ cAMLDocument.prototype.getElementsByAttributeNS	= function(sNameSpaceURI, sLocal
 };
 
 // Private methods
-cAMLDocument.prototype.$getContainerPosition	= function(oElementDOM)
-{
-    var oPosition	= {},
-    	oClientRect	= oElementDOM.getBoundingClientRect ? oElementDOM.getBoundingClientRect() : null,
-    	oElement;
-
-    // TODO: Get rid of scrollLeft/scrollTop here, remove the method completely and use from Element.getBoundingClientRect
-
-	// Calculate scrolls
-    oPosition.scrollLeft= 0;
-    oPosition.scrollTop	= 0;
-
-    // if 'getBoundingClientRect' is supported in the given browser
-    if (oClientRect) {
-	    oPosition.width	= oClientRect.right - oClientRect.left;
-	    oPosition.height= oClientRect.bottom - oClientRect.top;
-	    oPosition.left	= oClientRect.left;
-	    oPosition.top	= oClientRect.top;
-    }
-    else {
-	    oPosition.width		= oElementDOM.offsetWidth;
-	    oPosition.height	= oElementDOM.offsetHeight;
-
-		// Calculate offsets
-	    oPosition.left		= 0;
-	    oPosition.top		= 0;
-		for (oElement = oElementDOM; oElement; oElement = oElement.offsetParent) {
-	        oPosition.left	+= oElement.offsetLeft;
-	        oPosition.top 	+= oElement.offsetTop;
-		}
-
-	    for (oElement = oElementDOM; oElement.nodeType == 1; oElement = oElement.parentNode) {
-			oPosition.scrollLeft	+= oElement.scrollLeft;
-			oPosition.scrollTop 	+= oElement.scrollTop;
-		}
-    }
-
-    return oPosition;
-};
-
 function fAMLDocument_routeEvent(oEvent)
 {
 	var aTargets	= [],

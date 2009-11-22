@@ -42,8 +42,8 @@ cXULElement_listheader.handlers	= {
 /*
 	"mousemove":	function(oEvent) {
 		var oElementDOM	= this.$getContainer();
-		var oPosition	= this.ownerDocument.$getContainerPosition(oElementDOM);
-		if (Math.abs(oPosition.left - oEvent.clientX) < 10 || Math.abs(oPosition.left + oPosition.width - oEvent.clientX) < 10)
+		var oPosition	= this.getBoundingClientRect();
+		if (Math.abs(oPosition.left - oEvent.clientX) < 10 || Math.abs(oPosition.right - oEvent.clientX) < 10)
 			oElementDOM.style.cursor	= "col-resize";
 		else
 			oElementDOM.style.cursor	= "";

@@ -75,10 +75,9 @@ cXULElement_colorpicker_pane.prototype._setPaletteBrightness	= function(nBrightn
 
 cXULElement_colorpicker_pane.prototype._getComputedStyleByEvent	= function(oEvent, sName)
 {
-	var oElementDOM	= this.$getContainer(sName);
-    var oPosition   = this.ownerDocument.$getContainerPosition(oElementDOM);
-    var nPositionX  = oEvent.clientX - oPosition.left	+ oPosition.scrollLeft;
-    var nPositionY  = oEvent.clientY - oPosition.top	+ oPosition.scrollTop;
+    var oPosition   = this.getBoundingClientRect(sName);
+    var nPositionX  = oEvent.clientX - oPosition.left/*	+ oPosition.scrollLeft*/;
+    var nPositionY  = oEvent.clientY - oPosition.top/*	+ oPosition.scrollTop*/;
 
     // limit value by the range (0..255)
     nPositionX  = nPositionX < 0    ? 0 :(nPositionX > 255  ? 255   : nPositionX);

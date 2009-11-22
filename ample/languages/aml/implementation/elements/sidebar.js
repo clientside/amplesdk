@@ -16,17 +16,17 @@ cAMLElement_sidebar.prototype.toggle	= function(bState)
 	var oContainer	= this.$getContainer(),
 		oStyle		= oContainer.style;
 	// Reset old position
-	var oPositionOld	= this.ownerDocument.$getContainerPosition(oContainer);
+	var oPositionOld	= this.getBoundingClientRect();
 	oStyle.width	= "";
 	oStyle.height	= "";
 	// Toggle pseudo-class
 	this.$setPseudoClass("hover", bState || false);
 	// Set new position
-	var oPositionNew	= this.ownerDocument.$getContainerPosition(oContainer);
-	oStyle.width	= oPositionOld.width + "px";
-	oStyle.height	= oPositionOld.height + "px";
+	var oPositionNew	= this.getBoundingClientRect();
+	oStyle.width	=(oPositionOld.right - oPositionOld.left) + "px";
+	oStyle.height	=(oPositionOld.bottom - oPositionOld.top) + "px";
 	// Play effect
-	this.$play("width:" + oPositionNew.width + "px; height:" + oPositionNew.height + "px;", 500, AMLElement.EFFECT_ACCELERATE);
+	this.$play("width:" + (oPositionNew.right - oPositionNew.left) + "px; height:" + (oPositionNew.bottom - oPositionNew.top) + "px;", 500, AMLElement.EFFECT_ACCELERATE);
 };
 
 // Class Event Handlers
