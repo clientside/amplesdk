@@ -135,7 +135,7 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
    	oEvent.stopPropagation();
 
 	var oElementDOM	= oAMLDragAndDrop_dragSource.$getContainer(),
-		oPosition	= this.$getContainerPosition(oElementDOM),
+		oPosition	= oAMLDragAndDrop_dragSource.getBoundingClientRect(),
 		oStyle		= oElementDOM.style;
 
 	// Turn mode to interactive
@@ -186,7 +186,7 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
 		oStyle.top	= '0';
 
 		// get drag source position at (0, 0)
-		var oPositionP	= this.$getContainerPosition(oElementDOM);
+		var oPositionP	= oAMLDragAndDrop_dragSource.getBoundingClientRect();
 
 		// restore drag source position
 		oStyle.left	= nAMLDragAndDrop_clientLeft;
@@ -199,7 +199,7 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
 
 	var nTarget	=-1,
 		oPosition2,
-		nAreaSource	= oPosition.width * oPosition.height,
+		nAreaSource	=(oPosition.right - oPosition.left) * (oPosition.bottom - oPosition.top),
 		nAreaSourceMax	= 0,
 		nAreaTarget,
 		nAreaTargetMin	= Infinity,
@@ -216,8 +216,8 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
 		if (aAMLDragAndDrop_dropTargets[nIndex].compareDocumentPosition(oAMLDragAndDrop_dragSource) & cAMLNode.DOCUMENT_POSITION_CONTAINS)
 			continue;
 
-		oPosition2	= this.getElementPosition(aAMLDragAndDrop_dropTargets[nIndex]);
-		nAreaTarget = oPosition2.width * oPosition2.height;
+		oPosition2	= aAMLDragAndDrop_dropTargets[nIndex].getBoundingClientRect();
+		nAreaTarget =(oPosition2.right - oPosition2.left) * (oPosition2.bottom - oPosition2.top);
 		nIntersection = fAMLDragAndDrop_intersectRectangle(oPosition, oPosition2);
 		if (nIntersection < nAreaSource) {
 			// partial intersection
@@ -299,7 +299,7 @@ function fAMLDragAndDrop_onKeyDown(oEvent) {
 
 function fAMLDragAndDrop_intersectRectangle(oPosition1, oPosition2)
 {
-    return fAMLDragAndDrop_intersectSegment(oPosition1.left, oPosition1.width, oPosition2.left, oPosition2.width) * fAMLDragAndDrop_intersectSegment(oPosition1.top, oPosition1.height, oPosition2.top, oPosition2.height);
+    return fAMLDragAndDrop_intersectSegment(oPosition1.left, oPosition1.right - oPosition1.left, oPosition2.left, oPosition2.right - oPosition2.left) * fAMLDragAndDrop_intersectSegment(oPosition1.top, oPosition1.bottom - oPosition1.top, oPosition2.top, oPosition2.bottom - oPosition2.top);
 };
 
 function fAMLDragAndDrop_intersectSegment(x, y, a, b)

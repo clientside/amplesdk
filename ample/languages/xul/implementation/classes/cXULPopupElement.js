@@ -35,23 +35,23 @@ cXULPopupElement.prototype.showPopup	= function(oElement, nLeft, nTop, nType, oA
 
     if ((!isNaN(nLeft) && nLeft !=-1) || (!isNaN(nTop) && nTop != -1))
     {
-    	var oPosition	= this.ownerDocument.$getContainerPosition(document.body);
-    	var oPosition2	= this.ownerDocument.getElementPosition(this);
-    	if (oPosition2.height + nTop > oPosition.height)
-    		nTop	-= oPosition2.height;
-    	if (oPosition2.width + nLeft > oPosition.width)
-    		nLeft	-= oPosition2.width;
+    	var oPosition	= this.ownerDocument.documentElement.getBoundingClientRect();
+    	var oPosition2	= this.getBoundingClientRect();
+    	if (oPosition2.bottom - oPosition2.top + nTop > oPosition.bottom - oPosition.top)
+    		nTop	-= oPosition2.bottom - oPosition2.top;
+    	if (oPosition2.right - oPosition2.left + nLeft > oPosition.right - oPosition.left)
+    		nLeft	-= oPosition2.right - oPosition2.left;
         this.moveTo(nLeft, nTop);
     }
     else
     if (oElement)
     {
-        var oPosition  = this.ownerDocument.getElementPosition(oElement);
+        var oPosition  = oElement.getBoundingClientRect();
 		switch (this.getAttribute("position"))
 		{
 			case "after_start":
 	            // popup is beneath the element, left corners aligned
-	            this.moveTo(oPosition.left, oPosition.top + oPosition.height);
+	            this.moveTo(oPosition.left, oPosition.bottom);
 	            break;
 
 			case"after_end":

@@ -334,14 +334,6 @@ cAMLDocument.prototype.getElementsByAttributeNS	= function(sNameSpaceURI, sLocal
 };
 
 // Private methods
-/**
- * @return Object containing positioning properties in px
- */
-cAMLDocument.prototype.getElementPosition	= function(oElement)
-{
-    return this.$getContainerPosition(oElement.$getContainer());
-};
-
 cAMLDocument.prototype.$getContainerPosition	= function(oElementDOM)
 {
     var oPosition	= {},

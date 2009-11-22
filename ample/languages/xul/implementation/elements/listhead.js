@@ -70,11 +70,11 @@ cXULElement_listhead.handlers	= {
 			}
 			else {
 				// ::settings left-click
-				var oPositionPopup	= this.ownerDocument.getElementPosition(oPopup),
-					oPositionSelf	= this.ownerDocument.getElementPosition(this);
+				var oPositionPopup	= oPopup.getBoundingClientRect(),
+					oPositionSelf	= this.getBoundingClientRect();
 				//
-				oPopup.moveTo(	oPositionSelf.left - oPositionPopup.left + oPositionSelf.width - oPositionPopup.width,
-			 					oPositionSelf.top - oPositionPopup.top + oPositionSelf.height);
+				oPopup.moveTo(	oPositionSelf.right - oPositionPopup.right,
+			 					oPositionSelf.bottom - oPositionPopup.top);
 			}
 
 			this.ownerDocument.popupNode	= oPopup;

@@ -40,8 +40,8 @@ cXULElement_scale.prototype.$setValue	= function(sValue)
     if (sValue * 1.0 > this.attributes["max"] * 1.0)
         sValue  = this.attributes["max"] * 1.0;
 
-	var oPosition	= this.ownerDocument.getElementPosition(this);
-    this.$getContainer("button").style.left   = Math.round((oPosition.width - 17) * (sValue - this.attributes["min"] * 1.0) / (this.attributes["max"] * 1.0 - this.attributes["min"] * 1.0)) + "px";
+	var oPosition	= this.getBoundingClientRect();
+    this.$getContainer("button").style.left   = Math.round((oPosition.right - oPosition.left - 17) * (sValue - this.attributes["min"] * 1.0) / (this.attributes["max"] * 1.0 - this.attributes["min"] * 1.0)) + "px";
 
     // Save value
     this.$getContainer("input").value	= sValue;
@@ -141,8 +141,8 @@ cXULElement_scale._onDocumentMouseUp    = function(oEvent)
 	// restore visual state
 	oElement.$setPseudoClass("active", false, "button");
 
-	var oPosition	= oElement.ownerDocument.getElementPosition(oElement);
-	var sValue	= oElement.attributes["min"] * 1.0 + Math.round((oElement._buttonX  / (oPosition.width - 17)) * (oElement.attributes["max"] * 1.0 - oElement.attributes["min"] * 1.0) / oElement.attributes["step"]) * oElement.attributes["step"];
+	var oPosition	= oElement.getBoundingClientRect();
+	var sValue	= oElement.attributes["min"] * 1.0 + Math.round((oElement._buttonX  / (oPosition.right - oPosition.left - 17)) * (oElement.attributes["max"] * 1.0 - oElement.attributes["min"] * 1.0) / oElement.attributes["step"]) * oElement.attributes["step"];
 
 	var sValueOld	= oElement.$getValue();
     oElement.$setValue(sValue);
@@ -158,12 +158,13 @@ cXULElement_scale._onDocumentMouseUp    = function(oEvent)
 cXULElement_scale._onDocumentMouseMove     = function(oEvent)
 {
 	var oElement	= cXULElement_scale._element;
-	var oPosition	= oElement.ownerDocument.getElementPosition(oElement);
+	var oPosition	= oElement.getBoundingClientRect(),
+		nWidth		= oPosition.right - oPosition.left;
 
     oElement._buttonX  += oEvent.clientX - oElement._mouseX;
     oElement._buttonY  += oEvent.clientY - oElement._mouseY;
 
-    oElement.$getContainer("button").style.left   =(oElement._buttonX < 0 ? 0 : oElement._buttonX < oPosition.width - 17 ? oElement._buttonX : oPosition.width - 17) + "px";
+    oElement.$getContainer("button").style.left   =(oElement._buttonX < 0 ? 0 : oElement._buttonX < nWidth - 17 ? oElement._buttonX : nWidth - 17) + "px";
 
     oElement._mouseX    = oEvent.clientX;
     oElement._mouseY    = oEvent.clientY;
