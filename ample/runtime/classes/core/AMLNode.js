@@ -507,20 +507,7 @@ function fAMLNode_handleEvent(oNode, oEvent) {
 		}
 	}
 };
-/*
-cAMLNode.prototype.$handleEvent	= function(oEvent)
-{
-	// Process inline handler
-    if (oEvent.eventPhase != cAMLEvent.CAPTURING_PHASE && this["on" + oEvent.type])
-    	fAMLNode_executeHandler(this, this["on" + oEvent.type], oEvent);
 
-	// Notify listeners
-    if (this.$listeners && this.$listeners[oEvent.type])
-    	for (var nIndex = 0, aListeners = this.$listeners[oEvent.type]; nIndex < aListeners.length && !oEvent._stoppedImmediately; nIndex++)
-    		if (oEvent.eventPhase == cAMLEvent.AT_TARGET || aListeners[nIndex][1] == (oEvent.eventPhase == cAMLEvent.CAPTURING_PHASE))
-    			fAMLNode_executeHandler(this, aListeners[nIndex][0], oEvent);
-};
-*/
 cAMLNode.prototype.hasAttributes	= function()
 {
 	if (this.attributes)
