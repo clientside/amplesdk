@@ -11,12 +11,10 @@
 	</abstract>
 	<warning>
 	    <locale>
-	      This kind of node does not get instantiated in Ample SDK.
-	      The <link type="object">AMLAttr</link> class is used in order to define global language attributes.
+	      The <link type="object">AMLAttr</link> class is only used in order to define global language attributes.
 	    </locale>
 	    <locale xml:lang="ru">
-	      Не имеет экземпляров в Ample SDK.
-	      Класс <link type="object">AMLAttr</link> используется для объявления глобальных атрибутов языка.
+	      Класс <link type="object">AMLAttr</link> используется только для объявления глобальных атрибутов языка.
 	    </locale>
 	</warning>
 	<examples/>
