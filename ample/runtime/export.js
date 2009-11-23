@@ -100,6 +100,7 @@ if (!window.XSLTProcessor)
 	fAMLExporter_export(cXSLTProcessor,	"XSLTProcessor");
 if (!window.XMLHttpRequest)
 	fAMLExporter_export(cXMLHttpRequest,"XMLHttpRequest");
+//fAMLExporter_export(cRPCClient,	"RPCClient");
 //
 //if (!window.JSONRequest)
 //	fAMLExporter_export(cJSONRequest,	"JSONRequest");

@@ -67,6 +67,7 @@
 				<node title="XSLTProcessor" url="ample/runtime/XSLTProcessor.xml"/>
 			</node>
 			<node title="I/O Objects">
+				<node title="RPCClient" url="ample/runtime/RPCClient.xml"/>
 				<node title="XMLHttpRequest" url="ample/runtime/XMLHttpRequest.xml"/>
 				<node title="SOAP">
 					<node title="SoapRequest" xurl="ample/runtime/SoapRequest.xml"/>

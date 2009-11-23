@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="RPCClient">
+	<abstract>
+		<locale>
+			Object that provides RPC client functionality.
+		</locale>
+	</abstract>
+	<remarks />
+	<warning>
+		<locale>
+			The <link>RPCClient</link> object is in development and it is not included in distribution.
+		</locale>
+	</warning>
+	<members>
+		<constants>
+			<constant name="UNINITIALIZED" value="0">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</constant>
+			<constant name="SENT" value="1">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</constant>
+			<constant name="RECEIVED" value="2">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</constant>
+		</constants>
+		<properties>
+			<property name="async" type="Boolean" default="true">
+				<description>
+					<locale>
+						Set to false if you need synchronous request.
+					</locale>
+				</description>
+			</property>
+			<property name="state" type="Number" readonly="true">
+				<description>
+					<locale>
+						State of the object.
+					</locale>
+				</description>
+			</property>
+			<property name="timeout" type="Number">
+				<description>
+					<locale>
+						Request timeout. Default is Infinity.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<methods>
+			<method name="__constructor__" type="RPCClient">
+				<arguments>
+					<argument name="endpoint" type="String">
+						<description>
+							<locale>
+								RPC end point.
+							</locale>
+						</description>
+					</argument>
+					<argument name="version" type="String" required="false">
+						<description>
+							<locale>
+								RPC version number. Supported: 1.0, 1.1, 2.0
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Constructs <link>RPCClient</link> object.
+					</locale>
+				</description>
+			</method>
+			<method name="call" type="Void">
+				<arguments>
+					<argument name="method" type="String">
+						<description>
+							<locale>
+								Method name.
+							</locale>
+						</description>
+					</argument>
+					<argument name="params" type="Object" required="false">
+						<description>
+							<locale>
+								Parameters bag.
+							</locale>
+						</description>
+					</argument>
+					<argument name="callback" type="Function" required="false">
+						<description>
+							<locale>
+								Callback function.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Makes RPC request with parameters passed and calls callback if succeeded.
+					</locale>
+				</description>
+			</method>
+			<method name="abort" type="Void">
+				<description>
+					<locale>
+						Aborts RPC request.
+					</locale>
+				</description>
+			</method>
+		</methods>
+	</members>
+	<examples>
+		<example>
+			Following example invokes "mymethod" method with a parameters bag on "path/to/myendpoint" url.
+			<code type="text/javascript"><![CDATA[var oClient	= new RPCClient("path/to/myendpoint");
+oClient.call("mymethod", {"myparam":"myvalue"}, function(oResult) {
+	alert(oResult);
+});
+		]]></code>
+		</example>
+	</examples>
+</object>

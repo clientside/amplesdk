@@ -49,6 +49,7 @@
 	$aFiles[]	= "runtime/classes/XMLSerializer.js";
 	$aFiles[]	= "runtime/classes/XMLHttpRequest.js";
 	$aFiles[]	= "runtime/classes/XSLTProcessor.js";
+//	$aFiles[]	= "runtime/classes/RPCProxy.js";
 
 	//
 	$aFiles[]	= "runtime/classes/JSON.js";
