@@ -18,6 +18,9 @@
 				<arguments>
 					<argument name="oElement" type="AMLNode" required="true">
 						<description>
+							<locale>
+								The node to add.
+							</locale>
 							<locale xml:lang="ru">
 								Элемент, который следует добавить.
 							</locale>
@@ -37,6 +40,9 @@
 				<arguments>
 					<argument name="oElement" type="AMLNode" required="true">
 						<description>
+							<locale>
+								The node to insert.
+							</locale>
 							<locale xml:lang="ru">
 								Элемент, который следует добавить.
 							</locale>
@@ -44,6 +50,9 @@
 					</argument>
 					<argument name="oBefore" type="AMLNode" required="true">
 						<description>
+							<locale>
+								The reference node, i.e., the node before which the new node must be inserted.
+							</locale>
 							<locale xml:lang="ru">
 								Элемент, перед которым будет произведено добавление.
 							</locale>
@@ -63,6 +72,9 @@
 				<arguments>
 					<argument name="oChild" type="AMLNode" required="true">
 						<description>
+							<locale>
+								The node being removed.
+							</locale>
 							<locale xml:lang="ru">
 								Дочерний узел, который следует удалить.
 							</locale>
@@ -83,12 +95,14 @@
 					<argument name="oNew" type="AMLNode" required="true">
 						<description>
 							<locale>
+								The new node to put in the child list.
 							</locale>
 						</description>
 					</argument>
 					<argument name="oChild" type="AMLNode" required="true">
 						<description>
 							<locale>
+								The node being replaced in the list.
 							</locale>
 						</description>
 					</argument>
