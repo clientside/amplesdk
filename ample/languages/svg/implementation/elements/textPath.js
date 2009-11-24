@@ -19,7 +19,9 @@ if (!!document.namespaces) {
 				var oElement	= this.$getContainer();
 				switch (oEvent.attrName) {
 					case "xlink:href":
-						oElement.setAttribute(oEvent.attrName, oEvent.newValue);
+						var oTextPath = this.ownerDocument.getElementById(oEvent.newValue.substr(1));
+						if (oTextPath)
+							oElement.path	= cSVGElement_path.convert(oTextPath.getAttribute("d"));
 						break;
 				}
 			}
