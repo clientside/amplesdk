@@ -108,8 +108,7 @@ cXULElement_treecols.prototype.$getTagOpen	= function()
 // Element Render: close
 cXULElement_treecols.prototype.$getTagClose	= function()
 {
-	return 							'<th class="xul-treecol" width="16"><div style="width:16px"><br /></div></th>\
-								</tr>\
+	return 						'</tr>\
 							</thead>\
 						</table>\
 					</div>\

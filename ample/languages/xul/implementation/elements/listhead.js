@@ -114,8 +114,7 @@ cXULElement_listhead.prototype.$getTagOpen	= function()
 // Element Render: close
 cXULElement_listhead.prototype.$getTagClose	= function()
 {
-	return 							'<th class="xul-listheader" width="16"><div style="width:16px"><br /></div></th>\
-								</tr>\
+	return 						'</tr>\
 							</thead>\
 						</table>\
 					</div>\
