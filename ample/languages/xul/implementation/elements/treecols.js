@@ -89,6 +89,7 @@ cXULElement_treecols.prototype.$getTagOpen	= function()
 {
     return '<tr' + (this.attributes["hidden"] == "true" ? ' style="display:none"' : '') + '>\
 				<td class="xul-treecols--container">\
+					<div class="xul-treecol" style="float:right"><div class="xul-treecol--label"><div class="xul-treecols--settings"><br /></div></div></div>\
 					<div class="xul-treecols--area" style="height:18px;overflow:hidden;position:relative;">\
 						<table cellpadding="0" cellspacing="0" border="0" width="100%" style="height:18px;position:absolute;" class="xul-treecols">\
 							<thead>\
@@ -107,7 +108,7 @@ cXULElement_treecols.prototype.$getTagOpen	= function()
 // Element Render: close
 cXULElement_treecols.prototype.$getTagClose	= function()
 {
-	return 							'<th class="xul-treecol" width="16"><div style="width:16px" class="xul-treecol--label"><div class="xul-treecols--settings"><br /></div></div></th>\
+	return 							'<th class="xul-treecol" width="16"><div style="width:16px"><br /></div></th>\
 								</tr>\
 							</thead>\
 						</table>\

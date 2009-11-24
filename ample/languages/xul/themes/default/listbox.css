@@ -9,9 +9,10 @@ xul|listhead {
 }
 
 xul|listhead::settings {
-	width:	16px;
-	height:	16px;
+	width:	18px;
+	height:	18px;
 	background-image: url(media/listhead_settings.gif);
+	background-position: 2px 0;
 }
 
 xul|listheader {
