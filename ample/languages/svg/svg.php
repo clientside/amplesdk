@@ -53,6 +53,7 @@
     // text
     $aFiles[]	= "implementation/elements/text.js";
     $aFiles[]	= "implementation/elements/tspan.js";
+    $aFiles[]	= "implementation/elements/tref.js";
     $aFiles[]	= "implementation/elements/textPath.js";
     // foreign object
     $aFiles[]	= "implementation/elements/foreignObject.js";

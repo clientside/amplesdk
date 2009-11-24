@@ -236,6 +236,7 @@
 				<node title="textPath" url="ample/svg11/textPath.xml"/>
 				<node title="title" url="ample/svg11/title.xml"/>
 				<node title="tspan" url="ample/svg11/tspan.xml"/>
+				<node title="tref" url="ample/svg11/tref.xml"/>
 				<node title="use" url="ample/svg11/use.xml"/>
 			</node>
 		</node>
