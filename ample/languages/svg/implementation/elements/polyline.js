@@ -20,7 +20,7 @@ if (!!document.namespaces) {
 				var oElement	= this.$getContainer();
 				switch (oEvent.attrName) {
 					case "points":
-						oElement.points	= oEvent.newValue;
+						oElement.points.value	= oEvent.newValue;
 						break;
 					//
 					case "transform":
