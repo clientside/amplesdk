@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<title>JsUnit testing page</title>
+    	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    	<!-- JsUnitClient driver -->
+		<script type="text/javascript" src="../../../jsUnitClient.js"></script>
+		<script type="text/javascript">
+			JsUnitClient.include("runtime.js");
+			JsUnitClient.include("languages/svg/svg.js");
+		</script>
+
+		<!-- Tests -->
+		<script type="text/javascript">
+			// Using element in markup
+			function testSVGElement_ellipse_markup() {
+				var	oElement	= ample.getElementById('ellipse');
+				assertNotUndefined(oElement);
+			}
+
+			// Modifying attributes of an element instantiated from markup
+			function testSVGElement_ellipse_markup_attributes() {
+				var	oElement	= ample.getElementById('ellipse');
+				var sCx	= '' + Math.round(200 * Math.random()),
+					sCy	= '' + Math.round(200 * Math.random()),
+					sRx	= '' + Math.round(200 * Math.random()),
+					sRy	= '' + Math.round(200 * Math.random());
+
+				oElement.setAttribute('cx', sCx);
+				oElement.setAttribute('cy', sCy);
+				oElement.setAttribute('rx', sRx);
+				oElement.setAttribute('ry', sRy);
+
+				assertEquals(sCx, oElement.getAttribute('cx'));
+				assertEquals(sCy, oElement.getAttribute('cy'));
+				assertEquals(sRx, oElement.getAttribute('rx'));
+				assertEquals(sRy, oElement.getAttribute('ry'));
+			}
+
+			// Creating element dynamically
+			function testSVGElement_ellipse_dynamic() {
+				var oRoot	= ample.getElementById('root');
+				var	oElement= ample.createElement('http://www.w3.org/2000/svg', 'ellipse');
+				oRoot.appendChild(oElement);
+
+				assertEquals(oElement.parentNode, oRoot);
+			}
+
+			// Modifying attributes of an element created dynamically
+			function testSVGElement_ellipse_dynamic_attributes() {
+				var oRoot	= ample.getElementById('root');
+				var	oElement	= ample.createElement('http://www.w3.org/2000/svg', 'ellipse');
+
+				var sCx	= '' + Math.round(200 * Math.random()),
+					sCy	= '' + Math.round(200 * Math.random()),
+					sRx	= '' + Math.round(200 * Math.random()),
+					sRy	= '' + Math.round(200 * Math.random());
+
+				oElement.setAttribute('cx', sCx);
+				oElement.setAttribute('cy', sCy);
+				oElement.setAttribute('rx', sRx);
+				oElement.setAttribute('ry', sRy);
+
+				oRoot.appendChild(oElement);
+
+				assertEquals(sCx, oElement.getAttribute('cx'));
+				assertEquals(sCy, oElement.getAttribute('cy'));
+				assertEquals(sRx, oElement.getAttribute('rx'));
+				assertEquals(sRy, oElement.getAttribute('ry'));
+			}
+    	</script>
+	</head>
+	<body>
+		<p>Ample SDK JsUnit suite page</p>
+		<script type="application/ample+xml">
+			<svg id="root" width="500px" height="300px" viewBox="0 0 1000 600" version="1.1"
+    			xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+				<ellipse id="ellipse" cx="200" cy="200" rx="100" ry="50" fill="none" stroke="green" stroke-width="5" />
+			</svg>
+		</script>
+	</body>
+</html>

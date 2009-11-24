@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<title>JsUnit testing page</title>
+    	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    	<!-- JsUnitClient driver -->
+		<script type="text/javascript" src="../../../jsUnitClient.js"></script>
+		<script type="text/javascript">
+			JsUnitClient.include("runtime.js");
+			JsUnitClient.include("languages/svg/svg.js");
+		</script>
+
+		<!-- Tests -->
+		<script type="text/javascript">
+			// Using element in markup
+			function testSVGElement_line_markup() {
+				var	oElement	= ample.getElementById('line');
+				assertNotUndefined(oElement);
+			}
+
+			// Modifying attributes of an element instantiated from markup
+			function testSVGElement_line_markup_attributes() {
+				var	oElement	= ample.getElementById('line');
+				var sX1	= '' + Math.round(200 * Math.random()),
+					sY1	= '' + Math.round(200 * Math.random()),
+					sX2	= '' + Math.round(200 * Math.random()),
+					sY2	= '' + Math.round(200 * Math.random());
+
+				oElement.setAttribute('x1', sX1);
+				oElement.setAttribute('y1', sY1);
+				oElement.setAttribute('x2', sX2);
+				oElement.setAttribute('y2', sY2);
+
+				assertEquals(sX1, oElement.getAttribute('x1'));
+				assertEquals(sY1, oElement.getAttribute('y1'));
+				assertEquals(sX2, oElement.getAttribute('x2'));
+				assertEquals(sY2, oElement.getAttribute('y2'));
+			}
+
+			// Creating element dynamically
+			function testSVGElement_line_dynamic() {
+				var oRoot	= ample.getElementById('root');
+				var	oElement= ample.createElement('http://www.w3.org/2000/svg', 'line');
+				oRoot.appendChild(oElement);
+
+				assertEquals(oElement.parentNode, oRoot);
+			}
+
+			// Modifying attributes of an element created dynamically
+			function testSVGElement_line_dynamic_attributes() {
+				var oRoot	= ample.getElementById('root');
+				var	oElement	= ample.createElement('http://www.w3.org/2000/svg', 'line');
+
+				var sX1	= '' + Math.round(200 * Math.random()),
+					sY1	= '' + Math.round(200 * Math.random()),
+					sX2	= '' + Math.round(200 * Math.random()),
+					sY2	= '' + Math.round(200 * Math.random());
+
+				oElement.setAttribute('x1', sX1);
+				oElement.setAttribute('y1', sY1);
+				oElement.setAttribute('x2', sX2);
+				oElement.setAttribute('y2', sY2);
+
+				oRoot.appendChild(oElement);
+
+				assertEquals(sX1, oElement.getAttribute('x1'));
+				assertEquals(sY1, oElement.getAttribute('y1'));
+				assertEquals(sX2, oElement.getAttribute('x2'));
+				assertEquals(sY2, oElement.getAttribute('y2'));
+			}
+    	</script>
+	</head>
+	<body>
+		<p>Ample SDK JsUnit suite page</p>
+		<script type="application/ample+xml">
+			<svg id="root" width="500px" height="300px" viewBox="0 0 1000 600" version="1.1"
+    			xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+				<line id="line" x1="0" y1="200" x2="200" y2="200" fill="none" stroke="green" stroke-width="5" />
+			</svg>
+		</script>
+	</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<title>JsUnit testing page</title>
+    	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    	<!-- JsUnitClient driver -->
+		<script type="text/javascript" src="../../../jsUnitClient.js"></script>
+		<script type="text/javascript">
+			JsUnitClient.include("runtime.js");
+			JsUnitClient.include("languages/svg/svg.js");
+		</script>
+
+		<!-- Tests -->
+		<script type="text/javascript">
+			// Using element in markup
+			function testSVGElement_rect_markup() {
+				var	oElement	= ample.getElementById('rect');
+				assertNotUndefined(oElement);
+			}
+
+			// Modifying attributes of an element instantiated from markup
+			function testSVGElement_rect_markup_attributes() {
+				var	oElement	= ample.getElementById('rect');
+				var sX	= '' + Math.round(200 * Math.random()),
+					sY	= '' + Math.round(200 * Math.random()),
+					sRx	= '' + Math.round(200 * Math.random()),
+					sRy	= '' + Math.round(200 * Math.random()),
+					sHeight	= '' + Math.round(200 * Math.random()),
+					sWidth	= '' + Math.round(200 * Math.random());
+
+				oElement.setAttribute('x', sX);
+				oElement.setAttribute('y', sY);
+				oElement.setAttribute('rx', sRx);
+				oElement.setAttribute('ry', sRy);
+				oElement.setAttribute('height', sHeight);
+				oElement.setAttribute('width', sWidth);
+
+				assertEquals(sX, oElement.getAttribute('x'));
+				assertEquals(sY, oElement.getAttribute('y'));
+				assertEquals(sRx, oElement.getAttribute('rx'));
+				assertEquals(sRy, oElement.getAttribute('ry'));
+				assertEquals(sHeight, oElement.getAttribute('height'));
+				assertEquals(sWidth, oElement.getAttribute('width'));
+			}
+
+			// Creating element dynamically
+			function testSVGElement_rect_dynamic() {
+				var oRoot	= ample.getElementById('root');
+				var	oElement= ample.createElement('http://www.w3.org/2000/svg', 'rect');
+				oRoot.appendChild(oElement);
+
+				assertEquals(oElement.parentNode, oRoot);
+			}
+
+			// Modifying attributes of an element created dynamically
+			function testSVGElement_rect_dynamic_attributes() {
+				var oRoot	= ample.getElementById('root');
+				var	oElement	= ample.createElement('http://www.w3.org/2000/svg', 'rect');
+
+				var sX	= '' + Math.round(200 * Math.random()),
+					sY	= '' + Math.round(200 * Math.random()),
+					sRx	= '' + Math.round(200 * Math.random()),
+					sRy	= '' + Math.round(200 * Math.random()),
+					sHeight	= '' + Math.round(200 * Math.random()),
+					sWidth	= '' + Math.round(200 * Math.random());
+
+				oElement.setAttribute('x', sX);
+				oElement.setAttribute('y', sY);
+				oElement.setAttribute('rx', sRx);
+				oElement.setAttribute('ry', sRy);
+				oElement.setAttribute('height', sHeight);
+				oElement.setAttribute('width', sWidth);
+
+				oRoot.appendChild(oElement);
+
+				assertEquals(sX, oElement.getAttribute('x'));
+				assertEquals(sY, oElement.getAttribute('y'));
+				assertEquals(sRx, oElement.getAttribute('rx'));
+				assertEquals(sRy, oElement.getAttribute('ry'));
+				assertEquals(sHeight, oElement.getAttribute('height'));
+				assertEquals(sWidth, oElement.getAttribute('width'));
+			}
+    	</script>
+	</head>
+	<body>
+		<p>Ample SDK JsUnit suite page</p>
+		<script type="application/ample+xml">
+			<svg id="root" width="500px" height="300px" viewBox="0 0 1000 600" version="1.1"
+    			xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+				<rect id="rect" cx="200" cy="200" r="100" fill="none" stroke="green" stroke-width="5" />
+			</svg>
+		</script>
+	</body>
+</html>
