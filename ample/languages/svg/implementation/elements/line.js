@@ -20,19 +20,19 @@ if (!!document.namespaces) {
 				var oElement	= this.$getContainer();
 				switch (oEvent.attrName) {
 					case "x1":
-						oElement.from	= oEvent.newValue + "," + this.getAttribute("y1");
+						oElement.from	= oEvent.newValue + "," +(this.getAttribute("y1") || 0);
 						break;
 
 					case "y1":
-						oElement.from	= this.getAttribute("x1") + "," + oEvent.newValue;
+						oElement.from	=(this.getAttribute("x1") || 0) + "," + oEvent.newValue;
 						break;
 
 					case "x2":
-						oElement.to		= oEvent.newValue + "," + this.getAttribute("y2");
+						oElement.to		= oEvent.newValue + "," +(this.getAttribute("y2") || 0);
 						break;
 
 					case "y2":
-						oElement.to		= this.getAttribute("x2") + "," + oEvent.newValue;
+						oElement.to		=(this.getAttribute("x2") || 0)+ "," + oEvent.newValue;
 						break;
 					//
 					case "transform":
