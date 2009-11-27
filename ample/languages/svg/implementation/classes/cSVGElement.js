@@ -496,7 +496,7 @@ if (!!document.namespaces) {
 
 	cSVGElement.getTagStyle	= function(oElement) {
 		var sOpacity		= cSVGElement.getStyle(oElement, "opacity"),
-			sFill			= cSVGElement.getStyle(oElement, "fill") || "black",
+			sFill			= cSVGElement.getStyle(oElement, "fill"),
 			sFillOpacity	= cSVGElement.getStyle(oElement, "fill-opacity") || sOpacity,
 			sStroke			= cSVGElement.getStyle(oElement, "stroke"),
 			sStrokeOpacity	= cSVGElement.getStyle(oElement, "stroke-opacity") || sOpacity,
@@ -506,13 +506,27 @@ if (!!document.namespaces) {
 			sStrokeDashArray= cSVGElement.getStyle(oElement, "stroke-dasharray"),
 			sTransform		= cSVGElement.getTransform(oElement);
 
+		var aColor;
+		// Process rgba
+		if (sFill && sFill.match(/rgba\(([^\)]+)\)/)) {
+			aColor	= RegExp.$1.split(/\s?,\s?/);
+			sFillOpacity	*= aColor.pop();
+			sFill	= 'rgb(' + aColor.join(',') + ')';
+		}
+		// Process rgba
+		if (sStroke && sStroke.match(/rgba\(([^\)]+)\)/)) {
+			aColor	= RegExp.$1.split(/\s?,\s?/);
+			sStrokeOpacity	*= aColor.pop();
+			sStroke	= 'rgb(' + aColor.join(',') + ')';
+		}
+
 		var aStrokeWidth	= sStrokeWidth.match(/([\d.]*)(.*)/),
 			nStrokeWidthValue	=(aStrokeWidth[1] || 1) * oElement.getAspectValue(),
 			sStrokeWidthUnit	=(aStrokeWidth[2] || "px");
 		if (nStrokeWidthValue < 1 && !(oElement instanceof cSVGElement_text || oElement instanceof cSVGElement_tspan || oElement instanceof cSVGElement_textPath))
 			sStrokeOpacity	=(sStrokeOpacity == '' ? 1 : sStrokeOpacity) * nStrokeWidthValue;
 
-		return '<svg2vml:fill on="' + (sFill != "none" ? "true" : "false") + '" color="' + (sFill in oSVGElement_colors ? 'rgb(' + oSVGElement_colors[sFill] + ')' : sFill) + '"\
+		return '<svg2vml:fill on="' + (sFill == "none" ? "false" : "true") + '" color="' + (sFill in oSVGElement_colors ? 'rgb(' + oSVGElement_colors[sFill] + ')' : sFill || 'black') + '"\
 					' + (sFillOpacity ? ' opacity="' + sFillOpacity + '"' : '') + '\
 				/><svg2vml:stroke on="' + (sStroke && sStroke != "none" ? "true" : "false") + '" color="' + (sStroke in oSVGElement_colors ? 'rgb(' + oSVGElement_colors[sStroke] + ')' : sStroke || 'black') + '"\
 					' + (sStrokeOpacity ? ' opacity="' + sStrokeOpacity + '"' : '') + '\
