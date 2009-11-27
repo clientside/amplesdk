@@ -12,15 +12,18 @@ cSVGElement_script.prototype	= new cSVGElement;
 
 if (!!document.namespaces) {
 	// Implementation for IE
+};
 
-	// presentation
-	cSVGElement_script.prototype.$getTagOpen	= function() {
-		return '';
-	};
+// presentation
+cSVGElement_script.prototype.$getTag	= function() {
+	return '';
+};
 
-	cSVGElement_script.prototype.$getTagClose	= function() {
-		return '';
-	};
+cSVGElement_script.handlers	= {
+	"DOMNodeInsertedIntoDocument":	function(oEvent) {
+		if (this.firstChild instanceof AMLCharacterData)
+			eval(this.firstChild.data);
+	}
 };
 
 // Register Element with language
