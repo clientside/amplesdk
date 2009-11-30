@@ -63,7 +63,7 @@
 
 	echo "Writing: " . $sOutputFile ."\n";
 
-	$fOutpuFile	= fopen($sOutputFile, "w+");
-	fwrite($fOutpuFile, $sOutput);
-	fclose($fOutpuFile);
+	$fOutputFile	= fopen($sOutputFile, "w+");
+	fwrite($fOutputFile, $sOutput);
+	fclose($fOutputFile);
 ?>
