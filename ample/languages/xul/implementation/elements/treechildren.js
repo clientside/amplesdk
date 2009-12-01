@@ -121,10 +121,12 @@ cXULElement_treechildren.handlers	= {
 				this.items.$remove(oEvent.target);
 				this.tree.items.$remove(oEvent.target);
 			}
-	},
-	"DOMNodeInsertedIntoDocument":	function(oEvent) {
-		this.refresh();
 	}
+};
+
+// TODO: Temp hack
+cXULElement_treechildren.prototype.$getContainer	= function(sName) {
+	return sName == "gateway" ? this.parentNode.$getContainer("gateway") : null;
 };
 
 // Register Element with language

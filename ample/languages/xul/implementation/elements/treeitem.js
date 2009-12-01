@@ -119,7 +119,7 @@ cXULElement_treeitem.handlers	= {
 };
 
 cXULElement_treeitem.prototype.$getContainer	= function(sName) {
-	return this.row ? this.row.$getContainer(sName) : null;
+	return sName == "gateway" ? this.parentNode.$getContainer("gateway") : this.row ? this.row.$getContainer(sName) : null;
 };
 
 // Register Element with language

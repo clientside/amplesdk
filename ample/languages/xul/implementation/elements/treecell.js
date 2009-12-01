@@ -56,6 +56,14 @@ cXULElement_treecell.prototype._onNodeClick	= function(oEvent)
 	this.parentNode.parentNode.setAttribute("open", this.parentNode.parentNode.getAttribute("open") == "true" ? "false" : "true");
 };
 
+cXULElement_treecell.handlers	= {
+	"DOMNodeInsertedIntoDocument":	function(oEvent) {
+		var oChildren	= this.parentNode.parentNode.parentNode;
+		if (oChildren.tree.head && oChildren.tree.head._getPrimaryColIndex() == this.parentNode.childNodes.$indexOf(this))
+			oChildren.refresh();
+	}
+};
+
 // Element Render: open
 cXULElement_treecell.prototype.$getTagOpen	= function()
 {
