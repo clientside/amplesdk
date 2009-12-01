@@ -1,7 +1,7 @@
 <?
 	header("Content-type: text/plain");
 
-	include("cJSObfuscator.php");
+	include("cJSCompiler.php");
 
 	function fStripTags($sInput, $sTagName)
 	{
@@ -29,30 +29,30 @@
 
 	if (in_array("--obfuscate", $_SERVER["argv"])) {
 
-		$oJSObfuscator	= new cJSObfuscator;
-		$oJSObfuscator->keyword	= "ampled";
-		$oJSObfuscator->readFromString($sOutput);
+		$oCompiler	= new cJSCompiler;
+		$oCompiler->keyword	= "ampled";
+		$oCompiler->readFromString($sOutput);
 
 		echo "Obfuscating contents\n";
 
 		//
-		$oJSObfuscator->stripComments();
-		$oJSObfuscator->stripSpaces();
+		$oCompiler->stripComments();
+		$oCompiler->stripSpaces();
 
-		$oJSObfuscator->obfuscateStrings();
-		$oJSObfuscator->obfuscateVariables();
-		$oJSObfuscator->obfuscatePrivates();
-		$oJSObfuscator->obfuscate();
+		$oCompiler->obfuscateStrings();
+		$oCompiler->obfuscateVariables();
+		$oCompiler->obfuscatePrivates();
+		$oCompiler->obfuscate();
 
-		$sOutput	= $oJSObfuscator->getOutput();
+		$sOutput	= $oCompiler->getOutput();
 	}
 	else {
 		echo "Wrapping contents\n";
 
-		$oJSObfuscator	= new cJSObfuscator;
-		$oJSObfuscator->readFromString($sOutput);
-		$oJSObfuscator->stripComments();
-		$sOutput	= $oJSObfuscator->output;
+		$oCompiler	= new cJSCompiler;
+		$oCompiler->readFromString($sOutput);
+		$oCompiler->stripComments();
+		$sOutput	= $oCompiler->output;
 
 		$sOutput	= 	"".
 						"(function () {\n" .

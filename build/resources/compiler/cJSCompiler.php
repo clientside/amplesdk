@@ -1,5 +1,5 @@
 <?
-	class cJSObfuscator
+	class cJSCompiler
 	{
 		var $output		= "";
 		var $aStrings	= array();
@@ -7,7 +7,7 @@
 		var $keyword	= "munged";
 		var $debug		= false;
 
-		function cJSObfuscator()
+		function cJSCompiler()
 		{
 
 		}

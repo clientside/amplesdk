@@ -21,14 +21,14 @@
 	header("Content-type: text/css");
 
 	if (0) {
-		include("../../../../../build/resources/obfuscator/cCSSObfuscator.php");
+		include("../../../../../build/resources/compiler/cCSSCompiler.php");
 
-		$oCSSObfuscator	= new cCSSObfuscator;
-		$oCSSObfuscator->readFromString($sOutput);
-		$oCSSObfuscator->stripComments();
-		$oCSSObfuscator->stripSpaces();
-		$oCSSObfuscator->obfuscate();
-		$sOutput	= $oCSSObfuscator->getOutput();
+		$oCSSCompiler	= new cCSSCompiler;
+		$oCSSCompiler->readFromString($sOutput);
+		$oCSSCompiler->stripComments();
+		$oCSSCompiler->stripSpaces();
+		$oCSSCompiler->obfuscate();
+		$sOutput	= $oCSSCompiler->getOutput();
 	}
 
 	echo $sOutput;

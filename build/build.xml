@@ -222,7 +222,7 @@
 
 	<target name="BUILD_AMPLESDK_AMPLE_RUNTIME_PRODUCTION">
 		<exec executable="${executable.php}" failonerror="true">
-			<arg value="resources/obfuscator/obfuscate.php" />
+			<arg value="resources/compiler/js.php" />
 			<arg value="${temp.runtime.dir}/runtime-raw.js" />
 			<arg value="${temp.runtime.dir}/runtime.js" />
 			<arg value="--obfuscate" />
@@ -238,7 +238,7 @@
 	<target name="BUILD_AMPLESDK_AMPLE_RUNTIME_DEVELOPMENT">
 		<mkdir dir="${target.dir}/ample/" />
 		<exec executable="${executable.php}" failonerror="true">
-			<arg value="resources/obfuscator/obfuscate.php" />
+			<arg value="resources/compiler/js.php" />
 			<arg value="${temp.runtime.dir}/runtime-raw.js" />
 			<arg value="${temp.runtime.dir}/runtime-dev.js" />
 			<arg value="--obfuscate" />
@@ -286,7 +286,7 @@
 
 		<echo message="Wrapping into: ${temp.languages.dir}/xhtml-raw-wrapped.js" level="info"/>
 		<exec executable="${executable.php}" failonerror="true">
-			<arg value="resources/obfuscator/obfuscate.php" />
+			<arg value="resources/compiler/js.php" />
 			<arg value="${temp.languages.dir}/xhtml-raw.js" />
 			<arg value="${temp.languages.dir}/xhtml-raw-wrapped.js" />
 			<arg value="--strip-Source" />
@@ -317,7 +317,7 @@
 
 		<echo message="Wrapping into: ${temp.languages.dir}/html5-raw-wrapped.js" level="info"/>
 		<exec executable="${executable.php}" failonerror="true">
-			<arg value="resources/obfuscator/obfuscate.php" />
+			<arg value="resources/compiler/js.php" />
 			<arg value="${temp.languages.dir}/html5-raw.js" />
 			<arg value="${temp.languages.dir}/html5-raw-wrapped.js" />
 			<arg value="--strip-Source" />
@@ -351,7 +351,7 @@
 
 		<echo message="Wrapping into: ${temp.languages.dir}/aml-raw-wrapped.js" level="info"/>
 		<exec executable="${executable.php}" failonerror="true">
-			<arg value="resources/obfuscator/obfuscate.php" />
+			<arg value="resources/compiler/js.php" />
 			<arg value="${temp.languages.dir}/aml-raw.js" />
 			<arg value="${temp.languages.dir}/aml-raw-wrapped.js" />
 			<arg value="--strip-Source" />
@@ -397,10 +397,25 @@
 
 		<echo message="Wrapping into: ${temp.languages.dir}/xul-raw-wrapped.js" level="info"/>
 		<exec executable="${executable.php}" failonerror="true">
-			<arg value="resources/obfuscator/obfuscate.php" />
+			<arg value="resources/compiler/js.php" />
 			<arg value="${temp.languages.dir}/xul-raw.js" />
 			<arg value="${temp.languages.dir}/xul-raw-wrapped.js" />
 			<arg value="--strip-Source" />
+		</exec>
+
+		<echo message="Merging into: ${temp.languages.dir}/xul-raw.css" level="info"/>
+		<concat destfile="${temp.languages.dir}/xul-raw.css" fixlastline="yes">
+			<fileset dir="${source.xul.dir}/themes/default/">
+				<include name="*.css"/>
+			</fileset>
+		</concat>
+
+		<echo message="Wrapping into: ${temp.languages.dir}/xul.css" level="info"/>
+		<exec executable="${executable.php}" failonerror="true">
+			<arg value="resources/compiler/css.php" />
+			<arg value="${temp.languages.dir}/xul-raw.css" />
+			<arg value="${temp.languages.dir}/xul.css" />
+			<arg value="--obfuscate" />
 		</exec>
 
 		<!-- package -->
@@ -409,16 +424,10 @@
 			<fileset file="${copying.js}" />
 			<fileset file="${temp.languages.dir}/xul-raw-wrapped.js" />
 		</concat>
-
 		<echo message="Copying default theme to: ${target.xul.dir}/themes/default/" level="info"/>
 		<mkdir dir="${target.xul.dir}/themes/default/" />
-		<concat destfile="${target.xul.dir}/themes/default/xul.css" fixlastline="yes">
-			<fileset file="${source.xul.dir}/themes/base.css" />
-			<fileset dir="${source.xul.dir}/themes/default/">
-				<include name="*.css"/>
-			</fileset>
-		</concat>
 		<copy todir="${target.xul.dir}/themes/default/">
+			<fileset file="${temp.languages.dir}/xul.css" />
 			<fileset dir="${source.xul.dir}/themes/default/">
 				<include name="media/**"/>
 			</fileset>
@@ -442,7 +451,7 @@
 
 		<echo message="Wrapping into: ${temp.languages.dir}/mobile-raw-wrapped.js" level="info"/>
 		<exec executable="${executable.php}" failonerror="true">
-			<arg value="resources/obfuscator/obfuscate.php" />
+			<arg value="resources/compiler/js.php" />
 			<arg value="${temp.languages.dir}/mobile-raw.js" />
 			<arg value="${temp.languages.dir}/mobile-raw-wrapped.js" />
 			<arg value="--strip-Source" />
@@ -458,7 +467,6 @@
 		<echo message="Copying default theme to: ${target.mobile.dir}/themes/default/" level="info"/>
 		<mkdir dir="${target.mobile.dir}/themes/default/" />
 		<concat destfile="${target.mobile.dir}/themes/default/mobile.css" fixlastline="yes">
-			<fileset file="${source.mobile.dir}/themes/base.css" />
 			<fileset dir="${source.mobile.dir}/themes/default/">
 				<include name="*.css"/>
 			</fileset>
@@ -487,7 +495,7 @@
 
 		<echo message="Wrapping into: ${temp.languages.dir}/svg-raw-wrapped.js" level="info"/>
 		<exec executable="${executable.php}" failonerror="true">
-			<arg value="resources/obfuscator/obfuscate.php" />
+			<arg value="resources/compiler/js.php" />
 			<arg value="${temp.languages.dir}/svg-raw.js" />
 			<arg value="${temp.languages.dir}/svg-raw-wrapped.js" />
 			<arg value="--strip-Source" />
@@ -513,6 +521,13 @@
 				<include name="managers/**" />
 			</fileset>
 		</copy>
+		<!-- Replace stylesheet types -->
+		<replace file="${target.dir}/examples/languages/xul/index.html">
+			<replacefilter token="text/ample+css"		value="text/css"	/>
+		</replace>
+		<replace file="${target.dir}/examples/applications/imclient/index.html">
+			<replacefilter token="text/ample+css"		value="text/css"	/>
+		</replace>
 	</target>
 
 	<!-- Reference -->

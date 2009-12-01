@@ -110,7 +110,7 @@
 
 	if (isset($_REQUEST["build"])) {
 		// include minifier
-		include("../build/resources/obfuscator/cJSObfuscator.php");
+		include("../build/resources/compiler/cJSCompiler.php");
 
 		function fStripTags($sInput, $sTagName)	{
         	return preg_replace('/\/\/\->' . $sTagName . '.+\/\/<\-' . $sTagName . '/Us', "", $sInput);
@@ -121,20 +121,20 @@
 		if ($_REQUEST["build"] != "dev")
 			$sOutput	= fStripTags($sOutput, "Debug");
 
-		$oJSObfuscator	= new cJSObfuscator;
-		$oJSObfuscator->keyword	= "ampled";
-		$oJSObfuscator->readFromString($sOutput);
+		$oJSCompiler	= new cJSCompiler;
+		$oJSCompiler->keyword	= "ampled";
+		$oJSCompiler->readFromString($sOutput);
 
 		//
-		$oJSObfuscator->stripComments();
-		$oJSObfuscator->stripSpaces();
+		$oJSCompiler->stripComments();
+		$oJSCompiler->stripSpaces();
 
-		$oJSObfuscator->obfuscateStrings();
-		$oJSObfuscator->obfuscateVariables();
-		$oJSObfuscator->obfuscatePrivates();
-		$oJSObfuscator->obfuscate();
+		$oJSCompiler->obfuscateStrings();
+		$oJSCompiler->obfuscateVariables();
+		$oJSCompiler->obfuscatePrivates();
+		$oJSCompiler->obfuscate();
 
-		echo	$oJSObfuscator->getOutput();
+		echo	$oJSCompiler->getOutput();
 	}
 	else {
 		// Add function names

@@ -1,7 +1,7 @@
 xul|datepicker-pane {
 	cursor: default;
-	display:inline-block;
 	vertical-align: top;
+	display:inline-block;
 }
 xul|datepicker-pane::header {
 	background-color: #B4CBEA;

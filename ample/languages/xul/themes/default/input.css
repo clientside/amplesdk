@@ -6,12 +6,12 @@ xul|datepicker,
 xul|timepicker,
 xul|spinbuttons {
 	margin: 1px;
-	display: inline-block;
 	line-height: 17px;
 	border: 1px solid ThreeDShadow;/*1px solid #7F9DB9*/;
 	background-color: Window;/*white*/;
 	-webkit-box-sizing: border-box;/* odd enough, no? */
 	-moz-box-sizing: border-box;/* odd enough, no? */
+	display: inline-block;
 }
 
 xul|colorpicker,
@@ -182,10 +182,10 @@ xul|timepicker {
 
 /* scale */
 xul|scale {
-	display: inline-block;
 	margin:	1px;
 	height:	19px;
 	width:	12em;
+	display: inline-block;
 }
 
 xul|scale * {
