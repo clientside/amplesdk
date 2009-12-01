@@ -720,10 +720,10 @@ function fAML_parseStyleSheet(sCSS, sUri) {
 	// 5. Modify selectors
 //var d=new Date;
 	var aCSS	= [],
-		aRules	= sCSS.match(/[^\{]+\{[^\}]+\}/g);
+		aRules	= sCSS.match(/[^{]+{[^}]*}/g);
 	if (aRules) {
 		for (var nIndex = 0, nLength = aRules.length, aRule; nIndex < nLength; nIndex++) {
-			aRule	= aRules[nIndex].match(/([^\{]+)(\{[^\}]+\})/);
+			aRule	= aRules[nIndex].match(/([^{]+)({[^}]*})/);
 			aCSS.push(aRule[1]
 //						.replace(/([\s>+~,])(?:([\w]+)\|)?([\w]+)/g, '$1.$2-$3')		// Element
 						.replace(/\|/g, '-')							// Namespace
