@@ -91,37 +91,39 @@ function fAML_render(oNode) {
 	else
 	if (oNode.nodeType == cAMLNode.ELEMENT_NODE) {
 		var sHtml	= oNode.$getTag();
-		if (bTrident) {
-			if (sHtml.match(/^<(\w*:)?(\w+)/)) {
-				var sTagName	= cRegExp.$2;
-				switch (sTagName) {
-					case "td":
-					case "th":
-						sHtml	= '<' + "tr" + '>' + sHtml + '</' + "tr" + '>';
-						// no break is left intentionally
-					case "tr":
-						sHtml	= '<' + "tbody" + '>' + sHtml + '</' + "tbody" + '>';
-						// no break is left intentionally
-					case "thead":
-					case "tbody":
-					case "tfoot":
-						sHtml	= '<' + "table" + '>' + sHtml + '</' + "table" + '>';
-					    break;
-					case "option":
-						sHtml	= '<' + "select" + '>' + sHtml + '</' + "select" + '>';
-						break;
+		if (sHtml) {
+			if (bTrident) {
+				if (sHtml.match(/^<(\w*:)?(\w+)/)) {
+					var sTagName	= cRegExp.$2;
+					switch (sTagName) {
+						case "td":
+						case "th":
+							sHtml	= '<' + "tr" + '>' + sHtml + '</' + "tr" + '>';
+							// no break is left intentionally
+						case "tr":
+							sHtml	= '<' + "tbody" + '>' + sHtml + '</' + "tbody" + '>';
+							// no break is left intentionally
+						case "thead":
+						case "tbody":
+						case "tfoot":
+							sHtml	= '<' + "table" + '>' + sHtml + '</' + "table" + '>';
+						    break;
+						case "option":
+							sHtml	= '<' + "select" + '>' + sHtml + '</' + "select" + '>';
+							break;
+					}
+					// Render HTML
+					oAML_factory.innerHTML	= sHtml;
+					// Return Node
+				    return oAML_factory.getElementsByTagName(sTagName)[0] || null;
 				}
-				// Render HTML
-				oAML_factory.innerHTML	= sHtml;
-				// Return Node
-			    return oAML_factory.getElementsByTagName(sTagName)[0] || null;
 			}
-		}
-		else {
-			// Add namespace declarations to the shadow content
-			if (!("xmlns" + (oNode.prefix ? ':' + oNode.prefix : '') in oNode.attributes) || (oNode.namespaceURI != "http://www.w3.org/2000/svg" && oNode.namespaceURI != "http://www.w3.org/1999/xhtml"))
-				sHtml	= sHtml.replace(/^(<(?:(\w+)(:))?(\w+))/, '$1 ' + "xmlns" + '$3$2="' + (oNode.namespaceURI == "http://www.w3.org/2000/svg" ? "http://www.w3.org/2000/svg" : "http://www.w3.org/1999/xhtml") + '"');
-			return document.importNode(new cDOMParser().parseFromString('<!' + "DOCTYPE" + ' ' + "#document-fragment".substr(1) + '[' + sAML_entities + ']>' + sHtml, "text/xml").documentElement, true);
+			else {
+				// Add namespace declarations to the shadow content
+				if (!("xmlns" + (oNode.prefix ? ':' + oNode.prefix : '') in oNode.attributes) || (oNode.namespaceURI != "http://www.w3.org/2000/svg" && oNode.namespaceURI != "http://www.w3.org/1999/xhtml"))
+					sHtml	= sHtml.replace(/^(<(?:(\w+)(:))?(\w+))/, '$1 ' + "xmlns" + '$3$2="' + (oNode.namespaceURI == "http://www.w3.org/2000/svg" ? "http://www.w3.org/2000/svg" : "http://www.w3.org/1999/xhtml") + '"');
+				return document.importNode(new cDOMParser().parseFromString('<!' + "DOCTYPE" + ' ' + "#document-fragment".substr(1) + '[' + sAML_entities + ']>' + sHtml, "text/xml").documentElement, true);
+			}
 		}
 	}
 	return null;
