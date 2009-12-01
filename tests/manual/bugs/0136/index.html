@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<head>
+		<title>Bug 0136</title>
+		<script type="text/javascript" src="../../../../ample/runtime.js"></script>
+		<script type="text/javascript" src="../../../../ample/languages/xul/xul.js"></script>
+		<link type="text/ample+css" href="../../../../ample/languages/xul/themes/default/xul.css" rel="stylesheet"/>
+		<style type="text/ample+css">
+			xul|tree {
+				height: 200px;
+			}
+		</style>
+	</head>
+	<body>
+		<script>ample.open()</script>
+		<xul:tree>
+			<xul:treecols>
+				<xul:treecol label="Column 1" width="200" primary="true"/>
+				<xul:treecol label="Column 2" width="200"/>
+				<xul:treecol label="Column 3"/>
+			</xul:treecols>
+			<xul:treebody>
+
+			</xul:treebody>
+		</xul:tree>
+		<xul:box>
+			<xul:label value="Columns: "/>
+			<xul:button onclick="addColumn()">addColumn()</xul:button>
+			<xul:button onclick="removeColumn()">removeColumn()</xul:button>
+		</xul:box>
+		<xul:box>
+			<xul:label value="Children: "/>
+			<xul:button onclick="addChildren()">addChildren()</xul:button>
+			<xul:button onclick="removeChildren()">removeChildren()</xul:button>
+		</xul:box>
+		<xul:box>
+			<xul:label value="Item "/>
+			<xul:button onclick="addItem()">addItem()</xul:button>
+			<xul:button onclick="removeItem()">removeItem()</xul:button>
+		</xul:box>
+		<xul:box>
+			<xul:label value="Row "/>
+			<xul:button onclick="addRow()">addRow()</xul:button>
+			<xul:button onclick="removeRow()">removeRow()</xul:button>
+		</xul:box>
+		<xul:box>
+			<xul:label value="Cell "/>
+			<xul:button onclick="addCell()">addCell()</xul:button>
+			<xul:button onclick="removeCell()">removeCell()</xul:button>
+		</xul:box>
+		<script>ample.close()</script>
+		<script type="text/javascript">
+			var sXulNS	= "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+			// Columns
+			function addColumn() {
+				var aElement= ample.querySelectorAll("xul|treecols"),
+					oParent	= aElement[aElement.length - 1],
+					oChild	= ample.createElementNS(sXulNS, "xul:treecol");
+				oParent.appendChild(oChild);
+				oChild.setAttribute("label", "Column " + oParent.childNodes.length);
+			}
+			function removeColumn() {
+				var aElement= ample.querySelectorAll("xul|treecols"),
+					oParent	= aElement[aElement.length - 1];
+				oParent.removeChild(oParent.lastChild);
+			}
+			// Children
+			function addChildren() {
+				var aElement= ample.querySelectorAll("xul|treebody, xul|treeitem"),	// first body is used, then item if available
+					oParent	= aElement[aElement.length - 1],
+				oChild	= ample.createElementNS(sXulNS, "xul:treechildren");
+				oParent.appendChild(oChild);
+			}
+			function removeChildren() {
+				var aElement= ample.querySelectorAll("xul|treebody, xul|treeitem"),
+					oParent	= aElement[aElement.length - 1];
+				oParent.removeChild(oParent.lastChild);
+			}
+			// Item
+			function addItem() {
+				var aElement= ample.querySelectorAll("xul|treechildren"),
+					oParent	= aElement[aElement.length - 1],
+					oChild	= ample.createElementNS(sXulNS, "xul:treeitem");
+				oParent.appendChild(oChild);
+//				oChild.setAttribute("container", "true");
+			}
+			function removeItem() {
+				var aElement= ample.querySelectorAll("xul|treechildren"),
+					oParent	= aElement[aElement.length - 1];
+				oParent.removeChild(oParent.lastChild);
+			}
+			// Row
+			function addRow() {
+				var aElement= ample.querySelectorAll("xul|treeitem"),
+					oParent	= aElement[aElement.length - 1],
+					oChild	= ample.createElementNS(sXulNS, "xul:treerow");
+				oParent.appendChild(oChild);
+			}
+			function removeRow() {
+				var aElement= ample.querySelectorAll("xul|treeitem"),
+					oParent	= aElement[aElement.length - 1];
+				oParent.removeChild(oParent.lastChild);
+			}
+			// Cell
+			function addCell() {
+				var aElement= ample.querySelectorAll("xul|treerow"),
+					oParent	= aElement[aElement.length - 1],
+					oChild	= ample.createElementNS(sXulNS, "xul:treecell");
+				oParent.appendChild(oChild);
+				oChild.setAttribute("label", "cell " + oParent.childNodes.length);
+			}
+			function removeRow() {
+				var aElement= ample.querySelectorAll("xul|treerow"),
+					oParent	= aElement[aElement.length - 1];
+				oParent.removeChild(oParent.lastChild);
+			}
+		</script>
+	</body>
+</html>
