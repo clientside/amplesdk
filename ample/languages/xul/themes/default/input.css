@@ -234,4 +234,9 @@ xul|checkbox {
 xul|datepicker xul|datepicker-pane,
 xul|colorpicker xul|colorpicker-pane {
 	position:	absolute;
+	padding: 2px;
+    background-color: white;
+    border-width:	1px;
+    border-style: 	solid;
+    border-color:	ThreeDHighlight ThreeDShadow ThreeDShadow ThreeDHighlight;/*#aca899;*/
 }
