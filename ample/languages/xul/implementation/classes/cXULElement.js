@@ -117,7 +117,7 @@ cXULElement.prototype.doCommand		= function()
 
 cXULElement.prototype.$isAccessible	= function()
 {
-	return this.attributes["disabled"] != "true";
+	return this.getAttribute("disabled") != "true";
 };
 
 cXULElement.prototype.refresh   = function()

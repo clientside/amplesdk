@@ -22,11 +22,7 @@ cXULElement_scale.attributes	= {
 // Public Properties
 cXULElement_scale.prototype.form	= null;
 
-cXULElement_scale.prototype.$isAccessible	= function()
-{
-	return !this.getAttribute("disabled");
-};
-
+//Public Methods
 cXULElement_scale.prototype.$getValue	= function()
 {
 	return this.$getContainer("input").value;

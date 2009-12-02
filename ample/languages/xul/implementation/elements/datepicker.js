@@ -17,10 +17,6 @@ cXULElement_datepicker.prototype  = new cXULElement;
 
 // Focus
 cXULElement_datepicker.prototype.tabIndex	= 0;
-cXULElement_datepicker.prototype.$isAccessible	= function() {
-	return this.getAttribute("disabled") != "true";
-};
-
 
 // Static properties
 cXULElement_datepicker.pane		= null;

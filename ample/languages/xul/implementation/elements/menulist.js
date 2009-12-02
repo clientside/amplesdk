@@ -32,11 +32,7 @@ cXULElement_menulist.prototype.selectedItem		= null;	// TODO
 // Private Properties
 cXULElement_menulist.hidden	= true;
 
-cXULElement_menulist.prototype.$isAccessible	= function()
-{
-	return this.getAttribute("disabled") != "true";
-};
-
+// Public Methods
 cXULElement_menulist.prototype.$getValue	= function()
 {
 	return this.$getContainer("input").value;

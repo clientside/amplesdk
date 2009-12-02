@@ -22,11 +22,7 @@ cXULElement_spinbuttons.attributes	= {
 // Public Properties
 cXULElement_spinbuttons.prototype.form	= null;
 
-cXULElement_spinbuttons.prototype.$isAccessible	= function()
-{
-	return !this.getAttribute("disabled");
-};
-
+// Public Methods
 cXULElement_spinbuttons.prototype.$getValue	= function()
 {
 	return this.$getContainer("input").value;

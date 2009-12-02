@@ -61,7 +61,7 @@ cXULElement_radio.prototype.setAttribute = function(sName, sValue)
 
 cXULElement_radio.prototype.$isAccessible	= function()
 {
-	return this.getAttribute("disabled") != "true" && (this.group ? this.group.getAttribute("disabled") != "true" : true);
+	return this.getAttribute("disabled") != "true" && (this.group ? this.group.$isAccessible() : true);
 };
 
 // Events Handlers
