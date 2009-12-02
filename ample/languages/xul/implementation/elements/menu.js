@@ -30,7 +30,9 @@ cXULElement_menu.prototype.setAttribute	= function(sName, sValue)
     if (sName == "selected")
     {
     	this.$setPseudoClass("selected", sValue == "true");
-	}
+    	if (this.parentNode instanceof cXULElement_menupopup)
+    		this.$setPseudoClass("selected", sValue == "true", "arrow");
+    }
 	else
     if (sName == "label")
     {
@@ -46,6 +48,8 @@ cXULElement_menu.prototype.setAttribute	= function(sName, sValue)
 	if (sName == "disabled")
 	{
     	this.$setPseudoClass("disabled", sValue == "true");
+    	if (this.parentNode instanceof cXULElement_menupopup)
+    		this.$setPseudoClass("disabled", sValue == "true", "arrow");
 	}
 	else
     	this._setAttribute(sName, sValue);
@@ -60,7 +64,7 @@ cXULElement_menu.handlers	= {
 	   		this.parentNode.selectItem(this);
 	},
 	"mousedown":	function(oEvent) {
-		if (this.getAttribute("disabled") == "true")
+		if (!this.$isAccessible())
 			return;
 
 		if (oEvent.target == this && oEvent.button == 0)
@@ -101,7 +105,7 @@ cXULElement_menu.prototype.$getTagClose	= function()
 {
     if (this.parentNode instanceof cXULElement_menupopup)
         return 		'</td>\
-        			<td width="16"><div class="xul-menu--arrow"><br /></div></td>\
+        			<td width="16"><div class="xul-menu--arrow' + (this.getAttribute("disabled") == "true" ? ' xul-menu--arrow_disabled' : '')+ '"><br /></div></td>\
         		</tr>';
     else
         return '		</div>\

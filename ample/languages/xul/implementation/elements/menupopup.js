@@ -20,7 +20,6 @@ cXULElement_menupopup.prototype.selectedItem	= null;
 // Attributes Defaults
 cXULElement_menupopup.attributes	= {};
 cXULElement_menupopup.attributes.hidden	= "true";
-cXULElement_menupopup.attributes.width	= "120";
 
 // Public Methods
 cXULElement_menupopup.prototype.setAttribute = function(sName, sValue)

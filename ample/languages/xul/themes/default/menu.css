@@ -1,6 +1,6 @@
 xul|menupopup {
     cursor:	default !important;
-    background-color: Menu;
+    background-color: white;
     border-width:	1px;
     border-style: 	solid;
     border-color:	ThreeDHighlight ThreeDShadow ThreeDShadow ThreeDHighlight;/*#aca899;*/
@@ -13,7 +13,7 @@ xul|menuitem {
 }
 xul|menuitem:hover {
     color: white;
-    background-color: pink;
+    background-color: Highlight;
 }
 xul|menuitem:selected {
     color: HighlightText;
@@ -44,7 +44,7 @@ xul|menu {
 }
 xul|menu:hover {
     color: white;
-    background-color: pink;
+    background-color: Highlight;
 }
 xul|menu:selected {
     color: HighlightText;
@@ -65,14 +65,17 @@ xul|menu::label {
 	padding-left:	5px;
 	padding-right:	5px;
 }
+xul|menupopup xul|menu::label {
+	padding: 0;
+}
 xul|menuitem:selected xul|menuitem::image:checked,
-xul|menuitem:selected xul|menuitem::image:checked/*,
-xul|menu:selected xul|menu::arrow*/ {
+xul|menuitem:selected xul|menuitem::image:checked,
+xul|menu::arrow:selected {
 	background-position: 0px -16px;
 }
 xul|menuitem:disabled xul|menuitem::image:checked,
 xul|menuitem:disabled xul|menuitem::image:checked,
-xul|menu:disabled xul|menu::arrow {
+xul|menu::arrow:disabled {
 	background-position: 0px -48px;
 }
 xul|menuseparator {

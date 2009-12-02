@@ -12,10 +12,6 @@ cXULElement_menuitem.prototype	= new cXULElement;
 
 cXULElement_menuitem.prototype.$hoverable	= true;
 
-cXULElement_menuitem.prototype.$isAccessible	= function() {
-	return true;
-};
-
 // Public Methods
 cXULElement_menuitem.prototype.setAttribute  = function(sName, sValue)
 {
@@ -74,9 +70,12 @@ cXULElement_menuitem.handlers	= {
 	"mouseenter":	function(oEvent) {
 		this.parentNode.selectItem(this);
 	},
+	"mouseleave":	function(oEvent) {
+		this.parentNode.selectItem(null);
+	},
 	"click":	function(oEvent) {
 		// If disabled, return
-	    if (this.getAttribute("disabled") == "true")
+	    if (!this.$isAccessible())
 	        return;
 
 		if (oEvent.button == 0)

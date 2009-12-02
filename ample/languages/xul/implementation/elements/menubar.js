@@ -48,7 +48,7 @@ cXULElement_menubar.prototype.selectItem	= function(oItem)
 
 	    // Show this element
 	    if (oItem) {
-		    if (oItem.menupopup && oItem.getAttribute("disabled") != "true") {
+		    if (oItem.menupopup && oItem.$isAccessible()) {
 	            oItem.menupopup.showPopup(this, -1, -1, cXULPopupElement.POPUP_TYPE_POPUP);
 	        	oItem.menupopup.addEventListener("popuphidden", function() {
 	        		if (this.opener.attributes["active"] == "true")	{
