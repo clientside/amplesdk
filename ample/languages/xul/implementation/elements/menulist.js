@@ -130,7 +130,7 @@ cXULElement_menulist.prototype._onChange = function(oEvent)
 // Class event handlers
 cXULElement_menulist.handlers	= {
 	"mousedown":	function(oEvent) {
-		if (!this.$isAccessible())
+		if (this.getAttribute("disabled") == "true")
 			return;
 
 		// click on ::button
@@ -139,16 +139,10 @@ cXULElement_menulist.handlers	= {
 		}
 	},
 	"mouseenter":	function(oEvent) {
-		if (!this.$isAccessible())
-			return;
-
 		// for now..
 		this.$setPseudoClass("hover", true, "button");
 	},
 	"mouseleave":	function(oEvent) {
-		if (!this.$isAccessible())
-			return;
-
 		this.$setPseudoClass("hover", false, "button");
 	},
 	"keydown":	function(oEvent) {

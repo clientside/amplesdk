@@ -12,6 +12,10 @@ cXULElement_menu.prototype	= new cXULElement;
 
 cXULElement_menu.prototype.$hoverable	= true;
 
+cXULElement_menu.prototype.$isAccessible	= function() {
+	return true;
+};
+
 // Public Properties
 cXULElement_menu.prototype.menupopup	= null;	// Reference link to a menupopup element
 
@@ -56,7 +60,7 @@ cXULElement_menu.handlers	= {
 	   		this.parentNode.selectItem(this);
 	},
 	"mousedown":	function(oEvent) {
-		if (!this.$isAccessible())
+		if (this.getAttribute("disabled") == "true")
 			return;
 
 		if (oEvent.target == this && oEvent.button == 0)

@@ -51,7 +51,7 @@ cXULElement_menupopup.prototype.selectItem	= function(oItem)
 
 	if (oItem) {
 	    // Show new element
-		if (oItem.menupopup && oItem.$isAccessible()) {
+		if (oItem.menupopup && oItem.getAttribute("disabled") != "true") {
 			var oMenuPopupNew	= oItem.menupopup;
 			this._timeOutShow	= setTimeout(function() {
 				oMenuPopupNew.showPopup(null, -1, -1, cXULPopupElement.POPUP_TYPE_POPUP);

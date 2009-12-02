@@ -12,6 +12,10 @@ cXULElement_menuitem.prototype	= new cXULElement;
 
 cXULElement_menuitem.prototype.$hoverable	= true;
 
+cXULElement_menuitem.prototype.$isAccessible	= function() {
+	return true;
+};
+
 // Public Methods
 cXULElement_menuitem.prototype.setAttribute  = function(sName, sValue)
 {
@@ -72,7 +76,7 @@ cXULElement_menuitem.handlers	= {
 	},
 	"click":	function(oEvent) {
 		// If disabled, return
-	    if (!this.$isAccessible())
+	    if (this.getAttribute("disabled") == "true")
 	        return;
 
 		if (oEvent.button == 0)
