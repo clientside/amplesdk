@@ -9,8 +9,6 @@ xul|spinbuttons {
 	line-height: 17px;
 	border: 1px solid ThreeDShadow;/*1px solid #7F9DB9*/;
 	background-color: Window;/*white*/;
-	-webkit-box-sizing: border-box;/* odd enough, no? */
-	-moz-box-sizing: border-box;/* odd enough, no? */
 	display: inline-block;
 }
 

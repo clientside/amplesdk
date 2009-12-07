@@ -99,7 +99,6 @@ xul|arrowscrollbox-button {
 	background-color:	#fff;
 	background-repeat:	no-repeat;
 	border-width:	1px;
-	-moz-box-sizing:border-box;
 }
 
 xul|arrowscrollbox-button div {
