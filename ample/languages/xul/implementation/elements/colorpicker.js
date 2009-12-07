@@ -189,7 +189,7 @@ cXULElement_colorpicker.prototype.$getTagOpen	= function()
 						<td width="100%"><div style="height:17px"><input class="xul-colorpicker--input" type="text" autocomplete="off" value="' + this.attributes["value"] + '"' + (this.attributes["disabled"] == "true" ? ' disabled="true"' : '') +' maxlength="7" onchange="ample.$instance(this)._onChange(event)" style="border:0px solid white;width:100%;" onselectstart="event.cancelBubble=true;" /></div></td>\
 						<td valign="top"><div class="xul-colorpicker--button"/></td>\
 					</tr>\
-					<tr><td class="xul-colorpicker--gateway" colspan="2"></td></tr>\
+					<tr style="position:absolute;"><td class="xul-colorpicker--gateway" colspan="2"></td></tr>\
 				</tbody>\
 			</table>';
 };

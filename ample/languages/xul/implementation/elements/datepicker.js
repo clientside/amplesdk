@@ -154,7 +154,7 @@ cXULElement_datepicker.prototype.$getTagOpen	= function() {
 						<td width="100%"><div style="height:17px"><input type="text" maxlength="10" class="xul-datepicker--input"' + (this.hasAttribute("accessKey") ? ' accessKey="' + this.getAttribute("accessKey") + '"' : '')+ ' value="' + this.getAttribute("value") + '"' + (this.getAttribute('disabled') == "true" ? ' disabled="true"' : "") +' style="border:0px solid white;width:100%;"/></div></td>\
 						<td valign="top"><div class="xul-datepicker--button"></div></td>\
 					</tr>\
-					<tr><td class="xul-datepicker--gateway" colspan="2"></td></tr>\
+					<tr style="position:absolute;"><td class="xul-datepicker--gateway" colspan="2"></td></tr>\
 				</tbody>\
 			</table>';
 };
