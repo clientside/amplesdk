@@ -7,21 +7,14 @@ xul|timepicker,
 xul|spinbuttons {
 	margin: 1px;
 	line-height: 17px;
-	border: 1px solid ThreeDShadow;/*1px solid #7F9DB9*/;
+	border: 1px solid #7F9DB9;
 	background-color: Window;/*white*/;
 	display: inline-block;
 }
 
-xul|colorpicker,
-xul|menulist,
-xul|datepicker,
-xul|timepicker,
-xul|spinbuttons {
-	height: 19px;
-}
-
 xul|textbox,
 xul|editor {
+	padding-left:1px;
 	width:	200px;
 	outline: none; /* removes browser native outline when focused */
 }
@@ -34,9 +27,10 @@ xul|menulist:focus,
 xul|datepicker:focus,
 xul|timepicker:focus,
 xul|spinbuttons:focus {
-	border-color: lightblue;
+	border-color: gray;
 }
 
+xul|textbox:disabled,
 xul|checkbox:disabled,
 xul|radio:disabled,
 xul|colorpicker:disabled,
@@ -46,6 +40,7 @@ xul|timepicker:disabled,
 xul|spinbuttons:disabled {
 	cursor: default;
 	color: GrayText;/*#aca899;*/
+	background-color: rgb(235, 235, 228);
 }
 
 xul|colorpicker::input,
@@ -57,7 +52,7 @@ xul|spinbuttons::input {
 	vertical-align:	top;
 	height:	17px;
 	padding:0;
-	margin-right:1px;
+	padding-left:1px;
 	outline: none; /* removes browser native outline when focused */
 }
 
@@ -233,9 +228,13 @@ xul|datepicker xul|datepicker-pane,
 xul|colorpicker xul|colorpicker-pane {
 	position:	absolute;
 	display:	block;
-    background-color: white;
-    margin-top:	1px;
-    border-width:	1px;
-    border-style: 	solid;
-    border-color:	ThreeDHighlight ThreeDShadow ThreeDShadow ThreeDHighlight;/*#aca899;*/
+    padding: 2px;
+    background-color: Window;
+	border:	solid 1px ThreeDShadow;
+}
+
+xul|colorpicker::gateway,
+xul|menulist::gateway,
+xul|datepicker::gateway {
+	margin-left: -1px;
 }

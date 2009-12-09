@@ -1,9 +1,7 @@
 xul|menupopup {
     cursor:	default !important;
-    background-color: white;
-    border-width:	1px;
-    border-style: 	solid;
-    border-color:	ThreeDHighlight ThreeDShadow ThreeDShadow ThreeDHighlight;/*#aca899;*/
+    background-color: Window;
+	border:	solid 1px ThreeDShadow;
     padding:	2px;
 	z-index:	100;
 }

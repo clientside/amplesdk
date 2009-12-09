@@ -307,10 +307,10 @@ cXULElement_menulist.prototype.$getTagOpen		= function() {
 	return	'<table cellpadding="0" cellspacing="0" border="0" class="xul-menulist' +(this.attributes["disabled"] ? " xul-menulist_disabled" : '') + '"' + (this.attributes["style"] ? ' style="' + this.attributes["style"] + '"' : '') +'>\
 				<tbody>\
 					<tr>\
-						<td width="100%"><div style="height:17px"><input class="xul-menulist--input" type="text" autocomplete="off" style="border:0px solid white;width:100%;" onselectstart="event.cancelBubble=true;" onchange="ample.$instance(this)._onChange(event)" value="' + this.attributes["value"] + '"' + (this.attributes["disabled"] ? ' disabled="disabled"' : '') + (this.attributes["readonly"] ? ' readonly="readonly"' : '') + (this.attributes["name"] ? ' name="' + this.attributes["name"] + '"' : '') + '/></div></td>\
+						<td width="100%"><input class="xul-menulist--input" type="text" autocomplete="off" style="border:0px solid white;width:100%;" onselectstart="event.cancelBubble=true;" onchange="ample.$instance(this)._onChange(event)" value="' + this.attributes["value"] + '"' + (this.attributes["disabled"] ? ' disabled="disabled"' : '') + (this.attributes["readonly"] ? ' readonly="readonly"' : '') + (this.attributes["name"] ? ' name="' + this.attributes["name"] + '"' : '') + '/></td>\
 						<td valign="top"><div class="xul-menulist--button" onmouseout="ample.$instance(this).$setPseudoClass(\'active\', false, \'button\');" onmousedown="if (!ample.$instance(this).attributes.disabled) ample.$instance(this).$setPseudoClass(\'active\', true, \'button\'); return false;" onmouseup="if (!ample.$instance(this).attributes.disabled) ample.$instance(this).$setPseudoClass(\'active\', false, \'button\');" oncontextmenu="return false;"/></td>\
 					</tr>\
-					<tr style="position:absolute;">\
+					<tr>\
 						<td colspan="2" class="xul-menulist--gateway">';
 };
 

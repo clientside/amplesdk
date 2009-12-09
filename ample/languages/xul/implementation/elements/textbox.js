@@ -116,9 +116,6 @@ cXULElement_textbox.prototype.$getTagOpen	= function(oElement)
     sHtml  += ' name="' + this.attributes["name"] + '" autocomplete="off" class="xul-textbox' +(this.attributes["disabled"] == "true" ? " xul-textbox_disabled" : '')+ '"';
     sHtml  += ' onblur="ample.$instance(this)._onChange(event)" onselectstart="event.cancelBubble=true;"';
     sHtml  += ' style="';
-    if (this.attributes["multiline"] != "true")
-        sHtml  += 'height: 19px;';
-    else
     if (this.attributes["height"])
         sHtml  += 'height:' + this.attributes["height"] + ';';
     if (this.attributes["width"] || this.attributes["flex"])

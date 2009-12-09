@@ -209,12 +209,12 @@ cXULElement_spinbuttons.prototype.$getTagOpen	= function()
     var sHtml   = '<table cellpadding="0" cellspacing="0" border="0" class="xul-spinbuttons' + (this.attributes["disabled"] ? ' xul-spinbuttons_disabled' : '')+ '">';
     sHtml  += '<tbody>';
     sHtml  += '<tr>';
-    sHtml  += '<td width="100%"><div style="height:17px"><input type="text" autocomplete="off" style="border:0px solid white;width:100%;" value="' + this.attributes["value"] + '"';
+    sHtml  += '<td width="100%"><input type="text" autocomplete="off" style="border:0px solid white;width:100%;" value="' + this.attributes["value"] + '"';
     if (this.attributes["disabled"])
         sHtml  += ' disabled="true"';
     if (this.attributes["name"])
         sHtml  += ' name="' + this.attributes["name"] + '"';
-    sHtml  += ' onchange="ample.$instance(this)._onChange(event)" onkeypress="if (event.keyCode == 38 || event.keyCode == 40) return false" class="xul-spinbuttons--input" onselectstart="event.cancelBubble=true;"/></div></td>';
+    sHtml  += ' onchange="ample.$instance(this)._onChange(event)" onkeypress="if (event.keyCode == 38 || event.keyCode == 40) return false" class="xul-spinbuttons--input" onselectstart="event.cancelBubble=true;"/></td>';
     sHtml  += '<td valign="top">';
     sHtml  += '<div class="xul-spinbuttons--button-up" onmouseover="if (!ample.$instance(this).attributes[\'disabled\']) ample.$instance(this).$setPseudoClass(\'hover\', true, \'button-up\')" onmouseout="if (!ample.$instance(this).attributes[\'disabled\']) ample.$instance(this).$setPseudoClass(\'hover\', false, \'button-up\')" onmousedown="if (!ample.$instance(this).attributes[\'disabled\']) {ample.$instance(this).$setPseudoClass(\'active\', true, \'button-up\'); return ample.$instance(this)._onButtonMouseDown(event, true)}"><br/></div>';
     sHtml  += '<div class="xul-spinbuttons--button-down" onmouseover="if (!ample.$instance(this).attributes[\'disabled\']) ample.$instance(this).$setPseudoClass(\'hover\', true, \'button-down\')" onmouseout="if (!ample.$instance(this).attributes[\'disabled\']) ample.$instance(this).$setPseudoClass(\'hover\', false, \'button-down\')" onmousedown="if (!ample.$instance(this).attributes[\'disabled\']) {ample.$instance(this).$setPseudoClass(\'active\', true, \'button-down\'); return ample.$instance(this)._onButtonMouseDown(event, false)}"><br/></div>';

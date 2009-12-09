@@ -303,7 +303,7 @@ cXULElement_datepicker_pane.prototype.$getTagOpen	= function() {
 							<table cellpadding="0" cellspacing="0" border="0" class="xul-datepicker-pane--years-pane">\
 								<tbody>\
 									<tr>\
-										<td width="100%"><div style="height:17px"><input type="text" autocomplete="off" style="border:0px solid white;width:100%;" class="xul-datepicker-pane--year" onfocus="blur()"/></div></td>\
+										<td width="100%"><input type="text" autocomplete="off" style="border:0px solid white;width:100%;" class="xul-datepicker-pane--year" onfocus="blur()"/></td>\
 										<td valign="top"><div class="xul-datepicker-pane--year-previous" onmouseover="ample.$instance(this).$setPseudoClass(\'hover\', true, \'year-previous\')" onmouseout="ample.$instance(this).$setPseudoClass(\'hover\', false, \'year-previous\')"><br /></div><div class="xul-datepicker-pane--year-next" onmouseover="ample.$instance(this).$setPseudoClass(\'hover\', true, \'year-next\')" onmouseout="ample.$instance(this).$setPseudoClass(\'hover\', false, \'year-next\')"><br /></div></td>\
 									</tr>\
 								</tbody>\
