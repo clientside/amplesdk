@@ -45,6 +45,8 @@ if (!!document.namespaces) {
 			}
 		},
 		'DOMNodeInsertedIntoDocument':	function(oEvent) {
+			var sValue;
+
 			// Apply gradients
 			if ((sValue = cSVGElement.getStyle(this, "fill")) && sValue.substr(0, 3) == "url")
 				cSVGElement.setStyle(this, "fill", sValue);
