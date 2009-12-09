@@ -26,8 +26,9 @@ if (!!document.namespaces) {
 			}
 		},
 		'DOMNodeInsertedIntoDocument':	function(oEvent) {
-			if (this.hasAttribute("xlink:href"))
-				cSVGElement_a.setHref(this, this.getAttribute("xlink:href"));
+			var sValue	= this.getAttribute("xlink:href");
+			if (sValue != "")
+				cSVGElement_a.setHref(this, sValue);
 		}
 	};
 
