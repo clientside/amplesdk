@@ -31,17 +31,26 @@ xul|spinbuttons:focus {
 }
 
 xul|textbox:disabled,
-xul|checkbox:disabled,
-xul|radio:disabled,
 xul|colorpicker:disabled,
 xul|menulist:disabled,
 xul|datepicker:disabled,
 xul|timepicker:disabled,
 xul|spinbuttons:disabled {
-	cursor: default;
-	color: GrayText;/*#aca899;*/
 	background-color: rgb(235, 235, 228);
 }
+
+xul|textbox:disabled,
+xul|colorpicker:disabled,
+xul|menulist:disabled,
+xul|datepicker:disabled,
+xul|timepicker:disabled,
+xul|spinbuttons:disabled,
+xul|checkbox:disabled,
+xul|radio:disabled {
+	cursor: default;
+	color: GrayText;/*#aca899;*/
+}
+
 
 xul|colorpicker::input,
 xul|menulist::input,
