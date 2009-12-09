@@ -57,7 +57,7 @@
     $aFiles[]	= "implementation/elements/panel.js";
     $aFiles[]	= "implementation/elements/popupset.js";
     $aFiles[]	= "implementation/elements/progressmeter.js";
-    $aFiles[]	= "implementation/elements/scrollbox.js";
+//    $aFiles[]	= "implementation/elements/scrollbox.js";
     $aFiles[]	= "implementation/elements/splitter.js";
     $aFiles[]	= "implementation/elements/statusbar.js";
     $aFiles[]	= "implementation/elements/statusbarpanel.js";

@@ -399,7 +399,7 @@
 					<node title="columns" url="ample/xul/columns.xml"/>
 					<node title="row" url="ample/xul/row.xml"/>
 					<node title="rows" url="ample/xul/rows.xml"/>
-					<node title="scrollbox" url="ample/xul/scrollbox.xml"/>
+					<node title="scrollbox" xurl="ample/xul/scrollbox.xml"/>
 					<node title="splitter" url="ample/xul/splitter.xml"/>
 				</node>
 				<node title="Scripting">
