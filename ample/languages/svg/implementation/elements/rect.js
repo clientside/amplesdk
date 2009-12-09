@@ -32,6 +32,7 @@ if (!!document.namespaces) {
 					case "rx":
 					case "ry":
 						// TODO: Cannot be accessed at the runtime
+						oElement.outerHTML	= this.$getTag();
 						break;
 					//
 					case "transform":
