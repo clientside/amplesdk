@@ -77,6 +77,18 @@ cXULElement_datepicker_pane.prototype._onSelectYear	= function(nYear) {
 	this.$getContainer("days-pane").innerHTML		= cXULElement_datepicker_pane.$getTagDays(this, this.current);
 };
 
+cXULElement_datepicker_pane.prototype._onDayOver	= function(oElement) {
+	var nIndex	= oElement.className.indexOf("xul-datepicker-pane-day_hover");
+	if (nIndex ==-1)
+		oElement.className	= oElement.className + ' xul-datepicker-pane-day_hover';
+};
+
+cXULElement_datepicker_pane.prototype._onDayOut	= function(oElement) {
+	var nIndex	= oElement.className.indexOf("xul-datepicker-pane-day_hover");
+	if (nIndex !=-1)
+		oElement.className	= oElement.className.substr(0, nIndex);
+};
+
 // Static members
 cXULElement_datepicker_pane.parseDateFromString	= function(sDate) {
 	return new Date(sDate);
@@ -241,7 +253,7 @@ cXULElement_datepicker_pane.$getTagDays	= function(oInstance, oDate) {
 	if (nWeekDay < 0)
 		nWeekDay	= 6;
 
-	aHtml.push('<td align="center" valign="center"><div class="xul-datepicker-pane_week">' + nWeek + '</div></td>');
+	aHtml.push('<td align="center" valign="center"><div class="xul-datepicker-pane-week">' + nWeek + '</div></td>');
 	// filling empty td's
 	for (var nIndex = 0; nIndex < nWeekDay; nIndex++)
 		aHtml.push('<td><br /></td>');
@@ -256,8 +268,8 @@ cXULElement_datepicker_pane.$getTagDays	= function(oInstance, oDate) {
 		bDateDisabled	= (oInstance.min && oDateCurrent < oInstance.min) || (oInstance.max && oDateCurrent > oInstance.max);
 		aHtml.push('	<td align="center" valign="center">\
 							<div type="button"\
-								class="xul-datepicker-pane_day' +(nWeekDay == 6 ? " xul-datepicker-pane_day-weekend" : '') + (oInstance.value && oDateCurrent.getTime() == oInstance.value.getTime() ? ' xul-datepicker-pane_selected' : '') + '\
-								' + (bDateDisabled ? ' xul-datepicker-pane_day-disabled" disabled="true"' : '" onclick="ample.$instance(this)._onSelectDay(' + nIndex + ')') + '"\
+								class="' +(nWeekDay == 6 ? "xul-datepicker-pane-weekend" : 'xul-datepicker-pane-day') + (oInstance.value && oDateCurrent.getTime() == oInstance.value.getTime() ? ' xul-datepicker-pane-day_selected' : '') + '\
+								' + (bDateDisabled ? ' xul-datepicker-pane-day_disabled" disabled="true"' : '" onclick="ample.$instance(this)._onSelectDay(' + nIndex + ')') + '" onmouseover="ample.$instance(this)._onDayOver(this)" onmouseout="ample.$instance(this)._onDayOut(this)"\
 								>' + nIndex + '</div>\
 						</td>');
 		if ((nWeekDay == 6) && (nIndex < nDays))
@@ -267,7 +279,7 @@ cXULElement_datepicker_pane.$getTagDays	= function(oInstance, oDate) {
 				nWeek   = (new Date(oDate.getFullYear(), 11, 31).getDay() < 3) ? 1 : nWeek;
 			aHtml.push('</tr>\
 						<tr>\
-							<td align="center" valign="center"><div class="xul-datepicker-pane_week">' + nWeek + '</div></td>');
+							<td align="center" valign="center"><div class="xul-datepicker-pane-week">' + nWeek + '</div></td>');
 			nWeekDay  = 0;
 		}
 		else

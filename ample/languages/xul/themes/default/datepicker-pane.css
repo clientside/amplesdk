@@ -11,7 +11,6 @@ xul|datepicker-pane::header {
 }
 xul|datepicker-pane::month {
 	height: 19px;
-	width: 84px;
 }
 xul|datepicker-pane::month-previous,
 xul|datepicker-pane::month-next {
@@ -22,7 +21,7 @@ xul|datepicker-pane::month-next {
 xul|datepicker-pane::years-pane {
 	height:	17px;
 	line-height:17px;
-	width:	70px;
+	width:	60px;
 	border: 1px solid #b4cbea;
 }
 xul|datepicker-pane::year {
@@ -51,23 +50,27 @@ xul|datepicker-pane::year-next:hover {
 	background-position: -16px -8px;
 }
 
-xul|datepicker-pane:day {
+xul|datepicker-pane-day,
+xul|datepicker-pane-weekend {
 	width: 24px;
 	background-color: #f1f1f1;
 	color: black;
 }
-xul|datepicker-pane:day-weekend {
+xul|datepicker-pane-weekend {
 	font-weight: bold;
 }
-xul|datepicker-pane:day-disabled {
+xul|datepicker-pane-day:disabled {
 	background-color: #d0d0d0;
 	color: #F0F0F0;
 }
-xul|datepicker-pane:selected {
-	background-color: #B4CBEA;
-	color: white;
+xul|datepicker-pane-day:selected {
+    color: HighlightText;
+    background-color: Highlight;
 }
-xul|datepicker-pane:week {
+xul|datepicker-pane-day:hover {
+    background-color: silver;
+}
+xul|datepicker-pane-week {
 	width: 1.5em;
 	/*height:18px;*/
 	color: gray;
