@@ -17,7 +17,7 @@ cXULElement_statusbarpanel.attributes.align	= "center";
 // Public Methods
 cXULElement_statusbarpanel.prototype.setAttribute    = function(sName, sValue)
 {
-    if (sName == "src")
+    if (sName == "image")
     {
         this.$getContainer().innerHTML    = '<img src="' + this.attributes["image"] + '" align="absmiddle"/>';
     }
