@@ -3,6 +3,9 @@
 <element extends="xul:XULElement" name="script" type="virtual">
 	<implements />
 	<abstract>
+		<locale>
+			Much like the HTML script element, this is used to declare a script to be used by the XUL window.
+		</locale>
 		<locale xml:lang="ru">
 			Аналогично элементу <b>script</b> в HTML, используется для объявления скрипта,
 			который будет использоваться в документе <b>Ample SDK</b>.
@@ -15,8 +18,18 @@
 		<attributes>
 			<attribute name="src" default="" readonly="false">
 				<description>
+					<locale>
+						The URL of the script.
+					</locale>
 					<locale xml:lang="ru">
 						URL скрипта.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="type" readonly="true" default="application/javascript">
+				<description>
+					<locale>
+						The language of the script.
 					</locale>
 				</description>
 			</attribute>

@@ -3,6 +3,9 @@
 <element extends="xul:XULElement" name="toolbarseparator" type="regular">
 	<implements />
 	<abstract>
+		<locale>
+			Creates a separator between groups of toolbar items.
+		</locale>
 		<locale xml:lang="ru">
 			Разделитель для элемента <link type="element">toolbar</link>,
 			который разделяет группы элементов <link type="element">toolbarbutton</link>.

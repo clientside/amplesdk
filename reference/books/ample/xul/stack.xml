@@ -3,6 +3,12 @@
 <element extends="xul:XULElement" name="stack" type="regular">
 	<implements />
 	<abstract>
+		<locale>
+			An element that renders its children on top of each other.
+			The first element is placed on the bottom and each successive child is placed above the previous.
+			All elements are displayed at once.
+			Child elements may also be placed at absolute positions within the stack.
+		</locale>
 		<locale xml:lang="ru">
 			Элемент, который отображает свои дочерние элементы друг над другом.
 			Первый дочерний элемент помещается в самый низ, а каждый последующий помещается над предыдущим.

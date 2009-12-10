@@ -3,6 +3,9 @@
 <element extends="xul:XULElement" name="rows" type="regular">
 	<implements />
 	<abstract>
+		<locale>
+			Defines the rows of a <link type="element">grid</link>.
+		</locale>
 		<locale xml:lang="ru">
 			Описывает строки элемента <link type="element">grid</link>.
 			Дочерние элементы должны быть только элементами <link type="element">row</link>.

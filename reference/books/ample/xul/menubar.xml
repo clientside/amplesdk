@@ -3,6 +3,9 @@
 <element extends="xul:XULElement" name="menubar" type="regular">
 	<implements />
 	<abstract>
+		<locale>
+			A container that usually contains <link type="element">menu</link> elements.
+		</locale>
 		<locale xml:lang="ru">
 			Контейнер для элементов <link type="element">menu</link>.
 		</locale>
@@ -25,6 +28,9 @@
 		<properties>
 			<property name="selectedItem" type="AMLElement" readonly="true">
 				<description>
+					<locale>
+						Contains a reference to currently selected <link type="element">menu</link> element.
+					</locale>
 					<locale xml:lang="ru">
 						Ссылка на элемент <link type="element">menu</link>, выделенный в настоящее время.
 					</locale>
@@ -32,6 +38,9 @@
 			</property>
 			<property name="items" type="AMLNodeList">
 				<description>
+					<locale>
+						Contians a collection of <link type="element">menu</link> child elements.
+					</locale>
 					<locale xml:lang="ru">
 						Коллекция всех дочерних элементов <link type="element">menu</link>.
 					</locale>

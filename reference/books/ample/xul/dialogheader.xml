@@ -3,6 +3,11 @@
 <element extends="xul:XULElement" name="dialogheader" type="boxed">
 	<implements />
 	<abstract>
+		<locale>
+			A heading row for a dialog box.
+			This element should be placed inside a <link type="element">dialog</link> element.
+			The header may have a title and a description.
+		</locale>
 		<locale xml:lang="ru">
 			Строка заголовка для диалога.
 			Этот элемент должен быть размещен внутри элемента <link type="element">dialog</link>.
@@ -15,6 +20,9 @@
 		<attributes>
 			<attribute name="title" readonly="false">
 				<description>
+					<locale>
+						The text to appear in the title bar of the window.
+					</locale>
 					<locale xml:lang="ru">
 						Название элемента.
 					</locale>
@@ -22,6 +30,9 @@
 			</attribute>
 			<attribute name="description" readonly="false">
 				<description>
+					<locale>
+						Descriptive text to appear in addition to the dialog title.
+					</locale>
 					<locale xml:lang="ru">
 						Описание, сопровождающее название элемента.
 					</locale>

@@ -3,6 +3,9 @@
 <element extends="xul:XULElement" name="statusbarpanel" type="boxed">
 	<implements />
 	<abstract>
+		<locale>
+			An individual element of a <link type="element">statusbar</link>.
+		</locale>
 		<locale xml:lang="ru">
 			Один элемент из набора <link type="element">statusbar</link>.
 			Является специальным типом элемента <link type="element">button</link>,
@@ -16,13 +19,20 @@
 		<attributes>
 			<attribute name="label" readonly="false">
 				<description>
+					<locale>
+						The label that will appear on the element.
+						If this is left out, no text appears.
+					</locale>
 					<locale xml:lang="ru">
 						Текст для элемента.
 					</locale>
 				</description>
 			</attribute>
-			<attribute name="src" readonly="false">
+			<attribute name="image" readonly="false">
 				<description>
+					<locale>
+						The URL of the image to appear on the element. If this attribute is empty or left out, no image appears
+					</locale>
 					<locale xml:lang="ru">
 						URL пиктограммы для элемента.
 					</locale>

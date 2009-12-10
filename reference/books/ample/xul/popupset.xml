@@ -3,8 +3,11 @@
 <element extends="xul:XULElement" name="popupset" type="virtual">
 	<implements />
 	<abstract>
+		<locale>
+			A container for <link type="element">menupopup</link>, <link type="element">panel</link> and <link type="element">tooltip</link> elements.
+		</locale>
 		<locale xml:lang="ru">
-			Контейнер для элементов <link type="element">popup</link>.
+			Контейнер для элементов <link type="element">menupopup</link>, <link type="element">panel</link> и <link type="element">tooltip</link>.
 			Все всплывающие элементы должны быть объявлены в нем. Этот элемент не отображается.
 		</locale>
 	</abstract>

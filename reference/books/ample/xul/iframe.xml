@@ -3,6 +3,12 @@
 <element extends="xul:XULElement" name="iframe" type="regular">
 	<implements />
 	<abstract>
+		<locale>
+			An inner frame that works much like the HTML iframe element.
+			The <link type="attribute">src</link> attribute can be used to specify the content of the frame.
+			This content is a separate document.
+			The children of the <link type="element">iframe</link> are ignored.
+		</locale>
 		<locale xml:lang="ru">
 			Аналогичен элементу <b>iframe</b> в HTML.
 			Атрибут <link type="attribute">src</link> используется для указания пути к содержимому фрейма.
@@ -17,6 +23,9 @@
 		<attributes>
 			<attribute name="src" default="about:blank" readonly="false">
 				<description>
+					<locale>
+						The URL of the content to appear in the element.
+					</locale>
 					<locale xml:lang="ru">
 						URL документа, который будет отображен внутри элемента <link type="element">iframe</link>.
 					</locale>
@@ -27,6 +36,9 @@
 		<properties>
 			<property name="contentDocument" readonly="true" type="AMLDocument">
 				<description>
+					<locale>
+						This read-only property contains the document object in the element.
+					</locale>
 					<locale xml:lang="ru">
 						Ссылка на объект <b>AMLDocument</b> элемента <link type="object">iframe</link>.
 					</locale>
@@ -34,6 +46,9 @@
 			</property>
 			<property name="contentWindow" readonly="true" type="window">
 				<description>
+					<locale>
+						This read-only property contains the window object in the element.
+					</locale>
 					<locale xml:lang="ru">
 						Ссылка на объект <link type="object">window</link> элемента <link type="element">iframe</link>.
 					</locale>

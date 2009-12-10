@@ -3,11 +3,16 @@
 <element extends="xul:XULElement" name="window" type="boxed">
 	<implements />
 	<abstract>
+		<locale>
+			Describes the structure of a top-level window.
+			It is by default a horizontally oriented <link type="element">box</link>.
+			As it is a box, all box attributes can be used.
+			By default, the <link type="element">window</link> will have a platform-specific frame around it.
+		</locale>
 		<locale xml:lang="ru">
 			Описывает структуру окна верхнего уровня.
-			Является корневым узлом документа <b>Ample SDK</b>.
 			По умолчанию этот элемент является контейнером с горизонтальной ориентацией.
-			Поскольку <b>window</b> является <link type="element">box</link>, моно использовать
+			Поскольку <link type="element">window</link> является <link type="element">box</link>, моно использовать
 			атрибуты элемента <link type="element">box</link>.
 		</locale>
 	</abstract>
@@ -17,8 +22,18 @@
 		<attributes>
 			<attribute name="title" readonly="false">
 				<description>
+					<locale>
+						The text to appear in the title bar of the window.
+					</locale>
 					<locale xml:lang="ru">
 						Текст заголовка окна.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="hidechrome">
+				<description>
+					<locale>
+						Set this attribute to true to have the chrome including the titlebar hidden.
 					</locale>
 				</description>
 			</attribute>
@@ -28,6 +43,9 @@
 		<events>
 			<event name="load" group="Event" cancelable="false" bubbles="false">
 				<description>
+					<locale>
+						Fires after element is loaded.
+					</locale>
 					<locale xml:lang="ru">
 						Заграется сразу после того, как ядро загрузит объект.
 					</locale>
@@ -35,6 +53,9 @@
 			</event>
 			<event name="unload" group="Event" cancelable="false" bubbles="false">
 				<description>
+					<locale>
+						Fires before element is unloaded.
+					</locale>
 					<locale xml:lang="ru">
 						Загорается непосредственно перед тем, как объект будет выгружен.
 					</locale>

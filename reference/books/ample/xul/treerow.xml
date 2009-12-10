@@ -3,6 +3,12 @@
 <element extends="xul:XULElement" name="treerow" type="regular">
 	<implements />
 	<abstract>
+		<locale>
+			A single row in a <link type="element">tree</link>.
+			It should be placed inside a <link type="element">treeitem</link> element.
+			Children of the <link type="element">treerow</link> should be <link type="element">treecell</link> elements.
+			If child rows are necessary, they should be placed in a <link type="element">treechildren</link> element inside the parent <link type="element">treeitem</link>.
+		</locale>
 		<locale xml:lang="ru">
 			Строка дерева. Размещается внутри элемента <link type="element">treeitem</link>.
 			Дочерними элементами являются <link type="element">treecell</link>.
@@ -16,6 +22,9 @@
 		<properties>
 			<property name="cells" type="AMLNodeList" readonly="true">
 				<description>
+					<locale>
+						Contains a collection of <link type="element">treecell</link> child elements.
+					</locale>
 					<locale xml:lang="ru">
 						Коллекция дочерних элементов <link type="element">treecell</link>.
 					</locale>

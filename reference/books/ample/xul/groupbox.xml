@@ -3,6 +3,10 @@
 <element extends="xul:XULElement" name="groupbox" type="boxed">
 	<implements />
 	<abstract>
+		<locale>
+			The <link type="element">groupbox</link> is used to group related elements together.
+			If a <link type="element">caption</link> element is placed inside the <link type="element">groupbox</link>, it will be used as a caption which appears along the top of the groupbox.
+		</locale>
 		<locale xml:lang="ru">
 			Блок, который ограничен визуальной рамкой.
 			Предназначен для группировки элементов.

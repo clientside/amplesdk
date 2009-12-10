@@ -13,6 +13,7 @@
 	<examples/>
 	<members>
 		<methods>
+			<!--
 			<method name="loadOverlay" type="Void">
 				<arguments>
 					<argument name="sUrl" type="String">
@@ -83,10 +84,14 @@
 					</locale>
 				</description>
 			</method>
+			 -->
 		</methods>
 		<properties>
 			<property name="popupNode" readonly="true" type="AMLElement">
 				<description>
+					<locale>
+						Reference to a currently displayed popup element.
+					</locale>
 					<locale xml:lang="ru">
 						Ссылка на отображаемый в настоящее время popup элемент.
 					</locale>
@@ -94,11 +99,15 @@
 			</property>
 			<property name="tooltipNode" readonly="true" type="AMLElement">
 				<description>
+					<locale>
+						Reference to a currently displayed tooltip element.
+					</locale>
 					<locale xml:lang="ru">
 						Ссылка отображаемую в настоящий момент всплывающую подсказку.
 					</locale>
 				</description>
 			</property>
+			<!--
 			<property name="commandDispatcher" readonly="true" type="XULCommandDispatcher">
 				<description>
 					<locale xml:lang="ru">
@@ -106,6 +115,7 @@
 					</locale>
 				</description>
 			</property>
+			 -->
 		</properties>
 	</members>
 </object>

@@ -3,6 +3,10 @@
 <element extends="xul:XULElement" name="listhead" type="regular">
 	<implements />
 	<abstract>
+		<locale>
+			A header row of a <link type="element">listbox</link>.
+			It is usual to place <link type="element">listheader</link> elements inside the <link type="element">listhead</link>, one for each column.
+		</locale>
 		<locale xml:lang="ru">
 			Строка-заголовок элемента <link type="element">listbox</link>. Как правило, элемент <link type="element">listheader</link> помещается внутри элемента <link type="element">listhead</link> для каждого столбца.
 		</locale>
@@ -15,6 +19,9 @@
 		<properties>
 			<property name="items" type="AMLNodeList" readonly="true">
 				<description>
+					<locale>
+						Contains a collection of <link type="element">listheader</link> child elements.
+					</locale>
 					<locale xml:lang="ru">
 						Коллекция элементов <link type="element">listheader</link>.
 					</locale>

@@ -2,6 +2,9 @@
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
 <element extends="xul:XULElement" name="scale">
 	<abstract>
+		<locale>
+			A scale (sometimes referred to as a "slider") allows the user to select a value from a range.
+		</locale>
 		<locale xml:lang="ru">
 			Предназначен плавного изменения значения пользователем.
 			Может быть размещен в пользовательском интерфейсе вертикально или горизонтально.
@@ -13,22 +16,28 @@
 	<examples />
 	<members>
 		<attributes>
-			<attribute name="name">
-				<description>
-					<locale>
-						Name of the parameter to be used when sending with <b>form</b>.
-					</locale>
-				</description>
-			</attribute>
 			<attribute name="value" default="">
 				<description>
+					<locale>
+						The string attribute allows you to associate a data value with an element.
+					</locale>
 					<locale xml:lang="ru">
 						Содержит значение компонента.
 					</locale>
 				</description>
 			</attribute>
+			<attribute name="disabled">
+				<description>
+					<locale>
+						Indicates whether the element is disabled or not.
+					</locale>
+				</description>
+			</attribute>
 			<attribute name="step" default="" readonly="false">
 				<description>
+					<locale>
+						The amount by which the value attribute changes when the arrows are clicked. The default value is 1.
+					</locale>
 					<locale xml:lang="ru">
 						Задает шаг изменения значений.
 					</locale>
@@ -36,6 +45,9 @@
 			</attribute>
 			<attribute name="min" default="" readonly="false">
 				<description>
+					<locale>
+						The minimum value that the scale or number box may be set to. The default value is 0.
+					</locale>
 					<locale xml:lang="ru">
 						Задает минимальное значение диапазона.
 					</locale>
@@ -43,6 +55,9 @@
 			</attribute>
 			<attribute name="max" default="" readonly="false">
 				<description>
+					<locale>
+						The maximum value that the scale or number box may be set to. The default value is 100.
+					</locale>
 					<locale xml:lang="ru">
 						Задает максимальное значение диапазона.
 					</locale>

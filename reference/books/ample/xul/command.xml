@@ -31,6 +31,10 @@
 		<events>
 			<event name="command" group="Event" cancelable="false" bubbles="true">
 				<description>
+					<locale>
+						This event handler is called when the command is activated.
+						This occurs when a user selects a menu item or presses a keyboard shortcut attached to the command.
+					</locale>
 					<locale xml:lang="ru">
 						Загорается, когда элемент активируется.
 						Это происходит, когда пользователь выбирает пункт меню или использует сочетание горячих клавиш,

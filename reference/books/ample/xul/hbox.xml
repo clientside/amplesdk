@@ -3,6 +3,10 @@
 <element extends="xul:XULElement" name="hbox" type="boxed">
 	<implements />
 	<abstract>
+		<locale>
+			A container element which can contain any number of child elements.
+			This is equivalent to the <link type="element">box</link> element.
+		</locale>
 		<locale xml:lang="ru">
 			Элемент-контейнер, может содержать любое количество дочерних элементов.
 			Эквивалентен элементу <link type="element">box</link> с горизонтальной ориентацией по умолчанию.

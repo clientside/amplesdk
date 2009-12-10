@@ -3,6 +3,9 @@
 <element extends="xul:XULElement" name="row" type="boxed">
 	<implements />
 	<abstract>
+		<locale>
+			A single row in a <link type="element">rows</link> element.
+		</locale>
 		<locale xml:lang="ru">
 			Одна строка в элементе <link type="element">rows</link>.
 			Каждый дочерний элемент помещается в соответствующую ячейку грида.

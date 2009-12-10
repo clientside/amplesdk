@@ -3,8 +3,10 @@
 <element extends="xul:XULElement" name="keyset" type="virtual">
 	<implements />
 	<abstract>
+		<locale>
+			A container element for <link type="element">key</link> elements. The keyset and its descendants are not displayed.
+		</locale>
 		<locale xml:lang="ru">
-			<warning>В настоящее время реализация этого элемента отсутствует в <b>Ample SDK</b>.</warning>
 			Контейнер для элементов <link type="element">key</link>. Элемент <link type="element">keyset</link> и все содержащиеся в нем элементы не отображаются.
 		</locale>
 	</abstract>

@@ -3,6 +3,10 @@
 <element extends="xul:XULElement" name="tabs" type="regular">
 	<implements />
 	<abstract>
+		<locale>
+			A row of tabs.
+			A tabs element should be placed inside a <link type="element">tabbox</link> and should contain <link type="element">tab</link> elements.
+		</locale>
 		<locale xml:lang="ru">
 			Строка закадок. Элемент <link type="element">tabs</link> должен быть расположен внутри элемента <link type="element">tabbox</link>, а в качестве дочерних содержать элементы <link type="element">tab</link>.
 		</locale>
@@ -16,6 +20,9 @@
 				<arguments>
 					<argument name="nDir" type="Number" required="false">
 						<description>
+							<locale>
+								Direction of tab advancement.
+							</locale>
 							<locale xml:lang="ru">
 								Направление перехода.
 							</locale>
@@ -23,6 +30,10 @@
 					</argument>
 				</arguments>
 				<description>
+					<locale>
+						If the argument dir is set to 1, the currently selected tab changes to the next tab.
+						If the argument dir is set to -1, the currently selected tab changes to the previous tab
+					</locale>
 					<locale xml:lang="ru">
 						Если аргумент <link type="attribute">nDir</link> выставлен в значение 1, выделение от текущей закладки перейдет к следующей. Если аргумент выставлен в значение -1, выделение от текущей закладки перейдет к предыдущей.
 					</locale>
@@ -32,6 +43,9 @@
 				<arguments>
 					<argument name="label" type="String" required="true">
 						<description>
+							<locale>
+								Tab label.
+							</locale>
 							<locale xml:lang="ru">
 								Текст для закладки.
 							</locale>
@@ -39,6 +53,9 @@
 					</argument>
 					<argument name="value" type="String" required="false">
 						<description>
+							<locale>
+								Tab value.
+							</locale>
 							<locale xml:lang="ru">
 								Данные, ассоциированные с элементом.
 							</locale>
@@ -46,6 +63,11 @@
 					</argument>
 				</arguments>
 				<description>
+					<locale>
+						Creates a new item and adds it to the end of the existing list of items.
+						You may optionally set a value.
+						The function returns the newly created element.
+					</locale>
 					<locale xml:lang="ru">
 						Создает новый элемент <link type="element">tab</link> и добавляет его в конец элемента <link type="element">tabs</link>.
 					</locale>
@@ -55,6 +77,9 @@
 				<arguments>
 					<argument name="nIndex" type="Number" required="true">
 						<description>
+							<locale>
+								Tab position.
+							</locale>
 							<locale xml:lang="ru">
 								Порядковый номер в списке.
 							</locale>
@@ -62,6 +87,9 @@
 					</argument>
 					<argument name="label" type="String" required="true">
 						<description>
+							<locale>
+								Tab label.
+							</locale>
 							<locale xml:lang="ru">
 								Текст для закладки.
 							</locale>
@@ -69,6 +97,9 @@
 					</argument>
 					<argument name="value" type="String" required="false">
 						<description>
+							<locale>
+								Tab value.
+							</locale>
 							<locale xml:lang="ru">
 								Данные, ассоциированные с элементом.
 							</locale>
@@ -76,6 +107,10 @@
 					</argument>
 				</arguments>
 				<description>
+					<locale>
+						This method creates a new item and inserts it at the specified position.
+						You may optionally set a value. The new item element is returned.
+					</locale>
 					<locale xml:lang="ru">
 						Создает новый элемент <link type="element">tab</link> и добавляет его в заданное место внутри элемента <link type="element">tabs</link>.
 					</locale>
@@ -85,6 +120,9 @@
 				<arguments>
 					<argument name="nIndex" type="Number" required="true">
 						<description>
+							<locale>
+								Tab position.
+							</locale>
 							<locale xml:lang="ru">
 								Порядковый номер в списке.
 							</locale>
@@ -92,6 +130,10 @@
 					</argument>
 				</arguments>
 				<description>
+					<locale>
+						Removes the child item in the element at the specified index.
+						The method returns the removed item.
+					</locale>
 					<locale xml:lang="ru">
 						Удаляет дочерний элемент из элемента <link type="element">tabs</link> по порядковому номеру.
 					</locale>
@@ -101,6 +143,9 @@
 		<properties>
 			<property name="selectedIndex" type="Number" readonly="true">
 				<description>
+					<locale>
+						Returns the index of the currently selected item.
+					</locale>
 					<locale xml:lang="ru">
 						Порядковый номер выбранной в настоящее время закладки.
 					</locale>
@@ -108,6 +153,10 @@
 			</property>
 			<property name="selectedItem" type="AMLElement" readonly="true">
 				<description>
+					<locale>
+						Holds the currently selected item.
+						If no item is currently selected, this value will be null.
+					</locale>
 					<locale xml:lang="ru">
 						Ссылка на выбранный в настоящее время элемент <link type="element">tab</link>.
 					</locale>
@@ -115,6 +164,9 @@
 			</property>
 			<property name="items" type="AMLNodeList" readonly="true">
 				<description>
+					<locale>
+						Contains s collection of <link type="element">tab</link> child elements.
+					</locale>
 					<locale xml:lang="ru">
 						Коллекция дочерних элементов <link type="element">tab</link>.
 					</locale>
@@ -124,6 +176,9 @@
 		<events>
 			<event name="select" group="Event" cancelable="false" bubbles="true">
 				<description>
+					<locale>
+						This event is sent to the tabs element when this <link type="element">tab</link> is changed.
+					</locale>
 					<locale xml:lang="ru">
 						Загорается на элементе <link type="element">tabs</link>, когда изменяется выбранный элемент <link type="element">tab</link>.
 					</locale>

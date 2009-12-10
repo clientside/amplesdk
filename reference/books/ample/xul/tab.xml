@@ -3,6 +3,10 @@
 <element extends="xul:XULElement" name="tab" type="regular">
 	<implements />
 	<abstract>
+		<locale>
+			A single tab which should be placed inside a <link type="element">tabs</link> element.
+			The user may click a tab to bring the associated page of the <link type="element">tabbox</link> to the front.
+		</locale>
 		<locale xml:lang="ru">
 			Закладка в элементе <link type="element">tabs</link>.
 			Выбирая этот элемент, происходит отображение ассоциированной страницы <link type="element">tabbox</link>.
@@ -12,8 +16,18 @@
 	<examples />
 	<members>
 		<attributes>
+			<attribute name="disabled" default="" readonly="false">
+				<description>
+					<locale>
+						Indicates whether the element is disabled or not.
+					</locale>
+				</description>
+			</attribute>
 			<attribute name="selected" default="" readonly="false">
 				<description>
+					<locale>
+						This attribute is set to true if the tab is selected by default.
+					</locale>
 					<locale xml:lang="ru">
 						Атрибут, указывающий, что закладка должна быть выбрана по умолчанию.
 					</locale>
@@ -21,6 +35,10 @@
 			</attribute>
 			<attribute name="label" default="" readonly="false">
 				<description>
+					<locale>
+						The label that will appear on the element.
+						If this is left out, no text appears.
+					</locale>
 					<locale xml:lang="ru">
 						Текст для закладки.
 					</locale>
@@ -28,6 +46,10 @@
 			</attribute>
 			<attribute name="image" default="" readonly="false">
 				<description>
+					<locale>
+						The URL of the image to appear on the element.
+						If this attribute is empty or left out, no image appears.
+					</locale>
 					<locale xml:lang="ru">
 						URL пиктограммы для закладки.
 					</locale>
@@ -39,6 +61,9 @@
 		<events>
 			<event name="command" group="Event" cancelable="false" bubbles="true">
 				<description>
+					<locale>
+						This event is fired when the command is activated.
+					</locale>
 					<locale xml:lang="ru">
 						Загорается при навигации на закладку.
 					</locale>

@@ -3,6 +3,10 @@
 <element extends="xul:XULElement" name="wizardpage" type="regular">
 	<implements />
 	<abstract>
+		<locale>
+			This element defines a page in a <link type="element">wizard</link>.
+			The content in the pages should be placed inside the <link type="element">wizardpage</link> element.
+		</locale>
 		<locale xml:lang="ru">
 			Описывает страницу визарда (элемент <link type="element">wizard</link>).
 			Содержимое страницы должно быть помещено внутри элемента <b>wizardpage</b>.
@@ -14,6 +18,9 @@
 		<attributes>
 			<attribute name="label" default="" readonly="false">
 				<description>
+					<locale>
+						The label that will appear on the element. If this is left out, no text appears.
+					</locale>
 					<locale xml:lang="ru">
 						Заголовок, который будет отобращен вверху визрда при отображении этой страницы.
 					</locale>
@@ -21,6 +28,9 @@
 			</attribute>
 			<attribute name="description" default="" readonly="false">
 				<description>
+					<locale>
+						Descriptive text to appear in addition to the dialog title.
+					</locale>
 					<locale xml:lang="ru">
 						Описание, которое отобразится в заголовке визарда при отображении этой страницы.
 					</locale>
@@ -28,18 +38,25 @@
 			</attribute>
 			<attribute name="next" default="" readonly="false">
 				<description>
+					<locale>
+						Set to the <link type="attribute">pageid</link> of the next page after this one.
+					</locale>
 					<locale xml:lang="ru">
-						Указывает на идентификатор страницы, которая дожна быть показана после этой при нажатии пользователем кнопки <b>"next"</b>.
+						Указывает на идентификатор страницы, которая дожна быть показана после этой при нажатии пользователем кнопки <link type="attribute">next</link>.
 						Это позволяет создавать визарды, в которых используются нелинейные переходы между страницами.
-						Если одна из страниц визарда имеет атрибут <b>"next"</b>, все остальный страницы, за исключением последней, так же должны иметь этот атрибут.
+						Если одна из страниц визарда имеет атрибут <link type="attribute">next</link>, все остальный страницы, за исключением последней, так же должны иметь этот атрибут.
 					</locale>
 				</description>
 			</attribute>
 			<attribute name="pageid" default="" readonly="true">
 				<description>
+					<locale>
+						This attribute should be set to a string that identifies the page's identifer in the wizard.
+						This is used with the <link type="attribute">next</link> attribute.
+					</locale>
 					<locale xml:lang="ru">
 						Определяет уникальный идентификатор для страницы визарда.
-						Используется для атрибута <b>"next"</b>.
+						Используется для атрибута <link type="attribute">next</link>.
 						Визард всегда начинается со своей первой дочерней страницы.
 					</locale>
 				</description>
@@ -50,6 +67,10 @@
 		<events>
 			<event name="pageadvanced" group="Event" cancelable="true" bubbles="false">
 				<description>
+					<locale>
+						Called when the user presses the Next button while on the current page.
+						Return true to allow the next page to be displayed and false to disallow moving to the next page.
+					</locale>
 					<locale xml:lang="ru">
 						Загорается непосредственно перед сменой страницы.
 						Если обработчик вернет <b>true</b>, будет отображена следующая страница;
@@ -59,6 +80,11 @@
 			</event>
 			<event name="pagehide" group="Event" cancelable="true" bubbles="false">
 				<description>
+					<locale>
+						Called when the page is hidden, such as when moving to another page.
+						Return true to accept the page change and false to prevent the page from changing.
+						This code is called before the wizard's onwizardnext and related functions.
+					</locale>
 					<locale xml:lang="ru">
 						Загорается непосредственно перед тем, как страница будет спрятана.
 						Если обработчик вернет <b>true</b>, страница будет сменена сохранением всех введенных ранее данных;
@@ -68,6 +94,10 @@
 			</event>
 			<event name="pagerewound" group="Event" cancelable="true" bubbles="false">
 				<description>
+					<locale>
+						Called when the user presses the Back button while on the current page.
+						Return true to allow the previous page to be displayed and false to disallow moving to the previous page.
+					</locale>
 					<locale xml:lang="ru">
 						Загорается непосредственно перед сменой страницы.
 						Если обработчик вернет <b>true</b>, будет отображена предыдущая страница;
@@ -77,6 +107,9 @@
 			</event>
 			<event name="pageshow" group="Event" cancelable="false" bubbles="false">
 				<description>
+					<locale>
+						Called when the page is shown.
+					</locale>
 					<locale xml:lang="ru">
 						Загорается непосредственно перед показом страницы.
 					</locale>

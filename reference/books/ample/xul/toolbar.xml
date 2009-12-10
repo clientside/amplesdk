@@ -3,6 +3,10 @@
 <element extends="xul:XULElement" name="toolbar" type="boxed">
 	<implements />
 	<abstract>
+		<locale>
+			A container which typically contains a row of buttons.
+			It is a type of box that defaults to horizontal orientation.
+		</locale>
 		<locale xml:lang="ru">
 			Панель инструментов.
 			Контейнер, который, как правило, содержит набор кнопок.

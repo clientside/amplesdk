@@ -3,6 +3,9 @@
 <element extends="xul:XULElement" name="columns" type="regular">
 	<implements />
 	<abstract>
+		<locale>
+			Defines the columns of a <link type="element">grid</link>.
+		</locale>
 	</abstract>
 	<remarks />
 	<examples />

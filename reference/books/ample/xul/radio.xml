@@ -3,6 +3,10 @@
 <element extends="xul:XULElement" name="radio" type="regular">
 	<implements />
 	<abstract>
+		<locale>
+			An element that can be turned on and off. Radio buttons are almost always grouped together in groups.
+			Only one <link type="element">radio</link> button within the same <link type="element">radiogroup</link> may be selected at a time.
+		</locale>
 		<locale xml:lang="ru">
 			Элемент, который может быть включенным и выключенным.
 			Практически всегда элементы объединяются в группы.
@@ -15,8 +19,18 @@
 	<examples />
 	<members>
 		<attributes>
+			<attribute name="disabled">
+				<description>
+					<locale>
+						Indicates whether the element is disabled or not.
+					</locale>
+				</description>
+			</attribute>
 			<attribute name="selected" default="" readonly="false">
 				<description>
+					<locale>
+						Indicates whether the element is selected or not.
+					</locale>
 					<locale xml:lang="ru">
 						Если атрибут выставлен в значение <b>true</b>, элемент выбран.
 					</locale>
@@ -24,6 +38,9 @@
 			</attribute>
 			<attribute name="value" default="" readonly="false">
 				<description>
+					<locale>
+						The string attribute allows you to associate a data value with an element.
+					</locale>
 					<locale xml:lang="ru">
 						Данные, ассоциированные с элементом.
 					</locale>
@@ -31,6 +48,9 @@
 			</attribute>
 			<attribute name="label" default="" readonly="false">
 				<description>
+					<locale>
+						The label that will appear on the element. If this is left out, no text appears.
+					</locale>
 					<locale xml:lang="ru">
 						Текст, располагающийся рядом с элементом.
 						Если места для отображения текста не хватает, он будет перенесен.
@@ -43,6 +63,9 @@
 		<properties>
 			<property name="group" type="AMLElement">
 				<description>
+					<locale>
+						Contains a reference to parent <link type="element">radiogroup</link> element.
+					</locale>
 					<locale xml:lang="ru">
 						Ссылка на родительский элемент <link type="element">radiogroup</link>.
 					</locale>

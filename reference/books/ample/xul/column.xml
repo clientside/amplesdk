@@ -3,6 +3,9 @@
 <element extends="xul:XULElement" name="column" type="regular">
 	<implements />
 	<abstract>
+		<locale>
+			A single column in a <link type="element">columns</link> element.
+		</locale>
 	</abstract>
 	<remarks />
 	<examples />

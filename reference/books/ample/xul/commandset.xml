@@ -3,6 +3,9 @@
 <element extends="xul:XULElement" name="commandset" type="virtual">
 	<implements />
 	<abstract>
+		<locale>
+			This element is not displayed and serves as a container for <link type="element">command</link> elements.
+		</locale>
 		<locale xml:lang="ru">
 			Контейнер для элементов <link type="element">command</link>.
 			Элемент <link type="element">commandset</link> и все содержащиеся в нем элементы не отображаются.

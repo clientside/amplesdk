@@ -3,6 +3,10 @@
 <element extends="xul:XULElement" name="broadcasterset" type="virtual">
 	<implements />
 	<abstract>
+		<locale>
+			A container element for <link type="element">broadcaster</link> elements.
+			The broadcasterset and its descendants are not displayed.
+		</locale>
 		<locale xml:lang="ru">
 			Контейнер для элементов <link type="element">broadcaster</link>.
 			Элемент <link type="element">broadcasterset</link> и

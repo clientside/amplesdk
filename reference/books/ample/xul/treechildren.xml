@@ -3,6 +3,11 @@
 <element extends="xul:XULElement" name="treechildren" type="regular">
 	<implements />
 	<abstract>
+		<locale>
+			This element is the body of the <link type="element">tree</link>.
+			For content trees, the content will be placed inside this element.
+			This element is also used to define container rows in the tree.
+		</locale>
 		<locale xml:lang="ru">
 			Контейнер для элементов <link type="element">treeitem</link> дерева.
 		</locale>
@@ -15,6 +20,9 @@
 		<properties>
 			<property name="tree" type="AMLElement" readonly="true">
 				<description>
+					<locale>
+						Reference to a child <link type="element">tree</link> element.
+					</locale>
 					<locale xml:lang="ru">
 						Ссылка на родительский элемент <link type="element">tree</link>.
 					</locale>
@@ -22,6 +30,9 @@
 			</property>
 			<property name="items" type="AMLNodeList" readonly="true">
 				<description>
+					<locale>
+						Collection of <link type="element">treeitem</link> child elements.
+					</locale>
 					<locale xml:lang="ru">
 						Коллекция дочерних элементов <link type="element">treeitem</link>.
 					</locale>

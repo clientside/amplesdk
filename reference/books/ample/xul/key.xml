@@ -3,6 +3,11 @@
 <element extends="xul:XULElement" name="key" type="virtual">
 	<implements />
 	<abstract>
+		<locale>
+			The key element defines a keyboard shortcut.
+			Event handlers can be used to respond when the appropriate keys are pressed.
+			A key element must be placed inside a <link type="element">keyset</link> element.
+		</locale>
 		<locale xml:lang="ru">
 			Элемент <link type="element">key</link> определяет горячие клавиши.
 			Когда активируются горячие клавиши, могут вызываться заранее определенные обработчики событий.
@@ -25,6 +30,9 @@
 			</attribute>
 			<attribute name="keycode" default="" readonly="false">
 				<description>
+					<locale>
+						For keys that do not have displayable characters, such as the Enter key or function keys, use this attribute instead of the key attribute.
+					</locale>
 					<locale xml:lang="ru">
 						Этот атрибут используется вместо атрибута <link type="attribute">key</link> для клавиш, которые не имеют отображения (например, клавиша ввода или функциональные клавиши).
 					</locale>
@@ -32,6 +40,9 @@
 			</attribute>
 			<attribute name="keytext" default="" readonly="false">
 				<description>
+					<locale>
+						A label for the keyboard shortcut.
+					</locale>
 					<locale xml:lang="ru">
 						Текстовая подсказка для горячей клавиши. Этот текст появится рядом с текстом элемента <link type="element">menuitem</link>, если этот элемент ассоциирован с элементом <link type="element">key</link> чрез атрибут <link type="attribute">key</link>.
 					</locale>
@@ -41,6 +52,9 @@
 				<values>
 					<value name="shift">
 						<description>
+							<locale>
+								The Shift key.
+							</locale>
 							<locale xml:lang="ru">
 								Клавиша "SHIFT".
 							</locale>
@@ -48,6 +62,9 @@
 					</value>
 					<value name="alt">
 						<description>
+							<locale>
+								The Alt key.
+							</locale>
 							<locale xml:lang="ru">
 								Клавиша "ALT". На макинтоше это клавиша "OPTION".
 							</locale>
@@ -55,6 +72,9 @@
 					</value>
 					<value name="meta">
 						<description>
+							<locale>
+								The Meta key.
+							</locale>
 							<locale xml:lang="ru">
 								Иета-клавиша. На макинтоше это клавиша "COMMAND".
 							</locale>
@@ -62,6 +82,9 @@
 					</value>
 					<value name="control">
 						<description>
+							<locale>
+								The Control key.
+							</locale>
 							<locale xml:lang="ru">
 								Клавиша "CTRL".
 							</locale>
@@ -77,6 +100,9 @@
 					</value>
 				</values>
 				<description>
+					<locale>
+						A list of modifier keys that should be pressed to invoke the keyboard shortcut.
+					</locale>
 					<locale xml:lang="ru">
 						Список клавиш-модификаторов, которые должны быть нажаты для вызова горячей клавиши.
 						Если необходимо использование нескольких клавиш-модификаторов,
@@ -90,6 +116,9 @@
 		<events>
 			<event name="command" group="Event" cancelable="false" bubbles="true">
 				<description>
+					<locale>
+						This event handler is called when the command is activated.
+					</locale>
 					<locale xml:lang="ru">
 						Это событие загорается, когда элемент активируется.
 						В большинстве случаев доступно несколько способов активации этого элемента.

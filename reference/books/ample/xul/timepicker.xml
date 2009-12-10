@@ -3,28 +3,28 @@
 <element extends="xul:XULElement" name="timepicker">
 	<abstract>
 		<locale>
-
+			The timepicker is used to allow the user to enter a time. It contains three fields to enter the hour, minute and second.
 		</locale>
 	</abstract>
 	<remarks />
 	<examples />
 	<members>
 		<attributes>
-			<attribute name="name">
-				<description>
-					<locale>
-						Name of the parameter to be used when sending with <b>form</b>.
-					</locale>
-				</description>
-			</attribute>
 			<attribute name="value" readonly="false">
 				<description>
 					<locale>
-						Component value.
+						The initial value of the <link type="element">timepicker</link> in either the form HH:MM:SS or HH:MM.
 					</locale>
 					<locale xml:lang="ru">
 						Содержит значение компонента.
 					</locale>
+				</description>
+			</attribute>
+			<attribute name="disabled">
+				<description>
+					<label>
+						Indicates whether the element is disabled or not.
+					</label>
 				</description>
 			</attribute>
 			<attribute name="min" default="0" readonly="false">

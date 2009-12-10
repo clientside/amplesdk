@@ -12,17 +12,17 @@
 	<examples />
 	<members>
 		<attributes>
-			<attribute name="name">
+			<attribute name="disabled">
 				<description>
 					<locale>
-						Name of the parameter to be used when sending with <b>form</b>.
+						Indicates whether the element is disabled or not.
 					</locale>
 				</description>
 			</attribute>
 			<attribute name="value" readonly="false">
 				<description>
 					<locale>
-						Component value.
+						The initial value of the datepicker in the form YYYY-MM-DD.
 					</locale>
 					<locale xml:lang="ru">
 						Содержит значение компонента.

@@ -381,8 +381,8 @@
 					<node title="treebody" url="ample/xul/treebody.xml"/>
 					<node title="treecell" url="ample/xul/treecell.xml"/>
 					<node title="treechildren" url="ample/xul/treechildren.xml"/>
-					<node title="treecol" xurl="ample/xul/treecol.xml"/>
-					<node title="treecols" xurl="ample/xul/treecols.xml"/>
+					<node title="treecol" url="ample/xul/treecol.xml"/>
+					<node title="treecols" url="ample/xul/treecols.xml"/>
 					<node title="treeitem" url="ample/xul/treeitem.xml"/>
 					<node title="treerow" url="ample/xul/treerow.xml"/>
 					<node title="treeseparator" xurl="ample/xul/treeseparator.xml"/>

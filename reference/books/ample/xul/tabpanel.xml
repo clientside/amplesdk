@@ -3,6 +3,10 @@
 <element extends="xul:XULElement" name="tabpanel" type="boxed">
 	<implements />
 	<abstract>
+		<locale>
+			A individual panel in a <link type="element">tabpanels</link> element.
+			This element is optional and you may just use any other container in place of it.
+		</locale>
 		<locale xml:lang="ru">
 			Панель закладок из элемента <link type="element">tabpanels</link>.
 			Этот элемент не является обязательным, вместо него можно использовать любой другой контейнер.

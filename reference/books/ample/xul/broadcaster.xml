@@ -3,6 +3,13 @@
 <element extends="xul:XULElement" name="broadcaster" type="virtual">
 	<implements />
 	<abstract>
+		<locale>
+			A broadcaster is used when you want multiple elements to share one or more attribute values, or when you want elements to respond to a state change.
+			Any elements that are observing the broadcaster will share the attributes placed on the broadcaster.
+			For instance, if the broadcaster has a label attribute, the observers will use that label.
+			If the label changes, the labels of the observers will update automatically.
+			<!-- An onbroadcast event will be sent to the observers when a change is made.-->
+		</locale>
 		<locale xml:lang="ru">
 			Этот элемент используется в случаях, когда необходимо, чтобы несколько элементов
 			имели один или несколько общих значений атрибута, или же когда необходимо,

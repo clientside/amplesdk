@@ -3,6 +3,12 @@
 <element extends="xul:XULElement" name="box" type="boxed">
 	<implements />
 	<abstract>
+		<locale>
+			A container element which can contain any number of child elements.
+			If the box has an <link type="attribute">orient</link> attribute that is set to horizontal, the child elements are laid out from left to right in the order that they appear in the box.
+			If <link type="attribute">orient</link> is set to vertical, the child elements are laid out from top to bottom.
+			Child elements do not overlap. The default orientation is horizontal.
+		</locale>
 		<locale xml:lang="ru">
 			Элемент-контейнер, может содержать любое количество дочерних элементов.
 			При наличии атрибута <link type="attribute">orient</link> в значении <b>horizontal</b>,
