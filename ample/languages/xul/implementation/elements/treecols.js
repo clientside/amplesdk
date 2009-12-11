@@ -54,8 +54,8 @@ cXULElement_treecols.handlers	= {
 				// context menu
 				var oPositionPopup	= oPopup.getBoundingClientRect();
 				//
-				oPopup.moveTo(	oEvent.clientX - oPositionPopup.left/* + oPositionPopup.scrollLeft*/,
-								oEvent.clientY - oPositionPopup.top/* + oPositionPopup.scrollTop*/);
+				oPopup.moveTo(	oEvent.clientX - oPositionPopup.left,
+								oEvent.clientY - oPositionPopup.top);
 
 				// Prevent browser context menu
 				oEvent.preventDefault();
