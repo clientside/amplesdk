@@ -1,7 +1,6 @@
 xul|tooltip-pane {
-	border:	solid 1px black;
+	border:	solid 1px ThreeDShadow;
 	background-color:	InfoBackground;
 	color: InfoText;
-	/*filter: blendTrans(duration=.1) progid:DXImageTransform.Microsoft.dropShadow(Color=AAAAAA,offX=2,offY=2,positive=true);*/
 	padding:2px;
 }

@@ -6,6 +6,26 @@ xul|menupopup {
 	z-index:	100;
 }
 
+xul|menupopup::shadow-right {
+	top:	3px;
+	right:	-3px;
+	width:	2px;
+	height:	100%;
+}
+
+xul|menupopup::shadow-bottom {
+	left:	3px;
+	bottom:	-3px;
+	width:	100%;
+	height:	2px;
+}
+
+xul|menupopup::shadow-right,
+xul|menupopup::shadow-bottom {
+	font-size: 3px;	/* IE fix */
+	background-color:ThreeDShadow;
+}
+
 xul|menuitem {
     color: black;
 }
@@ -84,7 +104,7 @@ xul|menuseparator {
 	height:	1px;
 	line-height:	1px;
 }
-
+/* */
 xul|menu::gateway xul|menupopup {
 	margin-left: 0;
 	margin-top:	0;

@@ -180,7 +180,10 @@ cXULElement_colorpicker_pane.handlers	= {
 // Render
 cXULElement_colorpicker_pane.prototype.$getTagOpen	= function()
 {
-	return '<table cellpadding="0" cellspacing="0" border="0" class="xul-colorpicker-pane xul-popup">\
+	return '<div class="xul-colorpicker-pane xul-menupopup' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '') + '">\
+				<div class="xul-menupopup--shadow-right" style="position:absolute;"></div>\
+				<div class="xul-menupopup--shadow-bottom" style="position:absolute;"></div>\
+				<table cellpadding="0" cellspacing="0" border="0">\
 				<tbody>\
 					<tr>\
 						<td valign="top">\
@@ -212,7 +215,8 @@ cXULElement_colorpicker_pane.prototype.$getTagOpen	= function()
 						</td>\
 					</tr>\
 				</tbody>\
-			</table>';
+			</table>\
+		</div>';
 };
 
 cXULElement_colorpicker_pane.prototype.$getTagClose	= function()

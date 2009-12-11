@@ -97,6 +97,19 @@ cXULPopupElement.prototype.showPopup	= function(oElement, nLeft, nTop, nType, oA
             this.ownerDocument.$getContainer("popup").style.display	= "block";
     }
 */
+    if (navigator.userAgent.match(/MSIE ([\d\.]+)/)) {
+    	if (RegExp.$1 < 7) {
+    		var oPosition2	= this.getBoundingClientRect();
+    		this.$getContainer("shadow-right").style.height	= (oPosition2.bottom - oPosition2.top - 3)+ "px";
+    		this.$getContainer("shadow-bottom").style.width	= (oPosition2.right - oPosition2.left - 3)+ "px";
+    	}
+    }
+    else {
+	    // Play effect
+		this.$getContainer().style.opacity	= "0";
+		this.$play("opacity:1", 100, 1);
+    }
+
 	this.setAttribute("hidden", "false");
 
     // fire event

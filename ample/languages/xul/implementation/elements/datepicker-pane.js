@@ -299,7 +299,10 @@ cXULElement_datepicker_pane.$getTagDays	= function(oInstance, oDate) {
 
 // component renderers
 cXULElement_datepicker_pane.prototype.$getTagOpen	= function() {
-	var sHtml = '<table class="xul-popup xul-datepicker-pane' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '') + '" cellpadding="0" cellspacing="0" border="0">\
+	var sHtml = '<div class="xul-datepicker-pane xul-menupopup' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '') + '">\
+				<div class="xul-menupopup--shadow-right" style="position:absolute;"></div>\
+				<div class="xul-menupopup--shadow-bottom" style="position:absolute;"></div>\
+				<table cellpadding="0" cellspacing="0" border="0">\
 				<thead>\
 					<tr>\
 						<td><div class="xul-datepicker-pane--month-previous">&lt;</div></td>\
@@ -329,7 +332,9 @@ cXULElement_datepicker_pane.prototype.$getTagOpen	= function() {
 						<td colspan="4" class="xul-datepicker-pane--days-pane"></td>\
 					</tr>\
 				</tbody>\
-			</table>';
+			</table>\
+			</div>';
+
 	return sHtml;
 };
 

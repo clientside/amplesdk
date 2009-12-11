@@ -8,7 +8,7 @@ xul|spinbuttons {
 	margin: 1px;
 	line-height: 17px;
 	border: 1px solid #7F9DB9;
-	background-color: Window;/*white*/;
+	background-color: Window;
 	display: inline-block;
 }
 
@@ -237,9 +237,6 @@ xul|datepicker xul|datepicker-pane,
 xul|colorpicker xul|colorpicker-pane {
 	position:	absolute;
 	display:	block;
-    padding: 2px;
-    background-color: Window;
-	border:	solid 1px ThreeDShadow;
 }
 
 xul|colorpicker::gateway,
