@@ -1,6 +1,6 @@
 xul|menupopup {
     cursor:	default !important;
-    background-color: Window;
+    background-color: Menu;
 	border:	solid 1px ThreeDShadow;
     padding:	2px;
 	z-index:	100;
