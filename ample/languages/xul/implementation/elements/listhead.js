@@ -60,10 +60,10 @@ cXULElement_listhead.handlers	= {
 
 			if (oEvent.button == 2) {
 				// context menu
-				var oPositionPopup	= this.ownerDocument.getElementPosition(oPopup);
+				var oPositionPopup	= oPopup.getBoundingClientRect();
 				//
-				oPopup.moveTo(	oEvent.clientX - oPositionPopup.left + oPositionPopup.scrollLeft,
-								oEvent.clientY - oPositionPopup.top + oPositionPopup.scrollTop);
+				oPopup.moveTo(	oEvent.clientX - oPositionPopup.left/* + oPositionPopup.scrollLeft*/,
+								oEvent.clientY - oPositionPopup.top/* + oPositionPopup.scrollTop*/);
 
 				// Prevent browser context menu
 				oEvent.preventDefault();
