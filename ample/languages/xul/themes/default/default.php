@@ -6,8 +6,7 @@
     $aFiles[]	= "menu.css";
     $aFiles[]	= "tabbox.css";
     $aFiles[]	= "toolbox.css";
-    $aFiles[]	= "listbox.css";
-    $aFiles[]	= "tree.css";
+    $aFiles[]	= "treelist.css";
     $aFiles[]	= "windowed.css";
     //
     $aFiles[]	= "datepicker-pane.css";

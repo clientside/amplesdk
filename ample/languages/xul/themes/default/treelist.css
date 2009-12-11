@@ -1,42 +1,45 @@
+xul|listbox,
 xul|tree {
 	cursor: default !important;
 	border: 1px solid #7F9DB9;
 	background-color: white;
 }
 
+xul|listhead,
 xul|treecols {
 	line-height: 18px;
 }
 
+xul|listhead::settings,
 xul|treecols::settings {
 	width:	18px;
 	height:	18px;
-	background-image: url(media/treecols_settings.gif);
-	background-position: 2px 0;
+	background: url(media/listhead_settings.gif) 2px 0;
 }
 
+xul|listheader,
 xul|treecol {
 	font-weight: normal;
-	background-image: url(media/treecol.gif);
-	background-repeat: repeat-x;
-	background-position: 0px -2px;
+	background: url(media/listheader.gif) repeat-x 0px -2px;
 }
 
+xul|listheader:hover,
 xul|treecol:hover {
 	background-position: 0px -22px;
 }
 
+xul|listheader:active,
 xul|treecol:active {
 	background-position: 0px -40px;
 }
 
+xul|listheader::label,
 xul|treecol::label {
-	padding: 0px;
-	background-image: url(media/treecol_splitter.gif);
-	background-repeat: no-repeat;
-	background-position: left center;
+	background: url(media/listheader_splitter.gif) no-repeat left center;
 }
 
+xul|listheader::command,
+xul|listitem::command,
 xul|treecol::command,
 xul|treeitem::command {
 	width:	16px;
@@ -47,30 +50,34 @@ xul|treeitem::command {
 	margin-left: 2px;
 }
 
+xul|listitem,
 xul|treerow {
 	line-height:	18px;
 }
 
+xul|listitem:hover,
 xul|treerow:hover {
 	background-color: #cce1ff;
 }
 
+xul|listitem:selected,
 xul|treeitem:selected {
 	background-color: gray;
 	color: white;
 }
 
+xul|listbox:focus xul|listitem:selected,
 xul|tree:focus xul|treeitem:selected {
 	background-color: #316AC5;
 }
 
+xul|listcell,
 xul|treecell {
-	padding-right:	2px;
-	padding-left:	2px;
 	white-space:	nowrap;
 	vertical-align: middle;
 }
 
+xul|listcell::command,
 xul|treecell::command {
 	width:	16px;
 	height:	16px;
@@ -79,37 +86,24 @@ xul|treecell::command {
 	vertical-align: middle;
 }
 
-xul|treecell INPUT {
-	width:	14px;
-	height:	14px;
-	margin:	0px;
-	padding:0px;
-}
-
-xul|treecell-toc {
-	background-image:	url(media/treecell_toc.gif);
-	background-repeat:	no-repeat;
-	background-position:-72px center;
+/* Tree-specific */
+xul|treecell::toc,
+xul|treecell-line {
 	float: left;
 	width: 18px;
 	height: 18px;
 }
 
-xul|treecell-toc-opened {
+xul|treecell::toc {
+	background:	url(media/treecell_toc.gif) no-repeat 0px center;
+}
+
+xul|treecell::toc:open {
 	background-position:-24px center;
 }
 
-xul|treecell-toc-closed {
-	background-position:0px center;
-}
-
 xul|treecell-line {
-	background-image:	url(media/treecell_line.gif);
-	background-repeat:	no-repeat;
-	background-position:-72px center;
-	float: left;
-	width: 18px;
-	height: 18px;
+	background:	url(media/treecell_line.gif) no-repeat -72px center;
 }
 
 xul|treecell-line-regular {

@@ -38,8 +38,8 @@ cXULElement_treeitem.prototype.setAttribute	= function(sName, sValue)
                 var nIndex  = this.parentNode.tree.head._getPrimaryColIndex();
                 if (nIndex !=-1 && this.row.cells[nIndex])
                 {
-                	var oElementDOM	= this.row.cells[nIndex].$getContainer().childNodes[nDepth];
-                    oElementDOM.className	= oElementDOM.className.replace(sValue == "true" ? "closed" : "opened", sValue == "true" ? "opened" : "closed");
+                	// Apply pseudo-class
+                	this.row.cells[nIndex].$setPseudoClass("open", sValue == "true", "toc");
 
 					// force setting attribute before event is dispatched
 					this.AMLElement.setAttribute.call(this, sName, sValue);

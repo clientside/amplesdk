@@ -98,7 +98,7 @@ cXULElement_treechildren.prototype._refresh	= function(aStack, nPrimaryCol)
 	            this._refresh(aStack.concat(oItem.children), nPrimaryCol);
 
             // Add toc +/-
-            oElementDOM.childNodes[nDepth - 1].className = "xul-treecell-toc xul-treecell-toc-" +(oChildren.items[nItem].attributes["open"] == "true" ? "opened" : "closed");
+            oElementDOM.childNodes[nDepth - 1].className = "xul-treecell--toc" +(oChildren.items[nItem].attributes["open"] == "true" ? " xul-treecell--toc_open" : "");
         }
     }
 };
