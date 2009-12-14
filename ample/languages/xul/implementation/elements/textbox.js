@@ -20,19 +20,19 @@ cXULElement_textbox.prototype.setAttribute   = function(sName, sValue)
 {
     if (sName == "value")
     {
-        this.$getContainer().value    = sValue;
+        this.$getContainer("input").value    = sValue;
     }
     else
     if (sName == "disabled")
     {
     	this.$setPseudoClass("disabled", sValue == "true");
-        this.$getContainer().disabled = sValue == "true";
+        this.$getContainer("input").disabled = sValue == "true";
     }
     else
     if (sName == "readonly")
     {
     	//
-        this.$getContainer().readOnly	=(sValue == "true");
+        this.$getContainer("input").readOnly	=(sValue == "true");
     }
     else
     if (sName == "type")
@@ -55,13 +55,13 @@ cXULElement_textbox.prototype.setAttribute   = function(sName, sValue)
     if (sName == "rows")
     {
         if (this.attributes["multiline"] == "true")
-            this.$getContainer().rows = sValue;
+            this.$getContainer("input").rows = sValue;
     }
     else
     if (sName == "cols")
     {
         if (this.attributes["multiline"] == "true")
-            this.$getContainer().cols = sValue;
+            this.$getContainer("input").cols = sValue;
     }
     else
     {
@@ -74,13 +74,13 @@ cXULElement_textbox.prototype.setAttribute   = function(sName, sValue)
 // Class Events Handlers
 cXULElement_textbox.handlers	= {
 	"focus":	function(oEvent) {
-		this.$getContainer().focus();
+		this.$getContainer("input").focus();
 	},
 	"blur":		function(oEvent) {
-		this.$getContainer().blur();
+		this.$getContainer("input").blur();
 	},
 	"keyup":	function(oEvent) {
-    	this.attributes["value"]	= this.$getContainer().value;
+    	this.attributes["value"]	= this.$getContainer("input").value;
 	}
 };
 
@@ -95,38 +95,23 @@ cXULElement_textbox.prototype._onChange  = function(oEvent)
 // Element Render: open
 cXULElement_textbox.prototype.$getTagOpen	= function(oElement)
 {
-    var sHtml   = '<';
-    if (this.attributes["multiline"] == "true")
-    {
-        sHtml  += "textarea";
-        if (this.attributes["rows"])
-            sHtml  += ' rows="' + this.attributes["rows"] + '"';
-        if (this.attributes["cols"])
-            sHtml  += ' cols="' + this.attributes["cols"] + '"';
-    }
-    else
-    if (this.attributes["type"] == "password")
-        sHtml  += 'input type="password"';
-    else
-        sHtml  += 'input type="text"';
-    if (this.attributes["disabled"] == "true")
-        sHtml  += ' disabled="true"';
-    if (this.attributes["readonly"] == "true")
-        sHtml  += ' readonly="true"';
-    sHtml  += ' name="' + this.attributes["name"] + '" autocomplete="off" class="xul-textbox' +(this.attributes["disabled"] == "true" ? " xul-textbox_disabled" : '')+ '"';
-    sHtml  += ' onblur="ample.$instance(this)._onChange(event)" onselectstart="event.cancelBubble=true;"';
-    sHtml  += ' style="';
-    if (this.attributes["height"])
-        sHtml  += 'height:' + this.attributes["height"] + ';';
-    if (this.attributes["width"] || this.attributes["flex"])
-        sHtml  += 'width:' + (this.attributes["width"] || "100%") + ';';
-    sHtml  += '"';
-    if (this.attributes["multiline"] == "true")
-        sHtml  += '>' + this.attributes["value"] + '</textarea>';
-    else
-        sHtml  += ' value="' + this.attributes["value"] + '" />';
-
-    return sHtml;
+	var bMultiline	= this.attributes["multiline"] == "true";
+    return	'<div class="xul-textbox' + (bMultiline ? ' xul-textbox-multiline-true' : '') + (this.attributes["disabled"] == "true" ? " xul-textbox_disabled" : '')+ '" style="'+
+    				(this.attributes["height"] ? 'height:' + this.attributes["height"] + ';' : '')+
+    				(this.attributes["width"] ? 'width:' + this.attributes["width"] + ';' : '')+ '">'+
+    				'<' +(bMultiline
+						?("textarea" + (this.attributes["rows"] ? ' rows="' + this.attributes["rows"] + '"' : '')+(this.attributes["cols"] ? ' cols="' + this.attributes["cols"] + '"' : ''))
+						: this.attributes["type"] == "password"
+							? 'input type="password"'
+							: 'input type="text"')+
+    					' class="xul-textbox--input" name="' + this.attributes["name"] + '" autocomplete="off" style="width:100%;' + (bMultiline ? 'height:100%;' : '') + 'margin:0;border:0px solid white;"'+
+    					' onblur="ample.$instance(this)._onChange(event)" onselectstart="event.cancelBubble=true;"'+
+    					(this.attributes["disabled"] == "true" ? ' disabled="true"' : '')+
+    					(this.attributes["readonly"] == "true" ? ' readonly="true"' : '')+
+    					(bMultiline
+    						? '>' + this.attributes["value"] + '</textarea>'
+    						: ' value="' + this.attributes["value"] + '" />')+
+    				'</div>';
 };
 
 // Register Element with language

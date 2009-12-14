@@ -14,7 +14,6 @@ xul|spinbuttons {
 
 xul|textbox,
 xul|editor {
-	padding-left:1px;
 	width:	200px;
 	outline: none; /* removes browser native outline when focused */
 }
@@ -27,7 +26,7 @@ xul|menulist:focus,
 xul|datepicker:focus,
 xul|timepicker:focus,
 xul|spinbuttons:focus {
-	border-color: gray;
+	border-color: silver;
 }
 
 xul|textbox:disabled,
@@ -51,7 +50,7 @@ xul|radio:disabled {
 	color: GrayText;/*#aca899;*/
 }
 
-
+xul|textbox::input,
 xul|colorpicker::input,
 xul|menulist::input,
 xul|datepicker::input,
@@ -61,8 +60,11 @@ xul|spinbuttons::input {
 	vertical-align:	top;
 	height:	17px;
 	padding:0;
-	padding-left:1px;
 	outline: none; /* removes browser native outline when focused */
+}
+
+xul|textbox[multiline=true] {
+	height:	60px;
 }
 
 xul|colorpicker::button,
