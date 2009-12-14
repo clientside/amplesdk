@@ -21,6 +21,7 @@ xul|datepicker-pane::month-next {
 xul|datepicker-pane::years-pane {
 	height:	17px;
 	line-height:17px;
+	padding-left: 1px;
 	width:	60px;
 	border: 1px solid #b4cbea;
 }
