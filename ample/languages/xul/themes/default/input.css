@@ -60,6 +60,7 @@ xul|spinbuttons::input {
 	vertical-align:	top;
 	height:	17px;
 	padding:0;
+	padding-left: 1px;
 	outline: none; /* removes browser native outline when focused */
 }
 
