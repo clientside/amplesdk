@@ -25,6 +25,9 @@
     $aFiles[]		= "implementation/elements/radar.js";
     $aFiles[]		= "implementation/elements/radarItem.js";
     $aFiles[]		= "implementation/elements/radarGroup.js";
+    $aFiles[]		= "implementation/elements/stream.js";
+    $aFiles[]		= "implementation/elements/streamItem.js";
+    $aFiles[]		= "implementation/elements/streamGroup.js";
 
     $sOutput	= "";
     for ($nIndex = 0; $nIndex < count($aFiles); $nIndex++)
