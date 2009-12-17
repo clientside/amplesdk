@@ -403,18 +403,18 @@
 			<arg value="--strip-Source" />
 		</exec>
 
-		<echo message="Merging into: ${temp.languages.dir}/xul-raw.css" level="info"/>
-		<concat destfile="${temp.languages.dir}/xul-raw.css" fixlastline="yes">
+		<echo message="Merging into: ${temp.languages.dir}/xul.css" level="info"/>
+		<concat destfile="${temp.languages.dir}/xul.css" fixlastline="yes">
 			<fileset dir="${source.xul.dir}/themes/default/">
 				<include name="*.css"/>
 			</fileset>
 		</concat>
 
-		<echo message="Wrapping into: ${temp.languages.dir}/xul.css" level="info"/>
+		<echo message="Wrapping into: ${temp.languages.dir}/xul-pre.css" level="info"/>
 		<exec executable="${executable.php}" failonerror="true">
 			<arg value="resources/compiler/css.php" />
-			<arg value="${temp.languages.dir}/xul-raw.css" />
 			<arg value="${temp.languages.dir}/xul.css" />
+			<arg value="${temp.languages.dir}/xul-pre.css" />
 			<arg value="--obfuscate" />
 		</exec>
 
@@ -428,6 +428,7 @@
 		<mkdir dir="${target.xul.dir}/themes/default/" />
 		<copy todir="${target.xul.dir}/themes/default/">
 			<fileset file="${temp.languages.dir}/xul.css" />
+			<fileset file="${temp.languages.dir}/xul-pre.css" />
 			<fileset dir="${source.xul.dir}/themes/default/">
 				<include name="media/**"/>
 			</fileset>
