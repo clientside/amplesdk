@@ -158,7 +158,7 @@
 				cAMLTimeEvent.js"/-->
 
 			<!-- XML Schema 1.1 (core) -->
-			<!-- Temporary disabled
+			<!-- Temporary disabled -->
 			<filelist dir="${source.runtime.dir}/processors/xmlschema11/classes/" files="
 				cAMLXSConstants.js,
 				cAMLXSException.js,
@@ -171,9 +171,8 @@
 				cAMLXSTypeDefinition.js"/>
 			<filelist dir="${source.runtime.dir}/processors/xmlschema11/" files="
 				xmlschema11.js"/>
-			-->
+
 			<!-- XML Schema 1.1 (datatypes) -->
-			<!-- Temporary disabled
 			<filelist dir="${source.runtime.dir}/processors/xmlschema11/classes/datatypes/" files="
 				cAMLXSSimpleTypeDefinition.js,
 				cAMLXSMultiValueFacet.js,
@@ -182,9 +181,9 @@
 				xmlschema11-datatypes.js"/>
 			<filelist dir="${source.runtime.dir}/processors/xmlschema11/builtin/" files="
 				xmlschema11-builtin.js"/>
-			-->
+
 			<!-- XML Schema 1.1 (structure) -->
-			<!--filelist dir="${source.runtime.dir}/processors/xmlschema11/" files="
+			<filelist dir="${source.runtime.dir}/processors/xmlschema11/" files="
 				xmlschema11-structures.js"/>
 			<filelist dir="${source.runtime.dir}/processors/xmlschema11-instance/" files="
 				xmlschema11-instance.js"/>
@@ -200,7 +199,7 @@
 				cAMLXSModelGroupDefinition.js,
 				cAMLXSNotationDeclaration.js,
 				cAMLXSParticle.js,
-				cAMLXSWildcard.js"/-->
+				cAMLXSWildcard.js"/>
 
 			<!-- UI Managers -->
 			<filelist dir="${source.runtime.dir}/managers/" files="
