@@ -7,10 +7,10 @@
  *
  */
 
-var cChartElement_pieGroup	= function(){};
-cChartElement_pieGroup.prototype	= new cChartElement;
+var cChartElement_doughnutGroup	= function(){};
+cChartElement_doughnutGroup.prototype	= new cChartElement;
 
-cChartElement_pieGroup.prototype.refresh	= function() {
+cChartElement_doughnutGroup.prototype.refresh	= function() {
 	var bDoughnut	= this.parentNode.getAttribute("doughnut") == "true";
 
 	// Calculate accumulated value
@@ -22,7 +22,7 @@ cChartElement_pieGroup.prototype.refresh	= function() {
 		nGroups	= this.parentNode.childNodes.length,
 		nSumUp	= 0;
 	for (var nIndex = 0, oElement; oElement = this.childNodes[nIndex]; nIndex++) {
-		// Pie origin
+		// doughnut origin
 		var cX	= 150,
 			cY	= 150,
 			nWidth	= 100 /(nGroups +(bDoughnut ? 0.5 : 0)),
@@ -57,7 +57,7 @@ cChartElement_pieGroup.prototype.refresh	= function() {
 	}
 };
 
-cChartElement_pieGroup.handlers	= {
+cChartElement_doughnutGroup.handlers	= {
 	'mouseenter':	function(oEvent) {
 		this.$getContainer().setAttribute("stroke-width", "2");
 	},
@@ -73,13 +73,13 @@ cChartElement_pieGroup.handlers	= {
 	}
 };
 
-cChartElement_pieGroup.prototype.$getTagOpen	= function() {
-	return '<svg:g fill="' + this.getAttribute("fill")+ '" stroke-width="1" stroke="white" stroke-linejoin="round" class="c-pieGroup' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="opacity:0;' + this.getAttribute("style") + '" xmlns:svg="http://www.w3.org/2000/svg">';
+cChartElement_doughnutGroup.prototype.$getTagOpen	= function() {
+	return '<svg:g fill="' + this.getAttribute("fill")+ '" stroke-width="1" stroke="white" stroke-linejoin="round" class="c-doughnutGroup' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="opacity:0;' + this.getAttribute("style") + '" xmlns:svg="http://www.w3.org/2000/svg">';
 };
 
-cChartElement_pieGroup.prototype.$getTagClose	= function() {
+cChartElement_doughnutGroup.prototype.$getTagClose	= function() {
 	return '</svg:g>';
 };
 
 // Register Element with language
-oChartNamespace.setElement("pieGroup", cChartElement_pieGroup);
+oChartNamespace.setElement("doughnutGroup", cChartElement_doughnutGroup);
