@@ -10,9 +10,6 @@
     $aFiles[]		= "implementation/elements/bubble.js";
     $aFiles[]		= "implementation/elements/bubbleItem.js";
     $aFiles[]		= "implementation/elements/bubbleGroup.js";
-    $aFiles[]		= "implementation/elements/doughnut.js";
-    $aFiles[]		= "implementation/elements/doughnutItem.js";
-    $aFiles[]		= "implementation/elements/doughnutGroup.js";
     $aFiles[]		= "implementation/elements/funnel.js";
     $aFiles[]		= "implementation/elements/funnelItem.js";
     $aFiles[]		= "implementation/elements/line.js";
@@ -21,6 +18,7 @@
     $aFiles[]		= "implementation/elements/map.js";
     $aFiles[]		= "implementation/elements/mapItem.js";
     $aFiles[]		= "implementation/elements/pie.js";
+    $aFiles[]		= "implementation/elements/pieGroup.js";
     $aFiles[]		= "implementation/elements/pieItem.js";
     $aFiles[]		= "implementation/elements/radar.js";
     $aFiles[]		= "implementation/elements/radarItem.js";
