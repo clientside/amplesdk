@@ -630,18 +630,18 @@ cAMLElement.prototype.$getContainer	= function(sName)
 	var oNode	= document.getElementById(this.attributes.id || this.uniqueID);
 	if (sName && oNode) {
 		var rClass	= new cRegExp('--' + sName + '(\\s|$)');
-		return (function (oContext, oNode) {
+		return (function (oNode) {
 			for (var nIndex = 0, aNodes = oNode.childNodes, oElement, sClass; oNode = aNodes[nIndex]; nIndex++)
-				if (oNode.nodeType == 1 && !oNode.id) {
+				if (oNode.nodeType == 1) {
 					// If pseudo-element
-					if ((sClass = oNode.className) && sClass.match(rClass))
+					if ((sClass = (bTrident ? oNode.className : oNode.getAttribute("class"))) && sClass.match(rClass))
 						return oNode;
 					// Check children
-					if (oElement = arguments.callee(oContext, oNode))
+					if (!oNode.id &&(oElement = arguments.callee(oNode)))
 						return oElement;
 				}
 			return null;
-		})(this, oNode);
+		})(oNode);
 	}
 	return oNode;
 };
