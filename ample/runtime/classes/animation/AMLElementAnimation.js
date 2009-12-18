@@ -10,6 +10,8 @@
 var nAMLElementAnimation_EFFECT_LINEAR		= 1,	// Constants
 	nAMLElementAnimation_EFFECT_ACCELERATE	= 2,
 	nAMLElementAnimation_EFFECT_DECELERATE	= 3,
+	nAMLElementAnimation_EFFECT_SPRING		= 4,
+	nAMLElementAnimation_EFFECT_BOUNCE		= 5,
 
 	aAMLElementAnimation_effects	= [];				// Variables
 
@@ -169,6 +171,14 @@ function fAMLElementAnimation_process(nEffect)
 					nRatio	= cMath.pow(nRatioRaw, 1/2);
 					break;
 
+				case nAMLElementAnimation_EFFECT_SPRING:
+					nRatio	= nRatioRaw;
+					break;
+
+				case nAMLElementAnimation_EFFECT_BOUNCE:
+					nRatio	= nRatioRaw;
+					break;
+
 				default:
 					nRatio	= nRatioRaw;
 			}
@@ -229,6 +239,8 @@ function fAMLElementAnimation_toHex(nValue)
 cAMLElement.EFFECT_LINEAR		= nAMLElementAnimation_EFFECT_LINEAR;
 cAMLElement.EFFECT_ACCELERATE	= nAMLElementAnimation_EFFECT_ACCELERATE;
 cAMLElement.EFFECT_DECELERATE	= nAMLElementAnimation_EFFECT_DECELERATE;
+cAMLElement.EFFECT_SPRING		= nAMLElementAnimation_EFFECT_SPRING;
+cAMLElement.EFFECT_BOUNCE		= nAMLElementAnimation_EFFECT_BOUNCE;
 
 cAMLElement.prototype.$play	= function(sParams, nDuration, vType, fHandler, sPseudo)
 {
