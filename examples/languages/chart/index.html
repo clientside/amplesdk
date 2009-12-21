@@ -229,17 +229,23 @@
 			Options: no
 		</p>
 		<c:radar label="Radar chart">
-			<c:radarGroup label="Set 0">
+			<c:radarGroup label="Set 0" style="stroke:red">
 				<c:radarItem label="point 0" value="10" />
 				<c:radarItem label="point 1" value="20" />
 				<c:radarItem label="point 2" value="15" />
 				<c:radarItem label="point 3" value="30" />
 			</c:radarGroup>
-			<c:radarGroup label="Set 1">
+			<c:radarGroup label="Set 1" style="stroke:blue">
 				<c:radarItem label="point 0" value="20" />
 				<c:radarItem label="point 1" value="10" />
 				<c:radarItem label="point 2" value="25" />
 				<c:radarItem label="point 3" value="40" />
+			</c:radarGroup>
+			<c:radarGroup label="Set 2">
+				<c:radarItem label="point 0" value="5" />
+				<c:radarItem label="point 1" value="15" />
+				<c:radarItem label="point 2" value="10" />
+				<c:radarItem label="point 3" value="20" />
 			</c:radarGroup>
 		</c:radar>
 
@@ -365,10 +371,10 @@
 			Options: no
 		</p>
 		<c:funnel label="Funnel chart">
-			<c:funnelItem label="point 0" value="40" />
-			<c:funnelItem label="point 1" value="10" />
-			<c:funnelItem label="point 2" value="20" />
-			<c:funnelItem label="point 3" value="30" />
+			<c:funnelItem label="point 0" value="40" style="fill:red"/>
+			<c:funnelItem label="point 1" value="30" style="fill:green" />
+			<c:funnelItem label="point 2" value="20" style="fill:blue" />
+			<c:funnelItem label="point 3" value="10" />
 		</c:funnel>
 
 		<h3>Pie chart</h3>

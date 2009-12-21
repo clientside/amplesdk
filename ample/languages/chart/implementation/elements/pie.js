@@ -68,7 +68,7 @@ cChartElement_pie.prototype.refresh	= function() {
 
 cChartElement_pie.prototype.$getTagOpen	= function() {
 	return '<svg:svg class="c-pie' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" viewBox="0 0 300 300" width="300px" height="300px" style="' + this.getAttribute("style") + '" xmlns:svg="http://www.w3.org/2000/svg">\
-				<svg:text class="c-bar--label" y="30" x="150">' + this.getAttribute("label")+ '</svg:text>\
+				<svg:text class="c-doughnut--label" y="30" x="150">' + this.getAttribute("label")+ '</svg:text>\
 				<svg:g class="c-pie--gateway">';
 };
 
