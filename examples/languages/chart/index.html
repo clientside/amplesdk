@@ -230,16 +230,16 @@
 		</p>
 		<c:radar label="Radar chart">
 			<c:radarGroup label="Set 0">
-				<c:radarItem label="point 0" value="0,10" />
-				<c:radarItem label="point 1" value="10,20" />
-				<c:radarItem label="point 2" value="20,15" />
-				<c:radarItem label="point 3" value="30,30" />
+				<c:radarItem label="point 0" value="10" />
+				<c:radarItem label="point 1" value="20" />
+				<c:radarItem label="point 2" value="15" />
+				<c:radarItem label="point 3" value="30" />
 			</c:radarGroup>
 			<c:radarGroup label="Set 1">
-				<c:radarItem label="point 0" value="0,20" />
-				<c:radarItem label="point 1" value="10,10" />
-				<c:radarItem label="point 2" value="20,25" />
-				<c:radarItem label="point 3" value="30,40" />
+				<c:radarItem label="point 0" value="20" />
+				<c:radarItem label="point 1" value="10" />
+				<c:radarItem label="point 2" value="25" />
+				<c:radarItem label="point 3" value="40" />
 			</c:radarGroup>
 		</c:radar>
 
@@ -371,15 +371,26 @@
 			<c:funnelItem label="point 3" value="30" />
 		</c:funnel>
 
+		<h3>Pie chart</h3>
+		<p>
+			Options: no
+		</p>
+		<c:pie label="Pie chart">
+			<c:pieItem label="point 0" value="40" style="fill:red"/>
+			<c:pieItem label="point 1" value="10" style="fill:green"/>
+			<c:pieItem label="point 2" value="20" style="fill:blue"/>
+			<c:pieItem label="point 3" value="30" />
+		</c:pie>
+
 		<h3>Map chart</h3>
 		<p>
 			Options: Map
 		</p>
 		<c:map label="World map" type="world">
-			<c:mapItem label="ponit 0" value="europe,100"/>
-			<c:mapItem label="ponit 0" value="africa,10"/>
-			<c:mapItem label="ponit 0" value="north_america,20"/>
-			<c:mapItem label="ponit 0" value="south_america,50"/>
+			<c:mapItem label="ponit 0" value="us,100"/>
+			<c:mapItem label="ponit 0" value="ru,10"/>
+			<c:mapItem label="ponit 0" value="fi,20"/>
+			<c:mapItem label="ponit 0" value="se,50"/>
 		</c:map>
 
 		<script>ample.close()</script>

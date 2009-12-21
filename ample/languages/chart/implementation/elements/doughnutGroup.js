@@ -21,12 +21,14 @@ cChartElement_doughnutGroup.prototype.refresh	= function() {
 	var nGroup	= this.parentNode.childNodes.$indexOf(this),
 		nGroups	= this.parentNode.childNodes.length,
 		nSumUp	= 0;
+
+	var cX	= 150,
+		cY	= 150,
+		nWidth	= 100 /(nGroups +(bDoughnut ? 0.5 : 0));
+
 	for (var nIndex = 0, oElement; oElement = this.childNodes[nIndex]; nIndex++) {
 		// doughnut origin
-		var cX	= 150,
-			cY	= 150,
-			nWidth	= 100 /(nGroups +(bDoughnut ? 0.5 : 0)),
-			nInnerR	=(nGroup +(bDoughnut ? 0.5 : 1))* nWidth,
+		var	nInnerR	=(nGroup +(bDoughnut ? 0.5 : 1))* nWidth,
 			nOuterR	= nInnerR + nWidth,
 			nAngleFrom	= Math.PI / 2 + 2 * Math.PI * nSumUp / nSumAll,
 			nAngleTo	= Math.PI / 2 + 2 * Math.PI *(nSumUp + oElement.getAttribute("value") * 1) / nSumAll;

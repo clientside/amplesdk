@@ -20,6 +20,8 @@
     $aFiles[]		= "implementation/elements/doughnut.js";
     $aFiles[]		= "implementation/elements/doughnutGroup.js";
     $aFiles[]		= "implementation/elements/doughnutItem.js";
+    $aFiles[]		= "implementation/elements/pie.js";
+    $aFiles[]		= "implementation/elements/pieItem.js";
     $aFiles[]		= "implementation/elements/radar.js";
     $aFiles[]		= "implementation/elements/radarItem.js";
     $aFiles[]		= "implementation/elements/radarGroup.js";

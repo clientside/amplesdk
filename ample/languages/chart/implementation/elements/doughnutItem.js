@@ -24,8 +24,8 @@ cChartElement_doughnutItem.prototype.$getTagOpen	= function() {
 //				<svg:path class="c-doughnutItem--shadow" transform="translate(2,2)" style="opacity:0.5;' + this.getAttribute("style") + '" ' +(this.hasAttribute("fill") ? ' fill="' + this.getAttribute("fill") + '"' : '')+ '/>\
 				<svg:path class="c-doughnutItem--value" style="' + this.getAttribute("style") + '" ' +(this.hasAttribute("fill") ? ' fill="' + this.getAttribute("fill") + '"' : '')+ '/>\
 				<svg:path class="c-doughnutItem--path" id="p' + this.uniqueID + '" style="fill:none;stroke:none"/>\
-				<svg:text style="fill:white;stroke:none">\
-					<svg:textPath class="c-doughnutItem--text" xlink:href="#p' + this.uniqueID + '">' + this.getAttribute("label") + '</svg:textPath>\
+				<svg:text class="c-doughnutItem--label" style="fill:white;stroke:none">\
+					<svg:textPath xlink:href="#p' + this.uniqueID + '">' + this.getAttribute("label") + '</svg:textPath>\
 				</svg:text>\
 			</svg:g>';
 };
