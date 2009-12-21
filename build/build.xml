@@ -261,6 +261,7 @@
 		<antcall target="BUILD_AMPLESDK_AMPLE_LANGUAGES_XUL" />
 		<antcall target="BUILD_AMPLESDK_AMPLE_LANGUAGES_XHTML" />
 		<antcall target="BUILD_AMPLESDK_AMPLE_LANGUAGES_SVG" />
+		<antcall target="BUILD_AMPLESDK_AMPLE_LANGUAGES_CHART" />
 		<antcall target="BUILD_AMPLESDK_AMPLE_LANGUAGES_HTML5" />
 		<antcall target="BUILD_AMPLESDK_AMPLE_LANGUAGES_MOBILE" />
 
@@ -509,6 +510,62 @@
 		</concat>
 	</target>
 
+	<target name="BUILD_AMPLESDK_AMPLE_LANGUAGES_CHART" unless="skip.ample.languages.chart">
+		<property name="source.chart.dir" value="${source.languages.dir}/chart/" />
+		<property name="target.chart.dir" value="${target.languages.dir}/chart/" />
+
+		<echo message="Merging into: ${temp.languages.dir}/chart-raw.js" level="info"/>
+		<concat destfile="${temp.languages.dir}/chart-raw.js" fixlastline="yes">
+			<fileset file="${source.chart.dir}/implementation/chart.js" />
+			<fileset dir="${source.chart.dir}/implementation/classes/">
+				<include name="**" />
+			</fileset>
+			<fileset dir="${source.chart.dir}/implementation/elements/">
+				<include name="**" />
+			</fileset>
+		</concat>
+
+		<echo message="Wrapping into: ${temp.languages.dir}/chart-raw-wrapped.js" level="info"/>
+		<exec executable="${executable.php}" failonerror="true">
+			<arg value="resources/compiler/js.php" />
+			<arg value="${temp.languages.dir}/chart-raw.js" />
+			<arg value="${temp.languages.dir}/chart-raw-wrapped.js" />
+			<arg value="--strip-Source" />
+		</exec>
+
+		<echo message="Merging into: ${temp.languages.dir}/chart.css" level="info"/>
+		<concat destfile="${temp.languages.dir}/chart.css" fixlastline="yes">
+			<fileset dir="${source.chart.dir}/themes/default/">
+				<include name="*.css"/>
+			</fileset>
+		</concat>
+
+		<echo message="Wrapping into: ${temp.languages.dir}/chart-pre.css" level="info"/>
+		<exec executable="${executable.php}" failonerror="true">
+			<arg value="resources/compiler/css.php" />
+			<arg value="${temp.languages.dir}/chart.css" />
+			<arg value="${temp.languages.dir}/chart-pre.css" />
+			<arg value="--obfuscate" />
+		</exec>
+
+		<!-- package -->
+		<mkdir dir="${target.chart.dir}" />
+		<concat destfile="${target.chart.dir}/chart.js" fixlastline="yes">
+			<fileset file="${copying.js}" />
+			<fileset file="${temp.languages.dir}/chart-raw-wrapped.js" />
+		</concat>
+		<echo message="Copying default theme to: ${target.chart.dir}/themes/default/" level="info"/>
+		<mkdir dir="${target.chart.dir}/themes/default/" />
+		<copy todir="${target.chart.dir}/themes/default/">
+			<fileset file="${temp.languages.dir}/chart.css" />
+			<fileset file="${temp.languages.dir}/chart-pre.css" />
+			<fileset dir="${source.chart.dir}/themes/default/">
+				<include name="media/**"/>
+			</fileset>
+		</copy>
+	</target>
+
+
 	<!-- Examples -->
 	<target name="BUILD_AMPLESDK_EXAMPLES" unless="skip.examples">
 		<copy todir="${target.dir}/examples/">
@@ -521,13 +578,6 @@
 				<include name="managers/**" />
 			</fileset>
 		</copy>
-		<!-- Replace stylesheet types -->
-		<replace file="${target.dir}/examples/languages/xul/index.html">
-			<replacefilter token="text/ample+css"		value="text/css"	/>
-		</replace>
-		<replace file="${target.dir}/examples/applications/imclient/index.html">
-			<replacefilter token="text/ample+css"		value="text/css"	/>
-		</replace>
 	</target>
 
 	<!-- Reference -->
