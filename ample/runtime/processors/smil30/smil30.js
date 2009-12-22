@@ -12,7 +12,7 @@ var oAMLSMIL30_implementation	= {},
 	aAMLSMIL30_elements			= [],
 	aAMLSMIL30_activeElements	= [],
 	nAMLSMIL30_timeline			= 0,
-	nAMLSMIL30_timeout			= 20,	// 50 frames/sec
+	nAMLSMIL30_timeout			= 10,	// This is a timeout, not interval
 	hAMLSMIL30_multipliers		= {'h': 3600, 'min': 60, 's': 1},
 	hAMLSMIL30_colors			=(function(aValues) {
 									for (var hColors = {}, aValue, nIndex = 0; nIndex < aValues.length; nIndex++)
