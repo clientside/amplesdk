@@ -10,9 +10,29 @@
 var cChartElement_radar	= function(){};
 cChartElement_radar.prototype	= new cChartElement;
 
+cChartElement_radar.handlers	= {
+	'DOMNodeInsertedIntoDocument':	function(oEvent) {
+		var d	= [];
+		// circles
+		for (var n = 0, l = 5; n < l; n++) {
+			d.push(	"M150," + (150 - 100 * (n + 1) / l) +
+					"A" + 100 * (n + 1) / l + "," + 100 * (n + 1) / l + " 0 0,0 150," + (150 + 100 * (n + 1) / l) +
+					"A" + 100 * (n + 1) / l + "," + 100 * (n + 1) / l + " 0 0,0 150," + (150 - 100 * (n + 1) / l) +
+					"z");
+		}
+		// lines
+		for (var n = 0, l = 8; n < l; n++)
+			d.push(	"M150,150" +
+					"L" + (150 - (100 + 5) * Math.cos(Math.PI / 2 + 2 * Math.PI * n / l)) + "," + (150 - (100 + 5) * Math.sin(Math.PI / 2 + 2 * Math.PI * n / l))+
+					"z");
+		this.$getContainer("grid").setAttribute("d", d.join(''));
+	}
+};
+
 cChartElement_radar.prototype.$getTagOpen	= function() {
 	return '<svg:svg class="c-radar' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" viewBox="0 0 300 300" width="300px" height="300px" style="' + this.getAttribute("style") + '" xmlns:svg="http://www.w3.org/2000/svg">\
 				<svg:text class="c-radar--label" y="30" x="150">' + this.getAttribute("label")+ '</svg:text>\
+				<svg:path class="c-grid c-radar--grid" style="fill:none"/>\
 				<svg:g class="c-radar--gateway">';
 };
 
