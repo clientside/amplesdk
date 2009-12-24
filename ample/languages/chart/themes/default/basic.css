@@ -6,11 +6,17 @@ c|radar,
 c|funnel,
 c|doughnut,
 c|map {
+	display: inline-block;
 	background-color: #eee;
+	border: double 3px gray;
 	border-radius: 10px;
 	-moz-border-radius: 10px;
 	-o-border-radius: 10px;
-	border: double 3px gray;
+}
+
+c|lineGroup,
+c|radarGroup {
+	stroke:	black;
 }
 
 c|line::label,
@@ -22,9 +28,8 @@ c|funnel::label,
 c|doughnut::label,
 c|map::label {
 	font-size: 20px;
-	fill: green;
+	fill: #999;
 	text-anchor: middle;
-	text-decoration: underline;	/* Not supported in FF */
 }
 
 c|lineItem,
@@ -38,30 +43,64 @@ c|mapItem {
 	cursor: pointer;
 }
 
-c|pieItem,
-c|funnelItem,
-c|doughnutItem {
-	stroke: white;
-	stroke-width: 3;
+
+/* series colors */
+c|lineGroup:nth-child(0),
+c|barGroup:nth-child(0),
+c|bubbleGroup:nth-child(0),
+c|radarGroup:nth-child(0),
+c|funnelItem:nth-child(0),
+c|pieItem:nth-child(0),
+c|doughnutItem:nth-child(0) {
+	stroke:	#0C4E83;
+	fill:	#0C4E83;
 }
 
-c|pieItem::path,
-c|funnelItem::path {
-	stroke: black;
-	stroke-width: 1;
+c|lineGroup:nth-child(1),
+c|barGroup:nth-child(1),
+c|bubbleGroup:nth-child(1),
+c|radarGroup:nth-child(1),
+c|funnelItem:nth-child(1),
+c|pieItem:nth-child(1),
+c|doughnutItem:nth-child(1) {
+	stroke:	#D8691F;
+	fill:	#D8691F;
 }
 
+c|lineGroup:nth-child(2),
+c|barGroup:nth-child(2),
+c|bubbleGroup:nth-child(2),
+c|radarGroup:nth-child(2),
+c|funnelItem:nth-child(2),
+c|pieItem:nth-child(2),
+c|doughnutItem:nth-child(2) {
+	stroke:	#54A14B;
+	fill: 	#54A14B;
+}
+
+c|lineGroup:nth-child(3),
+c|barGroup:nth-child(3),
+c|bubbleGroup:nth-child(3),
+c|radarGroup:nth-child(3),
+c|funnelItem:nth-child(3),
+c|pieItem:nth-child(3),
+c|doughnutItem:nth-child(3) {
+	stroke:	darkred;
+	fill:	darkred;
+}
+
+/* axis and grid */
 c|xAxis,
-c|yAxis {
-	stroke: red;
+c|yAxis,
+c|zAxis {
+	stroke: gray;
 }
 
 c|grid {
-	stroke: silver;
+	stroke: #ddd;
 	stroke-width:1;
 }
 
-/* Axis labels */
 c|xAxis::label,
 c|yAxis::label {
 	fill: red;
@@ -71,10 +110,82 @@ c|yAxis::label {
 	text-anchor: start;
 }
 
+/* individual charts styling */
+/* */
+c|pieItem,
+c|funnelItem,
+c|doughnutItem {
+	stroke: white;
+	stroke-width: 2;
+}
+
+c|pieItem::path,
+c|funnelItem::path {
+	stroke: gray;
+	stroke-width: 1;
+}
+
+/* */
+c|radarGroup,
+c|lineGroup {
+	stroke-width:	2;
+}
+
+c|radarItem,
+c|lineItem {
+	fill:	white;
+}
+
+c|radarGroup::area,
+c|lineGroup::area {
+	opacity:	0.2;
+}
+
+c|bubbleGroup,
+c|barGroup {
+	stroke:	white;
+	stroke-width:	1;
+}
+
+c|radarGroup::shadow,
+c|lineGroup::shadow,
+c|barItem::shadow,
+c|bubbleItem::shadow {
+	fill: black;
+	stroke: black;
+	opacity:	0.4;
+}
+
+c|doughnutItem::label,
+c|bubbleItem::label {
+	fill: white;
+}
+
 /* Maps */
 c|mapItem {
 	stroke: white;
 	stroke-width: 1;
-	opacity: 0.2;
-	fill: green;
+	fill: gray;
+}
+
+/* hover effects */
+c|barItem:hover,
+c|bubbleItem:hover,
+c|doughnutItem:hover,
+c|pieItem:hover,
+c|funnelItem:hover {
+	opacity: 0.5;
+}
+
+c|radarGroup:hover {
+	opacity: 0.5;
+}
+
+c|lineGroup:hover {
+	stroke-width:	3;
+}
+
+c|mapItem:hover {
+	fill:	silver;
+	stroke:	gray;
 }

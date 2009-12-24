@@ -9,6 +9,7 @@
 
 var cChartElement_radarGroup	= function(){};
 cChartElement_radarGroup.prototype	= new cChartElement;
+cChartElement_radarGroup.prototype.$hoverable	= true;
 
 cChartElement_radarGroup.handlers	= {
 	'DOMNodeInsertedIntoDocument':	function(oEvent) {
@@ -17,16 +18,28 @@ cChartElement_radarGroup.handlers	= {
 };
 
 cChartElement_radarGroup.prototype.refresh	= function() {
-
+	var d	= [];
+	for (var n = 0, l = this.childNodes.length, oElement; oElement = this.childNodes[n]; n++) {
+		var nValue	= oElement.getAttribute("value") * 1 * 2,
+			nX	= (150 - nValue * Math.cos(Math.PI / 2 + 2 * Math.PI * n / l)),
+			nY	= (150 - nValue * Math.sin(Math.PI / 2 + 2 * Math.PI * n / l));
+		// Set point
+		d.push((n ? "L" : "M") + nX + "," + nY);
+		oElement.$getContainer().setAttribute("cx", nX);
+		oElement.$getContainer().setAttribute("cy", nY);
+	}
+	this.$getContainer("line").setAttribute("d", d.join(" ") + "z");
+	this.$getContainer("shadow").setAttribute("d", d.join(" ") + "z");
+	this.$getContainer("area").setAttribute("d", d.join(" ") + "z");
 };
 
 cChartElement_radarGroup.prototype.$getTagOpen	= function() {
-	return '<svg:g class="c-radarGroup' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" xmlns:svg="http://www.w3.org/2000/svg" \
-				style="' + (this.hasAttribute("fill") ? 'fill:' + this.getAttribute("fill") + ';' : '') + (this.hasAttribute("fill") ? 'stroke:' + this.getAttribute("fill") + ';' : '') + 'stroke-width:1;opacity:0;' + this.getAttribute("style") + '">\
-				<svg:path class="c-radarGroup--shadow" stroke-width="3" style="fill:none;opacity:0.2" stroke-linejoin="round" transform="translate(2, 2)"/>\
-				<svg:path class="c-radarGroup--line" stroke-width="1" style="fill:none;stroke-linejoin:round"/>\
-				<svg:path class="c-radarGroup--area" style="xfill:none;stroke:none;opacity:0.2"/>\
-				<svg:g class="c-radarGroup--gateway" stroke-width="0" style="stroke:white;">';
+	return '<svg:g class="c-radarGroup c-radarGroup_nth-child-' + this.parentNode.childNodes.$indexOf(this) +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" xmlns:svg="http://www.w3.org/2000/svg" \
+				style="' + this.getAttribute("style") + '">\
+				<svg:path class="c-radarGroup--shadow" style="fill:none;stroke-linejoin:round" transform="translate(2, 2)"/>\
+				<svg:path class="c-radarGroup--line" style="fill:none;stroke-linejoin:round"/>\
+				<svg:path class="c-radarGroup--area" style="stroke:none"/>\
+				<svg:g class="c-radarGroup--gateway">';
 };
 
 cChartElement_radarGroup.prototype.$getTagClose	= function() {

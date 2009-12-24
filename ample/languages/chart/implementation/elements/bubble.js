@@ -25,25 +25,27 @@ cChartElement_bubble.handlers	= {
 };
 
 cChartElement_bubble.prototype.$getTagOpen	= function() {
-	return '<svg:svg class="c-bubble' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" viewBox="0 0 600 300" width="600px" height="300px" style="' + this.getAttribute("style") + '" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">\
-				<svg:text class="c-bubble--label" y="30" x="300">' + this.getAttribute("label")+ '</svg:text>\
-				<svg:path class="c-grid c-bubble--grid"/>\
-				<svg:g class="c-xAxis">\
-					<svg:path class="c-bubble--xAxis" d="M50,250 h500,0" style="fill:none"/>\
-					<svg:path id="x' + this.uniqueID + '" d="M300,280 h500,0" style="fill:none;stroke:none"/>\
-					<svg:text class="c-xAxis--label c-bubble--xAxisLabel"><svg:textPath xlink:href="#x' + this.uniqueID + '">' + this.getAttribute("yAxisLabel")+ '</svg:textPath></svg:text>\
-				</svg:g>\
-				<svg:g class="c-yAxis">\
-					<svg:path class="c-bubble--yAxis" d="M50,250 v0,-200" style="fill:none"/>\
-					<svg:path id="y' + this.uniqueID + '" d="M30,200 v0,-200" style="fill:none;stroke:none"/>\
-					<svg:text class="c-yAxis--label c-bubble--yAxisLabel"><svg:textPath xlink:href="#y' + this.uniqueID + '">' + this.getAttribute("yAxisLabel")+ '</svg:textPath></svg:text>\
-				</svg:g>\
-				<svg:g class="c-bubble--gateway">';
+	return '<div class="c-bubble' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
+				<svg:svg class="c-bubble--canvas" viewBox="0 0 600 300" width="600px" height="300px" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">\
+					<svg:text class="c-bubble--label" y="30" x="300">' + this.getAttribute("label")+ '</svg:text>\
+					<svg:path class="c-grid c-bubble--grid"/>\
+					<svg:g class="c-xAxis">\
+						<svg:path class="c-bubble--xAxis" d="M50,250 h500,0" style="fill:none"/>\
+						<svg:path id="x' + this.uniqueID + '" d="M300,280 h500,0" style="fill:none;stroke:none"/>\
+						<svg:text class="c-xAxis--label c-bubble--xAxisLabel"><svg:textPath xlink:href="#x' + this.uniqueID + '">' + this.getAttribute("yAxisLabel")+ '</svg:textPath></svg:text>\
+					</svg:g>\
+					<svg:g class="c-yAxis">\
+						<svg:path class="c-bubble--yAxis" d="M50,250 v0,-200" style="fill:none"/>\
+						<svg:path id="y' + this.uniqueID + '" d="M30,200 v0,-200" style="fill:none;stroke:none"/>\
+						<svg:text class="c-yAxis--label c-bubble--yAxisLabel"><svg:textPath xlink:href="#y' + this.uniqueID + '">' + this.getAttribute("yAxisLabel")+ '</svg:textPath></svg:text>\
+					</svg:g>\
+					<svg:g class="c-bubble--gateway">';
 };
 
 cChartElement_bubble.prototype.$getTagClose	= function() {
-	return '	</svg:g>\
-			</svg:svg>';
+	return '		</svg:g>\
+				</svg:svg>\
+			</div>';
 };
 
 // Register Element with language

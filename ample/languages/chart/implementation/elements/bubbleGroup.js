@@ -63,7 +63,7 @@ cChartElement_bubbleGroup.prototype.refresh	= function() {
 };
 
 cChartElement_bubbleGroup.prototype.$getTagOpen	= function() {
-	return '<svg:g fill="' + this.getAttribute("fill")+ '" stroke-width="1" stroke="white" class="c-bubbleGroup' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '" xmlns:svg="http://www.w3.org/2000/svg">';
+	return '<svg:g class="c-bubbleGroup c-bubbleGroup_nth-child-' + this.parentNode.childNodes.$indexOf(this) +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '" xmlns:svg="http://www.w3.org/2000/svg">';
 };
 
 cChartElement_bubbleGroup.prototype.$getTagClose	= function() {

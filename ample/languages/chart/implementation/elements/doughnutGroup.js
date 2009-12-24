@@ -9,10 +9,9 @@
 
 var cChartElement_doughnutGroup	= function(){};
 cChartElement_doughnutGroup.prototype	= new cChartElement;
+cChartElement_doughnutGroup.prototype.$hoverable	= true;
 
 cChartElement_doughnutGroup.prototype.refresh	= function() {
-	var bDoughnut	= this.parentNode.getAttribute("doughnut") == "true";
-
 	// Calculate accumulated value
 	var nSumAll	= 0;
 	for (var nIndex = 0, oElement; oElement = this.childNodes[nIndex]; nIndex++)
@@ -24,11 +23,11 @@ cChartElement_doughnutGroup.prototype.refresh	= function() {
 
 	var cX	= 150,
 		cY	= 150,
-		nWidth	= 100 /(nGroups +(bDoughnut ? 0.5 : 0));
+		nWidth	= 100 /(nGroups + 0.5);
 
 	for (var nIndex = 0, oElement; oElement = this.childNodes[nIndex]; nIndex++) {
 		// doughnut origin
-		var	nInnerR	=(nGroup +(bDoughnut ? 0.5 : 1))* nWidth,
+		var	nInnerR	=(nGroup + 0.5 )* nWidth,
 			nOuterR	= nInnerR + nWidth,
 			nAngleFrom	= Math.PI / 2 + 2 * Math.PI * nSumUp / nSumAll,
 			nAngleTo	= Math.PI / 2 + 2 * Math.PI *(nSumUp + oElement.getAttribute("value") * 1) / nSumAll;
@@ -60,12 +59,6 @@ cChartElement_doughnutGroup.prototype.refresh	= function() {
 };
 
 cChartElement_doughnutGroup.handlers	= {
-	'mouseenter':	function(oEvent) {
-		this.$getContainer().setAttribute("stroke-width", "2");
-	},
-	'mouseleave':	function(oEvent) {
-		this.$getContainer().setAttribute("stroke-width", "1");
-	},
 	'DOMNodeInsertedIntoDocument':	function(oEvent) {
 		var that	= this;
 		that.refresh();
@@ -76,7 +69,7 @@ cChartElement_doughnutGroup.handlers	= {
 };
 
 cChartElement_doughnutGroup.prototype.$getTagOpen	= function() {
-	return '<svg:g fill="' + this.getAttribute("fill")+ '" stroke-width="1" stroke="white" stroke-linejoin="round" class="c-doughnutGroup' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="opacity:0;' + this.getAttribute("style") + '" xmlns:svg="http://www.w3.org/2000/svg">';
+	return '<svg:g class="c-doughnutGroup' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="stroke-linejoin:round;' + this.getAttribute("style") + '" xmlns:svg="http://www.w3.org/2000/svg">';
 };
 
 cChartElement_doughnutGroup.prototype.$getTagClose	= function() {

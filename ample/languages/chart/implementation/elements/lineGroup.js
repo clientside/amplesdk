@@ -9,6 +9,7 @@
 
 var cChartElement_lineGroup	= function(){};
 cChartElement_lineGroup.prototype	= new cChartElement;
+cChartElement_lineGroup.prototype.$hoverable	= true;
 
 cChartElement_lineGroup.prototype.refresh	= function() {
 	var xAxisRange	= this.parentNode.getAttribute("xAxisRange").split(';'),
@@ -58,14 +59,6 @@ cChartElement_lineGroup.prototype.refresh	= function() {
 };
 
 cChartElement_lineGroup.handlers	= {
-	'mouseenter':	function(oEvent) {
-		this.$getContainer("line").setAttribute("stroke-width", 3);
-		this.$getContainer("gateway").setAttribute("stroke-width", 1);
-	},
-	'mouseleave':	function(oEvent) {
-		this.$getContainer("line").setAttribute("stroke-width", 1);
-		this.$getContainer("gateway").setAttribute("stroke-width", 0);
-	},
 	'DOMNodeInsertedIntoDocument':	function(oEvent) {
 		var that	= this;
 		that.refresh();
@@ -76,12 +69,12 @@ cChartElement_lineGroup.handlers	= {
 };
 
 cChartElement_lineGroup.prototype.$getTagOpen	= function() {
-	return '<svg:g class="c-lineGroup' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" xmlns:svg="http://www.w3.org/2000/svg" \
-				style="' + (this.hasAttribute("fill") ? 'fill:' + this.getAttribute("fill") + ';' : '') + (this.hasAttribute("fill") ? 'stroke:' + this.getAttribute("fill") + ';' : '') + 'stroke-width:1;opacity:0;' + this.getAttribute("style") + '">\
-				<svg:path class="c-lineGroup--shadow" stroke-width="3" style="fill:none;opacity:0.2" stroke-linejoin="round" transform="translate(2, 2)"/>\
-				<svg:path class="c-lineGroup--line" stroke-width="1" style="fill:none;stroke-linejoin:round"/>\
-				<svg:path class="c-lineGroup--area" style="xfill:none;stroke:none;opacity:0.2"/>\
-				<svg:g class="c-lineGroup--gateway" stroke-width="0" style="stroke:white;">';
+	return '<svg:g class="c-lineGroup c-lineGroup_nth-child-' + this.parentNode.childNodes.$indexOf(this) + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" xmlns:svg="http://www.w3.org/2000/svg" \
+				style="' + this.getAttribute("style") + '">\
+				<svg:path class="c-lineGroup--shadow" style="fill:none;stroke-linejoin:round" transform="translate(2, 2)"/>\
+				<svg:path class="c-lineGroup--line" style="fill:none;stroke-linejoin:round"/>\
+				<svg:path class="c-lineGroup--area" style="stroke:none"/>\
+				<svg:g class="c-lineGroup--gateway">';
 };
 
 cChartElement_lineGroup.prototype.$getTagClose	= function() {

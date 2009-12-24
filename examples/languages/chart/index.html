@@ -14,10 +14,6 @@
 		 	margin-top: 0;
 		 	margin-bottom: 0.5em;
 		 }
-		.c-lineGroup {
-			fill: blue;
-			stroke: blue;
-		}
 		</style>
 	</head>
 	<body>
@@ -30,7 +26,7 @@
 		<c:line label="Line chart"
 			xAxisLabel="X Axis long label" xAxisType="Number" xAxisRange="0;22"
 			yAxisLabel="Y Axis long label" yAxisType="Number" yAxisRange="0;40">
-			<c:lineGroup label="Set 0" fill="green">
+			<c:lineGroup label="Set 0" color="green">
 				<c:lineItem label="point 0" value="0,30" />
 				<c:lineItem label="point 1" value="1,20" />
 				<c:lineItem label="point 2" value="2,15" />
@@ -54,7 +50,7 @@
 				<c:lineItem label="point 10" value="20,30" />
 				<c:lineItem label="point 11" value="21,5" />
 			</c:lineGroup>
-			<c:lineGroup label="Set 1" fill="red">
+			<c:lineGroup label="Set 1" color="red">
 				<c:lineItem label="point 0" value="0,20" />
 				<c:lineItem label="point 1" value="1,10" />
 				<c:lineItem label="point 2" value="2,25" />
@@ -108,7 +104,7 @@
 		<c:line label="Line chart (one series)" area="true"
 			xAxisLabel="X Axis long label" xAxisType="Number" xAxisRange="0;22"
 			yAxisLabel="Y Axis long label" yAxisType="Number" yAxisRange="0;40">
-			<c:lineGroup label="Set 0" fill="green">
+			<c:lineGroup label="Set 0" color="green">
 				<c:lineItem label="point 0" value="0,30" />
 				<c:lineItem label="point 1" value="1,20" />
 				<c:lineItem label="point 2" value="2,15" />
@@ -141,21 +137,21 @@
 		<c:bar label="Bar chart" xAxisLabel="X Axis" yAxisLabel="Y Label">
 			<!--c:xAxis values="" label="x-axis"/>
 			<c:yAxis values="" label="y-axis"/-->
-			<c:barGroup label="Set 0" fill="blue">
+			<c:barGroup label="Set 0" color="blue">
 				<c:barItem label="point 0" value="10" />
 				<c:barItem label="point 1" value="20" />
 				<c:barItem label="point 2" value="30" />
 				<c:barItem label="point 3" value="40" />
 				<c:barItem label="point 4" value="50" />
 			</c:barGroup>
-			<c:barGroup label="Set 1" fill="green">
+			<c:barGroup label="Set 1" color="green">
 				<c:barItem label="point 0" value="20" />
 				<c:barItem label="point 1" value="10" />
 				<c:barItem label="point 2" value="25" />
 				<c:barItem label="point 3" value="45" />
 				<c:barItem label="point 4" value="15" />
 			</c:barGroup>
-			<c:barGroup label="Set 2" fill="brown">
+			<c:barGroup label="Set 2" color="brown">
 				<c:barItem label="point 0" value="30" />
 				<c:barItem label="point 1" value="30" />
 				<c:barItem label="point 2" value="5" />
@@ -173,7 +169,7 @@
 		</c:bar>
 
 		<c:bar label="Bar chart (one series)" orient="horizontal" stacked="true">
-			<c:barGroup label="Set 0" fill="blue">
+			<c:barGroup label="Set 0" color="blue">
 				<c:barItem label="point 0" value="10" />
 				<c:barItem label="point 1" value="20" />
 				<c:barItem label="point 2" value="30" />
@@ -187,19 +183,19 @@
 			Options: bubble size
 		</p>
 		<c:bubble label="Bubble chart" xAxisLabel="Axis X" yAxisLabel="Axis Y">
-			<c:bubbleGroup label="Set 0" fill="red">
+			<c:bubbleGroup label="Set 0" color="red">
 				<c:bubbleItem label="point 0" value="5,10,5" />
 				<c:bubbleItem label="point 1" value="10,20,10" />
 				<c:bubbleItem label="point 2" value="20,15,1" />
 				<c:bubbleItem label="point 3" value="30,30,2" />
 			</c:bubbleGroup>
-			<c:bubbleGroup label="Set 1" fill="green">
+			<c:bubbleGroup label="Set 1" color="green">
 				<c:bubbleItem label="point 0" value="5,20,8" />
 				<c:bubbleItem label="point 1" value="10,10,4" />
 				<c:bubbleItem label="point 2" value="20,25,1" />
 				<c:bubbleItem label="point 3" value="30,40,3" />
 			</c:bubbleGroup>
-			<c:bubbleGroup label="Set 2" fill="blue">
+			<c:bubbleGroup label="Set 2" color="blue">
 				<c:bubbleItem label="point 0" value="5,30,8" />
 				<c:bubbleItem label="point 1" value="10,30,4" />
 				<c:bubbleItem label="point 2" value="20,45,1" />
@@ -207,7 +203,7 @@
 			</c:bubbleGroup>
 		</c:bubble>
 		<c:bubble label="Bubble chart (one series)" xAxisLabel="Axis X" yAxisLabel="Axis Y">
-			<c:bubbleGroup label="Set 0" fill="red">
+			<c:bubbleGroup label="Set 0" color="red">
 				<c:bubbleItem label="point 0" value="5,10,5" />
 				<c:bubbleItem label="point 1" value="10,20,10" />
 				<c:bubbleItem label="point 1" value="15,10,10" />
@@ -229,23 +225,35 @@
 			Options: no
 		</p>
 		<c:radar label="Radar chart">
-			<c:radarGroup label="Set 0" style="stroke:red">
+			<c:radarGroup label="Set 0" color="red">
 				<c:radarItem label="point 0" value="10" />
 				<c:radarItem label="point 1" value="20" />
 				<c:radarItem label="point 2" value="15" />
 				<c:radarItem label="point 3" value="30" />
+				<c:radarItem label="point 4" value="20" />
 			</c:radarGroup>
-			<c:radarGroup label="Set 1" style="stroke:blue">
+			<c:radarGroup label="Set 1" color="blue">
 				<c:radarItem label="point 0" value="20" />
 				<c:radarItem label="point 1" value="10" />
 				<c:radarItem label="point 2" value="25" />
 				<c:radarItem label="point 3" value="40" />
+				<c:radarItem label="point 4" value="50" />
 			</c:radarGroup>
 			<c:radarGroup label="Set 2">
 				<c:radarItem label="point 0" value="5" />
 				<c:radarItem label="point 1" value="15" />
 				<c:radarItem label="point 2" value="10" />
 				<c:radarItem label="point 3" value="20" />
+				<c:radarItem label="point 4" value="40" />
+			</c:radarGroup>
+		</c:radar>
+		<c:radar label="Radar chart (one series)">
+			<c:radarGroup label="Set 0">
+				<c:radarItem label="point 0" value="10" />
+				<c:radarItem label="point 1" value="20" />
+				<c:radarItem label="point 2" value="15" />
+				<c:radarItem label="point 3" value="30" />
+				<c:radarItem label="point 4" value="20" />
 			</c:radarGroup>
 		</c:radar>
 
@@ -255,93 +263,93 @@
 		</p>
 		<c:doughnut label="Net applications Browsers Stats">
 			<c:doughnutGroup label="2007 Q1">
-				<c:doughnutItem label="Explorer" value="79.38" fill="blue" />
-				<c:doughnutItem label="Firefox" value="14.35" fill="orange" />
-				<c:doughnutItem label="Safari" value="4.70" fill="gray" />
-				<c:doughnutItem label="Chrome" value="0" fill="green" />
-				<c:doughnutItem label="Opera" value="0.50" fill="red" />
+				<c:doughnutItem label="Explorer" value="79.38" color="blue" />
+				<c:doughnutItem label="Firefox" value="14.35" color="orange" />
+				<c:doughnutItem label="Safari" value="4.70" color="gray" />
+				<c:doughnutItem label="Chrome" value="0" color="green" />
+				<c:doughnutItem label="Opera" value="0.50" color="red" />
 			</c:doughnutGroup>
 			<c:doughnutGroup label="2007 Q2">
-				<c:doughnutItem label="Explorer" value="78.76" fill="blue" />
-				<c:doughnutItem label="Firefox" value="14.92" fill="orange" />
-				<c:doughnutItem label="Safari" value="4.66" fill="gray" />
-				<c:doughnutItem label="Chrome" value="0" fill="green" />
-				<c:doughnutItem label="Opera" value="0.46" fill="red" />
+				<c:doughnutItem label="Explorer" value="78.76" color="blue" />
+				<c:doughnutItem label="Firefox" value="14.92" color="orange" />
+				<c:doughnutItem label="Safari" value="4.66" color="gray" />
+				<c:doughnutItem label="Chrome" value="0" color="green" />
+				<c:doughnutItem label="Opera" value="0.46" color="red" />
 			</c:doughnutGroup>
 			<c:doughnutGroup label="2007 Q3">
-				<c:doughnutItem label="Explorer" value="78.85" fill="blue" />
-				<c:doughnutItem label="Firefox" value="14.69" fill="orange" />
-				<c:doughnutItem label="Safari" value="4.80" fill="gray" />
-				<c:doughnutItem label="Chrome" value="0" fill="green" />
-				<c:doughnutItem label="Opera" value="0.51" fill="red" />
+				<c:doughnutItem label="Explorer" value="78.85" color="blue" />
+				<c:doughnutItem label="Firefox" value="14.69" color="orange" />
+				<c:doughnutItem label="Safari" value="4.80" color="gray" />
+				<c:doughnutItem label="Chrome" value="0" color="green" />
+				<c:doughnutItem label="Opera" value="0.51" color="red" />
 			</c:doughnutGroup>
 			<c:doughnutGroup label="2007 Q4">
-				<c:doughnutItem label="Explorer" value="79.16" fill="blue" />
-				<c:doughnutItem label="Firefox" value="15.84" fill="orange" />
-				<c:doughnutItem label="Safari" value="2.39" fill="gray" />
-				<c:doughnutItem label="Chrome" value="0" fill="green" />
-				<c:doughnutItem label="Opera" value="1.78" fill="red" />
+				<c:doughnutItem label="Explorer" value="79.16" color="blue" />
+				<c:doughnutItem label="Firefox" value="15.84" color="orange" />
+				<c:doughnutItem label="Safari" value="2.39" color="gray" />
+				<c:doughnutItem label="Chrome" value="0" color="green" />
+				<c:doughnutItem label="Opera" value="1.78" color="red" />
 			</c:doughnutGroup>
 			<c:doughnutGroup label="2008 Q1">
-				<c:doughnutItem label="Explorer" value="77.83" fill="blue" />
-				<c:doughnutItem label="Firefox" value="16.86" fill="orange" />
-				<c:doughnutItem label="Safari" value="2.65" fill="gray" />
-				<c:doughnutItem label="Chrome" value="0" fill="green" />
-				<c:doughnutItem label="Opera" value="1.84" fill="red" />
+				<c:doughnutItem label="Explorer" value="77.83" color="blue" />
+				<c:doughnutItem label="Firefox" value="16.86" color="orange" />
+				<c:doughnutItem label="Safari" value="2.65" color="gray" />
+				<c:doughnutItem label="Chrome" value="0" color="green" />
+				<c:doughnutItem label="Opera" value="1.84" color="red" />
 			</c:doughnutGroup>
 			<c:doughnutGroup label="2008 Q2">
-				<c:doughnutItem label="Explorer" value="76.24" fill="blue" />
-				<c:doughnutItem label="Firefox" value="18.16" fill="orange" />
-				<c:doughnutItem label="Safari" value="2.73" fill="gray" />
-				<c:doughnutItem label="Chrome" value="0" fill="green" />
-				<c:doughnutItem label="Opera" value="1.97" fill="red" />
+				<c:doughnutItem label="Explorer" value="76.24" color="blue" />
+				<c:doughnutItem label="Firefox" value="18.16" color="orange" />
+				<c:doughnutItem label="Safari" value="2.73" color="gray" />
+				<c:doughnutItem label="Chrome" value="0" color="green" />
+				<c:doughnutItem label="Opera" value="1.97" color="red" />
 			</c:doughnutGroup>
 			<c:doughnutGroup label="2008 Q3">
-				<c:doughnutItem label="Explorer" value="74.93" fill="blue" />
-				<c:doughnutItem label="Firefox" value="19.07" fill="orange" />
-				<c:doughnutItem label="Safari" value="2.73" fill="gray" />
-				<c:doughnutItem label="Chrome" value="0.37" fill="green" />
-				<c:doughnutItem label="Opera" value="2.06" fill="red" />
+				<c:doughnutItem label="Explorer" value="74.93" color="blue" />
+				<c:doughnutItem label="Firefox" value="19.07" color="orange" />
+				<c:doughnutItem label="Safari" value="2.73" color="gray" />
+				<c:doughnutItem label="Chrome" value="0.37" color="green" />
+				<c:doughnutItem label="Opera" value="2.06" color="red" />
 			</c:doughnutGroup>
 			<c:doughnutGroup label="2008 Q4">
-				<c:doughnutItem label="Explorer" value="71.99" fill="blue" />
-				<c:doughnutItem label="Firefox" value="20.78" fill="orange" />
-				<c:doughnutItem label="Safari" value="3.11" fill="gray" />
-				<c:doughnutItem label="Chrome" value="1.16" fill="green" />
-				<c:doughnutItem label="Opera" value="2.15" fill="red" />
+				<c:doughnutItem label="Explorer" value="71.99" color="blue" />
+				<c:doughnutItem label="Firefox" value="20.78" color="orange" />
+				<c:doughnutItem label="Safari" value="3.11" color="gray" />
+				<c:doughnutItem label="Chrome" value="1.16" color="green" />
+				<c:doughnutItem label="Opera" value="2.15" color="red" />
 			</c:doughnutGroup>
 			<c:doughnutGroup label="2009 Q1">
-				<c:doughnutItem label="Explorer" value="69.13" fill="blue" />
-				<c:doughnutItem label="Firefox" value="22.67" fill="orange" />
-				<c:doughnutItem label="Safari" value="3.58" fill="gray" />
-				<c:doughnutItem label="Chrome" value="1.56" fill="green" />
-				<c:doughnutItem label="Opera" value="2.18" fill="red" />
+				<c:doughnutItem label="Explorer" value="69.13" color="blue" />
+				<c:doughnutItem label="Firefox" value="22.67" color="orange" />
+				<c:doughnutItem label="Safari" value="3.58" color="gray" />
+				<c:doughnutItem label="Chrome" value="1.56" color="green" />
+				<c:doughnutItem label="Opera" value="2.18" color="red" />
 			</c:doughnutGroup>
 			<c:doughnutGroup label="2009 Q2">
-				<c:doughnutItem label="Explorer" value="68.06" fill="blue" />
-				<c:doughnutItem label="Firefox" value="23.00" fill="orange" />
-				<c:doughnutItem label="Safari" value="3.67" fill="gray" />
-				<c:doughnutItem label="Chrome" value="2.13" fill="green" />
-				<c:doughnutItem label="Opera" value="2.05" fill="red" />
+				<c:doughnutItem label="Explorer" value="68.06" color="blue" />
+				<c:doughnutItem label="Firefox" value="23.00" color="orange" />
+				<c:doughnutItem label="Safari" value="3.67" color="gray" />
+				<c:doughnutItem label="Chrome" value="2.13" color="green" />
+				<c:doughnutItem label="Opera" value="2.05" color="red" />
 			</c:doughnutGroup>
 			<c:doughnutGroup label="2009 Q3">
-				<c:doughnutItem label="Explorer" value="66.80" fill="blue" />
-				<c:doughnutItem label="Firefox" value="23.06" fill="orange" />
-				<c:doughnutItem label="Safari" value="4.13" fill="gray" />
-				<c:doughnutItem label="Chrome" value="2.86" fill="green" />
-				<c:doughnutItem label="Opera" value="2.07" fill="red" />
+				<c:doughnutItem label="Explorer" value="66.80" color="blue" />
+				<c:doughnutItem label="Firefox" value="23.06" color="orange" />
+				<c:doughnutItem label="Safari" value="4.13" color="gray" />
+				<c:doughnutItem label="Chrome" value="2.86" color="green" />
+				<c:doughnutItem label="Opera" value="2.07" color="red" />
 			</c:doughnutGroup>
 			<c:doughnutGroup label="2009 Q4">
-				<c:doughnutItem label="Explorer" value="63.94" fill="blue"/>
-				<c:doughnutItem label="Firefox" value="24.44" fill="orange"/>
-				<c:doughnutItem label="Safari" value="4.40" fill="gray"/>
-				<c:doughnutItem label="Chrome" value="3.87" fill="green"/>
-				<c:doughnutItem label="Opera" value="2.26" fill="red"/>
+				<c:doughnutItem label="Explorer" value="63.94" color="blue"/>
+				<c:doughnutItem label="Firefox" value="24.44" color="orange"/>
+				<c:doughnutItem label="Safari" value="4.40" color="gray"/>
+				<c:doughnutItem label="Chrome" value="3.87" color="green"/>
+				<c:doughnutItem label="Opera" value="2.26" color="red"/>
 			</c:doughnutGroup>
 		</c:doughnut>
 
-		<c:doughnut label="Doughnut chart (one series)" doughnut="true">
-			<c:doughnutGroup label="Set 0" fill="darkblue">
+		<c:doughnut label="Doughnut chart (one series)">
+			<c:doughnutGroup label="Set 0" color="darkblue">
 				<c:doughnutItem label="point 0" value="10" />
 				<c:doughnutItem label="point 1" value="10" />
 				<c:doughnutItem label="point 2" value="10" />
@@ -371,10 +379,11 @@
 			Options: no
 		</p>
 		<c:funnel label="Funnel chart">
-			<c:funnelItem label="point 0" value="40" style="fill:red"/>
-			<c:funnelItem label="point 1" value="30" style="fill:green" />
-			<c:funnelItem label="point 2" value="20" style="fill:blue" />
+			<c:funnelItem label="point 0" value="40" color="red"/>
+			<c:funnelItem label="point 1" value="30" color="green" />
+			<c:funnelItem label="point 2" value="20" color="blue" />
 			<c:funnelItem label="point 3" value="10" />
+			<c:funnelItem label="point 4" value="5" />
 		</c:funnel>
 
 		<h3>Pie chart</h3>
@@ -382,10 +391,11 @@
 			Options: no
 		</p>
 		<c:pie label="Pie chart">
-			<c:pieItem label="point 0" value="40" style="fill:red"/>
-			<c:pieItem label="point 1" value="10" style="fill:green"/>
-			<c:pieItem label="point 2" value="20" style="fill:blue"/>
-			<c:pieItem label="point 3" value="30" />
+			<c:pieItem label="point 0" value="40" color="red"/>
+			<c:pieItem label="point 1" value="30" color="green"/>
+			<c:pieItem label="point 2" value="20" color="blue"/>
+			<c:pieItem label="point 3" value="10" />
+			<c:pieItem label="point 4" value="5" />
 		</c:pie>
 
 		<h3>Map chart</h3>
