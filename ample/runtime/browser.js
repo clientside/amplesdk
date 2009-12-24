@@ -732,6 +732,7 @@ function fAML_parseStyleSheet(sCSS, sUri) {
 						.replace(/([\s>+~,]|not\()([\w])/g, '$1.$2')	// Element
 						.replace(/\[([\w]+)=?([\w]+)?\]/g, '-$1-$2')	// Attribute
 						.replace(/::/g, '--')							// Pseudo-element
+						.replace(/:nth-child\((\d+)\)/g, '_nth-child-$1')	// Pseudo-class nth-child
 						.replace(/:(?!last-child|first-child|not)/g, '_')	// Pseudo-class
 //						.replace(/>/g, '--' + "gateway" + '>').replace(/(--gateway){2,}/g, '--' + "gateway")// > selector
 						,

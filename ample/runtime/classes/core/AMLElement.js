@@ -634,7 +634,7 @@ cAMLElement.prototype.$getContainer	= function(sName)
 			for (var nIndex = 0, aNodes = oNode.childNodes, oElement, sClass; oNode = aNodes[nIndex]; nIndex++)
 				if (oNode.nodeType == 1) {
 					// If pseudo-element
-					if ((sClass = (bTrident ? oNode.className : oNode.getAttribute("class"))) && sClass.match(rClass))
+					if ((sClass = (bTrident && nVersion < 8 ? oNode.className : oNode.getAttribute("class"))) && sClass.match(rClass))
 						return oNode;
 					// Check children
 					if (!oNode.id &&(oElement = arguments.callee(oNode)))
@@ -689,20 +689,31 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 //<-Source
 
 	if (oElementDOM) {
-		var bMatch	= oElementDOM.className.match(fAMLElement_getRegExp(sPseudoName));
+		var sOldName= bTrident ? oElementDOM.className : oElementDOM.getAttribute("class"),
+			bMatch	= sOldName.match(fAMLElement_getRegExp(sPseudoName)),
+			sNewName;
 		if (bValue) {
 			// Add class
 			if (!bMatch) {
-				oElementDOM.className += (sClass
-											? ' ' + sTagName + '-' + sClass + sPseudoName + ' ' + sClass + sPseudoName
-											: '') +
-											' ' + sTagName + sPseudoName;
+				sNewName	= (sClass
+								? ' ' + sTagName + '-' + sClass + sPseudoName + ' ' + sClass + sPseudoName
+								: '') +
+								' ' + sTagName + sPseudoName;
+				if (bTrident && nVersion < 8)
+					oElementDOM.className += sNewName;
+				else
+					oElementDOM.setAttribute("class", oElementDOM.getAttribute("class") + sNewName);
 			}
 		}
 		else {
 			// Remove class
-			if (bMatch)
-				oElementDOM.className	= oElementDOM.className.replace(fAMLElement_getRegExp(sPseudoName), ' ');	// TODO: Remove space?
+			if (bMatch) {
+				sNewName	= sOldName.replace(fAMLElement_getRegExp(sPseudoName), ' ');	// TODO: Remove space?
+				if (bTrident && nVersion < 8)
+					oElementDOM.className	= sNewName;
+				else
+					oElementDOM.setAttribute("class", sNewName);
+			}
 		}
 	}
 //->Debug
