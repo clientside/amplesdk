@@ -23,8 +23,11 @@ cChartElement_funnel.prototype.refresh	= function() {
 		nSumAll	+= oElement.getAttribute("value") * 1;
 
 	var nSumUp	= 0,
-		nWidthMax	= 100,
-		nWidthMin	= 10;
+		nLeft	= 150,
+		nTop	= 50,
+		nHeight		= 200,
+		nWidthTop	= 100,
+		nWidthBottom	= 20;
 
 	for (var nIndex = 0, oElement; oElement = this.childNodes[nIndex]; nIndex++) {
 		// pie origin
@@ -33,13 +36,13 @@ cChartElement_funnel.prototype.refresh	= function() {
 
 		var d	= [];
 		// Set start point
-		d.push("M" + (150 + nCFrom * (nWidthMax) + nWidthMin) + "," + (50 + nCFrom * 200));
+		d.push("M" + (nLeft + nWidthTop + nCFrom * (nWidthBottom - nWidthTop)) + "," + (nTop + nCFrom * nHeight));
 		// Draw line to the outer
-		d.push("L" + (150 + nCTo * (nWidthMax) + nWidthMin) + "," + (50 + nCTo * 200));
+		d.push("L" + (nLeft + nWidthTop + nCTo * (nWidthBottom - nWidthTop)) + "," + (nTop + nCTo * nHeight));
 		// Draw line on the outer
-		d.push("H" + (150 - nCTo * (nWidthMax) - nWidthMin));
+		d.push("L" + (nLeft - nWidthTop - nCTo * (nWidthBottom - nWidthTop)) + "," + (nTop + nCTo * nHeight));
 		// Draw line to the inner
-		d.push("L" + (150 - nCFrom * (nWidthMax) - nWidthMin) + "," + (50 + nCFrom * 200));
+		d.push("L" + (nLeft - nWidthTop - nCFrom * (nWidthBottom - nWidthTop)) + "," + (nTop + nCFrom * nHeight));
 
 		oElement.$getContainer("value").setAttribute("d", d.join('') + "z");
 
