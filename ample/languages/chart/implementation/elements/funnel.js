@@ -46,15 +46,14 @@ cChartElement_funnel.prototype.refresh	= function() {
 
 		oElement.$getContainer("value").setAttribute("d", d.join('') + "z");
 
-/*
 		// Handles
-		var nAngleHalf	= (nAngleFrom + nAngleTo) / 2;
-		oElement.$getContainer("path").setAttribute("d", 	"M" + (cX + nWidth * Math.cos(nAngleHalf)) + "," +(cY - nWidth * Math.sin(nAngleHalf)) + ' ' +
-															"l" + (10 * Math.cos(nAngleHalf)) + "," +(-10 * Math.sin(nAngleHalf)) + ' ' +
-															"h" + (nAngleHalf >= Math.PI ? 1 : -1) * 100);
-*/
-//		oElement.$getContainer("label").setAttribute("x", cX + 5 + (nWidth + 10) * Math.cos(nAngleHalf));
-//		oElement.$getContainer("label").setAttribute("y", cY - 5 - (nWidth + 10) * Math.sin(nAngleHalf));
+		var nCHalf	=(nCFrom + nCTo)/ 2;
+		oElement.$getContainer("path").setAttribute("d", 	"M" + (nLeft + nWidthTop + nCHalf * (nWidthBottom - nWidthTop)) + "," + (nTop + nCHalf * nHeight) + ' ' +
+															"h100 " +
+															"");
+
+		oElement.$getContainer("label").setAttribute("x", (nLeft + nWidthTop + nCHalf * (nWidthBottom - nWidthTop)) + 10);
+		oElement.$getContainer("label").setAttribute("y", (nTop + nCHalf * nHeight - 5));
 
 		//
 		nSumUp	+= oElement.getAttribute("value") * 1;
