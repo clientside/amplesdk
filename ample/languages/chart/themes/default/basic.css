@@ -148,6 +148,13 @@ c|barGroup {
 	stroke-width:	1;
 }
 
+c|radarGroup::label,
+c|lineGroup::label,
+c|barGroup::label,
+c|bubbleGroup::label {
+	fill:	black;
+}
+
 c|radarGroup::shadow,
 c|lineGroup::shadow,
 c|barItem::shadow,

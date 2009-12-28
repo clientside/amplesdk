@@ -71,6 +71,10 @@ cChartElement_lineGroup.handlers	= {
 cChartElement_lineGroup.prototype.$getTagOpen	= function() {
 	return '<svg:g class="c-lineGroup c-lineGroup_nth-child-' + this.parentNode.childNodes.$indexOf(this) + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" xmlns:svg="http://www.w3.org/2000/svg" \
 				style="' + this.getAttribute("style") + '">\
+				<svg:g>\
+					<svg:path class="c-lineGroup--path" />\
+					<svg:text class="c-lineGroup--label" x="100" y="100" style="stroke:none">' + this.getAttribute("label")+ '</svg:text>\
+				</svg:g>\
 				<svg:path class="c-lineGroup--shadow" style="fill:none;stroke-linejoin:round" transform="translate(2, 2)"/>\
 				<svg:path class="c-lineGroup--line" style="fill:none;stroke-linejoin:round"/>\
 				<svg:path class="c-lineGroup--area" style="stroke:none"/>\

@@ -36,6 +36,10 @@ cChartElement_radarGroup.prototype.refresh	= function() {
 cChartElement_radarGroup.prototype.$getTagOpen	= function() {
 	return '<svg:g class="c-radarGroup c-radarGroup_nth-child-' + this.parentNode.childNodes.$indexOf(this) +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" xmlns:svg="http://www.w3.org/2000/svg" \
 				style="' + this.getAttribute("style") + '">\
+				<svg:g>\
+					<svg:path class="c-radarGroup--path" />\
+					<svg:text class="c-radarGroup--label" x="100" y="100" style="stroke:none">' + this.getAttribute("label")+ '</svg:text>\
+				</svg:g>\
 				<svg:path class="c-radarGroup--shadow" style="fill:none;stroke-linejoin:round" transform="translate(2, 2)"/>\
 				<svg:path class="c-radarGroup--line" style="fill:none;stroke-linejoin:round"/>\
 				<svg:path class="c-radarGroup--area" style="stroke:none"/>\

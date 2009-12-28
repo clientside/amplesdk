@@ -60,6 +60,10 @@ cChartElement_barGroup.prototype.refresh	= function() {
 cChartElement_barGroup.prototype.$getTagOpen	= function() {
 	return '<svg:g class="c-barGroup c-barGroup_nth-child-' + this.parentNode.childNodes.$indexOf(this) +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" xmlns:svg="http://www.w3.org/2000/svg" \
 				style="' + this.getAttribute("style") + '">\
+				<svg:g>\
+					<svg:path class="c-barGroup--path" />\
+					<svg:text class="c-barGroup--label" x="100" y="100" style="stroke:none">' + this.getAttribute("label")+ '</svg:text>\
+				</svg:g>\
 				<svg:g class="c-barGroup--gateway">';
 };
 
