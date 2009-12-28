@@ -29,29 +29,29 @@ cChartElement_doughnutGroup.prototype.refresh	= function() {
 		// doughnut origin
 		var	nInnerR	=(nGroup + 0.5 )* nWidth,
 			nOuterR	= nInnerR + nWidth,
-			nAngleFrom	= Math.PI / 2 + 2 * Math.PI * nSumUp / nSumAll,
-			nAngleTo	= Math.PI / 2 + 2 * Math.PI *(nSumUp + oElement.getAttribute("value") * 1) / nSumAll;
+			nAngleFrom	=-Math.PI / 2 + 2 * Math.PI * nSumUp / nSumAll,
+			nAngleTo	=-Math.PI / 2 + 2 * Math.PI *(nSumUp + oElement.getAttribute("value") * 1) / nSumAll;
 
 		var d	= [];
 		// Set start point on the inner circle
-		d.push("M" + (cX + nInnerR * Math.cos(nAngleFrom)) + "," +(cY - nInnerR * Math.sin(nAngleFrom)));
+		d.push("M" + (cX + nInnerR * Math.cos(nAngleFrom)) + "," +(cY + nInnerR * Math.sin(nAngleFrom)));
 		// Draw line to the outer circle
-		d.push("L" + (cX + nOuterR * Math.cos(nAngleFrom)) + "," +(cY - nOuterR * Math.sin(nAngleFrom)));
+		d.push("L" + (cX + nOuterR * Math.cos(nAngleFrom)) + "," +(cY + nOuterR * Math.sin(nAngleFrom)));
 		// Draw arc on the outer circle
-		d.push("A" + nOuterR + "," + nOuterR + " 0 " + (nAngleTo - nAngleFrom >= Math.PI ? 1 : 0)+ ",0 " + (cX + nOuterR * Math.cos(nAngleTo)) + "," +(cY - nOuterR * Math.sin(nAngleTo)));
+		d.push("A" + nOuterR + "," + nOuterR + " 0 " + (nAngleTo - nAngleFrom >= Math.PI ? 1 : 0)+ ",1 " + (cX + nOuterR * Math.cos(nAngleTo)) + "," +(cY + nOuterR * Math.sin(nAngleTo)));
 		// Draw line to the inner circle
-		d.push("L" + (cX + nInnerR * Math.cos(nAngleTo)) + "," +(cY - nInnerR * Math.sin(nAngleTo)));
+		d.push("L" + (cX + nInnerR * Math.cos(nAngleTo)) + "," +(cY + nInnerR * Math.sin(nAngleTo)));
 		// Draw arc on the inner circle
-		d.push("A" + nInnerR + "," + nInnerR + " 0 " + (nAngleTo - nAngleFrom >= Math.PI ? 1 : 0)+ ",1 " +(cX + nInnerR * Math.cos(nAngleFrom)) + "," +(cY - nInnerR * Math.sin(nAngleFrom)));
+		d.push("A" + nInnerR + "," + nInnerR + " 0 " + (nAngleTo - nAngleFrom >= Math.PI ? 1 : 0)+ ",0 " + (cX + nInnerR * Math.cos(nAngleFrom)) + "," +(cY + nInnerR * Math.sin(nAngleFrom)));
 
 		oElement.$getContainer("value").setAttribute("d", d.join('') + "z");
 		//oElement.$getContainer("shadow").setAttribute("d", d.join('') + "z");
 
 		// Text label
-		var nTextR	=(nOuterR + nInnerR)/2 + 5,
+		var nTextR	=(nOuterR + nInnerR)/2 - 5,
 			nAngleFromText	= nAngleFrom + Math.PI / 90;
-		oElement.$getContainer("path").setAttribute("d", "M" + (cX + nTextR * Math.cos(nAngleFromText)) + "," +(cY - nTextR * Math.sin(nAngleFromText)) + ' ' +
-														"A" + nTextR + "," + nTextR + " 0 " + (nAngleTo - nAngleFrom > Math.PI ? 1 : 0) + ",0 " + (cX + nTextR * Math.cos(nAngleTo)) + "," +(cY - nTextR * Math.sin(nAngleTo))+
+		oElement.$getContainer("path").setAttribute("d", "M" + (cX + nTextR * Math.cos(nAngleFromText)) + "," +(cY + nTextR * Math.sin(nAngleFromText)) + ' ' +
+														"A" + nTextR + "," + nTextR + " 0 " + (nAngleTo - nAngleFrom > Math.PI ? 1 : 0) + ",1 " + (cX + nTextR * Math.cos(nAngleTo)) + "," +(cY + nTextR * Math.sin(nAngleTo))+
 														"z");
 		//
 		nSumUp	+= oElement.getAttribute("value") * 1;

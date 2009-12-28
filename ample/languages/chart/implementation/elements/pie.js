@@ -29,16 +29,16 @@ cChartElement_pie.prototype.refresh	= function() {
 
 	for (var nIndex = 0, oElement; oElement = this.childNodes[nIndex]; nIndex++) {
 		// pie origin
-		var	nAngleFrom	= Math.PI / 2 + 2 * Math.PI * nSumUp / nSumAll,
-			nAngleTo	= Math.PI / 2 + 2 * Math.PI *(nSumUp + oElement.getAttribute("value") * 1) / nSumAll;
+		var	nAngleFrom	=-Math.PI / 2 + 2 * Math.PI * nSumUp / nSumAll,
+			nAngleTo	=-Math.PI / 2 + 2 * Math.PI *(nSumUp + oElement.getAttribute("value") * 1) / nSumAll;
 
 		var d	= [];
 		// Set start point on the inner circle
 		d.push("M" + cX + "," + cY);
 		// Draw line to the outer circle
-		d.push("L" + (cX + nWidth * Math.cos(nAngleFrom)) + "," +(cY - nWidth * Math.sin(nAngleFrom)));
+		d.push("L" + (cX + nWidth * Math.cos(nAngleFrom)) + "," +(cY + nWidth * Math.sin(nAngleFrom)));
 		// Draw arc on the outer circle
-		d.push("A" + nWidth + "," + nWidth + " 0 " + (nAngleTo - nAngleFrom >= Math.PI ? 1 : 0)+ ",0 " + (cX + nWidth * Math.cos(nAngleTo)) + "," +(cY - nWidth * Math.sin(nAngleTo)));
+		d.push("A" + nWidth + "," + nWidth + " 0 " + (nAngleTo - nAngleFrom >= Math.PI ? 1 : 0)+ ",1 " + (cX + nWidth * Math.cos(nAngleTo)) + "," +(cY + nWidth * Math.sin(nAngleTo)));
 		// Draw line to the inner circle
 		d.push("L" + cX + "," + cY);
 
@@ -53,13 +53,15 @@ cChartElement_pie.prototype.refresh	= function() {
 														"z");
 */
 		// Handles
-		var nAngleHalf	= (nAngleFrom + nAngleTo) / 2;
-		oElement.$getContainer("path").setAttribute("d", 	"M" + (cX + nWidth * Math.cos(nAngleHalf)) + "," +(cY - nWidth * Math.sin(nAngleHalf)) + ' ' +
-															"l" + (10 * Math.cos(nAngleHalf)) + "," +(-10 * Math.sin(nAngleHalf)) + ' ' +
-															"h" + (nAngleHalf >= Math.PI ? 1 : -1) * 100);
+		var nAngleHalf	= (nAngleFrom + nAngleTo) / 2,
+			bLeft	= nAngleHalf + Math.PI / 2 >= Math.PI;
+		oElement.$getContainer("path").setAttribute("d", 	"M" + (cX + nWidth * Math.cos(nAngleHalf)) + "," +(cY + nWidth * Math.sin(nAngleHalf)) + ' ' +
+															"l" + (10 * Math.cos(nAngleHalf)) + "," +(10 * Math.sin(nAngleHalf)) + ' ' +
+															"h" + (bLeft ? -1 : 1) * 100);
 
-		oElement.$getContainer("label").setAttribute("x", cX + 5 + (nWidth + 10) * Math.cos(nAngleHalf));
-		oElement.$getContainer("label").setAttribute("y", cY - 5 - (nWidth + 10) * Math.sin(nAngleHalf));
+		oElement.$getContainer("label").setAttribute("x", cX + (bLeft ? -10 : 10) + (nWidth + 10) * Math.cos(nAngleHalf));
+		oElement.$getContainer("label").setAttribute("y", cY - 5 + (nWidth + 10) * Math.sin(nAngleHalf));
+		oElement.$getContainer("label").setAttribute("text-anchor", bLeft ? "end" : "start");
 
 		//
 		nSumUp	+= oElement.getAttribute("value") * 1;

@@ -117,11 +117,12 @@ c|funnelItem,
 c|doughnutItem {
 	stroke: white;
 	stroke-width: 2;
+	font-size: 12px;
 }
 
 c|pieItem::path,
 c|funnelItem::path {
-	stroke: gray;
+	stroke: black;
 	stroke-width: 1;
 }
 
