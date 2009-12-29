@@ -52,8 +52,8 @@ c|radarGroup:nth-child(0),
 c|funnelItem:nth-child(0),
 c|pieItem:nth-child(0),
 c|doughnutItem:nth-child(0) {
-	stroke:	#0C4E83;
-	fill:	#0C4E83;
+	stroke:	#54A14B;
+	fill: 	#54A14B;
 }
 
 c|lineGroup:nth-child(1),
@@ -74,8 +74,8 @@ c|radarGroup:nth-child(2),
 c|funnelItem:nth-child(2),
 c|pieItem:nth-child(2),
 c|doughnutItem:nth-child(2) {
-	stroke:	#54A14B;
-	fill: 	#54A14B;
+	stroke:	#0C4E83;
+	fill:	#0C4E83;
 }
 
 c|lineGroup:nth-child(3),
