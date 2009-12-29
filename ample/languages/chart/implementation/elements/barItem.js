@@ -13,7 +13,7 @@ cChartElement_barItem.prototype.$hoverable	= true;
 
 cChartElement_barItem.prototype.$getTagOpen	= function() {
 	return '<svg:g class="c-barItem' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">\
-				<svg:path class="c-barItem--shadow" style="stroke-linejoin:round" transform="translate(3,2)"/>\
+				<svg:path class="c-barItem--shadow" style="stroke-linejoin:round" transform="translate(2,2)"/>\
 				<svg:path class="c-barItem--value"/>\
 				<svg:path class="c-barItem--textPath" id="p' + this.uniqueID + '" style="fill:none;stroke:none"/>\
 				<svg:text class="c-barItem--label" style="stroke:none;"><svg:textPath xlink:href="#p' + this.uniqueID + '">' + this.getAttribute("value")+ '</svg:textPath></svg:text>\
