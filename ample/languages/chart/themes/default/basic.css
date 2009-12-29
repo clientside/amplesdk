@@ -10,6 +10,7 @@ c|map {
 	background-color: #eee;
 	border: double 3px gray;
 	border-radius: 10px;
+	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	-o-border-radius: 10px;
 }
@@ -103,11 +104,18 @@ c|grid {
 
 c|xAxis::label,
 c|yAxis::label {
-	fill: red;
+	fill: gray;
 	stroke: none;
-	font-size: 12px;
+	font-size: 18px;
 	font-style: italic;
-	text-anchor: start;
+}
+
+c|xAxis::scale,
+c|yAxis::scale {
+	fill: gray;
+	stroke: none;
+	font-size: 10px;
+	font-style: italic;
 }
 
 /* individual charts styling */

@@ -11,13 +11,59 @@
 			font-family: Tahoma;
 		}
 		 h3, p {
-		 	margin-top: 0;
+		 	margin-top: 0.5em;
 		 	margin-bottom: 0.5em;
 		 }
 		</style>
 	</head>
 	<body>
 		<script>ample.open()</script>
+
+		<h3>Bar chart</h3>
+		<p>
+			Options: stacked, orientation, join bars
+		</p>
+		<c:bar label="Bar chart" xAxisLabel="X Axis" yAxisLabel="Y Label">
+			<c:barGroup label="Set 0" color="blue">
+				<c:barItem value="10" />
+				<c:barItem value="20" />
+				<c:barItem value="30" />
+				<c:barItem value="40" />
+				<c:barItem value="50" />
+			</c:barGroup>
+			<c:barGroup label="Set 1" color="green">
+				<c:barItem value="20" />
+				<c:barItem value="10" />
+				<c:barItem value="25" />
+				<c:barItem value="45" />
+				<c:barItem value="15" />
+			</c:barGroup>
+			<c:barGroup label="Set 2" color="brown">
+				<c:barItem value="30" />
+				<c:barItem value="30" />
+				<c:barItem value="5" />
+				<c:barItem value="10" />
+				<c:barItem value="40" />
+			</c:barGroup>
+			<c:barGroup label="Set 3">
+				<c:barItem value="15" />
+				<c:barItem value="25" />
+				<c:barItem value="35" />
+				<c:barItem value="30" />
+				<c:barItem value="10" />
+			</c:barGroup>
+			<!-- c:barGroup label="Set 2" values="5;15;30;25" /-->
+		</c:bar>
+		<c:bar label="Bar chart (one series)" orient="horizontal" stacked="true">
+			<c:barGroup label="Set 0" color="blue">
+				<c:barItem value="10" />
+				<c:barItem value="20" />
+				<c:barItem value="30" />
+				<c:barItem value="40" />
+				<c:barItem value="50" />
+			</c:barGroup>
+		</c:bar>
+
 
 		<h3>Line chart</h3>
 		<p>
@@ -27,76 +73,124 @@
 			xAxisLabel="X Axis long label" xAxisType="Number" xAxisRange="0;22"
 			yAxisLabel="Y Axis long label" yAxisType="Number" yAxisRange="0;40">
 			<c:lineGroup label="Set 0" color="green">
-				<c:lineItem label="point 0" value="0,30" />
-				<c:lineItem label="point 1" value="1,20" />
-				<c:lineItem label="point 2" value="2,15" />
-				<c:lineItem label="point 3" value="3,30" />
-				<c:lineItem label="point 4" value="4,30" />
-				<c:lineItem label="point 5" value="5,40" />
-				<c:lineItem label="point 6" value="6,30" />
-				<c:lineItem label="point 7" value="7,20" />
-				<c:lineItem label="point 8" value="8,30" />
-				<c:lineItem label="point 9" value="9,15" />
-				<c:lineItem label="point 0" value="10,10" />
-				<c:lineItem label="point 1" value="11,20" />
-				<c:lineItem label="point 2" value="12,15" />
-				<c:lineItem label="point 3" value="13,30" />
-				<c:lineItem label="point 4" value="14,30" />
-				<c:lineItem label="point 5" value="15,40" />
-				<c:lineItem label="point 6" value="16,30" />
-				<c:lineItem label="point 7" value="17,20" />
-				<c:lineItem label="point 8" value="18,30" />
-				<c:lineItem label="point 9" value="19,15" />
-				<c:lineItem label="point 10" value="20,30" />
-				<c:lineItem label="point 11" value="21,5" />
+				<c:lineItem value="0,30" />
+				<c:lineItem value="1,20" />
+				<c:lineItem value="2,15" />
+				<c:lineItem value="3,30" />
+				<c:lineItem value="4,30" />
+				<c:lineItem value="5,40" />
+				<c:lineItem value="6,30" />
+				<c:lineItem value="7,20" />
+				<c:lineItem value="8,30" />
+				<c:lineItem value="9,15" />
+				<c:lineItem value="10,10" />
+				<c:lineItem value="11,20" />
+				<c:lineItem value="12,15" />
+				<c:lineItem value="13,30" />
+				<c:lineItem value="14,30" />
+				<c:lineItem value="15,40" />
+				<c:lineItem value="16,30" />
+				<c:lineItem value="17,20" />
+				<c:lineItem value="18,30" />
+				<c:lineItem value="19,15" />
+				<c:lineItem value="20,30" />
+				<c:lineItem value="21,5" />
 			</c:lineGroup>
 			<c:lineGroup label="Set 1" color="red">
-				<c:lineItem label="point 0" value="0,20" />
-				<c:lineItem label="point 1" value="1,10" />
-				<c:lineItem label="point 2" value="2,25" />
-				<c:lineItem label="point 3" value="3,40" />
-				<c:lineItem label="point 3" value="4,20" />
-				<c:lineItem label="point 3" value="5,10" />
-				<c:lineItem label="point 3" value="6,20" />
-				<c:lineItem label="point 3" value="7,30" />
-				<c:lineItem label="point 3" value="8,40" />
-				<c:lineItem label="point 3" value="9,25" />
-				<c:lineItem label="point 0" value="10,20" />
-				<c:lineItem label="point 1" value="11,10" />
-				<c:lineItem label="point 2" value="12,25" />
-				<c:lineItem label="point 3" value="13,40" />
-				<c:lineItem label="point 3" value="14,20" />
-				<c:lineItem label="point 3" value="15,10" />
-				<c:lineItem label="point 3" value="16,20" />
-				<c:lineItem label="point 3" value="17,30" />
-				<c:lineItem label="point 3" value="18,40" />
-				<c:lineItem label="point 3" value="19,25" />
-				<c:lineItem label="point 0" value="20,20" />
-				<c:lineItem label="point 1" value="21,10" />
+				<c:lineItem value="0,20" />
+				<c:lineItem value="1,10" />
+				<c:lineItem value="2,25" />
+				<c:lineItem value="3,40" />
+				<c:lineItem value="4,20" />
+				<c:lineItem value="5,10" />
+				<c:lineItem value="6,20" />
+				<c:lineItem value="7,30" />
+				<c:lineItem value="8,40" />
+				<c:lineItem value="9,25" />
+				<c:lineItem value="10,20" />
+				<c:lineItem value="11,10" />
+				<c:lineItem value="12,25" />
+				<c:lineItem value="13,40" />
+				<c:lineItem value="14,20" />
+				<c:lineItem value="15,10" />
+				<c:lineItem value="16,20" />
+				<c:lineItem value="17,30" />
+				<c:lineItem value="18,40" />
+				<c:lineItem value="19,25" />
+				<c:lineItem value="20,20" />
+				<c:lineItem value="21,10" />
 			</c:lineGroup>
 			<c:lineGroup label="Set 2">
-				<c:lineItem label="point 0" value="0,10" />
-				<c:lineItem label="point 1" value="1,30" />
-				<c:lineItem label="point 2" value="2,25" />
-				<c:lineItem label="point 3" value="3,10" />
-				<c:lineItem label="point 4" value="4,20" />
-				<c:lineItem label="point 5" value="5,30" />
-				<c:lineItem label="point 6" value="6,40" />
-				<c:lineItem label="point 7" value="7,5" />
-				<c:lineItem label="point 8" value="8,10" />
-				<c:lineItem label="point 9" value="9,25" />
-				<c:lineItem label="point 0" value="10,20" />
-				<c:lineItem label="point 1" value="11,10" />
-				<c:lineItem label="point 2" value="12,5" />
-				<c:lineItem label="point 3" value="13,10" />
-				<c:lineItem label="point 4" value="14,5" />
-				<c:lineItem label="point 5" value="15,10" />
-				<c:lineItem label="point 6" value="16,20" />
-				<c:lineItem label="point 7" value="17,40" />
-				<c:lineItem label="point 8" value="18,20" />
-				<c:lineItem label="point 9" value="19,5" />
-				<c:lineItem label="point 10" value="20,20" />
-				<c:lineItem label="point 11" value="21,15" />
+				<c:lineItem value="0,10" />
+				<c:lineItem value="1,30" />
+				<c:lineItem value="2,25" />
+				<c:lineItem value="3,10" />
+				<c:lineItem value="4,20" />
+				<c:lineItem value="5,30" />
+				<c:lineItem value="6,40" />
+				<c:lineItem value="7,5" />
+				<c:lineItem value="8,10" />
+				<c:lineItem value="9,25" />
+				<c:lineItem value="10,20" />
+				<c:lineItem value="11,10" />
+				<c:lineItem value="12,5" />
+				<c:lineItem value="13,10" />
+				<c:lineItem value="14,5" />
+				<c:lineItem value="15,10" />
+				<c:lineItem value="16,20" />
+				<c:lineItem value="17,40" />
+				<c:lineItem value="18,20" />
+				<c:lineItem value="19,5" />
+				<c:lineItem value="20,20" />
+				<c:lineItem value="21,15" />
+			</c:lineGroup>
+			<c:lineGroup label="Set 3">
+				<c:lineItem value="0,12" />
+				<c:lineItem value="1,18" />
+				<c:lineItem value="2,16" />
+				<c:lineItem value="3,12" />
+				<c:lineItem value="4,24" />
+				<c:lineItem value="5,16" />
+				<c:lineItem value="6,18" />
+				<c:lineItem value="7,16" />
+				<c:lineItem value="8,16" />
+				<c:lineItem value="9,22" />
+				<c:lineItem value="10,24" />
+				<c:lineItem value="11,26" />
+				<c:lineItem value="12,28" />
+				<c:lineItem value="13,32" />
+				<c:lineItem value="14,28" />
+				<c:lineItem value="15,34" />
+				<c:lineItem value="16,16" />
+				<c:lineItem value="17,24" />
+				<c:lineItem value="18,22" />
+				<c:lineItem value="19,12" />
+				<c:lineItem value="20,14" />
+				<c:lineItem value="21,16" />
+			</c:lineGroup>
+			<c:lineGroup label="Set 4">
+				<c:lineItem value="0,12" />
+				<c:lineItem value="1,32" />
+				<c:lineItem value="2,25" />
+				<c:lineItem value="3,22" />
+				<c:lineItem value="4,26" />
+				<c:lineItem value="5,36" />
+				<c:lineItem value="6,32" />
+				<c:lineItem value="7,15" />
+				<c:lineItem value="8,14" />
+				<c:lineItem value="9,10" />
+				<c:lineItem value="10,12" />
+				<c:lineItem value="11,20" />
+				<c:lineItem value="12,22" />
+				<c:lineItem value="13,24" />
+				<c:lineItem value="14,26" />
+				<c:lineItem value="15,28" />
+				<c:lineItem value="16,32" />
+				<c:lineItem value="17,24" />
+				<c:lineItem value="18,26" />
+				<c:lineItem value="19,22" />
+				<c:lineItem value="20,20" />
+				<c:lineItem value="21,16" />
 			</c:lineGroup>
 			<!-- c:lineGroup label="Set 2" values="0,5;1,15;2,30;3,25" />
 			<c:lineGroup label="Set 2" values="0,15;1,25;2,10;3,15" /-->
@@ -105,78 +199,30 @@
 			xAxisLabel="X Axis long label" xAxisType="Number" xAxisRange="0;22"
 			yAxisLabel="Y Axis long label" yAxisType="Number" yAxisRange="0;40">
 			<c:lineGroup label="Set 0" color="green">
-				<c:lineItem label="point 0" value="0,30" />
-				<c:lineItem label="point 1" value="1,20" />
-				<c:lineItem label="point 2" value="2,15" />
-				<c:lineItem label="point 3" value="3,30" />
-				<c:lineItem label="point 4" value="4,30" />
-				<c:lineItem label="point 5" value="5,40" />
-				<c:lineItem label="point 6" value="6,30" />
-				<c:lineItem label="point 7" value="7,20" />
-				<c:lineItem label="point 8" value="8,30" />
-				<c:lineItem label="point 9" value="9,15" />
-				<c:lineItem label="point 0" value="10,10" />
-				<c:lineItem label="point 1" value="11,20" />
-				<c:lineItem label="point 2" value="12,15" />
-				<c:lineItem label="point 3" value="13,30" />
-				<c:lineItem label="point 4" value="14,30" />
-				<c:lineItem label="point 5" value="15,40" />
-				<c:lineItem label="point 6" value="16,30" />
-				<c:lineItem label="point 7" value="17,20" />
-				<c:lineItem label="point 8" value="18,30" />
-				<c:lineItem label="point 9" value="19,15" />
-				<c:lineItem label="point 10" value="20,30" />
-				<c:lineItem label="point 11" value="21,5" />
+				<c:lineItem value="0,30" />
+				<c:lineItem value="1,20" />
+				<c:lineItem value="2,15" />
+				<c:lineItem value="3,30" />
+				<c:lineItem value="4,30" />
+				<c:lineItem value="5,40" />
+				<c:lineItem value="6,30" />
+				<c:lineItem value="7,20" />
+				<c:lineItem value="8,30" />
+				<c:lineItem value="9,15" />
+				<c:lineItem value="10,10" />
+				<c:lineItem value="11,20" />
+				<c:lineItem value="12,15" />
+				<c:lineItem value="13,30" />
+				<c:lineItem value="14,30" />
+				<c:lineItem value="15,40" />
+				<c:lineItem value="16,30" />
+				<c:lineItem value="17,20" />
+				<c:lineItem value="18,30" />
+				<c:lineItem value="19,15" />
+				<c:lineItem value="20,30" />
+				<c:lineItem value="21,5" />
 			</c:lineGroup>
 		</c:line>
-
-		<h3>Bar chart</h3>
-		<p>
-			Options: stacked, orientation, join bars
-		</p>
-		<c:bar label="Bar chart" xAxisLabel="X Axis" yAxisLabel="Y Label">
-			<!--c:xAxis values="" label="x-axis"/>
-			<c:yAxis values="" label="y-axis"/-->
-			<c:barGroup label="Set 0" color="blue">
-				<c:barItem label="point 0" value="10" />
-				<c:barItem label="point 1" value="20" />
-				<c:barItem label="point 2" value="30" />
-				<c:barItem label="point 3" value="40" />
-				<c:barItem label="point 4" value="50" />
-			</c:barGroup>
-			<c:barGroup label="Set 1" color="green">
-				<c:barItem label="point 0" value="20" />
-				<c:barItem label="point 1" value="10" />
-				<c:barItem label="point 2" value="25" />
-				<c:barItem label="point 3" value="45" />
-				<c:barItem label="point 4" value="15" />
-			</c:barGroup>
-			<c:barGroup label="Set 2" color="brown">
-				<c:barItem label="point 0" value="30" />
-				<c:barItem label="point 1" value="30" />
-				<c:barItem label="point 2" value="5" />
-				<c:barItem label="point 3" value="10" />
-				<c:barItem label="point 4" value="40" />
-			</c:barGroup>
-			<c:barGroup label="Set 3">
-				<c:barItem label="point 0" value="15" />
-				<c:barItem label="point 1" value="25" />
-				<c:barItem label="point 2" value="35" />
-				<c:barItem label="point 3" value="30" />
-				<c:barItem label="point 4" value="10" />
-			</c:barGroup>
-			<!-- c:barGroup label="Set 2" values="5;15;30;25" /-->
-		</c:bar>
-
-		<c:bar label="Bar chart (one series)" orient="horizontal" stacked="true">
-			<c:barGroup label="Set 0" color="blue">
-				<c:barItem label="point 0" value="10" />
-				<c:barItem label="point 1" value="20" />
-				<c:barItem label="point 2" value="30" />
-				<c:barItem label="point 3" value="40" />
-				<c:barItem label="point 4" value="50" />
-			</c:barGroup>
-		</c:bar>
 
 		<h3>Bubble chart</h3>
 		<p>
@@ -184,39 +230,39 @@
 		</p>
 		<c:bubble label="Bubble chart" xAxisLabel="Axis X" yAxisLabel="Axis Y">
 			<c:bubbleGroup label="Set 0" color="red">
-				<c:bubbleItem label="point 0" value="5,10,5" />
-				<c:bubbleItem label="point 1" value="10,20,10" />
-				<c:bubbleItem label="point 2" value="20,15,1" />
-				<c:bubbleItem label="point 3" value="30,30,2" />
+				<c:bubbleItem value="5,10,5" />
+				<c:bubbleItem value="10,20,10" />
+				<c:bubbleItem value="20,15,1" />
+				<c:bubbleItem value="30,30,2" />
 			</c:bubbleGroup>
 			<c:bubbleGroup label="Set 1" color="green">
-				<c:bubbleItem label="point 0" value="5,20,8" />
-				<c:bubbleItem label="point 1" value="10,10,4" />
-				<c:bubbleItem label="point 2" value="20,25,1" />
-				<c:bubbleItem label="point 3" value="30,40,3" />
+				<c:bubbleItem value="5,20,8" />
+				<c:bubbleItem value="10,10,4" />
+				<c:bubbleItem value="20,25,1" />
+				<c:bubbleItem value="30,40,3" />
 			</c:bubbleGroup>
 			<c:bubbleGroup label="Set 2" color="blue">
-				<c:bubbleItem label="point 0" value="5,30,8" />
-				<c:bubbleItem label="point 1" value="10,30,4" />
-				<c:bubbleItem label="point 2" value="20,45,1" />
-				<c:bubbleItem label="point 3" value="30,50,3" />
+				<c:bubbleItem value="5,30,8" />
+				<c:bubbleItem value="10,30,4" />
+				<c:bubbleItem value="20,45,1" />
+				<c:bubbleItem value="30,50,3" />
 			</c:bubbleGroup>
 		</c:bubble>
 		<c:bubble label="Bubble chart (one series)" xAxisLabel="Axis X" yAxisLabel="Axis Y">
 			<c:bubbleGroup label="Set 0" color="red">
-				<c:bubbleItem label="point 0" value="5,10,5" />
-				<c:bubbleItem label="point 1" value="10,20,10" />
-				<c:bubbleItem label="point 1" value="15,10,10" />
-				<c:bubbleItem label="point 2" value="20,15,1" />
-				<c:bubbleItem label="point 2" value="25,25,1" />
-				<c:bubbleItem label="point 3" value="30,30,100" />
-				<c:bubbleItem label="point 0" value="35,10,5" />
-				<c:bubbleItem label="point 1" value="40,20,10" />
-				<c:bubbleItem label="point 1" value="45,10,10" />
-				<c:bubbleItem label="point 2" value="50,15,1" />
-				<c:bubbleItem label="point 2" value="55,25,1" />
-				<c:bubbleItem label="point 3" value="60,30,2" />
-				<c:bubbleItem label="point 3" value="65,30,20" />
+				<c:bubbleItem value="5,10,5" />
+				<c:bubbleItem value="10,20,10" />
+				<c:bubbleItem value="15,10,10" />
+				<c:bubbleItem value="20,15,1" />
+				<c:bubbleItem value="25,25,1" />
+				<c:bubbleItem value="30,30,100" />
+				<c:bubbleItem value="35,10,5" />
+				<c:bubbleItem value="40,20,10" />
+				<c:bubbleItem value="45,10,10" />
+				<c:bubbleItem value="50,15,1" />
+				<c:bubbleItem value="55,25,1" />
+				<c:bubbleItem value="60,30,2" />
+				<c:bubbleItem value="65,30,20" />
 			</c:bubbleGroup>
 		</c:bubble>
 
@@ -226,34 +272,34 @@
 		</p>
 		<c:radar label="Radar chart">
 			<c:radarGroup label="Set 0" color="red">
-				<c:radarItem label="point 0" value="10" />
-				<c:radarItem label="point 1" value="20" />
-				<c:radarItem label="point 2" value="15" />
-				<c:radarItem label="point 3" value="30" />
-				<c:radarItem label="point 4" value="20" />
+				<c:radarItem value="10" />
+				<c:radarItem value="20" />
+				<c:radarItem value="15" />
+				<c:radarItem value="30" />
+				<c:radarItem value="20" />
 			</c:radarGroup>
 			<c:radarGroup label="Set 1" color="blue">
-				<c:radarItem label="point 0" value="20" />
-				<c:radarItem label="point 1" value="10" />
-				<c:radarItem label="point 2" value="25" />
-				<c:radarItem label="point 3" value="40" />
-				<c:radarItem label="point 4" value="50" />
+				<c:radarItem value="20" />
+				<c:radarItem value="10" />
+				<c:radarItem value="25" />
+				<c:radarItem value="40" />
+				<c:radarItem value="50" />
 			</c:radarGroup>
 			<c:radarGroup label="Set 2">
-				<c:radarItem label="point 0" value="5" />
-				<c:radarItem label="point 1" value="15" />
-				<c:radarItem label="point 2" value="10" />
-				<c:radarItem label="point 3" value="20" />
-				<c:radarItem label="point 4" value="40" />
+				<c:radarItem value="5" />
+				<c:radarItem value="15" />
+				<c:radarItem value="10" />
+				<c:radarItem value="20" />
+				<c:radarItem value="40" />
 			</c:radarGroup>
 		</c:radar>
 		<c:radar label="Radar chart (one series)">
 			<c:radarGroup label="Set 0">
-				<c:radarItem label="point 0" value="10" />
-				<c:radarItem label="point 1" value="20" />
-				<c:radarItem label="point 2" value="15" />
-				<c:radarItem label="point 3" value="30" />
-				<c:radarItem label="point 4" value="20" />
+				<c:radarItem value="10" />
+				<c:radarItem value="20" />
+				<c:radarItem value="15" />
+				<c:radarItem value="30" />
+				<c:radarItem value="20" />
 			</c:radarGroup>
 		</c:radar>
 
@@ -350,13 +396,13 @@
 
 		<c:doughnut label="Doughnut chart (one series)">
 			<c:doughnutGroup label="Set 0" color="darkblue">
-				<c:doughnutItem label="point 0" value="10" />
-				<c:doughnutItem label="point 1" value="10" />
-				<c:doughnutItem label="point 2" value="10" />
-				<c:doughnutItem label="point 3" value="50" />
-				<c:doughnutItem label="point 4" value="10" />
-				<c:doughnutItem label="point 5" value="10" />
-				<c:doughnutItem label="point 6" value="10" />
+				<c:doughnutItem value="10" label="value 0" />
+				<c:doughnutItem value="10" label="value 1" />
+				<c:doughnutItem value="10" label="value 2" />
+				<c:doughnutItem value="50" label="value 3" />
+				<c:doughnutItem value="10" label="value 4" />
+				<c:doughnutItem value="10" label="value 5" />
+				<c:doughnutItem value="10" label="value 6" />
 			</c:doughnutGroup>
 		</c:doughnut>
 
@@ -366,10 +412,10 @@
 		</p>
 		<c:stream>
 			<c:streamGroup>
-				<c:streamItem label="point 0" value="10"/>
-				<c:streamItem label="point 1" value="20"/>
-				<c:streamItem label="point 2" value="30"/>
-				<c:streamItem label="point 3" value="40"/>
+				<c:streamItem value="10"/>
+				<c:streamItem value="20"/>
+				<c:streamItem value="30"/>
+				<c:streamItem value="40"/>
 			</c:streamGroup>
 		</c:stream>
 
@@ -379,11 +425,11 @@
 			Options: no
 		</p>
 		<c:funnel label="Funnel chart">
-			<c:funnelItem label="point 0" value="40" color="red"/>
-			<c:funnelItem label="point 1" value="30" color="green" />
-			<c:funnelItem label="point 2" value="20" color="blue" />
-			<c:funnelItem label="point 3" value="10" />
-			<c:funnelItem label="point 4" value="5" />
+			<c:funnelItem value="40" label="value 0" color="red"/>
+			<c:funnelItem value="30" label="value 1" color="green" />
+			<c:funnelItem value="20" label="value 2" color="blue" />
+			<c:funnelItem value="10" label="value 3" />
+			<c:funnelItem value="5" label="value 4" />
 		</c:funnel>
 
 		<h3>Pie chart</h3>
@@ -391,11 +437,12 @@
 			Options: no
 		</p>
 		<c:pie label="Pie chart">
-			<c:pieItem label="point 0" value="40" color="red"/>
-			<c:pieItem label="point 1" value="30" color="green"/>
-			<c:pieItem label="point 2" value="20" color="blue"/>
-			<c:pieItem label="point 3" value="10" />
-			<c:pieItem label="point 4" value="5" />
+			<c:pieItem value="40" label="value 0" color="red"/>
+			<c:pieItem value="30" label="value 1" color="green"/>
+			<c:pieItem value="20" label="value 2" color="blue"/>
+			<c:pieItem value="40" label="value 3" color="red"/>
+			<c:pieItem value="10" label="value 4" />
+			<c:pieItem value="5" label="value 5" />
 		</c:pie>
 
 		<h3>Map chart</h3>
@@ -403,10 +450,10 @@
 			Options: Map
 		</p>
 		<c:map label="World map" type="world">
-			<c:mapItem label="ponit 0" value="us,100"/>
-			<c:mapItem label="ponit 0" value="ru,10"/>
-			<c:mapItem label="ponit 0" value="fi,20"/>
-			<c:mapItem label="ponit 0" value="se,50"/>
+			<c:mapItem value="us,100" label="value 0"/>
+			<c:mapItem value="ru,10" label="value 1"/>
+			<c:mapItem value="fi,20" label="value 2"/>
+			<c:mapItem value="se,50" label="value 3"/>
 		</c:map>
 
 		<script>ample.close()</script>
