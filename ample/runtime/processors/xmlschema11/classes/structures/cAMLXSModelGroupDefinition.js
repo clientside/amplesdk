@@ -11,5 +11,7 @@ var cAMLXSModelGroupDefinition	= function() {
 
 };
 
+cAMLXSModelGroupDefinition.prototype	= new cAMLXSObject;
+
 cAMLXSModelGroupDefinition.prototype.modelGroup	= null;	// XSModelGroup
 cAMLXSModelGroupDefinition.prototype.annotation	= null;	// XSAnnotation

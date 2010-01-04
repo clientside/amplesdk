@@ -11,6 +11,8 @@ var cAMLXSNotationDeclaration	= function() {
 
 };
 
+cAMLXSNotationDeclaration.prototype	= new cAMLXSObject;
+
 cAMLXSNotationDeclaration.prototype.systemId	= null;	// String
 cAMLXSNotationDeclaration.prototype.publicId	= null;	// String
 cAMLXSNotationDeclaration.prototype.annotation	= null;	// XSAnnotation

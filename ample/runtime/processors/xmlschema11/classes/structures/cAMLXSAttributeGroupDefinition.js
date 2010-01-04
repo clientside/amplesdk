@@ -11,6 +11,8 @@ var cAMLXSAttributeGroupDefinition	= function() {
 
 };
 
-cAMLXSModelGroupDefinition.prototype.attributeUses		= null;	// XSObjectList
-cAMLXSModelGroupDefinition.prototype.attributeWildcard	= null;	// XSWildcard
-cAMLXSModelGroupDefinition.prototype.annotation			= null;	// XSAnnotation
+cAMLXSAttributeGroupDefinition.prototype	= new cAMLXSObject;
+
+cAMLXSAttributeGroupDefinition.prototype.attributeUses		= null;	// XSObjectList
+cAMLXSAttributeGroupDefinition.prototype.attributeWildcard	= null;	// XSWildcard
+cAMLXSAttributeGroupDefinition.prototype.annotation			= null;	// XSAnnotation

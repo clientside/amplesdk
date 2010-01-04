@@ -11,6 +11,8 @@ var cAMLXSAttributeUse	= function() {
 
 };
 
+cAMLXSAttributeUse.prototype	= new cAMLXSObject;
+
 cAMLXSAttributeUse.prototype.required			= null;	// Boolean
 cAMLXSAttributeUse.prototype.attrDeclaration	= null;	// XSAttributeDeclaration
 cAMLXSAttributeUse.prototype.constraintType		= null;	// Number

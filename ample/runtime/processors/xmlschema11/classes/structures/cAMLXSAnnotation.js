@@ -11,13 +11,15 @@ var cAMLXSAnnotation	= function() {
 
 };
 
-XSAnnotation.W3C_DOM_ELEMENT	= 1;
-XSAnnotation.SAX_CONTENTHANDLER	= 2;
-XSAnnotation.W3C_DOM_DOCUMENT	= 3;
+cAMLXSAnnotation.prototype	= new cAMLXSObject;
 
-XSAnnotation.prototype.annotationString	= null;	// String
+cAMLXSAnnotation.W3C_DOM_ELEMENT	= 1;
+cAMLXSAnnotation.SAX_CONTENTHANDLER	= 2;
+cAMLXSAnnotation.W3C_DOM_DOCUMENT	= 3;
+
+cAMLXSAnnotation.prototype.annotationString	= null;	// String
 
 /* @type	Boolean */
-XSAnnotation.prototype.annotationString	= function(oTarget, nTargetType) {
+cAMLXSAnnotation.prototype.annotationString	= function(oTarget, nTargetType) {
 
 };

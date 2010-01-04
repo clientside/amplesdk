@@ -11,6 +11,8 @@ var cAMLXSAttributeDeclaration	= function() {
 
 };
 
+cAMLXSAttributeDeclaration.prototype	= new cAMLXSObject;
+
 cAMLXSAttributeDeclaration.prototype.typeDefinition			= null;	// XSSimpleTypeDefinition
 cAMLXSAttributeDeclaration.prototype.scope					= null;	// Number
 cAMLXSAttributeDeclaration.prototype.enclosingCTDefinition	= null;	// XSComplexTypeDefinition

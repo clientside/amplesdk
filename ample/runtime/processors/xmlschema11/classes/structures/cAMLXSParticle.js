@@ -11,6 +11,8 @@ var cAMLXSParticle	= function() {
 
 };
 
+cAMLXSParticle.prototype	= new cAMLXSObject;
+
 cAMLXSParticle.prototype.minOccurs	= null;	// Number
 cAMLXSParticle.prototype.maxOccurs	= null;	// Number
 cAMLXSParticle.prototype.maxOccursUnbounded	= null;	// Boolean

@@ -10,3 +10,5 @@
 var cAMLXSTerm	= function() {
 
 };
+
+cAMLXSTerm.prototype	= new cAMLXSObject;
