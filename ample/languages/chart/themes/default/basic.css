@@ -177,6 +177,10 @@ c|bubbleItem::label {
 	fill: white;
 }
 
+c|bubbleItem::label {
+	text-anchor:	middle;
+}
+
 /* Maps */
 c|mapItem {
 	stroke: white;
