@@ -183,7 +183,7 @@
 				xmlschema11-builtin.js"/>
 
 			<!-- XML Schema 1.1 (structure) -->
-			<filelist dir="${source.runtime.dir}/processors/xmlschema11/" files="
+			<!-- filelist dir="${source.runtime.dir}/processors/xmlschema11/" files="
 				xmlschema11-structures.js"/>
 			<filelist dir="${source.runtime.dir}/processors/xmlschema11-instance/" files="
 				xmlschema11-instance.js"/>
@@ -199,7 +199,7 @@
 				cAMLXSModelGroupDefinition.js,
 				cAMLXSNotationDeclaration.js,
 				cAMLXSParticle.js,
-				cAMLXSWildcard.js"/>
+				cAMLXSWildcard.js"/-->
 
 			<!-- UI Managers -->
 			<filelist dir="${source.runtime.dir}/managers/" files="
