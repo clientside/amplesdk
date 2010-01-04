@@ -24,7 +24,7 @@ cChartElement_lineGroup.getMarkerPath	= function(nX, nY, nType) {
 					"v-" + nSize2 +
 					"z";
 		// Triangle
-		case 2:
+		case 4:
 			var nOffset	= nSize2 / Math.sqrt(3);
 			return	"M" +(nX - nOffset)+ "," +(nY - nSize)+
 					"h" + nOffset * 2 +
@@ -40,7 +40,7 @@ cChartElement_lineGroup.getMarkerPath	= function(nX, nY, nType) {
 					"l" + nSize + ",-" + nSize +
 					"z";
 		// Triangle 60%
-		case 4:
+		case 2:
 			var nOffset	= nSize2 / Math.sqrt(3);
 			return	"M" + nX + "," +(nY - nSize)+
 					"l" + nOffset + "," + nSize2 +
@@ -121,14 +121,16 @@ cChartElement_lineGroup.prototype.$getTagOpen	= function() {
 					<svg:path class="c-lineGroup--path" />\
 					<svg:text class="c-lineGroup--label" x="100" y="100" style="stroke:none">' + this.getAttribute("label")+ '</svg:text>\
 				</svg:g>\
-				<svg:path class="c-lineGroup--shadow" style="fill:none;stroke-linejoin:round" transform="translate(2, 2)"/>\
-				<svg:path class="c-lineGroup--line" style="fill:none;stroke-linejoin:round"/>\
-				<svg:path class="c-lineGroup--area" style="stroke:none"/>\
-				<svg:g class="c-lineGroup--gateway">';
+				<svg:g class="c-lineGroup--value">\
+					<svg:path class="c-lineGroup--shadow" style="fill:none;stroke-linejoin:round" transform="translate(2, 2)"/>\
+					<svg:path class="c-lineGroup--line" style="fill:none;stroke-linejoin:round"/>\
+					<svg:path class="c-lineGroup--area" style="stroke:none"/>\
+					<svg:g class="c-lineGroup--gateway">';
 };
 
 cChartElement_lineGroup.prototype.$getTagClose	= function() {
-	return '	</svg:g>\
+	return '		</svg:g>\
+				</svg:g>\
 			</svg:g>';
 };
 

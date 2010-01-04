@@ -187,13 +187,12 @@ c|mapItem {
 /* hover effects */
 c|barItem:hover,
 c|bubbleItem:hover,
-c|doughnutItem:hover,
-c|pieItem:hover,
-c|funnelItem:hover {
-	opacity: 0.5;
-}
-
-c|radarGroup:hover {
+c|lineItem:hover,
+c|radarGroup:hover c|radarGroup::value,
+c|doughnutItem:hover c|doughnutItem::value,
+c|pieItem:hover c|pieItem::value,
+c|funnelItem:hover c|funnelItem::value,
+c|mapItem:hover c|mapItem::value {
 	opacity: 0.5;
 }
 

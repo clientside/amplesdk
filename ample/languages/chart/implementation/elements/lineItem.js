@@ -9,6 +9,7 @@
 
 var cChartElement_lineItem	= function(){};
 cChartElement_lineItem.prototype	= new cChartElement;
+cChartElement_lineItem.prototype.$hoverable	= true;
 
 cChartElement_lineItem.prototype.$getTagOpen	= function() {
 	return '<svg:path class="c-lineItem' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" />';

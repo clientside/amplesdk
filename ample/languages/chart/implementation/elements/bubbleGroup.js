@@ -9,6 +9,7 @@
 
 var cChartElement_bubbleGroup	= function(){};
 cChartElement_bubbleGroup.prototype	= new cChartElement;
+cChartElement_bubbleGroup.prototype.$hoverable	= true;
 
 cChartElement_bubbleGroup.handlers	= {
 	'DOMNodeInsertedIntoDocument':	function() {
