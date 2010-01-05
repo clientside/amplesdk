@@ -12,15 +12,72 @@ cChartElement_line.prototype	= new cChartElement;
 
 cChartElement_line.handlers	= {
 	'DOMNodeInsertedIntoDocument':	function() {
-		// Draw grid
-		var xAxisRange	= this.getAttribute("xAxisRange").split(';'),
-			yAxisRange	= this.getAttribute("yAxisRange").split(';');
-		var d	= [];
-		for (var x = 1; x < 10; x++)
-			d.push("M" + (50 + x * 50) + ",50 V250 z ");
-		for (var y = 1; y < 4; y++)
-			d.push("M50," + (250 - y * 50) + "H550 z ");
-		this.$getContainer("grid").setAttribute("d", d.join(''));
+		this.refresh();
+	}
+};
+
+cChartElement_line.prototype.refresh	= function() {
+	// Draw grid
+	var xAxisRange	= this.getAttribute("xAxisRange").split(';'),
+		yAxisRange	= this.getAttribute("yAxisRange").split(';');
+	var d	= [];
+	for (var x = 1; x < 10; x++)
+		d.push("M" + (50 + x * 50) + ",50 V250 z ");
+	for (var y = 1; y < 4; y++)
+		d.push("M50," + (250 - y * 50) + "H550 z ");
+	this.$getContainer("grid").setAttribute("d", d.join(''));
+
+	var xAxisRange	= this.getAttribute("xAxisRange").split(';'),
+		yAxisRange	= this.getAttribute("yAxisRange").split(';'),
+		aValues;
+
+	// Draw lines
+	for (var nGroup = 0, nGroups = this.childNodes.length, oGroup; oGroup = this.childNodes[nGroup]; nGroup++) {
+		aValues	= [];
+
+		// Get series' values
+		if (oGroup.hasAttribute("values")) {
+			var aValuesRaw	= oGroup.getAttribute("values").split(';');
+			for (var nItem = 0, nItems = aValuesRaw.length; nItem < nItems; nItem++)
+				aValues.push(aValuesRaw[nItem].split(','));
+		}
+		else {
+			for (var nItem = 0, nItems = oGroup.childNodes.length, oItem; nItem < nItems; nItem++)
+				aValues.push(oGroup.childNodes[nItem].getAttribute("value").split(','));
+		}
+
+		// Draw points
+		var nXFrom, nYFrom,
+			nXTo, nYTo,
+			nX, nY,
+			d	= [];
+		for (var nItem = 0, nItems = aValues.length; nItem < nItems; nItem++) {
+			nX	= 50 + aValues[nItem][0] * 500 / (xAxisRange[1] - xAxisRange[0]);
+			nY	= 250- aValues[nItem][1] * 200 / (yAxisRange[1] - yAxisRange[0]);
+			oGroup.childNodes[nItem].$getContainer().setAttribute("d", cChartElement_lineGroup.getMarkerPath(nX, nY, nGroup));
+			//
+			d.push(nX + "," + nY + " ");
+			if (!nItem) {
+				nXFrom	= nX;
+				nYFrom	= nY;
+			}
+			else
+			if (nItem == nItems - 1) {
+				nXTo	= nX;
+				nYTo	= nY;
+			}
+		}
+
+		// Draw line
+		oGroup.$getContainer("line").setAttribute("d", "M" + nXFrom + "," + nYFrom + " L" + d.join(''));
+		oGroup.$getContainer("shadow").setAttribute("d", "M" + nXFrom + "," + nYFrom + " L" + d.join(''));
+		if (oGroup.parentNode.getAttribute("area") == "true")
+			oGroup.$getContainer("area").setAttribute("d", "M" + nXFrom + "," + 250 + " L" + d.join('') + " L" + nXTo + "," + 250 + "z");
+/*
+		oGroup.$play("opacity:0", 0, 1);
+		setTimeout(function() {
+			oGroup.$play("opacity:1", 500, 1);
+		}, nGroup * 500);*/
 	}
 };
 

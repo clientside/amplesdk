@@ -12,46 +12,88 @@ cChartElement_bar.prototype	= new cChartElement;
 
 cChartElement_bar.handlers	= {
 	'DOMNodeInsertedIntoDocument':	function() {
-		// Draw grid
-		var xAxisRange	= this.getAttribute("xAxisRange").split(';'),
-			yAxisRange	= this.getAttribute("yAxisRange").split(';');
-		var d	= [];
-		for (var x = 1; x < 10; x++)
-			d.push("M" + (50 + x * 50) + ",50 V250 z ");
-		for (var y = 1; y < 4; y++)
-			d.push("M50," + (250 - y * 50) + "H550 z ");
-		this.$getContainer("grid").setAttribute("d", d.join(''));
+		this.refresh();
+	}
+};
 
-		// Draw horizontal axis labels
-		var oParent	= this.$getContainer("xAxisItems"),
-			oElement,
-			d	= [];
-		for (var x = 0, l = oParent.childNodes.length; x < l; x++)
-			oParent.removeChild(oParent.childNodes[x]);
-		for (var x = 0; x < 10; x++) {
-			oElement	= oParent.appendChild(oParent.ownerDocument.createElementNS("http://www.w3.org/2000/svg", "svg:text"));
-			oElement.textContent	= "x" + x;
-			oElement.setAttribute("x", 50 + x * 50);
-			oElement.setAttribute("y", 270 - 4);
-			d.push("M" +(50 + x * 50)+ "," + 250 + "v5 z");
-		}
-		this.$getContainer("xAxisMarks").setAttribute("d", d.join(' '));
+cChartElement_bar.prototype.refresh	= function() {
+	// Draw grid
+	var d	= [];
+	for (var x = 1; x < 10; x++)
+		d.push("M" + (50 + x * 50) + ",50 V250 z ");
+	for (var y = 1; y < 4; y++)
+		d.push("M50," + (250 - y * 50) + "H550 z ");
+	this.$getContainer("grid").setAttribute("d", d.join(''));
 
-		// Draw vertical axis labels
-		var oParent	= this.$getContainer("yAxisItems"),
-			oElement,
-			d	= [];
-		for (var x = 0, l = oParent.childNodes.length; x < l; x++)
-			oParent.removeChild(oParent.childNodes[x]);
-		for (var x = 0; x < 8; x++) {
-			oElement	= oParent.appendChild(oParent.ownerDocument.createElementNS("http://www.w3.org/2000/svg", "svg:text"));
-			oElement.setAttribute("text-anchor", "end");
-			oElement.textContent	= "y" + x * 100;
-			oElement.setAttribute("x", 50 - 10);
-			oElement.setAttribute("y", 250 - 25 * x);
-			d.push("M" + 50 + "," +(250 - 25 * x)+ "h-5 z");
+	// Draw horizontal axis labels
+	var oParent	= this.$getContainer("xAxisItems"),
+		oElement,
+		d	= [];
+	for (var x = 0, l = oParent.childNodes.length; x < l; x++)
+		oParent.removeChild(oParent.childNodes[x]);
+	for (var x = 0; x < 10; x++) {
+		oElement	= oParent.appendChild(oParent.ownerDocument.createElementNS("http://www.w3.org/2000/svg", "svg:text"));
+		oElement.textContent	= "x" + x;
+		oElement.setAttribute("x", 50 + x * 50);
+		oElement.setAttribute("y", 270 - 4);
+		d.push("M" +(50 + x * 50)+ "," + 250 + "v5 z");
+	}
+	this.$getContainer("xAxisMarks").setAttribute("d", d.join(' '));
+
+	// Draw vertical axis labels
+	var oParent	= this.$getContainer("yAxisItems"),
+		oElement,
+		d	= [];
+	for (var x = 0, l = oParent.childNodes.length; x < l; x++)
+		oParent.removeChild(oParent.childNodes[x]);
+	for (var x = 0; x < 8; x++) {
+		oElement	= oParent.appendChild(oParent.ownerDocument.createElementNS("http://www.w3.org/2000/svg", "svg:text"));
+		oElement.setAttribute("text-anchor", "end");
+		oElement.textContent	= "y" + x * 100;
+		oElement.setAttribute("x", 50 - 10);
+		oElement.setAttribute("y", 250 - 25 * x);
+		d.push("M" + 50 + "," +(250 - 25 * x)+ "h-5 z");
+	}
+	this.$getContainer("yAxisMarks").setAttribute("d", d.join(' '));
+
+	// Draw lines
+	for (var nGroup = 0, nGroups = this.childNodes.length, oGroup; oGroup = this.childNodes[nGroup]; nGroup++) {
+		var	aValues	= [],
+			nItem, nItems;
+
+		// Get series' values
+		if (oGroup.hasAttribute("values")) {
+			var aValuesRaw	= oGroup.getAttribute("values").split(';');
+			for (nItem = 0, nItems = aValuesRaw.length; nItem < nItems; nItem++)
+				aValues.push(aValuesRaw[nItem]);
 		}
-		this.$getContainer("yAxisMarks").setAttribute("d", d.join(' '));
+		else {
+			for (nItem = 0, nItems = oGroup.childNodes.length; nItem < nItems; nItem++)
+				aValues.push(oGroup.childNodes[nItem].getAttribute("value"));
+		}
+
+		var nMax	= 50,
+			nOffsetItem		= 2,
+			nOffsetGroup	= 10;
+
+		// Draw columns
+		var d,
+			nWidth, nHeight,
+			nWidthGroup, nWidthItem;
+		for (var nItem = 0, nItems = aValues.length, oItem; oItem = oGroup.childNodes[nItem]; nItem++) {
+			nWidthGroup	=(500 - nItems * nOffsetGroup) / nItems;
+			nWidthItem	=(nWidthGroup - nGroups * nOffsetItem) / nGroups;
+			nHeight	= 200 * aValues[nItem] / nMax;
+			d	=	"M" + (50 + (nWidthGroup + nOffsetGroup) * nItem + (nWidthItem + nOffsetItem) * nGroup) + ",250 " +
+					"v-" + nHeight + " "+
+					"h" +  nWidthItem + " "+
+					"v" + nHeight + " "+
+					"h-" + nWidthItem + " z";
+			oItem.$getContainer("value").setAttribute("d", d);
+			oItem.$getContainer("shadow").setAttribute("d", d);
+			oItem.$getContainer("textPath").setAttribute("d", "M" + (50 + (nWidthGroup + nOffsetGroup) * nItem + (nWidthItem + nOffsetItem) * nGroup + 16) + "," + (250 - nHeight - 3) +
+																"v-200 "+ "z");
+		}
 	}
 };
 

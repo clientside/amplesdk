@@ -12,15 +12,65 @@ cChartElement_bubble.prototype	= new cChartElement;
 
 cChartElement_bubble.handlers	= {
 	'DOMNodeInsertedIntoDocument':	function() {
-		// Draw grid
-		var xAxisRange	= this.getAttribute("xAxisRange").split(';'),
-			yAxisRange	= this.getAttribute("yAxisRange").split(';');
-		var d	= [];
-		for (var x = 1; x < 10; x++)
-			d.push("M" + (50 + x * 50) + ",50 V250 z ");
-		for (var y = 1; y < 4; y++)
-			d.push("M50," + (250 - y * 50) + "H550 z ");
-		this.$getContainer("grid").setAttribute("d", d.join(''));
+		this.refresh();
+	}
+};
+
+cChartElement_bubble.prototype.refresh	= function() {
+	// Draw grid
+	var d	= [];
+	for (var x = 1; x < 10; x++)
+		d.push("M" + (50 + x * 50) + ",50 V250 z ");
+	for (var y = 1; y < 4; y++)
+		d.push("M50," + (250 - y * 50) + "H550 z ");
+	this.$getContainer("grid").setAttribute("d", d.join(''));
+
+	// Draw lines
+	for (var nGroup = 0, nGroups = this.childNodes.length, oGroup; oGroup = this.childNodes[nGroup]; nGroup++) {
+		var aValue,
+			aValues	= [],
+			nXMin	= Infinity,
+			nXMax	=-Infinity,
+			nYMin	= Infinity,
+			nYMax	=-Infinity,
+			nZMin	= Infinity,
+			nZMax	=-Infinity;
+		// Pre-calculate ranges
+		for (var nItem = 0, nItems = oGroup.childNodes.length, oItem; oItem = oGroup.childNodes[nItem]; nItem++) {
+			aValue	= oItem.getAttribute("value").split(/,| /);
+			aValues.push(aValue);
+			if (aValue[0] * 1 < nXMin)
+				nXMin	= aValue[0];
+			if (aValue[0] * 1 > nXMax)
+				nXMax	= aValue[0];
+			if (aValue[1] * 1 < nYMin)
+				nYMin	= aValue[1];
+			if (aValue[1] * 1 > nYMax)
+				nYMax	= aValue[1];
+			if (aValue[2] * 1 < nZMin)
+				nZMin	= aValue[2];
+			if (aValue[2] * 1 > nZMax)
+				nZMax	= aValue[2];
+		}
+
+		// Draw items
+		var nX, nY, nSize,
+			d;
+		for (var nItem = 0, nItems = oGroup.childNodes.length, oItem; oItem = oGroup.childNodes[nItem]; nItem++) {
+			nX	= 50 + 500 * (nXMax - aValues[nItem][0]) / (nXMax - nXMin);
+			nY	= 250 - 200 * (nYMax - aValues[nItem][1]) / (nYMax - nYMin);
+			nSize	= 10 + 20 * aValues[nItem][2] / (nZMax - nZMin);
+			d	= "M" + (nX - nSize) + "," + nY +
+				"a" + nSize + "," + nSize + " 0 0,0 " + nSize * 2 + ",0 " +
+				"a" + nSize + "," + nSize + " 0 0,0 -" + nSize * 2 + ",0 " +
+				"z";
+
+			oItem.$getContainer("value").setAttribute("d", d);
+			oItem.$getContainer("shadow").setAttribute("d", d);
+
+			oItem.$getContainer("label").setAttribute("x", 50 + 500 * (nXMax - aValues[nItem][0]) / (nXMax - nXMin));
+			oItem.$getContainer("label").setAttribute("y", 250 - 200 * (nYMax - aValues[nItem][1]) / (nYMax - nYMin) + 6);
+		}
 	}
 };
 

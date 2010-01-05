@@ -56,64 +56,6 @@ cChartElement_lineGroup.getMarkerPath	= function(nX, nY, nType) {
 	}
 };
 
-cChartElement_lineGroup.prototype.refresh	= function() {
-	var xAxisRange	= this.parentNode.getAttribute("xAxisRange").split(';'),
-		yAxisRange	= this.parentNode.getAttribute("yAxisRange").split(';'),
-		nGroup	= this.parentNode.childNodes.$indexOf(this),
-		aValues	= [],
-		nIndex, nLength;
-
-	// Get series' values
-	if (this.hasAttribute("values")) {
-		var aValuesRaw	= this.getAttribute("values").split(';');
-		for (nIndex = 0, nLength = aValuesRaw.length; nIndex < nLength; nIndex++)
-			aValues.push(aValuesRaw[nIndex].split(','));
-	}
-	else {
-		for (nIndex = 0, nLength = this.childNodes.length; nIndex < nLength; nIndex++)
-			aValues.push(this.childNodes[nIndex].getAttribute("value").split(','));
-	}
-
-	// Draw points
-	var nXFrom, nYFrom,
-		nXTo, nYTo,
-		nX, nY,
-		d	= [],
-		oElementDOM;
-	for (nIndex = 0, nLength = aValues.length; nIndex < nLength; nIndex++) {
-		oElementDOM	= this.childNodes[nIndex].$getContainer();
-		nX	= 50 + aValues[nIndex][0] * 500 / (xAxisRange[1] - xAxisRange[0]);
-		nY	= 250- aValues[nIndex][1] * 200 / (yAxisRange[1] - yAxisRange[0]);
-		oElementDOM.setAttribute("d", cChartElement_lineGroup.getMarkerPath(nX, nY, nGroup));
-		//
-		d.push(nX + "," + nY + " ");
-		if (!nIndex) {
-			nXFrom	= nX;
-			nYFrom	= nY;
-		}
-		else
-		if (nIndex == nLength - 1) {
-			nXTo	= nX;
-			nYTo	= nY;
-		}
-	}
-	// Draw line
-	this.$getContainer("line").setAttribute("d", "M" + nXFrom + "," + nYFrom + " L" + d.join(''));
-	this.$getContainer("shadow").setAttribute("d", "M" + nXFrom + "," + nYFrom + " L" + d.join(''));
-	if (this.parentNode.getAttribute("area") == "true")
-		this.$getContainer("area").setAttribute("d", "M" + nXFrom + "," + 250 + " L" + d.join('') + " L" + nXTo + "," + 250 + "z");
-};
-
-cChartElement_lineGroup.handlers	= {
-	'DOMNodeInsertedIntoDocument':	function(oEvent) {
-		var that	= this;
-		that.refresh();
-		setTimeout(function() {
-			that.$play("opacity:1", 500, 1);
-		}, this.parentNode.childNodes.$indexOf(this) * 500);
-	}
-};
-
 cChartElement_lineGroup.prototype.$getTagOpen	= function() {
 	return '<svg:g class="c-lineGroup c-lineGroup_nth-child-' + this.parentNode.childNodes.$indexOf(this) + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" xmlns:svg="http://www.w3.org/2000/svg" \
 				style="' + this.getAttribute("style") + '">\

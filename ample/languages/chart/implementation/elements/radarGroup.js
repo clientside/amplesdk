@@ -11,28 +11,6 @@ var cChartElement_radarGroup	= function(){};
 cChartElement_radarGroup.prototype	= new cChartElement;
 cChartElement_radarGroup.prototype.$hoverable	= true;
 
-cChartElement_radarGroup.handlers	= {
-	'DOMNodeInsertedIntoDocument':	function(oEvent) {
-		this.refresh();
-	}
-};
-
-cChartElement_radarGroup.prototype.refresh	= function() {
-	var d	= [];
-	for (var n = 0, l = this.childNodes.length, oElement; oElement = this.childNodes[n]; n++) {
-		var nValue	= oElement.getAttribute("value") * 1 * 2,
-			nX	= (150 - nValue * Math.cos(Math.PI / 2 + 2 * Math.PI * n / l)),
-			nY	= (150 - nValue * Math.sin(Math.PI / 2 + 2 * Math.PI * n / l));
-		// Set point
-		d.push((n ? "L" : "M") + nX + "," + nY);
-		oElement.$getContainer().setAttribute("cx", nX);
-		oElement.$getContainer().setAttribute("cy", nY);
-	}
-	this.$getContainer("line").setAttribute("d", d.join(" ") + "z");
-	this.$getContainer("shadow").setAttribute("d", d.join(" ") + "z");
-	this.$getContainer("area").setAttribute("d", d.join(" ") + "z");
-};
-
 cChartElement_radarGroup.prototype.$getTagOpen	= function() {
 	return '<svg:g class="c-radarGroup c-radarGroup_nth-child-' + this.parentNode.childNodes.$indexOf(this) +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" xmlns:svg="http://www.w3.org/2000/svg" \
 				style="' + this.getAttribute("style") + '">\
