@@ -19,6 +19,51 @@
 	<body>
 		<script>ample.open()</script>
 
+		<h3>Column chart</h3>
+		<p>
+			Options: stacked, orientation, join bars
+		</p>
+		<c:bar label="Bar chart" orient="horizontal" xAxisLabel="X Axis" yAxisLabel="Y Label">
+			<c:barGroup label="Set 0" color="blue">
+				<c:barItem value="10" />
+				<c:barItem value="20" />
+				<c:barItem value="30" />
+				<c:barItem value="40" />
+				<c:barItem value="50" />
+			</c:barGroup>
+			<c:barGroup label="Set 1" color="green">
+				<c:barItem value="20" />
+				<c:barItem value="10" />
+				<c:barItem value="25" />
+				<c:barItem value="45" />
+				<c:barItem value="15" />
+			</c:barGroup>
+			<c:barGroup label="Set 2" color="brown">
+				<c:barItem value="30" />
+				<c:barItem value="30" />
+				<c:barItem value="5" />
+				<c:barItem value="10" />
+				<c:barItem value="40" />
+			</c:barGroup>
+			<c:barGroup label="Set 3">
+				<c:barItem value="15" />
+				<c:barItem value="25" />
+				<c:barItem value="35" />
+				<c:barItem value="30" />
+				<c:barItem value="10" />
+			</c:barGroup>
+			<!-- c:barGroup label="Set 2" values="5;15;30;25" /-->
+		</c:bar>
+		<c:bar label="Bar chart (one series)" orient="horizontal">
+			<c:barGroup label="Set 0" color="blue">
+				<c:barItem value="10" />
+				<c:barItem value="20" />
+				<c:barItem value="30" />
+				<c:barItem value="40" />
+				<c:barItem value="50" />
+			</c:barGroup>
+		</c:bar>
+
 		<h3>Bar chart</h3>
 		<p>
 			Options: stacked, orientation, join bars
@@ -54,7 +99,7 @@
 			</c:barGroup>
 			<!-- c:barGroup label="Set 2" values="5;15;30;25" /-->
 		</c:bar>
-		<c:bar label="Bar chart (one series)" orient="horizontal" stacked="true">
+		<c:bar label="Bar chart (one series)">
 			<c:barGroup label="Set 0" color="blue">
 				<c:barItem value="10" />
 				<c:barItem value="20" />
@@ -63,7 +108,6 @@
 				<c:barItem value="50" />
 			</c:barGroup>
 		</c:bar>
-
 
 		<h3>Line chart</h3>
 		<p>
