@@ -13,8 +13,8 @@ cChartElement_bubbleItem.prototype.$hoverable	= true;
 
 cChartElement_bubbleItem.prototype.$getTagOpen	= function() {
 	return '<svg:g class="c-bubbleItem' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">\
-				<svg:circle class="c-bubbleItem--shadow" transform="translate(2,2)"/>\
-				<svg:circle class="c-bubbleItem--value"/>\
+				<svg:path class="c-bubbleItem--shadow" transform="translate(2,2)"/>\
+				<svg:path class="c-bubbleItem--value"/>\
 				<svg:text class="c-bubbleItem--label" style="stroke:none">' + (this.getAttribute("value").split(',')[2]) + '</svg:text>\
 			</svg:g>';
 };

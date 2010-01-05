@@ -45,17 +45,20 @@ cChartElement_bubbleGroup.prototype.refresh	= function() {
 	}
 
 	// Draw items
-	var oElementDOM;
+	var oElementDOM,
+		nX, nY, nSize,
+		d;
 	for (var nIndex = 0, oElement; oElement = this.childNodes[nIndex]; nIndex++) {
-		oElementDOM	= oElement.$getContainer("value");
-		oElementDOM.setAttribute("cx", 50 + 500 * (nXMax - aValues[nIndex][0]) / (nXMax - nXMin));
-		oElementDOM.setAttribute("cy", 250 - 200 * (nYMax - aValues[nIndex][1]) / (nYMax - nYMin));
-		oElementDOM.setAttribute("r", 10 + 20 * aValues[nIndex][2] / (nZMax - nZMin));
+		nX	= 50 + 500 * (nXMax - aValues[nIndex][0]) / (nXMax - nXMin);
+		nY	= 250 - 200 * (nYMax - aValues[nIndex][1]) / (nYMax - nYMin);
+		nSize	= 10 + 20 * aValues[nIndex][2] / (nZMax - nZMin);
+		d	= "M" + (nX - nSize) + "," + nY +
+			"a" + nSize + "," + nSize + " 0 0,0 " + nSize * 2 + ",0 " +
+			"a" + nSize + "," + nSize + " 0 0,0 -" + nSize * 2 + ",0 " +
+			"z";
 
-		oElementDOM	= oElement.$getContainer("shadow");
-		oElementDOM.setAttribute("cx", 50 + 500 * (nXMax - aValues[nIndex][0]) / (nXMax - nXMin));
-		oElementDOM.setAttribute("cy", 250 - 200 * (nYMax - aValues[nIndex][1]) / (nYMax - nYMin));
-		oElementDOM.setAttribute("r", 10 + 20 * aValues[nIndex][2] / (nZMax - nZMin));
+		oElement.$getContainer("value").setAttribute("d", d);
+		oElement.$getContainer("shadow").setAttribute("d", d);
 
 		oElementDOM	= oElement.$getContainer("label");
 		oElementDOM.setAttribute("x", 50 + 500 * (nXMax - aValues[nIndex][0]) / (nXMax - nXMin));
