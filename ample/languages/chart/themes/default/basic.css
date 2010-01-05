@@ -93,7 +93,7 @@ c|doughnutItem:nth-child(3) {
 /* axis and grid */
 c|xAxis,
 c|yAxis,
-c|zAxis {
+c|rAxis {
 	stroke: gray;
 }
 
