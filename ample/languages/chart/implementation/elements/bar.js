@@ -74,25 +74,44 @@ cChartElement_bar.prototype.refresh	= function() {
 
 		var nMax	= 50,
 			nOffsetItem		= 2,
-			nOffsetGroup	= 10;
+			nOffsetGroup	= 5;
 
 		// Draw columns
 		var d,
-			nWidth, nHeight,
-			nWidthGroup, nWidthItem;
+			nValue,
+			nWeightGroup, nWeightItem;
 		for (var nItem = 0, nItems = aValues.length, oItem; oItem = oGroup.childNodes[nItem]; nItem++) {
-			nWidthGroup	=(500 - nItems * nOffsetGroup) / nItems;
-			nWidthItem	=(nWidthGroup - nGroups * nOffsetItem) / nGroups;
-			nHeight	= 200 * aValues[nItem] / nMax;
-			d	=	"M" + (50 + (nWidthGroup + nOffsetGroup) * nItem + (nWidthItem + nOffsetItem) * nGroup) + ",250 " +
-					"v-" + nHeight + " "+
-					"h" +  nWidthItem + " "+
-					"v" + nHeight + " "+
-					"h-" + nWidthItem + " z";
+			if (this.getAttribute("orient") == "horizontal") {
+				nWeightGroup	=(200 - nItems * nOffsetGroup) / nItems;
+				nWeightItem	=(nWeightGroup - nGroups * nOffsetItem) / nGroups;
+				nValue	= 500 * aValues[nItem] / nMax;
+				// Bars
+				d	=	"M50," + (250-(nWeightGroup + nOffsetGroup) * nItem - (nWeightItem + nOffsetItem) * nGroup) + " " +
+						"h" +  nValue + " " +
+						"v-" +  nWeightItem + " " +
+						"h-" + nValue + " " +
+						"v" + nWeightItem + " z";
+				// Text labels
+				oItem.$getContainer("textPath").setAttribute("d", "M" + (50 + nValue + 5) + "," + (250 - (nWeightGroup + nOffsetGroup) * nItem - (nWeightItem + nOffsetItem) * nGroup - 8) +
+																	"h100 "+ "z");
+			}
+			else {
+				nWeightGroup	=(500 - nItems * nOffsetGroup) / nItems;
+				nWeightItem	=(nWeightGroup - nGroups * nOffsetItem) / nGroups;
+				nValue	= 200 * aValues[nItem] / nMax;
+				// Bars
+				d	=	"M" + (50 + (nWeightGroup + nOffsetGroup) * nItem + (nWeightItem + nOffsetItem) * nGroup) + ",250 " +
+						"v-" + nValue + " " +
+						"h" +  nWeightItem + " " +
+						"v" + nValue + " " +
+						"h-" + nWeightItem + " z";
+				// Text labels
+				oItem.$getContainer("textPath").setAttribute("d", "M" + (50 + (nWeightGroup + nOffsetGroup) * nItem + (nWeightItem + nOffsetItem) * nGroup + 16) + "," + (250 - nValue - 3) +
+																	"v-200 "+ "z");
+			}
+
 			oItem.$getContainer("value").setAttribute("d", d);
 			oItem.$getContainer("shadow").setAttribute("d", d);
-			oItem.$getContainer("textPath").setAttribute("d", "M" + (50 + (nWidthGroup + nOffsetGroup) * nItem + (nWidthItem + nOffsetItem) * nGroup + 16) + "," + (250 - nHeight - 3) +
-																"v-200 "+ "z");
 		}
 	}
 };
