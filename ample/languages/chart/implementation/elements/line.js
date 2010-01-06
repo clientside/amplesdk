@@ -24,7 +24,10 @@ cChartElement_line.prototype.refresh	= function() {
 		nXMax	=-Infinity,
 		nXMin	= Infinity,
 		nYMax	=-Infinity,
-		nYMin	= Infinity;
+		nYMin	= Infinity,
+		aYSumAll	= [],
+		nYSumMax	=-Infinity,
+		nYSumMin	=-Infinity;
 	for (var nGroup = 0, nGroups = this.childNodes.length, oGroup, aGroup; oGroup = this.childNodes[nGroup]; nGroup++) {
 		aGroup	= [];
 		for (var nItem = 0, nItems = oGroup.childNodes.length, oItem, aValue, nX, nY; oItem = oGroup.childNodes[nItem]; nItem++) {
@@ -40,8 +43,18 @@ cChartElement_line.prototype.refresh	= function() {
 			if (nY < nYMin)
 				nYMin	= nY;
 			aGroup.push([nX, nY]);
+			//
+			if (aYSumAll.length < nItem + 1)
+				aYSumAll[nItem]	= 0;
+			aYSumAll[nItem]	+= nY;
 		}
 		aData.push(aGroup);
+	}
+	for (var nItem = 0, nItems = aYSumAll.length; nItem < nItems; nItem++) {
+		if (aYSumAll[nItem] > nYSumMax)
+			nYSumMax	= aYSumAll[nItem];
+		if (aYSumAll[nItem] < nYSumMin)
+			nYSumMin	= aYSumAll[nItem];
 	}
 
 /*
@@ -53,7 +66,7 @@ cChartElement_line.prototype.refresh	= function() {
 		d.push("M50," + (250 - y * 50) + "H550 z ");
 	this.$getContainer("grid").setAttribute("d", d.join(''));
 */
-
+	var aYSumUp	=[];
 	// Draw lines
 	for (var nGroup = 0, nGroups = aData.length, oGroup; nGroup < nGroups; nGroup++) {
 		// Get DOM element
@@ -65,13 +78,29 @@ cChartElement_line.prototype.refresh	= function() {
 			nX, nY,
 			d	= [];
 		for (var nItem = 0, nItems = aData[nGroup].length; nItem < nItems; nItem++) {
-			nX	= 50 + aData[nGroup][nItem][0] * 400 / nXMax;
-			nY	= 250- aData[nGroup][nItem][1] * 200 / nYMax;
+			//
+			if (aYSumUp.length < nItem + 1)
+				aYSumUp[nItem]	= 0;
+			//
+			aYSumUp[nItem]	+= aData[nGroup][nItem][1];
+
+			if (this.getAttribute("type") == "stack") {
+				nX	= 50 + aData[nGroup][nItem][0] * 400 / nXMax;
+				nY	= 250- aYSumUp[nItem] * 200 / nYSumMax;
+			}
+			else
+			if (this.getAttribute("type") == "percentage") {
+				nX	= 50 + aData[nGroup][nItem][0] * 400 / nXMax;
+				nY	= 250- 200 * aYSumUp[nItem] / aYSumAll[nItem];
+			}
+			else {
+				nX	= 50 + aData[nGroup][nItem][0] * 400 / nXMax;
+				nY	= 250- aData[nGroup][nItem][1] * 200 / nYMax;
+			}
 
 			//
 			if (!bArea)
 				oGroup.childNodes[nItem].$getContainer().setAttribute("d", cChartElement_lineGroup.getMarkerPath(nX, nY, nGroup));
-
 			//
 			d.push(nX + "," + nY + " ");
 
