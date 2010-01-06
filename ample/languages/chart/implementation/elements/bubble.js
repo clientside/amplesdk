@@ -17,6 +17,38 @@ cChartElement_bubble.handlers	= {
 };
 
 cChartElement_bubble.prototype.refresh	= function() {
+	// Collect and pre-analyze data
+	var aData	= [],
+		nXMax	=-Infinity,
+		nXMin	= Infinity,
+		nYMax	=-Infinity,
+		nYMin	= Infinity,
+		nZMax	=-Infinity,
+		nZMin	= Infinity;
+	for (var nGroup = 0, nGroups = this.childNodes.length, oGroup, aGroup; oGroup = this.childNodes[nGroup]; nGroup++) {
+		aGroup	= [];
+		for (var nItem = 0, nItems = oGroup.childNodes.length, oItem, aValue, nX, nY; oItem = oGroup.childNodes[nItem]; nItem++) {
+			aValue	= oItem.getAttribute("value").split(',');
+			nX	= aValue[0] * 1;
+			nY	= aValue[1] * 1;
+			nZ	= aValue[2] * 1;
+			if (nX > nXMax)
+				nXMax	= nX;
+			if (nX < nXMin)
+				nXMin	= nX;
+			if (nY > nYMax)
+				nYMax	= nY;
+			if (nY < nYMin)
+				nYMin	= nY;
+			if (nZ > nZMax)
+				nZMax	= nZ;
+			if (nZ < nZMin)
+				nZMin	= nZ;
+			aGroup.push([nX, nY, nZ]);
+		}
+		aData.push(aGroup);
+	}
+
 	// Draw grid
 	var d	= [];
 	for (var x = 1; x < 10; x++)
@@ -26,50 +58,27 @@ cChartElement_bubble.prototype.refresh	= function() {
 	this.$getContainer("grid").setAttribute("d", d.join(''));
 
 	// Draw lines
-	for (var nGroup = 0, nGroups = this.childNodes.length, oGroup; oGroup = this.childNodes[nGroup]; nGroup++) {
-		var aValue,
-			aValues	= [],
-			nXMin	= Infinity,
-			nXMax	=-Infinity,
-			nYMin	= Infinity,
-			nYMax	=-Infinity,
-			nZMin	= Infinity,
-			nZMax	=-Infinity;
-		// Pre-calculate ranges
-		for (var nItem = 0, nItems = oGroup.childNodes.length, oItem; oItem = oGroup.childNodes[nItem]; nItem++) {
-			aValue	= oItem.getAttribute("value").split(/,| /);
-			aValues.push(aValue);
-			if (aValue[0] * 1 < nXMin)
-				nXMin	= aValue[0];
-			if (aValue[0] * 1 > nXMax)
-				nXMax	= aValue[0];
-			if (aValue[1] * 1 < nYMin)
-				nYMin	= aValue[1];
-			if (aValue[1] * 1 > nYMax)
-				nYMax	= aValue[1];
-			if (aValue[2] * 1 < nZMin)
-				nZMin	= aValue[2];
-			if (aValue[2] * 1 > nZMax)
-				nZMax	= aValue[2];
-		}
+	for (var nGroup = 0, nGroups = aData.length, oGroup; nGroup < nGroups; nGroup++) {
+		// Get DOM element
+		oGroup = this.childNodes[nGroup];
 
 		// Draw items
 		var nX, nY, nSize,
 			d;
-		for (var nItem = 0, nItems = oGroup.childNodes.length, oItem; oItem = oGroup.childNodes[nItem]; nItem++) {
-			nX	= 50 + 500 * (nXMax - aValues[nItem][0]) / (nXMax - nXMin);
-			nY	= 250 - 200 * (nYMax - aValues[nItem][1]) / (nYMax - nYMin);
-			nSize	= 10 + 20 * aValues[nItem][2] / (nZMax - nZMin);
+		for (var nItem = 0, nItems = aData[nGroup].length; nItem < nItems; nItem++) {
+			nX	= 50 + 500 * (nXMax - aData[nGroup][nItem][0]) / (nXMax - nXMin);
+			nY	= 250 - 200 * (nYMax - aData[nGroup][nItem][1]) / (nYMax - nYMin);
+			nSize	= 10 + 20 * aData[nGroup][nItem][2] / (nZMax - nZMin);
 			d	= "M" + (nX - nSize) + "," + nY +
-				"a" + nSize + "," + nSize + " 0 0,0 " + nSize * 2 + ",0 " +
-				"a" + nSize + "," + nSize + " 0 0,0 -" + nSize * 2 + ",0 " +
-				"z";
+					"a" + nSize + "," + nSize + " 0 0,0 " + nSize * 2 + ",0 " +
+					"a" + nSize + "," + nSize + " 0 0,0-" + nSize * 2 + ",0 " +
+					"z";
 
-			oItem.$getContainer("value").setAttribute("d", d);
-			oItem.$getContainer("shadow").setAttribute("d", d);
+			oGroup.childNodes[nItem].$getContainer("value").setAttribute("d", d);
+			oGroup.childNodes[nItem].$getContainer("shadow").setAttribute("d", d);
 
-			oItem.$getContainer("label").setAttribute("x", 50 + 500 * (nXMax - aValues[nItem][0]) / (nXMax - nXMin));
-			oItem.$getContainer("label").setAttribute("y", 250 - 200 * (nYMax - aValues[nItem][1]) / (nYMax - nYMin) + 6);
+			oGroup.childNodes[nItem].$getContainer("label").setAttribute("x", 50 + 500 * (nXMax - aData[nGroup][nItem][0]) / (nXMax - nXMin));
+			oGroup.childNodes[nItem].$getContainer("label").setAttribute("y", 250 - 200 * (nYMax - aData[nGroup][nItem][1]) / (nYMax - nYMin) + 6);
 		}
 	}
 };
