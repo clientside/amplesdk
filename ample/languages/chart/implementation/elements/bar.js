@@ -21,7 +21,6 @@ cChartElement_bar.prototype.refresh	= function() {
 
 	// Collect and pre-analyze data
 	var aData	= [],
-		aMeta	= [],
 		nSumMax	=-Infinity,
 		nSumMin	= Infinity,
 		nGroupMax	=-Infinity,
@@ -64,9 +63,9 @@ cChartElement_bar.prototype.refresh	= function() {
 		for (var nIndex = 0, nLength = 10; nIndex < nLength + 1; nIndex++) {
 			oElement	= oParent.appendChild(oParent.ownerDocument.createElementNS("http://www.w3.org/2000/svg", "svg:text"));
 			oElement.textContent	= nIndex * nGroupMax / nLength;
-			oElement.setAttribute("x", 50 + 500 * nIndex / nLength);
+			oElement.setAttribute("x", 50 + 400 * nIndex / nLength);
 			oElement.setAttribute("y", 270 - 4);
-			d.push("M" +(50 + 500 * nIndex / nLength)+ "," + 250 + "v5 z");
+			d.push("M" +(50 + 400 * nIndex / nLength)+ "," + 250 + "v5 z");
 		}
 		this.$getContainer("xAxisMarks").setAttribute("d", d.join(' '));
 
@@ -99,10 +98,10 @@ cChartElement_bar.prototype.refresh	= function() {
 			if (nIndex != nLength) {
 				oElement	= oParent.appendChild(oParent.ownerDocument.createElementNS("http://www.w3.org/2000/svg", "svg:text"));
 				oElement.textContent	= nIndex;
-				oElement.setAttribute("x", 50 + 500 * (nIndex + 1/2) / nLength);
+				oElement.setAttribute("x", 50 + 400 * (nIndex + 1/2) / nLength);
 				oElement.setAttribute("y", 270 - 4);
 			}
-			d.push("M" +(50 + 500 * nIndex / nLength)+ "," + 250 + "v5 z");
+			d.push("M" +(50 + 400 * nIndex / nLength)+ "," + 250 + "v5 z");
 		}
 		this.$getContainer("xAxisMarks").setAttribute("d", d.join(' '));
 
@@ -167,7 +166,7 @@ cChartElement_bar.prototype.refresh	= function() {
 				else {
 					nWeightGroup	= 200 / nItems - nOffsetGroup;
 					nWeightItem		= nWeightGroup / nGroups - nOffsetItem;
-					nValue	= 500 * aData[nGroup][nItem] / nGroupMax;
+					nValue	= 400 * aData[nGroup][nItem] / nGroupMax;
 					// Bars
 					d	=	"M50," + (250 - (nWeightGroup + nOffsetGroup) * nItem - (nOffsetItem + nOffsetGroup) / 2 - (nWeightItem + nOffsetItem) * nGroup) + " " +
 							"h" + nValue + " " +
@@ -182,7 +181,7 @@ cChartElement_bar.prototype.refresh	= function() {
 			// Bar chart
 			else {
 				if (this.getAttribute("type") == "stack") {/*
-					nWeightGroup	= 500 / nItems - nOffsetGroup;
+					nWeightGroup	= 400 / nItems - nOffsetGroup;
 					nWeightItem		= nWeightGroup - nOffsetItem;
 					nValue	= 200 * aData[nGroup][nItem] / nSumMax;
 					// Bars
@@ -197,7 +196,7 @@ cChartElement_bar.prototype.refresh	= function() {
 
 				}
 				else {
-					nWeightGroup	= 500 / nItems - nOffsetGroup;
+					nWeightGroup	= 400 / nItems - nOffsetGroup;
 					nWeightItem		= nWeightGroup / nGroups - nOffsetItem;
 					nValue	= 200 * aData[nGroup][nItem] / nGroupMax;
 					// Bars
@@ -227,8 +226,8 @@ cChartElement_bar.prototype.$getTagOpen	= function() {
 					<svg:text class="c-bar--label" y="30" x="300">' + this.getAttribute("label")+ '</svg:text>\
 					<svg:path class="c-grid c-bar--grid"/>\
 					<svg:g class="c-xAxis">\
-						<svg:path class="c-bar--xAxis" d="m50,250 h500,0" style="fill:none"/>\
-						<svg:path id="x' + this.uniqueID + '" d="m300,280 h500,0" style="fill:none;stroke:none"/>\
+						<svg:path class="c-bar--xAxis" d="m50,250 h400,0" style="fill:none"/>\
+						<svg:path id="x' + this.uniqueID + '" d="m300,280 h400,0" style="fill:none;stroke:none"/>\
 						<svg:text class="c-xAxis--label c-bar--xAxisLabel"><svg:textPath xlink:href="#x' + this.uniqueID + '">' + this.getAttribute("xAxisLabel")+ '</svg:textPath></svg:text>\
 						<svg:path class="c-xAxis--marks c-bar--xAxisMarks" xtransform="translate(0,2)"/>\
 						<svg:g class="c-xAxis--scale c-bar--xAxisItems" style="stroke:none" transform="translate(-3,0)"/>\

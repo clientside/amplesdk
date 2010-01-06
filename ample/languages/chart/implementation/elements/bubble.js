@@ -48,7 +48,7 @@ cChartElement_bubble.prototype.refresh	= function() {
 		}
 		aData.push(aGroup);
 	}
-
+/*
 	// Draw grid
 	var d	= [];
 	for (var x = 1; x < 10; x++)
@@ -56,7 +56,7 @@ cChartElement_bubble.prototype.refresh	= function() {
 	for (var y = 1; y < 4; y++)
 		d.push("M50," + (250 - y * 50) + "H550 z ");
 	this.$getContainer("grid").setAttribute("d", d.join(''));
-
+*/
 	// Draw lines
 	for (var nGroup = 0, nGroups = aData.length, oGroup; nGroup < nGroups; nGroup++) {
 		// Get DOM element
@@ -66,7 +66,7 @@ cChartElement_bubble.prototype.refresh	= function() {
 		var nX, nY, nSize,
 			d;
 		for (var nItem = 0, nItems = aData[nGroup].length; nItem < nItems; nItem++) {
-			nX	= 50 + 500 * (nXMax - aData[nGroup][nItem][0]) / (nXMax - nXMin);
+			nX	= 50 + 400 * (nXMax - aData[nGroup][nItem][0]) / (nXMax - nXMin);
 			nY	= 250 - 200 * (nYMax - aData[nGroup][nItem][1]) / (nYMax - nYMin);
 			nSize	= 10 + 20 * aData[nGroup][nItem][2] / (nZMax - nZMin);
 			d	= "M" + (nX - nSize) + "," + nY +
@@ -77,7 +77,7 @@ cChartElement_bubble.prototype.refresh	= function() {
 			oGroup.childNodes[nItem].$getContainer("value").setAttribute("d", d);
 			oGroup.childNodes[nItem].$getContainer("shadow").setAttribute("d", d);
 
-			oGroup.childNodes[nItem].$getContainer("label").setAttribute("x", 50 + 500 * (nXMax - aData[nGroup][nItem][0]) / (nXMax - nXMin));
+			oGroup.childNodes[nItem].$getContainer("label").setAttribute("x", 50 + 400 * (nXMax - aData[nGroup][nItem][0]) / (nXMax - nXMin));
 			oGroup.childNodes[nItem].$getContainer("label").setAttribute("y", 250 - 200 * (nYMax - aData[nGroup][nItem][1]) / (nYMax - nYMin) + 6);
 		}
 	}
@@ -89,8 +89,8 @@ cChartElement_bubble.prototype.$getTagOpen	= function() {
 					<svg:text class="c-bubble--label" y="30" x="300">' + this.getAttribute("label")+ '</svg:text>\
 					<svg:path class="c-grid c-bubble--grid"/>\
 					<svg:g class="c-xAxis">\
-						<svg:path class="c-bubble--xAxis" d="M50,250 h500,0" style="fill:none"/>\
-						<svg:path id="x' + this.uniqueID + '" d="M300,280 h500,0" style="fill:none;stroke:none"/>\
+						<svg:path class="c-bubble--xAxis" d="M50,250 h400,0" style="fill:none"/>\
+						<svg:path id="x' + this.uniqueID + '" d="M300,280 h400,0" style="fill:none;stroke:none"/>\
 						<svg:text class="c-xAxis--label c-bubble--xAxisLabel"><svg:textPath xlink:href="#x' + this.uniqueID + '">' + this.getAttribute("yAxisLabel")+ '</svg:textPath></svg:text>\
 					</svg:g>\
 					<svg:g class="c-yAxis">\

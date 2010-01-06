@@ -65,7 +65,7 @@ cChartElement_line.prototype.refresh	= function() {
 			nX, nY,
 			d	= [];
 		for (var nItem = 0, nItems = aData[nGroup].length; nItem < nItems; nItem++) {
-			nX	= 50 + aData[nGroup][nItem][0] * 500 / nXMax;
+			nX	= 50 + aData[nGroup][nItem][0] * 400 / nXMax;
 			nY	= 250- aData[nGroup][nItem][1] * 200 / nYMax;
 
 			//
@@ -100,8 +100,8 @@ cChartElement_line.prototype.$getTagOpen	= function() {
 					<svg:text class="c-line--label" y="30" x="300">' + this.getAttribute("label")+ '</svg:text>\
 					<svg:path class="c-grid c-line--grid"/>\
 					<svg:g class="c-xAxis">\
-						<svg:path class="c-line--xAxis" d="m50,250 h500,0" style="fill:none"/>\
-						<svg:path id="x' + this.uniqueID + '" d="m300,280 h500,0" style="fill:none;stroke:none"/>\
+						<svg:path class="c-line--xAxis" d="m50,250 h400,0" style="fill:none"/>\
+						<svg:path id="x' + this.uniqueID + '" d="m300,280 h400,0" style="fill:none;stroke:none"/>\
 						<svg:text class="c-xAxis--label c-line--xAxisLabel"><svg:textPath xlink:href="#x' + this.uniqueID + '">' + this.getAttribute("xAxisLabel")+ '</svg:textPath></svg:text>\
 					</svg:g>\
 					<svg:g class="c-yAxis">\
