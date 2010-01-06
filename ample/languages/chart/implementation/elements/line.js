@@ -54,6 +54,7 @@ cChartElement_line.prototype.refresh	= function() {
 		for (var nItem = 0, nItems = aValues.length; nItem < nItems; nItem++) {
 			nX	= 50 + aValues[nItem][0] * 500 / (xAxisRange[1] - xAxisRange[0]);
 			nY	= 250- aValues[nItem][1] * 200 / (yAxisRange[1] - yAxisRange[0]);
+			//
 			oGroup.childNodes[nItem].$getContainer().setAttribute("d", cChartElement_lineGroup.getMarkerPath(nX, nY, nGroup));
 			//
 			d.push(nX + "," + nY + " ");
