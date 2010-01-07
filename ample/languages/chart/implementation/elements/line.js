@@ -66,7 +66,8 @@ cChartElement_line.prototype.refresh	= function() {
 		d.push("M50," + (250 - y * 50) + "H550 z ");
 	this.$getContainer("grid").setAttribute("d", d.join(''));
 */
-	var aYSumUp	=[];
+	var aYSumUp	=[],
+		nYFromPrev = 250, nYToPrev = 250, dPrev = [];
 	// Draw lines
 	for (var nGroup = 0, nGroups = aData.length, oGroup; nGroup < nGroups; nGroup++) {
 		// Get DOM element
@@ -75,8 +76,7 @@ cChartElement_line.prototype.refresh	= function() {
 		// Draw points
 		var nXFrom, nYFrom,
 			nXTo, nYTo,
-			nX, nY,
-			d	= [];
+			nX, nY,	d = [];
 		for (var nItem = 0, nItems = aData[nGroup].length; nItem < nItems; nItem++) {
 			//
 			if (aYSumUp.length < nItem + 1)
@@ -119,7 +119,14 @@ cChartElement_line.prototype.refresh	= function() {
 		oGroup.$getContainer("line").setAttribute("d", "M" + nXFrom + "," + nYFrom + " L" + d.join(''));
 		oGroup.$getContainer("shadow").setAttribute("d", "M" + nXFrom + "," + nYFrom + " L" + d.join(''));
 		if (bArea)
-			oGroup.$getContainer("area").setAttribute("d", "M" + nXFrom + "," + 250 + " L" + d.join('') + " L" + nXTo + "," + 250 + "z");
+			oGroup.$getContainer("area").setAttribute("d", "M" + nXFrom + "," + nYFromPrev + " L" + d.join('') + (this.hasAttribute("type") ? dPrev.reverse().join('') : '') + " L" + nXTo + "," + nYToPrev + "z");
+
+		//
+		if (this.hasAttribute("type")) {
+			nYFromPrev	= nYFrom;
+			nYToPrev	= nYTo;
+			dPrev	= d;
+		}
 	}
 };
 
