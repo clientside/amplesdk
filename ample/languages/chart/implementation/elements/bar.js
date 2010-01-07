@@ -48,17 +48,15 @@ cChartElement_bar.prototype.refresh	= function() {
 		if (aSumAll[nItem] < nSumMin)
 			nSumMin	= aSumAll[nItem];
 	}
-/*
-	// Draw grid
-	var d	= [];
-	for (var x = 1; x < 10; x++)
-		d.push("M" + (50 + x * 50) + ",50 V250 z ");
-	for (var y = 1; y < 4; y++)
-		d.push("M50," + (250 - y * 50) + "H550 z ");
-	this.$getContainer("grid").setAttribute("d", d.join(''));
-*/
 
 	if (bColumn) {
+		// Draw grid
+		var d	= [];
+		for (var nIndex = 0, nLength = 10; nIndex < nLength; nIndex++)
+			d.push("M" + (50 + 10 + 400 * nIndex / nLength) + ",50 V250 z ");
+		this.$getContainer("grid").setAttribute("d", d.join(''));
+		this.$getContainer("grid").setAttribute("stroke-width", 20);
+
 		// Draw horizontal axis labels (values)
 		var oParent	= this.$getContainer("xAxisItems"),
 			oElement,
@@ -93,6 +91,13 @@ cChartElement_bar.prototype.refresh	= function() {
 		this.$getContainer("yAxisMarks").setAttribute("d", d.join(' '));
 	}
 	else {
+		// Draw Grid
+		var d	= [];
+		for (var nIndex = 0, nLength = 5; nIndex < nLength; nIndex++)
+			d.push("M50," + (250 - 10 - 200 * nIndex / nLength) + "H450 z ");
+		this.$getContainer("grid").setAttribute("d", d.join(''));
+		this.$getContainer("grid").setAttribute("stroke-width", 20);
+
 		// Draw horizontal axis labels (labels)
 		var oParent	= this.$getContainer("xAxisItems"),
 			oElement,
@@ -129,7 +134,7 @@ cChartElement_bar.prototype.refresh	= function() {
 
 	//
 	var nOffsetItem		= 2,
-		nOffsetGroup	= 6;
+		nOffsetGroup	= 4;
 
 	// Draw lines
 	var aSumUp	= [];
