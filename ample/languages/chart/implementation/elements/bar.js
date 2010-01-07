@@ -21,27 +21,32 @@ cChartElement_bar.prototype.refresh	= function() {
 
 	// Collect and pre-analyze data
 	var aData	= [],
-		nSumMax	=-Infinity,
-		nSumMin	= Infinity,
 		nGroupMax	=-Infinity,
-		nGroupMin	= Infinity;
-	for (var nGroup = 0, nGroups = this.childNodes.length, oGroup, aGroup, nSum; oGroup = this.childNodes[nGroup]; nGroup++) {
+		nGroupMin	= Infinity,
+		aSumAll	= [],
+		nSumMax	=-Infinity,
+		nSumMin	= Infinity;
+	for (var nGroup = 0, nGroups = this.childNodes.length, oGroup, aGroup; oGroup = this.childNodes[nGroup]; nGroup++) {
 		aGroup	= [];
-		nSum	= 0;
 		for (var nItem = 0, nItems = oGroup.childNodes.length, oItem, nValue; oItem = oGroup.childNodes[nItem]; nItem++) {
 			nValue	= oItem.getAttribute("value") * 1;
-			nSum	+= nValue;
 			if (nValue > nGroupMax)
 				nGroupMax	= nValue;
 			if (nValue < nGroupMin)
 				nGroupMin	= nValue;
 			aGroup.push(nValue);
+			//
+			if (aSumAll.length < nItem + 1)
+				aSumAll[nItem]	= 0;
+			aSumAll[nItem]	+= nValue;
 		}
-		if (nSum > nSumMax)
-			nSumMax	= nSum;
-		if (nSum < nSumMin)
-			nSumMin	= nSum;
 		aData.push(aGroup);
+	}
+	for (var nItem = 0, nItems = aSumAll.length; nItem < nItems; nItem++) {
+		if (aSumAll[nItem] > nSumMax)
+			nSumMax	= aSumAll[nItem];
+		if (aSumAll[nItem] < nSumMin)
+			nSumMin	= aSumAll[nItem];
 	}
 /*
 	// Draw grid
@@ -124,9 +129,10 @@ cChartElement_bar.prototype.refresh	= function() {
 
 	//
 	var nOffsetItem		= 2,
-		nOffsetGroup	= 4;
+		nOffsetGroup	= 6;
 
 	// Draw lines
+	var aSumUp	= [];
 	for (var nGroup = 0, nGroups = aData.length, oGroup; nGroup < nGroups; nGroup++) {
 		// Get DOM element
 		oGroup = this.childNodes[nGroup];
@@ -135,33 +141,41 @@ cChartElement_bar.prototype.refresh	= function() {
 		var d,
 			nValue,
 			nWeightGroup, nWeightItem;
-/*
-		// Get max/min/sum in series
-		var nSumUp	= 0,
-			nSumAll	= 0,
-			nItemMax	=-Infinity,
-			nItemMin	= Infinity;
-		for (var nItem = 0, nItems = aData[nGroup].length, oItem, nValue; nItem < nItems; nItem++) {
-			nValue	= aData[nGroup][nItem];
-			if (nValue < nItemMin)
-				nItemMin	= nValue;
-			if (nValue > nItemMax)
-				nItemMax	= nValue;
-			nSumAll	+= nValue;
-		}
-*/
+
 		for (var nItem = 0, nItems = aData[nGroup].length, oItem; nItem < nItems; nItem++) {
 			// Get DOM element
 			oItem = oGroup.childNodes[nItem];
 
+			//
+			if (aSumUp.length < nItem + 1)
+				aSumUp[nItem]	= 0;
+
 			// Column chart
 			if (bColumn) {
 				if (this.getAttribute("type") == "stack") {
-
+					nWeightGroup	= 200 / nItems - nOffsetGroup;
+					nWeightItem		= nWeightGroup - nOffsetItem;
+					nValue	= 400 * aData[nGroup][nItem] / nSumMax;
+					// Bars
+					//"M" + (50 + (nWeightGroup + nOffsetGroup) * nItem) + "," + (250 - 200 * aSumUp[nItem] / aSumAll[nItem]) +
+					d	=	"M" + (50 + 400 * aSumUp[nItem] / nSumMax) + "," + (250 - (nWeightGroup + nOffsetGroup) * nItem - (nOffsetItem + nOffsetGroup) / 2) +
+							"h" + nValue + " " +
+							"v-" + nWeightItem + " " +
+							"h-" + nValue + " " +
+							"v" + nWeightItem + " z";
 				}
 				else
 				if (this.getAttribute("type") == "percentage") {
-
+					nWeightGroup	= 200 / nItems - nOffsetGroup;
+					nWeightItem		= nWeightGroup - nOffsetItem;
+					nValue	= 400 * aData[nGroup][nItem] / aSumAll[nItem];
+					// Bars
+					//"M" + (50 + (nWeightGroup + nOffsetGroup) * nItem) + "," + (250 - 200 * aSumUp[nItem] / aSumAll[nItem]) +
+					d	=	"M" + (50 + 400 * aSumUp[nItem] / aSumAll[nItem]) + "," + (250 - (nWeightGroup + nOffsetGroup) * nItem - (nOffsetItem + nOffsetGroup) / 2) +
+							"h" + nValue + " " +
+							"v-" + nWeightItem + " " +
+							"h-" + nValue + " " +
+							"v" + nWeightItem + " z";
 				}
 				else {
 					nWeightGroup	= 200 / nItems - nOffsetGroup;
@@ -180,20 +194,28 @@ cChartElement_bar.prototype.refresh	= function() {
 			}
 			// Bar chart
 			else {
-				if (this.getAttribute("type") == "stack") {/*
+				if (this.getAttribute("type") == "stack") {
 					nWeightGroup	= 400 / nItems - nOffsetGroup;
 					nWeightItem		= nWeightGroup - nOffsetItem;
 					nValue	= 200 * aData[nGroup][nItem] / nSumMax;
 					// Bars
-					d	=	"M" + (50 + (nWeightGroup + nOffsetGroup) * nItem) + "," + (250) +
+					d	=	"M" + (50 + (nWeightGroup + nOffsetGroup) * nItem + (nOffsetItem + nOffsetGroup) / 2) + "," + (250 - 200 * aSumUp[nItem] / nSumMax) +
 							"v-" + nValue + " " +
 							"h" +  nWeightItem + " " +
 							"v" + nValue + " " +
-							"h-" + nWeightItem + " z";*/
+							"h-" + nWeightItem + " z";
 				}
 				else
 				if (this.getAttribute("type") == "percentage") {
-
+					nWeightGroup	= 400 / nItems - nOffsetGroup;
+					nWeightItem		= nWeightGroup - nOffsetItem;
+					nValue	= 200 * aData[nGroup][nItem] / aSumAll[nItem];
+					// Bars
+					d	=	"M" + (50 + (nWeightGroup + nOffsetGroup) * nItem + (nOffsetItem + nOffsetGroup) / 2) + "," + (250 - 200 * aSumUp[nItem] / aSumAll[nItem]) +
+							"v-" + nValue + " " +
+							"h" +  nWeightItem + " " +
+							"v" + nValue + " " +
+							"h-" + nWeightItem + " z";
 				}
 				else {
 					nWeightGroup	= 400 / nItems - nOffsetGroup;
@@ -213,9 +235,9 @@ cChartElement_bar.prototype.refresh	= function() {
 
 			oItem.$getContainer("value").setAttribute("d", d);
 			oItem.$getContainer("shadow").setAttribute("d", d);
-/*
-			nSumUp	+= aData[nGroup][nItem];
-*/
+
+			//
+			aSumUp[nItem]	+= aData[nGroup][nItem];
 		}
 	}
 };
