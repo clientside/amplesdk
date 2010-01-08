@@ -17,6 +17,7 @@
     $aFiles[]		= "implementation/elements/lineGroup.js";
     $aFiles[]		= "implementation/elements/map.js";
     $aFiles[]		= "implementation/elements/mapItem.js";
+    $aFiles[]		= "implementation/elements/mapGroup.js";
     $aFiles[]		= "implementation/elements/doughnut.js";
     $aFiles[]		= "implementation/elements/doughnutGroup.js";
     $aFiles[]		= "implementation/elements/doughnutItem.js";
