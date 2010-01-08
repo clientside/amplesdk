@@ -34,6 +34,7 @@ cChartElement_radar.prototype.refresh	= function() {
 	this.$getContainer("grid").setAttribute("d", d.join(''));
 
 	// Draw values
+	var nSize	= 3;
 	for (var nGroup = 0, nGroups = this.childNodes.length, oGroup; oGroup = this.childNodes[nGroup]; nGroup++) {
 		d	= [];
 		for (var nItem = 0, nItems = oGroup.childNodes.length, oItem; oItem = oGroup.childNodes[nItem]; nItem++) {
@@ -41,8 +42,10 @@ cChartElement_radar.prototype.refresh	= function() {
 				nX	= (150 - nValue * Math.cos(Math.PI / 2 + 2 * Math.PI * nItem / nItems)),
 				nY	= (150 - nValue * Math.sin(Math.PI / 2 + 2 * Math.PI * nItem / nItems));
 			// Set point
-			oItem.$getContainer().setAttribute("cx", nX);
-			oItem.$getContainer().setAttribute("cy", nY);
+			oItem.$getContainer().setAttribute("d", "M" + (nX - nSize) + "," + nY +
+													"a" + nSize + "," + nSize + " 0 0,0 " + nSize * 2 + ",0 " +
+													"a" + nSize + "," + nSize + " 0 0,0-" + nSize * 2 + ",0 " +
+													"z");
 			//
 			d.push((nItem ? "L" : "M") + nX + "," + nY);
 		}
