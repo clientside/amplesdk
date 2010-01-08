@@ -75,7 +75,7 @@ cChartElement_lineGroup.prototype.$getTagOpen	= function() {
 				style="' + this.getAttribute("style") + '">\
 				<svg:g>\
 					<svg:path class="c-lineGroup--path" style="fill:none" />\
-					<svg:text class="c-lineGroup--label" x="100" y="100" style="stroke:none">' + this.getAttribute("label")+ '</svg:text>\
+					<svg:text class="c-lineGroup--label" style="stroke:none">' + this.getAttribute("label")+ '</svg:text>\
 				</svg:g>\
 				<svg:g class="c-lineGroup--value">\
 					<svg:path class="c-lineGroup--shadow" style="fill:none;stroke-linejoin:round" transform="translate(2, 2)"/>\
