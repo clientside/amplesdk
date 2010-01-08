@@ -101,7 +101,11 @@ c|grid {
 	stroke: #ddd;
 /*	stroke-width:1;*/
 }
+/*
+c|gridItem:nth-child(even) {
 
+}
+*/
 c|xAxis::label,
 c|yAxis::label {
 	fill: gray;
@@ -119,6 +123,14 @@ c|yAxis::scale {
 }
 
 /* individual charts styling */
+c|barGroup::label,
+c|lineGroup::label,
+c|bubbleGroup::label,
+c|radarGroup::label {
+	cursor:	default;
+	font-size: 12px;
+}
+
 /* */
 c|pieItem,
 c|funnelItem,
@@ -192,7 +204,7 @@ c|mapItem {
 c|barItem:hover,
 c|bubbleItem:hover,
 c|lineItem:hover,
-c|radarGroup:hover c|radarGroup::value,
+c|radarItem:hover,
 c|doughnutItem:hover c|doughnutItem::value,
 c|pieItem:hover c|pieItem::value,
 c|funnelItem:hover c|funnelItem::value,
@@ -200,11 +212,25 @@ c|mapItem:hover c|mapItem::value {
 	opacity: 0.5;
 }
 
+c|radarGroup:hover,
 c|lineGroup:hover {
 	stroke-width:	3;
+}
+
+c|bubbleGroup:hover,
+c|barGroup:hover {
+	stroke-width:	2;
 }
 
 c|mapItem:hover {
 	fill:	silver;
 	stroke:	gray;
+}
+
+/* selection effects */
+c|lineGroup:selected,
+c|barGroup:selected,
+c|bubbleGroup:selected,
+c|radarGroup:selected {
+	opacity: 0.25;
 }

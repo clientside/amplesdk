@@ -57,15 +57,15 @@ cChartElement_line.prototype.refresh	= function() {
 			nYSumMin	= aYSumAll[nItem];
 	}
 
-/*
+
 	// Draw grid
 	var d	= [];
-	for (var x = 1; x < 10; x++)
-		d.push("M" + (50 + x * 50) + ",50 V250 z ");
+	for (var x = 1; x < 8; x++)
+		d.push("M" + (50 + x * 50) + ",50 v200 z ");
 	for (var y = 1; y < 4; y++)
-		d.push("M50," + (250 - y * 50) + "H550 z ");
+		d.push("M50," + (250 - y * 50) + "h400 z ");
 	this.$getContainer("grid").setAttribute("d", d.join(''));
-*/
+
 	var aYSumUp	=[],
 		nYFromPrev = 250, nYToPrev = 250, dPrev = [];
 	// Draw lines
@@ -120,6 +120,14 @@ cChartElement_line.prototype.refresh	= function() {
 		oGroup.$getContainer("shadow").setAttribute("d", "M" + nXFrom + "," + nYFrom + " L" + d.join(''));
 		if (bArea)
 			oGroup.$getContainer("area").setAttribute("d", "M" + nXFrom + "," + nYFromPrev + " L" + d.join('') + (this.hasAttribute("type") ? dPrev.reverse().join('') : '') + " L" + nXTo + "," + nYToPrev + "z");
+
+		// Draw legend
+		var nXPath	= 480,
+			nYPath	=(50 + (nGroups - nGroup - 1) * 20),
+			sLine	= this.getAttribute("area") == "true" ? "h20" : " h7 z M" + (nXPath + 10) + "," + nYPath + " h-7";
+		oGroup.$getContainer("path").setAttribute("d", "M" + (nXPath - 10) + "," + nYPath + sLine + "z" + (this.getAttribute("area") == "true" ? '' : cChartElement_lineGroup.getMarkerPath(nXPath, nYPath, nGroup)));
+		oGroup.$getContainer("label").setAttribute("x", nXPath + 20);
+		oGroup.$getContainer("label").setAttribute("y", nYPath + 5);
 
 		//
 		if (this.hasAttribute("type")) {

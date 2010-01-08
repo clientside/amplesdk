@@ -9,6 +9,7 @@
 
 var cChartElement_radarItem	= function(){};
 cChartElement_radarItem.prototype	= new cChartElement;
+cChartElement_radarItem.prototype.$hoverable	 = true;
 
 cChartElement_radarItem.prototype.$getTagOpen	= function() {
 	return '<svg:circle r="3" class="c-radarItem' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" />';

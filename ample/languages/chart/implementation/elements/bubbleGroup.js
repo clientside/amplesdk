@@ -11,11 +11,25 @@ var cChartElement_bubbleGroup	= function(){};
 cChartElement_bubbleGroup.prototype	= new cChartElement;
 cChartElement_bubbleGroup.prototype.$hoverable	= true;
 
+cChartElement_bubbleGroup.handlers	= {
+	'DOMAttrModified':	function(oEvent) {
+		if (oEvent.target == this) {
+			switch (oEvent.attrName) {
+				case "selected":
+					this.$setPseudoClass("selected", oEvent.newValue == "true");
+			}
+		}
+	},
+	'click':	function(oEvent) {
+		this.setAttribute("selected", this.getAttribute("selected") == "true" ? "false" : "true");
+	}
+};
+
 cChartElement_bubbleGroup.prototype.$getTagOpen	= function() {
 	return '<svg:g class="c-bubbleGroup c-bubbleGroup_nth-child-' + this.parentNode.childNodes.$indexOf(this) +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '" xmlns:svg="http://www.w3.org/2000/svg">\
 				<svg:g>\
 					<svg:path class="c-bubbleGroup--path" />\
-					<svg:text class="c-bubbleGroup--label" x="100" y="100" style="stroke:none">' + this.getAttribute("label")+ '</svg:text>\
+					<svg:text class="c-bubbleGroup--label" style="stroke:none">' + this.getAttribute("label")+ '</svg:text>\
 				</svg:g>\
 				<svg:g class="c-bubbleGroup--gateway">';
 };

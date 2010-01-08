@@ -80,6 +80,13 @@ cChartElement_bubble.prototype.refresh	= function() {
 			oGroup.childNodes[nItem].$getContainer("label").setAttribute("x", 50 + 400 * (nXMax - aData[nGroup][nItem][0]) / (nXMax - nXMin));
 			oGroup.childNodes[nItem].$getContainer("label").setAttribute("y", 250 - 200 * (nYMax - aData[nGroup][nItem][1]) / (nYMax - nYMin) + 6);
 		}
+
+		// Draw legend
+		var nXPath	= 480,
+			nYPath	=(50 + (nGroups - nGroup - 1) * 20);
+		oGroup.$getContainer("path").setAttribute("d", "M" + (nXPath - 5) + "," + (nYPath - 5) + "h10 v10 h-10 v-10 z");
+		oGroup.$getContainer("label").setAttribute("x", nXPath + 20);
+		oGroup.$getContainer("label").setAttribute("y", nYPath + 5);
 	}
 };
 

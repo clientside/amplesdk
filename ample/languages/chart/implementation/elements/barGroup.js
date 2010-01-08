@@ -11,6 +11,20 @@ var cChartElement_barGroup	= function(){};
 cChartElement_barGroup.prototype	= new cChartElement;
 cChartElement_barGroup.prototype.$hoverable	= true;
 
+cChartElement_barGroup.handlers	= {
+	'DOMAttrModified':	function(oEvent) {
+		if (oEvent.target == this) {
+			switch (oEvent.attrName) {
+				case "selected":
+					this.$setPseudoClass("selected", oEvent.newValue == "true");
+			}
+		}
+	},
+	'click':	function(oEvent) {
+		this.setAttribute("selected", this.getAttribute("selected") == "true" ? "false" : "true");
+	}
+};
+
 //
 cChartElement_barGroup.prototype.$getTagOpen	= function() {
 	return '<svg:g class="c-barGroup c-barGroup_nth-child-' + this.parentNode.childNodes.$indexOf(this) +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" xmlns:svg="http://www.w3.org/2000/svg" \

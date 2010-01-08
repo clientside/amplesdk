@@ -241,6 +241,13 @@ cChartElement_bar.prototype.refresh	= function() {
 			oItem.$getContainer("value").setAttribute("d", d);
 			oItem.$getContainer("shadow").setAttribute("d", d);
 
+			// Draw legend
+			var nXPath	= 480,
+				nYPath	=(50 + (nGroups - nGroup - 1) * 20);
+			oGroup.$getContainer("path").setAttribute("d", "M" + (nXPath - 5) + "," + (nYPath - 5) + "h10 v10 h-10 v-10 z");
+			oGroup.$getContainer("label").setAttribute("x", nXPath + 20);
+			oGroup.$getContainer("label").setAttribute("y", nYPath + 5);
+
 			//
 			aSumUp[nItem]	+= aData[nGroup][nItem];
 		}

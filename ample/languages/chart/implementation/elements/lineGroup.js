@@ -11,6 +11,20 @@ var cChartElement_lineGroup	= function(){};
 cChartElement_lineGroup.prototype	= new cChartElement;
 cChartElement_lineGroup.prototype.$hoverable	= true;
 
+cChartElement_lineGroup.handlers	= {
+	'DOMAttrModified':	function(oEvent) {
+		if (oEvent.target == this) {
+			switch (oEvent.attrName) {
+				case "selected":
+					this.$setPseudoClass("selected", oEvent.newValue == "true");
+			}
+		}
+	},
+	'click':	function(oEvent) {
+		this.setAttribute("selected", this.getAttribute("selected") == "true" ? "false" : "true");
+	}
+};
+
 cChartElement_lineGroup.getMarkerPath	= function(nX, nY, nType) {
 	var nSize	= 3,
 		nSize2	= nSize * 2;
@@ -60,7 +74,7 @@ cChartElement_lineGroup.prototype.$getTagOpen	= function() {
 	return '<svg:g class="c-lineGroup c-lineGroup_nth-child-' + this.parentNode.childNodes.$indexOf(this) + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" xmlns:svg="http://www.w3.org/2000/svg" \
 				style="' + this.getAttribute("style") + '">\
 				<svg:g>\
-					<svg:path class="c-lineGroup--path" />\
+					<svg:path class="c-lineGroup--path" style="fill:none" />\
 					<svg:text class="c-lineGroup--label" x="100" y="100" style="stroke:none">' + this.getAttribute("label")+ '</svg:text>\
 				</svg:g>\
 				<svg:g class="c-lineGroup--value">\

@@ -49,12 +49,19 @@ cChartElement_radar.prototype.refresh	= function() {
 		oGroup.$getContainer("line").setAttribute("d", d.join(" ") + "z");
 		oGroup.$getContainer("shadow").setAttribute("d", d.join(" ") + "z");
 		oGroup.$getContainer("area").setAttribute("d", d.join(" ") + "z");
+
+		// Draw legend
+		var nXPath	= 280,
+			nYPath	=(50 + (nGroups - nGroup - 1) * 20);
+		oGroup.$getContainer("path").setAttribute("d", "M" + (nXPath - 5) + "," + (nYPath - 5) + "h10 v10 h-10 v-10 z");
+		oGroup.$getContainer("label").setAttribute("x", nXPath + 20);
+		oGroup.$getContainer("label").setAttribute("y", nYPath + 5);
 	}
 };
 
 cChartElement_radar.prototype.$getTagOpen	= function() {
 	return '<div class="c-radar' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
-				<svg:svg class="c-radar--canvas" viewBox="0 0 300 300" width="300px" height="300px" xmlns:svg="http://www.w3.org/2000/svg">\
+				<svg:svg class="c-radar--canvas" viewBox="0 0 400 300" width="400px" height="300px" xmlns:svg="http://www.w3.org/2000/svg">\
 					<svg:text class="c-radar--label" y="30" x="150">' + this.getAttribute("label")+ '</svg:text>\
 					<svg:path class="c-grid c-radar--grid" style="fill:none"/>\
 					<svg:g class="c-rAxis">\
