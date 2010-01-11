@@ -28,15 +28,11 @@ cChartElement_group.handlers	= {
 cChartElement_group.prototype.$getTagOpen	= function() {
 	return '<svg:g class="c-group c-group_nth-child-' + this.parentNode.childNodes.$indexOf(this) +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" xmlns:svg="http://www.w3.org/2000/svg" \
 				style="' + this.getAttribute("style") + '">\
-				<svg:g>\
-					<svg:path class="c-group--path" />\
-					<svg:text class="c-group--label" style="stroke:none">' + this.getAttribute("label")+ '</svg:text>\
-				</svg:g>\
-				<svg:g class="c-group--value">\
-					<svg:path class="c-group--shadow" style="fill:none;stroke-linejoin:round" transform="translate(2, 2)"/>\
-					<svg:path class="c-group--line" style="fill:none;stroke-linejoin:round"/>\
-					<svg:path class="c-group--area" style="stroke:none"/>\
-				</svg:g>\
+				<svg:path class="c-group--path" />\
+				<svg:path class="c-group--shadow" style="fill:none;stroke-linejoin:round" transform="translate(2, 2)"/>\
+				<svg:path class="c-group--line" style="fill:none;stroke-linejoin:round"/>\
+				<svg:path class="c-group--area" style="stroke:none"/>\
+				<svg:text class="c-group--label" style="stroke:none">' + this.getAttribute("label")+ '</svg:text>\
 				<svg:g class="c-group--gateway">';
 };
 
