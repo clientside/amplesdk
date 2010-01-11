@@ -194,8 +194,8 @@ cChartElement_bar.prototype.refresh	= function() {
 							"h-" + nValue + " " +
 							"v" + nWeightItem + " z";
 					// Text labels
-					oItem.$getContainer("textPath").setAttribute("d", "M" + (50 + nValue + 5) + "," + (250 - (nWeightGroup + nOffsetGroup) * nItem - (nWeightItem + nOffsetItem) * nGroup - 8) +
-																		"h100 "+ "z");
+//					oItem.$getContainer("textPath").setAttribute("d", "M" + (50 + nValue + 5) + "," + (250 - (nWeightGroup + nOffsetGroup) * nItem - (nWeightItem + nOffsetItem) * nGroup - 8) +
+//																		"h100 "+ "z");
 				}
 			}
 			// Bar chart
@@ -234,8 +234,8 @@ cChartElement_bar.prototype.refresh	= function() {
 							"v" + nValue + " " +
 							"h-" + nWeightItem + " z";
 					// Text labels
-					oItem.$getContainer("textPath").setAttribute("d", "M" + (50 + (nWeightGroup + nOffsetGroup) * nItem + (nWeightItem + nOffsetItem) * nGroup + 16) + "," + (250 - nValue - 3) +
-																		"v-200 "+ "z");
+//					oItem.$getContainer("textPath").setAttribute("d", "M" + (50 + (nWeightGroup + nOffsetGroup) * nItem + (nWeightItem + nOffsetItem) * nGroup + 16) + "," + (250 - nValue - 3) +
+//																		"v-200 "+ "z");
 				}
 			}
 
