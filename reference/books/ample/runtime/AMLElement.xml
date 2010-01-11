@@ -126,7 +126,7 @@
 				</values>
 				<description>
 					<locale>
-						Instructs DOM implementation on how weather to preserve whitespace text nodes.
+						Instructs DOM implementation on weather to preserve whitespace text nodes.
 					</locale>
 					<locale xml:lang="ru">
 						Указывает, будут ли пробелы представлены в объектной модели фрагмента документа.
