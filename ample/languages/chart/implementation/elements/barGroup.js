@@ -31,7 +31,7 @@ cChartElement_barGroup.prototype.$getTagOpen	= function() {
 				style="' + this.getAttribute("style") + '">\
 				<svg:g>\
 					<svg:path class="c-barGroup--path" />\
-					<svg:text class="c-barGroup--label" x="100" y="100" style="stroke:none">' + this.getAttribute("label")+ '</svg:text>\
+					<svg:text class="c-barGroup--label" style="stroke:none">' + this.getAttribute("label")+ '</svg:text>\
 				</svg:g>\
 				<svg:g class="c-barGroup--gateway">';
 };
