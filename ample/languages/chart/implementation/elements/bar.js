@@ -73,6 +73,7 @@ cChartElement_bar.prototype.refresh	= function() {
 
 		// Draw vertical axis labels (labels)
 		var oParent	= this.$getContainer("yAxisItems"),
+			aAxisValueLabels	= this.getAttribute("xAxisValueLabels").split(","),
 			oElement,
 			d	= [];
 		for (var x = 0, l = oParent.childNodes.length; x < l; x++)
@@ -81,7 +82,7 @@ cChartElement_bar.prototype.refresh	= function() {
 			if (nIndex != nLength) {
 				oElement	= oParent.appendChild(oParent.ownerDocument.createElementNS("http://www.w3.org/2000/svg", "svg:text"));
 				oElement.setAttribute("text-anchor", "end");
-				oElement.textContent	= nIndex;
+				oElement.textContent	= aAxisValueLabels[nIndex] || nIndex;
 				oElement.setAttribute("x", 50 - 10);
 				oElement.setAttribute("y", 250 - 200 * (nIndex + 1/2) / nLength);
 			}
@@ -99,6 +100,7 @@ cChartElement_bar.prototype.refresh	= function() {
 
 		// Draw horizontal axis labels (labels)
 		var oParent	= this.$getContainer("xAxisItems"),
+			aAxisValueLabels	= this.getAttribute("xAxisValueLabels").split(","),
 			oElement,
 			d	= [];
 		for (var x = 0, l = oParent.childNodes.length; x < l; x++)
@@ -106,7 +108,7 @@ cChartElement_bar.prototype.refresh	= function() {
 		for (var nIndex = 0, nLength = aData[0].length; nIndex < nLength + 1; nIndex++) {
 			if (nIndex != nLength) {
 				oElement	= oParent.appendChild(oParent.ownerDocument.createElementNS("http://www.w3.org/2000/svg", "svg:text"));
-				oElement.textContent	= nIndex;
+				oElement.textContent	= aAxisValueLabels[nIndex] || nIndex;
 				oElement.setAttribute("x", 50 + 400 * (nIndex + 1/2) / nLength);
 				oElement.setAttribute("y", 270 - 4);
 			}
