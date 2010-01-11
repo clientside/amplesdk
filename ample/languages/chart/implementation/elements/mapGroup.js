@@ -32,7 +32,7 @@ cChartElement_mapGroup.prototype.$getTagOpen	= function() {
 					<svg:path class="c-mapGroup--path" style="fill:none" />\
 					<svg:text class="c-mapGroup--label" style="stroke:none">' + this.getAttribute("label")+ '</svg:text>\
 				</svg:g>\
-				<svg:g class="c-lineGroup--gateway">';
+				<svg:g class="c-mapGroup--gateway">';
 };
 
 cChartElement_mapGroup.prototype.$getTagClose	= function() {
