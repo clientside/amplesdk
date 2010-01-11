@@ -20,7 +20,7 @@ cChartElement_radar.prototype.refresh	= function() {
 	// Draw Grid
 	var d	= [];
 	// circles
-	for (var n = 0, l = 10; n < l; n++) {
+	for (var n = 0, l = 5; n < l; n++) {
 		d.push(	"M150," + (150 - 100 * (n + 1) / l) +
 				"A" + 100 * (n + 1) / l + "," + 100 * (n + 1) / l + " 0 0,0 150," + (150 + 100 * (n + 1) / l) +
 				"A" + 100 * (n + 1) / l + "," + 100 * (n + 1) / l + " 0 0,0 150," + (150 - 100 * (n + 1) / l) +
@@ -29,9 +29,16 @@ cChartElement_radar.prototype.refresh	= function() {
 	// lines
 	for (var n = 0, l = 5; n < l; n++)
 		d.push(	"M150,150" +
-				"L" + (150 - (100 + 5) * Math.cos(Math.PI / 2 + 2 * Math.PI * n / l)) + "," + (150 - (100 + 5) * Math.sin(Math.PI / 2 + 2 * Math.PI * n / l))+
+				"L" + (150 - 100 * Math.cos(Math.PI / 2 + 2 * Math.PI * n / l)) + "," + (150 - 100 * Math.sin(Math.PI / 2 + 2 * Math.PI * n / l))+
 				"z");
 	this.$getContainer("grid").setAttribute("d", d.join(''));
+	// marks
+	var d	= [];
+	for (var n = 0, l = 5; n < l; n++)
+		d.push(	"M" + (150 - 100 * Math.cos(Math.PI / 2 + 2 * Math.PI * n / l)) + "," + (150 - 100 * Math.sin(Math.PI / 2 + 2 * Math.PI * n / l))+
+				"L" + (150 -(100 + 5) * Math.cos(Math.PI / 2 + 2 * Math.PI * n / l)) + "," + (150 -(100 + 5) * Math.sin(Math.PI / 2 + 2 * Math.PI * n / l))+
+				"z");
+	this.$getContainer("rAxisMarks").setAttribute("d", d.join(''));
 
 	// Draw values
 	var nSize	= 3;
@@ -69,6 +76,7 @@ cChartElement_radar.prototype.$getTagOpen	= function() {
 					<svg:path class="c-grid c-radar--grid" style="fill:none"/>\
 					<svg:g class="c-rAxis">\
 						<svg:path class="c-radar--rAxis" d="m150,150 v-100" style="fill:none"/>\
+						<svg:path class="c-rAxis--marks c-radar--rAxisMarks" />\
 					</svg:g>\
 					<svg:g class="c-radar--gateway">';
 };
