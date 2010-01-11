@@ -81,12 +81,12 @@ cChartElement_lineGroup.prototype.$getTagOpen	= function() {
 					<svg:path class="c-lineGroup--shadow" style="fill:none;stroke-linejoin:round" transform="translate(2, 2)"/>\
 					<svg:path class="c-lineGroup--line" style="fill:none;stroke-linejoin:round"/>\
 					<svg:path class="c-lineGroup--area" style="stroke:none"/>\
-					<svg:g class="c-lineGroup--gateway">';
+				</svg:g>\
+				<svg:g class="c-lineGroup--gateway">';
 };
 
 cChartElement_lineGroup.prototype.$getTagClose	= function() {
-	return '		</svg:g>\
-				</svg:g>\
+	return '	</svg:g>\
 			</svg:g>';
 };
 

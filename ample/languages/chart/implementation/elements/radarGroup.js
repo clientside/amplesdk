@@ -36,12 +36,12 @@ cChartElement_radarGroup.prototype.$getTagOpen	= function() {
 					<svg:path class="c-radarGroup--shadow" style="fill:none;stroke-linejoin:round" transform="translate(2, 2)"/>\
 					<svg:path class="c-radarGroup--line" style="fill:none;stroke-linejoin:round"/>\
 					<svg:path class="c-radarGroup--area" style="stroke:none"/>\
-					<svg:g class="c-radarGroup--gateway">';
+				</svg:g>\
+				<svg:g class="c-radarGroup--gateway">';
 };
 
 cChartElement_radarGroup.prototype.$getTagClose	= function() {
-	return '		</svg:g>\
-				</svg:g>\
+	return '	</svg:g>\
 			</svg:g>';
 };
 
