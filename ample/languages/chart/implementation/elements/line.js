@@ -47,16 +47,14 @@ cChartElement_line.prototype.refresh	= function() {
 			if (aYSumAll.length < nItem + 1)
 				aYSumAll[nItem]	= 0;
 			aYSumAll[nItem]	+= nY;
+			//
+			if (aYSumAll[nItem] > nYSumMax)
+				nYSumMax	= aYSumAll[nItem];
+			if (aYSumAll[nItem] < nYSumMin)
+				nYSumMin	= aYSumAll[nItem];
 		}
 		aData.push(aGroup);
 	}
-	for (var nItem = 0, nItems = aYSumAll.length; nItem < nItems; nItem++) {
-		if (aYSumAll[nItem] > nYSumMax)
-			nYSumMax	= aYSumAll[nItem];
-		if (aYSumAll[nItem] < nYSumMin)
-			nYSumMin	= aYSumAll[nItem];
-	}
-
 
 	// Draw grid
 	var d	= [];

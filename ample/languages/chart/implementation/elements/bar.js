@@ -39,14 +39,13 @@ cChartElement_bar.prototype.refresh	= function() {
 			if (aSumAll.length < nItem + 1)
 				aSumAll[nItem]	= 0;
 			aSumAll[nItem]	+= nValue;
+			//
+			if (aSumAll[nItem] > nSumMax)
+				nSumMax	= aSumAll[nItem];
+			if (aSumAll[nItem] < nSumMin)
+				nSumMin	= aSumAll[nItem];
 		}
 		aData.push(aGroup);
-	}
-	for (var nItem = 0, nItems = aSumAll.length; nItem < nItems; nItem++) {
-		if (aSumAll[nItem] > nSumMax)
-			nSumMax	= aSumAll[nItem];
-		if (aSumAll[nItem] < nSumMin)
-			nSumMin	= aSumAll[nItem];
 	}
 
 	if (bColumn) {
