@@ -65,7 +65,7 @@ cChartElement_radar.prototype.refresh	= function() {
 cChartElement_radar.prototype.$getTagOpen	= function() {
 	return '<div class="c-radar' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
 				<svg:svg class="c-radar--canvas" viewBox="0 0 400 300" width="400px" height="300px" xmlns:svg="http://www.w3.org/2000/svg">\
-					<svg:text class="c-radar--label" y="30" x="150">' + this.getAttribute("label")+ '</svg:text>\
+					<svg:text class="c-radar--title" y="30" x="150">' + this.getAttribute("title")+ '</svg:text>\
 					<svg:path class="c-grid c-radar--grid" style="fill:none"/>\
 					<svg:g class="c-rAxis">\
 						<svg:path class="c-radar--rAxis" d="m150,150 v-100" style="fill:none"/>\

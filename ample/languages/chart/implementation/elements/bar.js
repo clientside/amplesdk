@@ -256,7 +256,7 @@ cChartElement_bar.prototype.refresh	= function() {
 cChartElement_bar.prototype.$getTagOpen	= function() {
 	return '<div class="c-bar' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
 				<svg:svg class="c-bar--canvas" viewBox="0 0 600 300" width="600px" height="300px" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">\
-					<svg:text class="c-bar--label" y="30" x="300">' + this.getAttribute("label")+ '</svg:text>\
+					<svg:text class="c-bar--title" y="30" x="300">' + this.getAttribute("title")+ '</svg:text>\
 					<svg:path class="c-grid c-bar--grid"/>\
 					<svg:g class="c-xAxis">\
 						<svg:path class="c-bar--xAxis" d="m50,250 h400,0" style="fill:none"/>\

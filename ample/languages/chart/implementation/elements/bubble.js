@@ -93,7 +93,7 @@ cChartElement_bubble.prototype.refresh	= function() {
 cChartElement_bubble.prototype.$getTagOpen	= function() {
 	return '<div class="c-bubble' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
 				<svg:svg class="c-bubble--canvas" viewBox="0 0 600 300" width="600px" height="300px" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">\
-					<svg:text class="c-bubble--label" y="30" x="300">' + this.getAttribute("label")+ '</svg:text>\
+					<svg:text class="c-bubble--title" y="30" x="300">' + this.getAttribute("title")+ '</svg:text>\
 					<svg:path class="c-grid c-bubble--grid"/>\
 					<svg:g class="c-xAxis">\
 						<svg:path class="c-bubble--xAxis" d="M50,250 h400,0" style="fill:none"/>\

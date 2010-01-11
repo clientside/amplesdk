@@ -31,14 +31,14 @@ c|map c|item::underlay:hover {
 	stroke: white;
 }
 
-c|line::label,
-c|bar::label,
-c|bubble::label,
-c|pie::label,
-c|radar::label,
-c|funnel::label,
-c|doughnut::label,
-c|map::label {
+c|line::title,
+c|bar::title,
+c|bubble::title,
+c|pie::title,
+c|radar::title,
+c|funnel::title,
+c|doughnut::title,
+c|map::title {
 	font-size: 20px;
 	fill: #999;
 	text-anchor: middle;
