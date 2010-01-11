@@ -58,12 +58,12 @@ cChartElement_map.prototype.refresh	= function() {
 
 cChartElement_map.prototype._onMouseOver	= function(oEvent) {
 	if (oEvent.target.parentNode == this.$getContainer("underlay"))
-		oEvent.target.setAttribute("class", oEvent.target.getAttribute("class").replace(/(c-mapItem--underlay_hover)?$/, " c-mapItem--underlay_hover"));
+		oEvent.target.setAttribute("class", oEvent.target.getAttribute("class").replace(/(c-item--underlay_hover)?$/, " c-item--underlay_hover"));
 };
 
 cChartElement_map.prototype._onMouseOut	= function(oEvent) {
 	if (oEvent.target.parentNode == this.$getContainer("underlay"))
-		oEvent.target.setAttribute("class", oEvent.target.getAttribute("class").replace(/ c-mapItem--underlay_hover/, ""));
+		oEvent.target.setAttribute("class", oEvent.target.getAttribute("class").replace(/ c-item--underlay_hover/, ""));
 };
 
 cChartElement_map.countries	= {
