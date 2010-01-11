@@ -273,6 +273,29 @@
 				<node title="iWF2Control" xurl="ample/webforms2/elements/iWF2Control.xml"/>
 			</node>
 		</node-->
+		<node title="Chart">
+			<node title="Overview" url="ample/chart/chart.xml"/>
+			<node title="XML Schema" xurl="ample/chart/chart.xsd"/>
+			<node title="Objects">
+				<node title="ChartElement" url="ample/chart/ChartElement.xml"/>
+				<node title="ChartCanvasElement" url="ample/chart/ChartCanvasElement.xml"/>
+			</node>
+			<node title="Elements">
+				<node title="area" url="ample/chart/area.xml"/>
+				<node title="bar" url="ample/chart/bar.xml"/>
+				<node title="bubble" url="ample/chart/bubble.xml"/>
+				<node title="column" url="ample/chart/column.xml"/>
+				<node title="doughnut" url="ample/chart/doughnut.xml"/>
+				<node title="funnel" url="ample/chart/funnel.xml"/>
+				<node title="group" url="ample/chart/group.xml"/>
+				<node title="item" url="ample/chart/item.xml"/>
+				<node title="line" url="ample/chart/line.xml"/>
+				<node title="map" url="ample/chart/map.xml"/>
+				<node title="pie" url="ample/chart/pie.xml"/>
+				<node title="radar" url="ample/chart/radar.xml"/>
+				<node title="stream" url="ample/chart/stream.xml"/>
+			</node>
+		</node>
 		<node title="XUL">
 			<node title="Overview" url="ample/xul/xul.xml"/>
 			<node title="XML Schema" xurl="ample/xul/xul.xsd"/>

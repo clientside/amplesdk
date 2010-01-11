@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="chart:ChartElement" name="group">
+	<implements />
+	<abstract>
+		<locale>
+			Item element.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="label">
+				<description>
+					<locale>
+						Item label.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="value">
+				<description>
+					<locale>
+						Item value.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+	</members>
+</element>
