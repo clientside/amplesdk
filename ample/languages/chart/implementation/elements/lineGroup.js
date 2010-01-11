@@ -25,51 +25,6 @@ cChartElement_lineGroup.handlers	= {
 	}
 };
 
-cChartElement_lineGroup.getMarkerPath	= function(nX, nY, nType) {
-	var nSize	= 3,
-		nSize2	= nSize * 2;
-	switch (nType) {
-		// Square
-		case 1:
-			return	"M" +(nX - nSize)+ "," +(nY - nSize)+
-					"h" + nSize2 +
-					"v" + nSize2 +
-					"h-" + nSize2 +
-					"v-" + nSize2 +
-					"z";
-		// Triangle
-		case 4:
-			var nOffset	= nSize2 / Math.sqrt(3);
-			return	"M" +(nX - nOffset)+ "," +(nY - nSize)+
-					"h" + nOffset * 2 +
-					"l-" + nOffset + "," + nSize2 +
-					"l-" + nOffset + ",-" + nSize2 +
-					"z";
-		// Square 45%
-		case 3:
-			return "M" + nX + "," +(nY - nSize)+
-					"l" + nSize + "," + nSize +
-					"l-" + nSize + "," + nSize +
-					"l-" + nSize + ",-" + nSize +
-					"l" + nSize + ",-" + nSize +
-					"z";
-		// Triangle 60%
-		case 2:
-			var nOffset	= nSize2 / Math.sqrt(3);
-			return	"M" + nX + "," +(nY - nSize)+
-					"l" + nOffset + "," + nSize2 +
-					"h-" + nOffset * 2 +
-					"l" + nOffset + ",-" + nSize2 +
-					"z";
-		// Circle
-		default:
-			return	"M" + (nX - nSize) + "," + nY +
-					"a" + nSize + "," + nSize + " 0 0,0 " + nSize2 + ",0 " +
-					"a" + nSize + "," + nSize + " 0 0,0 -" + nSize2 + ",0 " +
-					"z";
-	}
-};
-
 cChartElement_lineGroup.prototype.$getTagOpen	= function() {
 	return '<svg:g class="c-lineGroup c-lineGroup_nth-child-' + this.parentNode.childNodes.$indexOf(this) + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" xmlns:svg="http://www.w3.org/2000/svg" \
 				style="' + this.getAttribute("style") + '">\
