@@ -48,7 +48,7 @@ cChartElement_funnel.prototype.refresh	= function() {
 
 		// Handles
 		var nCHalf	=(nCFrom + nCTo)/ 2;
-		oElement.$getContainer("path").setAttribute("d", 	"M" + (nLeft + nWidthTop + nCHalf * (nWidthBottom - nWidthTop)) + "," + (nTop + nCHalf * nHeight) + ' ' +
+		oElement.$getContainer("handle").setAttribute("d", 	"M" + (nLeft + nWidthTop + nCHalf * (nWidthBottom - nWidthTop)) + "," + (nTop + nCHalf * nHeight) + ' ' +
 															"h100 " +
 															"");
 

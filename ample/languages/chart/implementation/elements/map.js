@@ -43,7 +43,8 @@ cChartElement_map.prototype.refresh	= function() {
 			// Get DOM element
 			oItem = oGroup.childNodes[nItem];
 			//
-			oItem.$getContainer().setAttribute("fill-opacity", 0.2 + 0.8 * aData[nGroup][nItem][1] / nGroupMax);
+			oItem.$getContainer("value").setAttribute("d", cChartElement_map.countries[aData[nGroup][nItem][0]][1]);
+			oItem.$getContainer("value").setAttribute("fill-opacity", 0.2 + 0.8 * aData[nGroup][nItem][1] / nGroupMax);
 		}
 
 		// Draw legend
@@ -275,7 +276,7 @@ cChartElement_map.prototype.$getTagOpen	= function() {
 							(function() {
 								var aCountries	= [];
 								for (var sCountry in cChartElement_map.countries)
-									aCountries.push('<svg:path class="c-mapItem--underlay" d="' + cChartElement_map.countries[sCountry][1] + '" />');
+									aCountries.push('<svg:path class="c-item--underlay" d="' + cChartElement_map.countries[sCountry][1] + '" />');
 								return aCountries.join('');
 							})() + '\
 						</svg:g>\

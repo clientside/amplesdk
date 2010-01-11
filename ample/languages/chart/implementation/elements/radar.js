@@ -42,7 +42,7 @@ cChartElement_radar.prototype.refresh	= function() {
 				nX	= (150 - nValue * Math.cos(Math.PI / 2 + 2 * Math.PI * nItem / nItems)),
 				nY	= (150 - nValue * Math.sin(Math.PI / 2 + 2 * Math.PI * nItem / nItems));
 			// Set point
-			oItem.$getContainer().setAttribute("d", "M" + (nX - nSize) + "," + nY +
+			oItem.$getContainer("value").setAttribute("d", "M" + (nX - nSize) + "," + nY +
 													"a" + nSize + "," + nSize + " 0 0,0 " + nSize * 2 + ",0 " +
 													"a" + nSize + "," + nSize + " 0 0,0-" + nSize * 2 + ",0 " +
 													"z");

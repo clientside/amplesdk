@@ -55,7 +55,7 @@ cChartElement_pie.prototype.refresh	= function() {
 		// Handles
 		var nAngleHalf	= (nAngleFrom + nAngleTo) / 2,
 			bLeft	= nAngleHalf + Math.PI / 2 >= Math.PI;
-		oElement.$getContainer("path").setAttribute("d", 	"M" + (cX + nWidth * Math.cos(nAngleHalf)) + "," +(cY + nWidth * Math.sin(nAngleHalf)) + ' ' +
+		oElement.$getContainer("handle").setAttribute("d", 	"M" + (cX + nWidth * Math.cos(nAngleHalf)) + "," +(cY + nWidth * Math.sin(nAngleHalf)) + ' ' +
 															"l" + (10 * Math.cos(nAngleHalf)) + "," +(10 * Math.sin(nAngleHalf)) + ' ' +
 															"h" + (bLeft ? -1 : 1) * 100);
 

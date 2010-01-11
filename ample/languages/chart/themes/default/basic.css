@@ -15,18 +15,18 @@ c|map {
 	-o-border-radius: 10px;
 }
 
-c|lineGroup,
-c|radarGroup {
+c|line c|group,
+c|radar c|group {
 	stroke:	black;
 }
 
-c|mapItem::underlay {
+c|map c|item::underlay {
 	fill:	#fff;
 	stroke: #bbb;
 	stroke-width: 1;
 }
 
-c|mapItem::underlay:hover {
+c|map c|item::underlay:hover {
 	fill:	silver;
 	stroke: white;
 }
@@ -44,63 +44,63 @@ c|map::label {
 	text-anchor: middle;
 }
 
-c|lineItem,
-c|barItem,
-c|bubbleItem,
-c|pieItem,
-c|radarItem,
-c|funnelItem,
-c|doughnutItem,
-c|mapItem {
+c|line c|item,
+c|bar c|item,
+c|bubble c|item,
+c|pie c|item,
+c|radar c|item,
+c|funnel c|item,
+c|doughnut c|item,
+c|map c|item {
 	cursor: pointer;
 }
 
 
 /* series colors */
-c|lineGroup:nth-child(0),
-c|barGroup:nth-child(0),
-c|bubbleGroup:nth-child(0),
-c|radarGroup:nth-child(0),
-c|mapGroup:nth-child(0),
-c|funnelItem:nth-child(0),
-c|pieItem:nth-child(0),
-c|doughnutItem:nth-child(0) {
+c|line c|group:nth-child(0),
+c|bar c|group:nth-child(0),
+c|bubble c|group:nth-child(0),
+c|radar c|group:nth-child(0),
+c|map c|group:nth-child(0),
+c|funnel c|item:nth-child(0),
+c|pie c|item:nth-child(0),
+c|doughnut c|item:nth-child(0) {
 	stroke:	#54A14B;
 	fill: 	#54A14B;
 }
 
-c|lineGroup:nth-child(1),
-c|barGroup:nth-child(1),
-c|bubbleGroup:nth-child(1),
-c|radarGroup:nth-child(1),
-c|mapGroup:nth-child(1),
-c|funnelItem:nth-child(1),
-c|pieItem:nth-child(1),
-c|doughnutItem:nth-child(1) {
+c|line c|group:nth-child(1),
+c|bar c|group:nth-child(1),
+c|bubble c|group:nth-child(1),
+c|radar c|group:nth-child(1),
+c|map c|group:nth-child(1),
+c|funnel c|item:nth-child(1),
+c|pie c|item:nth-child(1),
+c|doughnut c|item:nth-child(1) {
 	stroke:	#D8691F;
 	fill:	#D8691F;
 }
 
-c|lineGroup:nth-child(2),
-c|barGroup:nth-child(2),
-c|bubbleGroup:nth-child(2),
-c|radarGroup:nth-child(2),
-c|mapGroup:nth-child(2),
-c|funnelItem:nth-child(2),
-c|pieItem:nth-child(2),
-c|doughnutItem:nth-child(2) {
+c|line c|group:nth-child(2),
+c|bar c|group:nth-child(2),
+c|bubble c|group:nth-child(2),
+c|radar c|group:nth-child(2),
+c|map c|group:nth-child(2),
+c|funnel c|item:nth-child(2),
+c|pie c|item:nth-child(2),
+c|doughnut c|item:nth-child(2) {
 	stroke:	#0C4E83;
 	fill:	#0C4E83;
 }
 
-c|lineGroup:nth-child(3),
-c|barGroup:nth-child(3),
-c|bubbleGroup:nth-child(3),
-c|radarGroup:nth-child(3),
-c|mapGroup:nth-child(3),
-c|funnelItem:nth-child(3),
-c|pieItem:nth-child(3),
-c|doughnutItem:nth-child(3) {
+c|line c|group:nth-child(3),
+c|bar c|group:nth-child(3),
+c|bubble c|group:nth-child(3),
+c|radar c|group:nth-child(3),
+c|map c|group:nth-child(3),
+c|funnel c|item:nth-child(3),
+c|pie c|item:nth-child(3),
+c|doughnut c|item:nth-child(3) {
 	stroke:	darkred;
 	fill:	darkred;
 }
@@ -116,11 +116,7 @@ c|grid {
 	stroke: #ddd;
 /*	stroke-width:1;*/
 }
-/*
-c|gridItem:nth-child(even) {
 
-}
-*/
 c|xAxis::label,
 c|yAxis::label {
 	fill: gray;
@@ -138,106 +134,106 @@ c|yAxis::scale {
 }
 
 /* individual charts styling */
-c|barGroup::label,
-c|lineGroup::label,
-c|bubbleGroup::label,
-c|radarGroup::label,
-c|mapGroup::label {
+c|bar c|group::label,
+c|line c|group::label,
+c|bubble c|group::label,
+c|radar c|group::label,
+c|map c|group::label {
 	cursor:	default;
 	font-size: 12px;
 	fill:	black;
 }
 
 /* */
-c|pieItem,
-c|funnelItem,
-c|doughnutItem {
+c|pie c|item,
+c|funnel c|item,
+c|doughnut c|item {
 	stroke: white;
 	stroke-width: 2;
 	font-size: 12px;
 }
 
-c|pieItem::path,
-c|funnelItem::path {
+c|pie c|item::handle,
+c|funnel c|item::handle {
 	stroke: black;
 	stroke-width: 1;
 }
 
 /* */
-c|radarGroup,
-c|lineGroup {
+c|radar c|group,
+c|line c|group {
 	stroke-width:	2;
 }
 
-c|radarGroup::path {
+c|radar c|group::path {
 	stroke:	white;
 }
 
-c|radarItem,
-c|lineItem {
+c|radar c|item,
+c|line c|item {
 	fill:	white;
 }
 
-c|radarGroup::area,
-c|lineGroup::area {
+c|radar c|group::area,
+c|line c|group::area {
 	opacity:	0.2;
 }
 
-c|bubbleGroup,
-c|barGroup {
+c|bubble c|group,
+c|bar c|group {
 	stroke:	white;
 	stroke-width:	1;
 }
 
-c|radarGroup::shadow,
-c|lineGroup::shadow,
-c|barItem::shadow,
-c|bubbleItem::shadow {
+c|radar c|group::shadow,
+c|line c|group::shadow,
+c|bar c|item::shadow,
+c|bubble c|item::shadow {
 	/*fill: black;*/
 	/*stroke: black;*/
 	opacity:	0.5;
 }
 
-c|doughnutItem::label,
-c|bubbleItem::label {
+c|doughnut c|item::label,
+c|bubble c|item::label {
 	fill: white;
 }
 
-c|bubbleItem::label {
+c|bubble c|item::label {
 	text-anchor:	middle;
 }
 
 /* hover effects */
-c|barItem:hover,
-c|bubbleItem:hover,
-c|lineItem:hover,
-c|radarItem:hover,
-c|doughnutItem:hover c|doughnutItem::value,
-c|pieItem:hover c|pieItem::value,
-c|funnelItem:hover c|funnelItem::value {
+c|bar c|item:hover,
+c|bubble c|item:hover,
+c|line c|item:hover,
+c|radar c|item:hover,
+c|doughnut c|item:hover c|item::value,
+c|pie c|item:hover c|item::value,
+c|funnel c|item:hover c|item::value {
 	opacity: 0.5;
 }
 
-c|radarGroup:hover,
-c|lineGroup:hover {
+c|radar c|group:hover,
+c|line c|group:hover {
 	stroke-width:	3;
 }
 
-c|bubbleGroup:hover,
-c|barGroup:hover,
-c|mapGroup:hover {
+c|bubble c|group:hover,
+c|bar c|group:hover,
+c|map c|group:hover {
 	stroke-width:	2;
 }
 
-c|mapItem:hover {
+c|map c|item:hover {
 	fill:	gold;
 }
 
 /* selection effects */
-c|lineGroup:selected,
-c|barGroup:selected,
-c|bubbleGroup:selected,
-c|radarGroup:selected,
-c|mapGroup:selected {
+c|line c|group:selected,
+c|bar c|group:selected,
+c|bubble c|group:selected,
+c|radar c|group:selected,
+c|map c|group:selected {
 	opacity: 0.25;
 }
