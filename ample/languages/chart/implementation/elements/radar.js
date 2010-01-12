@@ -62,7 +62,7 @@ cChartElement_radar.prototype.refresh	= function() {
 
 		// Draw legend
 		var nXPath	= 280,
-			nYPath	=(50 + (nGroups - nGroup - 1) * 20);
+			nYPath	=(50 + (nGroups - nGroup) * 20);
 		oGroup.$getContainer("path").setAttribute("d", "M" + (nXPath - 5) + "," + (nYPath - 5) + "h10 v10 h-10 v-10 z");
 		oGroup.$getContainer("label").setAttribute("x", nXPath + 20);
 		oGroup.$getContainer("label").setAttribute("y", nYPath + 5);
@@ -73,6 +73,7 @@ cChartElement_radar.prototype.$getTagOpen	= function() {
 	return '<div class="c-radar' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
 				<svg:svg class="c-radar--canvas" viewBox="0 0 400 300" width="400px" height="300px" xmlns:svg="http://www.w3.org/2000/svg">\
 					<svg:text class="c-radar--title" y="30" x="150">' + this.getAttribute("title")+ '</svg:text>\
+					<svg:rect x="260" y="50" width="120" height="120" rx="10" class="c-legend"/>\
 					<svg:path class="c-grid c-radar--grid" style="fill:none"/>\
 					<svg:g class="c-rAxis">\
 						<svg:path class="c-radar--rAxis" d="m150,150 v-100" style="fill:none"/>\

@@ -121,7 +121,7 @@ cChartElement_line.prototype.refresh	= function() {
 
 		// Draw legend
 		var nXPath	= 480,
-			nYPath	=(50 + (nGroups - nGroup - 1) * 20),
+			nYPath	=(50 + (nGroups - nGroup) * 20),
 			sLine	= this.getAttribute("area") == "true" ? "h20" : " h7 z M" + (nXPath + 10) + "," + nYPath + " h-7";
 		oGroup.$getContainer("path").setAttribute("d", "M" + (nXPath - 10) + "," + nYPath + sLine + "z" + (this.getAttribute("area") == "true" ? '' : cChartElement_line.getMarkerPath(nXPath, nYPath, nGroup)));
 		oGroup.$getContainer("label").setAttribute("x", nXPath + 20);
@@ -140,6 +140,7 @@ cChartElement_line.prototype.$getTagOpen	= function() {
 	return '<div class="c-line' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
 				<svg:svg class="c-line--canvas" viewBox="0 0 600 300" width="600px" height="300px" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">\
 					<svg:text class="c-line--title" y="30" x="300">' + this.getAttribute("title")+ '</svg:text>\
+					<svg:rect x="460" y="50" width="120" height="120" rx="10" class="c-legend"/>\
 					<svg:path class="c-grid c-line--grid"/>\
 					<svg:g class="c-xAxis">\
 						<svg:path class="c-line--xAxis" d="m50,250 h400,0" style="fill:none"/>\

@@ -133,6 +133,11 @@ c|yAxis::scale {
 	font-style: italic;
 }
 
+c|legend {
+	fill:	#fff;
+	stroke:	silver;
+}
+
 /* individual charts styling */
 c|bar c|group::label,
 c|line c|group::label,
@@ -165,6 +170,7 @@ c|line c|group {
 	stroke-width:	2;
 }
 
+c|map c|group::path,
 c|radar c|group::path {
 	stroke:	white;
 }

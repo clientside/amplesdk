@@ -83,7 +83,7 @@ cChartElement_bubble.prototype.refresh	= function() {
 
 		// Draw legend
 		var nXPath	= 480,
-			nYPath	=(50 + (nGroups - nGroup - 1) * 20);
+			nYPath	=(50 + (nGroups - nGroup) * 20);
 		oGroup.$getContainer("path").setAttribute("d", "M" + (nXPath - 5) + "," + (nYPath - 5) + "h10 v10 h-10 v-10 z");
 		oGroup.$getContainer("label").setAttribute("x", nXPath + 20);
 		oGroup.$getContainer("label").setAttribute("y", nYPath + 5);
@@ -94,6 +94,7 @@ cChartElement_bubble.prototype.$getTagOpen	= function() {
 	return '<div class="c-bubble' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
 				<svg:svg class="c-bubble--canvas" viewBox="0 0 600 300" width="600px" height="300px" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">\
 					<svg:text class="c-bubble--title" y="30" x="300">' + this.getAttribute("title")+ '</svg:text>\
+					<svg:rect x="460" y="50" width="120" height="120" rx="10" class="c-legend"/>\
 					<svg:path class="c-grid c-bubble--grid"/>\
 					<svg:g class="c-xAxis">\
 						<svg:path class="c-bubble--xAxis" d="M50,250 h400,0" style="fill:none"/>\

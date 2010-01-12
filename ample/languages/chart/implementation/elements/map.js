@@ -271,6 +271,7 @@ cChartElement_map.prototype.$getTagOpen	= function() {
 	return '<div class="c-map' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
 				<svg:svg class="c-map--canvas" viewBox="0 0 600 300" width="600px" height="300px" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" onmouseover="ample.$instance(this)._onMouseOver(evt)" onmouseout="ample.$instance(this)._onMouseOut(evt)">\
 					<svg:text class="c-map--title" y="30" x="300">' + this.getAttribute("title")+ '</svg:text>\
+					<svg:rect x="20" y="180" width="120" height="100" rx="10" class="c-legend"/>\
 					<svg:g class="c-map--underlay">' +
 						(function() {
 							var aCountries	= [];
