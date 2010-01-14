@@ -9,5 +9,38 @@
 	</abstract>
 	<remarks />
 	<examples />
-	<members />
+	<members>
+		<attributes>
+			<attribute name="type" default="normal">
+				<values>
+					<value name="normal">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</value>
+					<value name="percentage">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</value>
+					<value name="stack">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale>
+						Type of the chart.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+	</members>
 </element>
