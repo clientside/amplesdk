@@ -208,7 +208,7 @@ function fEventPreventDefault(oEvent) {
     return true;
 };
 
-function fOnMouseWheel(oEvent) {document.title	= new Date;
+function fOnMouseWheel(oEvent) {
 	var oTarget		= fGetEventTarget(oEvent),
 		oPseudo		= fGetUIEventPseudo(oEvent),
 		bPrevent	= false,
