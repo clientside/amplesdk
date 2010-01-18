@@ -776,15 +776,12 @@ function fAML_loadStyleSheet(sUri) {
 
 function fAML_createStyleSheet(sCSS, sUri, sMedia) {
 	// Process Stylesheet
-	sCSS	= fAML_parseStyleSheet(sCSS, sUri);
-
-	oAML_factory.innerHTML	= "#text" + '<' + "style" + ' ' + "type" + '="' + "text/css" + '"' + (sMedia ? ' ' + "media" + '="' + sMedia + '"' : '') + '>' + sCSS + '</' + "style" + '>';
+	oAML_factory.innerHTML	= "#text" + '<' + "style" + ' ' + "type" + '="' + "text/css" + '"' + (sMedia ? ' ' + "media" + '="' + sMedia + '"' : '') + '>' + fAML_parseStyleSheet(sCSS, sUri) + '</' + "style" + '>';
 	return oAML_factory.childNodes[1];
 };
 
 function fAML_toCssPropertyName(sName) {
-	var aValue = sName.split('-');
-	for (var nIndex = 1; nIndex < aValue.length; nIndex++)
+	for (var nIndex = 1, aValue = sName.split('-'); nIndex < aValue.length; nIndex++)
     	aValue[nIndex] = aValue[nIndex].substr(0, 1).toUpperCase() + aValue[nIndex].substr(1);
 	return aValue.join('');
 };
