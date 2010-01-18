@@ -208,7 +208,7 @@ function fEventPreventDefault(oEvent) {
     return true;
 };
 
-function fOnMouseWheel(oEvent) {
+function fOnMouseWheel(oEvent) {document.title	= new Date;
 	var oTarget		= fGetEventTarget(oEvent),
 		oPseudo		= fGetUIEventPseudo(oEvent),
 		bPrevent	= false,
@@ -818,7 +818,7 @@ fAttachEvent(window, "load", function(oEvent) {
 	fAttachEvent(document, "dblclick",	fOnDblClick);
 	fAttachEvent(document, "mousedown",	fOnMouseDown);
 	fAttachEvent(document, "mouseup",	fOnMouseUp);
-	if (bTrident || bPresto) {
+	if (!bGecko) {
 		fAttachEvent(document.body, "mousewheel",		fOnMouseWheel);
 		if (bTrident)
 			fAttachEvent(document, "selectstart", fOnSelectStart);
@@ -853,7 +853,7 @@ fAttachEvent(window, "unload", function(oEvent) {
 	fDetachEvent(document, "dblclick",	fOnDblClick);
 	fDetachEvent(document, "mousedown",	fOnMouseDown);
 	fDetachEvent(document, "mouseup",	fOnMouseUp);
-	if (bTrident || bPresto) {
+	if (!bGecko) {
 		fDetachEvent(document.body, "mousewheel",		fOnMouseWheel);
 		if (bTrident)
 			fDetachEvent(document, "selectstart", fOnSelectStart);
