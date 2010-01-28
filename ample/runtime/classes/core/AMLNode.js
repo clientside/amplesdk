@@ -494,13 +494,13 @@ function fAMLNode_handleEvent(oNode, oEvent) {
 
 	// Event default actions implementation
 	if (oEvent.eventPhase != cAMLEvent.CAPTURING_PHASE && !oEvent.defaultPrevented) {
-		if (oNode instanceof cAMLElement) {
+		if (oNode.nodeType == 1) {
 			if ((oNamespace = oAML_namespaces[oNode.namespaceURI]) && (cElement = oNamespace.elements[oNode.localName]))
 				if (cElement.handlers && cElement.handlers[oEvent.type])
 					cElement.handlers[oEvent.type].call(oNode, oEvent);
 		}
 		else
-		if (oNode instanceof cAMLAttr) {
+		if (oNode.nodeType == 2) {
 			if ((oNamespace = oAML_namespaces[oNode.namespaceURI]) && (cAttribute = oNamespace.attributes[oNode.localName]))
 				if (cAttribute.handlers && cAttribute.handlers[oEvent.type])
 					cAttribute.handlers[oEvent.type].call(oNode, oEvent);
