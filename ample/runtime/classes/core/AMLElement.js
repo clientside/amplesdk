@@ -38,7 +38,7 @@ cAMLElement.prototype.appendChild	= function(oNode)
 			   		oGateway.appendChild(oElement);
 
 		// Register Instance
-		if (oAML_all[this.uniqueID] && !oAML_all[oNode.uniqueID])
+		if (oAML_all[this.uniqueID])
 			fAML_register(oNode);
 	}
 
@@ -69,7 +69,7 @@ cAMLElement.prototype.insertBefore	= function(oNode, oBefore)
 		    		}());
 
 		// Register Instance
-		if (oAML_all[this.uniqueID] && !oAML_all[oNode.uniqueID])
+		if (oAML_all[this.uniqueID])
 			fAML_register(oNode);
 	}
 
@@ -131,7 +131,7 @@ cAMLElement.prototype.replaceChild	= function(oNode, oOld)
 			    	oGateway.replaceChild(oElement, oChild);
 
 		// Register Instance
-		if (oAML_all[this.uniqueID] && !oAML_all[oNode.uniqueID])
+		if (oAML_all[this.uniqueID])
 			fAML_register(oNode);
 	}
 

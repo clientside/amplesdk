@@ -269,86 +269,79 @@ function fAML_import(oElementDOM, oNode, bCollapse) {
 
 function fAML_register(oNode) {
 	//
-	if (oNode.nodeType == cAMLNode.ELEMENT_NODE) {
-		if (!oAML_all[oNode.uniqueID]) {
-			// Register Instance
-			oAML_all[oNode.uniqueID]	= oNode;
+	if (oNode.nodeType == cAMLNode.ELEMENT_NODE && !oAML_all[oNode.uniqueID]) {
+		// Register Instance
+		oAML_all[oNode.uniqueID]	= oNode;
 
-			// Cache for shadow links
-//			oAML_shadow[oNode.uniqueID]	= {};
+		// Cache for shadow links
+//		oAML_shadow[oNode.uniqueID]	= {};
 
-			// Register "identified" Instance
-			if (oNode.attributes.id)
-				oAML_ids[oNode.attributes.id]	= oNode;
+		// Register "identified" Instance
+		if (oNode.attributes.id)
+			oAML_ids[oNode.attributes.id]	= oNode;
 
-			// Set style property
-			if (oAML_configuration.getParameter("ample-use-style-property")) {
-				var oElementDOM	= oNode.$getContainer();
-				if (oElementDOM)
-					oNode.style	= oElementDOM.style;
-			}
-
-			// Fire Mutation event on Element
-	    	if (oAML_configuration.getParameter("ample-use-dom-events")) {
-				var oEvent = new cAMLMutationEvent;
-				oEvent.initMutationEvent("DOMNodeInsertedIntoDocument", false, false, null, null, null, null, null);
-				oNode.dispatchEvent(oEvent);
-
-				// Global attributes module
-				for (var sName in oNode.attributes) {
-					var aAttribute	= sName.split(':'),
-						sLocalName	= aAttribute.pop(),
-						sPrefix		= aAttribute.pop(),
-						sNameSpaceURI;
-
-					if (sName != "xmlns" && sPrefix && sPrefix != "xmlns" && (sNameSpaceURI = oNode.lookupNamespaceURI(sPrefix))) {
-						var oNamespace	= oAML_namespaces[sNameSpaceURI],
-							cAttribute	= oNamespace ? oNamespace.attributes[sLocalName] : null;
-
-						if (cAttribute)	{
-							// oAttribute used to create fake object
-							var oAttribute	= new cAttribute;
-							oAttribute.ownerElement	= oNode;
-							oAttribute.name			=
-							oAttribute.nodeName		= sName;
-							oAttribute.value		=
-							oAttribute.nodeValue	= oNode.attributes[sName];
-							oAttribute.localName	= sLocalName;
-							oAttribute.prefix		= sPrefix;
-							oAttribute.namespaceURI	= sNameSpaceURI;
-
-							// Fire Mutation event (pseudo)
-							oEvent = new cAMLMutationEvent;
-							oEvent.initMutationEvent("DOMNodeInsertedIntoDocument", false, false, null, null, null, null, null);
-							oEvent.target	=
-							oEvent.currentTarget	= oAttribute;
-							oEvent.eventPhase		= cAMLEvent.AT_TARGET;
-							fAMLNode_handleEvent(oAttribute, oEvent);
-						}
-//->Debug
-						else
-						if (oNamespace)
-							fAML_warn(nAML_UNKNOWN_ATTRIBUTE_NS_WRN, [sLocalName, sNameSpaceURI]);
-//<-Debug
-					}
-				}
-	    	}
-
-			// Process children
-			for (var nIndex = 0, oElement; oElement = oNode.childNodes[nIndex]; nIndex++)
-				arguments.callee(oElement);
+		// Set style property
+		if (oAML_configuration.getParameter("ample-use-style-property")) {
+			var oElementDOM	= oNode.$getContainer();
+			if (oElementDOM)
+				oNode.style	= oElementDOM.style;
 		}
+
+		// Fire Mutation event on Element
+    	if (oAML_configuration.getParameter("ample-use-dom-events")) {
+			var oEvent = new cAMLMutationEvent;
+			oEvent.initMutationEvent("DOMNodeInsertedIntoDocument", false, false, null, null, null, null, null);
+			oNode.dispatchEvent(oEvent);
+
+			// Global attributes module
+			for (var sName in oNode.attributes) {
+				var aAttribute	= sName.split(':'),
+					sLocalName	= aAttribute.pop(),
+					sPrefix		= aAttribute.pop(),
+					sNameSpaceURI;
+
+				if (sName != "xmlns" && sPrefix && sPrefix != "xmlns" && (sNameSpaceURI = oNode.lookupNamespaceURI(sPrefix))) {
+					var oNamespace	= oAML_namespaces[sNameSpaceURI],
+						cAttribute	= oNamespace ? oNamespace.attributes[sLocalName] : null;
+
+					if (cAttribute)	{
+						// oAttribute used to create fake object
+						var oAttribute	= new cAttribute;
+						oAttribute.ownerElement	= oNode;
+						oAttribute.name			=
+						oAttribute.nodeName		= sName;
+						oAttribute.value		=
+						oAttribute.nodeValue	= oNode.attributes[sName];
+						oAttribute.localName	= sLocalName;
+						oAttribute.prefix		= sPrefix;
+						oAttribute.namespaceURI	= sNameSpaceURI;
+
+						// Fire Mutation event (pseudo)
+						oEvent = new cAMLMutationEvent;
+						oEvent.initMutationEvent("DOMNodeInsertedIntoDocument", false, false, null, null, null, null, null);
+						oEvent.target	=
+						oEvent.currentTarget	= oAttribute;
+						oEvent.eventPhase		= cAMLEvent.AT_TARGET;
+						fAMLNode_handleEvent(oAttribute, oEvent);
+					}
 //->Debug
-//		else
-//		if (oNode.uniqueID.indexOf("ele_") != 0)
-//			fAML_warn(nAML_NOT_UNIQUE_ID_WRN, [oNode.uniqueID]);
+					else
+					if (oNamespace)
+						fAML_warn(nAML_UNKNOWN_ATTRIBUTE_NS_WRN, [sLocalName, sNameSpaceURI]);
 //<-Debug
+				}
+			}
+    	}
+
+		// Process children
+		for (var nIndex = 0, oElement; oElement = oNode.childNodes[nIndex]; nIndex++)
+			arguments.callee(oElement);
 	}
 };
 
 function fAML_unregister(oNode) {
 	//
-	if (oNode.nodeType == cAMLNode.ELEMENT_NODE) {
+	if (oNode.nodeType == cAMLNode.ELEMENT_NODE && oAML_all[oNode.uniqueID]) {
 		// Fire Mutation event
     	if (oAML_configuration.getParameter("ample-use-dom-events")) {
 			var oEvent = new cAMLMutationEvent;
@@ -372,8 +365,7 @@ function fAML_unregister(oNode) {
 
 		// Process children
 		for (var nIndex = 0, oElement; oElement = oNode.childNodes[nIndex]; nIndex++)
-			if (oAML_all[oElement.uniqueID])
-				arguments.callee(oElement);
+			arguments.callee(oElement);
 	}
 };
 
@@ -769,7 +761,17 @@ ample.$instance	= function(oNode) {
             return oElement;
     return null;
 };
-
+/*
+ample.$class	= function(oNode) {
+	var oElement	= ample.$instance(oNode);
+	if (oElement) {
+		var sNameSpaceURI	= oElement.namespaceURI,
+			oNamespace	= oAML_namespaces[sNameSpaceURI];
+		return oNamespace && oNamespace.elements[sNameSpaceURI] ? oNamespace.elements[sNameSpaceURI] : cAMLElement;
+	}
+	return null;
+};
+*/
 //->Debug
 // Enable debugging
 var oAML_errorHandler	= {};
