@@ -10,7 +10,7 @@
 var cSVGElement_title	= function(){};
 cSVGElement_title.prototype	= new cSVGElement;
 
-if (!!document.namespaces) {
+if (cSVGElement.useVML) {
 	// Implementation for IE
 
 	cSVGElement_title.handlers	= {

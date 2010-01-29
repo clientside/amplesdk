@@ -10,7 +10,7 @@
 var cSVGElement_stop	= function(){};
 cSVGElement_stop.prototype	= new cSVGElement;
 
-if (!!document.namespaces) {
+if (cSVGElement.useVML) {
 	// Implementation for IE
 	cSVGElement_stop.handlers	= {
 		"DOMAttrModified":	function(oEvent) {

@@ -10,7 +10,8 @@
 var cSVGElement_tspan	= function(){};
 cSVGElement_tspan.prototype	= new cSVGElement;
 
-if (!!document.namespaces) {
+if (cSVGElement.useVML) {
+
 	// Implementation for IE
 	cSVGElement_tspan.handlers	= {
 		'DOMAttrModified':	function(oEvent) {

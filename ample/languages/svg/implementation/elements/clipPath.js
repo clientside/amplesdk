@@ -10,7 +10,7 @@
 var cSVGElement_clipPath	= function(){};
 cSVGElement_clipPath.prototype	= new cSVGElement;
 
-if (!!document.namespaces) {
+if (cSVGElement.useVML) {
 	// Implementation for IE
 
 	// TODO:

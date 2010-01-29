@@ -10,7 +10,7 @@
 var cSVGElement_polyline	= function(){};
 cSVGElement_polyline.prototype	= new cSVGElement;
 
-if (!!document.namespaces) {
+if (cSVGElement.useVML) {
 	// Implementation for IE
 
 	// handlers

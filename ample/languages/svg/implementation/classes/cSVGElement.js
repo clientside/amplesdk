@@ -10,7 +10,9 @@
 var cSVGElement	= function(){};
 cSVGElement.prototype	= new AMLElement;
 
-if (!!document.namespaces) {
+cSVGElement.useVML	= !document.implementation || !document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1");
+
+if (cSVGElement.useVML) {
 	// Add namespace
 	document.namespaces.add("svg2vml", "urn:schemas-microsoft-com:vml", "#default#VML");
 

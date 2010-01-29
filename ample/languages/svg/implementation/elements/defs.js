@@ -10,7 +10,7 @@
 var cSVGElement_defs	= function(){};
 cSVGElement_defs.prototype	= new cSVGElement;
 
-if (!!document.namespaces) {
+if (cSVGElement.useVML) {
 	// Implementation for IE
 
 	cSVGElement_defs.prototype.$getTagOpen	= function() {

@@ -10,7 +10,7 @@
 var cSVGElement_linearGradient	= function(){};
 cSVGElement_linearGradient.prototype	= new cSVGElement;
 
-if (!!document.namespaces) {
+if (cSVGElement.useVML) {
 	// Implementation for IE
 	cSVGElement_linearGradient.handlers	= {
 		"DOMAttrModified":	function(oEvent) {

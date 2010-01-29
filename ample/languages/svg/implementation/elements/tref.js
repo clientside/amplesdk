@@ -10,7 +10,7 @@
 var cSVGElement_tref	= function(){};
 cSVGElement_tref.prototype	= new cSVGElement;
 
-if (!!document.namespaces) {
+if (cSVGElement.useVML) {
 
 	cSVGElement_tref.handlers	= {
 		'DOMAttrModified':	function(oEvent) {

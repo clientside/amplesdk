@@ -10,7 +10,7 @@
 var cSVGElement_ellipse	= function(){};
 cSVGElement_ellipse.prototype	= new cSVGElement;
 
-if (!!document.namespaces) {
+if (cSVGElement.useVML) {
 	// Implementation for IE
 
 	// handlers

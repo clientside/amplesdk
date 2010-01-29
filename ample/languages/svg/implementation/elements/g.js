@@ -10,7 +10,7 @@
 var cSVGElement_g	= function(){};
 cSVGElement_g.prototype	= new cSVGElement;
 
-if (!!document.namespaces) {
+if (cSVGElement.useVML) {
 	// Implementation for IE
 
 	// Class Event Handlers

@@ -10,7 +10,7 @@
 var cSVGElement_textPath	= function(){};
 cSVGElement_textPath.prototype	= new cSVGElement;
 
-if (!!document.namespaces) {
+if (cSVGElement.useVML) {
 	// Implementation for IE
 	// handlers
 	cSVGElement_textPath.handlers	= {

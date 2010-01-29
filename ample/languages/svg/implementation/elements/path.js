@@ -126,7 +126,7 @@ cSVGElement_path.pathSegList2d	= function(oInstance) {
 
 };
 
-if (!!document.namespaces) {
+if (cSVGElement.useVML) {
 	// Implementation for IE
 
 	// handlers

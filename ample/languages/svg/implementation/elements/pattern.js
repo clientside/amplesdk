@@ -10,7 +10,7 @@
 var cSVGElement_pattern	= function(){};
 cSVGElement_pattern.prototype	= new cSVGElement;
 
-if (!!document.namespaces) {
+if (cSVGElement.useVML) {
 	// Implementation for IE
 };
 

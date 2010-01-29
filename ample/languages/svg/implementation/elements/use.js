@@ -10,7 +10,7 @@
 var cSVGElement_use	= function(){};
 cSVGElement_use.prototype	= new cSVGElement;
 
-if (!!document.namespaces) {
+if (cSVGElement.useVML) {
 	// Implementation for IE
 	cSVGElement_use.handlers	= {
 		'DOMNodeInsertedIntoDocument':	function(oEvent) {

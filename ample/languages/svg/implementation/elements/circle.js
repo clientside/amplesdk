@@ -10,7 +10,7 @@
 var cSVGElement_circle	= function(){};
 cSVGElement_circle.prototype	= new cSVGElement;
 
-if (!!document.namespaces) {
+if (cSVGElement.useVML) {
 	// Implementation for IE
 
 	// handlers

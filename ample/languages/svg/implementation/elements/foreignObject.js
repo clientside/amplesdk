@@ -10,7 +10,7 @@
 var cSVGElement_foreignObject	= function(){};
 cSVGElement_foreignObject.prototype	= new cSVGElement;
 
-if (!!document.namespaces) {
+if (cSVGElement.useVML) {
 	// Implementation for IE
 
 	// handlers

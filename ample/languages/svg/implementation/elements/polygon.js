@@ -10,7 +10,7 @@
 var cSVGElement_polygon	= function(){};
 cSVGElement_polygon.prototype	= new cSVGElement;
 
-if (!!document.namespaces) {
+if (cSVGElement.useVML) {
 	// Implementation for IE
 
 	// handlers
