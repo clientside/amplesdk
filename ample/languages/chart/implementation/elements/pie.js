@@ -42,7 +42,8 @@ cChartElement_pie.prototype.refresh	= function() {
 		// Draw line to the inner circle
 		d.push("L" + cX + "," + cY);
 
-		oElement.$getContainer("value").setAttribute("d", d.join('') + "z");
+		cChartElement.setPath(oElement.$getContainer("value"), d.join('') + "z");
+//		oElement.$getContainer("value").setAttribute("d", d.join('') + "z");
 		//oElement.$getContainer("shadow").setAttribute("d", d.join('') + "z");
 /*
 		// Text label
@@ -55,9 +56,9 @@ cChartElement_pie.prototype.refresh	= function() {
 		// Handles
 		var nAngleHalf	= (nAngleFrom + nAngleTo) / 2,
 			bLeft	= nAngleHalf + Math.PI / 2 >= Math.PI;
-		oElement.$getContainer("handle").setAttribute("d", 	"M" + (cX + nWidth * Math.cos(nAngleHalf)) + "," +(cY + nWidth * Math.sin(nAngleHalf)) + ' ' +
-															"l" + (10 * Math.cos(nAngleHalf)) + "," +(10 * Math.sin(nAngleHalf)) + ' ' +
-															"h" + (bLeft ? -1 : 1) * 100);
+		cChartElement.setPath(oElement.$getContainer("handle"), "M" + (cX + nWidth * Math.cos(nAngleHalf)) + "," +(cY + nWidth * Math.sin(nAngleHalf)) + ' ' +
+																"l" + (10 * Math.cos(nAngleHalf)) + "," +(10 * Math.sin(nAngleHalf)) + ' ' +
+																"h" + (bLeft ? -1 : 1) * 100);
 
 		oElement.$getContainer("label").setAttribute("x", cX + (bLeft ? -10 : 10) + (nWidth + 10) * Math.cos(nAngleHalf));
 		oElement.$getContainer("label").setAttribute("y", cY - 5 + (nWidth + 10) * Math.sin(nAngleHalf));
@@ -68,18 +69,37 @@ cChartElement_pie.prototype.refresh	= function() {
 	}
 };
 
-cChartElement_pie.prototype.$getTagOpen	= function() {
-	return '<div class="c-pie' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
-				<svg:svg class="c-pie--canvas" viewBox="0 0 300 300" width="300px" height="300px" xmlns:svg="http://www.w3.org/2000/svg">\
-					<svg:text class="c-doughnut--title" y="30" x="150">' + this.getAttribute("title")+ '</svg:text>\
-					<svg:g class="c-pie--gateway">';
-};
+if (!cChartElement.useVML) {
+	cChartElement_pie.prototype.$getTagOpen	= function() {
+		return '<div class="c-pie' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
+					<svg:svg class="c-pie--canvas" viewBox="0 0 300 300" width="300px" height="300px" xmlns:svg="http://www.w3.org/2000/svg">\
+						<svg:text class="c-doughnut--title" y="30" x="150">' + this.getAttribute("title")+ '</svg:text>\
+						<svg:g class="c-pie--gateway">';
+	};
 
-cChartElement_pie.prototype.$getTagClose	= function() {
-	return '		</svg:g>\
-				</svg:svg>\
-			</div>';
-};
+	cChartElement_pie.prototype.$getTagClose	= function() {
+		return '		</svg:g>\
+					</svg:svg>\
+				</div>';
+	};
+}
+else {
+	cChartElement_pie.prototype.$getTagOpen	= function() {
+		return '<div class="c-pie' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
+					<chart2vml:group class="c-pie--canvas" style="position:relative;display:inline-block;x-overflow:hidden;width:300px;height:300px" coordOrigin="0 0" coordSize="300 300">\
+						<chart2vml:shape path="m0,0 l300,0" fillcolor="blue" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%;top:30px;xleft:150px">\
+							<chart2vml:path textpathok="true" />\
+							<chart2vml:textpath on="true" class="c-doughnut--title" string="' + this.getAttribute("title")+ '" style="v-text-align:center"/>\
+						</chart2vml:shape>\
+						<chart2vml:group class="c-pie--gateway" style="position:absolute;width:100%;height:100%">';
+	};
+
+	cChartElement_pie.prototype.$getTagClose	= function() {
+		return '		</chart2vml:group>\
+					</chart2vml:group>\
+				</div>';
+	};
+}
 
 // Register Element with language
 oChartNamespace.setElement("pie", cChartElement_pie);

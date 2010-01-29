@@ -1,3 +1,4 @@
+c|chart,
 c|line,
 c|bar,
 c|bubble,
@@ -15,6 +16,7 @@ c|map {
 	-o-border-radius: 10px;
 }
 
+c|chart c|group,
 c|line c|group,
 c|radar c|group {
 	stroke:	black;

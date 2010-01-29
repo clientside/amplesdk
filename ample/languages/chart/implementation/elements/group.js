@@ -25,21 +25,44 @@ cChartElement_group.handlers	= {
 	}
 };
 
-cChartElement_group.prototype.$getTagOpen	= function() {
-	return '<svg:g class="c-group c-group_nth-child-' + this.parentNode.childNodes.$indexOf(this) +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" xmlns:svg="http://www.w3.org/2000/svg" \
-				style="' + this.getAttribute("style") + '">\
-				<svg:path class="c-group--path" />\
-				<svg:path class="c-group--shadow" style="fill:none;stroke-linejoin:round" transform="translate(2, 2)"/>\
-				<svg:path class="c-group--line" style="fill:none;stroke-linejoin:round"/>\
-				<svg:path class="c-group--area" style="stroke:none"/>\
-				<svg:text class="c-group--label" style="stroke:none">' + this.getAttribute("label")+ '</svg:text>\
-				<svg:g class="c-group--gateway">';
-};
+if (!cChartElement.useVML) {
+	cChartElement_group.prototype.$getTagOpen	= function() {
+		return '<svg:g class="c-group c-group_nth-child-' + this.parentNode.childNodes.$indexOf(this) +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" xmlns:svg="http://www.w3.org/2000/svg" \
+					style="' + this.getAttribute("style") + '">\
+					<svg:path class="c-group--path" />\
+					<svg:path class="c-group--shadow" style="fill:none;stroke-linejoin:round" transform="translate(2, 2)"/>\
+					<svg:path class="c-group--line" style="fill:none;stroke-linejoin:round"/>\
+					<svg:path class="c-group--area" style="stroke:none"/>\
+					<svg:text class="c-group--label" style="stroke:none">' + this.getAttribute("label")+ '</svg:text>\
+					<svg:g class="c-group--gateway">';
+	};
 
-cChartElement_group.prototype.$getTagClose	= function() {
-	return '	</svg:g>\
-			</svg:g>';
-};
+	cChartElement_group.prototype.$getTagClose	= function() {
+		return '	</svg:g>\
+				</svg:g>';
+	};
+}
+else {
+	cChartElement_group.prototype.$getTagOpen	= function() {
+		return '<chart2vml:group class="c-group c-group_nth-child-' + this.parentNode.childNodes.$indexOf(this) +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" \
+					style="position:absolute;width:100%;height:100%;' + this.getAttribute("style") + '">\
+					<chart2vml:shape class="c-group--path" style="position:absolute;width:100%;height:100%" />\
+					<chart2vml:shape class="c-group--shadow" filled="none" style="position:absolute;width:100%;height:100%" transform="translate(2, 2)"/>\
+					<chart2vml:shape class="c-group--line" filled="false" style="position:absolute;width:100%;height:100%"/>\
+					<chart2vml:shape class="c-group--area" stroked="false" style="position:absolute;width:100%;height:100%"/>\
+					<chart2vml:shape path="m0,0 l 100,0 xe" allowoverlap="true" style="position:absolute;width:100%;height:100%;">\
+						<chart2vml:fill on="true" color="red" />\
+						<chart2vml:path textpathok="true" />\
+						<chart2vml:textpath on="true" class="c-group--label" string="' + this.getAttribute("title")+ '" />\
+					</chart2vml:shape>\
+					<chart2vml:group class="c-group--gateway" style="position:absolute;width:100%;height:100%">';
+	};
+
+	cChartElement_group.prototype.$getTagClose	= function() {
+		return '	</chart2vml:group>\
+				</chart2vml:group>';
+	};
+}
 
 // Register Element with language
 oChartNamespace.setElement("group", cChartElement_group);

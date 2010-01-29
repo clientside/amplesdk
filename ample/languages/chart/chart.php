@@ -6,6 +6,7 @@
     //
     $aFiles[]		= "implementation/elements/bar.js";
     $aFiles[]		= "implementation/elements/bubble.js";
+    $aFiles[]		= "implementation/elements/chart.js";
     $aFiles[]		= "implementation/elements/funnel.js";
     $aFiles[]		= "implementation/elements/line.js";
     $aFiles[]		= "implementation/elements/map.js";
