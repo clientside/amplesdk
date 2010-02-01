@@ -53,8 +53,8 @@ cChartElement_bar.prototype.refresh	= function() {
 		var d	= [];
 		for (var nIndex = 0, nLength = 10; nIndex < nLength; nIndex++)
 			d.push("M" + (50 + 10 + 400 * nIndex / nLength) + ",50 V250 z ");
-		this.$getContainer("grid").setAttribute("d", d.join(''));
-		this.$getContainer("grid").setAttribute("stroke-width", 20);
+		cChartElement.setPath(this.$getContainer("grid"), d.join(''));
+//		this.$getContainer("grid").setAttribute("stroke-width", 20);
 
 		// Draw horizontal axis labels (values)
 		var oParent	= this.$getContainer("xAxisItems"),
@@ -63,13 +63,15 @@ cChartElement_bar.prototype.refresh	= function() {
 		for (var x = 0, l = oParent.childNodes.length; x < l; x++)
 			oParent.removeChild(oParent.childNodes[x]);
 		for (var nIndex = 0, nLength = 10; nIndex < nLength + 1; nIndex++) {
+/*
 			oElement	= oParent.appendChild(oParent.ownerDocument.createElementNS("http://www.w3.org/2000/svg", "svg:text"));
 			oElement.textContent	= nIndex * nGroupMax / nLength;
 			oElement.setAttribute("x", 50 + 400 * nIndex / nLength);
 			oElement.setAttribute("y", 270 - 4);
+*/
 			d.push("M" +(50 + 400 * nIndex / nLength)+ "," + 250 + "v5 z");
 		}
-		this.$getContainer("xAxisMarks").setAttribute("d", d.join(' '));
+		cChartElement.setPath(this.$getContainer("xAxisMarks"), d.join(' '));
 
 		// Draw vertical axis labels (labels)
 		var oParent	= this.$getContainer("yAxisItems"),
@@ -80,23 +82,25 @@ cChartElement_bar.prototype.refresh	= function() {
 			oParent.removeChild(oParent.childNodes[x]);
 		for (var nIndex = 0, nLength = aData[0].length; nIndex < nLength + 1; nIndex++) {
 			if (nIndex != nLength) {
+/*
 				oElement	= oParent.appendChild(oParent.ownerDocument.createElementNS("http://www.w3.org/2000/svg", "svg:text"));
 				oElement.setAttribute("text-anchor", "end");
 				oElement.textContent	= aAxisValueLabels[nIndex] || nIndex;
 				oElement.setAttribute("x", 50 - 10);
 				oElement.setAttribute("y", 250 - 200 * (nIndex + 1/2) / nLength);
+*/
 			}
 			d.push("M" + 50 + "," + (250 - 200 * nIndex / nLength)+ "h-5 z");
 		}
-		this.$getContainer("yAxisMarks").setAttribute("d", d.join(' '));
+		cChartElement.setPath(this.$getContainer("yAxisMarks"), d.join(' '));
 	}
 	else {
 		// Draw Grid
 		var d	= [];
 		for (var nIndex = 0, nLength = 5; nIndex < nLength; nIndex++)
 			d.push("M50," + (250 - 10 - 200 * nIndex / nLength) + "H450 z ");
-		this.$getContainer("grid").setAttribute("d", d.join(''));
-		this.$getContainer("grid").setAttribute("stroke-width", 20);
+		cChartElement.setPath(this.$getContainer("grid"), d.join(''));
+//		this.$getContainer("grid").setAttribute("stroke-width", 20);
 
 		// Draw horizontal axis labels (labels)
 		var oParent	= this.$getContainer("xAxisItems"),
@@ -107,14 +111,16 @@ cChartElement_bar.prototype.refresh	= function() {
 			oParent.removeChild(oParent.childNodes[x]);
 		for (var nIndex = 0, nLength = aData[0].length; nIndex < nLength + 1; nIndex++) {
 			if (nIndex != nLength) {
+/*
 				oElement	= oParent.appendChild(oParent.ownerDocument.createElementNS("http://www.w3.org/2000/svg", "svg:text"));
 				oElement.textContent	= aAxisValueLabels[nIndex] || nIndex;
 				oElement.setAttribute("x", 50 + 400 * (nIndex + 1/2) / nLength);
 				oElement.setAttribute("y", 270 - 4);
+*/
 			}
 			d.push("M" +(50 + 400 * nIndex / nLength)+ "," + 250 + "v5 z");
 		}
-		this.$getContainer("xAxisMarks").setAttribute("d", d.join(' '));
+		cChartElement.setPath(this.$getContainer("xAxisMarks"), d.join(' '));
 
 		// Draw vertical axis labels (values)
 		var oParent	= this.$getContainer("yAxisItems"),
@@ -123,14 +129,16 @@ cChartElement_bar.prototype.refresh	= function() {
 		for (var x = 0, l = oParent.childNodes.length; x < l; x++)
 			oParent.removeChild(oParent.childNodes[x]);
 		for (var nIndex = 0, nLength = 10; nIndex < nLength + 1; nIndex++) {
+/*
 			oElement	= oParent.appendChild(oParent.ownerDocument.createElementNS("http://www.w3.org/2000/svg", "svg:text"));
 			oElement.setAttribute("text-anchor", "end");
 			oElement.textContent	= nIndex * nGroupMax / nLength;
 			oElement.setAttribute("x", 50 - 10);
 			oElement.setAttribute("y", 250 - 200 * nIndex / nLength);
+*/
 			d.push("M" + 50 + "," + (250 - 200 * nIndex / nLength)+ "h-5 z");
 		}
-		this.$getContainer("yAxisMarks").setAttribute("d", d.join(' '));
+		cChartElement.setPath(this.$getContainer("yAxisMarks"), d.join(' '));
 	}
 
 	//
@@ -239,15 +247,16 @@ cChartElement_bar.prototype.refresh	= function() {
 				}
 			}
 
-			oItem.$getContainer("value").setAttribute("d", d);
-			oItem.$getContainer("shadow").setAttribute("d", d);
+			cChartElement.setPath(oItem.$getContainer("value"), d);
+			cChartElement.setPath(oItem.$getContainer("shadow"), d);
 
 			// Draw legend
 			var nXPath	= 480,
 				nYPath	=(50 + (nGroups - nGroup) * 20);
-			oGroup.$getContainer("path").setAttribute("d", "M" + (nXPath - 5) + "," + (nYPath - 5) + "h10 v10 h-10 v-10 z");
-			oGroup.$getContainer("label").setAttribute("x", nXPath + 20);
-			oGroup.$getContainer("label").setAttribute("y", nYPath + 5);
+			cChartElement.setPath(oGroup.$getContainer("path"), "M" + (nXPath - 5) + "," + (nYPath - 5) + "h10 v10 h-10 v-10 z");
+			cChartElement.setTextPosition(oGroup.$getContainer("label"),
+											nXPath + 20,
+											nYPath + 5);
 
 			//
 			aSumUp[nItem]	+= aData[nGroup][nItem];
@@ -255,34 +264,73 @@ cChartElement_bar.prototype.refresh	= function() {
 	}
 };
 
-cChartElement_bar.prototype.$getTagOpen	= function() {
-	return '<div class="c-bar' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
-				<svg:svg class="c-bar--canvas" viewBox="0 0 600 300" width="600px" height="300px" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">\
-					<svg:text class="c-bar--title" y="30" x="300">' + this.getAttribute("title")+ '</svg:text>\
-					<svg:rect x="460" y="50" width="120" height="120" rx="10" class="c-legend"/>\
-					<svg:path class="c-grid c-bar--grid"/>\
-					<svg:g class="c-xAxis">\
-						<svg:path class="c-bar--xAxis" d="m50,250 h400,0" style="fill:none"/>\
-						<svg:path id="x' + this.uniqueID + '" d="m300,280 h400,0" style="fill:none;stroke:none"/>\
-						<svg:text class="c-xAxis--label c-bar--xAxisLabel"><svg:textPath xlink:href="#x' + this.uniqueID + '">' + this.getAttribute("xAxisLabel")+ '</svg:textPath></svg:text>\
-						<svg:path class="c-xAxis--marks c-bar--xAxisMarks" xtransform="translate(0,2)"/>\
-						<svg:g class="c-xAxis--scale c-bar--xAxisItems" style="stroke:none" transform="translate(-3,0)"/>\
-					</svg:g>\
-					<svg:g class="c-yAxis">\
-						<svg:path class="c-bar--yAxis" d="m50,250 v0,-200" style="fill:none"/>\
-						<svg:path id="y' + this.uniqueID + '" d="m20,200 v0,-200" style="fill:none;stroke:none"/>\
-						<svg:text class="c-yAxis--label c-bar--yAxisLabel"><svg:textPath xlink:href="#y' + this.uniqueID + '">' + this.getAttribute("yAxisLabel")+ '</svg:textPath></svg:text>\
-						<svg:path class="c-yAxis--marks c-bar--yAxisMarks" xtransform="translate(-2,0)" />\
-						<svg:g class="c-yAxis--scale c-bar--yAxisItems" style="stroke:none" transform="translate(0,3)"/>\
-					</svg:g>\
-					<svg:g class="c-bar--gateway">';
-};
+if (!cChartElement.useVML) {
+	cChartElement_bar.prototype.$getTagOpen	= function() {
+		return '<div class="c-bar' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
+					<svg:svg class="c-bar--canvas" viewBox="0 0 600 300" width="600px" height="300px" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">\
+						<svg:text class="c-bar--title" y="30" x="300">' + this.getAttribute("title")+ '</svg:text>\
+						<svg:rect x="460" y="50" width="120" height="120" rx="10" class="c-legend"/>\
+						<svg:path class="c-grid c-bar--grid"/>\
+						<svg:g class="c-xAxis">\
+							<svg:path class="c-bar--xAxis" d="m50,250 h400,0" style="fill:none"/>\
+							<svg:path id="x' + this.uniqueID + '" d="m300,280 h400,0" style="fill:none;stroke:none"/>\
+							<svg:text class="c-xAxis--label c-bar--xAxisLabel"><svg:textPath xlink:href="#x' + this.uniqueID + '">' + this.getAttribute("xAxisLabel")+ '</svg:textPath></svg:text>\
+							<svg:path class="c-xAxis--marks c-bar--xAxisMarks" xtransform="translate(0,2)"/>\
+							<svg:g class="c-xAxis--scale c-bar--xAxisItems" style="stroke:none" transform="translate(-3,0)"/>\
+						</svg:g>\
+						<svg:g class="c-yAxis">\
+							<svg:path class="c-bar--yAxis" d="m50,250 v0,-200" style="fill:none"/>\
+							<svg:path id="y' + this.uniqueID + '" d="m20,200 v0,-200" style="fill:none;stroke:none"/>\
+							<svg:text class="c-yAxis--label c-bar--yAxisLabel"><svg:textPath xlink:href="#y' + this.uniqueID + '">' + this.getAttribute("yAxisLabel")+ '</svg:textPath></svg:text>\
+							<svg:path class="c-yAxis--marks c-bar--yAxisMarks" xtransform="translate(-2,0)" />\
+							<svg:g class="c-yAxis--scale c-bar--yAxisItems" style="stroke:none" transform="translate(0,3)"/>\
+						</svg:g>\
+						<svg:g class="c-bar--gateway">';
+	};
 
-cChartElement_bar.prototype.$getTagClose	= function() {
-	return '		</svg:g>\
-				</svg:svg>\
-			</div>';
-};
+	cChartElement_bar.prototype.$getTagClose	= function() {
+		return '		</svg:g>\
+					</svg:svg>\
+				</div>';
+	};
+}
+else {
+	cChartElement_bar.prototype.$getTagOpen	= function() {
+		return '<div class="c-bar' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
+					<chart2vml:group class="c-bar--canvas" style="position:relative;display:inline-block;x-overflow:hidden;width:600px;height:300px" coordOrigin="0 0" coordSize="600 300">\
+						<chart2vml:shape path="m0,0 l600,0" fillcolor="blue" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%;top:30px;xleft:150px">\
+							<chart2vml:path textpathok="true" />\
+							<chart2vml:textpath on="true" class="c-bar--title" string="' + this.getAttribute("title")+ '" style="v-text-align:center"/>\
+						</chart2vml:shape>\
+						<chart2vml:roundrect style="left:460px;top:50px;width:120px;height:120px" rx="10" class="c-legend" filled="true"/>\
+						<chart2vml:shape class="c-grid c-bar--grid" style="position:absolute;width:100%;height:100%"/>\
+						<chart2vml:group class="c-xAxis" style="position:absolute;width:100%;height:100%">\
+							<chart2vml:shape class="c-bar--xAxis" path="m50,250 r400,0 e" style="position:absolute;width:100%;height:100%"/>\
+							<chart2vml:shape path="m30,280 r400,0 e" fillcolor="blue" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%;top:30px;xleft:150px">\
+								<chart2vml:path textpathok="true" />\
+								<chart2vml:textpath on="true" class="c-xAxis--label c-bar--xAxisLabel" string="' + this.getAttribute("xAxisLabel")+ '" style="v-text-align:center"/>\
+							</chart2vml:shape>\
+							<chart2vml:shape class="c-xAxis--marks c-bar--xAxisMarks" style="position:absolute;width:100%;height:100%"/>\
+							<chart2vml:group class="c-xAxis--scale c-bar--xAxisItems" style="stroke:none" transform="translate(0,3)"/>\
+						</chart2vml:group>\
+						<chart2vml:group class="c-yAxis" style="position:absolute;width:100%;height:100%">\
+							<chart2vml:shape class="c-bar--yAxis" path="m50,250 r0,-200 e" style="position:absolute;width:100%;height:100%"/>\
+							<chart2vml:shape path="m30,200 r0,-200 e" fillcolor="blue" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%;top:30px;xleft:150px">\
+								<chart2vml:path textpathok="true" />\
+								<chart2vml:textpath on="true" class="c-xAxis--label c-bar--yAxisLabel" string="' + this.getAttribute("yAxisLabel")+ '" style="v-text-align:center"/>\
+							</chart2vml:shape>\
+							<chart2vml:shape class="c-yAxis--marks c-bar--yAxisMarks" style="position:absolute;width:100%;height:100%"/>\
+							<chart2vml:group class="c-yAxis--scale c-bar--yAxisItems" style="stroke:none" transform="translate(0,3)"/>\
+						</chart2vml:group>\
+						<chart2vml:group class="c-bar--gateway" style="position:absolute;width:100%;height:100%">';
+	};
+
+	cChartElement_bar.prototype.$getTagClose	= function() {
+		return '		</chart2vml:group>\
+					</chart2vml:group>\
+				</div>';
+	};
+}
 
 // Register Element with language
 oChartNamespace.setElement("bar", cChartElement_bar);
