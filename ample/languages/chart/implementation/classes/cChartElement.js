@@ -27,8 +27,8 @@ cChartElement.setTextPosition	= function(oElementDOM, nX, nY) {
 		oElementDOM.setAttribute("y", nY);
 	}
 	else {
-		oElementDOM.marginLeft	= nX + "px";
-		oElementDOM.marginTop	= nY + "px";
+		oElementDOM.parentNode.style.marginLeft	= Math.round(nX) + "px";
+		oElementDOM.parentNode.style.marginTop	= Math.round(nY) + "px";
 	}
 };
 
@@ -278,6 +278,8 @@ if (cChartElement.useVML) {
 		return aPath.join('') + "e";
 	};
 }
+
+window.svg2vml = cChartElement.convert;
 
 // Register Element with language
 oChartNamespace.setElement("#element", cChartElement);
