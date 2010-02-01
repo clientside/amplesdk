@@ -27,6 +27,7 @@ cChartElement_radar.prototype.refresh	= function() {
 				"A" + 100 * (n + 1) / l + "," + 100 * (n + 1) / l + " 0 0,0 150," + (150 - 100 * (n + 1) / l) +
 				"z");
 	}
+
 	// lines
 	for (var n = 0, l = 5; n < l; n++)
 		d.push(	"M150,150" +
