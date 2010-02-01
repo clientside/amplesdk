@@ -47,8 +47,8 @@ cChartElement_doughnut.prototype.refresh	= function() {
 			// Draw arc on the inner circle
 			d.push("A" + nInnerR + "," + nInnerR + " 0 " + (nAngleTo - nAngleFrom >= Math.PI ? 1 : 0)+ ",0 " + (cX + nInnerR * Math.cos(nAngleFrom)) + "," +(cY + nInnerR * Math.sin(nAngleFrom)));
 
-			oItem.$getContainer("value").setAttribute("d", d.join('') + "z");
-			//oItem.$getContainer("shadow").setAttribute("d", d.join('') + "z");
+			cChartElement.setPath(oItem.$getContainer("value"), d.join('') + "z");
+			//cChartElement.setPath(oItem.$getContainer("shadow"), d.join('') + "z");
 
 			// Text label
 			var nTextR	=(nOuterR + nInnerR)/2 - 5,
@@ -62,18 +62,37 @@ cChartElement_doughnut.prototype.refresh	= function() {
 	}
 };
 
-cChartElement_doughnut.prototype.$getTagOpen	= function() {
-	return '<div class="c-doughnut' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
-				<svg:svg class="c-doughnut--canvas" viewBox="0 0 300 300" width="300px" height="300px" xmlns:svg="http://www.w3.org/2000/svg">\
-					<svg:text class="c-doughnut--title" y="30" x="150">' + this.getAttribute("title")+ '</svg:text>\
-					<svg:g class="c-doughnut--gateway">';
-};
+if (!cChartElement.useVML) {
+	cChartElement_doughnut.prototype.$getTagOpen	= function() {
+		return '<div class="c-doughnut' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
+					<svg:svg class="c-doughnut--canvas" viewBox="0 0 300 300" width="300px" height="300px" xmlns:svg="http://www.w3.org/2000/svg">\
+						<svg:text class="c-doughnut--title" y="30" x="150">' + this.getAttribute("title")+ '</svg:text>\
+						<svg:g class="c-doughnut--gateway">';
+	};
 
-cChartElement_doughnut.prototype.$getTagClose	= function() {
-	return '		</svg:g>\
-				</svg:svg>\
-			</div>';
-};
+	cChartElement_doughnut.prototype.$getTagClose	= function() {
+		return '		</svg:g>\
+					</svg:svg>\
+				</div>';
+	};
+}
+else {
+	cChartElement_doughnut.prototype.$getTagOpen	= function() {
+		return '<div class="c-doughnut' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
+					<chart2vml:group class="c-doughnut--canvas" style="position:relative;display:inline-block;x-overflow:hidden;width:300px;height:300px" coordOrigin="0 0" coordSize="300 300">\
+						<chart2vml:shape path="m0,0 l300,0" fillcolor="blue" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%;top:30px;xleft:150px">\
+							<chart2vml:path textpathok="true" />\
+							<chart2vml:textpath on="true" class="c-doughnut--title" string="' + this.getAttribute("title")+ '" style="v-text-align:center"/>\
+						</chart2vml:shape>\
+						<chart2vml:group class="c-doughnut--gateway" style="position:absolute;width:100%;height:100%">';
+	};
+
+	cChartElement_doughnut.prototype.$getTagClose	= function() {
+		return '		</chart2vml:group>\
+					</chart2vml:group>\
+				</div>';
+	};
+}
 
 // Register Element with language
 oChartNamespace.setElement("doughnut", cChartElement_doughnut);
