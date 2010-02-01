@@ -12,7 +12,10 @@ cChartElement_bubble.prototype	= new cChartElement;
 
 cChartElement_bubble.handlers	= {
 	'DOMNodeInsertedIntoDocument':	function() {
-		this.refresh();
+		var that	= this;
+		setTimeout(function () {
+			that.refresh();
+		});
 	}
 };
 
@@ -74,46 +77,81 @@ cChartElement_bubble.prototype.refresh	= function() {
 					"a" + nSize + "," + nSize + " 0 0,0-" + nSize * 2 + ",0 " +
 					"z";
 
-			oGroup.childNodes[nItem].$getContainer("value").setAttribute("d", d);
-			oGroup.childNodes[nItem].$getContainer("shadow").setAttribute("d", d);
-
-			oGroup.childNodes[nItem].$getContainer("label").setAttribute("x", 50 + 400 * (nXMax - aData[nGroup][nItem][0]) / (nXMax - nXMin));
-			oGroup.childNodes[nItem].$getContainer("label").setAttribute("y", 250 - 200 * (nYMax - aData[nGroup][nItem][1]) / (nYMax - nYMin) + 6);
+			cChartElement.setPath(oGroup.childNodes[nItem].$getContainer("value"), d);
+			cChartElement.setPath(oGroup.childNodes[nItem].$getContainer("shadow"), d);
+//			cChartElement.setTextPosition(oGroup.childNodes[nItem].$getContainer("label"),
+//											50 + 400 * (nXMax - aData[nGroup][nItem][0]) / (nXMax - nXMin),
+//											250 - 200 * (nYMax - aData[nGroup][nItem][1]) / (nYMax - nYMin) + 6);
 		}
 
 		// Draw legend
 		var nXPath	= 480,
 			nYPath	=(50 + (nGroups - nGroup) * 20);
-		oGroup.$getContainer("path").setAttribute("d", "M" + (nXPath - 5) + "," + (nYPath - 5) + "h10 v10 h-10 v-10 z");
-		oGroup.$getContainer("label").setAttribute("x", nXPath + 20);
-		oGroup.$getContainer("label").setAttribute("y", nYPath + 5);
+		cChartElement.setPath(oGroup.$getContainer("path"), "M" + (nXPath - 5) + "," + (nYPath - 5) + "h10 v10 h-10 v-10 z");
+		cChartElement.setTextPosition(oGroup.$getContainer("label"),
+										nXPath + 20, nYPath + 5);
 	}
 };
 
-cChartElement_bubble.prototype.$getTagOpen	= function() {
-	return '<div class="c-bubble' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
-				<svg:svg class="c-bubble--canvas" viewBox="0 0 600 300" width="600px" height="300px" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">\
-					<svg:text class="c-bubble--title" y="30" x="300">' + this.getAttribute("title")+ '</svg:text>\
-					<svg:rect x="460" y="50" width="120" height="120" rx="10" class="c-legend"/>\
-					<svg:path class="c-grid c-bubble--grid"/>\
-					<svg:g class="c-xAxis">\
-						<svg:path class="c-bubble--xAxis" d="M50,250 h400,0" style="fill:none"/>\
-						<svg:path id="x' + this.uniqueID + '" d="M300,280 h400,0" style="fill:none;stroke:none"/>\
-						<svg:text class="c-xAxis--label c-bubble--xAxisLabel"><svg:textPath xlink:href="#x' + this.uniqueID + '">' + this.getAttribute("yAxisLabel")+ '</svg:textPath></svg:text>\
-					</svg:g>\
-					<svg:g class="c-yAxis">\
-						<svg:path class="c-bubble--yAxis" d="M50,250 v0,-200" style="fill:none"/>\
-						<svg:path id="y' + this.uniqueID + '" d="M30,200 v0,-200" style="fill:none;stroke:none"/>\
-						<svg:text class="c-yAxis--label c-bubble--yAxisLabel"><svg:textPath xlink:href="#y' + this.uniqueID + '">' + this.getAttribute("yAxisLabel")+ '</svg:textPath></svg:text>\
-					</svg:g>\
-					<svg:g class="c-bubble--gateway">';
-};
+if (!cChartElement.useVML) {
+	cChartElement_bubble.prototype.$getTagOpen	= function() {
+		return '<div class="c-bubble' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
+					<svg:svg class="c-bubble--canvas" viewBox="0 0 600 300" width="600px" height="300px" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">\
+						<svg:text class="c-bubble--title" y="30" x="300">' + this.getAttribute("title")+ '</svg:text>\
+						<svg:rect x="460" y="50" width="120" height="120" rx="10" class="c-legend"/>\
+						<svg:path class="c-grid c-bubble--grid"/>\
+						<svg:g class="c-xAxis">\
+							<svg:path class="c-bubble--xAxis" d="M50,250 h400" style="fill:none"/>\
+							<svg:path id="x' + this.uniqueID + '" d="M300,280 h400" style="fill:none;stroke:none"/>\
+							<svg:text class="c-xAxis--label c-bubble--xAxisLabel"><svg:textPath xlink:href="#x' + this.uniqueID + '">' + this.getAttribute("yAxisLabel")+ '</svg:textPath></svg:text>\
+						</svg:g>\
+						<svg:g class="c-yAxis">\
+							<svg:path class="c-bubble--yAxis" d="M50,250 v-200" style="fill:none"/>\
+							<svg:path id="y' + this.uniqueID + '" d="M30,200 v-200" style="fill:none;stroke:none"/>\
+							<svg:text class="c-yAxis--label c-bubble--yAxisLabel"><svg:textPath xlink:href="#y' + this.uniqueID + '">' + this.getAttribute("yAxisLabel")+ '</svg:textPath></svg:text>\
+						</svg:g>\
+						<svg:g class="c-bubble--gateway">';
+	};
 
-cChartElement_bubble.prototype.$getTagClose	= function() {
-	return '		</svg:g>\
-				</svg:svg>\
-			</div>';
-};
+	cChartElement_bubble.prototype.$getTagClose	= function() {
+		return '		</svg:g>\
+					</svg:svg>\
+				</div>';
+	};
+}
+else {
+	cChartElement_bubble.prototype.$getTagOpen	= function() {
+		return '<div class="c-bubble' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
+					<chart2vml:group class="c-bubble--canvas" style="position:relative;display:inline-block;x-overflow:hidden;width:600px;height:300px" coordOrigin="0 0" coordSize="600 300">\
+						<chart2vml:shape path="m0,0 l600,0" fillcolor="blue" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%;top:30px;xleft:150px">\
+							<chart2vml:path textpathok="true" />\
+							<chart2vml:textpath on="true" class="c-bubble--title" string="' + this.getAttribute("title")+ '" style="v-text-align:center"/>\
+						</chart2vml:shape>\
+						<chart2vml:roundrect style="left:460px;top:50px;width:120px;height:120px" rx="10" class="c-legend" filled="true"/>\
+						<chart2vml:shape class="c-grid c-bubble--grid" style="position:absolute;width:100%;height:100%"/>\
+						<chart2vml:group class="c-xAxis" style="position:absolute;width:100%;height:100%">\
+							<chart2vml:shape class="c-bubble--xAxis" path="m50,250 r400,0 e" style="position:absolute;width:100%;height:100%"/>\
+							<chart2vml:shape path="m30,280 r400,0 e" fillcolor="blue" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%;top:30px;xleft:150px">\
+								<chart2vml:path textpathok="true" />\
+								<chart2vml:textpath on="true" class="c-xAxis--label c-bubble--xAxisLabel" string="' + this.getAttribute("xAxisLabel")+ '" style="v-text-align:center"/>\
+							</chart2vml:shape>\
+						</chart2vml:group>\
+						<chart2vml:group class="c-yAxis" style="position:absolute;width:100%;height:100%">\
+							<chart2vml:shape class="c-bubble--yAxis" path="m50,250 r0,-200 e" style="position:absolute;width:100%;height:100%"/>\
+							<chart2vml:shape path="m30,200 r0,-200 e" fillcolor="blue" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%;top:30px;xleft:150px">\
+								<chart2vml:path textpathok="true" />\
+								<chart2vml:textpath on="true" class="c-xAxis--label c-bubble--yAxisLabel" string="' + this.getAttribute("yAxisLabel")+ '" style="v-text-align:center"/>\
+							</chart2vml:shape>\
+						</chart2vml:group>\
+						<chart2vml:group class="c-bubble--gateway" style="position:absolute;width:100%;height:100%">';
+	};
+
+	cChartElement_bubble.prototype.$getTagClose	= function() {
+		return '		</chart2vml:group>\
+					</chart2vml:group>\
+				</div>';
+	};
+}
 
 // Register Element with language
 oChartNamespace.setElement("bubble", cChartElement_bubble);
