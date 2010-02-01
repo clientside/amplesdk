@@ -529,11 +529,12 @@ function fAML_processScripts() {
 //->Debug
 			    														'\n' +
 //<-Debug
-			    														oElementDOM.text.replace(/^\s+/, '').replace(/&/g, '&amp;').replace(/<script(.|\n|\r)+$/, '') +
+			    														oElementDOM.text.replace(/^\s*(<!\[CDATA\[)?\s*/, '').replace(/\s*(\]\]>)\s*$/, '').replace(/&/g, '&amp;').replace(/<script(.|\n|\r)+$/, '') +
 //->Debug
 			    														'\n' +
 //<-Debug
 			    														'</' + "#document-fragment".substr(1) + '>', "text/xml");
+//			    alert(new XMLSerializer().serializeToString(oDocument.documentElement));
 			}
 
 			oParserError	= oDocument.getElementsByTagName("parsererror")[0];
