@@ -534,7 +534,6 @@ function fAML_processScripts() {
 			    														'\n' +
 //<-Debug
 			    														'</' + "#document-fragment".substr(1) + '>', "text/xml");
-//			    alert(new XMLSerializer().serializeToString(oDocument.documentElement));
 			}
 
 			oParserError	= oDocument.getElementsByTagName("parsererror")[0];
