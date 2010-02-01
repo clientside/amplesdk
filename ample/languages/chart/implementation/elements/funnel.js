@@ -44,13 +44,13 @@ cChartElement_funnel.prototype.refresh	= function() {
 		// Draw line to the inner
 		d.push("L" + (nLeft - nWidthTop - nCFrom * (nWidthBottom - nWidthTop)) + "," + (nTop + nCFrom * nHeight));
 
-		oElement.$getContainer("value").setAttribute("d", d.join('') + "z");
+		cChartElement.setPath(oElement.$getContainer("value"), d.join('') + "z");
 
 		// Handles
 		var nCHalf	=(nCFrom + nCTo)/ 2;
-		oElement.$getContainer("handle").setAttribute("d", 	"M" + (nLeft + nWidthTop + nCHalf * (nWidthBottom - nWidthTop)) + "," + (nTop + nCHalf * nHeight) + ' ' +
-															"h100 " +
-															"");
+		cChartElement.setPath(oElement.$getContainer("handle"),	"M" + (nLeft + nWidthTop + nCHalf * (nWidthBottom - nWidthTop)) + "," + (nTop + nCHalf * nHeight) + ' ' +
+																"h100 " +
+																"");
 
 		oElement.$getContainer("label").setAttribute("x", (nLeft + nWidthTop + nCHalf * (nWidthBottom - nWidthTop)) + 10);
 		oElement.$getContainer("label").setAttribute("y", (nTop + nCHalf * nHeight - 5));
@@ -60,18 +60,37 @@ cChartElement_funnel.prototype.refresh	= function() {
 	}
 };
 
-cChartElement_funnel.prototype.$getTagOpen	= function() {
-	return '<div class="c-funnel' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
-				<svg:svg class="c-funnel--canvas" viewBox="0 0 300 300" width="300px" height="300px" xmlns:svg="http://www.w3.org/2000/svg">\
-					<svg:text class="c-funnel--title" y="30" x="150">' + this.getAttribute("title")+ '</svg:text>\
-					<svg:g class="c-funnel--gateway">';
-};
+if (!cChartElement.useVML) {
+	cChartElement_funnel.prototype.$getTagOpen	= function() {
+		return '<div class="c-funnel' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
+					<svg:svg class="c-funnel--canvas" viewBox="0 0 300 300" width="300px" height="300px" xmlns:svg="http://www.w3.org/2000/svg">\
+						<svg:text class="c-funnel--title" y="30" x="150">' + this.getAttribute("title")+ '</svg:text>\
+						<svg:g class="c-funnel--gateway">';
+	};
 
-cChartElement_funnel.prototype.$getTagClose	= function() {
-	return '		</svg:g>\
-				</svg:svg>\
-			</div>';
-};
+	cChartElement_funnel.prototype.$getTagClose	= function() {
+		return '		</svg:g>\
+					</svg:svg>\
+				</div>';
+	};
+}
+else {
+	cChartElement_funnel.prototype.$getTagOpen	= function() {
+		return '<div class="c-funnel' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
+					<chart2vml:group class="c-funnel--canvas" style="position:relative;display:inline-block;x-overflow:hidden;width:300px;height:300px" coordOrigin="0 0" coordSize="300 300">\
+						<chart2vml:shape path="m0,0 l300,0" fillcolor="blue" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%;top:30px;xleft:150px">\
+							<chart2vml:path textpathok="true" />\
+							<chart2vml:textpath on="true" class="c-funnel--title" string="' + this.getAttribute("title")+ '" style="v-text-align:center"/>\
+						</chart2vml:shape>\
+						<chart2vml:group class="c-funnel--gateway" style="position:absolute;width:100%;height:100%">';
+	};
+
+	cChartElement_funnel.prototype.$getTagClose	= function() {
+		return '		</chart2vml:group>\
+					</chart2vml:group>\
+				</div>';
+	};
+}
 
 // Register Element with language
 oChartNamespace.setElement("funnel", cChartElement_funnel);
