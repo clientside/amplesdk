@@ -493,9 +493,9 @@ function fAML_processScripts() {
 
 			// retrieve namespaces list (in older than IE6, attributes on script tag are not parsed into collection)
 			if (bTrident && nVersion < 6) {
-				if (aAttributes	= oElementDOM.outerHTML.match(/<script([^\>]+)/i)[1].match(/ [^=]+=("[^"]+"|[^ ]+)/gi))
+				if (aAttributes	= oElementDOM.outerHTML.match(/<script([^\>]+)/i)[1].match(/\s[^=]+=("[^"]+"|[^\s]+)/gi))
 					for (var nAttribute = 0; oAttribute = aAttributes[nAttribute]; nAttribute++)
-						if (oAttribute.match(/( [^=]+)="?([^"]+)"?/i) && (sAttribute = cRegExp.$1) != "type")
+						if (oAttribute.match(/(\s[^=]+)="?([^"]+)"?/i) && (sAttribute = cRegExp.$1) != "type")
                 			oAttributes[sAttribute]	= cRegExp.$2;
 			}
 			else {
