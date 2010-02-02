@@ -24,11 +24,11 @@ if (!cChartElement.useVML) {
 }
 else {
 	cChartElement_item.prototype.$getTagOpen	= function() {
-		return '<chart2vml:group class="c-item c-item_nth-child-' + this.parentNode.childNodes.$indexOf(this) +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="position:absolute;width:100%;height:100%;">\
+		return '<chart2vml:group class="c-item c-item_nth-child-' + this.parentNode.childNodes.$indexOf(this) +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="position:absolute;width:100%;height:100%">\
 					<chart2vml:shape class="c-item--shadow" style="position:absolute;width:100%;height:100%" transform="translate(2,2)"/>\
-					<chart2vml:shape class="c-item--value" style="position:absolute;top:0;left:0;height:100%;width:100%;"/>\
-					<chart2vml:shape class="c-item--handle" stroked="true" filled="false" style="position:absolute;top:0;left:0;height:100%;width:100%;"/>\
-					<chart2vml:shape class="c-item--textPath" path="m0,0 l100,0" fillcolor="red" allowoverlap="true" style="position:absolute;width:100%;height:100%;top:0;left:0;">\
+					<chart2vml:shape class="c-item--value" style="position:absolute;height:100%;width:100%"/>\
+					<chart2vml:shape class="c-item--handle" stroked="true" filled="false" style="position:absolute;height:100%;width:100%"/>\
+					<chart2vml:shape class="c-item--textPath" path="m0,0 l100,0" fillcolor="red" allowoverlap="true" style="position:absolute;width:100%;height:100%">\
 						<chart2vml:path textpathok="true" />\
 						<chart2vml:textpath on="true" class="c-item--label" string="' + this.getAttribute("label")+ '"/>\
 					</chart2vml:shape>\

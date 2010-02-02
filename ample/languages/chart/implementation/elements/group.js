@@ -50,7 +50,7 @@ else {
 					<chart2vml:shape class="c-group--shadow" filled="false" style="position:absolute;width:100%;height:100%" transform="translate(2, 2)"/>\
 					<chart2vml:shape class="c-group--line" filled="false" style="position:absolute;width:100%;height:100%"/>\
 					<chart2vml:shape class="c-group--area" stroked="false" style="position:absolute;width:100%;height:100%"/>\
-					<chart2vml:shape path="m0,0 l100,0" fillcolor="red" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%;top:0;left:0;margin-left:0;margin-top:0">\
+					<chart2vml:shape path="m0,0 l100,0" fillcolor="red" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%;margin-left:0;margin-top:0">\
 						<chart2vml:path textpathok="true" />\
 						<chart2vml:textpath on="true" class="c-group--label" string="' + this.getAttribute("label")+ '" style="v-text-align:left" />\
 					</chart2vml:shape>\
