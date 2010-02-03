@@ -673,7 +673,7 @@ var oAMLElement_cache	= {};
 function fAMLElement_getRegExp(sName) {
 	return	oAMLElement_cache[sName]
 		?	oAMLElement_cache[sName]
-		:	oAMLElement_cache[sName] = new cRegExp('(|^)[-\\w]*' + sName + '(\\s|$)', 'g');
+		:	oAMLElement_cache[sName] = new cRegExp('\\s?(|^)[-\\w]*' + sName + '(\\s|$)', 'g');
 };
 
 function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
@@ -708,7 +708,7 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 		else {
 			// Remove class
 			if (bMatch) {
-				sNewName	= sOldName.replace(fAMLElement_getRegExp(sPseudoName), ' ');	// TODO: Remove space?
+				sNewName	= sOldName.replace(fAMLElement_getRegExp(sPseudoName), '');	// TODO: Remove space?
 				if (bTrident && nVersion < 8)
 					oElementDOM.className	= sNewName;
 				else
