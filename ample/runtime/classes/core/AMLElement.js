@@ -673,7 +673,7 @@ var oAMLElement_cache	= {};
 function fAMLElement_getRegExp(sName) {
 	return	oAMLElement_cache[sName]
 		?	oAMLElement_cache[sName]
-		:	oAMLElement_cache[sName] = new cRegExp('\\s?(|^)[-\\w]*' + sName + '(\\s|$)', 'g');
+		:	oAMLElement_cache[sName] = new cRegExp('(^|\\s)[-\\w]*' + sName + '(|$)', 'g');
 };
 
 function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
