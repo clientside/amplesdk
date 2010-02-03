@@ -61,7 +61,7 @@ cXULElement_treecol.handlers	= {
 // Element Render: open
 cXULElement_treecol.prototype.$getTagOpen	= function()
 {
-	return '<th class="xul-treecol ' +(this.attributes["class"] ? " " + this.attributes["class"] : "")+ '"' +(this.attributes["width"] ? ' width="' + this.attributes["width"] + '"' : "")+(this.attributes["hideheader"] == "true" ? ' style="display:none"' : "")+ ' align="left">\
+	return '<th class="xul-treecol' +(this.attributes["class"] ? " " + this.attributes["class"] : "")+ '"' +(this.attributes["width"] ? ' width="' + this.attributes["width"] + '"' : "")+(this.attributes["hideheader"] == "true" ? ' style="display:none"' : "")+ ' align="left">\
     			<div class="xul-treecol--label"' + (this.attributes["minwidth"] ? ' style="width:' + this.attributes["minwidth"] + 'px"' : '') + '> ' +(this.attributes["label"] || "");
 };
 
