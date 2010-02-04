@@ -244,11 +244,9 @@ if (cSVGElement.useVML) {
 			aParameters	= aCommands[i].substr(1).
 								replace(/(\d)-/g, '$1,-').
 								replace(/^\s+|\s+$/g, '').
-								split(/[,\s]/);
-
-			// Round command parameters values
-			for (var j = 0; j < aParameters.length; j++)
-				aParameters[j]	= Math.round(aParameters[j]);
+								split(/[,\s]/).map(function(nValue) {
+									return nValue * 1;
+								});
 
 			switch (sCommand) {
 				// moveto (x y)+
@@ -257,7 +255,7 @@ if (cSVGElement.useVML) {
 					iCurrentY	= aParameters[1];
 					iStartX		= iCurrentX;
 					iStartY		= iCurrentY;
-					aPath.push("m" + aParameters.slice(0, 2) + " ");
+					aPath.push("m" + aParameters.slice(0, 2).map(Math.round) + " ");
 
 					// If there are more that 2 parameters, draw line out of the rest of parameters
 					if (aParameters.length == 2)
@@ -269,7 +267,7 @@ if (cSVGElement.useVML) {
 				case "L":
 					iCurrentX	= aParameters[aParameters.length - 2];
 					iCurrentY	= aParameters[aParameters.length - 1];
-					aPath.push("l" + aParameters + " ");
+					aPath.push("l" + aParameters.map(Math.round) + " ");
 					break;
 
 				case "m":
@@ -278,7 +276,7 @@ if (cSVGElement.useVML) {
 					iStartX		= iCurrentX;
 					iStartY		= iCurrentY;
 
-					aPath.push("t" + aParameters.slice(0, 2) + " ");
+					aPath.push("t" + aParameters.slice(0, 2).map(Math.round) + " ");
 
 					// If there are more that 2 parameters, draw line out of the rest of parameters
 					if (aParameters.length == 2)
@@ -291,69 +289,69 @@ if (cSVGElement.useVML) {
 						iCurrentX	+= aParameters[j];
 						iCurrentY	+= aParameters[j + 1];
 					}
-					aPath.push("r" + aParameters + " ");
+					aPath.push("r" + aParameters.map(Math.round) + " ");
 					break;
 
 				// horizontal lineto x+
 				case "H":
 					iCurrentX	= aParameters[0];
-					aPath.push("l" + iCurrentX + "," + iCurrentY + " ");
+					aPath.push("l" + [iCurrentX, iCurrentY].map(Math.round) + " ");
 					break;
 
 				case "h":
 					iCurrentX	+= aParameters[0];
-					aPath.push("r" + aParameters[0] + "," + "0" + " ");
+					aPath.push("r" + [aParameters[0], 0].map(Math.round) + " ");
 					break;
 
 				// vertical lineto y+
 				case "V":
 					iCurrentY	= aParameters[0];
-					aPath.push("l" + iCurrentX + "," + iCurrentY + " ");
+					aPath.push("l" + [iCurrentX, iCurrentY].map(Math.round) + " ");
 					break;
 
 				case "v":
 					iCurrentY	+= aParameters[0];
-					aPath.push("r" + "0" + "," + aParameters[0] + " ");
+					aPath.push("r" + [0, aParameters[0]].map(Math.round) + " ");
 					break;
 
 				// curveto (x1 y1 x2 y2 x y)+
 				case "C":
 					iCurrentX	= aParameters[aParameters.length - 2];
 					iCurrentY	= aParameters[aParameters.length - 1];
-					aPath.push("c" + aParameters + " ");
+					aPath.push("c" + aParameters.map(Math.round) + " ");
 					break;
 
 				case "c":
 					iCurrentX	+= aParameters[aParameters.length - 2];
 					iCurrentY	+= aParameters[aParameters.length - 1];
-					aPath.push("v" + aParameters + " ");
+					aPath.push("v" + aParameters.map(Math.round) + " ");
 					break;
 
 				// shorthand/smooth curveto (x2 y2 x y)+
 				case "S":
 					iCurrentX	= aParameters[2];
 					iCurrentY	= aParameters[3];
-					aPath.push("c" + iCurrentX + "," + iCurrentY + "," + aParameters + " ");
+					aPath.push("c" + [iCurrentX, iCurrentY].map(Math.round) + "," + aParameters.map(Math.round) + " ");
 					break;
 
 				case "s":
 					iCurrentX	+= aParameters[2];
 					iCurrentY	+= aParameters[3];
-					aPath.push("v" + iCurrentX + "," + iCurrentY + "," + aParameters + " ");
+					aPath.push("v" + [iCurrentX, iCurrentY].map(Math.round) + "," + aParameters.map(Math.round) + " ");
 					break;
 
 				// quadratic Bézier curveto (x1 y1 x y)+
 				case "Q":
 					iCurrentX	= aParameters[2];
 					iCurrentY	= aParameters[3];
-					aPath.push("qb" + aParameters + " ");
+					aPath.push("qb" + aParameters.map(Math.round) + " ");
 //									aPath.push("l" + iCurrentX + "," + iCurrentY);
 					break;
 
 				case "q":
 					iCurrentX	+= aParameters[2];
 					iCurrentY	+= aParameters[3];
-					aPath.push("qb" + aParameters[0] + "," + aParameters[1] + "," + iCurrentX + "," + iCurrentY + " ");
+					aPath.push("qb" + [aParameters[0], aParameters[1], iCurrentX, iCurrentY].map(Math.round) + " ");
 //									aPath.push("l" + iCurrentX + "," + iCurrentY);
 					break;
 
@@ -363,7 +361,7 @@ if (cSVGElement.useVML) {
 					iCurrentX	= aParameters[0];
 					iCurrentY	= aParameters[1];
 //									aPath.push("qb" + aParameters + " ");
-					aPath.push("l" + iCurrentX + "," + iCurrentY);
+					aPath.push("l" + [iCurrentX, iCurrentY].map(Math.round));
 					break;
 
 				case "t":
@@ -371,13 +369,12 @@ if (cSVGElement.useVML) {
 					iCurrentX	+= aParameters[0];
 					iCurrentY	+= aParameters[1];
 //									aPath.push("qb" + iCurrentX + "," + iCurrentY + " ");
-					aPath.push("l" + iCurrentX + "," + iCurrentY);
+					aPath.push("l" + [iCurrentX, iCurrentY].map(Math.round));
 					break;
 
 				// elliptical arc (rx ry x-axis-rotation large-arc-flag sweep-flag x y)+
 				case "A":
 				case "a":
-
 					var iRadiusX	= aParameters[0],
 						iRadiusY	= aParameters[1],
 						iRotation	= aParameters[2],
@@ -388,65 +385,22 @@ if (cSVGElement.useVML) {
 
 					var iFromX	= iCurrentX,
 						iFromY	= iCurrentY,
-						a	= (iToX - iFromX) / (2 * iRadiusX),
-						b	= (iToY - iFromY) / (2 * iRadiusY),
-						x	= Math.atan(a / b),
-						y	= Math.asin((bSweep == bLargeArc ? -1 : 1) * Math.sqrt(a * a + b * b)),
-						iAngleTo	= x + y,
-						iAngleFrom	= x - y,
-						iCenterX	= Math.round(iToX + (a < 0 ? 1 :-1) * iRadiusX * Math.cos(iAngleTo)),
-						iCenterY	= Math.round(iToY + (b < 0 ? 1 :-1) * iRadiusY * Math.sin(iAngleTo)),
-						iLeft	= iCenterX - iRadiusX,
-						iTop	= iCenterY - iRadiusY,
-						iRight	= iCenterX + iRadiusX,
-						iBottom	= iCenterY + iRadiusY;
-//alert([x, y]);
+						a	= (iToX - iFromX) / iRadiusX,
+						b	= (iToY - iFromY) / iRadiusY;
+					// Correct value if out of range
+					a	= a <-2 ? 2 : a > 2 ? 2 : a;
+					b	= b <-2 ? 2 : b > 2 ? 2 : b;
 
-//alert("<br /><div style='font-weight:bold; color:" + this.getSVGStyleValueInherited("stroke")+ "'>&gt; " + this.boundElement.getAttribute("d") + "</div>");
-//alert(["a, b:", a, b]);
-//alert(["x, y:", x, y]);
-//alert(["from (x, y, angle):", iFromX, iFromY, Math.round(180 * iAngleFrom / Math.PI)]);
-//alert(["to (x, y, angle):", iToX, iToY, Math.round(180 * iAngleTo / Math.PI)]);
-//alert(["center:", iCenterX, iCenterY]);
+					var iAngle	= Math.atan(a / b) + Math.asin(Math.sqrt(a * a + b * b) / 2) * (bSweep == bLargeArc ? 1 :-1);
 
-//										aPath.push("l" + iToX + " " + iToY + " ");
-					aPath.push(/*(bSweep ? "wa" : */"at"/*)*/ + iLeft + "," + iTop + "," + iRight + "," + iBottom + "," + iFromX + "," + iFromY + "," + iToX + "," + iToY + " ");
-/*
+					var iCenterX	= iToX + (a <= 0 ? 1 :-1) * iRadiusX * Math.cos(iAngle),
+						iCenterY	= iToY + (b <= 0 ? 1 :-1) * iRadiusY * Math.sin(iAngle);
+//console.log(aCommands[i]);
+//console.log([a, b, iCenterX, iCenterY, iToX, iToY, 180 * iAngle / Math.PI, iAngle]);
 
-					var currDigits	= aParameters;
-					var prevEndX	= iCurrentX;
-					var prevEndY	= iCurrentY;
+//					aPath.push("l" + iToX + "," + iToY + " ");
+					aPath.push((bSweep ? "wa" : "at") + [iCenterX - iRadiusX, iCenterY - iRadiusY, iCenterX + iRadiusX, iCenterY + iRadiusY, iFromX, iFromY, iToX, iToY].map(Math.round) + " ");
 
-					var rx = currDigits[0];
-					var ry = currDigits[1];
-					var xAxisRotationFlag = currDigits[2];
-					var largeArcFlag = currDigits[3];
-					var clockwise = currDigits[4];
-					var x2 = currDigits[5];
-					var y2 = currDigits[6];
-					var centers = getEllipseCenter(prevEndX,prevEndY,x2,y2,rx,ry);
-
-					//left, top, right, bottom start(x,y) end(x,y)
-					var centerX;
-					var centerY;
-					if (largeArcFlag == 0 ^ clockwise == 0)
-					{
-						centerX = centers[0];
-						centerY = centers[1];
-					}
-					else
-					{
-						centerX = centers[2];
-						centerY = centers[3];
-					}
-					var left = Math.round(centerX - rx);
-					var top = Math.round(centerY - ry);
-					var right = Math.round(centerX + rx);
-					var bottom = Math.round(centerY + ry);
-					//wa == clockWise Arc
-					//at == AnTiclockwise arc
-					aPath.push((clockwise ? "wa" : "at") + left + "," + top + "," + right + "," + bottom + "," + Math.round(prevEndX) + "," + Math.round(prevEndY) + "," + Math.round(x2) + "," + Math.round(y2) + ' ');
-*/
 					if (sCommand == "A") {
 						iCurrentX	= aParameters[5];
 						iCurrentY	= aParameters[6];
@@ -469,24 +423,6 @@ if (cSVGElement.useVML) {
 
 		return aPath.join('') + "e";
 	};
-
-
-	function getEllipseCenter(x1,y1,x2,y2,rx,ry)
-	{
-		var y1a = y1 * rx/ry; //y1' op aangepaste schaal waar ellipsen cirkels worden
-		var y2a = y2 * rx/ry; //y2' op aangepaste schaal waar ellipsen cirkels worden
-		var deltaX = x2-x1;
-		var deltaY = y2a-y1a; //op aangepaste schaal
-		var deltaXsqr = deltaX * deltaX;
-		var deltaYsqr = deltaY * deltaY;
-		var bigroot = Math.sqrt(Math.abs(rx*rx/(deltaXsqr + deltaYsqr) - 0.25));
-		var c1 = 0.5 * (x1 + x2) + bigroot * (y1a - y2a);
-		var d1a = 0.5 * (y1a + y2a) + bigroot * (x2 - x1);
-		var c2 = 0.5 * (x1 + x2) - bigroot * (y1a - y2a);
-		var d2a = 0.5 * (y1a + y2a) - bigroot * (x2 - x1);
-		return [c1, d1a*ry/rx, c2, d2a*ry/rx];
-	};
-
 
 	// presentation
 	cSVGElement_path.prototype.$getTagOpen	= function() {
