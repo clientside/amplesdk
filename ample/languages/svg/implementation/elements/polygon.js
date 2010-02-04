@@ -21,7 +21,7 @@ if (cSVGElement.useVML) {
 				switch (oEvent.attrName) {
 					case "points":
 						var aPoints = oEvent.newValue.split(/[ ,]/);
-						oElement.path	= 'm ' + aPoints[0] + ',' + aPoints[1] + ' l ' + aPoints + ' xe';
+						oElement.path	= 'm ' + aPoints.map(Math.round) + ' xe';
 						break;
 					//
 					case "transform":
@@ -54,7 +54,7 @@ if (cSVGElement.useVML) {
 		var aPoints = this.getAttribute("points").split(/[ ,]/);
 		return '<svg2vml:shape class="svg-polygon' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '"\
 						style="position:absolute;height:100%; width:100%;"\
-						path="' + 'm ' + aPoints[0] + ',' + aPoints[1] + ' l ' + aPoints + ' xe' + '"\
+						path="m ' + aPoints.map(Math.round) + ' xe"\
 				>' + cSVGElement.getTagStyle(this);
 	};
 
