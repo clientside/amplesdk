@@ -25,8 +25,7 @@
   <polyline class="Connect" points="250,100 250,200" />
   <polyline class="Connect" points="250,200 250,300" />
   <polyline class="Connect" points="400,300 400,200" />
-  <path class="SamplePath" d="M100,200 C100,100 250,100 250,200
-                                       S400,300 400,200" />
+  <path class="SamplePath" d="M100,200 C100,100 250,100 250,200 S400,300 400,200" />
   <circle class="EndPoint" cx="100" cy="200" r="10" />
   <circle class="EndPoint" cx="250" cy="200" r="10" />
   <circle class="EndPoint" cx="400" cy="200" r="10" />
