@@ -24,7 +24,7 @@
 					<tr>
 						<td>Example</td>
 						<td>
-							<select onchange="loadExample(this.value)">
+							<select id="select" onchange="loadExample(this.value)">
 								<optgroup label="Light Pictures">
 									<option value="cameleon.xml">cameleon.xml *</option>
 									<option value="heron-cendre.xml">heron-cendre.xml *</option>
@@ -102,9 +102,12 @@
 		<script type="text/javascript">
 			var time = new Date();
 			function loadExample(sValue) {
-				ample.getElementById('container').$load(sValue);
-				//
+				// set app select
+				document.getElementById("select").value	= sValue;
+				// set app hash
 				document.location.hash	= sValue;
+				// load SVG document
+				ample.getElementById('container').$load(sValue);
 			}
 			function onExampleLoad() {
 				document.getElementById('container_time').innerHTML = 'Rendered in ' + (new Date - time) + ' ms.'
@@ -122,16 +125,13 @@
 			}
 			// App start
 			ample.addEventListener("load", function(oEvent) {
-				var sHash	= document.location.hash.replace(/^#/, '');
-				if (sHash)
-					loadExample(sHash);
+				loadExample(document.location.hash.replace(/^#/, '') || 'cameleon.xml');
 				this.removeEventListener(oEvent.type, arguments.callee, false);
 			}, false);
 		</script>
 		<script type="application/ample+xml" id="container"
 			onunload="onExampleUnload()"
 			onload="onExampleLoad()">
-			<xi:include href="cameleon.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 		</script>
  	</body>
 </html>
