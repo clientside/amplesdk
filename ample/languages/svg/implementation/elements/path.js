@@ -234,6 +234,9 @@ if (cSVGElement.useVML) {
 			iStartY		= 0,
 			iCurrentX	= 0,
 			iCurrentY	= 0,
+			aCubic		= null,
+			aQuadratic	= null,
+			iControlY	= 0,
 			aPath		= [];
 
 		if (!aCommands)
@@ -316,60 +319,66 @@ if (cSVGElement.useVML) {
 
 				// curveto (x1 y1 x2 y2 x y)+
 				case "C":
+					aPath.push("c" + aParameters.map(Math.round) + " ");
 					iCurrentX	= aParameters[aParameters.length - 2];
 					iCurrentY	= aParameters[aParameters.length - 1];
-					aPath.push("c" + aParameters.map(Math.round) + " ");
+					aCubic	= [aParameters[aParameters.length - 4], aParameters[aParameters.length - 3]];
 					break;
 
 				case "c":
+					aPath.push("v" + aParameters.map(Math.round) + " ");
 					iCurrentX	+= aParameters[aParameters.length - 2];
 					iCurrentY	+= aParameters[aParameters.length - 1];
-					aPath.push("v" + aParameters.map(Math.round) + " ");
+					aCubic	= [aParameters[aParameters.length - 4], aParameters[aParameters.length - 3]];
 					break;
 
 				// shorthand/smooth curveto (x2 y2 x y)+
 				case "S":
-					iCurrentX	= aParameters[2];
-					iCurrentY	= aParameters[3];
-					aPath.push("c" + [iCurrentX, iCurrentY].map(Math.round) + "," + aParameters.map(Math.round) + " ");
+					aPath.push("c" + [iCurrentX + (aCubic ? iCurrentX - aCubic[0] : 0), iCurrentY + (aCubic ? iCurrentY - aCubic[1] : 0)].map(Math.round) + "," + aParameters.map(Math.round) + " ");
+					iCurrentX	= aParameters[aParameters.length - 2];
+					iCurrentY	= aParameters[aParameters.length - 1];
 					break;
 
 				case "s":
+					aPath.push("v" + [iCurrentX, iCurrentY].map(Math.round) + "," + aParameters.map(Math.round) + " ");
 					iCurrentX	+= aParameters[2];
 					iCurrentY	+= aParameters[3];
-					aPath.push("v" + [iCurrentX, iCurrentY].map(Math.round) + "," + aParameters.map(Math.round) + " ");
 					break;
 
 				// quadratic Bézier curveto (x1 y1 x y)+
 				case "Q":
-					iCurrentX	= aParameters[2];
-					iCurrentY	= aParameters[3];
-					aPath.push("qb" + aParameters.map(Math.round) + " ");
-//									aPath.push("l" + iCurrentX + "," + iCurrentY);
+					// TODO
+//					aPath.push("c" + [iCurrentX, iCurrentY].map(Math.round) + aParameters.map(Math.round) + " ");
+					iCurrentX	= aParameters[aParameters.length - 2];
+					iCurrentY	= aParameters[aParameters.length - 1];
+					aQuadratic	= [aParameters[aParameters.length - 4], aParameters[aParameters.length - 3]];
+					aPath.push("l" + [iCurrentX, iCurrentY].map(Math.round) + " ");
 					break;
 
 				case "q":
-					iCurrentX	+= aParameters[2];
-					iCurrentY	+= aParameters[3];
-					aPath.push("qb" + [aParameters[0], aParameters[1], iCurrentX, iCurrentY].map(Math.round) + " ");
-//									aPath.push("l" + iCurrentX + "," + iCurrentY);
+					// TODO
+//					aPath.push("qb" + [iCurrentX, iCurrentY, aParameters[0], aParameters[1]].map(Math.round) + " ");
+					iCurrentX	+= aParameters[aParameters.length - 2];
+					iCurrentY	+= aParameters[aParameters.length - 1];
+					aQuadratic	= [aParameters[aParameters.length - 4], aParameters[aParameters.length - 3]];
+					aPath.push("l" + [iCurrentX, iCurrentY].map(Math.round) + " ");
 					break;
 
 				// Shorthand/smooth quadratic Bézier curveto (x y)+
 				case "T":
 					// TODO
-					iCurrentX	= aParameters[0];
-					iCurrentY	= aParameters[1];
-//									aPath.push("qb" + aParameters + " ");
-					aPath.push("l" + [iCurrentX, iCurrentY].map(Math.round));
+//					aPath.push("qb" + aParameters + " ");
+					iCurrentX	= aParameters[aParameters.length - 2];
+					iCurrentY	= aParameters[aParameters.length - 1];
+					aPath.push("l" + [iCurrentX, iCurrentY].map(Math.round) + " ");
 					break;
 
 				case "t":
 					// TODO
-					iCurrentX	+= aParameters[0];
-					iCurrentY	+= aParameters[1];
-//									aPath.push("qb" + iCurrentX + "," + iCurrentY + " ");
-					aPath.push("l" + [iCurrentX, iCurrentY].map(Math.round));
+//					aPath.push("qb" + iCurrentX + "," + iCurrentY + " ");
+					iCurrentX	+= aParameters[aParameters.length - 2];
+					iCurrentY	+= aParameters[aParameters.length - 1];
+					aPath.push("l" + [iCurrentX, iCurrentY].map(Math.round) + " ");
 					break;
 
 				// elliptical arc (rx ry x-axis-rotation large-arc-flag sweep-flag x y)+
@@ -388,8 +397,8 @@ if (cSVGElement.useVML) {
 						a	= (iToX - iFromX) / iRadiusX,
 						b	= (iToY - iFromY) / iRadiusY;
 					// Correct value if out of range
-					a	= a <-2 ? 2 : a > 2 ? 2 : a;
-					b	= b <-2 ? 2 : b > 2 ? 2 : b;
+					a	= a <-2 ?-2 : a > 2 ? 2 : a;
+					b	= b <-2 ?-2 : b > 2 ? 2 : b;
 
 					var iAngle	= Math.atan(a / b) + Math.asin(Math.sqrt(a * a + b * b) / 2) * (bSweep == bLargeArc ? 1 :-1);
 
