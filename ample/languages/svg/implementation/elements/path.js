@@ -228,6 +228,9 @@ if (cSVGElement.useVML) {
 		}
 	};
 
+	cSVGElement_path.hQuadratic	= {"Q":true, "q":true, "T":true, "t":true};
+	cSVGElement_path.hCubic		= {"C":true, "c":true, "S":true, "s":true};
+
 	cSVGElement_path.convert	= function(sValue) {
 		var aCommands	= sValue.match(/[mlhvcsqtaz][^mlhvcsqtaz]*/ig),
 			iStartX		= 0,
@@ -425,6 +428,13 @@ if (cSVGElement.useVML) {
 					iCurrentY	= iStartY;
 					break;
 			}
+
+			// Reset shorthands
+			if (!cSVGElement_path.hQuadratic[sCommand])
+				aQuadratic	= null;
+			else
+			if (!cSVGElement_path.hCubic[sCommand])
+				aCubic		= null;
 		}
 
 		return aPath.join('') + "e";
