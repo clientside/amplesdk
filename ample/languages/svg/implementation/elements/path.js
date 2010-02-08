@@ -340,49 +340,41 @@ if (cSVGElement.useVML) {
 					break;
 
 				case "s":
-					aPath.push("v" + [iCurrentX, iCurrentY].map(Math.round) + "," + aParameters.map(Math.round) + " ");
+					aPath.push("v" + [(aCubic ? aParameters[2] - aCubic[0] : 0), (aCubic ? aParameters[3] - aCubic[1] : 0)].map(Math.round) + "," + aParameters.map(Math.round) + " ");
 					iCurrentX	+= aParameters[2];
 					iCurrentY	+= aParameters[3];
 					break;
 
 				// quadratic Bézier curveto (x1 y1 x y)+
-				case "Q":
-					// TODO
-//					aPath.push("c" + [iCurrentX, iCurrentY].map(Math.round) + aParameters.map(Math.round) + " ");
+				case "Q":	// Using Cubic Bezier in IE
+					aPath.push("c" + [iCurrentX, iCurrentY].map(Math.round) + "," + aParameters.map(Math.round) + " ");
 					iCurrentX	= aParameters[aParameters.length - 2];
 					iCurrentY	= aParameters[aParameters.length - 1];
 					aQuadratic	= [aParameters[aParameters.length - 4], aParameters[aParameters.length - 3]];
-					aPath.push("l" + [iCurrentX, iCurrentY].map(Math.round) + " ");
 					break;
 
-				case "q":
-					// TODO
-//					aPath.push("qb" + [iCurrentX, iCurrentY, aParameters[0], aParameters[1]].map(Math.round) + " ");
+				case "q":	// Using Cubic Bezier in IE
+					aPath.push("v0,0" + "," + aParameters.map(Math.round) + " ");
 					iCurrentX	+= aParameters[aParameters.length - 2];
 					iCurrentY	+= aParameters[aParameters.length - 1];
 					aQuadratic	= [aParameters[aParameters.length - 4], aParameters[aParameters.length - 3]];
-					aPath.push("l" + [iCurrentX, iCurrentY].map(Math.round) + " ");
 					break;
 
 				// Shorthand/smooth quadratic Bézier curveto (x y)+
-				case "T":
-					// TODO
-//					aPath.push("qb" + aParameters + " ");
+				case "T":	// Using Cubic Bezier in IE
+					aPath.push("c" + [iCurrentX, iCurrentY].map(Math.round) + "," + [iCurrentX + (aQuadratic ? iCurrentX - aQuadratic[0] : 0), iCurrentY + (aQuadratic ? iCurrentY - aQuadratic[1] : 0)].map(Math.round) + "," + aParameters.map(Math.round) + " ");
 					iCurrentX	= aParameters[aParameters.length - 2];
 					iCurrentY	= aParameters[aParameters.length - 1];
-					aPath.push("l" + [iCurrentX, iCurrentY].map(Math.round) + " ");
 					break;
 
-				case "t":
-					// TODO
-//					aPath.push("qb" + iCurrentX + "," + iCurrentY + " ");
+				case "t":	// Using Cubic Bezier in IE
+					aPath.push("v0,0" + "," + [(aQuadratic ? aParameters[aParameters.length - 2] - aQuadratic[0] : 0), (aQuadratic ? aParameters[aParameters.length - 1] - aQuadratic[1] : 0)].map(Math.round) + "," + aParameters.map(Math.round) + " ");
 					iCurrentX	+= aParameters[aParameters.length - 2];
 					iCurrentY	+= aParameters[aParameters.length - 1];
-					aPath.push("l" + [iCurrentX, iCurrentY].map(Math.round) + " ");
 					break;
 
 				// elliptical arc (rx ry x-axis-rotation large-arc-flag sweep-flag x y)+
-				case "A":
+				case "A":	// TODO
 				case "a":
 					var iRadiusX	= aParameters[0],
 						iRadiusY	= aParameters[1],
@@ -400,12 +392,17 @@ if (cSVGElement.useVML) {
 					a	= a <-2 ?-2 : a > 2 ? 2 : a;
 					b	= b <-2 ?-2 : b > 2 ? 2 : b;
 
-					var iAngle	= Math.atan(a / b) + Math.asin(Math.sqrt(a * a + b * b) / 2) * (bSweep == bLargeArc ? 1 :-1);
+					var iAngle	= Math.atan(a / b) * (bSweep == bLargeArc ? 1 :-1) + Math.asin(Math.sqrt(a * a + b * b) / 2);
+					if (iAngle > Math.PI / 2)
+						iAngle	= Math.PI - iAngle;
+					if (iAngle <-Math.PI / 2)
+						iAngle	= Math.PI + iAngle;
+					var iCenterX	= iToX + (a < 0 ? 1 :-1) * iRadiusX * Math.cos(iAngle),
+						iCenterY	= iToY - (b < 0 ?-1 : 1) * iRadiusY * Math.sin(iAngle);
 
-					var iCenterX	= iToX + (a <= 0 ? 1 :-1) * iRadiusX * Math.cos(iAngle),
-						iCenterY	= iToY + (b <= 0 ? 1 :-1) * iRadiusY * Math.sin(iAngle);
 //console.log(aCommands[i]);
 //console.log([a, b, iCenterX, iCenterY, iToX, iToY, 180 * iAngle / Math.PI, iAngle]);
+//console.log(["a, b: " + a + "," + b, " bSweep, bLargeArc: " + (bSweep ? 1 : 0) + "," + (bLargeArc ? 1 : 0) + " centerX, centerY: " + Math.round(iCenterX) + "," + Math.round(iCenterY) + " Angle: " + Math.round(180 * iAngle / Math.PI)]);
 
 //					aPath.push("l" + iToX + "," + iToY + " ");
 					aPath.push((bSweep ? "wa" : "at") + [iCenterX - iRadiusX, iCenterY - iRadiusY, iCenterX + iRadiusX, iCenterY + iRadiusY, iFromX, iFromY, iToX, iToY].map(Math.round) + " ");
