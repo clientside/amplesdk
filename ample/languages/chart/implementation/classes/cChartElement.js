@@ -269,6 +269,8 @@ if (cChartElement.useVML) {
 				cChartElement.setStyle(oElementDOM, "font-family", sValue);
 			if (sValue = cChartElement.getStyle(oElementDOM, "fontWeight"))
 				cChartElement.setStyle(oElementDOM, "font-weight", sValue);
+			if (sValue = cChartElement.getStyle(oElementDOM, "fontStyle"))
+				cChartElement.setStyle(oElementDOM, "font-style", sValue);
 		}
 	};
 
@@ -422,6 +424,9 @@ if (cChartElement.useVML) {
 				break;
 			case "font-weight":
 				oElementDOM.childNodes[1].style.fontWeight	= sValue;
+				break;
+			case "font-style":
+				oElementDOM.childNodes[1].style.fontStyle	= sValue;
 				break;
 		}
 	};
