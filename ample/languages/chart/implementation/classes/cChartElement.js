@@ -249,8 +249,9 @@ if (cChartElement.useVML) {
 	};
 
 	cChartElement.applyCSS	= function(oElementDOM) {
-		var sOpacity	= cChartElement.getStyle(oElementDOM, "opacity"),
-			sValue;
+		var sValue,
+			sOpacity	= cChartElement.getStyle(oElementDOM, "opacity");
+		// Note! Setting opacity accounts for 50% of processing time!
 		cChartElement.setStyle(oElementDOM, "opacity", sOpacity == null ? "1" : sOpacity);
 		sValue = cChartElement.getStyle(oElementDOM, "fill-opacity") || sOpacity;
 		cChartElement.setStyle(oElementDOM, "fill-opacity", sValue == null ? "1" : sValue);
@@ -275,7 +276,7 @@ if (cChartElement.useVML) {
 	};
 
 	cChartElement.getStyle	= function(oElementDOM, sName) {
-		for (var sValue; oElementDOM.tagName != "DIV" && oElementDOM.nodeType != 9; oElementDOM = oElementDOM.parentNode)
+		for (var sValue; oElementDOM.tagName != "DIV"; oElementDOM = oElementDOM.parentNode)
 			if (sValue = oElementDOM.currentStyle[sName])
 				return sValue;
 		return null;
@@ -286,9 +287,9 @@ if (cChartElement.useVML) {
 			// opacity (general)
 			case "opacity":
 //				if (cSVGElement.getStyle(oElement, "fill-opacity") == "")
-					oElementDOM.fill.opacity	= sValue;
+					cChartElement.setStyle(oElementDOM, "fill-" + sName, sValue);
 //				if (cSVGElement.getStyle(oElement, "stroke-opacity") == "")
-					oElementDOM.stroke.opacity	= sValue;
+					cChartElement.setStyle(oElementDOM, "stroke-" + sName, sValue);
 				break;
 			// fill
 			case "fill":
@@ -371,7 +372,8 @@ if (cChartElement.useVML) {
 					oElementDOM.fill.color	= sValue in oSVGElement_colors ? 'rgb(' + oSVGElement_colors[sValue] + ')' : sValue;
 				break;
 			case "fill-opacity":
-				oElementDOM.fill.opacity	= sValue;
+				if (oElementDOM.fill.opacity != sValue)
+					oElementDOM.fill.opacity	= sValue;
 				break;
 			// strokes
 			case "stroke":
@@ -387,7 +389,8 @@ if (cChartElement.useVML) {
 //					oElementDOM.stroke.opacity	= (oElement.hasAttribute("stroke-opacity") ? oElement.getAttribute("stroke-opacity") : 1) * nStrokeWidth;
 				break;
 			case "stroke-opacity":
-				oElementDOM.stroke.opacity	=/*(oElement.getAttribute("stroke-width").match(/([\d.]+)(.*)/) && RegExp.$1 < 1 ? RegExp.$1 : 1) */ sValue;
+				if (oElementDOM.stroke.opacity != sValue)
+					oElementDOM.stroke.opacity	=/*(oElement.getAttribute("stroke-width").match(/([\d.]+)(.*)/) && RegExp.$1 < 1 ? RegExp.$1 : 1) */ sValue;
 				break;
 			case "stroke-linejoin":
 				oElementDOM.stroke.joinStyle	= sValue;
@@ -574,8 +577,6 @@ if (cChartElement.useVML) {
 		'yellowgreen':	[154,205,50]
 	};
 }
-
-window.svg2vml = cChartElement.convert;
 
 // Register Element with language
 oChartNamespace.setElement("#element", cChartElement);
