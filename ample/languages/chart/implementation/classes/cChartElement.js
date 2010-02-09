@@ -36,12 +36,18 @@ if (cChartElement.useVML) {
 	// Add namespace
 	document.namespaces.add("chart2vml", "urn:schemas-microsoft-com:vml", "#default#VML");
 
+	cChartElement.hQuadratic	= {"Q":true, "q":true, "T":true, "t":true};
+	cChartElement.hCubic		= {"C":true, "c":true, "S":true, "s":true};
+
 	cChartElement.convert	= function(sValue) {
 		var aCommands	= sValue.match(/[mlhvcsqtaz][^mlhvcsqtaz]*/ig),
 			iStartX		= 0,
 			iStartY		= 0,
 			iCurrentX	= 0,
 			iCurrentY	= 0,
+			aCubic		= null,
+			aQuadratic	= null,
+			iControlY	= 0,
 			aPath		= [];
 
 		if (!aCommands)
@@ -52,11 +58,9 @@ if (cChartElement.useVML) {
 			aParameters	= aCommands[i].substr(1).
 								replace(/(\d)-/g, '$1,-').
 								replace(/^\s+|\s+$/g, '').
-								split(/[,\s]/);
-
-			// Round command parameters values
-			for (var j = 0; j < aParameters.length; j++)
-				aParameters[j]	= Math.round(aParameters[j]);
+								split(/[,\s]/).map(function(nValue) {
+									return nValue * 1;
+								});
 
 			switch (sCommand) {
 				// moveto (x y)+
@@ -65,7 +69,7 @@ if (cChartElement.useVML) {
 					iCurrentY	= aParameters[1];
 					iStartX		= iCurrentX;
 					iStartY		= iCurrentY;
-					aPath.push("m" + aParameters.slice(0, 2) + " ");
+					aPath.push("m" + aParameters.slice(0, 2).map(Math.round) + " ");
 
 					// If there are more that 2 parameters, draw line out of the rest of parameters
 					if (aParameters.length == 2)
@@ -77,7 +81,7 @@ if (cChartElement.useVML) {
 				case "L":
 					iCurrentX	= aParameters[aParameters.length - 2];
 					iCurrentY	= aParameters[aParameters.length - 1];
-					aPath.push("l" + aParameters + " ");
+					aPath.push("l" + aParameters.map(Math.round) + " ");
 					break;
 
 				case "m":
@@ -86,7 +90,7 @@ if (cChartElement.useVML) {
 					iStartX		= iCurrentX;
 					iStartY		= iCurrentY;
 
-					aPath.push("t" + aParameters.slice(0, 2) + " ");
+					aPath.push("t" + aParameters.slice(0, 2).map(Math.round) + " ");
 
 					// If there are more that 2 parameters, draw line out of the rest of parameters
 					if (aParameters.length == 2)
@@ -99,93 +103,90 @@ if (cChartElement.useVML) {
 						iCurrentX	+= aParameters[j];
 						iCurrentY	+= aParameters[j + 1];
 					}
-					aPath.push("r" + aParameters + " ");
+					aPath.push("r" + aParameters.map(Math.round) + " ");
 					break;
 
 				// horizontal lineto x+
 				case "H":
 					iCurrentX	= aParameters[0];
-					aPath.push("l" + iCurrentX + "," + iCurrentY + " ");
+					aPath.push("l" + [iCurrentX, iCurrentY].map(Math.round) + " ");
 					break;
 
 				case "h":
 					iCurrentX	+= aParameters[0];
-					aPath.push("r" + aParameters[0] + "," + "0" + " ");
+					aPath.push("r" + [aParameters[0], 0].map(Math.round) + " ");
 					break;
 
 				// vertical lineto y+
 				case "V":
 					iCurrentY	= aParameters[0];
-					aPath.push("l" + iCurrentX + "," + iCurrentY + " ");
+					aPath.push("l" + [iCurrentX, iCurrentY].map(Math.round) + " ");
 					break;
 
 				case "v":
 					iCurrentY	+= aParameters[0];
-					aPath.push("r" + "0" + "," + aParameters[0] + " ");
+					aPath.push("r" + [0, aParameters[0]].map(Math.round) + " ");
 					break;
 
 				// curveto (x1 y1 x2 y2 x y)+
 				case "C":
+					aPath.push("c" + aParameters.map(Math.round) + " ");
 					iCurrentX	= aParameters[aParameters.length - 2];
 					iCurrentY	= aParameters[aParameters.length - 1];
-					aPath.push("c" + aParameters + " ");
+					aCubic	= [aParameters[aParameters.length - 4], aParameters[aParameters.length - 3]];
 					break;
 
 				case "c":
+					aPath.push("v" + aParameters.map(Math.round) + " ");
 					iCurrentX	+= aParameters[aParameters.length - 2];
 					iCurrentY	+= aParameters[aParameters.length - 1];
-					aPath.push("v" + aParameters + " ");
+					aCubic	= [aParameters[aParameters.length - 4], aParameters[aParameters.length - 3]];
 					break;
 
 				// shorthand/smooth curveto (x2 y2 x y)+
 				case "S":
-					iCurrentX	= aParameters[2];
-					iCurrentY	= aParameters[3];
-					aPath.push("c" + iCurrentX + "," + iCurrentY + "," + aParameters + " ");
+					aPath.push("c" + [iCurrentX + (aCubic ? iCurrentX - aCubic[0] : 0), iCurrentY + (aCubic ? iCurrentY - aCubic[1] : 0)].map(Math.round) + "," + aParameters.map(Math.round) + " ");
+					iCurrentX	= aParameters[aParameters.length - 2];
+					iCurrentY	= aParameters[aParameters.length - 1];
 					break;
 
 				case "s":
+					aPath.push("v" + [(aCubic ? aParameters[2] - aCubic[0] : 0), (aCubic ? aParameters[3] - aCubic[1] : 0)].map(Math.round) + "," + aParameters.map(Math.round) + " ");
 					iCurrentX	+= aParameters[2];
 					iCurrentY	+= aParameters[3];
-					aPath.push("v" + iCurrentX + "," + iCurrentY + "," + aParameters + " ");
 					break;
 
 				// quadratic Bézier curveto (x1 y1 x y)+
-				case "Q":
-					iCurrentX	= aParameters[2];
-					iCurrentY	= aParameters[3];
-					aPath.push("qb" + aParameters + " ");
-//									aPath.push("l" + iCurrentX + "," + iCurrentY);
+				case "Q":	// Using Cubic Bezier in IE
+					aPath.push("c" + [iCurrentX, iCurrentY].map(Math.round) + "," + aParameters.map(Math.round) + " ");
+					iCurrentX	= aParameters[aParameters.length - 2];
+					iCurrentY	= aParameters[aParameters.length - 1];
+					aQuadratic	= [aParameters[aParameters.length - 4], aParameters[aParameters.length - 3]];
 					break;
 
-				case "q":
-					iCurrentX	+= aParameters[2];
-					iCurrentY	+= aParameters[3];
-					aPath.push("qb" + aParameters[0] + "," + aParameters[1] + "," + iCurrentX + "," + iCurrentY + " ");
-//									aPath.push("l" + iCurrentX + "," + iCurrentY);
+				case "q":	// Using Cubic Bezier in IE
+					aPath.push("v0,0" + "," + aParameters.map(Math.round) + " ");
+					iCurrentX	+= aParameters[aParameters.length - 2];
+					iCurrentY	+= aParameters[aParameters.length - 1];
+					aQuadratic	= [aParameters[aParameters.length - 4], aParameters[aParameters.length - 3]];
 					break;
 
 				// Shorthand/smooth quadratic Bézier curveto (x y)+
-				case "T":
-					// TODO
-					iCurrentX	= aParameters[0];
-					iCurrentY	= aParameters[1];
-//									aPath.push("qb" + aParameters + " ");
-					aPath.push("l" + iCurrentX + "," + iCurrentY);
+				case "T":	// Using Cubic Bezier in IE
+					aPath.push("c" + [iCurrentX, iCurrentY].map(Math.round) + "," + [iCurrentX + (aQuadratic ? iCurrentX - aQuadratic[0] : 0), iCurrentY + (aQuadratic ? iCurrentY - aQuadratic[1] : 0)].map(Math.round) + "," + aParameters.map(Math.round) + " ");
+					iCurrentX	= aParameters[aParameters.length - 2];
+					iCurrentY	= aParameters[aParameters.length - 1];
 					break;
 
-				case "t":
-					// TODO
-					iCurrentX	+= aParameters[0];
-					iCurrentY	+= aParameters[1];
-//									aPath.push("qb" + iCurrentX + "," + iCurrentY + " ");
-					aPath.push("l" + iCurrentX + "," + iCurrentY);
+				case "t":	// Using Cubic Bezier in IE
+					aPath.push("v0,0" + "," + [(aQuadratic ? aParameters[aParameters.length - 2] - aQuadratic[0] : 0), (aQuadratic ? aParameters[aParameters.length - 1] - aQuadratic[1] : 0)].map(Math.round) + "," + aParameters.map(Math.round) + " ");
+					iCurrentX	+= aParameters[aParameters.length - 2];
+					iCurrentY	+= aParameters[aParameters.length - 1];
 					break;
 
 				// elliptical arc (rx ry x-axis-rotation large-arc-flag sweep-flag x y)+
-				case "A":
+				case "A":	// TODO
 				case "a":
-
 					var iRadiusX	= aParameters[0],
 						iRadiusY	= aParameters[1],
 						iRotation	= aParameters[2],
@@ -196,65 +197,27 @@ if (cChartElement.useVML) {
 
 					var iFromX	= iCurrentX,
 						iFromY	= iCurrentY,
-						a	= (iToX - iFromX) / (2 * iRadiusX),
-						b	= (iToY - iFromY) / (2 * iRadiusY),
-						x	= Math.atan(a / b),
-						y	= Math.asin((bSweep == bLargeArc ? -1 : 1) * Math.sqrt(a * a + b * b)),
-						iAngleTo	= x + y,
-						iAngleFrom	= x - y,
-						iCenterX	= Math.round(iToX + (a < 0 ? 1 :-1) * iRadiusX * Math.cos(iAngleTo)),
-						iCenterY	= Math.round(iToY + (b < 0 ? 1 :-1) * iRadiusY * Math.sin(iAngleTo)),
-						iLeft	= iCenterX - iRadiusX,
-						iTop	= iCenterY - iRadiusY,
-						iRight	= iCenterX + iRadiusX,
-						iBottom	= iCenterY + iRadiusY;
-//alert([x, y]);
+						a	= (iToX - iFromX) / iRadiusX,
+						b	= (iToY - iFromY) / iRadiusY;
+					// Correct value if out of range
+					a	= a <-2 ?-2 : a > 2 ? 2 : a;
+					b	= b <-2 ?-2 : b > 2 ? 2 : b;
 
-//alert("<br /><div style='font-weight:bold; color:" + this.getSVGStyleValueInherited("stroke")+ "'>&gt; " + this.boundElement.getAttribute("d") + "</div>");
-//alert(["a, b:", a, b]);
-//alert(["x, y:", x, y]);
-//alert(["from (x, y, angle):", iFromX, iFromY, Math.round(180 * iAngleFrom / Math.PI)]);
-//alert(["to (x, y, angle):", iToX, iToY, Math.round(180 * iAngleTo / Math.PI)]);
-//alert(["center:", iCenterX, iCenterY]);
+					var iAngle	= Math.atan(a / b) * (bSweep == bLargeArc ? 1 :-1) + Math.asin(Math.sqrt(a * a + b * b) / 2);
+					if (iAngle > Math.PI / 2)
+						iAngle	= Math.PI - iAngle;
+					if (iAngle <-Math.PI / 2)
+						iAngle	= Math.PI + iAngle;
+					var iCenterX	= iToX + (a < 0 ? 1 :-1) * iRadiusX * Math.cos(iAngle),
+						iCenterY	= iToY - (b < 0 ?-1 : 1) * iRadiusY * Math.sin(iAngle);
 
-//										aPath.push("l" + iToX + " " + iToY + " ");
-					aPath.push(/*(bSweep ? "wa" : */"at"/*)*/ + iLeft + "," + iTop + "," + iRight + "," + iBottom + "," + iFromX + "," + iFromY + "," + iToX + "," + iToY + " ");
-/*
+//console.log(aCommands[i]);
+//console.log([a, b, iCenterX, iCenterY, iToX, iToY, 180 * iAngle / Math.PI, iAngle]);
+//console.log(["a, b: " + a + "," + b, " bSweep, bLargeArc: " + (bSweep ? 1 : 0) + "," + (bLargeArc ? 1 : 0) + " centerX, centerY: " + Math.round(iCenterX) + "," + Math.round(iCenterY) + " Angle: " + Math.round(180 * iAngle / Math.PI)]);
 
-					var currDigits	= aParameters;
-					var prevEndX	= iCurrentX;
-					var prevEndY	= iCurrentY;
+//					aPath.push("l" + iToX + "," + iToY + " ");
+					aPath.push((bSweep ? "wa" : "at") + [iCenterX - iRadiusX, iCenterY - iRadiusY, iCenterX + iRadiusX, iCenterY + iRadiusY, iFromX, iFromY, iToX, iToY].map(Math.round) + " ");
 
-					var rx = currDigits[0];
-					var ry = currDigits[1];
-					var xAxisRotationFlag = currDigits[2];
-					var largeArcFlag = currDigits[3];
-					var clockwise = currDigits[4];
-					var x2 = currDigits[5];
-					var y2 = currDigits[6];
-					var centers = getEllipseCenter(prevEndX,prevEndY,x2,y2,rx,ry);
-
-					//left, top, right, bottom start(x,y) end(x,y)
-					var centerX;
-					var centerY;
-					if (largeArcFlag == 0 ^ clockwise == 0)
-					{
-						centerX = centers[0];
-						centerY = centers[1];
-					}
-					else
-					{
-						centerX = centers[2];
-						centerY = centers[3];
-					}
-					var left = Math.round(centerX - rx);
-					var top = Math.round(centerY - ry);
-					var right = Math.round(centerX + rx);
-					var bottom = Math.round(centerY + ry);
-					//wa == clockWise Arc
-					//at == AnTiclockwise arc
-					aPath.push((clockwise ? "wa" : "at") + left + "," + top + "," + right + "," + bottom + "," + Math.round(prevEndX) + "," + Math.round(prevEndY) + "," + Math.round(x2) + "," + Math.round(y2) + ' ');
-*/
 					if (sCommand == "A") {
 						iCurrentX	= aParameters[5];
 						iCurrentY	= aParameters[6];
@@ -273,9 +236,329 @@ if (cChartElement.useVML) {
 					iCurrentY	= iStartY;
 					break;
 			}
+
+			// Reset shorthands
+			if (!cChartElement.hQuadratic[sCommand])
+				aQuadratic	= null;
+			else
+			if (!cChartElement.hCubic[sCommand])
+				aCubic		= null;
 		}
 
 		return aPath.join('') + "e";
+	};
+
+	cChartElement.applyCSS	= function(oElementDOM) {
+		var sOpacity	= cChartElement.getStyle(oElementDOM, "opacity"),
+			sValue;
+		cChartElement.setStyle(oElementDOM, "opacity", sOpacity == null ? "1" : sOpacity);
+		sValue = cChartElement.getStyle(oElementDOM, "fill-opacity") || sOpacity;
+		cChartElement.setStyle(oElementDOM, "fill-opacity", sValue == null ? "1" : sValue);
+		sValue = cChartElement.getStyle(oElementDOM, "stroke-opacity") || sOpacity;
+		cChartElement.setStyle(oElementDOM, "stroke-opacity", sValue == null ? "1" : sValue);
+		if (sValue = cChartElement.getStyle(oElementDOM, "fill"))
+			cChartElement.setStyle(oElementDOM, "fill", sValue);
+		if (sValue = cChartElement.getStyle(oElementDOM, "stroke"))
+			cChartElement.setStyle(oElementDOM, "stroke", sValue);
+		if (sValue = cChartElement.getStyle(oElementDOM, "stroke-width"))
+			cChartElement.setStyle(oElementDOM, "stroke-width", sValue);
+	};
+
+	cChartElement.getStyle	= function(oElementDOM, sName) {
+		for (var sValue; oElementDOM.tagName != "DIV" && oElementDOM.nodeType != 9; oElementDOM = oElementDOM.parentNode)
+			if (sValue = oElementDOM.currentStyle[sName])
+				return sValue;
+		return null;
+	};
+
+	cChartElement.setStyle	= function(oElementDOM, sName, sValue) {
+		switch (sName) {
+			// opacity (general)
+			case "opacity":
+//				if (cSVGElement.getStyle(oElement, "fill-opacity") == "")
+					oElementDOM.fill.opacity	= sValue;
+//				if (cSVGElement.getStyle(oElement, "stroke-opacity") == "")
+					oElementDOM.stroke.opacity	= sValue;
+				break;
+			// fill
+			case "fill":
+//				oElementDOM.fill.on	= sValue != "none";
+				var aValue, oGradient;
+				if (aValue = sValue.match(/url\(#([\w-]+)\)/)) {
+					if (oGradient = oElement.ownerDocument.getElementById(aValue[1])) {
+						if (oGradient instanceof cSVGElement_linearGradient || oGradient instanceof cSVGElement_radialGradient) {
+							if (oGradient instanceof cSVGElement_linearGradient) {
+								var x1	= parseFloat(oGradient.getAttribute("x1") || "0") / (oGradient.getAttribute("x1").indexOf("%") ==-1 ? 1 : 100),
+									x2	= parseFloat(oGradient.getAttribute("x2") || "1") / (oGradient.getAttribute("x2").indexOf("%") ==-1 ? 1 : 100),
+									y1	= parseFloat(oGradient.getAttribute("y1") || "0") / (oGradient.getAttribute("y1").indexOf("%") ==-1 ? 1 : 100),
+									y2	= parseFloat(oGradient.getAttribute("y2") || "0") / (oGradient.getAttribute("y2").indexOf("%") ==-1 ? 1 : 100);
+
+								if (x1 == x2 && y1 == y2) {
+									oElementDOM.fill.type		= "solid";
+								}
+								else {
+									oElementDOM.fill.type		= "gradient";
+									oElementDOM.fill.focus		= y2 > y1 ? "0%" : "100%";
+									oElementDOM.fill.angle		= 180 + Math.round(Math.atan((x1 - x2) / (y1 - y2)) * 180 / Math.PI);
+								}
+							}
+							else {
+								var cx	= parseFloat(oGradient.getAttribute("cx") || "0.5") / (oGradient.getAttribute("cx").indexOf("%") ==-1 ? 1 : 100),
+									cy	= parseFloat(oGradient.getAttribute("cy") || "0.5") / (oGradient.getAttribute("cy").indexOf("%") ==-1 ? 1 : 100);
+								oElementDOM.fill.type		= "gradientradial";
+								oElementDOM.fill.focus		= "100%";	// Must be set to 100%, otherwise no gradient visible
+								// Properties specific to radial gradients
+								oElementDOM.fill.focusposition	= cx + " " + cy;
+								oElementDOM.fill.focussize		= "0 0";//(oGradient.getAttribute("r") || 0) + " " + (oGradient.getAttribute("r") || 0);
+							}
+							// VML sigma fill method is most similar to SVG
+							oElementDOM.fill.method		= "sigma";
+
+							// Find referred gradient with stops
+							for (var oGradientStop = oGradient; oGradientStop && oGradientStop.hasAttribute("xlink:href"); oGradientStop = oElement.ownerDocument.getElementById(oGradientStop.getAttribute("xlink:href").substr(1)))
+								if (oGradientStop.hasChildNodes())
+									break;
+
+							if (oGradientStop) {
+								// Collect stops
+								var aColors	= [];
+								for (var i = 0, oStop, sColor; oStop = oGradientStop.childNodes[i]; i++)
+									if (oGradientStop.childNodes[i] instanceof cSVGElement_stop)
+										aColors.push([parseFloat(oStop.getAttribute("offset") || "1") / (oStop.getAttribute("offset").indexOf("%") ==-1 ? 1 : 100), ((sColor = cSVGElement.getStyle(oStop, "stop-color")) in oSVGElement_colors ? 'rgb(' + oSVGElement_colors[sColor] + ')' : sColor), cSVGElement.getStyle(oStop, "stop-opacity") || "1"]);
+
+								var nLength	= aColors.length;
+								if (nLength) {
+									// Order on offset
+									aColors	= aColors.sort(function(color1, color2) {
+										return color1[0] > color2[0];
+									});
+
+									// If there is no "0%" offset defined, set color1
+									if (aColors[0][0] != 0)
+										oElementDOM.fill.color		= aColors[0][1];
+									// If there is no "100%" offset defined, set color2
+									if (aColors[nLength - 1][0] != 1)
+										oElementDOM.fill.color2		= aColors[nLength - 1][1];
+
+									oElementDOM.fill.opacity	= aColors[0][2];
+									oElementDOM.fill.opacity2	= aColors[nLength - 1][2];
+
+									var aColors2	= [];
+									for (var i = 0; i < nLength; i++)
+										aColors2.push(aColors[i][0].toFixed(3) + " " + aColors[i][1]);
+
+									oElementDOM.fill.colors.value	= aColors2.join(", ");
+								}
+							}
+						}
+						else
+						if (oGradient instanceof cSVGElement_pattern) {
+							// TODO: looks to be impossible to do
+						}
+					}
+				}
+				else
+					oElementDOM.fill.color	= sValue in oSVGElement_colors ? 'rgb(' + oSVGElement_colors[sValue] + ')' : sValue;
+				break;
+			case "fill-opacity":
+				oElementDOM.fill.opacity	= sValue;
+				break;
+			// strokes
+			case "stroke":
+//				oElementDOM.stroke.on	= sValue != "none";
+				oElementDOM.stroke.color	= sValue in oSVGElement_colors ? 'rgb(' + oSVGElement_colors[sValue] + ')' : sValue;
+				break;
+			case "stroke-width":
+				var aStroke	= sValue.match(/([\d.]+)(.*)/),
+					nStrokeWidth	= aStroke[1] * 1,
+					sStrokeUnit		= aStroke[2] || 'px';
+				oElementDOM.stroke.weight	= nStrokeWidth + sStrokeUnit;
+//				if (nStrokeWidth < 1 && !(oElement instanceof cSVGElement_text || oElement instanceof cSVGElement_tspan || oElement instanceof cSVGElement_textPath))
+//					oElementDOM.stroke.opacity	= (oElement.hasAttribute("stroke-opacity") ? oElement.getAttribute("stroke-opacity") : 1) * nStrokeWidth;
+				break;
+			case "stroke-opacity":
+				oElementDOM.stroke.opacity	=/*(oElement.getAttribute("stroke-width").match(/([\d.]+)(.*)/) && RegExp.$1 < 1 ? RegExp.$1 : 1) */ sValue;
+				break;
+			case "stroke-linejoin":
+				oElementDOM.stroke.joinStyle	= sValue;
+				break;
+			case "stroke-linecap":
+				oElementDOM.stroke.endCap		= cSVGElement.strokeLineCapToEndCap(sValue);
+				break;
+			case "stroke-dasharray":
+				oElementDOM.stroke.dashStyle	= sValue;
+				break;
+			// markers
+			case "marker-start":
+				oElementDOM.stroke.startarrow	= sValue == "none" ? "none" : "classic";
+				break;
+			case "marker-end":
+				oElementDOM.stroke.endarrow	= sValue == "none" ? "none" : "classic";
+				break;
+			// fonts
+			case "text-anchor":
+				oElement.$getContainer("label").style["v-text-align"]	= cSVGElement.textAnchorToVTextAlign(sValue);
+				break;
+			case "font-size":
+				var aFontSize	= sValue.match(/(^[\d.]*)(.*)$/),
+					sFontSizeUnit	= aFontSize[2] || "px",
+					nFontSizeValue	= aFontSize[1],
+					nFontSize	= Math.round(nFontSizeValue * 1),
+					nMarginTop	= -(sFontSizeUnit == "pt" ? Math.round(nFontSizeValue * 0.35) : nFontSizeValue * 0.35);
+
+				oElementDOM.style.marginTop	=-(sFontSizeUnit == "pt" ? Math.round(nFontSizeValue * 0.35) : nFontSizeValue * 0.35) + "px";
+				oElement.$getContainer("label").style.fontSize	= nFontSize + sFontSizeUnit;
+				break;
+			case "font-family":
+				oElement.$getContainer("label").style.fontFamily	= "'" + sValue + "'";
+				break;
+			case "font-weight":
+				oElement.$getContainer("label").style.fontWeight	= sValue;
+				break;
+		}
+	};
+
+	var oSVGElement_colors	= {
+		'aliceblue':	[240,248,255],
+		'antiquewhite':	[250,235,215],
+		'aqua':			[0,255,255],
+		'aquamarine':	[127,255,212],
+		'azure':		[240,255,255],
+		'beige':		[245,245,220],
+		'bisque':		[255,228,196],
+		'black':		[0,0,0],
+		'blanchedalmond':	[255,235,205],
+		'blue':			[0,0,255],
+		'blueviolet':	[138,43,226],
+		'brown':		[165,42,42],
+		'burlywood':	[222,184,135],
+		'cadetblue':	[95,158,160],
+		'chartreuse':	[127,255,0],
+		'chocolate':	[210,105,30],
+		'coral':		[255,127,80],
+		'cornflowerblue':	[100,149,237],
+		'cornsilk':		[255,248,220],
+		'crimson':		[220,20,60],
+		'cyan':			[0,255,255],
+		'darkblue':		[0,0,139],
+		'darkcyan':		[0,139,139],
+		'darkgoldenrod':[184,134,11],
+		'darkgray':		[169,169,169],
+		'darkgreen':	[0,100,0],
+		'darkkhaki':	[189,183,107],
+		'darkmagenta':	[139,0,139],
+		'darkolivegreen':	[85,107,47],
+		'darkorange':	[255,140,0],
+		'darkorchid':	[153,50,204],
+		'darkred':		[139,0,0],
+		'darksalmon':	[233,150,122],
+		'darkseagreen':	[143,188,143],
+		'darkslateblue':[72,61,139],
+		'darkslategray':[47,79,79],
+		'darkturquoise':[0,206,209],
+		'darkviolet':	[148,0,211],
+		'deeppink':		[255,20,147],
+		'deepskyblue':	[0,191,255],
+		'dimgray':		[105,105,105],
+		'dodgerblue':	[30,144,255],
+		'firebrick':	[178,34,34],
+		'floralwhite':	[255,250,240],
+		'forestgreen':	[34,139,34],
+		'fuchsia':		[255,0,255],
+		'gainsboro':	[220,220,220],
+		'ghostwhite':	[248,248,255],
+		'gold':			[255,215,0],
+		'goldenrod':	[218,165,32],
+		'gray':			[128,128,128],
+		'green':		[0,128,0],
+		'greenyellow':	[173,255,47],
+		'honeydew':		[240,255,240],
+		'hotpink':		[255,105,180],
+		'indianred':	[205,92,92],
+		'indigo':		[75,0,130],
+		'ivory':		[255,255,240],
+		'khaki':		[240,230,140],
+		'lavender':		[230,230,250],
+		'lavenderblush':[255,240,245],
+		'lawngreen':	[124,252,0],
+		'lemonchiffon':	[255,250,205],
+		'lightblue':	[173,216,230],
+		'lightcoral':	[240,128,128],
+		'lightcyan':	[224,255,255],
+		'lightgoldenrodyellow':	[250,250,210],
+		'lightgreen':	[144,238,144],
+		'lightgrey':	[211,211,211],
+		'lightpink':	[255,182,193],
+		'lightsalmon':	[255,160,122],
+		'lightseagreen':[32,178,170],
+		'lightskyblue':	[135,206,250],
+		'lightslategray':	[119,136,153],
+		'lightsteelblue':	[176,196,222],
+		'lightyellow':	[255,255,224],
+		'lime':			[0,255,0],
+		'limegreen':	[50,205,50],
+		'linen':		[250,240,230],
+		'magenta':		[255,0,255],
+		'maroon':		[128,0,0],
+		'mediumaquamarine':	[102,205,170],
+		'mediumblue':	[0,0,205],
+		'mediumorchid':	[186,85,211],
+		'mediumpurple':	[147,112,219],
+		'mediumseagreen':	[60,179,113],
+		'mediumslateblue':	[123,104,238],
+		'mediumspringgreen':[0,250,154],
+		'mediumturquoise':	[72,209,204],
+		'mediumvioletred':	[199,21,133],
+		'midnightblue':	[25,25,112],
+		'mintcream':	[245,255,250],
+		'mistyrose':	[255,228,225],
+		'moccasin':		[255,228,181],
+		'navajowhite':	[255,222,173],
+		'navy':			[0,0,128],
+		'oldlace':		[253,245,230],
+		'olive':		[128,128,0],
+		'olivedrab':	[107,142,35],
+		'orange':		[255,165,0],
+		'orangered':	[255,69,0],
+		'orchid':		[218,112,214],
+		'palegoldenrod':[238,232,170],
+		'palegreen':	[152,251,152],
+		'paleturquoise':[175,238,238],
+		'palevioletred':[219,112,147],
+		'papayawhip':	[255,239,213],
+		'peachpuff':	[255,218,185],
+		'peru':			[205,133,63],
+		'pink':			[255,192,203],
+		'plum':			[221,160,221],
+		'powderblue':	[176,224,230],
+		'purple':		[128,0,128],
+		'red':			[255,0,0],
+		'rosybrown':	[188,143,143],
+		'royalblue':	[65,105,225],
+		'saddlebrown':	[139,69,19],
+		'salmon':		[250,128,114],
+		'sandybrown':	[244,164,96],
+		'seagreen':		[46,139,87],
+		'seashell':		[255,245,238],
+		'sienna':		[160,82,45],
+		'silver':		[192,192,192],
+		'skyblue':		[135,206,235],
+		'slateblue':	[106,90,205],
+		'slategray':	[112,128,144],
+		'snow':			[255,250,250],
+		'springgreen':	[0,255,127],
+		'steelblue':	[70,130,180],
+		'tan':			[210,180,140],
+		'teal':			[0,128,128],
+		'thistle':		[216,191,216],
+		'tomato':		[255,99,71],
+		'turquoise':	[64,224,208],
+		'violet':		[238,130,238],
+		'wheat':		[245,222,179],
+		'white':		[255,255,255],
+		'whitesmoke':	[245,245,245],
+		'yellow':		[255,255,0],
+		'yellowgreen':	[154,205,50]
 	};
 }
 
