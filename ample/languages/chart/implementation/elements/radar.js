@@ -114,7 +114,7 @@ else {
 	cChartElement_radar.prototype.$getTagOpen	= function() {
 		return '<div class="c-radar' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
 					<chart2vml:group class="c-radar--canvas" style="position:relative;display:inline-block;x-overflow:hidden;width:400px;height:300px" coordOrigin="0 0" coordSize="400 300">\
-						<chart2vml:shape class="c-radar--title" path="m0,0 l300,0" fillcolor="blue" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%;top:30px;xleft:150px">\
+						<chart2vml:shape class="c-radar--title" path="m0,0 l300,0" fillcolor="black" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%;top:30px;xleft:150px">\
 							<chart2vml:path textpathok="true" />\
 							<chart2vml:textpath on="true" string="' + this.getAttribute("title")+ '" style="v-text-align:center"/>\
 						</chart2vml:shape>\
