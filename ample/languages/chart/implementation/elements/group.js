@@ -59,11 +59,11 @@ else {
 	})();
 
 	cChartElement_group.recalcCSS	= function(oElement) {
+		cChartElement.applyCSS(oElement.$getContainer("label"));
 		cChartElement.applyCSS(oElement.$getContainer("path"));
 		cChartElement.applyCSS(oElement.$getContainer("shadow"));
 		cChartElement.applyCSS(oElement.$getContainer("line"));
 		cChartElement.applyCSS(oElement.$getContainer("area"));
-//		cChartElement.applyCSS(oElement.$getContainer("label"));
 	};
 
 	cChartElement_group.handlers['DOMNodeInsertedIntoDocument']	= function(oEvent) {
@@ -85,9 +85,9 @@ else {
 					<chart2vml:shape class="c-group--shadow" filled="false" style="position:absolute;width:100%;height:100%;margin-left:2px;margin-top:2px;"/>\
 					<chart2vml:shape class="c-group--line" filled="false" style="position:absolute;width:100%;height:100%"/>\
 					<chart2vml:shape class="c-group--area" stroked="false" fillcolor="black" style="position:absolute;width:100%;height:100%"/>\
-					<chart2vml:shape path="m0,0 l100,0" stroked="false" fillcolor="black" allowoverlap="true" style="position:absolute;width:100%;height:100%;margin-left:0;margin-top:0">\
+					<chart2vml:shape path="m0,0 l100,0" class="c-group--label" stroked="false" fillcolor="black" allowoverlap="true" style="position:absolute;width:100%;height:100%;margin-left:0;margin-top:0">\
 						<chart2vml:path textpathok="true" />\
-						<chart2vml:textpath on="true" class="c-group--label" string="' + this.getAttribute("label")+ '" style="v-text-align:left" />\
+						<chart2vml:textpath on="true" string="' + this.getAttribute("label")+ '" style="v-text-align:left" />\
 					</chart2vml:shape>\
 					<chart2vml:group class="c-group--gateway" style="position:absolute;width:100%;height:100%">';
 	};

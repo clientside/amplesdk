@@ -28,6 +28,7 @@ if (!cChartElement.useVML) {
 }
 else {
 	cChartElement_item.recalcCSS	= function(oElement) {
+		cChartElement.applyCSS(oElement.$getContainer("label"));
 		cChartElement.applyCSS(oElement.$getContainer("value"));
 		cChartElement.applyCSS(oElement.$getContainer("shadow"));
 		cChartElement.applyCSS(oElement.$getContainer("handle"));
@@ -44,9 +45,9 @@ else {
 					<chart2vml:shape class="c-item--shadow" style="position:absolute;width:100%;height:100%;margin-top:2px;margin-left:2px;"/>\
 					<chart2vml:shape class="c-item--value" fillcolor="black" style="position:absolute;height:100%;width:100%"/>\
 					<chart2vml:shape class="c-item--handle" stroked="true" filled="false" style="position:absolute;height:100%;width:100%"/>\
-					<chart2vml:shape class="c-item--textPath" path="m0,0 l100,0" fillcolor="green" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%">\
+					<chart2vml:shape class="c-item--textPath c-item--label" path="m0,0 l100,0" fillcolor="green" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%">\
 						<chart2vml:path textpathok="true" />\
-						<chart2vml:textpath on="true" class="c-item--label" string="' + this.getAttribute("label")+ '"/>\
+						<chart2vml:textpath on="true" string="' + this.getAttribute("label")+ '"/>\
 					</chart2vml:shape>\
 				</chart2vml:group>';
 	};

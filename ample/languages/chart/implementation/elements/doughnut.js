@@ -88,15 +88,15 @@ else {
 	})();
 
 	cChartElement_doughnut.recalcCSS	= function(oElement) {
-//		cChartElement.applyCSS(oElement.$getContainer("title"));
+		cChartElement.applyCSS(oElement.$getContainer("title"));
 	};
 
 	cChartElement_doughnut.prototype.$getTagOpen	= function() {
 		return '<div class="c-doughnut' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
 					<chart2vml:group class="c-doughnut--canvas" style="position:relative;display:inline-block;x-overflow:hidden;width:300px;height:300px" coordOrigin="0 0" coordSize="300 300">\
-						<chart2vml:shape path="m0,0 l300,0" fillcolor="blue" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%;top:30px;xleft:150px">\
+						<chart2vml:shape class="c-doughnut--title" path="m0,0 l300,0" fillcolor="blue" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%;top:30px;xleft:150px">\
 							<chart2vml:path textpathok="true" />\
-							<chart2vml:textpath on="true" class="c-doughnut--title" string="' + this.getAttribute("title")+ '" style="v-text-align:center"/>\
+							<chart2vml:textpath on="true" string="' + this.getAttribute("title")+ '" style="v-text-align:center"/>\
 						</chart2vml:shape>\
 						<chart2vml:group class="c-doughnut--gateway" style="position:absolute;width:100%;height:100%">';
 	};

@@ -306,38 +306,38 @@ else {
 	})();
 
 	cChartElement_bar.recalcCSS	= function(oElement) {
-//		cChartElement.applyCSS(oElement.$getContainer("title"));
+		cChartElement.applyCSS(oElement.$getContainer("title"));
 		cChartElement.applyCSS(oElement.$getContainer("legend"));
 		cChartElement.applyCSS(oElement.$getContainer("grid"));
 		cChartElement.applyCSS(oElement.$getContainer("xAxis"));
-//		cChartElement.applyCSS(oElement.$getContainer("xAxisLabel"));
+		cChartElement.applyCSS(oElement.$getContainer("xAxisLabel"));
 		cChartElement.applyCSS(oElement.$getContainer("yAxis"));
-//		cChartElement.applyCSS(oElement.$getContainer("yAxisLabel"));
+		cChartElement.applyCSS(oElement.$getContainer("yAxisLabel"));
 	};
 
 	cChartElement_bar.prototype.$getTagOpen	= function() {
 		return '<div class="c-bar' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
 					<chart2vml:group class="c-bar--canvas" style="position:relative;display:inline-block;x-overflow:hidden;width:600px;height:300px" coordOrigin="0 0" coordSize="600 300">\
-						<chart2vml:shape path="m0,0 l600,0" fillcolor="blue" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%;top:30px;xleft:150px">\
+						<chart2vml:shape class="c-bar--title" path="m0,0 l600,0" fillcolor="blue" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%;top:30px;xleft:150px">\
 							<chart2vml:path textpathok="true" />\
-							<chart2vml:textpath on="true" class="c-bar--title" string="' + this.getAttribute("title")+ '" style="v-text-align:center"/>\
+							<chart2vml:textpath on="true" string="' + this.getAttribute("title")+ '" style="v-text-align:center"/>\
 						</chart2vml:shape>\
 						<chart2vml:roundrect style="left:460px;top:50px;width:120px;height:120px" rx="10" class="c-legend c-bar--legend" filled="true"/>\
 						<chart2vml:shape class="c-grid c-bar--grid" style="position:absolute;width:100%;height:100%"/>\
 						<chart2vml:group class="c-xAxis" style="position:absolute;width:100%;height:100%">\
 							<chart2vml:shape class="c-bar--xAxis" path="m50,250 r400,0 e" style="position:absolute;width:100%;height:100%"/>\
-							<chart2vml:shape path="m30,280 r400,0 e" fillcolor="blue" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%;top:30px;xleft:150px">\
+							<chart2vml:shape class="c-xAxis--label c-bar--xAxisLabel" path="m30,280 r400,0 e" fillcolor="blue" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%;top:30px;xleft:150px">\
 								<chart2vml:path textpathok="true" />\
-								<chart2vml:textpath on="true" class="c-xAxis--label c-bar--xAxisLabel" string="' + this.getAttribute("xAxisLabel")+ '" style="v-text-align:center"/>\
+								<chart2vml:textpath on="true" string="' + this.getAttribute("xAxisLabel")+ '" style="v-text-align:center"/>\
 							</chart2vml:shape>\
 							<chart2vml:shape class="c-xAxis--marks c-bar--xAxisMarks" style="position:absolute;width:100%;height:100%"/>\
 							<chart2vml:group class="c-xAxis--scale c-bar--xAxisItems" style="stroke:none" transform="translate(0,3)"/>\
 						</chart2vml:group>\
 						<chart2vml:group class="c-yAxis" style="position:absolute;width:100%;height:100%">\
 							<chart2vml:shape class="c-bar--yAxis" path="m50,250 r0,-200 e" style="position:absolute;width:100%;height:100%"/>\
-							<chart2vml:shape path="m30,200 r0,-200 e" fillcolor="blue" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%;top:30px;xleft:150px">\
+							<chart2vml:shape class="c-xAxis--label c-bar--yAxisLabel" path="m30,200 r0,-200 e" fillcolor="blue" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%;top:30px;xleft:150px">\
 								<chart2vml:path textpathok="true" />\
-								<chart2vml:textpath on="true" class="c-xAxis--label c-bar--yAxisLabel" string="' + this.getAttribute("yAxisLabel")+ '" style="v-text-align:center"/>\
+								<chart2vml:textpath on="true" string="' + this.getAttribute("yAxisLabel")+ '" style="v-text-align:center"/>\
 							</chart2vml:shape>\
 							<chart2vml:shape class="c-yAxis--marks c-bar--yAxisMarks" style="position:absolute;width:100%;height:100%"/>\
 							<chart2vml:group class="c-yAxis--scale c-bar--yAxisItems" style="stroke:none" transform="translate(0,3)"/>\

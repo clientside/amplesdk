@@ -306,7 +306,7 @@ else {
 		var oElementDOM	= oElement.$getContainer("underlay");
 		for (var nIndex = 0, nLength = oElementDOM.childNodes.length; nIndex < nLength; nIndex++)
 			cChartElement.applyCSS(oElementDOM.childNodes[nIndex]);
-//		cChartElement.applyCSS(oElement.$getContainer("title"));
+		cChartElement.applyCSS(oElement.$getContainer("title"));
 		cChartElement.applyCSS(oElement.$getContainer("legend"));
 	};
 
@@ -327,9 +327,9 @@ else {
 	cChartElement_map.prototype.$getTagOpen	= function() {
 		return '<div class="c-map' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
 					<chart2vml:group class="c-map--canvas" style="position:relative;display:inline-block;x-overflow:hidden;width:600px;height:300px" coordOrigin="0 0" coordSize="600 300">\
-						<chart2vml:shape path="m0,0 l600,0" fillcolor="blue" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%;top:30px;xleft:150px">\
+						<chart2vml:shape class="c-map--title" path="m0,0 l600,0" fillcolor="blue" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%;top:30px;xleft:150px">\
 							<chart2vml:path textpathok="true" />\
-							<chart2vml:textpath on="true" class="c-map--title" string="' + this.getAttribute("title")+ '" style="v-text-align:center"/>\
+							<chart2vml:textpath on="true" string="' + this.getAttribute("title")+ '" style="v-text-align:center"/>\
 						</chart2vml:shape>\
 						<chart2vml:roundrect style="left:20px;top:180px;width:120px;height:100px" rx="10" class="c-legend c-map--legend" filled="true"/>\
 						<chart2vml:group class="c-map--underlay" style="position:absolute;width:100%;height:100%;" onmouseover="ample.$instance(this)._onMouseOver(event.srcElement)" onmouseout="ample.$instance(this)._onMouseOut(event.srcElement)">' +
