@@ -75,6 +75,18 @@ if (!cChartElement.useVML) {
 	};
 }
 else {
+	// Redefine handler
+	var fHandler	= cChartElement_funnel.handlers['DOMNodeInsertedIntoDocument'];
+	cChartElement_funnel.handlers['DOMNodeInsertedIntoDocument']	= function(oEvent) {
+		fHandler.call(this, oEvent);
+		//
+		cChartElement_funnel.recalcCSS(this);
+	};
+
+	cChartElement_funnel.recalcCSS	= function(oElement) {
+//		cChartElement.applyCSS(oElement.$getContainer("title"));
+	};
+
 	cChartElement_funnel.prototype.$getTagOpen	= function() {
 		return '<div class="c-funnel' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
 					<chart2vml:group class="c-funnel--canvas" style="position:relative;display:inline-block;x-overflow:hidden;width:300px;height:300px" coordOrigin="0 0" coordSize="300 300">\

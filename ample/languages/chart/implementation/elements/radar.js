@@ -93,6 +93,22 @@ if (!cChartElement.useVML) {
 	};
 }
 else {
+	// Redefine handler
+	var fHandler	= cChartElement_radar.handlers['DOMNodeInsertedIntoDocument'];
+	cChartElement_radar.handlers['DOMNodeInsertedIntoDocument']	= function(oEvent) {
+		fHandler.call(this, oEvent);
+		//
+		cChartElement_radar.recalcCSS(this);
+	};
+
+	cChartElement_radar.recalcCSS	= function(oElement) {
+//		cChartElement.applyCSS(oElement.$getContainer("title"));
+		cChartElement.applyCSS(oElement.$getContainer("legend"));
+		cChartElement.applyCSS(oElement.$getContainer("grid"));
+		cChartElement.applyCSS(oElement.$getContainer("rAxis"));
+//		cChartElement.applyCSS(oElement.$getContainer("rAxisLabel"));
+	};
+
 	cChartElement_radar.prototype.$getTagOpen	= function() {
 		return '<div class="c-radar' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
 					<chart2vml:group class="c-radar--canvas" style="position:relative;display:inline-block;x-overflow:hidden;width:400px;height:300px" coordOrigin="0 0" coordSize="400 300">\
@@ -100,7 +116,7 @@ else {
 							<chart2vml:path textpathok="true" />\
 							<chart2vml:textpath on="true" class="c-radar--title" string="' + this.getAttribute("title")+ '" style="v-text-align:center"/>\
 						</chart2vml:shape>\
-						<chart2vml:roundrect x="260" y="50" width="120" height="120" rx="10" class="c-legend"/>\
+						<chart2vml:roundrect x="260" y="50" width="120" height="120" rx="10" class="c-legend c-radar--legend"/>\
 						<chart2vml:shape class="c-grid c-radar--grid" style="position:absolute;width:100%;height:100%"/>\
 						<chart2vml:group class="c-rAxis" style="position:absolute;width:100%;height:100%">\
 							<chart2vml:shape class="c-radar--rAxis" path="m150,150 v-100" style="position:absolute;width:100%;height:100%"/>\

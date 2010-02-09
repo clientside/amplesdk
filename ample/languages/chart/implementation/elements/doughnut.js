@@ -77,6 +77,18 @@ if (!cChartElement.useVML) {
 	};
 }
 else {
+	// Redefine handler
+	var fHandler	= cChartElement_doughnut.handlers['DOMNodeInsertedIntoDocument'];
+	cChartElement_doughnut.handlers['DOMNodeInsertedIntoDocument']	= function(oEvent) {
+		fHandler.call(this, oEvent);
+		//
+		cChartElement_doughnut.recalcCSS(this);
+	};
+
+	cChartElement_doughnut.recalcCSS	= function(oElement) {
+//		cChartElement.applyCSS(oElement.$getContainer("title"));
+	};
+
 	cChartElement_doughnut.prototype.$getTagOpen	= function() {
 		return '<div class="c-doughnut' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
 					<chart2vml:group class="c-doughnut--canvas" style="position:relative;display:inline-block;x-overflow:hidden;width:300px;height:300px" coordOrigin="0 0" coordSize="300 300">\

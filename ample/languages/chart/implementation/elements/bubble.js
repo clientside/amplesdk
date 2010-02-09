@@ -120,6 +120,24 @@ if (!cChartElement.useVML) {
 	};
 }
 else {
+	// Redefine handler
+	var fHandler	= cChartElement_bubble.handlers['DOMNodeInsertedIntoDocument'];
+	cChartElement_bubble.handlers['DOMNodeInsertedIntoDocument']	= function(oEvent) {
+		fHandler.call(this, oEvent);
+		//
+		cChartElement_bubble.recalcCSS(this);
+	};
+
+	cChartElement_bubble.recalcCSS	= function(oElement) {
+//		cChartElement.applyCSS(oElement.$getContainer("title"));
+		cChartElement.applyCSS(oElement.$getContainer("legend"));
+		cChartElement.applyCSS(oElement.$getContainer("grid"));
+		cChartElement.applyCSS(oElement.$getContainer("xAxis"));
+//		cChartElement.applyCSS(oElement.$getContainer("xAxisLabel"));
+		cChartElement.applyCSS(oElement.$getContainer("yAxis"));
+//		cChartElement.applyCSS(oElement.$getContainer("yAxisLabel"));
+	};
+
 	cChartElement_bubble.prototype.$getTagOpen	= function() {
 		return '<div class="c-bubble' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
 					<chart2vml:group class="c-bubble--canvas" style="position:relative;display:inline-block;x-overflow:hidden;width:600px;height:300px" coordOrigin="0 0" coordSize="600 300">\
@@ -127,7 +145,7 @@ else {
 							<chart2vml:path textpathok="true" />\
 							<chart2vml:textpath on="true" class="c-bubble--title" string="' + this.getAttribute("title")+ '" style="v-text-align:center"/>\
 						</chart2vml:shape>\
-						<chart2vml:roundrect style="left:460px;top:50px;width:120px;height:120px" rx="10" class="c-legend" filled="true"/>\
+						<chart2vml:roundrect style="left:460px;top:50px;width:120px;height:120px" rx="10" class="c-legend c-bubble--legend" filled="true"/>\
 						<chart2vml:shape class="c-grid c-bubble--grid" style="position:absolute;width:100%;height:100%"/>\
 						<chart2vml:group class="c-xAxis" style="position:absolute;width:100%;height:100%">\
 							<chart2vml:shape class="c-bubble--xAxis" path="m50,250 r400,0 e" style="position:absolute;width:100%;height:100%"/>\

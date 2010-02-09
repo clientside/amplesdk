@@ -57,16 +57,6 @@ cChartElement_map.prototype.refresh	= function() {
 	}
 };
 
-cChartElement_map.prototype._onMouseOver	= function(oEvent) {
-	if (oEvent.target.parentNode == this.$getContainer("underlay"))
-		oEvent.target.setAttribute("class", oEvent.target.getAttribute("class").replace(/(c-item--underlay_hover)?$/, " c-item--underlay_hover"));
-};
-
-cChartElement_map.prototype._onMouseOut	= function(oEvent) {
-	if (oEvent.target.parentNode == this.$getContainer("underlay"))
-		oEvent.target.setAttribute("class", oEvent.target.getAttribute("class").replace(/ c-item--underlay_hover/, ""));
-};
-
 cChartElement_map.countries	= {
 	'ad':["", ["M285,140L284,140 284,140z"]],
 	'ae':["", ["M350,167L353,167 356,165 356,165 356,166 356,166 356,168 355,168 355,170 351,169z"]],
@@ -269,9 +259,19 @@ cChartElement_map.countries	= {
 };
 
 if (!cChartElement.useVML) {
+	cChartElement_map.prototype._onMouseOver	= function(oElementDOM) {
+		if (oElementDOM.parentNode == this.$getContainer("underlay"))
+			oElementDOM.setAttribute("class", oElementDOM.getAttribute("class").replace(/(c-item--underlay_hover)?$/, " c-item--underlay_hover"));
+	};
+
+	cChartElement_map.prototype._onMouseOut	= function(oElementDOM) {
+		if (oElementDOM.parentNode == this.$getContainer("underlay"))
+			oElementDOM.setAttribute("class", oElementDOM.getAttribute("class").replace(/ c-item--underlay_hover/, ""));
+	};
+
 	cChartElement_map.prototype.$getTagOpen	= function() {
 		return '<div class="c-map' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
-					<svg:svg class="c-map--canvas" viewBox="0 0 600 300" width="600px" height="300px" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" onmouseover="ample.$instance(this)._onMouseOver(evt)" onmouseout="ample.$instance(this)._onMouseOut(evt)">\
+					<svg:svg class="c-map--canvas" viewBox="0 0 600 300" width="600px" height="300px" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" onmouseover="ample.$instance(this)._onMouseOver(evt.target)" onmouseout="ample.$instance(this)._onMouseOut(evt.target)">\
 						<svg:text class="c-map--title" y="30" x="300">' + this.getAttribute("title")+ '</svg:text>\
 						<svg:rect x="20" y="180" width="120" height="100" rx="10" class="c-legend"/>\
 						<svg:g class="c-map--underlay">' +
@@ -292,6 +292,36 @@ if (!cChartElement.useVML) {
 	};
 }
 else {
+	// Redefine handler
+	var fHandler	= cChartElement_map.handlers['DOMNodeInsertedIntoDocument'];
+	cChartElement_map.handlers['DOMNodeInsertedIntoDocument']	= function(oEvent) {
+		fHandler.call(this, oEvent);
+		//
+		cChartElement_map.recalcCSS(this);
+	};
+
+	cChartElement_map.recalcCSS	= function(oElement) {
+		var oElementDOM	= oElement.$getContainer("underlay");
+		for (var nIndex = 0, nLength = oElementDOM.childNodes.length; nIndex < nLength; nIndex++)
+			cChartElement.applyCSS(oElementDOM.childNodes[nIndex]);
+//		cChartElement.applyCSS(oElement.$getContainer("title"));
+		cChartElement.applyCSS(oElement.$getContainer("legend"));
+	};
+
+	cChartElement_map.prototype._onMouseOver	= function(oElementDOM) {
+		if (oElementDOM.parentNode == this.$getContainer("underlay")) {
+			oElementDOM.className	= oElementDOM.className.replace(/(c-item--underlay_hover)?$/, " c-item--underlay_hover");
+			cChartElement.applyCSS(oElementDOM);
+		}
+	};
+
+	cChartElement_map.prototype._onMouseOut	= function(oElementDOM) {
+		if (oElementDOM.parentNode == this.$getContainer("underlay")) {
+			oElementDOM.className	= oElementDOM.className.replace(/ c-item--underlay_hover/, "");
+			cChartElement.applyCSS(oElementDOM);
+		}
+	};
+
 	cChartElement_map.prototype.$getTagOpen	= function() {
 		return '<div class="c-map' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
 					<chart2vml:group class="c-map--canvas" style="position:relative;display:inline-block;x-overflow:hidden;width:600px;height:300px" coordOrigin="0 0" coordSize="600 300">\
@@ -299,8 +329,8 @@ else {
 							<chart2vml:path textpathok="true" />\
 							<chart2vml:textpath on="true" class="c-map--title" string="' + this.getAttribute("title")+ '" style="v-text-align:center"/>\
 						</chart2vml:shape>\
-						<chart2vml:roundrect style="left:20px;top:180px;width:120px;height:100px" rx="10" class="c-legend" filled="true"/>\
-						<chart2vml:group class="c-map--underlay" style="position:absolute;width:100%;height:100%;">' +
+						<chart2vml:roundrect style="left:20px;top:180px;width:120px;height:100px" rx="10" class="c-legend c-map--legend" filled="true"/>\
+						<chart2vml:group class="c-map--underlay" style="position:absolute;width:100%;height:100%;" onmouseover="ample.$instance(this)._onMouseOver(event.srcElement)" onmouseout="ample.$instance(this)._onMouseOut(event.srcElement)">' +
 						(function() {
 							var aCountries	= [];
 							for (var sCountry in cChartElement_map.countries)
