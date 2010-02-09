@@ -121,12 +121,14 @@ if (!cChartElement.useVML) {
 }
 else {
 	// Redefine handler
-	var fHandler	= cChartElement_bubble.handlers['DOMNodeInsertedIntoDocument'];
-	cChartElement_bubble.handlers['DOMNodeInsertedIntoDocument']	= function(oEvent) {
-		fHandler.call(this, oEvent);
-		//
-		cChartElement_bubble.recalcCSS(this);
-	};
+	(function() {
+		var fHandler	= cChartElement_bubble.handlers['DOMNodeInsertedIntoDocument'];
+		cChartElement_bubble.handlers['DOMNodeInsertedIntoDocument']	= function(oEvent) {
+			fHandler.call(this, oEvent);
+			//
+			cChartElement_bubble.recalcCSS(this);
+		};
+	})();
 
 	cChartElement_bubble.recalcCSS	= function(oElement) {
 //		cChartElement.applyCSS(oElement.$getContainer("title"));

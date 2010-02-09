@@ -76,12 +76,14 @@ if (!cChartElement.useVML) {
 }
 else {
 	// Redefine handler
-	var fHandler	= cChartElement_funnel.handlers['DOMNodeInsertedIntoDocument'];
-	cChartElement_funnel.handlers['DOMNodeInsertedIntoDocument']	= function(oEvent) {
-		fHandler.call(this, oEvent);
-		//
-		cChartElement_funnel.recalcCSS(this);
-	};
+	(function() {
+		var fHandler	= cChartElement_funnel.handlers['DOMNodeInsertedIntoDocument'];
+		cChartElement_funnel.handlers['DOMNodeInsertedIntoDocument']	= function(oEvent) {
+			fHandler.call(this, oEvent);
+			//
+			cChartElement_funnel.recalcCSS(this);
+		};
+	})();
 
 	cChartElement_funnel.recalcCSS	= function(oElement) {
 //		cChartElement.applyCSS(oElement.$getContainer("title"));

@@ -293,12 +293,14 @@ if (!cChartElement.useVML) {
 }
 else {
 	// Redefine handler
-	var fHandler	= cChartElement_map.handlers['DOMNodeInsertedIntoDocument'];
-	cChartElement_map.handlers['DOMNodeInsertedIntoDocument']	= function(oEvent) {
-		fHandler.call(this, oEvent);
-		//
-		cChartElement_map.recalcCSS(this);
-	};
+	(function() {
+		var fHandler	= cChartElement_map.handlers['DOMNodeInsertedIntoDocument'];
+		cChartElement_map.handlers['DOMNodeInsertedIntoDocument']	= function(oEvent) {
+			fHandler.call(this, oEvent);
+			//
+			cChartElement_map.recalcCSS(this);
+		};
+	})();
 
 	cChartElement_map.recalcCSS	= function(oElement) {
 		var oElementDOM	= oElement.$getContainer("underlay");
