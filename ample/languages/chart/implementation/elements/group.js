@@ -43,6 +43,21 @@ if (!cChartElement.useVML) {
 	};
 }
 else {
+	// Redefine handler
+	(function() {
+		var fHandler	= cChartElement_group.handlers['DOMAttrModified'];
+		cChartElement_group.handlers['DOMAttrModified']	= function(oEvent) {
+			fHandler.call(this, oEvent);
+			//
+			if (oEvent.target == this && oEvent.attrName == "selected") {
+				cChartElement_group.recalcCSS(this);
+				// recalc children
+				for (var nIndex = 0, nLength = this.childNodes.length; nIndex < nLength; nIndex++)
+					cChartElement_item.recalcCSS(this.childNodes[nIndex]);
+			}
+		};
+	})();
+
 	cChartElement_group.recalcCSS	= function(oElement) {
 		cChartElement.applyCSS(oElement.$getContainer("path"));
 		cChartElement.applyCSS(oElement.$getContainer("shadow"));
@@ -51,10 +66,16 @@ else {
 //		cChartElement.applyCSS(oElement.$getContainer("label"));
 	};
 
-	cChartElement_group.handlers['DOMNodeInsertedIntoDocument']	=
+	cChartElement_group.handlers['DOMNodeInsertedIntoDocument']	= function(oEvent) {
+		cChartElement_group.recalcCSS(this);
+	};
+
 	cChartElement_group.handlers['mouseenter']	=
 	cChartElement_group.handlers['mouseleave']	= function(oEvent) {
 		cChartElement_group.recalcCSS(this);
+		// recalc children
+		for (var nIndex = 0, nLength = this.childNodes.length; nIndex < nLength; nIndex++)
+			cChartElement_item.recalcCSS(this.childNodes[nIndex]);
 	};
 
 	cChartElement_group.prototype.$getTagOpen	= function() {
