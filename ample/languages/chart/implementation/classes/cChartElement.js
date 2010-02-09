@@ -27,8 +27,8 @@ cChartElement.setTextPosition	= function(oElementDOM, nX, nY) {
 		oElementDOM.setAttribute("y", nY);
 	}
 	else {
-		oElementDOM.style.marginLeft= Math.round(nX) + "px";
-		oElementDOM.style.marginTop	= Math.round(nY) + "px";
+		oElementDOM.style.left	= Math.round(nX) + "px";
+		oElementDOM.style.top	= Math.round(nY) + "px";
 	}
 };
 
@@ -262,6 +262,14 @@ if (cChartElement.useVML) {
 			cChartElement.setStyle(oElementDOM, "stroke", sValue);
 		if (sValue = cChartElement.getStyle(oElementDOM, "stroke-width"))
 			cChartElement.setStyle(oElementDOM, "stroke-width", sValue);
+		if (oElementDOM.path && oElementDOM.path.textpathok) {
+			if (sValue = cChartElement.getStyle(oElementDOM, "fontSize"))
+				cChartElement.setStyle(oElementDOM, "font-size", sValue);
+			if (sValue = cChartElement.getStyle(oElementDOM, "fontFamily"))
+				cChartElement.setStyle(oElementDOM, "font-family", sValue);
+			if (sValue = cChartElement.getStyle(oElementDOM, "fontWeight"))
+				cChartElement.setStyle(oElementDOM, "font-weight", sValue);
+		}
 	};
 
 	cChartElement.getStyle	= function(oElementDOM, sName) {
@@ -407,13 +415,13 @@ if (cChartElement.useVML) {
 					nMarginTop	= -(sFontSizeUnit == "pt" ? Math.round(nFontSizeValue * 0.35) : nFontSizeValue * 0.35);
 
 				oElementDOM.style.marginTop	=-(sFontSizeUnit == "pt" ? Math.round(nFontSizeValue * 0.35) : nFontSizeValue * 0.35) + "px";
-				oElement.$getContainer("label").style.fontSize	= nFontSize + sFontSizeUnit;
+				oElementDOM.childNodes[1].style.fontSize	= nFontSize + sFontSizeUnit;
 				break;
 			case "font-family":
-				oElement.$getContainer("label").style.fontFamily	= "'" + sValue + "'";
+				oElementDOM.childNodes[1].style.fontFamily	= "'" + sValue + "'";
 				break;
 			case "font-weight":
-				oElement.$getContainer("label").style.fontWeight	= sValue;
+				oElementDOM.childNodes[1].style.fontWeight	= sValue;
 				break;
 		}
 	};
