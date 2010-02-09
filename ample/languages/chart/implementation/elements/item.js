@@ -11,6 +11,10 @@ var cChartElement_item	= function(){};
 cChartElement_item.prototype	= new cChartElement;
 cChartElement_item.prototype.$hoverable	 = true;
 
+cChartElement_item.handlers	= {
+
+};
+
 if (!cChartElement.useVML) {
 	cChartElement_item.prototype.$getTagOpen	= function() {
 		return '<svg:g class="c-item c-item_nth-child-' + this.parentNode.childNodes.$indexOf(this) +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">\
@@ -23,12 +27,24 @@ if (!cChartElement.useVML) {
 	};
 }
 else {
+	cChartElement_item.recalcCSS	= function(oElement) {
+		cChartElement.applyCSS(oElement.$getContainer("value"));
+		cChartElement.applyCSS(oElement.$getContainer("shadow"));
+		cChartElement.applyCSS(oElement.$getContainer("handle"));
+	};
+
+	cChartElement_item.handlers['DOMNodeInsertedIntoDocument']	=
+	cChartElement_item.handlers['mouseenter']	=
+	cChartElement_item.handlers['mouseleave']	= function(oEvent) {
+		cChartElement_item.recalcCSS(this);
+	};
+
 	cChartElement_item.prototype.$getTagOpen	= function() {
 		return '<chart2vml:group class="c-item c-item_nth-child-' + this.parentNode.childNodes.$indexOf(this) +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="position:absolute;width:100%;height:100%">\
-					<chart2vml:shape class="c-item--shadow" style="position:absolute;width:100%;height:100%" transform="translate(2,2)"/>\
-					<chart2vml:shape class="c-item--value" style="position:absolute;height:100%;width:100%"/>\
+					<chart2vml:shape class="c-item--shadow" style="position:absolute;width:100%;height:100%;margin-top:2px;margin-left:2px;"/>\
+					<chart2vml:shape class="c-item--value" fillcolor="black" style="position:absolute;height:100%;width:100%"/>\
 					<chart2vml:shape class="c-item--handle" stroked="true" filled="false" style="position:absolute;height:100%;width:100%"/>\
-					<chart2vml:shape class="c-item--textPath" path="m0,0 l100,0" fillcolor="red" allowoverlap="true" style="position:absolute;width:100%;height:100%">\
+					<chart2vml:shape class="c-item--textPath" path="m0,0 l100,0" fillcolor="green" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%">\
 						<chart2vml:path textpathok="true" />\
 						<chart2vml:textpath on="true" class="c-item--label" string="' + this.getAttribute("label")+ '"/>\
 					</chart2vml:shape>\
