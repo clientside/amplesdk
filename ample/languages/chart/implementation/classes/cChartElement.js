@@ -27,8 +27,8 @@ cChartElement.setTextPosition	= function(oElementDOM, nX, nY) {
 		oElementDOM.setAttribute("y", nY);
 	}
 	else {
-		oElementDOM.parentNode.style.marginLeft	= Math.round(nX) + "px";
-		oElementDOM.parentNode.style.marginTop	= Math.round(nY) + "px";
+		oElementDOM.style.marginLeft= Math.round(nX) + "px";
+		oElementDOM.style.marginTop	= Math.round(nY) + "px";
 	}
 };
 
