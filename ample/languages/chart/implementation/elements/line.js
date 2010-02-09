@@ -198,14 +198,14 @@ else {
 						<chart2vml:shape class="c-grid c-line--grid" style="position:absolute;width:100%;height:100%"/>\
 						<chart2vml:group class="c-xAxis" style="position:absolute;width:100%;height:100%">\
 							<chart2vml:shape class="c-line--xAxis" path="m50,250 r400,0 e" style="position:absolute;width:100%;height:100%"/>\
-							<chart2vml:shape class="c-xAxis--label c-line--xAxisLabel" path="m30,280 r400,0 e" fillcolor="black" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%;top:30px;xleft:150px">\
+							<chart2vml:shape class="c-xAxis--label c-line--xAxisLabel" path="m30,280 r400,0 e" fillcolor="black" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%">\
 								<chart2vml:path textpathok="true" />\
 								<chart2vml:textpath on="true" string="' + this.getAttribute("xAxisLabel")+ '" style="v-text-align:center"/>\
 							</chart2vml:shape>\
 						</chart2vml:group>\
 						<chart2vml:group class="c-yAxis" style="position:absolute;width:100%;height:100%">\
 							<chart2vml:shape class="c-line--yAxis" path="m50,250 r0,-200 e" style="position:absolute;width:100%;height:100%"/>\
-							<chart2vml:shape class="c-yAxis--label c-line--yAxisLabel" path="m20,200 r0,-200 e" fillcolor="black" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%;top:30px;xleft:150px">\
+							<chart2vml:shape class="c-yAxis--label c-line--yAxisLabel" path="m20,200 r0,-200 e" fillcolor="black" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%">\
 								<chart2vml:path textpathok="true" />\
 								<chart2vml:textpath on="true" string="' + this.getAttribute("yAxisLabel")+ '" style="v-text-align:center"/>\
 							</chart2vml:shape>\
