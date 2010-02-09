@@ -345,6 +345,9 @@ if (cSVGElement.useVML) {
 			case "font-weight":
 				oElement.$getContainer("label").style.fontWeight	= sValue;
 				break;
+			case "font-style":
+				oElement.$getContainer("label").style.fontStyle		= sValue;
+				break;
 		}
 	};
 
@@ -414,6 +417,8 @@ if (cSVGElement.useVML) {
 					cSVGElement.setStyle(oElement, "font-family", sValue);
 				if (!cSVGElement.getStyle(oElement, "font-size") && (sValue = oStyle["fontSize"]))
 					cSVGElement.setStyle(oElement, "font-size", sValue);
+				if (!cSVGElement.getStyle(oElement, "font-style") && (sValue = oStyle["fontStyle"]))
+					cSVGElement.setStyle(oElement, "font-style", sValue);
 			}
 //		}, 0);
 	};

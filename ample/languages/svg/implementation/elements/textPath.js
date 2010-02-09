@@ -53,6 +53,7 @@ if (cSVGElement.useVML) {
 		var sFontFamily	= cSVGElement.getStyle(this, "font-family") || "Times New Roman",
 			sFontWeight	= cSVGElement.getStyle(this, "font-weight"),
 			sFontSize	= cSVGElement.getStyle(this, "font-size"),
+			sFontStyle	= cSVGElement.getStyle(this, "font-style"),
 			sTextAnchor	= cSVGElement.getStyle(this, "text-anchor"),
 			// Font size calculations
 			aFontSize	= sFontSize.match(/(^[\d.]*)(.*)$/),
@@ -67,7 +68,7 @@ if (cSVGElement.useVML) {
 				>' + cSVGElement.getTagStyle(this) + '\
 					<svg2vml:path textpathok="true" />\
 					<svg2vml:textpath on="true" xscale="true" class="svg-textPath--label"\
-						style="v-text-align:' + cSVGElement.textAnchorToVTextAlign(sTextAnchor) + ';font-size:' + nFontSize + sFontSizeUnit + ';' + (sFontFamily ? 'font-family:\'' + sFontFamily + '\';' : '') + (sFontWeight ? 'font-weight:' + sFontWeight + ';' : '') + '" />\
+						style="v-text-align:' + cSVGElement.textAnchorToVTextAlign(sTextAnchor) + ';font-size:' + nFontSize + sFontSizeUnit + ';' + (sFontFamily ? 'font-family:\'' + sFontFamily + '\';' : '') + (sFontWeight ? 'font-weight:' + sFontWeight + ';' : '') + (sFontStyle ? 'font-style:' + sFontStyle + ';' : '') + '" />\
 					<span style="display:none">';
 	};
 
