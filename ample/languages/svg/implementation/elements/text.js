@@ -80,11 +80,11 @@ if (cSVGElement.useVML) {
 		return '<svg2vml:group class="svg-text' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '"\
 					style="top:0;left:0;width:100%;height:100%;position:absolute;">\
 					<svg2vml:shape class="svg-text--shape"\
-						style="position:absolute;margin-top:' + nMarginTop + 'px;left:' + (this.getAttribute("x") || "0") + 'px;top:' + (this.getAttribute("y") || "0") + 'px;width:100%;height:100%;"\
-						path="m 0,0 l 100,0 xe" allowoverlap="true"\
+						style="position:absolute;width:100%;height:100%;margin-top:' + nMarginTop + 'px;left:' + (this.getAttribute("x") || "0") + 'px;top:' + (this.getAttribute("y") || "0") + 'px;"\
+						path="m 0,0 l 1000,0 x" allowoverlap="true"\
 					>' + cSVGElement.getTagStyle(this) + '\
 						<svg2vml:path textpathok="true" />\
-						<svg2vml:textpath on="true" xscale="true" class="svg-text--label"\
+						<svg2vml:textpath on="true" class="svg-text--label"\
 							style="v-text-align:' + cSVGElement.textAnchorToVTextAlign(sTextAnchor) + ';font-size:' + nFontSize + sFontSizeUnit + ';' + (sFontFamily ? 'font-family:\'' + sFontFamily + '\';' : '') + (sFontWeight ? 'font-weight:' + sFontWeight + ';' : '') + (sFontStyle ? 'font-style:' + sFontStyle + ';' : '') + '" />\
 					</svg2vml:shape>';
 //	v-text-spacing-mode:tracking;' + (sTextSpacing ? 'v-text-spacing:' + (1 + sTextSpacing / nFontSizeValue) +';' : '') + ';
