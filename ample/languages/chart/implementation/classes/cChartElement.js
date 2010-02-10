@@ -276,7 +276,7 @@ if (cChartElement.useVML) {
 	};
 
 	cChartElement.getStyle	= function(oElementDOM, sName) {
-		for (var sValue; oElementDOM.tagName != "DIV"; oElementDOM = oElementDOM.parentNode)
+		for (var sValue; oElementDOM.nodeType != 9; oElementDOM = oElementDOM.parentNode)
 			if (sValue = oElementDOM.currentStyle[sName])
 				return sValue;
 		return null;
