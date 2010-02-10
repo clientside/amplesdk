@@ -479,7 +479,7 @@ if (cSVGElement.useVML) {
 						aHeight	= [null, aViewBox[3], "px"];
 				}
 
-				nAspect	*= Math.sqrt(Math.pow(aWidth[1], 2) + Math.pow(aHeight[1], 2)) / Math.sqrt(Math.pow(aViewBox[2], 2) + Math.pow(aViewBox[3], 2));
+				nAspect	*= Math.sqrt(Math.pow(cSVGElement.toPixels(aWidth[1] + aWidth[2]), 2) + Math.pow(cSVGElement.toPixels(aHeight[1] + aHeight[2]), 2)) / Math.sqrt(Math.pow(aViewBox[2], 2) + Math.pow(aViewBox[3], 2));
 				break;
 			}
 			else
@@ -499,6 +499,34 @@ if (cSVGElement.useVML) {
 			}
 		}
 		return nAspect;
+	};
+
+	cSVGElement.toPixels	= function(sValue) {
+		var aValue	= sValue.match(/([\d.]+)([%\w]*)/),
+			nValue	= aValue[1];
+		switch (aValue[2]) {
+			case "pc":	// pica (1 pc is the same as 12 points)
+				nValue	= nValue * 12;
+			case "pt":	// point (1 pt is the same as 1/72 inch)
+				nValue	= nValue / 72;	// in
+			case "in":	// 1 inch = 1.57828283 × 10-5 mi
+				nValue	= nValue * 2.54;
+			case "cm":
+				nValue	= nValue * 10;
+			case "mm":
+				nValue	= nValue / 0.264;
+				break;
+//			case "em":	// 1em is equal to the current font size
+//				break;
+//			case "ex":	// one ex is the x-height of a font (x-height is usually about half the font-size)
+//				break;
+//			case "%":
+//				break;
+			case "px":
+			default:
+				break;
+		}
+		return nValue;
 	};
 
 	cSVGElement.getTagStyle	= function(oElement) {
