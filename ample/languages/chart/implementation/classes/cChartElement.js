@@ -231,7 +231,7 @@ if (cChartElement.useVML) {
 				// closepath (none)
 				case "Z":
 				case "z":
-					aPath.push("xe");
+					aPath.push("x");
 					iCurrentX	= iStartX;
 					iCurrentY	= iStartY;
 					break;
@@ -245,7 +245,7 @@ if (cChartElement.useVML) {
 				aCubic		= null;
 		}
 
-		return aPath.join('');
+		return aPath.join('') + "e";
 	};
 
 	cChartElement.applyCSS	= function(oElementDOM) {
