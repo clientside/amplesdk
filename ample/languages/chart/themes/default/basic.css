@@ -115,6 +115,7 @@ c|rAxis {
 }
 
 c|grid {
+	fill: none;
 	stroke: #ddd;
 /*	stroke-width:1;*/
 }

@@ -78,7 +78,7 @@ if (!cChartElement.useVML) {
 					<svg:svg class="c-radar--canvas" viewBox="0 0 400 300" width="400px" height="300px" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">\
 						<svg:text class="c-radar--title" y="30" x="150">' + this.getAttribute("title")+ '</svg:text>\
 						<svg:rect x="260" y="50" width="120" height="120" rx="10" class="c-legend"/>\
-						<svg:path class="c-grid c-radar--grid" style="fill:none"/>\
+						<svg:path class="c-grid c-radar--grid"/>\
 						<svg:g class="c-rAxis">\
 							<svg:path class="c-radar--rAxis" d="m150,150 v-100" style="fill:none"/>\
 							<svg:path id="r' + this.uniqueID + '" d="M140,150 v-150" style="fill:none;stroke:none"/>\
@@ -122,7 +122,7 @@ else {
 							<chart2vml:textpath on="true" string="' + this.getAttribute("title")+ '" style="v-text-align:center"/>\
 						</chart2vml:shape>\
 						<chart2vml:roundrect style="left:260px;top:50px;width:120px;height:120px" rx="10" class="c-legend c-radar--legend" filled="true"/>\
-						<chart2vml:shape class="c-grid c-radar--grid" style="position:absolute;width:100%;height:100%"/>\
+						<chart2vml:shape class="c-grid c-radar--grid" style="position:absolute;width:100%;height:100%" fillcolor="black"/>\
 						<chart2vml:group class="c-rAxis" style="position:absolute;width:100%;height:100%">\
 							<chart2vml:shape class="c-radar--rAxis" path="m150,150 v-100" style="position:absolute;width:100%;height:100%"/>\
 							<chart2vml:shape class="c-rAxis--label c-radar--rAxisLabel" path="m140,150 r0,-100 e" fillcolor="black" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%">\
