@@ -108,6 +108,7 @@ else {
 		cChartElement.applyCSS(oElement.$getContainer("legend"));
 		cChartElement.applyCSS(oElement.$getContainer("grid"));
 		cChartElement.applyCSS(oElement.$getContainer("rAxis"));
+		cChartElement.applyCSS(oElement.$getContainer("rAxisMarks"));
 //		cChartElement.applyCSS(oElement.$getContainer("rAxisLabel"));
 	};
 

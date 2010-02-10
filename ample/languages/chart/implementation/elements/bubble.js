@@ -136,8 +136,10 @@ else {
 		cChartElement.applyCSS(oElement.$getContainer("grid"));
 		cChartElement.applyCSS(oElement.$getContainer("xAxis"));
 		cChartElement.applyCSS(oElement.$getContainer("xAxisLabel"));
+		cChartElement.applyCSS(oElement.$getContainer("xAxisMarks"));
 		cChartElement.applyCSS(oElement.$getContainer("yAxis"));
 		cChartElement.applyCSS(oElement.$getContainer("yAxisLabel"));
+		cChartElement.applyCSS(oElement.$getContainer("yAxisMarks"));
 	};
 
 	cChartElement_bubble.prototype.$getTagOpen	= function() {
