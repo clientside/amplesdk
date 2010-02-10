@@ -67,8 +67,8 @@ cChartElement_radar.prototype.refresh	= function() {
 		var nXPath	= 280,
 			nYPath	=(50 + (nGroups - nGroup) * 20);
 		cChartElement.setPath(oGroup.$getContainer("path"), "M" + (nXPath - 5) + "," + (nYPath - 5) + "h10 v10 h-10 v-10 z");
-		oGroup.$getContainer("label").setAttribute("x", nXPath + 20);
-		oGroup.$getContainer("label").setAttribute("y", nYPath + 5);
+		cChartElement.setTextPosition(oGroup.$getContainer("label"),
+										nXPath + 20, nYPath + 5);
 	}
 };
 

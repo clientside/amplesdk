@@ -51,9 +51,9 @@ cChartElement_funnel.prototype.refresh	= function() {
 		cChartElement.setPath(oElement.$getContainer("handle"),	"M" + (nLeft + nWidthTop + nCHalf * (nWidthBottom - nWidthTop)) + "," + (nTop + nCHalf * nHeight) + ' ' +
 																"h100 " +
 																"");
-
-		oElement.$getContainer("label").setAttribute("x", (nLeft + nWidthTop + nCHalf * (nWidthBottom - nWidthTop)) + 10);
-		oElement.$getContainer("label").setAttribute("y", (nTop + nCHalf * nHeight - 5));
+		cChartElement.setTextPosition(oElement.$getContainer("label"),
+										nLeft + nWidthTop + nCHalf * (nWidthBottom - nWidthTop) + 10,
+										nTop + nCHalf * nHeight - 5);
 
 		//
 		nSumUp	+= oElement.getAttribute("value") * 1;

@@ -60,8 +60,9 @@ cChartElement_pie.prototype.refresh	= function() {
 																"l" + (10 * Math.cos(nAngleHalf)) + "," +(10 * Math.sin(nAngleHalf)) + ' ' +
 																"h" + (bLeft ? -1 : 1) * 100);
 
-		oElement.$getContainer("label").setAttribute("x", cX + (bLeft ? -10 : 10) + (nWidth + 10) * Math.cos(nAngleHalf));
-		oElement.$getContainer("label").setAttribute("y", cY - 5 + (nWidth + 10) * Math.sin(nAngleHalf));
+		cChartElement.setTextPosition(oElement.$getContainer("label"),
+										cX + (bLeft ? -10 : 10) + (nWidth + 10) * Math.cos(nAngleHalf),
+										cY - 5 + (nWidth + 10) * Math.sin(nAngleHalf));
 		oElement.$getContainer("label").setAttribute("text-anchor", bLeft ? "end" : "start");
 
 		//
