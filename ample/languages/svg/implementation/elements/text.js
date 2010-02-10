@@ -84,7 +84,7 @@ if (cSVGElement.useVML) {
 						path="m 0,0 l 1000,0 x" allowoverlap="true"\
 					>' + cSVGElement.getTagStyle(this) + '\
 						<svg2vml:path textpathok="true" />\
-						<svg2vml:textpath on="true" class="svg-text--label"\
+						<svg2vml:textpath on="true" xscale="true" class="svg-text--label"\
 							style="v-text-align:' + cSVGElement.textAnchorToVTextAlign(sTextAnchor) + ';font-size:' + nFontSize + sFontSizeUnit + ';' + (sFontFamily ? 'font-family:\'' + sFontFamily + '\';' : '') + (sFontWeight ? 'font-weight:' + sFontWeight + ';' : '') + (sFontStyle ? 'font-style:' + sFontStyle + ';' : '') + '" />\
 					</svg2vml:shape>';
 //	v-text-spacing-mode:tracking;' + (sTextSpacing ? 'v-text-spacing:' + (1 + sTextSpacing / nFontSizeValue) +';' : '') + ';
