@@ -423,7 +423,7 @@ if (cSVGElement.useVML) {
 				// closepath (none)
 				case "Z":
 				case "z":
-					aPath.push("x");
+					aPath.push("xe");
 					iCurrentX	= iStartX;
 					iCurrentY	= iStartY;
 					break;
@@ -437,7 +437,7 @@ if (cSVGElement.useVML) {
 				aCubic		= null;
 		}
 
-		return aPath.join('') + "e";
+		return aPath.join('');
 	};
 
 	// presentation
