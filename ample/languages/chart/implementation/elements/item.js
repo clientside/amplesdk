@@ -21,7 +21,7 @@ if (!cChartElement.useVML) {
 					<svg:path class="c-item--shadow" style="stroke-linejoin:round" transform="translate(2,2)"/>\
 					<svg:path class="c-item--value"/>\
 					<svg:path class="c-item--handle" style="fill:none"/>\
-					<svg:path class="c-item--textPath" id="p' + this.uniqueID + '" style="fill:none;stroke:none"/>\
+					<svg:path class="c-item--textPath" d="m0,0 h600" id="p' + this.uniqueID + '" style="fill:none;stroke:none"/>\
 					<svg:text class="c-item--label" style="stroke:none;"><svg:textPath xlink:href="#p' + this.uniqueID + '">' + this.getAttribute("value")+ '</svg:textPath></svg:text>\
 				</svg:g>';
 	};
@@ -45,9 +45,9 @@ else {
 					<chart2vml:shape class="c-item--shadow" style="position:absolute;width:100%;height:100%;margin-top:2px;margin-left:2px;"/>\
 					<chart2vml:shape class="c-item--value" fillcolor="black" style="position:absolute;height:100%;width:100%"/>\
 					<chart2vml:shape class="c-item--handle" stroked="true" filled="false" style="position:absolute;height:100%;width:100%"/>\
-					<chart2vml:shape class="c-item--textPath c-item--label" path="m0,0 l100,0" fillcolor="black" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%">\
+					<chart2vml:shape class="c-item--textPath c-item--label" fillcolor="black" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%">\
 						<chart2vml:path textpathok="true" />\
-						<chart2vml:textpath on="true" string="' + this.getAttribute("label")+ '"/>\
+						<chart2vml:textpath on="true" string="' + this.getAttribute("value")+ '" style="v-text-align:left"/>\
 					</chart2vml:shape>\
 				</chart2vml:group>';
 	};

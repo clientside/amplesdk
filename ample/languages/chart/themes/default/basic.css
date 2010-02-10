@@ -120,7 +120,8 @@ c|grid {
 }
 
 c|xAxis::label,
-c|yAxis::label {
+c|yAxis::label,
+c|rAxis::label {
 	fill: gray;
 	stroke: none;
 	font-size: 18px;
@@ -128,7 +129,8 @@ c|yAxis::label {
 }
 
 c|xAxis::scale,
-c|yAxis::scale {
+c|yAxis::scale,
+c|rAxis::scale {
 	fill: gray;
 	stroke: none;
 	font-size: 10px;
@@ -207,11 +209,11 @@ c|doughnut c|item::label,
 c|bubble c|item::label {
 	fill: white;
 }
-
+/*
 c|bubble c|item::label {
 	text-anchor:	middle;
 }
-
+*/
 /* hover effects */
 c|bar c|item:hover,
 c|bubble c|item:hover,

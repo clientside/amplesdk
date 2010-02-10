@@ -79,9 +79,7 @@ cChartElement_bubble.prototype.refresh	= function() {
 
 			cChartElement.setPath(oGroup.childNodes[nItem].$getContainer("value"), d);
 			cChartElement.setPath(oGroup.childNodes[nItem].$getContainer("shadow"), d);
-//			cChartElement.setTextPosition(oGroup.childNodes[nItem].$getContainer("label"),
-//											50 + 400 * (nXMax - aData[nGroup][nItem][0]) / (nXMax - nXMin),
-//											250 - 200 * (nYMax - aData[nGroup][nItem][1]) / (nYMax - nYMin) + 6);
+			cChartElement.setPath(oGroup.childNodes[nItem].$getContainer("textPath"), "m" + nX + "," + nY + " h200 z");
 		}
 
 		// Draw legend

@@ -231,7 +231,7 @@ if (cChartElement.useVML) {
 				// closepath (none)
 				case "Z":
 				case "z":
-					aPath.push("x");
+					aPath.push("xe");
 					iCurrentX	= iStartX;
 					iCurrentY	= iStartY;
 					break;
