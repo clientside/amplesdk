@@ -157,6 +157,8 @@ else {
 								<chart2vml:path textpathok="true" />\
 								<chart2vml:textpath on="true" string="' + this.getAttribute("xAxisLabel")+ '" style="v-text-align:center"/>\
 							</chart2vml:shape>\
+							<chart2vml:shape class="c-xAxis--marks c-bar--xAxisMarks" style="position:absolute;width:100%;height:100%"/>\
+							<chart2vml:group class="c-xAxis--scale c-bar--xAxisItems" style="top:3px"/>\
 						</chart2vml:group>\
 						<chart2vml:group class="c-yAxis" style="position:absolute;width:100%;height:100%">\
 							<chart2vml:shape class="c-bubble--yAxis" path="m50,250 r0,-200 e" style="position:absolute;width:100%;height:100%"/>\
@@ -164,6 +166,8 @@ else {
 								<chart2vml:path textpathok="true" />\
 								<chart2vml:textpath on="true" string="' + this.getAttribute("yAxisLabel")+ '" style="v-text-align:center"/>\
 							</chart2vml:shape>\
+							<chart2vml:shape class="c-yAxis--marks c-bar--yAxisMarks" style="position:absolute;width:100%;height:100%"/>\
+							<chart2vml:group class="c-yAxis--scale c-bar--yAxisItems" style="top:3px"/>\
 						</chart2vml:group>\
 						<chart2vml:group class="c-bubble--gateway" style="position:absolute;width:100%;height:100%">';
 	};
