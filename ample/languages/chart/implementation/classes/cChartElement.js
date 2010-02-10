@@ -264,6 +264,8 @@ if (cChartElement.useVML) {
 		if (sValue = cChartElement.getStyle(oElementDOM, "stroke-width"))
 			cChartElement.setStyle(oElementDOM, "stroke-width", sValue);
 		if (oElementDOM.path && oElementDOM.path.textpathok) {
+			if (sValue = cChartElement.getStyle(oElementDOM, "text-anchor"))
+				cChartElement.setStyle(oElementDOM, "text-anchor", sValue);
 			if (sValue = cChartElement.getStyle(oElementDOM, "fontSize"))
 				cChartElement.setStyle(oElementDOM, "font-size", sValue);
 			if (sValue = cChartElement.getStyle(oElementDOM, "fontFamily"))
@@ -410,7 +412,7 @@ if (cChartElement.useVML) {
 				break;
 			// fonts
 			case "text-anchor":
-				oElement.$getContainer("label").style["v-text-align"]	= cSVGElement.textAnchorToVTextAlign(sValue);
+				oElementDOM.childNodes[1].style["v-text-align"]	= cChartElement.textAnchorToVTextAlign(sValue);
 				break;
 			case "font-size":
 				var aFontSize	= sValue.match(/(^[\d.]*)(.*)$/),
@@ -432,6 +434,10 @@ if (cChartElement.useVML) {
 				oElementDOM.childNodes[1].style.fontStyle	= sValue;
 				break;
 		}
+	};
+
+	cChartElement.textAnchorToVTextAlign	= function(sTextAnchor) {
+		return {/*"start": "left", */"middle": "center", "end": "right"/*, "inherit": "left"*/}[sTextAnchor] || "left";
 	};
 
 	var oSVGElement_colors	= {
