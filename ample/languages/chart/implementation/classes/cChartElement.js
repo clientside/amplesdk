@@ -245,7 +245,7 @@ if (cChartElement.useVML) {
 				aCubic		= null;
 		}
 
-		return aPath.join('') + "e";
+		return aPath.join('');
 	};
 
 	cChartElement.applyCSS	= function(oElementDOM) {
