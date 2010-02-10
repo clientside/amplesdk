@@ -53,9 +53,9 @@ cChartElement_doughnut.prototype.refresh	= function() {
 			// Text label
 			var nTextR	=(nOuterR + nInnerR)/2 - 5,
 				nAngleFromText	= nAngleFrom + Math.PI / 90;
-			oItem.$getContainer("textPath").setAttribute("d", "M" + (cX + nTextR * Math.cos(nAngleFromText)) + "," +(cY + nTextR * Math.sin(nAngleFromText)) + ' ' +
-															"A" + nTextR + "," + nTextR + " 0 " + (nAngleTo - nAngleFrom > Math.PI ? 1 : 0) + ",1 " + (cX + nTextR * Math.cos(nAngleTo)) + "," +(cY + nTextR * Math.sin(nAngleTo))+
-															"z");
+			cChartElement.setPath(oItem.$getContainer("textPath"),	"M" + (cX + nTextR * Math.cos(nAngleFromText)) + "," +(cY + nTextR * Math.sin(nAngleFromText)) + ' ' +
+																	"A" + nTextR + "," + nTextR + " 0 " + (nAngleTo - nAngleFrom > Math.PI ? 1 : 0) + ",1 " + (cX + nTextR * Math.cos(nAngleTo)) + "," +(cY + nTextR * Math.sin(nAngleTo))+
+																"z");
 			//
 			nSumUp	+= oItem.getAttribute("value") * 1;
 		}
