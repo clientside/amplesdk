@@ -164,9 +164,8 @@ if (cSVGElement.useVML) {
 		}
 		else {
 			// Apply Translate
-			oElementDOM.style.marginLeft= Math.floor(aMatrix[2][0] / aMatrix[0][0]) + "px";
-			oElementDOM.style.marginTop	= Math.floor(aMatrix[2][1] / aMatrix[1][1]) + "px";
-
+			oElementDOM.style.marginLeft	= Math.floor(aMatrix[2][0]) + "px";
+			oElementDOM.style.marginTop		= Math.floor(aMatrix[2][1]) + "px";
 			// Apply Matrix
 			if (!oElementDOM.skew.on)
 				oElementDOM.skew.on	= true;
