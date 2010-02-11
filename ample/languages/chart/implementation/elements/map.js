@@ -299,6 +299,13 @@ else {
 			fHandler.call(this, oEvent);
 			//
 			cChartElement_map.recalcCSS(this);
+			// Delay displaying
+			var that	= this;
+			setTimeout(function() {
+				var oCanvas	= that.$getContainer("canvas");
+				if (oCanvas)
+					oCanvas.style.display	= "";
+			});
 		};
 	})();
 
@@ -325,8 +332,8 @@ else {
 	};
 
 	cChartElement_map.prototype.$getTagOpen	= function() {
-		return '<div class="c-map' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
-					<chart2vml:group class="c-map--canvas" style="position:relative;display:inline-block;x-overflow:hidden;width:600px;height:300px" coordOrigin="0 0" coordSize="600 300">\
+		return '<div class="c-map' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="overflow:hidden;width:600px;height:300px;' + this.getAttribute("style") + '">\
+					<chart2vml:group class="c-map--canvas" style="position:absolute;width:600px;height:300px;display:none;" coordOrigin="0 0" coordSize="600 300">\
 						<chart2vml:shape class="c-map--title" path="m0,0 l600,0" fillcolor="black" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%;top:30px;xleft:150px">\
 							<chart2vml:path textpathok="true" />\
 							<chart2vml:textpath on="true" string="' + this.getAttribute("title")+ '" style="v-text-align:center"/>\
