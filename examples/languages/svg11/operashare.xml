@@ -93,10 +93,10 @@
   .country-code { font-size: 650px; font-weight: bold; text-anchor: start; fill: firebrick; visibility: hidden;}
   .market-share { font-size: 800px; font-weight: bold; text-anchor: start; visibility: hidden;}
   .label { font-size: 300px; visibility: visible;}
-  .date { font-size: 280px; font-weight: bold; text-anchor: start; fill: dimgrey;}
+  .date { font-size: 280px; font-weight: bold; text-anchor: start; fill: dimgray;}
   </style>
   <linearGradient id="sea-gradient" x1="0" x2="0" y1="0" y2="1">
-			<stop offset="0%" stop-color="lightgrey"/>
+			<stop offset="0%" stop-color="lightblue"/>
 			<stop offset="100%" stop-color="white"/>
  </linearGradient>
  <linearGradient id="key-gradient" x1="0" x2="1" y1="0" y2="0">

@@ -105,7 +105,8 @@
 				// set app select
 				document.getElementById("select").value	= sValue;
 				// set app hash
-				document.location.hash	= sValue;
+				if (document.location.hash.replace(/^#/, '') != sValue)
+					document.location.hash	= sValue;
 				// load SVG document
 				ample.getElementById('container').$load(sValue);
 			}

@@ -16,7 +16,7 @@
 	 xmlns="&ns_svg;" xmlns:xlink="&ns_xlink;" width="1350.876" height="625.92" viewBox="0 0 1350.876 625.92"
 	 overflow="visible" enable-background="new 0 0 1350.876 625.92" xml:space="preserve">
 <g fill="none" stroke="#000000"
-	 onmouseover="if (event.target != this) {event.target.$getContainer().setAttribute('fill', '#999'); console.log(event.target.tagName)}"
+	 onmouseover="if (event.target != this) {event.target.setAttribute('fill', '#999999')}"
 	 onmouseout="if (event.target != this) event.target.style.backgroundColor = ''">
 
 				<path d="M669.966,499.94c1.33,1.5,2.66,2.52,4,2.89
