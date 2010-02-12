@@ -15,6 +15,21 @@ cAMLCharacterData.prototype	= new cAMLNode;
 cAMLCharacterData.prototype.data	= null;
 cAMLCharacterData.prototype.length	= 0;
 
+function fAMLCharacterData_appendData(oNode, sData)
+{
+	var sValueOld	= oNode.data;
+	oNode.data		+= sData;
+	oNode.length		= oNode.data.length;
+	oNode.nodeValue	= oNode.data;
+
+	// Fire Mutation event
+    if (sValueOld != oNode.data && oAMLConfiguration_values["ample-use-dom-events"]) {
+	    var oEvent = new cAMLMutationEvent;
+	    oEvent.initMutationEvent("DOMCharacterDataModified", true, false, null, sValueOld, oNode.data, null, null);
+	    fAMLNode_dispatchEvent(oNode, oEvent);
+	}
+};
+
 cAMLCharacterData.prototype.appendData	= function(sData)
 {
 	// Validate arguments
@@ -22,16 +37,22 @@ cAMLCharacterData.prototype.appendData	= function(sData)
 		["data",	cString]
 	], "appendData");
 
-	var sValueOld	= this.data;
-	this.data		+= sData;
-	this.length		= this.data.length;
-	this.nodeValue	= this.data;
+	// Invoke actual implementation
+	fAMLCharacterData_appendData(this, sData);
+};
+
+function fAMLCharacterData_deleteData(oNode, nOffset, nLength)
+{
+	var sValueOld	= oNode.data;
+	oNode.data		= oNode.data.substring(0, nOffset) + oNode.data.substring(nOffset, nOffset + nLength);
+	oNode.length		= oNode.data.length;
+	oNode.nodeValue	= oNode.data;
 
 	// Fire Mutation event
-    if (sValueOld != this.data && oAML_configuration.getParameter("ample-use-dom-events")) {
+    if (sValueOld != oNode.data && oAMLConfiguration_values["ample-use-dom-events"]) {
 	    var oEvent = new cAMLMutationEvent;
-	    oEvent.initMutationEvent("DOMCharacterDataModified", true, false, null, sValueOld, this.data, null, null);
-	    this.dispatchEvent(oEvent);
+	    oEvent.initMutationEvent("DOMCharacterDataModified", true, false, null, sValueOld, oNode.data, null, null);
+	    fAMLNode_dispatchEvent(oNode, oEvent);
 	}
 };
 
@@ -44,21 +65,24 @@ cAMLCharacterData.prototype.deleteData	= function(nOffset, nLength)
 	], "deleteData");
 
 	if (nOffset <= this.length && nOffset >= 0 && nLength >= 0)
-	{
-		var sValueOld	= this.data;
-		this.data		= this.data.substring(0, nOffset) + this.data.substring(nOffset, nOffset + nLength);
-		this.length		= this.data.length;
-		this.nodeValue	= this.data;
-
-		// Fire Mutation event
-	    if (sValueOld != this.data && oAML_configuration.getParameter("ample-use-dom-events")) {
-		    var oEvent = new cAMLMutationEvent;
-		    oEvent.initMutationEvent("DOMCharacterDataModified", true, false, null, sValueOld, this.data, null, null);
-		    this.dispatchEvent(oEvent);
-		}
-	}
+		fAMLCharacterData_deleteData(this, nOffset, nLength);
 	else
 		throw new cAMLException(cAMLException.INDEX_SIZE_ERR);
+};
+
+function fAMLCharacterData_insertData(oNode, nOffset, sData)
+{
+	var sValueOld	= oNode.data;
+	oNode.data		= oNode.data.substring(0, nOffset) + sData + oNode.data.substring(nOffset);
+	oNode.length	= oNode.data.length;
+	oNode.nodeValue	= oNode.data;
+
+	// Fire Mutation event
+    if (sValueOld != oNode.data && oAMLConfiguration_values["ample-use-dom-events"]) {
+	    var oEvent = new cAMLMutationEvent;
+	    oEvent.initMutationEvent("DOMCharacterDataModified", true, false, null, sValueOld, oNode.data, null, null);
+	    fAMLNode_dispatchEvent(oNode, oEvent);
+	}
 };
 
 cAMLCharacterData.prototype.insertData	= function(nOffset, sData)
@@ -70,21 +94,24 @@ cAMLCharacterData.prototype.insertData	= function(nOffset, sData)
 	], "insertData");
 
 	if (nOffset <= this.length && nOffset >= 0)
-	{
-		var sValueOld	= this.data;
-		this.data		= this.data.substring(0, nOffset) + sData + this.data.substring(nOffset);
-		this.length		= this.data.length;
-		this.nodeValue	= this.data;
-
-		// Fire Mutation event
-	    if (sValueOld != this.data && oAML_configuration.getParameter("ample-use-dom-events")) {
-		    var oEvent = new cAMLMutationEvent;
-		    oEvent.initMutationEvent("DOMCharacterDataModified", true, false, null, sValueOld, this.data, null, null);
-		    this.dispatchEvent(oEvent);
-		}
-	}
+		fAMLCharacterData_insertData(this, nOffset, sData);
 	else
 		throw new cAMLException(cAMLException.INDEX_SIZE_ERR);
+};
+
+function fAMLCharacterData_replaceData(oNode, nOffset, nLength, sData)
+{
+	var sValueOld	= oNode.data;
+	oNode.data		= oNode.data.substring(0, nOffset) + sData + oNode.data.substring(nOffset + nLength);
+	oNode.length	= oNode.data.length;
+	oNode.nodeValue	= oNode.data;
+
+	// Fire Mutation event
+    if (sValueOld != oNode.data && oAMLConfiguration_values["ample-use-dom-events"]) {
+	    var oEvent = new cAMLMutationEvent;
+	    oEvent.initMutationEvent("DOMCharacterDataModified", true, false, null, sValueOld, oNode.data, null, null);
+	    fAMLNode_dispatchEvent(oNode, oEvent);
+	}
 };
 
 cAMLCharacterData.prototype.replaceData	= function(nOffset, nLength, sData)
@@ -97,21 +124,14 @@ cAMLCharacterData.prototype.replaceData	= function(nOffset, nLength, sData)
 	], "replaceData");
 
 	if (nOffset <= this.length && nOffset >= 0 && nLength >= 0)
-	{
-		var sValueOld	= this.data;
-		this.data		= this.data.substring(0, nOffset) + sData + this.data.substring(nOffset + nLength);
-		this.length		= this.data.length;
-		this.nodeValue	= this.data;
-
-		// Fire Mutation event
-	    if (sValueOld != this.data && oAML_configuration.getParameter("ample-use-dom-events")) {
-		    var oEvent = new cAMLMutationEvent;
-		    oEvent.initMutationEvent("DOMCharacterDataModified", true, false, null, sValueOld, this.data, null, null);
-		    this.dispatchEvent(oEvent);
-		}
-	}
+		fAMLCharacterData_replaceData(this, nOffset, nLength, sData);
 	else
 		throw new cAMLException(cAMLException.INDEX_SIZE_ERR);
+};
+
+function fAMLCharacterData_substringData(oNode, nOffset, nLength)
+{
+	return this.data.substring(nOffset, nOffset + nLength);
 };
 
 cAMLCharacterData.prototype.substringData	= function(nOffset, nLength)
@@ -123,7 +143,7 @@ cAMLCharacterData.prototype.substringData	= function(nOffset, nLength)
 	], "substringData");
 
 	if (nOffset <= this.length && nOffset >= 0 && nLength >= 0)
-		return this.data.substring(nOffset, nOffset + nLength);
+		return fAMLCharacterData_substringData(this, nOffset, nLength);
 	else
 		throw new cAMLException(cAMLException.INDEX_SIZE_ERR);
 };

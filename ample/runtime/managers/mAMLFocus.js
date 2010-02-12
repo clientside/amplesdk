@@ -24,11 +24,11 @@ function fAMLFocus_focus(oElement) {
 
 		var oEvent	= new cAMLUIEvent;
 		oEvent.initUIEvent("focus", false, false, window, null);
-		oElement.dispatchEvent(oEvent);
+		fAMLNode_dispatchEvent(oElement, oEvent);
 
 		var oEvent	= new cAMLUIEvent;
 		oEvent.initUIEvent("DOMFocusIn", true, false, window, null);
-		oElement.dispatchEvent(oEvent);
+		fAMLNode_dispatchEvent(oElement, oEvent);
 	}
 };
 
@@ -42,11 +42,11 @@ function fAMLFocus_blur(oElement) {
 
 		var oEvent	= new cAMLUIEvent;
 		oEvent.initUIEvent("blur", false, false, window, null);
-		oElement.dispatchEvent(oEvent);
+		fAMLNode_dispatchEvent(oElement, oEvent);
 
 		var oEvent	= new cAMLUIEvent;
 		oEvent.initUIEvent("DOMFocusOut", true, false, window, null);
-		oElement.dispatchEvent(oEvent);
+		fAMLNode_dispatchEvent(oElement, oEvent);
 	}
 };
 

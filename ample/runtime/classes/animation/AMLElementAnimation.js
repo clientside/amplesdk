@@ -92,7 +92,7 @@ function fAMLElementAnimation_play(oElement, sParams, nDuration, vType, fHandler
 
 	var oEventEffectStart	= new cAMLCustomEvent;
 	oEventEffectStart.initCustomEvent("effectstart", false, false, null);
-	oEffect._element.dispatchEvent(oEventEffectStart);
+	fAMLNode_dispatchEvent(oEffect._element, oEventEffectStart);
 
 	// return effect resource identificator
 	return aAMLElementAnimation_effects.push(oEffect);
@@ -129,7 +129,7 @@ function fAMLElementAnimation_stop(nEffect)
 
 	var oEventEffectEnd	= new cAMLCustomEvent;
 	oEventEffectEnd.initCustomEvent("effectend", false, false, null);
-	oEffect._element.dispatchEvent(oEventEffectEnd);
+	fAMLNode_dispatchEvent(oEffect._element, oEventEffectEnd);
 
 	// clear effect
 	fAMLElementAnimation_clear(nEffect);

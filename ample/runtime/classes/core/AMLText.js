@@ -27,7 +27,7 @@ cAMLText.prototype.splitText	= function(nOffset)
 
 	if (nOffset <= this.length && nOffset >= 0)
 	{
-		var sData	= this.substringData(nOffset, this.length);
+		var sData	= fAMLCharacterData_substringData(this, nOffset, this.length);
 		this.parentNode.insertBefore(this.ownerDocument.createTextNode(sData), this);
 
 		var sValueOld	= this.data;
@@ -36,11 +36,11 @@ cAMLText.prototype.splitText	= function(nOffset)
 		this.nodeValue	= this.data;
 
 	    // Fire Event
-	    if (sValueOld != this.data && oAML_configuration.getParameter("ample-use-dom-events"))
+	    if (sValueOld != this.data && oAMLConfiguration_values["ample-use-dom-events"])
 	    {
 		    var oEvent = new cAMLMutationEvent;
 		    oEvent.initMutationEvent("DOMCharacterDataModified", true, false, null, sValueOld, this.data, null, null);
-		    this.dispatchEvent(oEvent);
+		    fAMLNode_dispatchEvent(this, oEvent);
 		}
 
 		// Update presentation
@@ -82,7 +82,7 @@ cAMLText.prototype.insertData	= function(nOffset, sData)
 		oNode.nodeValue	= this.data;
 };
 
-cAMLText.prototype.replaceData= function(nOffset, nLength, sData)
+cAMLText.prototype.replaceData	= function(nOffset, nLength, sData)
 {
 	cAMLCharacterData.prototype.replaceData.call(this, nOffset, nLength, sData);
 
@@ -105,10 +105,10 @@ cAMLText.prototype.replaceWholeText	= function(sContent) {
 	this.nodeValue	= this.data;
 
 	// Fire Mutation event
-    if (sValueOld != sContent && oAML_configuration.getParameter("ample-use-dom-events")) {
+    if (sValueOld != sContent && oAMLConfiguration_values["ample-use-dom-events"]) {
 	    var oEvent = new cAMLMutationEvent;
 	    oEvent.initMutationEvent("DOMCharacterDataModified", true, false, null, sValueOld, this.data, null, null);
-	    this.dispatchEvent(oEvent);
+	    fAMLNode_dispatchEvent(this, oEvent);
 	}
 };
 

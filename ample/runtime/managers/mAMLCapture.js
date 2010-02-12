@@ -55,7 +55,7 @@ cAMLElement.prototype.releaseCapture	= function() {
 		// Notify element on capture lose
 		var oEvent	= new cAMLUIEvent;
 		oEvent.initUIEvent("losecapture", false, false, window, null);
-		this.dispatchEvent(oEvent);
+		fAMLNode_dispatchEvent(this, oEvent);
 
 		//
 		oAML_captureNode	= null;

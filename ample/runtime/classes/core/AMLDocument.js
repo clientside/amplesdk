@@ -39,10 +39,10 @@ cAMLDocument.prototype.createAttribute	= function(sName)
 	return this.createAttributeNS(null, sName);
 };
 
-cAMLDocument.prototype.createAttributeNS	= function(sNameSpaceURI, sQName)
-{
 //->Source
 /*
+function fAMLDocument_createAttributeNS(oDocument, sNameSpaceURI, sQName)
+{
 	var oNode		= new cAMLAttr,
 		aQName		= sQName.split(':'),
 		sLocalName	= aQName.length > 1 ? aQName[1] : aQName[0],
@@ -58,10 +58,35 @@ cAMLDocument.prototype.createAttributeNS	= function(sNameSpaceURI, sQName)
     oNode.value			= oNode.nodeValue;
 
 	return oNode;
+};
+*/
+//<-Source
+
+cAMLDocument.prototype.createAttributeNS	= function(sNameSpaceURI, sQName)
+{
+	// Validate arguments
+	fAML_validate(arguments, [
+		["namespaceURI",	cString, false, true],
+		["QName",			cString]
+	], "createAttributeNS");
+//->Source
+/*
+	return fAMLDocument_createAttributeNS(this, sNameSpaceURI, sQName);
 */
 //<-Source
 
 	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+};
+
+function fAMLDocument_createTextNode(oDocument, sData)
+{
+	var oNode	= new cAMLText;
+	oNode.ownerDocument	= oDocument;
+	oNode.nodeValue	= sData;
+	oNode.data		= sData;
+	oNode.length	= sData.length;
+
+	return oNode;
 };
 
 cAMLDocument.prototype.createTextNode	= function(sData)
@@ -75,8 +100,14 @@ cAMLDocument.prototype.createTextNode	= function(sData)
 	if (!arguments.length)
 		sData	= '';
 
-	var oNode	= new cAMLText;
-	oNode.ownerDocument	= this;
+	// Invoke actual implementation
+	return fAMLDocument_createTextNode(this, sData);
+};
+
+function fAMLDocument_createCDATASection(oDocument, sData)
+{
+	var oNode	= new cAMLCDATASection;
+	oNode.ownerDocument	= oDocument;
 	oNode.nodeValue	= sData;
 	oNode.data		= sData;
 	oNode.length	= sData.length;
@@ -95,14 +126,24 @@ cAMLDocument.prototype.createCDATASection	= function(sData)
 	if (!arguments.length)
 		sData	= '';
 
-	var oNode	= new cAMLCDATASection;
-	oNode.ownerDocument	= this;
+	// Invoke actual implementation
+	return fAMLDocument_createCDATASection(this, sData);
+};
+
+//->Source
+/*
+function fAMLDocument_createComment(oDocument, sData)
+{
+	var oNode	= new cAMLComment;
+	oNode.ownerDocument	= oDocument;
 	oNode.nodeValue	= sData;
 	oNode.data		= sData;
 	oNode.length	= sData.length;
 
 	return oNode;
 };
+*/
+//<-Source
 
 cAMLDocument.prototype.createComment	= function(sData)
 {
@@ -111,17 +152,17 @@ cAMLDocument.prototype.createComment	= function(sData)
 		["data",	cString, true]
 	], "createComment");
 
+//->Source
+/*
 	// if no argument was provided, use empty string
 	if (!arguments.length)
 		sData	= '';
 
-	var oNode	= new cAMLComment;
-	oNode.ownerDocument	= this;
-	oNode.nodeValue	= sData;
-	oNode.data		= sData;
-	oNode.length	= sData.length;
+	return fAMLDocument_createComment(this, sData);
+*/
+//<-Source
 
-	return oNode;
+	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
 
 cAMLDocument.prototype.createElement	= function(sName)
@@ -131,17 +172,12 @@ cAMLDocument.prototype.createElement	= function(sName)
 		["name",	cString]
 	], "createElement");
 
-	return this.createElementNS(this.namespaceURI, sName);
+	// Invoke actual implementation
+	return fAMLDocument_createElementNS(this, this.namespaceURI, sQName);
 };
 
-cAMLDocument.prototype.createElementNS	= function(sNameSpaceURI, sQName)
+function fAMLDocument_createElementNS(oDocument, sNameSpaceURI, sQName)
 {
-	// Validate arguments
-	fAML_validate(arguments, [
-		["namespaceURI",	cString, false, true],
-		["localName",		cString]
-	], "createElementNS");
-
 	var aQName		= sQName.split(':'),
 		sLocalName	= aQName.length > 1 ? aQName[1] : aQName[0],
 		sPrefix		= aQName.length > 1 ? aQName[0] : null,
@@ -152,7 +188,7 @@ cAMLDocument.prototype.createElementNS	= function(sNameSpaceURI, sQName)
 
 	// DOM Properties
 	oElement.attributes		= {};
-    oElement.ownerDocument	= this;
+    oElement.ownerDocument	= oDocument;
     oElement.prefix			= sPrefix;
     oElement.nodeName		= sQName;
     oElement.tagName		= sQName;
@@ -174,6 +210,18 @@ cAMLDocument.prototype.createElementNS	= function(sNameSpaceURI, sQName)
 	}
 
     return oElement;
+};
+
+cAMLDocument.prototype.createElementNS	= function(sNameSpaceURI, sQName)
+{
+	// Validate arguments
+	fAML_validate(arguments, [
+		["namespaceURI",	cString, false, true],
+		["QName",			cString]
+	], "createElementNS");
+
+	// Invoke actual implementation
+	return fAMLDocument_createElementNS(this, sNameSpaceURI, sQName);
 };
 
 cAMLDocument.prototype.createEntityReference	= function(sName)
@@ -209,6 +257,16 @@ cAMLDocument.prototype.createDocumentFragment	= function()
 	return oNode;
 };
 
+function fAMLDocument_createProcessingInstruction(oDocument, sTarget, sData)
+{
+	var oNode	= new cAMLProcessingInstruction;
+	oNode.ownerDocument	= oDocument;
+	oNode.nodeName	= oNode.target	= sTarget;
+	oNode.nodeValue	= oNode.data	= sData;
+
+	return oNode;
+};
+
 cAMLDocument.prototype.createProcessingInstruction	= function(sTarget, sData)
 {
 	// Validate arguments
@@ -217,12 +275,8 @@ cAMLDocument.prototype.createProcessingInstruction	= function(sTarget, sData)
 		["data",	cString]
 	], "createProcessingInstruction");
 
-	var oNode	= new cAMLProcessingInstruction;
-	oNode.ownerDocument	= this;
-	oNode.nodeName	= oNode.target	= sTarget;
-	oNode.nodeValue	= oNode.data	= sData;
-
-	return oNode;
+	// Invoke actual implementation
+	return fAMLDocument_createProcessingInstruction(this, sTarget, sData);
 };
 
 cAMLDocument.prototype.getElementById	= function(sId)
@@ -381,7 +435,7 @@ function fAMLDocument_routeEvent(oEvent)
 
 			default:
 				// Set current target
-				if (nLength > 1 && oAML_configuration.getParameter("ample-use-dom-capture")) {
+				if (nLength > 1 && oAMLConfiguration_values["ample-use-dom-capture"]) {
 					nCurrent	= nLength - 1;
 					oEvent.eventPhase	= cAMLEvent.CAPTURING_PHASE;
 					oEvent.currentTarget= aTargets[nCurrent];

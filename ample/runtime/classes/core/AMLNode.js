@@ -57,6 +57,43 @@ cAMLNode.DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC	= 32;
 cAMLNode.prototype.$listeners	= null;
 
 // nsIDOMNode
+function fAMLNode_appendChild(oParent, oNode)
+{
+	// Remove element from previous location
+	if (oNode.parentNode) {
+		// Fire Mutation event
+	    if (oAMLConfiguration_values["ample-use-dom-events"]) {
+		    var oEvent = new cAMLMutationEvent;
+		    oEvent.initMutationEvent("DOMNodeRemoved", true, false, oNode.parentNode, null, null, null, null);
+		    fAMLNode_dispatchEvent(oNode, oEvent);
+	    }
+	    fAMLNode_removeChild(oNode.parentNode, oNode);
+	}
+
+	// Set DOM properties
+    oNode.parentNode	= oParent;
+
+    if (oParent.lastChild)
+    {
+        oNode.previousSibling	= oParent.lastChild;
+        oParent.lastChild.nextSibling	= oNode;
+    }
+    else
+    	oParent.firstChild	= oNode;
+    oParent.lastChild	= oNode;
+
+    oParent.childNodes.$add(oNode);
+
+	// Fire Mutation event
+    if (oAMLConfiguration_values["ample-use-dom-events"]) {
+	    var oEvent = new cAMLMutationEvent;
+	    oEvent.initMutationEvent("DOMNodeInserted", true, false, oParent, null, null, null, null);
+	    fAMLNode_dispatchEvent(oNode, oEvent);
+	}
+
+	return oNode;
+};
+
 cAMLNode.prototype.appendChild	= function(oNode)
 {
 	// Validate arguments
@@ -64,39 +101,7 @@ cAMLNode.prototype.appendChild	= function(oNode)
 		["node",	cAMLNode]
 	], "appendChild");
 
-	// Remove element from previous location
-	if (oNode.parentNode) {
-		// Fire Mutation event
-	    if (oAML_configuration.getParameter("ample-use-dom-events")) {
-		    var oEvent = new cAMLMutationEvent;
-		    oEvent.initMutationEvent("DOMNodeRemoved", true, false, oNode.parentNode, null, null, null, null);
-		    oNode.dispatchEvent(oEvent);
-	    }
-		cAMLNode.prototype.removeChild.call(oNode.parentNode, oNode);
-	}
-
-	// Set DOM properties
-    oNode.parentNode	= this;
-
-    if (this.lastChild)
-    {
-        oNode.previousSibling	= this.lastChild;
-        this.lastChild.nextSibling	= oNode;
-    }
-    else
-        this.firstChild	= oNode;
-    this.lastChild	= oNode;
-
-    this.childNodes.$add(oNode);
-
-	// Fire Mutation event
-    if (oAML_configuration.getParameter("ample-use-dom-events")) {
-	    var oEvent = new cAMLMutationEvent;
-	    oEvent.initMutationEvent("DOMNodeInserted", true, false, this, null, null, null, null);
-	    oNode.dispatchEvent(oEvent);
-	}
-
-	return oNode;
+	return fAMLNode_appendChild(this, oNode);
 };
 
 cAMLNode.prototype.insertBefore	= function(oNode, oBefore)
@@ -109,7 +114,7 @@ cAMLNode.prototype.insertBefore	= function(oNode, oBefore)
 
 	// if oBefore is ommited or null, use appendChild
 	if (!oBefore)
-		return this.appendChild(oNode);
+		return fAMLElement_appendChild(this, oNode);	// TODO: Check nodetype of this
 
    	var nIndex  = this.childNodes.$indexOf(oBefore);
     if (nIndex !=-1)
@@ -117,12 +122,12 @@ cAMLNode.prototype.insertBefore	= function(oNode, oBefore)
 		// Remove element from previous location
 		if (oNode.parentNode) {
 			// Fire Mutation event
-		    if (oAML_configuration.getParameter("ample-use-dom-events")) {
+		    if (oAMLConfiguration_values["ample-use-dom-events"]) {
 			    var oEvent = new cAMLMutationEvent;
 			    oEvent.initMutationEvent("DOMNodeRemoved", true, false, oNode.parentNode, null, null, null, null);
-			    oNode.dispatchEvent(oEvent);
+			    fAMLNode_dispatchEvent(oNode, oEvent);
 		    }
-			cAMLNode.prototype.removeChild.call(oNode.parentNode, oNode);
+		    fAMLNode_removeChild(oNode.parentNode, oNode);
 			// update index (could have been changed if "node" was before "before")
 			nIndex	= this.childNodes.$indexOf(oBefore);
 		}
@@ -147,13 +152,33 @@ cAMLNode.prototype.insertBefore	= function(oNode, oBefore)
         throw new cAMLException(cAMLException.NOT_FOUND_ERR);
 
 	// Fire Mutation event
-    if (oAML_configuration.getParameter("ample-use-dom-events")) {
+    if (oAMLConfiguration_values["ample-use-dom-events"]) {
 	    var oEvent = new cAMLMutationEvent;
 	    oEvent.initMutationEvent("DOMNodeInserted", true, false, this, null, null, null, null);
-	    oNode.dispatchEvent(oEvent);
+	    fAMLNode_dispatchEvent(oNode, oEvent);
     }
 
 	return oNode;
+};
+
+function fAMLNode_removeChild(oParent, oNode)
+{
+	if (oNode.nextSibling)
+		oNode.nextSibling.previousSibling	= oNode.previousSibling;
+	else
+		oParent.lastChild	= oNode.previousSibling;
+
+	if (oNode.previousSibling)
+		oNode.previousSibling.nextSibling	= oNode.nextSibling;
+	else
+		oParent.firstChild	= oNode.nextSibling;
+
+	// Reset DOM properties
+    oNode.parentNode  		= null;
+	oNode.previousSibling	= null;
+	oNode.nextSibling		= null;
+
+    return oParent.childNodes.$remove(oNode);
 };
 
 cAMLNode.prototype.removeChild	= function(oNode)
@@ -163,27 +188,8 @@ cAMLNode.prototype.removeChild	= function(oNode)
 		["node",	cAMLNode]
 	], "removeChild");
 
-    // remove item from the collection of childNodes
-    var nIndex  = this.childNodes.$indexOf(oNode);
-    if (nIndex !=-1)
-    {
-		if (oNode.nextSibling)
-			oNode.nextSibling.previousSibling	= oNode.previousSibling;
-		else
-			this.lastChild	= oNode.previousSibling;
-
-		if (oNode.previousSibling)
-			oNode.previousSibling.nextSibling	= oNode.nextSibling;
-		else
-			this.firstChild	= oNode.nextSibling;
-
-		// Reset DOM properties
-        oNode.parentNode  		= null;
-		oNode.previousSibling	= null;
-		oNode.nextSibling		= null;
-
-        return this.childNodes.$remove(oNode);
-    }
+    if (this.childNodes.$indexOf(oNode) !=-1)
+    	return fAMLNode_removeChild(this, oNode);
     else
         throw new cAMLException(cAMLException.NOT_FOUND_ERR);
 };
@@ -265,14 +271,9 @@ cAMLNode.prototype.isDefaultNamespace	= function(sNameSpaceURI)
 	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
 
-cAMLNode.prototype.lookupNamespaceURI	= function(sPrefix)
+function fAMLNode_lookupNamespaceURI(oNode, sPrefix)
 {
-	// Validate arguments
-	fAML_validate(arguments, [
-		["prefix",	cString, false, true]
-	], "lookupNamespaceURI");
-
-	for (var oNode = this; oNode && oNode.nodeType != cAMLNode.DOCUMENT_NODE; oNode = oNode.parentNode)
+	for (; oNode && oNode.nodeType != cAMLNode.DOCUMENT_NODE; oNode = oNode.parentNode)
 		if (oNode.prefix == sPrefix)
 			return oNode.namespaceURI;
 		else
@@ -281,6 +282,17 @@ cAMLNode.prototype.lookupNamespaceURI	= function(sPrefix)
 				if (sAttribute.indexOf("xmlns" + ':') == 0 && sAttribute.substr(6) == sPrefix)
 					return oNode.attributes[sAttribute];
 	return null;
+};
+
+cAMLNode.prototype.lookupNamespaceURI	= function(sPrefix)
+{
+	// Validate arguments
+	fAML_validate(arguments, [
+		["prefix",	cString, false, true]
+	], "lookupNamespaceURI");
+
+	// Invoke actual implementation
+	return fAMLNode_lookupNamespaceURI(this, sPrefix);
 };
 
 /*
@@ -469,7 +481,7 @@ function fAMLNode_executeHandler(oNode, fHandler, oEvent) {
 	}
 	catch (oException) {
 		if (oException instanceof cAMLException) {
-			var	oErrorHandler	= oAML_configuration.getParameter("error-handler");
+			var	oErrorHandler	= oAMLConfiguration_values["error-handler"];
 			if (oErrorHandler)
 				oErrorHandler.handleError(new cAMLError(oException.message, cAMLError.SEVERITY_ERROR, oException));
 		}
@@ -526,6 +538,17 @@ cAMLNode.prototype.isSupported	= function()
 	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
 
+function fAMLNode_dispatchEvent(oNode, oEvent)
+{
+	// Set event target and currentTarget
+	oEvent.target	= oNode;
+
+	// Start event flow
+	fAMLDocument_routeEvent(oEvent);
+
+	return !oEvent.defaultPrevented;
+};
+
 cAMLNode.prototype.dispatchEvent	= function(oEvent)
 {
 	// Validate arguments
@@ -533,13 +556,8 @@ cAMLNode.prototype.dispatchEvent	= function(oEvent)
 		["event",	cAMLEvent]
 	], "dispatchEvent");
 
-	// Set event target and currentTarget
-	oEvent.target	= this;
-
-	// Start event flow
-	fAMLDocument_routeEvent(oEvent);
-
-	return !oEvent.defaultPrevented;
+	// Invoke actual implementation
+	return fAMLNode_dispatchEvent(this, oEvent);
 };
 //->Source
 /*

@@ -41,12 +41,12 @@ function fAMLHistory_onTimeout() {
 			// dispatch event
 			var oEvent	= new cAMLCustomEvent;
 			oEvent.initCustomEvent("navigate", false, false, sHash);
-			ample.dispatchEvent(oEvent);
+			fAMLNode_dispatchEvent(ample, oEvent);
 
 			// dispatch hashchange event
 			var oEvent	= new cAMLCustomEvent;
 			oEvent.initCustomEvent("hashchange", false, false, sHash);
-			ample.dispatchEvent(oEvent);
+			fAMLNode_dispatchEvent(ample, oEvent);
 //		}
 	}
 
@@ -60,7 +60,7 @@ function fAMLHistory_onLoad(oEvent) {
 		oElement.style.display	= "none";
 		document.body.appendChild(oElement);
 		oAMLHistory_window	= oElement.contentWindow;
-		if (oAML_configuration.getParameter("ample-module-history-fix"))
+		if (oAMLConfiguration_values["ample-module-history-fix"])
 			fAMLHistory_bookmark(sHash);
 	}
 	sAMLHistory_hash		= sHash;	// set to null to get initial 'navigate' event

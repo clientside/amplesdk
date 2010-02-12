@@ -84,7 +84,7 @@ function fAMLDragAndDrop_onMouseUp(oEvent)
 			    oEventDrop.initDragEvent("drop", true, true, window, null, oAMLDragAndDrop_dataTransfer);
 			    oEventDrop.relatedTarget	= oAMLDragAndDrop_dragSource;
 			    oEventDrop.$pseudoTarget	= oEvent.$pseudoTarget;
-				oAMLDragAndDrop_dropTarget.dispatchEvent(oEventDrop);
+			    fAMLNode_dispatchEvent(oAMLDragAndDrop_dropTarget, oEventDrop);
 			}
 
 			// fire ondragleave event
@@ -92,7 +92,7 @@ function fAMLDragAndDrop_onMouseUp(oEvent)
 		    oEventDragLeave.initDragEvent("dragleave", true, true, window, null, oAMLDragAndDrop_dataTransfer);
 		    oEventDragLeave.$pseudoTarget	= oEvent.$pseudoTarget;
 		    oEventDragLeave.relatedTarget	= oAMLDragAndDrop_dragSource;
-			oAMLDragAndDrop_dropTarget.dispatchEvent(oEventDragLeave);
+		    fAMLNode_dispatchEvent(oAMLDragAndDrop_dropTarget, oEventDragLeave);
 		}
 
 	    // Clear array of drag target
@@ -102,7 +102,7 @@ function fAMLDragAndDrop_onMouseUp(oEvent)
 		var oEventDragEnd	= new cAMLDragEvent;
 	    oEventDragEnd.initDragEvent("dragend", true, true, window, null, oAMLDragAndDrop_dataTransfer);
 	    oEventDragEnd.$pseudoTarget	= oEvent.$pseudoTarget;
-		oAMLDragAndDrop_dragSource.dispatchEvent(oEventDragEnd);
+	    fAMLNode_dispatchEvent(oAMLDragAndDrop_dragSource, oEventDragEnd);
 
 		if (oEventDragEnd.defaultPrevented || (oEvent.defaultPrevented || oEvent.button))
 		{
@@ -148,7 +148,7 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
 		var oEventDragStart	= new cAMLDragEvent;
 		oEventDragStart.initDragEvent("dragstart", true, true, window, null, oAMLDragAndDrop_dataTransfer);
 		oEventDragStart.$pseudoTarget	= oEvent.$pseudoTarget;
-		oAMLDragAndDrop_dragSource.dispatchEvent(oEventDragStart);
+		fAMLNode_dispatchEvent(oAMLDragAndDrop_dragSource, oEventDragStart);
 
 		if (oEventDragStart.defaultPrevented) {
 			// end operation and return
@@ -242,7 +242,7 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
 	    oEventDragLeave.initDragEvent("dragleave", true, true, window, null, oAMLDragAndDrop_dataTransfer);
 	    oEventDragLeave.relatedTarget	= oAMLDragAndDrop_dragSource;
 	    oEventDragLeave.$pseudoTarget	= oEvent.$pseudoTarget;
-		oAMLDragAndDrop_dropTarget.dispatchEvent(oEventDragLeave);
+	    fAMLNode_dispatchEvent(oAMLDragAndDrop_dropTarget, oEventDragLeave);
 	}
 
 	if (nTarget >-1)
@@ -256,7 +256,7 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
 		    oEventDragEnter.initDragEvent("dragenter", true, true, window, null, oAMLDragAndDrop_dataTransfer);
 		    oEventDragEnter.$pseudoTarget	= oEvent.$pseudoTarget;
 		    oEventDragEnter.relatedTarget	= oAMLDragAndDrop_dragSource;
-			oAMLDragAndDrop_dropTarget.dispatchEvent(oEventDragEnter);
+		    fAMLNode_dispatchEvent(oAMLDragAndDrop_dropTarget, oEventDragEnter);
 		}
 
 		// fire ondragover event
@@ -264,7 +264,7 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
 	    oEventDragOver.initDragEvent("dragover", true, true, window, null, oAMLDragAndDrop_dataTransfer);
 	    oEventDragOver.$pseudoTarget	= oEvent.$pseudoTarget;
 	    oEventDragOver.relatedTarget	= oAMLDragAndDrop_dragSource;
-		oAMLDragAndDrop_dropTarget.dispatchEvent(oEventDragOver);
+	    fAMLNode_dispatchEvent(oAMLDragAndDrop_dropTarget, oEventDragOver);
 	}
 	else
 	{
@@ -276,7 +276,7 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
     oEventDrag.initDragEvent("drag", true, true, window, null, oAMLDragAndDrop_dataTransfer);
     oEventDrag.$pseudoTarget	= oEvent.$pseudoTarget;
     oEventDrag.relatedTarget	= oAMLDragAndDrop_dropTarget;
-	oAMLDragAndDrop_dragSource.dispatchEvent(oEventDrag);
+    fAMLNode_dispatchEvent(oAMLDragAndDrop_dragSource, oEventDrag);
 
 	if (!oEventDrag.defaultPrevented)
 	{

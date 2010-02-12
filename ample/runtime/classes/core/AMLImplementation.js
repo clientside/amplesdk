@@ -21,6 +21,43 @@ cAMLImplementation.prototype.createDocumentType	= function(sQName, sPublicId, sS
 	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
 
+function fAMLImplementation_createDocument(oImplementation, sNameSpaceURI, sQName, oDocType)
+{
+
+	// Disable mutation-events (since there cannot be any listeners yet)
+	oAMLConfiguration_values["ample-use-dom-events"]	= false;
+
+	// Create docuemnt
+	var oDocument	= new cAMLDocument;
+	oDocument.namespaceURI	= sNameSpaceURI;
+	oDocument.implementation= oImplementation;
+	oDocument.domConfig		= oAML_configuration;
+	oDocument.childNodes	= new cAMLNodeList;
+
+	// Add processing instruction <?xml version="1.0"?>
+	fAMLNode_appendChild(oDocument, fAMLDocument_createProcessingInstruction(oDocument, "xml", "version" + '="' + "1.0" + '"'));
+
+	// Add doc type, if passed
+	if (oDocType)
+		fAMLNode_appendChild(oDocument, oDocType);
+
+	// Add document element
+	if (sQName)
+	{
+		oDocument.documentElement	= fAMLDocument_createElementNS(oDocument, sNameSpaceURI, sQName);
+		if (sNameSpaceURI)
+			oDocument.documentElement.attributes["xmlns" + (sQName.match(/^([^:]):/) ? ':' + cRegExp.$1 : '')]	= sNameSpaceURI;
+		fAMLNode_appendChild(oDocument, oDocument.documentElement);
+	    // Register
+		fAML_register(oDocument.documentElement);
+	}
+
+	// Enable mutation-events
+	oAMLConfiguration_values["ample-use-dom-events"]	= true;
+
+	return oDocument;
+};
+
 cAMLImplementation.prototype.createDocument	= function(sNameSpaceURI, sQName, oDocType)
 {
 	// Validate arguments
@@ -30,38 +67,8 @@ cAMLImplementation.prototype.createDocument	= function(sNameSpaceURI, sQName, oD
 		["doctype",			cObject, false, true]
 	], "createDocument");
 
-	// Disable mutation-events (since there cannot be any listeners yet)
-	oAML_configuration.setParameter("ample-use-dom-events",		false);
-
-	// Create docuemnt
-	var oDocument	= new cAMLDocument;
-	oDocument.namespaceURI	= sNameSpaceURI;
-	oDocument.implementation= oAML_implementation;
-	oDocument.domConfig		= oAML_configuration;
-	oDocument.childNodes	= new cAMLNodeList;
-
-	// Add processing instruction <?xml version="1.0"?>
-	cAMLNode.prototype.appendChild.call(oDocument, oDocument.createProcessingInstruction("xml", "version" + '="' + "1.0" + '"'));
-
-	// Add doc type, if passed
-	if (oDocType)
-		oDocument.appendChild(oDocType);
-
-	// Add document element
-	if (sQName)
-	{
-		oDocument.documentElement	= oDocument.createElementNS(sNameSpaceURI, sQName);
-		if (sNameSpaceURI)
-			oDocument.documentElement.attributes["xmlns" + (sQName.match(/^([^:]):/) ? ':' + cRegExp.$1 : '')]	= sNameSpaceURI;
-		cAMLNode.prototype.appendChild.call(oDocument, oDocument.documentElement);
-	    // Register
-		fAML_register(oDocument.documentElement);
-	}
-
-	// Enable mutation-events
-	oAML_configuration.setParameter("ample-use-dom-events",		true);
-
-	return oDocument;
+	// Invoke actual implementation
+	return fAMLImplementation_createDocument(this, sNameSpaceURI, sQName, oDocType);
 };
 
 // nsIDOMImplementation Level 3

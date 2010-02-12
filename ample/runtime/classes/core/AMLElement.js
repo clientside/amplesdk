@@ -20,30 +20,36 @@ cAMLElement.prototype.uniqueID	= null;
 var nAMLElement_prefix	= 0;
 
 // Public Methods
-cAMLElement.prototype.appendChild	= function(oNode)
+function fAMLElement_appendChild(oParent, oNode)
 {
 	if (oNode instanceof cAMLDocumentFragment) {
 		while (oNode.firstChild)
-			this.appendChild(oNode.firstChild);
+			fAMLElement_appendChild(oParent, oNode.firstChild);
 	}
 	else {
 		// Call parent class method
-		cAMLNode.prototype.appendChild.call(this, oNode);
+		fAMLNode_appendChild(oParent, oNode);
 
 		// Append DOM
 		var oGateway, oElement;
-		if (this.nodeType == cAMLNode.ELEMENT_NODE)
-			if (oGateway =(this.$getContainer("gateway") || this.$getContainer()))
+		if (oParent.nodeType == cAMLNode.ELEMENT_NODE)
+			if (oGateway =(oParent.$getContainer("gateway") || oParent.$getContainer()))
 				if (oElement = (oNode.$getContainer() || fAML_render(oNode)))
 			   		oGateway.appendChild(oElement);
 
 		// Register Instance
-		if (oAML_all[this.uniqueID])
+		if (oAML_all[oParent.uniqueID])
 			fAML_register(oNode);
 	}
 
 	//
     return oNode;
+};
+
+cAMLElement.prototype.appendChild	= function(oNode)
+{
+	// Invoke actual implementation
+	return fAMLElement_appendChild(this, oNode);
 };
 
 cAMLElement.prototype.insertBefore	= function(oNode, oBefore)
@@ -85,10 +91,10 @@ cAMLElement.prototype.removeChild	= function(oNode)
 	], "removeChild");
 
 	// Fire Mutation event
-    if (oAML_configuration.getParameter("ample-use-dom-events")) {
+    if (oAMLConfiguration_values["ample-use-dom-events"]) {
 	    var oEvent = new cAMLMutationEvent;
 	    oEvent.initMutationEvent("DOMNodeRemoved", true, false, this, null, null, null, null);
-	    oNode.dispatchEvent(oEvent);
+	    fAMLNode_dispatchEvent(oNode, oEvent);
     }
 
 	// Unregister Instance
@@ -96,7 +102,7 @@ cAMLElement.prototype.removeChild	= function(oNode)
 		fAML_unregister(oNode);
 
 	// Call parent class method
-	cAMLNode.prototype.removeChild.call(this, oNode);
+	fAMLNode_removeChild(this, oNode);
 
 	// Remove from DOM
 	var oChild, oGateway;
@@ -141,7 +147,7 @@ cAMLElement.prototype.replaceChild	= function(oNode, oOld)
 cAMLElement.prototype.cloneNode	= function(bDeep)
 {
 	// Create Element
-	var oElement	= this.ownerDocument.createElementNS(this.namespaceURI, this.nodeName);
+	var oElement	= fAMLDocument_createElementNS(this.ownerDocument, this.namespaceURI, this.nodeName);
 
 	// Copy Attributes
 	for (var sName in this.attributes)
@@ -150,7 +156,7 @@ cAMLElement.prototype.cloneNode	= function(bDeep)
 	// Append Children
 	if (bDeep)
 		for (var nIndex = 0; nIndex < this.childNodes.length; nIndex++)
-			cAMLNode.prototype.appendChild.call(oElement, this.childNodes[nIndex].cloneNode(bDeep));
+			fAMLNode_appendChild(oElement, this.childNodes[nIndex].cloneNode(bDeep));
 	return oElement;
 };
 
@@ -223,10 +229,10 @@ cAMLElement.prototype.setAttribute	= function(sName, sValue)
     	this.attributes[sName]	= sValue;
 
     	// Fire Mutation event
-    	if (this.uniqueID in oAML_all && oAML_configuration.getParameter("ample-use-dom-events")) {
+    	if (this.uniqueID in oAML_all && oAMLConfiguration_values["ample-use-dom-events"]) {
 		    var oEvent = new cAMLMutationEvent;
 		    oEvent.initMutationEvent("DOMAttrModified", true, false, null, bValue ? sValueOld : null, sValue, sName, bValue ? cAMLMutationEvent.MODIFICATION : cAMLMutationEvent.ADDITION);
-		    this.dispatchEvent(oEvent);
+		    fAMLNode_dispatchEvent(this, oEvent);
     	}
     }
 };
@@ -400,10 +406,10 @@ cAMLElement.prototype.removeAttribute	= function(sName)
 	    delete this.attributes[sName];
 
 		// Fire Mutation event
-	    if (this.uniqueID in oAML_all && oAML_configuration.getParameter("ample-use-dom-events")) {
+	    if (this.uniqueID in oAML_all && oAMLConfiguration_values["ample-use-dom-events"]) {
 		    var oEvent = new cAMLMutationEvent;
 		    oEvent.initMutationEvent("DOMAttrModified", true, false, null, sValueOld, null, sName, cAMLMutationEvent.REMOVAL);
-		    this.dispatchEvent(oEvent);
+		    fAMLNode_dispatchEvent(this, oEvent);
 	    }
 	}
 };
@@ -531,7 +537,7 @@ cAMLElement.prototype.$activate	= function()
 {
 	var oEvent	= new cAMLUIEvent;
 	oEvent.initUIEvent("DOMActivate", true, true, window, null);
-	this.dispatchEvent(oEvent);
+	fAMLNode_dispatchEvent(this, oEvent);
 };
 
 cAMLElement.prototype.$getTag		= function()
@@ -750,7 +756,7 @@ function fAMLElement_load(oElement, sUrl, sMethod, oHeaders, sData)
 	// Dispatch unload event
 	var oEvent	= new cAMLEvent;
 	oEvent.initEvent("unload", false, false);
-	oElement.dispatchEvent(oEvent);
+	fAMLNode_dispatchEvent(oElement, oEvent);
 
 	// Remove nodes
 	while (oElement.firstChild)
@@ -790,12 +796,12 @@ function fAMLElement_onReadyStateChange(oRequest, oElement)
 	    if (oDocument)
 	    {
 			// Render Content
-			oElement.appendChild(fAML_import(oDocument.documentElement, null));
+	    	fAMLElement_appendChild(oElement, fAML_import(oDocument.documentElement, null));
 
 			// Dispatch load event
 			var oEvent	= new cAMLEvent;
 			oEvent.initEvent("load", false, false);
-			oElement.dispatchEvent(oEvent);
+			fAMLNode_dispatchEvent(oElement, oEvent);
 	    }
 	    else
 	    {
@@ -806,7 +812,7 @@ function fAMLElement_onReadyStateChange(oRequest, oElement)
 			// Dispatch load event
 			var oEvent	= new cAMLEvent;
 			oEvent.initEvent("error", true, false);
-			oElement.dispatchEvent(oEvent);
+			fAMLNode_dispatchEvent(oElement, oEvent);
 	    }
 	}
 };

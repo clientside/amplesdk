@@ -227,7 +227,7 @@ function fOnMouseWheel(oEvent) {
 
 	// do not dispatch event if outside modal
     if (!oAML_modalNode || fIsDescendant(oTarget, oAML_modalNode))
-    	oTarget.dispatchEvent(oEventMouseWheel);
+    	fAMLNode_dispatchEvent(oTarget, oEventMouseWheel);
     else
     	bPrevent	= true;
 
@@ -254,7 +254,7 @@ function fOnKeyDown(oEvent) {
 
 	// do not dispatch event if outside modal
     if (!oAML_modalNode || fIsDescendant(oTarget, oAML_modalNode))
-    	oTarget.dispatchEvent(oEventKeyDown);
+    	fAMLNode_dispatchEvent(oTarget, oEventKeyDown);
 
 	//
 	return fEventPreventDefault(oEvent, oEventKeyDown);
@@ -285,9 +285,9 @@ function fOnKeyPress(oEvent)
 
     if (!oAML_modalNode || fIsDescendant(oTarget, oAML_modalNode)) {
     	//
-		oTarget.dispatchEvent(oEventKeyPress);
+    	fAMLNode_dispatchEvent(oTarget, oEventKeyPress);
 		//
-		oTarget.dispatchEvent(oEventTextInput);
+    	fAMLNode_dispatchEvent(oTarget, oEventTextInput);
     }
 
 	//
@@ -309,7 +309,7 @@ function fOnKeyUp(oEvent) {
 
 	// do not dispatch event if outside modal
     if (!oAML_modalNode || fIsDescendant(oTarget, oAML_modalNode))
-    	oTarget.dispatchEvent(oEventKeyUp);
+    	fAMLNode_dispatchEvent(oTarget, oEventKeyUp);
 
 	//
 	return fEventPreventDefault(oEvent, oEventKeyUp);
@@ -338,7 +338,7 @@ function fOnMouseOver(oEvent) {
 			    oEventMouseOut = new cAMLMouseEvent;
 			    oEventMouseOut.initMouseEvent("mouseout", true, true, window, null, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, oEvent.metaKey, nButton, oTarget);
 				oEventMouseOut.$pseudoTarget	= oPseudo;
-				oAML_mouseNode.dispatchEvent(oEventMouseOut);
+				fAMLNode_dispatchEvent(oAML_mouseNode, oEventMouseOut);
 			}
 	    }
 
@@ -348,7 +348,7 @@ function fOnMouseOver(oEvent) {
 		    oEventMouseOver = new cAMLMouseEvent;
 		    oEventMouseOver.initMouseEvent("mouseover", true, true, window, null, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, oEvent.metaKey, nButton, oAML_mouseNode);
 		    oEventMouseOver.$pseudoTarget	= oPseudo;
-			oTarget.dispatchEvent(oEventMouseOver);
+		    fAMLNode_dispatchEvent(oTarget, oEventMouseOver);
 	    }
 	}
 
@@ -364,7 +364,7 @@ document.attachEvent("on" + "mouseover", function(oEvent) {
     var oEventMouseOver = new cAMLMouseEvent;
     oEventMouseOver.initMouseEvent("mouseover", true, true, window, null, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, oEvent.metaKey, oEvent.button, null);
     oEventMouseOver.$pseudoTarget	= oPseudo;
-	oTarget.dispatchEvent(oEventMouseOver);
+	fAMLNode_dispatchEvent(oTarget, oEventMouseOver);
 });
 
 document.attachEvent("on" + "mouseout", function(oEvent) {
@@ -374,7 +374,7 @@ document.attachEvent("on" + "mouseout", function(oEvent) {
     var oEventMouseOut = new cAMLMouseEvent;
     oEventMouseOut.initMouseEvent("mouseout", true, false, window, null, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, oEvent.metaKey, oEvent.button, null);
     oEventMouseOut.$pseudoTarget	= oPseudo;
-	oTarget.dispatchEvent(oEventMouseOut);
+	fAMLNode_dispatchEvent(oTarget, oEventMouseOut);
 });
 */
 
@@ -416,7 +416,7 @@ function fOnMouseMove(oEvent) {
 					oEventMouseLeave = new cAMLMouseEvent;
 				    oEventMouseLeave.initMouseEvent("mouseleave", false, false, window, null, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, oEvent.metaKey, nButton, aAML_mouseNodes[nIndex + 1] || null);
 				    oEventMouseLeave.$pseudoTarget	= oPseudo;
-				    aAML_mouseNodes[nIndex].dispatchEvent(oEventMouseLeave);
+				    fAMLNode_dispatchEvent(aAML_mouseNodes[nIndex], oEventMouseLeave);
 				}
 			}
 
@@ -427,7 +427,7 @@ function fOnMouseMove(oEvent) {
 				    oEventMouseEnter = new cAMLMouseEvent;
 				    oEventMouseEnter.initMouseEvent("mouseenter", false, false, window, null, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, oEvent.metaKey, nButton, aElements[nIndex] || null);
 				    oEventMouseEnter.$pseudoTarget	= oPseudo;
-				    aElements[nIndex - 1].dispatchEvent(oEventMouseEnter);
+				    fAMLNode_dispatchEvent(aElements[nIndex - 1], oEventMouseEnter);
 				}
 		    }
 
@@ -443,7 +443,7 @@ function fOnMouseMove(oEvent) {
     // Init MouseMove event
     oEventMouseMove.initMouseEvent("mousemove", true, true, window, null, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, oEvent.metaKey, nButton, null);
     oEventMouseMove.$pseudoTarget	= oPseudo;
-    oTarget.dispatchEvent(oEventMouseMove);
+    fAMLNode_dispatchEvent(oTarget, oEventMouseMove);
 
 	//
 	return fEventPreventDefault(oEvent, oEventMouseMove);
@@ -475,9 +475,9 @@ function fOnContextMenu(oEvent) {
     if (!oAML_modalNode || fIsDescendant(oTarget, oAML_modalNode)) {
     	// Simulate missing 'click' event in IE and WebKit
 		if (bTrident || bWebKit)
-			oTarget.dispatchEvent(oEventClick);
+			fAMLNode_dispatchEvent(oTarget, oEventClick);
 
-		oTarget.dispatchEvent(oEventContextMenu);
+		fAMLNode_dispatchEvent(oTarget, oEventContextMenu);
     }
     else
     	bPrevent	= true;
@@ -507,7 +507,7 @@ function fOnClick(oEvent) {
 
 	// do not dispatch event if outside modal
     if (!oAML_modalNode || fIsDescendant(oTarget, oAML_modalNode))
-    	oTarget.dispatchEvent(oEventClick);
+    	fAMLNode_dispatchEvent(oTarget, oEventClick);
     else
     	bPrevent	= true;
 
@@ -542,23 +542,23 @@ function fOnDblClick(oEvent) {
 	    	oEventMouseDown = new cAMLMouseEvent;
 	    	oEventMouseDown.initMouseEvent("mousedown", true, true, window, 2, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, null, nButton, null);
 	    	oEventMouseDown.$pseudoTarget	= oPseudo;
-			oTarget.dispatchEvent(oEventMouseDown);
+	    	fAMLNode_dispatchEvent(oTarget, oEventMouseDown);
 
 	 		// Simulate missing 'click' event in IE
 	    	oEventClick = new cAMLMouseEvent;
 	    	oEventClick.initMouseEvent("click", true, true, window, 2, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, null, nButton, null);
 	    	oEventClick.$pseudoTarget	= oPseudo;
-			oTarget.dispatchEvent(oEventClick);
+	    	fAMLNode_dispatchEvent(oTarget, oEventClick);
 		}
 
-	    oTarget.dispatchEvent(oEventDblClick);
+		fAMLNode_dispatchEvent(oTarget, oEventDblClick);
 
 		// Simulate missing 'mouseup' event in IE
 		if (bTrident) {
 	    	oEventMouseUp = new cAMLMouseEvent;
 	    	oEventMouseUp.initMouseEvent("mouseup", true, true, window, 2, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, null, nButton, null);
 	    	oEventMouseUp.$pseudoTarget	= oPseudo;
-			oTarget.dispatchEvent(oEventMouseUp);
+	    	fAMLNode_dispatchEvent(oTarget, oEventMouseUp);
 		}
     }
 };
@@ -586,7 +586,7 @@ function fOnMouseDown(oEvent) {
 		// Moved here from #mouseup handler. Not sure yet if it is right though
 		ample.activeElement	= oTarget.nodeType != cAMLNode.DOCUMENT_NODE ? oTarget : null;
 		//
-		oTarget.dispatchEvent(oEventMouseDown);
+		fAMLNode_dispatchEvent(oTarget, oEventMouseDown);
 	}
 	else {
 		bModal	= true;
@@ -597,7 +597,7 @@ function fOnMouseDown(oEvent) {
 		var oCaptureEvent	= new cAMLUIEvent;
 		oCaptureEvent.initUIEvent("capture", true, false, window, null);
 		oCaptureEvent.$pseudoTarget	= oPseudo;
-		(bModal ? oAML_modalNode : oTarget).dispatchEvent(oCaptureEvent);
+		fAMLNode_dispatchEvent(bModal ? oAML_modalNode : oTarget, oCaptureEvent);
 		//
 		oEventMouseDown.preventDefault();
 	}
@@ -626,7 +626,7 @@ function fOnMouseUp(oEvent) {
 
 	// do not dispatch event if outside modal
 	if (!oAML_modalNode || fIsDescendant(oTarget, oAML_modalNode))
-		oTarget.dispatchEvent(oEventMouseUp);
+		fAMLNode_dispatchEvent(oTarget, oEventMouseUp);
 
 	//
 	return fEventPreventDefault(oEvent, oEventMouseUp);
@@ -636,14 +636,14 @@ function fOnResize(oEvent) {
     // Create an Event
     var oEventResize = new cAMLUIEvent;
     oEventResize.initUIEvent("resize", true, false, window, null);
-    ample.dispatchEvent(oEventResize);
+    fAMLNode_dispatchEvent(ample, oEventResize);
 };
 
 function fOnScroll(oEvent) {
     // Create an Event
     var oEventScroll = new cAMLUIEvent;
     oEventScroll.initUIEvent("scroll", true, false, window, null);
-    ample.dispatchEvent(oEventScroll);
+    fAMLNode_dispatchEvent(ample, oEventScroll);
 };
 
 // User selection
@@ -715,7 +715,7 @@ function fAML_parseStyleSheet(sCSS, sUri) {
 			sCSS	= sCSS.replace(/display\s*:\s*inline-block/g, 'display:inline;zoom:1');
 		// Rewrite opacity
 		sCSS	= sCSS.replace(/opacity\s*:\s*([\d.]+)/g, function(sMatch, nOpacity) {
-			return "filter" + ':' + "Alpha" + '(' + "opacity" + '=' + nOpacity * 100 + ')';
+			return "filter" + ':' + "Alpha" + '(' + "opacity" + '=' + nOpacity * 100 + ');' + "opacity" + ':' + nOpacity;
 		});
 	}
 

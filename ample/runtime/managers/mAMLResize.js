@@ -165,7 +165,7 @@ function fAMLResize_onMouseMove(oEvent)
 		var oEventResizeStart	= new cAMLResizeEvent;
 		oEventResizeStart.initResizeEvent("resizestart", true, true, window, null, nAMLResize_resizeEdge);
 		oEventResizeStart.$pseudoTarget	= oEvent.$pseudoTarget;
-		oAMLResize_resizeNode.dispatchEvent(oEventResizeStart);
+		fAMLNode_dispatchEvent(oAMLResize_resizeNode, oEventResizeStart);
 
 		if (oEventResizeStart.defaultPrevented) {
 			// end operation and return
@@ -217,7 +217,7 @@ function fAMLResize_onMouseMove(oEvent)
 	var oEventResize	= new cAMLResizeEvent;
     oEventResize.initResizeEvent("resize", true, true, window, null, nAMLResize_resizeEdge);
     oEventResize.$pseudoTarget	= oEvent.$pseudoTarget;
-	oAMLResize_resizeNode.dispatchEvent(oEventResize);
+    fAMLNode_dispatchEvent(oAMLResize_resizeNode, oEventResize);
 
 	if (!oEventResize.defaultPrevented)
 	{
@@ -271,7 +271,7 @@ function fAMLResize_onMouseUp(oEvent)
 		var oEventResizeEnd	= new cAMLResizeEvent;
 	    oEventResizeEnd.initResizeEvent("resizeend", true, true, window, null, nAMLResize_resizeEdge);
 	    oEventResizeEnd.$pseudoTarget	= oEvent.$pseudoTarget;
-		oAMLResize_resizeNode.dispatchEvent(oEventResizeEnd);
+	    fAMLNode_dispatchEvent(oAMLResize_resizeNode, oEventResizeEnd);
 
 		if (oEventResizeEnd.defaultPrevented || (oEvent.defaultPrevented || oEvent.button))
 		{

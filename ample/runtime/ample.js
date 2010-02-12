@@ -9,7 +9,7 @@
 
 //->Debug
 function fAML_warn(nWarning, aArguments) {
-	var	oErrorHandler	= oAML_configuration.getParameter("error-handler");
+	var	oErrorHandler	= oAMLConfiguration_values["error-handler"];
 	if (oErrorHandler)
 		oErrorHandler.handleError(new cAMLError(fAML_format(oAML_messages[nWarning], aArguments || []), cAMLError.SEVERITY_WARNING));
 };
@@ -85,7 +85,7 @@ var aAML_endings	= 'st-nd-rd'.split('-');
 //<-Debug
 function fAML_validate(aArguments, aParameters, sFunction) {
 	var fCaller	= null;
-	// Has to be wrapped in try/catch because Firebug throws "Permisson denied to get property on Function.caller" in XMLHttpRequest
+	// Has to be wrapped in try/catch because Firebug throws "Permission denied to get property on Function.caller" in XMLHttpRequest
 	try {
 		fCaller	= fAML_validate.caller.caller.caller;
 	} catch (oError) {}
@@ -154,7 +154,7 @@ function fAML_import(oElementDOM, oNode, bCollapse) {
 			}
 			else {
 				// Create element
-				var oElement	= oDocument.createElementNS(oElementDOM.namespaceURI, oElementDOM.nodeName),
+				var oElement	= fAMLDocument_createElementNS(oDocument, oElementDOM.namespaceURI, oElementDOM.nodeName),
 					aAttributes = oElementDOM.attributes,
 					oAttribute, sLocalName, sPrefix, sNameSpaceURI,
 					sName, sValue,
@@ -192,7 +192,7 @@ function fAML_import(oElementDOM, oNode, bCollapse) {
 //<-Debug
 				// and append it to parent (if there is one)
 				if (oNode)
-					cAMLNode.prototype.appendChild.call(oNode, oElement);
+					fAMLNode_appendChild(oNode, oElement);
 
 				// Render Children
 				for (var nIndex = 0, nLength = oElementDOM.childNodes.length; nIndex < nLength; nIndex++)
@@ -202,9 +202,9 @@ function fAML_import(oElementDOM, oNode, bCollapse) {
 
 		case cAMLNode.ENTITY_REFERENCE_NODE:
 			if (oNode.lastChild instanceof cAMLCharacterData)
-				cAMLCharacterData.prototype.appendData.call(oNode.lastChild, oElementDOM.text);
+				fAMLCharacterData_appendData(oNode.lastChild, oElementDOM.text);
 			else
-				cAMLNode.prototype.appendChild.call(oNode, oDocument.createTextNode(oElementDOM.text));
+				fAMLNode_appendChild(oNode, fAMLDocument_createTextNode(oDocument, oElementDOM.text));
 			break;
 
 		case cAMLNode.TEXT_NODE:
@@ -214,20 +214,20 @@ function fAML_import(oElementDOM, oNode, bCollapse) {
 
 			if (sValue.replace(/^\s+/, '').replace(/\s+$/, '') != '') {
 				if (oNode.lastChild instanceof cAMLCharacterData)
-					cAMLCharacterData.prototype.appendData.call(oNode.lastChild, sValue);
+					fAMLCharacterData_appendData(oNode.lastChild, sValue);
 				else
-					cAMLNode.prototype.appendChild.call(oNode, oDocument.createTextNode(sValue));
+					fAMLNode_appendChild(oNode, fAMLDocument_createTextNode(oDocument, sValue));
 			}
 			break;
 
 		case cAMLNode.CDATA_SECTION_NODE:
-			cAMLNode.prototype.appendChild.call(oNode, oDocument.createCDATASection(oElementDOM.nodeValue));
+			fAMLNode_appendChild(oNode, fAMLDocument_createCDATASection(oDocument, oElementDOM.nodeValue));
 			break;
 
 		case cAMLNode.COMMENT_NODE:
 //->Source
 /*
-			cAMLNode.prototype.appendChild.call(oElement, oElement.ownerDocument.createComment(oElementDOM.nodeValue));
+			fAMLNode_appendChild(oElement, oElement.ownerDocument.createComment(oElementDOM.nodeValue));
 */
 //<-Source
 			break;
@@ -249,7 +249,7 @@ function fAML_import(oElementDOM, oNode, bCollapse) {
 					}
 					// no break is left intentionally
 				default:
-					cAMLNode.prototype.appendChild.call(oNode, oDocument.createProcessingInstruction(oElementDOM.nodeName, oElementDOM.nodeValue));
+					fAMLNode_appendChild(oNode, fAMLDocument_createProcessingInstruction(oDocument, oElementDOM.nodeName, oElementDOM.nodeValue));
 			}
 			break;
 
@@ -281,17 +281,17 @@ function fAML_register(oNode) {
 			oAML_ids[oNode.attributes.id]	= oNode;
 
 		// Set style property
-		if (oAML_configuration.getParameter("ample-use-style-property")) {
+		if (oAMLConfiguration_values["ample-use-style-property"]) {
 			var oElementDOM	= oNode.$getContainer();
 			if (oElementDOM)
 				oNode.style	= oElementDOM.style;
 		}
 
 		// Fire Mutation event on Element
-    	if (oAML_configuration.getParameter("ample-use-dom-events")) {
+    	if (oAMLConfiguration_values["ample-use-dom-events"]) {
 			var oEvent = new cAMLMutationEvent;
 			oEvent.initMutationEvent("DOMNodeInsertedIntoDocument", false, false, null, null, null, null, null);
-			oNode.dispatchEvent(oEvent);
+			fAMLNode_dispatchEvent(oNode, oEvent);
 
 			// Global attributes module
 			for (var sName in oNode.attributes) {
@@ -300,7 +300,7 @@ function fAML_register(oNode) {
 					sPrefix		= aAttribute.pop(),
 					sNameSpaceURI;
 
-				if (sName != "xmlns" && sPrefix && sPrefix != "xmlns" && (sNameSpaceURI = oNode.lookupNamespaceURI(sPrefix))) {
+				if (sName != "xmlns" && sPrefix && sPrefix != "xmlns" && (sNameSpaceURI = fAMLNode_lookupNamespaceURI(oNode, sPrefix))) {
 					var oNamespace	= oAML_namespaces[sNameSpaceURI],
 						cAttribute	= oNamespace ? oNamespace.attributes[sLocalName] : null;
 
@@ -343,14 +343,14 @@ function fAML_unregister(oNode) {
 	//
 	if (oNode.nodeType == cAMLNode.ELEMENT_NODE && oAML_all[oNode.uniqueID]) {
 		// Fire Mutation event
-    	if (oAML_configuration.getParameter("ample-use-dom-events")) {
+    	if (oAMLConfiguration_values["ample-use-dom-events"]) {
 			var oEvent = new cAMLMutationEvent;
 			oEvent.initMutationEvent("DOMNodeRemovedFromDocument", false, false, null, null, null, null, null);
-			oNode.dispatchEvent(oEvent);
+			fAMLNode_dispatchEvent(oNode, oEvent);
     	}
 
 		// Unset style property
-		if (oAML_configuration.getParameter("ample-use-style-property"))
+		if (oAMLConfiguration_values["ample-use-style-property"])
 			delete oNode.style;
 
 		// Unregister Instance
@@ -579,7 +579,7 @@ function fAML_processScripts() {
 		    	}
 
 				//
-		    	cAMLNode.prototype.appendChild.call(ample.documentElement, oElement);
+		    	fAMLNode_appendChild(ample.documentElement, oElement);
 
 				// Register tree
 				fAML_register(oElement);
@@ -587,7 +587,7 @@ function fAML_processScripts() {
 			    // Fire load Event
 		    	var oEventLoad = new cAMLEvent;
 			    oEventLoad.initEvent("load", false, false);
-			    oElement.dispatchEvent(oEventLoad);
+			    fAMLNode_dispatchEvent(oElement, oEventLoad);
 		    }
 		    else {
 				oElementNew	= document.createElement("pre");
@@ -678,7 +678,7 @@ function fAML_initialize() {
 	fAML_changeReadyState(2);
 
 	// Set documentElement style pointer object
-    if (oAML_configuration.getParameter("ample-use-style-property"))
+    if (oAMLConfiguration_values["ample-use-style-property"])
 		ample.documentElement.style	= document.body.style;
 
 	// IE background images cache fix
@@ -693,7 +693,7 @@ function fAML_initialize() {
     // Fire Event
     var oEventLoad = new cAMLEvent;
     oEventLoad.initEvent("load", false, false);
-    ample.dispatchEvent(oEventLoad);
+    fAMLNode_dispatchEvent(ample, oEventLoad);
 
 	// change readystate to "complete"
 	fAML_changeReadyState(4);
@@ -713,13 +713,13 @@ function fAML_finalize() {
 	    // fire unload event on fragments
 		oEventUnload = new cAMLEvent;
 	    oEventUnload.initEvent("unload", false, false);
-	    aElements[nIndex].dispatchEvent(oEventUnload);
+	    fAMLNode_dispatchEvent(aElements[nIndex], oEventUnload);
 	}
 
     // fire unload event on document
     oEventUnload = new cAMLEvent;
     oEventUnload.initEvent("unload", false, false);
-    ample.dispatchEvent(oEventUnload);
+    fAMLNode_dispatchEvent(ample, oEventUnload);
 
 	// free memory
     fAML_unregister(ample.documentElement);
@@ -733,26 +733,26 @@ function fAML_changeReadyState(nState) {
 	// 4: complete
 	var oReadyStateChangeEvent	= new cAMLCustomEvent;
 	oReadyStateChangeEvent.initCustomEvent("readystatechange", false, false, nState);
-	ample.dispatchEvent(oReadyStateChangeEvent);
+	fAMLNode_dispatchEvent(ample, oReadyStateChangeEvent);
 };
 
 // set standard parameters
-oAML_configuration.setParameter("error-handler", 			null);
-oAML_configuration.setParameter("element-content-whitespace",	false);	// in DOM-Core spec the default value is true
-oAML_configuration.setParameter("entities",						false);	// in DOM-Core spec the default value is true
-oAML_configuration.setParameter("comments",						false); // in DOM-Core spec the default value is true
+oAMLConfiguration_values["error-handler"]	= null;
+oAMLConfiguration_values["element-content-whitespace"]	= false;	// in DOM-Core spec the default value is true
+oAMLConfiguration_values["entities"]	= false;	// in DOM-Core spec the default value is true
+oAMLConfiguration_values["comments"]	= false; // in DOM-Core spec the default value is true
 // set ample parameters
-oAML_configuration.setParameter("ample-use-style-property", true);		// -> ample-core-style
-oAML_configuration.setParameter("ample-use-dom-events",		true);		// -> ample-events-mutation
-oAML_configuration.setParameter("ample-use-dom-capture", 	true);		// -> ample-events-capture
-/*oAML_configuration.setParameter("ample-use-legacy-events",false);*/	// -> ample-legacy
-/*oAML_configuration.setParameter("ample-render-async", 	false);*/	// -> ample-async
-/*oAML_configuration.setParameter("ample-module-focus", 	true);*/	// -> ample-focus
-oAML_configuration.setParameter("ample-module-history-fix", false);	// -> ample-history
-oAML_configuration.setParameter("ample-version", 			'@project.version@');
+oAMLConfiguration_values["ample-use-style-property"]= true;		// -> ample-core-style
+oAMLConfiguration_values["ample-use-dom-events"]	= true;		// -> ample-events-mutation
+oAMLConfiguration_values["ample-use-dom-capture"]	= true;		// -> ample-events-capture
+/*oAMLConfiguration_values["ample-use-legacy-events"]	= false;*/	// -> ample-legacy
+/*oAMLConfiguration_values["ample-render-async"]		= false;*/	// -> ample-async
+/*oAMLConfiguration_values["ample-module-focus"]		= true;*/	// -> ample-focus
+oAMLConfiguration_values["ample-module-history-fix"]=  false;	// -> ample-history
+oAMLConfiguration_values["ample-version"]	= '@project.version@';
 
 // Create global "ample" object
-ample	= oAML_implementation.createDocument(document.documentElement.getAttribute("xmlns") || null, "document", null);
+ample	= fAMLImplementation_createDocument(oAML_implementation, document.documentElement.getAttribute("xmlns") || null, "document", null);
 ample.documentElement.$getContainer	= function(sName) {return sName && sName != "gateway" ? null : document.body};
 
 ample.$instance	= function(oNode) {
@@ -788,7 +788,7 @@ oAML_errorHandler.handleError	= function(oError) {
 		oConsole.error(oError.message + '\n' + oError.relatedException.caller);
 	return false;
 };
-oAML_configuration.setParameter("error-handler", oAML_errorHandler);
+oAMLConfiguration_values["error-handler"]	= oAML_errorHandler;
 //<-Debug
 
 // change readystate to "uninitialized"
