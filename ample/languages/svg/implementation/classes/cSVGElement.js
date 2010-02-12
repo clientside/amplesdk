@@ -305,10 +305,10 @@ if (cSVGElement.useVML) {
 					sStrokeUnit		= aStroke[2] || 'px';
 				oElementDOM.stroke.weight	= nStrokeWidth + sStrokeUnit;
 				if (nStrokeWidth < 1 && !(oElement instanceof cSVGElement_text || oElement instanceof cSVGElement_tspan || oElement instanceof cSVGElement_textPath))
-					oElementDOM.stroke.opacity	= (oElement.hasAttribute("stroke-opacity") ? oElement.getAttribute("stroke-opacity") : 1) * nStrokeWidth;
+					oElementDOM.stroke.opacity	= (oElement.attributes["stroke-opacity"] || 1) * nStrokeWidth;
 				break;
 			case "stroke-opacity":
-				sValue	= (oElement.getAttribute("stroke-width").match(/([\d.]+)(.*)/) && RegExp.$1 < 1 ? RegExp.$1 : 1) * sValue;
+				sValue	= ((oElement.attributes["stroke-width"] || "").match(/([\d.]+)(.*)/) && RegExp.$1 < 1 ? RegExp.$1 : 1) * sValue;
 				if (oElementDOM.stroke.opacity != sValue)
 					oElementDOM.stroke.opacity	= sValue;
 				break;
@@ -464,9 +464,9 @@ if (cSVGElement.useVML) {
 		var nAspect	= 1;
 		for (var oNode = this, sValue; oNode; oNode = oNode.parentNode) {
 			if (oNode instanceof cSVGElement_svg) {
-				var aViewBox= oNode.getAttribute("viewBox").split(/[\s,]/),
-					aWidth	= oNode.getAttribute("width").match(/([\d.]+)([%\w]*)/),
-					aHeight	= oNode.getAttribute("height").match(/([\d.]+)([%\w]*)/);
+				var aViewBox= (oNode.attributes["viewBox"] || "").split(/[\s,]/),
+					aWidth	= (oNode.attributes["width"] || "").match(/([\d.]+)([%\w]*)/),
+					aHeight	= (oNode.attributes["height"] || "").match(/([\d.]+)([%\w]*)/);
 				// Assume some values
 				if (aViewBox.length < 4) {
 					if (!aWidth)
@@ -486,7 +486,7 @@ if (cSVGElement.useVML) {
 				break;
 			}
 			else
-			if (sValue = oNode.getAttribute("transform")) {
+			if (sValue = oNode.attributes["transform"]) {
 				var aCommands	= sValue.match(/\w+\([^\)]+\s*\)/g);
 				if (aCommands) {
 					for (var i = 0; i < aCommands.length; i++) {
