@@ -387,28 +387,12 @@ if (cSVGElement.useVML) {
 						iToX		= aParameters[5] + (sCommand == "A" ? 0 : iCurrentX),
 						iToY		= aParameters[6] + (sCommand == "A" ? 0 : iCurrentY);
 
-					var iFromX	= iCurrentX,
-						iFromY	= iCurrentY,
-						a	= (iToX - iFromX) / iRadiusX,
-						b	= (iToY - iFromY) / iRadiusY;
-					// Correct value if out of range
-					a	= a <-2 ?-2 : a > 2 ? 2 : a;
-					b	= b <-2 ?-2 : b > 2 ? 2 : b;
-
-					var iAngle	= Math.atan(a / b) * (bSweep == bLargeArc ? 1 :-1) + Math.asin(Math.sqrt(a * a + b * b) / 2);
-					if (iAngle > Math.PI / 2)
-						iAngle	= Math.PI - iAngle;
-					if (iAngle <-Math.PI / 2)
-						iAngle	= Math.PI + iAngle;
-					var iCenterX	= iToX + (a < 0 ? 1 :-1) * iRadiusX * Math.cos(iAngle),
-						iCenterY	= iToY - (b < 0 ?-1 : 1) * iRadiusY * Math.sin(iAngle);
-
-//console.log(aCommands[i]);
-//console.log([a, b, iCenterX, iCenterY, iToX, iToY, 180 * iAngle / Math.PI, iAngle]);
-//console.log(["a, b: " + a + "," + b, " bSweep, bLargeArc: " + (bSweep ? 1 : 0) + "," + (bLargeArc ? 1 : 0) + " centerX, centerY: " + Math.round(iCenterX) + "," + Math.round(iCenterY) + " Angle: " + Math.round(180 * iAngle / Math.PI)]);
-
-//					aPath.push("l" + iToX + "," + iToY + " ");
-					aPath.push((bSweep ? "wa" : "at") + [iCenterX - iRadiusX, iCenterY - iRadiusY, iCenterX + iRadiusX, iCenterY + iRadiusY, iFromX, iFromY, iToX, iToY].map(Math.round) + " ");
+	                var a = (iToX - iCurrentX) / (2 * iRadiusX),
+	                    b = (iToY - iCurrentY) / (2 * iRadiusY),
+	                    c = Math.sqrt(Math.abs(1 - 1 / (a * a + b * b))) * (bLargeArc == bSweep ? -1 : 1),
+	                    iCenterX = iCurrentX + iRadiusX * (a - c * b),
+	                    iCenterY = iCurrentY + iRadiusY * (b + c * a);
+	                aPath.push((bSweep ? "wa" : "at") + [iCenterX - iRadiusX, iCenterY - iRadiusY, iCenterX + iRadiusX, iCenterY + iRadiusY, iCurrentX, iCurrentY, iToX, iToY].map(Math.round) + " ");
 
 					if (sCommand == "A") {
 						iCurrentX	= aParameters[5];
