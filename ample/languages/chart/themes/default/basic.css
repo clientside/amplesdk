@@ -188,7 +188,8 @@ c|line c|group::path {
 
 c|radar c|group::area,
 c|line c|group::area {
-	opacity:	0.2;
+	fill-opacity:	0.2;
+	stroke-opacity:	0.2;
 }
 
 c|bubble c|group,
@@ -203,7 +204,8 @@ c|bar c|item::shadow,
 c|bubble c|item::shadow {
 	/*fill: black;*/
 	/*stroke: black;*/
-	opacity:	0.5;
+	fill-opacity:	0.5;
+	stroke-opacity:	0.5;
 }
 
 c|doughnut c|item::label,
@@ -223,7 +225,8 @@ c|radar c|item:hover,
 c|doughnut c|item:hover c|item::value,
 c|pie c|item:hover c|item::value,
 c|funnel c|item:hover c|item::value {
-	opacity: 0.5;
+	fill-opacity: 0.5;
+	stroke-opacity: 0.5;
 }
 
 c|radar c|group:hover,
@@ -247,5 +250,6 @@ c|bar c|group:selected,
 c|bubble c|group:selected,
 c|radar c|group:selected,
 c|map c|group:selected {
-	opacity: 0.25;
+	fill-opacity: 0.25;
+	stroke-opacity: 0.25;
 }
