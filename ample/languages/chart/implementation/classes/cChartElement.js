@@ -250,34 +250,34 @@ if (cChartElement.useVML) {
 
 	cChartElement.applyCSS	= function(oElementDOM) {
 		var sValue,
-			sOpacity	= cChartElement.getStyle(oElementDOM, "opacity");
+			sOpacity	= cChartElement.getCSSProperty(oElementDOM, "opacity") || "1";
 		// Note! Setting opacity accounts for 50% of processing time!
-		cChartElement.setStyle(oElementDOM, "opacity", sOpacity == null ? "1" : sOpacity);
-		sValue = cChartElement.getStyle(oElementDOM, "fill-opacity") || sOpacity;
-		cChartElement.setStyle(oElementDOM, "fill-opacity", sValue == null ? "1" : sValue);
-		sValue = cChartElement.getStyle(oElementDOM, "stroke-opacity") || sOpacity;
-		cChartElement.setStyle(oElementDOM, "stroke-opacity", sValue == null ? "1" : sValue);
-		if (sValue = cChartElement.getStyle(oElementDOM, "fill"))
+		sValue = cChartElement.getCSSProperty(oElementDOM, "fill-opacity") || sOpacity;
+		cChartElement.setStyle(oElementDOM, "fill-opacity", sValue);
+		sValue = cChartElement.getCSSProperty(oElementDOM, "stroke-opacity") || sOpacity;
+		cChartElement.setStyle(oElementDOM, "stroke-opacity", sValue);
+
+		if (sValue = cChartElement.getCSSProperty(oElementDOM, "fill"))
 			cChartElement.setStyle(oElementDOM, "fill", sValue);
-		if (sValue = cChartElement.getStyle(oElementDOM, "stroke"))
+		if (sValue = cChartElement.getCSSProperty(oElementDOM, "stroke"))
 			cChartElement.setStyle(oElementDOM, "stroke", sValue);
-		if (sValue = cChartElement.getStyle(oElementDOM, "stroke-width"))
+		if (sValue = cChartElement.getCSSProperty(oElementDOM, "stroke-width"))
 			cChartElement.setStyle(oElementDOM, "stroke-width", sValue);
 		if (oElementDOM.path && oElementDOM.path.textpathok) {
-			if (sValue = cChartElement.getStyle(oElementDOM, "text-anchor"))
+			if (sValue = cChartElement.getCSSProperty(oElementDOM, "text-anchor"))
 				cChartElement.setStyle(oElementDOM, "text-anchor", sValue);
-			if (sValue = cChartElement.getStyle(oElementDOM, "fontSize"))
+			if (sValue = cChartElement.getCSSProperty(oElementDOM, "fontSize"))
 				cChartElement.setStyle(oElementDOM, "font-size", sValue);
-			if (sValue = cChartElement.getStyle(oElementDOM, "fontFamily"))
+			if (sValue = cChartElement.getCSSProperty(oElementDOM, "fontFamily"))
 				cChartElement.setStyle(oElementDOM, "font-family", sValue);
-			if (sValue = cChartElement.getStyle(oElementDOM, "fontWeight"))
+			if (sValue = cChartElement.getCSSProperty(oElementDOM, "fontWeight"))
 				cChartElement.setStyle(oElementDOM, "font-weight", sValue);
-			if (sValue = cChartElement.getStyle(oElementDOM, "fontStyle"))
+			if (sValue = cChartElement.getCSSProperty(oElementDOM, "fontStyle"))
 				cChartElement.setStyle(oElementDOM, "font-style", sValue);
 		}
 	};
 
-	cChartElement.getStyle	= function(oElementDOM, sName) {
+	cChartElement.getCSSProperty	= function(oElementDOM, sName) {
 		for (var sValue; oElementDOM.nodeType != 9; oElementDOM = oElementDOM.parentNode)
 			if (sValue = oElementDOM.currentStyle[sName])
 				return sValue;
@@ -288,9 +288,9 @@ if (cChartElement.useVML) {
 		switch (sName) {
 			// opacity (general)
 			case "opacity":
-//				if (cSVGElement.getStyle(oElement, "fill-opacity") == "")
+//				if (cSVGElement.getCSSProperty(oElement, "fill-opacity") == "")
 					cChartElement.setStyle(oElementDOM, "fill-" + sName, sValue);
-//				if (cSVGElement.getStyle(oElement, "stroke-opacity") == "")
+//				if (cSVGElement.getCSSProperty(oElement, "stroke-opacity") == "")
 					cChartElement.setStyle(oElementDOM, "stroke-" + sName, sValue);
 				break;
 			// fill
@@ -337,7 +337,7 @@ if (cChartElement.useVML) {
 								var aColors	= [];
 								for (var i = 0, oStop, sColor; oStop = oGradientStop.childNodes[i]; i++)
 									if (oGradientStop.childNodes[i] instanceof cSVGElement_stop)
-										aColors.push([parseFloat(oStop.getAttribute("offset") || "1") / (oStop.getAttribute("offset").indexOf("%") ==-1 ? 1 : 100), ((sColor = cSVGElement.getStyle(oStop, "stop-color")) in oSVGElement_colors ? 'rgb(' + oSVGElement_colors[sColor] + ')' : sColor), cSVGElement.getStyle(oStop, "stop-opacity") || "1"]);
+										aColors.push([parseFloat(oStop.getAttribute("offset") || "1") / (oStop.getAttribute("offset").indexOf("%") ==-1 ? 1 : 100), ((sColor = cSVGElement.getCSSProperty(oStop, "stop-color")) in oSVGElement_colors ? 'rgb(' + oSVGElement_colors[sColor] + ')' : sColor), cSVGElement.getCSSProperty(oStop, "stop-opacity") || "1"]);
 
 								var nLength	= aColors.length;
 								if (nLength) {
