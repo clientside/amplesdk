@@ -176,16 +176,17 @@ if (cSVGElement.useVML) {
 		}
 	};
 
+	// Note! Performance optimization: Getting attribute values in a hacky way here ".attributes[]" instead of ".getAttribute()"
 	cSVGElement.getStyleOwn	= function(oElement, sName) {
 		var sValue;
 
 		// 1) first check if style specified
-		if (sValue = oElement.getAttribute("style"))
+		if (sValue = oElement.attributes["style"])
 			if (sValue.match(new RegExp(sName + "\\s*:\\s*([^;]+)")))
 				return RegExp.$1;
 
 		// 2) second check if attribute specified
-		if (sValue = oElement.getAttribute(sName))
+		if (sValue = oElement.attributes[sName])
 			return sValue;
 
 		return '';
