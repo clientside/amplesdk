@@ -205,9 +205,9 @@ if (cSVGElement.useVML) {
 			// opacity (general)
 			case "opacity":
 				if (cSVGElement.getStyle(oElement, "fill-opacity") == "")
-					oElementDOM.fill.opacity	= sValue;
+					cSVGElement.setStyleOwn(oElement, "fill-opacity", sValue);
 				if (cSVGElement.getStyle(oElement, "stroke-opacity") == "")
-					oElementDOM.stroke.opacity	= sValue;
+					cSVGElement.setStyleOwn(oElement, "stroke-opacity", sValue);
 				break;
 			// fill
 			case "fill":
@@ -290,7 +290,8 @@ if (cSVGElement.useVML) {
 					oElementDOM.fill.color	= sValue in oSVGElement_colors ? 'rgb(' + oSVGElement_colors[sValue] + ')' : sValue;
 				break;
 			case "fill-opacity":
-				oElementDOM.fill.opacity	= sValue;
+				if (oElementDOM.fill.opacity != sValue)
+					oElementDOM.fill.opacity	= sValue;
 				break;
 			// strokes
 			case "stroke":
@@ -306,7 +307,9 @@ if (cSVGElement.useVML) {
 					oElementDOM.stroke.opacity	= (oElement.hasAttribute("stroke-opacity") ? oElement.getAttribute("stroke-opacity") : 1) * nStrokeWidth;
 				break;
 			case "stroke-opacity":
-				oElementDOM.stroke.opacity	=(oElement.getAttribute("stroke-width").match(/([\d.]+)(.*)/) && RegExp.$1 < 1 ? RegExp.$1 : 1) * sValue;
+				sValue	= (oElement.getAttribute("stroke-width").match(/([\d.]+)(.*)/) && RegExp.$1 < 1 ? RegExp.$1 : 1) * sValue;
+				if (oElementDOM.stroke.opacity != sValue)
+					oElementDOM.stroke.opacity	= sValue;
 				break;
 			case "stroke-linejoin":
 				oElementDOM.stroke.joinStyle	= sValue;
