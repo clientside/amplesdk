@@ -86,17 +86,19 @@ function fAMLSMIL30_onTimeline() {
 function fAMLSMIL30_beginElement(oElement) {
 //	console.info("begin element", oElement);
 	var oAnimation	= oElement.animation;
-	// If ID was specified for target element
-	if (typeof oAnimation.targetElement == "string")
-		oAnimation.targetElement	= ample.getElementById(oAnimation.targetElement.substr(1));
 
-	// check if there is already animation running on that @targetElement/@attributeName
-	if (oElement.animation)
+	if (oAnimation) {
+		// If ID was specified for target element
+		if (typeof oAnimation.targetElement == "string")
+			oAnimation.targetElement	= ample.getElementById(oAnimation.targetElement.substr(1));
+
+		// check if there is already animation running on that @targetElement/@attributeName
 		for (var nIndex = 0, oElementOld, oAnimationOld; oElementOld = aAMLSMIL30_activeElements[nIndex]; nIndex++)
 			if ((oAnimationOld = oElementOld.animation) && oAnimationOld.targetElement == oAnimation.targetElement && oAnimationOld.attributeName == oAnimation.attributeName) {
 				fAMLSMIL30_endElement(oElementOld);
 				break;
 			}
+	}
 
 	// Add element to timeline
 	oElement.time.start	= new Date;
