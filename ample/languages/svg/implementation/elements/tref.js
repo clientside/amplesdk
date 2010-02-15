@@ -49,7 +49,7 @@ if (cSVGElement.useVML) {
 			// Font size calculations
 			aFontSize	= sFontSize.match(/(^[\d.]*)(.*)$/),
 			sFontSizeUnit	= aFontSize[2] || "px",
-			nFontSizeValue	= aFontSize[1] || 128,
+			nFontSizeValue	= aFontSize[1] || 16,
 			nFontSize	= Math.round(nFontSizeValue * this.getAspectValue()),
 			nMarginTop	= -(sFontSizeUnit == "pt" ? Math.round(nFontSizeValue * 0.35) : nFontSizeValue * 0.35);
 
