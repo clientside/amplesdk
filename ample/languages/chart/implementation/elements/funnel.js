@@ -46,11 +46,7 @@ cChartElement_funnel.prototype.refresh	= function() {
 
 		cChartElement.setPath(oElement.$getContainer("value"), d.join('') + "z");
 
-		// Handles
 		var nCHalf	=(nCFrom + nCTo)/ 2;
-		cChartElement.setPath(oElement.$getContainer("handle"),	"M" + (nLeft + nWidthTop + nCHalf * (nWidthBottom - nWidthTop)) + "," + (nTop + nCHalf * nHeight) + ' ' +
-																"h100 " +
-																"");
 		cChartElement.setTextPosition(oElement.$getContainer("label"),
 										nLeft + nWidthTop + nCHalf * (nWidthBottom - nWidthTop) + 10,
 										nTop + nCHalf * nHeight - 5);

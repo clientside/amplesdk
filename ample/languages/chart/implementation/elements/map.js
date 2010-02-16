@@ -44,7 +44,7 @@ cChartElement_map.prototype.refresh	= function() {
 			oItem = oGroup.childNodes[nItem];
 			//
 			cChartElement.setPath(oItem.$getContainer("value"), cChartElement_map.countries[aData[nGroup][nItem][0]][1][0]);
-//			oItem.$getContainer("value").setAttribute("fill-opacity", 0.2 + 0.8 * aData[nGroup][nItem][1] / nGroupMax);
+			oItem.$getContainer("value").style["fill-opacity"]	= 0.2 + 0.8 * aData[nGroup][nItem][1] / nGroupMax;
 		}
 
 		// Draw legend

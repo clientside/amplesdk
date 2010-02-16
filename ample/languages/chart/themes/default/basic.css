@@ -163,12 +163,6 @@ c|doughnut c|item {
 	font-size: 12px;
 }
 
-c|pie c|item::handle,
-c|funnel c|item::handle {
-	stroke: black;
-	stroke-width: 1;
-}
-
 /* */
 c|radar c|group,
 c|line c|group {

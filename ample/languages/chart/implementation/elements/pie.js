@@ -53,13 +53,8 @@ cChartElement_pie.prototype.refresh	= function() {
 														"A" + nTextR + "," + nTextR + " 0 " + (nAngleTo - nAngleFrom > Math.PI ? 1 : 0) + ",0 " + (cX + nTextR * Math.cos(nAngleTo)) + "," +(cY - nTextR * Math.sin(nAngleTo))+
 														"z");
 */
-		// Handles
 		var nAngleHalf	= (nAngleFrom + nAngleTo) / 2,
 			bLeft	= nAngleHalf + Math.PI / 2 >= Math.PI;
-		cChartElement.setPath(oElement.$getContainer("handle"), "M" + (cX + nWidth * Math.cos(nAngleHalf)) + "," +(cY + nWidth * Math.sin(nAngleHalf)) + ' ' +
-																"l" + (10 * Math.cos(nAngleHalf)) + "," +(10 * Math.sin(nAngleHalf)) + ' ' +
-																"h" + (bLeft ? -1 : 1) * 100);
-
 		cChartElement.setTextPosition(oElement.$getContainer("label"),
 										cX + (bLeft ? -10 : 10) + (nWidth + 10) * Math.cos(nAngleHalf),
 										cY - 5 + (nWidth + 10) * Math.sin(nAngleHalf));

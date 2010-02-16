@@ -20,7 +20,6 @@ if (!cChartElement.useVML) {
 		return '<svg:g class="c-item c-item_nth-child-' + this.parentNode.childNodes.$indexOf(this) +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">\
 					<svg:path class="c-item--shadow" style="stroke-linejoin:round" transform="translate(2,2)"/>\
 					<svg:path class="c-item--value"/>\
-					<svg:path class="c-item--handle" style="fill:none"/>\
 					<svg:path class="c-item--textPath" d="m0,0 h600" id="p' + this.uniqueID + '" style="fill:none;stroke:none"/>\
 					<svg:text class="c-item--label" style="stroke:none;"><svg:textPath xlink:href="#p' + this.uniqueID + '">' + this.getAttribute("value")+ '</svg:textPath></svg:text>\
 				</svg:g>';
@@ -31,7 +30,6 @@ else {
 		cChartElement.applyCSS(oElement.$getContainer("label"));
 		cChartElement.applyCSS(oElement.$getContainer("value"));
 		cChartElement.applyCSS(oElement.$getContainer("shadow"));
-		cChartElement.applyCSS(oElement.$getContainer("handle"));
 	};
 
 	cChartElement_item.handlers['DOMNodeInsertedIntoDocument']	=
@@ -44,7 +42,6 @@ else {
 		return '<chart2vml:group class="c-item c-item_nth-child-' + this.parentNode.childNodes.$indexOf(this) +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="position:absolute;width:100%;height:100%">\
 					<chart2vml:shape class="c-item--shadow" style="position:absolute;width:100%;height:100%;margin-top:2px;margin-left:2px;"/>\
 					<chart2vml:shape class="c-item--value" fillcolor="black" style="position:absolute;height:100%;width:100%"/>\
-					<chart2vml:shape class="c-item--handle" stroked="true" filled="false" style="position:absolute;height:100%;width:100%"/>\
 					<chart2vml:shape class="c-item--textPath c-item--label" fillcolor="black" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%">\
 						<chart2vml:path textpathok="true" />\
 						<chart2vml:textpath on="true" string="' + this.getAttribute("value")+ '" style="v-text-align:left"/>\
