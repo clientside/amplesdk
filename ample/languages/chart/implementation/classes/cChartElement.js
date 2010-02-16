@@ -236,17 +236,17 @@ if (cChartElement.useVML) {
 		var sValue,
 			sOpacity	= cChartElement.getCSSProperty(oElementDOM, "opacity") || "1";
 		// Note! Setting opacity accounts for 50% of processing time!
-		sValue = cChartElement.getCSSProperty(oElementDOM, "fill-opacity") || sOpacity;
+		sValue	= cChartElement.getCSSProperty(oElementDOM, "fill-opacity") || sOpacity;
 		cChartElement.setStyle(oElementDOM, "fill-opacity", sValue);
-		sValue = cChartElement.getCSSProperty(oElementDOM, "stroke-opacity") || sOpacity;
+		sValue	= cChartElement.getCSSProperty(oElementDOM, "stroke-opacity") || sOpacity;
 		cChartElement.setStyle(oElementDOM, "stroke-opacity", sValue);
+		sValue	= cChartElement.getCSSProperty(oElementDOM, "stroke-width") || "1";
+		cChartElement.setStyle(oElementDOM, "stroke-width", sValue);
 
 		if (sValue = cChartElement.getCSSProperty(oElementDOM, "fill"))
 			cChartElement.setStyle(oElementDOM, "fill", sValue);
 		if (sValue = cChartElement.getCSSProperty(oElementDOM, "stroke"))
 			cChartElement.setStyle(oElementDOM, "stroke", sValue);
-		if (sValue = cChartElement.getCSSProperty(oElementDOM, "stroke-width"))
-			cChartElement.setStyle(oElementDOM, "stroke-width", sValue);
 		if (oElementDOM.path && oElementDOM.path.textpathok) {
 			if (sValue = cChartElement.getCSSProperty(oElementDOM, "text-anchor"))
 				cChartElement.setStyle(oElementDOM, "text-anchor", sValue);
@@ -281,7 +281,7 @@ if (cChartElement.useVML) {
 			case "fill":
 //				oElementDOM.fill.on	= sValue != "none";
 				var aValue, oGradient;
-				if (aValue = sValue.match(/url\(#([\w-]+)\)/)) {
+				if (aValue = sValue.match(/url\(#([\w-]+)\)/)) {/*
 					if (oGradient = oElement.ownerDocument.getElementById(aValue[1])) {
 						if (oGradient instanceof cSVGElement_linearGradient || oGradient instanceof cSVGElement_radialGradient) {
 							if (oGradient instanceof cSVGElement_linearGradient) {
@@ -352,10 +352,10 @@ if (cChartElement.useVML) {
 						if (oGradient instanceof cSVGElement_pattern) {
 							// TODO: looks to be impossible to do
 						}
-					}
+					}*/
 				}
 				else
-					oElementDOM.fill.color	= sValue in oSVGElement_colors ? 'rgb(' + oSVGElement_colors[sValue] + ')' : sValue;
+					oElementDOM.fill.color	= sValue in oChartElement_colors ? 'rgb(' + oChartElement_colors[sValue] + ')' : sValue;
 				break;
 			case "fill-opacity":
 				if (oElementDOM.fill.opacity != sValue)
@@ -364,7 +364,7 @@ if (cChartElement.useVML) {
 			// strokes
 			case "stroke":
 //				oElementDOM.stroke.on	= sValue != "none";
-				oElementDOM.stroke.color	= sValue in oSVGElement_colors ? 'rgb(' + oSVGElement_colors[sValue] + ')' : sValue;
+				oElementDOM.stroke.color	= sValue in oChartElement_colors ? 'rgb(' + oChartElement_colors[sValue] + ')' : sValue;
 				break;
 			case "stroke-width":
 				var aStroke	= sValue.match(/([\d.]+)(.*)/),
@@ -424,7 +424,7 @@ if (cChartElement.useVML) {
 		return {/*"start": "left", */"middle": "center", "end": "right"/*, "inherit": "left"*/}[sTextAnchor] || "left";
 	};
 
-	var oSVGElement_colors	= {
+	var oChartElement_colors	= {
 		'aliceblue':	[240,248,255],
 		'antiquewhite':	[250,235,215],
 		'aqua':			[0,255,255],
