@@ -74,7 +74,7 @@ cChartElement_bubble.prototype.refresh	= function() {
 					"a" + nSize + "," + nSize + " 0 0,0-" + nSize * 2 + ",0 " +
 					"z";
 
-			cChartElement.setPath(oGroup.childNodes[nItem].$getContainer("value"), d);
+			cChartElement.setPath(oGroup.childNodes[nItem].$getContainer("path"), d);
 			cChartElement.setPath(oGroup.childNodes[nItem].$getContainer("shadow"), d);
 			cChartElement.setPath(oGroup.childNodes[nItem].$getContainer("textPath"), "m" + nX + "," + nY + " h200 z");
 		}

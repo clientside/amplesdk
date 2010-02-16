@@ -39,12 +39,13 @@ cChartElement_map.prototype.refresh	= function() {
 		// Get DOM element
 		oGroup = this.childNodes[nGroup];
 
-		for (var nItem = 0, nItems = aData[nGroup].length, oItem; nItem < nItems; nItem++) {
+		for (var nItem = 0, nItems = aData[nGroup].length, oItem, oPath; nItem < nItems; nItem++) {
 			// Get DOM element
-			oItem = oGroup.childNodes[nItem];
+			oItem	= oGroup.childNodes[nItem];
+			oPath	= oItem.$getContainer("path");
 			//
-			cChartElement.setPath(oItem.$getContainer("value"), cChartElement_map.countries[aData[nGroup][nItem][0]][1][0]);
-			oItem.$getContainer("value").style["fill-opacity"]	= 0.2 + 0.8 * aData[nGroup][nItem][1] / nGroupMax;
+			cChartElement.setPath(oPath, cChartElement_map.countries[aData[nGroup][nItem][0]][1][0]);
+			oPath.style["fill-opacity"]	= 0.2 + 0.8 * aData[nGroup][nItem][1] / nGroupMax;
 		}
 
 		// Draw legend

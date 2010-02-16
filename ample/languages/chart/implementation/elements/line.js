@@ -98,7 +98,7 @@ cChartElement_line.prototype.refresh	= function() {
 
 			//
 			if (!bArea)
-				cChartElement.setPath(oGroup.childNodes[nItem].$getContainer("value"), cChartElement_line.getMarkerPath(nX, nY, nGroup));
+				cChartElement.setPath(oGroup.childNodes[nItem].$getContainer("path"), cChartElement_line.getMarkerPath(nX, nY, nGroup));
 			//
 			d.push(nX + "," + nY + " ");
 

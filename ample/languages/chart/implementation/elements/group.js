@@ -81,8 +81,8 @@ else {
 	cChartElement_group.prototype.$getTagOpen	= function() {
 		return '<chart2vml:group class="c-group c-group_nth-child-' + this.parentNode.childNodes.$indexOf(this) +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" \
 					style="position:absolute;width:100%;height:100%;' + this.getAttribute("style") + '">\
-					<chart2vml:shape class="c-group--path" style="position:absolute;width:100%;height:100%" />\
 					<chart2vml:shape class="c-group--shadow" filled="false" style="position:absolute;width:100%;height:100%;margin-left:2px;margin-top:2px;"/>\
+					<chart2vml:shape class="c-group--path" style="position:absolute;width:100%;height:100%" />\
 					<chart2vml:shape class="c-group--line" filled="false" style="position:absolute;width:100%;height:100%"/>\
 					<chart2vml:shape class="c-group--area" stroked="false" fillcolor="black" style="position:absolute;width:100%;height:100%"/>\
 					<chart2vml:shape path="m0,0 l100,0" class="c-group--label" stroked="false" fillcolor="black" allowoverlap="true" style="position:absolute;width:100%;height:100%;margin-left:0;margin-top:0">\

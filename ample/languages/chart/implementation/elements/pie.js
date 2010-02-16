@@ -42,8 +42,8 @@ cChartElement_pie.prototype.refresh	= function() {
 		// Draw line to the inner circle
 		d.push("L" + cX + "," + cY);
 
-		cChartElement.setPath(oElement.$getContainer("value"), d.join('') + "z");
-//		oElement.$getContainer("value").setAttribute("d", d.join('') + "z");
+		cChartElement.setPath(oElement.$getContainer("path"), d.join('') + "z");
+//		oElement.$getContainer("path").setAttribute("d", d.join('') + "z");
 		//oElement.$getContainer("shadow").setAttribute("d", d.join('') + "z");
 /*
 		// Text label

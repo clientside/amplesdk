@@ -247,20 +247,20 @@ cChartElement_bar.prototype.refresh	= function() {
 				}
 			}
 
-			cChartElement.setPath(oItem.$getContainer("value"), d);
+			cChartElement.setPath(oItem.$getContainer("path"), d);
 			cChartElement.setPath(oItem.$getContainer("shadow"), d);
-
-			// Draw legend
-			var nXPath	= 480,
-				nYPath	=(50 + (nGroups - nGroup) * 20);
-			cChartElement.setPath(oGroup.$getContainer("path"), "M" + (nXPath - 5) + "," + (nYPath - 5) + "h10 v10 h-10 v-10 z");
-			cChartElement.setTextPosition(oGroup.$getContainer("label"),
-											nXPath + 20,
-											nYPath + 5);
 
 			//
 			aSumUp[nItem]	+= aData[nGroup][nItem];
 		}
+
+		// Draw legend
+		var nXPath	= 480,
+			nYPath	=(50 + (nGroups - nGroup) * 20);
+		cChartElement.setPath(oGroup.$getContainer("path"), "M" + (nXPath - 5) + "," + (nYPath - 5) + "h10 v10 h-10 v-10 z");
+		cChartElement.setTextPosition(oGroup.$getContainer("label"),
+										nXPath + 20,
+										nYPath + 5);
 	}
 };
 

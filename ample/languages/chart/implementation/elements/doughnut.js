@@ -47,7 +47,7 @@ cChartElement_doughnut.prototype.refresh	= function() {
 			// Draw arc on the inner circle
 			d.push("A" + nInnerR + "," + nInnerR + " 0 " + (nAngleTo - nAngleFrom >= Math.PI ? 1 : 0)+ ",0 " + (cX + nInnerR * Math.cos(nAngleFrom)) + "," +(cY + nInnerR * Math.sin(nAngleFrom)));
 
-			cChartElement.setPath(oItem.$getContainer("value"), d.join('') + "z");
+			cChartElement.setPath(oItem.$getContainer("path"), d.join('') + "z");
 			//cChartElement.setPath(oItem.$getContainer("shadow"), d.join('') + "z");
 
 			// Text label

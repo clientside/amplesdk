@@ -44,7 +44,7 @@ cChartElement_funnel.prototype.refresh	= function() {
 		// Draw line to the inner
 		d.push("L" + (nLeft - nWidthTop - nCFrom * (nWidthBottom - nWidthTop)) + "," + (nTop + nCFrom * nHeight));
 
-		cChartElement.setPath(oElement.$getContainer("value"), d.join('') + "z");
+		cChartElement.setPath(oElement.$getContainer("path"), d.join('') + "z");
 
 		var nCHalf	=(nCFrom + nCTo)/ 2;
 		cChartElement.setTextPosition(oElement.$getContainer("label"),

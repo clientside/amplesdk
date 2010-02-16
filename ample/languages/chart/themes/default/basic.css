@@ -216,9 +216,9 @@ c|bar c|item:hover,
 c|bubble c|item:hover,
 c|line c|item:hover,
 c|radar c|item:hover,
-c|doughnut c|item:hover c|item::value,
-c|pie c|item:hover c|item::value,
-c|funnel c|item:hover c|item::value {
+c|doughnut c|item:hover c|item::path,
+c|pie c|item:hover c|item::path,
+c|funnel c|item:hover c|item::path {
 	fill-opacity: 0.5;
 	stroke-opacity: 0.5;
 }

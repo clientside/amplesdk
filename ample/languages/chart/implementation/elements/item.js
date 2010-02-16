@@ -19,7 +19,7 @@ if (!cChartElement.useVML) {
 	cChartElement_item.prototype.$getTagOpen	= function() {
 		return '<svg:g class="c-item c-item_nth-child-' + this.parentNode.childNodes.$indexOf(this) +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">\
 					<svg:path class="c-item--shadow" style="stroke-linejoin:round" transform="translate(2,2)"/>\
-					<svg:path class="c-item--value"/>\
+					<svg:path class="c-item--path"/>\
 					<svg:path class="c-item--textPath" d="m0,0 h600" id="p' + this.uniqueID + '" style="fill:none;stroke:none"/>\
 					<svg:text class="c-item--label" style="stroke:none;"><svg:textPath xlink:href="#p' + this.uniqueID + '">' + this.getAttribute("value")+ '</svg:textPath></svg:text>\
 				</svg:g>';
@@ -28,7 +28,7 @@ if (!cChartElement.useVML) {
 else {
 	cChartElement_item.recalcCSS	= function(oElement) {
 		cChartElement.applyCSS(oElement.$getContainer("label"));
-		cChartElement.applyCSS(oElement.$getContainer("value"));
+		cChartElement.applyCSS(oElement.$getContainer("path"));
 		cChartElement.applyCSS(oElement.$getContainer("shadow"));
 	};
 
@@ -41,7 +41,7 @@ else {
 	cChartElement_item.prototype.$getTagOpen	= function() {
 		return '<chart2vml:group class="c-item c-item_nth-child-' + this.parentNode.childNodes.$indexOf(this) +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="position:absolute;width:100%;height:100%">\
 					<chart2vml:shape class="c-item--shadow" style="position:absolute;width:100%;height:100%;margin-top:2px;margin-left:2px;"/>\
-					<chart2vml:shape class="c-item--value" fillcolor="black" style="position:absolute;height:100%;width:100%"/>\
+					<chart2vml:shape class="c-item--path" fillcolor="black" style="position:absolute;height:100%;width:100%"/>\
 					<chart2vml:shape class="c-item--textPath c-item--label" fillcolor="black" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%">\
 						<chart2vml:path textpathok="true" />\
 						<chart2vml:textpath on="true" string="' + this.getAttribute("value")+ '" style="v-text-align:left"/>\
