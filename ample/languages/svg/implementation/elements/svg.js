@@ -30,7 +30,7 @@ if (cSVGElement.useVML) {
 			// Hiding SVG content initially and showing it after timeout improves performance!
 			var that	= this;
 			setTimeout(function() {
-				var oGroup	= that.$getContainer("group");
+				var oGroup	= that.$getContainer("gateway");
 				if (oGroup)
 					oGroup.style.display	= "";
 			}, 0);
@@ -42,7 +42,7 @@ if (cSVGElement.useVML) {
 
 	cSVGElement_svg.resize	= function(oInstance) {
 		var oElement	= oInstance.$getContainer(),
-			oElementGroup	= oInstance.$getContainer("group"),
+			oElementGroup	= oInstance.$getContainer("gateway"),
 			aBox	= cSVGElement_svg.getBox(oInstance);
 		oElementGroup.style.marginLeft	= aBox[0][0];
 		oElementGroup.style.marginTop	= aBox[0][1];
@@ -117,7 +117,7 @@ if (cSVGElement.useVML) {
 			aHeight	= this.getAttribute("height").match(/([\d.]+)([%\w]*)/) || [];
 		return '<div class="svg-svg' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="position:relative;display:inline-block;overflow:hidden;"\
 					onresize="var o = ample.$instance(this); ample.domConfig.getNamespace(o.namespaceURI).getElement(o.localName).resize(o)">\
-					<svg2vml:group class="svg-svg--group svg-svg--gateway" style="position:absolute;display:none;"\
+					<svg2vml:group class="svg-svg--gateway" style="position:absolute;display:none;"\
 						coordOrigin="0,0"\
 						coordSize="' + (aViewBox[2] || aWidth[1] || 600) + ',' + (aViewBox[3] || aHeight[1] || 600) + '"\
 					>';
