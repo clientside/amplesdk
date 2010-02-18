@@ -47,7 +47,7 @@ if (cSVGElement.useVML) {
 
 			switch (sCommand) {
 				case "translate":	// (<tx> [<ty>])
-					aMatrix	= cSVGElement.matrixMultiple(aMatrix, [
+					aMatrix	= cSVGElement.matrixMultiply(aMatrix, [
 							[1,	0,	0],
 							[0, 1,	0],
 							[aParameters[0], aParameters.length > 1 ? aParameters[1] : 0, 1]
@@ -55,7 +55,7 @@ if (cSVGElement.useVML) {
 					break;
 
 				case "matrix":		// (<a> <b> <c> <d> <e> <f>)
-					aMatrix	= cSVGElement.matrixMultiple(aMatrix, [
+					aMatrix	= cSVGElement.matrixMultiply(aMatrix, [
 							[aParameters[0],	aParameters[1],	0],
 							[aParameters[2],	aParameters[3],	0],
 							[aParameters[4], 	aParameters[5], 1]
@@ -66,7 +66,7 @@ if (cSVGElement.useVML) {
 					var iScaleX	= aParameters[0],
 						iScaleY	= aParameters.length > 1 ? aParameters[1] : iScaleX;
 
-						aMatrix	= cSVGElement.matrixMultiple(aMatrix, [
+						aMatrix	= cSVGElement.matrixMultiply(aMatrix, [
 								[iScaleX,	0,			0],
 								[0,			iScaleY,	0],
 								[0,			0, 			1]
@@ -79,7 +79,7 @@ if (cSVGElement.useVML) {
 						iSin	= Math.sin(iAngle);
 
 					if (aParameters.length == 3) {
-						aMatrix	= cSVGElement.matrixMultiple(aMatrix, [
+						aMatrix	= cSVGElement.matrixMultiply(aMatrix, [
     							[1,	0,	0],
     							[0,	1,	0],
     							[aParameters[1],	aParameters[2], 1]
@@ -88,14 +88,14 @@ if (cSVGElement.useVML) {
 
 					nRotation	= aParameters[0];
 
-					aMatrix	= cSVGElement.matrixMultiple(aMatrix, [
+					aMatrix	= cSVGElement.matrixMultiply(aMatrix, [
 							[iCos,	-iSin,	0],
 							[iSin,	iCos,	0],
 							[0,		0, 		1]
 					]);
 
 					if (aParameters.length == 3) {
-						aMatrix	= cSVGElement.matrixMultiple(aMatrix, [
+						aMatrix	= cSVGElement.matrixMultiply(aMatrix, [
     							[1,	0,	0],
     							[0,	1,	0],
     							[-aParameters[1],	-aParameters[2], 1]
@@ -107,7 +107,7 @@ if (cSVGElement.useVML) {
 					var iAngle	= aParameters[0] * Math.PI / 180,
 						iTan	= Math.tan(iAngle);
 
-					aMatrix	= cSVGElement.matrixMultiple(aMatrix, [
+					aMatrix	= cSVGElement.matrixMultiply(aMatrix, [
 							[1,		iTan,	0],
 							[0,		1,		0],
 							[0,		0, 		1]
@@ -118,7 +118,7 @@ if (cSVGElement.useVML) {
 					var iAngle	= aParameters[0] * Math.PI / 180,
 						iTan	= Math.tan(iAngle);
 
-					aMatrix	= cSVGElement.matrixMultiple(aMatrix, [
+					aMatrix	= cSVGElement.matrixMultiply(aMatrix, [
 							[1,		0,		0],
 							[iTan,	1,		0],
 							[0,		0, 		1]
@@ -130,15 +130,15 @@ if (cSVGElement.useVML) {
 		if (oElementDOM.tagName == "group") {
 			// Apply Translate
 			oElementDOM.coordOrigin	= aMatrix[2][0] / aMatrix[0][0] *-1 + "," + aMatrix[2][1] / aMatrix[1][1] *-1;
-/*
-			// Find nearest parent coordSize
-			var aCoordSize	= [0, 0];
-			for (var oNode = oElementDOM; oNode = oNode.parentNode;)
-				if (oNode.tagName == "group") {
-					aCoordSize	= [oNode.coordSize.x, oNode.coordSize.y];
-					break;
-				}
-*/
+
+//			// Find nearest parent coordSize
+//			var aCoordSize	= [0, 0];
+//			for (var oNode = oElementDOM; oNode = oNode.parentNode;)
+//				if (oNode.tagName == "group") {
+//					aCoordSize	= [oNode.coordSize.x, oNode.coordSize.y];
+//					break;
+//				}
+
 			// Apply Scale
 //			oElementDOM.coordSize	= Math.round(aCoordSize[0] * aMatrix[0][0]) + "," + Math.round(aCoordSize[1] * aMatrix[1][1]);
 
@@ -291,6 +291,8 @@ if (cSVGElement.useVML) {
 					oElementDOM.fill.color	= sValue in oSVGElement_colors ? 'rgb(' + oSVGElement_colors[sValue] + ')' : sValue;
 				break;
 			case "fill-opacity":
+				if (sValue == null)
+					sValue	= 1;
 				if (oElementDOM.fill.opacity != sValue)
 					oElementDOM.fill.opacity	= sValue;
 				break;
@@ -308,6 +310,8 @@ if (cSVGElement.useVML) {
 					oElementDOM.stroke.opacity	= (oElement.attributes["stroke-opacity"] || 1) * nStrokeWidth;
 				break;
 			case "stroke-opacity":
+				if (sValue == null)
+					sValue	= 1;
 				sValue	= ((oElement.attributes["stroke-width"] || "").match(/([\d.]+)(.*)/) && RegExp.$1 < 1 ? RegExp.$1 : 1) * sValue;
 				if (oElementDOM.stroke.opacity != sValue)
 					oElementDOM.stroke.opacity	= sValue;
@@ -435,7 +439,7 @@ if (cSVGElement.useVML) {
 		];
 	};
 
-	cSVGElement.matrixMultiple	= function(aMatrix1, aMatrix2) {
+	cSVGElement.matrixMultiply	= function(aMatrix1, aMatrix2) {
 		var aResult	= cSVGElement.matrixCreate();
 
 		for (var x = 0; x < 3; x++) {
@@ -450,6 +454,10 @@ if (cSVGElement.useVML) {
 
 	cSVGElement.getTransform	= function(oElement) {
 		return "1,0,0,1";
+	};
+
+	cSVGElement.matrixDeterminant	= function(aMatrix) {
+		return aMatrix[0][0] * aMatrix[1][1] - aMatrix[0][1] * aMatrix[1][0];
 	};
 
 	//
