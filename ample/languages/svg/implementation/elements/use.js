@@ -18,9 +18,20 @@ if (cSVGElement.useVML) {
 				that	= this;
 			if (sHref) {
 				setTimeout(function() {
-					var oRef	= that.ownerDocument.getElementById(sHref.substr(1));
-					if (oRef && oRef.hasAttribute("d")) {
-						that.$getContainer().path	= oRef.$getContainer().path;
+					var oRef	= that.ownerDocument.getElementById(sHref.substr(1)),
+						sValue;
+					if (oRef) {
+						// Create a clone of referenced element
+						var oNode	= oRef.cloneNode(true);
+						oNode.removeAttribute("id");
+						that.parentNode.insertBefore(oNode, that);
+
+						// Apply transformations
+						if (sValue = that.getAttribute("transform"))
+							cSVGElement.setTransform(oNode, sValue);
+
+						// Apply CSS
+						cSVGElement.applyCSS(oNode);
 					}
 				});
 			}
@@ -28,14 +39,8 @@ if (cSVGElement.useVML) {
 	};
 
 	// presentation
-	cSVGElement_use.prototype.$getTagOpen	= function() {
-		return '<svg2vml:shape class="svg-path' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '"\
-					style="position:absolute;top:0;left:0;height:100%;width:100%;"\
-				>' + cSVGElement.getTagStyle(this);
-	};
-
-	cSVGElement_use.prototype.$getTagClose	= function() {
-		return '</svg2vml:shape>';
+	cSVGElement_use.prototype.$getTag	= function() {
+		return '';
 	};
 };
 
