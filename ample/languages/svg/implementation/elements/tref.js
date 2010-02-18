@@ -17,6 +17,10 @@ if (cSVGElement.useVML) {
 			if (oEvent.target == this) {
 				var oElement	= this.$getContainer();
 				switch (oEvent.attrName) {
+					case "x":
+					case "y":
+						oElement.path	= 'm ' + [this.getAttribute("x") || (this.parentNode ? this.parentNode.getAttribute("x") : "0"), this.getAttribute("y") || (this.parentNode ? this.parentNode.getAttribute("y") : "0")].map(Math.round) + ' r 1000,0 x';
+						break;
 					case "xlink:href":
 						var oTextPath = this.ownerDocument.getElementById(oEvent.newValue.substr(1));
 						if (oTextPath)

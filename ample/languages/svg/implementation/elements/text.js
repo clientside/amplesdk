@@ -18,11 +18,8 @@ if (cSVGElement.useVML) {
 				var oElement	= this.$getContainer("shape");
 				switch (oEvent.attrName) {
 					case "x":
-						oElement.style.left	= oEvent.newValue + 'px';
-						break;
-
 					case "y":
-						oElement.style.top	= oEvent.newValue + 'px';
+						oElement.path	= 'm ' + [this.getAttribute("x") || 0, this.getAttribute("y") || 0].map(Math.round) + ' r 1000,0 x';
 						break;
 					//
 					case "transform":
