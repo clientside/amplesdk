@@ -22,14 +22,8 @@ if (cSVGElement.useVML) {
 				switch (oEvent.attrName) {
 					case "cx":
 					case "cy":
-						oStyle[oEvent.attrName == "cx" ? "left" : "top"]		=(oEvent.newValue - this.getAttribute("r"))+ "px";
-						break;
-
 					case "r":
-						oStyle["width"]		= oEvent.newValue * 2 + "px";
-						oStyle["height"]	= oEvent.newValue * 2 + "px";
-						oStyle["left"]		=(this.getAttribute("cx") - oEvent.newValue)+ "px";
-						oStyle["top"]		=(this.getAttribute("cy") - oEvent.newValue)+ "px";
+						oElement.path	= cSVGElement_circle.toPath(this);
 						break;
 					//
 					case "transform":
@@ -57,18 +51,23 @@ if (cSVGElement.useVML) {
 		}
 	};
 
+	cSVGElement_circle.toPath	= function(oElement) {
+		var nCx	= oElement.getAttribute("cx") * 1,
+			nCy	= oElement.getAttribute("cy") * 1,
+			nR	= oElement.getAttribute("r") * 1;
+		return "at" + [nCx - nR, nCy - nR, nCx + nR, nCy + nR, nCx - nR, nCy - nR, nCx - nR, nCy - nR].map(Math.round) + "x";
+	};
+
 	// presentation
 	cSVGElement_circle.prototype.$getTagOpen	= function() {
-		var r	= this.getAttribute("r"),
-			cx	= this.getAttribute("cx"),
-			cy	= this.getAttribute("cy");
-		return '<svg2vml:oval class="svg-circle' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '"\
-					style="position:absolute;width:' + r * 2 + 'px;height:' + r * 2 + 'px;left:' + (cx - r) + 'px;top:' + (cy - r) + 'px;"\
-				>' + cSVGElement.getTagStyle(this);
+		return '<svg2vml:shape class="svg-circle' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" \
+			style="position:absolute;top:0;left:0;height:100%;width:100%;"\
+			path="' + cSVGElement_circle.toPath(this) + '"\
+		>' + cSVGElement.getTagStyle(this);
 	};
 
 	cSVGElement_circle.prototype.$getTagClose	= function() {
-		return '</svg2vml:oval>';
+		return '</svg2vml:shape>';
 	};
 };
 

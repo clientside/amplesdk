@@ -21,21 +21,10 @@ if (cSVGElement.useVML) {
 					oStyle		= oElement.style;
 				switch (oEvent.attrName) {
 					case "cx":
-						oStyle.left		=(oEvent.newValue - this.getAttribute("rx"))+ "px";
-						break;
-
 					case "cy":
-						oStyle.top		=(oEvent.newValue - this.getAttribute("ry"))+ "px";
-						break;
-
 					case "rx":
-						oStyle.width	= oEvent.newValue * 2 + "px";
-						oStyle.left		=(this.getAttribute("cx") - oEvent.newValue)+ "px";
-						break;
-
 					case "ry":
-						oStyle.height	= oEvent.newValue * 2 + "px";
-						oStyle.top		=(this.getAttribute("cy") - oEvent.newValue)+ "px";
+						oElement.path	= cSVGElement_ellipse.toPath(this);
 						break;
 					//
 					case "transform":
@@ -63,19 +52,24 @@ if (cSVGElement.useVML) {
 		}
 	};
 
+	cSVGElement_ellipse.toPath	= function(oElement) {
+		var nCx	= oElement.getAttribute("cx") * 1,
+			nCy	= oElement.getAttribute("cy") * 1,
+			nRx	= oElement.getAttribute("rx") * 1,
+			nRy	= oElement.getAttribute("ry") * 1;
+		return "at" + [nCx - nRx, nCy - nRy, nCx + nRx, nCy + nRy, nCx - nRx, nCy - nRy, nCx - nRx, nCy - nRy].map(Math.round) + "x";
+	};
+
 	// presentation
 	cSVGElement_ellipse.prototype.$getTagOpen	= function() {
-		var rx	= this.getAttribute("rx"),
-			ry	= this.getAttribute("ry"),
-			cx	= this.getAttribute("cx"),
-			cy	= this.getAttribute("cy");
-		return '<svg2vml:oval class="svg-ellipse' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '"\
-					style="position:absolute;width:' + rx * 2 + 'px;height:' + ry * 2 + 'px;left:' + (cx - rx) + 'px;top:' + (cy - ry) + 'px;"\
-				>' + cSVGElement.getTagStyle(this);
+		return '<svg2vml:shape class="svg-ellipse' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" \
+			style="position:absolute;top:0;left:0;height:100%;width:100%;"\
+			path="' + cSVGElement_ellipse.toPath(this) + '"\
+		>' + cSVGElement.getTagStyle(this);
 	};
 
 	cSVGElement_ellipse.prototype.$getTagClose	= function() {
-		return '</svg2vml:oval>';
+		return '</svg2vml:shape>';
 	};
 };
 

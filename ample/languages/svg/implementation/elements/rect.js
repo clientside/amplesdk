@@ -19,20 +19,13 @@ if (cSVGElement.useVML) {
 			if (oEvent.target == this) {
 				var oElement	= this.$getContainer();
 				switch (oEvent.attrName) {
-					//
 					case "width":
 					case "height":
-						oElement.style[oEvent.attrName]	= oEvent.newValue + "px";
-						break;
-					//
 					case "x":
 					case "y":
-						oElement.style[oEvent.attrName == "x" ? "left" : "top"]	= oEvent.newValue + "px";
-						break;
 					case "rx":
 					case "ry":
-						// TODO: Cannot be accessed at the runtime
-						oElement.outerHTML	= this.$getTag();
+						oElement.path	= cSVGElement_rect.toPath(this);
 						break;
 					//
 					case "transform":
@@ -60,19 +53,30 @@ if (cSVGElement.useVML) {
 		}
 	};
 
+	cSVGElement_rect.toPath	= function(oElement) {
+		var nX	= oElement.getAttribute("x") * 1,
+			nY	= oElement.getAttribute("y") * 1,
+			nWidth	= oElement.getAttribute("width") * 1,
+			nHeight	= oElement.getAttribute("height") * 1,
+			nRx	= oElement.getAttribute("rx") * 1,
+			nRy	= oElement.getAttribute("ry") * 1;
+		return "m" + [nX, nY].map(Math.round) +
+				" r" + [nWidth, 0].map(Math.round) +
+				" r" + [0, nHeight].map(Math.round) +
+				" r" + [-nWidth, 0].map(Math.round) +
+				" r" + [0, -nHeight].map(Math.round) + "e";
+	};
+
 	// presentation
 	cSVGElement_rect.prototype.$getTagOpen	= function() {
-		var nRx	= this.getAttribute("rx"),
-			nRy	= this.getAttribute("ry"),
-			arcSize	= (nRx && nRy ? Math.min(nRx, nRy) : (nRx || nRy)) / Math.min(this.getAttribute("width"), this.getAttribute("height"));
-		return '<svg2vml:roundrect class="svg-rect' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" \
-					style="position:absolute;width:' + this.getAttribute("width") + 'px;height:' + this.getAttribute("height") + 'px;left:' + this.getAttribute("x") + 'px;top:' + this.getAttribute("y") + 'px;"\
-					arcSize="' + arcSize + '"\
+		return '<svg2vml:shape class="svg-rect' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" \
+					style="position:absolute;top:0;left:0;height:100%;width:100%;"\
+					path="' + cSVGElement_rect.toPath(this) + '"\
 				>' + cSVGElement.getTagStyle(this);
 	};
 
 	cSVGElement_rect.prototype.$getTagClose	= function() {
-		return '</svg2vml:roundrect>';
+		return '</svg2vml:shape>';
 	};
 };
 
