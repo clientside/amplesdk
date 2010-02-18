@@ -63,7 +63,7 @@ if (cSVGElement.useVML) {
 			nMarginTop	= -(sFontSizeUnit == "pt" ? Math.round(nFontSizeValue * 0.35) : nFontSizeValue * 0.35);
 
 		return '<svg2vml:shape class="svg-textPath' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '"\
-					style="position:absolute;width:100%;height:100%;margin-top:' + nMarginTop + 'px;left:' + (this.parentNode ? this.parentNode.getAttribute("x") : "0") + 'px;top:' + (this.parentNode ? this.parentNode.getAttribute("y") : "0") + 'px;"\
+					style="position:absolute;width:100%;height:100%;margin-top:' + nMarginTop + 'px;left:0px;top:0px;"\
 					path="m 0,0 l 1000,0 x" allowoverlap="true"\
 				>' + cSVGElement.getTagStyle(this) + '\
 					<svg2vml:path textpathok="true" />\
