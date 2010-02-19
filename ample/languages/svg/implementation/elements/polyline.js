@@ -20,7 +20,7 @@ if (cSVGElement.useVML) {
 				var oElement	= this.$getContainer();
 				switch (oEvent.attrName) {
 					case "points":
-						oElement.points.value	= oEvent.newValue;
+						oElement.path	= cSVGElement_polygon.toPath(this);
 						break;
 					//
 					case "transform":
@@ -56,7 +56,7 @@ if (cSVGElement.useVML) {
 	cSVGElement_polyline.prototype.$getTagOpen	= function() {
 		return '<svg2vml:shape class="svg-polyline' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '"\
 						style="position:absolute;top:0;left:0;height:100%;width:100%;"\
-						path="l ' + cSVGElement_polyline.toPath(this) + '"\
+						path="' + cSVGElement_polyline.toPath(this) + '"\
 				>' + cSVGElement.getTagStyle(this);
 	};
 
