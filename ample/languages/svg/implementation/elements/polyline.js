@@ -24,7 +24,7 @@ if (cSVGElement.useVML) {
 						break;
 					//
 					case "transform":
-						cSVGElement.setTransform(this, oEvent.newValue);
+						cSVGElement.applyTransform(this);
 						break;
 					//
 					default:
@@ -40,23 +40,28 @@ if (cSVGElement.useVML) {
 				cSVGElement.setStyle(this, "fill", sValue);
 
 			// Apply transformations
-			if (sValue = this.getAttribute("transform"))
-				cSVGElement.setTransform(this, sValue);
+			cSVGElement.applyTransform(this);
 
 			// Apply CSS
 			cSVGElement.applyCSS(this);
 		}
 	};
 
+	cSVGElement_polyline.toPath	= function(oElement) {
+		var aPoints = oElement.getAttribute("points").split(/[ ,]/);
+		return "m " + aPoints.slice(0, 2).map(Math.round)+ " l " + aPoints.slice(2).map(Math.round) + " x";
+	};
+
 	// presentation
 	cSVGElement_polyline.prototype.$getTagOpen	= function() {
-		return '<svg2vml:polyline class="svg-polyline' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '"\
-						points="' + this.getAttribute("points") + '"\
+		return '<svg2vml:shape class="svg-polyline' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '"\
+						style="position:absolute;top:0;left:0;height:100%;width:100%;"\
+						path="l ' + cSVGElement_polyline.toPath(this) + '"\
 				>' + cSVGElement.getTagStyle(this);
 	};
 
 	cSVGElement_polyline.prototype.$getTagClose	= function() {
-		return '</svg2vml:polyline>';
+		return '</svg2vml:shape>';
 	};
 };
 

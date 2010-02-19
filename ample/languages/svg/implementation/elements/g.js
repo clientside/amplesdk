@@ -20,19 +20,17 @@ if (cSVGElement.useVML) {
 				switch (oEvent.attrName) {
 					case "transform":
 						// do not propagate this attribute change to children!
-						cSVGElement.setTransform(this, oEvent.newValue);
+						cSVGElement.applyTransform(this);
 						break;
 
 					default:
 						cSVGElement.setStyle(this, oEvent.attrName, oEvent.newValue);
 				}
 			}
-		},
+		}/*,
 		'DOMNodeInsertedIntoDocument':	function(oEvent) {
-			var sValue	= this.getAttribute("transform");
-			if (sValue != "")
-				cSVGElement.setTransform(this, sValue);
-		}
+			cSVGElement.applyTransform(this);
+		}*/
 	};
 
 	// presentation

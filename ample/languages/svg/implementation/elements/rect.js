@@ -29,7 +29,7 @@ if (cSVGElement.useVML) {
 						break;
 					//
 					case "transform":
-						cSVGElement.setTransform(this, oEvent.newValue);
+						cSVGElement.applyTransform(this);
 						break;
 					//
 					default:
@@ -45,8 +45,7 @@ if (cSVGElement.useVML) {
 				cSVGElement.setStyle(this, "fill", sValue);
 
 			// Apply transformations
-			if (sValue = this.getAttribute("transform"))
-				cSVGElement.setTransform(this, sValue);
+			cSVGElement.applyTransform(this);
 
 			// Apply CSS
 			cSVGElement.applyCSS(this);
@@ -58,17 +57,27 @@ if (cSVGElement.useVML) {
 			nY	= oElement.getAttribute("y") * 1,
 			nWidth	= oElement.getAttribute("width") * 1,
 			nHeight	= oElement.getAttribute("height") * 1,
-			nRx	= oElement.getAttribute("rx") * 1,
-			nRy	= oElement.getAttribute("ry") * 1;
-		return "m" + [nX, nY].map(Math.round) +
-				" r" + [nWidth, 0].map(Math.round) +
-				" r" + [0, nHeight].map(Math.round) +
-				" r" + [-nWidth, 0].map(Math.round) +
-				" r" + [0, -nHeight].map(Math.round) + "e";
+			nRx	= oElement.getAttribute("rx") * 1 || 0,
+			nRy	= oElement.getAttribute("ry") * 1 || 0;
+		if (nRx > nWidth / 2)
+			nRx	= nWidth / 2;
+		if (nRy > nHeight / 2)
+			nRy	= nHeight / 2;
+		return ["m", [nX + nRx, nY].map(Math.round),
+				"l", [nX + nWidth - nRx, nY].map(Math.round),
+				"wa", [nX + nWidth - 2 * nRx, nY, nX + nWidth, nY + 2 * nRy, nX + nWidth - nRx, nY, nX + nWidth, nY + nRy].map(Math.round),
+				"l", [nX + nWidth, nY + nHeight - nRy].map(Math.round),
+				"wa", [nX + nWidth - 2 * nRx, nY + nHeight - 2 * nRy, nX + nWidth, nY + nHeight, nX + nWidth, nY + nHeight - nRy, nX + nWidth - nRx, nY + nHeight].map(Math.round),
+				"l", [nX + nRx, nY + nHeight].map(Math.round),
+				"wa", [nX, nY + nHeight - 2 * nRy, nX + 2 * nRx, nY + nHeight, nX + nRx, nY + nHeight, nX, nY + nHeight - nRy].map(Math.round),
+				"l", [nX, nY + nRy].map(Math.round),
+				"wa", [nX, nY, nX + 2 * nRx, nY + 2 * nRy, nX, nY + nRy, nX + nRx, nY].map(Math.round),
+				"x"].join(" ");
 	};
 
 	// presentation
 	cSVGElement_rect.prototype.$getTagOpen	= function() {
+		console.log(cSVGElement_rect.toPath(this));
 		return '<svg2vml:shape class="svg-rect' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" \
 					style="position:absolute;top:0;left:0;height:100%;width:100%;"\
 					path="' + cSVGElement_rect.toPath(this) + '"\

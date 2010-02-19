@@ -39,6 +39,9 @@ if (cSVGElement.useVML) {
 						that.$getContainer("label").string	= oRef.firstChild.data.replace(/^\s+/, '').replace(/\s+$/, '').replace(/&gt;/g, '>').replace(/&lt;/g, '<').replace(/&amp;/g, '&');
 				});
 			}
+			// Apply transform
+			cSVGElement.applyTransform(this);
+
 			// Apply CSS
 			cSVGElement.applyCSS(this);
 		}

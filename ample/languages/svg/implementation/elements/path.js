@@ -140,7 +140,7 @@ if (cSVGElement.useVML) {
 						break;
 					//
 					case "transform":
-						cSVGElement.setTransform(this, oEvent.newValue);
+						cSVGElement.applyTransform(this);
 						break;
 					//
 					default:
@@ -156,8 +156,7 @@ if (cSVGElement.useVML) {
 				cSVGElement.setStyle(this, "fill", sValue);
 
 			// Apply transformation
-			if (sValue = this.getAttribute("transform"))
-				cSVGElement.setTransform(this, sValue);
+			cSVGElement.applyTransform(this);
 
 			// Apply CSS
 			cSVGElement.applyCSS(this);

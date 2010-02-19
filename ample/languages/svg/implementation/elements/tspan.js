@@ -39,6 +39,9 @@ if (cSVGElement.useVML) {
 			if ((sValue = cSVGElement.getStyle(this, "fill")) && sValue.substr(0, 3) == "url")
 				cSVGElement.setStyle(this, "fill", sValue);
 
+			// Apply transform
+			cSVGElement.applyTransform(this);
+
 			// Apply CSS
 			cSVGElement.applyCSS(this);
 		}

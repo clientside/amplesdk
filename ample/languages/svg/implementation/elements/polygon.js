@@ -24,7 +24,7 @@ if (cSVGElement.useVML) {
 						break;
 					//
 					case "transform":
-						cSVGElement.setTransform(this, oEvent.newValue);
+						cSVGElement.applyTransform(this);
 						break;
 					//
 					default:
@@ -40,8 +40,7 @@ if (cSVGElement.useVML) {
 				cSVGElement.setStyle(this, "fill", sValue);
 
 			// Apply transformations
-			if (sValue = this.getAttribute("transform"))
-				cSVGElement.setTransform(this, sValue);
+			cSVGElement.applyTransform(this);
 
 			// Apply CSS
 			cSVGElement.applyCSS(this);
@@ -49,7 +48,7 @@ if (cSVGElement.useVML) {
 	};
 
 	cSVGElement_polygon.toPath	= function(oElement) {
-		var aPoints = this.getAttribute("points").split(/[ ,]/);
+		var aPoints = oElement.getAttribute("points").split(/[ ,]/);
 		return "m " + aPoints.slice(0, 2).map(Math.round)+ " l " + aPoints.slice(2).map(Math.round) + " x";
 	};
 

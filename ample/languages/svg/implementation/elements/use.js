@@ -18,8 +18,7 @@ if (cSVGElement.useVML) {
 				that	= this;
 			if (sHref) {
 				setTimeout(function() {
-					var oRef	= that.ownerDocument.getElementById(sHref.substr(1)),
-						sValue;
+					var oRef	= that.ownerDocument.getElementById(sHref.substr(1));
 					if (oRef) {
 						// Create a clone of referenced element
 						var oNode	= oRef.cloneNode(true);
@@ -27,11 +26,10 @@ if (cSVGElement.useVML) {
 						that.parentNode.insertBefore(oNode, that);
 
 						// Apply transformations
-						if (sValue = that.getAttribute("transform"))
-							cSVGElement.setTransform(oNode, sValue);
+//						cSVGElement.applyTransform(oNode);
 
-						// Apply CSS
-						cSVGElement.applyCSS(oNode);
+//						// Apply CSS
+//						cSVGElement.applyCSS(oNode);
 					}
 				});
 			}
