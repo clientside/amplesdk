@@ -172,7 +172,7 @@ if (cSVGElement.useVML) {
 		// other
 		var oElementDOM	= oElement.$getContainer();
 		if (oElement instanceof cSVGElement_text || oElement instanceof cSVGElement_image)
-			oElementDOM	= oElement.$getContainer("shape");
+			oElementDOM	= oElementDOM.getElementsByTagName("shape")[0];
 
 		// Some element do not have view, skip them
 		if (!oElementDOM)

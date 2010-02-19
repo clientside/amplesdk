@@ -38,7 +38,7 @@ if (cSVGElement.useVML) {
 				cSVGElement_a.setHref(oChild, sValue);
 			else
 			if (oChild instanceof cSVGElement_text)
-				oChild.$getContainer("shape").href	= sValue;
+				oChild.$getContainer().getElementsByTagName("shape")[0].href	= sValue;
 			else
 			if (oChild.nodeType == 1) {
 				oElementDOM	= oChild.$getContainer();

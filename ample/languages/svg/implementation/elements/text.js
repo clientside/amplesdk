@@ -18,7 +18,7 @@ if (cSVGElement.useVML) {
 				switch (oEvent.attrName) {
 					case "x":
 					case "y":
-						this.$getContainer("shape").path	= 'm ' + [this.getAttribute("x") || 0, this.getAttribute("y") || 0].map(Math.round) + ' r 1000,0 x';
+						this.$getContainer().getElementsByTagName("shape")[0].path	= 'm ' + [this.getAttribute("x") || 0, this.getAttribute("y") || 0].map(Math.round) + ' r 1000,0 x';
 						break;
 					//
 					case "transform":
@@ -73,7 +73,7 @@ if (cSVGElement.useVML) {
 
 		return '<svg2vml:group class="svg-text' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '"\
 					style="position:absolute;top:0;left:0;width:100%;height:100%;">\
-					<svg2vml:shape class="svg-text--shape"\
+					<svg2vml:shape \
 						style="position:absolute;width:100%;height:100%;margin-top:' + nMarginTop + 'px;left:0px;top:0px;"\
 						path="m ' + [this.getAttribute("x") || 0, this.getAttribute("y") || 0].map(Math.round) + ' r 1000,0 x" allowoverlap="true"\
 					>' + cSVGElement.getTagStyle(this) + '\

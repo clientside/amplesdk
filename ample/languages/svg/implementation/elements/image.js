@@ -20,7 +20,7 @@ if (cSVGElement.useVML) {
 				var oElement	= this.$getContainer();
 				switch (oEvent.attrName) {
 					case "xlink:href":
-						this.$getContainer("image").src	= oEvent.newValue;
+						oElement.getElementsByTagName("imagedata")[0].src	= oEvent.newValue;
 						break;
 					//
 					case "width":
@@ -31,7 +31,7 @@ if (cSVGElement.useVML) {
 					//
 					case "x":
 					case "y":
-						oElement.style["margin" +(oEvent.attrName == "x" ? "Left" : "Top")]	= oEvent.newValue + "px";
+						oElement.style[(oEvent.attrName == "x" ? "left" : "top")]	= oEvent.newValue + "px";
 						break;
 					//
 					case "transform":
@@ -62,17 +62,14 @@ if (cSVGElement.useVML) {
 	cSVGElement_image.prototype.$getTagOpen	= function() {
 		var aWidth	= this.getAttribute("width").match(/([\d.]+)([%\w]*)/),
 			aHeight	= this.getAttribute("height").match(/([\d.]+)([%\w]*)/);
-		return '<svg2vml:group class="svg-image' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '"\
-					style="position:absolute;width:' + aWidth[1] + (aWidth[2] || 'px') + ';height:' + aHeight[1] + (aHeight[2] || 'px') + ';margin-left:' + this.getAttribute("x") + 'px;margin-top:' + this.getAttribute("y") + 'px;"\
-				>\
-					<svg2vml:rect class="svg-image--shape" style="width:100%;height:100%;">\
-						<svg2vml:stroke on="false" />\
-						<svg2vml:imagedata src="' + this.getAttribute("xlink:href")+ '" class="svg-image--image"/>\
-					</svg2vml:rect>';
+		return '<svg2vml:shape class="svg-image' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '"\
+					style="position:absolute;width:' + aWidth[1] + (aWidth[2] || 'px') + ';height:' + aHeight[1] + (aHeight[2] || 'px') + ';left:' + this.getAttribute("x") + 'px;top:' + this.getAttribute("y") + 'px;" stroked="false"\
+				>' + cSVGElement.getTagStyle(this) + '\
+					<svg2vml:imagedata src="' + this.getAttribute("xlink:href")+ '" />';
 	};
 
 	cSVGElement_image.prototype.$getTagClose	= function() {
-		return '</svg2vml:group>';
+		return '</svg2vml:shape>';
 	};
 };
 
