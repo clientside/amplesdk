@@ -20,19 +20,10 @@ if (cSVGElement.useVML) {
 				var oElement	= this.$getContainer();
 				switch (oEvent.attrName) {
 					case "x1":
-						oElement.from	= oEvent.newValue + "," +(this.getAttribute("y1") || 0);
-						break;
-
 					case "y1":
-						oElement.from	=(this.getAttribute("x1") || 0) + "," + oEvent.newValue;
-						break;
-
 					case "x2":
-						oElement.to		= oEvent.newValue + "," +(this.getAttribute("y2") || 0);
-						break;
-
 					case "y2":
-						oElement.to		=(this.getAttribute("x2") || 0)+ "," + oEvent.newValue;
+						oElement.path	= cSVGElement_line.toPath(this);
 						break;
 					//
 					case "transform":
@@ -59,16 +50,24 @@ if (cSVGElement.useVML) {
 		}
 	};
 
+	cSVGElement_line.toPath	= function(oElement) {
+		var nX1	= oElement.getAttribute("x1") * 1,
+			nY1	= oElement.getAttribute("y1") * 1,
+			nX2	= oElement.getAttribute("x2") * 1,
+			nY2	= oElement.getAttribute("y2") * 1;
+		return "m" + [nX1, nY1].map(Math.round) + "l" + [nX2, nY2].map(Math.round) + "x";
+	};
+
 	// presentation
 	cSVGElement_line.prototype.$getTagOpen	= function() {
-		return '<svg2vml:line class="svg-line' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '"\
-						from="' + this.getAttribute("x1") + ',' + this.getAttribute("y1") + '"\
-						to="' + this.getAttribute("x2") + ',' + this.getAttribute("y2") + '"\
+		return '<svg2vml:shape class="svg-line' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '"\
+						style="position:absolute;top:0;left:0;height:100%;width:100%;"\
+						path="' + cSVGElement_line.toPath(this) + '"\
 				>' + cSVGElement.getTagStyle(this);
 	};
 
 	cSVGElement_line.prototype.$getTagClose	= function() {
-		return '</svg2vml:line>';
+		return '</svg2vml:shape>';
 	};
 };
 
