@@ -15,6 +15,7 @@ cSVGElement.useVML	= !document.implementation || !document.implementation.hasFea
 if (cSVGElement.useVML) {
 	// Add namespace
 	document.namespaces.add("svg2vml", "urn:schemas-microsoft-com:vml", "#default#VML");
+	document.namespaces.add("svg2vml_o", "urn:schemas-microsoft-com:office:office", "#default#VML");
 
 	cSVGElement.prototype.getBBox	= function() {
 		var oBCRectRoot	= cSVGElement.getViewportElement(this).$getContainer().getBoundingClientRect(),
@@ -229,7 +230,7 @@ if (cSVGElement.useVML) {
 								var aColors	= [];
 								for (var i = 0, oStop, sColor; oStop = oGradientStop.childNodes[i]; i++)
 									if (oGradientStop.childNodes[i] instanceof cSVGElement_stop)
-										aColors.push([parseFloat(oStop.getAttribute("offset") || "1") / (oStop.getAttribute("offset").indexOf("%") ==-1 ? 1 : 100), ((sColor = cSVGElement.getStyle(oStop, "stop-color")) in oSVGElement_colors ? 'rgb(' + oSVGElement_colors[sColor] + ')' : sColor), cSVGElement.getStyle(oStop, "stop-opacity") || "1"]);
+										aColors.push([parseFloat(oStop.getAttribute("offset") || "1") / (oStop.getAttribute("offset").indexOf("%") ==-1 ? 1 : 100), ((sColor = cSVGElement.getStyleOwn(oStop, "stop-color")) in oSVGElement_colors ? 'rgb(' + oSVGElement_colors[sColor] + ')' : sColor), parseFloat(cSVGElement.getStyleOwn(oStop, "stop-opacity") || "1")]);
 
 								var nLength	= aColors.length;
 								if (nLength) {
@@ -245,14 +246,14 @@ if (cSVGElement.useVML) {
 									if (aColors[nLength - 1][0] != 1)
 										oElementDOM.fill.color2		= aColors[nLength - 1][1];
 
-									oElementDOM.fill.opacity	= aColors[0][2];
-									oElementDOM.fill.opacity2	= aColors[nLength - 1][2];
-
 									var aColors2	= [];
 									for (var i = 0; i < nLength; i++)
 										aColors2.push(aColors[i][0].toFixed(3) + " " + aColors[i][1]);
 
 									oElementDOM.fill.colors.value	= aColors2.join(", ");
+
+									oElementDOM.fill.opacity	= aColors[nLength - 1][2];
+									oElementDOM.fill.opacity2	= aColors[0][2];
 								}
 							}
 						}
@@ -548,11 +549,6 @@ if (cSVGElement.useVML) {
 
 	cSVGElement.textAnchorToVTextAlign	= function(sTextAnchor) {
 		return {/*"start": "left", */"middle": "center", "end": "right"/*, "inherit": "left"*/}[sTextAnchor] || "left";
-	};
-
-	cSVGElement.parseUnit	= function(sValue) {
-		var aValue	= sValue.match(/(^\d*(?:.\d+))\s*([a-z%]+)?$/);
-		return aValue ? [aValue[1], aValue[2] || ''] : [0, ''];
 	};
 
 	var oSVGElement_colors	= {
