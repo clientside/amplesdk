@@ -36,9 +36,8 @@ if (cSVGElement.useVML) {
 				if (oElement.childNodes[i].tagName != "shape")
 					oElement.removeChild(oElement.childNodes[i--]);
 
-			var oLabel	= this.$getContainer("label");
 			if (this.firstChild instanceof AMLCharacterData)
-				oLabel.string	= this.firstChild.data.replace(/^\s+/, '').replace(/\s+$/, '').replace(/&gt;/g, '>').replace(/&lt;/g, '<').replace(/&amp;/g, '&');;
+				this.$getContainer().getElementsByTagName("textpath")[0].string	= this.firstChild.data.replace(/^\s+/, '').replace(/\s+$/, '').replace(/&gt;/g, '>').replace(/&lt;/g, '<').replace(/&amp;/g, '&');;
 
 			var sValue;
 
@@ -53,7 +52,7 @@ if (cSVGElement.useVML) {
 			cSVGElement.applyCSS(this);
 		},
 		'DOMCharacterDataModified':	function(oEvent) {
-			this.$getContainer("label").string	= oEvent.target.data.replace(/^\s+/, '').replace(/\s+$/, '').replace(/&gt;/g, '>').replace(/&lt;/g, '<').replace(/&amp;/g, '&');;
+			this.$getContainer().getElementsByTagName("textpath")[0].string	= oEvent.target.data.replace(/^\s+/, '').replace(/\s+$/, '').replace(/&gt;/g, '>').replace(/&lt;/g, '<').replace(/&amp;/g, '&');;
 		}
 	};
 
@@ -79,7 +78,7 @@ if (cSVGElement.useVML) {
 						path="m ' + [this.getAttribute("x") || 0, this.getAttribute("y") || 0].map(Math.round) + ' r 1000,0 x" allowoverlap="true"\
 					>' + cSVGElement.getTagStyle(this) + '\
 						<svg2vml:path textpathok="true" />\
-						<svg2vml:textpath on="true" xscale="true" class="svg-text--label"\
+						<svg2vml:textpath on="true" xscale="true"\
 							style="v-text-align:' + cSVGElement.textAnchorToVTextAlign(sTextAnchor) + ';font-size:' + nFontSize + sFontSizeUnit + ';' + (sFontFamily ? 'font-family:\'' + sFontFamily + '\';' : '') + (sFontWeight ? 'font-weight:' + sFontWeight + ';' : '') + (sFontStyle ? 'font-style:' + sFontStyle + ';' : '') + '" />\
 					</svg2vml:shape>';
 //	v-text-spacing-mode:tracking;' + (sTextSpacing ? 'v-text-spacing:' + (1 + sTextSpacing / nFontSizeValue) +';' : '') + ';

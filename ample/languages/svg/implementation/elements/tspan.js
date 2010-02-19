@@ -28,9 +28,8 @@ if (cSVGElement.useVML) {
 			}
 		},
 		'DOMNodeInsertedIntoDocument':	function(oEvent) {
-			var oLabel	= this.$getContainer("label");
 			if (this.firstChild instanceof AMLCharacterData)
-				oLabel.string	= this.firstChild.data.replace(/^\s+/, '').replace(/\s+$/, '').replace(/&gt;/g, '>').replace(/&lt;/g, '<').replace(/&amp;/g, '&');
+				this.$getContainer().getElementsByTagName("textpath")[0].string	= this.firstChild.data.replace(/^\s+/, '').replace(/\s+$/, '').replace(/&gt;/g, '>').replace(/&lt;/g, '<').replace(/&amp;/g, '&');
 
 			var sValue;
 
@@ -65,7 +64,7 @@ if (cSVGElement.useVML) {
 					path="m ' + [this.getAttribute("x") || (this.parentNode ? this.parentNode.getAttribute("x") : "0"), this.getAttribute("y") || (this.parentNode ? this.parentNode.getAttribute("y") : "0")].map(Math.round) + ' r 1000,0 x" allowoverlap="false"\
 				>' + cSVGElement.getTagStyle(this) + '\
 					<svg2vml:path textpathok="true" />\
-					<svg2vml:textpath on="true" xscale="true" class="svg-tspan--label"\
+					<svg2vml:textpath on="true" xscale="true"\
 						style="v-text-align:' + cSVGElement.textAnchorToVTextAlign(sTextAnchor) + ';font-size:' + nFontSize + sFontSizeUnit + ';' + (sFontFamily ? 'font-family:\'' + sFontFamily + '\';' : '') + (sFontWeight ? 'font-weight:' + sFontWeight + ';' : '') + (sFontStyle ? 'font-style:' + sFontStyle + ';' : '') + '" />\
 					<span style="display:none">';
 	};
