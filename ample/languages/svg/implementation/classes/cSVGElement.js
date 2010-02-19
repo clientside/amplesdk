@@ -46,8 +46,8 @@ if (cSVGElement.useVML) {
 			for (var i = 0; i < aCommands.length; i++) {
 				var aCommand	= aCommands[i].match(/(\w+)\(([^\)]+)\)/),
 					sCommand	= aCommand[1],
-					aParameters	= aCommand[2].split(/[\s,]/).map(function(nValue) {
-						return nValue * 1;
+					aParameters	= aCommand[2].split(/[\s,]+/).map(function(nValue) {
+						return nValue * 1.0;
 					});
 
 				switch (sCommand) {
@@ -58,8 +58,8 @@ if (cSVGElement.useVML) {
 						break;
 
 					case "matrix":		// (<a> <b> <c> <d> <e> <f>)
-						aMatrix	= cSVGElement.matrixMultiply([[aParameters[0],	aParameters[1],	0],
-						       	                              [aParameters[2],	aParameters[3],	0],
+						aMatrix	= cSVGElement.matrixMultiply([[aParameters[0],	aParameters[2],	0],
+						       	                              [aParameters[1],	aParameters[3],	0],
 						       	                              [aParameters[4], 	aParameters[5], 1]], aMatrix);
 						break;
 
@@ -76,20 +76,21 @@ if (cSVGElement.useVML) {
 						var iAngle	= aParameters[0] * Math.PI / 180,
 							iCos	= Math.cos(iAngle),
 							iSin	= Math.sin(iAngle);
+
 						// Move to the point of rotation
 						if (aParameters.length == 3)
-							aMatrix	= cSVGElement.matrixMultiply([[1,	0,	0],
-							       	                              [0,	1,	0],
-							       	                              [aParameters[1],	aParameters[2], 1]], aMatrix);
+							aMatrix	= cSVGElement.matrixMultiply(aMatrix, [[1,	0,	0],
+							        	                          [0,	1,	0],
+							        	                          [aParameters[1],	aParameters[2], 1]]);
 						// Rotation
 						aMatrix	= cSVGElement.matrixMultiply([[iCos,	-iSin,	0],
 						       	                              [iSin,	iCos,	0],
 						       	                              [0,		0, 		1]], aMatrix);
 						// Move back to the origin
 						if (aParameters.length == 3)
-							aMatrix	= cSVGElement.matrixMultiply([[1,	0,	0],
-							       	                              [0,	1,	0],
-							       	                              [-aParameters[1],	-aParameters[2], 1]], aMatrix);
+							aMatrix	= cSVGElement.matrixMultiply(aMatrix, [[1,	0,	0],
+							       	                                       [0,	1,	0],
+							       	                                       [-aParameters[1],	-aParameters[2], 1]]);
 						break;
 
 					case "skewX":		// <skew-angle>
@@ -116,32 +117,33 @@ if (cSVGElement.useVML) {
 	};
 
 	cSVGElement.setMatrix	= function(oElement, aMatrix) {
-		if (oElement instanceof cSVGElement_g || oElement instanceof cSVGElement_text)
+		if (oElement instanceof cSVGElement_g)
 			for (var nIndex = 0; nIndex < oElement.childNodes.length; nIndex++)
 				cSVGElement.setMatrix(oElement.childNodes[nIndex], aMatrix);
-		if (!(oElement instanceof cSVGElement_g))
+		else
 			cSVGElement.setMatrixOwn(oElement, aMatrix);
 	};
 
 	cSVGElement.setMatrixOwn	= function(oElement, aMatrix) {
 		var oElementDOM	= oElement.$getContainer(),
-			nDeterminant= Math.sqrt(Math.abs(cSVGElement.matrixDeterminant(aMatrix)));
+			nAspect	= cSVGElement.getAspectRatio(oElement);
 		if (oElementDOM.tagName == "group")
 			oElementDOM	= oElementDOM.getElementsByTagName("shape")[0];
 		if (!oElementDOM)
 			return;
 
-		// Apply Skewing
+		// Apply Transformation
 		if (!oElementDOM.skew.on)
 			oElementDOM.skew.on	= true;
-		oElementDOM.skew.matrix	= [aMatrix[0][0], aMatrix[0][1], aMatrix[1][0], aMatrix[1][1]].map(function(nValue) {
+		oElementDOM.skew.matrix	= [aMatrix[0][0], aMatrix[0][1], aMatrix[1][0], aMatrix[1][1], 0, 0].map(function(nValue) {
 			return nValue.toFixed(8);
 		});
-//		oElementDOM.skew.offset	= Math.floor(aMatrix[2][0] / aMatrix[0][0]) + "px" + " " + Math.floor(aMatrix[2][1] / aMatrix[1][1]) + "px";
-		// Apply Translation
-		oElementDOM.coordOrigin	= [-aMatrix[2][0]/aMatrix[0][0], -aMatrix[2][1]/aMatrix[1][1]].map(function(nValue) {
+		oElementDOM.skew.offset	= Math.floor(aMatrix[2][0] * nAspect) + "px" + " " + Math.floor(aMatrix[2][1] * nAspect) + "px";
+/*
+		oElementDOM.coordOrigin	= [-aMatrix[2][0]/(aMatrix[1][1] * aMatrix[0][0]), -aMatrix[2][1]/(aMatrix[0][1] * aMatrix[1][0])].map(function(nValue) {
 			return nValue.toFixed(8);
 		});
+*/
 	};
 
 	// Should never be called on groups
@@ -276,7 +278,7 @@ if (cSVGElement.useVML) {
 				break;
 			case "stroke-width":
 				var aStroke	= sValue.match(/([\d.]+)(.*)/),
-					nStrokeWidth	= aStroke[1] * oElement.getAspectValue(),
+					nStrokeWidth	= aStroke[1] * cSVGElement.getAspectRatio(oElement) * cSVGElement.getTransformRatio(oElement),
 					sStrokeUnit		= aStroke[2] || 'px';
 				oElementDOM.stroke.weight	= nStrokeWidth + sStrokeUnit;
 				if (nStrokeWidth < 1 && !(oElement instanceof cSVGElement_text || oElement instanceof cSVGElement_tspan || oElement instanceof cSVGElement_textPath))
@@ -313,7 +315,7 @@ if (cSVGElement.useVML) {
 				var aFontSize	= sValue.match(/(^[\d.]*)(.*)$/),
 					sFontSizeUnit	= aFontSize[2] || "px",
 					nFontSizeValue	= aFontSize[1],
-					nFontSize	= Math.round(nFontSizeValue * oElement.getAspectValue()),
+					nFontSize	= Math.round(nFontSizeValue * cSVGElement.getAspectRatio(oElement) * cSVGElement.getTransformRatio(oElement)),
 					nMarginTop	= -(sFontSizeUnit == "pt" ? Math.round(nFontSizeValue * 0.35) : nFontSizeValue * 0.35);
 
 				oElementDOM.style.marginTop	=-(sFontSizeUnit == "pt" ? Math.round(nFontSizeValue * 0.35) : nFontSizeValue * 0.35) + "px";
@@ -438,46 +440,32 @@ if (cSVGElement.useVML) {
 		return null;
 	};
 
-	cSVGElement.prototype.getAspectValue	= function() {
-		var nAspect	= 1;
-		for (var oNode = this, sValue; oNode; oNode = oNode.parentNode) {
-			if (oNode instanceof cSVGElement_svg) {
-				var aViewBox= (oNode.attributes["viewBox"] || "").split(/[\s,]/),
-					aWidth	= (oNode.attributes["width"] || "").match(/([\d.]+)([%\w]*)/),
-					aHeight	= (oNode.attributes["height"] || "").match(/([\d.]+)([%\w]*)/);
-				// Assume some values
-				if (aViewBox.length < 4) {
-					if (!aWidth)
-						aWidth	= [null, 600, "px"];
-					if (!aHeight)
-						aHeight	= [null, 600, "px"];
-					aViewBox	= [0, 0, aWidth[1], aHeight[1]];
-				}
-				else {
-					if (!aWidth)
-						aWidth	= [null, aViewBox[2], "px"];
-					if (!aHeight)
-						aHeight	= [null, aViewBox[3], "px"];
-				}
+	cSVGElement.getTransformRatio	= function(oElement) {
+		return Math.sqrt(Math.abs(cSVGElement.matrixDeterminant(cSVGElement.getMatrix(oElement))));
+	};
 
-				nAspect	*= Math.sqrt(Math.pow(cSVGElement.toPixels(aWidth[1] + aWidth[2]), 2) + Math.pow(cSVGElement.toPixels(aHeight[1] + aHeight[2]), 2)) / Math.sqrt(Math.pow(aViewBox[2], 2) + Math.pow(aViewBox[3], 2));
-				break;
+	cSVGElement.getAspectRatio		= function(oElement) {
+		var nAspect	= 1,
+			oNode	= cSVGElement.getViewportElement(oElement);
+		if (oNode) {
+			var aViewBox= (oNode.attributes["viewBox"] || "").split(/[\s,]/),
+				aWidth	= (oNode.attributes["width"] || "").match(/([\d.]+)([%\w]*)/),
+				aHeight	= (oNode.attributes["height"] || "").match(/([\d.]+)([%\w]*)/);
+			// Assume some values
+			if (aViewBox.length < 4) {
+				if (!aWidth)
+					aWidth	= [null, 600, "px"];
+				if (!aHeight)
+					aHeight	= [null, 600, "px"];
+				aViewBox	= [0, 0, aWidth[1], aHeight[1]];
 			}
-			else
-			if (sValue = oNode.attributes["transform"]) {
-				var aCommands	= sValue.match(/\w+\([^\)]+\s*\)/g);
-				if (aCommands) {
-					for (var i = 0; i < aCommands.length; i++) {
-						var aCommand	= aCommands[i].match(/(\w+)\(([^\)]+)\)/),
-							sCommand	= aCommand[1],
-							aParameters	= aCommand[2].split(/[\s,]/);
-
-						// TODO: account for final matrix
-						if (sCommand == "scale")
-							nAspect	*= aParameters[0];
-					}
-				}
+			else {
+				if (!aWidth)
+					aWidth	= [null, aViewBox[2], "px"];
+				if (!aHeight)
+					aHeight	= [null, aViewBox[3], "px"];
 			}
+			nAspect	= Math.sqrt(Math.pow(cSVGElement.toPixels(aWidth[1] + aWidth[2]), 2) + Math.pow(cSVGElement.toPixels(aHeight[1] + aHeight[2]), 2)) / Math.sqrt(Math.pow(aViewBox[2], 2) + Math.pow(aViewBox[3], 2));
 		}
 		return nAspect;
 	};
@@ -536,7 +524,7 @@ if (cSVGElement.useVML) {
 		}
 
 		var aStrokeWidth	= sStrokeWidth.match(/([\d.]*)(.*)/),
-			nStrokeWidthValue	=(aStrokeWidth[1] || 1) * oElement.getAspectValue(),
+			nStrokeWidthValue	=(aStrokeWidth[1] || 1) * cSVGElement.getAspectRatio(oElement) * cSVGElement.getTransformRatio(oElement),
 			sStrokeWidthUnit	=(aStrokeWidth[2] || "px");
 		if (nStrokeWidthValue < 1 && !(oElement instanceof cSVGElement_text || oElement instanceof cSVGElement_tspan || oElement instanceof cSVGElement_textPath))
 			sStrokeOpacity	=(sStrokeOpacity == '' ? 1 : sStrokeOpacity) * nStrokeWidthValue;
@@ -549,7 +537,7 @@ if (cSVGElement.useVML) {
 					' + (sStrokeLineCap ? ' endCap="' + cSVGElement.strokeLineCapToEndCap(sStrokeLineCap) + '"' : '') + '\
 					' + (sStrokeDashArray ? ' dashStyle="' + sStrokeDashArray.replace(/,/g, ' ') + '"' : '') + '\
 					' + (sStrokeLineJoin ? ' joinStyle="' + sStrokeLineJoin + '"' : '') + '\
-				/><svg2vml:skew on="true" origin="-0.5,-0.5"/>';
+				/><svg2vml:skew on="true" origin="-0.5,-0.5" matrix="1,0,0,1"/>';
 	};
 //	<svg2vml:shadow on="true" type="double" color="yellow" color2="green" offset="1pt" opacity="0.5"/>\
 //	<svg2vml:extrusion xmetal="on" on="true" backdepth="20" xedge="5" xcolor="green" xrotationangle="0,5"/>\

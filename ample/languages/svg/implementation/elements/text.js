@@ -69,7 +69,7 @@ if (cSVGElement.useVML) {
 			aFontSize	= sFontSize.match(/(^[\d.]*)(.*)$/),
 			sFontSizeUnit	= aFontSize[2] || "px",
 			nFontSizeValue	= aFontSize[1] || 16,
-			nFontSize	= Math.round(nFontSizeValue * this.getAspectValue()),
+			nFontSize	= Math.round(nFontSizeValue * cSVGElement.getAspectRatio(this)),
 			nMarginTop	= -(sFontSizeUnit == "pt" ? Math.round(nFontSizeValue * 0.35) : nFontSizeValue * 0.35);
 
 		return '<svg2vml:group class="svg-text' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '"\
