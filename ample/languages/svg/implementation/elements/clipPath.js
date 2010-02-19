@@ -13,7 +13,13 @@ cSVGElement_clipPath.prototype	= new cSVGElement;
 if (cSVGElement.useVML) {
 	// Implementation for IE
 
-	// TODO:
+	cSVGElement_clipPath.prototype.$getTagOpen	= function() {
+		return '<svg2vml:group style="top:0;left:0;width:100%;height:100%;display:none">';
+	};
+
+	cSVGElement_clipPath.prototype.$getTagClose	= function() {
+		return '</svg2vml:group>';
+	};
 };
 
 // Register Element with language
