@@ -20,7 +20,7 @@ if (cSVGElement.useVML) {
 				var oElement	= this.$getContainer();
 				switch (oEvent.attrName) {
 					case "points":
-						oElement.path	= cSVGElement_polygon.toPath(this);
+						oElement.path	= cSVGElement_polyline.toPath(this);
 						break;
 					//
 					case "transform":
