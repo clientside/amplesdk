@@ -310,7 +310,7 @@ if (cSVGElement.useVML) {
 				break;
 			// fonts
 			case "text-anchor":
-				oElement.$getContainer("label").style["v-text-align"]	= cSVGElement.textAnchorToVTextAlign(sValue);
+				oElementDOM.getElementsByTagName("textpath")[0].style["v-text-align"]	= cSVGElement.textAnchorToVTextAlign(sValue);
 				break;
 			case "font-size":
 				var aFontSize	= sValue.match(/(^[\d.]*)(.*)$/),
@@ -320,16 +320,16 @@ if (cSVGElement.useVML) {
 					nMarginTop	= -(sFontSizeUnit == "pt" ? Math.round(nFontSizeValue * 0.35) : nFontSizeValue * 0.35);
 
 				oElementDOM.style.marginTop	=-(sFontSizeUnit == "pt" ? Math.round(nFontSizeValue * 0.35) : nFontSizeValue * 0.35) + "px";
-				oElement.$getContainer("label").style.fontSize	= nFontSize + sFontSizeUnit;
+				oElementDOM.getElementsByTagName("textpath")[0].style.fontSize	= nFontSize + sFontSizeUnit;
 				break;
 			case "font-family":
-				oElement.$getContainer("label").style.fontFamily	= "'" + sValue + "'";
+				oElementDOM.getElementsByTagName("textpath")[0].style.fontFamily	= "'" + sValue + "'";
 				break;
 			case "font-weight":
-				oElement.$getContainer("label").style.fontWeight	= sValue;
+				oElementDOM.getElementsByTagName("textpath")[0].style.fontWeight	= sValue;
 				break;
 			case "font-style":
-				oElement.$getContainer("label").style.fontStyle		= sValue;
+				oElementDOM.getElementsByTagName("textpath")[0].style.fontStyle		= sValue;
 				break;
 		}
 	};
@@ -339,7 +339,7 @@ if (cSVGElement.useVML) {
 		if (sValue)
 			return sValue;
 
-		// 3) third check if parent is group
+		// check if parent is group
 		if (oElement.parentNode instanceof cSVGElement_g || oElement.parentNode instanceof cSVGElement_text || oElement.parentNode instanceof cSVGElement_a)
 			return cSVGElement.getStyle(oElement.parentNode, sName);
 
