@@ -17,13 +17,12 @@ if (cSVGElement.useVML) {
 	cSVGElement_line.handlers	= {
 		'DOMAttrModified':	function(oEvent) {
 			if (oEvent.target == this) {
-				var oElement	= this.$getContainer();
 				switch (oEvent.attrName) {
 					case "x1":
 					case "y1":
 					case "x2":
 					case "y2":
-						oElement.path	= cSVGElement_line.toPath(this);
+						this.$getContainer().path	= cSVGElement_line.toPath(this);
 						break;
 					//
 					case "transform":

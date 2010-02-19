@@ -17,7 +17,6 @@ if (cSVGElement.useVML) {
 	cSVGElement_rect.handlers	= {
 		'DOMAttrModified':	function(oEvent) {
 			if (oEvent.target == this) {
-				var oElement	= this.$getContainer();
 				switch (oEvent.attrName) {
 					case "width":
 					case "height":
@@ -25,7 +24,7 @@ if (cSVGElement.useVML) {
 					case "y":
 					case "rx":
 					case "ry":
-						oElement.path	= cSVGElement_rect.toPath(this);
+						this.$getContainer().path	= cSVGElement_rect.toPath(this);
 						break;
 					//
 					case "transform":

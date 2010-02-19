@@ -133,10 +133,9 @@ if (cSVGElement.useVML) {
 	cSVGElement_path.handlers	= {
 		'DOMAttrModified':	function(oEvent) {
 			if (oEvent.target == this) {
-				var oElement	= this.$getContainer();
 				switch (oEvent.attrName) {
 					case "d":
-						oElement.path	= cSVGElement_path.convert(oEvent.newValue);
+						this.$getContainer().path	= cSVGElement_path.convert(oEvent.newValue);
 						break;
 					//
 					case "transform":

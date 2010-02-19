@@ -16,12 +16,11 @@ if (cSVGElement.useVML) {
 	cSVGElement_textPath.handlers	= {
 		'DOMAttrModified':	function(oEvent) {
 			if (oEvent.target == this) {
-				var oElement	= this.$getContainer();
 				switch (oEvent.attrName) {
 					case "xlink:href":
 						var oTextPath = this.ownerDocument.getElementById(oEvent.newValue.substr(1));
 						if (oTextPath)
-							oElement.path	= cSVGElement_path.convert(oTextPath.getAttribute("d"));
+							this.$getContainer().path	= cSVGElement_path.convert(oTextPath.getAttribute("d"));
 						break;
 				}
 			}

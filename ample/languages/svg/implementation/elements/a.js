@@ -17,7 +17,6 @@ if (cSVGElement.useVML) {
 	cSVGElement_a.handlers	= {
 		'DOMAttrModified':	function(oEvent) {
 			if (oEvent.target == this) {
-				var oElement	= this.$getContainer();
 				switch (oEvent.attrName) {
 					case "href":
 						cSVGElement_a.setHref(this, oEvent.newValue);

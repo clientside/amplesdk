@@ -15,11 +15,10 @@ if (cSVGElement.useVML) {
 	cSVGElement_text.handlers	= {
 		'DOMAttrModified':	function(oEvent) {
 			if (oEvent.target == this) {
-				var oElement	= this.$getContainer("shape");
 				switch (oEvent.attrName) {
 					case "x":
 					case "y":
-						oElement.path	= 'm ' + [this.getAttribute("x") || 0, this.getAttribute("y") || 0].map(Math.round) + ' r 1000,0 x';
+						this.$getContainer("shape").path	= 'm ' + [this.getAttribute("x") || 0, this.getAttribute("y") || 0].map(Math.round) + ' r 1000,0 x';
 						break;
 					//
 					case "transform":

@@ -17,10 +17,9 @@ if (cSVGElement.useVML) {
 	cSVGElement_polygon.handlers	= {
 		'DOMAttrModified':	function(oEvent) {
 			if (oEvent.target == this) {
-				var oElement	= this.$getContainer();
 				switch (oEvent.attrName) {
 					case "points":
-						oElement.path	= cSVGElement_polygon.toPath(this);
+						this.$getContainer().path	= cSVGElement_polygon.toPath(this);
 						break;
 					//
 					case "transform":

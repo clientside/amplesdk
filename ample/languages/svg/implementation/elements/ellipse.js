@@ -17,14 +17,12 @@ if (cSVGElement.useVML) {
 	cSVGElement_ellipse.handlers	= {
 		'DOMAttrModified':	function(oEvent) {
 			if (oEvent.target == this) {
-				var oElement	= this.$getContainer(),
-					oStyle		= oElement.style;
 				switch (oEvent.attrName) {
 					case "cx":
 					case "cy":
 					case "rx":
 					case "ry":
-						oElement.path	= cSVGElement_ellipse.toPath(this);
+						this.$getContainer().path	= cSVGElement_ellipse.toPath(this);
 						break;
 					//
 					case "transform":
