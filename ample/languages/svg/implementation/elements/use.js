@@ -17,21 +17,21 @@ if (cSVGElement.useVML) {
 			var sHref	= this.getAttribute("xlink:href"),
 				that	= this;
 			if (sHref) {
-				setTimeout(function() {
+//				setTimeout(function() {
 					var oRef	= that.ownerDocument.getElementById(sHref.substr(1));
 					if (oRef) {
 						// Create a clone of referenced element
 						var oNode	= oRef.cloneNode(true);
 						oNode.removeAttribute("id");
+
+						// Copy attributes from "use" element to the clone
+						for (var sAttribute in this.attributes)
+							if (sAttribute != "id" && sAttribute != "xlink:href")
+								oNode.attributes[sAttribute]	= this.attributes[sAttribute];
+
 						that.parentNode.insertBefore(oNode, that);
-
-						// Apply transformations
-//						cSVGElement.applyTransform(oNode);
-
-//						// Apply CSS
-//						cSVGElement.applyCSS(oNode);
 					}
-				});
+//				});
 			}
 		}
 	};
