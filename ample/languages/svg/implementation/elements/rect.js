@@ -76,7 +76,6 @@ if (cSVGElement.useVML) {
 
 	// presentation
 	cSVGElement_rect.prototype.$getTagOpen	= function() {
-		console.log(cSVGElement_rect.toPath(this));
 		return '<svg2vml:shape class="svg-rect' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" \
 					style="position:absolute;top:0;left:0;height:100%;width:100%;"\
 					path="' + cSVGElement_rect.toPath(this) + '"\
