@@ -56,7 +56,7 @@ if (cSVGElement.useVML) {
 			aFontSize	= sFontSize.match(/(^[\d.]*)(.*)$/),
 			sFontSizeUnit	= aFontSize[2] || "px",
 			nFontSizeValue	= aFontSize[1] || 16,
-			nFontSize	= Math.round(nFontSizeValue * cSVGElement.getAspectRatio(this)),
+			nFontSize	= Math.round(nFontSizeValue * cSVGElement.getScaleFactor(this)),
 			nMarginTop	= -(sFontSizeUnit == "pt" ? Math.round(nFontSizeValue * 0.35) : nFontSizeValue * 0.35);
 
 		return '<svg2vml:shape class="svg-tspan' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '"\

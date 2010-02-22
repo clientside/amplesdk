@@ -127,7 +127,7 @@ if (cSVGElement.useVML) {
 
 	cSVGElement.setMatrixOwn	= function(oElement, aMatrix) {
 		var oElementDOM	= oElement.$getContainer(),
-			nAspect	= cSVGElement.getAspectRatio(oElement);
+			aAspect	= cSVGElement.getAspectRatio(oElement);
 		if (oElementDOM.tagName == "group")
 			oElementDOM	= oElementDOM.getElementsByTagName("shape")[0];
 		if (!oElementDOM)
@@ -139,7 +139,7 @@ if (cSVGElement.useVML) {
 		oElementDOM.skew.matrix	= [aMatrix[0][0], aMatrix[0][1], aMatrix[1][0], aMatrix[1][1], 0, 0].map(function(nValue) {
 			return nValue.toFixed(8);
 		});
-		oElementDOM.skew.offset	= Math.floor(aMatrix[2][0] * nAspect) + "px" + " " + Math.floor(aMatrix[2][1] * nAspect) + "px";
+		oElementDOM.skew.offset	= Math.floor(aMatrix[2][0] * aAspect[0]) + "px" + " " + Math.floor(aMatrix[2][1] * aAspect[1]) + "px";
 /*
 		oElementDOM.coordOrigin	= [-aMatrix[2][0]/(aMatrix[1][1] * aMatrix[0][0]), -aMatrix[2][1]/(aMatrix[0][1] * aMatrix[1][0])].map(function(nValue) {
 			return nValue.toFixed(8);
@@ -279,7 +279,7 @@ if (cSVGElement.useVML) {
 				break;
 			case "stroke-width":
 				var aStroke	= sValue.match(/([\d.]+)(.*)/),
-					nStrokeWidth	= aStroke[1] * cSVGElement.getAspectRatio(oElement) * cSVGElement.getTransformRatio(oElement),
+					nStrokeWidth	= aStroke[1] * cSVGElement.getScaleFactor(oElement),
 					sStrokeUnit		= aStroke[2] || 'px';
 				oElementDOM.stroke.weight	= nStrokeWidth + sStrokeUnit;
 				if (nStrokeWidth < 1 && !(oElement instanceof cSVGElement_text || oElement instanceof cSVGElement_tspan || oElement instanceof cSVGElement_textPath))
@@ -316,7 +316,7 @@ if (cSVGElement.useVML) {
 				var aFontSize	= sValue.match(/(^[\d.]*)(.*)$/),
 					sFontSizeUnit	= aFontSize[2] || "px",
 					nFontSizeValue	= aFontSize[1],
-					nFontSize	= Math.round(nFontSizeValue * cSVGElement.getAspectRatio(oElement) * cSVGElement.getTransformRatio(oElement)),
+					nFontSize	= Math.round(nFontSizeValue * cSVGElement.getScaleFactor(oElement)),
 					nMarginTop	= -(sFontSizeUnit == "pt" ? Math.round(nFontSizeValue * 0.35) : nFontSizeValue * 0.35);
 
 				oElementDOM.style.marginTop	=-(sFontSizeUnit == "pt" ? Math.round(nFontSizeValue * 0.35) : nFontSizeValue * 0.35) + "px";
@@ -441,12 +441,8 @@ if (cSVGElement.useVML) {
 		return null;
 	};
 
-	cSVGElement.getTransformRatio	= function(oElement) {
-		return Math.sqrt(Math.abs(cSVGElement.matrixDeterminant(cSVGElement.getMatrix(oElement))));
-	};
-
 	cSVGElement.getAspectRatio		= function(oElement) {
-		var nAspect	= 1,
+		var aAspect	= [1, 1],
 			oNode	= cSVGElement.getViewportElement(oElement);
 		if (oNode) {
 			var aViewBox= (oNode.attributes["viewBox"] || "").split(/[\s,]/),
@@ -466,9 +462,18 @@ if (cSVGElement.useVML) {
 				if (!aHeight)
 					aHeight	= [null, aViewBox[3], "px"];
 			}
-			nAspect	= Math.sqrt(Math.pow(cSVGElement.toPixels(aWidth[1] + aWidth[2]), 2) + Math.pow(cSVGElement.toPixels(aHeight[1] + aHeight[2]), 2)) / Math.sqrt(Math.pow(aViewBox[2], 2) + Math.pow(aViewBox[3], 2));
+			// Account for fitting
+			var nRatio	= (aViewBox[2] / aViewBox[3]) / (aWidth[1] / aHeight[1]);
+			aHeight[1]	= nRatio > 1 ? aHeight[1] / nRatio : aHeight[1] * nRatio;
+			//
+			aAspect	= [cSVGElement.toPixels(aWidth[1] + aWidth[2]) / aViewBox[2], cSVGElement.toPixels(aHeight[1] + aHeight[2]) / aViewBox[3]];
 		}
-		return nAspect;
+		return aAspect;
+	};
+
+	cSVGElement.getScaleFactor	= function(oElement) {
+		var aAspect	= cSVGElement.getAspectRatio(oElement);
+		return Math.sqrt(Math.abs(cSVGElement.matrixDeterminant(cSVGElement.getMatrix(oElement)))) * Math.sqrt(aAspect[1] * aAspect[0]);
 	};
 
 	cSVGElement.toPixels	= function(sValue) {
@@ -525,7 +530,7 @@ if (cSVGElement.useVML) {
 		}
 
 		var aStrokeWidth	= sStrokeWidth.match(/([\d.]*)(.*)/),
-			nStrokeWidthValue	=(aStrokeWidth[1] || 1) * cSVGElement.getAspectRatio(oElement) * cSVGElement.getTransformRatio(oElement),
+			nStrokeWidthValue	=(aStrokeWidth[1] || 1) * cSVGElement.getScaleFactor(oElement),
 			sStrokeWidthUnit	=(aStrokeWidth[2] || "px");
 		if (nStrokeWidthValue < 1 && !(oElement instanceof cSVGElement_text || oElement instanceof cSVGElement_tspan || oElement instanceof cSVGElement_textPath))
 			sStrokeOpacity	=(sStrokeOpacity == '' ? 1 : sStrokeOpacity) * nStrokeWidthValue;
