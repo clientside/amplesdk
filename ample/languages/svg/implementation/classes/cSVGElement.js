@@ -279,7 +279,7 @@ if (cSVGElement.useVML) {
 				break;
 			case "stroke-width":
 				var aStroke	= sValue.match(/([\d.]+)(.*)/),
-					nStrokeWidth	= aStroke[1] * cSVGElement.getScaleFactor(oElement),
+					nStrokeWidth	= aStroke[1] * cSVGElement.getScaleFactor(oElement) * Math.sqrt(Math.abs(cSVGElement.matrixDeterminant(cSVGElement.getMatrix(oElement)))),
 					sStrokeUnit		= aStroke[2] || 'px';
 				oElementDOM.stroke.weight	= nStrokeWidth + sStrokeUnit;
 				if (nStrokeWidth < 1 && !(oElement instanceof cSVGElement_text || oElement instanceof cSVGElement_tspan || oElement instanceof cSVGElement_textPath))
@@ -464,7 +464,14 @@ if (cSVGElement.useVML) {
 			}
 			// Account for fitting
 			var nRatio	= (aViewBox[2] / aViewBox[3]) / (aWidth[1] / aHeight[1]);
-			aHeight[1]	= nRatio > 1 ? aHeight[1] / nRatio : aHeight[1] * nRatio;
+			if (nRatio > 1) {
+				aHeight[1]	/= nRatio;
+				aHeight[1]	+= aHeight[1] * (1 - 1 / nRatio) / 2;
+			}
+			else {
+				aWidth[1]	*= nRatio;
+				aWidth[1]	+= aWidth[1] * (1 - 1 / nRatio) / 2;
+			}
 			//
 			aAspect	= [cSVGElement.toPixels(aWidth[1] + aWidth[2]) / aViewBox[2], cSVGElement.toPixels(aHeight[1] + aHeight[2]) / aViewBox[3]];
 		}
@@ -473,7 +480,7 @@ if (cSVGElement.useVML) {
 
 	cSVGElement.getScaleFactor	= function(oElement) {
 		var aAspect	= cSVGElement.getAspectRatio(oElement);
-		return Math.sqrt(Math.abs(cSVGElement.matrixDeterminant(cSVGElement.getMatrix(oElement)))) * Math.sqrt(aAspect[1] * aAspect[0]);
+		return Math.sqrt(aAspect[0] * aAspect[1]);
 	};
 
 	cSVGElement.toPixels	= function(sValue) {
@@ -530,7 +537,7 @@ if (cSVGElement.useVML) {
 		}
 
 		var aStrokeWidth	= sStrokeWidth.match(/([\d.]*)(.*)/),
-			nStrokeWidthValue	=(aStrokeWidth[1] || 1) * cSVGElement.getScaleFactor(oElement),
+			nStrokeWidthValue	=(aStrokeWidth[1] || 1) * cSVGElement.getScaleFactor(oElement) * Math.sqrt(Math.abs(cSVGElement.matrixDeterminant(cSVGElement.getMatrix(oElement)))),
 			sStrokeWidthUnit	=(aStrokeWidth[2] || "px");
 		if (nStrokeWidthValue < 1 && !(oElement instanceof cSVGElement_text || oElement instanceof cSVGElement_tspan || oElement instanceof cSVGElement_textPath))
 			sStrokeOpacity	=(sStrokeOpacity == '' ? 1 : sStrokeOpacity) * nStrokeWidthValue;
