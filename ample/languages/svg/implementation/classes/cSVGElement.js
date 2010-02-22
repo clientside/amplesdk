@@ -33,7 +33,7 @@ if (cSVGElement.useVML) {
 	cSVGElement.getMatrix	= function(oElement) {
 		var aMatrix		= cSVGElement.matrixCreate();
 		for (var oParent = oElement; !(oParent instanceof cSVGElement_svg); oParent = oParent.parentNode)
-			aMatrix	= cSVGElement.matrixMultiply(aMatrix, cSVGElement.getMatrixOwn(oParent));
+			aMatrix	= cSVGElement.matrixMultiply(cSVGElement.getMatrixOwn(oParent), aMatrix);
 		return aMatrix;
 	};
 
@@ -53,24 +53,24 @@ if (cSVGElement.useVML) {
 
 				switch (sCommand) {
 					case "translate":	// (<tx> [<ty>])
-						aMatrix	= cSVGElement.matrixMultiply([[1,	0,	0],
-						       	                              [0, 	1,	0],
-						       	                              [aParameters[0], aParameters.length > 1 ? aParameters[1] : 0, 1]], aMatrix);
+						aMatrix	= cSVGElement.matrixMultiply(aMatrix, [ [1,	0,	aParameters[0]],
+																		[0, 1,	aParameters.length > 1 ? aParameters[1] : 0],
+																		[0, 0,	1]]);
 						break;
 
 					case "matrix":		// (<a> <b> <c> <d> <e> <f>)
-						aMatrix	= cSVGElement.matrixMultiply([[aParameters[0],	aParameters[2],	0],
-						       	                              [aParameters[1],	aParameters[3],	0],
-						       	                              [aParameters[4], 	aParameters[5], 1]], aMatrix);
+						aMatrix	= cSVGElement.matrixMultiply(aMatrix, [ [aParameters[0],	aParameters[2],	aParameters[4]],
+																		[aParameters[1],	aParameters[3],	aParameters[5]],
+																		[0, 	0, 1]]);
 						break;
 
 					case "scale":		// <sx> [<sy>]
 						var iScaleX	= aParameters[0],
 							iScaleY	= aParameters.length > 1 ? aParameters[1] : iScaleX;
 
-						aMatrix	= cSVGElement.matrixMultiply([[iScaleX,	0,			0],
-						       	                              [0,		iScaleY,	0],
-						       	                              [0,		0, 			1]], aMatrix);
+						aMatrix	= cSVGElement.matrixMultiply(aMatrix, [ [iScaleX,	0,		0],
+																		[0,		iScaleY,	0],
+																		[0,		0, 			1]]);
 						break;
 
 					case "rotate":		// <rotate-angle> [<cx> <cy>]
@@ -80,36 +80,36 @@ if (cSVGElement.useVML) {
 
 						// Move to the point of rotation
 						if (aParameters.length == 3)
-							aMatrix	= cSVGElement.matrixMultiply(aMatrix, [[1,	0,	0],
-							        	                          [0,	1,	0],
-							        	                          [aParameters[1],	aParameters[2], 1]]);
+							aMatrix	= cSVGElement.matrixMultiply(aMatrix, [ [1,	0,	aParameters[1]],
+																			[0,	1,	aParameters[2]],
+																			[0,	0, 1]]);
 						// Rotation
-						aMatrix	= cSVGElement.matrixMultiply([[iCos,	-iSin,	0],
-						       	                              [iSin,	iCos,	0],
-						       	                              [0,		0, 		1]], aMatrix);
+						aMatrix	= cSVGElement.matrixMultiply(aMatrix, [ [iCos,	-iSin,	0],
+																		[iSin,	iCos,	0],
+																		[0,		0, 		1]]);
 						// Move back to the origin
 						if (aParameters.length == 3)
-							aMatrix	= cSVGElement.matrixMultiply(aMatrix, [[1,	0,	0],
-							       	                                       [0,	1,	0],
-							       	                                       [-aParameters[1],	-aParameters[2], 1]]);
+							aMatrix	= cSVGElement.matrixMultiply(aMatrix, [ [1,	0,	-aParameters[1]],
+																			[0,	1,	-aParameters[2]],
+																			[0,	0, 1]]);
 						break;
 
 					case "skewX":		// <skew-angle>
 						var iAngle	= aParameters[0] * Math.PI / 180,
 							iTan	= Math.tan(iAngle);
 
-						aMatrix	= cSVGElement.matrixMultiply([[1,		iTan,	0],
-						       	                              [0,		1,		0],
-						       	                              [0,		0, 		1]], aMatrix);
+						aMatrix	= cSVGElement.matrixMultiply(aMatrix, [ [1,		iTan,	0],
+																		[0,		1,		0],
+																		[0,		0, 		1]]);
 						break;
 
 					case "skewY":		// <skew-angle>
 						var iAngle	= aParameters[0] * Math.PI / 180,
 							iTan	= Math.tan(iAngle);
 
-						aMatrix	= cSVGElement.matrixMultiply([[1,		0,		0],
-						       	                              [iTan,	1,		0],
-						       	                              [0,		0, 		1]], aMatrix);
+						aMatrix	= cSVGElement.matrixMultiply(aMatrix, [ [1,		0,		0],
+																		[iTan,	1,		0],
+																		[0,		0, 		1]]);
 						break;
 				}
 			}
@@ -139,7 +139,8 @@ if (cSVGElement.useVML) {
 		oElementDOM.skew.matrix	= [aMatrix[0][0], aMatrix[0][1], aMatrix[1][0], aMatrix[1][1], 0, 0].map(function(nValue) {
 			return nValue.toFixed(8);
 		});
-		oElementDOM.skew.offset	= Math.floor(aMatrix[2][0] * aAspect[0]) + "px" + " " + Math.floor(aMatrix[2][1] * aAspect[1]) + "px";
+
+		oElementDOM.skew.offset	= Math.floor(aMatrix[0][2] * aAspect[0]) + "px" + " " + Math.floor(aMatrix[1][2] * aAspect[1]) + "px";
 /*
 		oElementDOM.coordOrigin	= [-aMatrix[2][0]/(aMatrix[1][1] * aMatrix[0][0]), -aMatrix[2][1]/(aMatrix[0][1] * aMatrix[1][0])].map(function(nValue) {
 			return nValue.toFixed(8);
