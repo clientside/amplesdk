@@ -209,10 +209,10 @@ if (cSVGElement.useVML) {
 							else {
 								var cx	= parseFloat(oGradient.getAttribute("cx") || "0.5") / (oGradient.getAttribute("cx").indexOf("%") ==-1 ? 1 : 100),
 									cy	= parseFloat(oGradient.getAttribute("cy") || "0.5") / (oGradient.getAttribute("cy").indexOf("%") ==-1 ? 1 : 100);
-								oElementDOM.fill.type		= "gradientradial";
+								oElementDOM.fill.type		= "gradientTitle";
 								oElementDOM.fill.focus		= "100%";	// Must be set to 100%, otherwise no gradient visible
 								// Properties specific to radial gradients
-								oElementDOM.fill.focusposition	= cx + " " + cy;
+								oElementDOM.fill.focusposition	= "0.5 0.5";	// cx + " " + cy
 								oElementDOM.fill.focussize		= "0 0";//(oGradient.getAttribute("r") || 0) + " " + (oGradient.getAttribute("r") || 0);
 							}
 							// VML sigma fill method is most similar to SVG
@@ -225,10 +225,11 @@ if (cSVGElement.useVML) {
 
 							if (oGradientStop) {
 								// Collect stops
-								var aColors	= [];
+								var aColors	= [],
+									nOpacity	=(cSVGElement.getStyle(oElement, "opacity") || 1) * (cSVGElement.getStyle(oElement, "fill-opacity") || 1);
 								for (var i = 0, oStop, sColor; oStop = oGradientStop.childNodes[i]; i++)
 									if (oGradientStop.childNodes[i] instanceof cSVGElement_stop)
-										aColors.push([parseFloat(oStop.getAttribute("offset") || "1") / (oStop.getAttribute("offset").indexOf("%") ==-1 ? 1 : 100), ((sColor = cSVGElement.getStyleOwn(oStop, "stop-color")) in oSVGElement_colors ? 'rgb(' + oSVGElement_colors[sColor] + ')' : sColor), parseFloat(cSVGElement.getStyleOwn(oStop, "stop-opacity") || "1")]);
+										aColors.push([parseFloat(oStop.getAttribute("offset") || "1") / (oStop.getAttribute("offset").indexOf("%") ==-1 ? 1 : 100), ((sColor = cSVGElement.getStyleOwn(oStop, "stop-color")) in oSVGElement_colors ? 'rgb(' + oSVGElement_colors[sColor] + ')' : sColor), nOpacity * parseFloat(cSVGElement.getStyleOwn(oStop, "stop-opacity") || "1")]);
 
 								var nLength	= aColors.length;
 								if (nLength) {
@@ -249,9 +250,8 @@ if (cSVGElement.useVML) {
 										aColors2.push(aColors[i][0].toFixed(3) + " " + aColors[i][1]);
 
 									oElementDOM.fill.colors.value	= aColors2.join(", ");
-
 									oElementDOM.fill.opacity	= aColors[nLength - 1][2];
-									oElementDOM.fill.opacity2	= aColors[0][2];
+//									oElementDOM.fill.opacity2	= aColors[0][2];	// Disabled since it produces strange effect in, Z.B. grapes.xml
 								}
 							}
 						}
