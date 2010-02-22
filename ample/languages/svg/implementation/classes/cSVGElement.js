@@ -181,10 +181,8 @@ if (cSVGElement.useVML) {
 		switch (sName) {
 			// opacity (general)
 			case "opacity":
-				if (cSVGElement.getStyle(oElement, "fill-opacity") == "")
-					cSVGElement.setStyleOwn(oElement, "fill-opacity", sValue);
-				if (cSVGElement.getStyle(oElement, "stroke-opacity") == "")
-					cSVGElement.setStyleOwn(oElement, "stroke-opacity", sValue);
+				cSVGElement.setStyleOwn(oElement, "fill-opacity", cSVGElement.getStyle(oElement, "fill-opacity"));
+				cSVGElement.setStyleOwn(oElement, "stroke-opacity", cSVGElement.getStyle(oElement, "stroke-opacity"));
 				break;
 			// fill
 			case "fill":
@@ -267,8 +265,9 @@ if (cSVGElement.useVML) {
 					oElementDOM.fill.color	= sValue in oSVGElement_colors ? 'rgb(' + oSVGElement_colors[sValue] + ')' : sValue;
 				break;
 			case "fill-opacity":
-				if (sValue == null)
+				if (sValue == null || sValue == "")
 					sValue	= 1;
+				sValue	=(cSVGElement.getStyle(oElement, "opacity") || 1) * sValue;
 				if (oElementDOM.fill.opacity != sValue)
 					oElementDOM.fill.opacity	= sValue;
 				break;
@@ -286,9 +285,9 @@ if (cSVGElement.useVML) {
 					oElementDOM.stroke.opacity	= (oElement.attributes["stroke-opacity"] || 1) * nStrokeWidth;
 				break;
 			case "stroke-opacity":
-				if (sValue == null)
+				if (sValue == null || sValue == "")
 					sValue	= 1;
-				sValue	= ((oElement.attributes["stroke-width"] || "").match(/([\d.]+)(.*)/) && RegExp.$1 < 1 ? RegExp.$1 : 1) * sValue;
+				sValue	=(cSVGElement.getStyle(oElement, "opacity") || 1) * ((oElement.attributes["stroke-width"] || "").match(/([\d.]+)(.*)/) && RegExp.$1 < 1 ? RegExp.$1 : 1) * sValue;
 				if (oElementDOM.stroke.opacity != sValue)
 					oElementDOM.stroke.opacity	= sValue;
 				break;
@@ -507,9 +506,9 @@ if (cSVGElement.useVML) {
 	cSVGElement.getTagStyle	= function(oElement) {
 		var sOpacity		= cSVGElement.getStyle(oElement, "opacity"),
 			sFill			= cSVGElement.getStyle(oElement, "fill"),
-			sFillOpacity	= cSVGElement.getStyle(oElement, "fill-opacity") || sOpacity,
+			sFillOpacity	=(cSVGElement.getStyle(oElement, "fill-opacity") || 1) * (sOpacity || 1),
 			sStroke			= cSVGElement.getStyle(oElement, "stroke"),
-			sStrokeOpacity	= cSVGElement.getStyle(oElement, "stroke-opacity") || sOpacity,
+			sStrokeOpacity	=(cSVGElement.getStyle(oElement, "stroke-opacity") || 1) * (sOpacity || 1),
 			sStrokeWidth	= cSVGElement.getStyle(oElement, "stroke-width"),
 			sStrokeLineJoin	= cSVGElement.getStyle(oElement, "stroke-linejoin") || 'miter',
 			sStrokeLineCap	= cSVGElement.getStyle(oElement, "stroke-linecap") || 'square',
@@ -536,9 +535,9 @@ if (cSVGElement.useVML) {
 			sStrokeOpacity	=(sStrokeOpacity == '' ? 1 : sStrokeOpacity) * nStrokeWidthValue;
 
 		return '<svg2vml:fill on="' + (sFill == "none" ? "false" : "true") + '" color="' + (sFill in oSVGElement_colors ? 'rgb(' + oSVGElement_colors[sFill] + ')' : sFill || 'black') + '"\
-					' + (sFillOpacity ? ' opacity="' + sFillOpacity + '"' : '') + '\
+					' + (sFillOpacity != 1 ? ' opacity="' + sFillOpacity + '"' : '') + '\
 				/><svg2vml:stroke on="' + (sStroke && sStroke != "none" ? "true" : "false") + '" color="' + (sStroke in oSVGElement_colors ? 'rgb(' + oSVGElement_colors[sStroke] + ')' : sStroke || 'black') + '"\
-					' + (sStrokeOpacity ? ' opacity="' + sStrokeOpacity + '"' : '') + '\
+					' + (sStrokeOpacity != 1 ? ' opacity="' + sStrokeOpacity + '"' : '') + '\
 					' + (sStrokeWidth ? ' weight="' + nStrokeWidthValue + sStrokeWidthUnit + '"' : '') + '\
 					' + (sStrokeLineCap ? ' endCap="' + cSVGElement.strokeLineCapToEndCap(sStrokeLineCap) + '"' : '') + '\
 					' + (sStrokeDashArray ? ' dashStyle="' + sStrokeDashArray.replace(/,/g, ' ') + '"' : '') + '\
