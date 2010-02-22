@@ -464,14 +464,10 @@ if (cSVGElement.useVML) {
 			}
 			// Account for fitting
 			var nRatio	= (aViewBox[2] / aViewBox[3]) / (aWidth[1] / aHeight[1]);
-			if (nRatio > 1) {
+			if (nRatio > 1)
 				aHeight[1]	/= nRatio;
-				aHeight[1]	+= aHeight[1] * (1 - 1 / nRatio) / 2;
-			}
-			else {
+			else
 				aWidth[1]	*= nRatio;
-				aWidth[1]	+= aWidth[1] * (1 - 1 / nRatio) / 2;
-			}
 			//
 			aAspect	= [cSVGElement.toPixels(aWidth[1] + aWidth[2]) / aViewBox[2], cSVGElement.toPixels(aHeight[1] + aHeight[2]) / aViewBox[3]];
 		}
