@@ -173,7 +173,7 @@ cAMLDocument.prototype.createElement	= function(sName)
 	], "createElement");
 
 	// Invoke actual implementation
-	return fAMLDocument_createElementNS(this, this.namespaceURI, sQName);
+	return fAMLDocument_createElementNS(this, this.namespaceURI, sName);
 };
 
 function fAMLDocument_createElementNS(oDocument, sNameSpaceURI, sQName)
