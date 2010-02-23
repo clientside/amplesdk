@@ -45,12 +45,12 @@ cChartElement_funnel.prototype.refresh	= function() {
 		d.push("L" + (nLeft - nWidthTop - nCFrom * (nWidthBottom - nWidthTop)) + "," + (nTop + nCFrom * nHeight));
 
 		cChartElement.setPath(oElement.$getContainer("path"), d.join('') + "z");
-
+/*
 		var nCHalf	=(nCFrom + nCTo)/ 2;
 		cChartElement.setTextPosition(oElement.$getContainer("label"),
 										nLeft + nWidthTop + nCHalf * (nWidthBottom - nWidthTop) + 10,
 										nTop + nCHalf * nHeight - 5);
-
+*/
 		//
 		nSumUp	+= oElement.getAttribute("value") * 1;
 	}

@@ -76,7 +76,7 @@ cChartElement_bubble.prototype.refresh	= function() {
 
 			cChartElement.setPath(oGroup.childNodes[nItem].$getContainer("path"), d);
 			cChartElement.setPath(oGroup.childNodes[nItem].$getContainer("shadow"), d);
-			cChartElement.setPath(oGroup.childNodes[nItem].$getContainer("textPath"), "m" + nX + "," + nY + " h200 z");
+//			cChartElement.setPath(oGroup.childNodes[nItem].$getContainer("textPath"), "m" + nX + "," + nY + " h200 z");
 		}
 
 		// Draw legend

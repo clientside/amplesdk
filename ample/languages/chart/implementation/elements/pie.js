@@ -53,13 +53,14 @@ cChartElement_pie.prototype.refresh	= function() {
 														"A" + nTextR + "," + nTextR + " 0 " + (nAngleTo - nAngleFrom > Math.PI ? 1 : 0) + ",0 " + (cX + nTextR * Math.cos(nAngleTo)) + "," +(cY - nTextR * Math.sin(nAngleTo))+
 														"z");
 */
+/*
 		var nAngleHalf	= (nAngleFrom + nAngleTo) / 2,
 			bLeft	= nAngleHalf + Math.PI / 2 >= Math.PI;
 		cChartElement.setTextPosition(oElement.$getContainer("label"),
 										cX + (bLeft ? -10 : 10) + (nWidth + 10) * Math.cos(nAngleHalf),
 										cY - 5 + (nWidth + 10) * Math.sin(nAngleHalf));
 		oElement.$getContainer("label").setAttribute("text-anchor", bLeft ? "end" : "start");
-
+*/
 		//
 		nSumUp	+= oElement.getAttribute("value") * 1;
 	}
