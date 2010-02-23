@@ -54,7 +54,8 @@ if (cSVGElement.useVML) {
 			cSVGElement.applyCSS(this);
 		},
 		'DOMCharacterDataModified':	function(oEvent) {
-			this.$getContainer().getElementsByTagName("textpath")[0].string	= oEvent.target.data.replace(/^\s+/, '').replace(/\s+$/, '').replace(/&gt;/g, '>').replace(/&lt;/g, '<').replace(/&amp;/g, '&');;
+			if (oEvent.target.parentNode == this)
+				this.$getContainer().getElementsByTagName("textpath")[0].string	= oEvent.target.data.replace(/^\s+/, '').replace(/\s+$/, '').replace(/&gt;/g, '>').replace(/&lt;/g, '<').replace(/&amp;/g, '&');
 		}
 	};
 

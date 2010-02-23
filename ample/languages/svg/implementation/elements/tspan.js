@@ -44,6 +44,10 @@ if (cSVGElement.useVML) {
 
 			// Apply CSS
 			cSVGElement.applyCSS(this);
+		},
+		'DOMCharacterDataModified':	function(oEvent) {
+			if (oEvent.target.parentNode == this)
+				this.$getContainer().getElementsByTagName("textpath")[0].string	= oEvent.target.data.replace(/^\s+/, '').replace(/\s+$/, '').replace(/&gt;/g, '>').replace(/&lt;/g, '<').replace(/&amp;/g, '&');
 		}
 	};
 
