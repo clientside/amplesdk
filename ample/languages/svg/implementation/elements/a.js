@@ -51,7 +51,7 @@ if (cSVGElement.useVML) {
 	// presentation
 	cSVGElement_a.prototype.$getTagOpen	= function() {
 		return '<svg2vml:group class="svg-a' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '"\
-					style="width:100%;height:100%;left:0;top:0;"\
+					style="position:absolute;width:100%;height:100%;left:0;top:0;"\
 				>';
 	};
 

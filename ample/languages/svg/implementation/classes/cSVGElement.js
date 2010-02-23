@@ -386,7 +386,7 @@ if (cSVGElement.useVML) {
 			if (sValue = oStyle["marker-end"])
 				cSVGElement.setStyle(oElement, "marker-end", sValue);
 			// Text module
-			if (oElement instanceof cSVGElement_text || oElement instanceof cSVGElement_tspan || oElement instanceof cSVGElement_tref || oElement instanceof cSVGElement_textPath) {
+			if (oElement instanceof cSVGElement_text || oElement instanceof cSVGElement_tspan || oElement instanceof cSVGElement_textPath) {
 				if (!cSVGElement.getStyle(oElement, "text-anchor") && (sValue = oStyle["text-anchor"]))
 					cSVGElement.setStyle(oElement, "text-anchor", sValue);
 				if (!cSVGElement.getStyle(oElement, "font-weight") && (sValue = oStyle["fontWeight"]))

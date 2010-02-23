@@ -51,7 +51,7 @@ if (cSVGElement.useVML) {
 	// presentation
 	cSVGElement_foreignObject.prototype.$getTagOpen	= function() {
 		return '<svg2vml:shape class="svg-foreignObject' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '"\
-					style="width:' + this.getAttribute("width") + 'px;height:' + this.getAttribute("height") + 'px;left:' + this.getAttribute("x") + 'px;top:' + this.getAttribute("y") + 'px;"\
+					style="position:absolute;width:' + this.getAttribute("width") + 'px;height:' + this.getAttribute("height") + 'px;left:' + this.getAttribute("x") + 'px;top:' + this.getAttribute("y") + 'px;"\
 				>' + cSVGElement.getTagStyle(this);
 	};
 
