@@ -182,8 +182,8 @@ c|line c|group::path {
 
 c|radar c|group::area,
 c|line c|group::area {
-	fill-opacity:	0.2;
-	stroke-opacity:	0.2;
+	fill-opacity:	0.66;
+	stroke-opacity:	0.66;
 }
 
 c|bubble c|group,
@@ -198,8 +198,8 @@ c|bar c|item::shadow,
 c|bubble c|item::shadow {
 	/*fill: black;*/
 	/*stroke: black;*/
-	fill-opacity:	0.5;
-	stroke-opacity:	0.5;
+	fill-opacity:	0.25;
+	stroke-opacity:	0.25;
 }
 
 c|doughnut c|item::label,
@@ -214,8 +214,8 @@ c|bubble c|item::label {
 /* hover effects */
 c|bar c|item:hover,
 c|bubble c|item:hover,
-c|line c|item:hover,
-c|radar c|item:hover,
+c|line c|item:hover, c|line c|group:hover c|group::area,
+c|radar c|item:hover, c|radar c|group:hover c|group::area,
 c|doughnut c|item:hover c|item::path,
 c|pie c|item:hover c|item::path,
 c|funnel c|item:hover c|item::path {
@@ -239,11 +239,11 @@ c|map c|item:hover {
 }
 
 /* selection effects */
-c|line c|group:selected,
 c|bar c|group:selected,
 c|bubble c|group:selected,
-c|radar c|group:selected,
+c|line c|group:selected, c|line c|group:selected c|group::area,
+c|radar c|group:selected, c|radar c|group:selected c|group::area,
 c|map c|group:selected {
-	fill-opacity: 0.25;
-	stroke-opacity: 0.25;
+	fill-opacity: 0.33;
+	stroke-opacity: 0.33;
 }
