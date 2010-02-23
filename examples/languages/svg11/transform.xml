@@ -4,8 +4,8 @@
 	<!-- Group -->
 	<svg:rect x="0" y="0" width="600" height="100" fill="#f0f0d0" />
 
-	<svg:g transform="rotate(-15)">
-	 	<smil:animate begin="click" from="rotate(0)" to="rotate(360)" dur="2s" attributeName="transform"/>
+	<svg:g xtransform="rotate(-15, 100, 100)" transform="translate(100,100) rotate(-15) translate(-100,-100)">
+	 	<smil:animate begin="click" from="rotate(0, 100, 100)" to="rotate(360, 100, 100)" dur="2s" attributeName="transform"/>
 		<svg:rect x="0" y="0" width="90" height="90" fill="#f0f0f0"/>
 	</svg:g>
 

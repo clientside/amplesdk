@@ -69,8 +69,8 @@
        id="rect2594"
        style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.62500018;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
     <g
-       transform="matrix(1.7408253,0,0,1.7408253,127.65964,235.88441)"
-       xtransform="scale(1.7408253) rotate(45) translate(127.65964,235.88441)"
+       transform="translate(127.65964,235.88441) matrix(1.7408253,0,0,1.7408253,0,0)"
+       xtransform="scale(1.7408253) translate(127.65964,235.88441)"
        clip-path="url(#clipPath2801)"
        id="g2729">
       <path

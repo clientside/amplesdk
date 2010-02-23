@@ -14,7 +14,7 @@
 
 <script>
 <![CDATA[
-
+var document	= ample;
 //----------------------------------------------------------------------
 // static data
 
@@ -475,7 +475,7 @@ function init() {
   document.documentElement.addEventListener("keydown", keyHandler, false);
 }
 
-
+setTimeout(init);
 ]]>
 </script>
 

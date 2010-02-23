@@ -179,7 +179,7 @@
   </g>
 
   <!-- works (matrix fails slightly) -->
-  <g id="verticalRopesOfBridge" transform="translate(0, -166.7241) scale(0.384174)" xtransform="matrix(0.384174, 0, 0, 0.384174, 0, -64.0511)" fill="url(#linearGradient7759)" stroke="none">
+  <g id="verticalRopesOfBridge" xtransform="translate(0, -166.7241) scale(0.384174)" transform="matrix(0.384174, 0, 0, 0.384174, 0, -64.0511)" fill="url(#linearGradient7759)" stroke="none">
       <path d="m 10.71875,336.03125 -3.53125,152.75 0.5,0 3.53125,-152.71875 -0.5,-0.0312 0,-5e-5 z"/>
       <path d="m 46.0625,322.96875 -4.25,173.59375 0.5,0 4.25,-173.59375 -0.5,0 0,0 z"/>
       <path d="m 78.9375,309.875 -2.8125,187.75 0.5,0 2.8125,-187.75 -0.5,0 z"/>
@@ -361,9 +361,9 @@
 	<!-- fails, why? -->
        <g id="bezierHandle" fill="white" stroke="#3e5269" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
          <path id="bezierHandleLine" d="m 782.84295,10.492586 54.18212,22.346337 z"/>
-         <path id="upperLeftBezierHandle" d="m 649.50551,12.428044 a 3.1881919,3.1881919 0 1 1 -6.37638,0 3.1881919,3.1881919 0 1 1 6.37638,0"
+         <path id="upperLeftBezierHandle" d="m 649.50551,12.428044 a 3.1881919,3.1881919 0 1 1 -6.37638,0 a 3.1881919,3.1881919 0 1 1 6.37638,0"
          	transform="matrix(0.8811, -0.338042, 0.338653, 0.879508, 208.076, 217.173)"/>
-         <path id="lowerRightBezierHandle" d="m 649.50551,12.428044 a 3.1881919,3.1881919 0 1 1 -6.37638,0 3.1881919,3.1881919 0 1 1 6.37638,0"
+         <path id="lowerRightBezierHandle" d="m 649.50551,12.428044 a 3.1881919,3.1881919 0 1 1 -6.37638,0 a 3.1881919,3.1881919 0 1 1 6.37638,0"
          	transform="matrix(0.8811, -0.338042, 0.338653, 0.879508, 264.419, 240.929)"/>
          <rect id="centerRectBezierHandle" width="6.184269" height="6.1767831" x="745.49744" y="-312.08145"
          	transform="matrix(0.913991, 0.405734, -0.406961, 0.913446, 0, 0)"/>
