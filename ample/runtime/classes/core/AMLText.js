@@ -100,9 +100,9 @@ cAMLText.prototype.replaceWholeText	= function(sContent) {
 	], "replaceWholeText");
 
 	var sValueOld	= this.data;
-	this.data		= this.data;
-	this.length		= this.data.length;
-	this.nodeValue	= this.data;
+	this.data		= sContent;
+	this.length		= sContent.length;
+	this.nodeValue	= sContent;
 
 	// Fire Mutation event
     if (sValueOld != sContent && oAMLConfiguration_values["ample-use-dom-events"]) {
