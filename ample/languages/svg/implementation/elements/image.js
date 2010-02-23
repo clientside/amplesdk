@@ -63,7 +63,7 @@ if (cSVGElement.useVML) {
 		var aWidth	= this.getAttribute("width").match(/([\d.]+)([%\w]*)/),
 			aHeight	= this.getAttribute("height").match(/([\d.]+)([%\w]*)/);
 		return '<svg2vml:shape class="svg-image' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '"\
-					style="position:absolute;width:' + aWidth[1] + (aWidth[2] || 'px') + ';height:' + aHeight[1] + (aHeight[2] || 'px') + ';left:' + this.getAttribute("x") + 'px;top:' + this.getAttribute("y") + 'px;" stroked="false"\
+					style="width:' + aWidth[1] + (aWidth[2] || 'px') + ';height:' + aHeight[1] + (aHeight[2] || 'px') + ';left:' + this.getAttribute("x") + 'px;top:' + this.getAttribute("y") + 'px;" stroked="false"\
 				>' + cSVGElement.getTagStyle(this) + '\
 					<svg2vml:imagedata src="' + this.getAttribute("xlink:href")+ '" />';
 	};

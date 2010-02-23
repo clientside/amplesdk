@@ -15,7 +15,6 @@ cSVGElement.useVML	= !document.implementation || !document.implementation.hasFea
 if (cSVGElement.useVML) {
 	// Add namespace
 	document.namespaces.add("svg2vml", "urn:schemas-microsoft-com:vml", "#default#VML");
-	document.namespaces.add("svg2vml_o", "urn:schemas-microsoft-com:office:office", "#default#VML");
 
 	cSVGElement.prototype.getBBox	= function() {
 		var oBCRectRoot	= cSVGElement.getViewportElement(this).$getContainer().getBoundingClientRect(),
@@ -141,11 +140,6 @@ if (cSVGElement.useVML) {
 		});
 
 		oElementDOM.skew.offset	= Math.floor(aMatrix[0][2] * aAspect[0]) + "px" + " " + Math.floor(aMatrix[1][2] * aAspect[1]) + "px";
-/*
-		oElementDOM.coordOrigin	= [-aMatrix[2][0]/(aMatrix[1][1] * aMatrix[0][0]), -aMatrix[2][1]/(aMatrix[0][1] * aMatrix[1][0])].map(function(nValue) {
-			return nValue.toFixed(8);
-		});
-*/
 	};
 
 	// Should never be called on groups
@@ -392,7 +386,7 @@ if (cSVGElement.useVML) {
 			if (sValue = oStyle["marker-end"])
 				cSVGElement.setStyle(oElement, "marker-end", sValue);
 			// Text module
-			if (oElement instanceof cSVGElement_text || oElement instanceof cSVGElement_tspan || oElement instanceof cSVGElement_textPath) {
+			if (oElement instanceof cSVGElement_text || oElement instanceof cSVGElement_tspan || oElement instanceof cSVGElement_tref || oElement instanceof cSVGElement_textPath) {
 				if (!cSVGElement.getStyle(oElement, "text-anchor") && (sValue = oStyle["text-anchor"]))
 					cSVGElement.setStyle(oElement, "text-anchor", sValue);
 				if (!cSVGElement.getStyle(oElement, "font-weight") && (sValue = oStyle["fontWeight"]))

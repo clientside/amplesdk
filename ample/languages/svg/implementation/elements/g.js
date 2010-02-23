@@ -27,17 +27,14 @@ if (cSVGElement.useVML) {
 						cSVGElement.setStyle(this, oEvent.attrName, oEvent.newValue);
 				}
 			}
-		}/*,
-		'DOMNodeInsertedIntoDocument':	function(oEvent) {
-			cSVGElement.applyTransform(this);
-		}*/
+		}
 	};
 
 	// presentation
 	cSVGElement_g.prototype.$getTagOpen	= function() {
 		// Keep left:0 and top:0
 		return '<svg2vml:group class="svg-g' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '"\
-					style="top:0;left:0;width:100%;height:100%;position:absolute;' + (this.hasAttribute("style") ? this.getAttribute("style") : '')+ '"\
+					style="top:0;left:0;width:100%;height:100%;' + (this.hasAttribute("style") ? this.getAttribute("style") : '')+ '"\
 				>';
 	};
 
