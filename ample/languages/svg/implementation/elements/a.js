@@ -28,10 +28,26 @@ if (cSVGElement.useVML) {
 			var sValue	= this.getAttribute("xlink:href");
 			if (sValue != "")
 				cSVGElement_a.setHref(this, sValue);
+		},
+		'mouseenter':	function(oEvent) {
+			cSVGElement_a.recalcCSS(this);
+		},
+		'mouseleave':	function(oEvent) {
+			cSVGElement_a.recalcCSS(this);
 		}
 	};
 
 	// Static members
+	cSVGElement_a.recalcCSS	= function(oElement) {
+		for (var nIndex = 0, oChild, oElementDOM; oChild = oElement.childNodes[nIndex]; nIndex++)
+			if (oChild.nodeType == 1) {
+				if (oChild instanceof cSVGElement_g)
+					cSVGElement_a.recalcCSS(oChild);
+				else
+					cSVGElement.applyCSS(oChild);
+			}
+	};
+
 	cSVGElement_a.setHref	= function(oElement, sValue) {
 		for (var nIndex = 0, oChild, oElementDOM; oChild = oElement.childNodes[nIndex]; nIndex++) {
 			if (oChild instanceof cSVGElement_g)
