@@ -179,7 +179,7 @@ if (cSVGElement.useVML) {
 			case "fill":
 				oElementDOM.fill.on	= sValue != "none";
 				var aValue, oGradient;
-				if (aValue = sValue.match(/url\(#([\w-]+)\)/)) {
+				if (aValue = sValue.match(/url\(['"]?#([^'"]+)['"]?\)/)) {
 					if (oGradient = oElement.ownerDocument.getElementById(aValue[1])) {
 						if (oGradient instanceof cSVGElement_linearGradient || oGradient instanceof cSVGElement_radialGradient) {
 							if (oGradient instanceof cSVGElement_linearGradient) {
