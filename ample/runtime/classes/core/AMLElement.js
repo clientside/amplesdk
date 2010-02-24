@@ -107,7 +107,7 @@ cAMLElement.prototype.removeChild	= function(oNode)
 	// Remove from DOM
 	var oChild, oGateway;
 	if (this.nodeType == cAMLNode.ELEMENT_NODE)
-		if (oChild = oNode.$getContainer())
+		if ((oChild = oNode.$getContainer()) && oChild.parentNode)
 			oChild.parentNode.removeChild(oChild);
 
 	return oNode;
