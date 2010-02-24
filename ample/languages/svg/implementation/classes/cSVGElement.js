@@ -116,14 +116,6 @@ if (cSVGElement.useVML) {
 		return aMatrix;
 	};
 
-	cSVGElement.setMatrix	= function(oElement, aMatrix) {
-		if (oElement instanceof cSVGElement_g)
-			for (var nIndex = 0; nIndex < oElement.childNodes.length; nIndex++)
-				cSVGElement.setMatrix(oElement.childNodes[nIndex], aMatrix);
-		else
-			cSVGElement.setMatrixOwn(oElement, aMatrix);
-	};
-
 	cSVGElement.setMatrixOwn	= function(oElement, aMatrix) {
 		var oElementDOM	= oElement.$getContainer(),
 			aAspect	= cSVGElement.getAspectRatio(oElement);
@@ -142,9 +134,13 @@ if (cSVGElement.useVML) {
 		oElementDOM.skew.offset	= Math.floor(aMatrix[0][2] * aAspect[0]) + "px" + " " + Math.floor(aMatrix[1][2] * aAspect[1]) + "px";
 	};
 
-	// Should never be called on groups
 	cSVGElement.applyTransform	= function(oElement) {
-		cSVGElement.setMatrixOwn(oElement, cSVGElement.getMatrix(oElement));
+		if (!(oElement instanceof cSVGElement_g))
+			cSVGElement.setMatrixOwn(oElement, cSVGElement.getMatrix(oElement));
+		else
+			for (var nIndex = 0; nIndex < oElement.childNodes.length; nIndex++)
+				if (oElement.childNodes[nIndex].nodeType == 1)
+					cSVGElement.applyTransform(oElement.childNodes[nIndex]);
 	};
 
 	// Note! Performance optimization: Getting attribute values in a hacky way here ".attributes[]" instead of ".getAttribute()"
