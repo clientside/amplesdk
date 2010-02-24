@@ -69,7 +69,7 @@
 			//	-> opacity: .5;
 			//	-> -ms-filter:Alpha(opacity=' + nOpacity * 100 + ');
 			//	-> filter:Alpha(opacity=' + nOpacity * 100 + ');
-			$sCSS	= preg_replace_callback("/opacity\s*:\s*(\d?\.?\d+)/",	"cCSSCompiler_replaceOpacity",			$sCSS);
+			$sCSS	= preg_replace_callback("/(?:[^-])opacity\s*:\s*(\d?\.?\d+)/",	"cCSSCompiler_replaceOpacity",			$sCSS);
 
 			// Remove prefix declaration
 			$sCSS	= preg_replace("/@namespace\s+([\w-]+\s+)?(url\()?(['\"])?[^'\";\s]+(['\"])?\)?;?/", "", $sCSS);
