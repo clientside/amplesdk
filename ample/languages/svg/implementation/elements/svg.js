@@ -115,7 +115,7 @@ if (cSVGElement.useVML) {
 		var aViewBox= this.getAttribute("viewBox").split(/[\s,]/) || [],
 			aWidth	= this.getAttribute("width").match(/([\d.]+)([%\w]*)/) || [],
 			aHeight	= this.getAttribute("height").match(/([\d.]+)([%\w]*)/) || [];
-		return '<div class="svg-svg' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="position:relative;display:inline-block;overflow:hidden;"\
+		return '<div class="svg-svg' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="position:relative;display:inline-block;overflow:hidden;' + (this.hasAttribute("style") ? this.getAttribute("style") : '') + '"\
 					onresize="var o = ample.$instance(this); ample.domConfig.getNamespace(o.namespaceURI).getElement(o.localName).resize(o)">\
 					<svg2vml:group class="svg-svg--gateway" style="position:absolute;display:none;"\
 						coordOrigin="0,0"\
