@@ -291,6 +291,9 @@ if (cSVGElement.useVML) {
 			case "stroke-linejoin":
 				oElementDOM.stroke.joinStyle	= sValue;
 				break;
+			case "stroke-miterlimit":
+				oElementDOM.stroke.miterLimit	= sValue;
+				break;
 			case "stroke-linecap":
 				oElementDOM.stroke.endCap		= cSVGElement.strokeLineCapToEndCap(sValue);
 				break;
@@ -378,6 +381,8 @@ if (cSVGElement.useVML) {
 				cSVGElement.setStyle(oElement, "stroke-opacity", sValue);
 			if (sValue = oStyle["stroke-linejoin"])
 				cSVGElement.setStyle(oElement, "stroke-linejoin", sValue);
+			if (sValue = oStyle["stroke-miterlimit"])
+				cSVGElement.setStyle(oElement, "stroke-miterlimit", sValue);
 			if (sValue = oStyle["stroke-linecap"])
 				cSVGElement.setStyle(oElement, "stroke-linecap", sValue);
 			if (sValue = oStyle["stroke-dasharray"])
@@ -511,6 +516,7 @@ if (cSVGElement.useVML) {
 			nStrokeOpacity	=(cSVGElement.getStyle(oElement, "stroke-opacity") || 1) * nOpacity,
 			sStrokeWidth	= cSVGElement.getStyle(oElement, "stroke-width"),
 			sStrokeLineJoin	= cSVGElement.getStyle(oElement, "stroke-linejoin") || 'miter',
+			sStrokeMiterLimit	= cSVGElement.getStyle(oElement, "stroke-miterlimit") || '4',
 			sStrokeLineCap	= cSVGElement.getStyle(oElement, "stroke-linecap") || 'square',
 			sStrokeDashArray= cSVGElement.getStyle(oElement, "stroke-dasharray");
 
@@ -544,6 +550,7 @@ if (cSVGElement.useVML) {
 					' + (sStrokeLineCap ? ' endCap="' + cSVGElement.strokeLineCapToEndCap(sStrokeLineCap) + '"' : '') + '\
 					' + (sStrokeDashArray ? ' dashStyle="' + sStrokeDashArray.replace(/,/g, ' ') + '"' : '') + '\
 					' + (sStrokeLineJoin ? ' joinStyle="' + sStrokeLineJoin + '"' : '') + '\
+					' + (sStrokeMiterLimit ? ' miterLimit="' + sStrokeMiterLimit + '"' : '') + '\
 				/><svg2vml:skew on="true" origin="-0.5,-0.5" matrix="1,0,0,1"/>';
 	};
 //	<svg2vml:shadow on="true" type="double" color="yellow" color2="green" offset="1pt" opacity="0.5"/>\
