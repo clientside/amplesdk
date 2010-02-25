@@ -30,7 +30,7 @@ ample.addEventListener("load", function() {
 	oRequest.onreadystatechange	= function() {
 		if (oRequest.readyState == 4) {
 			// Reparse
-			var oDocument	= new DOMParser().parseFromString(oRequest.responseText.replace(/<!DOCTYPE[^>]+>/, ''), "text/xml");
+			var oDocument	= new DOMParser().parseFromString(oRequest.responseText, "text/xml");
 			// Ample SDK doesn't support percent units yet!
 			oDocument.documentElement.setAttribute("width", sWidth);
 			oDocument.documentElement.setAttribute("height", sHeight);
