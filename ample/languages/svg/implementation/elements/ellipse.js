@@ -54,7 +54,7 @@ if (cSVGElement.useVML) {
 			nCy	= oElement.getAttribute("cy") * 1,
 			nRx	= oElement.getAttribute("rx") * 1,
 			nRy	= oElement.getAttribute("ry") * 1;
-		return "at" + [nCx - nRx, nCy - nRy, nCx + nRx, nCy + nRy, nCx - nRx, nCy - nRy, nCx - nRx, nCy - nRy].map(Math.round) + "x";
+		return (nRx && nRy) ? ("at" + [nCx - nRx, nCy - nRy, nCx + nRx, nCy + nRy, nCx - nRx, nCy - nRy, nCx - nRx, nCy - nRy].map(Math.round) + "x") : "";
 	};
 
 	// presentation
