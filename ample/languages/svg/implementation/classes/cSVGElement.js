@@ -335,11 +335,11 @@ if (cSVGElement.useVML) {
 
 	cSVGElement.getStyle	= function(oElement, sName) {
 		var sValue	= cSVGElement.getStyleOwn(oElement, sName);
-		if (sValue)
+		if (sValue && sValue != "inherit")
 			return sValue;
 
 		// check if parent is group
-		if (oElement.parentNode instanceof cSVGElement_g || oElement.parentNode instanceof cSVGElement_text || oElement.parentNode instanceof cSVGElement_a)
+		if (sValue == "inherit" || oElement.parentNode instanceof cSVGElement_g || oElement.parentNode instanceof cSVGElement_text || oElement.parentNode instanceof cSVGElement_a)
 			return cSVGElement.getStyle(oElement.parentNode, sName);
 
 		return '';
@@ -555,6 +555,12 @@ if (cSVGElement.useVML) {
 	};
 //	<svg2vml:shadow on="true" type="double" color="yellow" color2="green" offset="1pt" opacity="0.5"/>\
 //	<svg2vml:extrusion xmetal="on" on="true" backdepth="20" xedge="5" xcolor="green" xrotationangle="0,5"/>\
+
+	cSVGElement.strokeDashArrayToDashStyle	= function(sStrokeDashArray, nStrokeWidth) {
+		return sStrokeDashArray.split(",").map(function(sValue) {
+			return Math.ceil(sValue / nStrokeWidth);
+		}).join(" ");
+	};
 
 	cSVGElement.strokeLineCapToEndCap	= function(sStrokeLineCap) {
 		return {/*"square": "square", */"butt": "flat", "round": "round"}[sStrokeLineCap] || "square";
