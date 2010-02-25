@@ -67,6 +67,7 @@
 	$aFiles[]	= "implementation/elements/marker.js";
 	$aFiles[]	= "implementation/elements/clipPath.js";
 	$aFiles[]	= "implementation/elements/metadata.js";
+	$aFiles[]	= "implementation/elements/symbol.js";
 
     $sOutput	= "";
     for ($nIndex = 0; $nIndex < count($aFiles); $nIndex++)
