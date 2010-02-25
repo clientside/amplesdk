@@ -48,7 +48,7 @@ if (cSVGElement.useVML) {
 
 	cSVGElement_polygon.toPath	= function(oElement) {
 		var aPoints = oElement.getAttribute("points").split(/[ ,]/);
-		return "m " + aPoints.slice(0, 2).map(Math.round)+ " l " + aPoints.slice(2).map(Math.round) + " e";
+		return "m " + aPoints.slice(0, 2).map(Math.round)+ " l " + aPoints.slice(2).map(Math.round) + " x";
 	};
 
 	// presentation
