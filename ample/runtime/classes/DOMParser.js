@@ -22,7 +22,7 @@ if (!cDOMParser)
 		oDocument.async				= false;
 		oDocument.validateOnParse	= false;
 //		oDocument.preserveWhiteSpace= false;
-//		oDocument.resolveExternals	= true;
+		oDocument.resolveExternals	= false;
 		oDocument.loadXML(sXml);
 		return oDocument;
 	};
