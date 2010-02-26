@@ -113,25 +113,47 @@ if (cSVGElement.useVML) {
 				}
 			}
 		}
+
 		return aMatrix;
 	};
 
 	cSVGElement.setMatrixOwn	= function(oElement, aMatrix) {
 		var oElementDOM	= oElement.$getContainer(),
 			aAspect	= cSVGElement.getAspectRatio(oElement);
-		if (oElementDOM.tagName == "group")
-			oElementDOM	= oElementDOM.getElementsByTagName("shape")[0];
-		if (!oElementDOM)
-			return;
 
-		// Apply Transformation
-		if (!oElementDOM.skew.on)
-			oElementDOM.skew.on	= true;
-		oElementDOM.skew.matrix	= [aMatrix[0][0], aMatrix[0][1], aMatrix[1][0], aMatrix[1][1], 0, 0].map(function(nValue) {
-			return nValue.toFixed(8);
-		});
+		if (oElement instanceof cSVGElement_image) {
+			// Different transformation for images
+			var oMatrix	= oElementDOM.filters.item('DXImageTransform.Microsoft.Matrix');
+			if (aMatrix[0][0] != 1 || aMatrix[1][1] != 1 || aMatrix[0][1] != 0 || aMatrix[1][0] != 0) {
+				oMatrix.M11	= aMatrix[0][0];
+				oMatrix.M12	= aMatrix[0][1];
+				oMatrix.M21	= aMatrix[1][0];
+				oMatrix.M22	= aMatrix[1][1];
+				oMatrix.enabled	= true;
+			}
+			else
+				oMatrix.enabled	= false;
+			// Translate
+			aMatrix	= cSVGElement.matrixMultiply(aMatrix, [[1, 0, oElement.getAttribute("x") || 0], [0, 1, oElement.getAttribute("y") || 0], [0, 0, 1]]);
+			//
+			oElementDOM.style.left	= Math.round(aMatrix[0][2]) + "px";
+			oElementDOM.style.top	= Math.round(aMatrix[1][2]) + "px";
+		}
+		else {
+			if (oElementDOM.tagName == "group")
+				oElementDOM	= oElementDOM.getElementsByTagName("shape")[0];
+			if (!oElementDOM)
+				return;
 
-		oElementDOM.skew.offset	= Math.floor(aMatrix[0][2] * aAspect[0]) + "px" + " " + Math.floor(aMatrix[1][2] * aAspect[1]) + "px";
+			// Apply Transformation
+			if (!oElementDOM.skew.on)
+				oElementDOM.skew.on	= true;
+			oElementDOM.skew.matrix	= [aMatrix[0][0], aMatrix[0][1], aMatrix[1][0], aMatrix[1][1], 0, 0].map(function(nValue) {
+				return nValue.toFixed(8);
+			});
+
+			oElementDOM.skew.offset	= Math.floor(aMatrix[0][2] * aAspect[0]) + "px" + " " + Math.floor(aMatrix[1][2] * aAspect[1]) + "px";
+		}
 	};
 
 	cSVGElement.applyTransform	= function(oElement) {
@@ -162,7 +184,7 @@ if (cSVGElement.useVML) {
 	cSVGElement.setStyleOwn	= function(oElement, sName, sValue) {
 		// other
 		var oElementDOM	= oElement.$getContainer();
-		if (oElement instanceof cSVGElement_text || oElement instanceof cSVGElement_image)
+		if (oElement instanceof cSVGElement_text)
 			oElementDOM	= oElementDOM.getElementsByTagName("shape")[0];
 
 		// Some element do not have view, skip them
@@ -172,8 +194,15 @@ if (cSVGElement.useVML) {
 		switch (sName) {
 			// opacity (general)
 			case "opacity":
-				cSVGElement.setStyleOwn(oElement, "fill-opacity", cSVGElement.getStyle(oElement, "fill-opacity"));
-				cSVGElement.setStyleOwn(oElement, "stroke-opacity", cSVGElement.getStyle(oElement, "stroke-opacity"));
+				if (oElement instanceof cSVGElement_image) {
+					var oAlpha	= oElementDOM.filters.item('DXImageTransform.Microsoft.Alpha');
+					oAlpha.enabled	= sValue != 1;
+					oAlpha.opacity	= sValue * 100;
+				}
+				else {
+					cSVGElement.setStyleOwn(oElement, "fill-opacity", cSVGElement.getStyle(oElement, "fill-opacity"));
+					cSVGElement.setStyleOwn(oElement, "stroke-opacity", cSVGElement.getStyle(oElement, "stroke-opacity"));
+				}
 				break;
 			// fill
 			case "fill":

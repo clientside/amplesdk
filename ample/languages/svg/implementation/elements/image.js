@@ -20,7 +20,7 @@ if (cSVGElement.useVML) {
 				var oElement	= this.$getContainer();
 				switch (oEvent.attrName) {
 					case "xlink:href":
-						oElement.getElementsByTagName("imagedata")[0].src	= oEvent.newValue;
+						oElement.imagedata.src	= oEvent.newValue;
 						break;
 					//
 					case "width":
@@ -28,12 +28,8 @@ if (cSVGElement.useVML) {
 						var aValue	= oEvent.newValue.match(/([\d.]+)([%\w]*)/);
 						oElement.style[oEvent.attrName]	= aValue[1] + (aValue[2] || "px");
 						break;
-					//
 					case "x":
 					case "y":
-						oElement.style[(oEvent.attrName == "x" ? "left" : "top")]	= oEvent.newValue + "px";
-						break;
-					//
 					case "transform":
 						cSVGElement.applyTransform(this);
 						break;
@@ -46,10 +42,6 @@ if (cSVGElement.useVML) {
 		'DOMNodeInsertedIntoDocument':	function(oEvent) {
 			var sValue;
 
-			// Apply gradients
-			if ((sValue = cSVGElement.getStyle(this, "fill")) && sValue.substr(0, 3) == "url")
-				cSVGElement.setStyle(this, "fill", sValue);
-
 			// Apply transform
 			cSVGElement.applyTransform(this);
 
@@ -61,11 +53,12 @@ if (cSVGElement.useVML) {
 	// presentation
 	cSVGElement_image.prototype.$getTagOpen	= function() {
 		var aWidth	= this.getAttribute("width").match(/([\d.]+)([%\w]*)/),
-			aHeight	= this.getAttribute("height").match(/([\d.]+)([%\w]*)/);
+			aHeight	= this.getAttribute("height").match(/([\d.]+)([%\w]*)/),
+			nOpacity= cSVGElement.getStyle(this, "opacity") * 1 || 1;
 		return '<svg2vml:shape class="svg-image' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '"\
-					style="position:absolute;width:' + aWidth[1] + (aWidth[2] || 'px') + ';height:' + aHeight[1] + (aHeight[2] || 'px') + ';left:' + this.getAttribute("x") + 'px;top:' + this.getAttribute("y") + 'px;" stroked="false"\
-				>' + cSVGElement.getTagStyle(this) + '\
-					<svg2vml:imagedata src="' + this.getAttribute("xlink:href")+ '" />';
+					style="position:absolute;padding:10cm;width:' + aWidth[1] + (aWidth[2] || 'px') + ';height:' + aHeight[1] + (aHeight[2] || 'px') + ';left:' + this.getAttribute("x") + 'px;top:' + this.getAttribute("y") + 'px;filter:progid:DXImageTransform.Microsoft.Matrix(sizingMethod=\'clip\',enabled=false) progid:DXImageTransform.Microsoft.Alpha(' + (nOpacity != 1 ? 'opacity:' + nOpacity * 100 : 'enabled=false')+ ')" stroked="false"\
+				>\
+					<svg2vml:imagedata src="' + this.getAttribute("xlink:href")+ '"/>';
 	};
 
 	cSVGElement_image.prototype.$getTagClose	= function() {
