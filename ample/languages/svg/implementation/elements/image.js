@@ -50,6 +50,13 @@ if (cSVGElement.useVML) {
 		}
 	};
 
+	cSVGElement_image.resolveXmlBase	= function(oElement, sUri) {
+		for (var oNode = oElement, sBaseUri = ''; oNode.nodeType != 9; oNode = oNode.parentNode)
+			if (sBaseUri = oNode.getAttribute("xml:base"))
+				sUri	= oElement.ownerDocument.$resolveUri(sUri, sBaseUri);
+		return oElement.ownerDocument.$resolveUri(sUri, String(document.location));
+	};
+
 	// presentation
 	cSVGElement_image.prototype.$getTagOpen	= function() {
 		var aWidth	= this.getAttribute("width").match(/([\d.]+)([%\w]*)/),
@@ -58,7 +65,7 @@ if (cSVGElement.useVML) {
 		return '<svg2vml:shape class="svg-image' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '"\
 					style="position:absolute;padding:10cm;width:' + aWidth[1] + (aWidth[2] || 'px') + ';height:' + aHeight[1] + (aHeight[2] || 'px') + ';left:' + this.getAttribute("x") + 'px;top:' + this.getAttribute("y") + 'px;filter:progid:DXImageTransform.Microsoft.Matrix(sizingMethod=\'clip\',enabled=false) progid:DXImageTransform.Microsoft.Alpha(' + (nOpacity != 1 ? 'opacity:' + nOpacity * 100 : 'enabled=false')+ ')" stroked="false"\
 				>\
-					<svg2vml:imagedata src="' + this.getAttribute("xlink:href")+ '"/>';
+					<svg2vml:imagedata src="' + cSVGElement_image.resolveXmlBase(this, this.getAttribute("xlink:href"))+ '"/>';
 	};
 
 	cSVGElement_image.prototype.$getTagClose	= function() {
