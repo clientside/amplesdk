@@ -364,6 +364,9 @@ if (cSVGElement.useVML) {
 
 	cSVGElement.getStyle	= function(oElement, sName) {
 		var sValue	= cSVGElement.getStyleOwn(oElement, sName);
+		if (sValue == "currentColor")
+			return cSVGElement.getStyle(oElement, "color");
+
 		if (sValue && sValue != "inherit")
 			return sValue;
 
