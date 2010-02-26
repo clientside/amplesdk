@@ -772,6 +772,9 @@ ample.$class	= function(oNode) {
 	return null;
 };
 */
+ample.$resolveUri	= function(sUri, sBaseUri) {
+	return fAML_resolveUri(sUri, sBaseUri);
+};
 //->Debug
 // Enable debugging
 var oAML_errorHandler	= {};
