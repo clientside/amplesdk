@@ -282,7 +282,7 @@ if (cSVGElement.useVML) {
 					}
 				}
 				else
-					oElementDOM.fill.color	= sValue in oSVGElement_colors ? 'rgb(' + oSVGElement_colors[sValue] + ')' : sValue;
+					oElementDOM.fill.color	= sValue in oSVGElement_colors ? 'rgb(' + oSVGElement_colors[sValue] + ')' : cSVGElement.correctColor(sValue);
 				break;
 			case "fill-opacity":
 				if (sValue == null || sValue == "")
@@ -294,7 +294,7 @@ if (cSVGElement.useVML) {
 			// strokes
 			case "stroke":
 				oElementDOM.stroke.on	= sValue != "none";
-				oElementDOM.stroke.color	= sValue in oSVGElement_colors ? 'rgb(' + oSVGElement_colors[sValue] + ')' : sValue;
+				oElementDOM.stroke.color	= sValue in oSVGElement_colors ? 'rgb(' + oSVGElement_colors[sValue] + ')' : cSVGElement.correctColor(sValue);
 				break;
 			case "stroke-width":
 				var aStrokeWidth	= sValue.match(/([\d.]+)(.*)/),
@@ -574,9 +574,9 @@ if (cSVGElement.useVML) {
 			sStrokeWidth	= nStrokeWidth + (aStrokeWidth[2] || "px");
 		}
 
-		return '<svg2vml:fill on="' + (sFill == "none" ? "false" : "true") + '" color="' + (sFill in oSVGElement_colors ? 'rgb(' + oSVGElement_colors[sFill] + ')' : sFill || 'black') + '"\
+		return '<svg2vml:fill on="' + (sFill == "none" ? "false" : "true") + '" color="' + (sFill in oSVGElement_colors ? 'rgb(' + oSVGElement_colors[sFill] + ')' : cSVGElement.correctColor(sFill) || 'black') + '"\
 					' + (nFillOpacity != 1 ? ' opacity="' + nFillOpacity + '"' : '') + '\
-				/><svg2vml:stroke on="' + (sStroke && sStroke != "none" ? "true" : "false") + '" color="' + (sStroke in oSVGElement_colors ? 'rgb(' + oSVGElement_colors[sStroke] + ')' : sStroke || 'black') + '"\
+				/><svg2vml:stroke on="' + (sStroke && sStroke != "none" ? "true" : "false") + '" color="' + (sStroke in oSVGElement_colors ? 'rgb(' + oSVGElement_colors[sStroke] + ')' : cSVGElement.correctColor(sStroke) || 'black') + '"\
 					' + (nStrokeOpacity != 1 ? ' opacity="' + nStrokeOpacity + '"' : '') + '\
 					' + (sStrokeWidth ? ' weight="' + sStrokeWidth + '"' : '') + '\
 					' + (sStrokeLineCap ? ' endCap="' + cSVGElement.strokeLineCapToEndCap(sStrokeLineCap) + '"' : '') + '\
@@ -600,6 +600,13 @@ if (cSVGElement.useVML) {
 
 	cSVGElement.textAnchorToVTextAlign	= function(sTextAnchor) {
 		return {/*"start": "left", */"middle": "center", "end": "right"/*, "inherit": "left"*/}[sTextAnchor] || "left";
+	};
+
+	cSVGElement.correctColor	= function(sColor) {
+		var aColor;
+		if (sColor && sColor.match(/rgb\(([^\)]+)\)/) && (aColor = RegExp.$1.split(/\s*%\s*,?\s*/)) && aColor.length == 3)
+			sColor	= 'rgb(' + Math.round(2.55 * aColor[0]) + "," + Math.round(2.55 * aColor[1]) + "," + Math.round(2.55 * aColor[2]) + ")";
+		return sColor;
 	};
 
 	var oSVGElement_colors	= {
