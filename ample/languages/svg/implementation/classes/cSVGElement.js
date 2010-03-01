@@ -208,7 +208,7 @@ if (cSVGElement.useVML) {
 			case "fill":
 				oElementDOM.fill.on	= sValue != "none";
 				var aValue, oGradient;
-				if (aValue = sValue.match(/url\(['"]?#([^'"]+)['"]?\)/)) {
+				if (aValue = sValue.match(/url\(['"]?#([^'")]+)['"]?\)/)) {
 					if (oGradient = oElement.ownerDocument.getElementById(aValue[1])) {
 						if (oGradient instanceof cSVGElement_linearGradient || oGradient instanceof cSVGElement_radialGradient) {
 							if (oGradient instanceof cSVGElement_linearGradient) {
@@ -249,7 +249,7 @@ if (cSVGElement.useVML) {
 									nOpacity	=(cSVGElement.getStyle(oElement, "opacity") || 1) * (cSVGElement.getStyle(oElement, "fill-opacity") || 1);
 								for (var i = 0, oStop, sColor; oStop = oGradientStop.childNodes[i]; i++)
 									if (oGradientStop.childNodes[i] instanceof cSVGElement_stop)
-										aColors.push([parseFloat(oStop.getAttribute("offset") || "1") / (oStop.getAttribute("offset").indexOf("%") ==-1 ? 1 : 100), ((sColor = cSVGElement.getStyleOwn(oStop, "stop-color")) in oSVGElement_colors ? 'rgb(' + oSVGElement_colors[sColor] + ')' : sColor), nOpacity * parseFloat(cSVGElement.getStyleOwn(oStop, "stop-opacity") || "1")]);
+										aColors.push([parseFloat(oStop.getAttribute("offset") || "1") / (oStop.getAttribute("offset").indexOf("%") ==-1 ? 1 : 100), ((sColor = cSVGElement.getStyleOwn(oStop, "stop-color")) in oSVGElement_colors ? 'rgb(' + oSVGElement_colors[sColor] + ')' : cSVGElement.correctColor(sColor)), nOpacity * parseFloat(cSVGElement.getStyleOwn(oStop, "stop-opacity") || "1")]);
 
 								var nLength	= aColors.length;
 								if (nLength) {
