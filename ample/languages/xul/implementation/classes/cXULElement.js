@@ -158,7 +158,7 @@ cXULElement.prototype.refresh   = function()
                     {
                         // set heights
                         if (!isNaN(oElement.attributes["flex"]))
-                            oElementDOM.tBodies[0].rows[nIndex - nVirtual].cells[0].setAttribute("height",  Math.ceil(oElement.attributes["flex"] * 100 / nFlex) + "%");
+                            oElementDOM.tBodies[0].rows[nIndex - nVirtual].cells[0].setAttribute("height", oElement.attributes["flex"] * 100 / nFlex + "%");
                         else
                         if (oElement.attributes["height"])
                             oElementDOM.tBodies[0].rows[nIndex - nVirtual].cells[0].setAttribute("height", oElement.attributes["height"]);
@@ -167,7 +167,7 @@ cXULElement.prototype.refresh   = function()
                     {
                         // set widths
                         if (!isNaN(oElement.attributes["flex"]))
-                            oElementDOM.tBodies[0].rows[0].cells[nIndex - nVirtual].setAttribute("width", Math.ceil(oElement.attributes["flex"] * 100 / nFlex) + "%");
+                            oElementDOM.tBodies[0].rows[0].cells[nIndex - nVirtual].setAttribute("width", oElement.attributes["flex"] * 100 / nFlex + "%");
                         else
                         if (oElement.attributes["width"])
                             oElementDOM.tBodies[0].rows[0].cells[nIndex - nVirtual].setAttribute("width", oElement.attributes["width"]);
