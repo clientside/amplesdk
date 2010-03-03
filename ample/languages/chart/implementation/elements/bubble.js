@@ -27,7 +27,7 @@ cChartElement_bubble.prototype.refresh	= function() {
 		nZMin	= Infinity;
 	for (var nGroup = 0, nGroups = this.childNodes.length, oGroup, aGroup; oGroup = this.childNodes[nGroup]; nGroup++) {
 		aGroup	= [];
-		for (var nItem = 0, nItems = oGroup.childNodes.length, oItem, aValue, nX, nY; oItem = oGroup.childNodes[nItem]; nItem++) {
+		for (var nItem = 0, nItems = oGroup.childNodes.length, oItem, aValue, nX, nY, nZ; oItem = oGroup.childNodes[nItem]; nItem++) {
 			aValue	= oItem.getAttribute("value").split(',');
 			nX	= aValue[0] * 1;
 			nY	= aValue[1] * 1;
