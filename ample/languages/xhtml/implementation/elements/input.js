@@ -110,7 +110,7 @@ cXHTMLElement_input.handlers	= {
 cXHTMLElement_input.prototype.$getTagOpen		= function() {
     var sHtml   = '<' + this.localName + ' onchange="ample.$instance(this)._onChange(event)"';
     for (var sName in this.attributes)
-    	if (sName != "class" && sName != "id" && sName.indexOf(':') ==-1)
+    	if (this.attributes.hasOwnProperty(sName) && sName != "class" && sName != "id" && sName.indexOf(':') ==-1)
 			sHtml  += ' ' + sName + '="' + this.getAttribute(sName).replace(/"/g, '\"') + '"';
 	sHtml	+= ' class="' + (this.prefix ? this.prefix + '-' : '') + this.localName + ("class" in this.attributes ? ' ' + this.attributes["class"] : '') + '"';
     return sHtml + '/>';

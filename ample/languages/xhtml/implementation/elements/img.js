@@ -22,7 +22,7 @@ cXHTMLElement_img.handlers	= {
 cXHTMLElement_img.prototype.$getTagOpen	= function() {
     var sHtml   = '<' + this.localName + ' onmousedown="return '+ "false" + '" ondragstart="return '+ "false" + '"';
     for (var sName in this.attributes)
-		if (sName != "class" && sName != "id" && sName.indexOf(':') ==-1)
+		if (this.attributes.hasOwnProperty(sName) && sName != "class" && sName != "id" && sName.indexOf(':') ==-1)
 			sHtml  += ' ' + sName + '="' + this.getAttribute(sName).replace(/"/g, '\"') + '"';
 	sHtml	+= ' class="' + (this.prefix ? this.prefix + '-' : '') + this.localName + ("class" in this.attributes ? ' ' + this.attributes["class"] : '') + '"';
     return sHtml + '/>';

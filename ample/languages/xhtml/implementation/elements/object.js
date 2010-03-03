@@ -22,7 +22,7 @@ cXHTMLElement_object.prototype.$getTag	= function() {
 	if (window.navigator.userAgent.indexOf("Gecko") >-1) {
 		var sHtml   = '<embed';
 		for (var sName in this.attributes)
-			if (sName != "class" && sName != "id" && sName.indexOf(':') ==-1)
+			if (this.attributes.hasOwnProperty(sName) && sName != "class" && sName != "id" && sName.indexOf(':') ==-1)
 				sHtml  += ' ' + sName + '="' + this.getAttribute(sName).replace(/"/g, '\"') + '"';
 		sHtml	+= ' class="' + (this.prefix ? this.prefix + '-' : '') + this.localName + ("class" in this.attributes ? ' ' + this.attributes["class"] : '') + '"';
 		for (var nIndex = 0; nIndex < this.childNodes.length; nIndex++)
