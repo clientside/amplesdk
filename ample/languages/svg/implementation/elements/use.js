@@ -26,7 +26,7 @@ if (cSVGElement.useVML) {
 
 						// Copy attributes from "use" element to the clone
 						for (var sAttribute in this.attributes)
-							if (sAttribute != "id" && sAttribute != "xlink:href")
+							if (this.attributes.hasOwnProperty(sName) && sAttribute != "id" && sAttribute != "xlink:href")
 								oNode.attributes[sAttribute]	= this.attributes[sAttribute];
 
 						that.parentNode.insertBefore(oNode, that);

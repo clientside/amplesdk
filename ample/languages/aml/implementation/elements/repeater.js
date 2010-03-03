@@ -127,7 +127,7 @@ cAMLElement_repeater._processNode	= function(oElement, oData, fResolver)
 		{
 			case AMLNode.ELEMENT_NODE:
 				for (sName in oNode.attributes)
-					if (oNode.attributes[sName].match(cAMLElement_repeater._regexp))
+					if (oNode.attributes.hasOwnProperty(sName) && oNode.attributes[sName].match(cAMLElement_repeater._regexp))
 						oNode.attributes[sName]	= oNode.attributes[sName].replace(RegExp.$1, cAMLElement_repeater._resolveValue(RegExp.$2, oData, fResolver));
 				cAMLElement_repeater._processNode(oNode, oData, fResolver);
 				break;

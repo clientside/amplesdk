@@ -30,12 +30,12 @@ if (!cXSLTProcessor) {
 		this._method	= oMethod ? oMethod.getAttribute("method") : "xml";
 	};
 	cXSLTProcessor.prototype.clearParameters	= function() {
-		var sNameSpaceURI, oNameSpace, sLocalName;
-		for (sNameSpaceURI in this._parameters) {
-			oNameSpace	= this._parameters[sNameSpaceURI];
-			for (sLocalName in oNameSpace)
-				this.removeParameter(sNameSpaceURI, sLocalName);
-		}
+		var sNameSpaceURI, sLocalName;
+		for (sNameSpaceURI in this._parameters)
+			if (this._parameters.hasOwnProperty(sNameSpaceURI))
+				for (sLocalName in this._parameters[sNameSpaceURI])
+					if (this._parameters[sNameSpaceURI].hasOwnProperty(sLocalName))
+						this.removeParameter(sNameSpaceURI, sLocalName);
 		this._parameters	= {};
 	};
 	cXSLTProcessor.prototype.getParameter		= function(sNameSpaceURI, sLocalName) {

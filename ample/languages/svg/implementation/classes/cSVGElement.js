@@ -782,7 +782,7 @@ else {
 	{
 		var sHtml   = '<' + this.tagName;
 		for (var sName in this.attributes)
-			if (sName != "id" && sName != "class")// && sName.indexOf(':') ==-1)
+			if (this.attributes.hasOwnProperty(sName) && sName != "id" && sName != "class")// && sName.indexOf(':') ==-1)
 				sHtml  += ' ' + sName + '="' + this.getAttribute(sName).replace(/"/g, '\"') + '"';
 		sHtml	+= ' class="' + ('svg-' + this.localName + ' ') + (this.prefix ? this.prefix + '-' : '') + this.localName + ("class" in this.attributes ? ' ' + this.attributes["class"] : '') + '"';
 	    return sHtml + '>';

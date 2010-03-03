@@ -22,15 +22,17 @@ cAMLSerializer.prototype.serializeToString	= function(oNode)
 	var nDepth	= 1;
 //<-Source
 	(function(oNode) {
-		var nIndex = 0, sName;
+		var nIndex = 0, sName, oAttributes;
 //->Source
 		aHtml.push(new cArray(nDepth).join('\t'));
 //<-Source
 		switch (oNode.nodeType) {
 			case cAMLNode.ELEMENT_NODE:
 				aHtml.push('<' + oNode.nodeName);
-				for (sName in oNode.attributes)
-					aHtml.push(' ' + sName + '=' + '"' + oNode.attributes[sName].replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/&/g, '&amp;') + '"');
+				oAttributes	= oNode.attributes;
+				for (sName in oAttributes)
+					if (oAttributes.hasOwnProperty(sName))
+						aHtml.push(' ' + sName + '=' + '"' + oAttributes[sName].replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/&/g, '&amp;') + '"');
 	//			aHtml.push(' ' + '_' + '=' + '"' + oNode.uniqueID + '"');
 				if (oNode.hasChildNodes()) {
 					aHtml.push('>');

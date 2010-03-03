@@ -182,7 +182,7 @@ function fAML_import(oElementDOM, oNode, bCollapse) {
 
 				if (cElement) {
 					for (sName in cElement.attributes)
-						if (!(sName in oElement.attributes))
+						if (cElement.attributes.hasOwnProperty(sName) && !(sName in oElement.attributes))
 							oElement.attributes[sName]	= cElement.attributes[sName];
 				}
 //->Debug
@@ -295,40 +295,42 @@ function fAML_register(oNode) {
 
 			// Global attributes module
 			for (var sName in oNode.attributes) {
-				var aAttribute	= sName.split(':'),
-					sLocalName	= aAttribute.pop(),
-					sPrefix		= aAttribute.pop(),
-					sNameSpaceURI;
+				if (oNode.attributes.hasOwnProperty(sName)) {
+					var aAttribute	= sName.split(':'),
+						sLocalName	= aAttribute.pop(),
+						sPrefix		= aAttribute.pop(),
+						sNameSpaceURI;
 
-				if (sName != "xmlns" && sPrefix && sPrefix != "xmlns" && (sNameSpaceURI = fAMLNode_lookupNamespaceURI(oNode, sPrefix))) {
-					var oNamespace	= oAML_namespaces[sNameSpaceURI],
-						cAttribute	= oNamespace ? oNamespace.attributes[sLocalName] : null;
+					if (sName != "xmlns" && sPrefix && sPrefix != "xmlns" && (sNameSpaceURI = fAMLNode_lookupNamespaceURI(oNode, sPrefix))) {
+						var oNamespace	= oAML_namespaces[sNameSpaceURI],
+							cAttribute	= oNamespace ? oNamespace.attributes[sLocalName] : null;
 
-					if (cAttribute)	{
-						// oAttribute used to create fake object
-						var oAttribute	= new cAttribute;
-						oAttribute.ownerElement	= oNode;
-						oAttribute.name			=
-						oAttribute.nodeName		= sName;
-						oAttribute.value		=
-						oAttribute.nodeValue	= oNode.attributes[sName];
-						oAttribute.localName	= sLocalName;
-						oAttribute.prefix		= sPrefix;
-						oAttribute.namespaceURI	= sNameSpaceURI;
+						if (cAttribute)	{
+							// oAttribute used to create fake object
+							var oAttribute	= new cAttribute;
+							oAttribute.ownerElement	= oNode;
+							oAttribute.name			=
+							oAttribute.nodeName		= sName;
+							oAttribute.value		=
+							oAttribute.nodeValue	= oNode.attributes[sName];
+							oAttribute.localName	= sLocalName;
+							oAttribute.prefix		= sPrefix;
+							oAttribute.namespaceURI	= sNameSpaceURI;
 
-						// Fire Mutation event (pseudo)
-						oEvent = new cAMLMutationEvent;
-						oEvent.initMutationEvent("DOMNodeInsertedIntoDocument", false, false, null, null, null, null, null);
-						oEvent.target	=
-						oEvent.currentTarget	= oAttribute;
-						oEvent.eventPhase		= cAMLEvent.AT_TARGET;
-						fAMLNode_handleEvent(oAttribute, oEvent);
-					}
+							// Fire Mutation event (pseudo)
+							oEvent = new cAMLMutationEvent;
+							oEvent.initMutationEvent("DOMNodeInsertedIntoDocument", false, false, null, null, null, null, null);
+							oEvent.target	=
+							oEvent.currentTarget	= oAttribute;
+							oEvent.eventPhase		= cAMLEvent.AT_TARGET;
+							fAMLNode_handleEvent(oAttribute, oEvent);
+						}
 //->Debug
-					else
-					if (oNamespace)
-						fAML_warn(nAML_UNKNOWN_ATTRIBUTE_NS_WRN, [sLocalName, sNameSpaceURI]);
+						else
+						if (oNamespace)
+							fAML_warn(nAML_UNKNOWN_ATTRIBUTE_NS_WRN, [sLocalName, sNameSpaceURI]);
 //<-Debug
+					}
 				}
 			}
     	}
@@ -471,10 +473,11 @@ function fAML_processScripts() {
 	function fAML_hashToString(oHash) {
 		var aAttributes	= [], sAttribute;
 		for (sAttribute in oNamespaces)
-			if (!(sAttribute in oHash))
+			if (oNamespaces.hasOwnProperty(sAttribute) && !(sAttribute in oHash))
 				oHash[sAttribute]	= oNamespaces[sAttribute];
 		for (sAttribute in oHash)
-			aAttributes.push(' ' + sAttribute + '="' + oHash[sAttribute] + '"');
+			if (oHash.hasOwnProperty(sAttribute))
+				aAttributes.push(' ' + sAttribute + '="' + oHash[sAttribute] + '"');
 		return aAttributes.join('');
 	};
 
@@ -557,7 +560,7 @@ function fAML_processScripts() {
 		    	}
 		    	else {
 		    		for (var sName in oAttributes)
-		    			if (sName.substr(0, 2) == "on" || sName == "src")
+		    			if (oAttributes.hasOwnProperty(sName) && (sName.substr(0, 2) == "on" || sName == "src"))
 		    				delete oAttributes[sName];
 					// duplicate id problem
 		    		if (!bReferenced && !oAttributes["id"])

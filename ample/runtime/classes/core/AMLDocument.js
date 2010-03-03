@@ -201,7 +201,8 @@ function fAMLDocument_createElementNS(oDocument, sNameSpaceURI, sQName)
 	if (cElement) {
 	    // Set default attributes, if defined
 		for (sName in cElement.attributes)
-			oElement.attributes[sName]	= cElement.attributes[sName];
+			if (cElement.attributes.hasOwnProperty(sName))
+				oElement.attributes[sName]	= cElement.attributes[sName];
 	}
 	else {
 		// Set namespaceURI for unknown elements manually
@@ -299,8 +300,9 @@ cAMLDocument.prototype.getElementsByTagName	= function(sTagName)
     var aElements   = new cAMLNodeList,
     	bTagName	= '*' == sTagName;
 	for (var sKey in oAML_all)
-        if (bTagName || sTagName == oAML_all[sKey].tagName)
-            aElements.$add(oAML_all[sKey]);
+		if (oAML_all.hasOwnProperty(sKey))
+			if (bTagName || sTagName == oAML_all[sKey].tagName)
+				aElements.$add(oAML_all[sKey]);
     return aElements;
 };
 
@@ -316,9 +318,10 @@ cAMLDocument.prototype.getElementsByTagNameNS	= function(sNameSpaceURI, sLocalNa
     	bLocalName		= '*' == sLocalName,
     	bNameSpaceURI	= '*' == sNameSpaceURI;
     for (var sKey in oAML_all)
-        if (bNameSpaceURI || sNameSpaceURI == oAML_all[sKey].namespaceURI)
-        	if (bLocalName || sLocalName == oAML_all[sKey].localName)
-            	aElements.$add(oAML_all[sKey]);
+    	if (oAML_all.hasOwnProperty(sKey) && oAML_all.hasOwnProperty(sKey))
+	        if (bNameSpaceURI || sNameSpaceURI == oAML_all[sKey].namespaceURI)
+	        	if (bLocalName || sLocalName == oAML_all[sKey].localName)
+	            	aElements.$add(oAML_all[sKey]);
     return aElements;
 };
 
@@ -363,7 +366,7 @@ cAMLDocument.prototype.getElementsByAttribute	= function(sName, sValue)
     var aElements   = new cAMLNodeList,
     	bValue		= '*' == sValue;
     for (var sKey in oAML_all)
-        if (oAML_all[sKey].hasAttribute(sName))
+        if (oAML_all.hasOwnProperty(sKey) && oAML_all[sKey].hasAttribute(sName))
         	if (bValue || sValue == oAML_all[sKey].getAttribute(sName))
             	aElements.$add(oAML_all[sKey]);
     return aElements;
@@ -381,7 +384,7 @@ cAMLDocument.prototype.getElementsByAttributeNS	= function(sNameSpaceURI, sLocal
     var aElements   = new cAMLNodeList,
     	bValue		= '*' == sValue;
     for (var sKey in oAML_all)
-        if (oAML_all[sKey].hasAttributeNS(sNameSpaceURI, sLocalName))
+        if (oAML_all.hasOwnProperty(sKey) && oAML_all[sKey].hasAttributeNS(sNameSpaceURI, sLocalName))
         	if (bValue || sValue == oAML_all[sKey].getAttributeNS(sNameSpaceURI, sLocalName))
             	aElements.$add(oAML_all[sKey]);
     return aElements;

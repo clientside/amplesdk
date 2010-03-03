@@ -36,7 +36,7 @@ cXHTMLElement.mapAttribute	= function(oElement, sName, sValue) {
 cXHTMLElement.prototype.$getTagOpen	= function() {
 	var sHtml   = '<' + this.localName;
 	for (var sName in this.attributes)
-		if (sName != "class" && sName != "id" && sName.indexOf(':') ==-1)
+		if (this.attributes.hasOwnProperty(sName) && sName != "class" && sName != "id" && sName.indexOf(':') ==-1)
 			sHtml  += ' ' + sName + '="' + this.getAttribute(sName).replace(/"/g, '\"') + '"';
 	sHtml	+= ' class="' + (this.prefix ? this.prefix + '-' : '') + this.localName + ("class" in this.attributes ? ' ' + this.attributes["class"] : '') + '"';
     return sHtml + '>';

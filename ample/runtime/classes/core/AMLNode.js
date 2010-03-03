@@ -245,9 +245,8 @@ cAMLNode.prototype.lookupPrefix	= function(sNameSpaceURI)
 			return oNode.prefix;
 		else
 		if (oNode.nodeType == cAMLNode.ELEMENT_NODE)
-		{
 			for (var sAttribute in oNode.attributes)
-				if (sAttribute.indexOf("xmlns" + ':') == 0)
+				if (oNode.attributes.hasOwnProperty(sAttribute) && sAttribute.indexOf("xmlns" + ':') == 0)
 				{
 					sPrefix	= sAttribute.substr(6);
 					if (oNode.attributes[sAttribute] == sNameSpaceURI)
@@ -255,7 +254,6 @@ cAMLNode.prototype.lookupPrefix	= function(sNameSpaceURI)
 					else
 						aPrefixes[sPrefix]	= true;
 				}
-		}
 	}
 	return null;
 };
@@ -279,7 +277,7 @@ function fAMLNode_lookupNamespaceURI(oNode, sPrefix)
 		else
 		if (oNode.nodeType == cAMLNode.ELEMENT_NODE)
 			for (var sAttribute in oNode.attributes)
-				if (sAttribute.indexOf("xmlns" + ':') == 0 && sAttribute.substr(6) == sPrefix)
+				if (oNode.attributes.hasOwnProperty(sAttribute) && sAttribute.indexOf("xmlns" + ':') == 0 && sAttribute.substr(6) == sPrefix)
 					return oNode.attributes[sAttribute];
 	return null;
 };
@@ -523,8 +521,9 @@ function fAMLNode_handleEvent(oNode, oEvent) {
 cAMLNode.prototype.hasAttributes	= function()
 {
 	if (this.attributes)
-		for (var sKey in this.attributes)
-			return true;
+		for (var sAttribute in this.attributes)
+			if (this.attributes.hasOwnProperty(sAttribute))
+				return true;
 	return false;
 };
 

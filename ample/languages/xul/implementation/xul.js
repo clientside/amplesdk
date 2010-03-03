@@ -25,7 +25,8 @@ ample.addEventListener("load",		function(oEvent) {
 			case "broadcaster":	// broadcast
 			case "command":		// resend commands
 				for (var sName in oElement.attributes)
-					oElement.setAttribute(sName, oElement.attributes[sName]);
+					if (oElement.attributes.hasOwnProperty(sName))
+						oElement.setAttribute(sName, oElement.attributes[sName]);
 				break;
 		}
 	}

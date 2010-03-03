@@ -164,23 +164,25 @@ function fAMLFocus_onKeyDown(oEvent) {
 				oElement;
 
 			for (var sInstance in oAML_all) {
-				oElement	= oAML_all[sInstance];
-				if (oElement.tabIndex >= 0 && oElement.accessKey && oElement.accessKey.toUpperCase() == sKey) {
-					if (oElement && oElement.$isAccessible() && fAMLFocus_isVisible(oElement)) {
+				if (oAML_all.hasOwnProperty(sInstance)) {
+					oElement	= oAML_all[sInstance];
+					if (oElement.tabIndex >= 0 && oElement.accessKey && oElement.accessKey.toUpperCase() == sKey) {
+						if (oElement && oElement.$isAccessible() && fAMLFocus_isVisible(oElement)) {
 // What is this for?
 //						if (oElement.$getContainer().accessKey != sKey)
 //							oElement.$getContainer().accessKey	= sKey;
 
-						// Invoke focus on component
-						fAMLFocus_focus(oElement);
+							// Invoke focus on component
+							fAMLFocus_focus(oElement);
 
-						// Prevent browser default action
-						oEvent.preventDefault();
+							// Prevent browser default action
+							oEvent.preventDefault();
 
-						// Activate element
+							// Activate element
 //							oElement.$activate();
+						}
+						break;
 					}
-					break;
 				}
 			}
 		}

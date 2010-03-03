@@ -279,7 +279,8 @@ if (!cChartElement.useVML) {
 							(function() {
 								var aCountries	= [];
 								for (var sCountry in cChartElement_map.countries)
-									aCountries.push('<svg:path class="c-item--underlay" d="' + cChartElement_map.countries[sCountry][1] + '" />');
+									if (cChartElement_map.countries.hasOwnProperty(sCountry))
+										aCountries.push('<svg:path class="c-item--underlay" d="' + cChartElement_map.countries[sCountry][1] + '" />');
 								return aCountries.join('');
 							})() + '\
 						</svg:g>\
@@ -344,7 +345,8 @@ else {
 						(function() {
 							var aCountries	= [];
 							for (var sCountry in cChartElement_map.countries)
-								aCountries.push('<chart2vml:shape class="c-item--underlay" path="' + cChartElement.convert(cChartElement_map.countries[sCountry][1][0]) + '" style="position:absolute;width:100%;height:100%;" />');
+								if (cChartElement_map.countries.hasOwnProperty(sCountry))
+									aCountries.push('<chart2vml:shape class="c-item--underlay" path="' + cChartElement.convert(cChartElement_map.countries[sCountry][1][0]) + '" style="position:absolute;width:100%;height:100%;" />');
 							return aCountries.join('');
 						})() + '\
 						</chart2vml:group>\

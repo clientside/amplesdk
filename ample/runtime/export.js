@@ -19,7 +19,7 @@ fAMLExporter_toString.toString	= fAMLExporter_toString;
 function fAMLExporter_wrap(vObject, sName) {
 	fAMLExporter_wrapMember(vObject, (vObject instanceof cFunction ? fAMLExporter_toStringFunction : fAMLExporter_toStringObject)(sName));
 	for (sName in vObject)
-		if (vObject[sName] instanceof cFunction)
+		if (vObject.hasOwnProperty(sName) && vObject[sName] instanceof cFunction)
 			fAMLExporter_wrapMember(vObject[sName], fAMLExporter_toStringFunction(sName));
 };
 function fAMLExporter_wrapMember(vObject, fToString) {

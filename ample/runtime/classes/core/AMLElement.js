@@ -151,7 +151,8 @@ cAMLElement.prototype.cloneNode	= function(bDeep)
 
 	// Copy Attributes
 	for (var sName in this.attributes)
-		oElement.attributes[sName]	= this.attributes[sName];
+		if (this.attributes.hasOwnProperty(sName))
+			oElement.attributes[sName]	= this.attributes[sName];
 
 	// Append Children
 	if (bDeep)
@@ -775,7 +776,8 @@ function fAMLElement_onTimeOut(oElement, sUrl, oHeaders, sMethod, sData)
 	oRequest.open(sMethod, sUrl, true);
 	oHeaders["User-Agent"]	=(oHeaders["User-Agent"] || oNavigator.userAgent) + ' ' + '@project.userAgent@';
 	for (var sHeader in oHeaders)
-		oRequest.setRequestHeader(sHeader, oHeaders[sHeader]);
+		if (oHeaders.hasOwnProperty(sHeader))
+			oRequest.setRequestHeader(sHeader, oHeaders[sHeader]);
 	oRequest.send(sData);
 
 	// Save in order to be able to cancel
