@@ -12,7 +12,6 @@ var nAMLElementAnimation_EFFECT_LINEAR		= 1,	// Constants
 	nAMLElementAnimation_EFFECT_DECELERATE	= 3,
 	nAMLElementAnimation_EFFECT_SPRING		= 4,
 	nAMLElementAnimation_EFFECT_BOUNCE		= 5,
-
 	aAMLElementAnimation_effects	= [];				// Variables
 
 function fAMLElementAnimation_play(oElement, sParams, nDuration, vType, fHandler, sPseudo)
@@ -37,11 +36,13 @@ function fAMLElementAnimation_play(oElement, sParams, nDuration, vType, fHandler
 
 	// read start params
 	var oStyle	= fAML_getComputedStyle(oEffect._container),
+		oData,
 		sValue;
 
 	for (var sKey in oEffect._data)
 		if (oEffect._data.hasOwnProperty(sKey))
 		{
+			oData	= oEffect._data[sKey];
 			switch (sKey)
 			{
 				case "opacity":
@@ -55,8 +56,8 @@ function fAMLElementAnimation_play(oElement, sParams, nDuration, vType, fHandler
 						sValue	= oStyle.opacity || 1;
 					else
 						sValue	= 1;
-					oEffect._data[sKey][1]	= fParseFloat(oEffect._data[sKey][1]);
-					oEffect._data[sKey][0]	= fParseFloat(sValue);
+					oData[1]	= fParseFloat(oData[1]);
+					oData[0]	= fParseFloat(sValue);
 					break;
 
 				case "color":
@@ -69,18 +70,18 @@ function fAMLElementAnimation_play(oElement, sParams, nDuration, vType, fHandler
 					else
 					if (sValue.match(/rgb\(([0-9]+),\s*([0-9]+),\s*([0-9]+)\)/))
 						sValue	= [cRegExp.$1 * 1, cRegExp.$2 * 1, cRegExp.$3 * 1];
-					oEffect._data[sKey][0]	= sValue;
+					oData[0]	= sValue;
 					// End value
-					sValue	= oEffect._data[sKey][1].replace('#', '');
+					sValue	= oData[1].replace('#', '');
 					if (sValue.match(/[0-9a-f]{6}/i))
 						sValue	= [fAMLElementAnimation_fromHex(sValue.substr(0, 2)), fAMLElementAnimation_fromHex(sValue.substr(2, 2)), fAMLElementAnimation_fromHex(sValue.substr(4, 2))];
-					oEffect._data[sKey][1]	= sValue;
+					oData[1]	= sValue;
 					break;
 
 				default:
-					oEffect._data[sKey][0]	= oStyle[sKey] == "auto" ? 0 : fParseFloat(oStyle[sKey]) || 0;
-					oEffect._data[sKey][1]	= oEffect._data[sKey][1] == "auto" ? 0 : fParseFloat(oEffect._data[sKey][1]) || 0;
-					oEffect._data[sKey][2]	= oEffect._data[sKey][2] || '';
+					oData[0]	= oStyle[sKey] == "auto" ? 0 : fParseFloat(oStyle[sKey]) || 0;
+					oData[1]	= oData[1] == "auto" ? 0 : fParseFloat(oData[1]) || 0;
+					oData[2]	= oData[2] || '';
 			}
 		}
 
@@ -105,27 +106,29 @@ function fAMLElementAnimation_stop(nEffect)
 	if (!oEffect)
 		return;
 
-	var oStyle	= oEffect._container.style;
+	var oStyle	= oEffect._container.style,
+		oData;
 	for (var sKey in oEffect._data)
 		if (oEffect._data.hasOwnProperty(sKey))
 		{
+			oData	= oEffect._data[sKey];
 			switch (sKey)
 			{
 				case "opacity":
-					oStyle.MozOpacity	= oEffect._data[sKey][1];
-					oStyle.opacity		= oEffect._data[sKey][1];
+					oStyle.MozOpacity	= oData[1];
+					oStyle.opacity		= oData[1];
 					if (bTrident)// && nVersion < 8)
-						oStyle.filter		= "Alpha" + '(' + "opacity" + '=' + cMath.round(oEffect._data[sKey][1] * 100) + ')';
+						oStyle.filter		= "Alpha" + '(' + "opacity" + '=' + cMath.round(oData[1] * 100) + ')';
 					break;
 
 				case "color":
 				case "backgroundColor":
 				case "borderColor":
-					oStyle[sKey]	= '#' + fAMLElementAnimation_toHex(oEffect._data[sKey][1][0]) + fAMLElementAnimation_toHex(oEffect._data[sKey][1][1]) + fAMLElementAnimation_toHex(oEffect._data[sKey][1][2]);
+					oStyle[sKey]	= '#' + fAMLElementAnimation_toHex(oData[1][0]) + fAMLElementAnimation_toHex(oData[1][1]) + fAMLElementAnimation_toHex(oData[1][2]);
 					break;
 
 				default:
-					oStyle[sKey]	= oEffect._data[sKey][1] + oEffect._data[sKey][2];
+					oStyle[sKey]	= oData[1] + oData[2];
 			}
 		}
 
@@ -189,14 +192,16 @@ function fAMLElementAnimation_process(nEffect)
 
 	//
 	var oStyle	= oEffect._container.style,
+		oData,
 		sValue;
 	for (var sKey in oEffect._data)
 		if (oEffect._data.hasOwnProperty(sKey))
 		{
+			oData	= oEffect._data[sKey];
 			switch (sKey)
 			{
 				case "opacity":
-					sValue	= oEffect._data[sKey][0] + (oEffect._data[sKey][1] - oEffect._data[sKey][0]) * nRatio;
+					sValue	= oData[0] + (oData[1] - oData[0]) * nRatio;
 					oStyle.MozOpacity	= sValue;
 					oStyle.opacity		= sValue;
 					if (bTrident)// && nVersion < 8)
@@ -206,12 +211,12 @@ function fAMLElementAnimation_process(nEffect)
 				case "color":
 				case "backgroundColor":
 				case "borderColor":
-					oStyle[sKey]		= '#' + fAMLElementAnimation_toHex(oEffect._data[sKey][0][0] + (oEffect._data[sKey][1][0] - oEffect._data[sKey][0][0]) * nRatio) + fAMLElementAnimation_toHex(oEffect._data[sKey][0][1] + (oEffect._data[sKey][1][1] - oEffect._data[sKey][0][1]) * nRatio) + fAMLElementAnimation_toHex(oEffect._data[sKey][0][2] + (oEffect._data[sKey][1][2] - oEffect._data[sKey][0][2]) * nRatio);
+					oStyle[sKey]		= '#' + fAMLElementAnimation_toHex(oData[0][0] + (oData[1][0] - oData[0][0]) * nRatio) + fAMLElementAnimation_toHex(oData[0][1] + (oData[1][1] - oData[0][1]) * nRatio) + fAMLElementAnimation_toHex(oData[0][2] + (oData[1][2] - oData[0][2]) * nRatio);
 					break;
 
 				default:
-					sValue	= oEffect._data[sKey][0] + (oEffect._data[sKey][1] - oEffect._data[sKey][0]) * nRatio;
-					oStyle[sKey]		= sValue + oEffect._data[sKey][2];
+					sValue	= oData[0] + (oData[1] - oData[0]) * nRatio;
+					oStyle[sKey]		= sValue + oData[2];
 			}
 		}
 };
