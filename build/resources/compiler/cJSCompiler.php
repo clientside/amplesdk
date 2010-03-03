@@ -264,18 +264,20 @@
 
 			// create JS wrapper
 			$sData	= 	"(function({$m},{$u},{$n},{$g},{$e},{$d}){";
-							// decode js keywords
-			$sData	.=		"for({$g}={$u}[{$d}[$nWlength]]-1;{$g}>=0;{$g}--)".
-	        					"{$n}+={$e}[{$d}[$nWString]][{$d}[$nWfromCharCode]]({$u}[{$d}[$nWcharCodeAt]]({$g})-$nShift);";
 			if (true) {
-							// restore js source
+				// decode js keywords
+				$sData.=	"for({$g}={$u}[{$d}[$nWlength]]-1;{$g}>=0;{$g}--)".
+	        					"{$n}+={$e}[{$d}[$nWString]][{$d}[$nWfromCharCode]]({$u}[{$d}[$nWcharCodeAt]]({$g})-$nShift);";
+				// restore js source
 	        	$sData.=	"{$u}={$n}[{$d}[$nWsplit]](' ');".
 							"for({$g}={$u}[{$d}[$nWlength]]-1;{$g}>=0;{$g}--)".
-								"{$m}={$m}[{$d}[$nWreplace]]({$e}[{$d}[$nWRegExp]]({$g}%10+({$e}[{$d}[$nWString]][{$d}[$nWfromCharCode]](122-{$e}[{$d}[$nWMath]][{$d}[$nWfloor]]({$g}/10))),'g'),{$u}[{$g}]);".
-							// execute restored source
-							"{$e}[{$d}[$nWFunction]]('_',{$m})({$d})";
+								"{$m}={$m}[{$d}[$nWreplace]]({$e}[{$d}[$nWRegExp]]({$g}%10+({$e}[{$d}[$nWString]][{$d}[$nWfromCharCode]](122-{$e}[{$d}[$nWMath]][{$d}[$nWfloor]]({$g}/10))),'g'),{$u}[{$g}]);";
 			}
-			$sData	.=		"})(".
+
+			// execute source
+			$sData	.=		"{$e}[{$d}[$nWFunction]]('_',{$m})({$d})";
+
+			$sData	.=	"})(".
 							"\"" . str_replace("\'", "'", addslashes($output)) . "\"," .
 							"\"" . addslashes($sKeyWords) ."\",".
 							"''," .
