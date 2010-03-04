@@ -246,7 +246,7 @@ cXULElement.getBoxOpen	= function(oElement)
     if (oElement.attributes["orient"] == "vertical")
     {
         // Set width
-        if (oElement.attributes["width"])
+        if (oElement.attributes["width"] && oElement.localName != "window" && oElement.localName != "dialog")
 			aHtml[aHtml.length]	= ' width="' + oElement.attributes["width"] + '"';
         else
         if (!oElement.attributes["align"] || oElement.attributes["align"] == "stretch")
@@ -259,7 +259,7 @@ cXULElement.getBoxOpen	= function(oElement)
     else
     {
         // Set height
-        if (oElement.attributes["height"])
+        if (oElement.attributes["height"] && oElement.localName != "window" && oElement.localName != "dialog")
 			aHtml[aHtml.length]	= ' height="' + oElement.attributes["height"] + '"';
         else
         if (!oElement.attributes["align"] || oElement.attributes["align"] == "stretch")
