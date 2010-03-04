@@ -93,29 +93,31 @@ cXULElement_toolbarbutton.handlers	= {
 		if (!this.$isAccessible())
 			return;
 
-		if (this.getAttribute("type") == "menu-button") {
-			// If click happend on "arrow" button
-			if (oEvent.$pseudoTarget == this.$getContainer("arrow")) {
-			    if (this.getAttribute("open") == "true")
-			        this.setAttribute("open", "false");
-			    else {
-			        this.setAttribute("open", "true");
-				   	this.$setPseudoClass("active", true);
-			    }
+		if (oEvent.button == 0) {
+			if (this.getAttribute("type") == "menu-button") {
+				// If click happend on "arrow" button
+				if (oEvent.$pseudoTarget == this.$getContainer("arrow")) {
+				    if (this.getAttribute("open") == "true")
+				        this.setAttribute("open", "false");
+				    else {
+				        this.setAttribute("open", "true");
+					   	this.$setPseudoClass("active", true);
+				    }
+				}
+				else
+		        if (this.getAttribute("open") == "true")
+		            return;
 			}
 			else
-	        if (this.getAttribute("open") == "true")
-	            return;
+		    if (this.getAttribute("type") == "menu") {
+		    	if (this.getAttribute("open") != "true")
+	            	this.setAttribute("open", "true");
+	            else
+	            	return;
+		    }
+			//
+		   	this.$setPseudoClass("active", true);
 		}
-		else
-	    if (this.getAttribute("type") == "menu") {
-	    	if (this.getAttribute("open") != "true")
-            	this.setAttribute("open", "true");
-            else
-            	return;
-	    }
-		//
-	   	this.$setPseudoClass("active", true);
 	}
 };
 
