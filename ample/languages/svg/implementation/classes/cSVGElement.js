@@ -288,6 +288,8 @@ if (cSVGElement.useVML) {
 				if (sValue == null || sValue == "")
 					sValue	= 1;
 				sValue	=(cSVGElement.getStyle(oElement, "opacity") || 1) * sValue;
+				if (sValue > 1)
+					sValue	= 1;
 				if (oElementDOM.fill.opacity != sValue)
 					oElementDOM.fill.opacity	= sValue;
 				break;
@@ -314,6 +316,8 @@ if (cSVGElement.useVML) {
 					if (nStrokeWidth < 1 && !(oElement instanceof cSVGElement_text || oElement instanceof cSVGElement_tspan || oElement instanceof cSVGElement_textPath))
 						sValue	= sValue * nStrokeWidth;
 				}
+				if (sValue > 1)
+					sValue	= 1;
 				if (oElementDOM.stroke.opacity != sValue)
 					oElementDOM.stroke.opacity	= sValue;
 				break;
@@ -573,6 +577,11 @@ if (cSVGElement.useVML) {
 				nStrokeOpacity	= nStrokeOpacity * nStrokeWidth;
 			sStrokeWidth	= nStrokeWidth + (aStrokeWidth[2] || "px");
 		}
+
+		if (nFillOpacity > 1)
+			nFillOpacity	= 1;
+		if (nStrokeOpacity > 1)
+			nStrokeOpacity	= 1;
 
 		return '<svg2vml:fill on="' + (sFill == "none" ? "false" : "true") + '" color="' + (sFill in oSVGElement_colors ? 'rgb(' + oSVGElement_colors[sFill] + ')' : cSVGElement.correctColor(sFill) || 'black') + '"\
 					' + (nFillOpacity != 1 ? ' opacity="' + nFillOpacity + '"' : '') + '\
