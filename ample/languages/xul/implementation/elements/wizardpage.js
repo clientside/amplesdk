@@ -14,6 +14,9 @@ cXULElement_wizardpage.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
 // Attributes Defaults
 cXULElement_wizardpage.attributes	= {};
 cXULElement_wizardpage.attributes.hidden	= "true";
+cXULElement_wizardpage.attributes.orient	= "vertical";
+cXULElement_wizardpage.attributes.width		= "100%";
+cXULElement_wizardpage.attributes.height	= "100%";
 
 // Public Methods
 cXULElement_wizardpage.prototype.setAttribute	= function(sName, sValue)
@@ -49,10 +52,22 @@ cXULElement_wizardpage.prototype._fireEventOnPage    = function(sName)
     return this.dispatchEvent(oEvent);
 };
 
+cXULElement_wizardpage.handlers	= {
+	"DOMNodeInsertedIntoDocument":	function(oEvent) {
+		this.parentNode.wizardPages.$add(this);
+		//
+		if (this.parentNode.attributes["pagestep"] == this.parentNode.childNodes.$indexOf(this) || this.parentNode.attributes["firstpage"] == this.attributes["pageid"])
+			this.parentNode.goTo(this.attributes["pageid"]);
+	},
+	"DOMNodeRemovedFromDocument":	function(oEvent) {
+		this.parentNode.wizardPages.$remove(this);
+	}
+}
+
 // Element Render: open
 cXULElement_wizardpage.prototype.$getTagOpen	= function()
 {
-    return '<div class="xul-wizardpage"' +(this.attributes["hidden"] == "true" ? ' style="display:none"' : '')+ '>';
+    return '<div class="xul-wizardpage" style="' +(this.attributes["hidden"] == "true" ? 'display:none;' : '')+ 'height:100%">';
 };
 
 // Element Render: close

@@ -38,36 +38,28 @@ cXULElement_window.handlers	= {
 // Element Renders
 cXULElement_window.prototype.$getTagOpen	= function()
 {
-	return '<table class="xul-window'+(this.attributes["class"] ? " " + this.attributes["class"] : "") + '" cellpadding="0" cellspacing="0" border="0"' +
-				(this.attributes["width"] ? ' width="' + this.attributes["width"] + '"' : '') +
-				(this.attributes["height"] ? ' height="' + this.attributes["height"] + '"' : '') +
-				(this.attributes["hidden"] == "true" ? ' style="display:none;"' : '') + '>\
-				<thead ' +(this.attributes["hidechrome"] == "true" ? ' style="display:none"': '')+ '>\
-					<tr>\
-						<th class="xul-window--head" height="1">\
-							<table cellpadding="0" cellspacing="0" border="0" width="100%">\
-								<tbody>\
-									<tr>\
-										<td class="xul-window--title">' +(this.attributes["title"] ? this.attributes["title"] : " ")+ '</td>\
-										<td width="1"><div class="xul-window--button-close xul-window--button-close_normal" onclick="ample.$instance(this).setAttribute(\'hidden\', \'true\')" onmouseover="this.className=this.className.replace(\'normal\', \'hover\')" onmouseout="this.className=this.className.replace(/hover|active/, \'normal\')" onmousedown="this.className=this.className.replace(\'hover\', \'active\')" onmouseup="this.className=this.className.replace(\'active\', \'normal\')"><br /></div></td>\
-									</tr>\
-								</tbody>\
-							</table>\
-						</th>\
-					</tr>\
-				</thead>\
-				<tbody>\
-					<tr>\
-						<td class="xul-window--body" height="100%">';
+	return '<div class="xul-window'+(this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="' +
+				(this.attributes["width"] ? 'width:' + this.attributes["width"] + 'px;' : '') +
+				(this.attributes["height"] ? 'height:' + this.attributes["height"] + 'px;' : '') +
+				(this.attributes["hidden"] == "true" ? 'display:none;' : '') + '">\
+				<div class="xul-window--head" ' +(this.attributes["hidechrome"] == "true" ? ' style="display:none"': '')+ '>\
+					<table cellpadding="0" cellspacing="0" border="0" width="100%" height="20">\
+						<tbody>\
+							<tr>\
+								<td class="xul-window--title">' +(this.attributes["title"] ? this.attributes["title"] : " ")+ '</td>\
+								<td width="1"><div class="xul-window--button-close xul-window--button-close_normal" onclick="ample.$instance(this).setAttribute(\'hidden\', \'true\')" onmouseover="this.className=this.className.replace(\'normal\', \'hover\')" onmouseout="this.className=this.className.replace(/hover|active/, \'normal\')" onmousedown="this.className=this.className.replace(\'hover\', \'active\')" onmouseup="this.className=this.className.replace(\'active\', \'normal\')"><br /></div></td>\
+							</tr>\
+						</tbody>\
+					</table>\
+				</div>\
+				<div class="xul-window--body xul-window--gateway">';
 };
 
 // Element Render: close
 cXULElement_window.prototype.$getTagClose	= function()
 {
-	return 				'</td>\
-					</tr>\
-				</tbody>\
-			</table>';
+	return '	</div>\
+			</div>';
 };
 
 // Register Element with language

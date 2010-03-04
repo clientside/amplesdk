@@ -1,20 +1,27 @@
-xul|page,
 xul|dialog,
 xul|wizard,
 xul|window {
-	position: absolute;
+	position:	absolute;
+	width: 400px;
+	height:300px;
+	min-width:	150px;
 	background-color: Window;/*#ECE9D8;*/
+	border: 1px #7F9DB9 outset;
+	padding-top:	20px;
 }
 
-xul|dialog,
 xul|wizard,
-xul|window {
-	border: 1px #7F9DB9 outset;
+xul|dialog {
+	height: 200px;
+	min-width:	250px;
+	padding-bottom: 100px;
 }
 
 xul|dialog::head,
 xul|wizard::head,
 xul|window::head {
+	height:	20px;
+	margin-top:	-20px;
 	cursor: default;
 	background-color:	#0033CC;
 }
@@ -22,20 +29,15 @@ xul|window::head {
 xul|dialog::body,
 xul|window::body,
 xul|wizard::body {
-    border-top: solid 1px #ffffff;
-	border-bottom:	solid 1px #aca899;
-}
-
-xul|wizard::body {
-	padding: 10px;
-	padding-left: 28px;
-	padding-right: 28px;
+	overflow:	hidden;
+	height:	100%;
 }
 
 xul|wizard::foot,
 xul|dialog::foot {
-	height: 40px;
-    border-top: solid 1px #ffffff;
+	width: 100%;
+	height: 39px;
+	border-top:	solid 1px gray;
 }
 
 xul|dialog::button-accept,
@@ -79,10 +81,10 @@ xul|window::button-close:active {
 
 xul|dialogheader,
 xul|wizardheader {
-	height: 60px;
+	position:relative;
+	width: 100%;
+	height: 59px;
 	border-bottom:	solid 1px #aca899;
-	background-color: #fff;
-	padding: 8px;
 	cursor: default !important;
 }
 

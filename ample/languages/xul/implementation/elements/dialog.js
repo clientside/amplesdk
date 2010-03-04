@@ -9,6 +9,7 @@
 
 var cXULElement_dialog	= function(){};
 cXULElement_dialog.prototype	= new cXULElement;
+cXULElement_dialog.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
 cXULElement_dialog.prototype.$draggable	= true;
 cXULElement_dialog.prototype.$resizable	= true;
 
@@ -114,53 +115,53 @@ cXULElement_dialog.handlers	= {
 //cXULElement_dialog.handlers.resizestart	= cXULElement_dialog.handlers.dragstart;
 //cXULElement_dialog.handlers.resizedragend	= cXULElement_dialog.handlers.dragend;
 
+cXULElement_dialog.recalc	= function(oElement) {return;
+	if (!navigator.userAgent.match(/MSIE ([\d]+)/) || RegExp.$1 > 7)
+		return;
+	var oSelf	= oElement.$getContainer(),
+		oHead	= oElement.$getContainer("head"),
+		oBody	= oElement.$getContainer("body"),
+		oFoot	= oElement.$getContainer("foot"),
+		nHeight	= parseInt(oSelf.currentStyle.height) - parseInt(oHead.currentStyle.height) - parseInt(oFoot.currentStyle.height) - 6;
+	oBody.style.height	= (nHeight > 0 ? nHeight : parseInt(oHead.currentStyle.height)) + "px";
+};
+
 // Element Renders
 cXULElement_dialog.prototype.$getTagOpen	= function()
 {
-	return '<table class="xul-dialog'+(this.attributes["class"] ? " " + this.attributes["class"] : "") + '" cellpadding="0" cellspacing="0" border="0"' +
-				(this.attributes["width"] ? ' width="' + this.attributes["width"] + '"' : '') +
-				(this.attributes["height"] ? ' height="' + this.attributes["height"] + '"' : '') +
-				(this.attributes["hidden"] == "true" ? ' style="display:none;"' : '') + '>\
-				<thead ' +(this.attributes["hidechrome"] == "true" ? ' style="display:none"': '')+ '>\
-					<tr>\
-						<th class="xul-dialog--head" height="1">\
-							<table cellpadding="0" cellspacing="0" border="0" width="100%">\
-								<tbody>\
-									<tr>\
-										<td class="xul-dialog--title">' +(this.attributes["title"] || " ")+ '</td>\
-									</tr>\
-								</tbody>\
-							</table>\
-						</th>\
-					</tr>\
-				</thead>\
-				<tbody>\
-					<tr>\
-						<td class="xul-dialog--body">';
+	return '<div class="xul-dialog'+(this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="' +
+				(this.attributes["width"] ? 'width:' + this.attributes["width"] + 'px;' : '') +
+				(this.attributes["height"] ? 'height:' + this.attributes["height"] + 'px;' : '') +
+				(this.attributes["hidden"] == "true" ? 'display:none;' : '') + '">\
+				<div class="xul-dialog--head" ' +(this.attributes["hidechrome"] == "true" ? ' style="display:none"': '')+ '>\
+					<table cellpadding="0" cellspacing="0" border="0" width="100%">\
+						<tbody>\
+							<tr>\
+								<td class="xul-dialog--title">' +(this.attributes["title"] || " ")+ '</td>\
+							</tr>\
+						</tbody>\
+					</table>\
+				</div>\
+				<div class="xul-dialogheader xul-dialog--header" style="display:none"><div class="xul-dialogheader--title xul-dialog--label"></div><div class="xul-dialogheader--description xul-dialog--description"></div></div>\
+				<div class="xul-dialog--body xul-dialog--gateway">';
 };
 
 // Element Render: close
 cXULElement_dialog.prototype.$getTagClose	= function()
 {
-	return 				'</td>\
-					</tr>\
-				</tbody>\
-				<tfoot>\
-					<tr>\
-						<td class="xul-dialog--foot" align="' +(this.attributes["buttonalign"] == "start" ? "left" : this.attributes["buttonalign"] == "center" ? "center" : "right")+ '">\
-							<table cellpadding="0" cellspacing="0" border="0" width="100%">\
-								<tbody>\
-									<tr>\
-										<td width="100%"><button class="xul-dialog--button-help" style="' +(this.attributes["buttons"].indexOf("help") ==-1 ? 'display:none;' : '')+ '" onclick="ample.$instance(this)._onButtonClick(event, \'button-help\')">Help</button></td>\
-										<td><button class="xul-dialog--button-accept" style="' +(this.attributes["buttons"].indexOf("accept") ==-1 ? 'display:none;' : '')+ '" onclick="ample.$instance(this)._onButtonClick(event, \'button-accept\')">OK</button></td>\
-										<td><button class="xul-dialog--button-cancel" style="' +(this.attributes["buttons"].indexOf("cancel") ==-1 ? 'display:none;' : '')+ '" onclick="ample.$instance(this)._onButtonClick(event, \'button-cancel\')">Cancel</button></td>\
-									</tr>\
-								</tbody>\
-							</table>\
-						</td>\
-					</tr>\
-				</tfoot>\
-			</table>';
+	return '	</div>\
+				<div class="xul-dialog--foot">\
+					<table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%" align="' +(this.attributes["buttonalign"] == "start" ? "left" : this.attributes["buttonalign"] == "center" ? "center" : "right")+ '">\
+						<tbody>\
+							<tr>\
+								<td width="100%"><button class="xul-dialog--button-help" style="' +(this.attributes["buttons"].indexOf("help") ==-1 ? 'display:none;' : '')+ '" onclick="ample.$instance(this)._onButtonClick(event, \'button-help\')">Help</button></td>\
+								<td><button class="xul-dialog--button-accept" style="' +(this.attributes["buttons"].indexOf("accept") ==-1 ? 'display:none;' : '')+ '" onclick="ample.$instance(this)._onButtonClick(event, \'button-accept\')">OK</button></td>\
+								<td><button class="xul-dialog--button-cancel" style="' +(this.attributes["buttons"].indexOf("cancel") ==-1 ? 'display:none;' : '')+ '" onclick="ample.$instance(this)._onButtonClick(event, \'button-cancel\')">Cancel</button></td>\
+							</tr>\
+						</tbody>\
+					</table>\
+				</div>\
+			</div>';
 };
 
 // Register Element with language

@@ -182,25 +182,9 @@ cXULElement_wizard.handlers	= {
 		this.$getContainer("body").style.visibility	= "";
 		this.$getContainer("foot").style.visibility	= "";
 	}*/,
-	"DOMNodeInserted":	function(oEvent) {
-		if (oEvent.target.parentNode == this)
-			if (oEvent.target instanceof cXULElement_wizardpage)
-				this.wizardPages.$add(oEvent.target);
-	},
-	"DOMNodeRemoved":	function(oEvent) {
-		if (oEvent.target.parentNode == this)
-			if (oEvent.target instanceof cXULElement_wizardpage)
-				this.wizardPages.$remove(oEvent.target);
-	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
-		if (this.attributes["pagestep"] &&(this.wizardPages.length > this.attributes["pagestep"]))
-			this.goTo(this.wizardPages[this.attributes["pagestep"]].attributes["pageid"]);
-		else
-		if (this.attributes["firstpage"])
-			this.goTo(this.attributes["firstpage"]);
-		else
-		if (this.wizardPages.length)
-			this.goTo(this.wizardPages[0].attributes["pageid"]);
+		if (!this.currentPage && this.firstChild)
+			this.goTo(this.firstChild.attributes["pageid"]);
 	}
 };
 //cXULElement_wizard.handlers.resizestart		= cXULElement_wizard.handlers.dragstart;
@@ -209,49 +193,39 @@ cXULElement_wizard.handlers	= {
 // Element Render: open
 cXULElement_wizard.prototype.$getTagOpen    = function()
 {
-	return '<table class="xul-wizard'+(this.attributes["class"] ? " " + this.attributes["class"] : "") + '" cellpadding="0" cellspacing="0" border="0"' +
-				(this.attributes["width"] ? ' width="' + this.attributes["width"] + '"' : '') +
-				(this.attributes["height"] ? ' height="' + this.attributes["height"] + '"' : '') +
-				(this.attributes["hidden"] == "true" ? ' style="display:none;"' : '') + '>\
-				<thead ' +(this.attributes["hidechrome"] == "true" ? ' style="display:none"': '')+ '>\
-					<tr>\
-						<th class="xul-wizard--head" height="1">\
-							<table cellpadding="0" cellspacing="0" border="0" width="100%">\
-								<tbody>\
-									<tr><td class="xul-wizard--title">' +(this.attributes["title"] ? this.attributes["title"] : " ")+ '</td></tr>\
-								</tbody>\
-							</table>\
-						</th>\
-					</tr>\
-				</thead>\
-				<tbody>\
-				<tr><td class="xul-wizardheader xul-wizard--header" valign="top"><div class="xul-wizardheader--title xul-wizard--label"></div><div class="xul-wizardheader--description xul-wizard--description"></div></td></tr>\
-				<tr><td class="xul-wizard--body" valign="top" height="100%">';
+	return '<div class="xul-wizard'+(this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="' +
+				(this.attributes["width"] ? 'width:' + this.attributes["width"] + 'px;' : '') +
+				(this.attributes["height"] ? 'height:' + (this.attributes["height"] - 100) + 'px;' : '') +
+				(this.attributes["hidden"] == "true" ? 'display:none;' : '') + '">\
+				<div class="xul-wizard--head" ' +(this.attributes["hidechrome"] == "true" ? ' style="display:none"': '')+ '>\
+					<table cellpadding="0" cellspacing="0" border="0" width="100%">\
+						<tbody>\
+							<tr><td class="xul-wizard--title">' +(this.attributes["title"] ? this.attributes["title"] : " ")+ '</td></tr>\
+						</tbody>\
+					</table>\
+				</div>\
+				<div class="xul-wizardheader xul-wizard--header"><div class="xul-wizardheader--title xul-wizard--label"></div><div class="xul-wizardheader--description xul-wizard--description"></div></div>\
+				<div class="xul-wizard--body xul-wizard--gateway">';
 };
 
 // Element Render: close
 cXULElement_wizard.prototype.$getTagClose  = function()
 {
-	return '<br /></td></tr>\
-				</tbody>\
-				<tfoot>\
-					<tr>\
-						<td align="right" class="xul-wizard--foot">\
-							<table cellpadding="0" cellspacing="0" border="0">\
-								<tbody>\
-									<tr>\
-										<td><button class="xul-wizard--button-back" onclick="ample.$instance(this)._onButtonClick(event, \'button-back\')" disabled="true">&lt; Back</button></td>\
-										<td><button class="xul-wizard--button-next" onclick="ample.$instance(this)._onButtonClick(event, \'button-next\')" style="display:none">Next &gt;</button></td>\
-										<td><button class="xul-wizard--button-finish" onclick="ample.$instance(this)._onButtonClick(event, \'button-finish\')">Finish</button></td>\
-										<td width="8"><br /></td>\
-										<td><button class="xul-wizard--button-cancel" onclick="ample.$instance(this)._onButtonClick(event, \'button-cancel\')">Cancel</button></td>\
-									</tr>\
-								</tbody>\
-							</table>\
-						</td>\
-					</tr>\
-				</tfoot>\
-	    	</table>';
+	return '	</div>\
+				<div class="xul-wizard--foot">\
+					<table cellpadding="0" cellspacing="0" border="0" height="100%" align="' +(this.attributes["buttonalign"] == "start" ? "left" : this.attributes["buttonalign"] == "center" ? "center" : "right")+ '">\
+						<tbody>\
+							<tr>\
+								<td><button class="xul-wizard--button-back" onclick="ample.$instance(this)._onButtonClick(event, \'button-back\')" disabled="true">&lt; Back</button></td>\
+								<td><button class="xul-wizard--button-next" onclick="ample.$instance(this)._onButtonClick(event, \'button-next\')" style="display:none">Next &gt;</button></td>\
+								<td><button class="xul-wizard--button-finish" onclick="ample.$instance(this)._onButtonClick(event, \'button-finish\')">Finish</button></td>\
+								<td width="8"><br /></td>\
+								<td><button class="xul-wizard--button-cancel" onclick="ample.$instance(this)._onButtonClick(event, \'button-cancel\')">Cancel</button></td>\
+							</tr>\
+						</tbody>\
+					</table>\
+				</div>\
+	    	</div>';
 };
 
 // Register Element with language

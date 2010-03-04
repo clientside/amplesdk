@@ -9,33 +9,36 @@
 
 var cXULElement_dialogheader	= function(){};
 cXULElement_dialogheader.prototype	= new cXULElement;
+cXULElement_dialogheader.prototype.viewType	= cXULElement.VIEW_TYPE_VIRTUAL;
 
 // Attributes Defaults
-cXULElement_dialogheader.attributes	= {};
-cXULElement_dialogheader.attributes.height	= "1";
 
 // Public Methods
 cXULElement_dialogheader.prototype.setAttribute    = function(sName, sValue)
 {
     if (sName == "title")
-        this.$getContainer("title").innerHTML = sValue || " ";
+        this.parentNode.$getContainer("label").innerHTML = sValue || " ";
     else
     if (sName == "description")
-        this.$getContainer("description").innerHTML = sValue || " ";
-    else
-        this._setAttribute(sName, sValue);
+        this.parentNode.$getContainer("description").innerHTML = sValue || " ";
 
     this.AMLElement.setAttribute.call(this, sName, sValue);
 };
 
+cXULElement_dialogheader.handlers	= {
+	"DOMNodeInsertedIntoDocument":	function(oEvent) {
+		if (this.parentNode instanceof cXULElement_dialog) {
+			this.parentNode.$getContainer("label").innerHTML	= this.getAttribute("title") || " ";
+			this.parentNode.$getContainer("description").innerHTML	= this.getAttribute("description") || " ";
+			this.parentNode.$getContainer("header").style.display	= "";
+		}
+	}
+};
+
 // Element Renders
-cXULElement_dialogheader.prototype.$getTagOpen	= function()
+cXULElement_dialogheader.prototype.$getTag	= function()
 {
-	return '<table cellpadding="0" cellspacing="0" border="0" width="100%">\
-				<tbody>\
-					<tr><td valign="top" class="xul-dialogheader"><div class="xul-dialogheader--title">' +(this.attributes["title"] || " ")+ '</div><div class="xul-dialogheader--description">' +(this.attributes["description"] || " ")+ '</div></td></tr>\
-				</tbody>\
-			</table>';
+	return '';
 };
 
 // Register Element with language
