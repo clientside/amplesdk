@@ -61,7 +61,7 @@ cXULElement_toolbarbutton.prototype.setAttribute = function(sName, sValue)
         if (this.attributes["image"])
             sHtml  += '<img src="' + this.attributes["image"] + '" align="absmiddle" />';
         sHtml  += ' ' + sValue;
-        this.$getContainer("gateway").innerHTML  = sHtml;
+        this.$getContainer("label").innerHTML  = sHtml;
     }
     else
     if (sName == "image")
@@ -70,7 +70,7 @@ cXULElement_toolbarbutton.prototype.setAttribute = function(sName, sValue)
         sHtml  += '<img src="' + sValue + '" align="absmiddle" />';
         if (this.attributes["label"])
             sHtml  += ' ' + this.attributes["label"];
-        this.$getContainer("gateway").innerHTML  = sHtml;
+        this.$getContainer("label").innerHTML  = sHtml;
     }
     else
     {
@@ -139,13 +139,16 @@ cXULElement_toolbarbutton.prototype.$getTagOpen	= function()
 						<td width="3" rowspan="3" class="xul-toolbarbutton-right"><div style="width:3px"/></td>\
 					</tr>\
 					<tr>\
-						<td class="xul-toolbarbutton--gateway">' +
+						<td>\
+							<div class="xul-toolbarbutton--label">' +
 					(this.getAttribute("image")
 						? '<img src="' + this.getAttribute("image") + '" align="absmiddle"/>'
 						: '')+
 					(this.getAttribute("label")
 						? ' ' + this.getAttribute("label")
-						: '');
+						: '')+ '\
+							</div>\
+							<div class="xul-toolbarbutton--gateway">';
 
     return sHtml;
 };
@@ -154,7 +157,8 @@ cXULElement_toolbarbutton.prototype.$getTagOpen	= function()
 cXULElement_toolbarbutton.prototype.$getTagClose	= function()
 {
 	var sType	= this.getAttribute("type");
-	return 				'</td>'+
+	return '				</div>\
+						</td>'+
     				(sType == "menu" || sType == "menu-button"
     				 ? '<td class="xul-toolbarbutton-arrow"><div class="xul-toolbarbutton--arrow"><br /></div></td>'
     				 : '') + '\
