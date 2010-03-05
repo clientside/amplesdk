@@ -53,12 +53,12 @@ cXULElement_tree.prototype.changeOpenState		= function(oRow, bState)
 
 cXULElement_tree.prototype.ensureRowIsVisible    = function(nIndex)
 {
-    var oElement    = this.items[nIndex];
-    do {
-        if (oElement.parentNode.attributes["hidden"] == "true")
-            return false;
-        oElement    = oElement.parentNode.parentNode;
-    } while (oElement != this.body);
+	for (var oElement = this.items[nIndex]; oElement != this.body; oElement = oElement.parentNode.parentNode) {
+		if (oElement.parentNode.attributes["hidden"] == "true")
+        	return false;
+		if (oElement.parentNode == this.body)
+			break;
+	};
 
     // return true
     return true;
@@ -66,8 +66,8 @@ cXULElement_tree.prototype.ensureRowIsVisible    = function(nIndex)
 
 cXULElement_tree.prototype.refresh   = function()
 {
-    if (this.body && this.body.children)
-        this.body.children.refresh();
+    if (this.body)
+        this.body.refresh();
 };
 
 // Class Events Hadlers
@@ -172,19 +172,34 @@ cXULElement_tree.handlers	= {
 	    }
 	},
 	"DOMNodeInserted":	function(oEvent) {
-		if (oEvent.target instanceof cXULElement_treebody)
-			this.body = oEvent.target;
-		else
-		if (oEvent.target instanceof cXULElement_treecols)
-			this.head = oEvent.target;
+		if (oEvent.target.parentNode == this) {
+			if (oEvent.target instanceof cXULElement_treechildren) {
+				this.body = oEvent.target;
+				oEvent.target.tree	= this;
+			}
+			else
+			if (oEvent.target instanceof cXULElement_treecols)
+				this.head = oEvent.target;
+		}
 	},
 	"DOMNodeRemoved":	function(oEvent) {
-		if (oEvent.target instanceof cXULElement_treebody)
-			this.body = null;
-		else
-		if (oEvent.target instanceof cXULElement_treecols)
-			this.head = null;
+		if (oEvent.target.parentNode == this) {
+			if (oEvent.target instanceof cXULElement_treechildren) {
+				this.body = null;
+				oEvent.target.tree	= null;
+			}
+			else
+			if (oEvent.target instanceof cXULElement_treecols)
+				this.head = null;
+		}
 	}
+};
+
+//Events Handlers
+cXULElement_tree.prototype._onScroll     = function()
+{
+    if (this.head)
+        this.head.$getContainer("area").scrollLeft  = this.body.$getContainer("area").scrollLeft;
 };
 
 // Element Render: open

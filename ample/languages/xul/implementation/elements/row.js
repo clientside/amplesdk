@@ -17,7 +17,7 @@ cXULElement_row.attributes.orient	= "horizontal";
 // Class event handlers
 cXULElement_row.handlers	= {
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
-		this.refresh();
+//		this.refresh();
 	}
 };
 

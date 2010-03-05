@@ -6,7 +6,6 @@
 
 	<!-- Resources -->
 	<xul:script src="client.js" type="text/javascript" />
-	<xul:script src="XMLXmppProxy.js" type="text/javascript" />
 
 	<!-- Broadcasters -->
 	<xul:broadcasterset>
@@ -247,12 +246,12 @@
 			</xul:vbox>
 		</xul:vbox>
 
-		<xul:vbox height="100%">
+		<xul:vbox flex="1">
 			<xul:toolbox>
 				<!-- My status -->
 				<xul:toolbar>
 					<xul:toolbargrippy />
-					<xul:toolbarbutton type="menu" label="Neil Sedaka (Offline)" image="img/statuses/jab/off.gif" tooltiptext="Click to change status">
+					<xul:toolbarbutton type="menu" label="Neil Sedaka" image="img/statuses/jab/off.gif" tooltiptext="Click to change status">
 						<xul:menupopup>
 							<xul:menuitem type="checkbox" label="Invisible" />
 							<xul:menuseparator/>
@@ -261,7 +260,7 @@
 							<xul:menuitem label="Away" 			image="img/statuses/jab/away.gif"/>
 							<xul:menuitem label="Don't disturb" image="img/statuses/jab/dnd.gif"/>
 							<xul:menuitem label="Not available" image="img/statuses/jab/xa.gif"/>
-							<xul:menuitem label="Offline" 		image="img/statuses/jab/off.gif"/>
+							<xul:menuitem label="Offline" 		image="img/statuses/jab/off.gif" disabled="true"/>
 						</xul:menupopup>
 					</xul:toolbarbutton>
 				</xul:toolbar>
@@ -273,7 +272,6 @@
 					<xul:treecol primary="true"/>
 					<xul:treecol width="40"/>
 				</xul:treecols>
-				<xul:treebody>
 					<xul:treechildren>
 						<xul:treeitem context="ctx_group" open="true" container="true" onselect="onGroupSelected(this)">
 							<xul:treerow>
@@ -306,7 +304,6 @@
 							</xul:treerow>
 						</xul:treeitem>
 					</xul:treechildren>
-				</xul:treebody>
 			</xul:tree>
 
 			<!-- Transports -->
@@ -329,7 +326,7 @@
 			-->
 		</xul:vbox>
 
-		<xul:vbox height="100%" width="100%">
+		<xul:vbox flex="1" width="100%">
 			<xul:vbox align="center" pack="center">
 				<xul:label value="Contacting server..." />
 				<xul:spacer height="5" />

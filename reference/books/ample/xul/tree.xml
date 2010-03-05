@@ -81,10 +81,10 @@
 			<property name="body" type="AMLElement" readonly="true">
 				<description>
 					<locale>
-						Contains a reference to <link type="element">treebody</link> element.
+						Contains a reference to <link type="element">treechildren</link> element.
 					</locale>
 					<locale xml:lang="ru">
-						Ссылка на элемент <link type="element">treebody</link>.
+						Ссылка на элемент <link type="element">treechildren</link>.
 					</locale>
 				</description>
 			</property>
