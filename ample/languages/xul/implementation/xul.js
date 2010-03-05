@@ -96,7 +96,6 @@ ample.addEventListener("mouseenter",	function(oEvent) {
 		    	oTooltip	= oXULNamespace.tooltipPane;
 		    	if (!oTooltip)	{
 		    		oTooltip	= this.documentElement.appendChild(this.createElementNS(oElement.namespaceURI, "xul:tooltip-pane"));
-		    		oTooltip.$getContainer().style.position	= "absolute";
 		    		oXULNamespace.tooltipPane	= oTooltip;
 		    	}
 				oTooltip.setText(oElement.attributes["tooltiptext"]);
