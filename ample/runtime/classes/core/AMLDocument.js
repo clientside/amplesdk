@@ -467,17 +467,6 @@ function fAMLDocument_routeEvent(oEvent)
 	}
 };
 
-cAMLDocument.prototype.open	= function() {
-	var aElements	= document.getElementsByTagName("script"),
-		oElement	= aElements[aElements.length - 1];
-	oElement.parentNode.removeChild(oElement);
-	document.write('<' + "script" + ' ' + "type" + '="' + "application/ample+xml" + '"' + '>');
-};
-
-cAMLDocument.prototype.close	= function() {
-	document.write('</' + "script" + '>');
-};
-
 /*
 cAMLDocument.prototype.$getAnonymousElement	= function(oElement, sPseudoName) {
 
