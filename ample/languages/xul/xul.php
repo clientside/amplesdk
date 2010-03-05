@@ -96,7 +96,6 @@
 
     // treebox
     $aFiles[]	= "implementation/elements/tree.js";
-    $aFiles[]	= "implementation/elements/treebody.js";
     $aFiles[]	= "implementation/elements/treechildren.js";
     $aFiles[]	= "implementation/elements/treecell.js";
     $aFiles[]	= "implementation/elements/treecol.js";
