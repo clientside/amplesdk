@@ -20,7 +20,7 @@ cXULElement_page.attributes.height	= "100%";
 // Element Renders
 cXULElement_page.prototype.$getTagOpen	= function()
 {
-    return '<div class="xul-page' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="width:100%;height:100%;overflow:hidden;">';
+    return '<div class="xul-page' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="width:100%;height:100%;overflow:hidden;position:absolute;">';
 };
 
 // Element Render: close
