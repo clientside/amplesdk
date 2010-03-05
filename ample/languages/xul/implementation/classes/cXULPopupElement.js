@@ -35,13 +35,20 @@ cXULPopupElement.prototype.showPopup	= function(oElement, nLeft, nTop, nType, oA
 
     if ((!isNaN(nLeft) && nLeft !=-1) || (!isNaN(nTop) && nTop != -1))
     {
-    	var oPosition	= this.ownerDocument.documentElement.getBoundingClientRect();
-    	var oPosition2	= this.getBoundingClientRect();
-    	if (oPosition2.bottom - oPosition2.top + nTop > oPosition.bottom - oPosition.top)
-    		nTop	-= oPosition2.bottom - oPosition2.top;
-    	if (oPosition2.right - oPosition2.left + nLeft > oPosition.right - oPosition.left)
-    		nLeft	-= oPosition2.right - oPosition2.left;
-        this.moveTo(nLeft, nTop);
+    	var oPosition	= this.getBoundingClientRect(),
+    		oPosition1	= this.ownerDocument.documentElement.getBoundingClientRect(),
+    		oPosition2	= {"top":0, "left":0, "bottom":0, "right":0};
+    	// If within windows (which are positioned absolutely)
+    	for (var oNode = this; oNode; oNode = oNode.parentNode)
+    		if (oNode instanceof cXULElement_window || oNode instanceof cXULElement_dialog || oNode instanceof cXULElement_wizard) {
+    			oPosition2	= oNode.getBoundingClientRect();
+    			break;
+    		}
+    	if (oPosition.bottom - oPosition.top + nTop > oPosition1.bottom - oPosition1.top)
+    		nTop	-= oPosition.bottom - oPosition.top;
+    	if (oPosition.right - oPosition.left + nLeft > oPosition1.right - oPosition1.left)
+    		nLeft	-= oPosition.right - oPosition.left;
+        this.moveTo(nLeft - oPosition2.left, nTop - oPosition2.top);
     }
     else
     if (oElement)
@@ -98,7 +105,7 @@ cXULPopupElement.prototype.showPopup	= function(oElement, nLeft, nTop, nType, oA
     }
 */
     if (navigator.userAgent.match(/MSIE ([\d\.]+)/)) {
-    	if (RegExp.$1 < 7) {
+    	if (RegExp.$1 < 8) {
     		var oPosition2	= this.getBoundingClientRect();
     		this.$getContainer("shadow-right").style.height	= (oPosition2.bottom - oPosition2.top - 3)+ "px";
     		this.$getContainer("shadow-bottom").style.width	= (oPosition2.right - oPosition2.left - 3)+ "px";
