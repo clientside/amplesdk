@@ -13,7 +13,6 @@ cXULElement_wizardpage.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
 
 // Attributes Defaults
 cXULElement_wizardpage.attributes	= {};
-cXULElement_wizardpage.attributes.hidden	= "true";
 cXULElement_wizardpage.attributes.orient	= "vertical";
 cXULElement_wizardpage.attributes.width		= "100%";
 cXULElement_wizardpage.attributes.height	= "100%";
@@ -44,20 +43,20 @@ cXULElement_wizardpage.prototype.setAttribute	= function(sName, sValue)
     this.AMLElement.setAttribute.call(this, sName, sValue);
 };
 
-cXULElement_wizardpage.prototype._fireEventOnPage    = function(sName)
+cXULElement_wizardpage.dispatchEvent_onPage    = function(oElement, sName)
 {
-    var oEvent  = this.ownerDocument.createEvent("Events");
+    var oEvent  = oElement.ownerDocument.createEvent("Events");
     oEvent.initEvent("page" + sName, false, true);
 
-    return this.dispatchEvent(oEvent);
+    return oElement.dispatchEvent(oEvent);
 };
 
 cXULElement_wizardpage.handlers	= {
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		this.parentNode.wizardPages.$add(this);
 		//
-		if (this.parentNode.attributes["pagestep"] == this.parentNode.childNodes.$indexOf(this) || this.parentNode.attributes["firstpage"] == this.attributes["pageid"])
-			this.parentNode.goTo(this.attributes["pageid"]);
+		if (!this.parentNode.currentPage)
+			cXULElement_wizard.goTo(this.parentNode, this);
 	},
 	"DOMNodeRemovedFromDocument":	function(oEvent) {
 		this.parentNode.wizardPages.$remove(this);
@@ -67,7 +66,7 @@ cXULElement_wizardpage.handlers	= {
 // Element Render: open
 cXULElement_wizardpage.prototype.$getTagOpen	= function()
 {
-    return '<div class="xul-wizardpage" style="' +(this.attributes["hidden"] == "true" ? 'display:none;' : '')+ 'height:100%">';
+    return '<div class="xul-wizardpage" style="display:none;height:100%">';
 };
 
 // Element Render: close

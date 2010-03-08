@@ -11,7 +11,6 @@ var cXULElement_wizard	= function()
 {
     // Private Collections
     this._buttons   = {};   // Buttons
-    this._actions   = [];   // Actions Stack
 
     // Collections
     this.wizardPages= new AMLNodeList;
@@ -37,7 +36,7 @@ cXULElement_wizard.prototype.setAttribute    = function(sName, sValue)
     if (sName == "pagestep")
     {
         if (this.wizardPages[sValue])
-            this.goTo(this.wizardPages[sValue]);
+        	cXULElement_wizard.goTo(this, this.wizardPages[sValue]);
     }
     else
     {
@@ -49,49 +48,53 @@ cXULElement_wizard.prototype.setAttribute    = function(sName, sValue)
 
 cXULElement_wizard.prototype.advance = function(sId)
 {
-    if (this.currentPage)
-    {
-    	if (!this.currentPage._fireEventOnPage("hide"))
+    if (this.currentPage) {
+    	if (!cXULElement_wizardpage.dispatchEvent_onPage(this.currentPage, "hide"))
         	return;
 
-	    if (!this.currentPage._fireEventOnPage("advanced"))
+	    if (!cXULElement_wizardpage.dispatchEvent_onPage(this.currentPage, "advanced"))
 	        return;
 	}
 
-    if (!this._fireEventOnWizard("next"))
+    if (!cXULElement_wizard.dispatchEvent_onWizard(this, "next"))
         return;
 
-    if (this.currentPage && (sId = sId || this.currentPage.attributes["next"]))
-    {
-        // Push current page into array in order to allow back-button functionality
-       	this._actions.push(this.currentPage);
-
-        this.goTo(sId);
+    if (this.currentPage) {
+    	var oPage	= sId ? this.getPage(sId) : cXULElement_wizard.getNextPage(this, this.currentPage);
+        if (oPage) {
+        	cXULElement_wizard.goTo(this, oPage);
+        	//
+            cXULElement_wizardpage.dispatchEvent_onPage(oPage, "show");
+        }
     }
 };
 
 cXULElement_wizard.prototype.rewind  = function()
 {
-    if (this.currentPage)
-    {
-    	if (!this.currentPage._fireEventOnPage("hide"))
+    if (this.currentPage) {
+    	if (!cXULElement_wizardpage.dispatchEvent_onPage(this.currentPage, "hide"))
         	return;
 
-	    if (!this.currentPage._fireEventOnPage("rewound"))
+	    if (!cXULElement_wizardpage.dispatchEvent_onPage(this.currentPage, "rewound"))
 	        return;
     }
 
-    if (!this._fireEventOnWizard("back"))
+    if (!cXULElement_wizard.dispatchEvent_onWizard(this, "back"))
         return;
 
-    var oElement    = this._actions.pop();
-    if (oElement)
-        this.goTo(oElement.attributes["pageid"]);
+    if (this.currentPage) {
+    	var oPage	= cXULElement_wizard.getPrevPage(this, this.currentPage);
+        if (oPage) {
+        	cXULElement_wizard.goTo(this, oPage);
+        	//
+            cXULElement_wizardpage.dispatchEvent_onPage(oPage, "show");
+        }
+    }
 };
 
 cXULElement_wizard.prototype.cancel  = function()
 {
-    if (this._fireEventOnWizard("cancel"))
+    if (cXULElement_wizard.dispatchEvent_onWizard(this, "cancel"))
         this.setAttribute("hidden", "true");
 
 //	close();
@@ -99,7 +102,7 @@ cXULElement_wizard.prototype.cancel  = function()
 
 cXULElement_wizard.prototype.finish  = function()
 {
-    if (this._fireEventOnWizard("finish"))
+    if (cXULElement_wizard.dispatchEvent_onWizard(this, "finish"))
         this.setAttribute("hidden", "true");
 
 //	close();
@@ -107,29 +110,9 @@ cXULElement_wizard.prototype.finish  = function()
 
 cXULElement_wizard.prototype.goTo    = function(sId)
 {
-    var oElement;
-    if (oElement = this.getPageById(sId))
-    {
-        if (this.currentPage)
-            this.currentPage.setAttribute("hidden", "true");
-
-        this.currentPage    = oElement;
-
-        this.currentPage.setAttribute("hidden", "false");
-        this.$getContainer("label").innerHTML	= this.currentPage.attributes["label"] || " ";
-        this.$getContainer("description").innerHTML	= this.currentPage.attributes["description"] || " ";
-
-        // set buttons state
-//        this._buttons["back"].setAttribute("disabled",  this.attributes["firstpage"]   == sId ? "true" :"false");
-//        this._buttons["next"].setAttribute("hidden",    this.attributes["lastpage"]    == sId ? "true" :"false");
-//        this._buttons["finish"].setAttribute("hidden",  this.attributes["lastpage"]    == sId ? "false": "true");
-
-      	this.$getContainer("button-back").disabled	= this.attributes["firstpage"] == sId;
-        this.$getContainer("button-next").style.display	= this.attributes["lastpage"]    == sId ? "none" :"";
-        this.$getContainer("button-finish").style.display	= this.attributes["lastpage"]    == sId ? "": "none";
-
-        this.currentPage._fireEventOnPage("show");
-    }
+	var oPage	= this.getPageById(sId);
+    if (oPage)
+    	cXULElement_wizard.goTo(this, oPage);
 };
 
 cXULElement_wizard.prototype.getPageById = function(sId)
@@ -146,12 +129,12 @@ cXULElement_wizard.prototype.getButton   = function(sName)
     return this._buttons[sName];
 };
 
-cXULElement_wizard.prototype._fireEventOnWizard  = function(sName)
+cXULElement_wizard.dispatchEvent_onWizard  = function(oElement, sName)
 {
-    var oEvent  = this.ownerDocument.createEvent("Events");
+    var oEvent  = oElement.ownerDocument.createEvent("Events");
     oEvent.initEvent("wizard" + sName, false, true);
 
-    return this.dispatchEvent(oEvent);
+    return oElement.dispatchEvent(oEvent);
 };
 
 // Events Handlers
@@ -181,14 +164,54 @@ cXULElement_wizard.handlers	= {
 	"dragend":		function(oEvent) {
 		this.$getContainer("body").style.visibility	= "";
 		this.$getContainer("foot").style.visibility	= "";
-	}*/,
-	"DOMNodeInsertedIntoDocument":	function(oEvent) {
-		if (!this.currentPage && this.firstChild)
-			this.goTo(this.firstChild.attributes["pageid"]);
-	}
+	}*/
 };
 //cXULElement_wizard.handlers.resizestart		= cXULElement_wizard.handlers.dragstart;
 //cXULElement_wizard.handlers.resizedragend	= cXULElement_wizard.handlers.dragend;
+
+// Static methods
+cXULElement_wizard.goTo	= function(oElement, oPage) {
+	// Hide previous page
+    if (oElement.currentPage)
+    	oElement.currentPage.$getContainer().style.display	= "none";
+
+    // Show new page
+    oPage.$getContainer().style.display	= "";
+
+	// Set header label and description
+	oElement.$getContainer("label").innerHTML	= oPage.attributes["label"] || " ";
+	oElement.$getContainer("description").innerHTML	= oPage.attributes["description"] || " ";
+
+	// Set buttons state
+	var bNext	= cXULElement_wizard.getNextPage(this, oPage) != null,	// Is there next page?
+		bPrev	= cXULElement_wizard.getPrevPage(this, oPage) != null;	// Is there prev page?
+	oElement.$getContainer("button-back").disabled			= !bPrev;
+	oElement.$getContainer("button-next").style.display		= bNext ? "" : "none";
+	oElement.$getContainer("button-finish").style.display	= bNext ? "none" : "";
+
+    // Set new current page
+    oElement.currentPage    = oPage;
+};
+
+cXULElement_wizard.getPrevPage	= function(oElement, oPage)
+{
+    var sId = oPage.attributes["pageid"];
+	if (sId)
+		for (var oNode = oElement.lastChild; oNode; oNode = oNode.previousSibling)
+			if (oNode.attributes["next"] == sId)
+				return oNode;
+	return oPage.previousSibling;
+};
+
+cXULElement_wizard.getNextPage	= function(oElement, oPage)
+{
+    var sId = oPage.attributes["next"];
+    if (sId)
+		for (var oNode = oElement.firstChild; oNode; oNode = oNode.nextSibling)
+			if (oNode.attributes["pageid"] == sId)
+				return oNode;
+    return oPage.nextSibling;
+};
 
 // Element Render: open
 cXULElement_wizard.prototype.$getTagOpen    = function()
