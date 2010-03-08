@@ -758,18 +758,6 @@ oAMLConfiguration_values["ample-version"]	= '@project.version@';
 ample	= fAMLImplementation_createDocument(oAML_implementation, document.documentElement.getAttribute("xmlns") || null, "document", null);
 ample.documentElement.$getContainer	= function(sName) {return sName && sName != "gateway" ? null : document.body};
 
-ample.open	= function() {
-	var aElements	= document.getElementsByTagName("script"),
-		oElement	= aElements[aElements.length - 1];
-	oElement.parentNode.removeChild(oElement);
-	document.write('<' + "script" + ' ' + "type" + '="' + "application/ample+xml" + '"' + '>');
-};
-
-ample.close	= function() {
-	document.write('</' + "script" + '>');
-};
-
-//
 ample.$instance	= function(oNode) {
     for (var oElement, sId; oNode; oNode = oNode.parentNode)
         if ((sId = oNode.id) && (oElement = (oAML_ids[sId] || oAML_all[sId])))

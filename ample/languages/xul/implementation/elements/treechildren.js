@@ -67,12 +67,8 @@ cXULElement_treechildren.prototype.refresh	= function()
         return;
 
 	var aStack	= [];
-	for (var oElement = this; oElement != this.tree; oElement = oElement.parentNode.parentNode) {
+	for (var oElement = this; !(oElement instanceof cXULElement_tree); oElement = oElement.parentNode.parentNode)
 		aStack.unshift(oElement);
-		if (oElement.parentNode == this.tree)
-			break;
-	}
-
 	this._refresh(aStack, nPrimaryCol);
 };
 
@@ -110,29 +106,14 @@ cXULElement_treechildren.prototype._refresh	= function(aStack, nPrimaryCol)
 // Class events handlers
 cXULElement_treechildren.handlers	= {
 	"DOMNodeInserted":	function(oEvent) {
-		if (oEvent.target.parentNode == this) {
-			if (oEvent.target instanceof cXULElement_treechildren) {
-				oEvent.target.tree	= this.parentNode;
-
-				// In both cases
-				this.children  = oEvent.target;
-			}
-			else
+		if (oEvent.target.parentNode == this)
 			if (oEvent.target instanceof cXULElement_treeitem) {
 				this.items.$add(oEvent.target);
 				this.tree.items.$add(oEvent.target);
 			}
-		}
 	},
 	"DOMNodeRemoved":	function(oEvent) {
-		if (oEvent.target.parentNode == this) {
-			if (oEvent.target instanceof cXULElement_treechildren) {
-				oEvent.target.tree	= null;
-
-				// In both cases
-				this.children  = null;
-			}
-			else
+		if (oEvent.target.parentNode == this)
 			if (oEvent.target instanceof cXULElement_treeitem) {
 			    if (this.tree.selectedItems.$indexOf(oEvent.target) !=-1)
 				    this.tree.removeItemFromSelection(oEvent.target);
@@ -140,51 +121,12 @@ cXULElement_treechildren.handlers	= {
 				this.items.$remove(oEvent.target);
 				this.tree.items.$remove(oEvent.target);
 			}
-		}
 	}
 };
 
-
-//Element Render: open
-cXULElement_treechildren.prototype.$getTagOpen	= function()
-{
-	if (this.parentNode instanceof cXULElement_tree)
-		return '<tr' +(this.attributes["hidden"] == "true" ? ' style="display:hidden;"' : '')+ '>\
-					<td style="height:100%">\
-						<div class="xul-treechildren--area" style="height:100%;width:100%;overflow:scroll;position:relative;" onscroll="return ample.$instance(this).parentNode._onScroll(event)">\
-							<table cellpadding="0" cellspacing="0" border="0" width="100%" class="xul-treechildren' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="position:absolute;' + (navigator.userAgent.match(/MSIE ([\d.]+)/) && RegExp.$1 == 7 ? 'border-left: solid 18px white;margin-left:-18px;' : '') + '">\
-								<tbody class="xul-treechildren--gateway">';
-	return '';
-};
-
-//Element Render: close
-cXULElement_treechildren.prototype.$getTagClose	= function()
-{
-	if (this.parentNode instanceof cXULElement_tree) {
-		var sHtml	= '</tbody>';
-		if (this.parentNode.head) {
-			sHtml	+= '<tfoot class="xul-treechildren--foot">';
-			sHtml	+= '<tr>';
-			if (this.parentNode.attributes["type"] == "checkbox" || this.parentNode.attributes["type"] == "radio")
-				sHtml	+= '<td width="20" style="width:20px"><div style="width:20px" /></td>';
-			for (var nIndex = 0, aItems = this.parentNode.head.items; nIndex < aItems.length; nIndex++)
-				sHtml	+= '<td' + (aItems[nIndex].attributes["width"] ? ' width="' + aItems[nIndex].attributes["width"] + '"' : '') + '><div style="height:1px;' + (aItems[nIndex].attributes["minwidth"] ? 'width:' + aItems[nIndex].attributes["minwidth"] + 'px' : '') + '"/></td>';
-			sHtml	+= '</tr>';
-			sHtml	+= '</tfoot>';
-		}
-		sHtml	+= '</table>';
-		sHtml	+= '</div>';
-		sHtml	+= '</td>';
-		sHtml	+= '</tr>';
-
-		return sHtml;
-	}
-	return '';
-};
-
-// TODO: Temp hack (still needed?)
+// TODO: Temp hack
 cXULElement_treechildren.prototype.$getContainer	= function(sName) {
-	return this.parentNode instanceof cXULElement_tree ? cXULElement.prototype.$getContainer.call(this, sName) : sName == "gateway" ? this.parentNode.$getContainer("gateway") : null;
+	return sName == "gateway" ? this.parentNode.$getContainer("gateway") : null;
 };
 
 // Register Element with language

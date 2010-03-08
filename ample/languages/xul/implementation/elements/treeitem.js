@@ -62,13 +62,13 @@ cXULElement_treeitem.prototype.setAttribute	= function(sName, sValue)
 
 cXULElement_treeitem.prototype._getNodeDepth = function()
 {
+	var oElement= this.parentNode;
     var nDepth  = 0;
-    for (var oElement = this.parentNode; oElement != this.parentNode.tree; oElement = oElement.parentNode.parentNode) {
-        nDepth++;
-    	if (oElement.parentNode == this.parentNode.tree)
+    while (oElement = oElement.parentNode.parentNode)
+        if (oElement instanceof cXULElement_tree)
             break;
-    }
-
+        else
+            nDepth++;
     return nDepth;
 };
 

@@ -401,6 +401,7 @@
 				</node>
 				<node title="Trees">
 					<node title="tree" url="ample/xul/tree.xml"/>
+					<node title="treebody" url="ample/xul/treebody.xml"/>
 					<node title="treecell" url="ample/xul/treecell.xml"/>
 					<node title="treechildren" url="ample/xul/treechildren.xml"/>
 					<node title="treecol" url="ample/xul/treecol.xml"/>
