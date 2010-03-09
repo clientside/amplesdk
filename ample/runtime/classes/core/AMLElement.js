@@ -774,7 +774,8 @@ function fAMLElement_onTimeOut(oElement, sUrl, oHeaders, sMethod, sData)
 	var oRequest	= new cXMLHttpRequest;
 	oRequest["on" + "readystatechange"]	= function(){fAMLElement_onReadyStateChange(oRequest, oElement)};
 	oRequest.open(sMethod, sUrl, true);
-	oHeaders["User-Agent"]	=(oHeaders["User-Agent"] || oNavigator.userAgent) + ' ' + '@project.userAgent@';
+	oHeaders["X-Requested-With"]	= "XMLHttpRequest";
+	oHeaders["X-User-Agent"]		= oAMLConfiguration_values["ample-user-agent"];
 	for (var sHeader in oHeaders)
 		if (oHeaders.hasOwnProperty(sHeader))
 			oRequest.setRequestHeader(sHeader, oHeaders[sHeader]);

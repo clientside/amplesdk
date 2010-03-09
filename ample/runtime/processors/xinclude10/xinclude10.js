@@ -17,6 +17,8 @@ oAMLXInclude10_implementation.traverse	= function(oElementDOM, oNode) {
 			oDocument,
 			sHref	= oElementDOM.getAttribute("href");
 		oRequest.open("GET", sHref, false);
+		oRequest.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+		oRequest.setRequestHeader("X-User-Agent", oAMLConfiguration_values["ample-user-agent"]);
 		oRequest.send(null);
 		if (oDocument = fAML_getResponseDocument(oRequest)) {
 			// set xml:base according to spec

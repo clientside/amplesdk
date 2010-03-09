@@ -515,6 +515,8 @@ function fAML_processScripts() {
 			if (oElementDOM.getAttribute("src")) {
 				var oRequest	= new cXMLHttpRequest;
 				oRequest.open("GET", oElementDOM.src, false);
+				oRequest.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+				oRequest.setRequestHeader("X-User-Agent", oAMLConfiguration_values["ample-user-agent"]);
 				oRequest.send(null);
 
 				// loaded fragment
@@ -753,6 +755,7 @@ oAMLConfiguration_values["ample-use-dom-capture"]	= true;		// -> ample-events-ca
 /*oAMLConfiguration_values["ample-module-focus"]		= true;*/	// -> ample-focus
 oAMLConfiguration_values["ample-module-history-fix"]=  false;	// -> ample-history
 oAMLConfiguration_values["ample-version"]	= '@project.version@';
+oAMLConfiguration_values["ample-user-agent"]= '@project.userAgent@';
 
 // Create global "ample" object
 ample	= fAMLImplementation_createDocument(oAML_implementation, document.documentElement.getAttribute("xmlns") || null, "document", null);
