@@ -16,6 +16,9 @@ cAMLElement.prototype.nodeType	= cAMLNode.ELEMENT_NODE;
 cAMLElement.prototype.tagName	= null;
 cAMLElement.prototype.uniqueID	= null;
 
+// HTMLElement
+cAMLElement.prototype.style	= null;
+
 //
 cAMLElement.prototype.$childNodesAnonymous	= null;
 
