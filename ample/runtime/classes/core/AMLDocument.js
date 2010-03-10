@@ -439,7 +439,7 @@ function fAMLDocument_routeEvent(oEvent)
 
 			default:
 				// Set current target
-				if (nLength > 1 && oAMLConfiguration_values["ample-use-dom-capture"]) {
+				if (nLength > 1) {
 					nCurrent	= nLength - 1;
 					oEvent.eventPhase	= cAMLEvent.CAPTURING_PHASE;
 					oEvent.currentTarget= aTargets[nCurrent];

@@ -752,10 +752,6 @@ oAMLConfiguration_values["entities"]	= false;	// in DOM-Core spec the default va
 oAMLConfiguration_values["comments"]	= false; // in DOM-Core spec the default value is true
 // set ample parameters
 oAMLConfiguration_values["ample-use-style-property"]= true;		// -> ample-core-style
-oAMLConfiguration_values["ample-use-dom-capture"]	= true;		// -> ample-events-capture
-/*oAMLConfiguration_values["ample-use-legacy-events"]	= false;*/	// -> ample-legacy
-/*oAMLConfiguration_values["ample-render-async"]		= false;*/	// -> ample-async
-/*oAMLConfiguration_values["ample-module-focus"]		= true;*/	// -> ample-focus
 oAMLConfiguration_values["ample-module-history-fix"]=  false;	// -> ample-history
 oAMLConfiguration_values["ample-version"]	= '@project.version@';
 oAMLConfiguration_values["ample-user-agent"]= '@project.userAgent@';
