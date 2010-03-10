@@ -23,10 +23,6 @@ cAMLImplementation.prototype.createDocumentType	= function(sQName, sPublicId, sS
 
 function fAMLImplementation_createDocument(oImplementation, sNameSpaceURI, sQName, oDocType)
 {
-
-	// Disable mutation-events (since there cannot be any listeners yet)
-	oAMLConfiguration_values["ample-use-dom-events"]	= false;
-
 	// Create docuemnt
 	var oDocument	= new cAMLDocument;
 	oDocument.namespaceURI	= sNameSpaceURI;
@@ -51,9 +47,6 @@ function fAMLImplementation_createDocument(oImplementation, sNameSpaceURI, sQNam
 	    // Register
 		fAML_register(oDocument.documentElement);
 	}
-
-	// Enable mutation-events
-	oAMLConfiguration_values["ample-use-dom-events"]	= true;
 
 	return oDocument;
 };

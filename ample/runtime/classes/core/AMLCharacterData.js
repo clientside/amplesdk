@@ -23,7 +23,7 @@ function fAMLCharacterData_appendData(oNode, sData)
 	oNode.nodeValue	= oNode.data;
 
 	// Fire Mutation event
-    if (sValueOld != oNode.data && oAMLConfiguration_values["ample-use-dom-events"]) {
+    if (sValueOld != oNode.data) {
 	    var oEvent = new cAMLMutationEvent;
 	    oEvent.initMutationEvent("DOMCharacterDataModified", true, false, null, sValueOld, oNode.data, null, null);
 	    fAMLNode_dispatchEvent(oNode, oEvent);
@@ -49,7 +49,7 @@ function fAMLCharacterData_deleteData(oNode, nOffset, nLength)
 	oNode.nodeValue	= oNode.data;
 
 	// Fire Mutation event
-    if (sValueOld != oNode.data && oAMLConfiguration_values["ample-use-dom-events"]) {
+    if (sValueOld != oNode.data) {
 	    var oEvent = new cAMLMutationEvent;
 	    oEvent.initMutationEvent("DOMCharacterDataModified", true, false, null, sValueOld, oNode.data, null, null);
 	    fAMLNode_dispatchEvent(oNode, oEvent);
@@ -78,7 +78,7 @@ function fAMLCharacterData_insertData(oNode, nOffset, sData)
 	oNode.nodeValue	= oNode.data;
 
 	// Fire Mutation event
-    if (sValueOld != oNode.data && oAMLConfiguration_values["ample-use-dom-events"]) {
+    if (sValueOld != oNode.data) {
 	    var oEvent = new cAMLMutationEvent;
 	    oEvent.initMutationEvent("DOMCharacterDataModified", true, false, null, sValueOld, oNode.data, null, null);
 	    fAMLNode_dispatchEvent(oNode, oEvent);
@@ -107,7 +107,7 @@ function fAMLCharacterData_replaceData(oNode, nOffset, nLength, sData)
 	oNode.nodeValue	= oNode.data;
 
 	// Fire Mutation event
-    if (sValueOld != oNode.data && oAMLConfiguration_values["ample-use-dom-events"]) {
+    if (sValueOld != oNode.data) {
 	    var oEvent = new cAMLMutationEvent;
 	    oEvent.initMutationEvent("DOMCharacterDataModified", true, false, null, sValueOld, oNode.data, null, null);
 	    fAMLNode_dispatchEvent(oNode, oEvent);

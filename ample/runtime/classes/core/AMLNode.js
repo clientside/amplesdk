@@ -62,11 +62,10 @@ function fAMLNode_appendChild(oParent, oNode)
 	// Remove element from previous location
 	if (oNode.parentNode) {
 		// Fire Mutation event
-	    if (oAMLConfiguration_values["ample-use-dom-events"]) {
-		    var oEvent = new cAMLMutationEvent;
-		    oEvent.initMutationEvent("DOMNodeRemoved", true, false, oNode.parentNode, null, null, null, null);
-		    fAMLNode_dispatchEvent(oNode, oEvent);
-	    }
+	    var oEvent = new cAMLMutationEvent;
+	    oEvent.initMutationEvent("DOMNodeRemoved", true, false, oNode.parentNode, null, null, null, null);
+	    fAMLNode_dispatchEvent(oNode, oEvent);
+	    //
 	    fAMLNode_removeChild(oNode.parentNode, oNode);
 	}
 
@@ -85,11 +84,9 @@ function fAMLNode_appendChild(oParent, oNode)
     oParent.childNodes.$add(oNode);
 
 	// Fire Mutation event
-    if (oAMLConfiguration_values["ample-use-dom-events"]) {
-	    var oEvent = new cAMLMutationEvent;
-	    oEvent.initMutationEvent("DOMNodeInserted", true, false, oParent, null, null, null, null);
-	    fAMLNode_dispatchEvent(oNode, oEvent);
-	}
+    var oEvent = new cAMLMutationEvent;
+    oEvent.initMutationEvent("DOMNodeInserted", true, false, oParent, null, null, null, null);
+    fAMLNode_dispatchEvent(oNode, oEvent);
 
 	return oNode;
 };
@@ -122,11 +119,10 @@ cAMLNode.prototype.insertBefore	= function(oNode, oBefore)
 		// Remove element from previous location
 		if (oNode.parentNode) {
 			// Fire Mutation event
-		    if (oAMLConfiguration_values["ample-use-dom-events"]) {
-			    var oEvent = new cAMLMutationEvent;
-			    oEvent.initMutationEvent("DOMNodeRemoved", true, false, oNode.parentNode, null, null, null, null);
-			    fAMLNode_dispatchEvent(oNode, oEvent);
-		    }
+		    var oEvent = new cAMLMutationEvent;
+		    oEvent.initMutationEvent("DOMNodeRemoved", true, false, oNode.parentNode, null, null, null, null);
+		    fAMLNode_dispatchEvent(oNode, oEvent);
+		    //
 		    fAMLNode_removeChild(oNode.parentNode, oNode);
 			// update index (could have been changed if "node" was before "before")
 			nIndex	= this.childNodes.$indexOf(oBefore);
@@ -152,11 +148,9 @@ cAMLNode.prototype.insertBefore	= function(oNode, oBefore)
         throw new cAMLException(cAMLException.NOT_FOUND_ERR);
 
 	// Fire Mutation event
-    if (oAMLConfiguration_values["ample-use-dom-events"]) {
-	    var oEvent = new cAMLMutationEvent;
-	    oEvent.initMutationEvent("DOMNodeInserted", true, false, this, null, null, null, null);
-	    fAMLNode_dispatchEvent(oNode, oEvent);
-    }
+    var oEvent = new cAMLMutationEvent;
+    oEvent.initMutationEvent("DOMNodeInserted", true, false, this, null, null, null, null);
+    fAMLNode_dispatchEvent(oNode, oEvent);
 
 	return oNode;
 };

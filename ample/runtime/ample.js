@@ -288,52 +288,50 @@ function fAML_register(oNode) {
 		}
 
 		// Fire Mutation event on Element
-    	if (oAMLConfiguration_values["ample-use-dom-events"]) {
-			var oEvent = new cAMLMutationEvent;
-			oEvent.initMutationEvent("DOMNodeInsertedIntoDocument", false, false, null, null, null, null, null);
-			fAMLNode_dispatchEvent(oNode, oEvent);
+		var oEvent = new cAMLMutationEvent;
+		oEvent.initMutationEvent("DOMNodeInsertedIntoDocument", false, false, null, null, null, null, null);
+		fAMLNode_dispatchEvent(oNode, oEvent);
 
-			// Global attributes module
-			for (var sName in oNode.attributes) {
-				if (oNode.attributes.hasOwnProperty(sName)) {
-					var aAttribute	= sName.split(':'),
-						sLocalName	= aAttribute.pop(),
-						sPrefix		= aAttribute.pop(),
-						sNameSpaceURI;
+		// Global attributes module
+		for (var sName in oNode.attributes) {
+			if (oNode.attributes.hasOwnProperty(sName)) {
+				var aAttribute	= sName.split(':'),
+					sLocalName	= aAttribute.pop(),
+					sPrefix		= aAttribute.pop(),
+					sNameSpaceURI;
 
-					if (sName != "xmlns" && sPrefix && sPrefix != "xmlns" && (sNameSpaceURI = fAMLNode_lookupNamespaceURI(oNode, sPrefix))) {
-						var oNamespace	= oAML_namespaces[sNameSpaceURI],
-							cAttribute	= oNamespace ? oNamespace.attributes[sLocalName] : null;
+				if (sName != "xmlns" && sPrefix && sPrefix != "xmlns" && (sNameSpaceURI = fAMLNode_lookupNamespaceURI(oNode, sPrefix))) {
+					var oNamespace	= oAML_namespaces[sNameSpaceURI],
+						cAttribute	= oNamespace ? oNamespace.attributes[sLocalName] : null;
 
-						if (cAttribute)	{
-							// oAttribute used to create fake object
-							var oAttribute	= new cAttribute;
-							oAttribute.ownerElement	= oNode;
-							oAttribute.name			=
-							oAttribute.nodeName		= sName;
-							oAttribute.value		=
-							oAttribute.nodeValue	= oNode.attributes[sName];
-							oAttribute.localName	= sLocalName;
-							oAttribute.prefix		= sPrefix;
-							oAttribute.namespaceURI	= sNameSpaceURI;
+					if (cAttribute)	{
+						// oAttribute used to create fake object
+						var oAttribute	= new cAttribute;
+						oAttribute.ownerElement	= oNode;
+						oAttribute.name			=
+						oAttribute.nodeName		= sName;
+						oAttribute.value		=
+						oAttribute.nodeValue	= oNode.attributes[sName];
+						oAttribute.localName	= sLocalName;
+						oAttribute.prefix		= sPrefix;
+						oAttribute.namespaceURI	= sNameSpaceURI;
 
-							// Fire Mutation event (pseudo)
-							oEvent = new cAMLMutationEvent;
-							oEvent.initMutationEvent("DOMNodeInsertedIntoDocument", false, false, null, null, null, null, null);
-							oEvent.target	=
-							oEvent.currentTarget	= oAttribute;
-							oEvent.eventPhase		= cAMLEvent.AT_TARGET;
-							fAMLNode_handleEvent(oAttribute, oEvent);
-						}
-//->Debug
-						else
-						if (oNamespace)
-							fAML_warn(nAML_UNKNOWN_ATTRIBUTE_NS_WRN, [sLocalName, sNameSpaceURI]);
-//<-Debug
+						// Fire Mutation event (pseudo)
+						oEvent = new cAMLMutationEvent;
+						oEvent.initMutationEvent("DOMNodeInsertedIntoDocument", false, false, null, null, null, null, null);
+						oEvent.target	=
+						oEvent.currentTarget	= oAttribute;
+						oEvent.eventPhase		= cAMLEvent.AT_TARGET;
+						fAMLNode_handleEvent(oAttribute, oEvent);
 					}
+//->Debug
+					else
+					if (oNamespace)
+						fAML_warn(nAML_UNKNOWN_ATTRIBUTE_NS_WRN, [sLocalName, sNameSpaceURI]);
+//<-Debug
 				}
 			}
-    	}
+		}
 
 		// Process children
 		for (var nIndex = 0, oElement; oElement = oNode.childNodes[nIndex]; nIndex++)
@@ -349,11 +347,9 @@ function fAML_unregister(oNode) {
 	//
 	if (oNode.nodeType == cAMLNode.ELEMENT_NODE && oAML_all[oNode.uniqueID]) {
 		// Fire Mutation event
-    	if (oAMLConfiguration_values["ample-use-dom-events"]) {
-			var oEvent = new cAMLMutationEvent;
-			oEvent.initMutationEvent("DOMNodeRemovedFromDocument", false, false, null, null, null, null, null);
-			fAMLNode_dispatchEvent(oNode, oEvent);
-    	}
+		var oEvent = new cAMLMutationEvent;
+		oEvent.initMutationEvent("DOMNodeRemovedFromDocument", false, false, null, null, null, null, null);
+		fAMLNode_dispatchEvent(oNode, oEvent);
 
 		// Unset style property
 		if (oAMLConfiguration_values["ample-use-style-property"])
@@ -756,7 +752,6 @@ oAMLConfiguration_values["entities"]	= false;	// in DOM-Core spec the default va
 oAMLConfiguration_values["comments"]	= false; // in DOM-Core spec the default value is true
 // set ample parameters
 oAMLConfiguration_values["ample-use-style-property"]= true;		// -> ample-core-style
-oAMLConfiguration_values["ample-use-dom-events"]	= true;		// -> ample-events-mutation
 oAMLConfiguration_values["ample-use-dom-capture"]	= true;		// -> ample-events-capture
 /*oAMLConfiguration_values["ample-use-legacy-events"]	= false;*/	// -> ample-legacy
 /*oAMLConfiguration_values["ample-render-async"]		= false;*/	// -> ample-async

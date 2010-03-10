@@ -176,7 +176,6 @@
 				<ul>
 					<li><b>error-handler</b> - if an error is encountered in the document, the implementation will call back the ErrorHandler registered using this parameter</li>
 					<li><b>ample-use-style-property</b> - enable/disable style property on elements</li>
-					<li><b>ample-use-dom-events</b> - enable/disable DOM Mutation events</li>
 					<li><b>ample-use-dom-capture</b> - enable/disable events capture phase</li>
 					<li><b>ample-module-history-fix</b> - fix initial value of the location.hash property in Internet Explorer (used in <link type="object">mHistory</link>)</li>
 					<li><b>ample-version</b> - Ample version identifier</li>
@@ -187,7 +186,6 @@
 				<ul>
 					<li><b>error-handler</b> - позволяет зарегистрировать обработчик ошибок, который будет вызываться в случае, если приозойдет ошибка</li>
 					<li><b>ample-use-style-property</b> - включить/отключить поддержку доступа к стилям через свойство style</li>
-					<li><b>ample-use-dom-events</b> - включить/отключить события DOM Mutation</li>
 					<li><b>ample-use-dom-capture</b> - включить/отключить фазу capture для событий</li>
 					<li><b>ample-module-history-fix</b> - починить начальное значение свойства location.hash в Internet Explorer (модуль <link type="object">mHistory</link>)</li>
 					<li><b>ample-version</b> - версия Ample SDK</li>

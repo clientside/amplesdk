@@ -72,11 +72,9 @@ cAMLElement.prototype.$appendChildAnonymous	= function(oNode)
     this.$childNodesAnonymous.$add(oNode);
 
 	// Fire Mutation event
-    if (oAMLConfiguration_values["ample-use-dom-events"]) {
-	    var oEvent = new cAMLMutationEvent;
-	    oEvent.initMutationEvent("DOMNodeInserted", true, false, this, null, null, null, null);
-	    fAMLNode_dispatchEvent(oNode, oEvent);
-	}
+    var oEvent = new cAMLMutationEvent;
+    oEvent.initMutationEvent("DOMNodeInserted", true, false, this, null, null, null, null);
+    fAMLNode_dispatchEvent(oNode, oEvent);
 
 	// Register Instance
 	if (oAML_all[this.uniqueID])
@@ -124,11 +122,9 @@ cAMLElement.prototype.removeChild	= function(oNode)
 	], "removeChild");
 
 	// Fire Mutation event
-    if (oAMLConfiguration_values["ample-use-dom-events"]) {
-	    var oEvent = new cAMLMutationEvent;
-	    oEvent.initMutationEvent("DOMNodeRemoved", true, false, this, null, null, null, null);
-	    fAMLNode_dispatchEvent(oNode, oEvent);
-    }
+    var oEvent = new cAMLMutationEvent;
+    oEvent.initMutationEvent("DOMNodeRemoved", true, false, this, null, null, null, null);
+    fAMLNode_dispatchEvent(oNode, oEvent);
 
 	// Unregister Instance
 	if (oAML_all[this.uniqueID])
@@ -149,11 +145,9 @@ cAMLElement.prototype.removeChild	= function(oNode)
 cAMLElement.prototype.$removeChildAnonymous	= function(oNode)
 {
 	// Fire Mutation event
-    if (oAMLConfiguration_values["ample-use-dom-events"]) {
-	    var oEvent = new cAMLMutationEvent;
-	    oEvent.initMutationEvent("DOMNodeRemoved", true, false, this, null, null, null, null);
-	    fAMLNode_dispatchEvent(oNode, oEvent);
-	}
+    var oEvent = new cAMLMutationEvent;
+    oEvent.initMutationEvent("DOMNodeRemoved", true, false, this, null, null, null, null);
+    fAMLNode_dispatchEvent(oNode, oEvent);
 
 	if (oNode.nextSibling)
 		oNode.nextSibling.previousSibling	= oNode.previousSibling;
@@ -264,7 +258,7 @@ cAMLElement.prototype.setAttribute	= function(sName, sValue)
 
     if (sValueOld != sValue) {
     	// Only operate on shadow if element is in the DOM
-    	if (this.uniqueID in oAML_all && (sName == "id" || sName == "class" || sName == "style")) {
+    	if (oAML_all[this.uniqueID] && (sName == "id" || sName == "class" || sName == "style")) {
     		// Find shadow content first
     		var oElementDOM	= this.$getContainer();
     		if (sName == "id") {
@@ -293,7 +287,7 @@ cAMLElement.prototype.setAttribute	= function(sName, sValue)
     	this.attributes[sName]	= sValue;
 
     	// Fire Mutation event
-    	if (this.uniqueID in oAML_all && oAMLConfiguration_values["ample-use-dom-events"]) {
+    	if (oAML_all[this.uniqueID]) {
 		    var oEvent = new cAMLMutationEvent;
 		    oEvent.initMutationEvent("DOMAttrModified", true, false, null, bValue ? sValueOld : null, sValue, sName, bValue ? cAMLMutationEvent.MODIFICATION : cAMLMutationEvent.ADDITION);
 		    fAMLNode_dispatchEvent(this, oEvent);
@@ -444,7 +438,7 @@ cAMLElement.prototype.removeAttribute	= function(sName)
 	if (sName in this.attributes) {
 		var sValueOld	= this.attributes[sName];
 		// Only operate on shadow if element is in the DOM
-    	if (this.uniqueID in oAML_all && (sName == "id" || sName == "class" || sName == "style")) {
+    	if (oAML_all[this.uniqueID] && (sName == "id" || sName == "class" || sName == "style")) {
     		// Find shadow content
     		var oElementDOM	= this.$getContainer();
     		if (sName == "id") {
@@ -470,7 +464,7 @@ cAMLElement.prototype.removeAttribute	= function(sName)
 	    delete this.attributes[sName];
 
 		// Fire Mutation event
-	    if (this.uniqueID in oAML_all && oAMLConfiguration_values["ample-use-dom-events"]) {
+	    if (oAML_all[this.uniqueID]) {
 		    var oEvent = new cAMLMutationEvent;
 		    oEvent.initMutationEvent("DOMAttrModified", true, false, null, sValueOld, null, sName, cAMLMutationEvent.REMOVAL);
 		    fAMLNode_dispatchEvent(this, oEvent);

@@ -36,7 +36,7 @@ cAMLText.prototype.splitText	= function(nOffset)
 		this.nodeValue	= this.data;
 
 	    // Fire Event
-	    if (sValueOld != this.data && oAMLConfiguration_values["ample-use-dom-events"])
+	    if (sValueOld != this.data)
 	    {
 		    var oEvent = new cAMLMutationEvent;
 		    oEvent.initMutationEvent("DOMCharacterDataModified", true, false, null, sValueOld, this.data, null, null);
@@ -105,7 +105,7 @@ cAMLText.prototype.replaceWholeText	= function(sContent) {
 	this.nodeValue	= sContent;
 
 	// Fire Mutation event
-    if (sValueOld != sContent && oAMLConfiguration_values["ample-use-dom-events"]) {
+    if (sValueOld != sContent) {
 	    var oEvent = new cAMLMutationEvent;
 	    oEvent.initMutationEvent("DOMCharacterDataModified", true, false, null, sValueOld, this.data, null, null);
 	    fAMLNode_dispatchEvent(this, oEvent);
