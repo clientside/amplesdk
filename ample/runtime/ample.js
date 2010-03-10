@@ -338,6 +338,10 @@ function fAML_register(oNode) {
 		// Process children
 		for (var nIndex = 0, oElement; oElement = oNode.childNodes[nIndex]; nIndex++)
 			arguments.callee(oElement);
+
+		// Process anonymous children
+		for (var nIndex = 0, oElement; oElement = oNode.$childNodesAnonymous[nIndex]; nIndex++)
+			arguments.callee(oElement);
 	}
 };
 
@@ -367,6 +371,10 @@ function fAML_unregister(oNode) {
 
 		// Process children
 		for (var nIndex = 0, oElement; oElement = oNode.childNodes[nIndex]; nIndex++)
+			arguments.callee(oElement);
+
+		// Process anonymous children
+		for (var nIndex = 0, oElement; oElement = oNode.$childNodesAnonymous[nIndex]; nIndex++)
 			arguments.callee(oElement);
 	}
 };

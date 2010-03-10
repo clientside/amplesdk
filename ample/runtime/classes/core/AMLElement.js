@@ -16,6 +16,9 @@ cAMLElement.prototype.nodeType	= cAMLNode.ELEMENT_NODE;
 cAMLElement.prototype.tagName	= null;
 cAMLElement.prototype.uniqueID	= null;
 
+//
+cAMLElement.prototype.$childNodesAnonymous	= null;
+
 // Private Variables
 var nAMLElement_prefix	= 0;
 
@@ -50,6 +53,36 @@ cAMLElement.prototype.appendChild	= function(oNode)
 {
 	// Invoke actual implementation
 	return fAMLElement_appendChild(this, oNode);
+};
+
+cAMLElement.prototype.$appendChildAnonymous	= function(oNode)
+{
+	// Set parent
+    oNode.parentNode	= this;
+
+    // Pseudo DOM
+    var nLength	= this.$childNodesAnonymous.length;
+    if (nLength)
+    {
+        oNode.previousSibling	= this.$childNodesAnonymous[nLength - 1];
+        oNode.previousSibling.nextSibling	= oNode;
+    }
+
+    // Add to collection of anonymous child nodes
+    this.$childNodesAnonymous.$add(oNode);
+
+	// Fire Mutation event
+    if (oAMLConfiguration_values["ample-use-dom-events"]) {
+	    var oEvent = new cAMLMutationEvent;
+	    oEvent.initMutationEvent("DOMNodeInserted", true, false, this, null, null, null, null);
+	    fAMLNode_dispatchEvent(oNode, oEvent);
+	}
+
+	// Register Instance
+	if (oAML_all[this.uniqueID])
+		fAML_register(oNode);
+
+	return oNode;
 };
 
 cAMLElement.prototype.insertBefore	= function(oNode, oBefore)
@@ -109,6 +142,36 @@ cAMLElement.prototype.removeChild	= function(oNode)
 	if (this.nodeType == cAMLNode.ELEMENT_NODE)
 		if ((oChild = oNode.$getContainer()) && oChild.parentNode)
 			oChild.parentNode.removeChild(oChild);
+
+	return oNode;
+};
+
+cAMLElement.prototype.$removeChildAnonymous	= function(oNode)
+{
+	// Fire Mutation event
+    if (oAMLConfiguration_values["ample-use-dom-events"]) {
+	    var oEvent = new cAMLMutationEvent;
+	    oEvent.initMutationEvent("DOMNodeRemoved", true, false, this, null, null, null, null);
+	    fAMLNode_dispatchEvent(oNode, oEvent);
+	}
+
+	if (oNode.nextSibling)
+		oNode.nextSibling.previousSibling	= oNode.previousSibling;
+
+	if (oNode.previousSibling)
+		oNode.previousSibling.nextSibling	= oNode.nextSibling;
+
+	// Reset DOM properties
+    oNode.parentNode  		= null;
+	oNode.previousSibling	= null;
+	oNode.nextSibling		= null;
+
+    // Add to collection of anonymous child nodes
+    this.$childNodesAnonymous.$remove(oNode);
+
+	// Register Instance
+	if (oAML_all[this.uniqueID])
+		fAML_unregister(oNode);
 
 	return oNode;
 };
