@@ -131,7 +131,7 @@ cXULElement_dialog.prototype.$getTagOpen	= function()
 {
 	return '<div class="xul-dialog'+(this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="' +
 				(this.attributes["width"] ? 'width:' + this.attributes["width"] + 'px;' : '') +
-				(this.attributes["height"] ? 'height:' + this.attributes["height"] + 'px;' : '') +
+				(this.attributes["height"] ? 'height:' + (this.attributes["height"] - 40) + 'px;' : '') +
 				(this.attributes["hidden"] == "true" ? 'display:none;' : '') + '">\
 				<div class="xul-dialog--head" ' +(this.attributes["hidechrome"] == "true" ? ' style="display:none"': '')+ '>\
 					<table cellpadding="0" cellspacing="0" border="0" width="100%">\
