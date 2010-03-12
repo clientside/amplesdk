@@ -85,7 +85,7 @@
 	    {
 			$sData	= $this->output;
 
-	        preg_match_all('/[^a-zA-Z]([abdhsnofimcvr][A-Z][a-zA-Z0-9_]+)/', $sData, $aTemp);
+	        preg_match_all('/[^a-zA-Z]([a-z][A-Z][a-zA-Z0-9_]+)/', $sData, $aTemp);
 
 	        $aValues    = array_unique($aTemp[1]);
 	        sort($aValues);
