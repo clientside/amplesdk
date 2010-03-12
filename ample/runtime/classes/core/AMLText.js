@@ -14,8 +14,8 @@ cAMLText.prototype.nodeType	= cAMLNode.TEXT_NODE;
 cAMLText.prototype.nodeName	= "#text";
 
 // Level 3
-cAMLCharacterData.prototype.isElementContentWhitespace	= false;
-cAMLCharacterData.prototype.wholeText	= null;
+cAMLText.prototype.isElementContentWhitespace	= false;
+cAMLText.prototype.wholeText	= null;
 
 // nsIDOMText
 cAMLText.prototype.splitText	= function(nOffset)
