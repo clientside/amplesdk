@@ -70,13 +70,17 @@ cXULElement_listheader.handlers	= {
 cXULElement_listheader.prototype.$getTagOpen	= function()
 {
 	return '<th class="xul-listheader' +(this.attributes["class"] ? " " + this.attributes["class"] : "")+ '"' +(this.attributes["width"] ? ' width="' + this.attributes["width"] + '"' : "")+ ' align="left">\
-    			<div class="xul-listheader--label"' + (this.attributes["minwidth"] ? ' style="width:' + this.attributes["minwidth"] + 'px"' : '') + '> ' + (this.attributes["label"] || "");
+				<div>\
+					<div class="xul-listheader--resizer"></div>\
+    				<div class="xul-listheader--label"> ' + (this.attributes["label"] || "");
 };
 
 // Element Render: close
 cXULElement_listheader.prototype.$getTagClose	= function()
 {
-	return		'</div>\
+	return			'</div>\
+				</div>\
+				<div style="height:1pt;font-size:1px;' + (this.attributes["minwidth"] ? 'width:' + this.attributes["minwidth"] + 'px' : '') + '"></div>\
     		</th>';
 };
 

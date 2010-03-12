@@ -97,17 +97,20 @@ cXULElement_listhead.prototype.$getTagOpen	= function()
 				<td class="xul-listhead--container">\
 					<div class="xul-listheader" style="float:right"><div class="xul-listheader--label"><div class="xul-listhead--settings"><br /></div></div></div>\
 					<div class="xul-listhead--area" style="height:18px;overflow:hidden;position:relative;">\
-						<table cellpadding="0" cellspacing="0" border="0" width="100%" style="height:18px;position:absolute;" class="xul-listhead">\
+						<table cellpadding="0" cellspacing="0" border="0" width="100%" style="position:absolute;" class="xul-listhead">\
 							<thead>\
 								<tr class="xul-listhead--gateway">' +
     								(this.parentNode.attributes["type"] == "checkbox" || this.parentNode.attributes["type"] == "radio"
-    								? ('<th class="xul-listheader" style="width:20px">' +
-        								(this.parentNode.attributes["type"] == "checkbox"
-        								? '<input type="checkbox" name="' + this.parentNode.uniqueID + '_cmd" class="xul-listheader--command" onclick="return ample.$instance(this)._onCommandClick(event)" autocomplete="off" />'
-										: (this.parentNode.attributes["type"] == "radio"
-											? '<input type="radio" name="' + this.parentNode.uniqueID + '_cmd" class="xul-listheader--command" checked="true" onclick="return ample.$instance(this)._onCommandClick(event)"/>'
-											: ' ')) +
-										'</th>')
+    								? ('<td class="xul-listheader" width="20" align="center" style="width:20px;padding:0;">' +
+    										'<div>' +
+		        								(this.parentNode.attributes["type"] == "checkbox"
+        										? '<input type="checkbox" name="' + this.parentNode.uniqueID + '_cmd" class="xul-listheader--command" onclick="return ample.$instance(this)._onCommandClick(event)" autocomplete="off" />'
+												: (this.parentNode.attributes["type"] == "radio"
+													? '<input type="radio" name="' + this.parentNode.uniqueID + '_cmd" class="xul-listheader--command" checked="true" onclick="return ample.$instance(this)._onCommandClick(event)"/>'
+													: ' ')) +
+											'</div>' +
+											'<div style="height:1pt;font-size:1px;width:20px;"></div>'+
+										'</td>')
 									: '');
 };
 

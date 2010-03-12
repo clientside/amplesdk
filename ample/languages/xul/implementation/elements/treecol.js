@@ -61,15 +61,19 @@ cXULElement_treecol.handlers	= {
 // Element Render: open
 cXULElement_treecol.prototype.$getTagOpen	= function()
 {
-	return '<th class="xul-treecol' +(this.attributes["class"] ? " " + this.attributes["class"] : "")+ '"' +(this.attributes["width"] ? ' width="' + this.attributes["width"] + '"' : "")+(this.attributes["hideheader"] == "true" ? ' style="display:none"' : "")+ ' align="left">\
-    			<div class="xul-treecol--label"' + (this.attributes["minwidth"] ? ' style="width:' + this.attributes["minwidth"] + 'px"' : '') + '> ' +(this.attributes["label"] || "");
+	return '<td class="xul-treecol' +(this.attributes["class"] ? " " + this.attributes["class"] : "")+ '"' +(this.attributes["width"] ? ' width="' + this.attributes["width"] + '"' : "")+(this.attributes["hideheader"] == "true" ? ' style="display:none"' : "")+ ' align="left">\
+				<div>\
+					<div class="xul-treecol--resizer"></div>\
+					<div class="xul-treecol--label xul-treecol--gateway"> ' +(this.attributes["label"] || "");
 };
 
 // Element Render: close
 cXULElement_treecol.prototype.$getTagClose	= function()
 {
-    return		'</div>\
-			</th>';
+    return			'</div>\
+				</div>\
+				<div style="height:1pt;font-size:1px;' + (this.attributes["minwidth"] ? 'width:' + this.attributes["minwidth"] + 'px' : '') + '"></div>\
+    		</td>';
 };
 
 // Register Element with language

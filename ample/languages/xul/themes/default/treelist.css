@@ -12,9 +12,9 @@ xul|treecols {
 
 xul|listhead::settings,
 xul|treecols::settings {
-	width:	18px;
+	width:	16px;
 	height:	18px;
-	background: url(media/listhead_settings.gif) 2px 0;
+	background: url(media/listhead_settings.gif) 0 0;
 }
 
 xul|listheader,
@@ -33,9 +33,13 @@ xul|treecol:active {
 	background-position: 0px -40px;
 }
 
-xul|listheader::label,
-xul|treecol::label {
-	background: url(media/listheader_splitter.gif) no-repeat left center;
+xul|listheader::resizer,
+xul|treecol::resizer {
+	width: 5px;
+	height: 18px;
+	float: right;
+	background: url(media/listheader_splitter.gif) no-repeat 2px center;
+	cursor: col-resize;
 }
 
 xul|listheader::command,
