@@ -169,6 +169,9 @@
 			if ($this->debug)
 				echo "Processing public properties and string values:\n";
 
+			// manually replace most used property "prototype"
+			$sData	= str_replace(".prototype", "[$]", $sData);
+
 			// Strings
 			for ($nIndex = count($this->aStrings)-1; $nIndex >= 0; $nIndex--)
 				$sData	= str_replace(	'"' . $this->aStrings[$nIndex] . '"',	"_[" . $nIndex . ']',	$sData);
@@ -240,7 +243,7 @@
 				$aKeyWords	= array_merge($aKeyWords, array("in", "break", "case", "catch", "continue", "default", "delete", "else", "for", "function", "if", "instanceof", "new", "return", "throw", "typeof", "switch", "try", "var", "while", "with"));
 				$aKeyWords	= array_merge($aKeyWords, array("false", "null", "true"));
 				$aKeyWords	= array_merge($aKeyWords, array("arguments", "this", "window", "document", "ample"));
-				$aKeyWords	= array_merge($aKeyWords, array("[_[", "]]"));
+				$aKeyWords	= array_merge($aKeyWords, array("[_[", "]]", "[$]"));
 				$aKeyWords	= array_merge($aKeyWords, array("[]", "{}", "()", "&&", "||", "==", "!!", "!=", "+=", "-=", "++", "--", "<=", ">="));
 
 				// replace js keywords
@@ -275,7 +278,7 @@
 			}
 
 			// execute source
-			$sData	.=		"{$e}[{$d}[$nWFunction]]('_',{$m})({$d})";
+			$sData	.=		"{$e}[{$d}[$nWFunction]]('_','$',{$m})({$d},{$d}[" . array_search("prototype", $this->aStrings) . "])";
 
 			$sData	.=	"})(".
 							"\"" . str_replace("\'", "'", addslashes($output)) . "\"," .
