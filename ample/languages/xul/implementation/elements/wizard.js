@@ -181,6 +181,7 @@ cXULElement_wizard.goTo	= function(oElement, oPage) {
 	// Set header label and description
 	oElement.$getContainer("label").innerHTML	= oPage.attributes["label"] || " ";
 	oElement.$getContainer("description").innerHTML	= oPage.attributes["description"] || " ";
+	oElement.$getContainer("header").className	= "xul-wizardheader xul-wizard--header " + (oPage.attributes["class"] || "");
 
 	// Set buttons state
 	var bNext	= cXULElement_wizard.getNextPage(this, oPage) != null,	// Is there next page?

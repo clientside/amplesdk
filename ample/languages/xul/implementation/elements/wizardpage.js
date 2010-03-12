@@ -31,6 +31,12 @@ cXULElement_wizardpage.prototype.setAttribute	= function(sName, sValue)
         if (this.parentNode.currentPage == this)
             this.parentNode.$getContainer("description").innerHTML	= sValue;
     }
+   	else
+    if (sName == "class")
+    {
+		if (this.parentNode.currentPage == this)
+			this.parentNode.$getContainer("header").className	= "xul-wizardheader xul-wizard--header " + sValue;
+    }
     else
     if (sName == "next")
     {
