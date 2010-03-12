@@ -9,7 +9,7 @@
 
 var sAMLExporter_space	= new cArray(4).join(' ');
 function fAMLExporter_toStringFunction(sName) {
-	return cFunction('return "' + "function" + ' ' + sName + '() {\\n' + sAMLExporter_space + '[' + "ample" + ' ' + "code" + ']\\n}"');
+	return cFunction('return "' + "function" + ' ' + sName + '()' + ' ' + '{\\n' + sAMLExporter_space + '[' + "ample" + ' ' + "code" + ']\\n}"');
 };
 function fAMLExporter_toStringObject(sName) {
 	return cFunction('return "[' + "object" + ' ' + sName + ']"');
