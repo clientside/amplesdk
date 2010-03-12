@@ -21,10 +21,10 @@ var	nAMLResize_STATE_RELEASED	= 0,	// Constants
 	nAMLResize_resizeEdge	= nAMLResize_EDGE_NONE,
 	nAMLResize_resizeState	= nAMLResize_STATE_RELEASED,
 
-	nAMLResize_minWidth,
-	nAMLResize_maxWidth,
-	nAMLResize_minHeight,
-	nAMLResize_maxHeight,
+	nAMLResize_widthMin,
+	nAMLResize_widthMax,
+	nAMLResize_heightMin,
+	nAMLResize_heightMax,
 
 	nAMLResize_mouseX,
 	nAMLResize_mouseY,
@@ -207,10 +207,10 @@ function fAMLResize_onMouseMove(oEvent)
 	    nAMLResize_offsetTop		= oPosition.top		- oPositionP.top;
 
 		// Retrieve min/max allowed hight/width
-		nAMLResize_minWidth		= fParseInt(oComputedStyle[fAML_toCssPropertyName("min-width")] || oComputedStyle["min-width"]) || 0;
-		nAMLResize_maxWidth		= fParseInt(oComputedStyle[fAML_toCssPropertyName("max-width")] || oComputedStyle["max-width"]) || nInfinity;
-		nAMLResize_minHeight	= fParseInt(oComputedStyle[fAML_toCssPropertyName("min-height")]|| oComputedStyle["min-height"]) || 0;
-		nAMLResize_maxHeight	= fParseInt(oComputedStyle[fAML_toCssPropertyName("max-height")]|| oComputedStyle["max-height"]) || nInfinity;
+		nAMLResize_widthMin		= fParseInt(oComputedStyle[fAML_toCssPropertyName("min-width")] || oComputedStyle["min-width"]) || 0;
+		nAMLResize_widthMax		= fParseInt(oComputedStyle[fAML_toCssPropertyName("max-width")] || oComputedStyle["max-width"]) || nInfinity;
+		nAMLResize_heightMin	= fParseInt(oComputedStyle[fAML_toCssPropertyName("min-height")]|| oComputedStyle["min-height"]) || 0;
+		nAMLResize_heightMax	= fParseInt(oComputedStyle[fAML_toCssPropertyName("max-height")]|| oComputedStyle["max-height"]) || nInfinity;
     }
 
 	// fire onresize event
@@ -221,37 +221,37 @@ function fAMLResize_onMouseMove(oEvent)
 
 	if (!oEventResize.defaultPrevented)
 	{
-		var nValueWidth		= nAMLResize_offsetWidth	+ (oEvent.clientX - nAMLResize_mouseX) * (nAMLResize_resizeEdge & nAMLResize_EDGE_LEFT ? -1 : 1),
-			nValueHeight	= nAMLResize_offsetHeight	+ (oEvent.clientY - nAMLResize_mouseY) * (nAMLResize_resizeEdge & nAMLResize_EDGE_TOP  ? -1 : 1);
+		var nWidth		= nAMLResize_offsetWidth	+ (oEvent.clientX - nAMLResize_mouseX) * (nAMLResize_resizeEdge & nAMLResize_EDGE_LEFT ? -1 : 1),
+			nHeight	= nAMLResize_offsetHeight	+ (oEvent.clientY - nAMLResize_mouseY) * (nAMLResize_resizeEdge & nAMLResize_EDGE_TOP  ? -1 : 1);
 
 		// Horizontal resize
-		if (nValueWidth <= nAMLResize_minWidth)
-			nValueWidth	= nAMLResize_minWidth;
+		if (nWidth <= nAMLResize_widthMin)
+			nWidth	= nAMLResize_widthMin;
 		else
-		if (nValueWidth >= nAMLResize_maxWidth)
-			nValueWidth	= nAMLResize_maxWidth;
+		if (nWidth >= nAMLResize_widthMax)
+			nWidth	= nAMLResize_widthMax;
 		// Set
 		if (nAMLResize_resizeEdge & nAMLResize_EDGE_RIGHT)
-    		oStyle.width	= fAMLResize_ensureNonNegative(nValueWidth) + "px";
+    		oStyle.width	= fAMLResize_ensureNonNegative(nWidth) + "px";
 	    else
 		if (nAMLResize_resizeEdge & nAMLResize_EDGE_LEFT) {
-			oStyle.width	= fAMLResize_ensureNonNegative(nValueWidth) + "px";
-			oStyle.left		= fAMLResize_ensureNonNegative(nAMLResize_offsetWidth - nValueWidth + nAMLResize_offsetLeft) + "px";
+			oStyle.width	= fAMLResize_ensureNonNegative(nWidth) + "px";
+			oStyle.left		= fAMLResize_ensureNonNegative(nAMLResize_offsetWidth - nWidth + nAMLResize_offsetLeft) + "px";
 		}
 
 		// Vertical resize
-		if (nValueHeight <= nAMLResize_minHeight)
-			nValueHeight	= nAMLResize_minHeight;
+		if (nHeight <= nAMLResize_heightMin)
+			nHeight	= nAMLResize_heightMin;
 		else
-		if (nValueHeight >= nAMLResize_maxHeight)
-			nValueHeight	= nAMLResize_maxHeight;
+		if (nHeight >= nAMLResize_heightMax)
+			nHeight	= nAMLResize_heightMax;
 		// Set
 		if (nAMLResize_resizeEdge & nAMLResize_EDGE_BOTTOM)
-	    	oStyle.height	= fAMLResize_ensureNonNegative(nValueHeight) + "px";
+	    	oStyle.height	= fAMLResize_ensureNonNegative(nHeight) + "px";
 	    else
 		if (nAMLResize_resizeEdge & nAMLResize_EDGE_TOP) {
-	    	oStyle.height	= fAMLResize_ensureNonNegative(nValueHeight) + "px";
-	    	oStyle.top		= fAMLResize_ensureNonNegative(nAMLResize_offsetHeight - nValueHeight + nAMLResize_offsetTop) + "px";
+	    	oStyle.height	= fAMLResize_ensureNonNegative(nHeight) + "px";
+	    	oStyle.top		= fAMLResize_ensureNonNegative(nAMLResize_offsetHeight - nHeight + nAMLResize_offsetTop) + "px";
 		}
 	}
 

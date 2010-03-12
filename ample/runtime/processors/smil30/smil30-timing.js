@@ -43,9 +43,9 @@ function fAMLSMIL30_onTimeline() {
 
 		if ((oTime.end.offset && nTimeUnfilteredActiveTime >= oTime.end.offset) || (nTimeUnfilteredActiveTime >= nTimeActiveDuration * (oTime.autoReverse ? 2 : 1) / oTime.speed)) {
 			if (oElement.parentNode && oElement.parentNode.time.type == "seq") {
-				for (var nElement = 0, aChildNodes = oElement.parentNode.childNodes; nElement < aChildNodes.length; nElement++)
-					if (aChildNodes[nElement] == oElement && aChildNodes[nElement+1])
-						fAMLSMIL30_beginElement(aChildNodes[nElement+1]);
+				for (var nChild = 0, aChildNodes = oElement.parentNode.childNodes; nChild < aChildNodes.length; nChild++)
+					if (aChildNodes[nChild] == oElement && aChildNodes[nChild+1])
+						fAMLSMIL30_beginElement(aChildNodes[nChild+1]);
 			}
 			fAMLSMIL30_endElement(oElement);
 		}
