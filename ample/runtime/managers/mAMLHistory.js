@@ -72,7 +72,7 @@ function fAMLHistory_onUnLoad(oEvent) {
 };
 
 // Attaching to impementation
-cAMLDocument.prototype.$bookmark	= function(sHash) {
+ample.$bookmark	= function(sHash) {
 	// Validate arguments
 	fAML_validate(arguments, [
 		["hash",		cString]
