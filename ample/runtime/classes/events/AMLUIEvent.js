@@ -15,7 +15,7 @@ cAMLUIEvent.prototype.view	= null;
 cAMLUIEvent.prototype.detail	= null;
 
 // Ample properties
-cAMLEvent.prototype.$pseudoTarget	= null;	// readonly
+cAMLUIEvent.prototype.$pseudoTarget	= null;	// readonly
 
 cAMLUIEvent.prototype.initUIEvent	= function(sType, bCanBubble, bCancelable, oView, nDetail)
 {
