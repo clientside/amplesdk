@@ -2,11 +2,11 @@ c|chart,
 c|line,
 c|bar,
 c|bubble,
+c|map,
 c|pie,
 c|radar,
 c|funnel,
-c|doughnut,
-c|map {
+c|doughnut {
 	display: inline-block;
 	background-color: #eee;
 	border: double 3px gray;
@@ -14,6 +14,24 @@ c|map {
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	-o-border-radius: 10px;
+}
+
+c|chart,
+c|line,
+c|bar,
+c|bubble,
+c|map {
+	width: 600px;
+}
+
+c|pie,
+c|funnel,
+c|doughnut {
+	width: 300px;
+}
+
+c|radar {
+	width: 400px;
 }
 
 c|chart c|group,

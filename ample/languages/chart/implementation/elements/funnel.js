@@ -59,7 +59,7 @@ cChartElement_funnel.prototype.refresh	= function() {
 if (!cChartElement.useVML) {
 	cChartElement_funnel.prototype.$getTagOpen	= function() {
 		return '<div class="c-funnel' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
-					<svg:svg class="c-funnel--canvas" viewBox="0 0 300 300" width="300px" height="300px" xmlns:svg="http://www.w3.org/2000/svg">\
+					<svg:svg class="c-funnel--canvas" viewBox="0 0 300 300" width="100%" height="100%" xmlns:svg="http://www.w3.org/2000/svg">\
 						<svg:text class="c-funnel--title" y="30" x="150">' + this.getAttribute("title")+ '</svg:text>\
 						<svg:g class="c-funnel--gateway">';
 	};
