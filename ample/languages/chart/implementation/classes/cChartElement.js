@@ -232,6 +232,35 @@ if (cChartElement.useVML) {
 		return aPath.join('') + "e";
 	};
 
+	cChartElement.roundRectPath	= function(nX, nY, nWidth, nHeight, nRx, nRy) {
+		if (nWidth && nHeight) {
+			//
+			if (nRx && !nRy)
+				nRy	= nRx;
+			else
+			if (nRy && !nRx)
+				nRx	= nRy;
+			//
+			if (nRx > nWidth / 2)
+				nRx	= nWidth / 2;
+			if (nRy > nHeight / 2)
+				nRy	= nHeight / 2;
+
+			return ["m", [nX + nRx, nY].map(Math.round),
+					"l", [nX + nWidth - nRx, nY].map(Math.round),
+					"wa", [nX + nWidth - 2 * nRx, nY, nX + nWidth, nY + 2 * nRy, nX + nWidth - nRx, nY, nX + nWidth, nY + nRy].map(Math.round),
+					"l", [nX + nWidth, nY + nHeight - nRy].map(Math.round),
+					"wa", [nX + nWidth - 2 * nRx, nY + nHeight - 2 * nRy, nX + nWidth, nY + nHeight, nX + nWidth, nY + nHeight - nRy, nX + nWidth - nRx, nY + nHeight].map(Math.round),
+					"l", [nX + nRx, nY + nHeight].map(Math.round),
+					"wa", [nX, nY + nHeight - 2 * nRy, nX + 2 * nRx, nY + nHeight, nX + nRx, nY + nHeight, nX, nY + nHeight - nRy].map(Math.round),
+					"l", [nX, nY + nRy].map(Math.round),
+					"wa", [nX, nY, nX + 2 * nRx, nY + 2 * nRy, nX, nY + nRy, nX + nRx, nY].map(Math.round),
+					"x"].join(" ");
+		}
+		else
+			return "";
+	};
+
 	cChartElement.applyCSS	= function(oElementDOM) {
 		var sValue,
 			sOpacity	= cChartElement.getCSSProperty(oElementDOM, "opacity") || "1";

@@ -200,7 +200,7 @@ else {
 							<chart2vml:path textpathok="true" />\
 							<chart2vml:textpath on="true" string="' + this.getAttribute("title")+ '" style="v-text-align:center"/>\
 						</chart2vml:shape>\
-						<chart2vml:roundrect style="left:460px;top:50px;width:120px;height:120px" rx="10" class="c-legend c-line--legend" filled="true"/>\
+						<chart2vml:shape path="' + cChartElement.roundRectPath(460, 50, 120, 120, 10, 10) + '" class="c-legend c-line--legend" style="position:absolute;width:100%;height:100%"/>\
 						<chart2vml:shape class="c-grid c-line--grid" style="position:absolute;width:100%;height:100%"/>\
 						<chart2vml:group class="c-xAxis" style="position:absolute;width:100%;height:100%">\
 							<chart2vml:shape class="c-line--xAxis" path="m50,250 r400,0 e" style="position:absolute;width:100%;height:100%"/>\

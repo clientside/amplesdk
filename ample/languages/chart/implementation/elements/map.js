@@ -340,7 +340,7 @@ else {
 							<chart2vml:path textpathok="true" />\
 							<chart2vml:textpath on="true" string="' + this.getAttribute("title")+ '" style="v-text-align:center"/>\
 						</chart2vml:shape>\
-						<chart2vml:roundrect style="left:20px;top:180px;width:120px;height:100px" rx="10" class="c-legend c-map--legend" filled="true"/>\
+						<chart2vml:shape path="' + cChartElement.roundRectPath(20, 180, 120, 100, 10, 10) + '" class="c-legend c-map--legend" style="position:absolute;width:100%;height:100%"/>\
 						<chart2vml:group class="c-map--underlay" style="position:absolute;width:100%;height:100%;" onmouseover="ample.$instance(this)._onMouseOver(event.srcElement)" onmouseout="ample.$instance(this)._onMouseOut(event.srcElement)">' +
 						(function() {
 							var aCountries	= [];
