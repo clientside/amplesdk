@@ -184,8 +184,8 @@ cXULElement_wizard.goTo	= function(oElement, oPage) {
 	oElement.$getContainer("header").className	= "xul-wizardheader xul-wizard--header " + (oPage.attributes["class"] || "");
 
 	// Set buttons state
-	var bNext	= cXULElement_wizard.getNextPage(this, oPage) != null,	// Is there next page?
-		bPrev	= cXULElement_wizard.getPrevPage(this, oPage) != null;	// Is there prev page?
+	var bNext	= cXULElement_wizard.getNextPage(oElement, oPage) != null,	// Is there next page?
+		bPrev	= cXULElement_wizard.getPrevPage(oElement, oPage) != null;	// Is there prev page?
 	oElement.$getContainer("button-back").disabled			= !bPrev;
 	oElement.$getContainer("button-next").style.display		= bNext ? "" : "none";
 	oElement.$getContainer("button-finish").style.display	= bNext ? "none" : "";
@@ -199,9 +199,12 @@ cXULElement_wizard.getPrevPage	= function(oElement, oPage)
     var sId = oPage.attributes["pageid"];
 	if (sId)
 		for (var oNode = oElement.lastChild; oNode; oNode = oNode.previousSibling)
-			if (oNode.attributes["next"] == sId)
+			if (oNode instanceof cXULElement_wizardpage && oNode.attributes["next"] == sId)
 				return oNode;
-	return oPage.previousSibling;
+	while (oPage = oPage.previousSibling)
+		if (oPage instanceof cXULElement_wizardpage)
+			return oPage;
+	return null;
 };
 
 cXULElement_wizard.getNextPage	= function(oElement, oPage)
@@ -209,9 +212,12 @@ cXULElement_wizard.getNextPage	= function(oElement, oPage)
     var sId = oPage.attributes["next"];
     if (sId)
 		for (var oNode = oElement.firstChild; oNode; oNode = oNode.nextSibling)
-			if (oNode.attributes["pageid"] == sId)
+			if (oNode instanceof cXULElement_wizardpage && oNode.attributes["pageid"] == sId)
 				return oNode;
-    return oPage.nextSibling;
+	while (oPage = oPage.nextSibling)
+		if (oPage instanceof cXULElement_wizardpage)
+			return oPage;
+	return null;
 };
 
 // Element Render: open
