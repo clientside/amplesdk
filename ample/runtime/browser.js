@@ -66,6 +66,8 @@ var bTrident	= false,
 if (!!document.namespaces) {
 	bTrident	= true;
 	nVersion	= oNavigator.userAgent.match(/MSIE ([\d.]+)/)[1];
+	if (document.addEventListener)
+		nVersion	= 9;
 }
 else
 if (!!window.controllers) {
