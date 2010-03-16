@@ -125,8 +125,8 @@ else {
 		var oElement= oInstance.$getContainer(),
 			oCanvas	= oInstance.$getContainer("canvas"),
 			oRect	= oElement.getBoundingClientRect(),
-			nWidth	= oRect.right - oRect.left,
-			nHeight	= Math.round(nWidth * 3 / 4) - (parseInt(oElement.currentStyle.borderWidth) || 0);
+			nWidth	= oRect.right - oRect.left - (parseInt(oElement.currentStyle.borderWidth) || 0) * 2,
+			nHeight	= Math.round(nWidth * 3 / 4);
 
 		oCanvas.style.display	= "none";
 		oCanvas.style.width		= nWidth + "px";

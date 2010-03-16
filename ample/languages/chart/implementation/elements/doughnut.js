@@ -107,8 +107,8 @@ else {
 		var oElement= oInstance.$getContainer(),
 			oCanvas	= oInstance.$getContainer("canvas"),
 			oRect	= oElement.getBoundingClientRect(),
-			nWidth	= oRect.right - oRect.left,
-			nHeight	= nWidth - (parseInt(oElement.currentStyle.borderWidth) || 0);
+			nWidth	= oRect.right - oRect.left - (parseInt(oElement.currentStyle.borderWidth) || 0) * 2,
+			nHeight	= nWidth;
 
 		oCanvas.style.display	= "none";
 		oCanvas.style.width		= nWidth + "px";
