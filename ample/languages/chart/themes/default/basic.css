@@ -21,17 +21,17 @@ c|line,
 c|bar,
 c|bubble,
 c|map {
-	width: 100%;
+	width: 600px;/*100%;*/
 }
 
 c|pie,
 c|funnel,
 c|doughnut {
-	width: 50%;
+	width: 300px;/*50%;*/
 }
 
 c|radar {
-	width: 66%;
+	width: 400px;/*66%;*/
 }
 
 c|chart c|group,
