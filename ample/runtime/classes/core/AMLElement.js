@@ -737,17 +737,17 @@ function fAMLElement_removeClass(oElement, sClass) {
 */
 
 var oAMLElement_cache	= {};
-function fAMLElement_getRegExp(sName) {
-	return	oAMLElement_cache[sName]
-		?	oAMLElement_cache[sName]
-		:	oAMLElement_cache[sName] = new cRegExp('(^|\\s)[-\\w]*' + sName + '(|$)', 'g');
+function fAMLElement_getRegExp(sName, sContainer) {
+	return	oAMLElement_cache[sName + sContainer]
+		?	oAMLElement_cache[sName + sContainer]
+		:	oAMLElement_cache[sName + sContainer] = new cRegExp('(^|\\s)[-\\w]*' + sContainer + '(_\\w+)?' + '_' + sName + '(_\\w+)?' + '(|$)', 'g');
 };
 
 function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 {
 	var oElementDOM	= oElement.$getContainer(sContainer),
 		sClass		= oElement.getAttribute("class"),
-		sPseudoName	=(sContainer ? '--' + sContainer : '') + '_' + sName,
+		sPseudoName	= sContainer ? '--' + sContainer : '',
 		sTagName	=(oElement.prefix ? oElement.prefix + '-' : '') + oElement.localName;
 
 //->Source
@@ -757,25 +757,52 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 
 	if (oElementDOM) {
 		var sOldName= bTrident ? oElementDOM.className : oElementDOM.getAttribute("class"),
-			bMatch	= sOldName.match(fAMLElement_getRegExp(sPseudoName)),
+			bMatch	= sOldName.match(fAMLElement_getRegExp(sName, sPseudoName)),
 			sNewName;
 		if (bValue) {
 			// Add class
 			if (!bMatch) {
-				sNewName	= (sClass
-								? ' ' + sTagName + '-' + sClass + sPseudoName + ' ' + sClass + sPseudoName
-								: '') +
-								' ' + sTagName + sPseudoName;
+				var aMatch	= sOldName.replace(/_\w+_\w+/g, '').match(/_\w+/g),
+					aNewName= [];
+				// create pair combinations :hover:focus, :focus:hover
+				if (aMatch)
+					for (var nIndex = 0, nLength = aMatch.length, oCache = {}; nIndex < nLength; nIndex++)
+						if (!oCache[aMatch[nIndex]]) {
+							if (sClass)
+								aNewName.push(	// ns|element.class(::pseudo-element)?:pseudo-class:pseudo-class2
+												' ' + sTagName + '-' + sClass + sPseudoName + '_' + sName + aMatch[nIndex] +
+												// ns|element.class(::pseudo-element)?:pseudo-class2:pseudo-class
+												' ' + sTagName + '-' + sClass + sPseudoName + aMatch[nIndex] + '_' + sName +
+												// .class(::pseudo-element)?:pseudo-class:pseudo-class2
+												' ' + sClass + sPseudoName + '_' + sName + aMatch[nIndex] +
+												// .class(::pseudo-element)?:pseudo-class2:pseudo-class
+												' ' + sClass + sPseudoName + aMatch[nIndex] + '_' + sName);
+							// ns|element(::pseudo-element)?:pseudo-class:pseudo-class2
+							aNewName.push(	' ' + sTagName + sPseudoName + '_' + sName + aMatch[nIndex]);
+							// ns|element(::pseudo-element)?:pseudo-class2:pseudo-class
+							aNewName.push(	' ' + sTagName + sPseudoName + aMatch[nIndex] + '_' + sName);
+							// indicate class name processed
+							oCache[aMatch[nIndex]]	= true;
+						}
+				if (sClass)
+					aNewName.push(	// ns|element.class(::pseudo-element)?:pseudo-class
+									' ' + sTagName + '-' + sClass + sPseudoName + '_' + sName +
+									// .class(::pseudo-element)?:pseudo-class
+								  	' ' + sClass + sPseudoName + '_' + sName);
+				// ns|element(::pseudo-element)?:pseudo-class
+				aNewName.push(	' ' + sTagName + sPseudoName + '_' + sName + aNewName.join(''));
+				sNewName	= aNewName.join('');
 				if (bTrident && nVersion < 8)
 					oElementDOM.className += sNewName;
 				else
-					oElementDOM.setAttribute("class", oElementDOM.getAttribute("class") + sNewName);
+					oElementDOM.setAttribute("class", sOldName + sNewName);
 			}
 		}
 		else {
 			// Remove class
 			if (bMatch) {
-				sNewName	= sOldName.replace(fAMLElement_getRegExp(sPseudoName), '');	// TODO: Remove space?
+				// remove all classes having :pseudo-class
+				sNewName	= sOldName.replace(fAMLElement_getRegExp(sName, sPseudoName), '');	// TODO: Remove space?
 				if (bTrident && nVersion < 8)
 					oElementDOM.className	= sNewName;
 				else
