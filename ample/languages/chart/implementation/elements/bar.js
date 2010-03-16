@@ -295,22 +295,58 @@ if (!cChartElement.useVML) {
 	};
 }
 else {
-	// Redefine handler
+	// Redefine handlers
 	(function() {
-		var fHandler	= cChartElement_bar.handlers['DOMNodeInsertedIntoDocument'];
+		// DOMNodeInsertedIntoDocument
+		var fHandlerInserted	= cChartElement_bar.handlers['DOMNodeInsertedIntoDocument'];
 		cChartElement_bar.handlers['DOMNodeInsertedIntoDocument']	= function(oEvent) {
-			fHandler.call(this, oEvent);
+			if (fHandlerInserted)
+				fHandlerInserted.call(this, oEvent);
 			//
 			cChartElement_bar.recalcCSS(this);
-			// Delay displaying
-			var that	= this;
-			setTimeout(function() {
-				var oCanvas	= that.$getContainer("canvas");
-				if (oCanvas)
-					oCanvas.style.display	= "";
-			});
+
+			if (navigator.userAgent.match(/MSIE ([0-9.]+)/) && RegExp.$1 * 1 == 8)
+				cChartElement_bar.resize(this);
+			//
+			this.$getContainer().attachEvent("onresize", cChartElement_bar.onresize);
+		};
+		// DOMNodeRemovedFromDocument
+		var fHandlerRemoved	= cChartElement_bar.handlers['DOMNodeRemovedFromDocument'];
+		cChartElement_bar.handlers['DOMNodeRemovedFromDocument']	= function(oEvent) {
+			if (fHandlerRemoved)
+				fHandlerRemoved.call(this, oEvent);
+			//
+			this.$getContainer().detachEvent("onresize", cChartElement_bar.onresize);
 		};
 	})();
+
+	cChartElement_bar.resize	= function(oInstance) {
+		//
+		var oElement= oInstance.$getContainer(),
+			oCanvas	= oInstance.$getContainer("canvas"),
+			oRect	= oElement.getBoundingClientRect(),
+			nWidth	= oRect.right - oRect.left,
+			nHeight	= nWidth / 2 - (parseInt(oElement.currentStyle.borderWidth) || 0);
+
+		oCanvas.style.display	= "none";
+		oCanvas.style.width		= nWidth + "px";
+		oCanvas.style.height	= nHeight + "px";
+//		oElement.style.width	= nWidth + "px";
+		oElement.style.height	= nHeight + "px";
+
+		// TODO: recalc relevant CSS recursively (font-size, stroke-width)
+
+		// IE8 performance bug
+		setTimeout(function(){
+			oCanvas.style.display	= "";
+		});
+	};
+
+	cChartElement_bar.onresize	= function(oEvent) {
+		var oElement;
+		if ((oElement = ample.$instance(oEvent.srcElement)) && oElement instanceof cChartElement)
+			cChartElement_bar.resize(oElement);
+	};
 
 	cChartElement_bar.recalcCSS	= function(oElement) {
 		cChartElement.applyCSS(oElement.$getContainer("title"));
@@ -325,8 +361,8 @@ else {
 	};
 
 	cChartElement_bar.prototype.$getTagOpen	= function() {
-		return '<div class="c-bar' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="overflow:hidden;width:600px;height:300px;' + this.getAttribute("style") + '">\
-					<chart2vml:group class="c-bar--canvas" style="position:absolute;width:600px;height:300px;display:none;" coordOrigin="0 0" coordSize="600 300">\
+		return '<div class="c-bar' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="overflow:hidden;' + this.getAttribute("style") + '">\
+					<chart2vml:group class="c-bar--canvas" style="position:absolute;display:none;" coordOrigin="0 0" coordSize="600 300">\
 						<chart2vml:shape class="c-bar--title" path="m0,0 l600,0" fillcolor="black" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%;top:30px;xleft:150px">\
 							<chart2vml:path textpathok="true" />\
 							<chart2vml:textpath on="true" string="' + this.getAttribute("title")+ '" style="v-text-align:center"/>\
