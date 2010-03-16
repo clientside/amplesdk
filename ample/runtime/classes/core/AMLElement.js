@@ -756,7 +756,7 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 //<-Source
 
 	if (oElementDOM) {
-		var sOldName= bTrident ? oElementDOM.className : oElementDOM.getAttribute("class"),
+		var sOldName= bTrident && nVersion < 8 ? oElementDOM.className : oElementDOM.getAttribute("class") || '',
 			bMatch	= sOldName.match(fAMLElement_getRegExp(sName, sPseudoName)),
 			sNewName;
 		if (bValue) {
