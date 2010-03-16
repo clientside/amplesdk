@@ -195,7 +195,7 @@ else {
 			oCanvas	= oInstance.$getContainer("canvas"),
 			oRect	= oElement.getBoundingClientRect(),
 			nWidth	= oRect.right - oRect.left,
-			nHeight	= nWidth / 2 - (parseInt(oElement.currentStyle.borderWidth) || 0);
+			nHeight	= Math.round(nWidth / 2) - (parseInt(oElement.currentStyle.borderWidth) || 0);
 
 		oCanvas.style.display	= "none";
 		oCanvas.style.width		= nWidth + "px";
@@ -268,7 +268,7 @@ else {
 
 // Static members
 cChartElement_line.getMarkerPath	= function(nX, nY, nType) {
-	var nSize	= 3,
+	var nSize	= 4,
 		nSize2	= nSize * 2;
 	switch (nType) {
 		// Square
