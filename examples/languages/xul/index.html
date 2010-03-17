@@ -25,11 +25,47 @@
 					<xul:listbox type="checkbox" height="200">
 					    <xul:listhead>
 					        <xul:listheader width="30" minwidth="30" label="id"/>
-					        <xul:listheader width="600" minwidth="300" label="Name" tooltiptext="Shows firstname of the person. Click to sort."/>
+					        <xul:listheader minwidth="500" label="Name" tooltiptext="Shows firstname of the person. Click to sort."/>
 					        <xul:listheader label="column2" minwidth="200" tooltiptext="Shows lastname of the person. Click to sort."/>
 					        <xul:listheader width="200" minwidth="200" label="column2" tooltiptext="Shows person location. Click to sort."/>
 					    </xul:listhead>
 					    <xul:listbody id="listbody">
+					        <xul:listitem class="test">
+					            <xul:listcell label="1"></xul:listcell>
+					            <xul:listcell label="George"/>
+					            <xul:listcell label="House Painter"/>
+					            <xul:listcell label="USA"/>
+					        </xul:listitem>
+					        <xul:listitem class="test2">
+					            <xul:listcell label="2"></xul:listcell>
+					            <xul:listcell label="Mary Ellen"/>
+					            <xul:listcell label="Candle Maker"/>
+					            <xul:listcell label="Java"/>
+					        </xul:listitem>
+					        <xul:listitem class="test3">
+					            <xul:listcell label="3"></xul:listcell>
+					            <xul:listcell label="Roger"/>
+					            <xul:listcell label="Swashbuckler"/>
+					            <xul:listcell label="Great Britain"/>
+					        </xul:listitem>
+					        <xul:listitem class="test4">
+					            <xul:listcell label="4"></xul:listcell>
+					            <xul:listcell label="Sam"/>
+					            <xul:listcell label="Browm"/>
+					            <xul:listcell label="Falkland islands"/>
+					        </xul:listitem>
+					        <xul:listitem>
+					            <xul:listcell label="5"></xul:listcell>
+					            <xul:listcell label="Tom"/>
+					            <xul:listcell label="Jones"/>
+					            <xul:listcell label="Oceania"/>
+					        </xul:listitem>
+					        <xul:listitem>
+					            <xul:listcell label="6"></xul:listcell>
+					            <xul:listcell label="Pink"/>
+					            <xul:listcell label="Floyd"/>
+					            <xul:listcell label="Australia"/>
+					        </xul:listitem>
 					        <xul:listitem class="test">
 					            <xul:listcell label="1"></xul:listcell>
 					            <xul:listcell label="George"/>
@@ -73,7 +109,7 @@
 				        <xul:tree flex="1" height="200" type="checkbox">
 				          <xul:treecols>
 				              <xul:treecol id="firstname" minwidth="400" label="First Name" primary="true"/>
-				              <xul:treecol id="lastname" width="400" minwidth="500" label="Last Name"/>
+				              <xul:treecol id="lastname" width="400" minwidth="400" label="Last Name"/>
 				          </xul:treecols>
 				          <xul:treebody>
 				              <xul:treechildren>
