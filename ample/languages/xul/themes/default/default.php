@@ -12,6 +12,8 @@
     $aFiles[]	= "datepicker-pane.css";
     $aFiles[]	= "colorpicker-pane.css";
     $aFiles[]	= "tooltip-pane.css";
+	// css3 goodies
+    $aFiles[]	= "css3.css";
 
     $sOutput	= "@namespace xul \"http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul\";\n\n";
     for ($nIndex = 0; $nIndex < count($aFiles); $nIndex++)

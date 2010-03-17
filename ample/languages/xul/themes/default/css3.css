@@ -1,0 +1,26 @@
+xul|dialog,
+xul|wizard,
+xul|window {
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	-moz-box-shadow: 0 2px 8px #AAA;
+	-webkit-box-shadow: 0 2px 8px #AAA;
+	box-shadow: 0 2px 8px #AAA;
+}
+
+xul|dialog::head,
+xul|wizard::head,
+xul|window::head {
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius : 5px;
+}
+
+xul|datepicker-pane,
+xul|colorpicker-pane {
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}

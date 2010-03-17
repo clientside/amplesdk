@@ -34,7 +34,7 @@ xul|window::head {
 xul|dialog::body,
 xul|window::body,
 xul|wizard::body {
-	overflow:	auto;
+	overflow:	hidden;
 	height:	100%;
 }
 
