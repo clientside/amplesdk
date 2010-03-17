@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE html PUBLIC  "-//CL//DTD XHTML 1.0 Transitional plus Embed//EN"
+ "http://www.w3.org/Graphics/xhtml1-transitional-plus-embed.dtd">
+ <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+ <meta name="keywords" content="W3C SVG 1.1 Test Suite testsuite mobile"/>
+ <meta name="description" content="W3C SVG 1.1 Test Suite"/>
+ <!-- Driver start --><script type="text/javascript" src="../driver.js"></script><!-- Driver end -->
+ <title>
+SVG 1.1 test:filters-overview-01-b </title>
+ <style type="text/css">
+ <!--
+ .bodytext    { font-family:verdana, helvetica, sans-serif; font-size: 12pt; line-height: 125%; text-align: Left; margin-top: 0; margin-bottom: 0 }
+ .pageTitle         { line-height: 150%; font-size: 20pt; font-weight : 900; margin-bottom: 20pt }
+ .pageSubTitle  { color : blue; line-height: 100%; font-size: 24pt; font-weight : 900 }
+ .openChapter   { color : blue; line-height: 125%; font-weight : 900 }
+ .openSection   { color : blue; line-height: 125%; font-weight : 900 }
+ .info  { color : black; line-height: 110%; font-size: 10pt; font-weight : 100 }
+ p          { margin-top:0; margin-bottom:0; padding-top:0; padding-bottom:0 }
+ blockquote { margin-top:0; margin-bottom:0; padding-top:0; padding-bottom:0 }
+ .opscript {margin-left: 3%; margin-right: 3%; }
+ .opscript p { margin-top: 0.7em}
+ .navbar {background: black; color: white; font-weight: bold}
+ -->
+ </style>
+ </head>
+ <body class="bodytext">
+
+	<center>
+ <div class="linkbar"><p> 
+
+	spec link:<a target="spec" href="http://www.w3.org/TR/SVG11/filters.html#FilterPrimitivesOverview">15.7 Filter primitives overview</a>
+	, <a href="full-filters-overview-01-b.html">Full version</a>
+	, <a href="basic-filters-overview-01-b.html">Basic version</a></p>
+ <p>
+				<a href="full-filters-offset-01-b.html">filters-offset-01-b <img border="0" alt="navigate left" src="../images/nav_left.png"/></a> 
+				<a href="full-index.html"> index </a>
+				<a href="full-filters-specular-01-f.html"><img border="0" alt="navigate right" src="../images/nav_right.png"/> filters-specular-01-f</a>
+						</p></div>
+
+	<table align="center" border="0" cellspacing="0" cellpadding="10">
+		<tr>
+			<td align="center" colspan="3">
+				<table border="0" cellpadding="8">
+					<tr>
+						<td align="center" colspan="2" class="pageTitle">
+							Test name:filters-overview-01-b
+						</td>
+					</tr>
+					<tr  class="navbar">
+						<td align="center">
+							SVG Image
+						</td>
+						<td align="center">
+							PNG Image
+						</td>
+					</tr>
+					<tr>
+						<td align="right">
+   	    		  			<embed src="../svggen/filters-overview-01-b.svg" width="480" height="360"/>
+						</td>
+						<td align="left">
+							<img alt="raster of filters-overview-01-b" src="../png/full-filters-overview-01-b.png" width="480" height="360"/>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+
+               </center>
+<div class="opscript">
+      <p>The purpose of this file is to test the 'in' attribute on filter primitives.</p>
+      <p>To pass this test, the UA must render all 6 cases (SourceGraphic, SourceAlpha, BackgroundImage, BackgroundAlpha, FillPaint, StrokePaint) correctly.
+		The result for in="SourceGraphic" is a non blurred vertical rectangle (green with dashed stroke) overlayed with three blurred circles (red/green/blue with dashed stroke).
+		The result for in="SourceAlpha" is a non blurred vertical rectangle (green with dashed stroke) overlayed with three blurred circles (dark gray with dashed stroke).		
+		The result for in="BackgroundImage" is a blurred vertical rectangle (green with dashed stroke).
+		The result for in="BackgroundAlpha" is blurred vertical rectangle (dark gray with dashed stroke).
+		The results for in="FillPaint" and in="StrokePaint" are the same.  They consists of a non blurred vertical rectangle (green with dashed stroke) overlayed with a blurred gradiant (blue/white/red/yellow).  
+		The size of the gradients are bigger than the blurred circles.
+		</p>
+
+		</div>
+	</body>
+</html>

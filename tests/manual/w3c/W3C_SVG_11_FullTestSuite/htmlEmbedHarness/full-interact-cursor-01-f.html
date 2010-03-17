@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE html PUBLIC  "-//CL//DTD XHTML 1.0 Transitional plus Embed//EN"
+ "http://www.w3.org/Graphics/xhtml1-transitional-plus-embed.dtd">
+ <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+ <meta name="keywords" content="W3C SVG 1.1 Test Suite testsuite mobile"/>
+ <meta name="description" content="W3C SVG 1.1 Test Suite"/>
+ <!-- Driver start --><script type="text/javascript" src="../driver.js"></script><!-- Driver end -->
+ <title>
+SVG 1.1 test:interact-cursor-01-f </title>
+ <style type="text/css">
+ <!--
+ body { font-family: "Lucida Grande", verdana, helvetica, sans-serif; line-height: 1.3; text-align: left; margin-top: 0; margin-bottom: 0 }
+ .pageTitle { line-height: 1.5; font-weight: bold; margin-bottom: 1em;}
+ .pageSubTitle  { color: blue; font-size: 200%; font-weight: bold }
+ .openChapter { color: blue; line-height: 1.3; font-weight: bold }
+ .openSection { color: blue; line-height: 125%; font-weight: bold }
+ .info { color: black; line-height: 1.2; font-size: 90%; }
+ p { margin-top:0; margin-bottom:0; padding-top:0; padding-bottom:0 }
+ .linkbar { text-align: center; margin: 1em 1em 0.25em 1em;}
+ blockquote { margin-top:0; margin-bottom:0; padding-top:0; padding-bottom:0 }
+ .opscript {margin-left: 3%; margin-right: 3%; }
+ .opscript p { margin-top: 0.7em}
+ .navbar {background: black; color: white; font-weight: bold}
+ -->
+ </style>
+ </head>
+ <body class="bodytext">
+
+	<div class="linkbar"> 
+<p>Specification link: <a target="spec" href="http://www.w3.org/TR/SVG11/interact.html#Cursors">16.8 Cursors</a></p>
+ <p>
+				<a href="full-filters-turb-01-f.html">filters-turb-01-f ←</a> 
+				<a href="full-index.html">index</a>
+				<a href="full-masking-intro-01-f.html">→ masking-intro-01-f</a>
+						</p></div>
+
+	<table align="center" border="0" cellspacing="0" cellpadding="10">
+		<tr>
+			<td align="center" colspan="3">
+				<table border="0" cellpadding="8">
+					<tr>
+						<td align="center" colspan="2" class="pageTitle">
+							<h1>interact-cursor-01-f</h1>
+						</td>
+					</tr>
+					<tr  class="navbar">
+						<td align="center">
+							SVG Image
+						</td>
+						<td align="center">
+							PNG Image
+						</td>
+					</tr>
+					<tr>
+						<td align="right">
+   	    		  			<embed src="../svggen/interact-cursor-01-f.svg" width="480" height="360"/>
+						</td>
+						<td align="left">
+							<img alt="raster image of interact-cursor-01-f" src="../png/full-interact-cursor-01-f.png" width="480" height="360"/>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+
+               
+<div class="opscript">
+			<p>
+			Purpose of test is to determine if the cursor property and cursor element are 
+            supported. Firstly, the <em>default</em> cursor behaviour should be examined. 
+            Move the cursor to the top left corner, in the white area. This is the default 
+            cursor. Now move the cursor over the text at the top of the example. The cursor 
+            changes to the<em> text </em>cursor. Lastly, move the cursor to the  blue link 
+            text - the cursor changes to the <em>pointer</em> cursor.
+        </p>
+			<p>
+				Now, move the cursor in turn to each of the gray rectangles (but not on top 
+				of the white text label text). From top to bottom in the first row,  the cursor 
+				should change to:            </p>
+			<p>
+				<ol>
+					<li>A crosshair or other 'accurate positioning'  cursor</li>
+					<li>The 'default' cursor, as noted above</li>
+					<li>The 'pointer' cursor, as noted above</li>
+					<li>A cursor indicating movement, such as panning</li>
+				</ol>
+			</p>
+			<p>Now from top to bottom in the second row, the cursor should change to: </p>
+			<p>
+				<ol>
+					<li>The 'text' cursor, as noted above</li>
+					<li>A 'wait' cursor</li>
+					<li>A 'help' cursor</li>
+					<li>A special cursor which looks like a small magnifying glass. This is a downloaded image cursor.</li>
+				</ol>
+			</p>
+			<p>Moving to the bottom-leftmost of the eight red triangles, and moving around them clockwise, the
+		cursor should change to:</p>
+			<p>SouthEast-resize, South-resize, SouthWest resize, West-resize,
+		NorthWest-resize, North-resize, NorthEast-resize, East-resize.</p>
+			<p>Lastly, move the cursor to the target in the bottom-right of the test. The cursor must not 
+			change to the 'pointer'  cursor, but instread to the special magnifying glass cursor as noted 
+			above.
+			</p>
+
+		</div>
+<div class="linkbar"> <p>
+				<a href="full-filters-turb-01-f.html">filters-turb-01-f ←</a>
+				<a href="full-index.html">index</a>
+				<a href="full-masking-intro-01-f.html">→ masking-intro-01-f</a>
+						</p></div>
+</body>
+</html>

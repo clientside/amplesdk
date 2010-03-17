@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE html PUBLIC  "-//CL//DTD XHTML 1.0 Transitional plus Embed//EN"
+ "http://www.w3.org/Graphics/xhtml1-transitional-plus-embed.dtd">
+ <html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+ <meta name="keywords" content="W3C SVG 1.1 Test Suite testsuite mobile"/>
+ <meta name="description" content="W3C SVG 1.1 Test Suite"/>
+ <!-- Driver start --><script type="text/javascript" src="../driver.js"></script><!-- Driver end -->
+ <title>
+SVG 1.1 test:animate-elem-60-t </title>
+ <style type="text/css">
+ <!--
+ body { font-family: "Lucida Grande", verdana, helvetica, sans-serif; line-height: 1.3; text-align: left; margin-top: 0; margin-bottom: 0 }
+ .pageTitle { line-height: 1.5; font-weight: bold; margin-bottom: 1em;}
+ .pageSubTitle  { color: blue; font-size: 200%; font-weight: bold }
+ .openChapter { color: blue; line-height: 1.3; font-weight: bold }
+ .openSection { color: blue; line-height: 125%; font-weight: bold }
+ .info { color: black; line-height: 1.2; font-size: 90%; }
+ p { margin-top:0; margin-bottom:0; padding-top:0; padding-bottom:0 }
+ .linkbar { text-align: center; margin: 1em 1em 0.25em 1em;}
+ blockquote { margin-top:0; margin-bottom:0; padding-top:0; padding-bottom:0 }
+ .opscript {margin-left: 3%; margin-right: 3%; }
+ .opscript p { margin-top: 0.7em}
+ .navbar {background: black; color: white; font-weight: bold}
+ -->
+ </style>
+ </head>
+ <body class="bodytext">
+
+	<div class="linkbar"> 
+<p>
+<a href="full-animate-elem-60-t.html">Full version</a>, <a href="basic-animate-elem-60-t.html">Basic version</a>, <a href="tiny-animate-elem-60-t.html">Tiny version</a></p>
+<p>Specification link: <a target="spec" href="http://www.w3.org/TR/SVG11/animate.html#AnimationElements">19.2 Animation elements</a></p>
+ <p>
+				<a href="basic-animate-elem-52-t.html">animate-elem-52-t ←</a> 
+				<a href="basic-index.html">index</a>
+				<a href="basic-animate-elem-61-t.html">→ animate-elem-61-t</a>
+						</p></div>
+
+	<table align="center" border="0" cellspacing="0" cellpadding="10">
+		<tr>
+			<td align="center" colspan="3">
+				<table border="0" cellpadding="8">
+					<tr>
+						<td align="center" colspan="2" class="pageTitle">
+							<h1>animate-elem-60-t</h1>
+						</td>
+					</tr>
+					<tr  class="navbar">
+						<td align="center">
+							SVG Image
+						</td>
+						<td align="center">
+							PNG Image
+						</td>
+					</tr>
+					<tr>
+						<td align="right">
+   	    		  			<embed src="../svggen/animate-elem-60-t.svg" width="160" height="120"/>
+						</td>
+						<td align="left">
+							<img alt="raster image of animate-elem-60-t" src="../png/basic-animate-elem-60-t.png" width="160" height="120"/>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+
+               
+<div class="opscript">
+
+            <p>
+
+                This test performs basic test on the begin attribute,
+
+                assuming support for the &lt;set&gt; element and setting the 
+
+                fill attribute on a &lt;rect&gt; element.
+
+            </p>
+
+            <p>
+
+    		The test validates the various possibilities for the begin attribute
+
+                value: no specified value, offset value, event base value, sync base
+
+                value, indefinite value, repeat value, accessKey value and wallclock.
+
+            </p>
+
+            <p>
+
+                There is one or several &lt;set&gt; elements for each of the possible begin
+
+                values. For each test, the &lt;set&gt; element(s) has (or have) an indefinite
+
+                duration and no other timing attribute specified other than begin
+
+                and dur.
+
+            </p>
+
+            <p>
+
+                There are two sets of vertical markers which help check that the test
+
+                is handled properly by the user agent. The first set, on the left, shows
+
+                markers from 0s to 8s, where the times are offset from the document's load time.
+
+                The rectangles in that area should turn green at the time corresponding
+
+                to the column they are in. From example, the first rectangle (going left to right)
+
+                on the "sync base" line should turn green 2 seconds after the document's load.
+
+                The second set of time vertical markers shows offset from a particular event.
+
+                For example, for the event base, the markers show an offset to the time 
+
+                the first event base rectangle (the left-most one) is clicked on. For the 
+
+                accessKey line, the times show offsets from the time the 'a' key is pressed
+
+                and the document has focus.
+
+            </p>
+
+            <p>
+
+                The first &lt;set&gt; has an unspecified begin attribute. That value
+
+                defaults to an offset of 0s so the animation should apply as soon as
+
+                the document is loaded.
+
+            </p>
+
+            <p>
+
+                The second &lt;set&gt; has its begin attribute set to '2s'. So its
+
+                target rectangle should turn green two seconds after the document is 
+
+                loaded.
+
+            </p>
+
+            <p>
+
+                The third &lt;set&gt; has its begin attribute set to an event base
+
+                value 'click'. The user has to click on the left-most target red rectangle
+
+                to make the &lt;set&gt; target turn green. There are two rectangles
+
+                with associated &lt;set&gt; elements. The left most ones has a simple
+
+                value (no offset) and the second one is offset from the event time by 2 seconds.
+
+            </p>
+
+            <p>
+
+                The fourth &lt;set&gt; elements have their begin attributes set to a sync base
+
+                value. The first two rectangles have &lt;set&gt; elements synchronized on their sync base
+
+                begin. The left-most one has no offset and the following one has a 2 seconds offset.
+
+                The last two rectangles have &lt;set&gt; elements synchronized on their sync base end.
+
+                The first one (i.e., the third from left to right on that line), has a 2 seconds
+
+                negative offset. The second one (i.e., the last one on the line) has no offset and should
+
+                begin at the time its sync base ends.
+
+            </p>
+
+            <p>
+
+                The fifth &lt;set&gt; has its begin attribute set to indefinite and
+
+                should not turn red and stay green.
+
+            </p>
+
+            <p>
+
+                The sixth &lt;set&gt;s have their begin attributes have their begin attributes
+
+                based on the repeat() function. The repeat they are synchronized on happens
+
+                at 3s. The first &lt;set&gt;, which has no offset, should begin at 3s. The 
+
+                second &lt;set&gt;, which has a 2 seconds offset, should start at 5s.
+
+            </p>
+
+            <p>
+
+                The seventh &lt;set&gt;s have their begin attributes set to 'accessKey(a)'.
+
+                The first one has no offset and should become active (and turn the rectangle
+
+                green), as soon as the key 'a' is pressed in the user agent. The second &lt;set&gt;
+
+                has a 2s offset and should become active 2 seconds after the 'a' key is pressed in
+
+                the user agent.
+
+            </p>
+
+            <p>
+
+                The eight's &lt;set&gt; target has its begin attribute set to 
+
+                'wallclock()'. Therefore, the target should never turn red because the 
+
+                target wallclock time is in the past.
+
+            </p>
+
+
+		</div>
+<div class="linkbar"> <p>
+				<a href="basic-animate-elem-52-t.html">animate-elem-52-t ←</a>
+				<a href="basic-index.html">index</a>
+				<a href="basic-animate-elem-61-t.html">→ animate-elem-61-t</a>
+						</p></div>
+</body>
+</html>

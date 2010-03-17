@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1 Tiny//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-tiny.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" baseProfile="basic" id="svg-root" width="100%" height="100%" viewBox="0 0 480 360">
+<!--======================================================================-->
+<!--=  Copyright 2000 World Wide Web Consortium, (Massachusetts          =-->
+<!--=  Institute of Technology, Institut National de Recherche en        =-->
+<!--=  Informatique et en Automatique, Keio University). All Rights      =-->
+<!--=  Reserved. See http://www.w3.org/Consortium/Legal/.                =-->
+<!--======================================================================-->
+<!-- ===================================================================== -->
+<!--                                                                       -->
+<!-- struct-use-04-b.svg		                                             -->
+<!--                                                                       -->
+<!-- Tests external references on the use element        						-->
+<!--                                                                       -->
+<!-- Author : Corel SVG Viewer QA team  01-05-2003                         -->
+<!-- Revised by: Benoit Bezaire															-->
+<!--                                                                       -->
+<!--======================================================================-->
+
+
+  <title id="test-title">struct-use-04-b.svg</title>
+  <desc id="test-desc">Tests external references on the use element</desc>
+
+  <!--======================================================================-->
+  <!--Content of Test Case follows...                  =====================-->
+  <!--======================================================================-->
+  <g id="ExtContent">
+    <use xlink:href="../images/svgRef4.svg#alpha"/>
+    <use xlink:href="../images/svgRef4.svg#beta"/>
+    <use xlink:href="../images/svgRef4.svg#gamma"/>
+    <use xlink:href="../images/svgRef4.svg#delta"/>
+
+    <use xlink:href="../images/svgRef4.svg#testContent" x="-5" y="5" fill-opacity="0.5"/>
+  </g>
+
+  <text font-size="20" x="240" y="30" text-anchor="middle">External references on &lt;use&gt;</text>
+
+  <text id="revision" x="10" y="350" font-size="30" stroke="none" fill="black">$Revision: 1.6 $</text>
+  <rect id="test-frame" x="1" y="1" width="478" height="358" fill="none" stroke="#000000"/>
+</svg>

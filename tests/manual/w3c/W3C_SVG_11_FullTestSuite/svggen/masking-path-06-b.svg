@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1 Tiny//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-tiny.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" baseProfile="basic" id="svg-root" width="100%" height="100%" viewBox="0 0 480 360">
+<!--======================================================================-->
+<!--=  Copyright 2000 World Wide Web Consortium, (Massachusetts          =-->
+<!--=  Institute of Technology, Institut National de Recherche en        =-->
+<!--=  Informatique et en Automatique, Keio University). All Rights      =-->
+<!--=  Reserved. See http://www.w3.org/Consortium/Legal/.                =-->
+<!--======================================================================-->
+<!-- ===================================================================== -->
+<!--                                                                       -->
+<!-- masking-path-06-b.svg                                                 -->
+<!--                                                                       -->
+<!-- Author : Corel SVG Viewer QA team  01-05-2003                         -->
+<!-- Revised by: Benoit Bezaire															-->
+<!--                                                                       -->
+<!-- Author : Benoit Bezaire  01-05-2003                                   -->
+<!--                                                                       -->
+<!--======================================================================-->
+
+
+  <title id="test-title">masking-path-06-b.svg</title>
+  <desc id="test-desc">Tests the clip on raster and SVG images</desc>
+  <!--======================================================================-->
+  <!--Content of Test Case follows...                  =====================-->
+  <!--======================================================================-->
+  <text font-size="20" x="240" y="30" text-anchor="middle">'clip' property on images</text>
+
+  <image x="35" y="45" width="200" height="120" overflow="hidden" clip="rect(10,10,10,10)" xlink:href="../images/plant.jpg" preserveAspectRatio="none"/>
+  <rect x="35" y="45" width="200" height="120" fill="none" stroke="blue"/>
+  <rect x="45" y="55" width="180" height="100" fill="none" stroke="red"/>
+  <text font-size="25" x="245" y="110">&lt;-- raster image</text>
+
+  <image x="245" y="180" width="200" height="120" overflow="hidden" clip="rect(10,10,10,10)" xlink:href="../images/SVGImageTest.svg" preserveAspectRatio="none"/>
+  <rect x="245" y="180" width="200" height="120" fill="none" stroke="blue"/>
+  <rect x="255" y="190" width="180" height="100" fill="none" stroke="red"/>
+  <text font-size="25" x="70" y="250">SVG image --&gt;</text>
+
+  <text id="revision" x="10" y="340" font-size="40" stroke="none" fill="black">$Revision: 1.8 $</text>
+  <rect id="test-frame" x="1" y="1" width="478" height="358" fill="none" stroke="#000000"/>
+</svg>
