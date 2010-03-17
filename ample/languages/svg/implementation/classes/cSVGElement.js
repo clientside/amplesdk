@@ -444,6 +444,26 @@ if (cSVGElement.useVML) {
 //		}, 0);
 	};
 
+	cSVGElement.applyCSSSizes	= function(oElement) {
+		var oElementDOM	= oElement.$getContainer();
+		if (!oElementDOM)	// Element was removed
+			return;
+		var oStyle	= oElementDOM.currentStyle,
+			sValue;
+		if (sValue = (oStyle["stroke-width"] || cSVGElement.getStyle(oElement, "stroke-width")))
+			cSVGElement.setStyle(oElement, "stroke-width", sValue);
+		if (sValue = (oStyle["stroke-opacity"] || cSVGElement.getStyle(oElement, "stroke-opacity")))
+			cSVGElement.setStyle(oElement, "stroke-opacity", sValue);
+		// Text module
+		if (oElement instanceof cSVGElement_text || oElement instanceof cSVGElement_tspan || oElement instanceof cSVGElement_textPath) {
+			if (sValue = cSVGElement.getStyle(oElement, "font-size"))
+				cSVGElement.setStyle(oElement, "font-size", sValue);
+		}
+		for (var oChild = oElement.firstChild; oChild; oChild = oChild.nextSibling)
+			if (!(oChild instanceof cSVGElement_g))
+				cSVGElement.applyCSSSizes(oChild);
+	};
+
 	// Utilities
 	cSVGElement.matrixCreate	= function() {
 		return [
