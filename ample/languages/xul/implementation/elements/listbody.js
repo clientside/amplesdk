@@ -34,34 +34,39 @@ cXULElement_listbody.handlers	= {
 // Element Render: open
 cXULElement_listbody.prototype.$getTagOpen	= function()
 {
+	var bOldTrident	= navigator.userAgent.match(/MSIE ([\d.]+)/) && RegExp.$1 < 8;
 	return '<tr' +(this.attributes["hidden"] == "true" ? ' style="display:hidden;"' : '')+ '>\
 				<td style="height:100%">\
-					<div class="xul-listbody--area" style="height:100%;overflow:scroll;position:relative;" onscroll="return ample.$instance(this)._onScroll(event)">\
-						<table cellpadding="0" cellspacing="0" border="0" width="100%" class="xul-listbody" style="position:absolute;' + (navigator.userAgent.match(/MSIE ([\d.]+)/) && RegExp.$1 == 7 ? 'border-left: solid 18px white;margin-left:-18px;' : '') + '">\
+					<div class="xul-listbody--area" style="height:100%;overflow:scroll;position:relative;" onscroll="return ample.$instance(this)._onScroll(event)">'+
+						(bOldTrident ? '<div style="position:absolute;border-left: solid 18px white;margin-left:-18px;">' : '')+'\
+						<table cellpadding="0" cellspacing="0" border="0" width="100%" class="xul-listbody"' + (!bOldTrident ? ' style="position:absolute"' : '')+ '>\
 							<tbody class="xul-listbody--gateway">';
 };
 
 // Element Render: close
 cXULElement_listbody.prototype.$getTagClose	= function()
 {
-    var sHtml   = '</tbody>';
+	var bOldTrident	= navigator.userAgent.match(/MSIE ([\d.]+)/) && RegExp.$1 < 8;
+    var aHtml   = ['</tbody>'];
     if (this.parentNode.firstChild instanceof cXULElement_listhead)
     {
-        sHtml  += '<tfoot class="xul-listbody--foot">';
-        sHtml  += '<tr>';
+    	aHtml.push('<tfoot class="xul-listbody--foot">');
+    	aHtml.push('<tr>');
         if (this.parentNode.attributes["type"] == "checkbox" || this.parentNode.attributes["type"] == "radio")
-            sHtml  += '<td width="20"><div style="width:20px;"/></td>';
+        	aHtml.push('<td width="20"><div style="width:20px;"/></td>');
         for (var nIndex = 0, aItems = this.parentNode.firstChild.childNodes; nIndex < aItems.length; nIndex++)
-            sHtml  += '<td' + (aItems[nIndex].attributes["width"] ? ' width="' + aItems[nIndex].attributes["width"] + '"' : '') + '><div style="height:1px;' + (aItems[nIndex].attributes["minwidth"] ? 'width:' + aItems[nIndex].attributes["minwidth"] + 'px' : '') + '"/></td>';
-        sHtml  += '</tr>';
-        sHtml  += '</tfoot>';
+        	aHtml.push('<td' + (aItems[nIndex].attributes["width"] ? ' width="' + aItems[nIndex].attributes["width"] + '"' : '') + '><div style="height:1px;' + (aItems[nIndex].attributes["minwidth"] ? 'width:' + aItems[nIndex].attributes["minwidth"] + 'px' : '') + '"/></td>');
+        	aHtml.push('</tr>');
+        	aHtml.push('</tfoot>');
     }
-    sHtml  += '</table>';
-    sHtml  += '</div>';
-    sHtml  += '</td>';
-    sHtml  += '</tr>';
+    aHtml.push('</table>');
+    if (bOldTrident)
+    	aHtml.push('</div>');
+    aHtml.push('</div>');
+    aHtml.push('</td>');
+    aHtml.push('</tr>');
 
-    return sHtml;
+    return aHtml.join('');
 };
 
 // Register Element with language
