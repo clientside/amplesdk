@@ -142,14 +142,14 @@ var oAMLSelector_elementSelectors	= {},
 
 var rAMLSelector_whiteSpace = /\s*([\s>+~(,]|^|$)\s*/g,
 	rAMLSelector_impliedAll = /([\s>+~,]|[^(]\+|^)([#.:@])/g,
-	rAMLSelector_attribute  = /(\[[^\]]+\])/g;
+	rAMLSelector_attribute  = /(^|[^(])(\[[^\]]+\])/g;
 
 function fAMLSelector_parseSelector(sSelector) {
     return cString(sSelector)
 	    // trim whitespace
 	    .replace(rAMLSelector_whiteSpace, '$1')
 	    // e.g "[a~=asd] --> @[a~=asd]
-	    .replace(rAMLSelector_attribute, '@$1')
+	    .replace(rAMLSelector_attribute, '$1@$2')
 	    // e.g. ".class1" --> "*.class1"
 	    .replace(rAMLSelector_impliedAll, '$1*$2');
 };
