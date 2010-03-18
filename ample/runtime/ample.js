@@ -81,7 +81,7 @@ oAML_messages[nAML_ERROR_ANIMATING_ATTR_WRN]= 'Error animating %0 atttribute wit
  * ], sFunctionName);
  */
 //->Debug
-var aAML_endings	= 'st-nd-rd'.split('-');
+var aAML_endings	= 'st-nd-rd-th'.split('-');
 //<-Debug
 function fAML_validate(aArguments, aParameters, sFunction) {
 	var fCaller	= null;
@@ -94,7 +94,7 @@ function fAML_validate(aArguments, aParameters, sFunction) {
 	for (var nIndex = 0, nLength = aArguments.length, aParameter, oArgument, bValid; aParameter = aParameters[nIndex]; nIndex++) {
 		oArgument	= aArguments[nIndex];
 //->Debug
-		var sArgument	=(nIndex + 1)+(nIndex < 3 ? aAML_endings[nIndex] : 'th');
+		var sArgument	=(nIndex + 1)+ aAML_endings[nIndex < 3 ? nIndex : 3];
 //<-Debug
 		// see if argument is passed
 		if (nLength < nIndex + 1 && !aParameter[2])
