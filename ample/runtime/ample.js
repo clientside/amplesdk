@@ -156,18 +156,13 @@ function fAML_import(oElementDOM, oNode, bCollapse) {
 				// Create element
 				var oElement	= fAMLDocument_createElementNS(oDocument, oElementDOM.namespaceURI, oElementDOM.nodeName),
 					aAttributes = oElementDOM.attributes,
-					oAttribute, sLocalName, sPrefix, sNameSpaceURI,
-					sName, sValue,
-					oEvent;
+					oAttribute, sName, sValue;
 
 				for (var nIndex = 0, nLength = aAttributes.length; nIndex < nLength; nIndex++) {
 					// oAttribute used to cache object
 					oAttribute	= aAttributes[nIndex];
 					sName	= oAttribute.nodeName;
 					sValue	= oAttribute.nodeValue;
-					sPrefix	= oAttribute.prefix;
-					sLocalName		= oAttribute.baseName || oAttribute.localName;
-					sNameSpaceURI	= oAttribute.namespaceURI;
 
 					// Inline event handler
 					if (sName.indexOf("on") == 0)
