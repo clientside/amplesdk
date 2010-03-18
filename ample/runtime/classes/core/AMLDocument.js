@@ -93,7 +93,7 @@ cAMLDocument.prototype.createTextNode	= function(sData)
 {
 	// Validate arguments
 	fAML_validate(arguments, [
-		["data",	cString, true]
+		["data",	cObject, true]
 	], "createTextNode");
 
 	// if no argument was provided, use empty string
@@ -101,7 +101,7 @@ cAMLDocument.prototype.createTextNode	= function(sData)
 		sData	= '';
 
 	// Invoke actual implementation
-	return fAMLDocument_createTextNode(this, sData);
+	return fAMLDocument_createTextNode(this, cString(sData));
 };
 
 function fAMLDocument_createCDATASection(oDocument, sData)
@@ -119,7 +119,7 @@ cAMLDocument.prototype.createCDATASection	= function(sData)
 {
 	// Validate arguments
 	fAML_validate(arguments, [
-		["data",	cString, true]
+		["data",	cObject, true]
 	], "createCDATASection");
 
 	// if no argument was provided, use empty string
@@ -127,7 +127,7 @@ cAMLDocument.prototype.createCDATASection	= function(sData)
 		sData	= '';
 
 	// Invoke actual implementation
-	return fAMLDocument_createCDATASection(this, sData);
+	return fAMLDocument_createCDATASection(this, cString(sData));
 };
 
 //->Source
@@ -149,7 +149,7 @@ cAMLDocument.prototype.createComment	= function(sData)
 {
 	// Validate arguments
 	fAML_validate(arguments, [
-		["data",	cString, true]
+		["data",	cObject, true]
 	], "createComment");
 
 //->Source
@@ -228,6 +228,11 @@ cAMLDocument.prototype.createElementNS	= function(sNameSpaceURI, sQName)
 
 cAMLDocument.prototype.createEntityReference	= function(sName)
 {
+	// Validate arguments
+	fAML_validate(arguments, [
+		["name",	cString]
+	], "createEntityReference");
+
 	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
 
@@ -247,6 +252,12 @@ cAMLDocument.prototype.createEvent     = function(sName)
 
 cAMLDocument.prototype.canDispatch	= function(sNameSpaceURI, sType)
 {
+	// Validate arguments
+	fAML_validate(arguments, [
+		["namespaceURI",	cString, false, true],
+		["type",			cString]
+	], "canDispatch");
+
 	return true;
 };
 
