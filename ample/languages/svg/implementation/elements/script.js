@@ -21,8 +21,12 @@ cSVGElement_script.prototype.$getTag	= function() {
 
 cSVGElement_script.handlers	= {
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
-		if (this.firstChild instanceof AMLCharacterData)
-			eval(this.firstChild.data);
+		if (this.firstChild instanceof AMLCharacterData) {
+			var oScript	= document.createElement("script");
+			document.getElementsByTagName("head")[0].appendChild(oScript);
+			oScript.type	= "text/javascript";
+			oScript.text	= this.firstChild.data;
+		}
 	}
 };
 
