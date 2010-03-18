@@ -392,7 +392,7 @@ oAMLSelector_pseudoClasses["nth-last-child"] = function(oElement, sArguments) {
 };
 
 oAMLSelector_pseudoClasses["target"] = function(oElement) {
-	return oElement.id == oLocation.hash.slice(1);
+	return oElement.id == oUALocation.hash.slice(1);
 };
 
 // UI element states

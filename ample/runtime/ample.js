@@ -242,7 +242,7 @@ function fAML_import(oElementDOM, oNode, bCollapse) {
 							if (cRegExp.$1 == "text/css" || cRegExp.$1 == "text/ample+css") {
 								var sCSS	= fAML_loadStyleSheet(sHref);
 								if (sCSS)
-									document.getElementsByTagName("head")[0].appendChild(fAML_createStyleSheet(sCSS, sHref));
+									oUADocument.getElementsByTagName("head")[0].appendChild(fAML_createStyleSheet(sCSS, sHref));
 							}
 					}
 					// no break is left intentionally
@@ -465,10 +465,10 @@ function fAML_processScripts() {
 
 	// Collect attributes from document root element
 	if (bTrident)
-		for (var nIndex = 0, aAttributes = document.namespaces; oAttribute = aAttributes[nIndex]; nIndex++)
+		for (var nIndex = 0, aAttributes = oUADocument.namespaces; oAttribute = aAttributes[nIndex]; nIndex++)
 			oNamespaces["xmlns" + (oAttribute.name == "xmlns" ? '' : ':') + oAttribute.name]	= oAttribute.urn;
 	else
-		for (var nIndex = 0, aAttributes = document.documentElement.attributes; oAttribute = aAttributes[nIndex]; nIndex++)
+		for (var nIndex = 0, aAttributes = oUADocument.documentElement.attributes; oAttribute = aAttributes[nIndex]; nIndex++)
 			if (oAttribute.nodeName.match(/^xmlns($|:)/))
 				oNamespaces[oAttribute.nodeName]	= oAttribute.nodeValue;
 
@@ -484,7 +484,7 @@ function fAML_processScripts() {
 	};
 
 	// Process script tags
-    aElements = document.body.getElementsByTagName("script");
+    aElements = oUADocument.body.getElementsByTagName("script");
     for (var nIndex = 0, nSkip = 0; aElements.length > nSkip; nIndex++) {
     	// Current Script
 	    oElementDOM	= aElements[nSkip];
@@ -549,7 +549,7 @@ function fAML_processScripts() {
 		    	oElement	= fAML_import(oDocument.documentElement, null, true);
 		    	// render Ample DOM
 		    	if (bTrident) {
-		    		oElementNew	= document.createElement("div");
+		    		oElementNew	= oUADocument.createElement("div");
 		    		fAML_replaceNode(oElementDOM, oElementNew);
 			    	oElementNew.innerHTML = oElement.$getTag();
 
@@ -569,7 +569,7 @@ function fAML_processScripts() {
 					// duplicate id problem
 		    		if (!bReferenced && !oAttributes["id"])
 		    			oAttributes["id"]	= oElement.uniqueID;
-		    		oElementNew	= document.importNode(new cDOMParser().parseFromString('<!' + "DOCTYPE" + ' ' + "div" + ' ' + '[' + sAML_entities + ']>' +
+		    		oElementNew	= oUADocument.importNode(new cDOMParser().parseFromString('<!' + "DOCTYPE" + ' ' + "div" + ' ' + '[' + sAML_entities + ']>' +
 //->Debug
 																		'\n' +
 //<-Debug
@@ -597,7 +597,7 @@ function fAML_processScripts() {
 			    fAMLNode_dispatchEvent(oElement, oEventLoad);
 		    }
 		    else {
-				oElementNew	= document.createElement("pre");
+				oElementNew	= oUADocument.createElement("pre");
 				fAML_replaceNode(oElementDOM, oElementNew);
 		    	oElementNew.innerHTML	= "script" + ' ' + "parsererror";
 //->Debug
@@ -611,14 +611,14 @@ function fAML_processScripts() {
 					// Webkit
 					if (oParserMessage = oParserError.getElementsByTagName('div')[0])
 						oElementNew.textContent	= 'XML Parsing Error: ' + oParserMessage.textContent.replace(/.+:/, '') +
-													'Location: ' + oLocation + '\n' +
+													'Location: ' + oUALocation + '\n' +
 													 oParserMessage.textContent.replace(/:.+/, '');
 			    }
 			    else
 			    // Trident
 			    if (oDocument.parseError) {
 					oElementNew.innerText	= 'XML Parsing Error: ' + oDocument.parseError.reason + '\n' +
-													'Location: ' + (oDocument.parseError.url || oLocation) + '\n' +
+													'Location: ' + (oDocument.parseError.url || oUALocation) + '\n' +
 													'Line Number: ' + oDocument.parseError.line + ', Column ' + oDocument.parseError.linepos + ':\n'+
 													oDocument.parseError.srcText + '\n' +
 													new cArray(oDocument.parseError.linepos).join('-') + '^';
@@ -641,16 +641,16 @@ function fAML_processStyleSheets() {
 		nSkip;
 
 	// Process inline StyleSheets
-    aElements   = document.getElementsByTagName("style");
+    aElements   = oUADocument.getElementsByTagName("style");
     for (nIndex = 0, nLength = aElements.length; nIndex < nLength; nIndex++) {
     	oElement	= aElements[nIndex];
 
     	if (oElement.getAttribute("type") == "text/ample+css")
-    		fAML_replaceNode(oElement, fAML_createStyleSheet(oElement.innerHTML, oLocation.href, oElement.getAttribute("media")));
+    		fAML_replaceNode(oElement, fAML_createStyleSheet(oElement.innerHTML, oUALocation.href, oElement.getAttribute("media")));
 	}
 
 	// Process external StyleSheets
-    aElements   = document.getElementsByTagName("link");
+    aElements   = oUADocument.getElementsByTagName("link");
     for (nIndex = 0, nSkip = 0; aElements.length > nSkip; nIndex++) {
     	oElement	= aElements[nSkip];
 
@@ -664,7 +664,7 @@ function fAML_processStyleSheets() {
 
 function fAML_initialize() {
 //->Source
-	document.title	= "Processing...";
+	oUADocument.title	= "Processing...";
 //<-Source
 
 //->Source
@@ -686,12 +686,12 @@ function fAML_initialize() {
 
 	// Set documentElement style pointer object
     if (oAMLConfiguration_values["ample-use-style-property"])
-		ample.documentElement.style	= document.body.style;
+		ample.documentElement.style	= oUADocument.body.style;
 
 	// IE background images cache fix
 	try {
 		if (bTrident && nVersion < 7)
-			document.execCommand("BackgroundImageCache", false, true);
+			oUADocument.execCommand("BackgroundImageCache", false, true);
 	} catch (oError){};
 
 	// change readystate to "interactive"
@@ -706,8 +706,8 @@ function fAML_initialize() {
 	fAML_changeReadyState(4);
 
 //->Source
-    document.title	= 	"AML Elements: " + ample.getElementsByTagName('*').length + " units. " +
-            			"DOM Elements: " + document.getElementsByTagName('*').length + " units. " +
+	oUADocument.title	= 	"AML Elements: " + ample.getElementsByTagName('*').length + " units. " +
+            			"DOM Elements: " + oUADocument.getElementsByTagName('*').length + " units. " +
             			"CSS time: " + (oDateXML - oDateCSS) + " ms. " +
             			"XML time: " + (new cDate - oDateXML) + " ms. ";
 //<-Source
@@ -755,8 +755,8 @@ oAMLConfiguration_values["ample-version"]	= '@project.version@';
 oAMLConfiguration_values["ample-user-agent"]= '@project.userAgent@';
 
 // Create global "ample" object
-ample	= fAMLImplementation_createDocument(oAML_implementation, document.documentElement.getAttribute("xmlns") || null, "document", null);
-ample.documentElement.$getContainer	= function(sName) {return sName && sName != "gateway" ? null : document.body};
+ample	= fAMLImplementation_createDocument(oAML_implementation, oUADocument.documentElement.getAttribute("xmlns") || null, "document", null);
+ample.documentElement.$getContainer	= function(sName) {return sName && sName != "gateway" ? null : oUADocument.body};
 
 ample.$instance	= function(oNode) {
     for (var oElement, sId; oNode; oNode = oNode.parentNode)

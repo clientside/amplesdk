@@ -624,13 +624,13 @@ cAMLElement.prototype.$getContainer	= function(sName) {
 	var sId	= this.uniqueID + (sName ? '_' + sName : '');
     if (!this.$cache)
     	this.$cache	= {};
-    return this.$cache[sId] ||(this.$cache[sId] = document.getElementById(sId));
+    return this.$cache[sId] ||(this.$cache[sId] = oUADocument.getElementById(sId));
 };
 */
 /*
 cAMLElement.prototype.$getContainer	= function(sName)
 {
-   	return document.getElementById(this.uniqueID + (sName ? '_' + sName : ''));
+   	return oUADocument.getElementById(this.uniqueID + (sName ? '_' + sName : ''));
 };
 */
 
@@ -672,7 +672,7 @@ cAMLElement.prototype.$getContainer	= function(sName)
 	if (sShadow in oCache)
 		return oCache[sShadow];
 	else {
-		var oNode	= document.getElementById(this.attributes.id || this.uniqueID);
+		var oNode	= oUADocument.getElementById(this.attributes.id || this.uniqueID);
 		if (sName && oNode) {
 			var rClass	= new cRegExp('--' + sName + '(\\s|$)');
 			oNode	= (function (oContext, oNode) {
@@ -694,7 +694,7 @@ cAMLElement.prototype.$getContainer	= function(sName)
 */
 cAMLElement.prototype.$getContainer	= function(sName)
 {
-	var oNode	= document.getElementById(this.attributes.id || this.uniqueID);
+	var oNode	= oUADocument.getElementById(this.attributes.id || this.uniqueID);
 	if (sName && oNode) {
 		var rClass	= new cRegExp('--' + sName + '(\\s|$)');
 		return (function (oNode) {

@@ -45,8 +45,9 @@ var cString		= window.String,
 	fIsNaN		= window.isNaN,
 	fIsFinite	= window.isFinite,
 //	window objects
-	oNavigator	= window.navigator,
-	oLocation	= window.location,
+	oUANavigator= window.navigator,
+	oUALocation	= window.location,
+	oUADocument	= window.document,
 // constants
 	nInfinity	= window.Infinity;
 

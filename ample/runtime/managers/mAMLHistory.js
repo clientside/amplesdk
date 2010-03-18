@@ -26,11 +26,11 @@ function fAMLHistory_bookmark(sHash) {
 		oDocument.close();
 	}
 	else
-		oLocation.hash	= sHash;
+		oUALocation.hash	= sHash;
 };
 
 function fAMLHistory_onTimeout() {
-	var sHash	= oLocation.hash.replace(/^#/, '');
+	var sHash	= oUALocation.hash.replace(/^#/, '');
 	if (sAMLHistory_hash != sHash) {
 		// Manual input was conducted in Internet Explorer
 //		if (oAMLHistory_window && oAMLHistory_window.hash && sHash != oAMLHistory_window.hash)
@@ -54,11 +54,11 @@ function fAMLHistory_onTimeout() {
 };
 
 function fAMLHistory_onLoad(oEvent) {
-	var sHash	= oLocation.hash.replace(/^#/, '');
+	var sHash	= oUALocation.hash.replace(/^#/, '');
 	if (bTrident) {
-		var oElement	= document.createElement("iframe");
+		var oElement	= oUADocument.createElement("iframe");
 		oElement.style.display	= "none";
-		document.body.appendChild(oElement);
+		oUADocument.body.appendChild(oElement);
 		oAMLHistory_window	= oElement.contentWindow;
 		if (oAMLConfiguration_values["ample-module-history-fix"])
 			fAMLHistory_bookmark(sHash);

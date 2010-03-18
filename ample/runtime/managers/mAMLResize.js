@@ -133,7 +133,7 @@ function fAMLResize_onMouseMove(oEvent)
 					nAMLResize_resizeEdge	= nResize;
 
 					// set cursor
-					document.documentElement.style.cursor	= sCursor + '-' + "resize";
+					oUADocument.documentElement.style.cursor	= sCursor + '-' + "resize";
 
 					return;
 				}
@@ -146,7 +146,7 @@ function fAMLResize_onMouseMove(oEvent)
 			nAMLResize_resizeEdge	= nAMLResize_EDGE_NONE;
 
 			// reset cursor
-			document.documentElement.style.cursor	= '';
+			oUADocument.documentElement.style.cursor	= '';
 		}
 		return;
 	}
@@ -185,7 +185,7 @@ function fAMLResize_onMouseMove(oEvent)
 		nAMLResize_clientTop		= oStyle.top;
 
 		var oComputedStyle	= fAML_getComputedStyle(oElementDOM),
-			bBackCompat		= document.compatMode == "BackCompat";
+			bBackCompat		= oUADocument.compatMode == "BackCompat";
 
 		// move resizable position to (0, 0)
 		oStyle.left	= '0';
@@ -296,7 +296,7 @@ function fAMLResize_onMouseUp(oEvent)
 	oAMLResize_resizeNode	= null;
 
 	// reset cursor
-	document.documentElement.style.cursor	= '';
+	oUADocument.documentElement.style.cursor	= '';
 };
 
 function fAMLResize_onKeyDown(oEvent) {

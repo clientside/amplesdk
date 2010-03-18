@@ -63,33 +63,33 @@ var bTrident	= false,
 /*	bKHTML		= false,*/
 	nVersion	= 0;
 
-if (!!document.namespaces) {
+if (!!oUADocument.namespaces) {
 	bTrident	= true;
-	nVersion	= oNavigator.userAgent.match(/MSIE ([\d.]+)/)[1];
-	if (document.addEventListener)
+	nVersion	= oUANavigator.userAgent.match(/MSIE ([\d.]+)/)[1];
+	if (oUADocument.addEventListener)
 		nVersion	= 9;
 }
 else
 if (!!window.controllers) {
 	bGecko		= true;
-	nVersion	= fParseFloat(oNavigator.userAgent.match(/rv:([\d.]+)/)[1]);
+	nVersion	= fParseFloat(oUANavigator.userAgent.match(/rv:([\d.]+)/)[1]);
 }
 else
 if (!!window.opera) {
 	bPresto		= true;
-//	nVersion	= oNavigator.userAgent.match(/Presto\/([\d.]+)/)[1];
+//	nVersion	= oUANavigator.userAgent.match(/Presto\/([\d.]+)/)[1];
 }
 else
-if (oNavigator.userAgent.match(/AppleWebKit\/([\d.]+)/)[1]) {
+if (oUANavigator.userAgent.match(/AppleWebKit\/([\d.]+)/)[1]) {
 	bWebKit		= true;
 }
 
 // Private Variables
-var oAML_factory	= document.createElement("span");
+var oAML_factory	= oUADocument.createElement("span");
 
 function fAML_render(oNode) {
 	if (oNode.nodeType == cAMLNode.TEXT_NODE)
-		return document.createTextNode(oNode.nodeValue);
+		return oUADocument.createTextNode(oNode.nodeValue);
 	else
 	if (oNode.nodeType == cAMLNode.ELEMENT_NODE) {
 		var sHtml	= oNode.$getTag();
@@ -124,7 +124,7 @@ function fAML_render(oNode) {
 				// Add namespace declarations to the shadow content
 				if (!("xmlns" + (oNode.prefix ? ':' + oNode.prefix : '') in oNode.attributes) || (oNode.namespaceURI != "http://www.w3.org/2000/svg" && oNode.namespaceURI != "http://www.w3.org/1999/xhtml"))
 					sHtml	= sHtml.replace(/^(<(?:(\w+)(:))?(\w+))/, '$1 ' + "xmlns" + '$3$2="' + (oNode.namespaceURI == "http://www.w3.org/2000/svg" ? "http://www.w3.org/2000/svg" : "http://www.w3.org/1999/xhtml") + '"');
-				return document.importNode(new cDOMParser().parseFromString('<!' + "DOCTYPE" + ' ' + "#document-fragment".substr(1) + '[' + sAML_entities + ']>' + sHtml, "text/xml").documentElement, true);
+				return oUADocument.importNode(new cDOMParser().parseFromString('<!' + "DOCTYPE" + ' ' + "#document-fragment".substr(1) + '[' + sAML_entities + ']>' + sHtml, "text/xml").documentElement, true);
 			}
 		}
 	}
@@ -359,7 +359,7 @@ function fOnMouseOver(oEvent) {
 };
 
 /*
-document.attachEvent("on" + "mouseover", function(oEvent) {
+oUADocument.attachEvent("on" + "mouseover", function(oEvent) {
 	var oTarget		= fGetEventTarget(oEvent),
 		oPseudo		= fGetUIEventPseudo(oEvent);
     // Create an Event
@@ -369,7 +369,7 @@ document.attachEvent("on" + "mouseover", function(oEvent) {
 	fAMLNode_dispatchEvent(oTarget, oEventMouseOver);
 });
 
-document.attachEvent("on" + "mouseout", function(oEvent) {
+oUADocument.attachEvent("on" + "mouseout", function(oEvent) {
 	var oTarget		= fGetEventTarget(oEvent),
 		oPseudo		= fGetUIEventPseudo(oEvent);
     // Create an Event
@@ -660,7 +660,7 @@ function fAML_toggleSelect(bAllow) {
 	if (bTrident)
 		bAML_userSelect	= bAllow;
 	else {
-		var oStyle	= document.documentElement.style;
+		var oStyle	= oUADocument.documentElement.style;
 		oStyle.WebkitUserSelect	=
 		oStyle.MozUserSelect	=
 		oStyle.OperaUserSelect	=
@@ -798,11 +798,11 @@ fAttachEvent(window, "load", function(oEvent) {
 	fAML_changeReadyState(1);
 
 //->Source
-	document.title	= "Initializing...";
+	oUADocument.title	= "Initializing...";
 //<-Source
 
     // Add to document, otherwise will not render VML
-    document.body.appendChild(oAML_factory);
+	oUADocument.body.appendChild(oAML_factory);
     oAML_factory.style.display	= "none";
 
 	// Register window event listeners
@@ -810,23 +810,23 @@ fAttachEvent(window, "load", function(oEvent) {
 	fAttachEvent(window, "scroll", fOnScroll);
 
 	// Register document event listeners
-	fAttachEvent(document, "keydown",	fOnKeyDown);
-	fAttachEvent(document, "keyup",		fOnKeyUp);
-	fAttachEvent(document, "keypress",	fOnKeyPress);
-	fAttachEvent(document, "mouseover",	fOnMouseOver);
-	fAttachEvent(document, "mousemove",	fOnMouseMove);
-	fAttachEvent(document, "contextmenu",fOnContextMenu);
-	fAttachEvent(document, "click",		fOnClick);
-	fAttachEvent(document, "dblclick",	fOnDblClick);
-	fAttachEvent(document, "mousedown",	fOnMouseDown);
-	fAttachEvent(document, "mouseup",	fOnMouseUp);
+	fAttachEvent(oUADocument, "keydown",	fOnKeyDown);
+	fAttachEvent(oUADocument, "keyup",		fOnKeyUp);
+	fAttachEvent(oUADocument, "keypress",	fOnKeyPress);
+	fAttachEvent(oUADocument, "mouseover",	fOnMouseOver);
+	fAttachEvent(oUADocument, "mousemove",	fOnMouseMove);
+	fAttachEvent(oUADocument, "contextmenu",fOnContextMenu);
+	fAttachEvent(oUADocument, "click",		fOnClick);
+	fAttachEvent(oUADocument, "dblclick",	fOnDblClick);
+	fAttachEvent(oUADocument, "mousedown",	fOnMouseDown);
+	fAttachEvent(oUADocument, "mouseup",	fOnMouseUp);
 	if (!bGecko) {
-		fAttachEvent(document.body, "mousewheel",		fOnMouseWheel);
+		fAttachEvent(oUADocument.body, "mousewheel",	fOnMouseWheel);
 		if (bTrident)
-			fAttachEvent(document, "selectstart", fOnSelectStart);
+			fAttachEvent(oUADocument, "selectstart",	fOnSelectStart);
 	}
 	else
-		fAttachEvent(document.body, "DOMMouseScroll",	fOnMouseWheel);
+		fAttachEvent(oUADocument.body, "DOMMouseScroll",	fOnMouseWheel);
 
 	// Initialize
 	// When running in Air, start in sync with onload
@@ -838,30 +838,30 @@ fAttachEvent(window, "load", function(oEvent) {
 
 fAttachEvent(window, "unload", function(oEvent) {
 //->Source
-	document.title	= "Finalizing...";
+	oUADocument.title	= "Finalizing...";
 //<-Source
 
     // Remove factory from document
-    document.body.removeChild(oAML_factory);
+	oUADocument.body.removeChild(oAML_factory);
 
     // Unregister document event listeners
-	fDetachEvent(document, "keydown",	fOnKeyDown);
-	fDetachEvent(document, "keyup",		fOnKeyUp);
-	fDetachEvent(document, "keypress",	fOnKeyPress);
-	fDetachEvent(document, "mouseover",	fOnMouseOver);
-	fDetachEvent(document, "mousemove",	fOnMouseMove);
-	fDetachEvent(document, "contextmenu",fOnContextMenu);
-	fDetachEvent(document, "click",		fOnClick);
-	fDetachEvent(document, "dblclick",	fOnDblClick);
-	fDetachEvent(document, "mousedown",	fOnMouseDown);
-	fDetachEvent(document, "mouseup",	fOnMouseUp);
+	fDetachEvent(oUADocument, "keydown",	fOnKeyDown);
+	fDetachEvent(oUADocument, "keyup",		fOnKeyUp);
+	fDetachEvent(oUADocument, "keypress",	fOnKeyPress);
+	fDetachEvent(oUADocument, "mouseover",	fOnMouseOver);
+	fDetachEvent(oUADocument, "mousemove",	fOnMouseMove);
+	fDetachEvent(oUADocument, "contextmenu",fOnContextMenu);
+	fDetachEvent(oUADocument, "click",		fOnClick);
+	fDetachEvent(oUADocument, "dblclick",	fOnDblClick);
+	fDetachEvent(oUADocument, "mousedown",	fOnMouseDown);
+	fDetachEvent(oUADocument, "mouseup",	fOnMouseUp);
 	if (!bGecko) {
-		fDetachEvent(document.body, "mousewheel",		fOnMouseWheel);
+		fDetachEvent(oUADocument.body, "mousewheel",	fOnMouseWheel);
 		if (bTrident)
-			fDetachEvent(document, "selectstart", fOnSelectStart);
+			fDetachEvent(oUADocument, "selectstart",	fOnSelectStart);
 	}
 	else
-		fDetachEvent(document.body, "DOMMouseScroll",	fOnMouseWheel);
+		fDetachEvent(oUADocument.body, "DOMMouseScroll",	fOnMouseWheel);
 
 	// Unregister window event listeners
 	fDetachEvent(window, "resize", fOnResize);
