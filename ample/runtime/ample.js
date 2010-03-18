@@ -169,7 +169,7 @@ function fAML_import(oElementDOM, oNode, bCollapse) {
 
 					// Inline event handler
 					if (sName.indexOf("on") == 0)
-						oElement[sName]	= new cFunction("event", bCollapse ? sValue.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&') : sValue);
+						oElement[sName]	= new cFunction(sNameSpaceURI == "http://www.w3.org/2000/svg" ? "evt" : "event", bCollapse ? sValue.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&') : sValue);
 					else
 						oAttributes[sName]	= bCollapse ? sValue : sValue.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 				}
