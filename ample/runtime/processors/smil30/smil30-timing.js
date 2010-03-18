@@ -79,7 +79,7 @@ function fAMLSMIL30_onTimeline() {
 	}
 
 	// Process further
-	nAMLSMIL30_timeline	= fSetTimeout(arguments.callee, nAMLSMIL30_timeout);
+	nAMLSMIL30_timeline	= fSetTimeout(fAMLSMIL30_onTimeline, nAMLSMIL30_timeout);
 };
 
 //

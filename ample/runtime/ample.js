@@ -150,7 +150,7 @@ function fAML_import(oElementDOM, oNode, bCollapse) {
 			if (oProcessor) {
 				// if element was returned from traversal, it should be processed
 				if (oElementDOM = oProcessor.traverse(oElementDOM, oNode))
-					arguments.callee(oElementDOM, oNode);
+					fAML_import(oElementDOM, oNode);
 			}
 			else {
 				// Create element
@@ -191,7 +191,7 @@ function fAML_import(oElementDOM, oNode, bCollapse) {
 
 				// Render Children
 				for (var nIndex = 0, nLength = oElementDOM.childNodes.length; nIndex < nLength; nIndex++)
-			   		arguments.callee(oElementDOM.childNodes[nIndex], oElement, bCollapse);
+					fAML_import(oElementDOM.childNodes[nIndex], oElement, bCollapse);
 			}
 			break;
 
@@ -250,7 +250,7 @@ function fAML_import(oElementDOM, oNode, bCollapse) {
 
 		case cAMLNode.DOCUMENT_NODE:
 			for (var nIndex = 0, nLength = oElementDOM.childNodes.length; nIndex < nLength; nIndex++)
-				arguments.callee(oElementDOM.childNodes[nIndex], oNode, bCollapse);
+				fAML_import(oElementDOM.childNodes[nIndex], oNode, bCollapse);
 			break;
 
 		case cAMLNode.DOCUMENT_TYPE_NODE:
@@ -330,11 +330,11 @@ function fAML_register(oNode) {
 
 		// Process children
 		for (var nIndex = 0, oElement; oElement = oNode.childNodes[nIndex]; nIndex++)
-			arguments.callee(oElement);
+			fAML_register(oElement);
 
 		// Process anonymous children
 		for (var nIndex = 0, oElement; oElement = oNode.$childNodesAnonymous[nIndex]; nIndex++)
-			arguments.callee(oElement);
+			fAML_register(oElement);
 	}
 };
 
@@ -362,11 +362,11 @@ function fAML_unregister(oNode) {
 
 		// Process children
 		for (var nIndex = 0, oElement; oElement = oNode.childNodes[nIndex]; nIndex++)
-			arguments.callee(oElement);
+			fAML_unregister(oElement);
 
 		// Process anonymous children
 		for (var nIndex = 0, oElement; oElement = oNode.$childNodesAnonymous[nIndex]; nIndex++)
-			arguments.callee(oElement);
+			fAML_unregister(oElement);
 	}
 };
 
