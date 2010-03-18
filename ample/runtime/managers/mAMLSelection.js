@@ -21,4 +21,4 @@ function fAMLSelection_onMouseDown(oEvent) {
 cAMLElement.prototype.$selectable	= null;
 
 // Registering Event Handlers
-oAML_document.addEventListener("mousedown", fAMLSelection_onMouseDown, false);
+fAMLEventTarget_addEventListener(oAML_document, "mousedown",	fAMLSelection_onMouseDown, false);

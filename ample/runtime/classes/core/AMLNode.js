@@ -428,6 +428,18 @@ cAMLNode.prototype.lookupNamespaceURI	= function(sPrefix)
 */
 
 // nsIDOMEventTarget
+function fAMLEventTarget_addEventListener(oNode, sEventType, fListener, bUseCapture)
+{
+	if (!oNode.$listeners)
+		oNode.$listeners	= {};
+	if (!oNode.$listeners[sEventType])
+		oNode.$listeners[sEventType]	= [];
+	for (var nIndex = 0, aListeners = oNode.$listeners[sEventType], bCapture = bUseCapture == true; nIndex < aListeners.length; nIndex++)
+		if (aListeners[nIndex][0] == fListener && aListeners[nIndex][1] == bCapture)
+			return;
+	oNode.$listeners[sEventType].push([fListener, bUseCapture == true]);
+};
+
 cAMLNode.prototype.addEventListener		= function(sEventType, fListener, bUseCapture)
 {
 	// Validate arguments
@@ -437,14 +449,20 @@ cAMLNode.prototype.addEventListener		= function(sEventType, fListener, bUseCaptu
 		["useCapture",	cBoolean,	true]
 	], "addEventListener");
 
-	if (!this.$listeners)
-		this.$listeners	= {};
-	if (!this.$listeners[sEventType])
-		this.$listeners[sEventType]	= [];
-	for (var nIndex = 0, aListeners = this.$listeners[sEventType], bCapture = bUseCapture == true; nIndex < aListeners.length; nIndex++)
-		if (aListeners[nIndex][0] == fListener && aListeners[nIndex][1] == bCapture)
-			return;
-	this.$listeners[sEventType].push([fListener, bUseCapture == true]);
+	fAMLEventTarget_addEventListener(this, sEventType, fListener, bUseCapture);
+};
+
+function fAMLEventTarget_removeEventListener(oNode, sEventType, fListener, bUseCapture)
+{
+	if (oNode.$listeners && oNode.$listeners[sEventType])
+		for (var nIndex = 0, aListeners = oNode.$listeners[sEventType], bCapture = bUseCapture == true; nIndex < aListeners.length; nIndex++)
+			if (aListeners[nIndex][0] == fListener && aListeners[nIndex][1] == bCapture)
+			{
+				oNode.$listeners[sEventType]	= aListeners.slice(0, nIndex).concat(aListeners.slice(nIndex + 1));
+				if (!oNode.$listeners[sEventType].length)
+					delete oNode.$listeners[sEventType];
+				return;
+			}
 };
 
 cAMLNode.prototype.removeEventListener	= function(sEventType, fListener, bUseCapture)
@@ -456,15 +474,8 @@ cAMLNode.prototype.removeEventListener	= function(sEventType, fListener, bUseCap
 		["useCapture",	cBoolean,	true]
 	], "removeEventListener");
 
-	if (this.$listeners && this.$listeners[sEventType])
-		for (var nIndex = 0, aListeners = this.$listeners[sEventType], bCapture = bUseCapture == true; nIndex < aListeners.length; nIndex++)
-			if (aListeners[nIndex][0] == fListener && aListeners[nIndex][1] == bCapture)
-			{
-				this.$listeners[sEventType]	= aListeners.slice(0, nIndex).concat(aListeners.slice(nIndex + 1));
-				if (!this.$listeners[sEventType].length)
-					delete this.$listeners[sEventType];
-				return;
-			}
+	// Invoke actual implementation
+	fAMLEventTarget_removeEventListener(this, sEventType, fListener, bUseCapture);
 };
 
 function fAMLNode_executeHandler(oNode, fHandler, oEvent) {

@@ -23,8 +23,8 @@ function fAMLUI_mouseLeave(oEvent) {
 // Attaching to impementation
 cAMLElement.prototype.$hoverable	= false;
 
-oAML_document.addEventListener("mouseenter",	fAMLUI_mouseEnter,	true);
-oAML_document.addEventListener("mouseleave",	fAMLUI_mouseLeave,	true);
+fAMLEventTarget_addEventListener(oAML_document, "mouseenter",	fAMLUI_mouseEnter,	true);
+fAMLEventTarget_addEventListener(oAML_document, "mouseleave",	fAMLUI_mouseLeave,	true);
 
 // :focus pseudo-class
 function fAMLUI_focus(oEvent) {
@@ -35,8 +35,8 @@ function fAMLUI_blur(oEvent) {
 	oEvent.target.$setPseudoClass("focus", false);
 };
 
-oAML_document.addEventListener("focus",		fAMLUI_focus,		true);
-oAML_document.addEventListener("blur",		fAMLUI_blur,		true);
+fAMLEventTarget_addEventListener(oAML_document, "focus",	fAMLUI_focus,		true);
+fAMLEventTarget_addEventListener(oAML_document, "blur",	fAMLUI_blur,		true);
 
 // :drag pseudo-class
 function fAMLUI_dragStart(oEvent) {
@@ -47,8 +47,8 @@ function fAMLUI_dragEnd(oEvent) {
 	oEvent.target.$setPseudoClass("drag", false);
 };
 
-oAML_document.addEventListener("dragstart",	fAMLUI_dragStart,	true);
-oAML_document.addEventListener("dragend",	fAMLUI_dragEnd,		true);
+fAMLEventTarget_addEventListener(oAML_document, "dragstart",	fAMLUI_dragStart,	true);
+fAMLEventTarget_addEventListener(oAML_document, "dragend",		fAMLUI_dragEnd,		true);
 
 // :drop pseudo-class
 function fAMLUI_dragEnter(oEvent) {
@@ -59,8 +59,8 @@ function fAMLUI_dragLeave(oEvent) {
 	oEvent.target.$setPseudoClass("drop", false);
 };
 
-oAML_document.addEventListener("dragenter",	fAMLUI_dragEnter,	true);
-oAML_document.addEventListener("dragleave",	fAMLUI_dragLeave,	true);
+fAMLEventTarget_addEventListener(oAML_document, "dragenter",	fAMLUI_dragEnter,	true);
+fAMLEventTarget_addEventListener(oAML_document, "dragleave",	fAMLUI_dragLeave,	true);
 
 
 // :resize pseudo-class
@@ -72,5 +72,5 @@ function fAMLUI_resizeEnd(oEvent) {
 	oEvent.target.$setPseudoClass("resize", false);
 };
 
-oAML_document.addEventListener("resizestart",	fAMLUI_resizeStart,	true);
-oAML_document.addEventListener("resizeend",		fAMLUI_resizeEnd,	true);
+fAMLEventTarget_addEventListener(oAML_document, "resizestart",	fAMLUI_resizeStart,	true);
+fAMLEventTarget_addEventListener(oAML_document, "resizeend",	fAMLUI_resizeEnd,	true);

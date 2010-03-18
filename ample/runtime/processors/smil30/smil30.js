@@ -86,7 +86,7 @@ oAMLSMIL30_implementation.traverse	= function(oElementDOM, oNode) {
 			else
 				oTarget	= oNode;
 			//
-			oTarget.addEventListener(oTime.begin.event, function() {
+			fAMLEventTarget_addEventListener(oTarget, oTime.begin.event, function() {
 				if (oTime.begin.offset)
 					fSetTimeout(fBegin, oTime.begin.offset);
 				else
@@ -107,7 +107,7 @@ oAMLSMIL30_implementation.traverse	= function(oElementDOM, oNode) {
 			else
 				oTarget	= oNode;
 			//
-			oTarget.addEventListener(oTime.end.event, function() {
+			fAMLEventTarget_addEventListener(oTarget, oTime.end.event, function() {
 				if (oTime.end.offset)
 					fSetTimeout(fEnd, oTime.end.offset);
 				else
@@ -353,10 +353,10 @@ function fAMLSMIL30_parseValue(sValue) {
 };
 //console.log(fAMLSMIL30_parseValue('#ffffff'));
 //
-oAML_document.addEventListener("load", function() {
+fAMLEventTarget_addEventListener(oAML_document, "load",	function() {
 	nAMLSMIL30_timeline	= fSetTimeout(fAMLSMIL30_onTimeline, nAMLSMIL30_timeout);
 }, false);
-oAML_document.addEventListener("unload", function() {
+fAMLEventTarget_addEventListener(oAML_document, "unload",	function() {
 	fClearTimeout(nAMLSMIL30_timeline);
 }, false);
 

@@ -366,7 +366,7 @@ cAMLElement.prototype.$draggable	= false;
 cAMLElement.prototype.$droppable	= false;
 
 // Registering Event Handlers
-oAML_document.addEventListener("mousedown",	fAMLDragAndDrop_onMouseDown,	false);
-oAML_document.addEventListener("mousemove", fAMLDragAndDrop_onMouseMove,	true);
-oAML_document.addEventListener("mouseup", 	fAMLDragAndDrop_onMouseUp,		false);
-oAML_document.addEventListener("keydown",	fAMLDragAndDrop_onKeyDown,		false);
+fAMLEventTarget_addEventListener(oAML_document, "mousedown",	fAMLDragAndDrop_onMouseDown,	false);
+fAMLEventTarget_addEventListener(oAML_document, "mousemove",	fAMLDragAndDrop_onMouseMove,	true);
+fAMLEventTarget_addEventListener(oAML_document, "mouseup",		fAMLDragAndDrop_onMouseUp,		false);
+fAMLEventTarget_addEventListener(oAML_document, "keydown",		fAMLDragAndDrop_onKeyDown,		false);

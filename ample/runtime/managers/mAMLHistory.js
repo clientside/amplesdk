@@ -82,5 +82,5 @@ oAML_document.$bookmark	= function(sHash) {
 };
 
 // Registering Event Handlers
-oAML_document.addEventListener("load",		fAMLHistory_onLoad,		false);
-oAML_document.addEventListener("unload",	fAMLHistory_onUnLoad,	false);
+fAMLEventTarget_addEventListener(oAML_document, "load",	fAMLHistory_onLoad,		false);
+fAMLEventTarget_addEventListener(oAML_document, "unload",	fAMLHistory_onUnLoad,	false);

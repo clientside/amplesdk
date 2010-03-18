@@ -12,7 +12,7 @@ var oAMLXMLEvents10_implementation	= {},
 
 oAMLXMLEvents10_implementation.traverse	= function(oElementDOM, oNode) {
 	if ((oElementDOM.localName || oElementDOM.baseName) == "listener") {
-		oNode.addEventListener(
+		fAMLEventTarget_addEventListener(oNode,
 			oElementDOM.getAttribute("event"),
 			cFunction("event",	(oElementDOM.getAttribute("propagate") == "stop" ? "event" + ".stopPropagation();" : '') +
 								(oElementDOM.getAttribute("defaultAction") == "cancel" ? "event" + ".preventDefault();" : '') +
