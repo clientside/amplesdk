@@ -24,7 +24,7 @@ function fDetachEvent(oNode, sEvent, fHandler) {
 
 // Finds AMLElement by event target
 function fGetEventTarget(oEvent) {
-    return ample.$instance(oEvent.srcElement || oEvent.target) || ample.documentElement;
+    return oAML_document.$instance(oEvent.srcElement || oEvent.target) || oAML_document.documentElement;
 };
 
 function fGetUIEventPseudo(oEvent) {
@@ -242,7 +242,7 @@ function fOnMouseWheel(oEvent) {
 
 // Key Events
 function fOnKeyDown(oEvent) {
-	var oTarget		= ample.activeElement || ample.documentElement,	// FF bugfix
+	var oTarget		= oAML_document.activeElement || oAML_document.documentElement,	// FF bugfix
 		oPseudo		= fGetUIEventPseudo(oEvent),
 		oEventKeyDown	= new cAMLKeyboardEvent;
 
@@ -264,7 +264,7 @@ function fOnKeyDown(oEvent) {
 
 function fOnKeyPress(oEvent)
 {
-	var oTarget		= ample.activeElement || ample.documentElement,	// FF bugfix
+	var oTarget		= oAML_document.activeElement || oAML_document.documentElement,	// FF bugfix
 		oPseudo		= fGetUIEventPseudo(oEvent),
 		oEventKeyPress	= new cAMLKeyboardEvent,
 		oEventTextInput	= new cAMLTextEvent;
@@ -297,7 +297,7 @@ function fOnKeyPress(oEvent)
 };
 
 function fOnKeyUp(oEvent) {
-	var oTarget		= ample.activeElement || ample.documentElement,
+	var oTarget		= oAML_document.activeElement || oAML_document.documentElement,
 		oPseudo		= fGetUIEventPseudo(oEvent),
 		oEventKeyUp	= new cAMLKeyboardEvent;
 
@@ -586,7 +586,7 @@ function fOnMouseDown(oEvent) {
 	// do not dispatch event if outside modal
 	if (!oAML_modalNode || fIsDescendant(oTarget, oAML_modalNode)) {
 		// Moved here from #mouseup handler. Not sure yet if it is right though
-		ample.activeElement	= oTarget.nodeType != cAMLNode.DOCUMENT_NODE ? oTarget : null;
+		oAML_document.activeElement	= oTarget.nodeType != cAMLNode.DOCUMENT_NODE ? oTarget : null;
 		//
 		fAMLNode_dispatchEvent(oTarget, oEventMouseDown);
 	}
@@ -638,14 +638,14 @@ function fOnResize(oEvent) {
     // Create an Event
     var oEventResize = new cAMLUIEvent;
     oEventResize.initUIEvent("resize", true, false, window, null);
-    fAMLNode_dispatchEvent(ample, oEventResize);
+    fAMLNode_dispatchEvent(oAML_document, oEventResize);
 };
 
 function fOnScroll(oEvent) {
     // Create an Event
     var oEventScroll = new cAMLUIEvent;
     oEventScroll.initUIEvent("scroll", true, false, window, null);
-    fAMLNode_dispatchEvent(ample, oEventScroll);
+    fAMLNode_dispatchEvent(oAML_document, oEventScroll);
 };
 
 // User selection

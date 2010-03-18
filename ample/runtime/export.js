@@ -109,6 +109,9 @@ if (!window.XMLHttpRequest)
 if (!window.JSON)
 	fAMLExporter_export(oJSON,	"JSON");
 
+// Publish ample object here
+window.ample	= oAML_document;
+
 // JavaScript 1.5
 if (!cArray.prototype.push) {
 	fAMLExporter_exportMember(cArray.prototype, function(vValue) {

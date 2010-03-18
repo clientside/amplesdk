@@ -341,7 +341,7 @@ cAMLElement.prototype.$resizable	= false;
 cAMLElement.prototype.$resizeEdges	= 0;
 
 // Registering Event Handlers
-ample.addEventListener("mousedown",	fAMLResize_onMouseDown,		false);
-ample.addEventListener("mousemove", fAMLResize_onMouseMove,		true);
-ample.addEventListener("mouseup", 	fAMLResize_onMouseUp,		false);
-ample.addEventListener("keydown",	fAMLResize_onKeyDown,		false);
+oAML_document.addEventListener("mousedown",	fAMLResize_onMouseDown,		false);
+oAML_document.addEventListener("mousemove", fAMLResize_onMouseMove,		true);
+oAML_document.addEventListener("mouseup", 	fAMLResize_onMouseUp,		false);
+oAML_document.addEventListener("keydown",	fAMLResize_onKeyDown,		false);

@@ -23,8 +23,8 @@ function fAMLUI_mouseLeave(oEvent) {
 // Attaching to impementation
 cAMLElement.prototype.$hoverable	= false;
 
-ample.addEventListener("mouseenter",	fAMLUI_mouseEnter,	true);
-ample.addEventListener("mouseleave",	fAMLUI_mouseLeave,	true);
+oAML_document.addEventListener("mouseenter",	fAMLUI_mouseEnter,	true);
+oAML_document.addEventListener("mouseleave",	fAMLUI_mouseLeave,	true);
 
 // :focus pseudo-class
 function fAMLUI_focus(oEvent) {
@@ -35,8 +35,8 @@ function fAMLUI_blur(oEvent) {
 	oEvent.target.$setPseudoClass("focus", false);
 };
 
-ample.addEventListener("focus",		fAMLUI_focus,		true);
-ample.addEventListener("blur",		fAMLUI_blur,		true);
+oAML_document.addEventListener("focus",		fAMLUI_focus,		true);
+oAML_document.addEventListener("blur",		fAMLUI_blur,		true);
 
 // :drag pseudo-class
 function fAMLUI_dragStart(oEvent) {
@@ -47,8 +47,8 @@ function fAMLUI_dragEnd(oEvent) {
 	oEvent.target.$setPseudoClass("drag", false);
 };
 
-ample.addEventListener("dragstart",	fAMLUI_dragStart,	true);
-ample.addEventListener("dragend",	fAMLUI_dragEnd,		true);
+oAML_document.addEventListener("dragstart",	fAMLUI_dragStart,	true);
+oAML_document.addEventListener("dragend",	fAMLUI_dragEnd,		true);
 
 // :drop pseudo-class
 function fAMLUI_dragEnter(oEvent) {
@@ -59,8 +59,8 @@ function fAMLUI_dragLeave(oEvent) {
 	oEvent.target.$setPseudoClass("drop", false);
 };
 
-ample.addEventListener("dragenter",	fAMLUI_dragEnter,	true);
-ample.addEventListener("dragleave",	fAMLUI_dragLeave,	true);
+oAML_document.addEventListener("dragenter",	fAMLUI_dragEnter,	true);
+oAML_document.addEventListener("dragleave",	fAMLUI_dragLeave,	true);
 
 
 // :resize pseudo-class
@@ -72,5 +72,5 @@ function fAMLUI_resizeEnd(oEvent) {
 	oEvent.target.$setPseudoClass("resize", false);
 };
 
-ample.addEventListener("resizestart",	fAMLUI_resizeStart,	true);
-ample.addEventListener("resizeend",		fAMLUI_resizeEnd,	true);
+oAML_document.addEventListener("resizestart",	fAMLUI_resizeStart,	true);
+oAML_document.addEventListener("resizeend",		fAMLUI_resizeEnd,	true);

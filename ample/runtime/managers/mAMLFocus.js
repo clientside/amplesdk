@@ -206,5 +206,5 @@ cAMLElement.prototype.$isAccessible	= function() {
 };
 
 // Registering Event Handlers
-ample.addEventListener("mousedown",	fAMLFocus_onMouseDown,	false);
-ample.addEventListener("keydown",	fAMLFocus_onKeyDown,	false);
+oAML_document.addEventListener("mousedown",	fAMLFocus_onMouseDown,	false);
+oAML_document.addEventListener("keydown",	fAMLFocus_onKeyDown,	false);

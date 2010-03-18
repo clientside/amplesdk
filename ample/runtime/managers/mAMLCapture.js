@@ -77,7 +77,7 @@ cAMLElement.prototype.$setModal		= function() {
 	else {
 		aAMLCapture_modals.push(this);
 		// Set active element to the modal
-		oAML_modalNode	= ample.activeElement	= this;
+		oAML_modalNode	= oAML_document.activeElement	= this;
 	}
 };
 
@@ -88,6 +88,6 @@ cAMLElement.prototype.$releaseModal	= function() {
 	else {
 		aAMLCapture_modals.pop();
 		// Set active element to the previous modal or null
-		oAML_modalNode	= ample.activeElement	= aAMLCapture_modals.length ? aAMLCapture_modals[aAMLCapture_modals.length - 1] : null;
+		oAML_modalNode	= oAML_document.activeElement	= aAMLCapture_modals.length ? aAMLCapture_modals[aAMLCapture_modals.length - 1] : null;
 	}
 };

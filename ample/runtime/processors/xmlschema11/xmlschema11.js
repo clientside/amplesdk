@@ -86,7 +86,7 @@ cAMLXSTypeDefinition.prototype.$validate	= function(vValue) {
 };
 
 // Publish
-ample.$model	= oAMLXMLSchema11_model;
+oAML_document.$model	= oAMLXMLSchema11_model;
 
 // register processor
 oAML_processors[sAMLXMLSchema11_namespaceURI]	= oAMLXMLSchema11_implementation;

@@ -90,7 +90,7 @@ function fAMLSMIL30_beginElement(oElement) {
 	if (oAnimation) {
 		// If ID was specified for target element
 		if (typeof oAnimation.targetElement == "string")
-			oAnimation.targetElement	= ample.getElementById(oAnimation.targetElement.substr(1));
+			oAnimation.targetElement	= oAML_document.getElementById(oAnimation.targetElement.substr(1));
 
 		// check if there is already animation running on that @targetElement/@attributeName
 		for (var nIndex = 0, oElementOld, oAnimationOld; oElementOld = aAMLSMIL30_activeElements[nIndex]; nIndex++)

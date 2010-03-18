@@ -41,12 +41,12 @@ function fAMLHistory_onTimeout() {
 			// dispatch event
 			var oEvent	= new cAMLCustomEvent;
 			oEvent.initCustomEvent("navigate", false, false, sHash);
-			fAMLNode_dispatchEvent(ample, oEvent);
+			fAMLNode_dispatchEvent(oAML_document, oEvent);
 
 			// dispatch hashchange event
 			var oEvent	= new cAMLCustomEvent;
 			oEvent.initCustomEvent("hashchange", false, false, sHash);
-			fAMLNode_dispatchEvent(ample, oEvent);
+			fAMLNode_dispatchEvent(oAML_document, oEvent);
 //		}
 	}
 
@@ -72,7 +72,7 @@ function fAMLHistory_onUnLoad(oEvent) {
 };
 
 // Attaching to impementation
-ample.$bookmark	= function(sHash) {
+oAML_document.$bookmark	= function(sHash) {
 	// Validate arguments
 	fAML_validate(arguments, [
 		["hash",		cString]
@@ -82,5 +82,5 @@ ample.$bookmark	= function(sHash) {
 };
 
 // Registering Event Handlers
-ample.addEventListener("load",		fAMLHistory_onLoad,		false);
-ample.addEventListener("unload",	fAMLHistory_onUnLoad,	false);
+oAML_document.addEventListener("load",		fAMLHistory_onLoad,		false);
+oAML_document.addEventListener("unload",	fAMLHistory_onUnLoad,	false);

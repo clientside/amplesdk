@@ -41,4 +41,4 @@ cAMLREX10Implementation.getXPath	= function(oNode)
 	return sXPath;
 };
 
-ample.addEventListener("click", function(event){alert(cAMLREX10Implementation.getXPath(event.target))}, false);
+oAML_document.addEventListener("click", function(event){alert(cAMLREX10Implementation.getXPath(event.target))}, false);

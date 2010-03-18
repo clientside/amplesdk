@@ -16,6 +16,9 @@ function fAMLSelection_onMouseDown(oEvent) {
 			return !bAllow && oEvent.preventDefault();
 };
 
+// Attaching to impementation
+// Public Properties
 cAMLElement.prototype.$selectable	= null;
 
-ample.addEventListener("mousedown", fAMLSelection_onMouseDown, false);
+// Registering Event Handlers
+oAML_document.addEventListener("mousedown", fAMLSelection_onMouseDown, false);
