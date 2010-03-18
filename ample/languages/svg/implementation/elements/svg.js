@@ -33,6 +33,11 @@ if (cSVGElement.useVML) {
 				var oGroup	= that.$getContainer("gateway");
 				if (oGroup)
 					oGroup.style.display	= "";
+
+				// Dispatch onload event
+				var oEventLoad	= that.ownerDocument.createEvent("Event");
+				oEventLoad.initEvent("load", false, false);
+				that.dispatchEvent(oEventLoad);
 			}, 0);
 			// Resize synchronously
 			if (navigator.userAgent.match(/MSIE ([0-9.]+)/) && RegExp.$1 * 1 == 8)
@@ -127,7 +132,22 @@ if (cSVGElement.useVML) {
 		return 		'</svg2vml:group>\
 				</div>';
 	};
-};
+}
+else {
+	// handlers
+	cSVGElement_svg.handlers	= {
+		'DOMNodeInsertedIntoDocument':	function(oEvent) {
+			var that	= this;
+			setTimeout(function() {
+				// Dispatch onload event
+				var oEventLoad	= that.ownerDocument.createEvent("Event");
+				oEventLoad.initEvent("load", false, false);
+				that.dispatchEvent(oEventLoad);
+			});
+		}
+	};
+}
+
 
 // Register Element with language
 oSVGNamespace.setElement("svg", cSVGElement_svg);
