@@ -142,7 +142,8 @@ var oAMLSelector_elementSelectors	= {},
 
 var rAMLSelector_whiteSpace = /\s*([\s>+~(,]|^|$)\s*/g,
 	rAMLSelector_impliedAll = /([\s>+~,]|[^(]\+|^)([#.:@])/g,
-	rAMLSelector_attribute  = /(^|[^(])(\[[^\]]+\])/g;
+	rAMLSelector_attribute  = /([^(]|^)(\[[^\]]+)/g;
+;
 
 function fAMLSelector_parseSelector(sSelector) {
     return cString(sSelector)
