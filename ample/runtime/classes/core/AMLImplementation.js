@@ -12,7 +12,7 @@ var cAMLImplementation	= function(){};
 // nsIDOMImplementation Level 1
 cAMLImplementation.prototype.hasFeature		= function(sFeature, sVersion)
 {
-	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+	return false;	// Return false
 };
 
 // nsIDOMImplementation Level 2
