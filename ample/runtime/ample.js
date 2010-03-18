@@ -155,6 +155,9 @@ function fAML_import(oElementDOM, oNode, bCollapse) {
 			else {
 				// Create element
 				var oElement	= fAMLDocument_createElementNS(oDocument, oElementDOM.namespaceURI, oElementDOM.nodeName),
+					sNameSpaceURI	= oElement.namespaceURI,
+					sLocalName	= oElement.localName,
+					oAttributes	= oElement.attributes,
 					aAttributes = oElementDOM.attributes,
 					oAttribute, sName, sValue;
 
@@ -168,22 +171,22 @@ function fAML_import(oElementDOM, oNode, bCollapse) {
 					if (sName.indexOf("on") == 0)
 						oElement[sName]	= new cFunction("event", bCollapse ? sValue.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&') : sValue);
 					else
-						oElement.attributes[sName]	= bCollapse ? sValue : sValue.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+						oAttributes[sName]	= bCollapse ? sValue : sValue.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 				}
 
 				// Copy default attributes values if not specified
-				var oNamespace	= oAML_namespaces[oElement.namespaceURI],
-					cElement	= oNamespace ? oNamespace.elements[oElement.localName] : null;
+				var oNamespace	= oAML_namespaces[sNameSpaceURI],
+					cElement	= oNamespace ? oNamespace.elements[sLocalName] : null;
 
 				if (cElement) {
 					for (sName in cElement.attributes)
-						if (cElement.attributes.hasOwnProperty(sName) && !(sName in oElement.attributes))
-							oElement.attributes[sName]	= cElement.attributes[sName];
+						if (cElement.attributes.hasOwnProperty(sName) && !(sName in oAttributes))
+							oAttributes[sName]	= cElement.attributes[sName];
 				}
 //->Debug
 				else
-				if (oNamespace && oElement.localName != "#document-fragment".substr(1))
-					fAML_warn(nAML_UNKNOWN_ELEMENT_NS_WRN, [oElement.localName, oElement.namespaceURI]);
+				if (oNamespace && sLocalName != "#document-fragment".substr(1))
+					fAML_warn(nAML_UNKNOWN_ELEMENT_NS_WRN, [sLocalName, sNameSpaceURI]);
 //<-Debug
 				// and append it to parent (if there is one)
 				if (oNode)
