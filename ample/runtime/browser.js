@@ -201,7 +201,7 @@ function fGetKeyboardEventModifiersList(oEvent) {
 };
 
 function fEventPreventDefault(oEvent) {
-    for (var nIndex = 1; nIndex < arguments.length; nIndex++)
+    for (var nIndex = 1, nLength = arguments.length; nIndex < nLength; nIndex++)
 	    if (arguments[nIndex].defaultPrevented) {
 	    	if (oEvent.preventDefault)
 		    	oEvent.preventDefault();
