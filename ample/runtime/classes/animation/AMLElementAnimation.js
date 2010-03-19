@@ -311,8 +311,8 @@ cAMLElement.prototype.$play	= function(sParams, nDuration, vType, fHandler, sPse
 //	oTime.type		= null;
 
 	// Timing and Synchronization
-//	oTime.begin			= new Date;
-	oTime.end			= new Date + 1000;
+//	oTime.begin			= new cDate;
+	oTime.end			= new cDate + 1000;
 	oTime.dur			= 1000;
 	// Repeatition
 	oTime.repeatCount	= 1;

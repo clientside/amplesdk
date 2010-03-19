@@ -101,7 +101,7 @@ function fAMLSMIL30_beginElement(oElement) {
 	}
 
 	// Add element to timeline
-	oElement.time.start	= new Date;
+	oElement.time.start	= new cDate;
 	aAMLSMIL30_activeElements.push(oElement);
 
 	// Begin Animation
