@@ -221,6 +221,11 @@ cAMLElement.prototype.cloneNode	= function(bDeep)
 	return oElement;
 };
 
+function fAMLElement_hasAttribute(oElement, sName)
+{
+	return oElement.attributes.hasOwnProperty(sName);
+};
+
 cAMLElement.prototype.hasAttribute	= function(sName)
 {
 	// Validate arguments
@@ -228,7 +233,16 @@ cAMLElement.prototype.hasAttribute	= function(sName)
 		["name",		cString]
 	], "hasAttribute");
 
-	return sName in this.attributes;
+	return fAMLElement_hasAttribute(this, sName)
+};
+
+function fAMLElement_hasAttributeNS(oElement, sNameSpaceURI, sLocalName)
+{
+	if (sNameSpaceURI == null)
+		return fAMLElement_hasAttribute(oElement, sLocalName);
+
+	var sPrefix	= fAMLNode_lookupPrefix(oElement, sNameSpaceURI);
+	return sPrefix ? fAMLElement_hasAttribute(oElement, sPrefix + ':' + sLocalName) : false;
 };
 
 cAMLElement.prototype.hasAttributeNS	= function(sNameSpaceURI, sLocalName)
@@ -239,11 +253,7 @@ cAMLElement.prototype.hasAttributeNS	= function(sNameSpaceURI, sLocalName)
 		["localName",		cString]
 	], "hasAttributeNS");
 
-	if (sNameSpaceURI == null)
-		return this.hasAttribute(sLocalName);
-
-	var sPrefix	= this.lookupPrefix(sNameSpaceURI);
-	return sPrefix ? this.hasAttribute(sPrefix + ':' + sLocalName) : false;
+	return fAMLElement_hasAttributeNS(this, sNameSpaceURI, sLocalName);
 };
 
 cAMLElement.prototype.setAttribute	= function(sName, sValue)
@@ -313,7 +323,7 @@ cAMLElement.prototype.setAttributeNS	= function(sNameSpaceURI, sQName, sValue)
 	// convert value to string
 	sValue	= cString(sValue);
 
-	var sElementPrefix	= this.lookupPrefix(sNameSpaceURI),
+	var sElementPrefix	= fAMLNode_lookupPrefix(this, sNameSpaceURI),
 		aQName		= sQName.split(':'),
 		sLocalName	= aQName.length > 1 ? aQName[1] : aQName[0],
 		sPrefix		= aQName.length > 1 ? aQName[0] : null;
@@ -397,6 +407,11 @@ cAMLElement.prototype.setAttributeNodeNS	= function(oAttribute)
 	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
 
+function fAMLElement_getAttribute(oElement, sName)
+{
+    return oElement.attributes.hasOwnProperty(sName) ? oElement.attributes[sName] : '';
+};
+
 cAMLElement.prototype.getAttribute	= function(sName)
 {
 	// Validate arguments
@@ -404,7 +419,16 @@ cAMLElement.prototype.getAttribute	= function(sName)
 		["name",			cString]
 	], "getAttribute");
 
-    return this.attributes[sName] || '';
+	return fAMLElement_getAttribute(this, sName);
+};
+
+function fAMLElement_getAttributeNS(oElement, sNameSpaceURI, sLocalName)
+{
+	if (sNameSpaceURI == null)
+		return fAMLElement_getAttribute(oElement, sLocalName);
+
+	var sPrefix	= fAMLNode_lookupPrefix(oElement, sNameSpaceURI);
+    return sPrefix ? fAMLElement_getAttribute(oElement, sPrefix + ':' + sLocalName) : '';
 };
 
 cAMLElement.prototype.getAttributeNS	= function(sNameSpaceURI, sLocalName)
@@ -415,11 +439,7 @@ cAMLElement.prototype.getAttributeNS	= function(sNameSpaceURI, sLocalName)
 		["localName",		cString]
 	], "getAttributeNS");
 
-	if (sNameSpaceURI == null)
-		return this.getAttribute(sLocalName);
-
-	var sPrefix	= this.lookupPrefix(sNameSpaceURI);
-    return sPrefix ? this.getAttribute(sPrefix + ':' + sLocalName) : '';
+	return fAMLElement_getAttributeNS(this, sNameSpaceURI, sLocalName);
 };
 
 cAMLElement.prototype.getAttributeNode	= function(sName)
@@ -486,7 +506,7 @@ cAMLElement.prototype.removeAttributeNS	= function(sNameSpaceURI, sLocalName)
 	if (sNameSpaceURI == null)
 		return this.removeAttribute(sLocalName);
 
-	var sPrefix	= this.lookupPrefix(sNameSpaceURI),
+	var sPrefix	= fAMLNode_lookupPrefix(this, sNameSpaceURI),
 		sQName	= sPrefix + ':' + sLocalName;
 
 	if (!sPrefix)
@@ -537,13 +557,8 @@ cAMLElement.prototype.hasChildNodes	= function()
 	return this.childNodes.length > 0;
 };
 
-cAMLElement.prototype.getElementsByTagName	= function(sTagName)
+function fAMLElement_getElementsByTagName(oElement, sTagName)
 {
-	// Validate arguments
-	fAML_validate(arguments, [
-		["name",	cString]
-	], "getElementsByTagName");
-
 	var aElements	= new cAMLNodeList,
 		bTagName	= '*' == sTagName;
 	(function(oElement) {
@@ -555,18 +570,22 @@ cAMLElement.prototype.getElementsByTagName	= function(sTagName)
 					arguments.callee(oNode);
 			}
 		}
-	})(this);
+	})(oElement);
 	return aElements;
 };
 
-cAMLElement.prototype.getElementsByTagNameNS	= function(sNameSpaceURI, sLocalName)
+cAMLElement.prototype.getElementsByTagName	= function(sTagName)
 {
 	// Validate arguments
 	fAML_validate(arguments, [
-		["namespaceURI",	cString],
-		["localName",		cString]
-	], "getElementsByTagNameNS");
+		["name",	cString]
+	], "getElementsByTagName");
 
+	return fAMLElement_getElementsByTagName(this, sTagName);
+};
+
+function fAMLElement_getElementsByTagNameNS(oElement, sNameSpaceURI, sLocalName)
+{
 	var aElements	= new cAMLNodeList,
 		bNameSpaceURI	= '*' == sNameSpaceURI,
 		bLocalName		= '*' == sLocalName;
@@ -579,8 +598,19 @@ cAMLElement.prototype.getElementsByTagNameNS	= function(sNameSpaceURI, sLocalNam
 					arguments.callee(oNode);
 			}
 		}
-	})(this);
+	})(oElement);
 	return aElements;
+};
+
+cAMLElement.prototype.getElementsByTagNameNS	= function(sNameSpaceURI, sLocalName)
+{
+	// Validate arguments
+	fAML_validate(arguments, [
+		["namespaceURI",	cString],
+		["localName",		cString]
+	], "getElementsByTagNameNS");
+
+	return fAMLElement_getElementsByTagNameNS(this, sNameSpaceURI, sLocalName);
 };
 /*
 cAMLElement.prototype.focus	= function()

@@ -225,15 +225,9 @@ cAMLNode.prototype.isSameNode 	= function(oNode)
 	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
 
-cAMLNode.prototype.lookupPrefix	= function(sNameSpaceURI)
+function fAMLNode_lookupPrefix(oNode, sNameSpaceURI)
 {
-	// Validate arguments
-	fAML_validate(arguments, [
-		["namespaceURI",	cString, false, true]
-	], "lookupPrefix");
-
-	var aPrefixes	= {};
-	for (var oNode = this, sPrefix; oNode && oNode.nodeType != cAMLNode.DOCUMENT_NODE; oNode = oNode.parentNode)
+	for (var aPrefixes = {}, sPrefix; oNode && oNode.nodeType != cAMLNode.DOCUMENT_NODE; oNode = oNode.parentNode)
 	{
 		if (oNode.namespaceURI == sNameSpaceURI)
 			return oNode.prefix;
@@ -250,6 +244,16 @@ cAMLNode.prototype.lookupPrefix	= function(sNameSpaceURI)
 				}
 	}
 	return null;
+};
+
+cAMLNode.prototype.lookupPrefix	= function(sNameSpaceURI)
+{
+	// Validate arguments
+	fAML_validate(arguments, [
+		["namespaceURI",	cString, false, true]
+	], "lookupPrefix");
+
+	return fAMLNode_lookupPrefix(this, sNameSpaceURI);
 };
 
 cAMLNode.prototype.isDefaultNamespace	= function(sNameSpaceURI)

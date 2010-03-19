@@ -703,7 +703,7 @@ function fAML_initialize() {
 	fAML_changeReadyState(4);
 
 //->Source
-	oUADocument.title	= 	"AML Elements: " + oAML_document.getElementsByTagName('*').length + " units. " +
+	oUADocument.title	= 	"AML Elements: " + fAMLDocument_getElementsByTagName(oAML_document, '*').length + " units. " +
             			"DOM Elements: " + oUADocument.getElementsByTagName('*').length + " units. " +
             			"CSS time: " + (oDateXML - oDateCSS) + " ms. " +
             			"XML time: " + (new cDate - oDateXML) + " ms. ";

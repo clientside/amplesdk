@@ -166,15 +166,15 @@ oAMLSelector_elementSelectors[' '] = function(aReturn, aFrom, sTagName, sArgumen
     for (nIndex = 0; oElement = aFrom[nIndex]; nIndex++) {
         // get descendants
         if (sPrefix == null)
-        	aSubset	= oElement.getElementsByTagName(sLocalName);
+        	aSubset	= fAMLElement_getElementsByTagName(oElement, sLocalName);
         else
         if (sPrefix == '*')
-        	aSubset	= oElement.getElementsByTagNameNS('*', sLocalName);
+        	aSubset	= fAMLElement_getElementsByTagNameNS(oElement, '*', sLocalName);
         else
         if (fResolver)
-        	aSubset = oElement.getElementsByTagNameNS(fResolver(sPrefix), sLocalName);
+        	aSubset = fAMLElement_getElementsByTagNameNS(oElement, fResolver(sPrefix), sLocalName);
         else
-        	aSubset	= oElement.getElementsByTagName(sTagName.replace('|', ':'));
+        	aSubset	= fAMLElement_getElementsByTagName(oElement, sTagName.replace('|', ':'));
         // loop through descendants and add to results selection
         for (nIndexSubset = 0; oElement = aSubset[nIndexSubset]; nIndexSubset++)
 			aReturn.push(oElement);
@@ -277,7 +277,7 @@ oAMLSelector_elementSelectors['@'] = function(aReturn, aFrom, sString, sArgument
 					sLocalName	= sAttribute.replace('|',  ':');
 			}
 			for (var nIndex = 0, oElement; oElement = aFrom[nIndex]; nIndex++)
-				if (oElement.hasAttributeNS(sNameSpaceURI, sLocalName) && fCompare(oElement.getAttributeNS(sNameSpaceURI, sLocalName), sValue))
+				if (fAMLElement_hasAttributeNS(oElement, sNameSpaceURI, sLocalName) && fCompare(fAMLElement_getAttributeNS(oElement, sNameSpaceURI, sLocalName), sValue))
 					aReturn.push(oElement);
 		}
 		else
