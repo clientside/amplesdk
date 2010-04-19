@@ -30,10 +30,23 @@ cXULElement_label.prototype.setAttribute = function(sName, sValue)
     this.AMLElement.setAttribute.call(this, sName, sValue);
 };
 
+// Handlers
+cXULElement_label.handlers	= {
+	"click":	function(oEvent) {
+		if (oEvent.button == 0)
+			this.$activate();
+	},
+	"DOMActivate":	function(oEvent) {
+		var oControl;
+		if (!oEvent.defaultPrevented)
+			if (this.attributes["control"] && (oControl = this.ownerDocument.getElementById(this.attributes["control"])))
+				oControl.focus();
+	}
+};
+
 // Element Render: open
 cXULElement_label.prototype.$getTagOpen	= function()
 {
-//' +(this.attributes["control"] ? ' for="' + this.attributes["control"] + '"': '')+ '
     return '<label class="xul-label' +(this.attributes["class"] ? " " + this.attributes["class"] : "")+ '">' +(this.attributes["value"] ? this.attributes["value"] : '');
 };
 
