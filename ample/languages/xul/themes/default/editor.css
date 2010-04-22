@@ -1,0 +1,70 @@
+xul|editor {
+	height:	200px;
+	padding-bottom: 25px;
+}
+xul|editor::toolbar {
+	line-height: 1px;	/* Fixes toolbar size in Gecko */
+	height:	24px;
+	border-bottom: solid 1px #aaa;
+	cursor: default;
+}
+xul|editor::frame {
+
+}
+
+xul|editor xul|button {
+	width:	22px;
+	height:	22px;
+	margin:	1px;
+	padding: 0;
+	border: solid 1px silver;
+	background-image: url(media/editor.png);
+	background-repeat: no-repeat;
+}
+
+xul|editor xul|button.bold 			{	background-position: 0 0;			}
+xul|editor xul|button.italic 		{	background-position: -20px 0;		}
+xul|editor xul|button.underline 	{	background-position: -40px 0;		}
+xul|editor xul|button.strikethrough {	background-position: -60px 0;		}
+
+xul|editor xul|button.undo 			{	background-position: 0 -120px;		}
+xul|editor xul|button.redo 			{	background-position: -20px -120px;	}
+
+xul|editor xul|button.subscript 	{	background-position: 0 -20px;		}
+xul|editor xul|button.superscript	{	background-position: -20px -20px;	}
+
+xul|editor xul|button.insertunorderedlist	{	background-position: 0 -60px;		}
+xul|editor xul|button.insertorderedlist		{	background-position: -20px -60px;	}
+
+xul|editor xul|button.justifyleft 	{	background-position: 0 -80px;		}
+xul|editor xul|button.justifycenter	{	background-position: -20px -80px;	}
+xul|editor xul|button.justifyright 	{	background-position: -40px -80px;	}
+xul|editor xul|button.justifyfull 	{	background-position: -60px -80px;	}
+
+xul|editor xul|button.indent		{	background-position: 0 -100px;		}
+xul|editor xul|button.outdent 		{	background-position: -20px -100px;	}
+
+xul|editor xul|button.createlink	{	background-position: 0 -180px;		}
+xul|editor xul|button.unlink 		{	background-position: -20px -180px;	}
+
+xul|editor xul|button:active {
+	border-color: orange;
+	background-color: yellow;
+}
+
+xul|editor xul|button:hover {
+	background-color: lightyellow;
+}
+
+xul|editor:disabled xul|button,
+xul|editor xul|button:disabled {
+	opacity: 0.3;
+}
+
+xul|editor-buttonbar {
+	margin: 0;
+	margin-right: 5px;
+	padding: 0;
+	padding-right: 5px;
+	height:	24px;
+}

@@ -8,6 +8,7 @@
     $aFiles[]	= "toolbox.css";
     $aFiles[]	= "treelist.css";
     $aFiles[]	= "windowed.css";
+    $aFiles[]	= "editor.css";
     //
     $aFiles[]	= "datepicker-pane.css";
     $aFiles[]	= "colorpicker-pane.css";

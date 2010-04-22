@@ -14,40 +14,8 @@ xul|spinbuttons {
 
 xul|textbox,
 xul|editor {
-	width:	200px;
+	width:	180px;
 	outline: none; /* removes browser native outline when focused */
-}
-
-/* states */
-xul|textbox:focus,
-xul|editor:focus,
-xul|colorpicker:focus,
-xul|menulist:focus,
-xul|datepicker:focus,
-xul|timepicker:focus,
-xul|spinbuttons:focus {
-	border-color: silver;
-}
-
-xul|textbox:disabled,
-xul|colorpicker:disabled,
-xul|menulist:disabled,
-xul|datepicker:disabled,
-xul|timepicker:disabled,
-xul|spinbuttons:disabled {
-	background-color: rgb(235, 235, 228);
-}
-
-xul|textbox:disabled,
-xul|colorpicker:disabled,
-xul|menulist:disabled,
-xul|datepicker:disabled,
-xul|timepicker:disabled,
-xul|spinbuttons:disabled,
-xul|checkbox:disabled,
-xul|radio:disabled {
-	cursor: default;
-	color: GrayText;/*#aca899;*/
 }
 
 xul|textbox::input,
@@ -189,12 +157,9 @@ xul|timepicker {
 xul|scale {
 	margin:	1px;
 	height:	19px;
-	width:	12em;
+	width:	200px;
 	display: inline-block;
-}
-
-xul|scale * {
-	font-size: 1px;
+	border: solid 1px transparent;
 }
 
 xul|scale[orient=horizontal] {
@@ -203,7 +168,8 @@ xul|scale[orient=horizontal] {
 
 xul|scale[orient=horizontal] xul|scale::button {
 	height:	21px;
-	width:	11px;
+	width:	12px;
+	margin-left:-6px;
 	background-image: url(media/scale_button_down.gif);
 	background-repeat: no-repeat;
 	background-position: 0px 0px;
@@ -223,7 +189,7 @@ xul|scale:disabled xul|scale[orient=horizontal] xul|scale::button {
 
 /* radio / radiogroup */
 xul|radiogroup {
-
+	border: solid 1px transparent;
 }
 
 xul|radio {
@@ -232,7 +198,7 @@ xul|radio {
 
 /* checkbox */
 xul|checkbox {
-
+	border: solid 1px transparent;
 }
 
 /* */
@@ -246,4 +212,44 @@ xul|colorpicker::gateway,
 xul|menulist::gateway,
 xul|datepicker::gateway {
 	margin-left: -1px;
+}
+
+/* states */
+xul|textbox:focus,
+xul|editor:focus,
+xul|colorpicker:focus,
+xul|menulist:focus,
+xul|datepicker:focus,
+xul|timepicker:focus,
+xul|spinbuttons:focus {
+	border-color: silver;
+}
+
+xul|checkbox:focus,
+xul|radiogroup:focus,
+xul|scale:focus {
+	border: dotted 1px silver;
+}
+
+xul|textbox:disabled,
+xul|editor:disabled,
+xul|colorpicker:disabled,
+xul|menulist:disabled,
+xul|datepicker:disabled,
+xul|timepicker:disabled,
+xul|spinbuttons:disabled {
+	background-color: rgb(235, 235, 228);
+}
+
+xul|textbox:disabled,
+xul|editor:disabled,
+xul|colorpicker:disabled,
+xul|menulist:disabled,
+xul|datepicker:disabled,
+xul|timepicker:disabled,
+xul|spinbuttons:disabled,
+xul|checkbox:disabled,
+xul|radio:disabled {
+	cursor: default;
+	color: GrayText;/*#aca899;*/
 }
