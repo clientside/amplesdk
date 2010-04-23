@@ -1,25 +1,38 @@
 xul|editor {
 	height:	200px;
-	padding-bottom: 25px;
+	width:	600px;
+	padding-bottom: 52px;
 }
 xul|editor::toolbar {
 	line-height: 1px;	/* Fixes toolbar size in Gecko */
-	height:	24px;
-	border-bottom: solid 1px #aaa;
+	border-bottom: solid 1px #ccc;
 	cursor: default;
+	padding:1px;
 }
 xul|editor::frame {
 
 }
 
-xul|editor xul|button {
-	width:	22px;
-	height:	22px;
-	margin:	1px;
+xul|editor-buttonbar {
+	margin: 0;
+	margin-right: 5px;
 	padding: 0;
-	border: solid 1px silver;
+	padding-right: 5px;
+	vertical-align: top;
+}
+
+xul|editor xul|button {
+	width:	20px;
+	height:	20px;
 	background-image: url(media/editor.png);
 	background-repeat: no-repeat;
+	border: solid 1px silver;
+}
+
+xul|editor xul|button,
+xul|editor xul|menulist {
+	vertical-align: top;
+	margin: 1px;
 }
 
 xul|editor xul|button.bold 			{	background-position: 0 0;			}
@@ -47,6 +60,10 @@ xul|editor xul|button.outdent 		{	background-position: -20px -100px;	}
 xul|editor xul|button.createlink	{	background-position: 0 -180px;		}
 xul|editor xul|button.unlink 		{	background-position: -20px -180px;	}
 
+xul|editor xul|menulist.fontname 		{	width: 120px;	}
+xul|editor xul|menulist.fontsize 		{	width: 200px;	}
+xul|editor xul|menulist.formatblock 	{	width: 100px;	}
+
 xul|editor xul|button:active {
 	border-color: orange;
 	background-color: yellow;
@@ -57,14 +74,8 @@ xul|editor xul|button:hover {
 }
 
 xul|editor:disabled xul|button,
-xul|editor xul|button:disabled {
-	opacity: 0.3;
-}
-
-xul|editor-buttonbar {
-	margin: 0;
-	margin-right: 5px;
-	padding: 0;
-	padding-right: 5px;
-	height:	24px;
+xul|editor:disabled xul|menulist,
+xul|editor xul|button:disabled,
+xul|editor xul|menulist:disabled {
+	opacity: 0.4;
 }

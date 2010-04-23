@@ -7,11 +7,21 @@
  *
  */
 
-var cXULElement_editor	= function(){};
-cXULElement_editor.prototype = new cXULElement;
-cXULElement_editor.prototype.tabIndex	= 0;
+/*
+ * groups:	clipboard, history, align, text, list, link, color, font, indent
+ */
+// component constructor
+var cXULElement_editor	= function() {
+
+};
+
+// component prototype
+cXULElement_editor.prototype	= new cXULElement;
 
 cXULElement_editor.prototype.contentDocument	= null;
+
+//
+cXULElement_editor.prototype.tabIndex	= 0;
 
 // Handlers
 cXULElement_editor.handlers	= {
@@ -38,7 +48,8 @@ cXULElement_editor.handlers	= {
 					this.$setPseudoClass("disabled", event.newValue == "true");
 					this.$getContainer("frame").contentWindow.document.designMode	= event.newValue == "true" ? "off" : "on";
 					//
-					cXULElement_editor.resetButtons(this);
+//					if (event.newValue == "true")
+						cXULElement_editor.resetButtons(this);
 					// IE needs re-initialization
 					if (navigator.userAgent.match(/MSIE ([\d\.]+)/)) {
 						var that	= this;
@@ -68,6 +79,176 @@ cXULElement_editor.handlers	= {
 			});
 		});
 	},
+	"DOMNodeInserted":	function(oEvent) {
+		// Insert lists
+		if (oEvent.target == this) {
+			var oElement,
+				oPopup,
+				that	= this;
+			// Create Subtree
+			// Font names
+			this._elementFontName	= this.$appendChildAnonymous(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menulist"));
+			this._elementFontName.tabIndex	=-1;
+//			this._elementFontName.setAttribute("disabled", "true");
+//			this._elementFontName.setAttribute("class", "fontname");
+			this._elementFontName.addEventListener("change", function(oEvent) {
+				var oDOMDocument	= that.$getContainer("frame").contentWindow.document;
+				oDOMDocument.execCommand("fontname", false, this.selectedItem ? this.selectedItem.getAttribute("value") : '');
+			}, false);
+			oPopup	= this._elementFontName.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menupopup"));
+/*			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement.setAttribute("label", "&lt;Default&gt;");
+			oElement.setAttribute("value", "");
+			oElement.setAttribute("selected", "true");
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement.setAttribute("label", "Arial");
+			oElement.setAttribute("value", "Arial");
+			oElement.setAttribute("style", "font-family:Arial");
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement.setAttribute("label", "Arial Black");
+			oElement.setAttribute("value", "Arial Black");
+			oElement.setAttribute("style", "font-family:'Arial Black'");
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement.setAttribute("label", "Book Antiqua");
+			oElement.setAttribute("value", "Book Antiqua");
+			oElement.setAttribute("style", "font-family:'Book Antiqua'");
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement.setAttribute("label", "Comic Sans MS");
+			oElement.setAttribute("value", "Comic Sans MS");
+			oElement.setAttribute("style", "font-family:'Comic Sans MS'");
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement.setAttribute("label", "Courier New");
+			oElement.setAttribute("value", "Courier New");
+			oElement.setAttribute("style", "font-family:'Courier New'");
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement.setAttribute("label", "Georgia");
+			oElement.setAttribute("value", "Georgia");
+			oElement.setAttribute("style", "font-family:'Georgia'");
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement.setAttribute("label", "Helvetica");
+			oElement.setAttribute("value", "Helvetica");
+			oElement.setAttribute("style", "font-family:'Helvetica'");
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement.setAttribute("label", "Tahoma");
+			oElement.setAttribute("value", "Tahoma");
+			oElement.setAttribute("style", "font-family:'Tahoma'");
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement.setAttribute("label", "Times New Roman");
+			oElement.setAttribute("value", "Times New Roman");
+			oElement.setAttribute("style", "font-family:'Times New Roman'");
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement.setAttribute("label", "Trebuchet MS");
+			oElement.setAttribute("value", "Trebuchet MS");
+			oElement.setAttribute("style", "font-family:'Trebuchet MS'");
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement.setAttribute("label", "Verdana");
+			oElement.setAttribute("value", "Verdana");
+			oElement.setAttribute("style", "font-family:'Verdana'");
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement.setAttribute("label", "Webdings");
+			oElement.setAttribute("value", "Webdings");
+			oElement.setAttribute("style", "font-family:'Webdings'");
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement.setAttribute("label", "Wingdings");
+			oElement.setAttribute("value", "Wingdings");
+			oElement.setAttribute("style", "font-family:'Wingdings'");*/
+			// Font sizes
+			this._elementFontSize	= this.$appendChildAnonymous(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menulist"));
+			this._elementFontSize.tabIndex	=-1;
+//			this._elementFontSize.setAttribute("disabled", "true");
+//			this._elementFontSize.setAttribute("class", "fontsize");
+			this._elementFontSize.addEventListener("change", function(oEvent) {
+				var oDOMDocument	= that.$getContainer("frame").contentWindow.document;
+				oDOMDocument.execCommand("fontsize", false, this.selectedItem ? this.selectedItem.getAttribute("value") : '');
+			}, false);
+			oPopup	= this._elementFontSize.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menupopup"));
+/*
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement.setAttribute("label", "&lt;Default&gt;");
+			oElement.setAttribute("value", "");
+			oElement.setAttribute("selected", "true");
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement.setAttribute("label", "1 (8pt)");
+			oElement.setAttribute("value", "1");
+			oElement.setAttribute("style", "font-size:8pt");
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement.setAttribute("label", "2 (10pt)");
+			oElement.setAttribute("value", "2");
+			oElement.setAttribute("style", "font-size:10pt");
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement.setAttribute("label", "3 (12pt)");
+			oElement.setAttribute("value", "3");
+			oElement.setAttribute("style", "font-size:12pt");
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement.setAttribute("label", "4 (14pt)");
+			oElement.setAttribute("value", "4");
+			oElement.setAttribute("style", "font-size:14pt");
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement.setAttribute("label", "5 (18pt)");
+			oElement.setAttribute("value", "5");
+			oElement.setAttribute("style", "font-size:18pt");
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement.setAttribute("label", "6 (24pt)");
+			oElement.setAttribute("value", "6");
+			oElement.setAttribute("style", "font-size:24pt");
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement.setAttribute("label", "7 (36pt)");
+			oElement.setAttribute("value", "7");
+			oElement.setAttribute("style", "font-size:36pt");*/
+			// Formats
+			this._elementFormat		= this.$appendChildAnonymous(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menulist"));
+			this._elementFormat.tabIndex	=-1;
+//			this._elementFormat.setAttribute("disabled", "true");
+//			this._elementFormat.setAttribute("class", "formatblock");
+			this._elementFormat.addEventListener("change", function(oEvent) {
+				var oDOMDocument	= that.$getContainer("frame").contentWindow.document;
+				oDOMDocument.execCommand("formatblock", false, this.selectedItem ? this.selectedItem.getAttribute("value") : '');
+			}, false);
+			oPopup	= this._elementFontSize.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menupopup"));
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+/*			oElement.setAttribute("label", "&lt;Default&gt;");
+			oElement.setAttribute("value", "");
+			oElement.setAttribute("selected", "true");
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement.setAttribute("label", "Paragraph");
+			oElement.setAttribute("value", "p");
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement.setAttribute("label", "Address");
+			oElement.setAttribute("value", "address");
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement.setAttribute("label", "Preformatted");
+			oElement.setAttribute("value", "pre");
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement.setAttribute("label", "Heading 1");
+			oElement.setAttribute("value", "h1");
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement.setAttribute("label", "Heading 2");
+			oElement.setAttribute("value", "h2");
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement.setAttribute("label", "Heading 3");
+			oElement.setAttribute("value", "h3");
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement.setAttribute("label", "Heading 4");
+			oElement.setAttribute("value", "h4");
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement.setAttribute("label", "Heading 5");
+			oElement.setAttribute("value", "h5");
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement.setAttribute("label", "Heading 6");
+			oElement.setAttribute("value", "h6");*/
+		}
+	},
+	"DOMNodeRemoved":	function(oEvent) {
+		// Insert lists
+		if (oEvent.target == this) {
+			this.$removeChildAnonymous(this._elementFontName);
+			this._elementFontName		= null;
+			this.$removeChildAnonymous(this._elementFontSize);
+			this._elementFontSize		= null;
+			this.$removeChildAnonymous(this._elementFormat);
+			this._elementFormat		= null;
+		}
+	},
 	"DOMNodeRemovedFromDocument":	function() {
 		cXULElement_editor.finalizeDocument(this);
 	}
@@ -81,20 +262,6 @@ cXULElement_editor.commands	= [
 	 	["redo", "Redo", "Redo last editing operation"]
 	],
 	[
-		["bold", "Bold", "Give text strength"],
-		["italic", "Emphasis", "Give text emphasis"],
-		["underline", "Underline", "Give text an underline"],
-		["strikethrough", "Strikethrough", "Give text strikethrough"]
-	],
-	[
-		["subscript", "Subscript", "Give text subscript"],
-		["superscript", "Superscript", "Give text superscript"]
-	],
-	[
-		["insertunorderedlist", "Unordered", "Make an unordered list"],
-		["insertorderedlist", "Ordered", "Make an ordered list"]
-	],
-	[
 		["justifyleft", "Left", "Align block to left"],
 		["justifycenter", "Center", "Align block to center"],
 		["justifyright", "Right", "Align block to right"],
@@ -105,9 +272,24 @@ cXULElement_editor.commands	= [
 	 	["indent", "Indent", "Indent the block where the caret is located"]
 	],
 	[
+		["insertunorderedlist", "Unordered", "Make an unordered list"],
+		["insertorderedlist", "Ordered", "Make an ordered list"]
+	],
+	[
 	 	["createlink", "Link", "Create a hyperlink"],
 	 	["unlink", "Unlink", "Remove hyperlink"]
-	]/*,	// TODO
+	],
+	[
+		["bold", "Bold", "Give text strength"],
+		["italic", "Emphasis", "Give text emphasis"],
+		["underline", "Underline", "Give text an underline"],
+		["strikethrough", "Strikethrough", "Give text strikethrough"]
+	],
+	[
+		["subscript", "Subscript", "Give text subscript"],
+		["superscript", "Superscript", "Give text superscript"]
+	]
+	/*	// TODO
 	[
 	 	["fontsize", "Font size", "Font size"],
 	 	["fontname", "Font name", "Font name"],
@@ -120,6 +302,7 @@ cXULElement_editor.commands	= [
 ];
 
 cXULElement_editor.htmlmap	= [
+	// control regex, desired regex replacement
 	[/<(B|b|STRONG)>(.*?)<\/\1>/gm, "<strong>$2</strong>"],
 	[/<(I|i|EM)>(.*?)<\/\1>/gm, "<em>$2</em>"],
 	[/<P>(.*?)<\/P>/gm, "<p>$1</p>"],
@@ -142,7 +325,10 @@ cXULElement_editor.sanityze	= function(sHtml) {
 	for (var nIndex = 0; nIndex < cXULElement_editor.htmlmap.length; nIndex++)
 		sHtml = sHtml.replace(cXULElement_editor.htmlmap[nIndex][0], cXULElement_editor.htmlmap[nIndex][1]);
 
-	return sHtml;
+	return sHtml.replace(/<a( target="_blank")?/g, '<a target="_blank"')
+				.replace(/\r?\n/g, "")
+				.replace(/<br\s*\/>$/, "")
+	;
 };
 
 cXULElement_editor.initializeDocument	= function(oInstance) {
@@ -161,22 +347,27 @@ cXULElement_editor.initializeDocument	= function(oInstance) {
 
 	//
 	var fOnMouseDown	= function(oEvent) {
-		if (oInstance.$isAccessible())
-			oInstance.focus();
+		// Re-dispatch event to the element
+		if (oInstance.$isAccessible()) {
+			var oMouseEvent	= oInstance.ownerDocument.createEvent("MouseEvent");
+			oMouseEvent.initMouseEvent("mousedown", true, true, window, 1, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, oEvent.metaKey, 0, null);
+			oMouseEvent.$pseudoTarget	= oInstance.$getContainer("frame");
+			oInstance.dispatchEvent(oMouseEvent);
+		}
 	};
 	var fUpdateState = function(oEvent) {
 		if (oInstance.$isAccessible())
 			cXULElement_editor.updateButtons(oInstance);
 	};
 	if (oDOMDocument.addEventListener) {
-		oDOMDocument.addEventListener("click", fUpdateState, true);
+		oDOMDocument.addEventListener("mouseup", fUpdateState, true);
 		oDOMDocument.addEventListener("keyup", fUpdateState, true);
 		oDOMDocument.addEventListener("mousedown", fOnMouseDown, true);
 	}
 	else {
-		oDOMDocument.onclick	= fUpdateState;
-		oDOMDocument.onkeyup	= fUpdateState;
-		oDOMDocument.onmousedown= fOnMouseDown;
+		oDOMDocument.attachEvent("onmouseup", fUpdateState);
+		oDOMDocument.attachEvent("onkeyup", fUpdateState);
+		oDOMDocument.attachEvent("onmousedown", fOnMouseDown);
 	}
 	// In Firefox 3.6, CTRL+B|I|U invoke browser shortcuts, so we need to redefine behaviour for content editable area
 	if (window.controllers)
@@ -202,35 +393,56 @@ cXULElement_editor.initializeDocument	= function(oInstance) {
 
 cXULElement_editor.finalizeDocument	= function(oInstance) {
 	var oDOMDocument	= oInstance.$getContainer("frame").contentWindow.document;
-	oDOMDocument.onkeyup	= null;
-	oDOMDocument.onclick	= null;
-	oDOMDocument.onmousedown= null;
+/*	if (oDOMDocument.removeEventListener) {
+		oDOMDocument.removeEventListener("mouseup", fUpdateState, true);
+		oDOMDocument.removeEventListener("keyup", fUpdateState, true);
+		oDOMDocument.removeEventListener("mousedown", fOnMouseDown, true);
+	}
+	else {
+		oDOMDocument.detachEvent("onmouseup", fUpdateState);
+		oDOMDocument.detachEvent("onkeyup", fUpdateState);
+		oDOMDocument.detachEvent("onmousedown", fOnMouseDown);
+	}*/
 };
 
-// 'Private members'
+// 'Private' members
 cXULElement_editor.prototype._onButtonClick	= function(sCommand) {
 	var oWindow	= this.$getContainer('frame').contentWindow,
 		vValue	= null;
 	// If not enabled, return
-	if (!this.$isAccessible() || !oWindow.document.queryCommandEnabled(sCommand))
+	if (!this.$isAccessible())// || !oWindow.document.queryCommandEnabled(sCommand))
 		return;
 	//
 	if (sCommand == "createlink")
 		vValue	= prompt("Enter the URL:", "http://");
-	oWindow.document.execCommand(sCommand, false, vValue);
 	oWindow.focus();
+	oWindow.document.execCommand(sCommand, false, vValue);
 	cXULElement_editor.updateButtons(this);
+};
+
+//
+cXULElement_editor.fontSizeValueInPixels	= [0, 10, 13, 16, 18, 24, 32, 48];
+cXULElement_editor.fontSizeValueInPoints	= [0, 8, 10, 12, 14, 18, 24, 36];
+cXULElement_editor.fontSizeValueToFontSizeNumber	= function(sValue) {
+	var aFontSize	= sValue.match(/(\d*)(px|pt)?/);
+	if (aFontSize[2] == "px")
+		return cXULElement_editor.fontSizeValueInPixels.indexOf(Number(aFontSize[1]));
+	else
+	if (aFontSize[2] == "pt")
+		return cXULElement_editor.fontSizeValueInPoints.indexOf(Number(aFontSize[1]));
+	return aFontSize[1];
 };
 
 cXULElement_editor.updateButtons	= function(oInstance) {
 	var oDOMDocument	= oInstance.$getContainer('frame').contentWindow.document,
 		oToolBar	= oInstance.$getContainer("toolbar"),
 		oButton,
-		sCommand;
+		sCommand,
+		sValue;
 	// Update commands state
 	for (var nGroup = 0; nGroup < cXULElement_editor.commands.length; nGroup++)
 		for (var nIndex = 0; nIndex < cXULElement_editor.commands[nGroup].length; nIndex++) {
-			oButton	= oToolBar.getElementsByTagName("div")[nGroup].getElementsByTagName("button")[nIndex];
+			oButton	= oToolBar.getElementsByTagName("p")[nGroup].getElementsByTagName("button")[nIndex];
 			sCommand= cXULElement_editor.commands[nGroup][nIndex][0];
 			if (sCommand != "indent" && sCommand != "outdent" && sCommand != "createlink" && sCommand != "unlink" && sCommand != "undo" && sCommand != "redo") {
 				// Command executed
@@ -249,6 +461,16 @@ cXULElement_editor.updateButtons	= function(oInstance) {
 			else
 				oButton.className	= oButton.className.replace(/ xul-button_disabled/, '');
 		}
+	// Lists
+	oInstance._elementFontName.setAttribute("disabled", !oDOMDocument.queryCommandEnabled("fontname"));
+	sValue	= String(oDOMDocument.queryCommandValue("fontname")).replace(/^'|'$/g, '');
+	oInstance._elementFontName.setAttribute("value", sValue);
+	oInstance._elementFontSize.setAttribute("disabled", !oDOMDocument.queryCommandEnabled("fontsize"));
+	sValue	= String(oDOMDocument.queryCommandValue("fontsize"));
+	oInstance._elementFontSize.setAttribute("value", cXULElement_editor.fontSizeValueToFontSizeNumber(sValue));	// Chrome returns font-size in pixels
+	oInstance._elementFormat.setAttribute("disabled", !oDOMDocument.queryCommandEnabled("formatblock"));
+	sValue	= String(oDOMDocument.queryCommandValue("formatblock")).toLowerCase();
+	oInstance._elementFormat.setAttribute("value", sValue);
 };
 
 cXULElement_editor.resetButtons	= function(oInstance) {
@@ -259,36 +481,63 @@ cXULElement_editor.resetButtons	= function(oInstance) {
 	// Update commands state
 	for (var nGroup = 0; nGroup < cXULElement_editor.commands.length; nGroup++)
 		for (var nIndex = 0; nIndex < cXULElement_editor.commands[nGroup].length; nIndex++) {
-			oButton	= oToolBar.getElementsByTagName("div")[nGroup].getElementsByTagName("button")[nIndex];
+			oButton	= oToolBar.getElementsByTagName("p")[nGroup].getElementsByTagName("button")[nIndex];
 			sCommand= cXULElement_editor.commands[nGroup][nIndex][0];
 			oButton.className	= oButton.className.replace(/ xul-button_active/, '');
 			if (!oButton.className.match(/ xul-button_disabled/))
 				oButton.className += " xul-button_disabled";
 		}
+	oInstance._elementFontName.setAttribute("disabled", "true");
+	oInstance._elementFontSize.setAttribute("disabled", "true");
+	oInstance._elementFormat.setAttribute("disabled", "true");
 };
 
 // presentation
 cXULElement_editor.prototype.$getTagOpen	= function() {
-	return '<div class="xul-editor' + (this.getAttribute("disabled") == "true" ? ' xul-editor_disabled' : '') + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '"' + (this.hasAttribute("style") ? ' style="' + this.getAttribute("style") + '"' : '') + '><div style="display:none"></div>\
-				<div class="xul-editor--toolbar">'+
-					(function(){
-						var aHtml	= [];
-						for (var nGroup = 0; nGroup < cXULElement_editor.commands.length; nGroup++) {
-							aHtml.push('<div class="xul-editor-buttonbar" style="display:inline' + (navigator.userAgent.match(/MSIE ([\d\.]+)/) && RegExp.$1 < 8 ? '' : '-block') + '">');
-							for (var nIndex = 0; nIndex < cXULElement_editor.commands[nGroup].length; nIndex++)
-								aHtml.push('<button class="xul-button ' + cXULElement_editor.commands[nGroup][nIndex][0] + ' xul-button_disabled" \
-												title="' + cXULElement_editor.commands[nGroup][nIndex][2] + '"\
-												onclick="ample.$instance(this)._onButtonClick(\'' + cXULElement_editor.commands[nGroup][nIndex][0] + '\')"\
-												onmouseover="if (ample.$instance(this).$isAccessible()) this.className += \' xul-button_hover\'"\
-												onmouseout="if (ample.$instance(this).$isAccessible()) this.className = this.className.replace(/ xul-button_hover/, \'\')"\
-												></button>');
-							aHtml.push('</div>');
-						}
-						return aHtml.join('');
-					})()+'\
+	return '<div class="xul-editor' + (this.getAttribute("disabled") == "true" ? ' xul-editor_disabled' : '') + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '"><div style="display:none"></div>\
+				<div class="xul-editor--toolbar" style="position:relative">\
+					<div>'+
+						(function(){
+							var aHtml	= [];
+							for (var nGroup = 0; nGroup < 5; nGroup++) {
+								aHtml.push('<p class="xul-editor-buttonbar" style="display:inline' + (navigator.userAgent.match(/MSIE ([\d\.]+)/) && RegExp.$1 < 8 ? '' : '-block') + '">');
+								for (var nIndex = 0; nIndex < cXULElement_editor.commands[nGroup].length; nIndex++)
+									aHtml.push('<button class="xul-button ' + cXULElement_editor.commands[nGroup][nIndex][0] + ' xul-button_disabled" \
+													title="' + cXULElement_editor.commands[nGroup][nIndex][2] + '"\
+													onclick="ample.$instance(this)._onButtonClick(\'' + cXULElement_editor.commands[nGroup][nIndex][0] + '\')"\
+													onmouseover="if (ample.$instance(this).$isAccessible()) this.className += \' xul-button_hover\'"\
+													onmouseout="if (ample.$instance(this).$isAccessible()) this.className = this.className.replace(/ xul-button_hover/, \'\')"\
+													></button>');
+								aHtml.push('</p>');
+							}
+							return aHtml.join('');
+						})()+'\
+					</div>\
+					<div>'+
+						(function(){
+							var aHtml	= [];
+							for (var nGroup = 5; nGroup < cXULElement_editor.commands.length; nGroup++) {
+								aHtml.push('<p class="xul-editor-buttonbar" style="display:inline' + (navigator.userAgent.match(/MSIE ([\d\.]+)/) && RegExp.$1 < 8 ? '' : '-block') + '">');
+								for (var nIndex = 0; nIndex < cXULElement_editor.commands[nGroup].length; nIndex++)
+									aHtml.push('<button class="xul-button ' + cXULElement_editor.commands[nGroup][nIndex][0] + ' xul-button_disabled" \
+													title="' + cXULElement_editor.commands[nGroup][nIndex][2] + '"\
+													onclick="ample.$instance(this)._onButtonClick(\'' + cXULElement_editor.commands[nGroup][nIndex][0] + '\')"\
+													onmouseover="if (ample.$instance(this).$isAccessible()) this.className += \' xul-button_hover\'"\
+													onmouseout="if (ample.$instance(this).$isAccessible()) this.className = this.className.replace(/ xul-button_hover/, \'\')"\
+													></button>');
+								aHtml.push('</p>');
+							}
+							return aHtml.join('');
+						})()+'\
+						<div class="xul-editor-buttonbar" style="display:inline' + (navigator.userAgent.match(/MSIE ([\d\.]+)/) && RegExp.$1 < 8 ? '' : '-block') + '">' +
+							'<a href="javascript:;" style="color:black;text-decoration:none;cursor:default;">' + this._elementFontName.$getTag() + '</a>' +
+							'<a href="javascript:;" style="color:black;text-decoration:none;cursor:default;">' + this._elementFontSize.$getTag() + '</a>' +
+							'<a href="javascript:;" style="color:black;text-decoration:none;cursor:default;">' + this._elementFormat.$getTag() + '</a>' +'\
+						</div>\
+					</div>\
 				</div>\
-				<div class="xul-editor--input" style="height:100%;">\
-					<iframe class="xul-editor--frame" src="about:blank" frameborder="0" allowtransparency="true" style="width:100%;height:100%;">';
+				<div class="xul-editor--input" style="position:relative;height:100%;">\
+					<iframe class="xul-editor--frame" src="about:blank" frameborder="0" allowtransparency="true" style="width:100%;height:100%">';
 };
 
 cXULElement_editor.prototype.$getTagClose	= function() {
