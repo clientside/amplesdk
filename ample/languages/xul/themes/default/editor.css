@@ -5,7 +5,8 @@ xul|editor {
 }
 xul|editor::toolbar {
 	line-height: 1px;	/* Fixes toolbar size in Gecko */
-	border-bottom: solid 1px #ccc;
+	background-color:#ECE9D8;
+	border-bottom: 1px solid #7F9DB9;
 	cursor: default;
 	padding:1px;
 }
