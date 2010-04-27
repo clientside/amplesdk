@@ -23,13 +23,11 @@ cXULElement_scale.attributes	= {
 cXULElement_scale.prototype.form	= null;
 
 //Public Methods
-cXULElement_scale.prototype.$getValue	= function()
-{
+cXULElement_scale.prototype.$getValue	= function() {
 	return this.$getContainer("input").value;
 };
 
-cXULElement_scale.prototype.$setValue	= function(sValue)
-{
+cXULElement_scale.prototype.$setValue	= function(sValue) {
     if (sValue * 1.0 < this.attributes["min"] * 1.0 || isNaN(sValue))
         sValue  = this.attributes["min"] * 1.0;
     else
@@ -43,48 +41,9 @@ cXULElement_scale.prototype.$setValue	= function(sValue)
     this.$getContainer("input").value	= sValue;
 };
 
-// Public Methods
-cXULElement_scale.prototype.setAttribute    = function(sName, sValue)
-{
-    if (sName == "value")
-    {
-		this.$setValue(sValue);
-    }
-    else
-    if (sName == "type")
-    {
-        // TODO
-    }
-    else
-    if (sName == "disabled")
-    {
-    	this.$setPseudoClass("disabled", sValue != "");
-        this.$getContainer("input").disabled = sValue != "";
-        this.$getContainer().disabled	= sValue != "";
-    }
-    else
-    if (sName == "step")
-    {
-
-    }
-    else
-    if (sName == "min")
-    {
-
-    }
-    else
-    if (sName == "max")
-    {
-
-    }
-
-    this.AMLElement.setAttribute.call(this, sName, sValue);
-};
-
 // Events Handlers
-cXULElement_scale.prototype._onButtonMouseDown  = function(oEvent)
-{
-    if (this.getAttribute("disabled"))
+cXULElement_scale.prototype._onButtonMouseDown  = function(oEvent) {
+    if (this.getAttribute("disabled") == "true")
         return false;
 
     this._mouseX    = oEvent.clientX;
@@ -103,9 +62,8 @@ cXULElement_scale.prototype._onButtonMouseDown  = function(oEvent)
 	return false;
 };
 
-cXULElement_scale.prototype._onButtonKeyDown    = function(oEvent)
-{
-    if (this.getAttribute("disabled"))
+cXULElement_scale.prototype._onButtonKeyDown    = function(oEvent) {
+    if (this.getAttribute("disabled") == "true")
         return false;
 
     var sValue  = this.$getValue();
@@ -125,8 +83,7 @@ cXULElement_scale.prototype._onButtonKeyDown    = function(oEvent)
 };
 
 // Static Methods
-cXULElement_scale._onDocumentMouseUp    = function(oEvent)
-{
+cXULElement_scale._onDocumentMouseUp    = function(oEvent) {
 	var oElement	= cXULElement_scale._element;
 
 	// detach element
@@ -151,8 +108,7 @@ cXULElement_scale._onDocumentMouseUp    = function(oEvent)
 	}
 };
 
-cXULElement_scale._onDocumentMouseMove     = function(oEvent)
-{
+cXULElement_scale._onDocumentMouseMove     = function(oEvent) {
 	var oElement	= cXULElement_scale._element;
 	var oPosition	= oElement.getBoundingClientRect(),
 		nWidth		= oPosition.right - oPosition.left;
@@ -174,6 +130,40 @@ cXULElement_scale.handlers	= {
 	"blur":		function(oEvent) {
 		this.$getContainer().blur();
 	},
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			switch (oEvent.attrName) {
+				case "value":
+					this.$setValue(oEvent.newValue || '');
+					break;
+
+				case "disabled":
+					this.$setPseudoClass("disabled", oEvent.newValue == "true");
+					this.$getContainer("input").disabled = oEvent.newValue == "true";
+					this.$getContainer().disabled	= oEvent.newValue == "true";
+					break;
+
+				case "type":
+					// TODO
+					break;
+
+				case "max":
+					// TODO
+					break;
+
+				case "min":
+					// TODO
+					break;
+
+				case "step":
+					// TODO
+					break;
+
+				default:
+					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			}
+		}
+	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		/*
 		for (var oElementTemp = this; oElementTemp; oElementTemp = oElementTemp.parentNode)
@@ -189,7 +179,7 @@ cXULElement_scale.handlers	= {
 			oElementTemp.elements.$add(this);
 	//		oElementTemp.elements[this.attributes["name"]]	= this;
 		}*/
-		this.$setValue(this.attributes["value"]);
+//		this.$setValue(this.attributes["value"]);
 	}/*,
 	"DOMNodeRemovedFromDocument":	function(oEvent) {
 		if (this.form)
@@ -197,27 +187,22 @@ cXULElement_scale.handlers	= {
 	}*/
 };
 
-// Element Render: open
-cXULElement_scale.prototype.$getTagOpen	= function()
-{
-    var sHtml   = '<table tabindex="0"' +(this.attributes["disabled"] ? ' disabled="disabled"' : '') + ' cellpadding="0" cellspacing="0" border="0" class="xul-scale' + (this.attributes["disabled"] ? " xul-scale_disabled" : '') + '" ' + (this.attributes["style"] ? ' style="' + this.attributes["style"] + '"': '') + ' onkeydown="return ample.$instance(this)._onButtonKeyDown(event);">';
-    sHtml  += '<tbody>';
-    sHtml  += '<tr>';
-    sHtml  += '<td><div style="width:3px" /></td>';
-    sHtml  += '<td width="100%" class="xul-scale-orient-' +(this.attributes["orient"] == "vertical" ? "vertical" : "horizontal") + '">';
-    sHtml  += '<div class="xul-scale--button" style="position:relative;left:0px;top:0px;" onmouseout="if (!ample.$instance(this).attributes.disabled) ample.$instance(this).$setPseudoClass(\'hover\', false, \'button\')" onmouseover="if (!ample.$instance(this).attributes.disabled) ample.$instance(this).$setPseudoClass(\'hover\', true, \'button\')" onmousedown="if (!ample.$instance(this).attributes.disabled) {return ample.$instance(this)._onButtonMouseDown(event);}"><br /></div>';
-    sHtml  += '</td>';
-    sHtml  += '<td><div style="width:3px"><input type="text" value="' + this.attributes["value"] + '" autocomplete="off"';
-    if (this.attributes["name"])
-        sHtml  += ' name="' + this.attributes["name"] + '"';
-    if (this.attributes["disabled"])
-        sHtml  += ' disabled="' + "disabled" + '"';
-    sHtml  += ' style="display:none;width:1px;height:1px;" class="xul-scale--input"/></div></td>';
-    sHtml  += '</tr>';
-	sHtml  += '</tbody>';
-    sHtml  += '</table>';
+cXULElement_scale.getLeft	= function(oInstance, sValue) {
+	var nMax	= oInstance.attributes["max"] * 1,
+		nMin	= oInstance.attributes["min"] * 1;
+	return 100 * (sValue - nMin) / (nMax - nMin) + '%';
+};
 
-    return sHtml;
+// Element Render: open
+cXULElement_scale.prototype.$getTagOpen	= function() {
+    return '<div class="xul-scale' + (this.attributes["disabled"] == "true" ? " xul-scale_disabled" : '') + '" ' + (this.attributes["style"] ? ' style="' + this.attributes["style"] + '"': '') + '>\
+    			<div class="xul-scale-orient-' +(this.attributes["orient"] == "vertical" ? "vertical" : "horizontal") + '" style="position:relative;height:100%;">\
+    				<div class="xul-scale--button" style="position:absolute;left:' + cXULElement_scale.getLeft(this, this.getAttribute("value")) + '" onmouseout="if (!ample.$instance(this).attributes.disabled) ample.$instance(this).$setPseudoClass(\'hover\', false, \'button\')" onmouseover="if (!ample.$instance(this).attributes.disabled) ample.$instance(this).$setPseudoClass(\'hover\', true, \'button\')" onmousedown="if (!ample.$instance(this).attributes.disabled) {return ample.$instance(this)._onButtonMouseDown(event);}"><br /></div>\
+    			</div>\
+   				<input type="text" class="xul-scale--input" autocomplete="off" value="' + this.attributes["value"] + '" style="display:none;width:1px;height:1px;"'+
+   				(this.attributes["name"] ? ' name="' + this.attributes["name"] + '"' : '')+
+   				(this.attributes["disabled"] == "true" ? ' disabled="' + "disabled" + '"' : '')+'/>\
+   			</div>';
 };
 
 // Register Element with language

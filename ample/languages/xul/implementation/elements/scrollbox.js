@@ -11,19 +11,22 @@ var cXULElement_scrollbox	= function(){};
 cXULElement_scrollbox.prototype	= new cXULElement;
 cXULElement_scrollbox.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
 
-// Public Methods
-
-// Private method
+// Class Events Handlers
+cXULElement_scrollbox.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+		}
+	}
+};
 
 // Element Render: open
-cXULElement_scrollbox.prototype.$getTagOpen	= function()
-{
+cXULElement_scrollbox.prototype.$getTagOpen	= function() {
     return '<div class="xul-scrollbox" style="overflow:hidden">';
 };
 
 // Element Render: close
-cXULElement_scrollbox.prototype.$getTagClose	= function()
-{
+cXULElement_scrollbox.prototype.$getTagClose	= function() {
     return '</div>';
 };
 

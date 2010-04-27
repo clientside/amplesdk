@@ -19,17 +19,22 @@ cXULElement_statusbar.attributes.height	= "22";
 // Accessibility
 cXULElement_statusbar.prototype.$selectable	= false;
 
-// Public Methods
+// Class Events Handlers
+cXULElement_statusbar.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+		}
+	}
+};
 
 // Element Render: open
-cXULElement_statusbar.prototype.$getTagOpen	= function()
-{
+cXULElement_statusbar.prototype.$getTagOpen	= function() {
     return '<div class="xul-statusbar">';
 };
 
 // Element Render: close
-cXULElement_statusbar.prototype.$getTagClose	= function()
-{
+cXULElement_statusbar.prototype.$getTagClose	= function() {
     return '</div>';
 };
 

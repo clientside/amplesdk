@@ -11,27 +11,21 @@ var cXULElement_label	= function(){};
 cXULElement_label.prototype  = new cXULElement;
 
 // Public Methods
-cXULElement_label.prototype.setAttribute = function(sName, sValue)
-{
-    if (sName == "value")
-    {
-        this.$getContainer().innerText    = sValue;
-    }
-    else
-    if (sName == "control")
-    {
-//        this.$getContainer().setAttribute("for", sValue);
-    }
-    else
-    {
-        this._setAttribute(sName, sValue);
-    }
 
-    this.AMLElement.setAttribute.call(this, sName, sValue);
-};
-
-// Handlers
+// Class Events Handlers
 cXULElement_label.handlers	= {
+	"DOMAttrModified": function (oEvent) {
+		if (oEvent.target == this) {
+			switch (oEvent.attrName) {
+				case "value":
+					this.$getContainer().innerHTML	= oEvent.newValue || '';
+					break;
+
+				default:
+					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			}
+		}
+	},
 	"click":	function(oEvent) {
 		if (oEvent.button == 0)
 			this.$activate();
@@ -45,14 +39,12 @@ cXULElement_label.handlers	= {
 };
 
 // Element Render: open
-cXULElement_label.prototype.$getTagOpen	= function()
-{
+cXULElement_label.prototype.$getTagOpen	= function() {
     return '<label class="xul-label' +(this.attributes["class"] ? " " + this.attributes["class"] : "")+ '">' +(this.attributes["value"] ? this.attributes["value"] : '');
 };
 
 // Element Render: close
-cXULElement_label.prototype.$getTagClose	= function()
-{
+cXULElement_label.prototype.$getTagClose	= function() {
     return '</label>';
 };
 

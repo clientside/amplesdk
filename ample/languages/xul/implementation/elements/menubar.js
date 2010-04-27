@@ -23,16 +23,6 @@ cXULElement_menubar.prototype.selectedItem	= null;
 cXULElement_menubar.attributes	= {};
 cXULElement_menubar.attributes.active	= "false";
 
-// Public Methods
-cXULElement_menubar.prototype.setAttribute	= function(sName, sValue)
-{
-    if (sName == "hidden")
-    {
-        this._setAttribute(sName, sValue);
-    }
-    this.AMLElement.setAttribute.call(this, sName, sValue);
-};
-
 cXULElement_menubar.prototype.selectItem	= function(oItem)
 {
 	if (this.selectedItem != oItem)
@@ -72,6 +62,15 @@ cXULElement_menubar.prototype.selectItem	= function(oItem)
 		}
 
 	    this.selectedItem = oItem;
+	}
+};
+
+// Class event handler
+cXULElement_menubar.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+		}
 	}
 };
 

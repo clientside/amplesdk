@@ -41,12 +41,12 @@ cXULElement_editor.handlers	= {
 		//
 		cXULElement_editor.resetButtons(this);
 	},
-	"DOMAttrModified" : function (event) {
-		if (event.target == this)
-			switch (event.attrName) {
+	"DOMAttrModified" : function (oEvent) {
+		if (oEvent.target == this)
+			switch (oEvent.attrName) {
 				case "disabled":
-					this.$setPseudoClass("disabled", event.newValue == "true");
-					this.$getContainer("frame").contentWindow.document.designMode	= event.newValue == "true" ? "off" : "on";
+					this.$setPseudoClass("disabled", oEvent.newValue == "true");
+					this.$getContainer("frame").contentWindow.document.designMode	= oEvent.newValue == "true" ? "off" : "on";
 					//
 //					if (event.newValue == "true")
 						cXULElement_editor.resetButtons(this);
@@ -87,155 +87,154 @@ cXULElement_editor.handlers	= {
 				that	= this;
 			// Create Subtree
 			// Font names
-			this._elementFontName	= this.$appendChildAnonymous(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menulist"));
+			this._elementFontName	= this.$appendChildAnonymous(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menulist"));
 			this._elementFontName.tabIndex	=-1;
-//			this._elementFontName.setAttribute("disabled", "true");
-//			this._elementFontName.setAttribute("class", "fontname");
+			this._elementFontName.setAttribute("disabled", "true");
+			this._elementFontName.setAttribute("class", "fontname");
 			this._elementFontName.addEventListener("change", function(oEvent) {
 				var oDOMDocument	= that.$getContainer("frame").contentWindow.document;
 				oDOMDocument.execCommand("fontname", false, this.selectedItem ? this.selectedItem.getAttribute("value") : '');
 			}, false);
-			oPopup	= this._elementFontName.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menupopup"));
-/*			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oPopup	= this._elementFontName.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menupopup"));
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
 			oElement.setAttribute("label", "&lt;Default&gt;");
 			oElement.setAttribute("value", "");
 			oElement.setAttribute("selected", "true");
-			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
 			oElement.setAttribute("label", "Arial");
 			oElement.setAttribute("value", "Arial");
 			oElement.setAttribute("style", "font-family:Arial");
-			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
 			oElement.setAttribute("label", "Arial Black");
 			oElement.setAttribute("value", "Arial Black");
 			oElement.setAttribute("style", "font-family:'Arial Black'");
-			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
 			oElement.setAttribute("label", "Book Antiqua");
 			oElement.setAttribute("value", "Book Antiqua");
 			oElement.setAttribute("style", "font-family:'Book Antiqua'");
-			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
 			oElement.setAttribute("label", "Comic Sans MS");
 			oElement.setAttribute("value", "Comic Sans MS");
 			oElement.setAttribute("style", "font-family:'Comic Sans MS'");
-			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
 			oElement.setAttribute("label", "Courier New");
 			oElement.setAttribute("value", "Courier New");
 			oElement.setAttribute("style", "font-family:'Courier New'");
-			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
 			oElement.setAttribute("label", "Georgia");
 			oElement.setAttribute("value", "Georgia");
 			oElement.setAttribute("style", "font-family:'Georgia'");
-			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
 			oElement.setAttribute("label", "Helvetica");
 			oElement.setAttribute("value", "Helvetica");
 			oElement.setAttribute("style", "font-family:'Helvetica'");
-			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
 			oElement.setAttribute("label", "Tahoma");
 			oElement.setAttribute("value", "Tahoma");
 			oElement.setAttribute("style", "font-family:'Tahoma'");
-			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
 			oElement.setAttribute("label", "Times New Roman");
 			oElement.setAttribute("value", "Times New Roman");
 			oElement.setAttribute("style", "font-family:'Times New Roman'");
-			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
 			oElement.setAttribute("label", "Trebuchet MS");
 			oElement.setAttribute("value", "Trebuchet MS");
 			oElement.setAttribute("style", "font-family:'Trebuchet MS'");
-			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
 			oElement.setAttribute("label", "Verdana");
 			oElement.setAttribute("value", "Verdana");
 			oElement.setAttribute("style", "font-family:'Verdana'");
-			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
 			oElement.setAttribute("label", "Webdings");
 			oElement.setAttribute("value", "Webdings");
 			oElement.setAttribute("style", "font-family:'Webdings'");
-			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
 			oElement.setAttribute("label", "Wingdings");
 			oElement.setAttribute("value", "Wingdings");
-			oElement.setAttribute("style", "font-family:'Wingdings'");*/
+			oElement.setAttribute("style", "font-family:'Wingdings'");
 			// Font sizes
-			this._elementFontSize	= this.$appendChildAnonymous(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menulist"));
+			this._elementFontSize	= this.$appendChildAnonymous(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menulist"));
 			this._elementFontSize.tabIndex	=-1;
-//			this._elementFontSize.setAttribute("disabled", "true");
-//			this._elementFontSize.setAttribute("class", "fontsize");
+			this._elementFontSize.setAttribute("disabled", "true");
+			this._elementFontSize.setAttribute("class", "fontsize");
 			this._elementFontSize.addEventListener("change", function(oEvent) {
 				var oDOMDocument	= that.$getContainer("frame").contentWindow.document;
 				oDOMDocument.execCommand("fontsize", false, this.selectedItem ? this.selectedItem.getAttribute("value") : '');
 			}, false);
-			oPopup	= this._elementFontSize.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menupopup"));
-/*
-			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oPopup	= this._elementFontSize.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menupopup"));
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
 			oElement.setAttribute("label", "&lt;Default&gt;");
 			oElement.setAttribute("value", "");
 			oElement.setAttribute("selected", "true");
-			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
 			oElement.setAttribute("label", "1 (8pt)");
 			oElement.setAttribute("value", "1");
 			oElement.setAttribute("style", "font-size:8pt");
-			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
 			oElement.setAttribute("label", "2 (10pt)");
 			oElement.setAttribute("value", "2");
 			oElement.setAttribute("style", "font-size:10pt");
-			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
 			oElement.setAttribute("label", "3 (12pt)");
 			oElement.setAttribute("value", "3");
 			oElement.setAttribute("style", "font-size:12pt");
-			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
 			oElement.setAttribute("label", "4 (14pt)");
 			oElement.setAttribute("value", "4");
 			oElement.setAttribute("style", "font-size:14pt");
-			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
 			oElement.setAttribute("label", "5 (18pt)");
 			oElement.setAttribute("value", "5");
 			oElement.setAttribute("style", "font-size:18pt");
-			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
 			oElement.setAttribute("label", "6 (24pt)");
 			oElement.setAttribute("value", "6");
 			oElement.setAttribute("style", "font-size:24pt");
-			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
 			oElement.setAttribute("label", "7 (36pt)");
 			oElement.setAttribute("value", "7");
-			oElement.setAttribute("style", "font-size:36pt");*/
+			oElement.setAttribute("style", "font-size:36pt");
 			// Formats
-			this._elementFormat		= this.$appendChildAnonymous(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menulist"));
+			this._elementFormat		= this.$appendChildAnonymous(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menulist"));
 			this._elementFormat.tabIndex	=-1;
-//			this._elementFormat.setAttribute("disabled", "true");
-//			this._elementFormat.setAttribute("class", "formatblock");
+			this._elementFormat.setAttribute("disabled", "true");
+			this._elementFormat.setAttribute("class", "formatblock");
 			this._elementFormat.addEventListener("change", function(oEvent) {
 				var oDOMDocument	= that.$getContainer("frame").contentWindow.document;
 				oDOMDocument.execCommand("formatblock", false, this.selectedItem ? this.selectedItem.getAttribute("value") : '');
 			}, false);
-			oPopup	= this._elementFontSize.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menupopup"));
-			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
-/*			oElement.setAttribute("label", "&lt;Default&gt;");
+			oPopup	= this._elementFormat.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menupopup"));
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
+			oElement.setAttribute("label", "&lt;Default&gt;");
 			oElement.setAttribute("value", "");
 			oElement.setAttribute("selected", "true");
-			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
 			oElement.setAttribute("label", "Paragraph");
 			oElement.setAttribute("value", "p");
-			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
 			oElement.setAttribute("label", "Address");
 			oElement.setAttribute("value", "address");
-			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
 			oElement.setAttribute("label", "Preformatted");
 			oElement.setAttribute("value", "pre");
-			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
 			oElement.setAttribute("label", "Heading 1");
 			oElement.setAttribute("value", "h1");
-			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
 			oElement.setAttribute("label", "Heading 2");
 			oElement.setAttribute("value", "h2");
-			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
 			oElement.setAttribute("label", "Heading 3");
 			oElement.setAttribute("value", "h3");
-			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
 			oElement.setAttribute("label", "Heading 4");
 			oElement.setAttribute("value", "h4");
-			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
 			oElement.setAttribute("label", "Heading 5");
 			oElement.setAttribute("value", "h5");
-			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "ns:menuitem"));
+			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
 			oElement.setAttribute("label", "Heading 6");
-			oElement.setAttribute("value", "h6");*/
+			oElement.setAttribute("value", "h6");
 		}
 	},
 	"DOMNodeRemoved":	function(oEvent) {

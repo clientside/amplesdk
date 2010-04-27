@@ -157,6 +157,9 @@ cXULElement_datepicker_pane.handlers	= {
 					}
 					this.refresh();
 					break;
+
+				default:
+					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
 			}
 	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {

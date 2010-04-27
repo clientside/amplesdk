@@ -16,20 +16,23 @@ cXULElement_row.attributes.orient	= "horizontal";
 
 // Class event handlers
 cXULElement_row.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+		}
+	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		this.refresh();
 	}
 };
 
 // Element Render: open
-cXULElement_row.prototype.$getTagOpen		= function()
-{
+cXULElement_row.prototype.$getTagOpen		= function() {
     return '<tr class="xul-row"' +(this.attributes["height"] ? ' height="' + this.attributes["height"] + '"' : '')+(this.attributes["hidden"] == "true" ? ' style="display:none"' : '')+'>';
 };
 
 // Element Render: close
-cXULElement_row.prototype.$getTagClose	= function()
-{
+cXULElement_row.prototype.$getTagClose	= function() {
     return '</tr>';
 };
 

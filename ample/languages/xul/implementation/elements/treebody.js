@@ -16,14 +16,21 @@ cXULElement_treebody.prototype.children	= null;
 // Public Methods
 
 // Events Handlers
-cXULElement_treebody.prototype._onScroll     = function()
-{
+cXULElement_treebody.prototype._onScroll     = function() {
     if (this.parentNode.head)
         this.parentNode.head.$getContainer("area").scrollLeft  = this.$getContainer("area").scrollLeft;
 };
 
 // Class events handlers
 cXULElement_treebody.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			switch (oEvent.attrName) {
+				default:
+					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			}
+		}
+	},
 	"DOMNodeInserted":	function(oEvent) {
 		if (oEvent.target.parentNode == this)
 			if (oEvent.target instanceof cXULElement_treechildren) {
@@ -45,8 +52,7 @@ cXULElement_treebody.handlers	= {
 };
 
 // Element Render: open
-cXULElement_treebody.prototype.$getTagOpen	= function()
-{
+cXULElement_treebody.prototype.$getTagOpen	= function() {
 	var bOldTrident	= navigator.userAgent.match(/MSIE ([\d.]+)/) && RegExp.$1 < 8;
     return '<tr' +(this.attributes["hidden"] == "true" ? ' style="display:hidden;"' : '')+ '>\
 				<td style="height:100%">\
@@ -57,12 +63,10 @@ cXULElement_treebody.prototype.$getTagOpen	= function()
 };
 
 // Element Render: close
-cXULElement_treebody.prototype.$getTagClose	= function()
-{
+cXULElement_treebody.prototype.$getTagClose	= function() {
 	var bOldTrident	= navigator.userAgent.match(/MSIE ([\d.]+)/) && RegExp.$1 < 8;
     var aHtml   = ['</tbody>'];
-    if (this.parentNode.head)
-    {
+    if (this.parentNode.head) {
     	aHtml.push('<tfoot class="xul-treebody--foot">');
     	aHtml.push('<tr>');
         if (this.parentNode.attributes["type"] == "checkbox" || this.parentNode.attributes["type"] == "radio")

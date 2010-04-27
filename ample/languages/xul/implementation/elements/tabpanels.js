@@ -7,8 +7,7 @@
  *
  */
 
-var cXULElement_tabpanels	= function()
-{
+var cXULElement_tabpanels	= function() {
     // Collections
     this.items      = new AMLNodeList;
 };
@@ -22,6 +21,11 @@ cXULElement_tabpanels.prototype.selectedPanel	= null; // Not implemented
 
 // Class event handlers
 cXULElement_tabpanels.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+		}
+	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		if (this.parentNode instanceof cXULElement_tabbox)
 			this.parentNode.tabpanels = this;
@@ -33,8 +37,7 @@ cXULElement_tabpanels.handlers	= {
 };
 
 // Element Render: open
-cXULElement_tabpanels.prototype.$getTagOpen    = function()
-{
+cXULElement_tabpanels.prototype.$getTagOpen    = function() {
 	return '<div class="xul-tabpanels">\
 				<table class="xul-tabpanels--table" cellpadding="0" cellspacing="0" border="0" width="100%" height="100%">\
 					<tbody>\
@@ -43,8 +46,7 @@ cXULElement_tabpanels.prototype.$getTagOpen    = function()
 };
 
 // Element Render: close
-cXULElement_tabpanels.prototype.$getTagClose	= function()
-{
+cXULElement_tabpanels.prototype.$getTagClose	= function() {
 	return '				</td>\
 						</tr>\
 					</tbody>\

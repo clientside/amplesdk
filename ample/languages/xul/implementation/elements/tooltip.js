@@ -11,36 +11,35 @@ var cXULElement_tooltip	= function(){};
 cXULElement_tooltip.prototype	= new cXULPopupElement;
 cXULElement_tooltip.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
 
-// Public Methods
-cXULElement_tooltip.prototype.setAttribute   = function(sName, sValue)
-{
-    if (sName == "top")
-    {
-        if (!isNaN(sValue) && !isNaN(this.attributes["left"]))
-            this.moveTo(this.attributes["left"] * 1, sValue * 1);
-    }
-    else
-    if (sName == "left")
-    {
-        if (!isNaN(sValue) && !isNaN(this.attributes["top"]))
-            this.moveTo(sValue * 1, this.attributes["top"] * 1);
-    }
-    else
-    {
-        this._setAttribute(sName, sValue);
-    }
-    this.AMLElement.setAttribute.call(this, sName, sValue);
+// Class Events Handlers
+cXULElement_tooltip.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			switch (oEvent.attrName) {
+				case "top":
+					if (!isNaN(oEvent.newValue) && !isNaN(this.attributes["left"]))
+						this.moveTo(this.attributes["left"] * 1, oEvent.newValue * 1);
+					break;
+
+				case "left":
+					if (!isNaN(oEvent.newValue) && !isNaN(this.attributes["top"]))
+						this.moveTo(oEvent.newValue * 1, this.attributes["top"] * 1);
+					break;
+
+				default:
+					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			}
+		}
+	}
 };
 
 // Element Render: open
-cXULElement_tooltip.prototype.$getTagOpen		= function()
-{
+cXULElement_tooltip.prototype.$getTagOpen		= function() {
     return '<div style="display:none;position:absolute;" class="xul-tooltip">';
 };
 
 // Element Render: close
-cXULElement_tooltip.prototype.$getTagClose	= function()
-{
+cXULElement_tooltip.prototype.$getTagClose	= function() {
     return '</div>';
 };
 

@@ -14,6 +14,11 @@ cXULElement_listcell.prototype	= new cXULElement;
 
 // Class Events Handlers
 cXULElement_listcell.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+		}
+	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		if (this.parentNode instanceof cXULElement_listitem)
 			this.parentNode.cells.$add(oEvent.target);

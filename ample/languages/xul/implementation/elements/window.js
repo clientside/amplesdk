@@ -21,6 +21,14 @@ cXULElement_window.attributes.height	= "100%";
 
 // Class Events Handlers
 cXULElement_window.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			switch (oEvent.attrName) {
+				default:
+					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			}
+		}
+	},
 	"dragstart":	function(oEvent) {
 		if (oEvent.target == this && oEvent.$pseudoTarget != this.$getContainer("title"))
 			oEvent.preventDefault();
@@ -36,8 +44,7 @@ cXULElement_window.handlers	= {
 //cXULElement_window.handlers.resizedragend	= cXULElement_handlers.dragend;
 
 // Element Renders
-cXULElement_window.prototype.$getTagOpen	= function()
-{
+cXULElement_window.prototype.$getTagOpen	= function() {
 	return '<div class="xul-window'+(this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="' +
 				(this.attributes["width"] ? 'width:' + this.attributes["width"] + 'px;' : '') +
 				(this.attributes["height"] ? 'height:' + this.attributes["height"] + 'px;' : '') +
@@ -56,8 +63,7 @@ cXULElement_window.prototype.$getTagOpen	= function()
 };
 
 // Element Render: close
-cXULElement_window.prototype.$getTagClose	= function()
-{
+cXULElement_window.prototype.$getTagClose	= function() {
 	return '	</div>\
 			</div>';
 };

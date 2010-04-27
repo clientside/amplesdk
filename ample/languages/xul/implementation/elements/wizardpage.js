@@ -17,47 +17,37 @@ cXULElement_wizardpage.attributes.orient	= "vertical";
 cXULElement_wizardpage.attributes.width		= "100%";
 cXULElement_wizardpage.attributes.height	= "100%";
 
-// Public Methods
-cXULElement_wizardpage.prototype.setAttribute	= function(sName, sValue)
-{
-    if (sName == "label")
-    {
-        if (this.parentNode.currentPage == this)
-            this.parentNode.$getContainer("label").innerHTML		= sValue;
-    }
-    else
-    if (sName == "description")
-    {
-        if (this.parentNode.currentPage == this)
-            this.parentNode.$getContainer("description").innerHTML	= sValue;
-    }
-   	else
-    if (sName == "class")
-    {
-		if (this.parentNode.currentPage == this)
-			this.parentNode.$getContainer("header").className	= "xul-wizardheader xul-wizard--header " + sValue;
-    }
-    else
-    if (sName == "next")
-    {
-
-    }
-    else
-    {
-        this._setAttribute(sName, sValue);
-    }
-    this.AMLElement.setAttribute.call(this, sName, sValue);
-};
-
-cXULElement_wizardpage.dispatchEvent_onPage    = function(oElement, sName)
-{
+// Private Methods
+cXULElement_wizardpage.dispatchEvent_onPage    = function(oElement, sName) {
     var oEvent  = oElement.ownerDocument.createEvent("Events");
     oEvent.initEvent("page" + sName, false, true);
-
     return oElement.dispatchEvent(oEvent);
 };
 
 cXULElement_wizardpage.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			switch (oEvent.attrName) {
+				case "label":
+					if (this.parentNode.currentPage == this)
+						this.parentNode.$getContainer("label").innerHTML	= oEvent.newValue || '';
+					break;
+
+				case "description":
+					if (this.parentNode.currentPage == this)
+						this.parentNode.$getContainer("description").innerHTML	= oEvent.newValue || '';
+					break;
+
+				case "class":
+					if (this.parentNode.currentPage == this)
+						this.parentNode.$getContainer("header").className	= "xul-wizardheader xul-wizard--header " +(oEvent.newValue || '');
+					break;
+
+				default:
+					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			}
+		}
+	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		this.parentNode.wizardPages.$add(this);
 		//
@@ -70,14 +60,12 @@ cXULElement_wizardpage.handlers	= {
 }
 
 // Element Render: open
-cXULElement_wizardpage.prototype.$getTagOpen	= function()
-{
+cXULElement_wizardpage.prototype.$getTagOpen	= function() {
     return '<div class="xul-wizardpage" style="display:none;height:100%">';
 };
 
 // Element Render: close
-cXULElement_wizardpage.prototype.$getTagClose	= function()
-{
+cXULElement_wizardpage.prototype.$getTagClose	= function() {
     return '</div>';
 };
 

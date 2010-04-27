@@ -10,16 +10,21 @@
 var cXULElement_toolbargrippy	= function(){};
 cXULElement_toolbargrippy.prototype  = new cXULElement;
 
-// Public Methods
+// Class Events Handlers
+cXULElement_toolbargrippy.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+		}
+	}
+};
 
 // Element Render: open
-cXULElement_toolbargrippy.prototype.$getTagOpen	= function()
-{
+cXULElement_toolbargrippy.prototype.$getTagOpen	= function() {
     return (this.parentNode instanceof cXULElement_menubar ? "<td>" : "") + '<div class="xul-toolbargrippy"><br /></div>';
 };
 
-cXULElement_toolbargrippy.prototype.$getTagClose	= function()
-{
+cXULElement_toolbargrippy.prototype.$getTagClose	= function() {
 	return this.parentNode instanceof cXULElement_menubar ? "</td>" : "";
 };
 

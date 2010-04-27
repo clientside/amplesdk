@@ -15,53 +15,9 @@ cXULElement_treeitem.prototype.row		= null; // Reference to XULElement_treerow
 cXULElement_treeitem.prototype.children	= null; // Reference to XULElement_treechildren
 
 // Public Methods
-cXULElement_treeitem.prototype.setAttribute	= function(sName, sValue)
-{
-    if (sName == "selected")
-    {
-    	this.$setPseudoClass("selected", sValue == "true");
-        if (this.parentNode.tree.attributes["type"] == "checkbox" || this.parentNode.tree.attributes["type"] == "radio")
-            this.$getContainer("command").checked = sValue == "true";
-    }
-    else
-    if (sName == "open")
-    {
-        if (this.children)
-        {
-            // Show/hide child items
-            this.children.setAttribute("hidden", sValue == "true" ? "false" : "true");
 
-            // Change toc image at primary cell
-            if (this.parentNode.tree.head)
-            {
-                var nDepth  = this._getNodeDepth();
-                var nIndex  = this.parentNode.tree.head._getPrimaryColIndex();
-                if (nIndex !=-1 && this.row.cells[nIndex])
-                {
-                	// Apply pseudo-class
-                	this.row.cells[nIndex].$setPseudoClass("open", sValue == "true", "toc");
-
-					// force setting attribute before event is dispatched
-					this.AMLElement.setAttribute.call(this, sName, sValue);
-
-					var oEvent = this.ownerDocument.createEvent("Events");
-					oEvent.initEvent("OpenStateChange", true, false);
-					this.dispatchEvent(oEvent);
-
-					return;
-                }
-            }
-        }
-    }
-    else
-    {
-        this._setAttribute(sName, sValue);
-    }
-    this.AMLElement.setAttribute.call(this, sName, sValue);
-};
-
-cXULElement_treeitem.prototype._getNodeDepth = function()
-{
+// Private Methods
+cXULElement_treeitem.prototype._getNodeDepth = function() {
 	var oElement= this.parentNode;
     var nDepth  = 0;
     while (oElement = oElement.parentNode.parentNode)
@@ -83,18 +39,53 @@ cXULElement_treeitem.handlers	= {
 	    if (oEvent.button == 2 && this.parentNode.tree.selectedItems.$indexOf(this) !=-1)
 	        return;
 
-	    if (oEvent.shiftKey)
-	    {
+	    if (oEvent.shiftKey) {
 			if (this.parentNode.tree.currentItem)
 				this.parentNode.tree.selectItemRange(this, this.parentNode.tree.currentItem);
 	    }
-		else
-	    {
+		else {
 	        if (oEvent.ctrlKey)
 	            this.parentNode.tree.toggleItemSelection(this);
 	        else
 	            this.parentNode.tree.selectItem(this);
 	    }
+	},
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			switch (oEvent.attrName) {
+				case "selected":
+					this.$setPseudoClass("selected", oEvent.newValue == "true");
+					if (this.parentNode.tree.attributes["type"] == "checkbox" || this.parentNode.tree.attributes["type"] == "radio")
+						this.$getContainer("command").checked = oEvent.newValue == "true";
+			        break;
+
+				case "open":
+					if (this.children) {
+						// Show/hide child items
+						this.children.setAttribute("hidden", oEvent.newValue == "true" ? "false" : "true");
+
+						// Change toc image at primary cell
+						if (this.parentNode.tree.head) {
+							var nDepth  = this._getNodeDepth(),
+								nIndex  = this.parentNode.tree.head._getPrimaryColIndex();
+							if (nIndex !=-1 && this.row.cells[nIndex]) {
+								// Apply pseudo-class
+								this.row.cells[nIndex].$setPseudoClass("open", oEvent.newValue == "true", "toc");
+
+								var oEvent = this.ownerDocument.createEvent("Events");
+								oEvent.initEvent("OpenStateChange", true, false);
+								this.dispatchEvent(oEvent);
+
+								return;
+							}
+						}
+					};
+					break;
+
+				default:
+					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			}
+		}
 	},
 	"DOMNodeInserted":	function(oEvent) {
 		if (oEvent.target.parentNode == this)

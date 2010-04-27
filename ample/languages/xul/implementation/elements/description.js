@@ -10,30 +10,29 @@
 var cXULElement_description	= function(){};
 cXULElement_description.prototype    = new cXULElement;
 
-// Public Methods
-cXULElement_description.prototype.setAttribute   = function(sName, sValue)
-{
-    if (sName == "value")
-    {
-        this.$getContainer().innerHTML    = sValue;
-    }
-    else
-    {
-        this._setAttribute(sName, sValue);
-    }
+// Class Events Handlers
+cXULElement_description.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			switch (oEvent.attrName) {
+				case "value":
+					this.$getContainer().innerHTML    = oEvent.newValue || '';
+					break;
 
-    this.AMLElement.setAttribute.call(this, sName, sValue);
+				default:
+					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			}
+		}
+	}
 };
 
 // Element Render: open
-cXULElement_description.prototype.$getTagOpen		= function()
-{
+cXULElement_description.prototype.$getTagOpen		= function() {
     return '<div class="xul-description' +(this.attributes["class"] ? " " + this.attributes["class"] : '')+ '" style="width:100%;height:100%;">' + (this.attributes["value"] || "");
 };
 
 // Element Render: close
-cXULElement_description.prototype.$getTagClose	= function()
-{
+cXULElement_description.prototype.$getTagClose	= function() {
     return '</div>';
 };
 

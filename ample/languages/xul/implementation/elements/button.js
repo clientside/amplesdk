@@ -12,19 +12,6 @@ cXULElement_button.prototype	= new cXULElement;
 cXULElement_button.prototype.tabIndex	= 0;
 
 // Public Methods
-cXULElement_button.prototype.setAttribute    = function(sName, sValue)
-{
-    if (sName == "disabled")
-    {
-        this.$getContainer().disabled = sValue == "true";
-    }
-    else
-    {
-        this._setAttribute(sName, sValue);
-    }
-
-    this.AMLElement.setAttribute.call(this, sName, sValue);
-};
 
 // Class Events Handlers
 cXULElement_button.handlers	= {
@@ -36,6 +23,18 @@ cXULElement_button.handlers	= {
 	},
 	"click":	function(oEvent) {
 		this.doCommand();
+	},
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			switch (oEvent.attrName) {
+				case "disabled":
+					this.$getContainer().disabled = oEvent.newValue == "true";
+					break;
+
+				default:
+					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			}
+		}
 	}
 };
 

@@ -12,59 +12,6 @@ cXULElement_menuitem.prototype	= new cXULElement;
 
 cXULElement_menuitem.prototype.$hoverable	= true;
 
-// Public Methods
-cXULElement_menuitem.prototype.setAttribute  = function(sName, sValue)
-{
-    if (sName == "selected")
-    {
-    	this.$setPseudoClass("selected", sValue == "true");
-    }
-    else
-    if (sName == "label")
-    {
-    	var oCell	= this.$getContainer().cells[1];
-    	// Strange IE problem, it doesn't allow setting innerHTML here..
-        if (document.namespaces)
-        	oCell.innerText   = sValue;
-        else
-        	oCell.innerHTML   = sValue;
-    }
-    else
-    if (sName == "image")
-    {
-        this.$getContainer("image").style.backgroundImage   = "url(" + sValue + ")";
-    }
-    else
-    if (sName == "type")
-    {
-        // TODO
-    }
-    else
-    if (sName == "checked")
-    {
-        if (this.attributes["type"] == "radio" && sValue == "true")
-        {
-            // uncheck all the sibling items with the same name attribute
-            var oElement	= this.parentNode;
-            for (var nIndex = 0; nIndex < oElement.items.length; nIndex++)
-                if (oElement.items[nIndex] instanceof cXULElement_menuitem && oElement.items[nIndex].attributes["type"] == "radio")
-                    if (oElement.items[nIndex] != this && oElement.items[nIndex].attributes["name"] == this.attributes["name"])
-                        oElement.items[nIndex].setAttribute("checked", "false");
-        }
-       	this.$setPseudoClass("checked", sValue == "true", "image");
-    }
-    else
-    if (sName == "disabled")
-    {
-       	this.$setPseudoClass("disabled", sValue == "true");
-    }
-    else
-    {
-        this._setAttribute(sName, sValue);
-    }
-    this.AMLElement.setAttribute.call(this, sName, sValue);
-};
-
 // Class Events Handlers
 cXULElement_menuitem.handlers	= {
 	"mouseenter":	function(oEvent) {
@@ -80,6 +27,51 @@ cXULElement_menuitem.handlers	= {
 
 		if (oEvent.button == 0)
 			this.$activate();
+	},
+	"DOMAtrtModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			switch (oEvent.attrName) {
+				case "selected":
+					this.$setPseudoClass("selected", oEvent.newValue == "true");
+					break;
+
+				case "label":
+					var oCell	= this.$getContainer().cells[1];
+					// Strange IE problem, it doesn't allow setting innerHTML here..
+					if (document.namespaces)
+						oCell.innerText   = oEvent.newValue || '';
+					else
+						oCell.innerHTML   = oEvent.newValue || '';
+					break;
+
+				case "image":
+					this.$getContainer("image").style.backgroundImage   = oEvent.newValue ? "url(" + oEvent.newValue + ")" : '';
+					break;
+
+				case "type":
+					// TODO
+					break;
+
+				case "checked":
+					if (this.attributes["type"] == "radio" && oEvent.newValue == "true") {
+						// uncheck all the sibling items with the same name attribute
+						var oElement	= this.parentNode;
+						for (var nIndex = 0; nIndex < oElement.items.length; nIndex++)
+							if (oElement.items[nIndex] instanceof cXULElement_menuitem && oElement.items[nIndex].attributes["type"] == "radio")
+								if (oElement.items[nIndex] != this && oElement.items[nIndex].attributes["name"] == this.attributes["name"])
+									oElement.items[nIndex].setAttribute("checked", "false");
+					}
+					this.$setPseudoClass("checked", oEvent.newValue == "true", "image");
+					break;
+
+				case "disabled":
+					this.$setPseudoClass("disabled", oEvent.newValue == "true");
+					break;
+
+				default:
+					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			}
+		}
 	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		var oParent	= this.parentNode;
@@ -109,8 +101,7 @@ cXULElement_menuitem.handlers	= {
 	}
 }
 
-cXULElement_menuitem.prototype.scrollIntoView	= function()
-{
+cXULElement_menuitem.prototype.scrollIntoView	= function() {
 	var oElementDOM	= this.$getContainer(),
 		oParentDOM	= oElementDOM.parentNode;
 
@@ -121,16 +112,14 @@ cXULElement_menuitem.prototype.scrollIntoView	= function()
 };
 
 // Element Render: open
-cXULElement_menuitem.prototype.$getTagOpen		= function()
-{
+cXULElement_menuitem.prototype.$getTagOpen		= function() {
 	return '<tr class="xul-menuitem' + (this.attributes["disabled"] == "true" ? " xul-menuitem_disabled" : "") + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">\
 				<td width="18"><div class="xul-menuitem-type---image' + (this.attributes["type"] ? ' xul-menuitem-type-' + this.attributes["type"] + '--image' +(this.attributes["checked"] == "true" ? ' xul-menuitem--image_checked' : '') : '') + '"' +(this.attributes["image"] ? ' style="background-image:url('+ this.attributes["image"] + ')"' : '')+ '></div></td>\
 				<td nowrap="nowrap" style="white-space:nowrap;">' +(this.attributes["label"] || ' ');
 };
 
 // Element Render: open
-cXULElement_menuitem.prototype.$getTagClose		= function()
-{
+cXULElement_menuitem.prototype.$getTagClose		= function() {
 	return		'</td>\
 				<td width="2"></td>\
 				<td width="16"><div style="width:16px;"><br /></div></td>\

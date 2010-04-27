@@ -7,8 +7,7 @@
  *
  */
 
-var cXULElement_treecols	= function()
-{
+var cXULElement_treecols	= function() {
     // Collections
     this.items  = new AMLNodeList;
 };
@@ -17,8 +16,7 @@ cXULElement_treecols.prototype   = new cXULElement;
 // Public Methods
 
 // Private Methods
-cXULElement_treecols.prototype._getPrimaryColIndex   = function()
-{
+cXULElement_treecols.prototype._getPrimaryColIndex   = function() {
     for (var nIndex = 0; nIndex < this.items.length; nIndex++)
         if (this.items[nIndex].attributes["primary"] == "true")
             return nIndex;
@@ -26,8 +24,7 @@ cXULElement_treecols.prototype._getPrimaryColIndex   = function()
 };
 
 // Events Handlers
-cXULElement_treecols.prototype._onCommandClick   = function(oEvent)
-{
+cXULElement_treecols.prototype._onCommandClick   = function(oEvent) {
     if (this.parentNode.attributes["type"] == "checkbox")
     {
         if (this.$getContainer("command").checked)
@@ -85,8 +82,7 @@ cXULElement_treecols.handlers	= {
 };
 
 // Element Render: open
-cXULElement_treecols.prototype.$getTagOpen	= function()
-{
+cXULElement_treecols.prototype.$getTagOpen	= function() {
     return '<tr' + (this.attributes["hidden"] == "true" ? ' style="display:none"' : '') + '>\
 				<td class="xul-treecols--container" valign="top" height="1">\
 					<div class="xul-treecol" style="float:right"><div class="xul-treecol--label"><div class="xul-treecols--settings"><br /></div></div></div>\
@@ -109,8 +105,7 @@ cXULElement_treecols.prototype.$getTagOpen	= function()
 };
 
 // Element Render: close
-cXULElement_treecols.prototype.$getTagClose	= function()
-{
+cXULElement_treecols.prototype.$getTagClose	= function() {
 	return 						'</tr>\
 							</thead>\
 						</table>\

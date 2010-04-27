@@ -11,30 +11,13 @@ var cXULElement_key	= function(){};
 cXULElement_key.prototype	= new cXULElement;
 cXULElement_key.prototype.viewType	= cXULElement.VIEW_TYPE_VIRTUAL;
 
-// Public Methods
-cXULElement_key.prototype.setAttribute	= function(sName, sValue)
-{
-    if (sName == "keytext")
-    {
-    	var aElements	= this.ownerDocument.getElementsByAttribute("key", this.getAttribute("id"));
-        for (var nIndex = 0, nLength = aElements.length; nIndex < nLength; nIndex++)
-        	if (aElements[nIndex].namespaceURI == this.namespaceURI)
-	        	aElements[nIndex].setAttribute("acceltext", sValue);
-    }
-    this.AMLElement.setAttribute.call(this, sName, sValue);
-};
-
 // Static Methods
-cXULElement_key._handleKeyDown	= function(oEvent, oElement)
-{
+cXULElement_key._handleKeyDown	= function(oEvent, oElement) {
 	// filter out by modifier
-	if (oElement.hasAttribute("modifiers"))
-	{
+	if (oElement.hasAttribute("modifiers")) {
 		var aModifiers	= oElement.getAttribute("modifiers").replace(/,/g, " ").split(" ");
-		for (var nIndex = 0; nIndex < aModifiers.length; nIndex++)
-		{
-			switch (aModifiers[nIndex])
-			{
+		for (var nIndex = 0; nIndex < aModifiers.length; nIndex++) {
+			switch (aModifiers[nIndex]) {
 				case "shift":	if (!oEvent.shiftKey)	return;	break;
 				case "alt":		if (!oEvent.altKey)		return;	break;
 				case "meta":	if (!oEvent.metaKey)	return;	break;
@@ -60,6 +43,18 @@ cXULElement_key._handleKeyDown	= function(oEvent, oElement)
 
 // Class Event Handlers
 cXULElement_key.handlers	= {
+	"DOMAttrModified" : function (oEvent) {
+		if (oEvent.target == this) {
+			switch (oEvent.attrName) {
+				case "keytext":
+			    	var aElements	= this.ownerDocument.getElementsByAttribute("key", this.attributes["id"]);
+			        for (var nIndex = 0, nLength = aElements.length; nIndex < nLength; nIndex++)
+			        	if (aElements[nIndex].namespaceURI == this.namespaceURI)
+				        	aElements[nIndex].setAttribute("acceltext", oEvent.newValue || '');
+					break;
+			}
+		}
+	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		var oElement	= oEvent.target;
 		this.ownerDocument.addEventListener("keydown", function(oEvent){cXULElement_key._handleKeyDown(oEvent, oElement)}, false);

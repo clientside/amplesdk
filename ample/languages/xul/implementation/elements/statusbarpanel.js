@@ -14,24 +14,28 @@ cXULElement_statusbarpanel.prototype = new cXULElement;
 cXULElement_statusbarpanel.attributes	= {};
 cXULElement_statusbarpanel.attributes.align	= "center";
 
-// Public Methods
-cXULElement_statusbarpanel.prototype.setAttribute    = function(sName, sValue)
-{
-    if (sName == "image")
-    {
-        this.$getContainer().innerHTML    = '<img src="' + this.attributes["image"] + '" align="absmiddle"/>';
-    }
-    else
-    {
-        this._setAttribute(sName, sValue);
-    }
+// Class Events Handlers
+cXULElement_statusbarpanel.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			switch (oEvent.attrName) {
+				case "label":
+					this.$getContainer().innerHTML    =(this.attributes["image"] ? '<img src="' + this.attributes["image"] + '" align="absmiddle"/>' : '') + oEvent.newValue || '';
+					break;
 
-    this.AMLElement.setAttribute.call(this, sName, sValue);
+				case "image":
+					this.$getContainer().innerHTML    =(oEvent.newValue ? '<img src="' + oEvent.newValue + '" align="absmiddle"/>' : '') + this.attributes["label"] || '';
+					break;
+
+				default:
+					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			}
+		}
+	}
 };
 
 // Element Render: open
-cXULElement_statusbarpanel.prototype.$getTagOpen	= function()
-{
+cXULElement_statusbarpanel.prototype.$getTagOpen	= function() {
     var sHtml   = '<div class="xul-statusbarpanel">';
     if (this.attributes["image"])
         sHtml  += '<img src="' + this.attributes["image"] + '" align="absmiddle"/>';
@@ -44,8 +48,7 @@ cXULElement_statusbarpanel.prototype.$getTagOpen	= function()
 };
 
 // Element Render: close
-cXULElement_statusbarpanel.prototype.$getTagClose	= function()
-{
+cXULElement_statusbarpanel.prototype.$getTagClose	= function() {
     return '</div>';
 };
 

@@ -19,30 +19,18 @@ cXULElement_colorpicker_pane.attributes	= {};
 cXULElement_colorpicker_pane.attributes.value	= "#FF0000";
 
 // Public  Method
-cXULElement_colorpicker_pane.prototype.setAttribute	= function(sName, sValue)
-{
-	if (sName == "value") {
-    	this._setColor(sValue);
-    	this.$getContainer('value').value    = sValue;
-	}
-
-    this.AMLElement.setAttribute.call(this, sName, sValue);
-};
 
 // Private Methods
-cXULElement_colorpicker_pane.prototype._moveTo	= function(sName, oPosition)
-{
+cXULElement_colorpicker_pane.prototype._moveTo	= function(sName, oPosition) {
     if (oPosition.x)
         this.$getContainer(sName).style.left  = oPosition.x + "px";
     if (oPosition.y)
         this.$getContainer(sName).style.top   = oPosition.y + "px";
 };
 
-cXULElement_colorpicker_pane.prototype._setColor	= function(sColor)
-{
+cXULElement_colorpicker_pane.prototype._setColor	= function(sColor) {
     var oColor;
-    if (oColor = cXULElement_colorpicker_pane._RGBtoXYB(sColor))
-    {
+    if (oColor = cXULElement_colorpicker_pane._RGBtoXYB(sColor)) {
         this.b  = oColor.b;
         this.x  = oColor.x;
         this.y  = oColor.y;
@@ -58,14 +46,12 @@ cXULElement_colorpicker_pane.prototype._setColor	= function(sColor)
     }
 };
 
-cXULElement_colorpicker_pane.prototype._setColorBrightness	= function(sColor)
-{
+cXULElement_colorpicker_pane.prototype._setColorBrightness	= function(sColor) {
     this.$getContainer('brightness').style.backgroundColor   = sColor;
     this.$getContainer('brightness-shader').style.filter   = "progid:DXImageTransform.Microsoft.Gradient(startColorStr='" + sColor + "', endColorStr='#000000', gradientType='0');";
 };
 
-cXULElement_colorpicker_pane.prototype._setPaletteBrightness	= function(nBrightness)
-{
+cXULElement_colorpicker_pane.prototype._setPaletteBrightness	= function(nBrightness) {
     // applying styles
     var oElementDOM	= this.$getContainer('palette-shader');
     oElementDOM.style.filter      = 'progid:DXImageTransform.Microsoft.alpha(opacity=' + nBrightness * 100 + ')'; // IE
@@ -73,8 +59,7 @@ cXULElement_colorpicker_pane.prototype._setPaletteBrightness	= function(nBrightn
     oElementDOM.style.MozOpacity  = nBrightness; // mozilla
 };
 
-cXULElement_colorpicker_pane.prototype._getComputedStyleByEvent	= function(oEvent, sName)
-{
+cXULElement_colorpicker_pane.prototype._getComputedStyleByEvent	= function(oEvent, sName) {
     var oPosition   = this.getBoundingClientRect(sName);
     var nPositionX  = oEvent.clientX - oPosition.left/*	+ oPosition.scrollLeft*/;
     var nPositionY  = oEvent.clientY - oPosition.top/*	+ oPosition.scrollTop*/;
@@ -86,26 +71,22 @@ cXULElement_colorpicker_pane.prototype._getComputedStyleByEvent	= function(oEven
     return {'x' : nPositionX, 'y': nPositionY};
 };
 
-cXULElement_colorpicker_pane.prototype._setColorValue		= function(sColor)
-{
+cXULElement_colorpicker_pane.prototype._setColorValue	= function(sColor) {
     this.$getContainer('color').style.backgroundColor   = sColor;
     this.$getContainer('value').value = sColor;
 };
 
-cXULElement_colorpicker_pane.prototype._detachHandlers	= function()
-{
+cXULElement_colorpicker_pane.prototype._detachHandlers	= function() {
 	document.onmousemove  = null;
 	document.onmouseup    = null;
 };
 
 // Event handlers
-cXULElement_colorpicker_pane.prototype._onInputChange	= function(oEvent, sValue)
-{
+cXULElement_colorpicker_pane.prototype._onInputChange	= function(oEvent, sValue) {
     this._setColor(sValue);
 };
 
-cXULElement_colorpicker_pane.prototype._onPointersBrightnessMouseMove  = function(oEvent)
-{
+cXULElement_colorpicker_pane.prototype._onPointersBrightnessMouseMove  = function(oEvent) {
     var oPosition   = this._getComputedStyleByEvent(oEvent, 'brightness');
     this._moveTo('brightness-pointer', {'y' : oPosition.y - 3});
 
@@ -114,8 +95,7 @@ cXULElement_colorpicker_pane.prototype._onPointersBrightnessMouseMove  = functio
     this._setColorValue(cXULElement_colorpicker_pane._XYBtoRGB({'x': this.x, 'y': this.y, 'b': this.b}));
 };
 
-cXULElement_colorpicker_pane.prototype._onPointersBrightnessMouseDown  = function(oEvent)
-{
+cXULElement_colorpicker_pane.prototype._onPointersBrightnessMouseDown  = function(oEvent) {
 	var oElement	= this;
 	document.onmousemove  = function(e) {
 		return oElement._onPointersBrightnessMouseMove(e || event)
@@ -126,8 +106,7 @@ cXULElement_colorpicker_pane.prototype._onPointersBrightnessMouseDown  = functio
     this._onPointersBrightnessMouseMove(oEvent);
 };
 
-cXULElement_colorpicker_pane.prototype._onPointerPaletteMouseMove  = function(oEvent)
-{
+cXULElement_colorpicker_pane.prototype._onPointerPaletteMouseMove  = function(oEvent) {
 	var oPosition	= this._getComputedStyleByEvent(oEvent, "palette");
     this.x  = oPosition.x;
     this.y  = oPosition.y;
@@ -137,8 +116,7 @@ cXULElement_colorpicker_pane.prototype._onPointerPaletteMouseMove  = function(oE
     this._setColorValue(cXULElement_colorpicker_pane._XYBtoRGB({'x': this.x, 'y': this.y, 'b': this.b}));
 };
 
-cXULElement_colorpicker_pane.prototype._onPointerPaletteMouseDown  = function(oEvent)
-{
+cXULElement_colorpicker_pane.prototype._onPointerPaletteMouseDown  = function(oEvent) {
 	var oElement	= this;
 	document.onmousemove  = function(e) {
 		return oElement._onPointerPaletteMouseMove(e || event)
@@ -150,8 +128,7 @@ cXULElement_colorpicker_pane.prototype._onPointerPaletteMouseDown  = function(oE
 };
 
 // Overrride dialog methods
-cXULElement_colorpicker_pane.prototype.acceptDialog	= function()
-{
+cXULElement_colorpicker_pane.prototype.acceptDialog	= function() {
     this.attributes.value  = this.$getContainer('value').value;
 
     // fire select event
@@ -160,8 +137,7 @@ cXULElement_colorpicker_pane.prototype.acceptDialog	= function()
     this.dispatchEvent(oEvent);
 };
 
-cXULElement_colorpicker_pane.prototype.cancelDialog	= function()
-{
+cXULElement_colorpicker_pane.prototype.cancelDialog	= function() {
 	this.setAttribute(this.attributes.value);
 
     // fire cancel event
@@ -172,14 +148,26 @@ cXULElement_colorpicker_pane.prototype.cancelDialog	= function()
 
 // Class handlers
 cXULElement_colorpicker_pane.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			switch (oEvent.attrName) {
+				case "value":
+			    	this._setColor(oEvent.newValue || '');
+			    	this.$getContainer('value').value    = oEvent.newValue || '';
+			    	break;
+
+				default:
+					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			}
+		}
+	},
 	"DOMNodeInsertedIntoDocument":	function() {
 		this._setColor(cXULElement_colorpicker_pane.attributes.value);
 	}
 };
 
 // Render
-cXULElement_colorpicker_pane.prototype.$getTagOpen	= function()
-{
+cXULElement_colorpicker_pane.prototype.$getTagOpen	= function() {
 	return '<div class="xul-colorpicker-pane xul-menupopup' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '') + '">\
 				<div class="xul-menupopup--shadow-right" style="position:absolute;"></div>\
 				<div class="xul-menupopup--shadow-bottom" style="position:absolute;"></div>\
@@ -219,14 +207,12 @@ cXULElement_colorpicker_pane.prototype.$getTagOpen	= function()
 		</div>';
 };
 
-cXULElement_colorpicker_pane.prototype.$getTagClose	= function()
-{
+cXULElement_colorpicker_pane.prototype.$getTagClose	= function() {
 	return '';
 };
 
 // Static methods
-cXULElement_colorpicker_pane._XYBtoRGB = function(oXYB)
-{
+cXULElement_colorpicker_pane._XYBtoRGB = function(oXYB) {
     var nH  = 360 / 256 * oXYB.x;
     var nS  = 1 - oXYB.y / 256;
     var nV  = 1 - oXYB.b;
@@ -256,8 +242,7 @@ cXULElement_colorpicker_pane._XYBtoRGB = function(oXYB)
     return '#' + this._toHex(nR * 256) + this._toHex(nG * 256) + this._toHex(nB * 256);
 };
 
-cXULElement_colorpicker_pane._RGBtoXYB = function(sColor)
-{
+cXULElement_colorpicker_pane._RGBtoXYB = function(sColor) {
     if (!sColor.match(/^#[0-9a-f]{6}$/i))
         return;
 
@@ -289,8 +274,7 @@ cXULElement_colorpicker_pane._RGBtoXYB = function(sColor)
     return {'x' : (nH * 255), 'y' : (255 - nS * 255), 'b' : 1 - nV / 255};
 };
 
-cXULElement_colorpicker_pane._toHex    = function(nValue)
-{
+cXULElement_colorpicker_pane._toHex    = function(nValue) {
     var sHexCharacters  = "0123456789ABCDEF";
 
     if (nValue < 0)

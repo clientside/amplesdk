@@ -20,33 +20,34 @@ cXULElement_deck.attributes	= {};
 cXULElement_deck.attributes.selectedIndex	= "0";
 
 // Public Methods
-cXULElement_deck.prototype.setAttribute  = function(sName, sValue)
-{
-    if (sName == "selectedIndex")
-    {
-        if (this.childNodes.length > 0)
-        {
-            if (isNaN(sValue) || this.childNodes.length < sValue * 1)
-                sValue  = "0";
+cXULElement_deck.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			switch (oEvent.attrName) {
+				case "selectedIndex":
+			        if (this.childNodes.length > 0) {
+			        	var sValue	= oEvent.newValue;
+			            if (isNaN(sValue) || this.childNodes.length < sValue * 1)
+			                sValue  = "0";
 
-            this.selectedIndex  = sValue * 1;
-            this.selectedPanel  = this.childNodes[this.selectedIndex];
+			            this.selectedIndex  = sValue * 1;
+			            this.selectedPanel  = this.childNodes[this.selectedIndex];
 
-            for (var nIndex = 0; nIndex < this.childNodes.length; nIndex++)
-                this.childNodes[nIndex].setAttribute("hidden", this.selectedIndex == nIndex ? "false" : "true");
+			            for (var nIndex = 0; nIndex < this.childNodes.length; nIndex++)
+			                this.childNodes[nIndex].setAttribute("hidden", this.selectedIndex == nIndex ? "false" : "true");
 
-            // send event
-            var oEvent  = this.ownerDocument.createEvent("Events");
-            oEvent.initEvent("select", false, true);
-            this.dispatchEvent(oEvent);
-        }
-    }
-    else
-    {
-        this._setAttribute(sName, sValue);
-    }
+			            // send event
+			            var oEvent  = this.ownerDocument.createEvent("Events");
+			            oEvent.initEvent("select", false, true);
+			            this.dispatchEvent(oEvent);
+			        }
+			        break;
 
-    this.AMLElement.setAttribute.call(this, sName, sValue);
+				default:
+			        this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			}
+		}
+	}
 };
 
 // Class event handlers

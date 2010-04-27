@@ -7,26 +7,14 @@
  *
  */
 
-var cXULElement_listhead	= function()
-{
+var cXULElement_listhead	= function() {
     // Collections
     this.items  = new AMLNodeList;
 };
 cXULElement_listhead.prototype   = new cXULElement;
 
-// Public Methods
-cXULElement_listhead.prototype.setAttribute  = function(sName, sValue)
-{
-    if (sName == "hidden")
-    {
-        // TODO
-    }
-    this.AMLElement.setAttribute.call(this, sName, sValue);
-};
-
 // Private Methods
-cXULElement_listhead.prototype._getPrimaryColIndex   = function()
-{
+cXULElement_listhead.prototype._getPrimaryColIndex   = function() {
     for (var nIndex = 0; nIndex < this.items.length; nIndex++)
         if (this.items[nIndex].attributes["primary"] == "true")
             return nIndex;
@@ -34,8 +22,7 @@ cXULElement_listhead.prototype._getPrimaryColIndex   = function()
 };
 
 // Events Handlers
-cXULElement_listhead.prototype._onCommandClick   = function(oEvent)
-{
+cXULElement_listhead.prototype._onCommandClick   = function(oEvent) {
     if (this.parentNode.attributes["type"] == "checkbox")
     {
         if (this.$getContainer("command").checked)
@@ -80,6 +67,11 @@ cXULElement_listhead.handlers	= {
 			this.ownerDocument.popupNode	= oPopup;
 		}
 	},
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+		}
+	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		if (this.parentNode instanceof cXULElement_listbox)
 			this.parentNode.head = this;
@@ -91,8 +83,7 @@ cXULElement_listhead.handlers	= {
 };
 
 // Element Render: open
-cXULElement_listhead.prototype.$getTagOpen	= function()
-{
+cXULElement_listhead.prototype.$getTagOpen	= function() {
     return '<tr' + (this.attributes["hidden"] == "true" ? ' style="display:none"' : '') + '>\
 				<td class="xul-listhead--container">\
 					<div class="xul-listheader" style="float:right"><div class="xul-listheader--label"><div class="xul-listhead--settings"><br /></div></div></div>\
@@ -115,8 +106,7 @@ cXULElement_listhead.prototype.$getTagOpen	= function()
 };
 
 // Element Render: close
-cXULElement_listhead.prototype.$getTagClose	= function()
-{
+cXULElement_listhead.prototype.$getTagClose	= function() {
 	return 						'</tr>\
 							</thead>\
 						</table>\

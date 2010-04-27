@@ -23,36 +23,15 @@ cXULElement_tree.prototype.head	= null;
 cXULElement_tree.prototype.body	= null;
 
 // Public Methods
-cXULElement_tree.prototype.setAttribute  = function(sName, sValue)
-{
-    if (sName == "disabled")
-    {
-        // TODO
-    }
-    else
-    if (sName == "seltype")
-    {
-
-    }
-    else
-    {
-        this._setAttribute(sName, sValue);
-    }
-    this.AMLElement.setAttribute.call(this, sName, sValue);
-};
-
-cXULElement_tree.prototype.changeOpenState		= function(oRow, bState)
-{
-	if (oRow && oRow instanceof cXULElement_treerow)
-	{
+cXULElement_tree.prototype.changeOpenState		= function(oRow, bState) {
+	if (oRow && oRow instanceof cXULElement_treerow) {
 		if (arguments.length < 2)
 			bState	= oRow.parentNode.getAttribute("open") != "true";
 		oRow.setAttribute("open", bState ? "true" : "false");
 	}
 };
 
-cXULElement_tree.prototype.ensureRowIsVisible    = function(nIndex)
-{
+cXULElement_tree.prototype.ensureRowIsVisible    = function(nIndex) {
     var oElement    = this.items[nIndex];
     do {
         if (oElement.parentNode.attributes["hidden"] == "true")
@@ -64,8 +43,7 @@ cXULElement_tree.prototype.ensureRowIsVisible    = function(nIndex)
     return true;
 };
 
-cXULElement_tree.prototype.refresh   = function()
-{
+cXULElement_tree.prototype.refresh   = function() {
     if (this.body && this.body.children)
         this.body.children.refresh();
 };
@@ -73,10 +51,8 @@ cXULElement_tree.prototype.refresh   = function()
 // Class Events Hadlers
 cXULElement_tree.handlers	= {
 	"keydown":	function(oEvent) {
-	    if (this.currentItem)
-	    {
-	        if (oEvent.keyIdentifier == "Up")
-	        {
+	    if (this.currentItem) {
+	        if (oEvent.keyIdentifier == "Up")  {
 	            // Key: Up
 	            var nIndex  = this.selectedItems[this.selectedItems.length-1].$getContainer().rowIndex;
 
@@ -84,10 +60,8 @@ cXULElement_tree.handlers	= {
 	            while (nIndex - 1 > 0 && this.ensureRowIsVisible(nIndex - 1) == false)
 	                nIndex--;
 
-	            if (nIndex > 0)
-	            {
-	                if (oEvent.shiftKey)
-	                {
+	            if (nIndex > 0) {
+	                if (oEvent.shiftKey) {
 	                    // Jump over the only selected item
 	                    if (this.selectedItems.length > 1)
 	                        if (this.currentItem.$getContainer().rowIndex > this.selectedItems[0].$getContainer().rowIndex)
@@ -105,8 +79,7 @@ cXULElement_tree.handlers	= {
 	            oEvent.preventDefault();
 	        }
 	        else
-	        if (oEvent.keyIdentifier == "Down")
-	        {
+	        if (oEvent.keyIdentifier == "Down") {
 	            // Key: Down
 	            var nIndex  = this.selectedItems[this.selectedItems.length-1].$getContainer().rowIndex;
 
@@ -114,10 +87,8 @@ cXULElement_tree.handlers	= {
 	            while (nIndex + 1 < this.items.length && this.ensureRowIsVisible(nIndex + 1) == false)
 	                nIndex++;
 
-	            if (nIndex < this.items.length - 1)
-	            {
-	                if (oEvent.shiftKey)
-	                {
+	            if (nIndex < this.items.length - 1) {
+	                if (oEvent.shiftKey) {
 	                    // Jump over the only selected item
 	                    if (this.selectedItems.length > 1)
 	                        if (this.currentItem.$getContainer().rowIndex < this.selectedItems[0].$getContainer().rowIndex)
@@ -135,11 +106,9 @@ cXULElement_tree.handlers	= {
 	            oEvent.preventDefault();
 	        }
 	        else
-	        if (oEvent.keyIdentifier == "Right")
-	        {
+	        if (oEvent.keyIdentifier == "Right") {
 	            // Key: Right
-	            if (this.currentItem.children)
-	            {
+	            if (this.currentItem.children) {
 	                if (this.currentItem.attributes["open"] == "true")
 	                    this.selectItem(this.currentItem.children.items[0]);
 	                else
@@ -150,8 +119,7 @@ cXULElement_tree.handlers	= {
 	            oEvent.preventDefault();
 	        }
 	        else
-	        if (oEvent.keyIdentifier == "Left")
-	        {
+	        if (oEvent.keyIdentifier == "Left") {
 	            // Key: Left
 	            if (this.currentItem.children && this.currentItem.attributes["open"] == "true")
 	                this.currentItem.setAttribute("open", "false");
@@ -163,13 +131,28 @@ cXULElement_tree.handlers	= {
 	            oEvent.preventDefault();
 	        }
 	        else
-	        if (oEvent.keyIdentifier == "Enter")
-	        {
+	        if (oEvent.keyIdentifier == "Enter") {
 	            // Key: Enter
 	            if (this.currentItem.children)
 	                this.currentItem.setAttribute("open", this.currentItem.attributes["open"] == "true" ? "false" : "true");
 	        }
 	    }
+	},
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			switch (oEvent.attrName) {
+				case "seltype":
+					// TODO
+					break;
+
+				case "disabled":
+					// TODO
+					break;
+
+				default:
+					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			}
+		}
 	},
 	"DOMNodeInserted":	function(oEvent) {
 		if (oEvent.target instanceof cXULElement_treebody)
@@ -188,15 +171,13 @@ cXULElement_tree.handlers	= {
 };
 
 // Element Render: open
-cXULElement_tree.prototype.$getTagOpen		= function()
-{
+cXULElement_tree.prototype.$getTagOpen		= function() {
     return '<table class="xul-tree' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '" cellpadding="0" cellspacing="0" border="0" height="' +(this.attributes["height"] ? this.attributes["height"] : '100%')+ '" width="' +(this.attributes["width"] ? this.attributes["width"] : '100%')+ '"' + (this.attributes["style"] ? ' style="' + this.attributes["style"] + '"' : '')+ '>\
     			<tbody class="xul-tree--gateway">';
 };
 
 // Element Render: close
-cXULElement_tree.prototype.$getTagClose	= function()
-{
+cXULElement_tree.prototype.$getTagClose	= function() {
     return 		'</tbody>\
     		</table>';
 };

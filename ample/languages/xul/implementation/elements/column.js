@@ -10,17 +10,22 @@
 var cXULElement_column	= function(){};
 cXULElement_column.prototype	= new cXULElement;
 
-// Public Methods
+// Class Event Handlers
+cXULElement_column.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+		}
+	}
+};
 
 // Element Render: open
-cXULElement_column.prototype.$getTagOpen	= function()
-{
+cXULElement_column.prototype.$getTagOpen	= function() {
     return '<th class="xul-column">' +(this.attributes["label"] ? this.attributes["label"] : '');
 };
 
 // Element Render: close
-cXULElement_column.prototype.$getTagClose	= function()
-{
+cXULElement_column.prototype.$getTagClose	= function() {
     return '</th>';
 };
 

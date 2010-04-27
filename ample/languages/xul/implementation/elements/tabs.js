@@ -7,8 +7,7 @@
  *
  */
 
-var cXULElement_tabs	= function()
-{
+var cXULElement_tabs	= function() {
     // Collections
     this.items      = new AMLNodeList;
 };
@@ -23,8 +22,7 @@ cXULElement_tabs.prototype.selectedIndex	=-1;    // Not implemented
 cXULElement_tabs.prototype.selectedItem		= null; // Not implemented
 
 // Public Methods
-cXULElement_tabs.prototype.advanceSelectedTab    = function(nDir)
-{
+cXULElement_tabs.prototype.advanceSelectedTab    = function(nDir) {
     if (nDir == 1)
         this.goTo(this.parentNode.selectedIndex + 1);
     else
@@ -32,11 +30,9 @@ cXULElement_tabs.prototype.advanceSelectedTab    = function(nDir)
         this.goTo(this.parentNode.selectedIndex - 1);
 };
 
-cXULElement_tabs.prototype.goTo      = function(nIndex)
-{
+cXULElement_tabs.prototype.goTo      = function(nIndex) {
     // TODO
-    if (this.parentNode.selectedIndex != nIndex && this.items[nIndex])
-    {
+    if (this.parentNode.selectedIndex != nIndex && this.items[nIndex]) {
         // send onselect event
         var oEvent  = this.ownerDocument.createEvent("Events");
         oEvent.initEvent("beforeselect", false, true);
@@ -52,8 +48,7 @@ cXULElement_tabs.prototype.goTo      = function(nIndex)
         // Select new tab
         this.parentNode.selectedTab      = this.items[nIndex];
         this.parentNode.selectedTab.setAttribute("selected", "true");
-        if (this.parentNode.tabpanels && this.parentNode.tabpanels.items[nIndex])
-        {
+        if (this.parentNode.tabpanels && this.parentNode.tabpanels.items[nIndex]) {
             this.parentNode.selectedPanel    = this.parentNode.tabpanels.items[nIndex];
             this.parentNode.selectedPanel.setAttribute("hidden", "false");
         }
@@ -67,18 +62,15 @@ cXULElement_tabs.prototype.goTo      = function(nIndex)
     }
 };
 
-cXULElement_tabs.prototype.appendItem    = function(sLabel, sValue)
-{
+cXULElement_tabs.prototype.appendItem    = function(sLabel, sValue) {
     this.insertItemAt(this.items.length, sLabel, sValue);
 };
 
-cXULElement_tabs.prototype.insertItemAt  = function(nIndex, sLabel, sValue)
-{
+cXULElement_tabs.prototype.insertItemAt  = function(nIndex, sLabel, sValue) {
     // TODO
 };
 
-cXULElement_tabs.prototype.removeItemAt  = function(nIndex)
-{
+cXULElement_tabs.prototype.removeItemAt  = function(nIndex) {
     // TODO
 };
 
@@ -99,6 +91,11 @@ cXULElement_tabs.handlers	= {
 				break;
 		}
 	},
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+		}
+	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		if (this.parentNode instanceof cXULElement_tabbox)
 			this.parentNode.tabs = this;
@@ -110,8 +107,7 @@ cXULElement_tabs.handlers	= {
 };
 
 // Element Render: open
-cXULElement_tabs.prototype.$getTagOpen	= function()
-{
+cXULElement_tabs.prototype.$getTagOpen	= function() {
 	return '<div class="xul-tabs">\
     			<table class="xul-tabs--table" cellpadding="0" cellspacing="0" border="0">\
 					<tbody>\
@@ -120,8 +116,7 @@ cXULElement_tabs.prototype.$getTagOpen	= function()
 };
 
 // Element Render: close
-cXULElement_tabs.prototype.$getTagClose	= function()
-{
+cXULElement_tabs.prototype.$getTagClose	= function() {
 	return '				<td class="xul-tab-remainder"><img width="1" height="1" /></td>\
 						</tr>\
 					</tbody>\

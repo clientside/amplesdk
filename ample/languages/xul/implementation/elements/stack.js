@@ -14,6 +14,11 @@ cXULElement_stack.prototype  = new cXULElement;
 
 // Class event handlers
 cXULElement_stack.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+		}
+	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		// set position style property to absolute in order to enable stacking
 		var oElementDOM	= this.$getContainer();
@@ -23,14 +28,12 @@ cXULElement_stack.handlers	= {
 };
 
 // Element Render: open
-cXULElement_stack.prototype.$getTagOpen	= function()
-{
+cXULElement_stack.prototype.$getTagOpen	= function() {
     return '<div class="xul-stack" style="position:relative">';
 };
 
 // Element Render: close
-cXULElement_stack.prototype.$getTagClose	= function()
-{
+cXULElement_stack.prototype.$getTagClose	= function() {
     return '</div>';
 };
 

@@ -19,26 +19,6 @@ cXULElement_colorpicker.attributes	= {};
 cXULElement_colorpicker.attributes.value	= "";
 
 // Public Methods
-cXULElement_colorpicker.prototype.setAttribute	= function(sName, sValue)
-{
-    if (sName == "value")
-    {
-        this.$getContainer("input").value = sValue;
-    }
-    else
-    if (sName == "disabled")
-    {
-    	this.$setPseudoClass("disabled", sValue == "true");
-        this.$getContainer("input").disabled = sValue == "true";
-    }
-    else
-    {
-        this._setAttribute(sName, sValue);
-    }
-
-    this.AMLElement.setAttribute.call(this, sName, sValue);
-};
-
 cXULElement_colorpicker.prototype.toggle	= function(bState) {
 	var oPane	= this.getPane();
 	if (bState === true || (!arguments.length && cXULElement_colorpicker.hidden)) {
@@ -98,8 +78,7 @@ cXULElement_colorpicker.prototype.getPane	= function() {
 };
 
 // Events handlers
-cXULElement_colorpicker.prototype._onChange	= function(oEvent)
-{
+cXULElement_colorpicker.prototype._onChange	= function(oEvent) {
     this.attributes["value"]    = this.$getContainer("input").value;
 
     // Fire Event
@@ -108,8 +87,7 @@ cXULElement_colorpicker.prototype._onChange	= function(oEvent)
     this.dispatchEvent(oEvent);
 };
 
-cXULElement_colorpicker.prototype._onWidgetAccept	= function(oEvent)
-{
+cXULElement_colorpicker.prototype._onWidgetAccept	= function(oEvent) {
 	var oPopup	= this.getPane();
 
     oPopup.setAttribute("value", oEvent.target.getAttribute("value"));
@@ -122,16 +100,14 @@ cXULElement_colorpicker.prototype._onWidgetAccept	= function(oEvent)
 	oPopup.toggle(false);
 };
 
-cXULElement_colorpicker.prototype._onWidgetCancel	= function(oEvent)
-{
+cXULElement_colorpicker.prototype._onWidgetCancel	= function(oEvent) {
 	var oPopup	= this.getPane();
 
 	// Close popup
 	oPopup.toggle(false);
 };
 
-cXULElement_colorpicker.prototype._fireEventOnChange	= function()
-{
+cXULElement_colorpicker.prototype._fireEventOnChange	= function() {
     // Fire Event
     var oEvent  = this.ownerDocument.createEvent("Events");
     oEvent.initEvent("change", false, true);
@@ -177,12 +153,28 @@ cXULElement_colorpicker.handlers	= {
             	this.toggle(false);
             	break;
     	}
+	},
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			switch (oEvent.attrName) {
+				case "value":
+					this.$getContainer("input").value = oEvent.newValue || '';
+					break;
+
+				case "disabled":
+					this.$setPseudoClass("disabled", oEvent.newValue == "true");
+					this.$getContainer("input").disabled = oEvent.newValue == "true";
+					break;
+
+				default:
+					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			}
+		}
 	}
 };
 
 // Element Render: open
-cXULElement_colorpicker.prototype.$getTagOpen	= function()
-{
+cXULElement_colorpicker.prototype.$getTagOpen	= function() {
 	return '<table class="xul-colorpicker' + (this.attributes["disabled"] == "true" ? " xul-colorpicker_disabled" : "") + '" cellpadding="0" cellspacing="0" border="0">\
 				<tbody>\
 					<tr>\

@@ -7,29 +7,12 @@
  *
  */
 
-var cXULElement_listitem	= function()
-{
+var cXULElement_listitem	= function() {
     // Collections
     this.cells  = new AMLNodeList;
 };
 cXULElement_listitem.prototype   = new cXULElement;
 cXULElement_listitem.prototype.$hoverable	= true;
-
-// Public Methods
-cXULElement_listitem.prototype.setAttribute	= function(sName, sValue)
-{
-    if (sName == "selected")
-    {
-    	this.$setPseudoClass("selected", sValue == "true");
-        if (this.parentNode.parentNode.attributes["type"] == "checkbox" || this.parentNode.parentNode.attributes["type"] == "radio")
-            this.$getContainer("command").checked = sValue == "true";
-    }
-    else
-    {
-        this._setAttribute(sName, sValue);
-    }
-    this.AMLElement.setAttribute.call(this, sName, sValue);
-};
 
 // Class Events Handlers
 cXULElement_listitem.handlers	= {
@@ -51,6 +34,20 @@ cXULElement_listitem.handlers	= {
 	            this.parentNode.parentNode.selectItem(this);
 	    }
 	},
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			switch (oEvent.attrName) {
+				case "selected":
+			    	this.$setPseudoClass("selected", oEvent.newValue == "true");
+			        if (this.parentNode.parentNode.attributes["type"] == "checkbox" || this.parentNode.parentNode.attributes["type"] == "radio")
+			            this.$getContainer("command").checked = oEvent.newValue == "true";
+			        break;
+
+				default:
+					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			}
+		}
+	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		if (this.parentNode instanceof cXULElement_listbody && this.parentNode.parentNode instanceof cXULElement_listbox)
 			this.parentNode.parentNode.items.$add(this);
@@ -67,25 +64,21 @@ cXULElement_listitem.handlers	= {
 };
 
 // Events Handlers
-cXULElement_listitem.prototype._onCommandClick   = function(oEvent)
-{
-    if (this.$getContainer("command").checked)
-    {
+cXULElement_listitem.prototype._onCommandClick   = function(oEvent) {
+    if (this.$getContainer("command").checked)  {
         if (this.parentNode.parentNode.attributes["type"] == "radio")
             this.parentNode.parentNode.selectItem(this);
         else
         if (this.parentNode.parentNode.attributes["type"] == "checkbox")
             this.parentNode.parentNode.addItemToSelection(this);
     }
-    else
-    {
+    else {
         this.parentNode.parentNode.removeItemFromSelection(this);
     }
 };
 
 // Element Render: open
-cXULElement_listitem.prototype.$getTagOpen	= function()
-{
+cXULElement_listitem.prototype.$getTagOpen	= function() {
 	var oListBox	= this.parentNode.parentNode;
 	return '<tr class="xul-listitem' + (this.attributes["class"] ? " xul-listitem_" + this.attributes["class"] : "") + '">' +
 				(this.attributes["label"] || (oListBox && (oListBox.attributes["type"] == "checkbox" || oListBox.attributes["type"] == "radio"))
@@ -102,8 +95,7 @@ cXULElement_listitem.prototype.$getTagOpen	= function()
 };
 
 // Element Render: close
-cXULElement_listitem.prototype.$getTagClose	= function()
-{
+cXULElement_listitem.prototype.$getTagClose	= function() {
 	return '</tr>';
 };
 

@@ -123,7 +123,7 @@ cXULElement_datepicker.handlers	= {
 		if (oEvent.target == this)
 			switch (oEvent.attrName) {
 				case "value":
-					this.$getContainer("input").value	= oEvent.newValue;
+					this.$getContainer("input").value	= oEvent.newValue || '';
 					break;
 
 				case "min":
@@ -134,6 +134,9 @@ cXULElement_datepicker.handlers	= {
 					this.$getContainer("input").disabled	= oEvent.newValue == "true";
 					this.$setPseudoClass("disabled", oEvent.newValue == "true");
 					break;
+
+				default:
+					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
 			}
 	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {

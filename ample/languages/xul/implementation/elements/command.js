@@ -11,18 +11,18 @@ var cXULElement_command	= function(){};
 cXULElement_command.prototype    = new cXULElement;
 cXULElement_command.prototype.viewType   = cXULElement.VIEW_TYPE_VIRTUAL;
 
-// Public Methods
-cXULElement_command.prototype.setAttribute   = function(sName, sValue)
-{
-    // Skip attributes "id" and "persist" that should be not possible to set
-    if (sName != "id" && sName != "persist")
-    {
-    	var aElements	= this.ownerDocument.getElementsByTagNameNS(this.namespaceURI, "*");
-        for (var nIndex = 0; nIndex < aElements.length; nIndex++)
-            if (aElements[nIndex].attributes["command"] == this.getAttribute("id"))
-                aElements[nIndex].setAttribute(sName, sValue);
-        this.AMLElement.setAttribute.call(this, sName, sValue);
-    }
+// Class Event Handlers
+cXULElement_command.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			if (oEvent.attrName != "id" && oEvent.attrName != "persist") {
+				var aElements	= this.ownerDocument.getElementsByTagNameNS(this.namespaceURI, "*");
+				for (var nIndex = 0; nIndex < aElements.length; nIndex++)
+					if (aElements[nIndex].attributes["command"] == this.attributes["id"])
+						aElements[nIndex].setAttribute(oEvent.attrName, oEvent.newValue);
+			}
+		}
+	}
 };
 
 // Register Element with language

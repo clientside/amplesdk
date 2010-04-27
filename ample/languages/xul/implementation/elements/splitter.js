@@ -55,12 +55,16 @@ cXULElement_splitter.handlers	= {
 			oElement.style.top	=(oEvent.clientY - cXULElement_splitter.offset)+ "px";
 		else
 			oElement.style.left	=(oEvent.clientX - cXULElement_splitter.offset)+ "px";
+	},
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+		}
 	}
 };
 
 // Private Methods
-cXULElement_splitter.prototype._capture  = function(oEvent)
-{
+cXULElement_splitter.prototype._capture  = function(oEvent) {
 	if (!this.nextSibling || !this.previousSibling || this.parentNode.viewType != cXULElement.VIEW_TYPE_BOXED)
 		return;
 
@@ -86,8 +90,7 @@ cXULElement_splitter.prototype._capture  = function(oEvent)
 };
 
 // Static Methods
-cXULElement_splitter._onDocumentMouseUp   = function(oEvent)
-{
+cXULElement_splitter._onDocumentMouseUp   = function(oEvent) {
 	var oElement	= cXULElement_splitter._element,
 		sAttribute	= oElement.parentNode.attributes["orient"] == "vertical" ? "height" : "width";
 
@@ -126,14 +129,12 @@ cXULElement_splitter._onDocumentMouseUp   = function(oEvent)
 	oElement.ownerDocument.removeEventListener("mouseup",		cXULElement_splitter._onDocumentMouseUp,		false);
 };
 
-cXULElement_splitter._onDocumentMouseMove     = function(oEvent)
-{
+cXULElement_splitter._onDocumentMouseMove     = function(oEvent) {
 	var oElement	= cXULElement_splitter._element;
 	var oPosition1	= oElement.ownerDocument.$getContainerPosition(oElement.previousSibling.$getContainer().parentNode);
 	var oPosition2	= oElement.ownerDocument.$getContainerPosition(oElement.nextSibling.$getContainer().parentNode);
 
-    if (oElement.parentNode.attributes["orient"] == "vertical")
-    {
+    if (oElement.parentNode.attributes["orient"] == "vertical") {
     	if (oPosition1.top < oEvent.clientY && oEvent.clientY < oPosition2.top + oPosition2.height)
     		if (!(oElement.previousSibling.attributes["minheight"] && oElement.previousSibling.attributes["minheight"] > oEvent.clientY - oPosition1.top) && !(oElement.previousSibling.attributes["maxheight"] && oElement.previousSibling.attributes["maxheight"] < oEvent.clientY - oPosition1.top))
 	    		if (!(oElement.nextSibling.attributes["minheight"] && oElement.nextSibling.attributes["minheight"] > oEvent.clientY - oPosition1.top) && !(oElement.nextSibling.attributes["maxheight"] && oElement.nextSibling.attributes["maxheight"] < oEvent.clientY - oPosition1.top))
@@ -147,14 +148,12 @@ cXULElement_splitter._onDocumentMouseMove     = function(oEvent)
 };
 
 // Element Render: open
-cXULElement_splitter.prototype.$getTagOpen	= function()
-{
+cXULElement_splitter.prototype.$getTagOpen	= function() {
     return '<div class="xul-splitter xul-splitter-' +(this.parentNode.attributes["orient"] == "vertical" ? "vertical" : "horizontal")+ '" style="line-height:1px"><div class="xul-splitter--image"></div>';
 };
 
 // Element Render: close
-cXULElement_splitter.prototype.$getTagClose	= function()
-{
+cXULElement_splitter.prototype.$getTagClose	= function() {
     return '</div>';
 };
 

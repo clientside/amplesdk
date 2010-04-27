@@ -7,8 +7,7 @@
  *
  */
 
-var cXULElement_wizard	= function()
-{
+var cXULElement_wizard	= function() {
     // Private Collections
     this._buttons   = {};   // Buttons
 
@@ -26,28 +25,7 @@ cXULElement_wizard.attributes.width		= "100%";
 cXULElement_wizard.attributes.height	= "100%";
 
 // Public Methods
-cXULElement_wizard.prototype.setAttribute    = function(sName, sValue)
-{
-    if (sName == "title")
-    {
-        this.$getContainer("title").innerHTML   = sValue;
-    }
-    else
-    if (sName == "pagestep")
-    {
-        if (this.wizardPages[sValue])
-        	cXULElement_wizard.goTo(this, this.wizardPages[sValue]);
-    }
-    else
-    {
-        this._setAttribute(sName, sValue);
-    }
-
-    this.AMLElement.setAttribute.call(this, sName, sValue);
-};
-
-cXULElement_wizard.prototype.advance = function(sId)
-{
+cXULElement_wizard.prototype.advance = function(sId) {
     if (this.currentPage) {
     	if (!cXULElement_wizardpage.dispatchEvent_onPage(this.currentPage, "hide"))
         	return;
@@ -69,8 +47,7 @@ cXULElement_wizard.prototype.advance = function(sId)
     }
 };
 
-cXULElement_wizard.prototype.rewind  = function()
-{
+cXULElement_wizard.prototype.rewind  = function() {
     if (this.currentPage) {
     	if (!cXULElement_wizardpage.dispatchEvent_onPage(this.currentPage, "hide"))
         	return;
@@ -92,31 +69,27 @@ cXULElement_wizard.prototype.rewind  = function()
     }
 };
 
-cXULElement_wizard.prototype.cancel  = function()
-{
+cXULElement_wizard.prototype.cancel  = function() {
     if (cXULElement_wizard.dispatchEvent_onWizard(this, "cancel"))
         this.setAttribute("hidden", "true");
 
 //	close();
 };
 
-cXULElement_wizard.prototype.finish  = function()
-{
+cXULElement_wizard.prototype.finish  = function() {
     if (cXULElement_wizard.dispatchEvent_onWizard(this, "finish"))
         this.setAttribute("hidden", "true");
 
 //	close();
 };
 
-cXULElement_wizard.prototype.goTo    = function(sId)
-{
+cXULElement_wizard.prototype.goTo    = function(sId) {
 	var oPage	= this.getPageById(sId);
     if (oPage)
     	cXULElement_wizard.goTo(this, oPage);
 };
 
-cXULElement_wizard.prototype.getPageById = function(sId)
-{
+cXULElement_wizard.prototype.getPageById = function(sId) {
     for (var nIndex = 0; nIndex < this.wizardPages.length; nIndex++)
         if (this.wizardPages[nIndex].attributes["pageid"] == sId)
             return this.wizardPages[nIndex];
@@ -124,13 +97,11 @@ cXULElement_wizard.prototype.getPageById = function(sId)
     return null;
 };
 
-cXULElement_wizard.prototype.getButton   = function(sName)
-{
+cXULElement_wizard.prototype.getButton   = function(sName) {
     return this._buttons[sName];
 };
 
-cXULElement_wizard.dispatchEvent_onWizard  = function(oElement, sName)
-{
+cXULElement_wizard.dispatchEvent_onWizard  = function(oElement, sName) {
     var oEvent  = oElement.ownerDocument.createEvent("Events");
     oEvent.initEvent("wizard" + sName, false, true);
 
@@ -138,8 +109,7 @@ cXULElement_wizard.dispatchEvent_onWizard  = function(oElement, sName)
 };
 
 // Events Handlers
-cXULElement_wizard.prototype._onButtonClick  = function(oEvent, sName)
-{
+cXULElement_wizard.prototype._onButtonClick  = function(oEvent, sName) {
     if (sName == "button-back")
         this.rewind();
     else
@@ -155,6 +125,23 @@ cXULElement_wizard.prototype._onButtonClick  = function(oEvent, sName)
 
 // Class events handlers
 cXULElement_wizard.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			switch (oEvent.attrName) {
+				case "title":
+					this.$getContainer("title").innerHTML   = oEvent.newValue || '';
+					break;
+
+				case "pagestep":
+					if (this.wizardPages[oEvent.newValue])
+						cXULElement_wizard.goTo(this, this.wizardPages[oEvent.newValue]);
+					break;
+
+				default:
+					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			}
+		}
+	},
 	"dragstart":	function(oEvent) {
 		if (oEvent.target == this && oEvent.$pseudoTarget != this.$getContainer("title"))
 			oEvent.preventDefault();
@@ -194,8 +181,7 @@ cXULElement_wizard.goTo	= function(oElement, oPage) {
     oElement.currentPage    = oPage;
 };
 
-cXULElement_wizard.getPrevPage	= function(oElement, oPage)
-{
+cXULElement_wizard.getPrevPage	= function(oElement, oPage) {
     var sId = oPage.attributes["pageid"];
 	if (sId)
 		for (var oNode = oElement.lastChild; oNode; oNode = oNode.previousSibling)
@@ -207,8 +193,7 @@ cXULElement_wizard.getPrevPage	= function(oElement, oPage)
 	return null;
 };
 
-cXULElement_wizard.getNextPage	= function(oElement, oPage)
-{
+cXULElement_wizard.getNextPage	= function(oElement, oPage) {
     var sId = oPage.attributes["next"];
     if (sId)
 		for (var oNode = oElement.firstChild; oNode; oNode = oNode.nextSibling)
@@ -221,8 +206,7 @@ cXULElement_wizard.getNextPage	= function(oElement, oPage)
 };
 
 // Element Render: open
-cXULElement_wizard.prototype.$getTagOpen    = function()
-{
+cXULElement_wizard.prototype.$getTagOpen    = function() {
 	return '<div class="xul-wizard'+(this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="' +
 				(this.attributes["width"] ? 'width:' + this.attributes["width"] + 'px;' : '') +
 				(this.attributes["height"] ? 'height:' + (this.attributes["height"] - 100) + 'px;' : '') +
@@ -239,8 +223,7 @@ cXULElement_wizard.prototype.$getTagOpen    = function()
 };
 
 // Element Render: close
-cXULElement_wizard.prototype.$getTagClose  = function()
-{
+cXULElement_wizard.prototype.$getTagClose  = function() {
 	return '	</div>\
 				<div class="xul-wizard--foot">\
 					<table cellpadding="0" cellspacing="0" border="0" height="100%" align="' +(this.attributes["buttonalign"] == "start" ? "left" : this.attributes["buttonalign"] == "center" ? "center" : "right")+ '">\

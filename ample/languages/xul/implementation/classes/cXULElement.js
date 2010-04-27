@@ -18,15 +18,8 @@ cXULElement.prototype	= new AMLElement;
 cXULElement.prototype.AMLElement	= new AMLElement;
 cXULElement.prototype.viewType		= cXULElement.VIEW_TYPE_NORMAL;
 
-cXULElement.prototype.setAttribute	= function(sName, sValue)
-{
-	this._setAttribute(sName, sValue);
-
-	this.AMLElement.setAttribute.call(this, sName, sValue);
-};
-
 // Private Methods
-cXULElement.prototype._setAttribute	= function(sName, sValue)
+cXULElement.prototype.$mapAttribute	= function(sName, sValue)
 {
 	var oElementDOM	= this.$getContainer();
 	switch (sName)
@@ -96,16 +89,7 @@ cXULElement.prototype._setAttribute	= function(sName, sValue)
 	        break;
 	}
 };
-/*
-cXULElement.prototype.appendChild	= function(oChild) {
-	if (this.viewType == cXULElement.VIEW_TYPE_BOXED) {
 
-	}
-	else {
-
-	}
-};
-*/
 // Public methods
 cXULElement.prototype.doCommand		= function()
 {

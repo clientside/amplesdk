@@ -11,30 +11,6 @@ var cXULElement_treecol	= function(){};
 cXULElement_treecol.prototype	= new cXULElement;
 cXULElement_treecol.prototype.$hoverable	= true;
 
-// Public Methods
-cXULElement_treecol.prototype.setAttribute   = function(sName, sValue)
-{
-    if (sName == "label")
-    {
-        this.$getContainer("label").innerHTML	= sValue;
-    }
-    else
-    if (sName == "hidden" || sName == "hideheader")
-    {
-    	var nCell	= this.parentNode.items.$indexOf(this);
-    	this.$getContainer().style.display	= sValue == "true" ? "none" : "";
-        for (var nIndex = 0, aItems = this.parentNode.parentNode.items; nIndex < aItems.length; nIndex++)
-        	if (aItems[nIndex].row)
-        		aItems[nIndex].row.cells[nCell].setAttribute(sName, sValue);
-        this.parentNode.parentNode.body.$getContainer("foot").rows[0].cells[nCell + 1].style.display	= sValue == "true" ? "none" : "";
-    }
-    else
-    {
-        this._setAttribute(sName, sValue);
-    }
-    this.AMLElement.setAttribute.call(this, sName, sValue);
-};
-
 // Class Events Handlers
 cXULElement_treecol.handlers	= {
 	"mouseleave":	function(oEvent) {
@@ -45,6 +21,27 @@ cXULElement_treecol.handlers	= {
 	},
 	"mouseup":		function(oEvent) {
 		this.$setPseudoClass("active", false);
+	},
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			switch (oEvent.attrName) {
+				case "label":
+					this.$getContainer("label").innerHTML	= oEvent.newValue || '';
+					break;
+
+				case "hidden":
+				case "hideheader":
+					var nCell	= this.parentNode.items.$indexOf(this);
+					this.$getContainer().style.display	= oEvent.newValue == "true" ? "none" : "";
+					for (var nIndex = 0, aItems = this.parentNode.parentNode.items; nIndex < aItems.length; nIndex++)
+						if (aItems[nIndex].row)
+							aItems[nIndex].row.cells[nCell].setAttribute("hidden", oEvent.newValue);
+					this.parentNode.parentNode.body.$getContainer("foot").rows[0].cells[nCell + 1].style.display	= oEvent.newValue == "true" ? "none" : "";
+
+				default:
+					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			}
+		}
 	}
 /*
 	,"mousemove":	function(oEvent) {
@@ -59,8 +56,7 @@ cXULElement_treecol.handlers	= {
 };
 
 // Element Render: open
-cXULElement_treecol.prototype.$getTagOpen	= function()
-{
+cXULElement_treecol.prototype.$getTagOpen	= function() {
 	return '<td class="xul-treecol' +(this.attributes["class"] ? " " + this.attributes["class"] : "")+ '"' +(this.attributes["width"] ? ' width="' + this.attributes["width"] + '"' : "")+(this.attributes["hideheader"] == "true" ? ' style="display:none"' : "")+ ' align="left">\
 				<div>\
 					<div class="xul-treecol--resizer"></div>\
@@ -68,8 +64,7 @@ cXULElement_treecol.prototype.$getTagOpen	= function()
 };
 
 // Element Render: close
-cXULElement_treecol.prototype.$getTagClose	= function()
-{
+cXULElement_treecol.prototype.$getTagClose	= function() {
     return			'</div>\
 				</div>\
 				<div style="height:1pt;font-size:1px;' + (this.attributes["minwidth"] ? 'width:' + this.attributes["minwidth"] + 'px' : '') + '"></div>\

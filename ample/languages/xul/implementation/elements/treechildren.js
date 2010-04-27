@@ -7,8 +7,7 @@
  *
  */
 
-var cXULElement_treechildren	= function()
-{
+var cXULElement_treechildren	= function() {
     // Public Collections
     this.items  = new AMLNodeList;
 };
@@ -18,50 +17,7 @@ cXULElement_treechildren.prototype	= new cXULElement;
 cXULElement_treechildren.prototype.tree	= null;
 
 // Public Methods
-cXULElement_treechildren.prototype.setAttribute  = function(sName, sValue)
-{
-    if (sName == "hidden")
-    {
-        for (var nIndex = 0; nIndex < this.items.length; nIndex++)
-        {
-            this.items[nIndex].setAttribute("hidden", sValue);
-            if (this.items[nIndex].children && this.items[nIndex].getAttribute("open") != "false")
-                this.items[nIndex].children.setAttribute("hidden", sValue);
-        }
-    }
-    this.AMLElement.setAttribute.call(this, sName, sValue);
-};
-
-/*
-cXULElement_treechildren.prototype.appendChild	= function(oNode)
-{
-	this.AMLElement.appendChild.call(this, oNode);
-
-	// Add to the collection
-	this.items.$add(oNode);
-
-	var oElement	= oNode.previousSibling || this.parentNode;
-	this.tree.items.$add(oNode, this.tree.items.$indexOf(oElement) + 1);
-	this.tree.body.$getContainer("gateway").insertBefore(oNode.$createContainer(), oElement.$getContainer().nextSibling);
-
-	return oNode;
-};
-
-cXULElement_treechildren.prototype.removeChild	= function(oNode)
-{
-	// Add to the collection
-	this.items.$remove(oNode);
-
-	this.tree.items.$remove(oNode);
-	this.tree.body.$getContainer("gateway").removeChild(oNode.$getContainer());
-
-	return this.AMLElement.removeChild.call(this, oNode);
-};
-*/
-
-//
-cXULElement_treechildren.prototype.refresh	= function()
-{
+cXULElement_treechildren.prototype.refresh	= function() {
     var nPrimaryCol = this.tree.head._getPrimaryColIndex();
     if (nPrimaryCol ==-1)
         return;
@@ -72,15 +28,13 @@ cXULElement_treechildren.prototype.refresh	= function()
 	this._refresh(aStack, nPrimaryCol);
 };
 
-cXULElement_treechildren.prototype._refresh	= function(aStack, nPrimaryCol)
-{
+cXULElement_treechildren.prototype._refresh	= function(aStack, nPrimaryCol) {
     var nDepth		= aStack.length,
     	oChildren   = aStack[nDepth - 1],
     	bTreeLines	= this.tree.attributes["treelines"] != "false",
     	nItems 		= oChildren.items.length;
 
-    for (var nItem = 0, oItem, oElementDOM; nItem < nItems; nItem++)
-    {
+    for (var nItem = 0, oItem, oElementDOM; nItem < nItems; nItem++) {
         // Path
         oItem		= oChildren.items[nItem];
         oElementDOM	= oItem.row.cells[nPrimaryCol].$getContainer();
@@ -108,6 +62,22 @@ cXULElement_treechildren.prototype._refresh	= function(aStack, nPrimaryCol)
 
 // Class events handlers
 cXULElement_treechildren.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			switch (oEvent.attrName) {
+				case "hidden":
+					for (var nIndex = 0; nIndex < this.items.length; nIndex++) {
+						this.items[nIndex].setAttribute("hidden", oEvent.newValue);
+						if (this.items[nIndex].children && this.items[nIndex].getAttribute("open") != "false")
+							this.items[nIndex].children.setAttribute("hidden", oEvent.newValue);
+					}
+					break;
+
+				default:
+					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			}
+		}
+	},
 	"DOMNodeInserted":	function(oEvent) {
 		if (oEvent.target.parentNode == this)
 			if (oEvent.target instanceof cXULElement_treeitem) {

@@ -15,11 +15,17 @@ cXULElement_iframe.prototype.tabIndex	= 0;
 cXULElement_iframe.prototype.contentDocument	= null;
 cXULElement_iframe.prototype.contentWindow		= null;
 
-// Public Methods
+// Class Events Handlers
+cXULElement_iframe.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+		}
+	}
+};
 
 // Events Handlers
-cXULElement_iframe.prototype._onLoad     = function(oEvent)
-{
+cXULElement_iframe.prototype._onLoad     = function(oEvent) {
     this.contentWindow		= this.$getContainer().contentWindow;
     this.contentDocument	= this.$getContainer().contentDocument;
 
@@ -29,8 +35,7 @@ cXULElement_iframe.prototype._onLoad     = function(oEvent)
     this.dispatchEvent(oEvent);
 };
 
-cXULElement_iframe.prototype._onUnLoad   = function(oEvent)
-{
+cXULElement_iframe.prototype._onUnLoad   = function(oEvent) {
 	this.contentWindow		= null;
 	this.contentDocument	= null;
 
@@ -41,13 +46,11 @@ cXULElement_iframe.prototype._onUnLoad   = function(oEvent)
 };
 
 // Element Renders
-cXULElement_iframe.prototype.$getTagOpen	= function()
-{
+cXULElement_iframe.prototype.$getTagOpen	= function() {
     return '<iframe class="xul-iframe" height="' +(this.attributes["height"] || '100%')+ '" width="' +(this.attributes["width"] || '100%')+ '" src="' +(this.attributes["src"] || 'about:blank') + '" frameborder="0" border="0" scrolling="no" onload="ample.$instance(this)._onLoad(event)" onunload="ample.$instance(this)._onUnLoad(event)">';
 };
 
-cXULElement_iframe.prototype.$getTagClose	= function()
-{
+cXULElement_iframe.prototype.$getTagClose	= function() {
     return '</iframe>';
 };
 

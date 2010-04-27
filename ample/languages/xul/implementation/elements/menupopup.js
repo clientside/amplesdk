@@ -7,8 +7,7 @@
  *
  */
 
-var cXULElement_menupopup	= function()
-{
+var cXULElement_menupopup	= function() {
     // Collections
     this.items  = new AMLNodeList;
 };
@@ -22,15 +21,7 @@ cXULElement_menupopup.attributes	= {};
 cXULElement_menupopup.attributes.hidden	= "true";
 
 // Public Methods
-cXULElement_menupopup.prototype.setAttribute = function(sName, sValue)
-{
-  	this._setAttribute(sName, sValue);
-
-    this.AMLElement.setAttribute.call(this, sName, sValue);
-};
-
-cXULElement_menupopup.prototype.selectItem	= function(oItem)
-{
+cXULElement_menupopup.prototype.selectItem	= function(oItem) {
 	// Hide previously selected item
 	if (this.selectedItem && this.selectedItem != oItem) {
 		// hide previous popup
@@ -122,6 +113,11 @@ cXULElement_menupopup.handlers	= {
 		if (this.selectedItem)
 			this.selectItem(null);
 	},
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+		}
+	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		var oParent	= this.parentNode;
 		if (oParent instanceof cXULElement_menulist || oParent instanceof cXULElement_menu)
@@ -142,8 +138,7 @@ cXULElement_menupopup.handlers	= {
 };
 
 // Element Render: open
-cXULElement_menupopup.prototype.$getTagOpen	= function()
-{
+cXULElement_menupopup.prototype.$getTagOpen	= function() {
 	return '<div style="position:absolute;' + (this.attributes["hidden"] == "true" ? 'display:none;' : '') + '" class="xul-menupopup">\
 				<div class="xul-menupopup--shadow-right" style="position:absolute;"></div>\
 				<div class="xul-menupopup--shadow-bottom" style="position:absolute;font-size:1px;"></div>\
@@ -152,8 +147,7 @@ cXULElement_menupopup.prototype.$getTagOpen	= function()
 };
 
 // Element Render: close
-cXULElement_menupopup.prototype.$getTagClose	= function()
-{
+cXULElement_menupopup.prototype.$getTagClose	= function() {
 	return 			'</tbody>\
 				</table>\
 			</div>';

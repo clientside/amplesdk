@@ -10,11 +10,17 @@
 var cXULElement_menuseparator	= function(){};
 cXULElement_menuseparator.prototype  = new cXULElement;
 
-// Public Methods
+//Class Events Handlers
+cXULElement_menuseparator.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+		}
+	}
+};
 
 // Element Render: open
-cXULElement_menuseparator.prototype.$getTagOpen	= function()
-{
+cXULElement_menuseparator.prototype.$getTagOpen	= function() {
     return '<tr>\
     			<td colspan="4"><div class="xul-menuseparator"><br /></div></td>\
     		</tr>';

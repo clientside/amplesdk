@@ -10,22 +10,20 @@
 var cXULElement_listcol	= function(){};
 cXULElement_listcol.prototype    = new cXULElement;
 
-// Public Methods
-cXULElement_listcol.prototype.setAttribute	= function(sName, sValue)
-{
-    if (sName == "sortDirection")
-    {
-        // natural | descending | descending
-    }
-    else
-    {
-        this._setAttribute(sName, sValue);
-    }
-    this.AMLElement.setAttribute.call(this, sName, sValue);
-};
-
 // Class event handler
 cXULElement_listcol.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			switch (oEvent.attrName) {
+				case "sortDirection":
+					// TODO: natural | descending | descending
+					break;
+
+				default:
+					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			}
+		}
+	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		if (this.parentNode instanceof cXULElement_listcols)
 			this.parentNode.items.$add(this);
@@ -37,8 +35,7 @@ cXULElement_listcol.handlers	= {
 };
 
 // Element Render: open
-cXULElement_listcol.prototype.$getTagOpen	= function()
-{
+cXULElement_listcol.prototype.$getTagOpen	= function() {
     return '<td class="xul-listcol"><img height="1"/></td>';
 };
 

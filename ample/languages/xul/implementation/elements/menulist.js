@@ -7,8 +7,7 @@
  *
  */
 
-var cXULElement_menulist	= function()
-{
+var cXULElement_menulist	= function() {
 	// Collections
 	this.items	  	= new AMLNodeList;
 };
@@ -33,47 +32,25 @@ cXULElement_menulist.prototype.selectedItem		= null;	// TODO
 cXULElement_menulist.hidden	= true;
 
 // Public Methods
-cXULElement_menulist.prototype.$getValue	= function()
-{
+cXULElement_menulist.prototype.$getValue	= function() {
 	return this.$getContainer("input").value;
 };
 
-cXULElement_menulist.prototype.$setValue	= function(sValue)
-{
+cXULElement_menulist.prototype.$setValue	= function(sValue) {
 	this.$getContainer("input").value	= sValue;
 };
 
 // Public Methods
-cXULElement_menulist.prototype.setAttribute  = function(sName, sValue)
-{
-	if (sName == "value")
-	{
-		this.$setValue(sValue);
-	}
-	else
-	if (sName == "disabled")
-	{
-		this.$setPseudoClass("disabled", sValue != '');
-		this.$getContainer("input").disabled = sValue != '';
-	}
-
-	this.AMLElement.setAttribute.call(this, sName, sValue);
-};
-
-cXULElement_menulist.prototype.select	= function()
-{
+cXULElement_menulist.prototype.select	= function() {
 	this.$getContainer("input").select();
 };
 
-cXULElement_menulist.prototype.appendItem	= function(sLabel, sValue)
-{
+cXULElement_menulist.prototype.appendItem	= function(sLabel, sValue) {
 	return this.insertItemAt(this.items.length, sLabel, sValue);
 };
 
-cXULElement_menulist.prototype.insertItemAt  = function(nIndex, sLabel, sValue)
-{
-	if (nIndex <= this.items.length)
-	{
+cXULElement_menulist.prototype.insertItemAt  = function(nIndex, sLabel, sValue) {
+	if (nIndex <= this.items.length) {
 		// create XUL element
 		var oElement	= this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem");
 		if (nIndex < this.items.length - 1)
@@ -90,16 +67,14 @@ cXULElement_menulist.prototype.insertItemAt  = function(nIndex, sLabel, sValue)
 		throw new AMLException(AMLException.NOT_FOUND_ERR);
 };
 
-cXULElement_menulist.prototype.removeItemAt  = function(nIndex)
-{
+cXULElement_menulist.prototype.removeItemAt  = function(nIndex) {
 	if (this.items[nIndex])
 		return this.menupopup.removeChild(this.items[nIndex]);
 	else
 		throw new AMLException(AMLException.NOT_FOUND_ERR);
 };
 
-cXULElement_menulist.prototype.select	= function()
-{
+cXULElement_menulist.prototype.select	= function() {
 	this.$getContainer("input").select();
 };
 
@@ -121,8 +96,7 @@ cXULElement_menulist.prototype.toggle	= function(bState) {
 };
 
 // Private Events Handlers
-cXULElement_menulist.prototype._onChange = function(oEvent)
-{
+cXULElement_menulist.prototype._onChange = function(oEvent) {
 	var oInput  = this.$getContainer("input");
 
 //	if (this.items[this.selectedIndex] && this.items[this.selectedIndex].attributes["label"].substring(0, oInput.value.length) == oInput.value)
@@ -231,16 +205,13 @@ cXULElement_menulist.handlers	= {
 		//
 		var nOptions	= 0,
 			bFound;
-		for (var nIndex = 0; nIndex < this.items.length; nIndex++)
-		{
+		for (var nIndex = 0; nIndex < this.items.length; nIndex++) {
 			bFound	= this.items[nIndex].getAttribute("label").substring(0, sSelectedText.length) == sSelectedText;
 			if (this.attributes["filter"] == "true")
 				this.items[nIndex].$getContainer().style.display	= bFound ? "block" : "none";
 
-			if (this.items[nIndex].$getContainer().style.display != "none" && bFound)
-			{
-				if (!nOptions)
-				{
+			if (this.items[nIndex].$getContainer().style.display != "none" && bFound) {
+				if (!nOptions) {
 					if (this.items[this.selectedIndex])
 						this.items[this.selectedIndex].setAttribute("selected", "false");
 					this.items[nIndex].setAttribute("selected", "true");
@@ -255,9 +226,7 @@ cXULElement_menulist.handlers	= {
 		if (nOptions)
 			this.toggle(true);
 		else
-		{
 			this.toggle(false);
-		}
 
 		this.selectedText   = sSelectedText;
 	},
@@ -274,12 +243,28 @@ cXULElement_menulist.handlers	= {
 			this.$setValue(oEvent.target.getAttribute("label"));
 		    this.toggle(false);
 
-			if (sValue != this.$getValue())
-			{
+			if (sValue != this.$getValue()) {
 			    // Fire Event
 			    var oEvent2  = this.ownerDocument.createEvent("Events");
 			    oEvent2.initEvent("change", true, false);
 			    this.dispatchEvent(oEvent2);
+			}
+		}
+	},
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			switch (oEvent.attrName) {
+				case "value":
+					this.$setValue(oEvent.newValue);
+					break;
+
+				case "disabled":
+					this.$setPseudoClass("disabled", oEvent.newValue == "true");
+					this.$getContainer("input").disabled = oEvent.newValue == "true";
+					break;
+
+				default:
+					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
 			}
 		}
 	}/*,
@@ -306,11 +291,11 @@ cXULElement_menulist.handlers	= {
 
 // Element Render: open
 cXULElement_menulist.prototype.$getTagOpen		= function() {
-	return	'<table cellpadding="0" cellspacing="0" border="0" class="xul-menulist' +(this.attributes["disabled"] ? " xul-menulist_disabled" : '') + '"' + (this.attributes["style"] ? ' style="' + this.attributes["style"] + '"' : '') +'>\
+	return	'<table cellpadding="0" cellspacing="0" border="0" class="xul-menulist' +(this.attributes["disabled"] == "true" ? " xul-menulist_disabled" : '') + (this.attributes["class"] ? ' ' + this.attributes["class"] : '') + '"' + (this.attributes["style"] ? ' style="' + this.attributes["style"] + '"' : '') +'>\
 				<tbody>\
 					<tr>\
-						<td width="100%"><input class="xul-menulist--input" type="text" autocomplete="off" style="border:0px solid white;width:100%;" onselectstart="event.cancelBubble=true;" onchange="ample.$instance(this)._onChange(event)" value="' + this.attributes["value"] + '"' + (this.attributes["disabled"] ? ' disabled="disabled"' : '') + (this.attributes["editable"] != "true" || this.attributes["readonly"] ? ' readonly="true"' : '') + (this.attributes["name"] ? ' name="' + this.attributes["name"] + '"' : '') + '/></td>\
-						<td valign="top"><div class="xul-menulist--button" onmouseout="ample.$instance(this).$setPseudoClass(\'active\', false, \'button\');" onmousedown="if (!ample.$instance(this).attributes.disabled) ample.$instance(this).$setPseudoClass(\'active\', true, \'button\'); return false;" onmouseup="if (!ample.$instance(this).attributes.disabled) ample.$instance(this).$setPseudoClass(\'active\', false, \'button\');" oncontextmenu="return false;"/></td>\
+						<td width="100%"><input class="xul-menulist--input" type="text" autocomplete="off" style="border:0px solid white;width:100%;" onselectstart="event.cancelBubble=true;" onchange="ample.$instance(this)._onChange(event)" value="' + this.attributes["value"] + '"' + (this.attributes["disabled"] == "true" ? ' disabled="disabled"' : '') + (this.attributes["editable"] != "true" || this.attributes["readonly"] ? ' readonly="true"' : '') + (this.attributes["name"] ? ' name="' + this.attributes["name"] + '"' : '') + '/></td>\
+						<td valign="top"><div class="xul-menulist--button" onmouseout="ample.$instance(this).$setPseudoClass(\'active\', false, \'button\');" onmousedown="if (ample.$instance(this).attributes.disabled != \'true\') ample.$instance(this).$setPseudoClass(\'active\', true, \'button\'); return false;" onmouseup="if (ample.$instance(this).attributes.disabled != \'true\') ample.$instance(this).$setPseudoClass(\'active\', false, \'button\');" oncontextmenu="return false;"/></td>\
 					</tr>\
 					<tr>\
 						<td colspan="2" class="xul-menulist--gateway">';

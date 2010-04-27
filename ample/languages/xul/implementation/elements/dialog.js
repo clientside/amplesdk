@@ -21,38 +21,6 @@ cXULElement_dialog.attributes.width		= "100%";
 cXULElement_dialog.attributes.height	= "100%";
 
 // Public Methods
-cXULElement_dialog.prototype.setAttribute    = function(sName, sValue)
-{
-    if (sName == "title")
-    {
-        this.$getContainer("title").innerHTML = sValue;
-    }
-    else
-    if (sName == "buttons")
-    {
-        this.$getContainer("button-help").style.display      = sValue.indexOf("help")    ==-1 ? "none" : "";
-        this.$getContainer("button-cancel").style.display    = sValue.indexOf("cancel")  ==-1 ? "none" : "";
-        this.$getContainer("button-accept").style.display    = sValue.indexOf("accept")  ==-1 ? "none" : "";
-    }
-    else
-    if (sName == "buttonalign")
-    {
-        if (sValue == "start")
-            this.$getContainer("foot").align  = "left";
-        else
-        if (sValue == "center")
-            this.$getContainer("foot").align  = sValue;
-        else
-            this.$getContainer("foot").align  = "right";
-    }
-    else
-    {
-        this._setAttribute(sName, sValue);
-    }
-
-    this.AMLElement.setAttribute.call(this, sName, sValue);
-};
-
 cXULElement_dialog.prototype.acceptDialog    = function()
 {
     var oEvent2  = this.ownerDocument.createEvent("Events");
@@ -100,6 +68,34 @@ cXULElement_dialog.prototype._onButtonClick  = function(oEvent, sName)
 
 // Class Events Handlers
 cXULElement_dialog.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			switch (oEvent.attrName) {
+				case "title":
+					this.$getContainer("title").innerHTML = oEvent.newValue || '';
+					break;
+
+				case "buttons":
+					this.$getContainer("button-help").style.display		=!sValue || sValue.indexOf("help")    ==-1 ? "none" : "";
+					this.$getContainer("button-cancel").style.display	=!sValue || sValue.indexOf("cancel")  ==-1 ? "none" : "";
+					this.$getContainer("button-accept").style.display	=!sValue || sValue.indexOf("accept")  ==-1 ? "none" : "";
+					break;
+
+				case "buttonalign":
+			        if (oEvent.newValue == "start")
+			            this.$getContainer("foot").align  = "left";
+			        else
+			        if (oEvent.newValue == "center")
+			            this.$getContainer("foot").align  = "center";
+			        else
+			            this.$getContainer("foot").align  = "right";
+			        break;
+
+				default:
+					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			}
+		}
+	},
 	"dragstart":	function(oEvent) {
 		if (oEvent.target == this && oEvent.$pseudoTarget != this.$getContainer("title"))
 			oEvent.preventDefault();

@@ -7,8 +7,7 @@
  *
  */
 
-var cXULElement_grid	= function()
-{
+var cXULElement_grid	= function() {
     this.cols   = new AMLNodeList;
     this.rows   = new AMLNodeList;
 };
@@ -18,7 +17,14 @@ cXULElement_grid.prototype	= new cXULElement;
 cXULElement_grid.attributes	= {};
 cXULElement_grid.attributes.orient	= "vertical";
 
-// Public Methods
+// Class Events Handlers
+cXULElement_grid.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+		}
+	}
+};
 
 // Register Element with language
 oXULNamespace.setElement("grid", cXULElement_grid);

@@ -11,20 +11,6 @@ var cXULElement_tab	= function(){};
 cXULElement_tab.prototype	= new cXULElement;
 cXULElement_tab.prototype.$hoverable	= true;
 
-// Public Methods
-cXULElement_tab.prototype.setAttribute   = function(sName, sValue)
-{
-    if (sName == "selected")
-    {
-    	this.$setPseudoClass("selected", sValue == "true");
-    }
-    else
-    {
-        this._setAttribute(sName, sValue);
-    }
-    this.AMLElement.setAttribute.call(this, sName, sValue);
-};
-
 // Events handlers
 cXULElement_tab.handlers	= {
 	"mousedown":	function(oEvent) {
@@ -38,6 +24,22 @@ cXULElement_tab.handlers	= {
 		this.parentNode.goTo(this.parentNode.items.$indexOf(this));
 		this.doCommand();
 	},
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			switch (oEvent.attrName) {
+				case "disabled":
+					this.$setPseudoClass("disabled", oEvent.newValue == "true");
+					break;
+
+				case "selected":
+					this.$setPseudoClass("selected", oEvent.newValue == "true");
+					break;
+
+				default:
+					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			}
+		}
+	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		if (this.parentNode instanceof cXULElement_tabs)
 			this.parentNode.items.$add(this);
@@ -49,9 +51,8 @@ cXULElement_tab.handlers	= {
 };
 
 // Element Render: open
-cXULElement_tab.prototype.$getTagOpen	= function()
-{
-    var sHtml   = '<td class="xul-tab' + (this.attributes["disabled"] ? " xul-tab_disabled" : "") +(this.attributes["class"] ? " " + this.attributes["class"] : "") + '">';
+cXULElement_tab.prototype.$getTagOpen	= function() {
+    var sHtml   = '<td class="xul-tab' + (this.attributes["disabled"] == "true" ? " xul-tab_disabled" : "") +(this.attributes["class"] ? " " + this.attributes["class"] : "") + '">';
     if (this.attributes["image"])
         sHtml  += '<img src="' + this.attributes["image"] + '" border="0" align="absmiddle"/> ';
     if (this.attributes["label"])
@@ -61,8 +62,7 @@ cXULElement_tab.prototype.$getTagOpen	= function()
 };
 
 // Element Render: close
-cXULElement_tab.prototype.$getTagClose	= function()
-{
+cXULElement_tab.prototype.$getTagClose	= function() {
     var sHtml   = '';
     sHtml  += '</td>';
     sHtml  += '<td class="xul-tab-separator"><img width="1" height="1" /></td>';

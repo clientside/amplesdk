@@ -14,5 +14,14 @@ cXULElement_hbox.prototype	= new cXULElement_box;
 cXULElement_hbox.attributes	= {};
 cXULElement_hbox.attributes.orient	= "horizontal";
 
+// Class Events Handlers
+cXULElement_hbox.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+		}
+	}
+};
+
 // Register Element with language
 oXULNamespace.setElement("hbox", cXULElement_hbox);

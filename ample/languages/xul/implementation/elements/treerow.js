@@ -7,8 +7,7 @@
  *
  */
 
-var cXULElement_treerow	= function()
-{
+var cXULElement_treerow	= function() {
     // Collections
     this.cells      = new AMLNodeList;
 };
@@ -18,11 +17,9 @@ cXULElement_treerow.prototype.$hoverable	= true;
 // Public Methods
 
 // Private members
-cXULElement_treerow.prototype._onCommandClick   = function(oEvent)
-{
+cXULElement_treerow.prototype._onCommandClick   = function(oEvent) {
 	var oTree	= this.parentNode.parentNode.tree;
-    if (this.$getContainer("command").checked)
-    {
+    if (this.$getContainer("command").checked) {
         if (oTree.attributes["type"] == "radio")
             oTree.selectItem(this.parentNode);
         else
@@ -30,13 +27,19 @@ cXULElement_treerow.prototype._onCommandClick   = function(oEvent)
             oTree.addItemToSelection(this.parentNode);
     }
     else
-    {
         oTree.removeItemFromSelection(this.parentNode);
-    }
 };
 
 // Class events handlers
 cXULElement_treerow.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			switch (oEvent.attrName) {
+				default:
+					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			}
+		}
+	},
 	"DOMNodeInserted":	function(oEvent) {
 		if (oEvent.target.parentNode == this)
 			if (oEvent.target instanceof cXULElement_treecell)
@@ -50,8 +53,7 @@ cXULElement_treerow.handlers	= {
 };
 
 // Element Render: open
-cXULElement_treerow.prototype.$getTagOpen	= function()
-{
+cXULElement_treerow.prototype.$getTagOpen	= function() {
 	var oTree	= this.parentNode.parentNode.tree;
     if (this.parentNode.parentNode.parentNode.attributes["open"] == "false")
         this.parentNode.parentNode.attributes["hidden"] = "true";
@@ -71,8 +73,7 @@ cXULElement_treerow.prototype.$getTagOpen	= function()
 };
 
 // Element Render: close
-cXULElement_treerow.prototype.$getTagClose	= function()
-{
+cXULElement_treerow.prototype.$getTagClose	= function() {
     return '</tr>';
 };
 

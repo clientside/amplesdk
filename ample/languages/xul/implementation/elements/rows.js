@@ -9,8 +9,15 @@
 
 var cXULElement_rows	= function(){};
 cXULElement_rows.prototype	= new cXULElement;
-
-// Public Methods
-
+/*
+// Class Events Handlers
+cXULElement_rows.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+		}
+	}
+};
+*/
 // Register Element with language
 oXULNamespace.setElement("rows", cXULElement_rows);

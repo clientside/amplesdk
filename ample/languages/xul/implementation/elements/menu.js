@@ -19,44 +19,6 @@ cXULElement_menu.prototype.$isAccessible	= function() {
 // Public Properties
 cXULElement_menu.prototype.menupopup	= null;	// Reference link to a menupopup element
 
-// Public Methods
-cXULElement_menu.prototype.setAttribute	= function(sName, sValue)
-{
-	if (sName == "open")
-	{
-		// TODO
-	}
-	else
-    if (sName == "selected")
-    {
-    	this.$setPseudoClass("selected", sValue == "true");
-    	if (this.parentNode instanceof cXULElement_menupopup)
-    		this.$setPseudoClass("selected", sValue == "true", "arrow");
-    }
-	else
-    if (sName == "label")
-    {
-        this.$getContainer("label").innerHTML   = sValue;
-	}
-	else
-	if (sName == "image")
-	{
-        if (this.parentNode instanceof cXULElement_menupopup)
-            this.$getContainer("control").style.backgroundImage   = "url(" + sValue + ")";
-	}
-	else
-	if (sName == "disabled")
-	{
-    	this.$setPseudoClass("disabled", sValue == "true");
-    	if (this.parentNode instanceof cXULElement_menupopup)
-    		this.$setPseudoClass("disabled", sValue == "true", "arrow");
-	}
-	else
-    	this._setAttribute(sName, sValue);
-
-    this.AMLElement.setAttribute.call(this, sName, sValue);
-};
-
 // Class Events Handlers
 cXULElement_menu.handlers	= {
 	"mouseenter":	function(oEvent) {
@@ -69,6 +31,39 @@ cXULElement_menu.handlers	= {
 
 		if (oEvent.target == this && oEvent.button == 0)
 			this.$activate();
+	},
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			switch (oEvent.attrName) {
+				case "open":
+					// TODO
+					break;
+
+				case "selected":
+			    	this.$setPseudoClass("selected", oEvent.newValue == "true");
+			    	if (this.parentNode instanceof cXULElement_menupopup)
+			    		this.$setPseudoClass("selected", oEvent.newValue == "true", "arrow");
+			    	break;
+
+				case "label":
+					this.$getContainer("label").innerHTML   = sValue;
+					break;
+
+				case "image":
+					if (this.parentNode instanceof cXULElement_menupopup)
+			            this.$getContainer("control").style.backgroundImage   = oEvent.newValue ? "url(" + oEvent.newValue + ")" : '';
+					break;
+
+				case "disabled":
+			    	this.$setPseudoClass("disabled", oEvent.newValue == "true");
+			    	if (this.parentNode instanceof cXULElement_menupopup)
+			    		this.$setPseudoClass("disabled", oEvent.newValue == "true", "arrow");
+			    	break;
+
+				default:
+					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			}
+		}
 	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		var oParent	= this.parentNode;
@@ -87,8 +82,7 @@ cXULElement_menu.handlers	= {
 };
 
 // Element Render: open
-cXULElement_menu.prototype.$getTagOpen	= function()
-{
+cXULElement_menu.prototype.$getTagOpen	= function() {
     if (this.parentNode instanceof cXULElement_menupopup)
         return '<tr class="xul-menu' + (this.attributes["disabled"] == "true" ? " xul-menu_disabled" : "") + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">\
         			<td width="18"><div class="xul-menu--control"' +(this.attributes["image"] ? ' style="background-image:url('+ this.attributes["image"] + ')"' : '')+ '></div></td>\
@@ -101,8 +95,7 @@ cXULElement_menu.prototype.$getTagOpen	= function()
 };
 
 // Element Render: close
-cXULElement_menu.prototype.$getTagClose	= function()
-{
+cXULElement_menu.prototype.$getTagClose	= function() {
     if (this.parentNode instanceof cXULElement_menupopup)
         return 		'</td>\
         			<td width="16"><div class="xul-menu--arrow' + (this.getAttribute("disabled") == "true" ? ' xul-menu--arrow_disabled' : '')+ '"><br /></div></td>\

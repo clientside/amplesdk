@@ -20,7 +20,7 @@ cXULElement_groupbox.attributes.orient	= "vertical";
 // Element Render: open
 cXULElement_groupbox.prototype.$getTagOpen		= function()
 {
-    var sHtml   = '<table cellpadding="0" cellspacing="0" border="0"' +(this.attributes["width"] ? ' width="' + this.attributes["width"] + '"' : '')+ '' +(this.attributes["height"] ? ' height="' + this.attributes["height"] + '"' : '')+ ' class="xul-groupbox' +(this.attributes["class"] ? " " + this.attributes["class"] : "") + '">';
+    var sHtml   = '<table cellpadding="0" cellspacing="0" border="0" width="' + (this.attributes["width"] || "100%") + '" height="' + (this.attributes["height"] || "100%") + '" class="xul-groupbox' +(this.attributes["class"] ? " " + this.attributes["class"] : "") + '">';
     sHtml  += '<thead>';
     sHtml  += '<tr>';
     sHtml  += '<td class="xul-groupbox-head-left"></td>';

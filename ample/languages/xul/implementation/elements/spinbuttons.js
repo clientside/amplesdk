@@ -23,26 +23,22 @@ cXULElement_spinbuttons.attributes	= {
 cXULElement_spinbuttons.prototype.form	= null;
 
 // Public Methods
-cXULElement_spinbuttons.prototype.$getValue	= function()
-{
+cXULElement_spinbuttons.prototype.$getValue	= function() {
 	return this.$getContainer("input").value;
 };
 
-cXULElement_spinbuttons.prototype.$setValue	= function(sValue)
-{
+cXULElement_spinbuttons.prototype.$setValue	= function(sValue) {
 	if (isNaN(sValue))
         sValue  = this.attributes["min"] * 1.0;
 
-    if (sValue < this.attributes["min"] * 1.0)
-    {
+    if (sValue < this.attributes["min"] * 1.0) {
     	if (this.attributes["cyclic"] == "true")
 			sValue	= this.attributes["max"];
     	else
 			sValue  = this.attributes["min"];
     }
     else
-    if (sValue > this.attributes["max"] * 1.0)
-    {
+    if (sValue > this.attributes["max"] * 1.0) {
     	if (this.attributes["cyclic"] == "true")
 			sValue	= this.attributes["min"];
     	else
@@ -54,53 +50,19 @@ cXULElement_spinbuttons.prototype.$setValue	= function(sValue)
 };
 
 // Public Methods
-cXULElement_spinbuttons.prototype.setAttribute   = function(sName, sValue)
-{
-    if (sName == "value")
-    {
-		this.$setValue(sValue);
-    }
-    else
-    if (sName == "disabled")
-    {
-    	this.$setPseudoClass("disabled", sValue != '');
-        this.$getContainer("input").disabled = sValue != '';
-    }
-    else
-    if (sName == "step")
-    {
-
-    }
-    else
-    if (sName == "min")
-    {
-
-    }
-    else
-    if (sName == "max")
-    {
-
-    }
-
-    this.AMLElement.setAttribute.call(this, sName, sValue);
-};
-
-cXULElement_spinbuttons.prototype.select	= function()
-{
+cXULElement_spinbuttons.prototype.select	= function() {
 	this.$getContainer("input").select();
 };
 
 // Events Handlers
-cXULElement_spinbuttons.prototype._onInterval    = function(bDir)
-{
+cXULElement_spinbuttons.prototype._onInterval	= function(bDir) {
     var sValue  = this.$getValue();
     this.$setValue(bDir ? sValue * 1.0 + this.attributes["step"] * 1.0 : sValue * 1.0 - this.attributes["step"] * 1.0);
     if (this.$getValue() == sValue && this._interval)
         clearInterval(this._interval);
 };
 
-cXULElement_spinbuttons.prototype._onChange  = function(oEvent)
-{
+cXULElement_spinbuttons.prototype._onChange  = function(oEvent) {
 	var sValue	= this.$getValue();
 	if (sValue == "" || isNaN(sValue))
 		this.$setValue(this.attributes["min"]);
@@ -112,8 +74,7 @@ cXULElement_spinbuttons.prototype._onChange  = function(oEvent)
     this.dispatchEvent(oEvent);
 };
 
-cXULElement_spinbuttons._onDocumentMouseUp = function(oEvent)
-{
+cXULElement_spinbuttons._onDocumentMouseUp = function(oEvent) {
 	var oElement	= cXULElement_spinbuttons._element;
 
 	// detach element
@@ -127,8 +88,7 @@ cXULElement_spinbuttons._onDocumentMouseUp = function(oEvent)
     if (oElement._interval)
         oElement._interval  = clearInterval(oElement._interval);
 
-    if (oElement._oldvalue != oElement.$getValue())
-    {
+    if (oElement._oldvalue != oElement.$getValue()) {
 	    // Fire Event
 	    var oEvent  = oElement.ownerDocument.createEvent("Events");
 	    oEvent.initEvent("change", true, false);
@@ -136,8 +96,7 @@ cXULElement_spinbuttons._onDocumentMouseUp = function(oEvent)
     }
 };
 
-cXULElement_spinbuttons.prototype._onButtonMouseDown = function(oEvent, bDir)
-{
+cXULElement_spinbuttons.prototype._onButtonMouseDown = function(oEvent, bDir) {
     if (oEvent.button == 2)
         return true;
 
@@ -181,6 +140,35 @@ cXULElement_spinbuttons.handlers	= {
 	},
 	"blur":		function(oEvent) {
 		this.$getContainer("input").blur();
+	},
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			switch (oEvent.attrName) {
+				case "value":
+					this.$setValue(oEvent.newValue || '');
+					break;
+
+				case "disabled":
+					this.$setPseudoClass("disabled", oEvent.newValue == "true");
+					this.$getContainer("input").disabled = oEvent.newValue == "true";
+					break;
+
+				case "max":
+					// TODO
+					break;
+
+				case "min":
+					// TODO
+					break;
+
+				case "step":
+					// TODO
+					break;
+
+				default:
+					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			}
+		}
 	}/*,
 	"DOMNodeInsertedIntoDocument":	function() {
 		for (var oElementTemp = this; oElementTemp; oElementTemp = oElementTemp.parentNode)
@@ -204,13 +192,12 @@ cXULElement_spinbuttons.handlers	= {
 };
 
 // Element Render: open
-cXULElement_spinbuttons.prototype.$getTagOpen	= function()
-{
-    var sHtml   = '<table cellpadding="0" cellspacing="0" border="0" class="xul-spinbuttons' + (this.attributes["disabled"] ? ' xul-spinbuttons_disabled' : '')+ '">';
+cXULElement_spinbuttons.prototype.$getTagOpen	= function() {
+    var sHtml   = '<table cellpadding="0" cellspacing="0" border="0" class="xul-spinbuttons' + (this.attributes["disabled"] == "true" ? ' xul-spinbuttons_disabled' : '')+ '">';
     sHtml  += '<tbody>';
     sHtml  += '<tr>';
     sHtml  += '<td width="100%"><input type="text" autocomplete="off" style="border:0px solid white;width:100%;" value="' + this.attributes["value"] + '"';
-    if (this.attributes["disabled"])
+    if (this.attributes["disabled"] == "true")
         sHtml  += ' disabled="true"';
     if (this.attributes["name"])
         sHtml  += ' name="' + this.attributes["name"] + '"';

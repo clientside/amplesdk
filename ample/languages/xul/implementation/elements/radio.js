@@ -13,54 +13,7 @@ cXULElement_radio.prototype   = new cXULElement;
 cXULElement_radio.prototype.group	= null;
 
 // Public Methods
-cXULElement_radio.prototype.setAttribute = function(sName, sValue)
-{
-    if (sName == "disabled")
-    {
-    	this.$setPseudoClass("disabled", sValue == "true");
-        this.$getContainer("input").disabled = sValue == "true";
-     }
-    else
-    if (sName == "value")
-    {
-        this.$getContainer("input").value    = sValue;
-    }
-    else
-    if (sName == "selected")
-    {
-        if (sValue == "true")
-        {
-            // deselect previously selected radio
-            if (this.group.items[this.group.selectedIndex])
-                this.group.items[this.group.selectedIndex].setAttribute("selected", "false");
-
-            this.group.selectedIndex    = this.group.items.$indexOf(this);
-            this.group.selectedItem     = this.group.items[this.group.selectedIndex];
-            this.group.attributes["value"]  = this.attributes["value"];
-        }
-        else
-        {
-            this.group.selectedIndex    =-1;
-            this.group.selectedItem     = null;
-            this.group.attributes["value"]  = "";
-        }
-		this.$getContainer("input").checked  = sValue == "true";
-    }
-    else
-    if (sName == "label")
-    {
-        this.$getContainer("label").innerHTML = sValue;
-    }
-    else
-    {
-        this._setAttribute(sName, sValue);
-    }
-
-    this.AMLElement.setAttribute.call(this, sName, sValue);
-};
-
-cXULElement_radio.prototype.$isAccessible	= function()
-{
+cXULElement_radio.prototype.$isAccessible	= function() {
 	return this.getAttribute("disabled") != "true" && (this.group ? this.group.$isAccessible() : true);
 };
 
@@ -72,6 +25,45 @@ cXULElement_radio.handlers	= {
 	},
 	"blur":		function(oEvent) {
 		this.$getContainer("input").blur();
+	},
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			switch (oEvent.attrName) {
+				case "disabled":
+					this.$setPseudoClass("disabled", oEvent.newValue == "true");
+					this.$getContainer("input").disabled	= oEvent.newValue == "true";
+					break;
+
+				case "label":
+					this.$getContainer("label").innerHTML = oEvent.newValue || '';
+					break;
+
+				case "value":
+					this.$getContainer("input").value    = oEvent.newValue || '';
+					break;
+
+				case "selected":
+					if (oEvent.newValue == "true") {
+						// deselect previously selected radio
+						if (this.group.items[this.group.selectedIndex])
+							this.group.items[this.group.selectedIndex].setAttribute("selected", "false");
+
+						this.group.selectedIndex    = this.group.items.$indexOf(this);
+						this.group.selectedItem     = this.group.items[this.group.selectedIndex];
+						this.group.attributes["value"]  = this.attributes["value"];
+					}
+					else {
+						this.group.selectedIndex    =-1;
+						this.group.selectedItem     = null;
+						this.group.attributes["value"]  = "";
+					}
+					this.$getContainer("input").checked	= oEvent.newValue == "true";
+					break;
+
+				default:
+					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			}
+		}
 	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		for (var oElement = this; oElement; oElement = oElement.parentNode)
@@ -94,8 +86,7 @@ cXULElement_radio.handlers	= {
 	}
 };
 
-cXULElement_radio.prototype._onClick = function(oEvent)
-{
+cXULElement_radio.prototype._onClick = function(oEvent) {
     if (this.group)
     {
         this.group.selectedIndex    = this.group.items.$indexOf(this);
@@ -110,8 +101,7 @@ cXULElement_radio.prototype._onClick = function(oEvent)
 };
 
 // Element Render: open
-cXULElement_radio.prototype.$getTagOpen	= function()
-{
+cXULElement_radio.prototype.$getTagOpen	= function() {
     var sHtml   = '<label class="xul-radio' + ((this.group && this.group.attributes["disabled"] == "true") || this.attributes["disabled"] == "true" ? " xul-radio_disabled" : "")+ '">';
     sHtml	+= '<input type="radio" autocomplete="off"';
     if (this.attributes["value"])
@@ -128,8 +118,7 @@ cXULElement_radio.prototype.$getTagOpen	= function()
 };
 
 // Element Render: close
-cXULElement_radio.prototype.$getTagClose	= function()
-{
+cXULElement_radio.prototype.$getTagClose	= function() {
     return '</label>';
 };
 

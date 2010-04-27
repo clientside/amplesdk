@@ -15,62 +15,6 @@ cXULElement_textbox.prototype.tabIndex	= 0;
 cXULElement_textbox.attributes	= {};
 cXULElement_textbox.attributes.value	= "";
 
-// Public Methods
-cXULElement_textbox.prototype.setAttribute   = function(sName, sValue)
-{
-    if (sName == "value")
-    {
-        this.$getContainer("input").value    = sValue;
-    }
-    else
-    if (sName == "disabled")
-    {
-    	this.$setPseudoClass("disabled", sValue == "true");
-        this.$getContainer("input").disabled = sValue == "true";
-    }
-    else
-    if (sName == "readonly")
-    {
-    	//
-        this.$getContainer("input").readOnly	=(sValue == "true");
-    }
-    else
-    if (sName == "type")
-    {
-        // values: password || default
-        // changing this attribute is currently not supported
-    }
-    else
-    if (sName == "multiline")
-    {
-        // values: true || default
-        // changing this attribute is currently not supported
-    }
-    else
-    if (sName == "maxlength")
-    {
-
-    }
-    else
-    if (sName == "rows")
-    {
-        if (this.attributes["multiline"] == "true")
-            this.$getContainer("input").rows = sValue;
-    }
-    else
-    if (sName == "cols")
-    {
-        if (this.attributes["multiline"] == "true")
-            this.$getContainer("input").cols = sValue;
-    }
-    else
-    {
-        this._setAttribute(sName, sValue);
-    }
-
-    this.AMLElement.setAttribute.call(this, sName, sValue);
-};
-
 // Class Events Handlers
 cXULElement_textbox.handlers	= {
 	"focus":	function(oEvent) {
@@ -81,11 +25,52 @@ cXULElement_textbox.handlers	= {
 	},
 	"keyup":	function(oEvent) {
     	this.attributes["value"]	= this.$getContainer("input").value;
+	},
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			switch (oEvent.attrName) {
+				case "value":
+					this.$getContainer("input").value    = oEvent.newValue || '';
+					break;
+
+				case "disabled":
+					this.$setPseudoClass("disabled", oEvent.newValue == "true");
+					this.$getContainer("input").disabled = oEvent.newValue == "true";
+					break;
+
+				case "readonly":
+					this.$getContainer("input").readOnly	= oEvent.newValue == "true";
+					break;
+
+				case "type":
+					// TODO
+					break;
+
+				case "multiline":
+					// TODO
+					break;
+
+				case "maxlength":
+					break;
+
+				case "rows":
+					if (this.attributes["multiline"] == "true")
+						this.$getContainer("input").rows	= oEvent.newValue;
+					break;
+
+				case "cols":
+					if (this.attributes["multiline"] == "true")
+						this.$getContainer("input").cols	= oEvent.newValue;
+					break;
+
+				default:
+					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			}
+		}
 	}
 };
 
-cXULElement_textbox.prototype._onChange  = function(oEvent)
-{
+cXULElement_textbox.prototype._onChange  = function(oEvent) {
     // Fire Event
     var oEvent  = this.ownerDocument.createEvent("Events");
     oEvent.initEvent("change", false, true);
@@ -93,8 +78,7 @@ cXULElement_textbox.prototype._onChange  = function(oEvent)
 };
 
 // Element Render: open
-cXULElement_textbox.prototype.$getTagOpen	= function(oElement)
-{
+cXULElement_textbox.prototype.$getTagOpen	= function(oElement) {
 	var bMultiline	= this.attributes["multiline"] == "true";
     return	'<div class="xul-textbox' + (bMultiline ? ' xul-textbox-multiline-true' : '') + (this.attributes["disabled"] == "true" ? " xul-textbox_disabled" : '')+ '" style="'+
 				(this.attributes["height"] ? 'height:' + this.attributes["height"] + ';' : '')+

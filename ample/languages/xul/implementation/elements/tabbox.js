@@ -22,17 +22,22 @@ cXULElement_tabbox.prototype.selectedPanel	= null; // not supported
 cXULElement_tabbox.attributes	= {};
 cXULElement_tabbox.attributes.orient	= "vertical";
 
-// Public Methods
+// Class Events Handlers
+cXULElement_tabbox.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+		}
+	}
+};
 
 // Element Render: open
-cXULElement_tabbox.prototype.$getTagOpen	= function()
-{
+cXULElement_tabbox.prototype.$getTagOpen	= function() {
     return '<div class="xul-tabbox' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">';
 };
 
 // Element Render: close
-cXULElement_tabbox.prototype.$getTagClose	= function()
-{
+cXULElement_tabbox.prototype.$getTagClose	= function() {
     return '</div>';
 };
 

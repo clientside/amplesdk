@@ -18,55 +18,8 @@ cXULElement_progressmeter.prototype._left		= 0;
 cXULElement_progressmeter.attributes	= {};
 cXULElement_progressmeter.attributes.value	= "100";
 
-// Public Methods
-cXULElement_progressmeter.prototype.setAttribute = function(sName, sValue)
-{
-    if (sName == "value")
-    {
-        if (this.attributes["mode"] != "undetermined")
-            this.$getContainer("units").style.width = sValue + '%';
-    }
-    else
-    if (sName == "mode")
-    {
-        if (sValue == "undetermined")
-        {
-            if (!this._interval)
-            {
-            	var oElementDOM	= this.$getContainer("units");
-                oElementDOM.style.width = '0%';
-                oElementDOM.style.left  = '0%';
-
-                this._left  = 0;
-                var oSelf	= this;
-                this._interval  = setInterval(function() {
-                	oSelf._onInterval();
-                }, 40);
-            }
-        }
-        else
-        {
-            if (this._interval)
-            {
-                clearInterval(this._interval);
-                this._interval  = null;
-            }
-           	var oElementDOM	= this.$getContainer("units");
-            oElementDOM.style.width = this.attributes["value"] + '%';
-            oElementDOM.style.left  = '0%';
-        }
-    }
-    else
-    {
-        this._setAttribute(sName, sValue);
-    }
-
-    this.AMLElement.setAttribute.call(this, sName, sValue);
-};
-
 // Private Methods
-cXULElement_progressmeter.prototype._onInterval  = function()
-{
+cXULElement_progressmeter.prototype._onInterval  = function() {
     this._left  = this._left + 1 > 100 + 30 ? 0 : this._left + 1;
 
     this.$getContainer("units").style.left  =(this._left > 30 ? this._left - 30 : 0)+ '%';
@@ -75,6 +28,44 @@ cXULElement_progressmeter.prototype._onInterval  = function()
 
 // Class handlers
 cXULElement_progressmeter.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			switch (oEvent.attrName) {
+				case "value":
+					if (this.attributes["mode"] != "undetermined")
+						this.$getContainer("units").style.width = oEvent.newValue + '%';
+					break;
+
+				case "mode":
+					if (oEvent.newValue == "undetermined") {
+						if (!this._interval) {
+							var oElementDOM	= this.$getContainer("units");
+							oElementDOM.style.width = '0%';
+							oElementDOM.style.left  = '0%';
+
+							this._left  = 0;
+							var oSelf	= this;
+							this._interval  = setInterval(function() {
+								oSelf._onInterval();
+							}, 40);
+						}
+					}
+					else {
+						if (this._interval) {
+							clearInterval(this._interval);
+							this._interval  = null;
+						}
+						var oElementDOM	= this.$getContainer("units");
+						oElementDOM.style.width = this.attributes["value"] + '%';
+						oElementDOM.style.left  = '0%';
+					}
+					break;
+
+				default:
+					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			}
+		}
+	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 	    if (this.getAttribute("mode") == "undetermined") {
 	        var oSelf	= this;
@@ -90,8 +81,7 @@ cXULElement_progressmeter.handlers	= {
 };
 
 // Element Render: open
-cXULElement_progressmeter.prototype.$getTagOpen	= function()
-{
+cXULElement_progressmeter.prototype.$getTagOpen	= function() {
     var sHtml   = '<table cellpadding="0" cellspacing="0" border="0" width="' + (this.attributes["width"] || "100%") + '" class="xul-progressmeter"' +(this.attributes["hidden"] == "true" ? ' style="display:none;"' : "")+ '>';
     sHtml  += '<tbody>';
     sHtml  += '<tr>';

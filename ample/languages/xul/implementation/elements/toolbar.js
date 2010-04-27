@@ -14,17 +14,22 @@ cXULElement_toolbar.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
 // Accessibility
 cXULElement_toolbar.prototype.$selectable	= false;
 
-// Public Methods
+// Class Events Handlers
+cXULElement_toolbar.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+		}
+	}
+};
 
 // Element Render: open
-cXULElement_toolbar.prototype.$getTagOpen		= function()
-{
+cXULElement_toolbar.prototype.$getTagOpen		= function() {
     return '<div class="xul-toolbar">';
 };
 
 // Element Render: close
-cXULElement_toolbar.prototype.$getTagClose	= function()
-{
+cXULElement_toolbar.prototype.$getTagClose	= function() {
     return '</div>';
 };
 

@@ -8,11 +8,20 @@
  */
 
 var cXULElement_box	= function(){};
+
 cXULElement_box.prototype	= new cXULElement;
 cXULElement_box.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
 
-cXULElement_box.prototype.$getContainer	= function(sName)
-{
+// Class Handlers
+cXULElement_box.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+		}
+	}
+};
+
+cXULElement_box.prototype.$getContainer	= function(sName) {
 	return sName == "gateway" ? this.$getContainer("box") : document.getElementById(this.uniqueID);
 };
 

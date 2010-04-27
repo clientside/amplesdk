@@ -14,20 +14,6 @@ cXULElement_listheader.prototype.$hoverable	= true;
 // Private Properties
 cXULElement_listheader.prototype._sortDir	= "none";
 
-// Public Methods
-cXULElement_listheader.prototype.setAttribute    = function(sName, sValue)
-{
-    if (sName == "hidden")
-    {
-    	var nCell	= this.parentNode.items.$indexOf(this);
-    	this.$getContainer().style.display	= sValue == "true" ? "none" : "";
-        for (var nIndex = 0, aItems = this.parentNode.parentNode.items; nIndex < aItems.length; nIndex++)
-        	aItems[nIndex].cells[nCell].setAttribute(sName, sValue);
-        this.parentNode.parentNode.body.$getContainer("foot").rows[0].cells[nCell + 1].style.display	= sValue == "true" ? "none" : "";
-    }
-    this.AMLElement.setAttribute.call(this, sName, sValue);
-};
-
 // Class Events Handlers
 cXULElement_listheader.handlers	= {
 	"mouseleave":	function(oEvent) {
@@ -50,11 +36,26 @@ cXULElement_listheader.handlers	= {
 	},
 */
 	"click":		function(oEvent) {
-	    if (oEvent.button < 2)
-	    {
+	    if (oEvent.button < 2) {
 	        this._sortDir   = this._sortDir != "asc" ? "asc" : "desc";
 	        this.parentNode.parentNode.sort(this.$getContainer().cellIndex, this._sortDir == "asc");
 	    }
+	},
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			switch (oEvent.attrName) {
+				case "hidden":
+			    	var nCell	= this.parentNode.items.$indexOf(this);
+			    	this.$getContainer().style.display	= oEvent.newValue == "true" ? "none" : "";
+			        for (var nIndex = 0, aItems = this.parentNode.parentNode.items; nIndex < aItems.length; nIndex++)
+			        	aItems[nIndex].cells[nCell].setAttribute("hidden", oEvent.newValue);
+			        this.parentNode.parentNode.body.$getContainer("foot").rows[0].cells[nCell + 1].style.display	= oEvent.newValue == "true" ? "none" : "";
+					break;
+
+				default:
+					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			}
+		}
 	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		if (this.parentNode instanceof cXULElement_listhead)
@@ -67,8 +68,7 @@ cXULElement_listheader.handlers	= {
 };
 
 // Element Render: open
-cXULElement_listheader.prototype.$getTagOpen	= function()
-{
+cXULElement_listheader.prototype.$getTagOpen	= function() {
 	return '<th class="xul-listheader' +(this.attributes["class"] ? " " + this.attributes["class"] : "")+ '"' +(this.attributes["width"] ? ' width="' + this.attributes["width"] + '"' : "")+ ' align="left">\
 				<div>\
 					<div class="xul-listheader--resizer"></div>\
@@ -76,8 +76,7 @@ cXULElement_listheader.prototype.$getTagOpen	= function()
 };
 
 // Element Render: close
-cXULElement_listheader.prototype.$getTagClose	= function()
-{
+cXULElement_listheader.prototype.$getTagClose	= function() {
 	return			'</div>\
 				</div>\
 				<div style="height:1pt;font-size:1px;' + (this.attributes["minwidth"] ? 'width:' + this.attributes["minwidth"] + 'px' : '') + '"></div>\
