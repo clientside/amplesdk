@@ -24,3 +24,17 @@ xul|colorpicker-pane {
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
 }
+
+xul|menu,
+xul|button,
+xul|textbox,
+xul|editor,
+xul|colorpicker,
+xul|menulist,
+xul|datepicker,
+xul|timepicker,
+xul|spinbuttons {
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
