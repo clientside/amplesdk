@@ -462,25 +462,21 @@ cAMLElement.prototype.getAttributeNodeNS	= function(sNameSpaceURI, sLocalName)
 	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
 
-cAMLElement.prototype.removeAttribute	= function(sName)
+function fAMLElement_removeAttribute(oElement, sName)
 {
-	fAML_validate(arguments, [
-		["name",	cString]
-	], "removeAttribute");
-
-	if (sName in this.attributes) {
-		var sValueOld	= this.attributes[sName];
+	if (sName in oElement.attributes) {
+		var sValueOld	= oElement.attributes[sName];
 		// Only operate on shadow if element is in the DOM
-    	if (oAML_all[this.uniqueID] && (sName == "id" || sName == "class" || sName == "style")) {
+    	if (oAML_all[oElement.uniqueID] && (sName == "id" || sName == "class" || sName == "style")) {
     		// Find shadow content
-    		var oElementDOM	= this.$getContainer();
+    		var oElementDOM	= oElement.$getContainer();
     		if (sName == "id") {
 		    	delete oAML_ids[sValueOld];
 		    }
 		    // Update view
 		    if (oElementDOM) {
 			    if (sName == "class") {
-			    	var sValueClass	=(this.prefix ? this.prefix + '-' : '') + this.localName;
+			    	var sValueClass	=(oElement.prefix ? oElement.prefix + '-' : '') + oElement.localName;
 			    	if (bTrident)
 			    		oElementDOM.className	= sValueClass;
 			    	else
@@ -490,19 +486,77 @@ cAMLElement.prototype.removeAttribute	= function(sName)
 			    if (sName == "style")
 			    	oElementDOM.style.cssText	= '';
 			    else
-			    	oElementDOM.id	= this.uniqueID;
+			    	oElementDOM.id	= oElement.uniqueID;
 		    }
     	}
 	    //
-	    delete this.attributes[sName];
+	    delete oElement.attributes[sName];
 
 		// Fire Mutation event
-	    if (oAML_all[this.uniqueID]) {
+	    if (oAML_all[oElement.uniqueID]) {
 		    var oEvent = new cAMLMutationEvent;
 		    oEvent.initMutationEvent("DOMAttrModified", true, false, null, sValueOld, null, sName, cAMLMutationEvent.REMOVAL);
-		    fAMLNode_dispatchEvent(this, oEvent);
+		    fAMLNode_dispatchEvent(oElement, oEvent);
 	    }
 	}
+};
+
+cAMLElement.prototype.removeAttribute	= function(sName)
+{
+	fAML_validate(arguments, [
+		["name",	cString]
+	], "removeAttribute");
+
+	fAMLElement_removeAttribute(this, sName);
+};
+
+function fAMLElement_removeAttributeNS(oElement, sNameSpaceURI, sLocalName)
+{
+	if (sNameSpaceURI != null) {
+		var sPrefix	= fAMLNode_lookupPrefix(oElement, sNameSpaceURI),
+			sQName	= sPrefix + ':' + sLocalName;
+
+		if (!sPrefix)
+			return;
+
+		// Global attributes module
+		if (sQName in oElement.attributes && !(sLocalName == "xmlns" || sNameSpaceURI == "http://www.w3.org/2000/xmlns/" || sNameSpaceURI == "http://www.w3.org/XML/1998/namespace"))
+		{
+			var oNamespace	= oAML_namespaces[sNameSpaceURI],
+				cAttribute	= oNamespace ? oNamespace.attributes[sLocalName] : null,
+				sValue		= oElement.attributes[sQName],
+				oAttribute,
+				oEvent;
+
+			if (cAttribute)
+			{
+				// oAttribute used to create fake object
+				oAttribute	= new cAttribute;
+				oAttribute.ownerDocument= oElement.ownerDocument;
+				oAttribute.ownerElement	= oElement;
+				oAttribute.nodeValue	= sValue;
+				oAttribute.nodeName		= sQName;
+				oAttribute.localName	= sLocalName;
+				oAttribute.prefix		= sPrefix;
+				oAttribute.namespaceURI	= sNameSpaceURI;
+				oAttribute.name		= sQName;
+				oAttribute.value	= sValue;
+
+				// Fire Mutation event (pseudo)
+				oEvent = new cAMLMutationEvent;
+				oEvent.initMutationEvent("DOMNodeRemovedFromDocument", false, false, null, null, null, null, null);
+				oEvent.target	=
+				oEvent.currentTarget	= oAttribute;
+				oEvent.eventPhase		= cAMLEvent.AT_TARGET;
+				fAMLNode_handleEvent(oAttribute, oEvent);
+			}
+		}
+
+		//
+		sLocalName	= sQName;
+	}
+
+	fAMLElement_removeAttribute(oElement, sLocalName);
 };
 
 cAMLElement.prototype.removeAttributeNS	= function(sNameSpaceURI, sLocalName)
@@ -513,49 +567,7 @@ cAMLElement.prototype.removeAttributeNS	= function(sNameSpaceURI, sLocalName)
 		["localName",		cString]
 	], "removeAttributeNS");
 
-	if (sNameSpaceURI == null)
-		return this.removeAttribute(sLocalName);
-
-	var sPrefix	= fAMLNode_lookupPrefix(this, sNameSpaceURI),
-		sQName	= sPrefix + ':' + sLocalName;
-
-	if (!sPrefix)
-		return;
-
-	// Global attributes module
-	if (sQName in this.attributes && !(sLocalName == "xmlns" || sNameSpaceURI == "http://www.w3.org/2000/xmlns/" || sNameSpaceURI == "http://www.w3.org/XML/1998/namespace"))
-	{
-		var oNamespace	= oAML_namespaces[sNameSpaceURI],
-			cAttribute	= oNamespace ? oNamespace.attributes[sLocalName] : null,
-			sValue		= this.attributes[sQName],
-			oAttribute,
-			oEvent;
-
-		if (cAttribute)
-		{
-			// oAttribute used to create fake object
-			oAttribute	= new cAttribute;
-			oAttribute.ownerDocument= this.ownerDocument;
-			oAttribute.ownerElement	= this;
-			oAttribute.nodeValue	= sValue;
-			oAttribute.nodeName		= sQName;
-			oAttribute.localName	= sLocalName;
-			oAttribute.prefix		= sPrefix;
-			oAttribute.namespaceURI	= sNameSpaceURI;
-			oAttribute.name		= sQName;
-			oAttribute.value	= sValue;
-
-			// Fire Mutation event (pseudo)
-			oEvent = new cAMLMutationEvent;
-			oEvent.initMutationEvent("DOMNodeRemovedFromDocument", false, false, null, null, null, null, null);
-			oEvent.target	=
-			oEvent.currentTarget	= oAttribute;
-			oEvent.eventPhase		= cAMLEvent.AT_TARGET;
-			fAMLNode_handleEvent(oAttribute, oEvent);
-		}
-	}
-
-    this.removeAttribute(sQName);
+	fAMLElement_removeAttributeNS(this, sNameSpaceURI, sLocalName);
 };
 
 cAMLElement.prototype.removeAttributeNode	= function(oAttribute)
