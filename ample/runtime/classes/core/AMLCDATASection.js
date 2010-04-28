@@ -16,5 +16,5 @@ cAMLCDATASection.prototype.nodeName	= "#cdata";
 // nsIDOMCDATASection
 cAMLCDATASection.prototype.cloneNode	= function(bDeep)
 {
-	return this.ownerDocument.createCDATASection(this.data);
+	return fAMLDocument_createCDATASection(this.ownerDocument, this.data);
 };

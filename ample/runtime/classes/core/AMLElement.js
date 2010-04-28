@@ -233,7 +233,7 @@ cAMLElement.prototype.hasAttribute	= function(sName)
 		["name",		cString]
 	], "hasAttribute");
 
-	return fAMLElement_hasAttribute(this, sName)
+	return fAMLElement_hasAttribute(this, sName);
 };
 
 function fAMLElement_hasAttributeNS(oElement, sNameSpaceURI, sLocalName)
