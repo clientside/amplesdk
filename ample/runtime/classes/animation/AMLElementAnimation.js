@@ -261,7 +261,7 @@ cAMLElement.prototype.$play	= function(sParams, nDuration, vType, fHandler, sPse
 		["pseudo",		cString, true]
 	], "$play");
 
-	fAMLElementAnimation_play(this, sParams, nDuration, vType, fHandler, sPseudo);
+	return fAMLElementAnimation_play(this, sParams, nDuration, vType, fHandler, sPseudo);
 };
 
 cAMLElement.prototype.$stop	= function(nEffect)
