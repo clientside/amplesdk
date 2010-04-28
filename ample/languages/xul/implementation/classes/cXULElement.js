@@ -15,7 +15,6 @@ cXULElement.VIEW_TYPE_BOXED		= 1;    // Element is rendered as boxed
 cXULElement.VIEW_TYPE_NORMAL	= 2;    // Element is rendered as not boxed
 
 cXULElement.prototype	= new AMLElement;
-cXULElement.prototype.AMLElement	= new AMLElement;
 cXULElement.prototype.viewType		= cXULElement.VIEW_TYPE_NORMAL;
 
 // Private Methods
