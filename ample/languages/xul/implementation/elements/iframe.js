@@ -19,7 +19,15 @@ cXULElement_iframe.prototype.contentWindow		= null;
 cXULElement_iframe.handlers	= {
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this) {
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			switch (oEvent.attrName) {
+				case "src":
+					if (oEvent.newValue)
+						this.$getContainer().src  = oEvent.newValue;
+					break;
+
+				default:
+					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			}
 		}
 	}
 };

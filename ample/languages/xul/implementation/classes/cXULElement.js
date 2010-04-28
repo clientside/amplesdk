@@ -67,11 +67,6 @@ cXULElement.prototype.$mapAttribute	= function(sName, sValue)
 		        oElementDOM.style[sName]  = sValue;
 			break;
 
-		case "src":
-	        // elements: image, iframe, script
-	        oElementDOM.src  = sValue;
-	        break;
-
 		case "label":
 	        var sHtml   = "";
 	        if (this.attributes["image"])

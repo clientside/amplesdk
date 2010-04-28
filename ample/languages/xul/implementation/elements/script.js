@@ -18,9 +18,22 @@ cXULElement_script.attributes.hidden	= "true";
 
 // Element Handlers
 cXULElement_script.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			switch (oEvent.attrName) {
+				case "src":
+					if (oEvent.newValue)
+						this.$getContainer().src  = oEvent.newValue;
+					break;
+
+				default:
+					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			}
+		}
+	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		if (this.attributes["src"])
-			this.setAttribute("src", this.attributes["src"]);
+			this.$getContainer().src  = this.attributes["src"];
 		else
 		if (this.firstChild) {
 			var oElement	= document.body.appendChild(document.createElement("script"));
@@ -31,14 +44,12 @@ cXULElement_script.handlers	= {
 };
 
 // Element Render: open
-cXULElement_script.prototype.$getTagOpen	= function()
-{
+cXULElement_script.prototype.$getTagOpen	= function() {
     return '<script type="text/javascript">';
 };
 
 // Element Render: close
-cXULElement_script.prototype.$getTagClose	= function()
-{
+cXULElement_script.prototype.$getTagClose	= function() {
     return '</script>';
 };
 
