@@ -28,7 +28,7 @@ cXULElement_menuitem.handlers	= {
 		if (oEvent.button == 0)
 			this.$activate();
 	},
-	"DOMAtrtModified":	function(oEvent) {
+	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this) {
 			switch (oEvent.attrName) {
 				case "selected":
@@ -99,7 +99,7 @@ cXULElement_menuitem.handlers	= {
 		// Execute commands
 	    this.doCommand();
 	}
-}
+};
 
 cXULElement_menuitem.prototype.scrollIntoView	= function() {
 	var oElementDOM	= this.$getContainer(),
