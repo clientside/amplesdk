@@ -272,12 +272,12 @@ cXULSelectElement.getSettingsPopup	= function(oInstance) {
 		for (var nIndex = 0, oItem; nIndex < oInstance.items.length; nIndex++) {
 			oItem	= oInstance.ownerDocument.createElementNS(oInstance.namespaceURI, "xul:menuitem");
 			oItem.setAttribute("type", "checkbox");
-			oPopup.appendChild(oItem);
 			oItem.setAttribute("label", oInstance.items[nIndex].getAttribute("label"));
 			if (oInstance.items[nIndex].getAttribute("hidden") != "true")
 				oItem.setAttribute("checked", "true");
 			if (!oInstance.items[nIndex].hasAttribute("width"))
 				oItem.setAttribute("disabled",  "true");
+			oPopup.appendChild(oItem);
 		}
 	}
 
