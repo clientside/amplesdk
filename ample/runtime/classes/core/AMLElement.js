@@ -256,33 +256,27 @@ cAMLElement.prototype.hasAttributeNS	= function(sNameSpaceURI, sLocalName)
 	return fAMLElement_hasAttributeNS(this, sNameSpaceURI, sLocalName);
 };
 
-cAMLElement.prototype.setAttribute	= function(sName, sValue)
+function fAMLElement_setAttribute(oElement, sName, sValue)
 {
-	// Validate arguments
-	fAML_validate(arguments, [
-		["name",		cString],
-		["value",		cObject]
-	], "setAttribute");
-
 	// convert value to string
 	sValue	= cString(sValue);
-	var sValueOld	= this.attributes[sName],
-		bValue		= sName in this.attributes;
+	var sValueOld	= oElement.attributes[sName],
+		bValue	= sName in oElement.attributes;
 
     if (sValueOld != sValue) {
     	// Only operate on shadow if element is in the DOM
-    	if (oAML_all[this.uniqueID] && (sName == "id" || sName == "class" || sName == "style")) {
+    	if (oAML_all[oElement.uniqueID] && (sName == "id" || sName == "class" || sName == "style")) {
     		// Find shadow content first
-    		var oElementDOM	= this.$getContainer();
+    		var oElementDOM	= oElement.$getContainer();
     		if (sName == "id") {
 	    		if (sValue)
-	    			oAML_ids[sValue]	= this;
+	    			oAML_ids[sValue]	= oElement;
     			delete oAML_ids[sValueOld];
 	    	}
     		// Update view
     		if (oElementDOM) {
 		    	if (sName == "class") {
-		    		var sValueClass	=(this.prefix ? this.prefix + '-' : '') + this.localName + (sValue ? ' ' + sValue : '');
+		    		var sValueClass	=(oElement.prefix ? oElement.prefix + '-' : '') + oElement.localName + (sValue ? ' ' + sValue : '');
 		    		if (bTrident)
 		    			oElementDOM.className	= sValueClass;
 		    		else
@@ -292,20 +286,100 @@ cAMLElement.prototype.setAttribute	= function(sName, sValue)
 		    	if (sName == "style")
 	    			oElementDOM.style.cssText	= sValue;
 		    	else
-	    			oElementDOM.id	= sValue ? sValue : this.uniqueID;
+	    			oElementDOM.id	= sValue ? sValue : oElement.uniqueID;
     		}
     	}
 
     	//
-    	this.attributes[sName]	= sValue;
+    	oElement.attributes[sName]	= sValue;
 
     	// Fire Mutation event
-    	if (oAML_all[this.uniqueID]) {
+    	if (oAML_all[oElement.uniqueID]) {
 		    var oEvent = new cAMLMutationEvent;
 		    oEvent.initMutationEvent("DOMAttrModified", true, false, null, bValue ? sValueOld : null, sValue, sName, bValue ? cAMLMutationEvent.MODIFICATION : cAMLMutationEvent.ADDITION);
-		    fAMLNode_dispatchEvent(this, oEvent);
+		    fAMLNode_dispatchEvent(oElement, oEvent);
     	}
     }
+};
+
+cAMLElement.prototype.setAttribute	= function(sName, sValue)
+{
+	// Validate arguments
+	fAML_validate(arguments, [
+		["name",		cString],
+		["value",		cObject]
+	], "setAttribute");
+
+	fAMLElement_setAttribute(this, sName, sValue);
+};
+
+function fAMLElement_setAttributeNS(oElement, sNameSpaceURI, sQName, sValue)
+{
+	if (sNameSpaceURI != null) {
+		// convert value to string
+		sValue	= cString(sValue);
+
+		var sElementPrefix	= fAMLNode_lookupPrefix(oElement, sNameSpaceURI),
+			aQName		= sQName.split(':'),
+			sLocalName	= aQName.length > 1 ? aQName[1] : aQName[0],
+			sPrefix		= aQName.length > 1 ? aQName[0] : null;
+
+		if (sPrefix)
+		{
+			if (!sElementPrefix || (sPrefix != sElementPrefix))
+				// Put namespace declaration
+				oElement.attributes["xmlns" + ':' + sPrefix]	= sNameSpaceURI;
+		}
+		else
+		{
+			if (sElementPrefix)
+				sPrefix	= sElementPrefix;
+			else
+			{
+				// Create fake prefix
+				sPrefix	= '_' + 'p' + nAMLElement_prefix++;
+
+				// Put namespace declaration
+				oElement.attributes["xmlns" + ':' + sPrefix]	= sNameSpaceURI;
+			}
+			//
+			sQName	= sPrefix + ':' + sLocalName;
+		}
+
+		// Global attributes module
+		if (!(sQName in oElement.attributes) && !(sQName == "xmlns" || sNameSpaceURI == "http://www.w3.org/2000/xmlns/" || sNameSpaceURI == "http://www.w3.org/XML/1998/namespace"))
+		{
+			var oNamespace	= oAML_namespaces[sNameSpaceURI],
+				cAttribute	= oNamespace ? oNamespace.attributes[sLocalName] : null,
+				oAttribute,
+				oEvent;
+
+			if (cAttribute)
+			{
+				// oAttribute used to create fake object
+				oAttribute	= new cAttribute;
+				oAttribute.ownerElement	= oElement;
+				oAttribute.nodeValue	= sValue;
+				oAttribute.nodeName		= sQName;
+				oAttribute.localName	= sLocalName;
+				oAttribute.prefix		= sPrefix;
+				oAttribute.namespaceURI	= sNameSpaceURI;
+				oAttribute.name		= sQName;
+				oAttribute.value	= sValue;
+
+				// Fire Mutation event (pseudo)
+				oEvent = new cAMLMutationEvent;
+				oEvent.initMutationEvent("DOMNodeInsertedIntoDocument", false, false, null, null, null, null, null);
+				oEvent.target	=
+				oEvent.currentTarget	= oAttribute;
+				oEvent.eventPhase		= cAMLEvent.AT_TARGET;
+				fAMLNode_handleEvent(oAttribute, oEvent);
+			}
+		}
+	}
+
+	// Set attribute
+	fAMLElement_setAttribute(oElement, sQName, sValue);
 };
 
 cAMLElement.prototype.setAttributeNS	= function(sNameSpaceURI, sQName, sValue)
@@ -317,72 +391,7 @@ cAMLElement.prototype.setAttributeNS	= function(sNameSpaceURI, sQName, sValue)
 		["value",			cObject]
 	], "setAttributeNS");
 
-	if (sNameSpaceURI == null)
-		return this.setAttribute(sQName, sValue);
-
-	// convert value to string
-	sValue	= cString(sValue);
-
-	var sElementPrefix	= fAMLNode_lookupPrefix(this, sNameSpaceURI),
-		aQName		= sQName.split(':'),
-		sLocalName	= aQName.length > 1 ? aQName[1] : aQName[0],
-		sPrefix		= aQName.length > 1 ? aQName[0] : null;
-
-	if (sPrefix)
-	{
-		if (!sElementPrefix || (sPrefix != sElementPrefix))
-			// Put namespace declaration
-			this.attributes["xmlns" + ':' + sPrefix]	= sNameSpaceURI;
-	}
-	else
-	{
-		if (sElementPrefix)
-			sPrefix	= sElementPrefix;
-		else
-		{
-			// Create fake prefix
-			sPrefix	= '_' + 'p' + nAMLElement_prefix++;
-
-			// Put namespace declaration
-			this.attributes["xmlns" + ':' + sPrefix]	= sNameSpaceURI;
-		}
-		//
-		sQName	= sPrefix + ':' + sLocalName;
-	}
-
-	// Global attributes module
-	if (!(sQName in this.attributes) && !(sQName == "xmlns" || sNameSpaceURI == "http://www.w3.org/2000/xmlns/" || sNameSpaceURI == "http://www.w3.org/XML/1998/namespace"))
-	{
-		var oNamespace	= oAML_namespaces[sNameSpaceURI],
-			cAttribute	= oNamespace ? oNamespace.attributes[sLocalName] : null,
-			oAttribute,
-			oEvent;
-
-		if (cAttribute)
-		{
-			// oAttribute used to create fake object
-			oAttribute	= new cAttribute;
-			oAttribute.ownerElement	= this;
-			oAttribute.nodeValue	= sValue;
-			oAttribute.nodeName		= sQName;
-			oAttribute.localName	= sLocalName;
-			oAttribute.prefix		= sPrefix;
-			oAttribute.namespaceURI	= sNameSpaceURI;
-			oAttribute.name		= sQName;
-			oAttribute.value	= sValue;
-
-			// Fire Mutation event (pseudo)
-			oEvent = new cAMLMutationEvent;
-			oEvent.initMutationEvent("DOMNodeInsertedIntoDocument", false, false, null, null, null, null, null);
-			oEvent.target	=
-			oEvent.currentTarget	= oAttribute;
-			oEvent.eventPhase		= cAMLEvent.AT_TARGET;
-			fAMLNode_handleEvent(oAttribute, oEvent);
-		}
-	}
-
-	// Set attribute
-	this.setAttribute(sQName, sValue);
+	fAMLElement_setAttributeNS(this, sNameSpaceURI, sQName, sValue);
 };
 
 cAMLElement.prototype.setAttributeNode	= function(oAttribute)
