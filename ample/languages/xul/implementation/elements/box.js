@@ -16,7 +16,10 @@ cXULElement_box.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
 cXULElement_box.handlers	= {
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this) {
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			switch (oEvent.attrName) {
+				default:
+					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			}
 		}
 	}
 };

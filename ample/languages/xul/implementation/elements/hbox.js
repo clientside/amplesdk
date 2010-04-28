@@ -18,7 +18,10 @@ cXULElement_hbox.attributes.orient	= "horizontal";
 cXULElement_hbox.handlers	= {
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this) {
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			switch (oEvent.attrName) {
+				default:
+					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			}
 		}
 	}
 };
