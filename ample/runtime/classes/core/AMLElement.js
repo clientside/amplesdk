@@ -358,6 +358,7 @@ function fAMLElement_setAttributeNS(oElement, sNameSpaceURI, sQName, sValue)
 			{
 				// oAttribute used to create fake object
 				oAttribute	= new cAttribute;
+				oAttribute.ownerDocument= oElement.ownerDocument;
 				oAttribute.ownerElement	= oElement;
 				oAttribute.nodeValue	= sValue;
 				oAttribute.nodeName		= sQName;
@@ -534,6 +535,7 @@ cAMLElement.prototype.removeAttributeNS	= function(sNameSpaceURI, sLocalName)
 		{
 			// oAttribute used to create fake object
 			oAttribute	= new cAttribute;
+			oAttribute.ownerDocument= this.ownerDocument;
 			oAttribute.ownerElement	= this;
 			oAttribute.nodeValue	= sValue;
 			oAttribute.nodeName		= sQName;

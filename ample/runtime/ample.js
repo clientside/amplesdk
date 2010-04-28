@@ -302,6 +302,7 @@ function fAML_register(oNode) {
 					if (cAttribute)	{
 						// oAttribute used to create fake object
 						var oAttribute	= new cAttribute;
+						oAttribute.ownerDocument= oAML_document;
 						oAttribute.ownerElement	= oNode;
 						oAttribute.name			=
 						oAttribute.nodeName		= sName;
