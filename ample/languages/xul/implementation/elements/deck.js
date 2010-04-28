@@ -17,9 +17,9 @@ cXULElement_deck.prototype.selectedPanel	= null;
 
 // Attributes Defaults
 cXULElement_deck.attributes	= {};
-cXULElement_deck.attributes.selectedIndex	= "0";
+cXULElement_deck.attributes.selectedIndex	= "-1";
 
-// Public Methods
+// Class event handlers
 cXULElement_deck.handlers	= {
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this) {
@@ -47,26 +47,20 @@ cXULElement_deck.handlers	= {
 			        this.$mapAttribute(oEvent.attrName, oEvent.newValue);
 			}
 		}
-	}
-};
-
-// Class event handlers
-cXULElement_deck.handlers	= {
+	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		if (!isNaN(this.attributes["selectedIndex"]))
-			this.setAttribute("selectedIndex", this.attributes["selectedIndex"]);
+			this.setAttribute("selectedIndex", this.attributes["selectedIndex"] == "-1" ? "0" : this.attributes["selectedIndex"]);
 	}
 };
 
 // Element Render: open
-cXULElement_deck.prototype.$getTagOpen	= function()
-{
+cXULElement_deck.prototype.$getTagOpen	= function() {
     return '<div class="xul-deck">';
 };
 
 // Element Render: close
-cXULElement_deck.prototype.$getTagClose	= function()
-{
+cXULElement_deck.prototype.$getTagClose	= function() {
     return '</div>';
 };
 
