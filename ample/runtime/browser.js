@@ -714,15 +714,36 @@ function fAML_parseStyleSheet(sCSS, sUri) {
 	if (bTrident) {
 		// Rewrite display:inline-block to display:inline (IE8-)
 		if (nVersion < 8)
-			sCSS	= sCSS.replace(/display\s*:\s*inline-block/g, 'display:inline;zoom:1');
+			sCSS	= sCSS.replace(/display\s*:\s*inline-block/g, 'display:inline;zoom:1;');
 		// Rewrite opacity
 		sCSS	= sCSS.replace(/(?:[^-])opacity\s*:\s*([\d.]+)/g, function(sMatch, nOpacity) {
 			return "filter" + ':' + "Alpha" + '(' + "opacity" + '=' + nOpacity * 100 + ');' + "opacity" + ':' + nOpacity;
 		});
 	}
+	else
+	if (bGecko || bWebKit) {
+		var sBefore	= '$1$2$3-',
+			sAfter	= '-$1$2$3';
+		// Rewrite box-shadow
+		sCSS	= sCSS
+					.replace(/(?:\s|;)(box-shadow\s*:\s*)(.+)(\n|;)/gi, sBefore + (bGecko ? "moz" : "webkit") + sAfter)
+					.replace(/(?:\s|;)(outline-radius\s*:\s*)(.+)(\n|;)/gi, sBefore + (bGecko ? "moz" : "webkit") + sAfter)
+					.replace(/(?:\s|;)(border-radius\s*:\s*)(.+)(\n|;)/gi, sBefore + (bGecko ? "moz" : "webkit") + sAfter);
+		// Rewrite border-radius
+		if (bGecko) {
+			sBefore	= sBefore + 'moz-border-radius-';
+			sAfter	= ':$2$3';
+			sCSS	= sCSS
+						.replace(/(?:\s|;)(border-top-left-radius\s*:\s*)(.+)(\n|;)/gi, sBefore + 'topleft' + sAfter)
+						.replace(/(?:\s|;)(border-top-right-radius\s*:\s*)(.+)(\n|;)/gi, sBefore + 'topright' + sAfter)
+						.replace(/(?:\s|;)(border-bottom-left-radius\s*:\s*)(.+)(\n|;)/gi, sBefore + 'bottomleft' + sAfter)
+						.replace(/(?:\s|;)(border-bottom-right-radius\s*:\s*)(.+)(\n|;)/gi, sBefore + 'bottomright' + sAfter);
+		}
+		// Rewrite linear-gradient
+//		sCSS	= sCSS.replace(/(\s|;)(background-image\s*:\s*)(linear-gradient\(.+\))(\n|;)/gi, "$1$2$3$4$1$2\-moz\-$3$4");
+	}
 
 	// 5. Modify selectors
-//var d=new Date;
 	var aCSS	= [],
 		aRules	= sCSS.match(/[^{]+{[^}]*}/g);
 	if (aRules) {
@@ -742,27 +763,6 @@ function fAML_parseStyleSheet(sCSS, sUri) {
 		}
 		sCSS	= aCSS.join('');
 	}
-
-//console.log(new Date - d);
-
-/*
-	// 4. Modify element names
-	sCSS	= sCSS
-			// strip comments
-//			.replace(/\/\*.+\*\//g, '')
-			// CSS3-NS (namespace)	ns|element				-> .ns-element
-			.replace(/([\w]+)\|([\w]+)/g, '.$1-$2')
-			// Classes names 		element.class			-> element-class
-//			.replace(/(^|[},]\s*)([\w]+)\.([\w]+)/g, '$1$2-$3')
-			// CSS2-Attribute		element[attribute=value]-> element-attribute-value
-			.replace(/\[([\w]+)=?([\w]+)?\]/g, '-$1-$2')
-			// CSS3-UI (psd-elem)	element::input			-> element--input
-			.replace(/([\w-]+)::([\w-]+)/g, '$1--$2')
-			// CSS3-UI (psd-class)	element:hover			-> element_hover
-//			.replace(/([\w]+):([\w-]+)(\s*[{,*.])/g, '$1_$2$3')
-			.replace(/([\w]+):(?!last-child|first-child)([\w-]+)(\s*[{,*.])/g, '$1_$2$3')	// CSS3-UI "element:hover"
-			;
-*/
 
 	return sCSS;
 };
