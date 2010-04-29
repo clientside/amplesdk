@@ -46,8 +46,13 @@ function fAMLElementAnimation_play(oElement, sParams, nDuration, vType, fHandler
 			switch (sKey)
 			{
 				case "opacity":
-					if (oStyle.filter && oStyle.filter.match(/opacity=([0-9\.]+)/i))
-						sValue	= cRegExp.$1 / 100;
+					if (bTrident && nVersion < 9) {
+						sValue	= 1;
+						if (cString(oStyle.filter).match(/opacity=([\.0-9]+)/i))
+							sValue	= oEffect._container.filters.item("DXImageTransform.Microsoft.Alpha").opacity / 100;
+						else
+							oEffect._container.style.filter	= oStyle.filter + " progid:DXImageTransform.Microsoft.Alpha(opacity=100)";
+					}
 					else
 					if (oStyle.MozOpacity != null)
 						sValue	= oStyle.MozOpacity || 1;
@@ -65,6 +70,9 @@ function fAMLElementAnimation_play(oElement, sParams, nDuration, vType, fHandler
 				case "borderColor":
 					// Start value
 					sValue	= oStyle[sKey == "borderColor" ? "borderBottomColor" : sKey].replace('#', '');
+					if (sValue == "transparent")
+						sValue	= [255, 255, 255];
+					else
 					if (sValue.match(/[0-9a-f]{6}/i))
 						sValue	= [fAMLElementAnimation_fromHex(sValue.substr(0, 2)), fAMLElementAnimation_fromHex(sValue.substr(2, 2)), fAMLElementAnimation_fromHex(sValue.substr(4, 2))];
 					else
@@ -117,8 +125,8 @@ function fAMLElementAnimation_stop(nEffect)
 				case "opacity":
 					oStyle.MozOpacity	= oData[1];
 					oStyle.opacity		= oData[1];
-					if (bTrident)// && nVersion < 8)
-						oStyle.filter		= "Alpha" + '(' + "opacity" + '=' + cMath.round(oData[1] * 100) + ')';
+					if (bTrident && nVersion < 9)
+						oEffect._container.filters.item("DXImageTransform.Microsoft.Alpha").opacity	= cMath.round(oData[1] * 100);
 					break;
 
 				case "color":
@@ -204,8 +212,8 @@ function fAMLElementAnimation_process(nEffect)
 					sValue	= oData[0] + (oData[1] - oData[0]) * nRatio;
 					oStyle.MozOpacity	= sValue;
 					oStyle.opacity		= sValue;
-					if (bTrident)// && nVersion < 8)
-						oStyle.filter		= "Alpha" + '(' + "opacity" + '=' + cMath.round(sValue * 100) + ')';
+					if (bTrident && nVersion < 9)
+						oEffect._container.filters.item("DXImageTransform.Microsoft.Alpha").opacity	= cMath.round(sValue * 100);
 					break;
 
 				case "color":

@@ -79,8 +79,11 @@ function fAMLSMIL30_animation_getAttributeValue(oAnimation) {
 		}
 		else {
 			if (oAnimation.attributeName == "opacity") {
-				if (oStyle.filter && oStyle.filter.match(/opacity=([0-9\.]+)/i))
-					aValue	= [cRegExp.$1 / 100];
+				if (bTrident && nVersion < 9) {
+					aValue	= [1];
+					if (cString(oStyle.filter).match(/opacity=([\.0-9]+)/i))
+						aValue	= [oElementDOM.filters.item("DXImageTransform.Microsoft.Alpha").Opacity / 100];
+				}
 				else
 				if (oStyle.MozOpacity != null)
 					aValue	= [oStyle.MozOpacity || 1];
@@ -119,8 +122,11 @@ function fAMLSMIL30_animation_setAttributeValue(oAnimation, aValue) {
 				if (oAnimation.attributeName == "opacity") {
 					oStyle.MozOpacity	= aValue[0];
 					oStyle.opacity		= aValue[0];
-					if (bTrident)// && nVersion < 8)
-						oStyle.filter		= "Alpha" + '(' + "opacity" + '=' + cMath.round(aValue[0] * 100) + ')';
+					if (bTrident && nVersion < 9) {
+						if (!cString(oAnimation.targetElement.currentStyle.filter).match(/opacity=([\.0-9]+)/i))
+							oStyle.filter	= oAnimation.targetElement.currentStyle.filter + " progid:DXImageTransform.Microsoft.Alpha(opacity=100)";
+						oAnimation.targetElement.filters.item("DXImageTransform.Microsoft.Alpha").Opacity	= cMath.round(aValue[0] * 100);
+					}
 				}
 				else
 					oStyle[fAML_toCssPropertyName(oAnimation.attributeName)]	= aValue.join('');
