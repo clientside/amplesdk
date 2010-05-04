@@ -9,7 +9,7 @@
 
 var oXULCommandDispatcher	= {
 	// Public Methods
-	getControllerForCommand:	function(sCommand, sParams) {
+	getControllerForCommand:	function(sCommand) {
 
 	},
 	updateCommands:	function(sCommand) {
