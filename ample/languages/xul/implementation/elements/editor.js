@@ -93,7 +93,7 @@ cXULElement_editor.handlers	= {
 			this._elementFontName.setAttribute("class", "fontname");
 			this._elementFontName.addEventListener("change", function(oEvent) {
 				var oDOMDocument	= that.$getContainer("frame").contentWindow.document;
-				oDOMDocument.execCommand("fontname", false, this.selectedItem ? this.selectedItem.getAttribute("value") : '');
+				oDOMDocument.execCommand("fontname", false, this.menupopup.selectedItem ? this.menupopup.selectedItem.getAttribute("value") : '');
 			}, false);
 			oPopup	= this._elementFontName.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menupopup"));
 			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
@@ -159,7 +159,7 @@ cXULElement_editor.handlers	= {
 			this._elementFontSize.setAttribute("class", "fontsize");
 			this._elementFontSize.addEventListener("change", function(oEvent) {
 				var oDOMDocument	= that.$getContainer("frame").contentWindow.document;
-				oDOMDocument.execCommand("fontsize", false, this.selectedItem ? this.selectedItem.getAttribute("value") : '');
+				oDOMDocument.execCommand("fontsize", false, this.menupopup.selectedItem ? this.menupopup.selectedItem.getAttribute("value") : '');
 			}, false);
 			oPopup	= this._elementFontSize.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menupopup"));
 			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
@@ -201,7 +201,7 @@ cXULElement_editor.handlers	= {
 			this._elementFormat.setAttribute("class", "formatblock");
 			this._elementFormat.addEventListener("change", function(oEvent) {
 				var oDOMDocument	= that.$getContainer("frame").contentWindow.document;
-				oDOMDocument.execCommand("formatblock", false, this.selectedItem ? this.selectedItem.getAttribute("value") : '');
+				oDOMDocument.execCommand("formatblock", false, this.menupopup.selectedItem ? this.menupopup.selectedItem.getAttribute("value") : '');
 			}, false);
 			oPopup	= this._elementFormat.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menupopup"));
 			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
