@@ -9,6 +9,11 @@
     $aFiles[]	= "implementation/classes/cXULSelectElement.js";
     $aFiles[]	= "implementation/classes/cXULPopupElement.js";
 
+	// managers
+    $aFiles[]	= "implementation/managers/oXULPopupManager.js";
+    $aFiles[]	= "implementation/managers/oXULTooltipManager.js";
+    $aFiles[]	= "implementation/managers/oXULWindowManager.js";
+
     // elements
     // windowing
     $aFiles[]	= "implementation/elements/dialog.js";

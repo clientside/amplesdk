@@ -389,6 +389,9 @@
 				<exclude name="cXULController.js" />
 				<exclude name="cXULCommandDispatcher.js" />
 			</fileset>
+			<fileset dir="${source.xul.dir}/implementation/managers/">
+				<include name="**" />
+			</fileset>
 			<fileset dir="${source.xul.dir}/implementation/elements/">
 				<include name="**" />
 			</fileset>
