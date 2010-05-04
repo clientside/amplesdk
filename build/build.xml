@@ -5,7 +5,10 @@
 	// =================================================================
 -->
 <project name="Project Build Script - Ample SDK" default="BUILD_AMPLESDK" basedir=".">
-	<!-- Define properties -->
+	<!-- Local properties -->
+	<property file="build.local.properties" />
+
+	<!-- System properties -->
 	<tstamp>
 		<format property="tstamp.full" pattern="yyyy-MM-dd HH:mm:ss" locale="en" />
 		<format property="tstamp.year" pattern="yyyy" locale="en" />
@@ -13,8 +16,6 @@
 	</tstamp>
 
 	<!-- Project-related -->
-	<property name="project.name" value="Ample" />
-	<property name="project.version" value="0.9.1" />
 	<property name="copyright.year" value="${tstamp.year}" />
 	<property name="copyright.name" value="Clientside OY" />
 
@@ -33,8 +34,6 @@
 
 	<!-- Master build -->
 	<target name="BUILD_AMPLESDK" description="Builds Ample SDK project">
-
-		<property file="build.local.properties" />
 
 		<delete dir="${target.dir}" failonerror="false"/>
 		<delete file="${target.zip}" />
