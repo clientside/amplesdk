@@ -3,13 +3,13 @@
     $aFiles[]	= "implementation/xul.js";
     $aFiles[]	= "implementation/classes/cXULElement.js";
 	$aFiles[]	= "implementation/classes/cXULController.js";
-	$aFiles[]	= "implementation/classes/cXULCommandDispatcher.js";
 
     // base classes
     $aFiles[]	= "implementation/classes/cXULSelectElement.js";
     $aFiles[]	= "implementation/classes/cXULPopupElement.js";
 
 	// managers
+	$aFiles[]	= "implementation/managers/oXULCommandDispatcher.js";
     $aFiles[]	= "implementation/managers/oXULPopupManager.js";
     $aFiles[]	= "implementation/managers/oXULTooltipManager.js";
     $aFiles[]	= "implementation/managers/oXULWindowManager.js";
