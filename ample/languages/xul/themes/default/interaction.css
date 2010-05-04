@@ -33,6 +33,7 @@ xul|progressmeter-bar-right {
 }
 
 /* div */
+xul|panel,
 xul|tooltip {
     cursor:	default;
     background-color:	#fff;
