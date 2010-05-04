@@ -286,7 +286,7 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
 	}
 
 	// Opera doesn't support userSelect, so manual clearing of ranges is used
-	if (bPresto)
+	if (!bTrident)
 		window.getSelection().removeAllRanges();
 };
 
