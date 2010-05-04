@@ -46,7 +46,7 @@ ample.addEventListener("click",	function(oEvent) {
 			if (oEvent.button == 2) {
 		        if (oElement.attributes["context"]) {
 		            if (oPopup = this.getElementById(oElement.attributes["context"])) {
-		                oPopup.showPopup(oElement, oEvent.clientX, oEvent.clientY, cXULPopupElement.POPUP_TYPE_POPUP);
+		            	oPopup.showPopup(oElement, oEvent.clientX + document.documentElement.scrollLeft, oEvent.clientY + document.documentElement.scrollTop, cXULPopupElement.POPUP_TYPE_POPUP);
 		                this.popupNode	= oPopup;
 		            }
 		            oEvent.preventDefault();
@@ -57,7 +57,7 @@ ample.addEventListener("click",	function(oEvent) {
 	        if (oEvent.button == 0) {
 	        	if (oElement.attributes["popup"]) {
 		            if (oPopup = this.getElementById(oElement.attributes["popup"])) {
-		                oPopup.showPopup(oElement, oEvent.clientX, oEvent.clientY, cXULPopupElement.POPUP_TYPE_POPUP);
+		                oPopup.showPopup(oElement, oEvent.clientX + document.documentElement.scrollLeft, oEvent.clientY + document.documentElement.scrollTop, cXULPopupElement.POPUP_TYPE_POPUP);
 			    		this.popupNode	= oPopup;
 			    	}
 		            oEvent.preventDefault();
@@ -99,15 +99,15 @@ ample.addEventListener("mouseenter",	function(oEvent) {
 		    		oXULNamespace.tooltipPane	= oTooltip;
 		    	}
 				oTooltip.setText(oElement.attributes["tooltiptext"]);
-	        	oTooltip.showPopup(null, oEvent.clientX, oEvent.clientY + 18, cXULPopupElement.POPUP_TYPE_TOOLTIP);
+	        	oTooltip.showPopup(null, oEvent.clientX + document.documentElement.scrollLeft, oEvent.clientY + 18 + document.documentElement.scrollTop, cXULPopupElement.POPUP_TYPE_TOOLTIP);
 	    		this.tooltipNode	= oTooltip;
 		    }
 		    else
 		    if (oElement.attributes["tooltip"]) {
 		    	oTooltip	= this.getElementById(oElement.attributes["tooltip"]);
 		    	if (oTooltip) {
-		    		oTooltip.showPopup(null, oEvent.clientX, oEvent.clientY + 18, cXULPopupElement.POPUP_TYPE_TOOLTIP);
-		    		this.tooltipNode	= oElement;
+		    		oTooltip.showPopup(null, oEvent.clientX + document.documentElement.scrollLeft, oEvent.clientY + 18 + document.documentElement.scrollTop, cXULPopupElement.POPUP_TYPE_TOOLTIP);
+		    		this.tooltipNode	= oTooltip;
 		    	}
 		    }
 		}
