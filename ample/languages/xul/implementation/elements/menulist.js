@@ -87,6 +87,7 @@ cXULElement_menulist.prototype.toggle	= function(bState) {
 		oPane.showPopup(this, -1, -1, cXULPopupElement.POPUP_TYPE_POPUP);
 		oPane.opener		= this;
 		cXULElement_menulist.hidden	= false;
+		this.ownerDocument.popupNode	= oPane;	// ???
 	}
 	else {
 		oPane.hidePopup();
@@ -170,14 +171,14 @@ cXULElement_menulist.handlers	= {
 				if (!cXULElement_menulist.hidden) {
 					if (this.items[this.selectedIndex]) {
 						this.selectedText	= this.items[this.selectedIndex].getAttribute("label");
-						this.$setValue(this.selectedText);
+						this.setAttribute("value", this.selectedText);
 					}
 					this.toggle(false);
 				}
 
 				// Fire Event
-				var oEvent2  = this.ownerDocument.createEvent("Events");
-				oEvent2.initEvent("change", true, false);
+				var oEvent2  = this.ownerDocument.createEvent("UIEvents");
+				oEvent2.initUIEvent("change", true, false, window, null);
 				this.dispatchEvent(oEvent2);
 
 				// Prevent submit
@@ -235,18 +236,19 @@ cXULElement_menulist.handlers	= {
 	},
 	"blur":		function(oEvent) {
 		this.$getContainer("input").blur();
-		this.toggle(false);
+//		this.toggle(false);
 	},
 	"DOMActivate":	function(oEvent) {
 		if (oEvent.target instanceof cXULElement_menuitem) {
 			var sValue	= this.$getValue();
-			this.$setValue(oEvent.target.getAttribute("label"));
+			this.setAttribute("value", oEvent.target.getAttribute("label"));
+			this.selectedIndex	= this.items.$indexOf(oEvent.target);
 		    this.toggle(false);
 
 			if (sValue != this.$getValue()) {
 			    // Fire Event
-			    var oEvent2  = this.ownerDocument.createEvent("Events");
-			    oEvent2.initEvent("change", true, false);
+			    var oEvent2  = this.ownerDocument.createEvent("UIEvents");
+			    oEvent2.initUIEvent("change", true, false, window, null);
 			    this.dispatchEvent(oEvent2);
 			}
 		}

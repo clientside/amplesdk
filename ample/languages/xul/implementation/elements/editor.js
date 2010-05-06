@@ -91,13 +91,14 @@ cXULElement_editor.handlers	= {
 			this._elementFontName.tabIndex	=-1;
 			this._elementFontName.setAttribute("disabled", "true");
 			this._elementFontName.setAttribute("class", "fontname");
+			this._elementFontName.setAttribute("value", "Default");
 			this._elementFontName.addEventListener("change", function(oEvent) {
 				var oDOMDocument	= that.$getContainer("frame").contentWindow.document;
-				oDOMDocument.execCommand("fontname", false, this.menupopup.selectedItem ? this.menupopup.selectedItem.getAttribute("value") : '');
+				oDOMDocument.execCommand("fontname", false, this.selectedIndex !=-1 ? this.items[this.selectedIndex].getAttribute("value") : '');
 			}, false);
 			oPopup	= this._elementFontName.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menupopup"));
 			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
-			oElement.setAttribute("label", "&lt;Default&gt;");
+			oElement.setAttribute("label", "Default");
 			oElement.setAttribute("value", "");
 			oElement.setAttribute("selected", "true");
 			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
@@ -157,55 +158,57 @@ cXULElement_editor.handlers	= {
 			this._elementFontSize.tabIndex	=-1;
 			this._elementFontSize.setAttribute("disabled", "true");
 			this._elementFontSize.setAttribute("class", "fontsize");
+			this._elementFontSize.setAttribute("value", "Default");
 			this._elementFontSize.addEventListener("change", function(oEvent) {
 				var oDOMDocument	= that.$getContainer("frame").contentWindow.document;
-				oDOMDocument.execCommand("fontsize", false, this.menupopup.selectedItem ? this.menupopup.selectedItem.getAttribute("value") : '');
+				oDOMDocument.execCommand("fontsize", false, this.selectedIndex !=-1 ? this.items[this.selectedIndex].getAttribute("value") : '');
 			}, false);
 			oPopup	= this._elementFontSize.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menupopup"));
 			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
-			oElement.setAttribute("label", "&lt;Default&gt;");
+			oElement.setAttribute("label", "Default");
 			oElement.setAttribute("value", "");
 			oElement.setAttribute("selected", "true");
 			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
 			oElement.setAttribute("label", "1 (8pt)");
 			oElement.setAttribute("value", "1");
-			oElement.setAttribute("style", "font-size:8pt");
+//			oElement.setAttribute("style", "font-size:8pt");
 			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
 			oElement.setAttribute("label", "2 (10pt)");
 			oElement.setAttribute("value", "2");
-			oElement.setAttribute("style", "font-size:10pt");
+//			oElement.setAttribute("style", "font-size:10pt");
 			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
 			oElement.setAttribute("label", "3 (12pt)");
 			oElement.setAttribute("value", "3");
-			oElement.setAttribute("style", "font-size:12pt");
+//			oElement.setAttribute("style", "font-size:12pt");
 			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
 			oElement.setAttribute("label", "4 (14pt)");
 			oElement.setAttribute("value", "4");
-			oElement.setAttribute("style", "font-size:14pt");
+//			oElement.setAttribute("style", "font-size:14pt");
 			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
 			oElement.setAttribute("label", "5 (18pt)");
 			oElement.setAttribute("value", "5");
-			oElement.setAttribute("style", "font-size:18pt");
+//			oElement.setAttribute("style", "font-size:18pt");
 			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
 			oElement.setAttribute("label", "6 (24pt)");
 			oElement.setAttribute("value", "6");
-			oElement.setAttribute("style", "font-size:24pt");
+//			oElement.setAttribute("style", "font-size:24pt");
 			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
 			oElement.setAttribute("label", "7 (36pt)");
 			oElement.setAttribute("value", "7");
-			oElement.setAttribute("style", "font-size:36pt");
+//			oElement.setAttribute("style", "font-size:36pt");
 			// Formats
 			this._elementFormat		= this.$appendChildAnonymous(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menulist"));
 			this._elementFormat.tabIndex	=-1;
 			this._elementFormat.setAttribute("disabled", "true");
 			this._elementFormat.setAttribute("class", "formatblock");
+			this._elementFormat.setAttribute("value", "Default");
 			this._elementFormat.addEventListener("change", function(oEvent) {
 				var oDOMDocument	= that.$getContainer("frame").contentWindow.document;
-				oDOMDocument.execCommand("formatblock", false, this.menupopup.selectedItem ? this.menupopup.selectedItem.getAttribute("value") : '');
+				oDOMDocument.execCommand("formatblock", false, this.selectedIndex !=-1 ? this.items[this.selectedIndex].getAttribute("value") : '');
 			}, false);
 			oPopup	= this._elementFormat.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menupopup"));
 			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
-			oElement.setAttribute("label", "&lt;Default&gt;");
+			oElement.setAttribute("label", "Default");
 			oElement.setAttribute("value", "");
 			oElement.setAttribute("selected", "true");
 			oElement	= oPopup.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
@@ -437,7 +440,8 @@ cXULElement_editor.updateButtons	= function(oInstance) {
 		oToolBar	= oInstance.$getContainer("toolbar"),
 		oButton,
 		sCommand,
-		sValue;
+		sValue,
+		oItem;
 	// Update commands state
 	for (var nGroup = 0; nGroup < cXULElement_editor.commands.length; nGroup++)
 		for (var nIndex = 0; nIndex < cXULElement_editor.commands[nGroup].length; nIndex++) {
@@ -461,15 +465,21 @@ cXULElement_editor.updateButtons	= function(oInstance) {
 				oButton.className	= oButton.className.replace(/ xul-button_disabled/, '');
 		}
 	// Lists
-	oInstance._elementFontName.setAttribute("disabled", !oDOMDocument.queryCommandEnabled("fontname"));
 	sValue	= String(oDOMDocument.queryCommandValue("fontname")).replace(/^'|'$/g, '');
-	oInstance._elementFontName.setAttribute("value", sValue);
+	oItem	= oInstance._elementFontName.menupopup.querySelector("[value='" + sValue + "']");
+	oInstance._elementFontName.setAttribute("disabled", !oDOMDocument.queryCommandEnabled("fontname"));
+	oInstance._elementFontName.menupopup.selectItem(oItem);
+	oInstance._elementFontName.setAttribute("value", oItem ? oItem.getAttribute("label") : '');
+	sValue	= cXULElement_editor.fontSizeValueToFontSizeNumber(String(oDOMDocument.queryCommandValue("fontsize")));
+	oItem	= oInstance._elementFontSize.menupopup.querySelector("[value='" + sValue + "']");
 	oInstance._elementFontSize.setAttribute("disabled", !oDOMDocument.queryCommandEnabled("fontsize"));
-	sValue	= String(oDOMDocument.queryCommandValue("fontsize"));
-	oInstance._elementFontSize.setAttribute("value", cXULElement_editor.fontSizeValueToFontSizeNumber(sValue));	// Chrome returns font-size in pixels
-	oInstance._elementFormat.setAttribute("disabled", !oDOMDocument.queryCommandEnabled("formatblock"));
+	oInstance._elementFontSize.menupopup.selectItem(oItem);	// Chrome returns font-size in pixels
+	oInstance._elementFontSize.setAttribute("value", oItem ? oItem.getAttribute("label") : '');
 	sValue	= String(oDOMDocument.queryCommandValue("formatblock")).toLowerCase();
-	oInstance._elementFormat.setAttribute("value", sValue);
+	oItem	= oInstance._elementFormat.menupopup.querySelector("[value='" + sValue + "']");
+	oInstance._elementFormat.setAttribute("disabled", !oDOMDocument.queryCommandEnabled("formatblock"));
+	oInstance._elementFormat.menupopup.selectItem(oItem);
+	oInstance._elementFormat.setAttribute("value", oItem ? oItem.getAttribute("label") : '');
 };
 
 cXULElement_editor.resetButtons	= function(oInstance) {
@@ -494,7 +504,7 @@ cXULElement_editor.resetButtons	= function(oInstance) {
 // presentation
 cXULElement_editor.prototype.$getTagOpen	= function() {
 	return '<div class="xul-editor' + (this.getAttribute("disabled") == "true" ? ' xul-editor_disabled' : '') + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '"><div style="display:none"></div>\
-				<div class="xul-editor--toolbar" style="position:relative">\
+				<div class="xul-editor--toolbar" style="position:relative" onmousedown="return false">\
 					<div>'+
 						(function(){
 							var aHtml	= [];
