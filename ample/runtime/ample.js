@@ -534,7 +534,7 @@ function fAML_processScripts() {
 //->Debug
 			    														'\n' +
 //<-Debug
-			    														oElementDOM.text.replace(/^\s*(<!\[CDATA\[)?\s*/, '').replace(/\s*(\]\]>)\s*$/, '').replace(/&/g, '&amp;').replace(/<script(.|\n|\r)+$/, '') +
+			    														oElementDOM.text.replace(/^\s*(<!\[CDATA\[)?\s*/, '').replace(/\s*(\]\]>)\s*$/, '').replace(/^\s*<\?xml.+\?>/, '').replace(/&/g, '&amp;').replace(/<script(.|\n|\r)+$/, '') +
 //->Debug
 			    														'\n' +
 //<-Debug
