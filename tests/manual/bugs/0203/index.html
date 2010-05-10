@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<head>
+		<title>Bug 0203</title>
+		<script type="text/javascript" src="../../../../ample/runtime.js"></script>
+		<script type="text/javascript" src="../../../../ample/languages/xhtml/xhtml.js"></script>
+		<style type="text/ample+css">
+			a {
+				padding: 0.5em;
+			}
+			a:focus {
+				font-weight: bold;
+			}
+			/* one class */
+			.a1 {
+				color: red;
+			}
+			.a1:hover {
+				color: pink;
+			}
+			/* two classes */
+			.b1 {
+				color: green;
+			}
+			.b1:hover {
+				color: lightgreen;
+			}
+			.b2 {
+				background-color: yellow;
+			}
+			.b2:hover {
+				background-color: lightyellow;
+			}
+			/* three classes */
+			.c1 {
+				color: blue;
+			}
+			.c1:hover {
+				color: lightblue;
+			}
+			.c2 {
+				background-color: red;
+			}
+			.c2:hover {
+				background-color: pink;
+			}
+			.c3 {
+				border: solid 3px black;
+			}
+			.c3:hover {
+				border: solid 3px silver;
+			}
+		</style>
+	</head>
+	<body>
+		<script type="application/ample+xml">
+			<h3>One class</h3>
+			<a href="#" class="a1">one class</a>
+			<h3>Two classes</h3>
+			<a href="#" class="b1 b2">two classes</a>
+			<h3>Three classes</h3>
+			<a href="#" class="c1 c2 c3">three classes</a>
+		</script>
+	</body>
+</html>

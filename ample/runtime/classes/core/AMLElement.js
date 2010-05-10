@@ -799,7 +799,7 @@ function fAMLElement_getRegExp(sName, sContainer) {
 function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 {
 	var oElementDOM	= oElement.$getContainer(sContainer),
-		sClass		= oElement.getAttribute("class"),
+		aClass		= oElement.getAttribute("class").split(/\s+/g),
 		sPseudoName	= sContainer ? '--' + sContainer : '',
 		sTagName	=(oElement.prefix ? oElement.prefix + '-' : '') + oElement.localName;
 
@@ -811,39 +811,49 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 	if (oElementDOM) {
 		var sOldName= bTrident && nVersion < 8 ? oElementDOM.className : oElementDOM.getAttribute("class") || '',
 			bMatch	= sOldName.match(fAMLElement_getRegExp(sName, sPseudoName)),
+			sPseudo,
+			sClass,
 			sNewName;
 		if (bValue) {
 			// Add class
 			if (!bMatch) {
-				var aMatch	= sOldName.replace(/_\w+_\w+/g, '').match(/_\w+/g),
+				var aPseudo	= sOldName.replace(/_\w+_\w+/g, '').match(/_\w+/g),
 					aNewName= [];
 				// create pair combinations :hover:focus, :focus:hover
-				if (aMatch)
-					for (var nIndex = 0, nLength = aMatch.length, oCache = {}; nIndex < nLength; nIndex++)
-						if (!oCache[aMatch[nIndex]]) {
-							if (sClass)
-								aNewName.push(	// ns|element.class(::pseudo-element)?:pseudo-class:pseudo-class2
-												' ' + sTagName + '-' + sClass + sPseudoName + '_' + sName + aMatch[nIndex] +
-												// ns|element.class(::pseudo-element)?:pseudo-class2:pseudo-class
-												' ' + sTagName + '-' + sClass + sPseudoName + aMatch[nIndex] + '_' + sName +
-												// .class(::pseudo-element)?:pseudo-class:pseudo-class2
-												' ' + sClass + sPseudoName + '_' + sName + aMatch[nIndex] +
-												// .class(::pseudo-element)?:pseudo-class2:pseudo-class
-												' ' + sClass + sPseudoName + aMatch[nIndex] + '_' + sName);
+				if (aPseudo)
+					for (var nIndex = 0, nLength = aPseudo.length, oCache = {}; nIndex < nLength; nIndex++) {
+						sPseudo	= aPseudo[nIndex];
+						if (!oCache[sPseudo]) {
+							if (aClass)
+								for (var nClass = 0; nClass < aClass.length; nClass++) {
+									sClass	= aClass[nClass];
+									aNewName.push(	// ns|element.class(::pseudo-element)?:pseudo-class:pseudo-class2
+													' ' + sTagName + '-' + sClass + sPseudoName + '_' + sName + sPseudo +
+													// ns|element.class(::pseudo-element)?:pseudo-class2:pseudo-class
+													' ' + sTagName + '-' + sClass + sPseudoName + sPseudo + '_' + sName +
+													// .class(::pseudo-element)?:pseudo-class:pseudo-class2
+													' ' + sClass + sPseudoName + '_' + sName + sPseudo +
+													// .class(::pseudo-element)?:pseudo-class2:pseudo-class
+													' ' + sClass + sPseudoName + sPseudo + '_' + sName);
+								}
 							// ns|element(::pseudo-element)?:pseudo-class:pseudo-class2
-							aNewName.push(	' ' + sTagName + sPseudoName + '_' + sName + aMatch[nIndex]);
+							aNewName.push(	' ' + sTagName + sPseudoName + '_' + sName + sPseudo);
 							// ns|element(::pseudo-element)?:pseudo-class2:pseudo-class
-							aNewName.push(	' ' + sTagName + sPseudoName + aMatch[nIndex] + '_' + sName);
+							aNewName.push(	' ' + sTagName + sPseudoName + sPseudo + '_' + sName);
 							// indicate class name processed
-							oCache[aMatch[nIndex]]	= true;
+							oCache[sPseudo]	= true;
 						}
-				if (sClass)
-					aNewName.push(	// ns|element.class(::pseudo-element)?:pseudo-class
-									' ' + sTagName + '-' + sClass + sPseudoName + '_' + sName +
-									// .class(::pseudo-element)?:pseudo-class
-								  	' ' + sClass + sPseudoName + '_' + sName);
+					}
+				if (aClass)
+					for (var nClass = 0; nClass < aClass.length; nClass++) {
+						sClass	= aClass[nClass];
+						aNewName.push(	// ns|element.class(::pseudo-element)?:pseudo-class
+										' ' + sTagName + '-' + sClass + sPseudoName + '_' + sName +
+										// .class(::pseudo-element)?:pseudo-class
+									  	' ' + sClass + sPseudoName + '_' + sName);
+					}
 				// ns|element(::pseudo-element)?:pseudo-class
-				aNewName.push(	' ' + sTagName + sPseudoName + '_' + sName + aNewName.join(''));
+				aNewName.push(	' ' + sTagName + sPseudoName + '_' + sName);
 				sNewName	= aNewName.join('');
 				if (bTrident && nVersion < 8)
 					oElementDOM.className += sNewName;
