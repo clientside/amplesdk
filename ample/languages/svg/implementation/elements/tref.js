@@ -20,7 +20,9 @@ if (cSVGElement.useVML) {
 					case "y":
 					case "dx":
 					case "dy":
-						this.$getContainer().path	= 'm ' + [(this.getAttribute("x") || (this.parentNode ? this.parentNode.getAttribute("x") : 0)) * 1 + (this.getAttribute("dx") || 0) * 1, (this.getAttribute("y") || (this.parentNode ? this.parentNode.getAttribute("y") : 0)) * 1 + ((this.getAttribute("dy") || 0)) * 1].map(Math.round) + ' r 1000,0 x';
+						var nLeft	=((this.parentNode ? this.parentNode.getAttribute("x") : this.getAttribute("x")).match(/([0-9\.]+)?/)[1] * 1 || 0) + (this.getAttribute("dx") * 1 || 0),
+							nTop	=((this.parentNode ? this.parentNode.getAttribute("y") : this.getAttribute("y")).match(/([0-9\.]+)?/)[1] * 1 || 0) + (this.getAttribute("dy") * 1 || 0);
+						this.$getContainer().path	= 'm ' + [nLeft, nTop].map(Math.round) + ' r 1000,0 x';
 						break;
 					case "xlink:href":
 						var oTextPath = this.ownerDocument.getElementById(oEvent.newValue.substr(1));
@@ -54,6 +56,8 @@ if (cSVGElement.useVML) {
 			sFontWeight	= cSVGElement.getStyle(this, "font-weight"),
 			sFontSize	= cSVGElement.getStyle(this, "font-size"),
 			sTextAnchor	= cSVGElement.getStyle(this, "text-anchor"),
+			nLeft	=((this.getAttribute("x") || (this.parentNode ? this.parentNode.getAttribute("x") : "0")).match(/([0-9\.]+)?/)[1] * 1 || 0) + (this.getAttribute("dx") * 1 || 0),
+			nTop	=((this.getAttribute("y") || (this.parentNode ? this.parentNode.getAttribute("y") : "0")).match(/([0-9\.]+)?/)[1] * 1 || 0) + (this.getAttribute("dy") * 1 || 0),
 			// Font size calculations
 			aFontSize	= sFontSize.match(/(^[\d.]*)(.*)$/),
 			sFontSizeUnit	= aFontSize[2] || "px",
@@ -63,7 +67,7 @@ if (cSVGElement.useVML) {
 
 		return '<svg2vml:shape class="svg-tspan' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '"\
 					style="position:absolute;width:100%;height:100%;margin-top:' + nMarginTop + 'px;left:' + (this.getAttribute("x") || (this.parentNode ? this.parentNode.getAttribute("x") : "0")) + 'px;top:' + (this.getAttribute("y") || (this.parentNode ? this.parentNode.getAttribute("y") : "0")) + 'px;"\
-					path="m ' + [(this.getAttribute("x") || (this.parentNode ? this.parentNode.getAttribute("x") : 0)) * 1 + (this.getAttribute("dx") || 0) * 1, (this.getAttribute("y") || (this.parentNode ? this.parentNode.getAttribute("y") : 0)) * 1 + (this.getAttribute("dy") || 0) * 1].map(Math.round) + ' r 1000,0 x" allowoverlap="false"\
+					path="m ' + [nLeft, nTop].map(Math.round) + ' r 1000,0 x" allowoverlap="false"\
 				>' + cSVGElement.getTagStyle(this) + '\
 					<svg2vml:path textpathok="true" />\
 					<svg2vml:textpath on="true"\
