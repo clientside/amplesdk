@@ -799,7 +799,7 @@ function fAMLElement_getRegExp(sName, sContainer) {
 function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 {
 	var oElementDOM	= oElement.$getContainer(sContainer),
-		aClass		= oElement.getAttribute("class").split(/\s+/g),
+		aClass		= fAMLElement_getAttribute(oElement, "class").split(/\s+/g),
 		sPseudoName	= sContainer ? '--' + sContainer : '',
 		sTagName	=(oElement.prefix ? oElement.prefix + '-' : '') + oElement.localName;
 
