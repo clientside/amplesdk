@@ -185,7 +185,7 @@ oAMLSelector_elementSelectors[' '] = function(aReturn, aFrom, sTagName, sArgumen
 oAMLSelector_elementSelectors['#'] = function(aReturn, aFrom, sId) {
     // loop through current selection and check ID
     for (var nIndex = 0, oElement; oElement = aFrom[nIndex]; nIndex++)
-    	if (oElement.getAttribute("id") == sId)
+    	if (fAMLElement_getAttribute(oElement, "id") == sId)
     		aReturn.push(oElement);
 };
 
@@ -195,7 +195,7 @@ oAMLSelector_elementSelectors['.'] = function(aReturn, aFrom, sName) {
     var rClass	= new cRegExp('(^|\\s)' + sName + '(\\s|$)');
     // loop through current selection and check class
     for (var nIndex = 0, oElement, sValue; oElement = aFrom[nIndex]; nIndex++)
-    	if (sValue = oElement.getAttribute("class"))
+    	if (sValue = fAMLElement_getAttribute(oElement, "class"))
         	if (rClass.test(sValue))
         		aReturn.push(oElement);
 };
@@ -295,9 +295,9 @@ oAMLSelector_pseudoClasses["first-child"] = function(oElement) {
 
 oAMLSelector_pseudoClasses["lang"] = function(oElement, sCode) {
     var rValue = new cRegExp('^' + sCode, 'i');
-    while (oElement && oElement.parentNode != oElement.ownerDocument && !oElement.getAttribute("lang"))
+    while (oElement && oElement.parentNode != oElement.ownerDocument && !fAMLElement_getAttribute(oElement, "lang"))
     	oElement = oElement.parentNode;
-    return oElement && rValue.test(oElement.getAttribute("lang"));
+    return oElement && rValue.test(fAMLElement_getAttribute(oElement, "lang"));
 };
 
 // -----------------------------------------------------------------------
