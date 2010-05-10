@@ -206,11 +206,15 @@ function fAMLResize_onMouseMove(oEvent)
 	    nAMLResize_offsetLeft		= oPosition.left	- oPositionP.left;
 	    nAMLResize_offsetTop		= oPosition.top		- oPositionP.top;
 
-		// Retrieve min/max allowed hight/width
+		// Retrieve min/max allowed height/width
 		nAMLResize_widthMin		= fParseInt(oComputedStyle[fAML_toCssPropertyName("min-width")] || oComputedStyle["min-width"]) || 0;
 		nAMLResize_widthMax		= fParseInt(oComputedStyle[fAML_toCssPropertyName("max-width")] || oComputedStyle["max-width"]) || nInfinity;
+		if (nAMLResize_widthMax < 0)	// Opera 10.5 returns -1
+			nAMLResize_widthMax	= nInfinity;
 		nAMLResize_heightMin	= fParseInt(oComputedStyle[fAML_toCssPropertyName("min-height")]|| oComputedStyle["min-height"]) || 0;
 		nAMLResize_heightMax	= fParseInt(oComputedStyle[fAML_toCssPropertyName("max-height")]|| oComputedStyle["max-height"]) || nInfinity;
+		if (nAMLResize_heightMax < 0)	// Opera 10.5 returns -1
+			nAMLResize_heightMax= nInfinity;
     }
 
 	// fire onresize event
