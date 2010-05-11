@@ -15,7 +15,6 @@
 		<interface name="runtime:mCapture" />
 		<interface name="runtime:mDragAndDrop" />
 		<interface name="runtime:mFocus" />
-		<interface name="runtime:mLegacy" />
 		<interface name="runtime:mResize" />
 		<interface name="runtime:mSelection" />
 	</implements>

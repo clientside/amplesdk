@@ -439,14 +439,28 @@
 			<method name="open" type="Void">
 				<description>
 					<locale>
-						Opens Ample fragment. This method can only be called while page is loading.
+						Opens Ample SDK fragment. This method can only be called while page is loading.
 					</locale>
 				</description>
 			</method>
 			<method name="close" type="Void">
 				<description>
 					<locale>
-						Closes Ample fragment. This method can only be called while page is loading.
+						Closes Ample SDK fragment. This method can only be called while page is loading.
+					</locale>
+				</description>
+			</method>
+			<method name="$instance" type="AMLElement">
+				<arguments>
+					<argument name="oElement" type="HTMLElement">
+						<description>
+							DOM HTML element
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Finds corresponding to the HTML DOM element in the Ample SDK DOM.
 					</locale>
 				</description>
 			</method>

@@ -228,7 +228,7 @@
 				<node title="polyline" url="ample/svg11/polyline.xml"/>
 				<node title="radialGradient" url="ample/svg11/radialGradient.xml"/>
 				<node title="rect" url="ample/svg11/rect.xml"/>
-				<node title="script" xurl="ample/svg11/script.xml"/>
+				<node title="script" url="ample/svg11/script.xml"/>
 				<node title="stop" url="ample/svg11/stop.xml"/>
 				<node title="style" url="ample/svg11/style.xml"/>
 				<node title="svg" url="ample/svg11/svg.xml"/>
