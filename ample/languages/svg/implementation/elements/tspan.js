@@ -21,8 +21,8 @@ if (cSVGElement.useVML) {
 					case "y":
 					case "dx":
 					case "dy":
-						var nLeft	=((this.parentNode ? this.parentNode.getAttribute("x") : this.getAttribute("x")).match(/([0-9\.]+)?/)[1] * 1 || 0) + (this.getAttribute("dx") * 1 || 0),
-							nTop	=((this.parentNode ? this.parentNode.getAttribute("y") : this.getAttribute("y")).match(/([0-9\.]+)?/)[1] * 1 || 0) + (this.getAttribute("dy") * 1 || 0);
+						var nLeft	=((this.getAttribute("x") || (this.parentNode ? this.parentNode.getAttribute("x") : "0")).match(/([0-9\.]+)?/)[1] * 1 || 0) + (this.getAttribute("dx") * 1 || 0),
+							nTop	=((this.getAttribute("y") || (this.parentNode ? this.parentNode.getAttribute("y") : "0")).match(/([0-9\.]+)?/)[1] * 1 || 0) + (this.getAttribute("dy") * 1 || 0);
 						this.$getContainer().path	= 'm ' + [nLeft, nTop].map(Math.round) + ' r 1000,0 x';
 						break;
 					//
@@ -60,8 +60,8 @@ if (cSVGElement.useVML) {
 			sFontSize	= cSVGElement.getStyle(this, "font-size"),
 			sFontStyle	= cSVGElement.getStyle(this, "font-style"),
 			sTextAnchor	= cSVGElement.getStyle(this, "text-anchor"),
-			nLeft	=((this.parentNode ? this.parentNode.getAttribute("x") : this.getAttribute("x")).match(/([0-9\.]+)?/)[1] * 1 || 0) + (this.getAttribute("dx") * 1 || 0),
-			nTop	=((this.parentNode ? this.parentNode.getAttribute("y") : this.getAttribute("y")).match(/([0-9\.]+)?/)[1] * 1 || 0) + (this.getAttribute("dy") * 1 || 0),
+			nLeft	=((this.getAttribute("x") || (this.parentNode ? this.parentNode.getAttribute("x") : "0")).match(/([0-9\.]+)?/)[1] * 1 || 0) + (this.getAttribute("dx") * 1 || 0),
+			nTop	=((this.getAttribute("y") || (this.parentNode ? this.parentNode.getAttribute("y") : "0")).match(/([0-9\.]+)?/)[1] * 1 || 0) + (this.getAttribute("dy") * 1 || 0),
 			// Font size calculations
 			aFontSize	= sFontSize.match(/(^[\d.]*)(.*)$/),
 			sFontSizeUnit	= aFontSize[2] || "px",
