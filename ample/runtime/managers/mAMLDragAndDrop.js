@@ -165,7 +165,7 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
 		fAMLCapture_setCapture(oAMLDragAndDrop_dragSource, true);
 
 		// fill in array with drag targets
-		var aElements	= (oAML_modalNode || this).getElementsByTagName('*');
+		var aElements	= fAMLElement_getElementsByTagName(oAML_modalNode || this.documentElement, '*');
 		for (var nIndex = 0, nLength = aElements.length; nIndex < nLength; nIndex++)
 			if (aElements[nIndex].$droppable)
 				aAMLDragAndDrop_dropTargets.push(aElements[nIndex]);
