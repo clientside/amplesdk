@@ -651,3 +651,9 @@ cAMLNode.prototype.$getTag	= function()
 {
 	return '';
 };
+
+//->Source
+cAMLNode.prototype.toXML	= function() {
+	return new AMLSerializer().serializeToString(this);
+};
+//<-Source
