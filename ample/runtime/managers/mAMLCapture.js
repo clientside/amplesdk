@@ -10,13 +10,6 @@
 var aAMLCapture_modals	= [];
 
 // Attaching to impementation
-cAMLDocument.prototype.$releaseCapture	= function() {
-//->Debug
-	fAML_warn(nAML_FEATURE_DEPRECATED_WRN, ["$releaseCapture", "releaseCapture"]);
-//<-Debug
-	this.releaseCapture();
-};
-
 cAMLDocument.prototype.releaseCapture	= function() {
 	if (oAML_captureNode)
 		oAML_captureNode.releaseCapture();
@@ -43,13 +36,6 @@ cAMLElement.prototype.setCapture	= function(bCapture) {
 	}
 };
 
-cAMLElement.prototype.$setCapture	= function(bCapture) {
-//->Debug
-	fAML_warn(nAML_FEATURE_DEPRECATED_WRN, ["$setCapture", "setCapture"]);
-//<-Debug
-	this.setCapture(bCapture);
-};
-
 cAMLElement.prototype.releaseCapture	= function() {
 	if (oAML_captureNode == this) {
 		// Notify element on capture lose
@@ -60,13 +46,6 @@ cAMLElement.prototype.releaseCapture	= function() {
 		//
 		oAML_captureNode	= null;
 	}
-};
-
-cAMLElement.prototype.$releaseCapture	= function() {
-//->Debug
-	fAML_warn(nAML_FEATURE_DEPRECATED_WRN, ["$releaseCapture", "releaseCapture"]);
-//<-Debug
-	this.releaseCapture();
 };
 
 //Attach to the implementation

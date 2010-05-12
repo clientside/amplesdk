@@ -26,33 +26,10 @@
 					</locale>
 				</description>
 			</method>
-			<method name="$setCapture" type="Void">
-				<arguments>
-					<argument name="bContainerCapture" type="Boolean" required="false">
-						<description>
-							<locale>
-								A Boolean that specifies capture mode.
-							</locale>
-						</description>
-					</argument>
-				</arguments>
-				<description>
-					<locale>
-						Deprecated. Use <link type="method">setCapture</link> instead.
-					</locale>
-				</description>
-			</method>
 			<method name="releaseCapture" type="Void">
 				<description>
 					<locale>
 						Removes mouse capture from the object in the current document.
-					</locale>
-				</description>
-			</method>
-			<method name="$releaseCapture" type="Void">
-				<description>
-					<locale>
-						Deprecated. Use <link type="method">releaseCapture</link> instead.
 					</locale>
 				</description>
 			</method>
