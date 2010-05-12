@@ -11,13 +11,13 @@
 function fAMLUI_mouseEnter(oEvent) {
 	var oElement	= oEvent.target;
 	if (oElement.$hoverable)
-		oElement.$setPseudoClass("hover", true);
+		fAMLElement_setPseudoClass(oElement, "hover", true);
 };
 
 function fAMLUI_mouseLeave(oEvent) {
 	var oElement	= oEvent.target;
 	if (oElement.$hoverable)
-		oElement.$setPseudoClass("hover", false);
+		fAMLElement_setPseudoClass(oElement, "hover", false);
 };
 
 // Attaching to impementation
@@ -28,11 +28,11 @@ fAMLEventTarget_addEventListener(oAML_document, "mouseleave",	fAMLUI_mouseLeave,
 
 // :focus pseudo-class
 function fAMLUI_focus(oEvent) {
-	oEvent.target.$setPseudoClass("focus", true);
+	fAMLElement_setPseudoClass(oEvent.target, "focus", true);
 };
 
 function fAMLUI_blur(oEvent) {
-	oEvent.target.$setPseudoClass("focus", false);
+	fAMLElement_setPseudoClass(oEvent.target, "focus", false);
 };
 
 fAMLEventTarget_addEventListener(oAML_document, "focus",	fAMLUI_focus,		true);
@@ -40,11 +40,11 @@ fAMLEventTarget_addEventListener(oAML_document, "blur",	fAMLUI_blur,		true);
 
 // :drag pseudo-class
 function fAMLUI_dragStart(oEvent) {
-	oEvent.target.$setPseudoClass("drag", true);
+	fAMLElement_setPseudoClass(oEvent.target, "drag", true);
 };
 
 function fAMLUI_dragEnd(oEvent) {
-	oEvent.target.$setPseudoClass("drag", false);
+	fAMLElement_setPseudoClass(oEvent.target, "drag", false);
 };
 
 fAMLEventTarget_addEventListener(oAML_document, "dragstart",	fAMLUI_dragStart,	true);
@@ -52,11 +52,11 @@ fAMLEventTarget_addEventListener(oAML_document, "dragend",		fAMLUI_dragEnd,		tru
 
 // :drop pseudo-class
 function fAMLUI_dragEnter(oEvent) {
-	oEvent.target.$setPseudoClass("drop", true);
+	fAMLElement_setPseudoClass(oEvent.target, "drop", true);
 };
 
 function fAMLUI_dragLeave(oEvent) {
-	oEvent.target.$setPseudoClass("drop", false);
+	fAMLElement_setPseudoClass(oEvent.target, "drop", false);
 };
 
 fAMLEventTarget_addEventListener(oAML_document, "dragenter",	fAMLUI_dragEnter,	true);
@@ -65,11 +65,11 @@ fAMLEventTarget_addEventListener(oAML_document, "dragleave",	fAMLUI_dragLeave,	t
 
 // :resize pseudo-class
 function fAMLUI_resizeStart(oEvent) {
-	oEvent.target.$setPseudoClass("resize", true);
+	fAMLElement_setPseudoClass(oEvent.target, "resize", true);
 };
 
 function fAMLUI_resizeEnd(oEvent) {
-	oEvent.target.$setPseudoClass("resize", false);
+	fAMLElement_setPseudoClass(oEvent.target, "resize", false);
 };
 
 fAMLEventTarget_addEventListener(oAML_document, "resizestart",	fAMLUI_resizeStart,	true);
