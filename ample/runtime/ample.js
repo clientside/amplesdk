@@ -87,7 +87,7 @@ function fAML_validate(aArguments, aParameters, sFunction) {
 	var fCaller	= null;
 	// Has to be wrapped in try/catch because Firebug throws "Permission denied to get property on Function.caller" in XMLHttpRequest
 	try {
-		fCaller	= fAML_validate.caller.caller.caller;
+		fCaller	= fAML_validate.caller.caller;
 	} catch (oError) {}
 
 	// Iterate over parameters list
