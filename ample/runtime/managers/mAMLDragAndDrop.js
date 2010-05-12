@@ -213,7 +213,7 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
 			continue;
 
 		// if target contains source, continue
-		if (aAMLDragAndDrop_dropTargets[nIndex].compareDocumentPosition(oAMLDragAndDrop_dragSource) & cAMLNode.DOCUMENT_POSITION_CONTAINS)
+		if (cAMLNode_compareDocumentPosition(aAMLDragAndDrop_dropTargets[nIndex], oAMLDragAndDrop_dragSource) & cAMLNode.DOCUMENT_POSITION_CONTAINS)
 			continue;
 
 		oPosition2	= aAMLDragAndDrop_dropTargets[nIndex].getBoundingClientRect();

@@ -303,6 +303,34 @@ cAMLNode.prototype.compareDocumentPosition	= function(oChild)
 };
 */
 
+function cAMLNode_compareDocumentPosition(oNode, oChild)
+{
+	if (oChild == oNode)
+		return 0;
+
+	var nPosition	= 0,
+		oParent,
+		oDocument	= oNode.nodeType == cAMLNode.DOCUMENT_NODE ? oNode : oNode.ownerDocument;
+
+	for (oParent = oChild; oParent; oParent = oParent.parentNode)
+		if (oParent == oNode)
+			nPosition	|= cAMLNode.DOCUMENT_POSITION_CONTAINED_BY | cAMLNode.DOCUMENT_POSITION_FOLLOWING;
+		else
+		if (oParent == oDocument && oChild != oDocument)
+			nPosition	|= cAMLNode.DOCUMENT_POSITION_DISCONNECTED;
+
+	if (nPosition ^ cAMLNode.DOCUMENT_POSITION_CONTAINED_BY) {
+		for (oParent = oNode; oParent; oParent = oParent.parentNode)
+			if (oParent == oChild)
+				nPosition	|= cAMLNode.DOCUMENT_POSITION_CONTAINS | cAMLNode.DOCUMENT_POSITION_PRECEDING;
+			else
+			if (oParent == oDocument && oNode != oDocument)
+				nPosition	|= cAMLNode.DOCUMENT_POSITION_DISCONNECTED;
+	}
+
+	return nPosition;
+};
+
 cAMLNode.prototype.compareDocumentPosition	= function(oChild)
 {
 	// Validate arguments
@@ -310,30 +338,7 @@ cAMLNode.prototype.compareDocumentPosition	= function(oChild)
 		["node",	cAMLNode]
 	], "compareDocumentPosition");
 
-	if (oChild == this)
-		return 0;
-
-	var nPosition	= 0,
-		oNode,
-		oDocument	= this.nodeType == cAMLNode.DOCUMENT_NODE ? this : this.ownerDocument;
-
-	for (oNode	= oChild; oNode; oNode = oNode.parentNode)
-		if (oNode == this)
-			nPosition	|= cAMLNode.DOCUMENT_POSITION_CONTAINED_BY | cAMLNode.DOCUMENT_POSITION_FOLLOWING;
-		else
-		if (oNode == oDocument && oChild != oDocument)
-			nPosition	|= cAMLNode.DOCUMENT_POSITION_DISCONNECTED;
-
-	if (nPosition ^ cAMLNode.DOCUMENT_POSITION_CONTAINED_BY) {
-		for (oNode	= this; oNode; oNode = oNode.parentNode)
-			if (oNode == oChild)
-				nPosition	|= cAMLNode.DOCUMENT_POSITION_CONTAINS | cAMLNode.DOCUMENT_POSITION_PRECEDING;
-			else
-			if (oNode == oDocument && this != oDocument)
-				nPosition	|= cAMLNode.DOCUMENT_POSITION_DISCONNECTED;
-	}
-
-	return nPosition;
+	return cAMLNode_compareDocumentPosition(this, oChild);
 };
 
 /*
