@@ -303,7 +303,7 @@ cAMLNode.prototype.compareDocumentPosition	= function(oChild)
 };
 */
 
-function cAMLNode_compareDocumentPosition(oNode, oChild)
+function fAMLNode_compareDocumentPosition(oNode, oChild)
 {
 	if (oChild == oNode)
 		return 0;
@@ -338,7 +338,7 @@ cAMLNode.prototype.compareDocumentPosition	= function(oChild)
 		["node",	cAMLNode]
 	], "compareDocumentPosition");
 
-	return cAMLNode_compareDocumentPosition(this, oChild);
+	return fAMLNode_compareDocumentPosition(this, oChild);
 };
 
 /*
