@@ -12,40 +12,48 @@ var aAMLCapture_modals	= [];
 // Attaching to impementation
 cAMLDocument.prototype.releaseCapture	= function() {
 	if (oAML_captureNode)
-		oAML_captureNode.releaseCapture();
+		fAMLCapture_releaseCapture(oAML_captureNode);
 };
 
-cAMLElement.prototype.setCapture	= function(bCapture) {
-	if (oAML_captureNode != this) {
-		// Validate arguments
-		fAML_validate(arguments, [
-			["useCapture",	cBoolean, true]
-		], "setCapture");
-
-		// Raise NOT_SUPPORTED_ERR exception in case setCapture(false) called
-		if (arguments.length && !bCapture)
-			throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
-
+function fAMLCapture_setCapture(oNode, bCapture) {
+	if (oAML_captureNode != oNode) {
 		// Release capture from the previous element
 		var oElement	= oAML_captureNode;
-		if (oElement && oElement != this)
-			oElement.releaseCapture();
+		if (oElement && oElement != oNode)
+			fAMLCapture_releaseCapture(oElement);
 
 		//
-		oAML_captureNode	= this;
+		oAML_captureNode	= oNode;
 	}
 };
 
-cAMLElement.prototype.releaseCapture	= function() {
-	if (oAML_captureNode == this) {
+cAMLElement.prototype.setCapture	= function(bCapture) {
+	// Validate arguments
+	fAML_validate(arguments, [
+		["useCapture",	cBoolean, true]
+	], "setCapture");
+
+	// Raise NOT_SUPPORTED_ERR exception in case setCapture(false) called
+	if (arguments.length && !bCapture)
+		throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+
+	fAMLCapture_setCapture(this, bCapture);
+};
+
+function fAMLCapture_releaseCapture(oNode) {
+	if (oAML_captureNode == oNode) {
 		// Notify element on capture lose
 		var oEvent	= new cAMLUIEvent;
 		oEvent.initUIEvent("losecapture", false, false, window, null);
-		fAMLNode_dispatchEvent(this, oEvent);
+		fAMLNode_dispatchEvent(oNode, oEvent);
 
 		//
 		oAML_captureNode	= null;
 	}
+};
+
+cAMLElement.prototype.releaseCapture	= function() {
+	fAMLElement_releaseCapture(this);
 };
 
 //Attach to the implementation

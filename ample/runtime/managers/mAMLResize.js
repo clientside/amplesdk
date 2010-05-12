@@ -71,9 +71,7 @@ function fAMLResize_onMouseDown(oEvent)
 		// Start session
 	    nAMLResize_resizeState	= nAMLResize_STATE_CAPTURED;
 
-		oAMLResize_resizeNode.setCapture(true);
-
-		return;
+	    fAMLCapture_setCapture(oAMLResize_resizeNode, true);
 	}
 };
 
@@ -293,7 +291,8 @@ function fAMLResize_onMouseUp(oEvent)
 		if (bTrident)
 			oAMLResize_resizeNode.$getContainer().releaseCapture();
 
-		oAMLResize_resizeNode.releaseCapture();
+		//
+		fAMLCapture_releaseCapture(oAMLResize_resizeNode);
 	}
 
     nAMLResize_resizeState	= nAMLResize_STATE_RELEASED;
