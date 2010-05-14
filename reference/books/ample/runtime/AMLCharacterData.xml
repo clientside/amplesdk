@@ -18,6 +18,7 @@
 					<argument name="sValue" type="String" required="true">
 						<description>
 							<locale>
+								The DOMString to append.
 							</locale>
 						</description>
 					</argument>
@@ -35,10 +36,16 @@
 				<arguments>
 					<argument name="nOffset" type="Number" required="true">
 						<description>
+							<locale>
+								The offset from which to start removing.
+							</locale>
 						</description>
 					</argument>
 					<argument name="nCount" type="Number" required="true">
 						<description>
+							<locale>
+								The number of 16-bit units to delete.
+							</locale>
 						</description>
 					</argument>
 				</arguments>
@@ -56,12 +63,14 @@
 					<argument name="nOffset" type="Number" required="true">
 						<description>
 							<locale>
+								The character offset at which to insert.
 							</locale>
 						</description>
 					</argument>
 					<argument name="sValue" type="String" required="true">
 						<description>
 							<locale>
+								The DOMString to insert.
 							</locale>
 						</description>
 					</argument>
@@ -80,18 +89,21 @@
 					<argument name="nOffset" type="Number" required="true">
 						<description>
 							<locale>
+								The offset from which to start replacing.
 							</locale>
 						</description>
 					</argument>
 					<argument name="nCount" type="Number" required="true">
 						<description>
 							<locale>
+								The number of 16-bit units to replace.
 							</locale>
 						</description>
 					</argument>
 					<argument name="sValue" type="String" required="true">
 						<description>
 							<locale>
+								The DOMString with which the range must be replaced.
 							</locale>
 						</description>
 					</argument>
@@ -110,12 +122,14 @@
 					<argument name="nOffset" type="Number" required="true">
 						<description>
 							<locale>
+								Start offset of substring to extract.
 							</locale>
 						</description>
 					</argument>
 					<argument name="nCount" type="Number" required="true">
 						<description>
 							<locale>
+								The number of 16-bit units to extract.
 							</locale>
 						</description>
 					</argument>

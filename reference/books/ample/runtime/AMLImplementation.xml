@@ -76,7 +76,7 @@
 					</argument>
 					<argument name="sSystemId" type="String" required="true">
 						<description>
-							<locale xml:lang="ru">
+							<locale>
 								The external subset system identifier.
 							</locale>
 						</description>

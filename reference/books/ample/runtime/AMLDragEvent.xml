@@ -46,6 +46,9 @@
 					</argument>
 					<argument name="oView" type="Object" required="true">
 						<description>
+							<locale>
+								Specifies view. This value may be null.
+							</locale>
 							<locale xml:lang="ru">
 								Указывает на обьект View, в котором произошло событие.
 							</locale>
@@ -53,6 +56,9 @@
 					</argument>
 					<argument name="nDetail" type="Number" required="true">
 						<description>
+							<locale>
+								Specifies detail.
+							</locale>
 							<locale xml:lang="ru">
 								Указывает дополнительное значение, ассоциированииое с данным событием.
 							</locale>
@@ -60,6 +66,9 @@
 					</argument>
 					<argument name="oDataTransfer" type="AMLDataTransfer" required="true">
 						<description>
+							<locale>
+								References DataTransfer object associated with the event.
+							</locale>
 							<locale xml:lang="ru">
 								Указывает DataTransfer значение, ассоциированииое с данным событием.
 							</locale>
@@ -93,16 +102,16 @@
 	<remarks>
 		<remark>
 			<locale>Events of that type:</locale>
-      <locale xml:lang="ru">События этого типа:</locale>
-      <ul>
-        <li><link type="event" href="runtime:mDragAndDrop">drag</link></li>
-        <li><link type="event" href="runtime:mDragAndDrop">dragend</link></li>
-        <li><link type="event" href="runtime:mDragAndDrop">dragenter</link></li>
-        <li><link type="event" href="runtime:mDragAndDrop">dragleave</link></li>
-        <li><link type="event" href="runtime:mDragAndDrop">dragover</link></li>
-        <li><link type="event" href="runtime:mDragAndDrop">dragstart</link></li>
-        <li><link type="event" href="runtime:mDragAndDrop">drop</link></li>
-      </ul>
+			<locale xml:lang="ru">События этого типа:</locale>
+			<ul>
+				<li><link type="event" href="runtime:mDragAndDrop">drag</link></li>
+				<li><link type="event" href="runtime:mDragAndDrop">dragend</link></li>
+				<li><link type="event" href="runtime:mDragAndDrop">dragenter</link></li>
+				<li><link type="event" href="runtime:mDragAndDrop">dragleave</link></li>
+				<li><link type="event" href="runtime:mDragAndDrop">dragover</link></li>
+				<li><link type="event" href="runtime:mDragAndDrop">dragstart</link></li>
+				<li><link type="event" href="runtime:mDragAndDrop">drop</link></li>
+			</ul>
 		</remark>
 	</remarks>
 	<examples />

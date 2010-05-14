@@ -17,6 +17,9 @@
 				<arguments>
 					<argument name="nOffset" type="Number" required="true">
 						<description>
+							<locale>
+								The 16-bit unit offset at which to split, starting from 0.
+							</locale>
 							<locale xml:lang="ru">
 								Смещение относительно начала.
 							</locale>
