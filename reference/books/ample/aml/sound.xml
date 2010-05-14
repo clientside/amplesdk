@@ -3,6 +3,9 @@
 <element extends="aml:AMLElement" name="sound">
 	<implements />
 	<abstract>
+		<locale>
+			Specifies a reference to an audio file.
+		</locale>
 		<locale xml:lang="ru">
 			Элемент <link type="element">sound</link> предназначен для воспроизведения звуков.
 		</locale>

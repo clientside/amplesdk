@@ -3,6 +3,9 @@
 <element extends="aml:AMLElement" name="timer">
 	<implements />
 	<abstract>
+		<locale>
+			Creates a timer.
+		</locale>
 		<locale xml:lang="ru">
 			Элемент <link type="element">timer</link> предназначен для установки таймеров.
 		</locale>

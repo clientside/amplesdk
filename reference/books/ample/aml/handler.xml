@@ -3,6 +3,9 @@
 <element extends="aml:AMLElement" name="handler">
 	<implements />
 	<abstract>
+		<locale>
+			Element <link type="element">handler</link> is used to create inline event handlers
+		</locale>
 		<locale xml:lang="ru">
 			Элемент <link type="element">handler</link> предназначен для регистрации обработчиков событий других элементов.
 		</locale>
@@ -10,6 +13,9 @@
 	<remarks />
 	<examples>
 		<example>
+			<locale>
+				In this example an event handler for "click" event registered.
+			</locale>
 			<locale xml:lang="ru">
 				В примере регистрируется обработчик события "click" для элемента xhtml:div.
 				Если пользователь кликнет на тексте, всплывет стандартное диалоговое окно с типом события,
@@ -28,6 +34,9 @@
 		<attributes>
 			<attribute name="event">
 				<description>
+					<locale>
+						Event type.
+					</locale>
 					<locale xml:lang="ru">
 						Задает тип события, для которого будет зарегистрирован обработчик.
 						Если этот атрибут не указан, обработчик будет вызван непосредственно
@@ -39,6 +48,9 @@
 				<values>
 					<value name="text/javascript">
 						<description>
+							<locale>
+								JavaScript scripting language.
+							</locale>
 							<locale xml:lang="ru">
 								Код должен быть написан на скриптовом языке JavaScript.
 							</locale>
@@ -46,6 +58,9 @@
 					</value>
 					<value name="application/javascript">
 						<description>
+							<locale>
+								JavaScript scripting language.
+							</locale>
 							<locale xml:lang="ru">
 								Код должен быть написан на скриптовом языке JavaScript.
 							</locale>
@@ -53,6 +68,9 @@
 					</value>
 				</values>
 				<description>
+					<locale>
+						Scripting language type.
+					</locale>
 					<locale xml:lang="ru">
 						Обязательный атрибут, задает mime-type кода обработчика события.
 					</locale>
@@ -62,6 +80,9 @@
 				<values>
 					<value name="capture">
 						<description>
+							<locale>
+								Specifies event handler for capturing phase.
+							</locale>
 							<locale xml:lang="ru">
 								Обработчик исполняется в фазе "capture".
 							</locale>
@@ -69,6 +90,9 @@
 					</value>
 					<value name="default">
 						<description>
+							<locale>
+								Specifies event handler for "bubbling" or "target" phase.
+							</locale>
 							<locale xml:lang="ru">
 								Обработчик исполняется в фазах "bubbling" и "target".
 							</locale>
@@ -76,6 +100,9 @@
 					</value>
 				</values>
 				<description>
+					<locale>
+						Activation phase.
+					</locale>
 					<locale xml:lang="ru">
 						Необязательный атрибут, задает фазу активации обработчика события указанного типа.
 					</locale>
@@ -99,6 +126,9 @@
 					</value>
 				</values>
 				<description>
+					<locale>
+						Should the event propagation be stopped after this event handler is executed.
+					</locale>
 					<locale xml:lang="ru">
 						Необязательный атрибут <link type="attribute">propagate</link> указывает, будет ли распространено событие после исполнения всех обработчиков на текущем узле.
 					</locale>
@@ -122,6 +152,9 @@
 					</value>
 				</values>
 				<description>
+					<locale>
+						Should the event default action be prevented after this event handler is executed.
+					</locale>
 					<locale xml:lang="ru">
 						Необязательный атрибут <link type="attribute">defaultAction</link> указывает, будет ли выполнена ответная реакция браузера по умолчанию на событие.
 					</locale>

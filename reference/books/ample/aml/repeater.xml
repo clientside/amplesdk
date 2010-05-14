@@ -3,6 +3,9 @@
 <element extends="aml:AMLElement" name="repeater">
 	<implements />
 	<abstract>
+		<locale>
+			Specifies a template for repetition.
+		</locale>
 		<locale xml:lang="ru">
 			Элемент <link type="element">repeater</link>.
 		</locale>

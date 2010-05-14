@@ -470,16 +470,6 @@
 					<node title="data" url="ample/aml/data.xml"/>
 					<node title="repeater" url="ample/aml/repeater.xml"/>
 				</node>
-				<node title="Data Views">
-					<node title="list" />
-					<node title="tree" />
-					<node title="columns" />
-					<node title="column" />
-				</node>
-				<node title="Diagrams">
-					<node title="chart" />
-					<node title="chartitem" />
-				</node>
 				<node title="Maps">
 					<node title="map" url="ample/aml/map.xml"/>
 					<node title="marker" url="ample/aml/marker.xml"/>
