@@ -28,7 +28,7 @@ var nAMLElement_prefix	= 0;
 // Public Methods
 function fAMLElement_appendChild(oParent, oNode)
 {
-	if (oNode instanceof cAMLDocumentFragment) {
+	if (oNode.nodeType == cAMLNode.DOCUMENT_FRAGMENT_NODE) {
 		while (oNode.firstChild)
 			fAMLElement_appendChild(oParent, oNode.firstChild);
 	}
@@ -88,7 +88,7 @@ cAMLElement.prototype.$appendChildAnonymous	= function(oNode)
 
 cAMLElement.prototype.insertBefore	= function(oNode, oBefore)
 {
-	if (oNode instanceof cAMLDocumentFragment) {
+	if (oNode.nodeType == cAMLNode.DOCUMENT_FRAGMENT_NODE) {
 		while (oNode.firstChild)
 			this.insertBefore(oNode.firstChild, oBefore);
 	}
@@ -175,7 +175,7 @@ cAMLElement.prototype.$removeChildAnonymous	= function(oNode)
 
 cAMLElement.prototype.replaceChild	= function(oNode, oOld)
 {
-	if (oNode instanceof cAMLDocumentFragment) {
+	if (oNode.nodeType == cAMLNode.DOCUMENT_FRAGMENT_NODE) {
 		while (oNode.firstChild)
 			this.insertBefore(oNode.firstChild, oOld);
 		// remove child if passed

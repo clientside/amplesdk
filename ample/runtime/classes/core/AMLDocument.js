@@ -434,7 +434,7 @@ function fAMLDocument_routeEvent(oEvent)
 					oEvent.currentTarget	= aTargets[nCurrent];
 				else {
 					// Do not propagate either target or bubbling for disabled elements
-					if (oEvent instanceof cAMLUIEvent && oEvent.target instanceof cAMLElement && !oEvent.target.$isAccessible())
+					if (oEvent instanceof cAMLUIEvent && oEvent.target.nodeType == cAMLNode.ELEMENT_NODE && !oEvent.target.$isAccessible())
 						return;
 
 					oEvent.eventPhase		= cAMLEvent.AT_TARGET;
@@ -467,7 +467,7 @@ function fAMLDocument_routeEvent(oEvent)
 				}
 				else {
 					// Do not propagate either target or bubbling for disabled elements
-					if (oEvent instanceof cAMLUIEvent && oEvent.target instanceof cAMLElement && !oEvent.target.$isAccessible())
+					if (oEvent instanceof cAMLUIEvent && oEvent.target.nodeType == cAMLNode.ELEMENT_NODE && !oEvent.target.$isAccessible())
 						return;
 
 					nCurrent	= 0;

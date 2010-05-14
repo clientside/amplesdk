@@ -216,7 +216,7 @@ oAMLSelector_elementSelectors[':'] = function(aReturn, aFrom, sClass, sArguments
 };
 
 function fAMLSelector_pseudoClass(oElement, sClass) {
-	if (oElement instanceof cAMLElement) {
+	if (oElement.nodeType == cAMLNode.ELEMENT_NODE) {
 		var oElementDOM	= oElement.$getContainer();
 		if (oElementDOM && (bTrident && nVersion < 8 ? oElementDOM.className : oElementDOM.getAttribute("class") || '').match(fAMLElement_getRegExp(sClass, '')))
 			return true;
