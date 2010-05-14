@@ -140,7 +140,7 @@
 				browser.js,
 				ample.js"/>
 
-			<!-- XIncldue 1.0 -->
+			<!-- XInclude 1.0 -->
 			<filelist dir="${source.runtime.dir}/processors/xinclude10/" files="
 				xinclude10.js"/>
 
