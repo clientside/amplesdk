@@ -38,11 +38,6 @@ function fAMLHistory_onTimeout() {
 //		else {
 			sAMLHistory_hash = sHash;
 
-			// dispatch navigate event
-			var oEvent	= new cAMLUIEvent;
-			oEvent.initUIEvent("navigate", false, false, window, sHash);
-			fAMLNode_dispatchEvent(oAML_document, oEvent);
-
 			// dispatch hashchange event
 			var oEvent	= new cAMLUIEvent;
 			oEvent.initUIEvent("hashchange", false, false, window, sHash);
@@ -63,7 +58,7 @@ function fAMLHistory_onLoad(oEvent) {
 		if (oAMLConfiguration_values["ample-module-history-fix"])
 			fAMLHistory_bookmark(sHash);
 	}
-	sAMLHistory_hash		= sHash;	// set to null to get initial 'navigate' event
+	sAMLHistory_hash		= sHash;	// set to null to get initial 'hashchange' event
 	nAMLHistory_timeout		= fSetTimeout(fAMLHistory_onTimeout, 20);
 };
 

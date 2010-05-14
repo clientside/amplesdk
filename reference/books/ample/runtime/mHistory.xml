@@ -39,17 +39,6 @@
 		<properties />
 		<attributes />
 		<events>
-			<event name="navigate" group="CustomEvent" cancelable="false" bubbles="false">
-				<description>
-					<locale>
-						Deprecated. Fires on the document when user navigates browser history. Property <link type="property">detail</link> contains value of marker (hash), user navigated to.
-					</locale>
-					<locale xml:lang="ru">
-						Deprecated. Загорается на объекте <link type="object">AMLDocument</link>, когда пользователь перемещается по истории навигации браузера.
-						Свойство <link type="property">detail</link> содержит значение метки (хэша), на которую пользователь перешел.
-					</locale>
-				</description>
-			</event>
 			<event name="hashchange" group="CustomEvent" cancelable="false" bubbles="false">
 				<description>
 					<locale>
