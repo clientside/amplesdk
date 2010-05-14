@@ -717,7 +717,7 @@ function fAML_parseStyleSheet(sCSS, sUri) {
 			sCSS	= sCSS.replace(/display\s*:\s*inline-block/g, 'display:inline;zoom:1;');
 		// Rewrite opacity
 		sCSS	= sCSS.replace(/(?:[^-])opacity\s*:\s*([\d.]+)/g, function(sMatch, nOpacity) {
-			return "filter" + ':' + "progid:DXImageTransform.Microsoft.Alpha" + '(' + "opacity" + '=' + nOpacity * 100 + ');' + "opacity" + ':' + nOpacity;
+			return "filter" + ':' + "progid" + ':' + "DXImageTransform.Microsoft.Alpha" + '(' + "opacity" + '=' + nOpacity * 100 + ');' + "opacity" + ':' + nOpacity;
 		});
 	}
 	else

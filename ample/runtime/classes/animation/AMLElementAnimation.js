@@ -51,7 +51,7 @@ function fAMLElementAnimation_play(oElement, sParams, nDuration, vType, fHandler
 						if (cString(oStyle.filter).match(/opacity=([\.0-9]+)/i))
 							sValue	= oEffect._container.filters.item("DXImageTransform.Microsoft.Alpha").opacity / 100;
 						else
-							oEffect._container.style.filter	= oStyle.filter + " progid:DXImageTransform.Microsoft.Alpha(opacity=100)";
+							oEffect._container.style.filter	= oStyle.filter + ' ' + "progid" + ':' + "DXImageTransform.Microsoft.Alpha" + '(' + "opacity" + '=100)';
 					}
 					else
 					if (oStyle.MozOpacity != null)
