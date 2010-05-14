@@ -291,44 +291,36 @@ cAMLNode.prototype.lookupNamespaceURI	= function(sPrefix)
 	return fAMLNode_lookupNamespaceURI(this, sPrefix);
 };
 
-/*
-cAMLNode.prototype.compareDocumentPosition	= function(oChild)
-{
-	// Validate arguments
-	fAML_validate(arguments, [
-		["node",	cAMLNode]
-	], "compareDocumentPosition");
-
-	return oAML_all[oChild.uniqueID] ? 0 : cAMLNode.DOCUMENT_POSITION_DISCONNECTED;
-};
-*/
-
 function fAMLNode_compareDocumentPosition(oNode, oChild)
 {
 	if (oChild == oNode)
 		return 0;
 
-	var nPosition	= 0,
-		oParent,
-		oDocument	= oNode.nodeType == cAMLNode.DOCUMENT_NODE ? oNode : oNode.ownerDocument;
-
-	for (oParent = oChild; oParent; oParent = oParent.parentNode)
-		if (oParent == oNode)
-			nPosition	|= cAMLNode.DOCUMENT_POSITION_CONTAINED_BY | cAMLNode.DOCUMENT_POSITION_FOLLOWING;
-		else
-		if (oParent == oDocument && oChild != oDocument)
-			nPosition	|= cAMLNode.DOCUMENT_POSITION_DISCONNECTED;
-
-	if (nPosition ^ cAMLNode.DOCUMENT_POSITION_CONTAINED_BY) {
-		for (oParent = oNode; oParent; oParent = oParent.parentNode)
-			if (oParent == oChild)
-				nPosition	|= cAMLNode.DOCUMENT_POSITION_CONTAINS | cAMLNode.DOCUMENT_POSITION_PRECEDING;
-			else
-			if (oParent == oDocument && oNode != oDocument)
-				nPosition	|= cAMLNode.DOCUMENT_POSITION_DISCONNECTED;
-	}
-
-	return nPosition;
+	var aChain1	= [], nLength1, oNode1,
+		aChain2	= [], nLength2, oNode2,
+		oElement, nIndex;
+	//
+	for (oElement = oNode; oElement; oElement = oElement.parentNode)
+		aChain1.push(oElement);
+	for (oElement = oChild; oElement; oElement = oElement.parentNode)
+		aChain2.push(oElement);
+	// If nodes are from different documents or if they do not have common top, they are disconnected
+	if (((oNode.ownerDocument || oNode) != (oChild.ownerDocument || oChild)) || (aChain1[aChain1.length - 1] != aChain2[aChain2.length - 1]))
+		return cAMLNode.DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC | cAMLNode.DOCUMENT_POSITION_DISCONNECTED;
+	//
+	for (nIndex = cMath.min(nLength1 = aChain1.length, nLength2 = aChain2.length); nIndex; --nIndex)
+		if ((oNode1 = aChain1[--nLength1]) != (oNode2 = aChain2[--nLength2])) {
+			if (!oNode2.nextSibling)
+				return cAMLNode.DOCUMENT_POSITION_FOLLOWING;
+			if (!oNode1.nextSibling)
+				return cAMLNode.DOCUMENT_POSITION_PRECEDING;
+			for (oElement = oNode2.previousSibling; oElement; oElement.previousSibling)
+				if (oElement == oNode1)
+					return cAMLNode.DOCUMENT_POSITION_FOLLOWING;
+			return cAMLNode.DOCUMENT_POSITION_PRECEDING;
+		}
+	//
+	return nLength1 < nLength2 ? cAMLNode.DOCUMENT_POSITION_FOLLOWING | cAMLNode.DOCUMENT_POSITION_CONTAINED_BY : cAMLNode.DOCUMENT_POSITION_PRECEDING | cAMLNode.DOCUMENT_POSITION_CONTAINS;
 };
 
 cAMLNode.prototype.compareDocumentPosition	= function(oChild)
