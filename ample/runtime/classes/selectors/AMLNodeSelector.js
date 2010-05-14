@@ -277,7 +277,7 @@ oAMLSelector_elementSelectors['@'] = function(aReturn, aFrom, sString, sArgument
 					sLocalName	= sAttribute.replace('|',  ':');
 			}
 			for (var nIndex = 0, oElement; oElement = aFrom[nIndex]; nIndex++)
-				if (fAMLElement_hasAttributeNS(oElement, sNameSpaceURI, sLocalName) && fCompare(fAMLElement_getAttributeNS(oElement, sNameSpaceURI, sLocalName), sValue))
+				if (fAMLElement_hazAttributeNS(oElement, sNameSpaceURI, sLocalName) && fCompare(fAMLElement_getAttributeNS(oElement, sNameSpaceURI, sLocalName), sValue))
 					aReturn.push(oElement);
 		}
 		else

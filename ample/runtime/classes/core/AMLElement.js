@@ -221,7 +221,7 @@ cAMLElement.prototype.cloneNode	= function(bDeep)
 	return oElement;
 };
 
-function fAMLElement_hasAttribute(oElement, sName)
+function fAMLElement_hazAttribute(oElement, sName)
 {
 	return oElement.attributes.hasOwnProperty(sName);
 };
@@ -233,16 +233,16 @@ cAMLElement.prototype.hasAttribute	= function(sName)
 		["name",		cString]
 	], "hasAttribute");
 
-	return fAMLElement_hasAttribute(this, sName);
+	return fAMLElement_hazAttribute(this, sName);
 };
 
-function fAMLElement_hasAttributeNS(oElement, sNameSpaceURI, sLocalName)
+function fAMLElement_hazAttributeNS(oElement, sNameSpaceURI, sLocalName)
 {
 	if (sNameSpaceURI == null)
-		return fAMLElement_hasAttribute(oElement, sLocalName);
+		return fAMLElement_hazAttribute(oElement, sLocalName);
 
 	var sPrefix	= fAMLNode_lookupPrefix(oElement, sNameSpaceURI);
-	return sPrefix ? fAMLElement_hasAttribute(oElement, sPrefix + ':' + sLocalName) : false;
+	return sPrefix ? fAMLElement_hazAttribute(oElement, sPrefix + ':' + sLocalName) : false;
 };
 
 cAMLElement.prototype.hasAttributeNS	= function(sNameSpaceURI, sLocalName)
@@ -253,7 +253,7 @@ cAMLElement.prototype.hasAttributeNS	= function(sNameSpaceURI, sLocalName)
 		["localName",		cString]
 	], "hasAttributeNS");
 
-	return fAMLElement_hasAttributeNS(this, sNameSpaceURI, sLocalName);
+	return fAMLElement_hazAttributeNS(this, sNameSpaceURI, sLocalName);
 };
 
 function fAMLElement_setAttribute(oElement, sName, sValue)
