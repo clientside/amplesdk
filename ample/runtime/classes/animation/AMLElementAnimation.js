@@ -100,8 +100,8 @@ function fAMLElementAnimation_play(oElement, sParams, nDuration, vType, fHandler
 				if (oEffectOld._data.hasOwnProperty(sKey) && oEffect._data[sKey])
 					delete oEffectOld._data[sKey];
 
-	var oEventEffectStart	= new cAMLCustomEvent;
-	oEventEffectStart.initCustomEvent("effectstart", false, false, null);
+	var oEventEffectStart	= new cAMLEvent;
+	oEventEffectStart.initEvent("effectstart", false, false);
 	fAMLNode_dispatchEvent(oEffect._element, oEventEffectStart);
 
 	// return effect resource identificator
@@ -140,8 +140,8 @@ function fAMLElementAnimation_stop(nEffect)
 			}
 		}
 
-	var oEventEffectEnd	= new cAMLCustomEvent;
-	oEventEffectEnd.initCustomEvent("effectend", false, false, null);
+	var oEventEffectEnd	= new cAMLEvent;
+	oEventEffectEnd.initEvent("effectend", false, false);
 	fAMLNode_dispatchEvent(oEffect._element, oEventEffectEnd);
 
 	// clear effect

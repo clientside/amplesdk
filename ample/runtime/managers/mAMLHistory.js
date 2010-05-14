@@ -38,14 +38,14 @@ function fAMLHistory_onTimeout() {
 //		else {
 			sAMLHistory_hash = sHash;
 
-			// dispatch event
-			var oEvent	= new cAMLCustomEvent;
-			oEvent.initCustomEvent("navigate", false, false, sHash);
+			// dispatch navigate event
+			var oEvent	= new cAMLUIEvent;
+			oEvent.initUIEvent("navigate", false, false, window, sHash);
 			fAMLNode_dispatchEvent(oAML_document, oEvent);
 
 			// dispatch hashchange event
-			var oEvent	= new cAMLCustomEvent;
-			oEvent.initCustomEvent("hashchange", false, false, sHash);
+			var oEvent	= new cAMLUIEvent;
+			oEvent.initUIEvent("hashchange", false, false, window, sHash);
 			fAMLNode_dispatchEvent(oAML_document, oEvent);
 //		}
 	}
