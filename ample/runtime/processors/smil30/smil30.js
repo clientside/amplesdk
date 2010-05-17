@@ -351,16 +351,21 @@ function fAMLSMIL30_parseValue(sValue) {
 
 	return [sValue, '', ''];
 };
-//console.log(fAMLSMIL30_parseValue('#ffffff'));
-//
-fAMLEventTarget_addEventListener(oAML_document, "load",	function() {
-	nAMLSMIL30_timeline	= fSetTimeout(fAMLSMIL30_onTimeline, nAMLSMIL30_timeout);
-}, false);
-fAMLEventTarget_addEventListener(oAML_document, "unload",	function() {
-	fClearTimeout(nAMLSMIL30_timeline);
-}, false);
 
+function fAMLSMIL30_onLoad(oEvent) {
+	nAMLSMIL30_timeline	= fSetTimeout(fAMLSMIL30_onTimeline, nAMLSMIL30_timeout);
+};
+
+function fAMLSMIL30_onUnLoad() {
+	fClearTimeout(nAMLSMIL30_timeline);
+};
+
+// Attaching to implementation
 oAML_document.$time	= aAMLSMIL30_elements;
+
+// Registering Event Handlers
+fAMLEventTarget_addEventListener(oAML_document, "load",	fAMLSMIL30_onLoad, false);
+fAMLEventTarget_addEventListener(oAML_document, "unload", fAMLSMIL30_onUnLoad, false);
 
 // register processor
 oAML_processors[sAMLSMIL30_namespaceURI]	= oAMLSMIL30_implementation;
