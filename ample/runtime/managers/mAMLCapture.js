@@ -53,7 +53,7 @@ function fAMLCapture_releaseCapture(oNode) {
 };
 
 cAMLElement.prototype.releaseCapture	= function() {
-	fAMLElement_releaseCapture(this);
+	fAMLCapture_releaseCapture(this);
 };
 
 //Attach to the implementation
