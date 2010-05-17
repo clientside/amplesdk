@@ -16,7 +16,7 @@ cAMLStringList.prototype.length	= 0;
 cAMLStringList.prototype.item		= function(nIndex) {
 	// Validate arguments
 	fAML_validate(arguments, [
-		["node",	cNumber]
+		["index",	cNumber]
 	], "item");
 
 	return nIndex < this.length ? this[nIndex] : null;
