@@ -20,7 +20,7 @@ function fAMLUI_mouseLeave(oEvent) {
 		fAMLElement_setPseudoClass(oElement, "hover", false);
 };
 
-// Attaching to impementation
+// Attaching to implementation
 cAMLElement.prototype.$hoverable	= false;
 
 fAMLEventTarget_addEventListener(oAML_document, "mouseenter",	fAMLUI_mouseEnter,	true);

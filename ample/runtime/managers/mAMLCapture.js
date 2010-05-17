@@ -9,7 +9,7 @@
 
 var aAMLCapture_modals	= [];
 
-// Attaching to impementation
+// Attaching to implementation
 cAMLDocument.prototype.releaseCapture	= function() {
 	if (oAML_captureNode)
 		fAMLCapture_releaseCapture(oAML_captureNode);

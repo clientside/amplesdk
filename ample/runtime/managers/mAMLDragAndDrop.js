@@ -361,7 +361,7 @@ cAMLDataTransfer.prototype.addElement		= function(oElement) {
 
 };
 
-// Attaching to impementation
+// Attaching to implementation
 cAMLElement.prototype.$draggable	= false;
 cAMLElement.prototype.$droppable	= false;
 

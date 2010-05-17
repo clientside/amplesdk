@@ -883,7 +883,7 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 //<-Source
 };
 
-// Attaching to impementation
+// Attaching to implementation
 cAMLElement.prototype.$setPseudoClass	= function(sName, bState, sContainer)
 {
 	// Validate arguments

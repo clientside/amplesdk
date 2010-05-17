@@ -16,7 +16,7 @@ function fAMLSelection_onMouseDown(oEvent) {
 			return !bAllow && oEvent.preventDefault();
 };
 
-// Attaching to impementation
+// Attaching to implementation
 // Public Properties
 cAMLElement.prototype.$selectable	= null;
 

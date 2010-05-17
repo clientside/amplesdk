@@ -66,7 +66,7 @@ function fAMLHistory_onUnLoad(oEvent) {
 	fClearTimeout(nAMLHistory_timeout);
 };
 
-// Attaching to impementation
+// Attaching to implementation
 oAML_document.$bookmark	= function(sHash) {
 	// Validate arguments
 	fAML_validate(arguments, [

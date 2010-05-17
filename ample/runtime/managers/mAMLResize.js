@@ -338,7 +338,7 @@ cAMLResizeEvent.prototype.initResizeEvent	= function(sType, bCanBubble, bCancela
 	this.edge	= nEdge;
 };
 
-// Attaching to impementation
+// Attaching to implementation
 // Public Properties
 cAMLElement.prototype.$resizable	= false;
 cAMLElement.prototype.$resizeEdges	= 0;

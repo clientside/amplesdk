@@ -251,7 +251,7 @@ function fAMLElementAnimation_toHex(nValue)
     return cArray(3 - sValue.length).join('0') + sValue;
 };
 
-// Attaching to impementation
+// Attaching to implementation
 cAMLElement.EFFECT_LINEAR		= nAMLElementAnimation_EFFECT_LINEAR;
 cAMLElement.EFFECT_ACCELERATE	= nAMLElementAnimation_EFFECT_ACCELERATE;
 cAMLElement.EFFECT_DECELERATE	= nAMLElementAnimation_EFFECT_DECELERATE;

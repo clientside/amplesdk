@@ -189,7 +189,7 @@ function fAMLFocus_onKeyDown(oEvent) {
 	}
 };
 
-// Attaching to impementation
+// Attaching to implementation
 cAMLElement.prototype.tabIndex	=-1;
 cAMLElement.prototype.accessKey	= null;
 
