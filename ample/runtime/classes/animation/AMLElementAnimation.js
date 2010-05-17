@@ -54,13 +54,7 @@ function fAMLElementAnimation_play(oElement, sParams, nDuration, vType, fHandler
 							oEffect._container.style.filter	= oStyle.filter + ' ' + "progid" + ':' + "DXImageTransform.Microsoft.Alpha" + '(' + "opacity" + '=100)';
 					}
 					else
-					if (oStyle.MozOpacity != null)
-						sValue	= oStyle.MozOpacity || 1;
-					else
-					if (oStyle.opacity != null)
 						sValue	= oStyle.opacity || 1;
-					else
-						sValue	= 1;
 					oData[1]	= fParseFloat(oData[1]);
 					oData[0]	= fParseFloat(sValue);
 					break;
@@ -123,10 +117,10 @@ function fAMLElementAnimation_stop(nEffect)
 			switch (sKey)
 			{
 				case "opacity":
-					oStyle.MozOpacity	= oData[1];
-					oStyle.opacity		= oData[1];
 					if (bTrident && nVersion < 9)
 						oEffect._container.filters.item("DXImageTransform.Microsoft.Alpha").opacity	= cMath.round(oData[1] * 100);
+					else
+						oStyle.opacity		= oData[1];
 					break;
 
 				case "color":
@@ -210,10 +204,10 @@ function fAMLElementAnimation_process(nEffect)
 			{
 				case "opacity":
 					sValue	= oData[0] + (oData[1] - oData[0]) * nRatio;
-					oStyle.MozOpacity	= sValue;
-					oStyle.opacity		= sValue;
 					if (bTrident && nVersion < 9)
 						oEffect._container.filters.item("DXImageTransform.Microsoft.Alpha").opacity	= cMath.round(sValue * 100);
+					else
+						oStyle.opacity		= sValue;
 					break;
 
 				case "color":
