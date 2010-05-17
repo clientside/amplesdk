@@ -495,8 +495,8 @@ function fAMLNode_executeHandler(oNode, fHandler, oEvent) {
 
 function fAMLNode_handleEvent(oNode, oEvent) {
 	// Process inline handler
-    if (oEvent.eventPhase != cAMLEvent.CAPTURING_PHASE && oNode["on" + oEvent.type])
-    	fAMLNode_executeHandler(oNode, oNode["on" + oEvent.type], oEvent);
+    if (oEvent.eventPhase != cAMLEvent.CAPTURING_PHASE && oNode['on' + oEvent.type])
+    	fAMLNode_executeHandler(oNode, oNode['on' + oEvent.type], oEvent);
 
 	// Notify listeners
     if (oNode.$listeners && oNode.$listeners[oEvent.type])

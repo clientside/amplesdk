@@ -281,8 +281,8 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
 	if (!oEventDrag.defaultPrevented)
 	{
 		// Display dragged element
-	    oStyle.left	= nAMLDragAndDrop_offsetLeft + (oEvent.clientX - nAMLDragAndDrop_mouseX) + "px";
-	    oStyle.top	= nAMLDragAndDrop_offsetTop + (oEvent.clientY - nAMLDragAndDrop_mouseY) + "px";
+	    oStyle.left	= nAMLDragAndDrop_offsetLeft + (oEvent.clientX - nAMLDragAndDrop_mouseX) + 'px';
+	    oStyle.top	= nAMLDragAndDrop_offsetTop + (oEvent.clientY - nAMLDragAndDrop_mouseY) + 'px';
 	}
 
 	// Opera doesn't support userSelect, so manual clearing of ranges is used

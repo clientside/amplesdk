@@ -10,14 +10,14 @@
 // Events handling
 function fAttachEvent(oNode, sEvent, fHandler) {
 	if (bTrident)
-		oNode.attachEvent("on" + sEvent, fHandler);
+		oNode.attachEvent('on' + sEvent, fHandler);
 	else
 		oNode.addEventListener(sEvent, fHandler, false);
 };
 
 function fDetachEvent(oNode, sEvent, fHandler) {
 	if (bTrident)
-		oNode.detachEvent("on" + sEvent, fHandler);
+		oNode.detachEvent('on' + sEvent, fHandler);
 	else
 		oNode.removeEventListener(sEvent, fHandler, false);
 };
@@ -359,7 +359,7 @@ function fOnMouseOver(oEvent) {
 };
 
 /*
-oUADocument.attachEvent("on" + "mouseover", function(oEvent) {
+oUADocument.attachEvent('on' + "mouseover", function(oEvent) {
 	var oTarget		= fGetEventTarget(oEvent),
 		oPseudo		= fGetUIEventPseudo(oEvent);
     // Create an Event
@@ -369,7 +369,7 @@ oUADocument.attachEvent("on" + "mouseover", function(oEvent) {
 	fAMLNode_dispatchEvent(oTarget, oEventMouseOver);
 });
 
-oUADocument.attachEvent("on" + "mouseout", function(oEvent) {
+oUADocument.attachEvent('on' + "mouseout", function(oEvent) {
 	var oTarget		= fGetEventTarget(oEvent),
 		oPseudo		= fGetUIEventPseudo(oEvent);
     // Create an Event

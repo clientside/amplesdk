@@ -185,7 +185,7 @@ oAMLSelector_elementSelectors[' '] = function(aReturn, aFrom, sTagName, sArgumen
 oAMLSelector_elementSelectors['#'] = function(aReturn, aFrom, sId) {
     // loop through current selection and check ID
     for (var nIndex = 0, oElement; oElement = aFrom[nIndex]; nIndex++)
-    	if (fAMLElement_getAttribute(oElement, "id") == sId)
+    	if (fAMLElement_getAttribute(oElement, 'id') == sId)
     		aReturn.push(oElement);
 };
 

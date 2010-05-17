@@ -234,11 +234,11 @@ function fAMLResize_onMouseMove(oEvent)
 			nWidth	= nAMLResize_widthMax;
 		// Set
 		if (nAMLResize_resizeEdge & nAMLResize_EDGE_RIGHT)
-    		oStyle.width	= fAMLResize_ensureNonNegative(nWidth) + "px";
+    		oStyle.width	= fAMLResize_ensureNonNegative(nWidth) + 'px';
 	    else
 		if (nAMLResize_resizeEdge & nAMLResize_EDGE_LEFT) {
-			oStyle.width	= fAMLResize_ensureNonNegative(nWidth) + "px";
-			oStyle.left		= fAMLResize_ensureNonNegative(nAMLResize_offsetWidth - nWidth + nAMLResize_offsetLeft) + "px";
+			oStyle.width	= fAMLResize_ensureNonNegative(nWidth) + 'px';
+			oStyle.left		= fAMLResize_ensureNonNegative(nAMLResize_offsetWidth - nWidth + nAMLResize_offsetLeft) + 'px';
 		}
 
 		// Vertical resize
@@ -249,11 +249,11 @@ function fAMLResize_onMouseMove(oEvent)
 			nHeight	= nAMLResize_heightMax;
 		// Set
 		if (nAMLResize_resizeEdge & nAMLResize_EDGE_BOTTOM)
-	    	oStyle.height	= fAMLResize_ensureNonNegative(nHeight) + "px";
+	    	oStyle.height	= fAMLResize_ensureNonNegative(nHeight) + 'px';
 	    else
 		if (nAMLResize_resizeEdge & nAMLResize_EDGE_TOP) {
-	    	oStyle.height	= fAMLResize_ensureNonNegative(nHeight) + "px";
-	    	oStyle.top		= fAMLResize_ensureNonNegative(nAMLResize_offsetHeight - nHeight + nAMLResize_offsetTop) + "px";
+	    	oStyle.height	= fAMLResize_ensureNonNegative(nHeight) + 'px';
+	    	oStyle.top		= fAMLResize_ensureNonNegative(nAMLResize_offsetHeight - nHeight + nAMLResize_offsetTop) + 'px';
 		}
 	}
 

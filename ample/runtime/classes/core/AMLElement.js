@@ -265,10 +265,10 @@ function fAMLElement_setAttribute(oElement, sName, sValue)
 
     if (sValueOld != sValue) {
     	// Only operate on shadow if element is in the DOM
-    	if (oAML_all[oElement.uniqueID] && (sName == "id" || sName == "class" || sName == "style")) {
+    	if (oAML_all[oElement.uniqueID] && (sName == 'id' || sName == "class" || sName == "style")) {
     		// Find shadow content first
     		var oElementDOM	= oElement.$getContainer();
-    		if (sName == "id") {
+    		if (sName == 'id') {
 	    		if (sValue)
 	    			oAML_ids[sValue]	= oElement;
     			delete oAML_ids[sValueOld];
@@ -467,10 +467,10 @@ function fAMLElement_removeAttribute(oElement, sName)
 	if (sName in oElement.attributes) {
 		var sValueOld	= oElement.attributes[sName];
 		// Only operate on shadow if element is in the DOM
-    	if (oAML_all[oElement.uniqueID] && (sName == "id" || sName == "class" || sName == "style")) {
+    	if (oAML_all[oElement.uniqueID] && (sName == 'id' || sName == "class" || sName == "style")) {
     		// Find shadow content
     		var oElementDOM	= oElement.$getContainer();
-    		if (sName == "id") {
+    		if (sName == 'id') {
 		    	delete oAML_ids[sValueOld];
 		    }
 		    // Update view
@@ -902,7 +902,7 @@ function fAMLElement_load(oElement, sUrl, sMethod, oHeaders, sData)
 	if (oElement._timeout)
 		fClearTimeout(oElement._timeout);
 	if (oElement._request)
-		oElement._request["on" + "readystatechange"]	= new cFunction;
+		oElement._request['on' + "readystatechange"]	= new cFunction;
 
 	// Dispatch unload event
 	var oEvent	= new cAMLEvent;
@@ -922,7 +922,7 @@ function fAMLElement_onTimeOut(oElement, sUrl, oHeaders, sMethod, sData)
 {
 	// Create request
 	var oRequest	= new cXMLHttpRequest;
-	oRequest["on" + "readystatechange"]	= function(){fAMLElement_onReadyStateChange(oRequest, oElement)};
+	oRequest['on' + "readystatechange"]	= function(){fAMLElement_onReadyStateChange(oRequest, oElement)};
 	oRequest.open(sMethod, sUrl, true);
 	oHeaders["X-Requested-With"]	= "XMLHttpRequest";
 	oHeaders["X-User-Agent"]		= oAMLConfiguration_values["ample-user-agent"];
@@ -941,7 +941,7 @@ function fAMLElement_onReadyStateChange(oRequest, oElement)
 	if (oRequest.readyState == 4)
 	{
 		// Remove memory leak in IE
-		oRequest["on" + "readystatechange"]	= new cFunction;
+		oRequest['on' + "readystatechange"]	= new cFunction;
 	    delete oElement._timeout;
 	    delete oElement._request;
 

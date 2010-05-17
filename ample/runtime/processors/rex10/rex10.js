@@ -23,8 +23,8 @@ cAMLREX10Implementation.getXPath	= function(oNode)
 		switch (oNode.nodeType)
 		{
 			case cAMLNode.ELEMENT_NODE:
-				if (oNode.hasAttribute("id"))
-					return "id" +'("' + oNode.getAttribute("id") + '")' + sXPath;
+				if (oNode.hasAttribute('id'))
+					return 'id' +'("' + oNode.getAttribute('id') + '")' + sXPath;
 				else
 					sXPath	= "/" + oNode.nodeName +(oNode.parentNode.childNodes.length > 1 && oNode.parentNode.nodeType != cAMLNode.DOCUMENT_NODE ? "[" + oNode.parentNode.childNodes.$indexOf(oNode) + "]" : '')+ sXPath;
 				break;

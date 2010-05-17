@@ -165,7 +165,7 @@ function fAML_import(oElementDOM, oNode, bCollapse) {
 					sValue	= oAttribute.nodeValue;
 
 					// Inline event handler
-					if (sName.indexOf("on") == 0)
+					if (sName.indexOf('on') == 0)
 						oElement[sName]	= new cFunction(sNameSpaceURI == "http://www.w3.org/2000/svg" ? "evt" : "event", bCollapse ? sValue.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&') : sValue);
 					else
 						oAttributes[sName]	= bCollapse ? sValue : sValue.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -558,15 +558,15 @@ function fAML_processScripts() {
 						oElementNew.className = oElementDOM.className;
 					// duplicate id problem
 					if (!bReferenced)
-						oElementNew.setAttribute("id", oElementDOM.getAttribute("id") || oElement.uniqueID);
+						oElementNew.setAttribute('id', oElementDOM.getAttribute('id') || oElement.uniqueID);
 		    	}
 		    	else {
 		    		for (var sName in oAttributes)
-		    			if (oAttributes.hasOwnProperty(sName) && (sName.substr(0, 2) == "on" || sName == "src"))
+		    			if (oAttributes.hasOwnProperty(sName) && (sName.substr(0, 2) == 'on' || sName == "src"))
 		    				delete oAttributes[sName];
 					// duplicate id problem
-		    		if (!bReferenced && !oAttributes["id"])
-		    			oAttributes["id"]	= oElement.uniqueID;
+		    		if (!bReferenced && !oAttributes['id'])
+		    			oAttributes['id']	= oElement.uniqueID;
 		    		oElementNew	= oUADocument.importNode(new cDOMParser().parseFromString('<!' + "DOCTYPE" + ' ' + "div" + ' ' + '[' + sAML_entities + ']>' +
 //->Debug
 																		'\n' +

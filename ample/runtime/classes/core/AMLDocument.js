@@ -296,7 +296,7 @@ cAMLDocument.prototype.getElementById	= function(sId)
 {
 	// Validate arguments
 	fAML_validate(arguments, [
-		["id",	cString]
+		['id',	cString]
 	], "getElementById");
 
     return oAML_ids[sId] || null;
