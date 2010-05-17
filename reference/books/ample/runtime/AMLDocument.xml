@@ -590,7 +590,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="readystatechange" group="CustomEvent" cancelable="false" bubbles="false">
+			<event name="readystatechange" group="Event" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						Fires when the state of the object has changed.

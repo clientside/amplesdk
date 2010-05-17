@@ -680,7 +680,7 @@ function fAML_initialize() {
 	fAML_processScripts();
 
 	// change readystate to "loaded"
-	fAML_changeReadyState(2);
+	fAML_changeReadyState("loaded");
 
 	// Set documentElement style pointer object
     if (oAMLConfiguration_values["ample-use-style-property"])
@@ -693,7 +693,7 @@ function fAML_initialize() {
 	} catch (oError){};
 
 	// change readystate to "interactive"
-	fAML_changeReadyState(3);
+	fAML_changeReadyState("interactive");
 
     // Fire Event
     var oEventLoad = new cAMLEvent;
@@ -701,7 +701,7 @@ function fAML_initialize() {
     fAMLNode_dispatchEvent(oAML_document, oEventLoad);
 
 	// change readystate to "complete"
-	fAML_changeReadyState(4);
+	fAML_changeReadyState("complete");
 
 //->Source
 	oUADocument.title	= 	"AML Elements: " + fAMLDocument_getElementsByTagName(oAML_document, '*').length + " units. " +
@@ -730,14 +730,13 @@ function fAML_finalize() {
     fAML_unregister(oAML_document.documentElement);
 };
 
-function fAML_changeReadyState(nState) {
-	// 0: uninitialized
-	// 1: loading
-	// 2: loaded
-	// 3: interactive
-	// 4: complete
-	var oReadyStateChangeEvent	= new cAMLCustomEvent;
-	oReadyStateChangeEvent.initCustomEvent("readystatechange", false, false, nState);
+function fAML_changeReadyState(sValue) {
+	//
+	oAML_document.readyState	= sValue;
+
+	// Dispatch
+	var oReadyStateChangeEvent	= new cAMLEvent;
+	oReadyStateChangeEvent.initEvent("readystatechange", false, false);
 	fAMLNode_dispatchEvent(oAML_document, oReadyStateChangeEvent);
 };
 
@@ -758,6 +757,7 @@ var oAML_implementation	= new cAMLImplementation,
 
 // Dirty adjustments
 oAML_document.documentElement.$getContainer	= function(sName) {return sName && sName != "gateway" ? null : oUADocument.body};
+oAML_document.readyState	= "uninitialized";
 
 oAML_document.$instance	= function(oNode) {
     for (var oElement, sId; oNode; oNode = oNode.parentNode)
@@ -797,6 +797,3 @@ oAML_errorHandler.handleError	= function(oError) {
 };
 oAMLConfiguration_values["error-handler"]	= oAML_errorHandler;
 //<-Debug
-
-// change readystate to "uninitialized"
-fAML_changeReadyState(0);

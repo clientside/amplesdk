@@ -795,7 +795,7 @@ function fAML_getComputedStyle(oElementDOM) {
 //
 fAttachEvent(window, "load", function(oEvent) {
 	// change readystate to "loading"
-	fAML_changeReadyState(1);
+	fAML_changeReadyState("loading");
 
 //->Source
 	oUADocument.title	= "Initializing...";
