@@ -8,8 +8,6 @@
  */
 
 var sAMLHistory_hash		= null,		// Properties
-	sAMLHistory_hashNext	= null,
-	sAMLHistory_hashPrev	= null,
 	nAMLHistory_timeout		= null,
 	oAMLHistory_window		= null;
 
