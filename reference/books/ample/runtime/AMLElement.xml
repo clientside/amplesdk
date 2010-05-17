@@ -907,7 +907,7 @@
 				</description>
 			</event>
 			<!-- Effects -->
-			<event name="effectstart" group="CustomEvent" cancelable="false" bubbles="false">
+			<event name="effectstart" group="Event" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						Fires when effect is started.
@@ -917,7 +917,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="effectend" group="CustomEvent" cancelable="false" bubbles="false">
+			<event name="effectend" group="Event" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						Fires when effect is ended.
