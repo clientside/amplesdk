@@ -264,14 +264,14 @@ function fOnKeyDown(oEvent) {
 
 function fOnKeyPress(oEvent)
 {
+	// Filter out non-alphanumerical keypress events
+	if (oEvent.ctrlKey || oEvent.altKey || oEvent.keyCode in oAMLKeyIdentifiers)
+		return;
+
 	var oTarget		= oAML_document.activeElement || oAML_document.documentElement,	// FF bugfix
 		oPseudo		= fGetUIEventPseudo(oEvent),
 		oEventKeyPress	= new cAMLKeyboardEvent,
 		oEventTextInput	= new cAMLTextEvent;
-
-	// Filter out non-alphanumerical keypress events
-	if (oEvent.ctrlKey || oEvent.altKey || oEvent.keyCode in oAMLKeyIdentifiers)
-		return;
 
 	// if modal, do not dispatch event
 	if (oAML_captureNode && !fIsDescendant(oTarget, oAML_captureNode))
