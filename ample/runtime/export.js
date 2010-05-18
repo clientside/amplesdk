@@ -265,6 +265,106 @@ if (!cArray.prototype.some) {
 	}, "some")
 };
 
+// JavaScript 1.7
+// generators, iterators, array comprehensions, let expressions, and destructuring assignment
+
+// JavaScript 1.8
+// Expression closures, Generator expressions
+if (!cArray.prototype.reduce) {
+	fAMLExporter_exportMember(cArray.prototype, function(fCallback/*, initial*/) {
+		// Validate arguments
+		fAML_validate(arguments, [
+			["callback",	cFunction]
+		], "reduce");
+
+		var nLength = this.length >>> 0,
+			nIndex	= 0,
+			aValue;
+
+		// no value to return if no initial value and an empty array
+		if (nLength == 0 && arguments.length == 1)
+			throw new window.TypeError;
+
+		if (arguments.length >= 2)
+			aValue	= arguments[1];
+		else {
+			do {
+				if (nIndex in this)	{
+					aValue = this[nIndex++];
+					break;
+				}
+				// if array contains no values, no initial value to return
+				if (++nIndex >= nLength)
+					throw new window.TypeError;
+			}
+			while (true);
+		}
+
+		for (; nIndex < nLength; nIndex++)
+			if (nIndex in this)
+				aValue = fCallback.call(null, aValue, this[nIndex], nIndex, this);
+
+		return aValue;
+	}, "reduce")
+};
+
+if (!cArray.prototype.reduceRight) {
+	fAMLExporter_exportMember(cArray.prototype, function(fCallback/*, initial*/) {
+		// Validate arguments
+		fAML_validate(arguments, [
+			["callback",	cFunction]
+		], "reduceRight");
+
+		var nLength = this.length >>> 0,
+			nIndex	= nLength - 1,
+			aValue;
+		// no value to return if no initial value and an empty array
+		if (nLength == 0 && arguments.length == 1)
+			throw new window.TypeError;
+
+		if (arguments.length >= 2)
+			aValue	= arguments[1];
+		else {
+			do {
+				if (nIndex in this)	{
+					aValue = this[nIndex--];
+					break;
+				}
+				// if array contains no values, no initial value to return
+				if (--nIndex < nLength)
+					throw new window.TypeError;
+			}
+			while (true);
+		}
+
+		for (; nIndex >= 0; nIndex--)
+			if (nIndex in this)
+				aValue = fCallback.call(null, aValue, this[nIndex], nIndex, this);
+
+		return aValue;
+	}, "reduceRight")
+};
+
+// JavaScript 1.8.1
+// Object.getPrototypeOf(), Native JSON, String methods
+if (!cString.prototype.trim) {
+	fAMLExporter_exportMember(cString.prototype, function() {
+		return this.replace(/^\s+|\s+$/g, '');
+	}, "trim")
+};
+
+if (!cString.prototype.trimLeft) {
+	fAMLExporter_exportMember(cString.prototype, function(fCallback, oReceiver) {
+		return this.replace(/^\s+/, '');
+	}, "trimLeft")
+};
+
+if (!cString.prototype.trimRight) {
+	fAMLExporter_exportMember(cString.prototype, function(fCallback, oReceiver) {
+		return this.replace(/\s+$/, '');
+	}, "trimRight")
+};
+
 // JSON
 if (!cDate.prototype.toJSON) {
 	var fJSON_doublizeInteger	= function(n) {
