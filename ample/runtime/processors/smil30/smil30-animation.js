@@ -70,26 +70,15 @@ function fAMLSMIL30_animation_endAnimation(oElement) {
 function fAMLSMIL30_animation_getAttributeValue(oAnimation) {
 	var aValue	= null;
 	if (oAnimation.attributeType == "CSS") {
-		var oElementDOM	= oAnimation.targetElement.$getContainer(),
-			oStyle		= fAML_getComputedStyle(oElementDOM);
+		var oElementDOM	= oAnimation.targetElement.$getContainer();
 		if (oAnimation.type == "animateMotion") {
-			var oValue1	= fAMLSMIL30_parseValue(oStyle["top"]),
+			var oStyle	= fAML_getComputedStyle(oElementDOM),
+				oValue1	= fAMLSMIL30_parseValue(oStyle["top"]),
 				oValue2	= fAMLSMIL30_parseValue(oStyle["left"]);
 			aValue	= [[oValue1[0], oValue2[0]], oValue1[1]];
 		}
-		else {
-			if (oAnimation.attributeName == "opacity") {
-				if (bTrident && nVersion < 9) {
-					aValue	= [1];
-					if (cString(oStyle.filter).match(/opacity=([\.0-9]+)/i))
-						aValue	= [oElementDOM.filters.item("DXImageTransform.Microsoft.Alpha").opacity / 100];
-				}
-				else
-					aValue	= [oStyle.opacity || 1];
-			}
-			else
-				aValue	= fAMLSMIL30_parseValue(oStyle[fAML_toCssPropertyName(oAnimation.attributeName)]);
-		}
+		else
+			aValue	= fAMLSMIL30_parseValue(fAML_getStyle(oElementDOM, fAML_toCssPropertyName(oAnimation.attributeName)));
 	}
 	else {	// "XML" = "auto"
 		if (oAnimation.type == "animateMotion")
@@ -107,24 +96,14 @@ function fAMLSMIL30_animation_setAttributeValue(oAnimation, aValue) {
 			aValue	= ['#', fAMLSMIL30_animation_toHex(aValue[0][0] * 255) + fAMLSMIL30_animation_toHex(aValue[0][1] * 255) + fAMLSMIL30_animation_toHex(aValue[0][2] * 255)];
 
 		if (oAnimation.attributeType == "CSS") {
-			var oStyle		= oAnimation.targetElement.style;
+			var oElementDOM	= oAnimation.targetElement.$getContainer();
 			if (oAnimation.type == "animateMotion") {
+				var oStyle		= oElementDOM.style;
 				oStyle.top	= aValue[0][0] +(aValue[1] || 'px');	// default to "px"
 				oStyle.left	= aValue[0][1] +(aValue[1] || 'px');	// default to "px"
 			}
-			else {
-				if (oAnimation.attributeName == "opacity") {
-					if (bTrident && nVersion < 9) {
-						if (!cString(oAnimation.targetElement.currentStyle.filter).match(/opacity=([\.0-9]+)/i))
-							oStyle.filter	= oAnimation.targetElement.currentStyle.filter + ' ' + "progid" + ':' + "DXImageTransform.Microsoft.Alpha" + '(' + "opacity" + '=100)';
-						oAnimation.targetElement.filters.item("DXImageTransform.Microsoft.Alpha").opacity	= cMath.round(aValue[0] * 100);
-					}
-					else
-						oStyle.opacity		= aValue[0];
-				}
-				else
-					oStyle[fAML_toCssPropertyName(oAnimation.attributeName)]	= aValue.join('');
-			}
+			else
+				fAML_setStyle(oElementDOM, fAML_toCssPropertyName(oAnimation.attributeName), aValue.join(''));
 		}
 		else {	// "XML" = "auto"
 			if (oAnimation.type == "animateMotion")

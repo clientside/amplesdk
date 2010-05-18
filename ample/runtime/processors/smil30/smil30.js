@@ -304,13 +304,12 @@ function fAMLSMIL30_parseValue(sValue) {
 		sValue	= hAMLSMIL30_colors[sValueLower];
 
 	// #rgb or #rrggbb
-	if (aValue = sValue.match(/^#([\da-f]{3})$/i)) {
+	if (sValue == "transparent")
+		return [[1, 1, 1], '#', ''];
+	if (aValue = sValue.match(/^#([\da-f]{3})$/i))
 		return [[fParseInt(aValue[1].substr(0, 1), 16) / 15, fParseInt(aValue[1].substr(1, 1), 16) / 15, fParseInt(aValue[1].substr(2, 1), 16) / 15], '#', ''];
-	}
-	if (aValue = sValue.match(/^#([\da-f]{6})$/i)) {
+	if (aValue = sValue.match(/^#([\da-f]{6})$/i))
 		return [[fParseInt(aValue[1].substr(0, 2), 16) / 255, fParseInt(aValue[1].substr(2, 2), 16) / 255, fParseInt(aValue[1].substr(4, 2), 16) / 255], '#', ''];
-	}
-	else
 	if (aValue = sValue.match(/^(\w+[\w\d]+)\((.+)\)$/)) {
 		var sFunction	= aValue[1],
 			sParameters	= aValue[2];
@@ -332,12 +331,10 @@ function fAMLSMIL30_parseValue(sValue) {
 			}
 		}
 	}
-	else
 	// +-ValueUnit
-	if (aValue = sValue.match(/^([+-]?\d*.?\d+)(em|ex|px|in|cm|mm|pt|pc|%)?$/)) {
-		return [cNumber(aValue[1]), aValue[2], ''];
-	}
-	else
+	if (aValue = sValue.match(/^([+-]?\d*.?\d+)(em|ex|px|in|cm|mm|pt|pc|%)?$/))
+		return [cNumber(aValue[1]), aValue[2] || '', ''];
+	// List of values
 	if (sValue.indexOf(' ') > 0 &&(aValue = sValue.split(' '))) {
 		for (var nIndex = 0, oValue, oValueOut = [[], '', '']; nIndex < aValue.length; nIndex++) {
 			if (oValue = fAMLSMIL30_parseValue(aValue[nIndex])) {
@@ -348,7 +345,7 @@ function fAMLSMIL30_parseValue(sValue) {
 		if (oValueOut[0].length)
 			return oValueOut;
 	}
-
+	//
 	return [sValue, '', ''];
 };
 

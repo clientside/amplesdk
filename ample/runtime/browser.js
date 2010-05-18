@@ -792,6 +792,33 @@ function fAML_getComputedStyle(oElementDOM) {
 	return oElementDOM.currentStyle || window.getComputedStyle(oElementDOM, null);
 };
 
+function fAML_getStyle(oElementDOM, sName) {
+	var oStyle	= fAML_getComputedStyle(oElementDOM);
+	if (sName == "opacity") {
+		if (bTrident && nVersion < 9)
+			return cString(cString(oStyle.filter).match(/opacity=([\.0-9]+)/i) ? oElementDOM.filters.item("DXImageTransform.Microsoft.Alpha").opacity / 100 : 1);
+		else
+			return oStyle[sName] || '1';
+	}
+	//
+	return oStyle[sName == "borderColor" ? "borderBottomColor" : sName];
+};
+
+function fAML_setStyle(oElementDOM, sName, sValue) {
+	var oStyle	= oElementDOM.style;
+	if (sName == "opacity") {
+		if (bTrident && nVersion < 9) {
+			if (!cString(oElementDOM.currentStyle.filter).match(/opacity=([\.0-9]+)/i))
+				oStyle.filter	= oElementDOM.currentStyle.filter + ' ' + "progid" + ':' + "DXImageTransform.Microsoft.Alpha" + '(' + "opacity" + '=100)';
+			oElementDOM.filters.item("DXImageTransform.Microsoft.Alpha").opacity	= cMath.round(sValue * 100);
+		}
+		else
+			oStyle[sName]	= sValue;
+	}
+	else
+		oStyle[sName]	= sValue;
+};
+
 //
 fAttachEvent(window, "load", function(oEvent) {
 	// change readystate to "loading"
