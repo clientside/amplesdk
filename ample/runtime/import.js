@@ -17,6 +17,10 @@ var cString		= window.String,
 	cDate		= window.Date,
 	cFunction	= window.Function,
 	cMath		= window.Math,
+// Error Objects
+	cError		= window.Error,
+	cSyntaxError= window.SyntaxError,
+	cTypeError	= window.TypeError,
 //	Microsoft APIs
 	fActiveXObject	= window.ActiveXObject,
 //	XML APIs

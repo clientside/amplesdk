@@ -283,7 +283,7 @@ if (!cArray.prototype.reduce) {
 
 		// no value to return if no initial value and an empty array
 		if (nLength == 0 && arguments.length == 1)
-			throw new window.TypeError;
+			throw new cTypeError;
 
 		if (arguments.length >= 2)
 			aValue	= arguments[1];
@@ -295,7 +295,7 @@ if (!cArray.prototype.reduce) {
 				}
 				// if array contains no values, no initial value to return
 				if (++nIndex >= nLength)
-					throw new window.TypeError;
+					throw new cTypeError;
 			}
 			while (true);
 		}
@@ -320,7 +320,7 @@ if (!cArray.prototype.reduceRight) {
 			aValue;
 		// no value to return if no initial value and an empty array
 		if (nLength == 0 && arguments.length == 1)
-			throw new window.TypeError;
+			throw new cTypeError;
 
 		if (arguments.length >= 2)
 			aValue	= arguments[1];
@@ -332,7 +332,7 @@ if (!cArray.prototype.reduceRight) {
 				}
 				// if array contains no values, no initial value to return
 				if (--nIndex < nLength)
-					throw new window.TypeError;
+					throw new cTypeError;
 			}
 			while (true);
 		}

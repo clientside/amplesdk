@@ -206,7 +206,7 @@ if (!oJSON) {
 		if (vReplacer && typeof vReplacer !== "function" &&
 				(typeof vReplacer !== "object" ||
 				 typeof vReplacer.length !== "number")) {
-			throw new window.Error("JSON" + '.' + "stringify");
+			throw new cError("JSON" + '.' + "stringify");
 		}
 
 // Make a fake root object containing our value under the key of ''.
@@ -298,7 +298,7 @@ replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
 
 // If the text is not JSON parseable, then a SyntaxError is thrown.
 
-		throw new window.SyntaxError("JSON" + '.' + "parse");
+		throw new cSyntaxError("JSON" + '.' + "parse");
 	};
 };
 
