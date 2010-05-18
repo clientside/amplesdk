@@ -293,7 +293,7 @@ function fAMLSMIL30_parseValue(sValue) {
 		return null;
 
 	// trim spaces
-	sValue	= sValue.replace(/^\s+/, '').replace(/\s+$/, '');
+	sValue	= sValue.trim();
 
 	var aValue,
 		nIndex,

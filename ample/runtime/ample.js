@@ -207,7 +207,7 @@ function fAML_import(oElementDOM, oNode, bCollapse) {
 			if (!bCollapse)
 				sValue	= sValue.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-			if (sValue.replace(/^\s+/, '').replace(/\s+$/, '') != '') {
+			if (sValue.trim() != '') {
 				if (oNode.lastChild instanceof cAMLCharacterData)
 					fAMLCharacterData_appendData(oNode.lastChild, sValue);
 				else
