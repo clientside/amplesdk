@@ -66,8 +66,6 @@ var bTrident	= false,
 if (!!oUADocument.namespaces) {
 	bTrident	= true;
 	nVersion	= oUANavigator.userAgent.match(/MSIE ([\d.]+)/)[1];
-	if (oUADocument.addEventListener)
-		nVersion	= 9;
 }
 else
 if (!!window.controllers) {
