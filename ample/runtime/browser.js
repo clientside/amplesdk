@@ -131,16 +131,9 @@ function fAML_render(oNode) {
 	return null;
 };
 
-function fNumberToHex(nValue, nLength) {
-	var sValue	= cNumber(nValue).toString(16);
-	if (sValue.length < nLength)
-		sValue	= cArray(nLength + 1 - sValue.length).join('0') + sValue;
-	return sValue;
-};
-
 var hAMLKeyIdentifiers	= fAML_stringToHash('8:Backspace;9:Tab;13:Enter;16:Shift;17:Control;18:Alt;20:CapsLock;27:Esc;33:PageUp;34:PageDown;35:End;36:Home;37:Left;38:Up;39:Right;40:Down;45:Insert;46:Period;91:Win;112:F1;113:F2;114:F3;115:F4;116:F5;117:F6;118:F7;119:F8;120:F9;121:F10;122:F11;123:F12;127:Del');
 function fGetKeyboardEventIdentifier(oEvent) {
-	return hAMLKeyIdentifiers[oEvent.keyCode] || ('U+' + fNumberToHex(oEvent.keyCode, 4).toUpperCase());
+	return hAMLKeyIdentifiers[oEvent.keyCode] || ('U+' + fAML_numberToHex(oEvent.keyCode, 4).toUpperCase());
 };
 
 function fGetKeyboardEventModifiersList(oEvent) {
@@ -779,6 +772,15 @@ function fAML_stringToHash(sValue, sPrefix) {
 	for (var hValue = {}, aValues = sValue.split(';'), nIndex = 0, aValue; nIndex < aValues.length; nIndex++)
 		hValue[(aValue = aValues[nIndex].split(':'))[0]]	=(sPrefix || '') + aValue[1];
 	return hValue;
+};
+
+function fAML_numberToHex(nValue, nLength/* =2 */) {
+	var sValue	= cMath.abs(cMath.floor(nValue)).toString(16);
+	if (!nLength)
+		nLength	= 2;
+	if (sValue.length < nLength)
+		sValue	= cArray(nLength + 1 - sValue.length).join('0') + sValue;
+	return sValue;
 };
 
 //

@@ -93,7 +93,7 @@ function fAMLSMIL30_animation_setAttributeValue(oAnimation, aValue) {
 	try {
 		// Color value
 		if (aValue && aValue[1] == '#')
-			aValue	= ['#', fAMLSMIL30_animation_toHex(aValue[0][0] * 255) + fAMLSMIL30_animation_toHex(aValue[0][1] * 255) + fAMLSMIL30_animation_toHex(aValue[0][2] * 255)];
+			aValue	= ['#', fAML_numberToHex(aValue[0][0] * 255) + fAML_numberToHex(aValue[0][1] * 255) + fAML_numberToHex(aValue[0][2] * 255)];
 
 		if (oAnimation.attributeType == "CSS") {
 			var oElementDOM	= oAnimation.targetElement.$getContainer();
@@ -147,9 +147,4 @@ function fAMLSMIL30_animation_multiplyValue(oValue, nTimes) {
 	}
 	else
 		return [oValue[0] * nTimes, oValue[1], oValue[2]];
-};
-
-function fAMLSMIL30_animation_toHex(nValue) {
-	var sValue	= cMath.abs(cMath.floor(nValue)).toString(16);
-    return cArray(3 - sValue.length).join('0') + sValue;
 };

@@ -65,7 +65,7 @@ function fAMLElementAnimation_stop(nEffect)
 			aValue	= oData[1];
 			// Color value
 			if (aValue && aValue[1] == '#')
-				aValue	= ['#', fAMLSMIL30_animation_toHex(aValue[0][0] * 255) + fAMLSMIL30_animation_toHex(aValue[0][1] * 255) + fAMLSMIL30_animation_toHex(aValue[0][2] * 255)];
+				aValue	= ['#', fAML_numberToHex(aValue[0][0] * 255) + fAML_numberToHex(aValue[0][1] * 255) + fAML_numberToHex(aValue[0][2] * 255)];
 			//
 			fAML_setStyle(oEffect._container, sKey, aValue.join(''));
 		}
@@ -138,7 +138,7 @@ function fAMLElementAnimation_process(nEffect)
 			aValue	= fAMLSMIL30_animation_sumValues(oData[0], fAMLSMIL30_animation_multiplyValue(fAMLSMIL30_animation_subValues(oData[1], oData[0]), nRatio));
 			// Color value
 			if (aValue && aValue[1] == '#')
-				aValue	= ['#', fAMLSMIL30_animation_toHex(aValue[0][0] * 255) + fAMLSMIL30_animation_toHex(aValue[0][1] * 255) + fAMLSMIL30_animation_toHex(aValue[0][2] * 255)];
+				aValue	= ['#', fAML_numberToHex(aValue[0][0] * 255) + fAML_numberToHex(aValue[0][1] * 255) + fAML_numberToHex(aValue[0][2] * 255)];
 			//
 			fAML_setStyle(oEffect._container, sKey, aValue.join(''));
 		}
