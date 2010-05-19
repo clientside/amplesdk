@@ -138,53 +138,9 @@ function fNumberToHex(nValue, nLength) {
 	return sValue;
 };
 
-var oAMLKeyIdentifiers	= {
-	8:		"Backspace",	// "U+0008" The Backspace (Back) key
-	9:		"Tab",			// "U+0009" The Horizontal Tabulation (Tab) key
-
-	13:		"Enter",
-
-	16:		"Shift",
-	17:		"Control",
-	18:		"Alt",
-
-	20:		"CapsLock",
-
-	27:		"Esc",			// "U+001B" The Escape (Esc) key
-
-	33:		"PageUp",
-	34:		"PageDown",
-	35:		"End",
-	36:		"Home",
-	37:		"Left",
-	38:		"Up",
-	39:		"Right",
-	40: 	"Down",
-
-	45:		"Insert",
-	46:		"Period",		// "U+002E" The Full Stop (period, dot, decimal point) key (.)
-
-	91:		"Win",
-
-	112:	"F1",
-	113:	"F2",
-	114:	"F3",
-	115:	"F4",
-	116:	"F5",
-	117:	"F6",
-	118:	"F7",
-	119:	"F8",
-	120:	"F9",
-	121:	"F10",
-	122:	"F11",
-	123:	"F12",
-
-	127:	"Del"/*,
-	144:	"NumLock"*/
-};
-
+var hAMLKeyIdentifiers	= fAML_stringToHash('8:Backspace;9:Tab;13:Enter;16:Shift;17:Control;18:Alt;20:CapsLock;27:Esc;33:PageUp;34:PageDown;35:End;36:Home;37:Left;38:Up;39:Right;40:Down;45:Insert;46:Period;91:Win;112:F1;113:F2;114:F3;115:F4;116:F5;117:F6;118:F7;119:F8;120:F9;121:F10;122:F11;123:F12;127:Del');
 function fGetKeyboardEventIdentifier(oEvent) {
-	return oAMLKeyIdentifiers[oEvent.keyCode] || ('U+' + fNumberToHex(oEvent.keyCode, 4)).toUpperCase();
+	return hAMLKeyIdentifiers[oEvent.keyCode] || ('U+' + fNumberToHex(oEvent.keyCode, 4).toUpperCase());
 };
 
 function fGetKeyboardEventModifiersList(oEvent) {
@@ -265,7 +221,7 @@ function fOnKeyDown(oEvent) {
 function fOnKeyPress(oEvent)
 {
 	// Filter out non-alphanumerical keypress events
-	if (oEvent.ctrlKey || oEvent.altKey || oEvent.keyCode in oAMLKeyIdentifiers)
+	if (oEvent.ctrlKey || oEvent.altKey || oEvent.keyCode in hAMLKeyIdentifiers)
 		return;
 
 	var oTarget		= oAML_document.activeElement || oAML_document.documentElement,	// FF bugfix
@@ -817,6 +773,12 @@ function fAML_setStyle(oElementDOM, sName, sValue) {
 	}
 	else
 		oStyle[sName]	= sValue;
+};
+
+function fAML_stringToHash(sValue, sPrefix) {
+	for (var hValue = {}, aValues = sValue.split(';'), nIndex = 0, aValue; nIndex < aValues.length; nIndex++)
+		hValue[(aValue = aValues[nIndex].split(':'))[0]]	=(sPrefix || '') + aValue[1];
+	return hValue;
 };
 
 //
