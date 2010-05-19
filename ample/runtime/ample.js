@@ -166,9 +166,9 @@ function fAML_import(oElementDOM, oNode, bCollapse) {
 
 					// Inline event handler
 					if (sName.indexOf('on') == 0)
-						oElement[sName]	= new cFunction(sNameSpaceURI == "http://www.w3.org/2000/svg" ? "evt" : "event", bCollapse ? sValue.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&') : sValue);
+						oElement[sName]	= new cFunction(sNameSpaceURI == "http://www.w3.org/2000/svg" ? "evt" : "event", bCollapse ? fAML_decodeEntities(sValue) : sValue);
 					else
-						oAttributes[sName]	= bCollapse ? sValue : sValue.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+						oAttributes[sName]	= bCollapse ? sValue : fAML_encodeEntities(sValue);
 				}
 
 				// Copy default attributes values if not specified
@@ -205,7 +205,7 @@ function fAML_import(oElementDOM, oNode, bCollapse) {
 		case cAMLNode.TEXT_NODE:
 			var sValue	= oElementDOM.nodeValue;
 			if (!bCollapse)
-				sValue	= sValue.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+				sValue	= fAML_encodeEntities(sValue);
 
 			if (sValue.trim() != '') {
 				if (oNode.lastChild instanceof cAMLCharacterData)
@@ -439,6 +439,14 @@ function fAML_resolveUri(sUri, sBaseUri)
 	return aResult.join('');
 };
 
+function fAML_encodeEntities(sValue) {
+	return sValue.replace(/&(?![a-z]+;)/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+};
+
+function fAML_decodeEntities(sValue) {
+	return sValue.replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+};
+
 //<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd" [
 //]>
 var sAML_entities	= '',
@@ -505,7 +513,7 @@ function fAML_processScripts() {
 		        aAttributes = oElementDOM.attributes;
 		        for (var nAttribute = 0; oAttribute = aAttributes[nAttribute]; nAttribute++)
 		        	if (oAttribute.specified && (sAttribute = oAttribute.nodeName.toLowerCase()) != "type")
-                		oAttributes[sAttribute]	= (sAttribute == "style" ? oElementDOM[sAttribute].cssText : oAttribute.nodeValue).replace(/&/g, '&amp;').replace(/>/g, '&gt;').replace(/</g, '&lt;');
+                		oAttributes[sAttribute]	= fAML_encodeEntities(sAttribute == "style" ? oElementDOM[sAttribute].cssText : oAttribute.nodeValue);
 			}
 
 			// Add default namespace if missing

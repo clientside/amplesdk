@@ -32,7 +32,7 @@ cAMLSerializer.prototype.serializeToString	= function(oNode)
 				oAttributes	= oNode.attributes;
 				for (sName in oAttributes)
 					if (oAttributes.hasOwnProperty(sName))
-						aHtml.push(' ' + sName + '=' + '"' + oAttributes[sName].replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/&/g, '&amp;') + '"');
+						aHtml.push(' ' + sName + '=' + '"' + fAML_encodeEntities(oAttributes[sName]) + '"');
 	//			aHtml.push(' ' + '_' + '=' + '"' + oNode.uniqueID + '"');
 				if (oNode.hasChildNodes()) {
 					aHtml.push('>');
