@@ -712,10 +712,12 @@ function fAML_initialize() {
 	fAML_changeReadyState("complete");
 
 //->Source
-	oUADocument.title	= 	"AML Elements: " + fAMLDocument_getElementsByTagName(oAML_document, '*').length + " units. " +
-            			"DOM Elements: " + oUADocument.getElementsByTagName('*').length + " units. " +
-            			"CSS time: " + (oDateXML - oDateCSS) + " ms. " +
-            			"XML time: " + (new cDate - oDateXML) + " ms. ";
+	var nElements	= fAMLElement_getElementsByTagName(oAML_document, '*').length,
+		nAnonymous	= (function(){var nLength = 0; for (var sKey in oAML_all) if (oAML_all.hasOwnProperty(sKey)) nLength++; return nLength})();
+	oUADocument.title	=	"Ample: " + nElements + " (+" + (nAnonymous - nElements) + " anonymous). " +
+							"DHTML: " + oUADocument.getElementsByTagName('*').length + ". " +
+							"CSS time: " + (oDateXML - oDateCSS) + " ms. " +
+							"XML time: " + (new cDate - oDateXML) + " ms. ";
 //<-Source
 };
 

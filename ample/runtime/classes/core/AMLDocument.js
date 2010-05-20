@@ -302,17 +302,6 @@ cAMLDocument.prototype.getElementById	= function(sId)
     return oAML_ids[sId] || null;
 };
 
-function fAMLDocument_getElementsByTagName(oDocument, sTagName)
-{
-    var aElements   = new cAMLNodeList,
-		bTagName	= '*' == sTagName;
-	for (var sKey in oAML_all)
-		if (oAML_all.hasOwnProperty(sKey))
-			if (bTagName || sTagName == oAML_all[sKey].tagName)
-				aElements.$add(oAML_all[sKey]);
-	return aElements;
-};
-
 cAMLDocument.prototype.getElementsByTagName	= function(sTagName)
 {
 	// Validate arguments
@@ -320,20 +309,7 @@ cAMLDocument.prototype.getElementsByTagName	= function(sTagName)
 		["name",	cString]
 	], "getElementsByTagName");
 
-	return fAMLDocument_getElementsByTagName(this, sTagName);
-};
-
-function fAMLDocument_getElementsByTagNameNS(oDocument, sNameSpaceURI, sLocalName)
-{
-    var aElements   = new cAMLNodeList,
-		bLocalName		= '*' == sLocalName,
-		bNameSpaceURI	= '*' == sNameSpaceURI;
-	for (var sKey in oAML_all)
-		if (oAML_all.hasOwnProperty(sKey) && oAML_all.hasOwnProperty(sKey))
-	        if (bNameSpaceURI || sNameSpaceURI == oAML_all[sKey].namespaceURI)
-	        	if (bLocalName || sLocalName == oAML_all[sKey].localName)
-	            	aElements.$add(oAML_all[sKey]);
-	return aElements;
+	return fAMLElement_getElementsByTagName(this, sTagName);
 };
 
 cAMLDocument.prototype.getElementsByTagNameNS	= function(sNameSpaceURI, sLocalName)
@@ -344,7 +320,7 @@ cAMLDocument.prototype.getElementsByTagNameNS	= function(sNameSpaceURI, sLocalNa
 		["localName",		cString]
 	], "getElementsByTagNameNS");
 
-	return fAMLDocument_getElementsByTagNameNS(this, sNameSpaceURI, sLocalName);
+	return fAMLElement_getElementsByTagNameNS(this, sNameSpaceURI, sLocalName);
 };
 
 cAMLDocument.prototype.importNode	= function(oNode, bDeep)
