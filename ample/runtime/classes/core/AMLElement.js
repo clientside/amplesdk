@@ -142,7 +142,6 @@ cAMLElement.prototype.insertBefore	= function(oNode, oBefore)
 		else
 			fAMLElement_appendChild(this, oNode);
 	}
-	//
 	return oNode;
 };
 
