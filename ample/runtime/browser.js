@@ -783,8 +783,8 @@ function fAML_numberToHex(nValue, nLength/* =2 */) {
 
 //
 fAttachEvent(window, "load", function(oEvent) {
-	// change readystate to "loading"
-	fAML_changeReadyState("loading");
+	// change readystate to "loaded"
+	fAML_changeReadyState("loaded");
 
 //->Source
 	oUADocument.title	= "Initializing...";

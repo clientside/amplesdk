@@ -687,8 +687,8 @@ function fAML_initialize() {
 	// Process XML markup
 	fAML_processScripts();
 
-	// change readystate to "loaded"
-	fAML_changeReadyState("loaded");
+	// change readystate to "interactive"
+	fAML_changeReadyState("interactive");
 
 	// Set documentElement style pointer object
     if (oAMLConfiguration_values["ample-use-style-property"])
@@ -699,9 +699,6 @@ function fAML_initialize() {
 		if (bTrident && nVersion < 7)
 			oUADocument.execCommand("BackgroundImageCache", false, true);
 	} catch (oError){};
-
-	// change readystate to "interactive"
-	fAML_changeReadyState("interactive");
 
     // Fire Event
     var oEventLoad = new cAMLEvent;
@@ -769,17 +766,20 @@ var oAML_implementation	= new cAMLImplementation,
 oAML_document.documentElement.$getContainer	= function(sName) {return sName && sName != "gateway" ? null : oUADocument.body};
 
 // ample object members
-oAML_document.readyState	= "uninitialized";
+oAML_document.readyState	= "loading";
 
 oAML_document.open	= function() {
-	var aElements	= oUADocument.getElementsByTagName("script"),
-		oElement	= aElements[aElements.length - 1];
-	oElement.parentNode.removeChild(oElement);
-	oUADocument.write('<' + "script" + ' ' + "type" + '="' + "application/ample+xml" + '"' + '>');
+	if (oAML_document.readyState == "loading") {
+		var aElements	= oUADocument.getElementsByTagName("script"),
+			oElement	= aElements[aElements.length - 1];
+		oElement.parentNode.removeChild(oElement);
+		oUADocument.write('<' + "script" + ' ' + "type" + '="' + "application/ample+xml" + '"' + '>');
+	}
 };
 
 oAML_document.close	= function() {
-	oUADocument.write('</' + "script" + '>');
+	if (oAML_document.readyState == "loading")
+		oUADocument.write('</' + "script" + '>');
 };
 
 oAML_document.$instance	= function(oNode) {
