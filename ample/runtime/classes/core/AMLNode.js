@@ -101,19 +101,13 @@ cAMLNode.prototype.appendChild	= function(oNode)
 	return fAMLNode_appendChild(this, oNode);
 };
 
-cAMLNode.prototype.insertBefore	= function(oNode, oBefore)
+function fAMLNode_insertBefore(oParent, oNode, oBefore)
 {
-	// Validate arguments
-	fAML_validate(arguments, [
-		["node",	cAMLNode],
-		["before",	cAMLNode, false, true]
-	], "insertBefore");
-
 	// if oBefore is ommited or null, use appendChild
 	if (!oBefore)
-		return fAMLElement_appendChild(this, oNode);	// TODO: Check nodetype of this
+		return fAMLElement_appendChild(oParent, oNode);	// TODO: Check nodetype of this
 
-   	var nIndex  = this.childNodes.$indexOf(oBefore);
+   	var nIndex  = oParent.childNodes.$indexOf(oBefore);
     if (nIndex !=-1)
     {
 		// Remove element from previous location
@@ -125,11 +119,11 @@ cAMLNode.prototype.insertBefore	= function(oNode, oBefore)
 		    //
 		    fAMLNode_removeChild(oNode.parentNode, oNode);
 			// update index (could have been changed if "node" was before "before")
-			nIndex	= this.childNodes.$indexOf(oBefore);
+			nIndex	= oParent.childNodes.$indexOf(oBefore);
 		}
 
 		// Set DOM properties
-        oNode.parentNode	= this;
+        oNode.parentNode	= oParent;
 
 		if (oBefore.previousSibling)
 		{
@@ -137,22 +131,33 @@ cAMLNode.prototype.insertBefore	= function(oNode, oBefore)
 			oBefore.previousSibling.nextSibling	= oNode;
 		}
 		else
-			this.firstChild	= oNode;
+			oParent.firstChild	= oNode;
 
 		oNode.nextSibling	= oBefore;
 		oBefore.previousSibling	= oNode;
 
-        this.childNodes.$add(oNode, nIndex);
+		oParent.childNodes.$add(oNode, nIndex);
     }
     else
         throw new cAMLException(cAMLException.NOT_FOUND_ERR);
 
 	// Fire Mutation event
     var oEvent = new cAMLMutationEvent;
-    oEvent.initMutationEvent("DOMNodeInserted", true, false, this, null, null, null, null);
+    oEvent.initMutationEvent("DOMNodeInserted", true, false, oParent, null, null, null, null);
     fAMLNode_dispatchEvent(oNode, oEvent);
 
 	return oNode;
+};
+
+cAMLNode.prototype.insertBefore	= function(oNode, oBefore)
+{
+	// Validate arguments
+	fAML_validate(arguments, [
+		["node",	cAMLNode],
+		["before",	cAMLNode, false, true]
+	], "insertBefore");
+
+	return fAMLNode_insertBefore(this, oNode, oBefore);
 };
 
 function fAMLNode_removeChild(oParent, oNode)
@@ -188,10 +193,24 @@ cAMLNode.prototype.removeChild	= function(oNode)
         throw new cAMLException(cAMLException.NOT_FOUND_ERR);
 };
 
+function fAMLNode_replaceChild(oParent, oNode, oOld)
+{
+	fAMLNode_insertBefore(oParent, oNode, oOld);
+	return fAMLNode_removeChild(oParent, oOld);
+};
+
 cAMLNode.prototype.replaceChild	= function(oNode, oOld)
 {
-	this.insertBefore(oNode, oOld);
-	return this.removeChild(oOld);
+	// Validate arguments
+	fAML_validate(arguments, [
+		["node",	cAMLNode],
+		["old",		cAMLNode, false, true]
+	], "replaceChild");
+
+    if (this.childNodes.$indexOf(oOld) !=-1)
+    	return fAMLNode_replaceChild(this, oNode, oOld);
+    else
+    	throw new cAMLException(cAMLException.NOT_FOUND_ERR);
 };
 
 cAMLNode.prototype.cloneNode	= function(bDeep)
