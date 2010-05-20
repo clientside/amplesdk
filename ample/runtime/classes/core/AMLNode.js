@@ -314,7 +314,7 @@ function fAMLNode_compareDocumentPosition(oNode, oChild)
 				return cAMLNode.DOCUMENT_POSITION_FOLLOWING;
 			if (!oNode1.nextSibling)
 				return cAMLNode.DOCUMENT_POSITION_PRECEDING;
-			for (oElement = oNode2.previousSibling; oElement; oElement.previousSibling)
+			for (oElement = oNode2.previousSibling; oElement; oElement = oElement.previousSibling)
 				if (oElement == oNode1)
 					return cAMLNode.DOCUMENT_POSITION_FOLLOWING;
 			return cAMLNode.DOCUMENT_POSITION_PRECEDING;
