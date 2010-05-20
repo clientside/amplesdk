@@ -17,7 +17,7 @@ cXULElement_broadcaster.handlers	= {
 		if (oEvent.target == this) {
 		    // Skip attributes "id" and "persist" that should be not possible to set
 		    if (oEvent.attrName != "id" && oEvent.attrName != "persist") {
-		    	var aElements	= this.ownerDocument.getElementsByAttribute("observes", this.attributes["id"]);
+		    	var aElements	= this.ownerDocument.querySelector("[observes='" + this.attributes["id"] + "']");
 		        for (var nIndex = 0, nLength = aElements.length; nIndex < nLength; nIndex++)
 		        	aElements[nIndex].setAttribute(oEvent.attrName, oEvent.newName);
 		    }

@@ -353,41 +353,6 @@ cAMLDocument.prototype.renameNode	= function(oNode, sNameSpaceURI, sQName)
 	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
 
-cAMLDocument.prototype.getElementsByAttribute	= function(sName, sValue)
-{
-	// Validate arguments
-	fAML_validate(arguments, [
-		["name",	cString],
-		["value",	cString, true]
-	], "getElementsByAttribute");
-
-    var aElements   = new cAMLNodeList,
-    	bValue		= '*' == sValue;
-    for (var sKey in oAML_all)
-        if (oAML_all.hasOwnProperty(sKey) && fAMLElement_hazAttribute(oAML_all[sKey], sName))
-        	if (bValue || sValue == fAMLElement_getAttribute(oAML_all[sKey], sName))
-            	aElements.$add(oAML_all[sKey]);
-    return aElements;
-};
-
-cAMLDocument.prototype.getElementsByAttributeNS	= function(sNameSpaceURI, sLocalName, sValue)
-{
-	// Validate arguments
-	fAML_validate(arguments, [
-		["namespaceURI",	cString, false, true],
-		["localName",		cString],
-		["value",			cString, true]
-	], "getElementsByAttributeNS");
-
-    var aElements   = new cAMLNodeList,
-    	bValue		= '*' == sValue;
-    for (var sKey in oAML_all)
-        if (oAML_all.hasOwnProperty(sKey) && fAMLElement_hazAttribute(oAML_all[sKey], sNameSpaceURI, sLocalName))
-        	if (bValue || sValue == fAMLElement_getAttributeNS(oAML_all[sKey], sNameSpaceURI, sLocalName))
-            	aElements.$add(oAML_all[sKey]);
-    return aElements;
-};
-
 // Private methods
 function fAMLDocument_routeEvent(oEvent)
 {
