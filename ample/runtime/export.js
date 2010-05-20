@@ -16,33 +16,31 @@ function fAMLExporter_toStringObject(sName) {
 };
 var fAMLExporter_toString	= fAMLExporter_toStringFunction("toString");
 fAMLExporter_toString.toString	= fAMLExporter_toString;
-function fAMLExporter_wrap(vObject, sName) {
-	fAMLExporter_wrapMember(vObject, (vObject instanceof cFunction ? fAMLExporter_toStringFunction : fAMLExporter_toStringObject)(sName));
-	for (sName in vObject)
-		if (vObject.hasOwnProperty(sName) && vObject[sName] instanceof cFunction)
-			fAMLExporter_wrapMember(vObject[sName], fAMLExporter_toStringFunction(sName));
-};
-function fAMLExporter_wrapMember(vObject, fToString) {
+function fAMLExporter_toStringMember(vObject, fToString) {
 	if (!vObject.hasOwnProperty("toString")) {
 		vObject.toString	= fToString;
 		vObject.toString.toString	= fAMLExporter_toString;
 	}
 };
-function fAMLExporter_exportMember(oObject, oFunction, sName) {
-	fAMLExporter_wrapMember(oFunction, fAMLExporter_toStringFunction(sName));
+function fAMLExporter_wrap(vObject, sName) {
+	fAMLExporter_toStringMember(vObject, (vObject instanceof cFunction ? fAMLExporter_toStringFunction : fAMLExporter_toStringObject)(sName));
+	for (sName in vObject)
+		if (vObject.hasOwnProperty(sName) && vObject[sName] instanceof cFunction)
+			fAMLExporter_wrapMember(vObject[sName], sName);
+};
+function fAMLExporter_wrapMember(fFunction, sName) {
+	fAMLExporter_toStringMember(fFunction, fAMLExporter_toStringFunction(sName));
+};
+function fAMLExporter_exportMember(oObject, fFunction, sName) {
+	fAMLExporter_wrapMember(fFunction, sName);
 
 	// publish to object
-	oObject[sName]	= oFunction;
+	oObject[sName]	= fFunction;
 };
 function fAMLExporter_export(cObject, sName) {
 	// Class
-	// Wrap static members
 	fAMLExporter_wrap(cObject, sName);
-
-	// Prototype
-	var oObject	= cObject.prototype;
-	if (oObject)
-		fAMLExporter_wrap(oObject, sName);
+	fAMLExporter_wrap(cObject.prototype, sName);
 
 	// Publish to window
 	window[sName]	= cObject;
@@ -111,6 +109,12 @@ if (!window.JSON)
 
 // Publish ample object here
 window.ample	= oAML_document;
+// Wrap 'Static Methods'
+fAMLExporter_wrapMember(oAML_document.close,		"close");
+fAMLExporter_wrapMember(oAML_document.open,			"open");
+fAMLExporter_wrapMember(oAML_document.$bookmark,	"$bookmark");
+fAMLExporter_wrapMember(oAML_document.$instance,	"$instance");
+fAMLExporter_wrapMember(oAML_document.$resolveUri,	"$resolveUri");
 
 // JavaScript 1.5
 if (!cArray.prototype.push) {
