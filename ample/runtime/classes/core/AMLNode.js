@@ -543,13 +543,85 @@ cAMLNode.prototype.isSupported	= function()
 	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
 
+function fAMLNode_routeEvent(oEvent)
+{
+	var aTargets	= [],
+		nLength		= 0,
+		nCurrent	= 0;
+	// Populate stack targets (...document-fragment, document, #document)
+	for (var oNode = oEvent.target; oNode; oNode = oNode.parentNode)
+		aTargets[nLength++]	= oNode;
+
+//->Source
+//console.info(oEvent.type, oEvent.target);
+//<-Source
+
+	// Propagate event
+	while (!oEvent._stopped) {
+		switch (oEvent.eventPhase) {
+			case cAMLEvent.CAPTURING_PHASE:
+				if (--nCurrent > 0)
+					oEvent.currentTarget	= aTargets[nCurrent];
+				else {
+					// Do not propagate either target or bubbling for disabled elements
+					if (oEvent instanceof cAMLUIEvent && oEvent.target.nodeType == cAMLNode.ELEMENT_NODE && !oEvent.target.$isAccessible())
+						return;
+
+					oEvent.eventPhase		= cAMLEvent.AT_TARGET;
+					oEvent.currentTarget	= oEvent.target;
+				}
+				break;
+
+			case cAMLEvent.AT_TARGET:
+				// if event does not bubble, return
+				if (!oEvent.bubbles)
+					return;
+				// if event current target doesn't have a parent
+				if (nCurrent < 0)
+					return;
+				oEvent.eventPhase	= cAMLEvent.BUBBLING_PHASE;
+				// No break left intentionally
+			case cAMLEvent.BUBBLING_PHASE:
+				if (++nCurrent < nLength)
+					oEvent.currentTarget	= aTargets[nCurrent];
+				else
+					return;
+				break;
+
+			default:
+				// Set current target
+				if (nLength > 1) {
+					nCurrent	= nLength - 1;
+					oEvent.eventPhase	= cAMLEvent.CAPTURING_PHASE;
+					oEvent.currentTarget= aTargets[nCurrent];
+				}
+				else {
+					// Do not propagate either target or bubbling for disabled elements
+					if (oEvent instanceof cAMLUIEvent && oEvent.target.nodeType == cAMLNode.ELEMENT_NODE && !oEvent.target.$isAccessible())
+						return;
+
+					nCurrent	= 0;
+					oEvent.eventPhase	= cAMLEvent.AT_TARGET;
+					oEvent.currentTarget= oEvent.target;
+				}
+		}
+
+//->Source
+//console.log(oEvent.currentTarget);
+//<-Source
+
+		// Handle event
+		fAMLNode_handleEvent(oEvent.currentTarget, oEvent);
+	}
+};
+
 function fAMLNode_dispatchEvent(oNode, oEvent)
 {
 	// Set event target and currentTarget
 	oEvent.target	= oNode;
 
 	// Start event flow
-	fAMLDocument_routeEvent(oEvent);
+	fAMLNode_routeEvent(oEvent);
 
 	return !oEvent.defaultPrevented;
 };

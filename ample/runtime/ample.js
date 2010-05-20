@@ -765,9 +765,22 @@ var oAML_implementation	= new cAMLImplementation,
 	oAML_configuration	= new cAMLConfiguration,
 	oAML_document		= fAMLImplementation_createDocument(oAML_implementation, oUADocument.documentElement.getAttribute("xmlns") || null, "document", null);
 
-// Dirty adjustments
+// Dirty adjustment
 oAML_document.documentElement.$getContainer	= function(sName) {return sName && sName != "gateway" ? null : oUADocument.body};
+
+// ample object members
 oAML_document.readyState	= "uninitialized";
+
+oAML_document.open	= function() {
+	var aElements	= oUADocument.getElementsByTagName("script"),
+		oElement	= aElements[aElements.length - 1];
+	oElement.parentNode.removeChild(oElement);
+	oUADocument.write('<' + "script" + ' ' + "type" + '="' + "application/ample+xml" + '"' + '>');
+};
+
+oAML_document.close	= function() {
+	oUADocument.write('</' + "script" + '>');
+};
 
 oAML_document.$instance	= function(oNode) {
     for (var oElement, sId; oNode; oNode = oNode.parentNode)
@@ -789,6 +802,7 @@ oAML_document.$class	= function(oNode) {
 oAML_document.$resolveUri	= function(sUri, sBaseUri) {
 	return fAML_resolveUri(sUri, sBaseUri);
 };
+
 //->Debug
 // Enable debugging
 var oAML_errorHandler	= {};
