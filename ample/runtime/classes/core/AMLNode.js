@@ -138,8 +138,9 @@ cAMLNode.prototype.insertBefore	= function(oNode, oBefore)
 			return fAMLNode_insertBefore(this, oNode, oBefore);
 		else
 			throw new cAMLException(cAMLException.NOT_FOUND_ERR);
-	}	// if oBefore is omitted or null, use appendChild
-	else		return fAMLNode_appendChild(this, oNode);
+	}
+	else
+		return fAMLNode_appendChild(this, oNode);
 };
 
 function fAMLNode_removeChild(oParent, oNode)
