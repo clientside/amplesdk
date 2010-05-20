@@ -28,25 +28,19 @@ var nAMLElement_prefix	= 0;
 // Public Methods
 function fAMLElement_appendChild(oParent, oNode)
 {
-	if (oNode.nodeType == cAMLNode.DOCUMENT_FRAGMENT_NODE) {
-		while (oNode.firstChild)
-			fAMLElement_appendChild(oParent, oNode.firstChild);
-	}
-	else {
-		// Call parent class method
-		fAMLNode_appendChild(oParent, oNode);
+	// Call parent class method
+	fAMLNode_appendChild(oParent, oNode);
 
-		// Append DOM
-		var oGateway, oElement;
-		if (oParent.nodeType == cAMLNode.ELEMENT_NODE)
-			if (oGateway =(oParent.$getContainer("gateway") || oParent.$getContainer()))
-				if (oElement = (oNode.$getContainer() || fAML_render(oNode)))
-			   		oGateway.appendChild(oElement);
+	// Append DOM
+	var oGateway, oElement;
+	if (oParent.nodeType == cAMLNode.ELEMENT_NODE)
+		if (oGateway =(oParent.$getContainer("gateway") || oParent.$getContainer()))
+			if (oElement = (oNode.$getContainer() || fAML_render(oNode)))
+		   		oGateway.appendChild(oElement);
 
-		// Register Instance
-		if (oAML_all[oParent.uniqueID])
-			fAML_register(oNode);
-	}
+	// Register Instance
+	if (oAML_all[oParent.uniqueID])
+		fAML_register(oNode);
 
 	//
     return oNode;
@@ -60,7 +54,13 @@ cAMLElement.prototype.appendChild	= function(oNode)
 	], "appendChild");
 
 	// Invoke actual implementation
-	return fAMLElement_appendChild(this, oNode);
+	if (oNode.nodeType == cAMLNode.DOCUMENT_FRAGMENT_NODE)
+		while (oNode.firstChild)
+			fAMLElement_appendChild(this, oNode.firstChild);
+	else
+		fAMLElement_appendChild(this, oNode);
+	//
+	return oNode;
 };
 
 cAMLElement.prototype.$appendChildAnonymous	= function(oNode)
@@ -93,30 +93,24 @@ cAMLElement.prototype.$appendChildAnonymous	= function(oNode)
 
 function fAMLElement_insertBefore(oParent, oNode, oBefore)
 {
-	if (oNode.nodeType == cAMLNode.DOCUMENT_FRAGMENT_NODE) {
-		while (oNode.firstChild)
-			fAMLElement_insertBefore(oParent, oNode.firstChild, oBefore);
-	}
-	else {
-		// Call parent class method
-		fAMLNode_insertBefore(oParent, oNode, oBefore);
+	// Call parent class method
+	fAMLNode_insertBefore(oParent, oNode, oBefore);
 
-		// Insert DOM
-		var oGateway, oChild;
-		if (oParent.nodeType == cAMLNode.ELEMENT_NODE)
-			if ((oGateway =(oParent.$getContainer("gateway") || oParent.$getContainer())))
-				if (oChild = (oNode.$getContainer() || fAML_render(oNode)))
-		    		oGateway.insertBefore(oChild, function() {
-		    			for (var oElement; oBefore; oBefore = oBefore.nextSibling)
-		    				if (oElement = oBefore.$getContainer())
-		    					return oElement;
-		    			return null;
-		    		}());
+	// Insert DOM
+	var oGateway, oChild;
+	if (oParent.nodeType == cAMLNode.ELEMENT_NODE)
+		if ((oGateway =(oParent.$getContainer("gateway") || oParent.$getContainer())))
+			if (oChild = (oNode.$getContainer() || fAML_render(oNode)))
+	    		oGateway.insertBefore(oChild, function() {
+	    			for (var oElement; oBefore; oBefore = oBefore.nextSibling)
+	    				if (oElement = oBefore.$getContainer())
+	    					return oElement;
+	    			return null;
+	    		}());
 
-		// Register Instance
-		if (oAML_all[oParent.uniqueID])
-			fAML_register(oNode);
-	}
+	// Register Instance
+	if (oAML_all[oParent.uniqueID])
+		fAML_register(oNode);
 
 	//
     return oNode;
@@ -130,22 +124,36 @@ cAMLElement.prototype.insertBefore	= function(oNode, oBefore)
 		["before",	cAMLNode, false, true]
 	], "insertBefore");
 
-	return fAMLElement_insertBefore(this, oNode, oBefore);
+	if (oBefore) {
+		if (this.childNodes.$indexOf(oBefore) !=-1) {
+			if (oNode.nodeType == cAMLNode.DOCUMENT_FRAGMENT_NODE)
+				while (oNode.firstChild)
+					fAMLElement_insertBefore(this, oNode.firstChild, oBefore);
+			else
+				fAMLElement_insertBefore(this, oNode, oBefore);
+		}
+		else
+			throw new cAMLException(cAMLException.NOT_FOUND_ERR);
+	}
+	else {
+		if (oNode.nodeType == cAMLNode.DOCUMENT_FRAGMENT_NODE)
+			while (oNode.firstChild)
+				fAMLElement_appendChild(this, oNode.firstChild);
+		else
+			fAMLElement_appendChild(this, oNode);
+	}
+	//
+	return oNode;
 };
 
 function fAMLElement_removeChild(oParent, oNode)
 {
-	// Fire Mutation event
-    var oEvent = new cAMLMutationEvent;
-    oEvent.initMutationEvent("DOMNodeRemoved", true, false, oParent, null, null, null, null);
-    fAMLNode_dispatchEvent(oNode, oEvent);
+	// Call parent class method
+	fAMLNode_removeChild(oParent, oNode);
 
 	// Unregister Instance
 	if (oAML_all[oParent.uniqueID])
 		fAML_unregister(oNode);
-
-	// Call parent class method
-	fAMLNode_removeChild(oParent, oNode);
 
 	// Remove from DOM
 	var oChild, oGateway;
@@ -199,31 +207,22 @@ cAMLElement.prototype.$removeChildAnonymous	= function(oNode)
 
 function fAMLElement_replaceChild(oParent, oNode, oOld)
 {
-	if (oNode.nodeType == cAMLNode.DOCUMENT_FRAGMENT_NODE) {
-		while (oNode.firstChild)
-			fAMLElement_insertBefore(oParent, oNode.firstChild, oOld);
-		// remove child if passed
-		if (oOld)
-			fAMLElement_removeChild(oParent, oOld);
-	}
-	else {
-		// Call parent class method
-		fAMLNode_replaceChild(oParent, oNode, oOld);
+	// Call parent class method
+	fAMLNode_replaceChild(oParent, oNode, oOld);
 
-		// Unregister Instance
-		fAML_unregister(oOld);
+	// Unregister Instance
+	fAML_unregister(oOld);
 
-		// Replace in from DOM
-		var oElement, oGateway, oChild;
-		if (oParent.nodeType == cAMLNode.ELEMENT_NODE)
-			if ((oGateway =(oParent.$getContainer("gateway") || oParent.$getContainer())) && (oChild = oOld.$getContainer()))
-				if (oElement = (oNode.$getContainer() || fAML_render(oNode)))
-			    	oGateway.replaceChild(oElement, oChild);
+	// Replace in from DOM
+	var oElement, oGateway, oChild;
+	if (oParent.nodeType == cAMLNode.ELEMENT_NODE)
+		if ((oGateway =(oParent.$getContainer("gateway") || oParent.$getContainer())) && (oChild = oOld.$getContainer()))
+			if (oElement = (oNode.$getContainer() || fAML_render(oNode)))
+		    	oGateway.replaceChild(oElement, oChild);
 
-		// Register Instance
-		if (oAML_all[oParent.uniqueID])
-			fAML_register(oNode);
-	}
+	// Register Instance
+	if (oAML_all[oParent.uniqueID])
+		fAML_register(oNode);
 
 	return oOld;
 };
@@ -236,10 +235,29 @@ cAMLElement.prototype.replaceChild	= function(oNode, oOld)
 		["old",		cAMLNode, false, true]
 	], "replaceChild");
 
-    if (this.childNodes.$indexOf(oOld) !=-1)
-    	return fAMLElement_replaceChild(this, oNode, oOld);
-    else
-    	throw new cAMLException(cAMLException.NOT_FOUND_ERR);
+	if (oOld) {
+	    if (this.childNodes.$indexOf(oOld) !=-1) {
+	    	if (oNode.nodeType == cAMLNode.DOCUMENT_FRAGMENT_NODE) {
+	    		while (oNode.firstChild)
+	    			fAMLElement_insertBefore(this, oNode.firstChild, oOld);
+    			fAMLElement_removeChild(this, oOld);
+	    	}
+	    	else
+	    		fAMLElement_replaceChild(this, oNode, oOld);
+	    }
+	    else
+	    	throw new cAMLException(cAMLException.NOT_FOUND_ERR);
+	}
+	else {
+    	if (oNode.nodeType == cAMLNode.DOCUMENT_FRAGMENT_NODE)
+    		while (oNode.firstChild)
+    			fAMLElement_appendChild(this, oNode.firstChild);
+    	else
+    		fAMLElement_appendChild(this, oNode);
+	}
+
+    //
+    return oOld;
 };
 
 cAMLElement.prototype.cloneNode	= function(bDeep)

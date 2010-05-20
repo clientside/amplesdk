@@ -60,14 +60,8 @@ cAMLNode.prototype.$listeners	= null;
 function fAMLNode_appendChild(oParent, oNode)
 {
 	// Remove element from previous location
-	if (oNode.parentNode) {
-		// Fire Mutation event
-	    var oEvent = new cAMLMutationEvent;
-	    oEvent.initMutationEvent("DOMNodeRemoved", true, false, oNode.parentNode, null, null, null, null);
-	    fAMLNode_dispatchEvent(oNode, oEvent);
-	    //
+	if (oNode.parentNode)
 	    fAMLNode_removeChild(oNode.parentNode, oNode);
-	}
 
 	// Set DOM properties
     oNode.parentNode	= oParent;
@@ -103,43 +97,25 @@ cAMLNode.prototype.appendChild	= function(oNode)
 
 function fAMLNode_insertBefore(oParent, oNode, oBefore)
 {
-	// if oBefore is ommited or null, use appendChild
-	if (!oBefore)
-		return fAMLElement_appendChild(oParent, oNode);	// TODO: Check nodetype of this
+	// Remove element from previous location
+	if (oNode.parentNode)
+	    fAMLNode_removeChild(oNode.parentNode, oNode);
 
-   	var nIndex  = oParent.childNodes.$indexOf(oBefore);
-    if (nIndex !=-1)
-    {
-		// Remove element from previous location
-		if (oNode.parentNode) {
-			// Fire Mutation event
-		    var oEvent = new cAMLMutationEvent;
-		    oEvent.initMutationEvent("DOMNodeRemoved", true, false, oNode.parentNode, null, null, null, null);
-		    fAMLNode_dispatchEvent(oNode, oEvent);
-		    //
-		    fAMLNode_removeChild(oNode.parentNode, oNode);
-			// update index (could have been changed if "node" was before "before")
-			nIndex	= oParent.childNodes.$indexOf(oBefore);
-		}
+	// Set DOM properties
+    oNode.parentNode	= oParent;
 
-		// Set DOM properties
-        oNode.parentNode	= oParent;
+	if (oBefore.previousSibling)
+	{
+		oNode.previousSibling	= oBefore.previousSibling;
+		oBefore.previousSibling.nextSibling	= oNode;
+	}
+	else
+		oParent.firstChild	= oNode;
 
-		if (oBefore.previousSibling)
-		{
-			oNode.previousSibling	= oBefore.previousSibling;
-			oBefore.previousSibling.nextSibling	= oNode;
-		}
-		else
-			oParent.firstChild	= oNode;
+	oNode.nextSibling	= oBefore;
+	oBefore.previousSibling	= oNode;
 
-		oNode.nextSibling	= oBefore;
-		oBefore.previousSibling	= oNode;
-
-		oParent.childNodes.$add(oNode, nIndex);
-    }
-    else
-        throw new cAMLException(cAMLException.NOT_FOUND_ERR);
+	oParent.childNodes.$add(oNode, oParent.childNodes.$indexOf(oBefore));
 
 	// Fire Mutation event
     var oEvent = new cAMLMutationEvent;
@@ -157,11 +133,21 @@ cAMLNode.prototype.insertBefore	= function(oNode, oBefore)
 		["before",	cAMLNode, false, true]
 	], "insertBefore");
 
-	return fAMLNode_insertBefore(this, oNode, oBefore);
+	if (oBefore) {
+		if (this.childNodes.$indexOf(oBefore) !=-1)
+			return fAMLNode_insertBefore(this, oNode, oBefore);
+		else
+			throw new cAMLException(cAMLException.NOT_FOUND_ERR);
+	}	// if oBefore is omitted or null, use appendChild
+	else		return fAMLNode_appendChild(this, oNode);
 };
 
 function fAMLNode_removeChild(oParent, oNode)
 {
+    var oEvent = new cAMLMutationEvent;
+    oEvent.initMutationEvent("DOMNodeRemoved", true, false, oParent, null, null, null, null);
+    fAMLNode_dispatchEvent(oNode, oEvent);
+
 	if (oNode.nextSibling)
 		oNode.nextSibling.previousSibling	= oNode.previousSibling;
 	else
