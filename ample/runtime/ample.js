@@ -530,6 +530,8 @@ function fAML_processScripts() {
 			else {
 				if (!oAttributes["xmlns" + ':' + "aml"])
 					oAttributes["xmlns" + ':' + "aml"]	= "http://www.amplesdk.com/ns/aml";
+				if (!oAttributes["xmlns"] && oAML_document.namespaceURI)
+					oAttributes["xmlns"]	= oAML_document.namespaceURI;
 
 				// Create fragment
 			    oDocument   = new cDOMParser().parseFromString(//		"<?" + "xml" + ' ' + 'version="1.0"' + "?>" +
