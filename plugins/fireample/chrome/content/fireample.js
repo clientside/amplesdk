@@ -78,7 +78,7 @@ FBL.ns(function() { with (FBL) {
 					wWindow.ample.addEventListener("unload", fUpdate, true);
 					wWindow.ample.addEventListener("load", fUpdate, true);
 
-					message	= "Running " + wWindow.ample.domConfig.getParameter("ample-version");
+					message	= "Running " +(wWindow.ample.domConfig ? wWindow.ample.domConfig.getParameter("ample-version") : 'unknown (old)');
 				}
 
 				//
