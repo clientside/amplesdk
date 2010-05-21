@@ -28,7 +28,7 @@ cAMLText.prototype.splitText	= function(nOffset)
 	if (nOffset <= this.length && nOffset >= 0)
 	{
 		var sData	= fAMLCharacterData_substringData(this, nOffset, this.length);
-		this.parentNode.insertBefore(this.ownerDocument.createTextNode(sData), this);
+		fAMLElement_insertBefore(this.parentNode, this.ownerDocument.createTextNode(sData), this);
 
 		var sValueOld	= this.data;
 		this.data	= sData;

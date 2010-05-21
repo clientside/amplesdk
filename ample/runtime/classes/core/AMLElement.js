@@ -966,8 +966,8 @@ function fAMLElement_load(oElement, sUrl, sMethod, oHeaders, sData)
 	fAMLNode_dispatchEvent(oElement, oEvent);
 
 	// Remove nodes
-	while (oElement.firstChild)
-		oElement.removeChild(oElement.firstChild);
+	while (oElement.lastChild)
+		fAMLElement_removeChild(oElement, oElement.lastChild);
 
 	// Do timeout before loading
 	oElement._timeout	= fSetTimeout(function(){fAMLElement_onTimeOut(oElement, sUrl, oHeaders, sMethod, sData)}, 1);
