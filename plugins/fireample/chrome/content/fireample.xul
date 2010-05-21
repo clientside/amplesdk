@@ -21,7 +21,7 @@
 			<hbox id="fbAmpleButtons" insertafter="fbNetButtons" collapsed="true">
 				<toolbarseparator />
 				<toolbarbutton
-                    label="Create" class="toolbar-text-button"/>
+                    label="Clear" class="toolbar-text-button" />
 			</hbox>
 		</hbox>
 	</hbox>

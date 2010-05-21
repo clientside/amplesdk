@@ -39,34 +39,47 @@ FBL.ns(function() { with (FBL) {
 	    {
 			Firebug.ActivableModule.initContext.apply(this, arguments);
 
-			context.window.addEventListener("load", function() {
+			context.window.addEventListener("DOMContentLoaded", function() {
 
 				//
 				var wWindow	= context.window.wrappedJSObject,
 					panel	= context.getPanel(panelName),
-					element = panel.panelNode.appendChild(panel.panelNode.ownerDocument.createElement("pre")),
+					element = panel.panelNode.appendChild(panel.panelNode.ownerDocument.createElement("div")),
 					message	= "Ample SDK was not found";
 
+				element.style.cssText	= "padding: 5px";
+
 				function fUpdate(oEvent) {
-//					message	= new wWindow.AMLSerializer().serializeToString(wWindow.ample);
-					message	= "Event dispatched: " + oEvent.type + " (target: " + oEvent.target.nodeName + ", uniqueID: " + oEvent.target.uniqueID + ")";
+					message	= "# " + oEvent.type + " on " + oEvent.target.nodeName + " (uniqueID: " + oEvent.target.uniqueID + ")";
+					if (oEvent.type == "DOMAttrModified")
+						message+= " @" + oEvent.attrName + ", newValue " + oEvent.newValue + ", prevValue " + oEvent.prevValue;
+					else
+					if (oEvent.type == "readystatechange")
+						message+= " ample.readyState: " + oEvent.target.readyState;
 
 //					if (element.firstChild)
 //						element.removeChild(element.firstChild);
-					element.appendChild(element.ownerDocument.createTextNode(message));
-					element.appendChild(element.ownerDocument.createElement("br"));
+					var div	= element.appendChild(element.ownerDocument.createElement("div"));
+					div.style.color	= oEvent.initUIEvent ? 'green' : oEvent.initMutationEvent ? (oEvent.type == "DOMAttrModified" ? 'brown' : 'red') : 'black';
+					div.innerHTML	= message;
+					element.scrollIntoView(false);
 				}
 
 				if (wWindow.ample) {
 					// Mutation Events
+					wWindow.ample.addEventListener("readystatechange", fUpdate, true);
 					wWindow.ample.addEventListener("DOMNodeInsertedIntoDocument", fUpdate, true);
 					wWindow.ample.addEventListener("DOMNodeRemovedFromDocument", fUpdate, true);
-					wWindow.ample.addEventListener("DOMAttrModified", fUpdate, true);
 					wWindow.ample.addEventListener("DOMNodeInserted", fUpdate, true);
 					wWindow.ample.addEventListener("DOMNodeRemoved", fUpdate, true);
+					wWindow.ample.addEventListener("DOMAttrModified", fUpdate, true);
+					wWindow.ample.addEventListener("DOMActivate", fUpdate, true);
+					wWindow.ample.addEventListener("focus", fUpdate, true);
+					wWindow.ample.addEventListener("blur", fUpdate, true);
+					wWindow.ample.addEventListener("unload", fUpdate, true);
 					wWindow.ample.addEventListener("load", fUpdate, true);
 
-					message	= "Ample SDK processing...";
+					message	= "Running Ample SDK.";
 				}
 
 				//
@@ -178,6 +191,10 @@ FBL.ns(function() { with (FBL) {
 	    hide:	function()
 	    {
 			this.showToolbarButtons("fbAmpleButtons", false);
+	    },
+
+	    clear:	function() {
+
 	    }
 	});
 
