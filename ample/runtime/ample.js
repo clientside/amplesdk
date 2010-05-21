@@ -528,13 +528,16 @@ function fAML_processScripts() {
 				bReferenced	= true;
 			}
 			else {
+				if (!oAttributes["xmlns" + ':' + "aml"])
+					oAttributes["xmlns" + ':' + "aml"]	= "http://www.amplesdk.com/ns/aml";
+
 				// Create fragment
 			    oDocument   = new cDOMParser().parseFromString(//		"<?" + "xml" + ' ' + 'version="1.0"' + "?>" +
 																		'<!' + "DOCTYPE" + ' ' + "#document-fragment".substr(1) + '[' + sAML_entities + ']>' +
 //->Debug
 																		'\n' +
 //<-Debug
-			    														'<' + "#document-fragment".substr(1) + fAML_hashToString(oAttributes).replace(/&/g, '&amp;') + '>' +
+			    														'<' + "aml" + ':' + "#document-fragment".substr(1) + fAML_hashToString(oAttributes).replace(/&/g, '&amp;') + '>' +
 //->Debug
 			    														'\n' +
 //<-Debug
@@ -542,13 +545,14 @@ function fAML_processScripts() {
 //->Debug
 			    														'\n' +
 //<-Debug
-			    														'</' + "#document-fragment".substr(1) + '>', "text/xml");
+			    														'</' + "aml" + ':' + "#document-fragment".substr(1) + '>', "text/xml");
 			}
 
 			oParserError	= oDocument.getElementsByTagName("parsererror")[0];
 		    if (oDocument.documentElement && !oParserError) {
 		    	// import XML DOM into Ample DOM
 		    	oElement	= fAML_import(oDocument.documentElement, null, true);
+		    	delete oElement.attributes["xmlns:aml"];	// dirty hack (namespace is declared on document)
 		    	// render Ample DOM
 		    	if (bTrident) {
 		    		oElementNew	= oUADocument.createElement("div");
@@ -761,9 +765,11 @@ oAMLConfiguration_values["ample-user-agent"]= '@project.userAgent@';
 
 var oAML_implementation	= new cAMLImplementation,
 	oAML_configuration	= new cAMLConfiguration,
-	oAML_document		= fAMLImplementation_createDocument(oAML_implementation, oUADocument.documentElement.getAttribute("xmlns") || null, "document", null);
+	oAML_document		= fAMLImplementation_createDocument(oAML_implementation, oUADocument.documentElement.getAttribute("xmlns") || null, "aml" + ':' + "document", null);
 
 // Dirty adjustment
+oAML_document.documentElement.namespaceURI	=
+oAML_document.documentElement.attributes["xmlns" + ':' + "aml"]	= "http://www.amplesdk.com/ns/aml";
 oAML_document.documentElement.$getContainer	= function(sName) {return sName && sName != "gateway" ? null : oUADocument.body};
 
 // ample object members
