@@ -57,8 +57,6 @@ FBL.ns(function() { with (FBL) {
 					if (oEvent.type == "readystatechange")
 						message+= " ample.readyState: " + oEvent.target.readyState;
 
-//					if (element.firstChild)
-//						element.removeChild(element.firstChild);
 					var div	= element.appendChild(element.ownerDocument.createElement("div"));
 					div.style.color	= oEvent.initUIEvent ? 'green' : oEvent.initMutationEvent ? (oEvent.type == "DOMAttrModified" ? 'brown' : 'red') : 'black';
 					div.innerHTML	= message;
@@ -79,7 +77,7 @@ FBL.ns(function() { with (FBL) {
 					wWindow.ample.addEventListener("unload", fUpdate, true);
 					wWindow.ample.addEventListener("load", fUpdate, true);
 
-					message	= "Running Ample SDK.";
+					message	= "Running " + wWindow.ample.domConfig.getParameter("ample-version");
 				}
 
 				//
@@ -104,7 +102,13 @@ FBL.ns(function() { with (FBL) {
 
 		doTreeElementUpdate:	function(oTree, oElement) {
 
-		}
+		},
+
+	    clear:	function(context) {
+	    	var output	= context.getPanel(panelName).panelNode.firstChild;
+	    	while (output.lastChild)
+	    		output.removeChild(output.lastChild);
+	    }
 	});
 
 	// Localization
@@ -176,25 +180,11 @@ FBL.ns(function() { with (FBL) {
 	    show:	function(state)
 	    {
 	        this.showToolbarButtons("fbAmpleButtons", true);
-
-	        var enabled = Firebug.FireAmpleModule.isEnabled(this.context);
-	        if (enabled)
-	        {
-	            Firebug.ModuleManagerPage.hide(this);
-	        }
-	        else
-	        {
-	            Firebug.ModuleManagerPage.show(this, Firebug.FireAmpleModule);
-	        }
 	    },
 
 	    hide:	function()
 	    {
 			this.showToolbarButtons("fbAmpleButtons", false);
-	    },
-
-	    clear:	function() {
-
 	    }
 	});
 
