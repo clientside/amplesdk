@@ -48,7 +48,7 @@ cAMLConfiguration.prototype.canSetParameter	= function(sName, vValue) {
 cAMLConfiguration.prototype.setNamespace	= function(sNameSpaceURI, oNamespace) {
 	// Validate arguments
 	fAML_validate(arguments, [
-		["namespaceURI",	cString],
+		["namespaceURI",	cString,	true, true],
 		["namespace",		cAMLNamespace]
 	], "setNamespace");
 
@@ -59,7 +59,7 @@ cAMLConfiguration.prototype.setNamespace	= function(sNameSpaceURI, oNamespace) {
 cAMLConfiguration.prototype.getNamespace	= function(sNameSpaceURI) {
 	// Validate arguments
 	fAML_validate(arguments, [
-		["namespaceURI",	cString]
+		["namespaceURI",	cString,	true, true]
 	], "getNamespace");
 
 	return oAML_namespaces[sNameSpaceURI] || null;

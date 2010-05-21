@@ -150,8 +150,8 @@ function fAML_import(oElementDOM, oNode, bCollapse) {
 					fAML_import(oElementDOM, oNode);
 			}
 			else {
-				// Create element
-				var oElement	= fAMLDocument_createElementNS(oAML_document, oElementDOM.namespaceURI, oElementDOM.nodeName),
+				// Create element (note: in IE, namespaceURI is empty string if not specified, hence "oElementDOM.namespaceURI || null")
+				var oElement	= fAMLDocument_createElementNS(oAML_document, oElementDOM.namespaceURI || null, oElementDOM.nodeName),
 					sNameSpaceURI	= oElement.namespaceURI,
 					sLocalName	= oElement.localName,
 					oAttributes	= oElement.attributes,
@@ -516,10 +516,6 @@ function fAML_processScripts() {
                 		oAttributes[sAttribute]	= fAML_encodeEntities(sAttribute == "style" ? oElementDOM[sAttribute].cssText : oAttribute.nodeValue);
 			}
 
-			// Add default namespace if missing
-			if (!oAttributes["xmlns"])
-				oAttributes["xmlns"]	= "http://www.w3.org/1999/xhtml";
-
 			if (oElementDOM.getAttribute("src")) {
 				var oRequest	= new cXMLHttpRequest;
 				oRequest.open("GET", oElementDOM.src, false);
@@ -575,6 +571,11 @@ function fAML_processScripts() {
 					// duplicate id problem
 		    		if (!bReferenced && !oAttributes['id'])
 		    			oAttributes['id']	= oElement.uniqueID;
+
+					// Add default namespace if missing (for rendering only)
+					if (!oAttributes["xmlns"])
+						oAttributes["xmlns"]	= "http://www.w3.org/1999/xhtml";
+
 		    		oElementNew	= oUADocument.importNode(new cDOMParser().parseFromString('<!' + "DOCTYPE" + ' ' + "div" + ' ' + '[' + sAML_entities + ']>' +
 //->Debug
 																		'\n' +
