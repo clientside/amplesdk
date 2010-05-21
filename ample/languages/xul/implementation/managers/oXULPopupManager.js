@@ -7,6 +7,10 @@
  *
  */
 
-var oXULPopupManager	= {
+var oXULPopupManager	= (function () {
 
-};
+	// Public Object
+	return {
+
+	};
+})();

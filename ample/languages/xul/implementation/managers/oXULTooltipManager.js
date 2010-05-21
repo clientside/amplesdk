@@ -7,6 +7,10 @@
  *
  */
 
-var oXULTooltipManager	= {
+var oXULTooltipManager	= (function () {
 
-};
+	// Public Object
+	return {
+
+	};
+})();

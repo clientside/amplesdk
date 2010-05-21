@@ -7,6 +7,10 @@
  *
  */
 
-var oXULWindowManager	= {
+var oXULWindowManager	= (function () {
 
-};
+	// Public Object
+	return {
+
+	};
+})();

@@ -7,15 +7,18 @@
  *
  */
 
-var oXULCommandDispatcher	= {
-	// Public Methods
-	getControllerForCommand:	function(sCommand) {
+var oXULCommandDispatcher	= (function () {
 
-	},
-	updateCommands:	function(sCommand) {
+	// Public Object
+	return {
+		getControllerForCommand:	function(sCommand) {
 
+		},
+		updateCommands:				function(sCommand) {
+
+		}
 	}
-};
+})();
 
 // Register with DOM
 ample.commandDispatcher	= oXULCommandDispatcher;
