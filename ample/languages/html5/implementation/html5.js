@@ -10,4 +10,4 @@
 var oHTML5Namespace	= new AMLNamespace;
 
 // Register language
-ample.domConfig.setNamespace("http://www.w3.org/1999/xhtml", oHTML5Namespace);
+ample.domConfig.setNamespace(null, oHTML5Namespace);
