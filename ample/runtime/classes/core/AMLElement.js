@@ -239,10 +239,10 @@ cAMLElement.prototype.replaceChild	= function(oNode, oOld)
 	    	if (oNode.nodeType == cAMLNode.DOCUMENT_FRAGMENT_NODE) {
 	    		while (oNode.firstChild)
 	    			fAMLElement_insertBefore(this, oNode.firstChild, oOld);
-    			fAMLElement_removeChild(this, oOld);
 	    	}
 	    	else
-	    		fAMLElement_replaceChild(this, oNode, oOld);
+	    		fAMLElement_insertBefore(this, oNode, oOld);
+			fAMLElement_removeChild(this, oOld);
 	    }
 	    else
 	    	throw new cAMLException(cAMLException.NOT_FOUND_ERR);
