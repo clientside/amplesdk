@@ -40,7 +40,8 @@ function fAMLExporter_exportMember(oObject, fFunction, sName) {
 function fAMLExporter_export(cObject, sName) {
 	// Class
 	fAMLExporter_wrap(cObject, sName);
-	fAMLExporter_wrap(cObject.prototype, sName);
+	if (cObject.prototype)	// Required in IE
+		fAMLExporter_wrap(cObject.prototype, sName);
 
 	// Publish to window
 	window[sName]	= cObject;
@@ -117,24 +118,22 @@ fAMLExporter_wrapMember(oAML_document.$instance,	"$instance");
 fAMLExporter_wrapMember(oAML_document.$resolveUri,	"$resolveUri");
 
 // JavaScript 1.5
-if (!cArray.prototype.push) {
+if (!cArray.prototype.push)
 	fAMLExporter_exportMember(cArray.prototype, function(vValue) {
 		this[this.length]   = vValue;
 		return this.length;
-	}, "push")
-};
+	}, "push");
 
-if (!cArray.prototype.pop) {
+if (!cArray.prototype.pop)
 	fAMLExporter_exportMember(cArray.prototype, function() {
 		var vValue  = this[this.length-1];
 		this.length--;
 		return vValue;
-	}, "pop")
-};
+	}, "pop");
 
 // JavaScript 1.6
 //
-if (!cArray.prototype.indexOf) {
+if (!cArray.prototype.indexOf)
 	fAMLExporter_exportMember(cArray.prototype, function(oElement, nIndex) {
 		// Validate arguments
 		fAML_validate(arguments, [
@@ -158,10 +157,9 @@ if (!cArray.prototype.indexOf) {
 				if (vValue === oElement)
 					return nIndex;
 		return -1;
-	}, "indexOf")
-};
+	}, "indexOf");
 
-if (!cArray.prototype.lastIndexOf) {
+if (!cArray.prototype.lastIndexOf)
 	fAMLExporter_exportMember(cArray.prototype, function(oElement, nIndex) {
 		// Validate arguments
 		fAML_validate(arguments, [
@@ -188,11 +186,10 @@ if (!cArray.prototype.lastIndexOf) {
 				if (vValue === oElement)
 					return nIndex;
 		return -1;
-	}, "lastIndexOf")
-};
+	}, "lastIndexOf");
 
 //
-if (!cArray.prototype.filter) {
+if (!cArray.prototype.filter)
 	fAMLExporter_exportMember(cArray.prototype, function(fCallback, oReceiver) {
 		// Validate arguments
 		fAML_validate(arguments, [
@@ -205,10 +202,9 @@ if (!cArray.prototype.filter) {
 				if (fCallback.call(oReceiver, vValue, nIndex, this))
 					aResult.push(vValue);
 		return aResult;
-	}, "filter")
-};
+	}, "filter");
 
-if (!cArray.prototype.forEach) {
+if (!cArray.prototype.forEach)
 	fAMLExporter_exportMember(cArray.prototype, function(fCallback, oReceiver) {
 		// Validate arguments
 		fAML_validate(arguments, [
@@ -219,10 +215,9 @@ if (!cArray.prototype.forEach) {
 		for (var nIndex = 0, nLength = this.length, vValue; nIndex < nLength; nIndex++)
 			if (!(typeof(vValue = this[nIndex]) === "undefined") || nIndex in this)
 				fCallback.call(oReceiver, vValue, nIndex, this);
-	}, "forEach")
-};
+	}, "forEach");
 
-if (!cArray.prototype.every) {
+if (!cArray.prototype.every)
 	fAMLExporter_exportMember(cArray.prototype, function(fCallback, oReceiver) {
 		// Validate arguments
 		fAML_validate(arguments, [
@@ -235,10 +230,9 @@ if (!cArray.prototype.every) {
 				if (!fCallback.call(oReceiver, vValue, nIndex, this))
 					return false;
 		return true;
-	}, "every")
-};
+	}, "every");
 
-if (!cArray.prototype.map) {
+if (!cArray.prototype.map)
 	fAMLExporter_exportMember(cArray.prototype, function(fCallback, oReceiver) {
 		// Validate arguments
 		fAML_validate(arguments, [
@@ -250,10 +244,9 @@ if (!cArray.prototype.map) {
 			if (!(typeof(vValue = this[nIndex]) === "undefined") || nIndex in this)
 				aResult[nIndex] = fCallback.call(oReceiver, vValue, nIndex, this);
 		return aResult;
-	}, "map")
-};
+	}, "map");
 
-if (!cArray.prototype.some) {
+if (!cArray.prototype.some)
 	fAMLExporter_exportMember(cArray.prototype, function(fCallback, oReceiver) {
 		// Validate arguments
 		fAML_validate(arguments, [
@@ -266,15 +259,14 @@ if (!cArray.prototype.some) {
 				if (fCallback.call(oReceiver, vValue, nIndex, this))
 					return true;
 		return false;
-	}, "some")
-};
+	}, "some");
 
 // JavaScript 1.7
 // generators, iterators, array comprehensions, let expressions, and destructuring assignment
 
 // JavaScript 1.8
 // Expression closures, Generator expressions
-if (!cArray.prototype.reduce) {
+if (!cArray.prototype.reduce)
 	fAMLExporter_exportMember(cArray.prototype, function(fCallback/*, initial*/) {
 		// Validate arguments
 		fAML_validate(arguments, [
@@ -309,10 +301,9 @@ if (!cArray.prototype.reduce) {
 				aValue = fCallback.call(null, aValue, this[nIndex], nIndex, this);
 
 		return aValue;
-	}, "reduce")
-};
+	}, "reduce");
 
-if (!cArray.prototype.reduceRight) {
+if (!cArray.prototype.reduceRight)
 	fAMLExporter_exportMember(cArray.prototype, function(fCallback/*, initial*/) {
 		// Validate arguments
 		fAML_validate(arguments, [
@@ -346,36 +337,32 @@ if (!cArray.prototype.reduceRight) {
 				aValue = fCallback.call(null, aValue, this[nIndex], nIndex, this);
 
 		return aValue;
-	}, "reduceRight")
-};
+	}, "reduceRight");
 
 // JavaScript 1.8.1
 // Object.getPrototypeOf(), Native JSON, String methods
-if (!cString.prototype.trim) {
+if (!cString.prototype.trim)
 	fAMLExporter_exportMember(cString.prototype, function() {
 		return this.replace(/^\s+|\s+$/g, '');
-	}, "trim")
-};
+	}, "trim");
 
-if (!cString.prototype.trimLeft) {
+if (!cString.prototype.trimLeft)
 	fAMLExporter_exportMember(cString.prototype, function(fCallback, oReceiver) {
 		return this.replace(/^\s+/, '');
-	}, "trimLeft")
-};
+	}, "trimLeft");
 
-if (!cString.prototype.trimRight) {
+if (!cString.prototype.trimRight)
 	fAMLExporter_exportMember(cString.prototype, function(fCallback, oReceiver) {
 		return this.replace(/\s+$/, '');
-	}, "trimRight")
-};
+	}, "trimRight");
 
 // JSON
-if (!cDate.prototype.toJSON) {
-	var fJSON_doublizeInteger	= function(n) {
-		// Format integers to have at least two digits.
-		return n < 10 ? '0' + n : n;
-	};
+function fJSON_doublizeInteger(n) {
+	// Format integers to have at least two digits.
+	return n < 10 ? '0' + n : n;
+};
 
+if (!cDate.prototype.toJSON)
 	fAMLExporter_exportMember(cDate.prototype, function(sKey) {
 		return this.getUTCFullYear()	+ '-' +
 			fJSON_doublizeInteger(this.getUTCMonth() + 1)	+ '-' +
@@ -383,23 +370,19 @@ if (!cDate.prototype.toJSON) {
 			fJSON_doublizeInteger(this.getUTCHours())		+ ':' +
 			fJSON_doublizeInteger(this.getUTCMinutes())		+ ':' +
 			fJSON_doublizeInteger(this.getUTCSeconds())		+ 'Z';
-	}, "toJSON")
-};
+	}, "toJSON");
 
-if (!cString.prototype.toJSON) {
+if (!cString.prototype.toJSON)
 	fAMLExporter_exportMember(cString.prototype, function(sKey) {
 		return this.valueOf();
-	}, "toJSON")
-};
+	}, "toJSON");
 
-if (!cNumber.prototype.toJSON) {
+if (!cNumber.prototype.toJSON)
 	fAMLExporter_exportMember(cNumber.prototype, function(sKey) {
 		return this.valueOf();
-	}, "toJSON")
-};
+	}, "toJSON");
 
-if (!cBoolean.prototype.toJSON) {
+if (!cBoolean.prototype.toJSON)
 	fAMLExporter_exportMember(cBoolean.prototype, function(sKey) {
 		return this.valueOf();
-	}, "toJSON")
-};
+	}, "toJSON");
