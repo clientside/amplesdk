@@ -47,8 +47,6 @@ FBL.ns(function() { with (FBL) {
 					element = panel.panelNode.appendChild(panel.panelNode.ownerDocument.createElement("div")),
 					message	= "Ample SDK was not found";
 
-				element.style.cssText	= "padding: 5px";
-
 				function fUpdate(oEvent) {
 					message	= "# " + oEvent.type + " on " + oEvent.target.nodeName + " (uniqueID: " + oEvent.target.uniqueID + ")";
 					if (oEvent.type == "DOMAttrModified")
@@ -58,6 +56,9 @@ FBL.ns(function() { with (FBL) {
 						message+= " ample.readyState: " + oEvent.target.readyState;
 
 					var div	= element.appendChild(element.ownerDocument.createElement("div"));
+					div.style.borderBottom	= "solid 1px silver";
+					div.style.backgroundColor	= "#f0f0f0";
+					div.style.padding	= "2px";
 					div.style.color	= oEvent.initUIEvent ? 'green' : oEvent.initMutationEvent ? (oEvent.type == "DOMAttrModified" ? 'brown' : 'red') : 'black';
 					div.innerHTML	= message;
 					element.scrollIntoView(false);
@@ -81,8 +82,10 @@ FBL.ns(function() { with (FBL) {
 				}
 
 				//
-				element.appendChild(element.ownerDocument.createTextNode(message));
-				element.appendChild(element.ownerDocument.createElement("br"));
+				var div	= element.appendChild(element.ownerDocument.createElement("div"));
+				div.style.borderBottom	= "solid 1px silver";
+				div.style.padding	= "2px";
+				div.innerHTML	= "<b>" + message + "</b>";
 			}, false);
 	    },
 
