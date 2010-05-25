@@ -41,7 +41,7 @@ cXULElement_datepicker_pane.prototype.opener	= null;
 
 // Public methods
 cXULElement_datepicker_pane.prototype.show	= function(nLeft, nTop) {
-	var oEvent	= ample.createEvent("CustomEvent");
+	var oEvent	= this.ownerDocument.createEvent("CustomEvent");
 	oEvent.initCustomEvent("shown", false, true, null);
 	if (this.dispatchEvent(oEvent)) {
 		var oStyle	= this.$getContainer().style;
@@ -55,7 +55,7 @@ cXULElement_datepicker_pane.prototype.show	= function(nLeft, nTop) {
 };
 
 cXULElement_datepicker_pane.prototype.hide	= function() {
-	var oEvent	= ample.createEvent("CustomEvent");
+	var oEvent	= this.ownerDocument.createEvent("CustomEvent");
 	oEvent.initCustomEvent("hidden", false, true, null);
 	if (this.dispatchEvent(oEvent))
 		this.$getContainer().style.display	= "none";
@@ -85,13 +85,13 @@ cXULElement_datepicker_pane.onSelectDay	= function(oInstance, nDay) {
 		oInstance.setAttribute("value", sValue);
 
 		// dispatch "change" event
-		var oEvent	= ample.createEvent("UIEvent");
+		var oEvent	= oInstance.ownerDocument.createEvent("UIEvent");
 		oEvent.initUIEvent("change", true, false, window, null);
 		oInstance.dispatchEvent(oEvent);
 	}
 
 	// dispatch change event
-	var oEventAccept	= ample.createEvent("UIEvent");
+	var oEventAccept	= oInstance.ownerDocument.createEvent("UIEvent");
 	oEventAccept.initUIEvent("accept", true, false, window, null);
 	oInstance.dispatchEvent(oEventAccept);
 };
