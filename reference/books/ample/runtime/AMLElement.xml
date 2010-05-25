@@ -485,6 +485,38 @@
 					</locale>
 				</description>
 			</method>
+			<method name="$appendChildAnonymous" type="AMLElement">
+				<arguments>
+					<argument name="oNode" type="AMLNode" required="true">
+						<description>
+							<locale>
+								A child node to be added to the sub-tree.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Appends a child node to the sub-tree of the object.
+					</locale>
+				</description>
+			</method>
+			<method name="$removeChildAnonymous" type="AMLElement">
+				<arguments>
+					<argument name="oNode" type="AMLNode" required="true">
+						<description>
+							<locale>
+								A child node to be removed from the sub-tree.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Removes child node from the sub-tree of the object.
+					</locale>
+				</description>
+			</method>
 			<method name="$getContainer" type="HTMLElement">
 				<arguments>
 					<argument name="sPseudoElement" type="String" required="false">
@@ -670,6 +702,14 @@
 					</locale>
 					<locale xml:lang="ru">
 						Возвращает объект style элемента.
+					</locale>
+				</description>
+			</property>
+			<!-- Ample SDK -->
+			<property name="$childNodesAnonymous" type="AMLNodeList" readonly="true">
+				<description>
+					<locale>
+						Contains collection of anonymous child nodes attached using <link type="method">$appendChildAnonymous</link>.
 					</locale>
 				</description>
 			</property>
