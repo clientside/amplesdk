@@ -18,6 +18,7 @@ xul|datepicker-pane::month-next {
 	font-weight: bold;
 	text-align:	center;
 }
+/*
 xul|datepicker-pane::years-pane {
 	height:	17px;
 	line-height:17px;
@@ -50,7 +51,7 @@ xul|datepicker-pane::year-previous:hover {
 xul|datepicker-pane::year-next:hover {
 	background-position: -16px -8px;
 }
-
+*/
 xul|datepicker-pane-day,
 xul|datepicker-pane-weekend {
 	width: 24px;
