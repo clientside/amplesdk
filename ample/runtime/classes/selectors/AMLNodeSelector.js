@@ -122,9 +122,9 @@ function fAMLSelector_getPreviousSibling(oElement)
 function fAMLSelector_isElementNS(oElement, sQName, fResolver)
 {
 	if (fResolver) {
-		var aQName			= sQName.split('|'),
-			sLocalName		= aQName.length > 1 ? aQName[1] : aQName[0],
-			sPrefix			= aQName.length > 1 ? aQName[0] : null;
+		var aQName		= sQName.split('|'),
+			sLocalName	= aQName.pop(),
+			sPrefix		= aQName.pop() || null;
 		return (sLocalName == '*' || oElement.localName == sLocalName)
 			&& (sPrefix == null || sPrefix == '*' || oElement.namespaceURI == fResolver(sPrefix));
 	}
@@ -159,9 +159,9 @@ function fAMLSelector_parseSelector(sSelector) {
 oAMLSelector_elementSelectors[' '] = function(aReturn, aFrom, sTagName, sArguments, fResolver) {
     // loop through current selection
     var oElement, nIndex, nIndexSubset, aSubset;
-	var aQName			= sTagName.split('|'),
-		sLocalName		= aQName.length > 1 ? aQName[1] : aQName[0],
-		sPrefix			= aQName.length > 1 ? aQName[0] : null;
+	var aQName		= sTagName.split('|'),
+		sLocalName	= aQName.pop(),
+		sPrefix		= aQName.pop() || null;
 
     for (nIndex = 0; oElement = aFrom[nIndex]; nIndex++) {
         // get descendants

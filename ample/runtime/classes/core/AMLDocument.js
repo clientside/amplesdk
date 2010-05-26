@@ -45,8 +45,8 @@ function fAMLDocument_createAttributeNS(oDocument, sNameSpaceURI, sQName)
 {
 	var oNode		= new cAMLAttr,
 		aQName		= sQName.split(':'),
-		sLocalName	= aQName.length > 1 ? aQName[1] : aQName[0],
-		sPrefix		= aQName.length > 1 ? aQName[0] : null;
+		sLocalName	= aQName.pop(),
+		sPrefix		= aQName.pop() || null;
 
 	oNode.ownerDocument	= this;
     oNode.localName		= sLocalName;
@@ -179,8 +179,8 @@ cAMLDocument.prototype.createElement	= function(sName)
 function fAMLDocument_createElementNS(oDocument, sNameSpaceURI, sQName)
 {
 	var aQName		= sQName.split(':'),
-		sLocalName	= aQName.length > 1 ? aQName[1] : aQName[0],
-		sPrefix		= aQName.length > 1 ? aQName[0] : null,
+		sLocalName	= aQName.pop(),
+		sPrefix		= aQName.pop() || null,
 		oNamespace	= oAML_namespaces[sNameSpaceURI],
 		cElement	= oNamespace ? oNamespace.elements[sLocalName] : null,
 		oElement	= new (cElement || cAMLElement),

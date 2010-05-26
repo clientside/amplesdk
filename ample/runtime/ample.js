@@ -290,9 +290,9 @@ function fAML_register(oNode) {
 		// Global attributes module
 		for (var sName in oNode.attributes) {
 			if (oNode.attributes.hasOwnProperty(sName)) {
-				var aAttribute	= sName.split(':'),
-					sLocalName	= aAttribute.pop(),
-					sPrefix		= aAttribute.pop(),
+				var aQName		= sName.split(':'),
+					sLocalName	= aQName.pop(),
+					sPrefix		= aQName.pop() || null,
 					sNameSpaceURI;
 
 				if (sName != "xmlns" && sPrefix && sPrefix != "xmlns" && (sNameSpaceURI = fAMLNode_lookupNamespaceURI(oNode, sPrefix))) {
@@ -329,12 +329,12 @@ function fAML_register(oNode) {
 			}
 		}
 
-		// Process children
-		for (var nIndex = 0, oElement; oElement = oNode.childNodes[nIndex]; nIndex++)
-			fAML_register(oElement);
-
 		// Process anonymous children
 		for (var nIndex = 0, oElement; oElement = oNode.$childNodesAnonymous[nIndex]; nIndex++)
+			fAML_register(oElement);
+
+		// Process children
+		for (var nIndex = 0, oElement; oElement = oNode.childNodes[nIndex]; nIndex++)
 			fAML_register(oElement);
 	}
 };

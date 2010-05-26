@@ -68,46 +68,46 @@ cXULElement_datepicker_pane.prototype.refresh	= function() {
 	this._elementYear.setAttribute("value", this.current.getFullYear());
 };
 
-// Static members
-cXULElement_datepicker_pane.parseDateFromString	= function(sDate) {
-	return new Date(sDate);
-};
-
-cXULElement_datepicker_pane.onSelectDay	= function(oInstance, nDay) {
+cXULElement_datepicker_pane.prototype._onSelectDay	= function(nDay) {
 	// set current "day" in data object
-	oInstance.current.setDate(nDay);
-	var nMonth	= oInstance.current.getMonth();
-	var nYear	= oInstance.current.getFullYear();
+	this.current.setDate(nDay);
+	var nMonth	= this.current.getMonth();
+	var nYear	= this.current.getFullYear();
 
 	// Update own value attribute
 	var sValue	= nYear + '/' + (nMonth + 1 < 10 ? '0' : '') + (nMonth + 1) + '/' + (nDay < 10 ? '0' : '') + nDay;
-	if (oInstance.getAttribute("value") != sValue) {
-		oInstance.setAttribute("value", sValue);
+	if (this.getAttribute("value") != sValue) {
+		this.setAttribute("value", sValue);
 
 		// dispatch "change" event
 		var oEvent	= oInstance.ownerDocument.createEvent("UIEvent");
 		oEvent.initUIEvent("change", true, false, window, null);
-		oInstance.dispatchEvent(oEvent);
+		this.dispatchEvent(oEvent);
 	}
 
 	// dispatch change event
 	var oEventAccept	= oInstance.ownerDocument.createEvent("UIEvent");
 	oEventAccept.initUIEvent("accept", true, false, window, null);
-	oInstance.dispatchEvent(oEventAccept);
+	this.dispatchEvent(oEventAccept);
 };
 
-cXULElement_datepicker_pane.onSelectMonth	= function(oInstance, nMonth) {
+cXULElement_datepicker_pane.prototype.doSelectMonth	= function(nMonth) {
 	// set current "month" in data object
-	oInstance.current.setMonth(nMonth);
+	this.current.setMonth(nMonth);
 
-	oInstance.$getContainer("days-pane").innerHTML	= cXULElement_datepicker_pane.$getTagDays(oInstance, oInstance.current);
+	this.$getContainer("days-pane").innerHTML	= cXULElement_datepicker_pane.$getTagDays(this, this.current);
 };
 
-cXULElement_datepicker_pane.onSelectYear	= function(oInstance, nYear) {
+cXULElement_datepicker_pane.prototype.doSelectYear	= function(nYear) {
 	// set current "year" in data object
-	oInstance.current.setYear(nYear);
+	this.current.setYear(nYear);
 
-	oInstance.$getContainer("days-pane").innerHTML		= cXULElement_datepicker_pane.$getTagDays(oInstance, oInstance.current);
+	this.$getContainer("days-pane").innerHTML		= cXULElement_datepicker_pane.$getTagDays(this, this.current);
+};
+
+//Static members
+cXULElement_datepicker_pane.parseDateFromString	= function(sDate) {
+	return new Date(sDate);
 };
 
 cXULElement_datepicker_pane.handlers	= {
@@ -115,7 +115,7 @@ cXULElement_datepicker_pane.handlers	= {
 		if (oEvent.target == this) {
 			if (oEvent.$pseudoTarget == this.$getContainer("month-previous")) {
 				var nYear	= this.current.getFullYear();
-				cXULElement_datepicker_pane.onSelectMonth(this, this.current.getMonth() - 1);
+				this.doSelectMonth(this.current.getMonth() - 1);
 				this._elementMonth.setAttribute("value", this.current.getMonth());
 				if (this.current.getFullYear() != nYear)
 					this._elementYear.setAttribute("value", this.current.getFullYear());
@@ -123,19 +123,19 @@ cXULElement_datepicker_pane.handlers	= {
 			else
 			if (oEvent.$pseudoTarget == this.$getContainer("month-next")) {
 				var nYear	= this.current.getFullYear();
-				cXULElement_datepicker_pane.onSelectMonth(this, this.current.getMonth() + 1);
+				this.doSelectMonth(this.current.getMonth() + 1);
 				this._elementMonth.setAttribute("value", this.current.getMonth());
 				if (this.current.getFullYear() != nYear)
 					this._elementYear.setAttribute("value", this.current.getFullYear());
 			}
 /*			else
 			if (oEvent.$pseudoTarget == this.$getContainer("year-previous")) {
-				cXULElement_datepicker_pane.onSelectYear(this, this.current.getFullYear() + 1);
+				this.doSelectYear(this.current.getFullYear() + 1);
 				this._elementYear.setAttribute("value", this.current.getFullYear());
 			}
 			else
 			if (oEvent.$pseudoTarget == this.$getContainer("year-next")) {
-				cXULElement_datepicker_pane.onSelectYear(this, this.current.getFullYear() - 1);
+				this.doSelectYear(this.current.getFullYear() - 1);
 				this._elementYear.setAttribute("value", this.current.getFullYear());
 			}*/
 		}
@@ -189,7 +189,7 @@ cXULElement_datepicker_pane.handlers	= {
 			this._elementMonth.tabIndex	=-1;
 			this._elementMonth.setAttribute("value", this.current.getMonth());
 			this._elementMonth.addEventListener("change", function(oEvent) {
-				cXULElement_datepicker_pane.onSelectMonth(that, this.getAttribute("value"));
+				that.doSelectMonth(this.getAttribute("value"));
 				// Stop propagation
 				oEvent.stopPropagation();
 			}, false);
@@ -203,8 +203,9 @@ cXULElement_datepicker_pane.handlers	= {
 			this._elementYear	= this.$appendChildAnonymous(this.ownerDocument.createElementNS(this.namespaceURI, "xul:spinbuttons"));
 			this._elementYear.tabIndex	=-1;
 			this._elementYear.setAttribute("value", this.current.getFullYear());
+			this._elementYear.setAttribute("max", Infinity);
 			this._elementYear.addEventListener("change", function(oEvent) {
-				cXULElement_datepicker_pane.onSelectYear(that, this.getAttribute("value"));
+				that.doSelectYear(this.getAttribute("value"));
 				// Stop propagation
 				oEvent.stopPropagation();
 			}, false);
@@ -286,9 +287,6 @@ cXULElement_datepicker_pane.$getTagDays	= function(oInstance, oDate) {
 	aHtml.push('<table cellPadding="0" cellSpacing="1" border="0">\
 					<thead class="xul-datepicker-pane--header">\
 						<tr>\
-							<td colspan="8" style="height:8px;"></td>\
-						</tr>\
-						<tr>\
 							 <td>&nbsp;</td>\
 							 <td class="xul-datepicker-pane-head-day">M</td>\
 							 <td class="xul-datepicker-pane-head-day">T</td>\
@@ -327,7 +325,7 @@ cXULElement_datepicker_pane.$getTagDays	= function(oInstance, oDate) {
 							<div type="button"\
 								class="xul-datepicker-pane-day' +(nWeekDay > 4 ? " xul-datepicker-pane-weekend" : '') + (oInstance.value && oDateCurrent.getTime() == oInstance.value.getTime() ? ' xul-datepicker-pane-day_selected' : '') + '\
 								' + (oDateToday.getDate() == oDateCurrent.getDate() && oDateToday.getMonth() == oDateCurrent.getMonth() && oDateToday.getFullYear() == oDateCurrent.getFullYear() ? ' xul-datepicker-pane-day_today' : '') + '\
-								' + (bDateDisabled ? ' xul-datepicker-pane-day_disabled' : '" onclick="cXULElement_datepicker_pane.onSelectDay(ample.$instance(this), ' + nIndex + ')') + '"\
+								' + (bDateDisabled ? ' xul-datepicker-pane-day_disabled' : '" onclick="ample.$instance(this)._onSelectDay(' + nIndex + ')') + '"\
 								>' + nIndex + '</div>\
 						</td>');
 		if ((nWeekDay == 6) && (nIndex < nDays))
