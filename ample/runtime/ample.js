@@ -290,9 +290,9 @@ function fAML_register(oNode) {
 		// Global attributes module
 		for (var sName in oNode.attributes) {
 			if (oNode.attributes.hasOwnProperty(sName)) {
-				var aAttribute	= sName.split(':'),
-					sLocalName	= aAttribute.pop(),
-					sPrefix		= aAttribute.pop(),
+				var aQName		= sName.split(':'),
+					sLocalName	= aQName.pop(),
+					sPrefix		= aQName.pop() || null,
 					sNameSpaceURI;
 
 				if (sName != "xmlns" && sPrefix && sPrefix != "xmlns" && (sNameSpaceURI = fAMLNode_lookupNamespaceURI(oNode, sPrefix))) {

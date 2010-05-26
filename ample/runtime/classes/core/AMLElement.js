@@ -376,8 +376,8 @@ function fAMLElement_setAttributeNS(oElement, sNameSpaceURI, sQName, sValue)
 
 		var sElementPrefix	= fAMLNode_lookupPrefix(oElement, sNameSpaceURI),
 			aQName		= sQName.split(':'),
-			sLocalName	= aQName.length > 1 ? aQName[1] : aQName[0],
-			sPrefix		= aQName.length > 1 ? aQName[0] : null;
+			sLocalName	= aQName.pop(),
+			sPrefix		= aQName.pop() || null;
 
 		if (sPrefix)
 		{
