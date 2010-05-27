@@ -169,7 +169,7 @@ xul|scale[orient=horizontal] {
 xul|scale[orient=horizontal] xul|scale::button {
 	height:	21px;
 	width:	12px;
-	margin-left:-6px;
+	margin-left:-1px;
 	background-image: url(media/scale_button_down.gif);
 	background-repeat: no-repeat;
 	background-position: 0px 0px;
