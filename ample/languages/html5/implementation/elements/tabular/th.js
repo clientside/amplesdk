@@ -7,4 +7,9 @@
  *
  */
 
+var cHTML5Element_th	= function(){};
+cHTML5Element_th.prototype	= new cHTML5Element;
+
+// Register Element with language
+oHTML5Namespace.setElement("th", cHTML5Element_th);
 
