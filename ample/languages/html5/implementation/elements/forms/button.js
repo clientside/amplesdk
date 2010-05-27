@@ -7,4 +7,9 @@
  *
  */
 
+var cHTML5Element_button	= function(){};
+cHTML5Element_button.prototype	= new cHTML5Element;
+
+// Register Element with language
+oHTML5Namespace.setElement("button", cHTML5Element_button);
 

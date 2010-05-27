@@ -7,4 +7,9 @@
  *
  */
 
+var cHTML5Element_fieldset	= function(){};
+cHTML5Element_fieldset.prototype	= new cHTML5Element;
+
+// Register Element with language
+HTML5Namespace.setElement("fieldset", cHTML5Element_fieldset);
 

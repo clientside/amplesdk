@@ -7,4 +7,9 @@
  *
  */
 
+var cHTML5Element_form	= function(){};
+cHTML5Element_form.prototype	= new cHTML5Element;
+
+// Register Element with language
+oHTML5Namespace.setElement("form", cHTML5Element_form);
 

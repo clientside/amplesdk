@@ -112,10 +112,14 @@
 	$aFiles[]		= "implementation/elements/forms/fieldset.js";
 	$aFiles[]		= "implementation/elements/forms/form.js";
 	$aFiles[]		= "implementation/elements/forms/input.js";
+	$aFiles[]		= "implementation/elements/forms/keygen.js";
 	$aFiles[]		= "implementation/elements/forms/label.js";
+	$aFiles[]		= "implementation/elements/forms/legend.js";
+	$aFiles[]		= "implementation/elements/forms/meter.js";
 	$aFiles[]		= "implementation/elements/forms/optgroup.js";
 	$aFiles[]		= "implementation/elements/forms/option.js";
 	$aFiles[]		= "implementation/elements/forms/output.js";		// HTML5
+	$aFiles[]		= "implementation/elements/forms/progress.js";
 	$aFiles[]		= "implementation/elements/forms/select.js";
 	$aFiles[]		= "implementation/elements/forms/textarea.js";
 
