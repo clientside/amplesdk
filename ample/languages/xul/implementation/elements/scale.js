@@ -62,26 +62,6 @@ cXULElement_scale.prototype._onButtonMouseDown  = function(oEvent) {
 	return false;
 };
 
-cXULElement_scale.prototype._onButtonKeyDown    = function(oEvent) {
-    if (this.getAttribute("disabled") == "true")
-        return false;
-
-    var sValue  = this.$getValue();
-    if (oEvent.keyCode == 39 || oEvent.keyCode == 38)
-        this.$setValue(sValue * 1.0 + this.attributes["step"] * 1.0);
-    else
-    if (oEvent.keyCode == 37 || oEvent.keyCode == 40)
-        this.$setValue(sValue * 1.0 - this.attributes["step"] * 1.0);
-
-    if (sValue != this.$getValue())
-    {
-	    // Fire Event
-	    var oEvent  = this.ownerDocument.createEvent("Events");
-	    oEvent.initEvent("change", true, false);
-	    this.dispatchEvent(oEvent);
-    }
-};
-
 // Static Methods
 cXULElement_scale._onDocumentMouseUp    = function(oEvent) {
 	var oElement	= cXULElement_scale._element;
@@ -129,6 +109,26 @@ cXULElement_scale.handlers	= {
 	},
 	"blur":		function(oEvent) {
 		this.$getContainer().blur();
+	},
+	"keydown":	function(oEvent) {
+	    var sValue  = this.$getValue();
+	    if (oEvent.keyIdentifier == "Down" || oEvent.keyIdentifier == "Right") {
+	        this.$setValue(sValue * 1.0 + this.attributes["step"] * 1.0);
+	        oEvent.preventDefault();
+	    }
+	    else
+	    if (oEvent.keyIdentifier == "Up" || oEvent.keyIdentifier == "Left") {
+	        this.$setValue(sValue * 1.0 - this.attributes["step"] * 1.0);
+	        oEvent.preventDefault();
+	    }
+
+	    if (sValue != this.$getValue())
+	    {
+		    // Fire Event
+		    var oChangeEvent  = this.ownerDocument.createEvent("Events");
+		    oChangeEvent.initEvent("change", true, false);
+		    this.dispatchEvent(oChangeEvent);
+	    }
 	},
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this) {
@@ -179,7 +179,7 @@ cXULElement_scale.handlers	= {
 			oElementTemp.elements.$add(this);
 	//		oElementTemp.elements[this.attributes["name"]]	= this;
 		}*/
-//		this.$setValue(this.attributes["value"]);
+		this.$setValue(this.attributes["value"]);
 	}/*,
 	"DOMNodeRemovedFromDocument":	function(oEvent) {
 		if (this.form)
@@ -195,14 +195,24 @@ cXULElement_scale.getLeft	= function(oInstance, sValue) {
 
 // Element Render: open
 cXULElement_scale.prototype.$getTagOpen	= function() {
-    return '<div class="xul-scale' + (this.attributes["disabled"] == "true" ? " xul-scale_disabled" : '') + '" ' + (this.attributes["style"] ? ' style="' + this.attributes["style"] + '"': '') + '>\
-    			<div class="xul-scale-orient-' +(this.attributes["orient"] == "vertical" ? "vertical" : "horizontal") + '" style="position:relative;height:100%;">\
-    				<div class="xul-scale--button" style="position:absolute;left:' + cXULElement_scale.getLeft(this, this.getAttribute("value")) + '" onmouseout="if (!ample.$instance(this).attributes.disabled) ample.$instance(this).$setPseudoClass(\'hover\', false, \'button\')" onmouseover="if (!ample.$instance(this).attributes.disabled) ample.$instance(this).$setPseudoClass(\'hover\', true, \'button\')" onmousedown="if (!ample.$instance(this).attributes.disabled) {return ample.$instance(this)._onButtonMouseDown(event);}"><br /></div>\
-    			</div>\
-   				<input type="text" class="xul-scale--input" autocomplete="off" value="' + this.attributes["value"] + '" style="display:none;width:1px;height:1px;"'+
-   				(this.attributes["name"] ? ' name="' + this.attributes["name"] + '"' : '')+
-   				(this.attributes["disabled"] == "true" ? ' disabled="' + "disabled" + '"' : '')+'/>\
-   			</div>';
+    var sHtml   = '<table cellpadding="0" cellspacing="0" border="0" class="xul-scale' + (this.attributes["disabled"] ? " xul-scale_disabled" : '') + '" ' + (this.attributes["style"] ? ' style="' + this.attributes["style"] + '"': '') + '>';
+    sHtml  += '<tbody>';
+    sHtml  += '<tr>';
+    sHtml  += '<td><div style="width:3px" /></td>';
+    sHtml  += '<td width="100%" class="xul-scale-orient-' +(this.attributes["orient"] == "vertical" ? "vertical" : "horizontal") + '">';
+    sHtml  += '<div class="xul-scale--button" style="position:relative;left:0px;top:0px;" onmouseout="if (!ample.$instance(this).attributes.disabled) ample.$instance(this).$setPseudoClass(\'hover\', false, \'button\')" onmouseover="if (!ample.$instance(this).attributes.disabled) ample.$instance(this).$setPseudoClass(\'hover\', true, \'button\')" onmousedown="if (!ample.$instance(this).attributes.disabled) {return ample.$instance(this)._onButtonMouseDown(event);}"><br /></div>';
+    sHtml  += '</td>';
+    sHtml  += '<td><div style="width:3px"><input type="text" value="' + this.attributes["value"] + '" autocomplete="off"';
+    if (this.attributes["name"])
+        sHtml  += ' name="' + this.attributes["name"] + '"';
+    if (this.attributes["disabled"])
+        sHtml  += ' disabled="' + "disabled" + '"';
+    sHtml  += ' style="display:none;width:1px;height:1px;" class="xul-scale--input"/></div></td>';
+    sHtml  += '</tr>';
+	sHtml  += '</tbody>';
+    sHtml  += '</table>';
+
+    return sHtml;
 };
 
 // Register Element with language
