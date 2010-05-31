@@ -7,4 +7,9 @@
  *
  */
 
+var cHTML5Element_label	= function(){};
+cHTML5Element_label.prototype	= new cHTML5Element;
+
+// Register Element with language
+oHTML5Namespace.setElement("label", cHTML5Element_label);
 

@@ -7,4 +7,9 @@
  *
  */
 
+var cHTML5Element_optgroup	= function(){};
+cHTML5Element_optgroup.prototype	= new cHTML5Element;
+
+// Register Element with language
+oHTML5Namespace.setElement("optgroup", cHTML5Element_optgroup);
 

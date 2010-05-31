@@ -41,7 +41,7 @@ cXULElement_datepicker_pane.prototype.opener	= null;
 
 // Public methods
 cXULElement_datepicker_pane.prototype.show	= function(nLeft, nTop) {
-	var oEvent	= ample.createEvent("CustomEvent");
+	var oEvent	= this.ownerDocument.createEvent("CustomEvent");
 	oEvent.initCustomEvent("shown", false, true, null);
 	if (this.dispatchEvent(oEvent)) {
 		var oStyle	= this.$getContainer().style;
@@ -55,7 +55,7 @@ cXULElement_datepicker_pane.prototype.show	= function(nLeft, nTop) {
 };
 
 cXULElement_datepicker_pane.prototype.hide	= function() {
-	var oEvent	= ample.createEvent("CustomEvent");
+	var oEvent	= this.ownerDocument.createEvent("CustomEvent");
 	oEvent.initCustomEvent("hidden", false, true, null);
 	if (this.dispatchEvent(oEvent))
 		this.$getContainer().style.display	= "none";
@@ -80,13 +80,13 @@ cXULElement_datepicker_pane.prototype._onSelectDay	= function(nDay) {
 		this.setAttribute("value", sValue);
 
 		// dispatch "change" event
-		var oEvent	= ample.createEvent("UIEvent");
+		var oEvent	= this.ownerDocument.createEvent("UIEvent");
 		oEvent.initUIEvent("change", true, false, window, null);
 		this.dispatchEvent(oEvent);
 	}
 
 	// dispatch change event
-	var oEventAccept	= ample.createEvent("UIEvent");
+	var oEventAccept	= this.ownerDocument.createEvent("UIEvent");
 	oEventAccept.initUIEvent("accept", true, false, window, null);
 	this.dispatchEvent(oEventAccept);
 };
@@ -116,7 +116,7 @@ cXULElement_datepicker_pane.handlers	= {
 			if (oEvent.$pseudoTarget == this.$getContainer("month-previous")) {
 				var nYear	= this.current.getFullYear();
 				this.doSelectMonth(this.current.getMonth() - 1);
-				this._elementMonth.setAttribute("value", this.current.getMonth());
+				this._elementMonth.setAttribute("value", cXULElement_datepicker_pane.months[this.current.getMonth()]);
 				if (this.current.getFullYear() != nYear)
 					this._elementYear.setAttribute("value", this.current.getFullYear());
 			}
@@ -124,7 +124,7 @@ cXULElement_datepicker_pane.handlers	= {
 			if (oEvent.$pseudoTarget == this.$getContainer("month-next")) {
 				var nYear	= this.current.getFullYear();
 				this.doSelectMonth(this.current.getMonth() + 1);
-				this._elementMonth.setAttribute("value", this.current.getMonth());
+				this._elementMonth.setAttribute("value", cXULElement_datepicker_pane.months[this.current.getMonth()]);
 				if (this.current.getFullYear() != nYear)
 					this._elementYear.setAttribute("value", this.current.getFullYear());
 			}
@@ -187,9 +187,9 @@ cXULElement_datepicker_pane.handlers	= {
 			this._elementMonth	= this.$appendChildAnonymous(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menulist"));
 			this._elementMonth.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menupopup"));
 			this._elementMonth.tabIndex	=-1;
-			this._elementMonth.setAttribute("value", this.current.getMonth());
+			this._elementMonth.setAttribute("value", cXULElement_datepicker_pane.months[this.current.getMonth()]);
 			this._elementMonth.addEventListener("change", function(oEvent) {
-				that.doSelectMonth(this.getAttribute("value"));
+				that.doSelectMonth(this.items[this.selectedIndex].getAttribute("value"));
 				// Stop propagation
 				oEvent.stopPropagation();
 			}, false);
@@ -205,7 +205,7 @@ cXULElement_datepicker_pane.handlers	= {
 			this._elementYear.setAttribute("value", this.current.getFullYear());
 			this._elementYear.setAttribute("max", Infinity);
 			this._elementYear.addEventListener("change", function(oEvent) {
-				that.doSelectYear(this.getAttribute("value"));
+				that.doSelectYear(this.$getValue());
 				// Stop propagation
 				oEvent.stopPropagation();
 			}, false);
@@ -361,9 +361,9 @@ cXULElement_datepicker_pane.prototype.$getTagOpen	= function() {
 				<table cellpadding="0" cellspacing="0" border="0">\
 					<thead>\
 						<tr>\
-							<td><div class="xul-datepicker-pane--month-previous" onmouseover="ample.$instance(this).$setPseudoClass(\'hover\', true, \'month-previous\')" onmouseout="ample.$instance(this).$setPseudoClass(\'hover\', false, \'month-previous\')">&nbsp;</div></td>\
+							<td><button class="xul-datepicker-pane--month-previous" onmouseover="ample.$instance(this).$setPseudoClass(\'hover\', true, \'month-previous\')" onmouseout="ample.$instance(this).$setPseudoClass(\'hover\', false, \'month-previous\')"><br /></button></td>\
 							<td>' + this._elementMonth.$getTag() + '</td>\
-							<td><div class="xul-datepicker-pane--month-next" onmouseover="ample.$instance(this).$setPseudoClass(\'hover\', true, \'month-next\')" onmouseout="ample.$instance(this).$setPseudoClass(\'hover\', false, \'month-next\')">&nbsp;</div></td>\
+							<td><button class="xul-datepicker-pane--month-next" onmouseover="ample.$instance(this).$setPseudoClass(\'hover\', true, \'month-next\')" onmouseout="ample.$instance(this).$setPseudoClass(\'hover\', false, \'month-next\')"><br /></button></td>\
 							<td>' + this._elementYear.$getTag() + '</td>\
 						</tr>\
 					</thead>\

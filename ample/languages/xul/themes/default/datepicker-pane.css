@@ -14,44 +14,19 @@ xul|datepicker-pane::month {
 }
 xul|datepicker-pane::month-previous,
 xul|datepicker-pane::month-next {
-	width:	20px;
-	font-weight: bold;
-	text-align:	center;
+	margin-left: 2px;
+	margin-right: 2px;
+	width:	17px;
+	height: 17px;
+	line-height: 15px;
+	display: inline-block;
 }
-/*
-xul|datepicker-pane::years-pane {
-	height:	17px;
-	line-height:17px;
-	padding-left: 1px;
-	width:	60px;
-	border: 1px solid #b4cbea;
+xul|datepicker-pane::month-previous {
+	background: url('media/scrollbox_arrow_left.gif') no-repeat center center;
 }
-xul|datepicker-pane::year {
-	vertical-align:	top;
-	padding:0;
+xul|datepicker-pane::month-next {
+	background: url('media/scrollbox_arrow_right.gif') no-repeat center center;
 }
-xul|datepicker-pane::year-previous,
-xul|datepicker-pane::year-next {
-	height: 8px;
-	width: 16px;
-	line-height:	8px;
-	font-size: 1px;
-	background-image: url(media/spinbuttons.gif);
-	background-repeat: no-repeat;
-}
-xul|datepicker-pane::year-previous {
-	background-position: 0px 0px;
-}
-xul|datepicker-pane::year-next {
-	background-position: -16px 0px;
-}
-xul|datepicker-pane::year-previous:hover {
-	background-position: 0px -8px;
-}
-xul|datepicker-pane::year-next:hover {
-	background-position: -16px -8px;
-}
-*/
 xul|datepicker-pane-day,
 xul|datepicker-pane-weekend {
 	width: 24px;

@@ -7,4 +7,9 @@
  *
  */
 
+var cHTML5Element_textarea	= function(){};
+cHTML5Element_textarea.prototype	= new cHTML5Element;
+
+// Register Element with language
+oHTML5Namespace.setElement("textarea", cHTML5Element_textarea);
 

@@ -138,14 +138,6 @@ cXULElement_datepicker.handlers	= {
 				default:
 					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
 			}
-	},
-	"DOMNodeInsertedIntoDocument":	function(oEvent) {
-		if (this.hasAttribute("accessKey"))
-			this.accessKey	= this.getAttribute("accessKey");
-	},
-	"DOMNodeRemovedFromDocument":	function(oEvent) {
-		if (this.hasAttribute("accessKey"))
-			this.accessKey	= null;
 	}
 };
 
@@ -154,7 +146,7 @@ cXULElement_datepicker.prototype.$getTagOpen	= function() {
 	return '<table class="xul-datepicker' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '') + (this.getAttribute('disabled') == "true" ? " xul-datepicker_disabled" : "") + '"' + (this.hasAttribute("style") ? ' style="' + this.getAttribute("style") + '"' : '')+ ' cellpadding="0" cellspacing="0" border="0">\
 				<tbody>\
 					<tr>\
-						<td width="100%"><input type="text" maxlength="10" class="xul-datepicker--input"' + (this.hasAttribute("accessKey") ? ' accessKey="' + this.getAttribute("accessKey") + '"' : '')+ ' value="' + this.getAttribute("value") + '"' + (this.getAttribute('disabled') == "true" ? ' disabled="true"' : "") +' style="border:0px solid white;width:100%;" /></td>\
+						<td width="100%"><input type="text" maxlength="10" class="xul-datepicker--input" value="' + this.getAttribute("value") + '"' + (this.getAttribute('disabled') == "true" ? ' disabled="true"' : "") +' style="border:0px solid white;width:100%;" /></td>\
 						<td valign="top"><div class="xul-datepicker--button"></div></td>\
 					</tr>\
 					<tr><td class="xul-datepicker--gateway" colspan="2"></td></tr>\
