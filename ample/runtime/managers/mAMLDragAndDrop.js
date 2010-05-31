@@ -345,8 +345,8 @@ cAMLDataTransfer.prototype.clearData	= function(sFormat) {
 	delete this.types[sFormat];
 };
 
-cAMLDataTransfer.prototype.setData	= function(sFormat, sData) {
-	this.types[sFormat]	= sData;
+cAMLDataTransfer.prototype.setData	= function(sFormat, vData) {
+	this.types[sFormat]	= vData;
 };
 
 cAMLDataTransfer.prototype.getData	= function(sFormat) {
