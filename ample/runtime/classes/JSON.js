@@ -28,7 +28,7 @@ if (!oJSON) {
 		},
 		vRep;
 
-	function fQuote(string) {
+	function fQuote(sValue) {
 
 // If the string contains no control characters, no quote characters, and no
 // backslash characters, then we can safely slap some quotes around it.
@@ -36,13 +36,13 @@ if (!oJSON) {
 // sequences.
 
 		rEscapable.lastIndex = 0;
-		return rEscapable.test(string) ?
-			'"' + string.replace(rEscapable, function (a) {
+		return rEscapable.test(sValue) ?
+			'"' + sValue.replace(rEscapable, function (a) {
 				var c = hMeta[a];
 				return typeof c === "string" ? c :
 					'\\u' + ("0000" + a.charCodeAt(0).toString(16)).slice(-4);
 			}) + '"' :
-			'"' + string + '"';
+			'"' + sValue + '"';
 	};
 
 	function fStr(sKey, oHolder) {
