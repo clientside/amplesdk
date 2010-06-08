@@ -658,7 +658,7 @@ function fAML_parseStyleSheet(sCSS, sUri) {
 				sCSS	= sCSS.replace(aImports[nIndex], fAML_parseStyleSheet(fAML_loadStyleSheet(aUrl[1]), aUrl[1]));
 
 	// 4. Convert styles
-	if (bTrident) {
+	if (bTrident && nVersion < 9) {
 		// Rewrite display:inline-block to display:inline (IE8-)
 		if (nVersion < 8)
 			sCSS	= sCSS.replace(/display\s*:\s*inline-block/g, 'display:inline;zoom:1;');
