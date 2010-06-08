@@ -100,7 +100,7 @@ if (!cXSLTProcessor) {
 		], "transformToDocument");
 
 		var oProcessor	= this._processor,
-			oOutput		= new fActiveXObject("Microsoft" + '.' + "XMLDOM");
+			oOutput		= new fActiveXObject("Microsoft.XMLDOM");
 
 		// check if importStylesheet initialized processor
 		if (!oProcessor)
@@ -121,7 +121,7 @@ if (!cXSLTProcessor) {
 		], "transformToFragment");
 
 		var oProcessor	= this._processor,
-			oOutput		= new fActiveXObject("Microsoft" + '.' + "XMLDOM"),
+			oOutput		= new fActiveXObject("Microsoft.XMLDOM"),
 			oFragment	= oDocument.createDocumentFragment();
 
 		// check if importStylesheet initialized processor
