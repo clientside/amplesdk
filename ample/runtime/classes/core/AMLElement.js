@@ -332,7 +332,7 @@ function fAMLElement_setAttribute(oElement, sName, sValue)
     		if (oElementDOM) {
 		    	if (sName == "class") {
 		    		var sValueClass	=(oElement.prefix ? oElement.prefix + '-' : '') + oElement.localName + (sValue ? ' ' + sValue : '');
-		    		if (bTrident)
+		    		if (bTrident && nVersion < 8)
 		    			oElementDOM.className	= sValueClass;
 		    		else
 		    			oElementDOM.setAttribute("class", sValueClass);
@@ -532,7 +532,7 @@ function fAMLElement_removeAttribute(oElement, sName)
 		    if (oElementDOM) {
 			    if (sName == "class") {
 			    	var sValueClass	=(oElement.prefix ? oElement.prefix + '-' : '') + oElement.localName;
-			    	if (bTrident)
+			    	if (bTrident && nVersion < 8)
 			    		oElementDOM.className	= sValueClass;
 			    	else
 			    		oElementDOM.setAttribute("class", sValueClass);
