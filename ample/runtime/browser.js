@@ -745,7 +745,7 @@ function fAML_getStyle(oElementDOM, sName) {
 		if (bTrident && nVersion < 9)
 			return cString(cString(oStyle.filter).match(/opacity=([\.0-9]+)/i) ? oElementDOM.filters.item("DXImageTransform.Microsoft.Alpha").opacity / 100 : 1);
 		else
-			return oStyle[sName] || '1';
+			return cString(oStyle[sName]) || '1';
 	}
 	//
 	return oStyle[sName == "borderColor" ? "borderBottomColor" : sName];
