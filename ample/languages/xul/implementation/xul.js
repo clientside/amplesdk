@@ -14,6 +14,7 @@ ample.domConfig.setNamespace("http://www.mozilla.org/keymaster/gatekeeper/there.
 
 // XUL load handler
 ample.addEventListener("load",		function(oEvent) {
+	var sName, sValue;
 	for (var nIndex = 0, aElements = oEvent.target.getElementsByTagNameNS(oXULNamespace.namespaceURI, "*"), oElement; oElement = aElements[nIndex]; nIndex++) {
    		// refresh boxed elements
    		if (oElement.viewType == cXULElement.VIEW_TYPE_BOXED)
@@ -21,10 +22,13 @@ ample.addEventListener("load",		function(oEvent) {
 
 		switch (oElement.localName) {
 			case "broadcaster":	// broadcast
-			case "command":		// resend commands
-				for (var sName in oElement.attributes)
-					if (oElement.attributes.hasOwnProperty(sName))
-						oElement.setAttribute(sName, oElement.attributes[sName]);
+			case "command":		// re-send commands
+				for (sName in oElement.attributes)
+					if (oElement.attributes.hasOwnProperty(sName)) {
+						sValue	= oElement.attributes[sName];
+						delete oElement.attributes[sName];	// hack
+						oElement.setAttribute(sName, sValue);
+					}
 				break;
 		}
 	}

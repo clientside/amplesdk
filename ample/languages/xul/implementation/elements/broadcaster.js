@@ -17,9 +17,16 @@ cXULElement_broadcaster.handlers	= {
 		if (oEvent.target == this) {
 		    // Skip attributes "id" and "persist" that should be not possible to set
 		    if (oEvent.attrName != "id" && oEvent.attrName != "persist") {
-		    	var aElements	= this.ownerDocument.querySelector("[observes='" + this.attributes["id"] + "']");
-		        for (var nIndex = 0, nLength = aElements.length; nIndex < nLength; nIndex++)
-		        	aElements[nIndex].setAttribute(oEvent.attrName, oEvent.newName);
+		    	if (this.attributes["id"]) {
+			    	var aElements	= this.ownerDocument.getElementsByTagNameNS(this.namespaceURI, "*");
+			        for (var nIndex = 0; nIndex < aElements.length; nIndex++)
+			        	if (aElements[nIndex].attributes["observes"] == this.attributes["id"]) {
+				        	if (oEvent.newValue == null)
+				        		aElements[nIndex].removeAttribute(oEvent.attrName);
+				        	else
+				        		aElements[nIndex].setAttribute(oEvent.attrName, oEvent.newValue);
+			        	}
+		    	}
 		    }
 		}
 	}

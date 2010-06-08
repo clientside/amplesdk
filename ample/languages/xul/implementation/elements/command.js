@@ -15,11 +15,18 @@ cXULElement_command.prototype.viewType   = cXULElement.VIEW_TYPE_VIRTUAL;
 cXULElement_command.handlers	= {
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this) {
+			// Skip attributes "id" and "persist" that should be not possible to set
 			if (oEvent.attrName != "id" && oEvent.attrName != "persist") {
-				var aElements	= this.ownerDocument.getElementsByTagNameNS(this.namespaceURI, "*");
-				for (var nIndex = 0; nIndex < aElements.length; nIndex++)
-					if (aElements[nIndex].attributes["command"] == this.attributes["id"])
-						aElements[nIndex].setAttribute(oEvent.attrName, oEvent.newValue);
+				if (this.attributes["id"]) {
+					var aElements	= this.ownerDocument.getElementsByTagNameNS(this.namespaceURI, "*");
+					for (var nIndex = 0; nIndex < aElements.length; nIndex++)
+						if (aElements[nIndex].attributes["command"] == this.attributes["id"]) {
+				        	if (oEvent.newValue == null)
+				        		aElements[nIndex].removeAttribute(oEvent.attrName);
+				        	else
+				        		aElements[nIndex].setAttribute(oEvent.attrName, oEvent.newValue);
+						}
+				}
 			}
 		}
 	}
