@@ -554,7 +554,7 @@ function fAML_processScripts() {
 		    if (oDocument.documentElement && !oParserError) {
 		    	// import XML DOM into Ample DOM
 		    	oElement	= fAML_import(oDocument.documentElement, null, true);
-		    	delete oElement.attributes["xmlns:aml"];	// dirty hack (namespace is declared on document)
+		    	delete oElement.attributes["xmlns" + ':' + "aml"];	// dirty hack (namespace is declared on document)
 		    	// render Ample DOM
 		    	if (bTrident) {
 		    		oElementNew	= oUADocument.createElement("div");
