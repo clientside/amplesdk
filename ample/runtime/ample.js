@@ -648,14 +648,11 @@ function fAML_processScripts() {
 
 function fAML_processStyleSheets() {
 	var	aElements,
-		oElement,
-		nIndex,
-		nLength,
-		nSkip;
+		oElement;
 
 	// Process inline StyleSheets
     aElements   = oUADocument.getElementsByTagName("style");
-    for (nIndex = 0, nLength = aElements.length; nIndex < nLength; nIndex++) {
+    for (var nIndex = 0, nLength = aElements.length; nIndex < nLength; nIndex++) {
     	oElement	= aElements[nIndex];
 
     	if (oElement.getAttribute("type") == "text/ample+css")
@@ -664,7 +661,7 @@ function fAML_processStyleSheets() {
 
 	// Process external StyleSheets
     aElements   = oUADocument.getElementsByTagName("link");
-    for (nIndex = 0, nSkip = 0; aElements.length > nSkip; nIndex++) {
+    for (var nIndex = 0, nSkip = 0; aElements.length > nSkip; nIndex++) {
     	oElement	= aElements[nSkip];
 
 		// Skip if different mime-type
