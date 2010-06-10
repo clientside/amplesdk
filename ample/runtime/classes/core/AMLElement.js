@@ -742,9 +742,9 @@ cAMLElement.prototype.$getContainer	= function(sName)
 };
 */
 
-cAMLElement.prototype.getBoundingClientRect	= function(sPseudo)
+function fAMLElement_getBoundingClientRect(oElement, sPseudo)
 {
-    var oElementDOM	= this.$getContainer(sPseudo),
+    var oElementDOM	= oElement.$getContainer(sPseudo),
 		oClientRect	= oElementDOM.getBoundingClientRect ? oElementDOM.getBoundingClientRect() : null,
 		oRectangle	= {};
 
@@ -770,6 +770,11 @@ cAMLElement.prototype.getBoundingClientRect	= function(sPseudo)
 	}
 
 	return oRectangle;
+};
+
+cAMLElement.prototype.getBoundingClientRect	= function(sPseudo)
+{
+	return fAMLElement_getBoundingClientRect(this, sPseudo || null);
 };
 /*
 cAMLElement.prototype.$getContainer	= function(sName)
@@ -800,25 +805,26 @@ cAMLElement.prototype.$getContainer	= function(sName)
 	}
 };
 */
+function fAMLElement_getContainerTraverse(oNode, rClass)
+{
+	for (var nIndex = 0, aChildNodes = oNode.childNodes, sClass; oNode = aChildNodes[nIndex]; nIndex++)
+		if (oNode.nodeType == 1) {
+			// If pseudo-element
+			if ((sClass =(bTrident && nVersion < 8 ? oNode.className : oNode.getAttribute("class"))) && sClass.match(rClass))
+				return oNode;
+			// Check children
+			if (!oNode.id &&(oNode = fAMLElement_getContainerTraverse(oNode, rClass)))
+				return oNode;
+		}
+	return null;
+};
+
 cAMLElement.prototype.$getContainer	= function(sName)
 {
-	var oNode	= oUADocument.getElementById(this.attributes.id || this.uniqueID);
-	if (sName && oNode) {
-		var rClass	= new cRegExp('--' + sName + '(\\s|$)');
-		return (function (oNode) {
-			for (var nIndex = 0, aNodes = oNode.childNodes, oElement, sClass; oNode = aNodes[nIndex]; nIndex++)
-				if (oNode.nodeType == 1) {
-					// If pseudo-element
-					if ((sClass = (bTrident && nVersion < 8 ? oNode.className : oNode.getAttribute("class"))) && sClass.match(rClass))
-						return oNode;
-					// Check children
-					if (!oNode.id &&(oElement = arguments.callee(oNode)))
-						return oElement;
-				}
-			return null;
-		})(oNode);
-	}
-	return oNode;
+	var oElement	= oUADocument.getElementById(this.attributes.id || this.uniqueID);
+	if (sName && oElement)
+		return fAMLElement_getContainerTraverse(oElement, new cRegExp('--' + sName + '(\\s|$)'));
+	return oElement;
 };
 
 /*
