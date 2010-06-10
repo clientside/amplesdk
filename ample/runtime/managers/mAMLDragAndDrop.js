@@ -136,7 +136,7 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
    	oEvent.stopPropagation();
 
 	var oElementDOM	= oAMLDragAndDrop_dragSource.$getContainer(),
-		oPosition	= oAMLDragAndDrop_dragSource.getBoundingClientRect(),
+		oPosition	= fAMLElement_getBoundingClientRect(oAMLDragAndDrop_dragSource),
 		oStyle		= oElementDOM.style;
 
 	// Turn mode to interactive
@@ -186,7 +186,7 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
 		oStyle.top	= '0';
 
 		// get drag source position at (0, 0)
-		var oPositionP	= oAMLDragAndDrop_dragSource.getBoundingClientRect();
+		var oPositionP	= fAMLElement_getBoundingClientRect(oAMLDragAndDrop_dragSource);
 
 		// restore drag source position
 		oStyle.left	= nAMLDragAndDrop_clientLeft;
@@ -216,7 +216,7 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
 		if (fAMLNode_compareDocumentPosition(aAMLDragAndDrop_dropTargets[nIndex], oAMLDragAndDrop_dragSource) & cAMLNode.DOCUMENT_POSITION_CONTAINS)
 			continue;
 
-		oPosition2	= aAMLDragAndDrop_dropTargets[nIndex].getBoundingClientRect();
+		oPosition2	= fAMLElement_getBoundingClientRect(aAMLDragAndDrop_dropTargets[nIndex]);
 		nAreaTarget =(oPosition2.right - oPosition2.left) * (oPosition2.bottom - oPosition2.top);
 		nIntersection = fAMLDragAndDrop_intersectRectangle(oPosition, oPosition2);
 		if (nIntersection < nAreaSource) {

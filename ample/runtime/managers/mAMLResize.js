@@ -89,7 +89,7 @@ function fAMLResize_onMouseMove(oEvent)
 			if (oElement.$resizable)
 			{
 				var oElementDOM	= oElement.$getContainer(),
-					oPosition	= oElement.getBoundingClientRect(),
+					oPosition	= fAMLElement_getBoundingClientRect(oElement),
 					oComputedStyle	= fAML_getComputedStyle(oElementDOM),
 					nResize		= nAMLResize_EDGE_NONE,
 					nResizeEdges= oElement.$resizeEdges || 15,
@@ -153,7 +153,7 @@ function fAMLResize_onMouseMove(oEvent)
    	oEvent.stopPropagation();
 
 	var oElementDOM	= oAMLResize_resizeNode.$getContainer(),
-		oPosition	= oAMLResize_resizeNode.getBoundingClientRect(),
+		oPosition	= fAMLElement_getBoundingClientRect(oAMLResize_resizeNode),
 		oStyle		= oElementDOM.style;
 
 	// Turn mode to interactive
@@ -190,7 +190,7 @@ function fAMLResize_onMouseMove(oEvent)
 		oStyle.top	= '0';
 
 		// get resizable position at (0, 0)
-		var oPositionP	= oAMLResize_resizeNode.getBoundingClientRect();
+		var oPositionP	= fAMLElement_getBoundingClientRect(oAMLResize_resizeNode);
 
 		// restore resizable position
 		oStyle.left	= nAMLResize_clientLeft;

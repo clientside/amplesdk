@@ -154,7 +154,7 @@ function fAMLFocus_onKeyDown(oEvent) {
 
 		if (oFocusGroup) {
 			fAMLFocus_focus(oFocusGroup);
-			oEvent.preventDefault();	// FIXME: what is this for?
+			oEvent.preventDefault();	// Prevents browser-based focus manager
 		}
 	}
 	else {
