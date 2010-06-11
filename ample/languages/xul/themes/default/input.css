@@ -7,7 +7,7 @@ xul|timepicker,
 xul|spinbuttons {
 	margin: 1px;
 	line-height: 17px;
-	border: 1px solid #7F9DB9;
+	border: 1px solid silver;
 	background-color: Window;
 	display: inline-block;
 }
@@ -29,6 +29,7 @@ xul|spinbuttons::input {
 	height:	17px;
 	padding:0;
 	padding-left: 1px;
+	color: inherit;
 	outline: none; /* removes browser native outline when focused */
 }
 
@@ -201,6 +202,11 @@ xul|checkbox {
 	border: solid 1px transparent;
 }
 
+xul|radio::input,
+xul|checkbox::input {
+
+}
+
 /* */
 xul|datepicker xul|datepicker-pane,
 xul|colorpicker xul|colorpicker-pane {
@@ -222,7 +228,7 @@ xul|menulist:focus,
 xul|datepicker:focus,
 xul|timepicker:focus,
 xul|spinbuttons:focus {
-	border-color: silver;
+	border-color: #7F9DB9;
 }
 
 xul|checkbox:focus,
