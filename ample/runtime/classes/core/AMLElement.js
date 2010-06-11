@@ -742,7 +742,8 @@ function fAMLElement_getBoundingClientRect(oElement, sPseudo)
 {
     var oElementDOM	= oElement.$getContainer(sPseudo),
 		oClientRect	= oElementDOM.getBoundingClientRect ? oElementDOM.getBoundingClientRect() : null,
-		oRectangle	= {};
+		oRectangle	= {},
+		oNode;
 
 	// if 'getBoundingClientRect' is supported in the given browser
 	if (oClientRect) {
@@ -757,9 +758,13 @@ function fAMLElement_getBoundingClientRect(oElement, sPseudo)
 		// Calculate offsets
 		oRectangle.left		= 0;
 		oRectangle.top		= 0;
-		for (; oElementDOM; oElementDOM = oElementDOM.offsetParent) {
-			oRectangle.left	+= oElementDOM.offsetLeft;
-			oRectangle.top 	+= oElementDOM.offsetTop;
+		for (oNode = oElementDOM; oNode; oNode = oNode.offsetParent) {
+			oRectangle.left	+= oNode.offsetLeft;
+			oRectangle.top	+= oNode.offsetTop;
+		}
+	    for (oNode = oElementDOM; oNode.nodeType == 1; oNode = oNode.parentNode) {
+	    	oRectangle.left	-= oNode.scrollLeft;
+			oRectangle.top	-= oNode.scrollTop;
 		}
 		oRectangle.right	= oRectangle.left + nWidth;
 		oRectangle.bottom	= oRectangle.top + nHeight;
