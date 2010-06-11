@@ -10,12 +10,18 @@
 // Properties
 var oAMLFocus_focusGroup	= null;
 
+function fAMLFocus_moveTo(oElement) {
+	// Blur old element
+	if (oAMLFocus_focusGroup)
+		fAMLFocus_blur(oAMLFocus_focusGroup);
+	// Focus new element
+	if (oElement)
+		fAMLFocus_focus(oElement);
+};
+
 //
 function fAMLFocus_focus(oElement) {
-	if (oElement != oAMLFocus_focusGroup) {
-		if (oAMLFocus_focusGroup)
-			fAMLFocus_blur(oAMLFocus_focusGroup);
-
+	if (oElement != oAMLFocus_focusGroup && oAML_all[oElement.uniqueID]) {
 		// Set active element
 		oAMLFocus_focusGroup	= oElement;
 
@@ -33,10 +39,14 @@ function fAMLFocus_focus(oElement) {
 };
 
 function fAMLFocus_blur(oElement) {
-	if (oElement == oAMLFocus_focusGroup) {
+	if (oElement == oAMLFocus_focusGroup && oAML_all[oElement.uniqueID]) {
 		// Unset active element
 		oAMLFocus_focusGroup	= null;
 
+		// Unset document active element
+		oElement.ownerDocument.activeElement	= null;
+
+		// If element has not been removed from DOM
 		var oEvent	= new cAMLUIEvent;
 		oEvent.initUIEvent("blur", false, false, window, null);
 		fAMLNode_dispatchEvent(oElement, oEvent);
@@ -44,9 +54,6 @@ function fAMLFocus_blur(oElement) {
 		var oEvent	= new cAMLUIEvent;
 		oEvent.initUIEvent("DOMFocusOut", true, false, window, null);
 		fAMLNode_dispatchEvent(oElement, oEvent);
-
-		// Unset document active element
-		oElement.ownerDocument.activeElement	= null;
 	}
 };
 
@@ -109,23 +116,13 @@ function fAMLFocus_onMouseDown(oEvent) {
 	var oFocusGroup	= null;
     for (var oElement = oEvent.target; oElement.nodeType != cAMLNode.DOCUMENT_NODE; oElement = oElement.parentNode)
     	if (oElement.tabIndex >= 0 && oElement.$isAccessible() && fAMLFocus_isVisible(oElement)) {
-			oFocusGroup	= oElement;
+    		oFocusGroup = oElement;
 			break;
     	}
 
-	if (oFocusGroup != oAMLFocus_focusGroup) {
-		if (oAMLFocus_focusGroup) {
-			// check if current focusable was removed
-			if (!oAML_all[oAMLFocus_focusGroup.uniqueID])
-				return;
-
-			// blur element otherwise
-			fAMLFocus_blur(oAMLFocus_focusGroup);
-		}
-
-		if (oFocusGroup)
-			fAMLFocus_focus(oFocusGroup);
-	}
+	//
+    if (oFocusGroup != oAMLFocus_focusGroup)
+		fAMLFocus_moveTo(oFocusGroup);
 };
 
 function fAMLFocus_onKeyDown(oEvent) {
@@ -133,7 +130,7 @@ function fAMLFocus_onKeyDown(oEvent) {
 	if (oEvent.defaultPrevented)
 		return;
 
-	// prevent system tab combinations handling
+	// Prevent system tab combinations handling
 	if (oEvent.keyIdentifier == "Tab" && (oEvent.altKey || oEvent.ctrlKey))
 		return;
 
@@ -175,14 +172,11 @@ function fAMLFocus_onKeyDown(oEvent) {
 				oFocusGroup	= fAMLFocus_getFocusGroupNextChild(oRoot, nTabIndexNext) ||fAMLFocus_getFocusGroupNextChild(oRoot, nTabIndexMin);
 		}
 
-		// Blur old element (TODO: Use setTimeout to fix tabbed navigation in Opera)
+		// Use setTimeout to fix tabbed navigation in Opera)
 /*	setTimeout(function() {  */
-		if (oAMLFocus_focusGroup && oAML_all[oAMLFocus_focusGroup.uniqueID])
-			fAMLFocus_blur(oAMLFocus_focusGroup);
-
 		// Focus new element
 		if (oFocusGroup)
-			fAMLFocus_focus(oFocusGroup);
+			fAMLFocus_moveTo(oFocusGroup);
 /*	});	*/
 		// Prevents browser-based focus manager
 		oEvent.preventDefault();
@@ -197,13 +191,13 @@ function fAMLFocus_onKeyDown(oEvent) {
 				if (oAML_all.hasOwnProperty(sInstance)) {
 					oElement	= oAML_all[sInstance];
 					if (oElement.tabIndex >= 0 && oElement.accessKey && oElement.accessKey.toUpperCase() == sKey) {
-						if (oElement && oElement.$isAccessible() && fAMLFocus_isVisible(oElement)) {
+						if (oElement.$isAccessible() && fAMLFocus_isVisible(oElement)) {
 // What is this for?
 //						if (oElement.$getContainer().accessKey != sKey)
 //							oElement.$getContainer().accessKey	= sKey;
 
 							// Invoke focus on component
-							fAMLFocus_focus(oElement);
+							fAMLFocus_moveTo(oElement);
 
 							// Prevent browser default action
 							oEvent.preventDefault();
