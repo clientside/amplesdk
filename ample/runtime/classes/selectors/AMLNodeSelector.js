@@ -129,7 +129,7 @@ function fAMLSelector_isElementNS(oElement, sQName, fResolver)
 			&& (sPrefix == null || sPrefix == '*' || oElement.namespaceURI == fResolver(sPrefix));
 	}
 
-	return sQName == '*' || oElement.tagName == sQName;
+	return sQName == '*' || oElement.tagName == sQName.replace('|', ':');
 };
 
 var oAMLSelector_elementSelectors	= {},
