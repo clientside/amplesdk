@@ -314,7 +314,6 @@ cAMLElement.prototype.hasAttributeNS	= function(sNameSpaceURI, sLocalName)
 function fAMLElement_setAttribute(oElement, sName, sValue)
 {
 	// convert value to string
-	sValue	= cString(sValue);
 	var sValueOld	= oElement.attributes[sName],
 		bValue	= sName in oElement.attributes;
 
@@ -365,15 +364,12 @@ cAMLElement.prototype.setAttribute	= function(sName, sValue)
 		["value",		cObject]
 	], "setAttribute");
 
-	fAMLElement_setAttribute(this, sName, sValue);
+	fAMLElement_setAttribute(this, sName, cString(sValue));
 };
 
 function fAMLElement_setAttributeNS(oElement, sNameSpaceURI, sQName, sValue)
 {
 	if (sNameSpaceURI != null) {
-		// convert value to string
-		sValue	= cString(sValue);
-
 		var sElementPrefix	= fAMLNode_lookupPrefix(oElement, sNameSpaceURI),
 			aQName		= sQName.split(':'),
 			sLocalName	= aQName.pop(),
@@ -447,7 +443,7 @@ cAMLElement.prototype.setAttributeNS	= function(sNameSpaceURI, sQName, sValue)
 		["value",			cObject]
 	], "setAttributeNS");
 
-	fAMLElement_setAttributeNS(this, sNameSpaceURI, sQName, sValue);
+	fAMLElement_setAttributeNS(this, sNameSpaceURI, sQName, cString(sValue));
 };
 
 cAMLElement.prototype.setAttributeNode	= function(oAttribute)
@@ -481,7 +477,7 @@ cAMLElement.prototype.getAttribute	= function(sName)
 {
 	// Validate arguments
 	fAML_validate(arguments, [
-		["name",			cString]
+		["name",		cString]
 	], "getAttribute");
 
 	return fAMLElement_getAttribute(this, sName);
