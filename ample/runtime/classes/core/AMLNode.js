@@ -727,7 +727,6 @@ cAMLNode.prototype.$getTag	= function()
 	return '';
 };
 
-//->Source
 cAMLNode.prototype.toXML	= function() {
 
 	var aHtml	= [];
@@ -804,4 +803,3 @@ cAMLNode.prototype.toXML	= function() {
 	})(this);
 	return aHtml.join('');
 };
-//<-Source
