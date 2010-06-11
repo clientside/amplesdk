@@ -10,50 +10,51 @@
 // Properties
 var oAMLFocus_focusGroup	= null;
 
-function fAMLFocus_moveTo(oElement) {
-	// Blur old element
-	if (oAMLFocus_focusGroup)
-		fAMLFocus_blur(oAMLFocus_focusGroup);
-	// Focus new element
-	if (oElement)
-		fAMLFocus_focus(oElement);
-};
-
 //
 function fAMLFocus_focus(oElement) {
-	if (oElement != oAMLFocus_focusGroup && oAML_all[oElement.uniqueID]) {
-		// Set active element
-		oAMLFocus_focusGroup	= oElement;
+	if (oElement != oAMLFocus_focusGroup) {
+		// Blur old element
+		if (oAMLFocus_focusGroup)
+			fAMLFocus_blur(oAMLFocus_focusGroup);
 
-		// Set document active element
-		oElement.ownerDocument.activeElement	= oElement;
+		// Focus element
+		if (oAML_all[oElement.uniqueID]) {
+			// Set active element
+			oAMLFocus_focusGroup	= oElement;
 
-		var oEvent	= new cAMLUIEvent;
-		oEvent.initUIEvent("focus", false, false, window, null);
-		fAMLNode_dispatchEvent(oElement, oEvent);
+			// Set document active element
+			oElement.ownerDocument.activeElement	= oElement;
 
-		var oEvent	= new cAMLUIEvent;
-		oEvent.initUIEvent("DOMFocusIn", true, false, window, null);
-		fAMLNode_dispatchEvent(oElement, oEvent);
+			var oEvent	= new cAMLUIEvent;
+			oEvent.initUIEvent("focus", false, false, window, null);
+			fAMLNode_dispatchEvent(oElement, oEvent);
+
+			var oEvent	= new cAMLUIEvent;
+			oEvent.initUIEvent("DOMFocusIn", true, false, window, null);
+			fAMLNode_dispatchEvent(oElement, oEvent);
+		}
 	}
 };
 
 function fAMLFocus_blur(oElement) {
-	if (oElement == oAMLFocus_focusGroup && oAML_all[oElement.uniqueID]) {
-		// Unset active element
-		oAMLFocus_focusGroup	= null;
+	if (oElement == oAMLFocus_focusGroup) {
+		// Blur element
+		if (oAML_all[oElement.uniqueID]) {
+			// Unset active element
+			oAMLFocus_focusGroup	= null;
 
-		// Unset document active element
-		oElement.ownerDocument.activeElement	= null;
+			// Unset document active element
+			oElement.ownerDocument.activeElement	= null;
 
-		// If element has not been removed from DOM
-		var oEvent	= new cAMLUIEvent;
-		oEvent.initUIEvent("blur", false, false, window, null);
-		fAMLNode_dispatchEvent(oElement, oEvent);
+			// If element has not been removed from DOM
+			var oEvent	= new cAMLUIEvent;
+			oEvent.initUIEvent("blur", false, false, window, null);
+			fAMLNode_dispatchEvent(oElement, oEvent);
 
-		var oEvent	= new cAMLUIEvent;
-		oEvent.initUIEvent("DOMFocusOut", true, false, window, null);
-		fAMLNode_dispatchEvent(oElement, oEvent);
+			var oEvent	= new cAMLUIEvent;
+			oEvent.initUIEvent("DOMFocusOut", true, false, window, null);
+			fAMLNode_dispatchEvent(oElement, oEvent);
+		}
 	}
 };
 
@@ -121,8 +122,11 @@ function fAMLFocus_onMouseDown(oEvent) {
     	}
 
 	//
-    if (oFocusGroup != oAMLFocus_focusGroup)
-		fAMLFocus_moveTo(oFocusGroup);
+    if (oFocusGroup)
+    	fAMLFocus_focus(oFocusGroup);
+    else
+    if (oAMLFocus_focusGroup)
+		fAMLFocus_blur(oAMLFocus_focusGroup);
 };
 
 function fAMLFocus_onKeyDown(oEvent) {
@@ -176,7 +180,7 @@ function fAMLFocus_onKeyDown(oEvent) {
 /*	setTimeout(function() {  */
 		// Focus new element
 		if (oFocusGroup)
-			fAMLFocus_moveTo(oFocusGroup);
+			fAMLFocus_focus(oFocusGroup);
 /*	});	*/
 		// Prevents browser-based focus manager
 		oEvent.preventDefault();
