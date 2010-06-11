@@ -45,9 +45,9 @@
 				</node>
 				<node title="DOM Helper Objects">
 					<node title="AMLNamespace" url="ample/runtime/AMLNamespace.xml"/>
-					<node title="AMLSerializer" url="ample/runtime/AMLSerializer.xml"/>
+					<!--node title="AMLSerializer" url="ample/runtime/AMLSerializer.xml"/-->
 					<node title="AMLDataTransfer" url="ample/runtime/AMLDataTransfer.xml"/>
-					<node title="AMLTreeWalker" xurl="ample/runtime/dom/AMLTreeWalker.xml"/>
+					<!-- node title="AMLTreeWalker" url="ample/runtime/dom/AMLTreeWalker.xml"/-->
 				</node>
 			</node>
 			<node title="UI managers">

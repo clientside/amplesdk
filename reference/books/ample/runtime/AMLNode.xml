@@ -392,6 +392,13 @@
 					</locale>
 				</description>
 			</method>
+			<method name="toXML" type="String">
+				<description>
+					<locale>
+						Serializes Node to string.
+					</locale>
+				</description>
+			</method>
 		</methods>
 		<properties>
 			<property name="parentNode" type="AMLNode" readonly="true">

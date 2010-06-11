@@ -79,7 +79,7 @@ fAMLExporter_export(cAMLText,				"AMLText");
 
 // Ample objects
 fAMLExporter_export(cAMLNamespace,		"AMLNamespace");
-fAMLExporter_export(cAMLSerializer,		"AMLSerializer");
+//fAMLExporter_export(cAMLSerializer,	"AMLSerializer");
 //fAMLExporter_export(cAMLTreeWalker,	"AMLTreeWalker");
 //fAMLExporter_export(cAMLWindow,		"AMLWindow");
 // Drag&Drop

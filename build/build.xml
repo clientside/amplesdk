@@ -92,8 +92,7 @@
 
 			<!-- Helper Objects -->
 			<filelist dir="${source.runtime.dir}/classes/" files="
-				AMLNamespace.js,
-				AMLSerializer.js"/>
+				AMLNamespace.js"/>
 			<!-- DOM Core/Events/Selectors -->
 			<filelist dir="${source.runtime.dir}/classes/events/" files="
 				AMLEvent.js,

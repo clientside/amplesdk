@@ -42,7 +42,7 @@
 
 	// AML addons
 	$aFiles[]	= "runtime/classes/AMLNamespace.js";
-	$aFiles[]	= "runtime/classes/AMLSerializer.js";
+//	$aFiles[]	= "runtime/classes/AMLSerializer.js";
 
 	// XML APIs
 	$aFiles[]	= "runtime/classes/DOMParser.js";
