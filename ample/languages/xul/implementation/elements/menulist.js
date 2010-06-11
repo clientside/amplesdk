@@ -269,6 +269,13 @@ cXULElement_menulist.handlers	= {
 					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
 			}
 		}
+	},
+	"DOMNodeInsertedIntoDocument":	function(oEvent) {
+		var oElement	= this.querySelector(">xul|menupopup>xul|menuitem[selected=true]", function() {
+			return oEvent.target.namespaceURI;
+		});
+		if (oElement)
+			this.$getContainer("input").value	= oElement.getAttribute("label");
 	}/*,
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		for (var oElementTemp = this; oElementTemp; oElementTemp = oElementTemp.parentNode)
