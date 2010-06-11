@@ -37,9 +37,6 @@ function fAMLFocus_blur(oElement) {
 		// Unset active element
 		oAMLFocus_focusGroup	= null;
 
-		// Unset document active element
-		oElement.ownerDocument.activeElement	= null;
-
 		var oEvent	= new cAMLUIEvent;
 		oEvent.initUIEvent("blur", false, false, window, null);
 		fAMLNode_dispatchEvent(oElement, oEvent);
@@ -47,43 +44,46 @@ function fAMLFocus_blur(oElement) {
 		var oEvent	= new cAMLUIEvent;
 		oEvent.initUIEvent("DOMFocusOut", true, false, window, null);
 		fAMLNode_dispatchEvent(oElement, oEvent);
+
+		// Unset document active element
+		oElement.ownerDocument.activeElement	= null;
 	}
 };
 
 /* Focus Group */
-function fAMLFocus_getFocusGroupNext(oElement) {
+function fAMLFocus_getFocusGroupNext(oElement, nTabIndex) {
 	for (var oParent = oElement, oFocusGroup; oParent; oParent = oParent.parentNode)
-		if (oParent == oElement &&(oFocusGroup = fAMLFocus_getFocusGroupNextChild(oParent.firstChild)))
+		if (oParent == oElement &&(oFocusGroup = fAMLFocus_getFocusGroupNextChild(oParent.firstChild, nTabIndex)))
 			return oFocusGroup;
 		else
-		if (oFocusGroup = fAMLFocus_getFocusGroupNextChild(oParent.nextSibling))
+		if (oFocusGroup = fAMLFocus_getFocusGroupNextChild(oParent.nextSibling, nTabIndex))
 			return oFocusGroup;
 };
 
-function fAMLFocus_getFocusGroupNextChild(oElement) {
+function fAMLFocus_getFocusGroupNextChild(oElement, nTabIndex) {
 	for (var oSibling = oElement, oFocusGroup; oSibling; oSibling = oSibling.nextSibling)
-		if (oSibling.tabIndex >= 0 && oSibling.$isAccessible() && fAMLFocus_isVisible(oSibling))
+		if (oSibling.tabIndex == nTabIndex && oSibling.$isAccessible() && fAMLFocus_isVisible(oSibling))
 			return oSibling;
 		else
-		if (oFocusGroup = fAMLFocus_getFocusGroupNextChild(oSibling.firstChild))
+		if (oFocusGroup = fAMLFocus_getFocusGroupNextChild(oSibling.firstChild, nTabIndex))
 			return oFocusGroup;
 };
 
-function fAMLFocus_getFocusGroupPrevious(oElement) {
+function fAMLFocus_getFocusGroupPrevious(oElement, nTabIndex) {
 	for (var oParent = oElement, oFocusGroup; oParent; oParent = oParent.parentNode)
-		if (oParent != oElement && oParent.tabIndex >= 0 && oParent.$isAccessible() && fAMLFocus_isVisible(oParent))
+		if (oParent != oElement && oParent.tabIndex == nTabIndex && oParent.$isAccessible() && fAMLFocus_isVisible(oParent))
 			return oParent;
 		else
-		if (oFocusGroup = fAMLFocus_getFocusGroupPreviousChild(oParent.previousSibling))
+		if (oFocusGroup = fAMLFocus_getFocusGroupPreviousChild(oParent.previousSibling, nTabIndex))
 			return oFocusGroup;
 };
 
-function fAMLFocus_getFocusGroupPreviousChild(oElement) {
+function fAMLFocus_getFocusGroupPreviousChild(oElement, nTabIndex) {
 	for (var oSibling = oElement, oFocusGroup; oSibling; oSibling = oSibling.previousSibling)
-		if (oFocusGroup = fAMLFocus_getFocusGroupPreviousChild(oSibling.lastChild))
+		if (oFocusGroup = fAMLFocus_getFocusGroupPreviousChild(oSibling.lastChild, nTabIndex))
 			return oFocusGroup;
 		else
-		if (oSibling.tabIndex >= 0 && oSibling.$isAccessible() && fAMLFocus_isVisible(oSibling))
+		if (oSibling.tabIndex == nTabIndex && oSibling.$isAccessible() && fAMLFocus_isVisible(oSibling))
 			return oSibling;
 };
 
@@ -137,25 +137,55 @@ function fAMLFocus_onKeyDown(oEvent) {
 	if (oEvent.keyIdentifier == "Tab" && (oEvent.altKey || oEvent.ctrlKey))
 		return;
 
-	var oFocusGroup	= null;
 	if (oEvent.keyIdentifier == "Tab") {
+		var oFocusGroup	= null,
+			nTabIndexCurrent	= oAMLFocus_focusGroup ? oAMLFocus_focusGroup.tabIndex : 0;
+
+		// If there are items with the same tabIndex value
 		if (oEvent.shiftKey)
-			oFocusGroup	= fAMLFocus_getFocusGroupPrevious(oAMLFocus_focusGroup) || fAMLFocus_getFocusGroupPreviousChild(oAML_modalNode || this.documentElement);
+			oFocusGroup	= fAMLFocus_getFocusGroupPrevious(oAMLFocus_focusGroup, nTabIndexCurrent);
 		else
-			oFocusGroup	= fAMLFocus_getFocusGroupNext(oAMLFocus_focusGroup) || fAMLFocus_getFocusGroupNextChild(oAML_modalNode || this.documentElement);
+			oFocusGroup	= fAMLFocus_getFocusGroupNext(oAMLFocus_focusGroup, nTabIndexCurrent);
 
-		if (oAMLFocus_focusGroup) {
-			// check if current focusable was removed
-			if (!oAML_all[oAMLFocus_focusGroup.uniqueID])
-				return;
+		// Otherwise
+		if (!oFocusGroup) {
+			var	oRoot	= oAML_modalNode || this.documentElement,
+				nTabIndexMax	=-nInfinity,
+				nTabIndexMin	= nInfinity,
+				nTabIndexNext	= nTabIndexMin,
+				nTabIndexPrev	= nTabIndexMax;
 
+			for (var nIndex = 0, nTabIndex, oElement, aElements = fAMLElement_getElementsByTagName(oRoot, '*'); oElement = aElements[nIndex]; nIndex++) {
+				nTabIndex	= oElement.tabIndex;
+				if (nTabIndex >-1) {
+					if (nTabIndex > nTabIndexMax)
+						nTabIndexMax	= nTabIndex;
+					if (nTabIndex < nTabIndexMin)
+						nTabIndexMin	= nTabIndex;
+					if (nTabIndex < nTabIndexCurrent && nTabIndex > nTabIndexPrev)
+						nTabIndexPrev	= nTabIndex;
+					if (nTabIndex > nTabIndexCurrent && nTabIndex < nTabIndexNext)
+						nTabIndexNext	= nTabIndex;
+				}
+			}
+			//
+			if (oEvent.shiftKey)
+				oFocusGroup	= fAMLFocus_getFocusGroupPreviousChild(oRoot, nTabIndexPrev) || fAMLFocus_getFocusGroupPreviousChild(oRoot, nTabIndexMax);
+			else
+				oFocusGroup	= fAMLFocus_getFocusGroupNextChild(oRoot, nTabIndexNext) ||fAMLFocus_getFocusGroupNextChild(oRoot, nTabIndexMin);
+		}
+
+		// Blur old element (TODO: Use setTimeout to fix tabbed navigation in Opera)
+/*	setTimeout(function() {  */
+		if (oAMLFocus_focusGroup && oAML_all[oAMLFocus_focusGroup.uniqueID])
 			fAMLFocus_blur(oAMLFocus_focusGroup);
-		}
 
-		if (oFocusGroup) {
+		// Focus new element
+		if (oFocusGroup)
 			fAMLFocus_focus(oFocusGroup);
-			oEvent.preventDefault();	// Prevents browser-based focus manager
-		}
+/*	});	*/
+		// Prevents browser-based focus manager
+		oEvent.preventDefault();
 	}
 	else {
 		if (oEvent.altKey && oEvent.keyIdentifier != "Alt") {
