@@ -21,10 +21,6 @@ cXHTMLElement_select.prototype.tabIndex		= 0;
 cXHTMLElement_select.prototype.form		= null;
 cXHTMLElement_select.prototype.options	= null;
 
-cXHTMLElement_select.prototype.$isAccessible	= function() {
-	return !this.getAttribute("disabled");
-};
-
 cXHTMLElement_select.prototype.$getValue	= function() {
 	if (this.hasAttribute("multiple")) {
 		var aValue	= [];

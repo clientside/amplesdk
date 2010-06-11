@@ -10,6 +10,12 @@
 var cXHTMLElement	= function(){};
 
 cXHTMLElement.prototype	= new AMLElement;
+cXHTMLElement.prototype.accessKey	= null;
+
+// Public methods
+cXHTMLElement.prototype.$isAccessible	= function() {
+	return !this.getAttribute("disabled");
+};
 
 // Static method
 cXHTMLElement.mapAttribute	= function(oElement, sName, sValue) {

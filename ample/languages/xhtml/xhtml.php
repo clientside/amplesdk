@@ -1,7 +1,12 @@
 <?
     $aFiles		= array();
     $aFiles[]		= "implementation/xhtml.js";
+
+    // classes
     $aFiles[]		= "implementation/classes/cXHTMLElement.js";
+
+	// managers
+    $aFiles[]		= "implementation/managers/oXHTMLAccessKeyManager.js";
 
 	// elements
 	$aFiles[]	= "implementation/elements/a.js";

@@ -15,7 +15,7 @@ cXHTMLElement_input.prototype.tabIndex	= 0;
 cXHTMLElement_input.prototype.form	= null;
 
 cXHTMLElement_input.prototype.$isAccessible	= function() {
-	return !this.getAttribute("disabled") && this.attributes["type"] != "hidden";
+	return cXHTMLElement.prototype.$isAccessible.call(this) && this.attributes["type"] != "hidden";
 };
 
 cXHTMLElement_input.prototype.$getValue	= function() {
@@ -98,6 +98,10 @@ cXHTMLElement_input.handlers	= {
 		this.$getContainer().blur();
 	},
 	"DOMNodeInsertedIntoDocument":	function() {
+		if (!isNaN(this.getAttribute("tabIndex")))
+			this.tabIndex	= this.getAttribute("tabIndex") * 1;
+		if (this.hasAttribute("accessKey"))
+			this.accessKey	= this.getAttribute("accessKey");
 		this.$validate();
 	},
 	"DOMAttrModified":	function(oEvent) {

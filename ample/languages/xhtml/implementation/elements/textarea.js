@@ -14,10 +14,6 @@ cXHTMLElement_textarea.prototype.tabIndex	= 0;
 // Public Properties
 cXHTMLElement_textarea.prototype.form		= null;
 
-cXHTMLElement_textarea.prototype.$isAccessible	= function() {
-	return !this.getAttribute("disabled");
-};
-
 cXHTMLElement_textarea.prototype.$getValue	= function(sValue) {
 	return this.$getContainer().value;
 };

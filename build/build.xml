@@ -277,6 +277,9 @@
 			<fileset dir="${source.xhtml.dir}/implementation/classes/">
 				<include name="**" />
 			</fileset>
+			<fileset dir="${source.xhtml.dir}/implementation/managers/">
+				<include name="**" />
+			</fileset>
 			<fileset dir="${source.xhtml.dir}/implementation/elements/">
 				<include name="**" />
 			</fileset>
