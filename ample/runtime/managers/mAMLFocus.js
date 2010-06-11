@@ -181,41 +181,10 @@ function fAMLFocus_onKeyDown(oEvent) {
 		// Prevents browser-based focus manager
 		oEvent.preventDefault();
 	}
-	else {
-		if (oEvent.altKey && oEvent.keyIdentifier != "Alt") {
-			var aKey	= oEvent.keyIdentifier.match(/U\+([\dA-F]{4})/),
-				sKey	= aKey ? cString.fromCharCode(fParseInt(aKey[1], 16)) : oEvent.keyIdentifier,
-				oElement;
-
-			for (var sInstance in oAML_all) {
-				if (oAML_all.hasOwnProperty(sInstance)) {
-					oElement	= oAML_all[sInstance];
-					if (oElement.tabIndex >= 0 && oElement.accessKey && oElement.accessKey.toUpperCase() == sKey) {
-						if (oElement.$isAccessible() && fAMLFocus_isVisible(oElement)) {
-// What is this for?
-//						if (oElement.$getContainer().accessKey != sKey)
-//							oElement.$getContainer().accessKey	= sKey;
-
-							// Invoke focus on component
-							fAMLFocus_moveTo(oElement);
-
-							// Prevent browser default action
-							oEvent.preventDefault();
-
-							// Activate element
-//							oElement.$activate();
-						}
-						break;
-					}
-				}
-			}
-		}
-	}
 };
 
 // Attaching to implementation
 cAMLElement.prototype.tabIndex	=-1;
-cAMLElement.prototype.accessKey	= null;
 
 cAMLElement.prototype.focus	= function() {
 	fAMLFocus_focus(this);

@@ -62,16 +62,6 @@
 					</locale>
 				</description>
 			</property>
-			<property name="accessKey" type="String">
-				<description>
-					<locale>
-						Sets the accelerator key for the object.
-					</locale>
-					<locale xml:lang="ru">
-						Позволяет прочитать/выставить клавишу быстрого доступа к элементу.
-					</locale>
-				</description>
-			</property>
 		</properties>
 		<attributes />
 		<events>
