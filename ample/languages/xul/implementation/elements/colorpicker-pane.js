@@ -253,9 +253,7 @@ cXULElement_colorpicker_pane._RGBtoXYB = function(sColor) {
     var nV  = Math.max(nR, nG, nB);
     var nX  = Math.min(nR, nG, nB);
     var nS  = (nV-nX) / nV;
-
-    if (nS == 0)
-        nH  = 0;
+    var nH	= 0;
 
     var nRed    =(nV - nR) / (nV - nX);
     var nGreen  =(nV - nG) / (nV - nX);
