@@ -33,13 +33,3 @@ ample.addEventListener("load",		function(oEvent) {
 		}
 	}
 }, false);
-
-// XUL command handler
-ample.addEventListener("command",	function(oEvent) {
-//	var oElement	= this.getElementById(oEvent.target.getAttribute("command"));
-//	if (oElement)
-//		oElement.$handleEvent(oEvent);
-},	false);
-
-//
-
