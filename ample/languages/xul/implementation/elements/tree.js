@@ -14,9 +14,6 @@ var cXULElement_tree	= function()
 	this.selectedItems	= new AMLNodeList;
 };
 cXULElement_tree.prototype	= new cXULSelectElement;
-// Accessibility
-cXULElement_tree.prototype.tabIndex		= 0;
-cXULElement_tree.prototype.$selectable	= false;
 
 // Public Properties
 cXULElement_tree.prototype.head	= null;

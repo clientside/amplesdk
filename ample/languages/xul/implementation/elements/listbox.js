@@ -14,10 +14,6 @@ var cXULElement_listbox	= function() {
 };
 cXULElement_listbox.prototype    = new cXULSelectElement;
 
-// Accessibility
-cXULElement_listbox.prototype.tabIndex	= 0;
-cXULElement_listbox.prototype.$selectable	= false;
-
 //
 cXULElement_listbox.prototype.head	= null; // Reference to oXULElement_listhead
 cXULElement_listbox.prototype.body	= null; // Reference to oXULElement_listitems

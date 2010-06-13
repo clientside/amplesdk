@@ -13,6 +13,9 @@ cXULSelectElement.prototype	= new cXULElement;
 // Public Properties
 cXULSelectElement.prototype.currentItem		= null; // last selected item element
 cXULSelectElement.prototype.selectedItems	= null;
+// Accessibility
+cXULSelectElement.prototype.tabIndex		= 0;
+cXULSelectElement.prototype.$selectable	= false;
 
 // Public Methods
 cXULSelectElement.prototype.selectAll	= function()
