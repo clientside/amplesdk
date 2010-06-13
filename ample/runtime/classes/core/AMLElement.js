@@ -1028,7 +1028,7 @@ function fAMLElement_onReadyStateChange(oRequest, oElement)
 
 			// Dispatch load event
 			var oEvent	= new cAMLEvent;
-			oEvent.initEvent("error", true, false);
+			oEvent.initEvent("error", false, false);
 			fAMLNode_dispatchEvent(oElement, oEvent);
 	    }
 	}
