@@ -967,10 +967,8 @@ cAMLElement.prototype.$setPseudoClass	= function(sName, bState, sContainer)
 // Content Loader
 function fAMLElement_load(oElement, sUrl, sMethod, oHeaders, sData)
 {
-	if (oElement._timeout)
-		fClearTimeout(oElement._timeout);
-	if (oElement._request)
-		oElement._request['on' + "readystatechange"]	= new cFunction;
+	// If there is an operation running, abort it
+	fAMLElement_abort(oElement);
 
 	// Dispatch unload event
 	var oEvent	= new cAMLEvent;
@@ -1008,10 +1006,8 @@ function fAMLElement_onReadyStateChange(oRequest, oElement)
 {
 	if (oRequest.readyState == 4)
 	{
-		// Remove memory leak in IE
-		oRequest['on' + "readystatechange"]	= new cFunction;
-	    delete oElement._timeout;
-	    delete oElement._request;
+		// Clear
+		fAMLElement_clear(oElement);
 
 	    var oDocument	= fAML_getResponseDocument(oRequest);
 	    if (oDocument)
@@ -1038,7 +1034,33 @@ function fAMLElement_onReadyStateChange(oRequest, oElement)
 	}
 };
 
-cAMLElement.prototype.$load	= function(sUrl, sMethod, oHeaders, sData)
+function fAMLElement_clear(oElement)
+{
+	if (oElement._request) {
+		oElement._request['on' + "readystatechange"]	= new cFunction;
+	    delete oElement._request;
+	}
+	if (oElement._timeout) {
+		fClearTimeout(oElement._timeout);
+		delete oElement._timeout;
+	}
+};
+
+function fAMLElement_abort(oElement)
+{
+	if (oElement._timeout || oElement._request) {
+		if (oElement._request)
+			oElement._request	= oElement._request.abort();
+		fAMLElement_clear(oElement);
+
+		// Dispatch abort event
+		var oEvent	= new cAMLEvent;
+		oEvent.initEvent("abort", false, false);
+		fAMLNode_dispatchEvent(oElement, oEvent);
+	}
+};
+
+cAMLElement.prototype.$load		= function(sUrl, sMethod, oHeaders, sData)
 {
 	// Validate arguments
 	fAML_validate(arguments, [
@@ -1051,6 +1073,10 @@ cAMLElement.prototype.$load	= function(sUrl, sMethod, oHeaders, sData)
 	fAMLElement_load(this, sUrl, sMethod || "GET", oHeaders || {}, sData || null);
 };
 
+cAMLElement.prototype.$abort	= function()
+{
+	fAMLElement_abort(this);
+};
 
 cAMLElement.prototype.scrollIntoView	= function(bTop) {
 	// Validate arguments
