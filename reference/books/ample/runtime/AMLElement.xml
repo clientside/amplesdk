@@ -621,6 +621,13 @@
 					</locale>
 				</description>
 			</method>
+			<method name="$abort" type="Void">
+				<description>
+					<locale>
+						Aborts load operation initated by the call of <link type="method">$load</link> method.
+					</locale>
+				</description>
+			</method>
 			<!-- Effects -->
 			<method name="$play" type="Number">
 				<arguments>
@@ -916,10 +923,17 @@
 				</description>
 			</event>
 			<!-- Content Loader -->
+			<event name="abort" group="Event" cancelable="false" bubbles="false">
+				<description>
+					<locale>
+						Fires when the loading of a resource has been aborted.
+					</locale>
+				</description>
+			</event>
 			<event name="load" group="Event" cancelable="false" bubbles="false">
 				<description>
 					<locale>
-						Fires immediately after the engine loads the object.
+						Fires after the DOM implementation finishes loading the resource.
 					</locale>
 					<locale xml:lang="ru">
 						Загорается сразу же после загрузки данных ядром.
@@ -929,17 +943,17 @@
 			<event name="unload" group="Event" cancelable="false" bubbles="false">
 				<description>
 					<locale>
-						Fires immediately before the object is unloaded.
+						Fires before the DOM Implementation removes from the environment the resource.
 					</locale>
 					<locale xml:lang="ru">
 						Загорается непосредственно перед выгрузкой.
 					</locale>
 				</description>
 			</event>
-			<event name="error" group="Event" cancelable="false" bubbles="true">
+			<event name="error" group="Event" cancelable="false" bubbles="false">
 				<description>
 					<locale>
-						Fires when an error occurs during object loading.
+						Fires when a resource failed to load.
 					</locale>
 					<locale xml:lang="ru">
 						Загорается, когда в процессе загрузки ресурса возникает ошибка.
