@@ -120,14 +120,19 @@ cXULElement_listbox.handlers	= {
 
 // Element Render: open
 cXULElement_listbox.prototype.$getTagOpen	= function() {
-    return '<table class="xul-listbox' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '" cellpadding="0" cellspacing="0" border="0" height="' +(this.attributes["height"] ? this.attributes["height"] : '100%')+ '" width="' +(this.attributes["width"] ? this.attributes["width"] : '100%')+ '"' + (this.attributes["style"] ? ' style="' + this.attributes["style"] + '"' : '')+ '>\
-    			<tbody class="xul-listbox--gateway">';
+    return '<div class="xul-listbox' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"' + (this.attributes["style"] ? ' style="' + this.attributes["style"] + '"' : '') + '>\
+    			<div style="position:relative;height:100%;top:0;padding-bottom:inherit;">\
+    				<div class="ns-listbox--resizer" style="height:100%;position:absolute;top:0px;display:none;z-index:1"></div>\
+					<table cellpadding="0" cellspacing="0" border="0" height="' +(this.attributes["height"] ? this.attributes["height"] : '100%')+ '" width="' +(this.attributes["width"] ? this.attributes["width"] : '100%')+ '">\
+						<tbody class="xul-listbox--gateway">';
 };
 
 // Element Render: close
 cXULElement_listbox.prototype.$getTagClose	= function() {
-    return 		'</tbody>\
-    		</table>';
+    return 				'</tbody>\
+    				</table>\
+    			</div>\
+    		</div>';
 };
 
 // Register Element with language

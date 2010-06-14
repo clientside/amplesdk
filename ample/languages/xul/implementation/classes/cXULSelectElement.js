@@ -286,3 +286,53 @@ cXULSelectElement.getSettingsPopup	= function(oInstance) {
 
 	return cXULSelectElement.popup;
 };
+
+// Column Resize
+cXULSelectElement.resizing	= false;
+cXULSelectElement.clientX	= 0;
+
+cXULSelectElement.onResizeStart	= function(oEvent) {
+	if (oEvent.button == 0 && oEvent.$pseudoTarget == oEvent.currentTarget.$getContainer("resizer")) {
+		//
+		cXULSelectElement.resizing	= true;
+		cXULSelectElement.clientX	= oEvent.clientX;
+		//
+		var oView	= oEvent.currentTarget.parentNode.parentNode,
+			oResizer	= oView.$getContainer("resizer"),
+			oViewRect	= oView.getBoundingClientRect(),
+			oHeaderRect	= oEvent.currentTarget.getBoundingClientRect();
+
+		// Show resizer
+		oResizer.style.display	= "";
+		// Move resizer
+		oResizer.style.left	= (oHeaderRect.right - oViewRect.left) + "px";
+	}
+};
+
+cXULSelectElement.onResize		= function(oEvent) {
+	if (cXULSelectElement.resizing) {
+		var oView	= oEvent.currentTarget.parentNode.parentNode,
+			oResizer	= oView.$getContainer("resizer"),
+			oViewRect	= oView.getBoundingClientRect(),
+			oHeaderRect	= oEvent.currentTarget.getBoundingClientRect(),
+			nOffset	= Math.min(oHeaderRect.right - oHeaderRect.left, Math.max(0, cXULSelectElement.clientX - oEvent.clientX));
+		// Move resizer
+		oResizer.style.left	= (oHeaderRect.right - oViewRect.left - nOffset) + "px";
+	}
+};
+
+cXULSelectElement.onResizeEnd	= function(oEvent) {
+	if (cXULSelectElement.resizing) {
+		cXULSelectElement.resizing	= false;
+		//
+		var oView	= oEvent.target.parentNode.parentNode,
+			oResizer	= oView.$getContainer("resizer"),
+			oViewRect	= oView.getBoundingClientRect(),
+			oHeaderRect	= oEvent.target.getBoundingClientRect(),
+			nOffset	= Math.min(oHeaderRect.right - oHeaderRect.left, Math.max(0, cXULSelectElement.clientX - oEvent.clientX));
+		// Hide Resizer
+		oResizer.style.display	= "none";
+		// Set column width
+		oEvent.currentTarget.setAttribute("width", nOffset);
+	}
+};

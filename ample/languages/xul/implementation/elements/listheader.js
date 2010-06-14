@@ -20,23 +20,22 @@ cXULElement_listheader.handlers	= {
 		this.$setPseudoClass("active", false);
 	},
 	"mousedown":	function(oEvent) {
-		this.$setPseudoClass("active", true);
+		this.setCapture(true);
+		cXULSelectElement.onResizeStart(oEvent);
+		if (!cXULSelectElement.resizing)
+			this.$setPseudoClass("active", true);
 	},
 	"mouseup":		function(oEvent) {
-		this.$setPseudoClass("active", false);
+		this.releaseCapture();
+		if (!cXULSelectElement.resizing)
+			this.$setPseudoClass("active", false);
+		cXULSelectElement.onResizeEnd(oEvent);
 	},
-/*
 	"mousemove":	function(oEvent) {
-		var oElementDOM	= this.$getContainer();
-		var oPosition	= this.getBoundingClientRect();
-		if (Math.abs(oPosition.left - oEvent.clientX) < 10 || Math.abs(oPosition.right - oEvent.clientX) < 10)
-			oElementDOM.style.cursor	= "col-resize";
-		else
-			oElementDOM.style.cursor	= "";
+		cXULSelectElement.onResize(oEvent);
 	},
-*/
 	"click":		function(oEvent) {
-	    if (oEvent.button < 2) {
+	    if (oEvent.button < 2 && oEvent.$pseudoTarget != this.$getContainer("resizer")) {
 	        this._sortDir   = this._sortDir != "asc" ? "asc" : "desc";
 	        this.parentNode.parentNode.sort(this.$getContainer().cellIndex, this._sortDir == "asc");
 	    }
@@ -44,6 +43,15 @@ cXULElement_listheader.handlers	= {
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this) {
 			switch (oEvent.attrName) {
+				case "width":
+					this.$getContainer().width	= oEvent.newValue || '';
+					this.parentNode.parentNode.body.$getContainer("foot").rows[0].cells[this.parentNode.items.$indexOf(this) + 1].width	= oEvent.newValue || '';
+					break;
+
+				case "label":
+					this.$getContainer("label").innerHTML	= oEvent.newValue || '';
+					break;
+
 				case "hidden":
 			    	var nCell	= this.parentNode.items.$indexOf(this);
 			    	this.$getContainer().style.display	= oEvent.newValue == "true" ? "none" : "";
@@ -71,7 +79,7 @@ cXULElement_listheader.handlers	= {
 cXULElement_listheader.prototype.$getTagOpen	= function() {
 	return '<th class="xul-listheader' +(this.attributes["class"] ? " " + this.attributes["class"] : "")+ '"' +(this.attributes["width"] ? ' width="' + this.attributes["width"] + '"' : "")+ ' align="left">\
 				<div>\
-					<div class="xul-listheader--resizer"></div>\
+					<div class="xul-listheader--resizer"><br /></div>\
     				<div class="xul-listheader--label"> ' + (this.attributes["label"] || "");
 };
 
@@ -79,7 +87,7 @@ cXULElement_listheader.prototype.$getTagOpen	= function() {
 cXULElement_listheader.prototype.$getTagClose	= function() {
 	return			'</div>\
 				</div>\
-				<div style="height:1pt;font-size:1px;' + (this.attributes["minwidth"] ? 'width:' + this.attributes["minwidth"] + 'px' : '') + '"></div>\
+				<div class="xul-listheader--stretch" style="height:1pt;font-size:1px;' + (this.attributes["minwidth"] ? 'width:' + this.attributes["minwidth"] + 'px' : '') + '"></div>\
     		</th>';
 };
 

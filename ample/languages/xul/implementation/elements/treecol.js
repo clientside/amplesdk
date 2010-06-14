@@ -17,14 +17,28 @@ cXULElement_treecol.handlers	= {
 		this.$setPseudoClass("active", false);
 	},
 	"mousedown":	function(oEvent) {
-		this.$setPseudoClass("active", true);
+		this.setCapture(true);
+		cXULSelectElement.onResizeStart(oEvent);
+		if (!cXULSelectElement.resizing)
+			this.$setPseudoClass("active", true);
 	},
 	"mouseup":		function(oEvent) {
-		this.$setPseudoClass("active", false);
+		this.releaseCapture();
+		if (!cXULSelectElement.resizing)
+			this.$setPseudoClass("active", false);
+		cXULSelectElement.onResizeEnd(oEvent);
+	},
+	"mousemove":	function(oEvent) {
+		cXULSelectElement.onResize(oEvent);
 	},
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this) {
 			switch (oEvent.attrName) {
+				case "width":
+					this.$getContainer().width	= oEvent.newValue || '';
+					this.parentNode.parentNode.body.$getContainer("foot").rows[0].cells[this.parentNode.items.$indexOf(this) + 1].width	= oEvent.newValue || '';
+					break;
+
 				case "label":
 					this.$getContainer("label").innerHTML	= oEvent.newValue || '';
 					break;
@@ -43,23 +57,13 @@ cXULElement_treecol.handlers	= {
 			}
 		}
 	}
-/*
-	,"mousemove":	function(oEvent) {
-		var oElementDOM	= this.$getContainer();
-		var oPosition	= this.getBoundingClientRect();
-		if (Math.abs(oPosition.left - oEvent.clientX) < 10 || Math.abs(oPosition.right - oEvent.clientX) < 10)
-			oElementDOM.style.cursor	= "col-resize";
-		else
-			oElementDOM.style.cursor	= "";
-	}
-*/
 };
 
 // Element Render: open
 cXULElement_treecol.prototype.$getTagOpen	= function() {
 	return '<td class="xul-treecol' +(this.attributes["class"] ? " " + this.attributes["class"] : "")+ '"' +(this.attributes["width"] ? ' width="' + this.attributes["width"] + '"' : "")+(this.attributes["hideheader"] == "true" ? ' style="display:none"' : "")+ ' align="left">\
 				<div>\
-					<div class="xul-treecol--resizer"></div>\
+					<div class="xul-treecol--resizer"><br /></div>\
 					<div class="xul-treecol--label xul-treecol--gateway"> ' +(this.attributes["label"] || "");
 };
 

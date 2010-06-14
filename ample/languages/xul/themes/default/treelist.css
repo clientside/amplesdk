@@ -95,6 +95,14 @@ xul|treecell::command {
 	vertical-align: middle;
 }
 
+ns|listbox::resizer,
+ns|tree::resizer {
+	background-color: #7F9DB9;
+	cursor:col-resize;
+	width: 3px;
+	margin-left: -4px;
+}
+
 /* Tree-specific */
 xul|treecell::toc,
 xul|treecell-line {
