@@ -61,38 +61,50 @@ function fAMLFocus_blur(oElement) {
 /* Focus Group */
 function fAMLFocus_getFocusGroupNext(oElement, nTabIndex) {
 	for (var oParent = oElement, oFocusGroup; oParent; oParent = oParent.parentNode)
-		if (oParent == oElement &&(oFocusGroup = fAMLFocus_getFocusGroupNextChild(oParent.firstChild, nTabIndex)))
+		if (oParent == oElement && (oFocusGroup = fAMLFocus_getFocusGroupNextChild(oParent.firstChild, nTabIndex, true)))
 			return oFocusGroup;
 		else
-		if (oFocusGroup = fAMLFocus_getFocusGroupNextChild(oParent.nextSibling, nTabIndex))
+		if (oFocusGroup = fAMLFocus_getFocusGroupNextChild(oParent.nextSibling, nTabIndex, true))
 			return oFocusGroup;
 };
 
-function fAMLFocus_getFocusGroupNextChild(oElement, nTabIndex) {
-	for (var oSibling = oElement, oFocusGroup; oSibling; oSibling = oSibling.nextSibling)
-		if (oSibling.tabIndex == nTabIndex && oSibling.$isAccessible() && fAMLFocus_isVisible(oSibling))
+function fAMLFocus_getFocusGroupNextChild(oElement, nTabIndex, bDeep) {
+	for (var oSibling = oElement, oFocusGroup, aChildren; oSibling; oSibling = oSibling.nextSibling)
+		/* Walk into the anonymous tree */
+		if (bDeep && (aChildren = oSibling.$childNodesAnonymous) && aChildren.length &&(oFocusGroup = fAMLFocus_getFocusGroupNextChild(aChildren[0], nTabIndex, bDeep)))
+			return oFocusGroup;
+		else
+		if (fAMLFocus_isTabStop(oSibling, nTabIndex, bDeep))
 			return oSibling;
 		else
-		if (oFocusGroup = fAMLFocus_getFocusGroupNextChild(oSibling.firstChild, nTabIndex))
+		if (oFocusGroup = fAMLFocus_getFocusGroupNextChild(oSibling.firstChild, nTabIndex, bDeep))
 			return oFocusGroup;
 };
 
 function fAMLFocus_getFocusGroupPrevious(oElement, nTabIndex) {
 	for (var oParent = oElement, oFocusGroup; oParent; oParent = oParent.parentNode)
-		if (oParent != oElement && oParent.tabIndex == nTabIndex && oParent.$isAccessible() && fAMLFocus_isVisible(oParent))
+		if (oParent != oElement && fAMLFocus_isTabStop(oParent, nTabIndex, true))
 			return oParent;
 		else
-		if (oFocusGroup = fAMLFocus_getFocusGroupPreviousChild(oParent.previousSibling, nTabIndex))
+		if (oFocusGroup = fAMLFocus_getFocusGroupPreviousChild(oParent.previousSibling, nTabIndex, true))
 			return oFocusGroup;
 };
 
-function fAMLFocus_getFocusGroupPreviousChild(oElement, nTabIndex) {
-	for (var oSibling = oElement, oFocusGroup; oSibling; oSibling = oSibling.previousSibling)
-		if (oFocusGroup = fAMLFocus_getFocusGroupPreviousChild(oSibling.lastChild, nTabIndex))
+function fAMLFocus_getFocusGroupPreviousChild(oElement, nTabIndex, bDeep) {
+	for (var oSibling = oElement, oFocusGroup, aChildren; oSibling; oSibling = oSibling.previousSibling)
+		/* Walk into the anonymous tree */
+		if (bDeep && (aChildren = oSibling.$childNodesAnonymous) && aChildren.length &&(oFocusGroup = fAMLFocus_getFocusGroupPreviousChild(aChildren[aChildren.length-1], nTabIndex, bDeep)))
 			return oFocusGroup;
 		else
-		if (oSibling.tabIndex == nTabIndex && oSibling.$isAccessible() && fAMLFocus_isVisible(oSibling))
+		if (oFocusGroup = fAMLFocus_getFocusGroupPreviousChild(oSibling.lastChild, nTabIndex, bDeep))
+			return oFocusGroup;
+		else
+		if (fAMLFocus_isTabStop(oSibling, nTabIndex, bDeep))
 			return oSibling;
+};
+
+function fAMLFocus_isTabStop(oElement, nTabIndex, bDeep) {
+	return oElement.tabIndex >-1 && (bDeep || oElement.tabIndex == nTabIndex) && oElement.$isAccessible() && fAMLFocus_isVisible(oElement);
 };
 
 function fAMLFocus_isVisible(oElement) {
@@ -115,11 +127,9 @@ function fAMLFocus_onMouseDown(oEvent) {
 
 	// Find new element to focus
 	var oFocusGroup	= null;
-    for (var oElement = oEvent.target; oElement.nodeType != cAMLNode.DOCUMENT_NODE; oElement = oElement.parentNode)
-    	if (oElement.tabIndex >= 0 && oElement.$isAccessible() && fAMLFocus_isVisible(oElement)) {
+    for (var oElement = oEvent.target; oElement.nodeType != cAMLNode.DOCUMENT_NODE && !oFocusGroup; oElement = oElement.parentNode)
+    	if (fAMLFocus_isTabStop(oElement, 0, true))
     		oFocusGroup = oElement;
-			break;
-    	}
 
 	//
     if (oFocusGroup)
