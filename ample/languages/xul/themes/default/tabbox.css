@@ -18,6 +18,11 @@ xul|tab {
 	cursor:	default !important;
 }
 
+xul|tabs:focus xul|tab:selected {
+	outline: dotted 1px silver;
+	outline-offset: -3px;
+}
+
 xul|tab:hover {
 	background-position: 0px -30px;
 }
