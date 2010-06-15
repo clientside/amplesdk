@@ -275,13 +275,13 @@
 		<concat destfile="${temp.languages.dir}/xhtml-raw.js" fixlastline="yes">
 			<fileset file="${source.xhtml.dir}/implementation/xhtml.js" />
 			<fileset dir="${source.xhtml.dir}/implementation/classes/">
-				<include name="**" />
+				<include name="*.js" />
 			</fileset>
 			<fileset dir="${source.xhtml.dir}/implementation/managers/">
-				<include name="**" />
+				<include name="*.js" />
 			</fileset>
 			<fileset dir="${source.xhtml.dir}/implementation/elements/">
-				<include name="**" />
+				<include name="*.js" />
 			</fileset>
 		</concat>
 
@@ -309,10 +309,10 @@
 		<concat destfile="${temp.languages.dir}/html5-raw.js" fixlastline="yes">
 			<fileset file="${source.html5.dir}/implementation/html5.js" />
 			<fileset dir="${source.html5.dir}/implementation/classes/">
-				<include name="**" />
+				<include name="*.js" />
 			</fileset>
 			<fileset dir="${source.html5.dir}/implementation/elements/">
-				<include name="**" />
+				<include name="*.js" />
 			</fileset>
 		</concat>
 
@@ -340,13 +340,13 @@
 		<concat destfile="${temp.languages.dir}/aml-raw.js" fixlastline="yes">
 			<fileset file="${source.aml.dir}/implementation/aml.js" />
 			<fileset dir="${source.aml.dir}/implementation/classes/">
-				<include name="**" />
+				<include name="*.js" />
 			</fileset>
 			<fileset dir="${source.aml.dir}/implementation/attributes/">
-				<include name="**" />
+				<include name="*.js" />
 			</fileset>
 			<fileset dir="${source.aml.dir}/implementation/elements/">
-				<include name="**" />
+				<include name="*.js" />
 			</fileset>
 		</concat>
 
@@ -387,15 +387,13 @@
 		<concat destfile="${temp.languages.dir}/xul-raw.js" fixlastline="yes">
 			<fileset file="${source.xul.dir}/implementation/xul.js" />
 			<fileset dir="${source.xul.dir}/implementation/classes/">
-				<include name="**" />
-				<exclude name="cXULController.js" />
-				<exclude name="cXULCommandDispatcher.js" />
+				<include name="*.js" />
 			</fileset>
 			<fileset dir="${source.xul.dir}/implementation/managers/">
-				<include name="**" />
+				<include name="*.js" />
 			</fileset>
 			<fileset dir="${source.xul.dir}/implementation/elements/">
-				<include name="**" />
+				<include name="*.js" />
 			</fileset>
 		</concat>
 
@@ -447,10 +445,10 @@
 		<concat destfile="${temp.languages.dir}/mobile-raw.js" fixlastline="yes">
 			<fileset file="${source.mobile.dir}/implementation/mobile.js" />
 			<fileset dir="${source.mobile.dir}/implementation/classes/">
-				<include name="**" />
+				<include name="*.js" />
 			</fileset>
 			<fileset dir="${source.mobile.dir}/implementation/elements/">
-				<include name="**" />
+				<include name="*.js" />
 			</fileset>
 		</concat>
 
@@ -491,10 +489,10 @@
 		<concat destfile="${temp.languages.dir}/svg-raw.js" fixlastline="yes">
 			<fileset file="${source.svg.dir}/implementation/svg.js" />
 			<fileset dir="${source.svg.dir}/implementation/classes/">
-				<include name="**" />
+				<include name="*.js" />
 			</fileset>
 			<fileset dir="${source.svg.dir}/implementation/elements/">
-				<include name="**" />
+				<include name="*.js" />
 			</fileset>
 		</concat>
 
@@ -522,10 +520,10 @@
 		<concat destfile="${temp.languages.dir}/chart-raw.js" fixlastline="yes">
 			<fileset file="${source.chart.dir}/implementation/chart.js" />
 			<fileset dir="${source.chart.dir}/implementation/classes/">
-				<include name="**" />
+				<include name="*.js" />
 			</fileset>
 			<fileset dir="${source.chart.dir}/implementation/elements/">
-				<include name="**" />
+				<include name="*.js" />
 			</fileset>
 		</concat>
 
