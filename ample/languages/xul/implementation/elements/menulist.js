@@ -271,7 +271,7 @@ cXULElement_menulist.handlers	= {
 		}
 	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
-		var oElement	= this.querySelector(">xul|menupopup>xul|menuitem[selected=true]", function() {
+		var oElement	= this.querySelector(">xul|menupopup>xul|menuitem[checked=true]", function() {
 			return oEvent.target.namespaceURI;
 		});
 		if (oElement)
