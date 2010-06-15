@@ -69,9 +69,6 @@ cXULSelectElement.prototype.selectItem	= function(oElement)
 
     this.currentItem    = oElement;
 
-    // move focus
-//	this.currentItem.focus();
-
     // Fire event
     this._fireEventOnSelect();
 };

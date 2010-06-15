@@ -40,9 +40,6 @@ cXULElement_listbox.prototype.sort   = function(nCell, bDir) {
                 this.items[nIndex].setAttribute("selected", "true");
         }
     }
-    // Move focus selection
-    if (this.currentItem)
-    	this.currentItem.focus();
 };
 
 // Class Events Handlers
