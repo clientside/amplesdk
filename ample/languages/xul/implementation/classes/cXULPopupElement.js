@@ -23,7 +23,7 @@ cXULPopupElement.prototype.popupType	= cXULPopupElement.POPUP_TYPE_POPUP;
 cXULPopupElement.prototype.showPopup	= function(oElement, nLeft, nTop, nType, oAnchor, sAlign)
 {
     // fire event
-    if (this._fireEventOnPopup("showing") == false)
+    if (cXULPopupElement.fireEventOnPopup(this, "showing") == false)
         return;
 
     this.popupType = nType;
@@ -120,13 +120,13 @@ cXULPopupElement.prototype.showPopup	= function(oElement, nLeft, nTop, nType, oA
 	this.setAttribute("hidden", "false");
 
     // fire event
-    this._fireEventOnPopup("shown");
+    cXULPopupElement.fireEventOnPopup(this, "shown");
 };
 
 cXULPopupElement.prototype.hidePopup	= function()
 {
     // fire event
-    if (this._fireEventOnPopup("hiding") == false)
+    if (cXULPopupElement.fireEventOnPopup(this, "hiding") == false)
         return;
 /*
 	if (this.popupType == cXULPopupElement.POPUP_TYPE_TOOLTIP)
@@ -147,7 +147,7 @@ cXULPopupElement.prototype.hidePopup	= function()
 		this.releaseCapture();
 
     // fire event
-    this._fireEventOnPopup("hidden");
+    cXULPopupElement.fireEventOnPopup(this, "hidden");
 };
 
 cXULPopupElement.prototype.moveTo	= function(nLeft, nTop)
@@ -164,10 +164,11 @@ cXULPopupElement.prototype.sizeTo	= function(nWidth, nHeight)
     oElementDOM.style.height= nHeight	+ "px";
 };
 
-cXULPopupElement.prototype._fireEventOnPopup	= function(sName)
+// Static Methods
+cXULPopupElement.fireEventOnPopup	= function(oInstance, sName)
 {
-    var oEvent  = this.ownerDocument.createEvent("Events");
+    var oEvent  = oInstance.ownerDocument.createEvent("Events");
     oEvent.initEvent("popup" + sName, false, true);
 
-    return this.dispatchEvent(oEvent);
+    return oInstance.dispatchEvent(oEvent);
 };
