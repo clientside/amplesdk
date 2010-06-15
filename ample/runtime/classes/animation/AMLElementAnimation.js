@@ -107,11 +107,11 @@ function fAMLElementAnimation_process(nEffect)
 			switch (oEffect._type)
 			{
 				case nAMLElementAnimation_EFFECT_ACCELERATE:
-					nRatio	= cMath.pow(nRatioRaw, 2);
+					nRatio	= cMath.pow(nRatioRaw, cMath.E);
 					break;
 
 				case nAMLElementAnimation_EFFECT_DECELERATE:
-					nRatio	= cMath.pow(nRatioRaw, 1/2);
+					nRatio	= cMath.pow(nRatioRaw, 1 / cMath.E);
 					break;
 
 				case nAMLElementAnimation_EFFECT_SPRING:
