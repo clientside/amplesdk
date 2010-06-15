@@ -247,7 +247,7 @@ cXULElement.getBoxOpen	= function(oElement)
         if (oElement.attributes["width"])
 			aHtml[aHtml.length]	= ' width="' + oElement.attributes["width"] + '"';
     }
-	aHtml[aHtml.length]	= ' class="xul-box xul-' +(oElement.attributes["orient"] == "vertical" ? 'v' : 'h')+ 'box"';
+	aHtml[aHtml.length]	= ' class="xul-box xul-' +(oElement.attributes["orient"] == "vertical" ? 'v' : 'h')+ 'box --box"';
 	aHtml[aHtml.length]	= '><tbody>';
 
     if (oElement.attributes["orient"] != "vertical")
