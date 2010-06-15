@@ -71,8 +71,8 @@ cXULElement_treebody.prototype.$getTagClose	= function() {
     	aHtml.push('<tr>');
         if (this.parentNode.attributes["type"] == "checkbox" || this.parentNode.attributes["type"] == "radio")
         	aHtml.push('<td width="20" style="width:20px"><div style="width:20px" /></td>');
-        for (var nIndex = 0, aItems = this.parentNode.head.items; nIndex < aItems.length; nIndex++)
-        	aHtml.push('<td' + (aItems[nIndex].attributes["width"] ? ' width="' + aItems[nIndex].attributes["width"] + '"' : '') + '><div style="height:1px;' + (aItems[nIndex].attributes["minwidth"] ? 'width:' + aItems[nIndex].attributes["minwidth"] + 'px' : '') + '"/></td>');
+       for (var nIndex = 0, aItems = this.parentNode.head.items, oItem; oItem = aItems[nIndex]; nIndex++)
+        	aHtml.push('<td' + (oItem.attributes["width"] ? ' width="' + oItem.attributes["width"] + '"' : '') + '><div style="height:1px;' + (oItem.attributes["minwidth"] ? 'width:' + oItem.attributes["minwidth"] + 'px' : '') + '"/></td>');
         aHtml.push('</tr>');
         aHtml.push('</tfoot>');
     }

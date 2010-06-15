@@ -286,34 +286,44 @@ cXULSelectElement.getSettingsPopup	= function(oInstance) {
 // Column Resize
 cXULSelectElement.resizing	= false;
 cXULSelectElement.clientX	= 0;
+cXULSelectElement.minWidth	= 0;
+cXULSelectElement.maxWidth	= 0;
 
 cXULSelectElement.onResizeStart	= function(oEvent) {
 	if (oEvent.button == 0 && oEvent.$pseudoTarget == oEvent.currentTarget.$getContainer("resizer")) {
 		//
-		cXULSelectElement.resizing	= true;
-		cXULSelectElement.clientX	= oEvent.clientX;
-		//
-		var oView	= oEvent.currentTarget.parentNode.parentNode,
-			oResizer	= oView.$getContainer("resizer"),
+		var oHeader	= oEvent.currentTarget,
+			oView	= oHeader.parentNode.parentNode,
+			oHeaderRect	= oHeader.getBoundingClientRect(),
 			oViewRect	= oView.getBoundingClientRect(),
-			oHeaderRect	= oEvent.currentTarget.getBoundingClientRect();
+			oResizer	= oView.$getContainer("resizer");
 
 		// Show resizer
 		oResizer.style.display	= "";
 		// Move resizer
 		oResizer.style.left	= (oHeaderRect.right - oViewRect.left) + "px";
+		//
+		cXULSelectElement.resizing	= true;
+		cXULSelectElement.clientX	= oEvent.clientX;
+		cXULSelectElement.minWidth	= oHeader.getAttribute("minwidth") * 1 || 0;
+		cXULSelectElement.maxWidth	= oHeader.getAttribute("maxwidth") * 1 || Infinity;
 	}
 };
 
 cXULSelectElement.onResize		= function(oEvent) {
 	if (cXULSelectElement.resizing) {
-		var oView	= oEvent.currentTarget.parentNode.parentNode,
-			oResizer	= oView.$getContainer("resizer"),
+		var oHeader	= oEvent.currentTarget,
+			oView	= oHeader.parentNode.parentNode,
+			oHeaderRect	= oHeader.getBoundingClientRect(),
 			oViewRect	= oView.getBoundingClientRect(),
-			oHeaderRect	= oEvent.currentTarget.getBoundingClientRect(),
-			nOffset	= Math.min(oHeaderRect.right - oHeaderRect.left, Math.max(0, cXULSelectElement.clientX - oEvent.clientX));
+			oResizer	= oView.$getContainer("resizer"),
+			nWidth	=(oHeaderRect.right - oHeaderRect.left)-(cXULSelectElement.clientX - oEvent.clientX);
+
+		// Check min/max
+		nWidth	= Math.min(cXULSelectElement.maxWidth, Math.max(nWidth, cXULSelectElement.minWidth));
+
 		// Move resizer
-		oResizer.style.left	= (oHeaderRect.right - oViewRect.left - nOffset) + "px";
+		oResizer.style.left	= (oHeaderRect.left - oViewRect.left + nWidth) + "px";
 	}
 };
 
@@ -321,14 +331,19 @@ cXULSelectElement.onResizeEnd	= function(oEvent) {
 	if (cXULSelectElement.resizing) {
 		cXULSelectElement.resizing	= false;
 		//
-		var oView	= oEvent.target.parentNode.parentNode,
-			oResizer	= oView.$getContainer("resizer"),
+		var oHeader	= oEvent.currentTarget,
+			oView	= oHeader.parentNode.parentNode,
+			oHeaderRect	= oHeader.getBoundingClientRect(),
 			oViewRect	= oView.getBoundingClientRect(),
-			oHeaderRect	= oEvent.target.getBoundingClientRect(),
-			nOffset	= Math.min(oHeaderRect.right - oHeaderRect.left, Math.max(0, cXULSelectElement.clientX - oEvent.clientX));
+			oResizer	= oView.$getContainer("resizer"),
+			nWidth	=(oHeaderRect.right - oHeaderRect.left)-(cXULSelectElement.clientX - oEvent.clientX);
 		// Hide Resizer
 		oResizer.style.display	= "none";
+
+		// Check min/max
+		nWidth	= Math.floor(Math.min(cXULSelectElement.maxWidth, Math.max(nWidth, cXULSelectElement.minWidth)));
+
 		// Set column width
-		oEvent.currentTarget.setAttribute("width", nOffset);
+		oHeader.setAttribute("width", nWidth);
 	}
 };
