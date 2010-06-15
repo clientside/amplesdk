@@ -15,13 +15,13 @@ cXULSelectElement.prototype.currentItem		= null; // last selected item element
 cXULSelectElement.prototype.selectedItems	= null;
 // Accessibility
 cXULSelectElement.prototype.tabIndex		= 0;
-cXULSelectElement.prototype.$selectable	= false;
+cXULSelectElement.prototype.$selectable		= false;
 
 // Public Methods
 cXULSelectElement.prototype.selectAll	= function()
 {
     // Fire event onbeforeselect
-    if (!this._fireEventOnBeforeSelect())
+    if (!cXULSelectElement.fireEventOnBeforeSelect(this))
         return;
 
     // prevent mutiple selection in single mode
@@ -36,13 +36,13 @@ cXULSelectElement.prototype.selectAll	= function()
     }
 
     // Fire event
-    this._fireEventOnSelect();
+    cXULSelectElement.fireEventOnSelect(this);
 };
 
 cXULSelectElement.prototype.clearSelection	= function()
 {
     // Fire event onbeforeselect
-    if (!this._fireEventOnBeforeSelect())
+    if (!cXULSelectElement.fireEventOnBeforeSelect(this))
         return;
 
     for (var nIndex = 0; nIndex < this.selectedItems.length; nIndex++)
@@ -50,13 +50,13 @@ cXULSelectElement.prototype.clearSelection	= function()
     this.selectedItems  = new AMLNodeList;
 
     // Fire event
-    this._fireEventOnSelect();
+    cXULSelectElement.fireEventOnSelect(this);
 };
 
 cXULSelectElement.prototype.selectItem	= function(oElement)
 {
     // Fire event onbeforeselect
-    if (!this._fireEventOnBeforeSelect())
+    if (!cXULSelectElement.fireEventOnBeforeSelect(this))
         return;
 
     for (var nIndex = 0; nIndex < this.selectedItems.length; nIndex++)
@@ -70,13 +70,13 @@ cXULSelectElement.prototype.selectItem	= function(oElement)
     this.currentItem    = oElement;
 
     // Fire event
-    this._fireEventOnSelect();
+    cXULSelectElement.fireEventOnSelect(this);
 };
 
 cXULSelectElement.prototype.toggleItemSelection	= function(oElement)
 {
     // Fire event onbeforeselect
-    if (!this._fireEventOnBeforeSelect())
+    if (!cXULSelectElement.fireEventOnBeforeSelect(this))
         return;
 
     // prevent mutiple selection in single mode
@@ -106,13 +106,13 @@ cXULSelectElement.prototype.toggleItemSelection	= function(oElement)
     this.selectedItems  = aElements;
 
     // Fire event
-    this._fireEventOnSelect();
+    cXULSelectElement.fireEventOnSelect(this);
 };
 
 cXULSelectElement.prototype.addItemToSelection	= function(oElement)
 {
     // Fire event onbeforeselect
-    if (!this._fireEventOnBeforeSelect())
+    if (!cXULSelectElement.fireEventOnBeforeSelect(this))
         return;
 
     // prevent mutiple selection in single mode
@@ -124,14 +124,14 @@ cXULSelectElement.prototype.addItemToSelection	= function(oElement)
     this.selectedItems.$add(oElement);
 
     // Fire event
-    this._fireEventOnSelect();
+    cXULSelectElement.fireEventOnSelect(this);
 };
 
 
 cXULSelectElement.prototype.removeItemFromSelection	= function(oElement)
 {
     // Fire event onbeforeselect
-    if (!this._fireEventOnBeforeSelect())
+    if (!cXULSelectElement.fireEventOnBeforeSelect(this))
         return;
 
     var aElements   = new AMLNodeList;
@@ -152,13 +152,13 @@ cXULSelectElement.prototype.removeItemFromSelection	= function(oElement)
         this.currentItem    = null;
 
     // Fire event
-    this._fireEventOnSelect();
+    cXULSelectElement.fireEventOnSelect(this);
 };
 
 cXULSelectElement.prototype.selectItemRange	= function(oElement1, oElement2)
 {
     // Fire event onbeforeselect
-    if (!this._fireEventOnBeforeSelect())
+    if (!cXULSelectElement.fireEventOnBeforeSelect(this))
         return;
 
     // prevent mutiple selection in single mode
@@ -190,7 +190,7 @@ cXULSelectElement.prototype.selectItemRange	= function(oElement1, oElement2)
     }
 
     // Fire event
-    this._fireEventOnSelect();
+    cXULSelectElement.fireEventOnSelect(this);
 };
 
 cXULSelectElement.prototype.scrollToIndex	= function(nIndex)
@@ -207,38 +207,37 @@ cXULSelectElement.prototype.scrollToIndex	= function(nIndex)
     }
 };
 
-// Private Methods
-cXULSelectElement.prototype._fireEventOnSelect	= function()
+//Static Methods
+cXULSelectElement.fireEventOnSelect	= function(oInstance)
 {
-    if (this.head)
+    if (oInstance.head)
     {
-        if (this.attributes["type"] == "checkbox")
-            this.head.$getContainer("command").checked    = this.selectedItems.length == this.items.length ? true : false;
+        if (oInstance.attributes["type"] == "checkbox")
+        	oInstance.head.$getContainer("command").checked    = oInstance.selectedItems.length == oInstance.items.length ? true : false;
         else
-        if (this.attributes["type"] == "radio")
-            this.head.$getContainer("command").checked    = this.selectedItems.length != 0;
+        if (oInstance.attributes["type"] == "radio")
+        	oInstance.head.$getContainer("command").checked    = oInstance.selectedItems.length != 0;
     }
 
-	if (this.selectedItems.length)
+	if (oInstance.selectedItems.length)
 	{
-	    var oEvent  = this.ownerDocument.createEvent("Events");
+	    var oEvent  = oInstance.ownerDocument.createEvent("Events");
 	    oEvent.initEvent("select", false, true);
-	    this.selectedItems[0].dispatchEvent(oEvent);
+	    oInstance.selectedItems[0].dispatchEvent(oEvent);
 	}
 
-    var oEvent  = this.ownerDocument.createEvent("Events");
+    var oEvent  = oInstance.ownerDocument.createEvent("Events");
     oEvent.initEvent("select", false, true);
-    this.dispatchEvent(oEvent);
+    oInstance.dispatchEvent(oEvent);
 
-    this.doCommand();
+    oInstance.doCommand();
 };
 
-//
-cXULSelectElement.prototype._fireEventOnBeforeSelect	= function()
+cXULSelectElement.fireEventOnBeforeSelect	= function(oInstance)
 {
-    var oEvent  = this.ownerDocument.createEvent("Events");
+    var oEvent  = oInstance.ownerDocument.createEvent("Events");
     oEvent.initEvent("beforeselect", false, true);
-    return this.dispatchEvent(oEvent);
+    return oInstance.dispatchEvent(oEvent);
 };
 
 // Static properties
