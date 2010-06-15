@@ -345,6 +345,6 @@ cAMLElement.prototype.$resizeEdges	= 0;
 
 // Registering Event Handlers
 fAMLEventTarget_addEventListener(oAML_document, "mousedown",	fAMLResize_onMouseDown,		false);
-fAMLEventTarget_addEventListener(oAML_document, "mousemove",	fAMLResize_onMouseMove,		true);
+fAMLEventTarget_addEventListener(oAML_document, "mousemove",	fAMLResize_onMouseMove,		false);
 fAMLEventTarget_addEventListener(oAML_document, "mouseup",		fAMLResize_onMouseUp,		false);
 fAMLEventTarget_addEventListener(oAML_document, "keydown",		fAMLResize_onKeyDown,		false);
