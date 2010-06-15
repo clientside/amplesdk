@@ -10,6 +10,12 @@ xul|tree:focus {
 	border-color: #7F9DB9;
 }
 
+xul|listbox:disabled,
+xul|tree:disabled {
+	color: GrayText;/*#aca899;*/
+	background-color: rgb(235, 235, 228);
+}
+
 xul|listhead,
 xul|treecols {
 	line-height: 18px;

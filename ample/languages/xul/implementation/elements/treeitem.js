@@ -31,23 +31,26 @@ cXULElement_treeitem.prototype._getNodeDepth = function() {
 // Class Events Handlers
 cXULElement_treeitem.handlers	= {
 	"mousedown":	function(oEvent) {
+		var oView	= this.parentNode.tree;
+		if (!oView.$isAccessible())
+			return;
 		// only handle own clicks
 		if (oEvent.target.parentNode != this && oEvent.target.parentNode.parentNode != this)
 			return;
 
 	    //
-	    if (oEvent.button == 2 && this.parentNode.tree.selectedItems.$indexOf(this) !=-1)
+	    if (oEvent.button == 2 && oView.selectedItems.$indexOf(this) !=-1)
 	        return;
 
 	    if (oEvent.shiftKey) {
-			if (this.parentNode.tree.currentItem)
-				this.parentNode.tree.selectItemRange(this, this.parentNode.tree.currentItem);
+			if (oView.currentItem)
+				oView.selectItemRange(this, oView.currentItem);
 	    }
 		else {
 	        if (oEvent.ctrlKey)
-	            this.parentNode.tree.toggleItemSelection(this);
+	        	oView.toggleItemSelection(this);
 	        else
-	            this.parentNode.tree.selectItem(this);
+	        	oView.selectItem(this);
 	    }
 	},
 	"DOMAttrModified":	function(oEvent) {

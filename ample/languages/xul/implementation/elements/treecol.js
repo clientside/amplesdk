@@ -11,6 +11,11 @@ var cXULElement_treecol	= function(){};
 cXULElement_treecol.prototype	= new cXULElement;
 cXULElement_treecol.prototype.$hoverable	= true;
 
+//Public Methods
+cXULElement_treecol.prototype.$isAccessible	= function() {
+	return this.parentNode.parentNode.$isAccessible();
+};
+
 // Class Events Handlers
 cXULElement_treecol.handlers	= {
 	"mouseleave":	function(oEvent) {

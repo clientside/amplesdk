@@ -14,8 +14,10 @@ var cXULElement_treecols	= function() {
 cXULElement_treecols.prototype   = new cXULElement;
 
 // Public Methods
+cXULElement_treecols.$isAccessible	= function() {
+	return this.parentNode.$isAccessible();
+};
 
-// Private Methods
 cXULElement_treecols.prototype._getPrimaryColIndex   = function() {
     for (var nIndex = 0; nIndex < this.items.length; nIndex++)
         if (this.items[nIndex].attributes["primary"] == "true")
@@ -43,6 +45,9 @@ cXULElement_treecols.prototype._onCommandClick   = function(oEvent) {
 // Class events handlers
 cXULElement_treecols.handlers	= {
 	"click":	function(oEvent) {
+		if (!this.$isAccessible())
+			return;
+
 		if (oEvent.button == 2 || (oEvent.button == 0 && oEvent.target == this && oEvent.$pseudoTarget == this.$getContainer("settings"))) {
 			var oPopup	= cXULSelectElement.getSettingsPopup(this);
 			oPopup.showPopup(this, 0, 0, cXULPopupElement.POPUP_TYPE_POPUP);

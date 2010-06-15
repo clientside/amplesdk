@@ -14,6 +14,10 @@ var cXULElement_listhead	= function() {
 cXULElement_listhead.prototype   = new cXULElement;
 
 // Private Methods
+cXULElement_listhead.$isAccessible	= function() {
+	return this.parentNode.$isAccessible();
+};
+
 cXULElement_listhead.prototype._getPrimaryColIndex   = function() {
     for (var nIndex = 0; nIndex < this.items.length; nIndex++)
         if (this.items[nIndex].attributes["primary"] == "true")
@@ -41,6 +45,9 @@ cXULElement_listhead.prototype._onCommandClick   = function(oEvent) {
 // Class events handlers
 cXULElement_listhead.handlers	= {
 	"click":	function(oEvent) {
+		if (!this.$isAccessible())
+			return;
+
 		if (oEvent.button == 2 || (oEvent.button == 0 && oEvent.target == this && oEvent.$pseudoTarget == this.$getContainer("settings"))) {
 			var oPopup	= cXULSelectElement.getSettingsPopup(this);
 			oPopup.showPopup(this, 0, 0, cXULPopupElement.POPUP_TYPE_POPUP);

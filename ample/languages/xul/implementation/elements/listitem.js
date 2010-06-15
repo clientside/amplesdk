@@ -17,21 +17,24 @@ cXULElement_listitem.prototype.$hoverable	= true;
 // Class Events Handlers
 cXULElement_listitem.handlers	= {
 	"mousedown":	function(oEvent) {
+		var oView	= this.parentNode.parentNode;
+		if (!oView.$isAccessible())
+			return;
 	    //
-	    if (oEvent.button == 2 && this.parentNode.parentNode.selectedItems.$indexOf(this) !=-1)
+	    if (oEvent.button == 2 && oView.selectedItems.$indexOf(this) !=-1)
 	        return;
 
 	    if (oEvent.shiftKey)
 	    {
-	        if (this.parentNode.parentNode.currentItem)
-	            this.parentNode.parentNode.selectItemRange(this, this.parentNode.parentNode.currentItem);
+	        if (oView.currentItem)
+	        	oView.selectItemRange(this, oView.currentItem);
 	    }
 	    else
 	    {
 	        if (oEvent.ctrlKey)
-	            this.parentNode.parentNode.toggleItemSelection(this);
+	        	oView.toggleItemSelection(this);
 	        else
-	            this.parentNode.parentNode.selectItem(this);
+	        	oView.selectItem(this);
 	    }
 	},
 	"DOMAttrModified":	function(oEvent) {
@@ -61,6 +64,10 @@ cXULElement_listitem.handlers	= {
 			this.parentNode.parentNode.items.$remove(this);
 		}
 	}
+};
+
+cXULElement_listitem.prototype.$isAccessible	= function() {
+	return this.parentNode.parentNode.$isAccessible();
 };
 
 // Events Handlers

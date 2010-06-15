@@ -117,7 +117,7 @@ cXULElement_listbox.handlers	= {
 
 // Element Render: open
 cXULElement_listbox.prototype.$getTagOpen	= function() {
-    return '<div class="xul-listbox' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"' + (this.attributes["style"] ? ' style="' + this.attributes["style"] + '"' : '') + '>\
+    return '<div class="xul-listbox' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + (this.attributes["disabled"] == "true" ? " xul-listbox_disabled" : "") + '"' + (this.attributes["style"] ? ' style="' + this.attributes["style"] + '"' : '') + '>\
     			<div style="position:relative;height:100%;top:0;padding-bottom:inherit;">\
     				<div class="ns-listbox--resizer" style="height:100%;position:absolute;top:0px;display:none;z-index:1"></div>\
 					<table cellpadding="0" cellspacing="0" border="0" height="' +(this.attributes["height"] ? this.attributes["height"] : '100%')+ '" width="' +(this.attributes["width"] ? this.attributes["width"] : '100%')+ '">\

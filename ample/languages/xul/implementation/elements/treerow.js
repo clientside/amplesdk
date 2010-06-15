@@ -15,6 +15,9 @@ cXULElement_treerow.prototype	= new cXULElement;
 cXULElement_treerow.prototype.$hoverable	= true;
 
 // Public Methods
+cXULElement_treerow.prototype.$isAccessible	= function() {
+	return this.parentNode.parentNode.tree.$isAccessible();
+};
 
 // Private members
 cXULElement_treerow.prototype._onCommandClick   = function(oEvent) {

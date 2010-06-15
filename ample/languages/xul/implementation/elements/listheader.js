@@ -14,6 +14,11 @@ cXULElement_listheader.prototype.$hoverable	= true;
 // Private Properties
 cXULElement_listheader.prototype._sortDir	= "none";
 
+// Public Methods
+cXULElement_listheader.prototype.$isAccessible	= function() {
+	return this.parentNode.parentNode.$isAccessible();
+};
+
 // Class Events Handlers
 cXULElement_listheader.handlers	= {
 	"mouseleave":	function(oEvent) {
