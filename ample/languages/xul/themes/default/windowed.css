@@ -45,13 +45,13 @@ xul|dialog::foot {
 	border-top:	solid 1px gray;
 }
 
-xul|dialog::button-accept,
-xul|dialog::button-cancel,
-xul|dialog::button-help,
-xul|wizard::button-back,
-xul|wizard::button-next,
-xul|wizard::button-finish,
-xul|wizard::button-cancel {
+xul|dialog::foot xul|button.accept,
+xul|dialog::foot xul|button.cancel,
+xul|dialog::foot xul|button.help,
+xul|wizard::foot xul|button.back,
+xul|wizard::foot xul|button.next,
+xul|wizard::foot xul|button.finish,
+xul|wizard::foot xul|button.cancel {
     margin-right: 5px;
 	cursor: default !important;
 	width:	5em;

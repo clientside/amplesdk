@@ -9,7 +9,7 @@
 
 var cXULElement_wizard	= function() {
     // Private Collections
-    this._buttons   = {};   // Buttons
+    this.buttons	= {};   // Buttons
 
     // Collections
     this.wizardPages= new AMLNodeList;
@@ -98,7 +98,7 @@ cXULElement_wizard.prototype.getPageById = function(sId) {
 };
 
 cXULElement_wizard.prototype.getButton   = function(sName) {
-    return this._buttons[sName];
+    return this.buttons[sName];
 };
 
 cXULElement_wizard.dispatchEvent_onWizard  = function(oElement, sName) {
@@ -106,21 +106,6 @@ cXULElement_wizard.dispatchEvent_onWizard  = function(oElement, sName) {
     oEvent.initEvent("wizard" + sName, false, true);
 
     return oElement.dispatchEvent(oEvent);
-};
-
-// Events Handlers
-cXULElement_wizard.prototype._onButtonClick  = function(oEvent, sName) {
-    if (sName == "button-back")
-        this.rewind();
-    else
-    if (sName == "button-next")
-        this.advance();
-    else
-    if (sName == "button-finish")
-        this.finish();
-    else
-    if (sName == "button-cancel")
-        this.cancel();
 };
 
 // Class events handlers
@@ -140,6 +125,56 @@ cXULElement_wizard.handlers	= {
 				default:
 					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
 			}
+		}
+	},
+	"DOMNodeInserted":	function(oEvent) {
+		if (oEvent.target == this) {
+			var oElement,
+				that	= this;
+			// Back
+			oElement	= this.$appendChildAnonymous(this.ownerDocument.createElementNS(this.namespaceURI, "xul:button"));
+			oElement.addEventListener("DOMActivate", function(oEvent) {
+				that.rewind();
+			}, false);
+			oElement.setAttribute("label", "&lt; Back");
+			oElement.setAttribute("class", "back");
+			this.buttons["back"]	= oElement;
+			// Next
+			oElement	= this.$appendChildAnonymous(this.ownerDocument.createElementNS(this.namespaceURI, "xul:button"));
+			oElement.addEventListener("DOMActivate", function(oEvent) {
+				that.advance();
+			}, false);
+			oElement.setAttribute("label", "Next &gt;");
+			oElement.setAttribute("class", "next");
+			this.buttons["next"]	= oElement;
+			// Finish
+			oElement	= this.$appendChildAnonymous(this.ownerDocument.createElementNS(this.namespaceURI, "xul:button"));
+			oElement.addEventListener("DOMActivate", function(oEvent) {
+		        that.finish();
+			}, false);
+			oElement.setAttribute("label", "Finish");
+			oElement.setAttribute("class", "finish");
+			this.buttons["finish"]	= oElement;
+			// Cancel
+			oElement	= this.$appendChildAnonymous(this.ownerDocument.createElementNS(this.namespaceURI, "xul:button"));
+			oElement.addEventListener("DOMActivate", function(oEvent) {
+				that.cancel();
+			}, false);
+			oElement.setAttribute("label", "Cancel");
+			oElement.setAttribute("class", "cancel");
+			this.buttons["cancel"]	= oElement;
+		}
+	},
+	"DOMNodeRemoved":	function(oEvent) {
+		if (oEvent.target == this) {
+			this.$removeChildAnonymous(this.buttons["back"]);
+			this.buttons["back"]	= null;
+			this.$removeChildAnonymous(this.buttons["next"]);
+			this.buttons["next"]	= null;
+			this.$removeChildAnonymous(this.buttons["finish"]);
+			this.buttons["finish"]	= null;
+			this.$removeChildAnonymous(this.buttons["cancel"]);
+			this.buttons["cancel"]	= null;
 		}
 	},
 	"dragstart":	function(oEvent) {
@@ -173,9 +208,9 @@ cXULElement_wizard.goTo	= function(oElement, oPage) {
 	// Set buttons state
 	var bNext	= cXULElement_wizard.getNextPage(oElement, oPage) != null,	// Is there next page?
 		bPrev	= cXULElement_wizard.getPrevPage(oElement, oPage) != null;	// Is there prev page?
-	oElement.$getContainer("button-back").disabled			= !bPrev;
-	oElement.$getContainer("button-next").style.display		= bNext ? "" : "none";
-	oElement.$getContainer("button-finish").style.display	= bNext ? "none" : "";
+	oElement.buttons["back"].setAttribute("disabled", !bPrev);
+	oElement.buttons["next"].setAttribute("hidden", bNext ? "false" : "true");
+	oElement.buttons["finish"].setAttribute("hidden", bNext ? "true" : "false");
 
     // Set new current page
     oElement.currentPage    = oPage;
@@ -229,11 +264,11 @@ cXULElement_wizard.prototype.$getTagClose  = function() {
 					<table cellpadding="0" cellspacing="0" border="0" height="100%" align="' +(this.attributes["buttonalign"] == "start" ? "left" : this.attributes["buttonalign"] == "center" ? "center" : "right")+ '">\
 						<tbody>\
 							<tr>\
-								<td><button class="xul-wizard--button-back" onclick="ample.$instance(this)._onButtonClick(event, \'button-back\')" disabled="true">&lt; Back</button></td>\
-								<td><button class="xul-wizard--button-next" onclick="ample.$instance(this)._onButtonClick(event, \'button-next\')" style="display:none">Next &gt;</button></td>\
-								<td><button class="xul-wizard--button-finish" onclick="ample.$instance(this)._onButtonClick(event, \'button-finish\')">Finish</button></td>\
+								<td>' + this.buttons['back'].$getTag() + '</td>\
+								<td>' + this.buttons['next'].$getTag() + '</td>\
+								<td>' + this.buttons['finish'].$getTag() + '</td>\
 								<td width="8"><br /></td>\
-								<td><button class="xul-wizard--button-cancel" onclick="ample.$instance(this)._onButtonClick(event, \'button-cancel\')">Cancel</button></td>\
+								<td>' + this.buttons['cancel'].$getTag() + '</td>\
 							</tr>\
 						</tbody>\
 					</table>\

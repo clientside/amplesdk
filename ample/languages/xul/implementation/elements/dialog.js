@@ -7,7 +7,9 @@
  *
  */
 
-var cXULElement_dialog	= function(){};
+var cXULElement_dialog	= function(){
+	this.buttons	= {};
+};
 cXULElement_dialog.prototype	= new cXULWindowElement;
 cXULElement_dialog.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
 
@@ -43,27 +45,6 @@ cXULElement_dialog.prototype.centerWindowOnScreen    = function()
 	oElementDOM.style.top	=(document.body.clientHeight - oPosition.bottom + oPosition.top) / 2;
 };
 
-// Events Handlers
-cXULElement_dialog.prototype._onButtonClick  = function(oEvent, sName)
-{
-    if (sName == "button-accept")
-    {
-        this.acceptDialog();
-    }
-    else
-    if (sName == "button-cancel")
-    {
-        this.cancelDialog();
-    }
-    else
-    if (sName == "button-help")
-    {
-        var oEvent2    = this.ownerDocument.createEvent("Events");
-        oEvent2.initEvent("dialoghelp", false, true);
-        this.dispatchEvent(oEvent2);
-    }
-};
-
 // Class Events Handlers
 cXULElement_dialog.handlers	= {
 	"DOMAttrModified":	function(oEvent) {
@@ -74,9 +55,9 @@ cXULElement_dialog.handlers	= {
 					break;
 
 				case "buttons":
-					this.$getContainer("button-help").style.display		=!sValue || sValue.indexOf("help")    ==-1 ? "none" : "";
-					this.$getContainer("button-cancel").style.display	=!sValue || sValue.indexOf("cancel")  ==-1 ? "none" : "";
-					this.$getContainer("button-accept").style.display	=!sValue || sValue.indexOf("accept")  ==-1 ? "none" : "";
+					this.buttons["help"].setAttribute("hidden", !sValue || sValue.indexOf("help")    ==-1 ? "true" : "false");
+					this.buttons["cancel"].setAttribute("hidden", !sValue || sValue.indexOf("cancel")  ==-1 ? "true" : "false");
+					this.buttons["accept"].setAttribute("hidden", !sValue || sValue.indexOf("accept")  ==-1 ? "true" : "false");
 					break;
 
 				case "buttonalign":
@@ -92,6 +73,54 @@ cXULElement_dialog.handlers	= {
 				default:
 					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
 			}
+		}
+	},
+	"DOMNodeInserted":	function(oEvent) {
+		if (oEvent.target == this) {
+			var oElement,
+				that	= this;
+			// Accept
+			oElement	= this.$appendChildAnonymous(this.ownerDocument.createElementNS(this.namespaceURI, "xul:button"));
+			oElement.addEventListener("DOMActivate", function(oEvent) {
+				that.acceptDialog();
+			}, false);
+			oElement.setAttribute("label", "OK");
+			oElement.setAttribute("class", "accept");
+			if (this.attributes["buttons"].indexOf("accept") ==-1)
+				oElement.setAttribute("hidden", "true");
+			this.buttons["accept"]	= oElement;
+			// Cancel
+			oElement	= this.$appendChildAnonymous(this.ownerDocument.createElementNS(this.namespaceURI, "xul:button"));
+			oElement.addEventListener("DOMActivate", function(oEvent) {
+				that.cancelDialog();
+			}, false);
+			oElement.setAttribute("label", "Cancel");
+			oElement.setAttribute("class", "cancel");
+			if (this.attributes["buttons"].indexOf("cancel") ==-1)
+				oElement.setAttribute("hidden", "true");
+			this.buttons["cancel"]	= oElement;
+			// Help
+			oElement	= this.$appendChildAnonymous(this.ownerDocument.createElementNS(this.namespaceURI, "xul:button"));
+			oElement.addEventListener("DOMActivate", function(oEvent) {
+		        var oEvent2    = that.ownerDocument.createEvent("Events");
+		        oEvent2.initEvent("dialoghelp", false, true);
+		        that.dispatchEvent(oEvent2);
+			}, false);
+			oElement.setAttribute("label", "Help");
+			oElement.setAttribute("class", "help");
+			if (this.attributes["buttons"].indexOf("help") ==-1)
+				oElement.setAttribute("hidden", "true");
+			this.buttons["help"]	= oElement;
+		}
+	},
+	"DOMNodeRemoved":	function(oEvent) {
+		if (oEvent.target == this) {
+			this.$removeChildAnonymous(this.buttons["accept"]);
+			this.buttons["accept"]	= null;
+			this.$removeChildAnonymous(this.buttons["cancel"]);
+			this.buttons["cancel"]	= null;
+			this.$removeChildAnonymous(this.buttons["help"]);
+			this.buttons["help"]	= null;
 		}
 	},
 	"dragstart":	function(oEvent) {
@@ -137,9 +166,9 @@ cXULElement_dialog.prototype.$getTagClose	= function()
 					<table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%" align="' +(this.attributes["buttonalign"] == "start" ? "left" : this.attributes["buttonalign"] == "center" ? "center" : "right")+ '">\
 						<tbody>\
 							<tr>\
-								<td width="100%"><button class="xul-dialog--button-help" style="' +(this.attributes["buttons"].indexOf("help") ==-1 ? 'display:none;' : '')+ '" onclick="ample.$instance(this)._onButtonClick(event, \'button-help\')">Help</button></td>\
-								<td><button class="xul-dialog--button-accept" style="' +(this.attributes["buttons"].indexOf("accept") ==-1 ? 'display:none;' : '')+ '" onclick="ample.$instance(this)._onButtonClick(event, \'button-accept\')">OK</button></td>\
-								<td><button class="xul-dialog--button-cancel" style="' +(this.attributes["buttons"].indexOf("cancel") ==-1 ? 'display:none;' : '')+ '" onclick="ample.$instance(this)._onButtonClick(event, \'button-cancel\')">Cancel</button></td>\
+								<td width="100%">' + this.buttons['help'].$getTag() + '</td>\
+								<td>' + this.buttons['accept'].$getTag() + '</td>\
+								<td>' + this.buttons['cancel'].$getTag() + '</td>\
 							</tr>\
 						</tbody>\
 					</table>\
