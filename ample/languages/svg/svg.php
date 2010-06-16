@@ -1,73 +1,73 @@
 <?
     $aFiles		= array();
-    $aFiles[]	= "implementation/svg.js";
-    $aFiles[]	= "implementation/classes/cSVGElement.js";
+    $aFiles[]	= "svg.js";
+    $aFiles[]	= "classes/cSVGElement.js";
 
-    $aFiles[]	= "implementation/classes/cSVGRect.js";
-    $aFiles[]	= "implementation/classes/cSVGPathSeg.js";
-    $aFiles[]	= "implementation/classes/cSVGPathSegList.js";
+    $aFiles[]	= "classes/cSVGRect.js";
+    $aFiles[]	= "classes/cSVGPathSeg.js";
+    $aFiles[]	= "classes/cSVGPathSegList.js";
 
     // segments
-    $aFiles[]	= "implementation/classes/segments/cSVGPathSegArcAbs.js";
-    $aFiles[]	= "implementation/classes/segments/cSVGPathSegArcRel.js";
-    $aFiles[]	= "implementation/classes/segments/cSVGPathSegClosePath.js";
-    $aFiles[]	= "implementation/classes/segments/cSVGPathSegCurvetoCubicAbs.js";
-    $aFiles[]	= "implementation/classes/segments/cSVGPathSegCurvetoCubicRel.js";
-    $aFiles[]	= "implementation/classes/segments/cSVGPathSegCurvetoCubicSmoothAbs.js";
-    $aFiles[]	= "implementation/classes/segments/cSVGPathSegCurvetoCubicSmoothRel.js";
-    $aFiles[]	= "implementation/classes/segments/cSVGPathSegCurvetoQuadraticAbs.js";
-    $aFiles[]	= "implementation/classes/segments/cSVGPathSegCurvetoQuadraticRel.js";
-    $aFiles[]	= "implementation/classes/segments/cSVGPathSegCurvetoQuadraticSmoothAbs.js";
-    $aFiles[]	= "implementation/classes/segments/cSVGPathSegCurvetoQuadraticSmoothRel.js";
-    $aFiles[]	= "implementation/classes/segments/cSVGPathSegLinetoAbs.js";
-    $aFiles[]	= "implementation/classes/segments/cSVGPathSegLinetoRel.js";
-    $aFiles[]	= "implementation/classes/segments/cSVGPathSegLinetoHorizontalAbs.js";
-    $aFiles[]	= "implementation/classes/segments/cSVGPathSegLinetoHorizontalRel.js";
-    $aFiles[]	= "implementation/classes/segments/cSVGPathSegLinetoVerticalAbs.js";
-    $aFiles[]	= "implementation/classes/segments/cSVGPathSegLinetoVerticalRel.js";
-    $aFiles[]	= "implementation/classes/segments/cSVGPathSegMovetoAbs.js";
-    $aFiles[]	= "implementation/classes/segments/cSVGPathSegMovetoRel.js";
+    $aFiles[]	= "classes/segments/cSVGPathSegArcAbs.js";
+    $aFiles[]	= "classes/segments/cSVGPathSegArcRel.js";
+    $aFiles[]	= "classes/segments/cSVGPathSegClosePath.js";
+    $aFiles[]	= "classes/segments/cSVGPathSegCurvetoCubicAbs.js";
+    $aFiles[]	= "classes/segments/cSVGPathSegCurvetoCubicRel.js";
+    $aFiles[]	= "classes/segments/cSVGPathSegCurvetoCubicSmoothAbs.js";
+    $aFiles[]	= "classes/segments/cSVGPathSegCurvetoCubicSmoothRel.js";
+    $aFiles[]	= "classes/segments/cSVGPathSegCurvetoQuadraticAbs.js";
+    $aFiles[]	= "classes/segments/cSVGPathSegCurvetoQuadraticRel.js";
+    $aFiles[]	= "classes/segments/cSVGPathSegCurvetoQuadraticSmoothAbs.js";
+    $aFiles[]	= "classes/segments/cSVGPathSegCurvetoQuadraticSmoothRel.js";
+    $aFiles[]	= "classes/segments/cSVGPathSegLinetoAbs.js";
+    $aFiles[]	= "classes/segments/cSVGPathSegLinetoRel.js";
+    $aFiles[]	= "classes/segments/cSVGPathSegLinetoHorizontalAbs.js";
+    $aFiles[]	= "classes/segments/cSVGPathSegLinetoHorizontalRel.js";
+    $aFiles[]	= "classes/segments/cSVGPathSegLinetoVerticalAbs.js";
+    $aFiles[]	= "classes/segments/cSVGPathSegLinetoVerticalRel.js";
+    $aFiles[]	= "classes/segments/cSVGPathSegMovetoAbs.js";
+    $aFiles[]	= "classes/segments/cSVGPathSegMovetoRel.js";
 
     // elements
 	// structure
-	$aFiles[]	= "implementation/elements/svg.js";
-    $aFiles[]	= "implementation/elements/g.js";
-	$aFiles[]	= "implementation/elements/defs.js";
-	$aFiles[]	= "implementation/elements/image.js";
+	$aFiles[]	= "elements/svg.js";
+    $aFiles[]	= "elements/g.js";
+	$aFiles[]	= "elements/defs.js";
+	$aFiles[]	= "elements/image.js";
 	// linking
-	$aFiles[]	= "implementation/elements/a.js";
+	$aFiles[]	= "elements/a.js";
    	// path
-	$aFiles[]	= "implementation/elements/path.js";
+	$aFiles[]	= "elements/path.js";
     // basic shapes
-    $aFiles[]	= "implementation/elements/rect.js";
-    $aFiles[]	= "implementation/elements/circle.js";
-    $aFiles[]	= "implementation/elements/ellipse.js";
-    $aFiles[]	= "implementation/elements/line.js";
-    $aFiles[]	= "implementation/elements/polyline.js";
-    $aFiles[]	= "implementation/elements/polygon.js";
+    $aFiles[]	= "elements/rect.js";
+    $aFiles[]	= "elements/circle.js";
+    $aFiles[]	= "elements/ellipse.js";
+    $aFiles[]	= "elements/line.js";
+    $aFiles[]	= "elements/polyline.js";
+    $aFiles[]	= "elements/polygon.js";
     // gradients and patterns
-    $aFiles[]	= "implementation/elements/linearGradient.js";
-    $aFiles[]	= "implementation/elements/radialGradient.js";
-    $aFiles[]	= "implementation/elements/stop.js";
-    $aFiles[]	= "implementation/elements/pattern.js";
+    $aFiles[]	= "elements/linearGradient.js";
+    $aFiles[]	= "elements/radialGradient.js";
+    $aFiles[]	= "elements/stop.js";
+    $aFiles[]	= "elements/pattern.js";
     // text
-    $aFiles[]	= "implementation/elements/text.js";
-    $aFiles[]	= "implementation/elements/tspan.js";
-    $aFiles[]	= "implementation/elements/tref.js";
-    $aFiles[]	= "implementation/elements/textPath.js";
+    $aFiles[]	= "elements/text.js";
+    $aFiles[]	= "elements/tspan.js";
+    $aFiles[]	= "elements/tref.js";
+    $aFiles[]	= "elements/textPath.js";
     // foreign object
-    $aFiles[]	= "implementation/elements/foreignObject.js";
+    $aFiles[]	= "elements/foreignObject.js";
 
     // uncertain
-    $aFiles[]	= "implementation/elements/style.js";
-    $aFiles[]	= "implementation/elements/script.js";
-	$aFiles[]	= "implementation/elements/title.js";
-	$aFiles[]	= "implementation/elements/desc.js";
-	$aFiles[]	= "implementation/elements/use.js";
-	$aFiles[]	= "implementation/elements/marker.js";
-	$aFiles[]	= "implementation/elements/clipPath.js";
-	$aFiles[]	= "implementation/elements/metadata.js";
-	$aFiles[]	= "implementation/elements/symbol.js";
+    $aFiles[]	= "elements/style.js";
+    $aFiles[]	= "elements/script.js";
+	$aFiles[]	= "elements/title.js";
+	$aFiles[]	= "elements/desc.js";
+	$aFiles[]	= "elements/use.js";
+	$aFiles[]	= "elements/marker.js";
+	$aFiles[]	= "elements/clipPath.js";
+	$aFiles[]	= "elements/metadata.js";
+	$aFiles[]	= "elements/symbol.js";
 
     $sOutput	= "";
     for ($nIndex = 0; $nIndex < count($aFiles); $nIndex++)

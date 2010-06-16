@@ -1,48 +1,48 @@
 <?
     $aFiles		= array();
-    $aFiles[]	= "implementation/aml.js";
-    $aFiles[]	= "implementation/classes/cAMLElement.js";
+    $aFiles[]	= "aml.js";
+    $aFiles[]	= "classes/cAMLElement.js";
 
     // elements
-    $aFiles[]	= "implementation/elements/handler.js";
-    $aFiles[]	= "implementation/elements/sound.js";
-    $aFiles[]	= "implementation/elements/timer.js";
-	$aFiles[]	= "implementation/elements/xhtml.js";
+    $aFiles[]	= "elements/handler.js";
+    $aFiles[]	= "elements/sound.js";
+    $aFiles[]	= "elements/timer.js";
+	$aFiles[]	= "elements/xhtml.js";
 
-	$aFiles[]	= "implementation/elements/data.js";
-	$aFiles[]	= "implementation/elements/repeater.js";
-	$aFiles[]	= "implementation/elements/pager.js";
+	$aFiles[]	= "elements/data.js";
+	$aFiles[]	= "elements/repeater.js";
+	$aFiles[]	= "elements/pager.js";
 
-    $aFiles[]	= "implementation/elements/filepicker.js";
+    $aFiles[]	= "elements/filepicker.js";
 
-	$aFiles[]	= "implementation/elements/map.js";
-	$aFiles[]	= "implementation/elements/marker.js";
+	$aFiles[]	= "elements/map.js";
+	$aFiles[]	= "elements/marker.js";
 
-	$aFiles[]	= "implementation/elements/sidebar.js";
+	$aFiles[]	= "elements/sidebar.js";
 
-	$aFiles[]	= "implementation/elements/panelset.js";
-	$aFiles[]	= "implementation/elements/panel.js";
+	$aFiles[]	= "elements/panelset.js";
+	$aFiles[]	= "elements/panel.js";
 /*
  	// grid
-	$aFiles[]	= "implementation/elements/grid.js";
-	$aFiles[]	= "implementation/elements/gridHead.js";
-	$aFiles[]	= "implementation/elements/gridHeadCell.js";
-	$aFiles[]	= "implementation/elements/gridBody.js";
+	$aFiles[]	= "elements/grid.js";
+	$aFiles[]	= "elements/gridHead.js";
+	$aFiles[]	= "elements/gridHeadCell.js";
+	$aFiles[]	= "elements/gridBody.js";
 	// Body of grid
-	$aFiles[]	= "implementation/elements/gridGroup.js";
-	$aFiles[]	= "implementation/elements/gridRow.js";
-	$aFiles[]	= "implementation/elements/gridCell.js";
+	$aFiles[]	= "elements/gridGroup.js";
+	$aFiles[]	= "elements/gridRow.js";
+	$aFiles[]	= "elements/gridCell.js";
 	// Editor
-	$aFiles[]	= "implementation/elements/gridEdit.js";
-	$aFiles[]	= "implementation/elements/gridEditRow.js";
-	$aFiles[]	= "implementation/elements/gridEditCell.js";
+	$aFiles[]	= "elements/gridEdit.js";
+	$aFiles[]	= "elements/gridEditRow.js";
+	$aFiles[]	= "elements/gridEditCell.js";
 */
 	// attributes
-    $aFiles[]	= "implementation/attributes/draggable.js";
-    $aFiles[]	= "implementation/attributes/droppable.js";
-    $aFiles[]	= "implementation/attributes/resizable.js";
-    $aFiles[]	= "implementation/attributes/resize-edges.js";
-    $aFiles[]	= "implementation/attributes/selectable.js";
+    $aFiles[]	= "attributes/draggable.js";
+    $aFiles[]	= "attributes/droppable.js";
+    $aFiles[]	= "attributes/resizable.js";
+    $aFiles[]	= "attributes/resize-edges.js";
+    $aFiles[]	= "attributes/selectable.js";
 
     $sOutput	= "";
     for ($nIndex = 0; $nIndex < count($aFiles); $nIndex++)

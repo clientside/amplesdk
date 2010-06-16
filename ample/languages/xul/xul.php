@@ -1,131 +1,131 @@
 <?
     $aFiles		= array();
-    $aFiles[]	= "implementation/xul.js";
-    $aFiles[]	= "implementation/classes/cXULElement.js";
-	$aFiles[]	= "implementation/classes/cXULController.js";
+    $aFiles[]	= "xul.js";
+    $aFiles[]	= "classes/cXULElement.js";
+	$aFiles[]	= "classes/cXULController.js";
 
     // base classes
-    $aFiles[]	= "implementation/classes/cXULSelectElement.js";
-    $aFiles[]	= "implementation/classes/cXULPopupElement.js";
-    $aFiles[]	= "implementation/classes/cXULWindowElement.js";
+    $aFiles[]	= "classes/cXULSelectElement.js";
+    $aFiles[]	= "classes/cXULPopupElement.js";
+    $aFiles[]	= "classes/cXULWindowElement.js";
 
 	// managers
-	$aFiles[]	= "implementation/managers/oXULCommandDispatcher.js";
-    $aFiles[]	= "implementation/managers/oXULPopupManager.js";
-    $aFiles[]	= "implementation/managers/oXULWindowManager.js";
+	$aFiles[]	= "managers/oXULCommandDispatcher.js";
+    $aFiles[]	= "managers/oXULPopupManager.js";
+    $aFiles[]	= "managers/oXULWindowManager.js";
 
     // elements
     // windowing
-    $aFiles[]	= "implementation/elements/dialog.js";
-    $aFiles[]	= "implementation/elements/dialogheader.js";
-    $aFiles[]	= "implementation/elements/page.js";
-    $aFiles[]	= "implementation/elements/window.js";
-    $aFiles[]	= "implementation/elements/wizard.js";
-    $aFiles[]	= "implementation/elements/wizardpage.js";
+    $aFiles[]	= "elements/dialog.js";
+    $aFiles[]	= "elements/dialogheader.js";
+    $aFiles[]	= "elements/page.js";
+    $aFiles[]	= "elements/window.js";
+    $aFiles[]	= "elements/wizard.js";
+    $aFiles[]	= "elements/wizardpage.js";
 
     // resource
-    $aFiles[]	= "implementation/elements/script.js";
+    $aFiles[]	= "elements/script.js";
 
     // commands
-    $aFiles[]	= "implementation/elements/broadcaster.js";
-    $aFiles[]	= "implementation/elements/broadcasterset.js";
-    $aFiles[]	= "implementation/elements/command.js";
-    $aFiles[]	= "implementation/elements/commandset.js";
-    $aFiles[]	= "implementation/elements/key.js";
-    $aFiles[]	= "implementation/elements/keyset.js";
+    $aFiles[]	= "elements/broadcaster.js";
+    $aFiles[]	= "elements/broadcasterset.js";
+    $aFiles[]	= "elements/command.js";
+    $aFiles[]	= "elements/commandset.js";
+    $aFiles[]	= "elements/key.js";
+    $aFiles[]	= "elements/keyset.js";
 
     // layout
-    $aFiles[]	= "implementation/elements/box.js";
-    $aFiles[]	= "implementation/elements/caption.js";
-    $aFiles[]	= "implementation/elements/deck.js";
-    $aFiles[]	= "implementation/elements/description.js";
-    $aFiles[]	= "implementation/elements/hbox.js";
-    $aFiles[]	= "implementation/elements/image.js";
-    $aFiles[]	= "implementation/elements/iframe.js";
-    $aFiles[]	= "implementation/elements/groupbox.js";
-    $aFiles[]	= "implementation/elements/label.js";
-    $aFiles[]	= "implementation/elements/separator.js";
-    $aFiles[]	= "implementation/elements/spacer.js";
-    $aFiles[]	= "implementation/elements/stack.js";
-    $aFiles[]	= "implementation/elements/vbox.js";
+    $aFiles[]	= "elements/box.js";
+    $aFiles[]	= "elements/caption.js";
+    $aFiles[]	= "elements/deck.js";
+    $aFiles[]	= "elements/description.js";
+    $aFiles[]	= "elements/hbox.js";
+    $aFiles[]	= "elements/image.js";
+    $aFiles[]	= "elements/iframe.js";
+    $aFiles[]	= "elements/groupbox.js";
+    $aFiles[]	= "elements/label.js";
+    $aFiles[]	= "elements/separator.js";
+    $aFiles[]	= "elements/spacer.js";
+    $aFiles[]	= "elements/stack.js";
+    $aFiles[]	= "elements/vbox.js";
 
     // grid
-    $aFiles[]	= "implementation/elements/column.js";
-    $aFiles[]	= "implementation/elements/columns.js";
-    $aFiles[]	= "implementation/elements/grid.js";
-    $aFiles[]	= "implementation/elements/row.js";
-    $aFiles[]	= "implementation/elements/rows.js";
+    $aFiles[]	= "elements/column.js";
+    $aFiles[]	= "elements/columns.js";
+    $aFiles[]	= "elements/grid.js";
+    $aFiles[]	= "elements/row.js";
+    $aFiles[]	= "elements/rows.js";
 
     //
-    $aFiles[]	= "implementation/elements/arrowscrollbox.js";
-    $aFiles[]	= "implementation/elements/button.js";
-    $aFiles[]	= "implementation/elements/panel.js";
-    $aFiles[]	= "implementation/elements/popupset.js";
-    $aFiles[]	= "implementation/elements/progressmeter.js";
-//    $aFiles[]	= "implementation/elements/scrollbox.js";
-    $aFiles[]	= "implementation/elements/splitter.js";
-    $aFiles[]	= "implementation/elements/statusbar.js";
-    $aFiles[]	= "implementation/elements/statusbarpanel.js";
-    $aFiles[]	= "implementation/elements/tooltip.js";
+    $aFiles[]	= "elements/arrowscrollbox.js";
+    $aFiles[]	= "elements/button.js";
+    $aFiles[]	= "elements/panel.js";
+    $aFiles[]	= "elements/popupset.js";
+    $aFiles[]	= "elements/progressmeter.js";
+//    $aFiles[]	= "elements/scrollbox.js";
+    $aFiles[]	= "elements/splitter.js";
+    $aFiles[]	= "elements/statusbar.js";
+    $aFiles[]	= "elements/statusbarpanel.js";
+    $aFiles[]	= "elements/tooltip.js";
 
     // menu
-    $aFiles[]	= "implementation/elements/menu.js";
-    $aFiles[]	= "implementation/elements/menubar.js";
-    $aFiles[]	= "implementation/elements/menuitem.js";
-    $aFiles[]	= "implementation/elements/menupopup.js";
-    $aFiles[]	= "implementation/elements/menuseparator.js";
+    $aFiles[]	= "elements/menu.js";
+    $aFiles[]	= "elements/menubar.js";
+    $aFiles[]	= "elements/menuitem.js";
+    $aFiles[]	= "elements/menupopup.js";
+    $aFiles[]	= "elements/menuseparator.js";
 
     // tabbox
-    $aFiles[]	= "implementation/elements/tabbox.js";
-    $aFiles[]	= "implementation/elements/tab.js";
-    $aFiles[]	= "implementation/elements/tabs.js";
-    $aFiles[]	= "implementation/elements/tabpanel.js";
-    $aFiles[]	= "implementation/elements/tabpanels.js";
+    $aFiles[]	= "elements/tabbox.js";
+    $aFiles[]	= "elements/tab.js";
+    $aFiles[]	= "elements/tabs.js";
+    $aFiles[]	= "elements/tabpanel.js";
+    $aFiles[]	= "elements/tabpanels.js";
 
     // toolbar
-    $aFiles[]	= "implementation/elements/toolbar.js";
-    $aFiles[]	= "implementation/elements/toolbarbutton.js";
-    $aFiles[]	= "implementation/elements/toolbarseparator.js";
-    $aFiles[]	= "implementation/elements/toolbargrippy.js";
-    $aFiles[]	= "implementation/elements/toolbox.js";
+    $aFiles[]	= "elements/toolbar.js";
+    $aFiles[]	= "elements/toolbarbutton.js";
+    $aFiles[]	= "elements/toolbarseparator.js";
+    $aFiles[]	= "elements/toolbargrippy.js";
+    $aFiles[]	= "elements/toolbox.js";
 
     // listbox
-    $aFiles[]	= "implementation/elements/listbox.js";
-    $aFiles[]	= "implementation/elements/listcol.js";
-    $aFiles[]	= "implementation/elements/listcols.js";
-    $aFiles[]	= "implementation/elements/listitem.js";
-    $aFiles[]	= "implementation/elements/listbody.js";
-    $aFiles[]	= "implementation/elements/listcell.js";
-    $aFiles[]	= "implementation/elements/listhead.js";
-    $aFiles[]	= "implementation/elements/listheader.js";
+    $aFiles[]	= "elements/listbox.js";
+    $aFiles[]	= "elements/listcol.js";
+    $aFiles[]	= "elements/listcols.js";
+    $aFiles[]	= "elements/listitem.js";
+    $aFiles[]	= "elements/listbody.js";
+    $aFiles[]	= "elements/listcell.js";
+    $aFiles[]	= "elements/listhead.js";
+    $aFiles[]	= "elements/listheader.js";
 
     // treebox
-    $aFiles[]	= "implementation/elements/tree.js";
-    $aFiles[]	= "implementation/elements/treebody.js";
-    $aFiles[]	= "implementation/elements/treechildren.js";
-    $aFiles[]	= "implementation/elements/treecell.js";
-    $aFiles[]	= "implementation/elements/treecol.js";
-    $aFiles[]	= "implementation/elements/treecols.js";
-    $aFiles[]	= "implementation/elements/treerow.js";
-    $aFiles[]	= "implementation/elements/treeitem.js";
+    $aFiles[]	= "elements/tree.js";
+    $aFiles[]	= "elements/treebody.js";
+    $aFiles[]	= "elements/treechildren.js";
+    $aFiles[]	= "elements/treecell.js";
+    $aFiles[]	= "elements/treecol.js";
+    $aFiles[]	= "elements/treecols.js";
+    $aFiles[]	= "elements/treerow.js";
+    $aFiles[]	= "elements/treeitem.js";
 
     // input
-    $aFiles[]	= "implementation/elements/checkbox.js";
-    $aFiles[]	= "implementation/elements/colorpicker.js";
-    $aFiles[]	= "implementation/elements/datepicker.js";
-    $aFiles[]	= "implementation/elements/editor.js";
-    $aFiles[]	= "implementation/elements/menulist.js";
-    $aFiles[]	= "implementation/elements/radio.js";
-    $aFiles[]	= "implementation/elements/radiogroup.js";
-    $aFiles[]	= "implementation/elements/scale.js";
-    $aFiles[]	= "implementation/elements/spinbuttons.js";
-    $aFiles[]	= "implementation/elements/textbox.js";
-    $aFiles[]	= "implementation/elements/timepicker.js";
+    $aFiles[]	= "elements/checkbox.js";
+    $aFiles[]	= "elements/colorpicker.js";
+    $aFiles[]	= "elements/datepicker.js";
+    $aFiles[]	= "elements/editor.js";
+    $aFiles[]	= "elements/menulist.js";
+    $aFiles[]	= "elements/radio.js";
+    $aFiles[]	= "elements/radiogroup.js";
+    $aFiles[]	= "elements/scale.js";
+    $aFiles[]	= "elements/spinbuttons.js";
+    $aFiles[]	= "elements/textbox.js";
+    $aFiles[]	= "elements/timepicker.js";
 
    	// panes
-    $aFiles[]	= "implementation/elements/datepicker-pane.js";
-    $aFiles[]	= "implementation/elements/colorpicker-pane.js";
-    $aFiles[]	= "implementation/elements/tooltip-pane.js";
+    $aFiles[]	= "elements/datepicker-pane.js";
+    $aFiles[]	= "elements/colorpicker-pane.js";
+    $aFiles[]	= "elements/tooltip-pane.js";
 
     $sOutput	= "";
     for ($nIndex = 0; $nIndex < count($aFiles); $nIndex++)
