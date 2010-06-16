@@ -131,8 +131,7 @@
           svgSetXYWH(image, -imgw/2, -imgh/2, imgw, imgh);
           image.setAttribute("preserveAspectRatio", "xMinYMin slice");
           // todo
-          image.setAttributeNS(XLINK, "href", url);
-          //image.setAttribute("xlink:href", url);
+          image.setAttributeNS(XLINK, "xlink:href", url);
           g.appendChild(image);
 
           var rect = ample.createElementNS(SVG, "rect");
@@ -157,10 +156,10 @@
           var rsz = 200;
 
           g2.appendChild(newClickableRect(s+"-tl", -imgw/2, -imgh/2, rsz, rsz,
-                                          hotspot, "rgba(100,100,200,0.5)",
+                                          hotspot, "rgb(100,100,200)",
                                           function (evt) { return startTransform(evt, 'tl', 'rotate'); }));
           g2.appendChild(newClickableRect(s+"-tr", imgw/2-rsz, -imgh/2, rsz, rsz,
-                                          hotspot, "rgba(100,100,200,0.5)",
+                                          hotspot, "rgb(100,100,200)",
                                           function (evt) { return startTransform(evt, 'tr', 'rotate'); }));
           g2.appendChild(newClickableRect(s+"-br", imgw/2-rsz, imgh/2-rsz, rsz, rsz,
                                           hotspot, "rgba(100,100,200,0.5)",
@@ -312,9 +311,9 @@
 <svg xmlns="http://www.w3.org/2000/svg"
  xmlns:xlink="http://www.w3.org/1999/xlink"
  xmlns:svg="http://www.w3.org/2000/svg"
- id="canvas" width="100%" height="100%">
+ id="canvas" width="1000px" height="1000px">
 
-  <rect id="background-rect" x="0%" y="0%" width="100%" height="100%" fill="#aaaaaa"/>
+  <rect id="background-rect" x="0" y="0" width="1000" height="1000" fill="#aaaaaa"/>
 
 </svg>
 </script>
