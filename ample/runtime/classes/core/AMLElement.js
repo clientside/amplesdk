@@ -1008,16 +1008,14 @@ function fAMLElement_onReadyStateChange(oRequest, oElement)
 		// Clear
 		fAMLElement_clear(oElement);
 
-	    var oDocument	= fAML_getResponseDocument(oRequest);
+	    var oDocument	= fAML_getResponseDocument(oRequest),
+			oEvent		= new cAMLEvent;
 	    if (oDocument)
 	    {
 			// Render Content
 	    	fAMLElement_appendChild(oElement, fAML_import(oDocument.documentElement, null));
-
-			// Dispatch load event
-			var oEvent	= new cAMLEvent;
+			// Initialize event
 			oEvent.initEvent("load", false, false);
-			fAMLNode_dispatchEvent(oElement, oEvent);
 	    }
 	    else
 	    {
@@ -1025,11 +1023,11 @@ function fAMLElement_onReadyStateChange(oRequest, oElement)
 			fAML_warn(nAML_NOT_WELLFORMED_WRN);
 //<-Debug
 
-			// Dispatch load event
-			var oEvent	= new cAMLEvent;
+			// Initialize event
 			oEvent.initEvent("error", false, false);
-			fAMLNode_dispatchEvent(oElement, oEvent);
 	    }
+		// Dispatch event
+		fAMLNode_dispatchEvent(oElement, oEvent);
 	}
 };
 
