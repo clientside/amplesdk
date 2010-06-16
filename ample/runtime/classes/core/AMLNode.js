@@ -730,8 +730,7 @@ cAMLNode.prototype.$getTag	= function()
 function fAMLNode_toXML(oNode)
 {
 	var aHtml	= [],
-		nIndex	= 0,
-		oChild;
+		nIndex	= 0;
 //->Source
 	var nDepth	= arguments.length > 1 ? arguments[1] : 1;
 	aHtml.push(new cArray(nDepth).join('\t'));
@@ -751,8 +750,8 @@ function fAMLNode_toXML(oNode)
 				aHtml.push('\n');
 				nDepth++;
 //<-Source
-				for (; oChild = oNode.childNodes[nIndex]; nIndex++)
-					aHtml.push(fAMLNode_toXML(oChild
+				while (nIndex < oNode.childNodes.length)
+					aHtml.push(fAMLNode_toXML(oNode.childNodes[nIndex++]
 //->Source
 						, nDepth
 //<-Source
@@ -786,8 +785,8 @@ function fAMLNode_toXML(oNode)
 
 		case cAMLNode.DOCUMENT_FRAGMENT_NODE:
 		case cAMLNode.DOCUMENT_NODE:
-			for (; oChild = oNode.childNodes[nIndex]; nIndex++)
-				aHtml.push(fAMLNode_toXML(oChild
+			while (nIndex < oNode.childNodes.length)
+				aHtml.push(fAMLNode_toXML(oNode.childNodes[nIndex++]
 //->Source
 					, nDepth
 //<-Source
