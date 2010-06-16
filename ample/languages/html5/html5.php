@@ -2,6 +2,7 @@
     $aFiles		= array();
     $aFiles[]		= "implementation/html5.js";
     $aFiles[]		= "implementation/classes/cHTML5Element.js";
+    $aFiles[]		= "implementation/classes/cHTML5InputElement.js";
 
     // 4.1 The root element
     $aFiles[]		= "implementation/elements/root/html.js";

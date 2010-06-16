@@ -11,35 +11,30 @@ var cHTML5Element	= function(){};
 
 cHTML5Element.prototype	= new AMLElement;
 
-// Class event handlers
-cHTML5Element.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target != oEvent.currentTarget)
-			return;
+//
+cHTML5Element.prototype.$isAccessible	= function() {
+	return !this.hasAttribute("disabled");
+};
 
-		var sName	= oEvent.attrName,
-			sValue	= oEvent.newValue;
+//
+cHTML5Element.mapAttribute	= function(oElement, sName, sValue) {
+	switch (sName) {
+		case "tabIndex":
+			this.tabIndex	= isNaN(sValue) ? -1 : sValue * 1;
+			break;
 
-		switch (sName) {
-			case "style":
-				this.$getContainer().style.cssText	= sValue || '';
-				break;
+		case "accessKey":
+			this.accessKey	= sValue || null;
+			break;
 
-			case "class":
-				this.$getContainer().className	= (this.prefix ? this.prefix + '-' : '') + this.localName + (sValue ? ' ' + sValue : '');
-				break;
+		case "id":
+		case "class":
+		case "style":
+			// Handled in the core
+			break;
 
-			case "tabIndex":
-				this.tabIndex	= isNaN(sValue) ? -1 : sValue * 1;
-				break;
-
-			case "accessKey":
-				this.accessKey	= sValue || null;
-				break;
-
-			default:
-				this.$getContainer()[sName]	= sValue;
-		}
+		default:
+			this.$getContainer()[sName]	= sValue;
 	}
 };
 
