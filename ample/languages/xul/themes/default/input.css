@@ -5,6 +5,7 @@ xul|menulist,
 xul|datepicker,
 xul|timepicker,
 xul|spinbuttons {
+	box-sizing: content-box;
 	margin: 1px;
 	line-height: 17px;
 	border: 1px solid silver;
@@ -229,6 +230,8 @@ xul|datepicker:focus,
 xul|timepicker:focus,
 xul|spinbuttons:focus {
 	border-color: #7F9DB9;
+	border-width: 2px;
+	margin:	0;
 }
 
 xul|checkbox:focus,

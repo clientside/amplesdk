@@ -3,6 +3,7 @@ xul|tree {
 	cursor: default !important;
 	border: 1px solid silver;
 	background-color: white;
+	margin: 1px;
 }
 
 xul|listbox:focus,
