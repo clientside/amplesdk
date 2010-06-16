@@ -14,10 +14,10 @@ var cXULElement_wizard	= function() {
     // Collections
     this.wizardPages= new AMLNodeList;
 };
-cXULElement_wizard.prototype = new cXULElement;
+cXULElement_wizard.prototype = new cXULWindowElement;
+
+// Public Properties
 cXULElement_wizard.prototype.currentPage	= null;
-cXULElement_wizard.prototype.$draggable	= true;
-cXULElement_wizard.prototype.$resizable	= true;
 
 // Attributes Defaults
 cXULElement_wizard.attributes	= {};

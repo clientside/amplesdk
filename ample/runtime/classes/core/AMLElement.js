@@ -271,8 +271,8 @@ cAMLElement.prototype.cloneNode	= function(bDeep)
 
 	// Append Children
 	if (bDeep)
-		for (var nIndex = 0; nIndex < this.childNodes.length; nIndex++)
-			fAMLNode_appendChild(oElement, this.childNodes[nIndex].cloneNode(bDeep));
+		for (var nIndex = 0, oNode; oNode = this.childNodes[nIndex]; nIndex++)
+			fAMLNode_appendChild(oElement, oNode.cloneNode(bDeep));
 	return oElement;
 };
 
@@ -708,8 +708,8 @@ cAMLElement.prototype.$activate	= function()
 cAMLElement.prototype.$getTag		= function()
 {
 	var aHtml	= [this.$getTagOpen().replace(/^(\s*<[\w:]+)/, '$1 id="' +(this.attributes.id || this.uniqueID)+ '"')];
-	for (var nIndex = 0; nIndex < this.childNodes.length; nIndex++)
-		aHtml[aHtml.length]	= this.childNodes[nIndex].$getTag();
+	for (var nIndex = 0, oNode; oNode = this.childNodes[nIndex]; nIndex++)
+		aHtml[aHtml.length]	= oNode.$getTag();
 	return aHtml.join('') + this.$getTagClose();
 };
 

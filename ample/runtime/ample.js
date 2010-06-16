@@ -262,40 +262,40 @@ function fAML_import(oElementDOM, oNode, bCollapse) {
 	return oElement;
 };
 
-function fAML_register(oNode) {
+function fAML_register(oElement) {
 	//
-	if (oNode.nodeType == cAMLNode.ELEMENT_NODE && !oAML_all[oNode.uniqueID]) {
+	if (oElement.nodeType == cAMLNode.ELEMENT_NODE && !oAML_all[oElement.uniqueID]) {
 		// Register Instance
-		oAML_all[oNode.uniqueID]	= oNode;
+		oAML_all[oElement.uniqueID]	= oElement;
 
 		// Cache for shadow links
-//		oAML_shadow[oNode.uniqueID]	= {};
+//		oAML_shadow[oElement.uniqueID]	= {};
 
 		// Register "identified" Instance
-		if (oNode.attributes.id)
-			oAML_ids[oNode.attributes.id]	= oNode;
+		if (oElement.attributes.id)
+			oAML_ids[oElement.attributes.id]	= oElement;
 
 		// Set style property
 		if (oAMLConfiguration_values["ample-use-style-property"]) {
-			var oElementDOM	= oNode.$getContainer();
+			var oElementDOM	= oElement.$getContainer();
 			if (oElementDOM)
-				oNode.style	= oElementDOM.style;
+				oElement.style	= oElementDOM.style;
 		}
 
 		// Fire Mutation event on Element
 		var oEvent = new cAMLMutationEvent;
 		oEvent.initMutationEvent("DOMNodeInsertedIntoDocument", false, false, null, null, null, null, null);
-		fAMLNode_dispatchEvent(oNode, oEvent);
+		fAMLNode_dispatchEvent(oElement, oEvent);
 
 		// Global attributes module
-		for (var sName in oNode.attributes) {
-			if (oNode.attributes.hasOwnProperty(sName)) {
+		for (var sName in oElement.attributes) {
+			if (oElement.attributes.hasOwnProperty(sName)) {
 				var aQName		= sName.split(':'),
 					sLocalName	= aQName.pop(),
 					sPrefix		= aQName.pop() || null,
 					sNameSpaceURI;
 
-				if (sName != "xmlns" && sPrefix && sPrefix != "xmlns" && (sNameSpaceURI = fAMLNode_lookupNamespaceURI(oNode, sPrefix))) {
+				if (sName != "xmlns" && sPrefix && sPrefix != "xmlns" && (sNameSpaceURI = fAMLNode_lookupNamespaceURI(oElement, sPrefix))) {
 					var oNamespace	= oAML_namespaces[sNameSpaceURI],
 						cAttribute	= oNamespace ? oNamespace.attributes[sLocalName] : null;
 
@@ -303,11 +303,11 @@ function fAML_register(oNode) {
 						// oAttribute used to create fake object
 						var oAttribute	= new cAttribute;
 						oAttribute.ownerDocument= oAML_document;
-						oAttribute.ownerElement	= oNode;
+						oAttribute.ownerElement	= oElement;
 						oAttribute.name			=
 						oAttribute.nodeName		= sName;
 						oAttribute.value		=
-						oAttribute.nodeValue	= oNode.attributes[sName];
+						oAttribute.nodeValue	= oElement.attributes[sName];
 						oAttribute.localName	= sLocalName;
 						oAttribute.prefix		= sPrefix;
 						oAttribute.namespaceURI	= sNameSpaceURI;
@@ -329,45 +329,51 @@ function fAML_register(oNode) {
 			}
 		}
 
+		var nIndex,
+			oNode;
+
 		// Process anonymous children
-		for (var nIndex = 0, oElement; oElement = oNode.$childNodesAnonymous[nIndex]; nIndex++)
-			fAML_register(oElement);
+		for (nIndex = 0; oNode = oElement.$childNodesAnonymous[nIndex]; nIndex++)
+			fAML_register(oNode);
 
 		// Process children
-		for (var nIndex = 0, oElement; oElement = oNode.childNodes[nIndex]; nIndex++)
-			fAML_register(oElement);
+		for (nIndex = 0; oNode = oElement.childNodes[nIndex]; nIndex++)
+			fAML_register(oNode);
 	}
 };
 
-function fAML_unregister(oNode) {
+function fAML_unregister(oElement) {
 	//
-	if (oNode.nodeType == cAMLNode.ELEMENT_NODE && oAML_all[oNode.uniqueID]) {
+	if (oElement.nodeType == cAMLNode.ELEMENT_NODE && oAML_all[oElement.uniqueID]) {
 		// Fire Mutation event
 		var oEvent = new cAMLMutationEvent;
 		oEvent.initMutationEvent("DOMNodeRemovedFromDocument", false, false, null, null, null, null, null);
-		fAMLNode_dispatchEvent(oNode, oEvent);
+		fAMLNode_dispatchEvent(oElement, oEvent);
 
 		// Unset style property
 		if (oAMLConfiguration_values["ample-use-style-property"])
-			delete oNode.style;
+			delete oElement.style;
 
 		// Unregister Instance
-		delete oAML_all[oNode.uniqueID];
+		delete oAML_all[oElement.uniqueID];
 
 		// Cache for shadow links
-//		delete oAML_shadow[oNode.uniqueID];
+//		delete oAML_shadow[oElement.uniqueID];
 
 		// Unregister "identified" Instance
-		if (oNode.attributes.id)
-			delete oAML_ids[oNode.attributes.id];
+		if (oElement.attributes.id)
+			delete oAML_ids[oElement.attributes.id];
+
+		var nIndex,
+			oNode;
 
 		// Process children
-		for (var nIndex = 0, oElement; oElement = oNode.childNodes[nIndex]; nIndex++)
-			fAML_unregister(oElement);
+		for (nIndex = 0; oNode = oElement.childNodes[nIndex]; nIndex++)
+			fAML_unregister(oNode);
 
 		// Process anonymous children
-		for (var nIndex = 0, oElement; oElement = oNode.$childNodesAnonymous[nIndex]; nIndex++)
-			fAML_unregister(oElement);
+		for (nIndex = 0; oNode = oElement.$childNodesAnonymous[nIndex]; nIndex++)
+			fAML_unregister(oNode);
 	}
 };
 

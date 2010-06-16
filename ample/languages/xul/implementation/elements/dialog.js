@@ -8,10 +8,8 @@
  */
 
 var cXULElement_dialog	= function(){};
-cXULElement_dialog.prototype	= new cXULElement;
+cXULElement_dialog.prototype	= new cXULWindowElement;
 cXULElement_dialog.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
-cXULElement_dialog.prototype.$draggable	= true;
-cXULElement_dialog.prototype.$resizable	= true;
 
 // Attributes Defaults
 cXULElement_dialog.attributes	= {};
@@ -110,17 +108,6 @@ cXULElement_dialog.handlers	= {
 };
 //cXULElement_dialog.handlers.resizestart	= cXULElement_dialog.handlers.dragstart;
 //cXULElement_dialog.handlers.resizedragend	= cXULElement_dialog.handlers.dragend;
-
-cXULElement_dialog.recalc	= function(oElement) {return;
-	if (!navigator.userAgent.match(/MSIE ([\d]+)/) || RegExp.$1 > 7)
-		return;
-	var oSelf	= oElement.$getContainer(),
-		oHead	= oElement.$getContainer("head"),
-		oBody	= oElement.$getContainer("body"),
-		oFoot	= oElement.$getContainer("foot"),
-		nHeight	= parseInt(oSelf.currentStyle.height) - parseInt(oHead.currentStyle.height) - parseInt(oFoot.currentStyle.height) - 6;
-	oBody.style.height	= (nHeight > 0 ? nHeight : parseInt(oHead.currentStyle.height)) + "px";
-};
 
 // Element Renders
 cXULElement_dialog.prototype.$getTagOpen	= function()

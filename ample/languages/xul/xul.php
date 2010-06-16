@@ -7,6 +7,7 @@
     // base classes
     $aFiles[]	= "implementation/classes/cXULSelectElement.js";
     $aFiles[]	= "implementation/classes/cXULPopupElement.js";
+    $aFiles[]	= "implementation/classes/cXULWindowElement.js";
 
 	// managers
 	$aFiles[]	= "implementation/managers/oXULCommandDispatcher.js";

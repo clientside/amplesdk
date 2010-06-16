@@ -91,15 +91,12 @@ function fAMLSelector_getText(sString) {
 
 function fAMLSelector_getTextContent(oElement) {
 	var sText	= '', oNode;
-	for (var nIndex = 0; nIndex < oElement.childNodes.length; nIndex++)
-	{
-		oNode	= oElement.childNodes[nIndex];
+	for (var nIndex = 0, oNode; oNode = oElement.childNodes[nIndex]; nIndex++)
 		if (oNode.nodeType == cAMLNode.ELEMENT_NODE)
-			sText	+= fAMLSelector_getTextContent(oElement.childNodes[nIndex]);
+			sText	+= fAMLSelector_getTextContent(oNode);
 		else
 		if (oNode.nodeType == cAMLNode.TEXT_NODE || oNode.nodeType == cAMLNode.CDATA_SECTION)
 			sText	+= oNode.data;
-	}
 	return sText;
 };
 
@@ -371,8 +368,8 @@ oAMLSelector_pseudoClasses["last-child"] = function(oElement) {
 };
 
 oAMLSelector_pseudoClasses["only-child"] = function(oElement) {
-	for (var nIndex = 0, oParent = oElement.parentNode; nIndex < oParent.childNodes.length; nIndex++)
-		if (oParent.childNodes[nIndex].nodeType == cAMLNode.ELEMENT_NODE && oParent.childNodes[nIndex] != oElement)
+	for (var nIndex = 0, oNode; oNode = oElement.parentNode.childNodes[nIndex]; nIndex++)
+		if (oNode.nodeType == cAMLNode.ELEMENT_NODE && oNode != oElement)
 			return false;
 	return true;
 };

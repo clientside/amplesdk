@@ -8,10 +8,8 @@
  */
 
 var cXULElement_window	= function(){};
-cXULElement_window.prototype	= new cXULElement;
+cXULElement_window.prototype	= new cXULWindowElement;
 cXULElement_window.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
-cXULElement_window.prototype.$draggable	= true;
-cXULElement_window.prototype.$resizable	= true;
 
 // Attributes Defaults
 cXULElement_window.attributes	= {};

@@ -156,7 +156,7 @@
 		<xul:menulist>
 			<xul:menupopup>
 				<xul:menuitem
-					label="First Item" />
+					label="First Item" checked="true"/>
 				<xul:menuitem
 					label="Second Item" />
 				<xul:menuitem
@@ -168,7 +168,7 @@
 		<xul:menulist disabled="true">
 			<xul:menupopup>
 				<xul:menuitem
-					label="First Item" />
+					label="First Item" checked="true" />
 				<xul:menuitem
 					label="Second Item" />
 				<xul:menuitem
@@ -181,22 +181,22 @@
 
 		<h3>Datepicker</h3>
 		<script>ample.open()</script>
-		<xul:datepicker /><xul:datepicker value="2009/12/01" /><xul:datepicker disabled="true"/>
+		<xul:datepicker /><xul:datepicker value="2009/12/01" /><xul:datepicker value="2009/12/01" disabled="true"/>
 		<script>ample.close()</script>
 
 		<h3>Datepicker Pane</h3>
 		<script>ample.open()</script>
-		<xul:datepicker-pane /><xul:datepicker-pane value="2009/12/01" /><xul:datepicker-pane disabled="true"/>
+		<xul:datepicker-pane /><xul:datepicker-pane value="2009/12/01" /><xul:datepicker-pane value="2009/12/01" disabled="true"/>
 		<script>ample.close()</script>
 
 		<h3>Colorpicker</h3>
 		<script>ample.open()</script>
-		<xul:colorpicker /><xul:colorpicker value="#ff00ee" /><xul:colorpicker disabled="true"/>
+		<xul:colorpicker /><xul:colorpicker value="#ff00ee" /><xul:colorpicker value="#ff00ee" disabled="true"/>
 		<script>ample.close()</script>
 
 		<h3>Colorpicker Pane</h3>
 		<script>ample.open()</script>
-		<xul:colorpicker-pane /><xul:colorpicker-pane value="#ff00ee"/><xul:colorpicker-pane disabled="true"/>
+		<xul:colorpicker-pane /><xul:colorpicker-pane value="#ff00ee"/><xul:colorpicker-pane value="#ff00ee" disabled="true"/>
 		<script>ample.close()</script>
 
 		<h3>Timepicker</h3>
@@ -211,12 +211,12 @@
 
 		<h3>Textbox</h3>
 		<script>ample.open()</script>
-		<xul:textbox /><xul:textbox value="some text" /><xul:textbox disabled="true"/>
+		<xul:textbox /><xul:textbox value="some text" /><xul:textbox value="some text" disabled="true"/>
 		<script>ample.close()</script>
 
 		<h3>Textbox multiline="true"</h3>
 		<script>ample.open()</script>
-		<xul:textbox multiline="true"/><xul:textbox multiline="true" value="some text"/><xul:textbox multiline="true" disabled="true"/>
+		<xul:textbox multiline="true"/><xul:textbox multiline="true" value="some text"/><xul:textbox multiline="true" value="some text" disabled="true"/>
 		<script>ample.close()</script>
 
 		<h3>Scale</h3>
@@ -238,7 +238,7 @@
 
 		<h3>Buttons</h3>
 		<script>ample.open()</script>
-		<xul:button label="Button 0" /><xul:button label="Button 1" /><xul:button label="Button 2" />
+		<xul:button label="Button 0" /><xul:button label="Button 1" /><xul:button label="Button 2" disabled="true"/>
 		<script>ample.close()</script>
 
 		<h3>Progressmeter</h3>

@@ -20,10 +20,10 @@ cXULElement_stack.handlers	= {
 		}
 	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
-		// set position style property to absolute in order to enable stacking
-		var oElementDOM	= this.$getContainer();
-		for (var nIndex = 0; nIndex < oElementDOM.childNodes.length; nIndex++)
-			oElementDOM.childNodes[nIndex].style.position   = "absolute";
+		// set position style property to absolute
+		for (var nIndex = 0, oElementDOM; nIndex < this.childNodes.length; nIndex++)
+			if (oElementDOM = this.childNodes[nIndex].$getContainer())
+				oElementDOM.style.position   = "absolute";
 	}
 };
 
