@@ -104,7 +104,21 @@ function fAMLDragAndDrop_onMouseUp(oEvent)
 	    oEventDragEnd.$pseudoTarget	= oEvent.$pseudoTarget;
 	    fAMLNode_dispatchEvent(oAMLDragAndDrop_dragSource, oEventDragEnd);
 
-		if (oEventDragEnd.defaultPrevented || (oEvent.defaultPrevented || oEvent.button))
+	    // Execute default action
+	    var bDefaultPrevented	= oEvent.defaultPrevented || oEvent.button/* || oEventDragEnd.defaultPrevented*/;
+	    if (!bDefaultPrevented) {
+		    if (oAMLDragAndDrop_dataTransfer.dropEffect == "copy") {
+		    	if (oAMLDragAndDrop_dropTarget)
+		    		oAMLDragAndDrop_dropTarget.appendChild(oAMLDragAndDrop_dragSource.cloneNode(true));	// TODO: remove @id attribute values
+		    }
+		    else
+		    if (oAMLDragAndDrop_dataTransfer.dropEffect == "move") {
+		    	if (oAMLDragAndDrop_dropTarget)
+		    		oAMLDragAndDrop_dropTarget.appendChild(oAMLDragAndDrop_dragSource);
+		    }
+	    }
+
+		if (bDefaultPrevented || oAMLDragAndDrop_dataTransfer.dropEffect == "move" || oAMLDragAndDrop_dataTransfer.dropEffect == "copy")
 		{
 			var oStyle		= oElementDOM.style;
 
@@ -278,7 +292,7 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
     oEventDrag.relatedTarget	= oAMLDragAndDrop_dropTarget;
     fAMLNode_dispatchEvent(oAMLDragAndDrop_dragSource, oEventDrag);
 
-	if (!oEventDrag.defaultPrevented)
+    if (!oEventDrag.defaultPrevented)
 	{
 		// Display dragged element
 	    oStyle.left	= nAMLDragAndDrop_offsetLeft + (oEvent.clientX - nAMLDragAndDrop_mouseX) + 'px';
@@ -293,7 +307,7 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
 function fAMLDragAndDrop_onKeyDown(oEvent) {
 	if (oEvent.keyIdentifier == "Esc") {
 		oEvent.preventDefault();
-		fAMLDragAndDrop_onMouseUp(oEvent);
+		fAMLDragAndDrop_onMouseUp(oEvent);	// TODO: object with Keyboard interface passing to a function expecting MouseEvent interface
 	}
 };
 
@@ -337,8 +351,8 @@ cAMLDragEvent.prototype.getModifierState	= function(sModifier)
 var cAMLDataTransfer	= function(){
 	this.types	= [];
 };
-cAMLDataTransfer.prototype.dropEffect		= "none";
-cAMLDataTransfer.prototype.effectAllowed	= "uninitialized";
+cAMLDataTransfer.prototype.dropEffect		= "none";			// copy|move|link|position|none (dragenter|dragover)
+cAMLDataTransfer.prototype.effectAllowed	= "uninitialized";	// copy|move|link|copyLink|copyMove|linkMove|all|none|uninitialized=all (dragstart|dragenter|dragover)
 cAMLDataTransfer.prototype.types			= null;
 
 cAMLDataTransfer.prototype.clearData	= function(sFormat) {
