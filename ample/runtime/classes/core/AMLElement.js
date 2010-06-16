@@ -875,7 +875,6 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 //console.warn("processing: " + oElement.tagName + ' ' + sName + '(' + (bValue ? 'true' : 'false') + ')');
 //console.log("before: ", oElementDOM.className);
 //<-Source
-
 	if (oElementDOM) {
 		var sOldName= bTrident && nVersion < 8 ? oElementDOM.className : oElementDOM.getAttribute("class") || '',
 			bMatch	= sOldName.match(fAMLElement_getRegExp(sName, sPseudoName)),
