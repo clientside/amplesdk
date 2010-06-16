@@ -58,6 +58,8 @@ cXULElement_button.prototype.$getTagOpen	= function()
         sHtml  += 'width:'+this.attributes["width"]+';';
     if (this.attributes["height"])
         sHtml  += 'height:'+this.attributes["height"]+';';
+    if (this.attributes["hidden"] == "true")
+    	sHtml  += 'display:none';
     sHtml  += '">';
     if (this.attributes["image"])
         sHtml  += '<img src="' + this.attributes["image"] + '" align="absmiddle"/> ';
