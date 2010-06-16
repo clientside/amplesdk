@@ -60,12 +60,16 @@ function fAMLFocus_blur(oElement) {
 
 /* Focus Group */
 function fAMLFocus_getFocusGroupNext(oElement, nTabIndex) {
-	for (var oParent = oElement, oFocusGroup; oParent; oParent = oParent.parentNode)
+	for (var oParent = oElement, oFocusGroup; oParent; oParent = oParent.parentNode) {
+		if (oParent == oAML_modalNode)
+			break;
+		else
 		if (oParent == oElement && (oFocusGroup = fAMLFocus_getFocusGroupNextChild(oParent.firstChild, nTabIndex, true)))
 			return oFocusGroup;
 		else
 		if (oFocusGroup = fAMLFocus_getFocusGroupNextChild(oParent.nextSibling, nTabIndex, true))
 			return oFocusGroup;
+	}
 };
 
 function fAMLFocus_getFocusGroupNextChild(oElement, nTabIndex, bDeep) {
@@ -83,6 +87,9 @@ function fAMLFocus_getFocusGroupNextChild(oElement, nTabIndex, bDeep) {
 
 function fAMLFocus_getFocusGroupPrevious(oElement, nTabIndex) {
 	for (var oParent = oElement, oFocusGroup; oParent; oParent = oParent.parentNode)
+		if (oParent == oAML_modalNode)
+			break;
+		else
 		if (oParent != oElement && fAMLFocus_isTabStop(oParent, nTabIndex, true))
 			return oParent;
 		else
