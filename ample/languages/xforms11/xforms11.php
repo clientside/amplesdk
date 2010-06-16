@@ -1,71 +1,71 @@
 <?
     $aFiles		= array();
-    $aFiles[]	= "xforms11.js";
-    $aFiles[]	= "classes/cXFORMS11Element.js";
+    $aFiles[]	= "implementation/xforms11.js";
+    $aFiles[]	= "implementation/classes/cXFORMS11Element.js";
 
 	// elements
 	// 3.3 XForms Core Module
-	$aFiles[]	= "elements/model.js";
-    $aFiles[]	= "elements/instance.js";
-	$aFiles[]	= "elements/instanceData.js";
-	$aFiles[]	= "elements/bind.js";
-	$aFiles[]	= "elements/submission.js";
+	$aFiles[]	= "implementation/elements/model.js";
+    $aFiles[]	= "implementation/elements/instance.js";
+	$aFiles[]	= "implementation/elements/instanceData.js";
+	$aFiles[]	= "implementation/elements/bind.js";
+	$aFiles[]	= "implementation/elements/submission.js";
 	// 3.4 XForms Extension Module
-	$aFiles[]	= "elements/extension.js";
+	$aFiles[]	= "implementation/elements/extension.js";
 	// 8 Core Form Controls
 	// 8.1 Core Form Controls Module
-	$aFiles[]	= "elements/input.js";
-	$aFiles[]	= "elements/secret.js";
-	$aFiles[]	= "elements/textarea.js";
-	$aFiles[]	= "elements/output.js";
-	$aFiles[]	= "elements/upload.js";
-	$aFiles[]	= "elements/range.js";
-	$aFiles[]	= "elements/trigger.js";
-	$aFiles[]	= "elements/submit.js";
-	$aFiles[]	= "elements/select.js";
-	$aFiles[]	= "elements/select1.js";
+	$aFiles[]	= "implementation/elements/input.js";
+	$aFiles[]	= "implementation/elements/secret.js";
+	$aFiles[]	= "implementation/elements/textarea.js";
+	$aFiles[]	= "implementation/elements/output.js";
+	$aFiles[]	= "implementation/elements/upload.js";
+	$aFiles[]	= "implementation/elements/range.js";
+	$aFiles[]	= "implementation/elements/trigger.js";
+	$aFiles[]	= "implementation/elements/submit.js";
+	$aFiles[]	= "implementation/elements/select.js";
+	$aFiles[]	= "implementation/elements/select1.js";
 	// 8.2 Common support elements
-	$aFiles[]	= "elements/label.js";
-	$aFiles[]	= "elements/help.js";
-	$aFiles[]	= "elements/hint.js";
-	$aFiles[]	= "elements/alert.js";
+	$aFiles[]	= "implementation/elements/label.js";
+	$aFiles[]	= "implementation/elements/help.js";
+	$aFiles[]	= "implementation/elements/hint.js";
+	$aFiles[]	= "implementation/elements/alert.js";
 	// 8.3 Common markup for selection controls
-	$aFiles[]	= "elements/choices.js";
-	$aFiles[]	= "elements/item.js";
-	$aFiles[]	= "elements/value.js";
+	$aFiles[]	= "implementation/elements/choices.js";
+	$aFiles[]	= "implementation/elements/item.js";
+	$aFiles[]	= "implementation/elements/value.js";
 	// 9 Container Form Controls
 	// 9.1 XForms Group Module
-	$aFiles[]	= "elements/group.js";
+	$aFiles[]	= "implementation/elements/group.js";
 	// 9.2 XForms Switch Module
-	$aFiles[]	= "elements/switch.js";
-	$aFiles[]	= "elements/case.js";
+	$aFiles[]	= "implementation/elements/switch.js";
+	$aFiles[]	= "implementation/elements/case.js";
 	// 9.3 XForms Repeat Module
-	$aFiles[]	= "elements/repeat.js";
-//	$aFiles[]	= "elements/setindex.js";	// Defined in "10 XForms Actions"
-	$aFiles[]	= "elements/itemset.js";
-	$aFiles[]	= "elements/copy.js";
+	$aFiles[]	= "implementation/elements/repeat.js";
+//	$aFiles[]	= "implementation/elements/setindex.js";	// Defined in "10 XForms Actions"
+	$aFiles[]	= "implementation/elements/itemset.js";
+	$aFiles[]	= "implementation/elements/copy.js";
 	// 10 XForms Actions
-	$aFiles[]	= "elements/action.js";
-	$aFiles[]	= "elements/setvalue.js";
-	$aFiles[]	= "elements/insert.js";
-	$aFiles[]	= "elements/delete.js";
-	$aFiles[]	= "elements/setindex.js";
-	$aFiles[]	= "elements/toggle.js";
-	$aFiles[]	= "elements/setfocus.js";
-	$aFiles[]	= "elements/dispatch.js";
-	$aFiles[]	= "elements/rebuild.js";
-	$aFiles[]	= "elements/recalculate.js";
-	$aFiles[]	= "elements/revalidate.js";
-	$aFiles[]	= "elements/refresh.js";
-	$aFiles[]	= "elements/reset.js";
-	$aFiles[]	= "elements/load.js";
-	$aFiles[]	= "elements/send.js";
-	$aFiles[]	= "elements/message.js";
+	$aFiles[]	= "implementation/elements/action.js";
+	$aFiles[]	= "implementation/elements/setvalue.js";
+	$aFiles[]	= "implementation/elements/insert.js";
+	$aFiles[]	= "implementation/elements/delete.js";
+	$aFiles[]	= "implementation/elements/setindex.js";
+	$aFiles[]	= "implementation/elements/toggle.js";
+	$aFiles[]	= "implementation/elements/setfocus.js";
+	$aFiles[]	= "implementation/elements/dispatch.js";
+	$aFiles[]	= "implementation/elements/rebuild.js";
+	$aFiles[]	= "implementation/elements/recalculate.js";
+	$aFiles[]	= "implementation/elements/revalidate.js";
+	$aFiles[]	= "implementation/elements/refresh.js";
+	$aFiles[]	= "implementation/elements/reset.js";
+	$aFiles[]	= "implementation/elements/load.js";
+	$aFiles[]	= "implementation/elements/send.js";
+	$aFiles[]	= "implementation/elements/message.js";
 	// 11 XForms Submission Module
-//	$aFiles[]	= "elements/submission.js";	// Defined in "11 XForms Submission Module"
-	$aFiles[]	= "elements/method.js";
-	$aFiles[]	= "elements/header.js";
-	$aFiles[]	= "elements/resource.js";
+//	$aFiles[]	= "implementation/elements/submission.js";	// Defined in "11 XForms Submission Module"
+	$aFiles[]	= "implementation/elements/method.js";
+	$aFiles[]	= "implementation/elements/header.js";
+	$aFiles[]	= "implementation/elements/resource.js";
 
     $sOutput	= "";
     for ($nIndex = 0; $nIndex < count($aFiles); $nIndex++)
