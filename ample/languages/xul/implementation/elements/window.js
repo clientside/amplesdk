@@ -46,7 +46,8 @@ cXULElement_window.prototype.$getTagOpen	= function() {
 	return '<div class="xul-window'+(this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="' +
 				(this.attributes["width"] ? 'width:' + this.attributes["width"] + 'px;' : '') +
 				(this.attributes["height"] ? 'height:' + this.attributes["height"] + 'px;' : '') +
-				(this.attributes["hidden"] == "true" ? 'display:none;' : '') + '">\
+				(this.attributes["hidden"] == "true" ? 'display:none;' : '') +
+				(this.attributes["style"] ? this.attributes["style"] : '') + '">\
 				<div class="xul-window--head" ' +(this.attributes["hidechrome"] == "true" ? ' style="display:none"': '')+ '>\
 					<table cellpadding="0" cellspacing="0" border="0" width="100%" height="20">\
 						<tbody>\

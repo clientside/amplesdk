@@ -4,7 +4,7 @@
 		<title>XUL Language - elements</title>
 		<script type="text/javascript" src="../../../ample/runtime.js"></script>
 		<script type="text/javascript" src="../../../ample/languages/xul/xul.js"></script>
-		<link type="text/ample+css" href="../../../ample/languages/xul/themes/default/xul.css" rel="stylesheet"/>
+		<link type="text/ample+css" href="../../../ample/languages/xul/themes/default/xul.css" rel="ample-stylesheet"/>
 		<style type="text/aaa+css">
 			body, input, select, button {
 				font-size: 75%;
@@ -248,21 +248,16 @@
 
 		<h3>Windows</h3>
 	<div style="height:250px">
-		<style>
-		.xul-window {left: 50px;}
-		.xul-dialog {left: 350px;}
-		.xul-wizard {left: 650px;}
-		</style>
 		<script>ample.open()</script>
-		<xul:window title="Window" width="250" height="200">
+		<xul:window title="Window" width="250" height="200" style="left:50px">
 			<xul:label value="label" />
 		</xul:window>
 
-		<xul:dialog title="Dialog" width="250" height="200">
+		<xul:dialog title="Dialog" width="250" height="200" style="left:350px">
 			<xul:label value="label" />
 		</xul:dialog>
 
-		<xul:wizard title="Wizard" width="250" height="200">
+		<xul:wizard title="Wizard" width="250" height="200" style="left:650px">
 			<xul:wizardpage label="Step 0" description="Details of the step 0">
 				<xul:label value="label" />
 			</xul:wizardpage>
