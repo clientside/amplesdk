@@ -23,8 +23,12 @@ var oXULPopupManager	= (function () {
 			    if (oElement.attributes["tooltiptext"]) {
 			    	oTooltip	= oTooltipPane;
 			    	if (!oTooltip)	{
-			    		oTooltip	= this.documentElement.appendChild(this.createElementNS(oElement.namespaceURI, "xul:tooltip-pane"));
+			    		// Add as anonymous
+			    		oTooltip	= this.documentElement.$appendChildAnonymous(this.createElementNS(oElement.namespaceURI, "xul:tooltip-pane"));
 			    		oTooltipPane	= oTooltip;
+			    		// Render
+			    		var oTooltipNode	= this.documentElement.$getContainer("gateway").appendChild(document.createElement("div"));
+			    		oTooltipNode.innerHTML	= oTooltip.$getTag();
 			    	}
 					oTooltip.setText(oElement.attributes["tooltiptext"]);
 		        	oTooltip.showPopup(null, oEvent.clientX + document.documentElement.scrollLeft, oEvent.clientY + 18 + document.documentElement.scrollTop, cXULPopupElement.POPUP_TYPE_TOOLTIP);
