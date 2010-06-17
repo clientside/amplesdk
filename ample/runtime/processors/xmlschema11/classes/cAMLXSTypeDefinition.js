@@ -18,7 +18,7 @@ cAMLXSTypeDefinition.SIMPLE_TYPE	= 16;
 
 cAMLXSTypeDefinition.prototype.typeCategory	= null;	// Number
 cAMLXSTypeDefinition.prototype.baseType		= null;	// XSTypeDefinition
-cAMLXSTypeDefinition.prototype.final		= null;	// Number
+cAMLXSTypeDefinition.prototype["final"]		= null;	// Number
 cAMLXSTypeDefinition.prototype.anonymous	= null;	// Boolean
 
 // @type	Boolean
