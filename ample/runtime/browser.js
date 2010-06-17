@@ -533,7 +533,7 @@ function fOnMouseDown(oEvent) {
 	// do not dispatch event if outside modal
 	if (!oAML_modalNode || fIsDescendant(oTarget, oAML_modalNode)) {
 		// Moved here from #mouseup handler. Not sure yet if it is right though
-		oAML_document.activeElement	= oTarget.nodeType != cAMLNode.DOCUMENT_NODE ? oTarget : null;
+		oAML_document.activeElement	= oTarget;
 		//
 		fAMLNode_dispatchEvent(oTarget, oEventMouseDown);
 	}

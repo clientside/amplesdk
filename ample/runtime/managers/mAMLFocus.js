@@ -44,7 +44,7 @@ function fAMLFocus_blur(oElement) {
 			oAMLFocus_focusGroup	= null;
 
 			// Unset document active element
-			oElement.ownerDocument.activeElement	= null;
+			oElement.ownerDocument.activeElement	= oAML_modalNode || this.ownerDocument.documentElement;
 
 			// If element has not been removed from DOM
 			var oEvent	= new cAMLUIEvent;
