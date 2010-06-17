@@ -138,7 +138,7 @@ cXULElement_colorpicker_pane.prototype.acceptDialog	= function() {
 };
 
 cXULElement_colorpicker_pane.prototype.cancelDialog	= function() {
-	this.setAttribute(this.attributes.value);
+	this.setAttribute("value", this.attributes.value);
 
     // fire cancel event
     var oEvent  = this.ownerDocument.createEvent("Events");
