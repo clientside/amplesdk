@@ -22,12 +22,91 @@ cXULElement_datepicker.prototype.tabIndex	= 0;
 cXULElement_datepicker.pane		= null;
 cXULElement_datepicker.hidden	= true;
 
-// public methods
-cXULElement_datepicker.prototype.getPane	= function() {
+// Public Methods
+cXULElement_datepicker.prototype.toggle	= function(bState) {
+	var oPane	= cXULElement_datepicker.getPane(this);
+	if (bState === true || (!arguments.length && cXULElement_datepicker.hidden)) {
+		// Update pane state
+		oPane.setAttribute("min", this.getAttribute("min"));
+		oPane.setAttribute("max", this.getAttribute("max"));
+		oPane.setAttribute("value", this.getAttribute("value"));
+
+		// show pane
+		oPane.showPopup(this, -1, -1, cXULPopupElement.POPUP_TYPE_POPUP);
+		oPane.opener		= this;
+	}
+	else {
+		oPane.hidePopup();
+		oPane.opener		= null;
+	}
+};
+
+// handlers
+cXULElement_datepicker.handlers	= {
+	"mousedown":function(oEvent) {
+		if (!this.$isAccessible())
+			return;
+
+		// prevent steeling focus by button
+		if (oEvent.target == this && oEvent.$pseudoTarget == this.$getContainer("button"))
+			this.toggle();
+	},
+	"mouseenter":function(oEvent) {
+		if (!this.$isAccessible())
+			return;
+
+		this.$setPseudoClass("hover", true, "button");
+	},
+	"mouseleave":	function(oEvent) {
+		if (!this.$isAccessible())
+			return;
+
+		this.$setPseudoClass("hover", false, "button");
+	},
+	"keydown":	function(oEvent) {
+		if (!this.$isAccessible())
+			return;
+
+		if (oEvent.keyIdentifier == "Esc")
+			this.toggle(false);
+	},
+	// focus
+	"focus":	function(oEvent) {
+		this.$getContainer("input").focus();
+	},
+	"blur":		function(oEvent) {
+		if (!cXULElement_datepicker.hidden)
+			this.toggle(false);
+		this.$getContainer("input").blur();
+	},
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this)
+			switch (oEvent.attrName) {
+				case "value":
+					this.$getContainer("input").value	= oEvent.newValue || '';
+					break;
+
+				case "min":
+				case "max":
+					break;
+
+				case "disabled":
+					this.$getContainer("input").disabled	= oEvent.newValue == "true";
+					this.$setPseudoClass("disabled", oEvent.newValue == "true");
+					break;
+
+				default:
+					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			}
+	}
+};
+
+// Static Methods
+cXULElement_datepicker.getPane	= function(oInstance) {
 	var oPane	= cXULElement_datepicker.pane;
 	if (!oPane) {
 		// create a shared pane and hide it
-		oPane	= this.ownerDocument.createElementNS(this.namespaceURI, "xul:datepicker-pane");
+		oPane	= oInstance.ownerDocument.createElementNS(oInstance.namespaceURI, "xul:datepicker-pane");
 		oPane.addEventListener("change", function(oEvent) {
 			// hide pane
 			this.hidePopup();
@@ -55,90 +134,10 @@ cXULElement_datepicker.prototype.getPane	= function() {
 		cXULElement_datepicker.pane	= oPane;
 	}
 
-	if (oPane.parentNode != this)
-		this.appendChild(oPane);
+	if (oPane.parentNode != oInstance)
+		oInstance.appendChild(oPane);
 
 	return oPane;
-};
-
-cXULElement_datepicker.prototype.toggle	= function(bState) {
-	var oPane	= this.getPane();
-	if (bState === true || (!arguments.length && cXULElement_datepicker.hidden)) {
-		// Update pane state
-		oPane.setAttribute("min", this.getAttribute("min"));
-		oPane.setAttribute("max", this.getAttribute("max"));
-		oPane.setAttribute("value", this.getAttribute("value"));
-
-		// show pane
-		oPane.showPopup(this, -1, -1, cXULPopupElement.POPUP_TYPE_POPUP);
-		oPane.opener		= this;
-	}
-	else {
-		oPane.hidePopup();
-		oPane.opener		= null;
-	}
-};
-
-// handlers
-cXULElement_datepicker.handlers	= {
-	"mousedown":function(oEvent) {
-		if (!this.$isAccessible())
-			return;
-
-		// prevent steeling focus by button
-		if (oEvent.target == this && oEvent.$pseudoTarget == this.$getContainer("button")) {
-			this.toggle();
-			if (this.ownerDocument.activeElement != this)
-				this.focus();
-			oEvent.preventDefault();
-		}
-	},
-	"mouseenter":function(oEvent) {
-		if (!this.$isAccessible())
-			return;
-
-		this.$setPseudoClass("hover", true, "button");
-	},
-	"mouseleave":	function(oEvent) {
-		if (!this.$isAccessible())
-			return;
-
-		this.$setPseudoClass("hover", false, "button");
-	},
-	"keydown":	function(oEvent) {
-		if (!this.$isAccessible())
-			return;
-
-		if (oEvent.keyIdentifier == "Esc")
-			this.toggle(false);
-	},
-	// focus
-	"focus":	function(oEvent) {
-		this.$getContainer("input").focus();
-	},
-	"blur":		function(oEvent) {
-		this.$getContainer("input").blur();
-	},
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
-			switch (oEvent.attrName) {
-				case "value":
-					this.$getContainer("input").value	= oEvent.newValue || '';
-					break;
-
-				case "min":
-				case "max":
-					break;
-
-				case "disabled":
-					this.$getContainer("input").disabled	= oEvent.newValue == "true";
-					this.$setPseudoClass("disabled", oEvent.newValue == "true");
-					break;
-
-				default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-			}
-	}
 };
 
 // component renderers
@@ -146,8 +145,8 @@ cXULElement_datepicker.prototype.$getTagOpen	= function() {
 	return '<table class="xul-datepicker' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '') + (this.getAttribute('disabled') == "true" ? " xul-datepicker_disabled" : "") + '"' + (this.hasAttribute("style") ? ' style="' + this.getAttribute("style") + '"' : '')+ ' cellpadding="0" cellspacing="0" border="0">\
 				<tbody>\
 					<tr>\
-						<td width="100%"><input type="text" maxlength="10" class="xul-datepicker--input" value="' + this.getAttribute("value") + '"' + (this.getAttribute('disabled') == "true" ? ' disabled="true"' : "") +' style="border:0px solid white;width:100%;" /></td>\
-						<td valign="top"><div class="xul-datepicker--button"></div></td>\
+						<td width="100%"><input class="xul-datepicker--input" type="text" maxlength="10" value="' + this.getAttribute("value") + '"' + (this.getAttribute('disabled') == "true" ? ' disabled="true"' : "") +' style="border:0px solid white;width:100%;" /></td>\
+						<td valign="top"><div class="xul-datepicker--button" onmousedown="return false;"></div></td>\
 					</tr>\
 					<tr><td class="xul-datepicker--gateway" colspan="2"></td></tr>\
 				</tbody>\

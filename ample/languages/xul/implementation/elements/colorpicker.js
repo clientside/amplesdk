@@ -20,7 +20,7 @@ cXULElement_colorpicker.attributes.value	= "";
 
 // Public Methods
 cXULElement_colorpicker.prototype.toggle	= function(bState) {
-	var oPane	= this.getPane();
+	var oPane	= cXULElement_colorpicker.getPane(this);
 	if (bState === true || (!arguments.length && cXULElement_colorpicker.hidden)) {
 		// Update pane state
 		oPane.setAttribute("value", this.getAttribute("value"));
@@ -35,48 +35,6 @@ cXULElement_colorpicker.prototype.toggle	= function(bState) {
 	}
 };
 
-
-// public methods
-cXULElement_colorpicker.prototype.getPane	= function() {
-	var oPane	= cXULElement_colorpicker.pane;
-	if (!oPane) {
-		// create a shared pane and hide it
-		oPane	= this.ownerDocument.createElementNS(this.namespaceURI, "xul:colorpicker-pane");
-		oPane.addEventListener("accept", function(oEvent) {
-			// hide pane
-			this.hidePopup();
-
-			this.opener.setAttribute("value", this.getAttribute("value"));
-
-			// dispatch change event
-			var oEventChange	= this.ownerDocument.createEvent("UIEvent");
-			oEventChange.initUIEvent("change", true, false, window, null);
-			this.opener.dispatchEvent(oEventChange);
-
-			this.opener	= null;
-		}, false);
-		oPane.addEventListener("cancel", function(oEvent) {
-			// hide pane
-			this.hidePopup();
-
-			this.opener	= null;
-		}, false);
-		oPane.addEventListener("popupshown", function(oEvent) {
-			cXULElement_colorpicker.hidden	= false;
-			this.ownerDocument.popupNode	= this;
-		}, false);
-		oPane.addEventListener("popuphidden", function(oEvent) {
-			cXULElement_colorpicker.hidden	= true;
-			this.ownerDocument.popupNode	= null;
-		}, false);
-
-		cXULElement_colorpicker.pane	= oPane;
-	}
-	if (oPane.parentNode != this)
-		this.appendChild(oPane);
-	return oPane;
-};
-
 // Events handlers
 cXULElement_colorpicker.prototype._onChange	= function(oEvent) {
     this.attributes["value"]    = this.$getContainer("input").value;
@@ -88,7 +46,7 @@ cXULElement_colorpicker.prototype._onChange	= function(oEvent) {
 };
 
 cXULElement_colorpicker.prototype._onWidgetAccept	= function(oEvent) {
-	var oPopup	= this.getPane();
+	var oPopup	= cXULElement_colorpicker.getPane(this);
 
     oPopup.setAttribute("value", oEvent.target.getAttribute("value"));
     oPopup.focus();
@@ -101,7 +59,7 @@ cXULElement_colorpicker.prototype._onWidgetAccept	= function(oEvent) {
 };
 
 cXULElement_colorpicker.prototype._onWidgetCancel	= function(oEvent) {
-	var oPopup	= this.getPane();
+	var oPopup	= cXULElement_colorpicker.getPane(this);
 
 	// Close popup
 	oPopup.toggle(false);
@@ -121,12 +79,8 @@ cXULElement_colorpicker.handlers	= {
 			return;
 
 		// prevent steeling focus by button
-		if (oEvent.target == this && oEvent.$pseudoTarget == this.$getContainer("button")) {
+		if (oEvent.target == this && oEvent.$pseudoTarget == this.$getContainer("button"))
 			this.toggle();
-			if (this.ownerDocument.activeElement != this)
-				this.focus();
-			oEvent.preventDefault();
-		}
 	},
 	"mouseenter":function(oEvent) {
 		if (!this.$isAccessible())
@@ -140,19 +94,21 @@ cXULElement_colorpicker.handlers	= {
 
 		this.$setPseudoClass("hover", false, "button");
 	},
+	// focus
 	"focus":	function(oEvent) {
 		this.$getContainer("input").focus();
 	},
 	"blur":		function(oEvent) {
+		if (!cXULElement_colorpicker.hidden)
+			this.toggle(false);
 		this.$getContainer("input").blur();
 	},
 	"keydown":	function(oEvent) {
-		switch (oEvent.keyIdentifier) {
-    		case "Esc":
-    		case "Tab":
-            	this.toggle(false);
-            	break;
-    	}
+		if (!this.$isAccessible())
+			return;
+
+		if (oEvent.keyIdentifier == "Esc")
+			this.toggle(false);
 	},
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this) {
@@ -173,13 +129,56 @@ cXULElement_colorpicker.handlers	= {
 	}
 };
 
+// Static Methods
+cXULElement_colorpicker.getPane	= function(oInstance) {
+	var oPane	= cXULElement_colorpicker.pane;
+	if (!oPane) {
+		// create a shared pane and hide it
+		oPane	= oInstance.ownerDocument.createElementNS(oInstance.namespaceURI, "xul:colorpicker-pane");
+		oPane.addEventListener("accept", function(oEvent) {
+			// hide pane
+			this.hidePopup();
+
+			this.opener.setAttribute("value", this.getAttribute("value"));
+
+			// dispatch change event
+			var oEventChange	= this.ownerDocument.createEvent("UIEvent");
+			oEventChange.initUIEvent("change", true, false, window, null);
+			this.opener.dispatchEvent(oEventChange);
+
+			this.opener.focus();
+
+			this.opener	= null;
+		}, false);
+		oPane.addEventListener("cancel", function(oEvent) {
+			// hide pane
+			this.hidePopup();
+
+			this.opener	= null;
+		}, false);
+		oPane.addEventListener("popupshown", function(oEvent) {
+			cXULElement_colorpicker.hidden	= false;
+			this.ownerDocument.popupNode	= this;
+		}, false);
+		oPane.addEventListener("popuphidden", function(oEvent) {
+			cXULElement_colorpicker.hidden	= true;
+			this.ownerDocument.popupNode	= null;
+		}, false);
+
+		cXULElement_colorpicker.pane	= oPane;
+	}
+	if (oPane.parentNode != oInstance)
+		oInstance.appendChild(oPane);
+	return oPane;
+};
+
 // Element Render: open
 cXULElement_colorpicker.prototype.$getTagOpen	= function() {
 	return '<table class="xul-colorpicker' + (this.attributes["disabled"] == "true" ? " xul-colorpicker_disabled" : "") + '" cellpadding="0" cellspacing="0" border="0">\
 				<tbody>\
 					<tr>\
 						<td width="100%"><input class="xul-colorpicker--input" type="text" autocomplete="off" value="' + this.attributes["value"] + '"' + (this.attributes["disabled"] == "true" ? ' disabled="true"' : '') +' maxlength="7" onchange="ample.$instance(this)._onChange(event)" style="border:0px solid white;width:100%;" onselectstart="event.cancelBubble=true;" /></td>\
-						<td valign="top"><div class="xul-colorpicker--button"/></td>\
+						<td valign="top"><div class="xul-colorpicker--button" onmousedown="return false;"/></td>\
 					</tr>\
 					<tr><td class="xul-colorpicker--gateway" colspan="2"></td></tr>\
 				</tbody>\
