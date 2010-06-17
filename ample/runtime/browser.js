@@ -678,7 +678,7 @@ function fAML_parseStyleSheet(sCSS, sUri) {
 					.replace(/(?:\s|;)(border-radius\s*:\s*)(.+)(\n|;)/gi, sBefore + (bGecko ? "moz" : "webkit") + sAfter);
 		if (bGecko) {
 			// Rewrite box-sizing
-			sCSS	= sCSS.replace(/(?:\s|;)(box-sizing\s*:\s*)(.+)(\n|;)/gi, sBefore + "moz" + sAfter)
+			sCSS	= sCSS.replace(/(?:\s|;)(box-sizing\s*:\s*)(.+)(\n|;)/gi, sBefore + "moz" + sAfter);
 			// Rewrite border-radius
 			sBefore	= sBefore + 'moz-border-radius-';
 			sAfter	= ':$2$3';
