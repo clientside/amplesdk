@@ -60,37 +60,42 @@ function fAMLFocus_blur(oElement) {
 
 /* Focus Group */
 function fAMLFocus_getFocusGroupNext(oElement, nTabIndex) {
-	for (var oParent = oElement, oFocusGroup; oParent; oParent = oParent.parentNode) {
+	for (var oParent = oElement, oFocusGroup/*, aChildren*/; oParent; oParent = oParent.parentNode)
 		if (oParent == oElement && oParent.firstChild && (oFocusGroup = fAMLFocus_getFocusGroupNextChild(oParent.firstChild, nTabIndex)))
 			return oFocusGroup;
 		else
+//		if ((aChildren = oParent.$childNodesAnonymous) && aChildren.length &&(oFocusGroup = fAMLFocus_getFocusGroupNextChild(aChildren[0], nTabIndex, true)))
+//			return oFocusGroup;
+//		else
 		if (oParent == oAML_modalNode)
 			break;
 		else
 		if (oParent.nextSibling && (oFocusGroup = fAMLFocus_getFocusGroupNextChild(oParent.nextSibling, nTabIndex)))
 			return oFocusGroup;
-	}
 };
 
 function fAMLFocus_getFocusGroupNextChild(oElement, nTabIndex, bDeep) {
-	for (var oSibling = oElement, oFocusGroup, aChildren; oSibling; oSibling = oSibling.nextSibling) {
-		/* Walk into the anonymous tree */
-		if ((aChildren = oSibling.$childNodesAnonymous) && aChildren.length &&(oFocusGroup = fAMLFocus_getFocusGroupNextChild(aChildren[0], nTabIndex, true)))
-			return oFocusGroup;
-		else
+	for (var oSibling = oElement, oFocusGroup/*, aChildren*/; oSibling; oSibling = oSibling.nextSibling) {
 		if (fAMLFocus_isTabStop(oSibling, nTabIndex, bDeep))
 			return oSibling;
 		else
 		if (oSibling.firstChild && (oFocusGroup = fAMLFocus_getFocusGroupNextChild(oSibling.firstChild, nTabIndex)))
 			return oFocusGroup;
+//		else
+		/* Walk into the anonymous tree */
+//		if ((aChildren = oSibling.$childNodesAnonymous) && aChildren.length &&(oFocusGroup = fAMLFocus_getFocusGroupNextChild(aChildren[0], nTabIndex, true)))
+//			return oFocusGroup;
 	}
 };
 
 function fAMLFocus_getFocusGroupPrevious(oElement, nTabIndex) {
-	for (var oParent = oElement, oFocusGroup; oParent; oParent = oParent.parentNode)
+	for (var oParent = oElement, oFocusGroup/*, aChildren*/; oParent; oParent = oParent.parentNode)
 		if (oParent != oElement && fAMLFocus_isTabStop(oParent, nTabIndex))
 			return oParent;
 		else
+//		if ((aChildren = oParent.$childNodesAnonymous) && aChildren.length &&(oFocusGroup = fAMLFocus_getFocusGroupPreviousChild(aChildren[aChildren.length - 1], nTabIndex, true)))
+//			return oFocusGroup;
+//		else
 		if (oParent == oAML_modalNode)
 			break;
 		else
@@ -99,11 +104,11 @@ function fAMLFocus_getFocusGroupPrevious(oElement, nTabIndex) {
 };
 
 function fAMLFocus_getFocusGroupPreviousChild(oElement, nTabIndex, bDeep) {
-	for (var oSibling = oElement, oFocusGroup, aChildren; oSibling; oSibling = oSibling.previousSibling)
+	for (var oSibling = oElement, oFocusGroup/*, aChildren*/; oSibling; oSibling = oSibling.previousSibling)
 		/* Walk into the anonymous tree */
-		if ((aChildren = oSibling.$childNodesAnonymous) && aChildren.length &&(oFocusGroup = fAMLFocus_getFocusGroupPreviousChild(aChildren[aChildren.length-1], nTabIndex, true)))
-			return oFocusGroup;
-		else
+//		if ((aChildren = oSibling.$childNodesAnonymous) && aChildren.length &&(oFocusGroup = fAMLFocus_getFocusGroupPreviousChild(aChildren[aChildren.length-1], nTabIndex, true)))
+//			return oFocusGroup;
+//		else
 		if (oSibling.lastChild && (oFocusGroup = fAMLFocus_getFocusGroupPreviousChild(oSibling.lastChild, nTabIndex)))
 			return oFocusGroup;
 		else
@@ -158,13 +163,16 @@ function fAMLFocus_onKeyDown(oEvent) {
 
 	if (oEvent.keyIdentifier == "Tab") {
 		var oFocusGroup	= null,
-			nTabIndexCurrent	= oAMLFocus_focusGroup ? oAMLFocus_focusGroup.tabIndex : 0;
+			nTabIndexCurrent	= 0;
 
 		// If there are items with the same tabIndex value
-		if (oEvent.shiftKey)
-			oFocusGroup	= fAMLFocus_getFocusGroupPrevious(oAMLFocus_focusGroup, nTabIndexCurrent);
-		else
-			oFocusGroup	= fAMLFocus_getFocusGroupNext(oAMLFocus_focusGroup, nTabIndexCurrent);
+		if (oAMLFocus_focusGroup) {
+			nTabIndexCurrent	= oAMLFocus_focusGroup.tabIndex;
+			if (oEvent.shiftKey)
+				oFocusGroup	= fAMLFocus_getFocusGroupPrevious(oAMLFocus_focusGroup, nTabIndexCurrent);
+			else
+				oFocusGroup	= fAMLFocus_getFocusGroupNext(oAMLFocus_focusGroup, nTabIndexCurrent);
+		}
 
 		// Otherwise
 		if (!oFocusGroup) {
