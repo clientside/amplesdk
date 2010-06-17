@@ -355,7 +355,8 @@ cXULElement_datepicker_pane.$getTagDays	= function(oInstance, oDate) {
 
 // component renderers
 cXULElement_datepicker_pane.prototype.$getTagOpen	= function() {
-	return '<div class="xul-datepicker-pane xul-menupopup' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '') + '">\
+	return '<div class="xul-datepicker-pane xul-menupopup' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '') + '"' +
+				(this.hasAttribute("style") ? ' style="' + this.getAttribute("style") + '"' : '') + '>\
 				<div class="xul-menupopup--shadow-right" style="position:absolute;"></div>\
 				<div class="xul-menupopup--shadow-bottom" style="position:absolute;"></div>\
 				<table cellpadding="0" cellspacing="0" border="0">\
