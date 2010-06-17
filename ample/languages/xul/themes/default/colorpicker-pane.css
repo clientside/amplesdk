@@ -2,6 +2,11 @@ xul|colorpicker-pane {
 	cursor:	default;
 	vertical-align: top;
 	display:inline-block;
+	margin: 1px;
+}
+xul|colorpicker-pane xul|menupopup::shadow-bottom,
+xul|colorpicker-pane xul|menupopup::shadow-right {
+	display: none;
 }
 
 xul|colorpicker-pane::palette {

@@ -218,6 +218,13 @@ xul|datepicker xul|datepicker-pane,
 xul|colorpicker xul|colorpicker-pane {
 	position:	absolute;
 	display:	block;
+	margin-left: 0;
+}
+xul|datepicker xul|datepicker-pane xul|menupopup::shadow-bottom,
+xul|datepicker xul|datepicker-pane xul|menupopup::shadow-right,
+xul|colorpicker xul|colorpicker-pane xul|menupopup::shadow-bottom,
+xul|colorpicker xul|colorpicker-pane xul|menupopup::shadow-right {
+	display: block;
 }
 
 xul|colorpicker::gateway,
