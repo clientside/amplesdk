@@ -19,6 +19,11 @@ xul|editor {
 	outline: none; /* removes browser native outline when focused */
 }
 
+xul|textbox::placeholder {
+	padding-left:1px;
+	font-style:	italic;
+}
+
 xul|textbox::input,
 xul|colorpicker::input,
 xul|menulist::input,
