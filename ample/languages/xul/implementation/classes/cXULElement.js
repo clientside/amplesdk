@@ -100,6 +100,11 @@ cXULElement.prototype.$isAccessible	= function()
 
 cXULElement.prototype.reflow   = function()
 {
+	// return if we are not a box
+	if (this.viewType != cXULElement.VIEW_TYPE_BOXED)
+		return;
+
+	//
 	var nLength	= this.childNodes.length;
     if (nLength)
     {
