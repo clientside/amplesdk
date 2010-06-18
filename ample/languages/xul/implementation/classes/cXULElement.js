@@ -116,15 +116,16 @@ cXULElement.prototype.refresh   = function()
             {
                 nElements++;
                 if (oElement.hasAttribute("flex") && !isNaN(oElement.attributes["flex"]))
-                    nFlex  += parseInt(oElement.attributes["flex"]);
+                    nFlex  += oElement.attributes["flex"] * 1;
             }
         }
 
         // Refresh flexible elements
         if (nElements)
         {
-            var oElementDOM	= this.$getContainer("xul-box"),
+            var oElementDOM	=(this instanceof cXULElement_box || this instanceof cXULElement_grid) ? this.$getContainer() : this.$getContainer("xul-container"),
             	oCell;
+
             for (var nIndex = 0; nIndex < nLength; nIndex++)
             {
             	oElement	= this.childNodes[nIndex];
@@ -136,7 +137,7 @@ cXULElement.prototype.refresh   = function()
                     if (this.attributes["orient"] == "vertical")
                     {
                         // set heights
-                    	oCell	= oElementDOM.rows[nIndex - nVirtual].cells[0];
+                    	oCell	= oElementDOM.tBodies[0].rows[nIndex - nVirtual].cells[0];
                         if (!isNaN(oElement.attributes["flex"]))
                         	oCell.setAttribute("height", oElement.attributes["flex"] * 100 / nFlex + "%");
                         else
@@ -146,7 +147,7 @@ cXULElement.prototype.refresh   = function()
                     else
                     {
                         // set widths
-                    	oCell	= oElementDOM.rows[0].cells[nIndex - nVirtual];
+                    	oCell	= oElementDOM.tBodies[0].rows[0].cells[nIndex - nVirtual];
                         if (!isNaN(oElement.attributes["flex"]))
                         	oCell.setAttribute("width", oElement.attributes["flex"] * 100 / nFlex + "%");
                         else
@@ -164,7 +165,7 @@ cXULElement.prototype.refresh   = function()
 
 cXULElement.prototype.getBoxObject	= function()
 {
-	return this.$getContainer("box");
+	return this.$getContainer("xul-box");
 };
 
 cXULElement.prototype.setBoxObjectParam	= function(sName, sValue)
@@ -217,7 +218,7 @@ cXULElement.prototype.$getTag		= function()
 // Static methods
 cXULElement.getBoxOpen	= function(oElement)
 {
-    var aHtml   = ['<table cellpadding="0" cellspacing="0" border="0"' + (oElement instanceof cXULElement_box || oElement instanceof cXULElement_grid ? ' id="' + (oElement.attributes.id || oElement.uniqueID) + '"' : '')];
+    var aHtml   = ['<table cellpadding="0" cellspacing="0" border="0"'];
 
     if (oElement.attributes["orient"] == "vertical")
     {
@@ -246,13 +247,15 @@ cXULElement.getBoxOpen	= function(oElement)
 			aHtml[aHtml.length]	= ' width="' + oElement.attributes["width"] + '"';
     }
     if (oElement instanceof cXULElement_box || oElement instanceof cXULElement_grid)
-    	aHtml[aHtml.length]	= ' class="xul-' + oElement.localName + '"';
-	aHtml[aHtml.length]	= '><tbody class="xul-box--xul-box';
+    	aHtml[aHtml.length]	= ' class="xul-' + oElement.localName + '" id="' + (oElement.attributes.id || oElement.uniqueID) + '"';
+    else
+    	aHtml[aHtml.length]	= ' class="--xul-container"';
+	aHtml[aHtml.length]	= '><tbody';
 
     if (oElement.attributes["orient"] == "vertical")
-    	aHtml[aHtml.length]	= ' xul-box--gateway">';
+    	aHtml[aHtml.length]	= ' class="xul-box--gateway">';
     else
-		aHtml[aHtml.length]	= '"><tr class="xul-box--gateway">';
+		aHtml[aHtml.length]	= '><tr class="xul-box--gateway">';
 
     return aHtml.join('');
 };
@@ -308,9 +311,11 @@ cXULElement.getBoxOpenChild = function(oElement)
 	    }
 	}
 
+	aHtml[aHtml.length]	= ' class="--xul-box';
     // Debug Grid
-    if (oElement.parentNode.attributes["debug"] == "true")
-		aHtml[aHtml.length]	= ' class="xul-box-debug-true xul-' + (oElement.parentNode.attributes["orient"] != "vertical" ? "h" : "v") + 'box-debug-true"';
+	if (oElement.parentNode.attributes["debug"] == "true")
+		aHtml[aHtml.length]	= ' xul-box-debug-true xul-' + (oElement.parentNode.attributes["orient"] != "vertical" ? "h" : "v") + 'box-debug-true';
+    aHtml[aHtml.length]	= '"';
 
 	aHtml[aHtml.length]	= '>';
 
