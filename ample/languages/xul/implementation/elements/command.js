@@ -19,12 +19,12 @@ cXULElement_command.handlers	= {
 			if (oEvent.attrName != "id" && oEvent.attrName != "persist") {
 				if (this.attributes["id"]) {
 					var aElements	= this.ownerDocument.getElementsByTagNameNS(this.namespaceURI, "*");
-					for (var nIndex = 0; nIndex < aElements.length; nIndex++)
-						if (aElements[nIndex].attributes["command"] == this.attributes["id"]) {
+					for (var nIndex = 0, oElement; oElement = aElements[nIndex]; nIndex++)
+						if (oElement.attributes["command"] == this.attributes["id"]) {
 				        	if (oEvent.newValue == null)
-				        		aElements[nIndex].removeAttribute(oEvent.attrName);
+				        		oElement.removeAttribute(oEvent.attrName);
 				        	else
-				        		aElements[nIndex].setAttribute(oEvent.attrName, oEvent.newValue);
+				        		oElement.setAttribute(oEvent.attrName, oEvent.newValue);
 						}
 				}
 			}
