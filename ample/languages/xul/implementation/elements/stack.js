@@ -20,11 +20,15 @@ cXULElement_stack.handlers	= {
 		}
 	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
-		// set position style property to absolute
-		for (var nIndex = 0, oElementDOM; nIndex < this.childNodes.length; nIndex++)
-			if (oElementDOM = this.childNodes[nIndex].$getContainer())
-				oElementDOM.style.position   = "absolute";
+		oXULReflowManager.schedule(this);
 	}
+};
+
+cXULElement_stack.prototype.reflow	= function() {
+	// set position style property to absolute
+	for (var nIndex = 0, oElementDOM; nIndex < this.childNodes.length; nIndex++)
+		if (oElementDOM = this.childNodes[nIndex].$getContainer())
+			oElementDOM.style.position   = "absolute";
 };
 
 // Element Render: open

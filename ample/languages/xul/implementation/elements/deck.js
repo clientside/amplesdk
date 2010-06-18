@@ -49,9 +49,13 @@ cXULElement_deck.handlers	= {
 		}
 	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
-		if (!isNaN(this.attributes["selectedIndex"]))
-			this.setAttribute("selectedIndex", this.attributes["selectedIndex"] == "-1" ? "0" : this.attributes["selectedIndex"]);
+		oXULReflowManager.schedule(this);
 	}
+};
+
+cXULElement_deck.prototype.reflow	= function() {
+	if (!isNaN(this.attributes["selectedIndex"]))
+		this.setAttribute("selectedIndex", this.attributes["selectedIndex"] == "-1" ? "0" : this.attributes["selectedIndex"]);
 };
 
 // Element Render: open
