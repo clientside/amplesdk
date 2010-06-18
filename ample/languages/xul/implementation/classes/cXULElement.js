@@ -123,7 +123,8 @@ cXULElement.prototype.refresh   = function()
         // Refresh flexible elements
         if (nElements)
         {
-            var oElementDOM    = this instanceof cXULElement_row ? document.getElementById("box_" + this.parentNode.parentNode.uniqueID) : document.getElementById((this instanceof cXULElement_box ? "" : "box_") + this.uniqueID);
+            var oElementDOM	= this.$getContainer("xul-box"),
+            	oCell;
             for (var nIndex = 0; nIndex < nLength; nIndex++)
             {
             	oElement	= this.childNodes[nIndex];
@@ -135,20 +136,22 @@ cXULElement.prototype.refresh   = function()
                     if (this.attributes["orient"] == "vertical")
                     {
                         // set heights
+                    	oCell	= oElementDOM.rows[nIndex - nVirtual].cells[0];
                         if (!isNaN(oElement.attributes["flex"]))
-                            oElementDOM.tBodies[0].rows[nIndex - nVirtual].cells[0].setAttribute("height", oElement.attributes["flex"] * 100 / nFlex + "%");
+                        	oCell.setAttribute("height", oElement.attributes["flex"] * 100 / nFlex + "%");
                         else
                         if (oElement.attributes["height"])
-                            oElementDOM.tBodies[0].rows[nIndex - nVirtual].cells[0].setAttribute("height", oElement.attributes["height"]);
+                        	oCell.setAttribute("height", oElement.attributes["height"]);
                     }
                     else
                     {
                         // set widths
+                    	oCell	= oElementDOM.rows[0].cells[nIndex - nVirtual];
                         if (!isNaN(oElement.attributes["flex"]))
-                            oElementDOM.tBodies[0].rows[0].cells[nIndex - nVirtual].setAttribute("width", oElement.attributes["flex"] * 100 / nFlex + "%");
+                        	oCell.setAttribute("width", oElement.attributes["flex"] * 100 / nFlex + "%");
                         else
                         if (oElement.attributes["width"])
-                            oElementDOM.tBodies[0].rows[0].cells[nIndex - nVirtual].setAttribute("width", oElement.attributes["width"]);
+                        	oCell.setAttribute("width", oElement.attributes["width"]);
                     }
                 }
             }
@@ -184,34 +187,29 @@ cXULElement.prototype.$getTag		= function()
 {
 	var aHtml	= [];
 
+	if (this.parentNode && (this.parentNode.viewType == cXULElement.VIEW_TYPE_BOXED || this.parentNode instanceof cXULElement_row))
+		aHtml[aHtml.length]	= cXULElement.getBoxOpenChild(this);
+
 	// Output Element Header
-	if (this.viewType != cXULElement.VIEW_TYPE_VIRTUAL)
+	if (this.viewType != cXULElement.VIEW_TYPE_VIRTUAL) {
 		aHtml[aHtml.length]	= this.$getTagOpen().replace(/^(\s*<[\w:]+)/, '$1 id="' +(this.attributes.id || this.uniqueID)+ '"');
-
-	// Output Box Header
-	if (this.viewType == cXULElement.VIEW_TYPE_BOXED || this instanceof cXULElement_grid)
-		aHtml[aHtml.length]	= cXULElement.getBoxOpen(this);
-
-	for (var nIndex = 0; nIndex < this.childNodes.length; nIndex++)
-	{
-		// Boxed: start element wrapper
-		if (this.viewType == cXULElement.VIEW_TYPE_BOXED || this instanceof cXULElement_row)
-			aHtml[aHtml.length]	= cXULElement.getBoxOpenChild(this.childNodes[nIndex]);
-
-		aHtml[aHtml.length]	= this.childNodes[nIndex].$getTag();
-
-		// Boxed: end element wrapper
-		if (this.viewType == cXULElement.VIEW_TYPE_BOXED || this instanceof cXULElement_row)
-			aHtml[aHtml.length]	= cXULElement.getBoxCloseChild(this.childNodes[nIndex]);
+		// Output Box Header
+		if (this.viewType == cXULElement.VIEW_TYPE_BOXED || this instanceof cXULElement_grid)
+			aHtml[aHtml.length]	= cXULElement.getBoxOpen(this);
 	}
 
-	// Output Box Footer
-	if (this.viewType == cXULElement.VIEW_TYPE_BOXED || this instanceof cXULElement_grid)
-		aHtml[aHtml.length]	= cXULElement.getBoxClose(this);
+	for (var nIndex = 0; nIndex < this.childNodes.length; nIndex++)
+		aHtml[aHtml.length]	= this.childNodes[nIndex].$getTag();
 
 	// Output Element Footer
-	if (this.viewType != cXULElement.VIEW_TYPE_VIRTUAL)
+	if (this.viewType != cXULElement.VIEW_TYPE_VIRTUAL) {
+		// Output Box Footer
+		if (this.viewType == cXULElement.VIEW_TYPE_BOXED || this instanceof cXULElement_grid)
+			aHtml[aHtml.length]	= cXULElement.getBoxClose(this);
 		aHtml[aHtml.length]	= this.$getTagClose();
+	}
+	if (this.parentNode && (this.parentNode.viewType == cXULElement.VIEW_TYPE_BOXED || this.parentNode instanceof cXULElement_row))
+		aHtml[aHtml.length]	= cXULElement.getBoxCloseChild(this);
 
 	return aHtml.join("");
 };
@@ -219,7 +217,7 @@ cXULElement.prototype.$getTag		= function()
 // Static methods
 cXULElement.getBoxOpen	= function(oElement)
 {
-    var aHtml   = ['<table cellpadding="0" cellspacing="0" border="0" id="' + (oElement instanceof cXULElement_box ? "" : "box_") + oElement.uniqueID + '"'];
+    var aHtml   = ['<table cellpadding="0" cellspacing="0" border="0"' + (oElement instanceof cXULElement_box || oElement instanceof cXULElement_grid ? ' id="' + (oElement.attributes.id || oElement.uniqueID) + '"' : '')];
 
     if (oElement.attributes["orient"] == "vertical")
     {
@@ -247,11 +245,14 @@ cXULElement.getBoxOpen	= function(oElement)
         if (oElement.attributes["width"])
 			aHtml[aHtml.length]	= ' width="' + oElement.attributes["width"] + '"';
     }
-	aHtml[aHtml.length]	= ' class="xul-box xul-' +(oElement.attributes["orient"] == "vertical" ? 'v' : 'h')+ 'box --box"';
-	aHtml[aHtml.length]	= '><tbody>';
+    if (oElement instanceof cXULElement_box || oElement instanceof cXULElement_grid)
+    	aHtml[aHtml.length]	= ' class="xul-' + oElement.localName + '"';
+	aHtml[aHtml.length]	= '><tbody class="xul-box--xul-box';
 
-    if (oElement.attributes["orient"] != "vertical")
-		aHtml[aHtml.length]	= '<tr>';
+    if (oElement.attributes["orient"] == "vertical")
+    	aHtml[aHtml.length]	= ' xul-box--gateway">';
+    else
+		aHtml[aHtml.length]	= '"><tr class="xul-box--gateway">';
 
     return aHtml.join('');
 };
@@ -271,7 +272,7 @@ cXULElement.getBoxOpenChild = function(oElement)
 		}
 		aHtml[aHtml.length]	= '">';
     }
-	aHtml[aHtml.length]	= '<td';// id="' + oElement.uniqueID + '_box"';
+	aHtml[aHtml.length]	= '<td';
 
 	if (oElement.nodeType == AMLNode.ELEMENT_NODE)
 	{

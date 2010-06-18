@@ -24,9 +24,5 @@ cXULElement_box.handlers	= {
 	}
 };
 
-cXULElement_box.prototype.$getContainer	= function(sName) {
-	return sName == "gateway" ? this.$getContainer("box") : document.getElementById(this.uniqueID);
-};
-
 // Register Element with language
 oXULNamespace.setElement("box", cXULElement_box);
