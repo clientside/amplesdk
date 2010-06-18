@@ -47,7 +47,7 @@ cXULElement.prototype.$mapAttribute	= function(sName, sValue)
 
 		case "flex":
 	        this.attributes[sName]	= sValue;
-	        if (this.parentNode.viewType == cXULElement.VIEW_TYPE_BOXED)
+	        if (this.parentNode && this.parentNode.viewType == cXULElement.VIEW_TYPE_BOXED)
 	            oXULReflowManager.reflow(this.parentNode);
 			break;
 
@@ -61,7 +61,7 @@ cXULElement.prototype.$mapAttribute	= function(sName, sValue)
 
 		case "width":
 		case "height":
-	    	if (this.parentNode.viewType == cXULElement.VIEW_TYPE_BOXED)
+	    	if (this.parentNode && this.parentNode.viewType == cXULElement.VIEW_TYPE_BOXED)
 	    		oElementDOM.parentNode[sName] = sValue;
 	    	else
 		        oElementDOM.style[sName]  = sValue;
@@ -117,7 +117,7 @@ cXULElement.prototype.reflow   = function()
         for (var nIndex = 0; nIndex < nLength; nIndex++)
         {
 			oElement	= this.childNodes[nIndex];
-            if (oElement.namespaceURI == this.namespaceURI && oElement.nodeType == AMLNode.ELEMENT_NODE && oElement.viewType != cXULElement.VIEW_TYPE_VIRTUAL)
+            if (oElement.namespaceURI == this.namespaceURI && oElement.viewType != cXULElement.VIEW_TYPE_VIRTUAL)
             {
                 nElements++;
                 if (oElement.hasAttribute("flex") && !isNaN(oElement.attributes["flex"]))
