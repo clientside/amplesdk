@@ -78,7 +78,7 @@ oAML_messages[nAML_ERROR_ANIMATING_ATTR_WRN]= 'Error animating %0 atttribute wit
  * Syntaxis:
  * fAML_validate(arguments, [
  * 		[sArgumentName,	cArgumentType, bOptional, bNullAllowed]
- * ], sFunctionName);
+ * ]);
  */
 //->Debug
 var aAML_endings	= 'st-nd-rd-th'.split('-');
