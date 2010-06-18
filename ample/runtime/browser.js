@@ -83,7 +83,8 @@ if (oUANavigator.userAgent.match(/AppleWebKit\/([\d.]+)/)[1]) {
 }
 
 // Private Variables
-var oAML_factory	= oUADocument.createElement("span");
+var oAML_factory	= oUADocument.createElement("span"),
+	bKeyDown	= false;
 
 function fAML_render(oNode) {
 	if (oNode.nodeType == cAMLNode.TEXT_NODE)
@@ -224,6 +225,9 @@ function fOnKeyPress(oEvent)
 	if (oAML_captureNode && !fIsDescendant(oTarget, oAML_captureNode))
 		oTarget = oPseudo	= oAML_captureNode;
 
+	if (bPresto && bKeyDown)
+		fOnKeyDown(oEvent);
+
     // Init KeyPress event
     oEventKeyPress.initKeyboardEvent("keypress", true, true, window, fGetKeyboardEventIdentifier(oEvent), null, fGetKeyboardEventModifiersList(oEvent));
 	oEventKeyPress.$pseudoTarget	= oPseudo;
@@ -238,6 +242,9 @@ function fOnKeyPress(oEvent)
 		//
     	fAMLNode_dispatchEvent(oTarget, oEventTextInput);
     }
+
+    // Fix for repeated keydown in presto
+    bKeyDown	= true;
 
 	//
 	return fEventPreventDefault(oEvent, oEventKeyPress, oEventTextInput);
@@ -259,6 +266,8 @@ function fOnKeyUp(oEvent) {
 	// do not dispatch event if outside modal
     if (!oAML_modalNode || fIsDescendant(oTarget, oAML_modalNode))
     	fAMLNode_dispatchEvent(oTarget, oEventKeyUp);
+
+    bKeyDown	= false;
 
 	//
 	return fEventPreventDefault(oEvent, oEventKeyUp);
