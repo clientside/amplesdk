@@ -483,7 +483,7 @@ cAMLNodeSelector.prototype.querySelector	= function(sCSS, fResolver)
 	fAML_validate(arguments, [
 		["query",		cString],
 		["NSResolver",	cFunction, true]
-	], "querySelector");
+	]);
 
 	var aNodeList	= fAMLSelector_query([this], sCSS, fResolver, true);
 	return aNodeList.length ? aNodeList[0] : null;
@@ -497,7 +497,7 @@ cAMLNodeSelector.prototype.querySelectorAll	= function(sCSS, fResolver)
 	fAML_validate(arguments, [
 		["query",		cString],
 		["NSResolver",	cFunction, true]
-	], "querySelectorAll");
+	]);
 
 	return fAMLSelector_query([this], sCSS, fResolver);
 };

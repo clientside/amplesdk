@@ -58,7 +58,7 @@ cAMLImplementation.prototype.createDocument	= function(sNameSpaceURI, sQName, oD
 		["namespaceURI",	cString, false, true],
 		["qualifiedName",	cString, false, true],
 		["doctype",			cObject, false, true]
-	], "createDocument");
+	]);
 
 	// Invoke actual implementation
 	return fAMLImplementation_createDocument(this, sNameSpaceURI, sQName, oDocType);

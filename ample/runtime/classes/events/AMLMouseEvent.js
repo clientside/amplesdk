@@ -30,7 +30,7 @@ cAMLMouseEvent.prototype.initMouseEvent = function(sType, bCanBubble, bCancelabl
 		["type",		cString],
 		["canBubble",	cBoolean],
 		["cancelable",	cBoolean]
-	], "initMouseEvent");
+	]);
 */
 	this.initUIEvent(sType, bCanBubble, bCancelable, oView, nDetail);
 

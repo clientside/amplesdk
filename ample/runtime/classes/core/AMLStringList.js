@@ -17,7 +17,7 @@ cAMLStringList.prototype.item		= function(nIndex) {
 	// Validate arguments
 	fAML_validate(arguments, [
 		["index",	cNumber]
-	], "item");
+	]);
 
 	return nIndex < this.length ? this[nIndex] : null;
 };
@@ -26,7 +26,7 @@ cAMLStringList.prototype.contains	= function(sValue) {
 	// Validate arguments
 	fAML_validate(arguments, [
 		["value",	cString]
-	], "item");
+	]);
 
 	for (var nIndex = 0; nIndex < this.length; nIndex++)
 		if (this[nIndex] == sValue)

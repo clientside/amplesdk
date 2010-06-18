@@ -18,7 +18,7 @@ cAMLNamespace.prototype.setAttribute	= function(sName, cAttribute) {
 	fAML_validate(arguments, [
 		["localName",	cString],
 		["attribute",	cFunction]
-	], "setAttribute");
+	]);
 	// Additional validation
 	if (!(cAttribute.prototype instanceof cAMLAttr))
 		throw new cAMLException(cAMLException.TYPE_MISMATCH_ERR);
@@ -39,7 +39,7 @@ cAMLNamespace.prototype.setElement	= function(sName, cElement) {
 	fAML_validate(arguments, [
 		["localName",	cString],
 		["element",		cFunction]
-	], "setElement");
+	]);
 	// Additional validation
 	if (!(cElement.prototype instanceof cAMLElement))
 		throw new cAMLException(cAMLException.TYPE_MISMATCH_ERR);

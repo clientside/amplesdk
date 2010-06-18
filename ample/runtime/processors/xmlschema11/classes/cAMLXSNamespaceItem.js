@@ -46,7 +46,7 @@ cAMLXSNamespaceItem.prototype.getTypeDefinition	= function(sName) {
 	// Validate arguments
 	fAML_validate(arguments, [
 		["name",		cString]
-	], "getTypeDefinition");
+	]);
 
 	return this.$types[sName] || null;
 };

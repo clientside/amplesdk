@@ -22,7 +22,7 @@ cAMLTextEvent.prototype.initTextEvent	= function(sType, bCanBubble, bCancelable,
 		["type",		cString],
 		["canBubble",	cBoolean],
 		["cancelable",	cBoolean]
-	], "initTextEvent");
+	]);
 */
 	this.initEvent(sType, bCanBubble, bCancelable);
 

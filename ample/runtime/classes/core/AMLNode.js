@@ -90,7 +90,7 @@ cAMLNode.prototype.appendChild	= function(oNode)
 	// Validate arguments
 	fAML_validate(arguments, [
 		["node",	cAMLNode]
-	], "appendChild");
+	]);
 
 	return fAMLNode_appendChild(this, oNode);
 };
@@ -131,7 +131,7 @@ cAMLNode.prototype.insertBefore	= function(oNode, oBefore)
 	fAML_validate(arguments, [
 		["node",	cAMLNode],
 		["before",	cAMLNode, false, true]
-	], "insertBefore");
+	]);
 
 	if (oBefore) {
 		if (this.childNodes.$indexOf(oBefore) !=-1)
@@ -172,7 +172,7 @@ cAMLNode.prototype.removeChild	= function(oNode)
 	// Validate arguments
 	fAML_validate(arguments, [
 		["node",	cAMLNode]
-	], "removeChild");
+	]);
 
     if (this.childNodes.$indexOf(oNode) !=-1)
     	return fAMLNode_removeChild(this, oNode);
@@ -192,7 +192,7 @@ cAMLNode.prototype.replaceChild	= function(oNode, oOld)
 	fAML_validate(arguments, [
 		["node",	cAMLNode],
 		["old",		cAMLNode, false, true]
-	], "replaceChild");
+	]);
 
     if (this.childNodes.$indexOf(oOld) !=-1)
     	return fAMLNode_replaceChild(this, oNode, oOld);
@@ -257,7 +257,7 @@ cAMLNode.prototype.lookupPrefix	= function(sNameSpaceURI)
 	// Validate arguments
 	fAML_validate(arguments, [
 		["namespaceURI",	cString, false, true]
-	], "lookupPrefix");
+	]);
 
 	return fAMLNode_lookupPrefix(this, sNameSpaceURI);
 };
@@ -291,7 +291,7 @@ cAMLNode.prototype.lookupNamespaceURI	= function(sPrefix)
 	// Validate arguments
 	fAML_validate(arguments, [
 		["prefix",	cString, false, true]
-	], "lookupNamespaceURI");
+	]);
 
 	// Invoke actual implementation
 	return fAMLNode_lookupNamespaceURI(this, sPrefix);
@@ -334,7 +334,7 @@ cAMLNode.prototype.compareDocumentPosition	= function(oChild)
 	// Validate arguments
 	fAML_validate(arguments, [
 		["node",	cAMLNode]
-	], "compareDocumentPosition");
+	]);
 
 	return fAMLNode_compareDocumentPosition(this, oChild);
 };
@@ -454,7 +454,7 @@ cAMLNode.prototype.addEventListener		= function(sEventType, fListener, bUseCaptu
 		["eventType",	cString],
 		["listener",	cFunction],
 		["useCapture",	cBoolean,	true]
-	], "addEventListener");
+	]);
 
 	fAMLEventTarget_addEventListener(this, sEventType, fListener, bUseCapture);
 };
@@ -479,7 +479,7 @@ cAMLNode.prototype.removeEventListener	= function(sEventType, fListener, bUseCap
 		["eventType",	cString],
 		["listener",	cFunction],
 		["useCapture",	cBoolean,	true]
-	], "removeEventListener");
+	]);
 
 	// Invoke actual implementation
 	fAMLEventTarget_removeEventListener(this, sEventType, fListener, bUseCapture);
@@ -637,7 +637,7 @@ cAMLNode.prototype.dispatchEvent	= function(oEvent)
 	// Validate arguments
 	fAML_validate(arguments, [
 		["event",	cAMLEvent]
-	], "dispatchEvent");
+	]);
 
 	// Invoke actual implementation
 	return fAMLNode_dispatchEvent(this, oEvent);

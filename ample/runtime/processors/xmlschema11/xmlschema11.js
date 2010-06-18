@@ -68,7 +68,7 @@ cAMLXSTypeDefinition.prototype.$validate	= function(vValue) {
 			// Validate arguments
 			fAML_validate(arguments, [
 				["value",		cString]
-			], "$validate");
+			]);
 
 			return fAMLXMLSchema11_simpleType_validate(this, vValue);
 
@@ -76,7 +76,7 @@ cAMLXSTypeDefinition.prototype.$validate	= function(vValue) {
 			// Validate arguments
 			fAML_validate(arguments, [
 				["value",		cAMLNode]
-			], "$validate");
+			]);
 
 			throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 

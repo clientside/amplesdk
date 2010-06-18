@@ -32,7 +32,7 @@ cAMLKeyboardEvent.prototype.initKeyboardEvent	= function(sType, bCanBubble, bCan
 		["type",		cString],
 		["canBubble",	cBoolean],
 		["cancelable",	cBoolean]
-	], "initKeyboardEvent");
+	]);
 */
 	this.initUIEvent(sType, bCanBubble, bCancelable, oView, null);
 

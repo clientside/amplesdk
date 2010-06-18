@@ -29,7 +29,7 @@ cAMLMutationEvent.prototype.initMutationEvent	= function(sType, bCanBubble, bCan
 		["type",		cString],
 		["canBubble",	cBoolean],
 		["cancelable",	cBoolean]
-	], "initMutationEvent");
+	]);
 */
 	this.initEvent(sType, bCanBubble, bCancelable);
 

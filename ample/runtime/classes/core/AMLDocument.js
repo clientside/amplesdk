@@ -68,7 +68,7 @@ cAMLDocument.prototype.createAttributeNS	= function(sNameSpaceURI, sQName)
 	fAML_validate(arguments, [
 		["namespaceURI",	cString, false, true],
 		["QName",			cString]
-	], "createAttributeNS");
+	]);
 //->Source
 /*
 	return fAMLDocument_createAttributeNS(this, sNameSpaceURI, sQName);
@@ -94,7 +94,7 @@ cAMLDocument.prototype.createTextNode	= function(sData)
 	// Validate arguments
 	fAML_validate(arguments, [
 		["data",	cObject, true]
-	], "createTextNode");
+	]);
 
 	// if no argument was provided, use empty string
 	if (!arguments.length)
@@ -120,7 +120,7 @@ cAMLDocument.prototype.createCDATASection	= function(sData)
 	// Validate arguments
 	fAML_validate(arguments, [
 		["data",	cObject, true]
-	], "createCDATASection");
+	]);
 
 	// if no argument was provided, use empty string
 	if (!arguments.length)
@@ -150,7 +150,7 @@ cAMLDocument.prototype.createComment	= function(sData)
 	// Validate arguments
 	fAML_validate(arguments, [
 		["data",	cObject, true]
-	], "createComment");
+	]);
 
 //->Source
 /*
@@ -170,7 +170,7 @@ cAMLDocument.prototype.createElement	= function(sName)
 	// Validate arguments
 	fAML_validate(arguments, [
 		["name",	cString]
-	], "createElement");
+	]);
 
 	// Invoke actual implementation
 	return fAMLDocument_createElementNS(this, this.namespaceURI, sName);
@@ -220,7 +220,7 @@ cAMLDocument.prototype.createElementNS	= function(sNameSpaceURI, sQName)
 	fAML_validate(arguments, [
 		["namespaceURI",	cString, false, true],
 		["QName",			cString]
-	], "createElementNS");
+	]);
 
 	// Invoke actual implementation
 	return fAMLDocument_createElementNS(this, sNameSpaceURI, sQName);
@@ -231,7 +231,7 @@ cAMLDocument.prototype.createEntityReference	= function(sName)
 	// Validate arguments
 	fAML_validate(arguments, [
 		["name",	cString]
-	], "createEntityReference");
+	]);
 
 	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
@@ -241,7 +241,7 @@ cAMLDocument.prototype.createEvent     = function(sName)
 	// Validate arguments
 	fAML_validate(arguments, [
 		["eventType",	cString]
-	], "createEvent");
+	]);
 
 	var cEvent	= window["AML" + sName.replace(/s$/, '')];
 	if (cEvent && (cEvent == cAMLEvent || cEvent.prototype instanceof cAMLEvent))
@@ -256,7 +256,7 @@ cAMLDocument.prototype.canDispatch	= function(sNameSpaceURI, sType)
 	fAML_validate(arguments, [
 		["namespaceURI",	cString, false, true],
 		["type",			cString]
-	], "canDispatch");
+	]);
 
 	return true;
 };
@@ -286,7 +286,7 @@ cAMLDocument.prototype.createProcessingInstruction	= function(sTarget, sData)
 	fAML_validate(arguments, [
 		["target",	cString],
 		["data",	cString]
-	], "createProcessingInstruction");
+	]);
 
 	// Invoke actual implementation
 	return fAMLDocument_createProcessingInstruction(this, sTarget, sData);
@@ -297,7 +297,7 @@ cAMLDocument.prototype.getElementById	= function(sId)
 	// Validate arguments
 	fAML_validate(arguments, [
 		['id',	cString]
-	], "getElementById");
+	]);
 
     return oAML_ids[sId] || null;
 };
@@ -307,7 +307,7 @@ cAMLDocument.prototype.getElementsByTagName	= function(sTagName)
 	// Validate arguments
 	fAML_validate(arguments, [
 		["name",	cString]
-	], "getElementsByTagName");
+	]);
 
 	return fAMLElement_getElementsByTagName(this, sTagName);
 };
@@ -318,7 +318,7 @@ cAMLDocument.prototype.getElementsByTagNameNS	= function(sNameSpaceURI, sLocalNa
 	fAML_validate(arguments, [
 		["namespaceURI",	cString, false, true],
 		["localName",		cString]
-	], "getElementsByTagNameNS");
+	]);
 
 	return fAMLElement_getElementsByTagNameNS(this, sNameSpaceURI, sLocalName);
 };
@@ -329,7 +329,7 @@ cAMLDocument.prototype.importNode	= function(oNode, bDeep)
 	fAML_validate(arguments, [
 		["node",	cXMLElement],
 		["deep",	cBoolean]
-	], "importNode");
+	]);
 
 	if (oNode && oNode.nodeType == cAMLNode.ELEMENT_NODE)
 		return fAML_import(oNode);

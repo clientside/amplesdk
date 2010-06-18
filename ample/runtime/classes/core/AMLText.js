@@ -23,7 +23,7 @@ cAMLText.prototype.splitText	= function(nOffset)
 	// Validate arguments
 	fAML_validate(arguments, [
 		["offset",	cNumber]
-	], "splitText");
+	]);
 
 	if (nOffset <= this.length && nOffset >= 0)
 	{
@@ -97,7 +97,7 @@ cAMLText.prototype.replaceWholeText	= function(sContent) {
 	// Validate arguments
 	fAML_validate(arguments, [
 		["content",	cString]
-	], "replaceWholeText");
+	]);
 
 	var sValueOld	= this.data;
 	this.data		= sContent;

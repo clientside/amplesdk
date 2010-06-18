@@ -16,7 +16,7 @@ if (!cXSLTProcessor) {
 		// Validate arguments
 		fAML_validate(arguments, [
 			["stylesheet",	cXMLNode]
-		], "importStylesheet");
+		]);
 
 		var oStylesheet	= new fActiveXObject("MSXML2" + '.' + "FreeThreadedDOMDocument");
 //		oStylesheet.resolveExternals	= true;
@@ -43,7 +43,7 @@ if (!cXSLTProcessor) {
 		fAML_validate(arguments, [
 			["namespaceURI",	cString, false, true],
 			["localName",		cString]
-		], "getParameter");
+		]);
 
 		if (sNameSpaceURI == null)
 			sNameSpaceURI	=  '';
@@ -57,7 +57,7 @@ if (!cXSLTProcessor) {
 		fAML_validate(arguments, [
 			["namespaceURI",	cString, false, true],
 			["localName",		cString]
-		], "removeParameter");
+		]);
 
 		if (sNameSpaceURI == null)
 			sNameSpaceURI	=  '';
@@ -75,7 +75,7 @@ if (!cXSLTProcessor) {
 			["namespaceURI",	cString, false, true],
 			["localName",		cString],
 			["value",			cObject]
-		], "setParameter");
+		]);
 
 		if (sNameSpaceURI == null)
 			sNameSpaceURI	=  '';
@@ -97,7 +97,7 @@ if (!cXSLTProcessor) {
 		// Validate arguments
 		fAML_validate(arguments, [
 			["source",	cXMLNode]
-		], "transformToDocument");
+		]);
 
 		var oProcessor	= this._processor,
 			oOutput		= new fActiveXObject("Microsoft.XMLDOM");
@@ -118,7 +118,7 @@ if (!cXSLTProcessor) {
 		fAML_validate(arguments, [
 			["source",	cXMLNode],
 			["output",	cXMLDocument]
-		], "transformToFragment");
+		]);
 
 		var oProcessor	= this._processor,
 			oOutput		= new fActiveXObject("Microsoft.XMLDOM"),

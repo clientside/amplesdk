@@ -51,7 +51,7 @@ cAMLElement.prototype.appendChild	= function(oNode)
 	// Validate arguments
 	fAML_validate(arguments, [
 		["node",	cAMLNode]
-	], "appendChild");
+	]);
 
 	// Invoke actual implementation
 	if (oNode.nodeType == cAMLNode.DOCUMENT_FRAGMENT_NODE)
@@ -122,7 +122,7 @@ cAMLElement.prototype.insertBefore	= function(oNode, oBefore)
 	fAML_validate(arguments, [
 		["node",	cAMLNode],
 		["before",	cAMLNode, false, true]
-	], "insertBefore");
+	]);
 
 	if (oBefore) {
 		if (this.childNodes.$indexOf(oBefore) !=-1) {
@@ -173,7 +173,7 @@ cAMLElement.prototype.removeChild	= function(oNode)
 	// Validate arguments
 	fAML_validate(arguments, [
 		["node",	cAMLNode]
-	], "removeChild");
+	]);
 
     if (this.childNodes.$indexOf(oNode) !=-1)
     	return fAMLElement_removeChild(this, oNode);
@@ -237,7 +237,7 @@ cAMLElement.prototype.replaceChild	= function(oNode, oOld)
 	fAML_validate(arguments, [
 		["node",	cAMLNode],
 		["old",		cAMLNode, false, true]
-	], "replaceChild");
+	]);
 
 	if (oOld) {
 	    if (this.childNodes.$indexOf(oOld) !=-1) {
@@ -291,7 +291,7 @@ cAMLElement.prototype.hasAttribute	= function(sName)
 	// Validate arguments
 	fAML_validate(arguments, [
 		["name",		cString]
-	], "hasAttribute");
+	]);
 
 	return fAMLElement_hazAttribute(this, sName);
 };
@@ -311,7 +311,7 @@ cAMLElement.prototype.hasAttributeNS	= function(sNameSpaceURI, sLocalName)
 	fAML_validate(arguments, [
 		["namespaceURI",	cString, false, true]
 		["localName",		cString]
-	], "hasAttributeNS");
+	]);
 
 	return fAMLElement_hazAttributeNS(this, sNameSpaceURI, sLocalName);
 };
@@ -367,7 +367,7 @@ cAMLElement.prototype.setAttribute	= function(sName, sValue)
 	fAML_validate(arguments, [
 		["name",		cString],
 		["value",		cObject]
-	], "setAttribute");
+	]);
 
 	fAMLElement_setAttribute(this, sName, cString(sValue));
 };
@@ -446,7 +446,7 @@ cAMLElement.prototype.setAttributeNS	= function(sNameSpaceURI, sQName, sValue)
 		["namespaceURI",	cString, false, true],
 		["qualifiedName",	cString],
 		["value",			cObject]
-	], "setAttributeNS");
+	]);
 
 	fAMLElement_setAttributeNS(this, sNameSpaceURI, sQName, cString(sValue));
 };
@@ -463,7 +463,7 @@ cAMLElement.prototype.setAttributeNodeNS	= function(oAttribute)
 	// Validate arguments
 	fAML_validate(arguments, [
 		["node",		cAMLAttr]
-	], "setAttributeNodeNS");
+	]);
 
 	//
 	oAttribute.ownerElement	= this;
@@ -483,7 +483,7 @@ cAMLElement.prototype.getAttribute	= function(sName)
 	// Validate arguments
 	fAML_validate(arguments, [
 		["name",		cString]
-	], "getAttribute");
+	]);
 
 	return fAMLElement_getAttribute(this, sName);
 };
@@ -503,7 +503,7 @@ cAMLElement.prototype.getAttributeNS	= function(sNameSpaceURI, sLocalName)
 	fAML_validate(arguments, [
 		["namespaceURI",	cString, false, true],
 		["localName",		cString]
-	], "getAttributeNS");
+	]);
 
 	return fAMLElement_getAttributeNS(this, sNameSpaceURI, sLocalName);
 };
@@ -561,7 +561,7 @@ cAMLElement.prototype.removeAttribute	= function(sName)
 {
 	fAML_validate(arguments, [
 		["name",	cString]
-	], "removeAttribute");
+	]);
 
 	fAMLElement_removeAttribute(this, sName);
 };
@@ -621,7 +621,7 @@ cAMLElement.prototype.removeAttributeNS	= function(sNameSpaceURI, sLocalName)
 	fAML_validate(arguments, [
 		["namespaceURI",	cString, false, true],
 		["localName",		cString]
-	], "removeAttributeNS");
+	]);
 
 	fAMLElement_removeAttributeNS(this, sNameSpaceURI, sLocalName);
 };
@@ -658,7 +658,7 @@ cAMLElement.prototype.getElementsByTagName	= function(sTagName)
 	// Validate arguments
 	fAML_validate(arguments, [
 		["name",	cString]
-	], "getElementsByTagName");
+	]);
 
 	return fAMLElement_getElementsByTagName(this, sTagName);
 };
@@ -687,7 +687,7 @@ cAMLElement.prototype.getElementsByTagNameNS	= function(sNameSpaceURI, sLocalNam
 	fAML_validate(arguments, [
 		["namespaceURI",	cString],
 		["localName",		cString]
-	], "getElementsByTagNameNS");
+	]);
 
 	return fAMLElement_getElementsByTagNameNS(this, sNameSpaceURI, sLocalName);
 };
@@ -963,7 +963,7 @@ cAMLElement.prototype.$setPseudoClass	= function(sName, bState, sContainer)
 		["name",	cString],
 		["state",	cBoolean],
 		["pseudoElement",	cString, true]
-	], "$setPseudoClass");
+	]);
 
 	fAMLElement_setPseudoClass(this, sName, bState, sContainer);
 };
@@ -1070,7 +1070,7 @@ cAMLElement.prototype.$load		= function(sUrl, sMethod, oHeaders, sData)
 		["method",	cString, true, true],
 		["headers",	cObject, true, true],
 		["data",	cString, true, true]
-	], "$load");
+	]);
 
 	fAMLElement_load(this, sUrl, sMethod || "GET", oHeaders || {}, sData || null);
 };
@@ -1084,7 +1084,7 @@ cAMLElement.prototype.scrollIntoView	= function(bTop) {
 	// Validate arguments
 	fAML_validate(arguments, [
 		["top",	cBoolean, true, false]	// Optional, null is not allowed
-	], "scrollIntoView");
+	]);
 
 	var oElementDOM	= this.$getContainer();
 	if (oElementDOM) {

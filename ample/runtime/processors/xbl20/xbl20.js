@@ -24,7 +24,7 @@ cXBLImplementationsList.prototype.item	= function(nIndex) {
 	// Validate arguments
 	fAML_validate(arguments, [
 		["index",	cNumber]
-	], "item");
+	]);
 
 	if (nIndex <= this.length)
 		return this[nIndex];
@@ -39,7 +39,7 @@ cAMLDocument.prototype.loadBindingDocument	= function(sDocumentUri) {
 	// Validate arguments
 	fAML_validate(arguments, [
 		["documentURI",	cString]
-	], "loadBindingDocument");
+	]);
 
 	//
 };
@@ -51,7 +51,7 @@ cAMLElement.prototype.addBinding	= function(sBindingUri) {
 	// Validate arguments
 	fAML_validate(arguments, [
 		["bindingURI",	cString]
-	], "addBinding");
+	]);
 
 	//
 };
@@ -60,7 +60,7 @@ cAMLElement.prototype.removeBinding	= function(sBindingUri) {
 	// Validate arguments
 	fAML_validate(arguments, [
 		["bindingURI",	cString]
-	], "removeBinding");
+	]);
 
 	//
 };
@@ -69,7 +69,7 @@ cAMLElement.prototype.hasBinding	= function(sBindingUri) {
 	// Validate arguments
 	fAML_validate(arguments, [
 		["bindingURI",	cString]
-	], "hasBinding");
+	]);
 
 	//
 };

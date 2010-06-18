@@ -42,7 +42,7 @@ cAMLXSModel.prototype.getTypeDefinition	= function(sNameSpaceURI, sLocalName) {
 	fAML_validate(arguments, [
 		["namespaceURI",	cString],
 		["name",			cString]
-	], "getTypeDefinition");
+	]);
 
 	for (var nIndex = 0; nIndex < this.namespaceItems.length; nIndex++)
 		if (this.namespaceItems[nIndex].schemaNamespace == sNameSpaceURI)

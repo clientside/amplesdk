@@ -171,7 +171,7 @@ cAMLElement.prototype.$play	= function(sParams, nDuration, vType, fHandler, sPse
 		["type",		cObject, true],
 		["handler",		cFunction, true],
 		["pseudo",		cString, true]
-	], "$play");
+	]);
 
 	return fAMLElementAnimation_play(this, sParams, nDuration, vType, fHandler, sPseudo);
 };
@@ -181,7 +181,7 @@ cAMLElement.prototype.$stop	= function(nEffect)
 	// Validate arguments
 	fAML_validate(arguments, [
 		["effect",		cNumber]
-	], "$stop");
+	]);
 
 	fAMLElementAnimation_stop(nEffect);
 };

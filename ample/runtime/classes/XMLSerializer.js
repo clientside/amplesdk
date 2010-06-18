@@ -13,7 +13,7 @@ if (!cXMLSerializer) {
 		// Validate arguments
 		fAML_validate(arguments, [
 			["node",	cXMLNode]
-		], "serializeToString");
+		]);
 
 		return oNode.xml;
 	};

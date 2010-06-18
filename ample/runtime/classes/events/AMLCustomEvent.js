@@ -21,7 +21,7 @@ cAMLCustomEvent.prototype.initCustomEvent	= function(sType, bCanBubble, bCancela
 		["canBubble",	cBoolean],
 		["cancelable",	cBoolean],
 		["detail",		cObject,	false, true]
-	], "initCustomEvent");
+	]);
 
 	this.initEvent(sType, bCanBubble, bCancelable);
 

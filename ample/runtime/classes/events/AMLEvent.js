@@ -43,7 +43,7 @@ cAMLEvent.prototype.initEvent		= function(sType, bCanBubble, bCancelable)
 		["type",		cString],
 		["canBubble",	cBoolean],
 		["cancelable",	cBoolean]
-	], "initEvent");
+	]);
 */
     this.type       = sType;
     this.bubbles    = bCanBubble;

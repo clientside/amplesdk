@@ -15,7 +15,7 @@ cAMLSerializer.prototype.serializeToString	= function(oNode)
 	// Validate arguments
 	fAML_validate(arguments, [
 		["node",	cAMLNode]
-	], "serializeToString");
+	]);
 
 	var aHtml	= [];
 //->Source

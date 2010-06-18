@@ -31,7 +31,7 @@ cAMLElement.prototype.setCapture	= function(bCapture) {
 	// Validate arguments
 	fAML_validate(arguments, [
 		["useCapture",	cBoolean, true]
-	], "setCapture");
+	]);
 
 	// Raise NOT_SUPPORTED_ERR exception in case setCapture(false) called
 	if (arguments.length && !bCapture)

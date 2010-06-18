@@ -35,7 +35,7 @@ cAMLCharacterData.prototype.appendData	= function(sData)
 	// Validate arguments
 	fAML_validate(arguments, [
 		["data",	cString]
-	], "appendData");
+	]);
 
 	// Invoke actual implementation
 	fAMLCharacterData_appendData(this, sData);
@@ -62,7 +62,7 @@ cAMLCharacterData.prototype.deleteData	= function(nOffset, nLength)
 	fAML_validate(arguments, [
 		["offset",	cNumber],
 		["length",	cNumber]
-	], "deleteData");
+	]);
 
 	if (nOffset <= this.length && nOffset >= 0 && nLength >= 0)
 		fAMLCharacterData_deleteData(this, nOffset, nLength);
@@ -91,7 +91,7 @@ cAMLCharacterData.prototype.insertData	= function(nOffset, sData)
 	fAML_validate(arguments, [
 		["offset",	cNumber],
 		["data",	cString]
-	], "insertData");
+	]);
 
 	if (nOffset <= this.length && nOffset >= 0)
 		fAMLCharacterData_insertData(this, nOffset, sData);
@@ -121,7 +121,7 @@ cAMLCharacterData.prototype.replaceData	= function(nOffset, nLength, sData)
 		["offset",	cNumber],
 		["length",	cNumber],
 		["data",	cString]
-	], "replaceData");
+	]);
 
 	if (nOffset <= this.length && nOffset >= 0 && nLength >= 0)
 		fAMLCharacterData_replaceData(this, nOffset, nLength, sData);
@@ -140,7 +140,7 @@ cAMLCharacterData.prototype.substringData	= function(nOffset, nLength)
 	fAML_validate(arguments, [
 		["offset",	cNumber],
 		["length",	cNumber]
-	], "substringData");
+	]);
 
 	if (nOffset <= this.length && nOffset >= 0 && nLength >= 0)
 		return fAMLCharacterData_substringData(this, nOffset, nLength);

@@ -139,7 +139,7 @@ if (!cArray.prototype.indexOf)
 		fAML_validate(arguments, [
 			["element",	cObject, false, true],
 			["index",	cNumber, true, false]
-		], "indexOf");
+		]);
 
 		// adjust nIndex
 		var nLength = this.length;
@@ -165,7 +165,7 @@ if (!cArray.prototype.lastIndexOf)
 		fAML_validate(arguments, [
 			["element",	cObject, false, true],
 			["index",	cNumber, true, false]
-		], "lastIndexOf");
+		]);
 
 		// adjust nIndex
 		var nLength = this.length;
@@ -195,7 +195,7 @@ if (!cArray.prototype.filter)
 		fAML_validate(arguments, [
 			["callback",	cFunction],
 			["receiver",	cObject, true, true]
-		], "filter");
+		]);
 
 		for (var nIndex = 0, nLength = this.length, aResult = [], vValue; nIndex < nLength; nIndex++)
 			if (!(typeof(vValue = this[nIndex]) === "undefined") || nIndex in this)
@@ -210,7 +210,7 @@ if (!cArray.prototype.forEach)
 		fAML_validate(arguments, [
 			["callback",	cFunction],
 			["receiver",	cObject, true, true]
-		], "forEach");
+		]);
 
 		for (var nIndex = 0, nLength = this.length, vValue; nIndex < nLength; nIndex++)
 			if (!(typeof(vValue = this[nIndex]) === "undefined") || nIndex in this)
@@ -223,7 +223,7 @@ if (!cArray.prototype.every)
 		fAML_validate(arguments, [
 			["callback",	cFunction],
 			["receiver",	cObject, true, true]
-		], "every");
+		]);
 
 		for (var nIndex = 0, nLength = this.length, vValue; nIndex < nLength; nIndex++)
 			if (!(typeof(vValue = this[nIndex]) === "undefined") || nIndex in this)
@@ -238,7 +238,7 @@ if (!cArray.prototype.map)
 		fAML_validate(arguments, [
 			["callback",	cFunction],
 			["receiver",	cObject, true, true]
-		], "map");
+		]);
 
 		for (var nIndex = 0, nLength = this.length, aResult = new cArray(nLength), vValue; nIndex < nLength; nIndex++)
 			if (!(typeof(vValue = this[nIndex]) === "undefined") || nIndex in this)
@@ -252,7 +252,7 @@ if (!cArray.prototype.some)
 		fAML_validate(arguments, [
 			["callback",	cFunction],
 			["receiver",	cObject, true, true]
-		], "some");
+		]);
 
 		for (var nIndex = 0, nLength = this.length, vValue; nIndex < nLength; nIndex++)
 			if (!(typeof(vValue = this[nIndex]) === "undefined") || nIndex in this)
@@ -271,7 +271,7 @@ if (!cArray.prototype.reduce)
 		// Validate arguments
 		fAML_validate(arguments, [
 			["callback",	cFunction]
-		], "reduce");
+		]);
 
 		var nLength = this.length >>> 0,
 			nIndex	= 0,
@@ -308,7 +308,7 @@ if (!cArray.prototype.reduceRight)
 		// Validate arguments
 		fAML_validate(arguments, [
 			["callback",	cFunction]
-		], "reduceRight");
+		]);
 
 		var nLength = this.length >>> 0,
 			nIndex	= nLength - 1,

@@ -25,7 +25,7 @@ cAMLUIEvent.prototype.initUIEvent	= function(sType, bCanBubble, bCancelable, oVi
 		["type",		cString],
 		["canBubble",	cBoolean],
 		["cancelable",	cBoolean]
-	], "initUIEvent");
+	]);
 */
 	this.initEvent(sType, bCanBubble, bCancelable);
 

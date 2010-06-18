@@ -16,7 +16,7 @@ if (!cDOMParser)
 		fAML_validate(arguments, [
 			["string",		cString],
 			["contentType",	cString]
-		], "parseFromString");
+		]);
 
 		var oDocument   = new fActiveXObject("Microsoft.XMLDOM");
 		oDocument.async				= false;

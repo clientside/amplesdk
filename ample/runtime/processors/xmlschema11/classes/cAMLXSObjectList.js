@@ -17,7 +17,7 @@ cAMLXSObjectList.prototype.item	= function(nIndex) {
 	// Validate arguments
 	fAML_validate(arguments, [
 		["node",	cNumber]
-	], "item");
+	]);
 
 	return nIndex < this.length ? this[nIndex] : null;
 };

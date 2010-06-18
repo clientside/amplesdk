@@ -17,7 +17,7 @@ cAMLXSNamespaceItemList.prototype.item	= function(nIndex) {
 	// Validate arguments
 	fAML_validate(arguments, [
 		["index",	cNumber]
-	], "item");
+	]);
 
 	return nIndex < this.length ? this[nIndex] : null;
 };

@@ -69,7 +69,7 @@ oAML_document.$bookmark	= function(sHash) {
 	// Validate arguments
 	fAML_validate(arguments, [
 		["hash",		cString]
-	], "$bookmark");
+	]);
 
 	fAMLHistory_bookmark(sHash);
 };

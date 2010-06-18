@@ -89,6 +89,12 @@ function fAML_validate(aArguments, aParameters, sFunction) {
 	try {
 		fCaller	= fAML_validate.caller.caller;
 	} catch (oError) {}
+//->Debug
+	var sFunction	= "anonymous";
+	try {
+		sFunction	= cString(fAML_validate.caller).match(/function ([^ ]+)\(/)[1];
+	} catch (oError) {}
+//<-Debug
 
 	// Iterate over parameters list
 	for (var nIndex = 0, nLength = aArguments.length, aParameter, oArgument, bValid; aParameter = aParameters[nIndex]; nIndex++) {
