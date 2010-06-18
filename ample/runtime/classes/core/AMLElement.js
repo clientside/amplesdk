@@ -155,10 +155,15 @@ function fAMLElement_removeChild(oParent, oNode)
 		fAML_unregister(oNode);
 
 	// Remove from DOM
-	var oChild, oGateway;
+	var oGateway, oChild;
 	if (oParent.nodeType == cAMLNode.ELEMENT_NODE)
-		if ((oChild = oNode.$getContainer()) && oChild.parentNode)
-			oChild.parentNode.removeChild(oChild);
+		if ((oChild = oNode.$getContainer()) && (oGateway = oParent.$getContainer("gateway") || oParent.$getContainer()))
+			if (oChild = (function() {
+				for (; oChild = oChild.parentNode;)
+					if (oChild.parentNode == oGateway)
+						return oChild;
+			}()))
+				oGateway.removeChild(oChild);
 
 	return oNode;
 };
