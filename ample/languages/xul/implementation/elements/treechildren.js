@@ -17,7 +17,7 @@ cXULElement_treechildren.prototype	= new cXULElement;
 cXULElement_treechildren.prototype.tree	= null;
 
 // Public Methods
-cXULElement_treechildren.prototype.refresh	= function() {
+cXULElement_treechildren.prototype.reflow	= function() {
     var nPrimaryCol = this.tree.head._getPrimaryColIndex();
     if (nPrimaryCol ==-1)
         return;

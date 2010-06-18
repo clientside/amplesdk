@@ -12,6 +12,7 @@
 	// managers
 	$aFiles[]	= "implementation/managers/oXULCommandDispatcher.js";
     $aFiles[]	= "implementation/managers/oXULPopupManager.js";
+    $aFiles[]	= "implementation/managers/oXULReflowManager.js";
     $aFiles[]	= "implementation/managers/oXULWindowManager.js";
 
     // elements

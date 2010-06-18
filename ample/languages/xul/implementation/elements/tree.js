@@ -42,7 +42,7 @@ cXULElement_tree.prototype.ensureRowIsVisible    = function(nIndex) {
 
 cXULElement_tree.prototype.refresh   = function() {
     if (this.body && this.body.children)
-        this.body.children.refresh();
+        this.body.children.schedule();
 };
 
 // Class Events Hadlers

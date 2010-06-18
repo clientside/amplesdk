@@ -33,7 +33,7 @@ cXULElement.prototype.$mapAttribute	= function(sName, sValue)
 	                oElementDOM.parentNode.parentNode.style.display    =(sValue == "true" ? "none" : "");
 
 	            // Update flexible parameters
-	            this.parentNode.refresh();
+	            oXULReflowManager.reflow(this.parentNode);
 	        }
 	        // hide the container
 	        oElementDOM.style.display   =(sValue == "true" ? "none" : "");
@@ -48,7 +48,7 @@ cXULElement.prototype.$mapAttribute	= function(sName, sValue)
 		case "flex":
 	        this.attributes[sName]	= sValue;
 	        if (this.parentNode.viewType == cXULElement.VIEW_TYPE_BOXED)
-	            this.parentNode.refresh();
+	            oXULReflowManager.reflow(this.parentNode);
 			break;
 
 		case "pack":
@@ -98,7 +98,7 @@ cXULElement.prototype.$isAccessible	= function()
 	return this.getAttribute("disabled") != "true";
 };
 
-cXULElement.prototype.refresh   = function()
+cXULElement.prototype.reflow   = function()
 {
 	var nLength	= this.childNodes.length;
     if (nLength)

@@ -47,7 +47,7 @@ cXULElement_treecell.handlers	= {
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		var oChildren	= this.parentNode.parentNode.parentNode;
 		if (oChildren.tree.head && oChildren.tree.head._getPrimaryColIndex() == this.parentNode.childNodes.$indexOf(this))
-			oChildren.refresh();
+			oXULReflowManager.schedule(oChildren);
 	}
 };
 

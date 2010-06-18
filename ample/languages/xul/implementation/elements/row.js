@@ -22,7 +22,7 @@ cXULElement_row.handlers	= {
 		}
 	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
-		this.refresh();
+		oXULReflowManager.schedule(this);
 	}
 };
 

@@ -16,10 +16,6 @@ ample.domConfig.setNamespace("http://www.mozilla.org/keymaster/gatekeeper/there.
 ample.addEventListener("load",		function(oEvent) {
 	var sName, sValue;
 	for (var nIndex = 0, aElements = oEvent.target.getElementsByTagNameNS(oXULNamespace.namespaceURI, "*"), oElement; oElement = aElements[nIndex]; nIndex++) {
-   		// refresh boxed elements
-   		if (oElement.viewType == cXULElement.VIEW_TYPE_BOXED)
-			oElement.refresh();
-
 		switch (oElement.localName) {
 			case "broadcaster":	// broadcast
 			case "command":		// re-send commands
