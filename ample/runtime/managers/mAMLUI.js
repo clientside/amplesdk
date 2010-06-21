@@ -36,11 +36,12 @@ function fAMLUI_blur(oEvent) {
 };
 
 fAMLEventTarget_addEventListener(oAML_document, "focus",	fAMLUI_focus,		true);
-fAMLEventTarget_addEventListener(oAML_document, "blur",	fAMLUI_blur,		true);
+fAMLEventTarget_addEventListener(oAML_document, "blur",		fAMLUI_blur,		true);
 
 // :drag pseudo-class
 function fAMLUI_dragStart(oEvent) {
-	fAMLElement_setPseudoClass(oEvent.target, "drag", true);
+	if (!oEvent.defaultPrevented)
+		fAMLElement_setPseudoClass(oEvent.target, "drag", true);
 };
 
 function fAMLUI_dragEnd(oEvent) {
@@ -65,7 +66,8 @@ fAMLEventTarget_addEventListener(oAML_document, "dragleave",	fAMLUI_dragLeave,	t
 
 // :resize pseudo-class
 function fAMLUI_resizeStart(oEvent) {
-	fAMLElement_setPseudoClass(oEvent.target, "resize", true);
+	if (!oEvent.defaultPrevented)
+		fAMLElement_setPseudoClass(oEvent.target, "resize", true);
 };
 
 function fAMLUI_resizeEnd(oEvent) {
