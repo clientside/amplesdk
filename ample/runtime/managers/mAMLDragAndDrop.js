@@ -366,8 +366,8 @@ cAMLDragEvent.prototype.getModifierState	= function(sModifier)
 };
 
 //
-var cAMLDataTransfer	= function(){
-	this.types	= [];
+var cAMLDataTransfer	= function() {
+	this.types	= new cAMLStringList;
 };
 cAMLDataTransfer.prototype.dropEffect		= "none";			// copy|move|link|position|none (dragenter|dragover)
 cAMLDataTransfer.prototype.effectAllowed	= "uninitialized";	// copy|move|link|copyLink|copyMove|linkMove|all|none|uninitialized=all (dragstart|dragenter|dragover)
