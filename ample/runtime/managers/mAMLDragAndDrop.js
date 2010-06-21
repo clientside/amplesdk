@@ -16,6 +16,7 @@ var	nAMLDragAndDrop_STATE_RELEASED	= 0,	// Constants
 	aAMLDragAndDrop_dropTargets	= [],
 	oAMLDragAndDrop_dropTarget	= null,
 	oAMLDragAndDrop_dataTransfer= null,
+	oAMLDragAndDrop_image	= null,
 
 	nAMLDragAndDrop_mouseX,					// Variables
 	nAMLDragAndDrop_mouseY,
@@ -134,6 +135,10 @@ function fAMLDragAndDrop_onMouseUp(oEvent)
 
 		//
 		fAMLCapture_releaseCapture(oAMLDragAndDrop_dragSource);
+
+		// Hide drag image
+		oAMLDragAndDrop_image.innerHTML	= '';
+		oAMLDragAndDrop_image.style.display	= "none";
 	}
 
 	oAMLDragAndDrop_dragSource	= null;
@@ -159,6 +164,12 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
     	// Initialize DataTransfer object
 		oAMLDragAndDrop_dataTransfer	= new cAMLDataTransfer;
 
+		// Initialize drag image container
+		if (!oAMLDragAndDrop_image) {
+			oAMLDragAndDrop_image	= oUADocument.body.appendChild(oUADocument.createElement("div"));
+			oAMLDragAndDrop_image.style.cssText	= 'z-index:1000;position:absolute;display:none';
+		}
+
 		// fire ondragstart event
 		var oEventDragStart	= new cAMLDragEvent;
 		oEventDragStart.initDragEvent("dragstart", true, true, window, null, oAMLDragAndDrop_dataTransfer);
@@ -175,8 +186,10 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
 		fAML_toggleSelect(false);
 		if (bTrident)
 			oElementDOM.setCapture();
-
 		fAMLCapture_setCapture(oAMLDragAndDrop_dragSource, true);
+
+		// Show drag image
+		oAMLDragAndDrop_image.style.display	= '';
 
 		// fill in array with drag targets
 		var aElements	= fAMLElement_getElementsByTagName(oAML_modalNode || this.documentElement, '*');
@@ -299,6 +312,11 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
 	    oStyle.top	= nAMLDragAndDrop_offsetTop + (oEvent.clientY - nAMLDragAndDrop_mouseY) + 'px';
 	}
 
+    if (oAMLDragAndDrop_image) {
+    	oAMLDragAndDrop_image.style.left	= oEvent.clientX + "px";
+    	oAMLDragAndDrop_image.style.top		= oEvent.clientY + "px";
+    }
+
 	// Opera doesn't support userSelect, so manual clearing of ranges is used
 	if (!bTrident)
 		window.getSelection().removeAllRanges();
@@ -368,7 +386,9 @@ cAMLDataTransfer.prototype.getData	= function(sFormat) {
 };
 
 cAMLDataTransfer.prototype.setDragImage	= function(oImage, nLeft, nTop) {
-
+	oAMLDragAndDrop_image.appendChild(oImage);
+	oAMLDragAndDrop_image.style.marginLeft	= fIsNaN(nLeft) ? 0 : nLeft + "px";
+	oAMLDragAndDrop_image.style.marginTop	= fIsNaN(nTop) ? 0 : nTop + "px";
 };
 
 cAMLDataTransfer.prototype.addElement		= function(oElement) {
