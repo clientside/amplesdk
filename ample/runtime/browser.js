@@ -167,7 +167,8 @@ function fOnMouseWheel(oEvent) {
 
 	// if modal, do not dispatch event
 	if (oAML_captureNode && !fIsDescendant(oTarget, oAML_captureNode)) {
-		oTarget	= oPseudo	= oAML_captureNode;
+		oTarget	= oAML_captureNode;
+		oPseudo	= oTarget.$getContainer();
 		bPrevent	= true;
 	}
 
@@ -195,8 +196,10 @@ function fOnKeyDown(oEvent) {
 		oEventKeyDown	= new cAMLKeyboardEvent;
 
 	// if modal, do not dispatch event
-	if (oAML_captureNode && !fIsDescendant(oTarget, oAML_captureNode))
-		oTarget = oPseudo	= oAML_captureNode;
+	if (oAML_captureNode && !fIsDescendant(oTarget, oAML_captureNode)) {
+		oTarget	= oAML_captureNode;
+		oPseudo	= oTarget.$getContainer();
+	}
 
     // Init KeyDown event
     oEventKeyDown.initKeyboardEvent("keydown", true, true, window, fGetKeyboardEventIdentifier(oEvent), null, fGetKeyboardEventModifiersList(oEvent));
@@ -222,8 +225,10 @@ function fOnKeyPress(oEvent)
 		oEventTextInput	= new cAMLTextEvent;
 
 	// if modal, do not dispatch event
-	if (oAML_captureNode && !fIsDescendant(oTarget, oAML_captureNode))
-		oTarget = oPseudo	= oAML_captureNode;
+	if (oAML_captureNode && !fIsDescendant(oTarget, oAML_captureNode)) {
+		oTarget	= oAML_captureNode;
+		oPseudo	= oTarget.$getContainer();
+	}
 
 	if (bPresto && bKeyDown)
 		fOnKeyDown(oEvent);
@@ -256,8 +261,10 @@ function fOnKeyUp(oEvent) {
 		oEventKeyUp	= new cAMLKeyboardEvent;
 
 	// if modal, do not dispatch event
-	if (oAML_captureNode && !fIsDescendant(oTarget, oAML_captureNode))
-		oTarget	= oPseudo	= oAML_captureNode;
+	if (oAML_captureNode && !fIsDescendant(oTarget, oAML_captureNode)) {
+		oTarget	= oAML_captureNode;
+		oPseudo	= oTarget.$getContainer();
+	}
 
     // Init KeyUp event
 	oEventKeyUp.initKeyboardEvent("keyup", true, true, window, fGetKeyboardEventIdentifier(oEvent), null, fGetKeyboardEventModifiersList(oEvent));
@@ -284,8 +291,10 @@ function fOnMouseOver(oEvent) {
 		return;
 
 	// if modal, do not dispatch event
-	if (oAML_captureNode && !fIsDescendant(oTarget, oAML_captureNode))
-		oTarget	= oPseudo	= oAML_captureNode;
+	if (oAML_captureNode && !fIsDescendant(oTarget, oAML_captureNode)) {
+		oTarget	= oAML_captureNode;
+		oPseudo	= oTarget.$getContainer();
+	}
 
 	// TODO: Remove this dependency from here
 	if (!(nAMLDragAndDrop_dragState || nAMLResize_resizeState)) {
@@ -352,8 +361,10 @@ function fOnMouseMove(oEvent) {
 		oEventMouseEnter;
 
 	//
-	if (oAML_captureNode && !fIsDescendant(oTarget, oAML_captureNode))
-		oTarget	= oPseudo	= oAML_captureNode;
+	if (oAML_captureNode && !fIsDescendant(oTarget, oAML_captureNode)) {
+		oTarget	= oAML_captureNode;
+		oPseudo	= oTarget.$getContainer();
+	}
 
 	// TODO: Remove this dependency from here
 	if (!(nAMLDragAndDrop_dragState || nAMLResize_resizeState)) {
@@ -417,7 +428,8 @@ function fOnContextMenu(oEvent) {
 
 	// if modal, do not dispatch event
 	if (oAML_captureNode && !fIsDescendant(oTarget, oAML_captureNode)) {
-		oTarget	= oPseudo	= oAML_captureNode;
+		oTarget	= oAML_captureNode;
+		oPseudo	= oTarget.$getContainer();
 		bPrevent	= true;
 	}
 
@@ -456,7 +468,8 @@ function fOnClick(oEvent) {
 
 	// if modal, do not dispatch event
 	if (oAML_captureNode && !fIsDescendant(oTarget, oAML_captureNode)) {
-		oTarget	= oPseudo	= oAML_captureNode;
+		oTarget	= oAML_captureNode;
+		oPseudo	= oTarget.$getContainer();
 		bPrevent	= true;
 	}
 	// Init Click event
@@ -486,8 +499,10 @@ function fOnDblClick(oEvent) {
 		oEventMouseUp;
 
 	// if modal, do not dispatch event
-	if (oAML_captureNode && !fIsDescendant(oTarget, oAML_captureNode))
-		oTarget	= oPseudo	= oAML_captureNode;
+	if (oAML_captureNode && !fIsDescendant(oTarget, oAML_captureNode)) {
+		oTarget	= oAML_captureNode;
+		oPseudo	= oTarget.$getContainer();
+	}
 
 	// Init DblClick event
     oEventDblClick.initMouseEvent("dblclick", true, true, window, oEvent.detail || 2, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, oEvent.metaKey, nButton, null);
@@ -531,7 +546,8 @@ function fOnMouseDown(oEvent) {
 
 	// change target if some element is set to receive capture
 	if (oAML_captureNode && !fIsDescendant(oTarget, oAML_captureNode)) {
-		oTarget	= oPseudo	= oAML_captureNode;
+		oTarget	= oAML_captureNode;
+		oPseudo	= oTarget.$getContainer();
 		bCapture	= true;
 	}
 
@@ -575,8 +591,10 @@ function fOnMouseUp(oEvent) {
 		oEventMouseUp	= new cAMLMouseEvent;
 
 	// change target if some element is set to receive capture
-	if (oAML_captureNode && !fIsDescendant(oTarget, oAML_captureNode))
-		oTarget	= oPseudo	= oAML_captureNode;
+	if (oAML_captureNode && !fIsDescendant(oTarget, oAML_captureNode)) {
+		oTarget	= oAML_captureNode;
+		oPseudo	= oTarget.$getContainer();
+	}
 
 	// Init MouseUp event
     oEventMouseUp.initMouseEvent("mouseup", true, true, window, oEvent.detail || 1, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, oEvent.metaKey, nButton, null);
