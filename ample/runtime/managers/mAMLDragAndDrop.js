@@ -386,9 +386,16 @@ cAMLDataTransfer.prototype.getData	= function(sFormat) {
 };
 
 cAMLDataTransfer.prototype.setDragImage	= function(oImage, nLeft, nTop) {
+	// Validate arguments
+	fAML_validate(arguments, [
+		["image",	cXMLElement],
+		["left",	cNumber,	true],
+		["top",		cNumber,	true]
+	]);
+
 	oAMLDragAndDrop_image.appendChild(oImage);
-	oAMLDragAndDrop_image.style.marginLeft	= fIsNaN(nLeft) ? 0 : nLeft + "px";
-	oAMLDragAndDrop_image.style.marginTop	= fIsNaN(nTop) ? 0 : nTop + "px";
+	oAMLDragAndDrop_image.style.marginLeft	= (nLeft || 0) + "px";
+	oAMLDragAndDrop_image.style.marginTop	= (nTop || 0) + "px";
 };
 
 cAMLDataTransfer.prototype.addElement		= function(oElement) {
