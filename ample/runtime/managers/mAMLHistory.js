@@ -32,6 +32,12 @@ function fAMLHistory_bookmark(sHash) {
 };
 
 function fAMLHistory_onTimeout() {
+	fAMLHistory_onHashChange();
+	//
+	nAMLHistory_timeout	= fSetTimeout(fAMLHistory_onTimeout, 20);
+};
+
+function fAMLHistory_onHashChange() {
 	var aUrl	= oUALocation.href.split('#'),
 		sUrl	= aUrl[0],
 		sHash	= aUrl[1] || '';
@@ -47,30 +53,35 @@ function fAMLHistory_onTimeout() {
 				fAMLNode_dispatchEvent(oAML_document, oEvent);
 			}
 			//
-			sAMLHistory_prev = sHash;
-			sAMLHistory_new	= null;
+			sAMLHistory_prev	= sHash;
+			sAMLHistory_new		= null;
 //		}
 	}
-
-	nAMLHistory_timeout	= fSetTimeout(fAMLHistory_onTimeout, 20);
 };
 
 function fAMLHistory_onLoad(oEvent) {
-	var sHash	= oUALocation.hash.replace(/^#/, '');
-	if (bTrident) {
-		var oElement	= oUADocument.createElement("iframe");
-		oElement.style.display	= "none";
-		oUADocument.body.appendChild(oElement);
-		oAMLHistory_window	= oElement.contentWindow;
-		if (oAMLConfiguration_values["ample-module-history-fix"])
-			fAMLHistory_bookmark(sHash);
+	if (bTrident && nVersion > 7)
+		fAttachEvent(window, "hashchange", fAMLHistory_onHashChange);
+	else {
+		var sHash	= oUALocation.hash.replace(/^#/, '');
+		if (bTrident) {
+			var oElement	= oUADocument.createElement("iframe");
+			oElement.style.display	= "none";
+			oUADocument.body.appendChild(oElement);
+			oAMLHistory_window	= oElement.contentWindow;
+			if (oAMLConfiguration_values["ample-module-history-fix"])
+				fAMLHistory_bookmark(sHash);
+		}
+		sAMLHistory_prev		= sHash;	// set to null to get initial 'hashchange' event
+		nAMLHistory_timeout		= fSetTimeout(fAMLHistory_onTimeout, 20);
 	}
-	sAMLHistory_prev		= sHash;	// set to null to get initial 'hashchange' event
-	nAMLHistory_timeout		= fSetTimeout(fAMLHistory_onTimeout, 20);
 };
 
 function fAMLHistory_onUnLoad(oEvent) {
-	fClearTimeout(nAMLHistory_timeout);
+	if (bTrident && nVersion > 7)
+		fDetachEvent(window, "hashchange", fAMLHistory_onHashChange);
+	else
+		fClearTimeout(nAMLHistory_timeout);
 };
 
 //
