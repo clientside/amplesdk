@@ -15,10 +15,10 @@
 		<methods>
 			<method name="$bookmark" type="Void">
 				<arguments>
-					<argument name="sMarker" type="String" required="true">
+					<argument name="sHash" type="String" required="true">
 						<description>
 							<locale>
-								Marker value.
+								Hash value.
 							</locale>
 							<locale xml:lang="ru">
 								Значение метки.
@@ -28,7 +28,7 @@
 				</arguments>
 				<description>
 					<locale>
-						Adds a page with specifyed marker (as hash) into the browser history.
+						Adds a page with specifyed marker (as hash) into the browser history. The <link type="event">hashchange</link> event is not fired at this point.
 					</locale>
 					<locale xml:lang="ru">
 						Добавляет страницу с указанной меткой (которая является хэшем) в историю навигации браузера.
@@ -39,14 +39,13 @@
 		<properties />
 		<attributes />
 		<events>
-			<event name="hashchange" group="UIEvent" cancelable="false" bubbles="false">
+			<event name="hashchange" group="HashChangeEvent" cancelable="false" bubbles="false">
 				<description>
 					<locale>
-						Fires on the document when user navigates browser history. Property <link type="property">detail</link> contains value of marker (hash), user navigated to.
+						Fires on the document when user navigates browser history. Please note this event is not fired when <link type="method">$bookmark</link> method is called.
 					</locale>
 					<locale xml:lang="ru">
 						Загорается на объекте <link type="object">AMLDocument</link>, когда пользователь перемещается по истории навигации браузера.
-						Свойство <link type="property">detail</link> содержит значение метки (хэша), на которую пользователь перешел.
 					</locale>
 				</description>
 			</event>

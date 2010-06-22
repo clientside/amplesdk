@@ -36,6 +36,7 @@
 					<node title="AMLMutationEvent" url="ample/runtime/AMLMutationEvent.xml"/>
 					<node title="AMLResizeEvent" url="ample/runtime/AMLResizeEvent.xml"/>
 					<node title="AMLDragEvent" url="ample/runtime/AMLDragEvent.xml"/>
+					<node title="AMLHashChangeEvent" url="ample/runtime/AMLHashChangeEvent.xml"/>
 				</node>
 				<node title="DOM Load/Save">
 					<node title="LSReader" xurl="ample/runtime/LSReader.xml"/>
