@@ -87,6 +87,8 @@ fAMLExporter_export(cAMLDataTransfer,	"AMLDataTransfer");
 fAMLExporter_export(cAMLDragEvent,		"AMLDragEvent");
 // Resize
 fAMLExporter_export(cAMLResizeEvent,	"AMLResizeEvent");
+// History
+fAMLExporter_export(cAMLHashChangeEvent,"AMLHashChangeEvent");
 // Selectors
 fAMLExporter_export(cAMLNodeSelector,	"AMLNodeSelector");
 

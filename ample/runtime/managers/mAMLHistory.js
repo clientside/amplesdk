@@ -7,15 +7,19 @@
  *
  */
 
-var sAMLHistory_hash		= null,		// Properties
+var sAMLHistory_prev	= null,		// Properties
+	sAMLHistory_new		= null,
 	nAMLHistory_timeout		= null,
 	oAMLHistory_window		= null;
 
 // Private Functions
 function fAMLHistory_bookmark(sHash) {
 	// Check if we do not submit the same page for second time
-	if (sAMLHistory_hash == sHash)
+	if (sAMLHistory_prev == sHash)
 		return;
+
+	//
+	sAMLHistory_new	= sHash;
 
 	if (oAMLHistory_window)	{
 		var oDocument	= oAMLHistory_window.document;
@@ -28,18 +32,23 @@ function fAMLHistory_bookmark(sHash) {
 };
 
 function fAMLHistory_onTimeout() {
-	var sHash	= oUALocation.hash.replace(/^#/, '');
-	if (sAMLHistory_hash != sHash) {
+	var aUrl	= oUALocation.href.split('#'),
+		sUrl	= aUrl[0],
+		sHash	= aUrl[1] || '';
+	if (sAMLHistory_prev != sHash) {
 		// Manual input was conducted in Internet Explorer
 //		if (oAMLHistory_window && oAMLHistory_window.hash && sHash != oAMLHistory_window.hash)
 //			fAMLHistory_bookmark(sHash);
 //		else {
-			sAMLHistory_hash = sHash;
-
 			// dispatch hashchange event
-			var oEvent	= new cAMLUIEvent;
-			oEvent.initUIEvent("hashchange", false, false, window, sHash);
-			fAMLNode_dispatchEvent(oAML_document, oEvent);
+			if (sAMLHistory_new != sHash) {
+				var oEvent	= new cAMLHashChangeEvent;
+				oEvent.initHashChangeEvent("hashchange", true, false, sUrl + (sAMLHistory_prev ? '#' : '') + sAMLHistory_prev, sUrl + (sHash ? '#' : '') + sHash);
+				fAMLNode_dispatchEvent(oAML_document, oEvent);
+			}
+			//
+			sAMLHistory_prev = sHash;
+			sAMLHistory_new	= null;
 //		}
 	}
 
@@ -56,12 +65,28 @@ function fAMLHistory_onLoad(oEvent) {
 		if (oAMLConfiguration_values["ample-module-history-fix"])
 			fAMLHistory_bookmark(sHash);
 	}
-	sAMLHistory_hash		= sHash;	// set to null to get initial 'hashchange' event
+	sAMLHistory_prev		= sHash;	// set to null to get initial 'hashchange' event
 	nAMLHistory_timeout		= fSetTimeout(fAMLHistory_onTimeout, 20);
 };
 
 function fAMLHistory_onUnLoad(oEvent) {
 	fClearTimeout(nAMLHistory_timeout);
+};
+
+//
+function cAMLHashChangeEvent() {
+
+};
+cAMLHashChangeEvent.prototype	= new cAMLEvent;
+//
+cAMLHashChangeEvent.prototype.oldURL	= null;
+cAMLHashChangeEvent.prototype.newURL	= null;
+
+cAMLHashChangeEvent.prototype.initHashChangeEvent	= function(sType, bCanBubble, bCancelable, sOldUrl, sNewUrl) {
+	this.initEvent(sType, bCanBubble, bCancelable);
+
+	this.oldURL	= sOldUrl;
+	this.newURL	= sNewUrl;
 };
 
 // Attaching to implementation
@@ -75,5 +100,5 @@ oAML_document.$bookmark	= function(sHash) {
 };
 
 // Registering Event Handlers
-fAMLEventTarget_addEventListener(oAML_document, "load",	fAMLHistory_onLoad,		false);
+fAMLEventTarget_addEventListener(oAML_document, "load",		fAMLHistory_onLoad,		false);
 fAMLEventTarget_addEventListener(oAML_document, "unload",	fAMLHistory_onUnLoad,	false);
