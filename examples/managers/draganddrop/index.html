@@ -35,6 +35,13 @@
 				border-style: dashed;
 			}
 		</style>
+		<script>
+		var oImage	= new Image;
+		oImage.src	= "../../languages/xul/icon.gif";
+		function setDragImage(oEvent) {
+			oEvent.dataTransfer.setDragImage(oImage, 10, 10);
+		}
+		</script>
 	</head>
 	<body>
 		<script type="application/ample+xml"
@@ -42,7 +49,7 @@
 			xmlns:aml="http://www.amplesdk.com/ns/aml">
 			<h3 style="clear:both">Moving</h3>
 			<x:div
-				xondrop="if (event.relatedTarget.parentNode != event.target) event.target.appendChild(event.relatedTarget)"
+				ondragstart="setDragImage(event)"
 				ondragenter="event.dataTransfer.dropEffect = 'move'">
 				<x:div aml:droppable="true" class="droppable">
 					<x:div aml:draggable="true" class="draggable">
@@ -59,7 +66,6 @@
 
 			<h3 style="clear:both">Copying</h3>
 			<x:div
-				xondrop="if (event.relatedTarget.parentNode != event.target) event.target.appendChild(event.relatedTarget)"
 				ondragenter="event.dataTransfer.dropEffect = 'copy'">
 				<x:div aml:droppable="true" class="droppable">
 					<x:div aml:draggable="true" class="draggable">
@@ -76,7 +82,6 @@
 
 			<h3 style="clear:both">Positioning</h3>
 			<x:div
-				xondrop="if (event.relatedTarget.parentNode != event.target) event.target.appendChild(event.relatedTarget)"
 				ondragenter="event.dataTransfer.dropEffect = 'position'">
 				<x:div aml:droppable="true" class="droppable">
 					<x:div aml:draggable="true" class="draggable">
