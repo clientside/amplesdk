@@ -44,6 +44,7 @@ FBL.ns(function() { with (FBL) {
 				//
 				var wWindow	= context.window.wrappedJSObject,
 					panel	= context.getPanel(panelName),
+					started	= new Date;
 					element = panel.panelNode.appendChild(panel.panelNode.ownerDocument.createElement("div")),
 					message	= "Ample SDK was not found";
 
@@ -53,7 +54,7 @@ FBL.ns(function() { with (FBL) {
 						message+= " @" + oEvent.attrName + ", newValue " + oEvent.newValue + ", prevValue " + oEvent.prevValue;
 					else
 					if (oEvent.type == "readystatechange")
-						message+= " ample.readyState: " + oEvent.target.readyState;
+						message+= " ample.readyState: " + oEvent.target.readyState + " (+" + (new Date - started) + "ms.)";
 
 					var div	= element.appendChild(element.ownerDocument.createElement("div"));
 					div.style.borderBottom	= "solid 1px silver";
@@ -72,11 +73,15 @@ FBL.ns(function() { with (FBL) {
 					wWindow.ample.addEventListener("DOMNodeInserted", fUpdate, true);
 					wWindow.ample.addEventListener("DOMNodeRemoved", fUpdate, true);
 					wWindow.ample.addEventListener("DOMAttrModified", fUpdate, true);
+					// UI Events
 					wWindow.ample.addEventListener("DOMActivate", fUpdate, true);
 					wWindow.ample.addEventListener("focus", fUpdate, true);
 					wWindow.ample.addEventListener("blur", fUpdate, true);
+					//
 					wWindow.ample.addEventListener("unload", fUpdate, true);
 					wWindow.ample.addEventListener("load", fUpdate, true);
+					//
+					wWindow.ample.addEventListener("hashchange", fUpdate, true);
 
 					message	= "Running " +(wWindow.ample.domConfig ? wWindow.ample.domConfig.getParameter("ample-version") : 'unknown (old)');
 				}
