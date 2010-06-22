@@ -36,13 +36,18 @@ var nAMLDocument_index	= 0;
 // Public Methods
 cAMLDocument.prototype.createAttribute	= function(sName)
 {
-	return this.createAttributeNS(null, sName);
+	// Validate arguments
+	fAML_validate(arguments, [
+		["name",	cString]
+	]);
+
+	return fAMLDocument_createAttributeNS(this, null, sName);
 };
 
-//->Source
-/*
 function fAMLDocument_createAttributeNS(oDocument, sNameSpaceURI, sQName)
 {
+//->Source
+/*
 	var oNode		= new cAMLAttr,
 		aQName		= sQName.split(':'),
 		sLocalName	= aQName.pop(),
@@ -58,9 +63,10 @@ function fAMLDocument_createAttributeNS(oDocument, sNameSpaceURI, sQName)
     oNode.value			= oNode.nodeValue;
 
 	return oNode;
-};
 */
 //<-Source
+	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+};
 
 cAMLDocument.prototype.createAttributeNS	= function(sNameSpaceURI, sQName)
 {
@@ -69,13 +75,8 @@ cAMLDocument.prototype.createAttributeNS	= function(sNameSpaceURI, sQName)
 		["namespaceURI",	cString, false, true],
 		["QName",			cString]
 	]);
-//->Source
-/*
-	return fAMLDocument_createAttributeNS(this, sNameSpaceURI, sQName);
-*/
-//<-Source
 
-	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+	return fAMLDocument_createAttributeNS(this, sNameSpaceURI, sQName);
 };
 
 function fAMLDocument_createTextNode(oDocument, sData)
