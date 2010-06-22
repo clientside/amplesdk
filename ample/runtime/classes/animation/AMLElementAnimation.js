@@ -170,7 +170,7 @@ cAMLElement.prototype.$play	= function(sParams, nDuration, vType, fHandler, sPse
 		["duration",	cNumber],
 		["type",		cObject, true],
 		["handler",		cFunction, true],
-		["pseudo",		cString, true]
+		["pseudoElement",	cString, true]
 	]);
 
 	return fAMLElementAnimation_play(this, sParams, nDuration, vType, fHandler, sPseudo);
