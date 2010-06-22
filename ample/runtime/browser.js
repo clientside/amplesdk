@@ -215,6 +215,13 @@ function fOnKeyDown(oEvent) {
 
 function fOnKeyPress(oEvent)
 {
+	// Opera doesn't repeat keydown, but does repeat keypress
+	if (bPresto && bKeyDown)
+		fOnKeyDown(oEvent);
+
+    // Fix for repeated keydown in presto
+    bKeyDown	= true;
+
 	// Filter out non-alphanumerical keypress events
 	if (oEvent.ctrlKey || oEvent.altKey || oEvent.keyCode in hAMLKeyIdentifiers)
 		return;
@@ -230,9 +237,6 @@ function fOnKeyPress(oEvent)
 		oPseudo	= oTarget.$getContainer();
 	}
 
-	if (bPresto && bKeyDown)
-		fOnKeyDown(oEvent);
-
     // Init KeyPress event
     oEventKeyPress.initKeyboardEvent("keypress", true, true, window, fGetKeyboardEventIdentifier(oEvent), null, fGetKeyboardEventModifiersList(oEvent));
 	oEventKeyPress.$pseudoTarget	= oPseudo;
@@ -247,9 +251,6 @@ function fOnKeyPress(oEvent)
 		//
     	fAMLNode_dispatchEvent(oTarget, oEventTextInput);
     }
-
-    // Fix for repeated keydown in presto
-    bKeyDown	= true;
 
 	//
 	return fEventPreventDefault(oEvent, oEventKeyPress, oEventTextInput);
