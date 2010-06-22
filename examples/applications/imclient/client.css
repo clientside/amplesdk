@@ -9,6 +9,7 @@ xul|tree.contactlist {
 	background-repeat:	repeat-y;
 	background-color:	#EEEEEE;
 	background-position: -7px 0;
+	height: 100%;
 }
 /*
 xul|menupopup {
