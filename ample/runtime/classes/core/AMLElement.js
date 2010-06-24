@@ -157,9 +157,9 @@ function fAMLElement_removeChild(oParent, oNode)
 	// Remove from DOM
 	var oGateway, oChild;
 	if (oParent.nodeType == cAMLNode.ELEMENT_NODE)
-		if ((oChild = oNode.$getContainer()) && (oGateway = oParent.$getContainer("gateway") || oParent.$getContainer()))
+		if ((oChild = oNode.$getContainer()) && (oGateway = (oParent.$getContainer("gateway") || oParent.$getContainer())))
 			if (oChild = (function() {
-				for (; oChild = oChild.parentNode;)
+				for (; oChild; oChild = oChild.parentNode)
 					if (oChild.parentNode == oGateway)
 						return oChild;
 			}()))
