@@ -129,13 +129,16 @@
 			}
 			// App start
 			ample.addEventListener("load", function(oEvent) {
+				//
+				var oContainer	= ample.getElementById('container');
+				oContainer.addEventListener("load", onExampleLoad, false);
+				oContainer.addEventListener("unload", onExampleUnload, false);
+
 				loadExample(document.location.hash.replace(/^#/, '') || 'cameleon.xml');
 				this.removeEventListener(oEvent.type, arguments.callee, false);
 			}, false);
 		</script>
-		<script type="application/ample+xml" id="container"
-			onunload="onExampleUnload()"
-			onload="onExampleLoad()">
+		<script type="application/ample+xml" id="container">
 		</script>
  	</body>
 </html>
