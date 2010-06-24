@@ -10,7 +10,7 @@
 var cChartElement	= function(){};
 cChartElement.prototype	= new AMLElement;
 
-cChartElement.useVML	= !document.implementation || !document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1");
+cChartElement.useVML	= navigator.userAgent.match(/MSIE ([\d.]+)/) && RegExp.$1 < 9;
 
 cChartElement.setPath	= function(oElementDOM, sPath) {
 	if (!cChartElement.useVML) {

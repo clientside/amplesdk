@@ -10,7 +10,7 @@
 var cSVGElement	= function(){};
 cSVGElement.prototype	= new AMLElement;
 
-cSVGElement.useVML	= !document.implementation || !document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1");
+cSVGElement.useVML	= navigator.userAgent.match(/MSIE ([\d.]+)/) && RegExp.$1 < 9;
 
 if (cSVGElement.useVML) {
 	// Add namespace
