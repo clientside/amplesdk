@@ -121,6 +121,7 @@
 	$aFiles[]	= "runtime/managers/mAMLUI.js";
 	$aFiles[]	= "runtime/managers/mAMLCapture.js";
 	$aFiles[]	= "runtime/managers/mAMLHistory.js";
+	$aFiles[]	= "runtime/managers/mAMLTouch.js";
 
 	//
 	$aFiles[]	= "runtime/export.js";
