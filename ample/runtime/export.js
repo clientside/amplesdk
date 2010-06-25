@@ -57,6 +57,9 @@ fAMLExporter_export(cAMLKeyboardEvent,		"AMLKeyboardEvent");
 fAMLExporter_export(cAMLMouseEvent,			"AMLMouseEvent");
 fAMLExporter_export(cAMLMouseWheelEvent,	"AMLMouseWheelEvent");
 fAMLExporter_export(cAMLMutationEvent,		"AMLMutationEvent");
+// Touch/Gesture
+fAMLExporter_export(cAMLGestureEvent,		"AMLGestureEvent");
+fAMLExporter_export(cAMLTouchEvent,			"AMLTouchEvent");
 
 // DOM-Core
 fAMLExporter_export(cAMLStringList,			"AMLStringList");
@@ -76,6 +79,9 @@ fAMLExporter_export(cAMLImplementation,		"AMLImplementation");
 fAMLExporter_export(cAMLNodeList,			"AMLNodeList");
 fAMLExporter_export(cAMLProcessingInstruction,	"AMLProcessingInstruction");
 fAMLExporter_export(cAMLText,				"AMLText");
+// Touch/Gesture
+fAMLExporter_export(cAMLTouch,				"AMLTouch");
+fAMLExporter_export(cAMLTouchList,			"AMLTouchList");
 
 // Ample objects
 fAMLExporter_export(cAMLNamespace,		"AMLNamespace");

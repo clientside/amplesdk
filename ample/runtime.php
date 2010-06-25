@@ -13,6 +13,9 @@
 	$aFiles[]	= "runtime/classes/events/AMLMouseWheelEvent.js";
 	$aFiles[]	= "runtime/classes/events/AMLKeyboardEvent.js";
 	$aFiles[]	= "runtime/classes/events/AMLTextEvent.js";
+	// Touches
+	$aFiles[]	= "runtime/classes/events/AMLGestureEvent.js";
+	$aFiles[]	= "runtime/classes/events/AMLTouchEvent.js";
 
 	// DOM-Core
 	$aFiles[]	= "runtime/classes/core/AMLStringList.js";
@@ -32,6 +35,9 @@
 	$aFiles[]	= "runtime/classes/core/AMLText.js";
 	$aFiles[]	= "runtime/classes/core/AMLCDATASection.js";
 	$aFiles[]	= "runtime/classes/core/AMLComment.js";
+	// Touches
+	$aFiles[]	= "runtime/classes/core/AMLTouch.js";
+	$aFiles[]	= "runtime/classes/core/AMLTouchList.js";
 
 	// Selectors API
 	$aFiles[]	= "runtime/classes/selectors/AMLNodeSelector.js";

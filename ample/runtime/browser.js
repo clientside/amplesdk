@@ -324,6 +324,74 @@ function fOnMouseOver(oEvent) {
 	oAML_mouseNode	= oTarget;
 };
 
+// Touches
+function fGetTouches(oUATouches) {
+	var nIndex	= 0,
+		nLength	= oUATouches.length,
+		oTouches	= new cAMLTouchList,
+		oTouch,
+		oUATouch;
+	while (nIndex < nLength) {
+		oUATouch	= oUATouches.item(nIndex++);
+		oTouch		= new cAMLTouch;
+		oTouch.clientX	= oUATouch.clientX;
+		oTouch.clientY	= oUATouch.clientY;
+		oTouch.identifier	= oUATouch.identifier;
+		oTouch.pageX	= oUATouch.pageX;
+		oTouch.pageY	= oUATouch.pageY;
+		oTouch.screenX	= oUATouch.screenX;
+		oTouch.screenY	= oUATouch.screenY;
+		oTouches[oTouches.length++]	= oTouch;
+	}
+	return oTouches;
+};
+
+function fOnTouch(oEvent) {
+	var oTarget		= fGetEventTarget(oEvent),
+		oPseudo		= fGetUIEventPseudo(oEvent),
+		oEventTouch	= new cAMLTouchEvent;
+
+	// if modal, do not dispatch event
+	if (oAML_captureNode && !fIsDescendant(oTarget, oAML_captureNode)) {
+		oTarget	= oAML_captureNode;
+		oPseudo	= oTarget.$getContainer();
+	}
+
+    // Init Touch event
+	oEventTouch.initTouchEvent(oEvent.type, oEvent.bubbles, oEvent.cancelable, oEvent.view, oEvent.detail, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, oEvent.metaKey, fGetTouches(oEvent.touches), fGetTouches(oEvent.targetTouches), fGetTouches(oEvent.changedTouches), oEvent.scale, oEvent.rotation);
+	oEventTouch.$pseudoTarget	= oPseudo;
+
+	// do not dispatch event if outside modal
+    if (!oAML_modalNode || fIsDescendant(oTarget, oAML_modalNode))
+    	fAMLNode_dispatchEvent(oTarget, oEventTouch);
+
+	//
+	return fEventPreventDefault(oEvent, oEventTouch);
+};
+
+function fOnGesture(oEvent) {
+	var oTarget		= fGetEventTarget(oEvent),
+		oPseudo		= fGetUIEventPseudo(oEvent),
+		oEventGesture	= new cAMLGestureEvent;
+
+	// if modal, do not dispatch event
+	if (oAML_captureNode && !fIsDescendant(oTarget, oAML_captureNode)) {
+		oTarget	= oAML_captureNode;
+		oPseudo	= oTarget.$getContainer();
+	}
+
+    // Init Touch event
+	oEventGesture.initGestureEvent(oEvent.type, oEvent.bubbles, oEvent.cancelable, oEvent.view, oEvent.detail, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, oEvent.metaKey, oEvent.target, oEvent.scale, oEvent.rotation);
+	oEventGesture.$pseudoTarget	= oPseudo;
+
+	// do not dispatch event if outside modal
+    if (!oAML_modalNode || fIsDescendant(oTarget, oAML_modalNode))
+    	fAMLNode_dispatchEvent(oTarget, oEventGesture);
+
+	//
+	return fEventPreventDefault(oEvent, oEventGesture);
+};
+
 /*
 oUADocument.attachEvent('on' + "mouseover", function(oEvent) {
 	var oTarget		= fGetEventTarget(oEvent),
@@ -847,6 +915,15 @@ fAttachEvent(window, "load", function(oEvent) {
 	else
 		fAttachEvent(oUADocument.body, "DOMMouseScroll",	fOnMouseWheel);
 
+	// Register touch events
+	fAttachEvent(oUADocument, "touchstart",		fOnTouch);
+	fAttachEvent(oUADocument, "touchmove",		fOnTouch);
+	fAttachEvent(oUADocument, "touchend",		fOnTouch);
+	fAttachEvent(oUADocument, "touchcancel",	fOnTouch);
+	fAttachEvent(oUADocument, "gesturestart",	fOnGesture);
+	fAttachEvent(oUADocument, "gesturechange",	fOnGesture);
+	fAttachEvent(oUADocument, "gestureend",		fOnGesture);
+
 	// Initialize
 	// When running in Air, start in sync with onload
 	if (bWebKit && window.runtime)
@@ -881,6 +958,15 @@ fAttachEvent(window, "unload", function(oEvent) {
 	}
 	else
 		fDetachEvent(oUADocument.body, "DOMMouseScroll",	fOnMouseWheel);
+
+	// Unregister touch events
+	fDetachEvent(oUADocument, "touchstart",		fOnTouch);
+	fDetachEvent(oUADocument, "touchmove",		fOnTouch);
+	fDetachEvent(oUADocument, "touchend",		fOnTouch);
+	fDetachEvent(oUADocument, "touchcancel",	fOnTouch);
+	fDetachEvent(oUADocument, "gesturestart",	fOnGesture);
+	fDetachEvent(oUADocument, "gesturechange",	fOnGesture);
+	fDetachEvent(oUADocument, "gestureend",		fOnGesture);
 
 	// Unregister window event listeners
 	fDetachEvent(window, "resize", fOnResize);
