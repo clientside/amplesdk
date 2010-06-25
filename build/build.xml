@@ -4,7 +4,7 @@
 	// ANT Build Script for Ample SDK project
 	// =================================================================
 -->
-<project name="Project Build Script - Ample SDK" default="BUILD_AMPLESDK" basedir=".">
+<project name="Project Build Script - Ample SDK" default="BUILD" basedir=".">
 	<!-- Local properties -->
 	<property file="build.local.properties" />
 
@@ -33,7 +33,7 @@
 	<property name="copying.js" value="resources/COPYING.js" />
 
 	<!-- Master build -->
-	<target name="BUILD_AMPLESDK" description="Builds Ample SDK project">
+	<target name="BUILD" description="Builds Ample SDK project">
 
 		<delete dir="${target.dir}" failonerror="false"/>
 		<delete file="${target.zip}" />
@@ -41,11 +41,11 @@
 		<mkdir dir="${temp.dir}" />
 		<mkdir dir="${target.dir}" />
 
-		<antcall target="BUILD_AMPLESDK_AMPLE" />
-		<antcall target="BUILD_AMPLESDK_EXAMPLES" />
-		<antcall target="BUILD_AMPLESDK_REFERENCE" />
-		<antcall target="BUILD_AMPLESDK_PLUGINS" />
-		<antcall target="BUILD_AMPLESDK_LICENSE" />
+		<antcall target="BUILD_AMPLE" />
+		<antcall target="BUILD_EXAMPLES" />
+		<antcall target="BUILD_REFERENCE" />
+		<antcall target="BUILD_PLUGINS" />
+		<antcall target="BUILD_LICENSE" />
 
 		<copy file="${source.dir}/CONTRIBUTORS" tofile="${target.dir}/CONTRIBUTORS" />
 		<copy file="${source.dir}/COPYING" tofile="${target.dir}/COPYING" />
@@ -58,17 +58,17 @@
 	</target>
 
 	<!-- Ample -->
-	<target name="BUILD_AMPLESDK_AMPLE" unless="skip.ample">
+	<target name="BUILD_AMPLE" unless="skip.ample">
 		<property name="source.ample.dir" value="${source.dir}/ample/" />
 		<property name="target.ample.dir" value="${target.dir}/ample/" />
 
 		<mkdir dir="${target.ample.dir}" />
 
-		<antcall target="BUILD_AMPLESDK_AMPLE_RUNTIME" />
-		<antcall target="BUILD_AMPLESDK_AMPLE_LANGUAGES" />
+		<antcall target="BUILD_AMPLE_RUNTIME" />
+		<antcall target="BUILD_AMPLE_LANGUAGES" />
 	</target>
 
-	<target name="BUILD_AMPLESDK_AMPLE_RUNTIME" unless="skip.ample.runtime">
+	<target name="BUILD_AMPLE_RUNTIME" unless="skip.ample.runtime">
 		<property name="source.runtime.dir" value="${source.dir}/ample/runtime/" />
 		<property name="target.runtime.dir" value="${target.dir}/ample/" />
 		<property name="temp.runtime.dir" value="${temp.dir}/runtime/" />
@@ -76,19 +76,19 @@
 		<mkdir dir="${temp.runtime.dir}" />
 		<mkdir dir="${target.runtime.dir}" />
 
-		<antcall target="BUILD_AMPLESDK_AMPLE_RUNTIME_PREPARE" />
-		<antcall target="BUILD_AMPLESDK_AMPLE_RUNTIME_PRODUCTION" />
-		<antcall target="BUILD_AMPLESDK_AMPLE_RUNTIME_DEVELOPMENT" />
+		<antcall target="BUILD_AMPLE_RUNTIME_PREPARE" />
+		<antcall target="BUILD_AMPLE_RUNTIME_PRODUCTION" />
+		<antcall target="BUILD_AMPLE_RUNTIME_DEVELOPMENT" />
 
 		<!-- clean up temp dir -->
 		<delete dir="${temp.runtime.dir}" />
 	</target>
 
-	<target name="BUILD_AMPLESDK_AMPLE_RUNTIME_PREPARE">
+	<target name="BUILD_AMPLE_RUNTIME_PREPARE">
 		<echo message="Merging into: ${temp.runtime.dir}/runtime-raw.js" level="info"/>
 
-		<antcall target="BUILD_AMPLESDK_AMPLE_RUNTIME_PREPARE_CORE" />
-		<antcall target="BUILD_AMPLESDK_AMPLE_RUNTIME_PREPARE_LANGUAGES" />
+		<antcall target="BUILD_AMPLE_RUNTIME_PREPARE_CORE" />
+		<antcall target="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES" />
 
 		<concat destfile="${temp.runtime.dir}/runtime-raw.js" fixlastline="yes">
 			<filelist dir="${source.runtime.dir}/" files="
@@ -106,7 +106,7 @@
 		</replace>
 	</target>
 
-	<target name="BUILD_AMPLESDK_AMPLE_RUNTIME_PREPARE_CORE" unless="skip.ample.runtime.core">
+	<target name="BUILD_AMPLE_RUNTIME_PREPARE_CORE" unless="skip.ample.runtime.core">
 		<concat destfile="${temp.runtime.dir}/runtime-core.js" fixlastline="yes">
 			<!-- Helper Objects -->
 			<filelist dir="${source.runtime.dir}/classes/" files="
@@ -168,14 +168,14 @@
 		</concat>
 	</target>
 
-	<target name="BUILD_AMPLESDK_AMPLE_RUNTIME_PREPARE_LANGUAGES" unless="skip.ample.runtime.languages">
-		<antcall target="BUILD_AMPLESDK_AMPLE_RUNTIME_PREPARE_LANGUAGES_XINCLUDE" />
-		<antcall target="BUILD_AMPLESDK_AMPLE_RUNTIME_PREPARE_LANGUAGES_XMLEVENTS" />
-		<antcall target="BUILD_AMPLESDK_AMPLE_RUNTIME_PREPARE_LANGUAGES_SMIL" />
-		<antcall target="BUILD_AMPLESDK_AMPLE_RUNTIME_PREPARE_LANGUAGES_XMLSCHEMA" />
+	<target name="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES" unless="skip.ample.runtime.languages">
+		<antcall target="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES_XINCLUDE" />
+		<antcall target="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES_XMLEVENTS" />
+		<antcall target="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES_SMIL" />
+		<antcall target="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES_XMLSCHEMA" />
 	</target>
 
-	<target name="BUILD_AMPLESDK_AMPLE_RUNTIME_PREPARE_LANGUAGES_XBL" unless="skip.ample.runtime.languages.xbl">
+	<target name="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES_XBL" unless="skip.ample.runtime.languages.xbl">
 		<concat destfile="${temp.runtime.dir}/runtime-languages.js" fixlastline="yes" append="yes">
 			<!-- XBL 2.0 -->
 			<filelist dir="${source.runtime.dir}/processors/xbl20/" files="
@@ -183,7 +183,7 @@
 		</concat>
 	</target>
 
-	<target name="BUILD_AMPLESDK_AMPLE_RUNTIME_PREPARE_LANGUAGES_REX" unless="skip.ample.runtime.languages.rex">
+	<target name="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES_REX" unless="skip.ample.runtime.languages.rex">
 		<concat destfile="${temp.runtime.dir}/runtime-languages.js" fixlastline="yes" append="yes">
 			<!-- REX 1.0 -->
 			<filelist dir="${source.runtime.dir}/processors/rex10/" files="
@@ -191,7 +191,7 @@
 		</concat>
 	</target>
 
-	<target name="BUILD_AMPLESDK_AMPLE_RUNTIME_PREPARE_LANGUAGES_XINCLUDE" unless="skip.ample.runtime.languages.xinclude">
+	<target name="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES_XINCLUDE" unless="skip.ample.runtime.languages.xinclude">
 		<concat destfile="${temp.runtime.dir}/runtime-languages.js" fixlastline="yes" append="yes">
 			<!-- XInclude 1.0 -->
 			<filelist dir="${source.runtime.dir}/processors/xinclude10/" files="
@@ -199,7 +199,7 @@
 		</concat>
 	</target>
 
-	<target name="BUILD_AMPLESDK_AMPLE_RUNTIME_PREPARE_LANGUAGES_XMLEVENTS" unless="skip.ample.runtime.languages.xmlevents">
+	<target name="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES_XMLEVENTS" unless="skip.ample.runtime.languages.xmlevents">
 		<concat destfile="${temp.runtime.dir}/runtime-languages.js" fixlastline="yes" append="yes">
 			<!-- XML Events 1.0 -->
 			<filelist dir="${source.runtime.dir}/processors/xmlevents10/" files="
@@ -207,7 +207,7 @@
 		</concat>
 	</target>
 
-	<target name="BUILD_AMPLESDK_AMPLE_RUNTIME_PREPARE_LANGUAGES_SMIL" unless="skip.ample.runtime.languages.smil">
+	<target name="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES_SMIL" unless="skip.ample.runtime.languages.smil">
 		<concat destfile="${temp.runtime.dir}/runtime-languages.js" fixlastline="yes" append="yes">
 			<!-- SMIL 3.0 -->
 			<filelist dir="${source.runtime.dir}/processors/smil30/" files="
@@ -219,7 +219,7 @@
 		</concat>
 	</target>
 
-	<target name="BUILD_AMPLESDK_AMPLE_RUNTIME_PREPARE_LANGUAGES_XMLSCHEMA" unless="skip.ample.runtime.languages.xmlschema">
+	<target name="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES_XMLSCHEMA" unless="skip.ample.runtime.languages.xmlschema">
 		<concat destfile="${temp.runtime.dir}/runtime-languages.js" fixlastline="yes" append="yes">
 			<!-- XML Schema 1.1 (core) -->
 			<!-- Temporary disabled -->
@@ -267,7 +267,7 @@
 		</concat>
 	</target>
 
-	<target name="BUILD_AMPLESDK_AMPLE_RUNTIME_PRODUCTION">
+	<target name="BUILD_AMPLE_RUNTIME_PRODUCTION">
 		<exec executable="${executable.php}" failonerror="true">
 			<arg value="resources/compiler/js.php" />
 			<arg value="${temp.runtime.dir}/runtime-raw.js" />
@@ -282,7 +282,7 @@
 		</concat>
 	</target>
 
-	<target name="BUILD_AMPLESDK_AMPLE_RUNTIME_DEVELOPMENT">
+	<target name="BUILD_AMPLE_RUNTIME_DEVELOPMENT">
 		<mkdir dir="${target.dir}/ample/" />
 		<exec executable="${executable.php}" failonerror="true">
 			<arg value="resources/compiler/js.php" />
@@ -297,7 +297,7 @@
 		</concat>
 	</target>
 
-	<target name="BUILD_AMPLESDK_AMPLE_LANGUAGES" unless="skip.ample.languages">
+	<target name="BUILD_AMPLE_LANGUAGES" unless="skip.ample.languages">
 		<property name="source.languages.dir" value="${source.ample.dir}/languages/" />
 		<property name="target.languages.dir" value="${target.ample.dir}/languages/" />
 		<property name="temp.languages.dir" value="${temp.dir}/languages/" />
@@ -305,19 +305,19 @@
 		<mkdir dir="${target.languages.dir}" />
 		<mkdir dir="${temp.languages.dir}" />
 
-		<antcall target="BUILD_AMPLESDK_AMPLE_LANGUAGES_AML" />
-		<antcall target="BUILD_AMPLESDK_AMPLE_LANGUAGES_XUL" />
-		<antcall target="BUILD_AMPLESDK_AMPLE_LANGUAGES_XHTML" />
-		<antcall target="BUILD_AMPLESDK_AMPLE_LANGUAGES_SVG" />
-		<antcall target="BUILD_AMPLESDK_AMPLE_LANGUAGES_CHART" />
-		<antcall target="BUILD_AMPLESDK_AMPLE_LANGUAGES_HTML5" />
-		<antcall target="BUILD_AMPLESDK_AMPLE_LANGUAGES_MOBILE" />
+		<antcall target="BUILD_AMPLE_LANGUAGES_AML" />
+		<antcall target="BUILD_AMPLE_LANGUAGES_XUL" />
+		<antcall target="BUILD_AMPLE_LANGUAGES_XHTML" />
+		<antcall target="BUILD_AMPLE_LANGUAGES_SVG" />
+		<antcall target="BUILD_AMPLE_LANGUAGES_CHART" />
+		<antcall target="BUILD_AMPLE_LANGUAGES_HTML5" />
+		<antcall target="BUILD_AMPLE_LANGUAGES_MOBILE" />
 
 		<!-- clean up temp dir -->
 		<delete dir="${temp.languages.dir}" />
 	</target>
 
-	<target name="BUILD_AMPLESDK_AMPLE_LANGUAGES_XHTML" unless="skip.ample.languages.xhtml">
+	<target name="BUILD_AMPLE_LANGUAGES_XHTML" unless="skip.ample.languages.xhtml">
 		<property name="source.xhtml.dir" value="${source.languages.dir}/xhtml/" />
 		<property name="target.xhtml.dir" value="${target.languages.dir}/xhtml/" />
 
@@ -351,7 +351,7 @@
 		</concat>
 	</target>
 
-	<target name="BUILD_AMPLESDK_AMPLE_LANGUAGES_HTML5" unless="skip.ample.languages.html5">
+	<target name="BUILD_AMPLE_LANGUAGES_HTML5" unless="skip.ample.languages.html5">
 		<property name="source.html5.dir" value="${source.languages.dir}/html5/" />
 		<property name="target.html5.dir" value="${target.languages.dir}/html5/" />
 
@@ -382,7 +382,7 @@
 		</concat>
 	</target>
 
-	<target name="BUILD_AMPLESDK_AMPLE_LANGUAGES_AML" unless="skip.ample.languages.aml">
+	<target name="BUILD_AMPLE_LANGUAGES_AML" unless="skip.ample.languages.aml">
 		<property name="source.aml.dir" value="${source.languages.dir}/aml/" />
 		<property name="target.aml.dir" value="${target.languages.dir}/aml/" />
 
@@ -429,7 +429,7 @@
 		</copy>
 	</target>
 
-	<target name="BUILD_AMPLESDK_AMPLE_LANGUAGES_XUL" unless="skip.ample.languages.xul">
+	<target name="BUILD_AMPLE_LANGUAGES_XUL" unless="skip.ample.languages.xul">
 		<property name="source.xul.dir" value="${source.languages.dir}/xul/" />
 		<property name="target.xul.dir" value="${target.languages.dir}/xul/" />
 
@@ -487,7 +487,7 @@
 		</copy>
 	</target>
 
-	<target name="BUILD_AMPLESDK_AMPLE_LANGUAGES_MOBILE" unless="skip.ample.languages.mobile">
+	<target name="BUILD_AMPLE_LANGUAGES_MOBILE" unless="skip.ample.languages.mobile">
 		<property name="source.mobile.dir" value="${source.languages.dir}/mobile/" />
 		<property name="target.mobile.dir" value="${target.languages.dir}/mobile/" />
 
@@ -531,7 +531,7 @@
 		</copy>
 	</target>
 
-	<target name="BUILD_AMPLESDK_AMPLE_LANGUAGES_SVG" unless="skip.ample.languages.svg">
+	<target name="BUILD_AMPLE_LANGUAGES_SVG" unless="skip.ample.languages.svg">
 		<property name="source.svg.dir" value="${source.languages.dir}/svg/" />
 		<property name="target.svg.dir" value="${target.languages.dir}/svg/" />
 
@@ -562,7 +562,7 @@
 		</concat>
 	</target>
 
-	<target name="BUILD_AMPLESDK_AMPLE_LANGUAGES_CHART" unless="skip.ample.languages.chart">
+	<target name="BUILD_AMPLE_LANGUAGES_CHART" unless="skip.ample.languages.chart">
 		<property name="source.chart.dir" value="${source.languages.dir}/chart/" />
 		<property name="target.chart.dir" value="${target.languages.dir}/chart/" />
 
@@ -619,7 +619,7 @@
 
 
 	<!-- Examples -->
-	<target name="BUILD_AMPLESDK_EXAMPLES" unless="skip.examples">
+	<target name="BUILD_EXAMPLES" unless="skip.examples">
 		<copy todir="${target.dir}/examples/">
 			<fileset dir="${source.dir}/examples/">
 				<include name="helloworld.html" />
@@ -633,7 +633,7 @@
 	</target>
 
 	<!-- Reference -->
-	<target name="BUILD_AMPLESDK_REFERENCE" unless="skip.reference">
+	<target name="BUILD_REFERENCE" unless="skip.reference">
 		<property name="source.reference.dir" value="${source.dir}/reference/" />
 		<property name="target.reference.dir" value="${target.dir}/reference/" />
 		<!-- copy reference -->
@@ -647,17 +647,17 @@
 	</target>
 
 	<!-- Plugins -->
-	<target name="BUILD_AMPLESDK_PLUGINS" unless="skip.plugins">
+	<target name="BUILD_PLUGINS" unless="skip.plugins">
 		<property name="source.plugins.dir" value="${source.dir}/plugins/"/>
 		<property name="target.plugins.dir" value="${target.dir}/plugins/" />
 
 		<mkdir dir="${target.plugins.dir}" />
 
-		<antcall target="BUILD_AMPLESDK_PLUGINS_FIREAMPLE" />
-		<antcall target="BUILD_AMPLESDK_PLUGINS_APTANA" />
+		<antcall target="BUILD_PLUGINS_FIREAMPLE" />
+		<antcall target="BUILD_PLUGINS_APTANA" />
 	</target>
 
-	<target name="BUILD_AMPLESDK_PLUGINS_FIREAMPLE" unless="skip.plugins.fireample">
+	<target name="BUILD_PLUGINS_FIREAMPLE" unless="skip.plugins.fireample">
 		<property name="source.fireample.dir" value="${source.plugins.dir}/fireample/" />
 		<property name="target.fireample.dir" value="${target.plugins.dir}/fireample/" />
 		<property name="temp.fireample.dir" value="${temp.dir}/fireample/" />
@@ -686,7 +686,7 @@
 		<delete dir="${temp.fireample.dir}" />
 	</target>
 
-	<target name="BUILD_AMPLESDK_PLUGINS_APTANA" unless="skip.plugins.aptana">
+	<target name="BUILD_PLUGINS_APTANA" unless="skip.plugins.aptana">
 
 		<property name="source.aptana.dir" value="${source.plugins.dir}/aptana/" />
 		<property name="target.aptana.dir" value="${target.plugins.dir}/aptana/" />
@@ -783,7 +783,7 @@
 		<delete dir="${temp.aptana.dir}" />
 	</target>
 
-	<target name="BUILD_AMPLESDK_LICENSE" unless="skip.license">
+	<target name="BUILD_LICENSE" unless="skip.license">
 		<mkdir dir="${target.dir}/license/" />
 		<copy todir="${target.dir}/license/">
 			<fileset dir="${source.dir}/license/" />
