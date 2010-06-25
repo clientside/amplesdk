@@ -86,10 +86,28 @@
 
 	<target name="BUILD_AMPLESDK_AMPLE_RUNTIME_PREPARE">
 		<echo message="Merging into: ${temp.runtime.dir}/runtime-raw.js" level="info"/>
+
+		<antcall target="BUILD_AMPLESDK_AMPLE_RUNTIME_PREPARE_CORE" />
+		<antcall target="BUILD_AMPLESDK_AMPLE_RUNTIME_PREPARE_LANGUAGES" />
+
 		<concat destfile="${temp.runtime.dir}/runtime-raw.js" fixlastline="yes">
 			<filelist dir="${source.runtime.dir}/" files="
 				import.js"/>
+			<filelist dir="${temp.runtime.dir}/" files="
+				runtime-core.js"/>
+			<filelist dir="${temp.runtime.dir}/" files="
+				runtime-languages.js"/>
+			<filelist dir="${source.runtime.dir}/" files="
+				export.js"/>
+		</concat>
+		<replace file="${temp.runtime.dir}/runtime-raw.js">
+			<replacefilter token="@project.version@"	value="${project.name}/${project.version} (build:${build.signature})"	/>
+			<replacefilter token="@project.userAgent@"	value="${project.name}/${project.version}"	/>
+		</replace>
+	</target>
 
+	<target name="BUILD_AMPLESDK_AMPLE_RUNTIME_PREPARE_CORE" unless="skip.ample.runtime.core">
+		<concat destfile="${temp.runtime.dir}/runtime-core.js" fixlastline="yes">
 			<!-- Helper Objects -->
 			<filelist dir="${source.runtime.dir}/classes/" files="
 				AMLNamespace.js"/>
@@ -138,15 +156,59 @@
 			<filelist dir="${source.runtime.dir}/" files="
 				browser.js,
 				ample.js"/>
+			<!-- UI Managers -->
+			<filelist dir="${source.runtime.dir}/managers/" files="
+				mAMLFocus.js,
+				mAMLResize.js,
+				mAMLDragAndDrop.js,
+				mAMLSelection.js,
+				mAMLUI.js,
+				mAMLCapture.js,
+				mAMLHistory.js"/>
+		</concat>
+	</target>
 
+	<target name="BUILD_AMPLESDK_AMPLE_RUNTIME_PREPARE_LANGUAGES" unless="skip.ample.runtime.languages">
+		<antcall target="BUILD_AMPLESDK_AMPLE_RUNTIME_PREPARE_LANGUAGES_XINCLUDE" />
+		<antcall target="BUILD_AMPLESDK_AMPLE_RUNTIME_PREPARE_LANGUAGES_XMLEVENTS" />
+		<antcall target="BUILD_AMPLESDK_AMPLE_RUNTIME_PREPARE_LANGUAGES_SMIL" />
+		<antcall target="BUILD_AMPLESDK_AMPLE_RUNTIME_PREPARE_LANGUAGES_XMLSCHEMA" />
+	</target>
+
+	<target name="BUILD_AMPLESDK_AMPLE_RUNTIME_PREPARE_LANGUAGES_XBL" unless="skip.ample.runtime.languages.xbl">
+		<concat destfile="${temp.runtime.dir}/runtime-languages.js" fixlastline="yes" append="yes">
+			<!-- XBL 2.0 -->
+			<filelist dir="${source.runtime.dir}/processors/xbl20/" files="
+				xbl20.js"/>
+		</concat>
+	</target>
+
+	<target name="BUILD_AMPLESDK_AMPLE_RUNTIME_PREPARE_LANGUAGES_REX" unless="skip.ample.runtime.languages.rex">
+		<concat destfile="${temp.runtime.dir}/runtime-languages.js" fixlastline="yes" append="yes">
+			<!-- REX 1.0 -->
+			<filelist dir="${source.runtime.dir}/processors/rex10/" files="
+				rex10.js"/>
+		</concat>
+	</target>
+
+	<target name="BUILD_AMPLESDK_AMPLE_RUNTIME_PREPARE_LANGUAGES_XINCLUDE" unless="skip.ample.runtime.languages.xinclude">
+		<concat destfile="${temp.runtime.dir}/runtime-languages.js" fixlastline="yes" append="yes">
 			<!-- XInclude 1.0 -->
 			<filelist dir="${source.runtime.dir}/processors/xinclude10/" files="
 				xinclude10.js"/>
+		</concat>
+	</target>
 
+	<target name="BUILD_AMPLESDK_AMPLE_RUNTIME_PREPARE_LANGUAGES_XMLEVENTS" unless="skip.ample.runtime.languages.xmlevents">
+		<concat destfile="${temp.runtime.dir}/runtime-languages.js" fixlastline="yes" append="yes">
 			<!-- XML Events 1.0 -->
 			<filelist dir="${source.runtime.dir}/processors/xmlevents10/" files="
 				xmlevents10.js"/>
+		</concat>
+	</target>
 
+	<target name="BUILD_AMPLESDK_AMPLE_RUNTIME_PREPARE_LANGUAGES_SMIL" unless="skip.ample.runtime.languages.smil">
+		<concat destfile="${temp.runtime.dir}/runtime-languages.js" fixlastline="yes" append="yes">
 			<!-- SMIL 3.0 -->
 			<filelist dir="${source.runtime.dir}/processors/smil30/" files="
 				smil30.js,
@@ -154,7 +216,11 @@
 				smil30-animation.js"/>
 			<!--filelist dir="${source.runtime.dir}/processors/smil30/classes/" files="
 				cAMLTimeEvent.js"/-->
+		</concat>
+	</target>
 
+	<target name="BUILD_AMPLESDK_AMPLE_RUNTIME_PREPARE_LANGUAGES_XMLSCHEMA" unless="skip.ample.runtime.languages.xmlschema">
+		<concat destfile="${temp.runtime.dir}/runtime-languages.js" fixlastline="yes" append="yes">
 			<!-- XML Schema 1.1 (core) -->
 			<!-- Temporary disabled -->
 			<filelist dir="${source.runtime.dir}/processors/xmlschema11/classes/" files="
@@ -198,23 +264,7 @@
 				cAMLXSNotationDeclaration.js,
 				cAMLXSParticle.js,
 				cAMLXSWildcard.js"/-->
-
-			<!-- UI Managers -->
-			<filelist dir="${source.runtime.dir}/managers/" files="
-				mAMLFocus.js,
-				mAMLResize.js,
-				mAMLDragAndDrop.js,
-				mAMLSelection.js,
-				mAMLUI.js,
-				mAMLCapture.js,
-				mAMLHistory.js"/>
-			<filelist dir="${source.runtime.dir}/" files="
-				export.js"/>
 		</concat>
-		<replace file="${temp.runtime.dir}/runtime-raw.js">
-			<replacefilter token="@project.version@"	value="${project.name}/${project.version} (build:${build.signature})"	/>
-			<replacefilter token="@project.userAgent@"	value="${project.name}/${project.version}"	/>
-		</replace>
 	</target>
 
 	<target name="BUILD_AMPLESDK_AMPLE_RUNTIME_PRODUCTION">
