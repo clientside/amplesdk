@@ -981,6 +981,57 @@
 					</locale>
 				</description>
 			</event>
+			<!-- Touch Events -->
+			<event name="touchstart" group="TouchEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						Sent when a finger for a given event touches the surface.
+					</locale>
+				</description>
+			</event>
+			<event name="touchmove" group="TouchEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						Sent when a given event moves on the surface.
+					</locale>
+				</description>
+			</event>
+			<event name="touchend" group="TouchEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						Sent when a given event lifts from the surface.
+					</locale>
+				</description>
+			</event>
+			<event name="touchcancel" group="TouchEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						Sent when the system cancels tracking for the touch.
+					</locale>
+				</description>
+			</event>
+			<!-- Gesture Events -->
+			<event name="gesturestart" group="GestureEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						Sent when two or more fingers touch the surface.
+					</locale>
+				</description>
+			</event>
+			<event name="gesturechange" group="GestureEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						Sent when fingers are moved during a gesture.
+					</locale>
+				</description>
+			</event>
+			<event name="gestureend" group="GestureEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						Sent when the gesture ends (when there are 1 or 0 fingers touching the surface).
+					</locale>
+				</description>
+			</event>
 		</events>
 	</members>
 </object>

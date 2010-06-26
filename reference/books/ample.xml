@@ -24,6 +24,8 @@
 					<node title="AMLProcessingInstruction" url="ample/runtime/AMLProcessingInstruction.xml"/>
 					<node title="AMLStringList" url="ample/runtime/AMLStringList.xml"/>
 					<node title="AMLText" url="ample/runtime/AMLText.xml"/>
+					<node title="AMLTouch" url="ample/runtime/AMLTouch.xml"/>
+					<node title="AMLTouchList" url="ample/runtime/AMLTouchList.xml"/>
 				</node>
 				<node title="DOM Events">
 					<node title="AMLEvent" url="ample/runtime/AMLEvent.xml"/>
@@ -37,6 +39,8 @@
 					<node title="AMLResizeEvent" url="ample/runtime/AMLResizeEvent.xml"/>
 					<node title="AMLDragEvent" url="ample/runtime/AMLDragEvent.xml"/>
 					<node title="AMLHashChangeEvent" url="ample/runtime/AMLHashChangeEvent.xml"/>
+					<node title="AMLTouchEvent" url="ample/runtime/AMLTouchEvent.xml"/>
+					<node title="AMLGestureEvent" url="ample/runtime/AMLGestureEvent.xml"/>
 				</node>
 				<node title="DOM Load/Save">
 					<node title="LSReader" xurl="ample/runtime/LSReader.xml"/>

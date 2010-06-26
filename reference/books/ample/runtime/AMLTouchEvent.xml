@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="AMLTouchEvent" extends="runtime:AMLUIEvent">
+	<abstract>
+		<locale>
+			The <link type="object">AMLTouchEvent</link> class encapsulates information about a touch event.
+			The system continually sends <link type="object">AMLTouchEvent</link> objects to an application as fingers touch and move across a surface.
+			A touch event provides a snapshot of all touches during a multi-touch sequence, most importantly the touches that are new or have changed for a particular target.
+			A multi-touch sequence begins when a finger first touches the surface.
+			Other fingers may subsequently touch the surface, and all fingers may move across the surface.
+			The sequence ends when the last of these fingers is lifted from the surface.
+			An application receives touch event objects during each phase of any touch.
+		</locale>
+	</abstract>
+	<examples/>
+	<members>
+		<methods>
+			<method name="initTouchEvent" type="Void">
+				<arguments>
+					<argument name="sEventType" type="String" required="true">
+						<description>
+							<locale>
+								The type of event that occurred.
+							</locale>
+						</description>
+					</argument>
+					<argument name="bCanBubble" type="Boolean" required="true">
+						<description>
+							<locale>
+								Indicates whether an event can bubble. If true, the event can bubble; otherwise, it cannot.
+							</locale>
+						</description>
+					</argument>
+					<argument name="bCancelable" type="Boolean" required="true">
+						<description>
+							<locale>
+								Indicates whether an event can have its default action prevented. If true, the default action can be prevented; otherwise, it cannot.
+							</locale>
+						</description>
+					</argument>
+					<argument name="oView" type="Object" required="true">
+						<description>
+							<locale>
+								The view (DOM window) in which the event occurred.
+							</locale>
+						</description>
+					</argument>
+					<argument name="nDetail" type="Number" required="true">
+						<description>
+							<locale>
+								Specifies some detail information about the event depending on the type of event.
+							</locale>
+						</description>
+					</argument>
+					<argument name="nScreenX" type="Number" required="true">
+						<description>
+							<locale>
+								The x-coordinate of the event’s location in screen coordinates.
+							</locale>
+						</description>
+					</argument>
+					<argument name="nScreenY" type="Number" required="true">
+						<description>
+							<locale>
+								The y-coordinate of the event’s location in screen coordinates.
+							</locale>
+						</description>
+					</argument>
+					<argument name="nClientX" type="Number" required="true">
+						<description>
+							<locale>
+								The x-coordinate of the event’s location relative to the window’s viewport.
+							</locale>
+						</description>
+					</argument>
+					<argument name="nClientY" type="Number" required="true">
+						<description>
+							<locale>
+								The y-coordinate of the event’s location relative to the window’s viewport.
+							</locale>
+						</description>
+					</argument>
+					<argument name="bCtrlKey" type="Boolean" required="true">
+						<description>
+							<locale>
+								If true, the control key is pressed; otherwise, it is not.
+							</locale>
+						</description>
+					</argument>
+					<argument name="bAltKey" type="Boolean" required="true">
+						<description>
+							<locale>
+								If true, the alt key is pressed; otherwise, it is not.
+							</locale>
+						</description>
+					</argument>
+					<argument name="bShiftKey" type="Boolean" required="true">
+						<description>
+							<locale>
+								If true, the shift key is pressed; otherwise, it is not.
+							</locale>
+						</description>
+					</argument>
+					<argument name="bMetaKey" type="Boolean" required="true">
+						<description>
+							<locale>
+								If true, the meta key is pressed; otherwise, it is not.
+							</locale>
+						</description>
+					</argument>
+					<argument name="oTouches" type="AMLTouchList" required="true">
+						<description>
+							<locale>
+								A collection of <link type="object">AMLTouch</link> objects representing all touches associated with this event.
+							</locale>
+						</description>
+					</argument>
+					<argument name="oTargetTouches" type="AMLTouchList" required="true">
+						<description>
+							<locale>
+								A collection of <link type="object">AMLTouch</link> objects representing all touches associated with this target.
+							</locale>
+						</description>
+					</argument>
+					<argument name="oChangedTouches" type="AMLTouchList" required="true">
+						<description>
+							<locale>
+								A collection of <link type="object">AMLTouch</link> objects representing all touches that changed in this event.
+							</locale>
+						</description>
+					</argument>
+					<argument name="nScale" type="Number" required="true">
+						<description>
+							<locale>
+								The distance between two fingers since the start of an event as a multiplier of the initial distance. The initial value is 1.0. If less than 1.0, the gesture is pinch close (to zoom out). If greater than 1.0, the gesture is pinch open (to zoom in).
+							</locale>
+						</description>
+					</argument>
+					<argument name="nRotation" type="Number" required="true">
+						<description>
+							<locale>
+								The delta rotation since the start of an event, in degrees, where clockwise is positive and counter-clockwise is negative. The initial value is 0.0.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Initializes attributes of a <link type="object">AMLTouchEvent</link> object.
+					</locale>
+				</description>
+			</method>
+		</methods>
+		<properties>
+			<property name="altKey" type="Boolean" readonly="true">
+				<description>
+					<locale>
+						If true, the alt key is pressed; otherwise, it is not.
+					</locale>
+				</description>
+			</property>
+			<property name="clientX" type="Number" readonly="true">
+				<description>
+					<locale>
+						The x-coordinate of the event’s location relative to the window’s viewport.
+					</locale>
+				</description>
+			</property>
+			<property name="clientY" type="Number" readonly="true">
+				<description>
+					<locale>
+						The y-coordinate of the event’s location relative to the window’s viewport.
+					</locale>
+				</description>
+			</property>
+			<property name="ctrlKey" type="Boolean" readonly="true">
+				<description>
+					<locale>
+						If true, the control key is pressed; otherwise, it is not.
+					</locale>
+				</description>
+			</property>
+			<property name="metaKey" type="Boolean" readonly="true">
+				<description>
+					<locale>
+						If true, the meta key is pressed; otherwise, it is not.
+					</locale>
+				</description>
+			</property>
+			<property name="screenX" type="Number" readonly="true">
+				<description>
+					<locale>
+						The x-coordinate of the event’s location in screen coordinates.
+					</locale>
+				</description>
+			</property>
+			<property name="screenY" type="Number" readonly="true">
+				<description>
+					<locale>
+						The y-coordinate of the event’s location in screen coordinates.
+					</locale>
+				</description>
+			</property>
+			<property name="shiftKey" type="Boolean" readonly="true">
+				<description>
+					<locale>
+						If true, the shift key is pressed; otherwise, it is not.
+					</locale>
+				</description>
+			</property>
+			<property name="touches" type="AMLTouchList" readonly="true">
+				<description>
+					<locale>
+						A collection of <link type="object">AMLTouch</link> objects representing all touches associated with this event.
+					</locale>
+				</description>
+			</property>
+			<property name="targetTouches" type="AMLTouchList" readonly="true">
+				<description>
+					<locale>
+						A collection of <link type="object">AMLTouch</link> objects representing all touches associated with this target.
+					</locale>
+				</description>
+			</property>
+			<property name="changedTouches" type="AMLTouchList" readonly="true">
+				<description>
+					<locale>
+						A collection of <link type="object">AMLTouch</link> objects representing all touches that changed in this event.
+					</locale>
+				</description>
+			</property>
+			<property name="scale" type="Number" readonly="true">
+				<description>
+					<locale>
+						The distance between two fingers since the start of an event, as a multiplier of the initial distance.
+						The initial value is 1.0.
+						If less than 1.0, the gesture is pinch close (to zoom out).
+						If greater than 1.0, the gesture is pinch open (to zoom in).
+					</locale>
+				</description>
+			</property>
+			<property name="rotation" type="Number" readonly="true">
+				<description>
+					<locale>
+						The delta rotation since the start of an event, in degrees, where clockwise is positive and counter-clockwise is negative.
+						The initial value is 0.0.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<constants />
+	</members>
+	<remarks>
+		<remark>
+			<locale>Events of that type:</locale>
+			<ul>
+				<li><link type="event" href="runtime:AMLElement">touchstart</link></li>
+				<li><link type="event" href="runtime:AMLElement">touchchange</link></li>
+				<li><link type="event" href="runtime:AMLElement">touchend</link></li>
+				<li><link type="event" href="runtime:AMLElement">touchcancel</link></li>
+			</ul>
+		</remark>
+	</remarks>
+	<examples />
+</object>
