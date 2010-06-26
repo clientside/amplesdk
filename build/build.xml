@@ -120,7 +120,9 @@
 				AMLTextEvent.js,
 				AMLMouseEvent.js,
 				AMLMouseWheelEvent.js,
-				AMLMutationEvent.js"/>
+				AMLMutationEvent.js,
+				AMLTouchEvent.js,
+				AMLGestureEvent.js"/>
 			<filelist dir="${source.runtime.dir}/classes/core/" files="
 				AMLStringList.js,
 				AMLImplementation.js,
@@ -138,7 +140,9 @@
 				AMLCharacterData.js,
 				AMLText.js,
 				AMLCDATASection.js,
-				AMLComment.js"/>
+				AMLComment.js,
+				AMLTouch.js,
+				AMLTouchList.js"/>
 			<filelist dir="${source.runtime.dir}/classes/selectors/" files="
 				AMLNodeSelector.js"/>
 			<!-- Animation engine -->
@@ -164,7 +168,8 @@
 				mAMLSelection.js,
 				mAMLUI.js,
 				mAMLCapture.js,
-				mAMLHistory.js"/>
+				mAMLHistory.js,
+				mAMLTouch.js"/>
 		</concat>
 	</target>
 
