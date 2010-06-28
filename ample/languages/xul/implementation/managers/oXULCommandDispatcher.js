@@ -11,7 +11,7 @@ var oXULCommandDispatcher	= (function () {
 	//
 	ample.addEventListener("DOMNodeInsertedIntoDocument", function(oEvent) {
 		if (oEvent.target instanceof cXULElement) {
-			var oElement, sValue;
+			var oElement, sName, sValue;
 			if (sValue = oEvent.target.attributes["command"]) {
 				if (oElement = this.getElementById(sValue)) {
 					for (sName in oElement.attributes)
