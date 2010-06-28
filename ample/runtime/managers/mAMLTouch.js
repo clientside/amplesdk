@@ -8,6 +8,7 @@
  */
 
 var oAMLTouch_scrollElement,
+	nAMLTouch_clientY,
 	bAMLTouch_scrollLeft,
 	bAMLTouch_scrollTop,
 	nAMLTouch_scrollLeft,
@@ -21,11 +22,11 @@ function fAMLTouch_onTouchStart(oEvent) {
 		for (var oElement = oEvent.target.$getContainer(), oStyle, sOverflow; oElement && oElement.nodeType == 1; oElement = oElement.parentNode) {
 			oStyle	= fAML_getComputedStyle(oElement);
 			bAMLTouch_scrollLeft	=
-			bAMLTouch_scrollTop	= (sOverflow = oStyle.overflow) == "auto" || sOverflow == "scroll";
+			bAMLTouch_scrollTop		= (sOverflow = oStyle.overflow) == "auto" || sOverflow == "scroll";
 			if ((sOverflow = oStyle.overflowX) == "auto" || sOverflow == "scroll")
 				bAMLTouch_scrollLeft	= true;
 			if ((sOverflow = oStyle.overflowY) == "auto" || sOverflow == "scroll")
-				bAMLTouch_scrollTop	= true;
+				bAMLTouch_scrollTop		= true;
 
 			if (bAMLTouch_scrollLeft || bAMLTouch_scrollTop) {
 				oAMLTouch_scrollElement	= oElement;
@@ -38,13 +39,25 @@ function fAMLTouch_onTouchStart(oEvent) {
 };
 
 function fAMLTouch_onTouchMove(oEvent) {
+	var nClientX	= oEvent.touches[0].clientX,
+		nClientY	= oEvent.touches[0].clientY;
+	// Simulate wheel event
+	if (nAMLTouch_clientY - nClientY) {
+		var oEventMouseWheel	= new cAMLMouseWheelEvent;
+		oEventMouseWheel.initMouseWheelEvent("mousewheel", true, true, window, null, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, 0, null, fGetKeyboardEventModifiersList(oEvent), nAMLTouch_clientY	- nClientY);
+		oEventMouseWheel.$pseudoTarget	= oEvent.$pseudoTarget;
+		fAMLNode_dispatchEvent(oEvent.target, oEventMouseWheel);
+	}
+	// Scroll scrollables
 	if (oAMLTouch_scrollElement) {
 		if (bAMLTouch_scrollLeft)
-			oAMLTouch_scrollElement.scrollLeft	= nAMLTouch_scrollLeft - oEvent.touches[0].clientX;
+			oAMLTouch_scrollElement.scrollLeft	= nAMLTouch_scrollLeft - nClientX;
 		if (bAMLTouch_scrollTop)
-			oAMLTouch_scrollElement.scrollTop	= nAMLTouch_scrollTop - oEvent.touches[0].clientY;
+			oAMLTouch_scrollElement.scrollTop	= nAMLTouch_scrollTop - nClientY;
 		oEvent.preventDefault();
 	}
+	//
+	nAMLTouch_clientY	= nClientY;
 };
 
 function fAMLTouch_onTouchEnd(oEvent) {
