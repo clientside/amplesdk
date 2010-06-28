@@ -39,6 +39,7 @@ cXULElement_checkbox.handlers	= {
 		    	case "checked":
 			        this.$getContainer("input").checked  =(oEvent.newValue == "true" ? true : false);
 			        this.attributes["value"]	=(oEvent.newValue == "true" ? "on" : "off");
+			        this.$setPseudoClass("checked", oEvent.newValue == "true");
 			        break;
 
 		    	case "label":
@@ -54,8 +55,7 @@ cXULElement_checkbox.handlers	= {
 
 //
 cXULElement_checkbox.prototype._onChange = function(oEvent) {
-    this.attributes["checked"]  = this.$getContainer("input").checked.toString();
-    this.attributes["value"]    = this.attributes["checked"] == "true" ? "on" : "off";
+	this.setAttribute("checked", this.$getContainer("input").checked.toString());
 
     // Fire Event
     var oEvent  = this.ownerDocument.createEvent("Events");
@@ -65,7 +65,7 @@ cXULElement_checkbox.prototype._onChange = function(oEvent) {
 
 // Element Render: open
 cXULElement_checkbox.prototype.$getTagOpen		= function() {
-    var sHtml   = '<label class="xul-checkbox' + (this.attributes["disabled"] == "true" ? " xul-checkbox_disabled" : "") + '">';
+    var sHtml   = '<label class="xul-checkbox' + (this.attributes["disabled"] == "true" ? " xul-checkbox_disabled" : "") + (this.attributes["checked"] == "true" ? " xul-checkbox_checked" : "") + '">';
     sHtml	+= '<input type="checkbox" name="' + this.attributes["name"] + '" class="xul-checkbox--input"';
     if (this.attributes["checked"] == "true" || this.attributes["value"] == "on")
     {

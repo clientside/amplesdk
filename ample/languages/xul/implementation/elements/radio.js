@@ -58,6 +58,7 @@ cXULElement_radio.handlers	= {
 						this.group.attributes["value"]  = "";
 					}
 					this.$getContainer("input").checked	= oEvent.newValue == "true";
+					this.$setPseudoClass("selected", oEvent.newValue == "true");
 					break;
 
 				default:
@@ -73,6 +74,12 @@ cXULElement_radio.handlers	= {
 			this.$getContainer("input").name	= oElement.uniqueID + "_radio";
 			oElement.items.$add(this);
 			this.group   = oElement;
+			//
+			if (this.attributes["selected"] == "true") {
+				oElement.selectedIndex	= oElement.items.length - 1;
+				oElement.selectedItem	= this;
+			}
+
 		}
 	},
 	"DOMNodeRemovedFromDocument":	function(oEvent) {
@@ -80,6 +87,14 @@ cXULElement_radio.handlers	= {
 			if (oElement instanceof cXULElement_radiogroup)
 				break;
 		if (oElement) {
+			if (this.attributes["selected"] == "true") {
+				if (oElement.selectedItem == this) {
+					oElement.selectedIndex	=-1;
+					oElement.selectedItem	= null;
+				}
+			}
+			//
+			this.$getContainer("input").name	= "";
 			oElement.items.$remove(this);
 			this.group   = null;
 		}
@@ -87,11 +102,8 @@ cXULElement_radio.handlers	= {
 };
 
 cXULElement_radio.prototype._onClick = function(oEvent) {
-    if (this.group)
-    {
-        this.group.selectedIndex    = this.group.items.$indexOf(this);
-        this.group.selectedItem     = this.group.items[this.group.selectedIndex];
-        this.group.attributes["value"] = this.attributes["value"];
+    if (this.group) {
+        this.setAttribute("selected", "true");
 
 	    // Fire Event
 	    var oEvent  = this.ownerDocument.createEvent("Events");
@@ -102,7 +114,7 @@ cXULElement_radio.prototype._onClick = function(oEvent) {
 
 // Element Render: open
 cXULElement_radio.prototype.$getTagOpen	= function() {
-    var sHtml   = '<label class="xul-radio' + ((this.group && this.group.attributes["disabled"] == "true") || this.attributes["disabled"] == "true" ? " xul-radio_disabled" : "")+ '">';
+    var sHtml   = '<label class="xul-radio' + ((this.group && this.group.attributes["disabled"] == "true") || this.attributes["disabled"] == "true" ? " xul-radio_disabled" : "") + (this.attributes["selected"] == "true" ? " xul-radio_selected" : "") + '">';
     sHtml	+= '<input type="radio" autocomplete="off"';
     if (this.attributes["value"])
         sHtml  += ' value="' + this.attributes["value"] + '"';

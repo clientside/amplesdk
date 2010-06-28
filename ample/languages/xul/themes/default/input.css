@@ -162,6 +162,7 @@ xul|timepicker {
 
 /* scale */
 xul|scale {
+	box-sizing: content-box;
 	margin:	1px;
 	height:	19px;
 	width:	200px;
@@ -176,7 +177,6 @@ xul|scale[orient=horizontal] {
 xul|scale[orient=horizontal] xul|scale::button {
 	height:	21px;
 	width:	12px;
-	margin-left:-1px;
 	background-image: url(media/scale_button_down.gif);
 	background-repeat: no-repeat;
 	background-position: 0px 0px;
@@ -249,7 +249,9 @@ xul|spinbuttons:focus {
 xul|checkbox:focus,
 xul|radiogroup:focus,
 xul|scale:focus {
-	border: dotted 1px silver;
+	border-width: 1px;
+	border-color: #7F9DB9;
+	border-style: dotted;
 }
 
 xul|textbox:disabled,
