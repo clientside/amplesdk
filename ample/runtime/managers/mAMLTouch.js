@@ -8,7 +8,7 @@
  */
 
 var oAMLTouch_scrollElement,
-	nAMLTouch_clientY,
+	nAMLTouch_clientY	= 0,
 	bAMLTouch_scrollLeft,
 	bAMLTouch_scrollTop,
 	nAMLTouch_scrollLeft,
@@ -18,6 +18,7 @@ function fAMLTouch_onTouchStart(oEvent) {
 	if (oEvent.touches.length == 1) {
 		//
 		oAMLTouch_scrollElement	= null;
+		nAMLTouch_clientY	= oEvent.touches[0].clientY;
 		//
 		for (var oElement = oEvent.target.$getContainer(), oStyle, sOverflow; oElement && oElement.nodeType == 1; oElement = oElement.parentNode) {
 			oStyle	= fAML_getComputedStyle(oElement);
