@@ -25,8 +25,20 @@
 			<xul:toolbarbutton label="toolbarbutton" />
 			<xul:toolbarseparator />
 			<xul:toolbarbutton label="toolbarbutton 2" />
-			<xul:toolbarbutton type="menu" label="toolbarbutton (menu)" />
-			<xul:toolbarbutton type="menu-button" label="toolbarbutton (menu-button)" />
+			<xul:toolbarbutton type="menu" label="toolbarbutton (menu)">
+				<xul:menupopup>
+					<xul:menuitem label="item 0" />
+					<xul:menuitem label="item 1" />
+					<xul:menuitem label="item 2" />
+				</xul:menupopup>
+			</xul:toolbarbutton>
+			<xul:toolbarbutton type="menu-button" label="toolbarbutton (menu-button)">
+				<xul:menupopup>
+					<xul:menuitem label="item 0" />
+					<xul:menuitem label="item 1" />
+					<xul:menuitem label="item 2" />
+				</xul:menupopup>
+			</xul:toolbarbutton>
 		</xul:toolbar>
 		<script>ample.close()</script>
 
