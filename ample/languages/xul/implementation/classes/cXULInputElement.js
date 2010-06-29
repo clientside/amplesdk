@@ -13,7 +13,6 @@ cXULInputElement.prototype.tabIndex	= 0;
 
 // Static Methods
 cXULInputElement.dispatchChange	= function(oInstance) {
-	console.log(oInstance, oInstance.ownerDocument);
     // Fire Event
     var oEvent  = oInstance.ownerDocument.createEvent("UIEvents");
     oEvent.initEvent("change", true, false, window, null);
