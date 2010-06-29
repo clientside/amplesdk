@@ -60,8 +60,15 @@ cAMLNode.prototype.$listeners	= null;
 function fAMLNode_appendChild(oParent, oNode)
 {
 	// Remove element from previous location
-	if (oNode.parentNode)
+	if (oNode.parentNode) {
+		// Fire Mutation event
+		var oEvent = new cAMLMutationEvent;
+		oEvent.initMutationEvent("DOMNodeRemoved", true, false, oNode.parentNode, null, null, null, null);
+		fAMLNode_dispatchEvent(oNode, oEvent);
+
+		//
 	    fAMLNode_removeChild(oNode.parentNode, oNode);
+	}
 
 	// Set DOM properties
     oNode.parentNode	= oParent;
@@ -98,8 +105,15 @@ cAMLNode.prototype.appendChild	= function(oNode)
 function fAMLNode_insertBefore(oParent, oNode, oBefore)
 {
 	// Remove element from previous location
-	if (oNode.parentNode)
-	    fAMLNode_removeChild(oNode.parentNode, oNode);
+	if (oNode.parentNode) {
+		// Fire Mutation event
+		var oEvent = new cAMLMutationEvent;
+		oEvent.initMutationEvent("DOMNodeRemoved", true, false, oNode.parentNode, null, null, null, null);
+		fAMLNode_dispatchEvent(oNode, oEvent);
+
+		//
+		fAMLNode_removeChild(oNode.parentNode, oNode);
+	}
 
 	// Set DOM properties
     oNode.parentNode	= oParent;
@@ -145,10 +159,6 @@ cAMLNode.prototype.insertBefore	= function(oNode, oBefore)
 
 function fAMLNode_removeChild(oParent, oNode)
 {
-    var oEvent = new cAMLMutationEvent;
-    oEvent.initMutationEvent("DOMNodeRemoved", true, false, oParent, null, null, null, null);
-    fAMLNode_dispatchEvent(oNode, oEvent);
-
 	if (oNode.nextSibling)
 		oNode.nextSibling.previousSibling	= oNode.previousSibling;
 	else

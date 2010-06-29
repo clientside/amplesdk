@@ -147,12 +147,17 @@ cAMLElement.prototype.insertBefore	= function(oNode, oBefore)
 
 function fAMLElement_removeChild(oParent, oNode)
 {
-	// Call parent class method
-	fAMLNode_removeChild(oParent, oNode);
+	// Fire Mutation event
+	var oEvent = new cAMLMutationEvent;
+	oEvent.initMutationEvent("DOMNodeRemoved", true, false, oParent, null, null, null, null);
+	fAMLNode_dispatchEvent(oNode, oEvent);
 
 	// Unregister Instance
 	if (oAML_all[oParent.uniqueID])
 		fAML_unregister(oNode);
+
+	// Call parent class method
+	fAMLNode_removeChild(oParent, oNode);
 
 	// Remove from DOM
 	var oGateway, oChild;
