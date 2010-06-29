@@ -64,7 +64,9 @@ cXULElement_datepicker_pane.prototype.hide	= function() {
 cXULElement_datepicker_pane.prototype.refresh	= function() {
 	// Render
 	this.$getContainer("days-pane").innerHTML	= cXULElement_datepicker_pane.$getTagDays(this, this.current);
-	this._elementMonth.setAttribute("value", this.current.getMonth());
+	var oItem	= this._elementMonth.firstChild.querySelector("[value='" + this.current.getMonth() + "']");
+	this._elementMonth.firstChild.selectItem(oItem);
+	this._elementMonth.setAttribute("value", oItem.getAttribute("label"));	// TODO: should be handled in menulist
 	this._elementYear.setAttribute("value", this.current.getFullYear());
 };
 
