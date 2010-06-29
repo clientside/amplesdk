@@ -69,7 +69,7 @@ cChartElement_pie.prototype.refresh	= function() {
 if (!cChartElement.useVML) {
 	cChartElement_pie.prototype.$getTagOpen	= function() {
 		return '<div class="c-pie' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
-					<svg:svg class="c-pie--canvas" viewBox="0 0 300 300" width="100%" height="100%" xmlns:svg="http://www.w3.org/2000/svg">\
+					<svg:svg class="c-pie--canvas" viewBox="0 0 300 300" style="width:inherit;height:inherit" xmlns:svg="http://www.w3.org/2000/svg">\
 						<svg:text class="c-doughnut--title" y="30" x="150">' + this.getAttribute("title")+ '</svg:text>\
 						<svg:g class="c-pie--gateway">';
 	};

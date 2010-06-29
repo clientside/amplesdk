@@ -75,7 +75,7 @@ cChartElement_radar.prototype.refresh	= function() {
 if (!cChartElement.useVML) {
 	cChartElement_radar.prototype.$getTagOpen	= function() {
 		return '<div class="c-radar' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
-					<svg:svg class="c-radar--canvas" viewBox="0 0 400 300" width="100%" height="100%" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">\
+					<svg:svg class="c-radar--canvas" viewBox="0 0 400 300" style="width:inherit;height:inherit" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">\
 						<svg:text class="c-radar--title" y="30" x="150">' + this.getAttribute("title")+ '</svg:text>\
 						<svg:rect x="260" y="50" width="120" height="120" rx="10" class="c-legend"/>\
 						<svg:path class="c-grid c-radar--grid"/>\

@@ -267,7 +267,7 @@ cChartElement_bar.prototype.refresh	= function() {
 if (!cChartElement.useVML) {
 	cChartElement_bar.prototype.$getTagOpen	= function() {
 		return '<div class="c-bar' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
-					<svg:svg class="c-bar--canvas" viewBox="0 0 600 300" width="100%" height="100%" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">\
+					<svg:svg class="c-bar--canvas" viewBox="0 0 600 300" style="width:inherit;height:inherit" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">\
 						<svg:text class="c-bar--title" y="30" x="300">' + this.getAttribute("title")+ '</svg:text>\
 						<svg:rect x="460" y="50" width="120" height="120" rx="10" class="c-legend"/>\
 						<svg:path class="c-grid c-bar--grid"/>\

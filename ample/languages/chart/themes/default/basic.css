@@ -22,16 +22,19 @@ c|bar,
 c|bubble,
 c|map {
 	width: 600px;/*100%;*/
+	height: 300px;
 }
 
 c|pie,
 c|funnel,
 c|doughnut {
 	width: 300px;/*50%;*/
+	height: 300px;
 }
 
 c|radar {
 	width: 400px;/*66%;*/
+	height: 300px;
 }
 
 c|chart c|group,
