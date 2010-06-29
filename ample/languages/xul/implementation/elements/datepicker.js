@@ -15,26 +15,23 @@ var cXULElement_datepicker	= function() {
 // component prototype
 cXULElement_datepicker.prototype  = new cXULInputElement;
 
-// Static properties
-cXULElement_datepicker.pane		= null;
-cXULElement_datepicker.hidden	= true;
+//
+cXULElement_datepicker.prototype.hidden	= true;
+cXULElement_datepicker.prototype.pane	= true;
 
 // Public Methods
 cXULElement_datepicker.prototype.toggle	= function(bState) {
-	var oPane	= cXULElement_datepicker.getPane(this);
-	if (bState === true || (!arguments.length && cXULElement_datepicker.hidden)) {
+	if (bState === true || (!arguments.length && this.hidden)) {
 		// Update pane state
-		oPane.setAttribute("min", this.getAttribute("min"));
-		oPane.setAttribute("max", this.getAttribute("max"));
-		oPane.setAttribute("value", this.getAttribute("value"));
+		this.pane.setAttribute("min", this.getAttribute("min"));
+		this.pane.setAttribute("max", this.getAttribute("max"));
+		this.pane.setAttribute("value", this.getAttribute("value"));
 
 		// show pane
-		oPane.showPopup(this, -1, -1, cXULPopupElement.POPUP_TYPE_POPUP);
-		oPane.opener		= this;
+		this.pane.showPopup(this, -1, -1, cXULPopupElement.POPUP_TYPE_POPUP);
 	}
 	else {
-		oPane.hidePopup();
-		oPane.opener		= null;
+		this.pane.hidePopup();
 	}
 };
 
@@ -45,7 +42,7 @@ cXULElement_datepicker.handlers	= {
 			return;
 
 		// prevent steeling focus by button
-		if (oEvent.target == this && oEvent.$pseudoTarget == this.$getContainer("button"))
+		if (oEvent.target == this && oEvent.button == 0 && oEvent.$pseudoTarget == this.$getContainer("button"))
 			this.toggle();
 	},
 	"mouseenter":function(oEvent) {
@@ -72,9 +69,42 @@ cXULElement_datepicker.handlers	= {
 		this.$getContainer("input").focus();
 	},
 	"blur":		function(oEvent) {
-		if (!cXULElement_datepicker.hidden)
+		if (!this.hidden)
 			this.toggle(false);
 		this.$getContainer("input").blur();
+	},
+	"DOMNodeInserted":	function(oEvent) {
+		if (oEvent.target == this) {
+			var that	= this;
+			// create a shared pane and hide it
+			this.pane	= this.$appendChildAnonymous(this.ownerDocument.createElementNS(this.namespaceURI, "xul:datepicker-pane"));
+			this.pane.setAttribute("style", "display:none");
+			this.pane.addEventListener("change", function(oEvent) {
+				// hide pane
+				this.hidePopup();
+
+				that.setAttribute("value", this.getAttribute("value"));
+
+				// dispatch change event
+				cXULInputElement.dispatchChange(this.opener);
+
+				that.focus();
+			}, false);
+			this.pane.addEventListener("popupshown", function(oEvent) {
+				that.hidden	= false;
+				this.ownerDocument.popupNode	= this;
+			}, false);
+			this.pane.addEventListener("popuphidden", function(oEvent) {
+				that.hidden	= true;
+				this.ownerDocument.popupNode	= null;
+			}, false);
+		}
+	},
+	"DOMNodeRemoved":	function(oEvent) {
+		if (oEvent.target == this) {
+			this.$removeChildAnonymous(this.pane);
+			this.pane	= null;
+		}
 	},
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this)
@@ -98,43 +128,6 @@ cXULElement_datepicker.handlers	= {
 	}
 };
 
-// Static Methods
-cXULElement_datepicker.getPane	= function(oInstance) {
-	var oPane	= cXULElement_datepicker.pane;
-	if (!oPane) {
-		// create a shared pane and hide it
-		oPane	= oInstance.ownerDocument.createElementNS(oInstance.namespaceURI, "xul:datepicker-pane");
-		oPane.addEventListener("change", function(oEvent) {
-			// hide pane
-			this.hidePopup();
-
-			this.opener.setAttribute("value", this.getAttribute("value"));
-
-			// dispatch change event
-			cXULInputElement.dispatchChange(this.opener);
-
-			this.opener.focus();
-
-			this.opener	= null;
-		}, false);
-		oPane.addEventListener("popupshown", function(oEvent) {
-			cXULElement_datepicker.hidden	= false;
-			this.ownerDocument.popupNode	= this;
-		}, false);
-		oPane.addEventListener("popuphidden", function(oEvent) {
-			cXULElement_datepicker.hidden	= true;
-			this.ownerDocument.popupNode	= null;
-		}, false);
-
-		cXULElement_datepicker.pane	= oPane;
-	}
-
-	if (oPane.parentNode != oInstance)
-		oInstance.appendChild(oPane);
-
-	return oPane;
-};
-
 // component renderers
 cXULElement_datepicker.prototype.$getTagOpen	= function() {
 	return '<table class="xul-datepicker' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '') + (this.getAttribute('disabled') == "true" ? " xul-datepicker_disabled" : "") + '"' + (this.hasAttribute("style") ? ' style="' + this.getAttribute("style") + '"' : '')+ ' cellpadding="0" cellspacing="0" border="0">\
@@ -143,7 +136,7 @@ cXULElement_datepicker.prototype.$getTagOpen	= function() {
 						<td width="100%"><input class="xul-datepicker--input" type="text" maxlength="10" value="' + this.getAttribute("value") + '"' + (this.getAttribute('disabled') == "true" ? ' disabled="true"' : "") +' style="border:0px solid white;width:100%;" /></td>\
 						<td valign="top"><div class="xul-datepicker--button" onmousedown="return false;"></div></td>\
 					</tr>\
-					<tr><td class="xul-datepicker--gateway" colspan="2"></td></tr>\
+					<tr><td class="xul-datepicker--gateway" colspan="2">' + this.pane.$getTag() + '</td></tr>\
 				</tbody>\
 			</table>';
 };
