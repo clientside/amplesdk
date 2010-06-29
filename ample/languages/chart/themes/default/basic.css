@@ -7,13 +7,10 @@ c|pie,
 c|radar,
 c|funnel,
 c|doughnut {
-	display: inline-block;
 	background-color: #eee;
 	border: double 3px gray;
 	border-radius: 10px;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	-o-border-radius: 10px;
+	display: inline-block;
 }
 
 c|chart,
