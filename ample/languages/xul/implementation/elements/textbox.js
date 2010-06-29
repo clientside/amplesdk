@@ -8,8 +8,7 @@
  */
 
 var cXULElement_textbox	= function(){};
-cXULElement_textbox.prototype	= new cXULElement;
-cXULElement_textbox.prototype.tabIndex	= 0;
+cXULElement_textbox.prototype	= new cXULInputElement;
 
 // Attributes Defaults
 cXULElement_textbox.attributes	= {};
@@ -77,9 +76,7 @@ cXULElement_textbox.handlers	= {
 
 cXULElement_textbox.prototype._onChange  = function(oEvent) {
     // Fire Event
-    var oEvent  = this.ownerDocument.createEvent("Events");
-    oEvent.initEvent("change", false, true);
-    this.dispatchEvent(oEvent);
+	cXULInputElement.dispatchChange(this);
 };
 
 // Element Render: open

@@ -8,8 +8,7 @@
  */
 
 var cXULElement_colorpicker	= function(){};
-cXULElement_colorpicker.prototype	= new cXULElement;
-cXULElement_colorpicker.prototype.tabIndex	= 0;
+cXULElement_colorpicker.prototype	= new cXULInputElement;
 
 // Static properties
 cXULElement_colorpicker.pane	= null;
@@ -40,36 +39,7 @@ cXULElement_colorpicker.prototype._onChange	= function(oEvent) {
     this.attributes["value"]    = this.$getContainer("input").value;
 
     // Fire Event
-    var oEvent  = this.ownerDocument.createEvent("Events");
-    oEvent.initEvent("change", false, true);
-    this.dispatchEvent(oEvent);
-};
-
-cXULElement_colorpicker.prototype._onWidgetAccept	= function(oEvent) {
-	var oPopup	= cXULElement_colorpicker.getPane(this);
-
-    oPopup.setAttribute("value", oEvent.target.getAttribute("value"));
-    oPopup.focus();
-
-    // Fire Event
-    oPopup._fireEventOnChange();
-
-	// Close popup
-	oPopup.toggle(false);
-};
-
-cXULElement_colorpicker.prototype._onWidgetCancel	= function(oEvent) {
-	var oPopup	= cXULElement_colorpicker.getPane(this);
-
-	// Close popup
-	oPopup.toggle(false);
-};
-
-cXULElement_colorpicker.prototype._fireEventOnChange	= function() {
-    // Fire Event
-    var oEvent  = this.ownerDocument.createEvent("Events");
-    oEvent.initEvent("change", false, true);
-    this.dispatchEvent(oEvent);
+    cXULInputElement.dispatchChange(this);
 };
 
 // Class Events handlers
@@ -94,6 +64,13 @@ cXULElement_colorpicker.handlers	= {
 
 		this.$setPseudoClass("hover", false, "button");
 	},
+	"keydown":	function(oEvent) {
+		if (!this.$isAccessible())
+			return;
+
+		if (oEvent.keyIdentifier == "Esc")
+			this.toggle(false);
+	},
 	// focus
 	"focus":	function(oEvent) {
 		this.$getContainer("input").focus();
@@ -102,13 +79,6 @@ cXULElement_colorpicker.handlers	= {
 		if (!cXULElement_colorpicker.hidden)
 			this.toggle(false);
 		this.$getContainer("input").blur();
-	},
-	"keydown":	function(oEvent) {
-		if (!this.$isAccessible())
-			return;
-
-		if (oEvent.keyIdentifier == "Esc")
-			this.toggle(false);
 	},
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this) {
@@ -142,9 +112,7 @@ cXULElement_colorpicker.getPane	= function(oInstance) {
 			this.opener.setAttribute("value", this.getAttribute("value"));
 
 			// dispatch change event
-			var oEventChange	= this.ownerDocument.createEvent("UIEvent");
-			oEventChange.initUIEvent("change", true, false, window, null);
-			this.opener.dispatchEvent(oEventChange);
+			cXULInputElement.dispatchChange(this.opener);
 
 			this.opener.focus();
 

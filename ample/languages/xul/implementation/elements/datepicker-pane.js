@@ -80,9 +80,9 @@ cXULElement_datepicker_pane.prototype._onSelectDay	= function(nDay) {
 		this.setAttribute("value", sValue);
 
 		// dispatch "change" event
-		var oEvent	= this.ownerDocument.createEvent("UIEvent");
-		oEvent.initUIEvent("change", true, false, window, null);
-		this.dispatchEvent(oEvent);
+	    var oEvent  = this.ownerDocument.createEvent("UIEvents");
+	    oEvent.initEvent("change", false, false, window, null);
+	    this.dispatchEvent(oEvent);
 	}
 
 	// dispatch change event

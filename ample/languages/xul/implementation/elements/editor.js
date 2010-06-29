@@ -16,12 +16,9 @@ var cXULElement_editor	= function() {
 };
 
 // component prototype
-cXULElement_editor.prototype	= new cXULElement;
+cXULElement_editor.prototype	= new cXULInputElement;
 
 cXULElement_editor.prototype.contentDocument	= null;
-
-//
-cXULElement_editor.prototype.tabIndex	= 0;
 
 // Handlers
 cXULElement_editor.handlers	= {
@@ -34,9 +31,7 @@ cXULElement_editor.handlers	= {
 		if (sHtml != oNode.data) {
 			oNode.replaceData(0, oNode.length, sHtml);
 			// Dispatch change event
-			var oEvent	= this.ownerDocument.createEvent("UIEvent");
-			oEvent.initEvent("change", true, false, window, null);
-			this.dispatchEvent(oEvent);
+			cXULInputElement.dispatchChange(this);
 		}
 		//
 		cXULElement_editor.resetButtons(this);

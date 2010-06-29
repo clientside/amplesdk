@@ -8,8 +8,7 @@
  */
 
 var cXULElement_scale	= function(){};
-cXULElement_scale.prototype	= new cXULElement;
-cXULElement_scale.prototype.tabIndex	= 0;
+cXULElement_scale.prototype	= new cXULInputElement;
 
 // Default Attributes
 cXULElement_scale.attributes	= {
@@ -82,9 +81,7 @@ cXULElement_scale._onDocumentMouseUp    = function(oEvent) {
 	if (sValueOld != oElement.$getValue())
 	{
 	    // Fire Event
-	    var oEvent  = oElement.ownerDocument.createEvent("Events");
-	    oEvent.initEvent("change", true, false);
-	    oElement.dispatchEvent(oEvent);
+		cXULInputElement.dispatchChange(oElement);
 	}
 };
 
@@ -125,9 +122,7 @@ cXULElement_scale.handlers	= {
 	    if (sValue != this.$getValue())
 	    {
 		    // Fire Event
-		    var oChangeEvent  = this.ownerDocument.createEvent("Events");
-		    oChangeEvent.initEvent("change", true, false);
-		    this.dispatchEvent(oChangeEvent);
+	    	cXULInputElement.dispatchChange(this);
 	    }
 	},
 	"DOMAttrModified":	function(oEvent) {

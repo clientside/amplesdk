@@ -13,10 +13,7 @@ var cXULElement_datepicker	= function() {
 };
 
 // component prototype
-cXULElement_datepicker.prototype  = new cXULElement;
-
-// Focus
-cXULElement_datepicker.prototype.tabIndex	= 0;
+cXULElement_datepicker.prototype  = new cXULInputElement;
 
 // Static properties
 cXULElement_datepicker.pane		= null;
@@ -114,9 +111,7 @@ cXULElement_datepicker.getPane	= function(oInstance) {
 			this.opener.setAttribute("value", this.getAttribute("value"));
 
 			// dispatch change event
-			var oEventChange	= this.ownerDocument.createEvent("UIEvent");
-			oEventChange.initUIEvent("change", true, false, window, null);
-			this.opener.dispatchEvent(oEventChange);
+			cXULInputElement.dispatchChange(this.opener);
 
 			this.opener.focus();
 

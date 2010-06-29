@@ -8,8 +8,7 @@
  */
 
 var cXULElement_spinbuttons	= function(){};
-cXULElement_spinbuttons.prototype	= new cXULElement;
-cXULElement_spinbuttons.prototype.tabIndex	= 0;
+cXULElement_spinbuttons.prototype	= new cXULInputElement;
 
 // Default Attributes
 cXULElement_spinbuttons.attributes	= {
@@ -69,9 +68,7 @@ cXULElement_spinbuttons.prototype._onChange  = function(oEvent) {
 //    this.attributes["value"]	= this.$getValue();
 
     // Fire Event
-    var oEvent  = this.ownerDocument.createEvent("Events");
-    oEvent.initEvent("change", true, false);
-    this.dispatchEvent(oEvent);
+	cXULInputElement.dispatchChange(this);
 };
 
 cXULElement_spinbuttons._onDocumentMouseUp = function(oEvent) {
@@ -90,9 +87,7 @@ cXULElement_spinbuttons._onDocumentMouseUp = function(oEvent) {
 
     if (oElement._oldvalue != oElement.$getValue()) {
 	    // Fire Event
-	    var oEvent  = oElement.ownerDocument.createEvent("Events");
-	    oEvent.initEvent("change", true, false);
-	    oElement.dispatchEvent(oEvent);
+    	cXULInputElement.dispatchChange(oElement);
     }
 };
 
@@ -130,9 +125,7 @@ cXULElement_spinbuttons.handlers	= {
 	    if (sValue != this.$getValue())
 	    {
 		    // Fire Event
-		    var oEvent  = this.ownerDocument.createEvent("Events");
-		    oEvent.initEvent("change", true, false);
-		    this.dispatchEvent(oEvent);
+	    	cXULInputElement.dispatchChange(this);
 	    }
 	},
 	"focus":	function(oEvent) {

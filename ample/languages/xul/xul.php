@@ -5,6 +5,7 @@
 	$aFiles[]	= "implementation/classes/cXULController.js";
 
     // base classes
+    $aFiles[]	= "implementation/classes/cXULInputElement.js";
     $aFiles[]	= "implementation/classes/cXULSelectElement.js";
     $aFiles[]	= "implementation/classes/cXULPopupElement.js";
     $aFiles[]	= "implementation/classes/cXULWindowElement.js";

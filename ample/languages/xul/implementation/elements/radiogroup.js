@@ -11,9 +11,8 @@ var cXULElement_radiogroup	= function() {
     // Collections
     this.items      = new AMLNodeList;
 };
-cXULElement_radiogroup.prototype	= new cXULElement;
+cXULElement_radiogroup.prototype	= new cXULInputElement;
 cXULElement_radiogroup.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
-cXULElement_radiogroup.prototype.tabIndex	= 0;
 
 // Public Properties
 cXULElement_radiogroup.prototype.selectedIndex	=-1;

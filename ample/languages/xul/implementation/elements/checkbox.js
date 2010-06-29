@@ -8,8 +8,7 @@
  */
 
 var cXULElement_checkbox	= function(){};
-cXULElement_checkbox.prototype	= new cXULElement;
-cXULElement_checkbox.prototype.tabIndex	= 0;
+cXULElement_checkbox.prototype	= new cXULInputElement;
 
 // Apply Behaviours
 
@@ -58,9 +57,7 @@ cXULElement_checkbox.prototype._onChange = function(oEvent) {
 	this.setAttribute("checked", this.$getContainer("input").checked.toString());
 
     // Fire Event
-    var oEvent  = this.ownerDocument.createEvent("Events");
-    oEvent.initEvent("change", false, true);
-    this.dispatchEvent(oEvent);
+	cXULInputElement.dispatchChange(this);
 };
 
 // Element Render: open

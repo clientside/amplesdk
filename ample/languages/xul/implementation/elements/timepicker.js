@@ -8,8 +8,7 @@
  */
 
 var cXULElement_timepicker	= function(){};
-cXULElement_timepicker.prototype	= new cXULElement;
-cXULElement_timepicker.prototype.tabIndex	= 0;
+cXULElement_timepicker.prototype	= new cXULInputElement;
 
 // Default attributes
 cXULElement_timepicker.attributes	= {
@@ -22,7 +21,7 @@ cXULElement_timepicker.prototype._onInputTimeChange    = function(oEvent, sName,
     this._setValue(sName, sValue);
 
     // Fire Event
-    this._fireEventOnChange();
+    cXULInputElement.dispatchChange(this);
 };
 
 cXULElement_timepicker.prototype._onTimeKeyDown    = function(oEvent, sName) {

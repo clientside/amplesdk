@@ -11,8 +11,7 @@ var cXULElement_menulist	= function() {
 	// Collections
 	this.items	  	= new AMLNodeList;
 };
-cXULElement_menulist.prototype   = new cXULElement;
-cXULElement_menulist.prototype.tabIndex	= 0;
+cXULElement_menulist.prototype   = new cXULInputElement;
 
 // Default Attributes
 cXULElement_menulist.attributes	= {
@@ -177,9 +176,7 @@ cXULElement_menulist.handlers	= {
 				}
 
 				// Fire Event
-				var oEvent2  = this.ownerDocument.createEvent("UIEvents");
-				oEvent2.initUIEvent("change", true, false, window, null);
-				this.dispatchEvent(oEvent2);
+				cXULInputElement.dispatchChange(this);
 
 				// Prevent submit
 				oEvent.preventDefault();
@@ -247,9 +244,7 @@ cXULElement_menulist.handlers	= {
 
 			if (sValue != this.$getValue()) {
 			    // Fire Event
-			    var oEvent2  = this.ownerDocument.createEvent("UIEvents");
-			    oEvent2.initUIEvent("change", true, false, window, null);
-			    this.dispatchEvent(oEvent2);
+				cXULInputElement.dispatchChange(this);
 			}
 		}
 	},

@@ -106,9 +106,7 @@ cXULElement_radio.prototype._onClick = function(oEvent) {
         this.setAttribute("selected", "true");
 
 	    // Fire Event
-	    var oEvent  = this.ownerDocument.createEvent("Events");
-	    oEvent.initEvent("change", false, true);
-	    this.group.dispatchEvent(oEvent);
+        cXULInputElement.dispatchChange(this.group);
     }
 };
 
