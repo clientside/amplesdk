@@ -86,7 +86,7 @@ cXULElement_datepicker.handlers	= {
 				that.setAttribute("value", this.getAttribute("value"));
 
 				// dispatch change event
-				cXULInputElement.dispatchChange(this.opener);
+				cXULInputElement.dispatchChange(that);
 
 				that.focus();
 			}, false);
