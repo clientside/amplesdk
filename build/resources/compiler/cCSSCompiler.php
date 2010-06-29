@@ -49,7 +49,7 @@
 	        $sData	= preg_replace("/\s\s+/",	"",			$sData);
 
 	        $sData	= preg_replace("/;;+/",		";",		$sData);
-	        $sData	= str_replace(";}",			"}",		$sData);
+//	        $sData	= str_replace(";}",			"}",		$sData);	// If enabled, causes vendor prefixes regexp issues, todo later
 
 	        $this->output	= $sData;
 	    }
@@ -70,6 +70,25 @@
 			//	-> -ms-filter:Alpha(opacity=' + nOpacity * 100 + ');
 			//	-> filter:Alpha(opacity=' + nOpacity * 100 + ');
 			$sCSS	= preg_replace_callback("/(?:[^-])opacity\s*:\s*(\d?\.?\d+)/",	"cCSSCompiler_replaceOpacity",			$sCSS);
+
+			// add vendor prefixed styles
+			$sBefore	= "$1$2$3$4-";
+			$sAfter		= "-$2$3$4";
+			// WebKit
+			$sCSS	= preg_replace("/([\s;{])(box-shadow\s*:\s*)([^\n;}]+)([\n;}])/", $sBefore . "webkit" . $sAfter, $sCSS);
+			$sCSS	= preg_replace("/([\s;{])(outline-radius\s*:\s*)([^\n;}]+)([\n;}])/", $sBefore . "webkit" . $sAfter, $sCSS);
+			$sCSS	= preg_replace("/([\s;{])(border-radius\s*:\s*)([^\n;}]+)([\n;}])/", $sBefore . "webkit" . $sAfter, $sCSS);
+			// Gecko-specific
+			$sCSS	= preg_replace("/([\s;{])(box-shadow\s*:\s*)([^\n;}]+)([\n;}])/", $sBefore . "moz" . $sAfter, $sCSS);
+			$sCSS	= preg_replace("/([\s;{])(outline-radius\s*:\s*)([^\n;}]+)([\n;}])/", $sBefore . "moz" . $sAfter, $sCSS);
+			$sCSS	= preg_replace("/([\s;{])(border-radius\s*:\s*)([^\n;}]+)([\n;}])/", $sBefore . "moz" . $sAfter, $sCSS);
+			$sCSS	= preg_replace("/([\s;{])(box-sizing\s*:\s*)([^\n;}]+)([\n;}])/", $sBefore . "moz" . $sAfter, $sCSS);
+			$sBefore	= $sBefore . 'moz-border-radius-';
+			$sAfter		= ':$3$4';
+			$sCSS	= preg_replace("/([\s;{])(border-top-left-radius\s*:\s*)([^\n;}]+)([\n;}])/", $sBefore . "topleft" . $sAfter, $sCSS);
+			$sCSS	= preg_replace("/([\s;{])(border-top-right-radius\s*:\s*)([^\n;}]+)([\n;}])/", $sBefore . "topright" . $sAfter, $sCSS);
+			$sCSS	= preg_replace("/([\s;{])(border-bottom-left-radius\s*:\s*)([^\n;}]+)([\n;}])/", $sBefore . "bottomleft" . $sAfter, $sCSS);
+			$sCSS	= preg_replace("/([\s;{])(border-bottom-right-radius\s*:\s*)([^\n;}]+)([\n;}])/", $sBefore . "bottomright" . $sAfter, $sCSS);
 
 			// Remove prefix declaration
 			$sCSS	= preg_replace("/@namespace\s+([\w-]+\s+)?(url\()?(['\"])?[^'\";\s]+(['\"])?\)?;?/", "", $sCSS);
