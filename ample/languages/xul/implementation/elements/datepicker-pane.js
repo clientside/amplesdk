@@ -328,6 +328,7 @@ cXULElement_datepicker_pane.$getTagDays	= function(oInstance, oDate) {
 								class="xul-datepicker-pane-day' +(nWeekDay > 4 ? " xul-datepicker-pane-weekend" : '') + (oInstance.value && oDateCurrent.getTime() == oInstance.value.getTime() ? ' xul-datepicker-pane-day_selected' : '') + '\
 								' + (oDateToday.getDate() == oDateCurrent.getDate() && oDateToday.getMonth() == oDateCurrent.getMonth() && oDateToday.getFullYear() == oDateCurrent.getFullYear() ? ' xul-datepicker-pane-day_today' : '') + '\
 								' + (bDateDisabled ? ' xul-datepicker-pane-day_disabled' : '" onclick="ample.$instance(this)._onSelectDay(' + nIndex + ')') + '"\
+								onmouseover="this.className += \' xul-datepicker-pane-day_hover\'" onmouseout="this.className = this.className.replace(\' xul-datepicker-pane-day_hover\', \'\')"\
 								>' + nIndex + '</div>\
 						</td>');
 		if ((nWeekDay == 6) && (nIndex < nDays))
