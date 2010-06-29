@@ -110,9 +110,8 @@ cXULElement_menulist.handlers	= {
 			return;
 
 		// click on ::button
-		if (oEvent.target == this && oEvent.button == 0 && oEvent.$pseudoTarget == this.$getContainer("button")) {
+		if (oEvent.target == this && oEvent.button == 0 && oEvent.$pseudoTarget == this.$getContainer("button"))
 			this.toggle();
-		}
 	},
 	"mouseenter":	function(oEvent) {
 		// for now..
