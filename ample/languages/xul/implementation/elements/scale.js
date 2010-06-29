@@ -42,7 +42,7 @@ cXULElement_scale.prototype.$setValue	= function(sValue) {
 
 // Events Handlers
 cXULElement_scale.prototype._onButtonMouseDown  = function(oEvent) {
-    if (this.getAttribute("disabled") == "true")
+    if (!this.$isAccessible())
         return false;
 
     this._mouseX    = oEvent.clientX;

@@ -106,7 +106,7 @@ cXULElement_menulist.prototype._onChange = function(oEvent) {
 // Class event handlers
 cXULElement_menulist.handlers	= {
 	"mousedown":	function(oEvent) {
-		if (this.getAttribute("disabled") == "true")
+		if (!this.$isAccessible())
 			return;
 
 		// click on ::button
