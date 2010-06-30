@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="menu">
+	<implements />
+	<abstract>
+		<locale>
+			An element, much like a button, that is placed on a <link type="element">menubar</link>.
+			When the user clicks the menu element, the child <link type="element">menupopup</link> of the menu will be displayed.
+			This element is also used to create submenus.
+		</locale>
+		<locale xml:lang="ru">
+			Элемент, по поведению напоминающий кнопку, размещается внутри <link type="element">menubar</link>.
+			Когда происходит событие <link type="event">click</link>, появляется дочерний элемент <link type="element">menupopup</link>.
+			Этот элемент так же используется для создания подменю.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="label" default="" readonly="false">
+				<description>
+					<locale>
+						The label that will appear on the element. If this is left out, no text appears.
+					</locale>
+					<locale xml:lang="ru">
+						Текстовая метка для меню.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="image" default="" readonly="false">
+				<description>
+					<locale>
+						The URL of the image to appear on the element.
+						If this attribute is empty or left out, no image appears.
+					</locale>
+					<locale xml:lang="ru">
+						URL к пиктограмме. Внимение: атрибут не доступен для дочерниъ элементов <link type="element">menubar</link>.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="value" default="" readonly="false">
+				<description>
+					<locale>
+						The string attribute allows you to associate a data value with an element.
+					</locale>
+					<locale xml:lang="ru">
+						Данные, ассоциированные с каждым элементом <link type="element">menu</link> и <link type="element">menuitem</link>. Предназначен для использования в скрипте.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="disabled" default="" readonly="false">
+				<description>
+					<locale>
+						Indicates whether the element is disabled or not.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods>
+		</methods>
+		<properties>
+			<property name="popup" type="AMLElement" readonly="false">
+				<description>
+					<locale>
+						A reference to the <link type="element">menupopup</link>.
+					</locale>
+					<locale xml:lang="ru">
+						Ссылка на элемент <link type="element">menupopup</link>, если таковой существует.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<events>
+<!--
+			<event name="command" group="Event" cancelable="false" bubbles="true">
+				<description>
+				</description>
+			</event>
+-->
+		</events>
+	</members>
+</element>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="statusbar">
+	<implements />
+	<abstract>
+		<locale>
+			An element used to create a status bar, usually placed along the bottom of a window.
+			It is virtually equivalent to a standard box, but may be rendered differently.
+			Contains <link type="element">statusbarpanel</link>s.
+		</locale>
+		<locale xml:lang="ru">
+			Используется для создания статусной строки, которая размещается, как правило, внизу окна.
+			Как правило, является эквивалентным стандартного контейнера за тем исключением,
+			кто он отображается нмного по-другому.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes />
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

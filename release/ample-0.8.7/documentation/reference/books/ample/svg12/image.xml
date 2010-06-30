@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element name="image" extends="svg12:SVG12Element">
+	<abstract>
+		<locale>
+			The 'image' element indicates that the contents of a complete file are to be rendered into a given rectangle within the current user coordinate system.
+		</locale>
+	</abstract>
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="x">
+				<description>
+					<locale>
+						The x-axis coordinate of one corner of the rectangular region into which the referenced document is placed.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="y">
+				<description>
+					<locale>
+						The y-axis coordinate of one corner of the rectangular region into which the referenced document is placed.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="width">
+				<description>
+					<locale>
+						The width of the rectangular region into which the referenced document is placed.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="height">
+				<description>
+					<locale>
+						The height of the rectangular region into which the referenced document is placed.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="xlink:href">
+				<description>
+					<locale>
+						A URI reference to the image.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+	</members>
+</element>

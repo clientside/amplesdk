@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="XSLTProcessor">
+	<abstract>
+		<locale>
+			Implements XSL-T transformations.
+		</locale>
+		<locale xml:lang="ru">
+			Реализует процессинг XSL-T преобразований.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<methods>
+			<method name="clearParameters" type="Void">
+				<description>
+					<locale>
+						Removes all set parameters from this <link type="object">XSLTProcessor</link>
+					</locale>
+					<locale xml:lang="ru">
+						Удаляет все параметры объекта <link type="object">XSLTProcessor</link>
+					</locale>
+				</description>
+			</method>
+			<method name="getParameter" type="Variant">
+				<arguments>
+					<argument name="sNameSpaceURI" required="true" type="String">
+						<description>
+							<locale>
+								The namespaceURI of the XSLT parameter
+							</locale>
+							<locale xml:lang="ru">
+								URI пространства имен XSLT параметра
+							</locale>
+						</description>
+					</argument>
+					<argument name="sLocalName" required="true" type="String">
+						<description>
+							<locale>
+								The local name of the XSLT parameter
+							</locale>
+							<locale xml:lang="ru">
+								Имя XSLT параметра
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Gets a parameter if previously set by setParameter.
+					</locale>
+					<locale xml:lang="ru">
+						Возвращает значение параметра, выставленного ранее методом <link type="method">setParameter</link>
+					</locale>
+				</description>
+			</method>
+			<method name="setParameter" type="Void">
+				<arguments>
+					<argument name="sNameSpaceURI" required="true" type="String">
+						<description>
+							<locale>
+								The namespaceURI of the XSLT parameter
+							</locale>
+							<locale xml:lang="ru">
+								URI пространства имен XSLT параметра
+							</locale>
+						</description>
+					</argument>
+					<argument name="sLocalName" required="true" type="String">
+						<description>
+							<locale>
+								The local name of the XSLT parameter
+							</locale>
+							<locale xml:lang="ru">
+								Имя XSLT параметра
+							</locale>
+						</description>
+					</argument>
+					<argument name="vValue" required="true" type="Variant">
+						<description>
+							<locale>
+								The new value of the XSLT parameter
+							</locale>
+							<locale xml:lang="ru">
+								Значение XSLT параметра
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Sets a parameter to be used in subsequent transformations with this <link type="object">XSLTProcessor</link>.
+					</locale>
+					<locale xml:lang="ru">
+						Выставляет параметр объекта <link type="object">XSLTProcessor</link> для использования несколькими преобразованиями
+					</locale>
+				</description>
+			</method>
+			<!--method name="clearParameters" type="Void">
+				<description>
+					<locale>
+						Removes all set parameters from this <link type="object">XSLTProcessor</link>
+					</locale>
+					<locale>
+						Удаляет все выставленные параметры объекта <link type="object">XSLTProcessor</link>
+					</locale>
+				</description>
+			</method-->
+			<method name="removeParameter" type="Void">
+				<arguments>
+					<argument name="sNameSpaceURI" required="true" type="String">
+						<description>
+							<locale>
+								The namespaceURI of the XSLT parameter
+							</locale>
+							<locale xml:lang="ru">
+								URI пространства имен XSLT параметра
+							</locale>
+						</description>
+					</argument>
+					<argument name="sLocalName" required="true" type="String">
+						<description>
+							<locale>
+								The local name of the XSLT parameter
+							</locale>
+							<locale xml:lang="ru">
+								Имя XSLT параметра
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Removes a parameter, if set.
+					</locale>
+					<locale xml:lang="ru">
+						Удаляет параметр, в случае, если он выставлен
+					</locale>
+				</description>
+			</method>
+			<method name="reset" type="Void">
+				<description>
+					<locale>
+						Remove all parameters and stylesheets from this <link type="object">XSLTProcessor</link>
+					</locale>
+					<locale xml:lang="ru">
+						Удалет все параметры и файлы преобразований из объекта <link type="object">XSLTProcessor</link>
+					</locale>
+				</description>
+			</method>
+			<method name="importStylesheet" type="Void">
+				<arguments>
+					<argument name="oNode" required="true" type="Node">
+						<description>
+							<locale>
+								The stylesheet node.
+							</locale>
+							<locale xml:lang="ru">
+								Узел преобразования
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Imports the stylesheet into this <link type="object">XSLTProcessor</link> for transformations.
+					</locale>
+					<locale xml:lang="ru">
+						Импортирует преобразование в объект <link type="object">XSLTProcessor</link> для трансформации.
+					</locale>
+				</description>
+			</method>
+			<method name="transformToDocument" type="Document">
+				<arguments>
+					<argument name="oNode" required="true" type="Node">
+						<description>
+							<locale>
+								The node to be transformed.
+							</locale>
+							<locale xml:lang="ru">
+								Узел для преобразования
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Transforms the node source applying the stylesheet given by the <link type="method">importStylesheet</link> method.
+					</locale>
+					<locale xml:lang="ru">
+						Преобразует содержимое узла, применяя преобразование, заданное методом <link type="method">importStylesheet</link>
+					</locale>
+				</description>
+			</method>
+			<method name="transformToFragment" type="Fragment">
+				<arguments>
+					<argument name="oNode" required="true" type="Node">
+						<description>
+							<locale>
+								The node to be transformed.
+							</locale>
+							<locale xml:lang="ru">
+								Узел для преобразования
+							</locale>
+						</description>
+					</argument>
+					<argument name="oOutput" required="true" type="Document">
+						<description>
+							<locale>
+								This document is used to generate the output.
+							</locale>
+							<locale xml:lang="ru">
+								Документ, который будет использоваться для генерации результата преобразования
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Transforms the node source applying the stylesheet given by the <link type="method">importStylesheet</link> method.
+					</locale>
+					<locale xml:lang="ru">
+						Преобразует содержимое узла, применяя преобразование, заданное методом <link type="method">importStylesheet</link>
+					</locale>
+				</description>
+			</method>
+		</methods>
+	</members>
+</object>

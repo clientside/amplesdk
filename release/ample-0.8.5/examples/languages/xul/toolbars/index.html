@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>XUL Language - toolbars</title>
+		<script type="text/javascript" src="../../../../ample/runtime.js"></script>
+		<script type="text/javascript" src="../../../../ample/languages/xul/xul.js"></script>
+		<link type="text/ample+css" href="../../../../ample/languages/xul/themes/default/xul.css" rel="stylesheet"/>
+	</head>
+	<body>
+		<script type="application/ample+xml"
+			xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+			<xul:menubar id="sample-menubar">
+				<xul:menu label="File">
+					<xul:menupopup>
+						<xul:menu label="New">
+							<xul:menupopup>
+								<xul:menuitem
+									label="Normal Text" />
+								<xul:menuitem
+									label="HTML Page" />
+							</xul:menupopup>
+						</xul:menu>
+						<xul:menuitem label="Open..." />
+						<xul:menuseparator />
+						<xul:menuitem label="Save" />
+						<xul:menuitem label="Save All" />
+						<xul:menuitem label="Save As.." disabled="true"/>
+						<xul:menuseparator />
+						<xul:menuitem label="Exit" />
+					</xul:menupopup>
+				</xul:menu>
+				<xul:menu label="Menu Types">
+					<xul:menupopup>
+						<xul:menu label="Radio">
+							<xul:menupopup>
+								<xul:menuitem
+									label="First Item" type="radio" name="testradio" />
+								<xul:menuitem
+									label="Second Item" type="radio" name="testradio" />
+								<xul:menuitem
+									label="Third Item" type="radio" name="testradio"
+									disabled="true" />
+								<xul:menuitem
+									label="Fourth Item" type="radio" name="testradio"
+									checked="true" disabled="true" />
+							</xul:menupopup>
+						</xul:menu>
+						<xul:menu label="Checkbox">
+							<xul:menupopup>
+								<xul:menuitem
+									label="First Item" type="checkbox" />
+								<xul:menuitem
+									label="Second Item" type="checkbox" />
+								<xul:menuitem
+									label="Third Item" type="checkbox" disabled="true" />
+								<xul:menuitem
+									label="Fourth Item" type="checkbox" checked="true"
+									disabled="true" />
+							</xul:menupopup>
+						</xul:menu>
+						<xul:menu
+							label="Test Disabled group" disabled="true">
+							<xul:menupopup>
+								<xul:menuitem
+									label="First Item" type="checkbox" />
+								<xul:menuitem
+									label="Second Item" type="checkbox" />
+								<xul:menuitem
+									label="Third Item" type="checkbox" disabled="true" />
+								<xul:menuitem
+									label="Fourth Item" type="checkbox" checked="true"
+									disabled="true" />
+							</xul:menupopup>
+						</xul:menu>
+						<xul:menuitem label="Image"
+							image="close.gif" />
+					</xul:menupopup>
+				</xul:menu>
+			</xul:menubar>
+
+			<xul:toolbox>
+			    <xul:toolbar>
+			        <xul:toolbargrippy />
+			        <xul:toolbarbutton label="Button" />
+			        <xul:toolbarseparator />
+			        <xul:toolbarbutton label="Menu" type="menu">
+			            <xul:menupopup>
+			                <xul:menuitem label="Action 1" />
+			                <xul:menuitem label="Action 2" />
+			            </xul:menupopup>
+			        </xul:toolbarbutton>
+			        <xul:toolbarbutton label="Menu 2" type="menu">
+			            <xul:menupopup>
+			                <xul:menuitem label="Action 1" />
+			                <xul:menuitem label="Action 2" />
+			            </xul:menupopup>
+			        </xul:toolbarbutton>
+			        <xul:toolbarseparator />
+			        <xul:toolbarbutton label="Menu-button" type="menu-button">
+			            <xul:menupopup>
+			                <xul:menuitem label="Action 1" />
+			                <xul:menuitem label="Action 2" />
+			            </xul:menupopup>
+			        </xul:toolbarbutton>
+			        <xul:toolbarbutton label="Menu-button 2" type="menu-button">
+			            <xul:menupopup>
+			                <xul:menuitem label="Action 1" />
+			                <xul:menuitem label="Action 2" />
+			            </xul:menupopup>
+			        </xul:toolbarbutton>
+			    </xul:toolbar>
+			</xul:toolbox>
+
+			<!-- xul:spacer height="200" />
+
+			<xul:menupopup hidden="false">
+				<xul:menu label="New">
+					<xul:menupopup>
+						<xul:menuitem
+							label="Normal Text" />
+						<xul:menuitem
+							label="HTML Page" />
+					</xul:menupopup>
+				</xul:menu>
+				<xul:menuitem label="Open..." />
+				<xul:menuseparator />
+				<xul:menuitem label="Save" />
+				<xul:menuitem label="Save All" />
+				<xul:menuitem label="Save As.." disabled="true"/>
+				<xul:menuseparator />
+				<xul:menuitem label="Exit" />
+			</xul:menupopup-->
+		</script>
+	</body>
+</html>

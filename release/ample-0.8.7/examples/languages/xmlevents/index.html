@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Example: AML</title>
+		<script type="text/javascript" src="../../../ample/runtime.js"></script>
+		<script type="text/javascript" src="../../../ample/languages/xhtml/xhtml.js"></script>
+	</head>
+	<body>
+		<script type="application/ample+xml"
+			xmlns:ev="http://www.w3.org/2001/xml-events"
+			xmlns="http://www.w3.org/1999/xhtml">
+			<div>
+				<ev:listener event="click" handler="javascript:alert(event.target.nodeName + ' is clicked')"/>
+				Click this text and get handler invoked by XMLEvents processor!
+			</div>
+		</script>
+	</body>
+</html>

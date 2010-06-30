@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Example: History</title>
+		<script type="text/javascript" src="../../../ample/runtime.js"></script>
+		<script type="text/javascript" src="../../../ample/languages/xhtml/xhtml.js"></script>
+		<script type="text/javascript">
+			ample.domConfig.setParameter("ample-module-history-fix", true);
+		</script>
+	</head>
+	<body>
+		<script type="application/ample+xml" style="border: solid 1px gray"
+			xmlns="http://www.w3.org/1999/xhtml">
+			<a href="index.html#test1">test1</a>&nbsp;
+			<a href="./index.html#test2">test2</a>&nbsp;
+			<a href="#test3">test3</a>&nbsp;
+			<a href="#test4">test4</a>&nbsp;
+			<br />
+			<br />
+
+			<button onclick="ample.$bookmark('button1')">button1</button>
+			<button onclick="ample.$bookmark('button2')">button2</button>
+			<button onclick="ample.$bookmark('button3')">button3</button>
+			<button onclick="ample.$bookmark('button4')">button4</button>
+
+			<br />
+			<br />
+			<button onclick="window.history.back()">&lt; back</button>
+			<button onclick="window.history.forward()">forth &gt;</button>
+		</script>
+		<script type="text/javascript">
+			ample.addEventListener("hashchange", onNavigate, false);
+			function onNavigate(oEvent)
+			{
+				document.getElementById("navigator").innerHTML+= "navigated to: " + oEvent.newURL + "<br />";
+			}
+			window.setInterval(function() {
+				document.getElementById("current").innerHTML = "current: " + window.location.hash;
+			}, 1);
+		</script>
+		<div id="current"></div>
+		<div id="navigator"></div>
+	</body>
+</html>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="toolbarbutton" type="regular">
+	<implements />
+	<abstract>
+		<locale xml:lang="ru">
+			Кнопка для элемента <link type="element">toolbar</link>.
+			Эквивалентен элементу <link type="element">button</link> за исключеним того,
+			что он отображается немного другим образом.
+			Как правило, этот элемент должен иметь пиктограмму.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="type" default="" readonly="true">
+				<values>
+					<value name="menu">
+						<description>
+							<locale xml:lang="ru">
+								Кнопка с раскрывающимся меню.
+								В этом случае немобходмо поместить внутрь элемент <link type="element">menupopup</link>.
+							</locale>
+						</description>
+					</value>
+					<value name="menu-button">
+						<description>
+							<locale xml:lang="ru">
+								Кнопка с раскрывающимся меню.
+								В отличие от кнопки типа <b>menu</b>, для появления раскрывающегося меню от пользователя требуется нажатие на стрелочку.
+								При нажатии на самой кнопки может быть вызвана другая команда.
+								Кнопки такого типа используются в кнопках браузеров "вперед" и "назад".
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale xml:lang="ru">
+						Тип кнопки.
+						Если не указан, отобразится стандартная кнопка.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="image" default="" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						URL пиктограммы для кнопки.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="label" default="" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						Текст для кнопки.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties />
+		<events>
+<!--
+			<event name="command" group="Event" cancelable="false" bubbles="true">
+				<description>
+				</description>
+			</event>
+-->
+		</events>
+	</members>
+</element>

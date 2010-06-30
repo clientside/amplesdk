@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<article>
+	<title>XML Events Version 1.0</title>
+	<abstract>
+		<locale>
+			An event is the representation of some asynchronous occurrence
+			(such as a mouse click on the presentation of the element, or an arithmetical
+			error in the value of an attribute of the element, or any of unthinkably many
+			other possibilities) that gets associated with an element (targeted at it) in an XML document.<br />
+			<br />
+			In the DOM model of events [DOM2EVENTS], the general behavior is that when an event occurs it
+			is dispatched by passing it down the document tree in a phase called capture to the element
+			where the event occurred (called its target), where it then may be passed back up the tree
+			again in the phase called bubbling. In general an event can be responded to at any element
+			in the path (an observer) in either phase by causing an action, and/or by stopping the event,
+			and/or by cancelling the default action for the event.
+		</locale>
+		<locale xml:lang="ru">
+			Событие является неким асинхронным инцидентом (например, нажатие мышью на представлении элемента, арифметическая ошибка в вычислении значения атрибута элемента, и другое), которое имеет привязку к элементу (указывает на него) XML документа.<br />
+			<br />
+			В модели событий DOM (<link href="http://www.w3.org/TR/2000/REC-DOM-Level-2-Events-20001113" title="Document Object Model (DOM) Level 2 Events Specification">DOM2EVENTS</link>), когда происходит событие, поведение является следующим:
+			<ul>
+				<li>событие передается по структуре документа от корня до элемента, на котором произошло событие, (фаза "capture")</li>
+				<li>событие передается по структуре документа от элемента, на котором произошло событие, до корня  (фаза "bubbling")</li>
+			</ul>
+			В общем случае событие может быть передано любому элементу (называемому <b>observer</b>) по пути между элементом, на котором оно произошло, и корнем, вызывая ответную реакцию (обработчик), которая может остановить распространение события и/или отменить реакцию браузера на это событие по умолчанию.
+		</locale>
+	</abstract>
+	<content>
+		<section>
+			<title>
+				<locale>
+					Namespace URI
+				</locale>
+				<locale xml:lang="ru">
+					Пространство имен
+				</locale>
+			</title>
+			<content>
+				<locale>
+					XML Events defines a namespace associated with the URI <uri>http://www.w3.org/2001/xml-events</uri>
+				</locale>
+				<locale xml:lang="ru">
+					Пространство имен XML Events определяется URI <uri>http://www.w3.org/2001/xml-events</uri>.
+				</locale>
+			</content>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Ample SDK implementation details
+				</locale>
+				<locale xml:lang="ru">
+					Реализация в Ample SDK
+				</locale>
+			</title>
+			<content>
+				<locale>
+					<b>Ample SDK</b> implements XML Events Module, but lacks of XML Events Global Attributes module.
+				</locale>
+				<locale xml:lang="ru">
+					В настоящее время <b>Ample SDK</b> реализует модуль XML Events без поддержки глобальных атрибутов.
+				</locale>
+			</content>
+		</section>
+	</content>
+
+	<seealso>
+		<link href="http://www.w3.org/TR/2003/REC-xml-events-20031014/">XML Events 1.0 (W3C)</link>
+	</seealso>
+</article>

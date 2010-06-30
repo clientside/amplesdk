@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<article>
+	<title>Part I - Creating custom Markup Language</title>
+	<abstract>
+		<locale>
+			This tutorial will guide you through a series of steps explaining how you create
+			a custom Markup Language and register it with Ample SDK Framework.
+		</locale>
+	</abstract>
+	<content>
+		<section>
+			<title>
+				<locale>
+					Defining a Language
+				</locale>
+			</title>
+			<content>
+				<locale>
+					<p>
+						First you create an instance of AMLNamespace object (please note the difference from how a new
+						element is defined). This object is going to host all elements and global attributes defined
+						in the language namespace.
+					</p>
+			<code><![CDATA[
+var MyNamespace	= new AMLNamespace;
+			]]></code>
+				</locale>
+			</content>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Registering Language implementation with Ample SDK Framework
+				</locale>
+			</title>
+			<content>
+				<locale>
+					<p>
+						Next you register your language with Ample SDK framework.
+						Here you need to specify namespace URI, a token that you will use
+						in your UI XML fragments when referring to your components. The token can actually be anything
+						(including empty string) however it is strongly recommended that you use
+						unique identifiers, that does neither collide with other domains in your business, nor with any third-parties' businesses.
+						A common practice here is to use your business domain name with an additional path items clustering your needs.
+						(Compare: <uri>http://www.w3.org/2001/xml-events</uri>, <uri>http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul</uri>, <uri>http://www.amplesdk.com/ns/aml</uri>, etc.)
+					</p>
+			<code><![CDATA[
+ample.domConfig.setNamespace("http://www.mybusiness.com/ns/ui", MyNamespace);
+			]]></code>
+				</locale>
+			</content>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Defining an Element Component
+				</locale>
+			</title>
+			<content>
+				<locale>
+					<p>
+						An element component definition is a class that will be instantiated when it is referred from a UI page.
+						That is why when defining component you should use a function constructor (please
+						note a difference from how a language defined). The prototype chain of the constructor should be set
+						to an instance of AMLElement so that all base DOM functionality available from that object would get
+						inherited to the newly defined component.
+						In the example given below you can see a simple skeleton of a component.
+					</p>
+			<code><![CDATA[
+// Define component constructor
+var MySuggestBox	= function() {
+
+}
+
+// Define component prototype
+MySuggestBox.prototype	= new AMLElement;
+
+// Define component members
+MySuggestBox.prototype.value	= '';
+MySuggestBox.prototype.setValue	= function(sValue) {
+
+}
+			]]></code>
+				</locale>
+			</content>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Registering Element Component with Language implementation
+				</locale>
+			</title>
+			<content>
+				<locale>
+					<p>
+						The last step you need to undertake in order to get your component recognized by
+						the framework is to register it with the language defined above.
+						Here you should pass in a component name identifier (or simply token) by which your
+						component will be looked when referencing from your UI XML fragments.
+					</p>
+			<code><![CDATA[
+MyNamespace.setElement("suggestbox", MySuggestBox);
+			]]></code>
+				</locale>
+			</content>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Putting all together and seeing the result
+				</locale>
+			</title>
+			<content>
+				<locale>
+					<p>
+						Now your component is pretty much ready to use and can be used from within UI.
+						Note, that you will not see any visual representation of your newly created
+						Element Component yet, as we did not create one.
+						For detailed information on how to add it, please refer to <a href="create_component.xml">Part II - Creating custom Component</a>.
+					</p>
+			<code type="application/xml"><![CDATA[
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Example</title>
+		<script type="text/javascript" src="ample/runtime.js"></script>
+		<script type="text/javascript" src="ui/MyNamespace.js"></script>
+		<script type="text/javascript" src="ui/MySuggestBox.js"></script>
+	</head>
+	<body>
+		<script type="application/ample+xml" xmlns:my="http://www.mybusiness.com/ns/ui">
+			<my:suggestbox />
+		</script>
+	</body>
+</html>
+			]]></code>
+				</locale>
+			</content>
+		</section>
+		<locale>
+			<p>
+				What is next? Go to <a href="create_component.xml">Part II - Creating custom Component</a>
+				to learn more details on components creation.
+			</p>
+		</locale>
+	</content>
+</article>

@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<article>
+	<title>XForms 1.1</title>
+	<warning>
+		<locale>
+			XForms 1.1 in Ample SDK is currently in development.
+		</locale>
+		<locale xml:lang="ru">
+			Реализация XForms 1.1 в <b>Ample SDK</b> находится в разработке.
+		</locale>
+	</warning>
+	<abstract>
+		<locale>
+			XForms is an XML application that represents the next generation of forms for the Web.
+		</locale>
+	</abstract>
+	<content>
+		<section>
+			<title>
+				<locale>
+					Namespace URI
+				</locale>
+				<locale xml:lang="ru">
+					Пространство имен
+				</locale>
+			</title>
+			<content>
+				<locale>
+					XForms 1.1 defines a namespace associated with the URI <uri>http://www.w3.org/2002/xforms</uri>
+				</locale>
+				<locale xml:lang="ru">
+					Пространство имен XForms 1.1 определяется URI <uri>http://www.w3.org/2002/xforms</uri>
+				</locale>
+			</content>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Ample SDK implementation details
+				</locale>
+				<locale xml:lang="ru">
+					Реализация в Ample SDK
+				</locale>
+			</title>
+			<content>
+				<locale>
+					At the present moment XForms 1.1 in Ample SDK is in the development.
+				</locale>
+				<locale xml:lang="ru">
+					В настоящее время реализация языка XForms 1.1 в <b>Ample SDK</b> находится в стадии разработки.
+				</locale>
+			</content>
+		</section>
+	</content>
+
+	<seealso>
+		<link href="http://www.w3.org/TR/xforms11/">XForms 1.1 (W3C)</link>
+	</seealso>
+</article>

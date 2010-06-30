@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element name="text" extends="svg11:SVG11Element">
+	<abstract>
+		<locale>
+			The 'text' element defines a graphics element consisting of text.
+		</locale>
+	</abstract>
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="x">
+				<description>
+					<locale>
+						The corresponding list of absolute X coordinates for the glyphs corresponding to the characters within this element.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="y">
+				<description>
+					<locale>
+						The corresponding list of absolute Y coordinates for the glyphs corresponding to the characters within this element.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+	</members>
+</element>

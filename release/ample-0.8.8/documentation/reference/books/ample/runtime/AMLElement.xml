@@ -1,0 +1,765 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="AMLElement" extends="runtime:AMLNode">
+	<abstract>
+		<locale>
+			Represents an element.
+		</locale>
+		<locale xml:lang="ru">
+			Элемент.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<implements>
+		<interface name="runtime:mContentLoader" />
+		<interface name="runtime:mCapture" />
+		<interface name="runtime:mDragAndDrop" />
+		<interface name="runtime:mEffect" />
+		<interface name="runtime:mFocus" />
+		<interface name="runtime:mLegacy" />
+		<interface name="runtime:mResize" />
+		<interface name="runtime:mSelection" />
+	</implements>
+	<members>
+		<attributes>
+			<attribute name="id" readonly="true">
+				<description>
+					<locale>
+						Element identifier.
+					</locale>
+					<locale xml:lang="ru">
+						Позволяет получить или выставить уникальный идентификатор элемента.
+					</locale>
+				</description>
+			</attribute>
+			<!--attribute name="style" readonly="false">
+				<description>
+					<locale>
+						Retrieves the inline style declaration.
+					</locale>
+					<locale xml:lang="ru">
+						Позволяет получить или выставить каскадный стиль.
+					</locale>
+				</description>
+			</attribute-->
+			<attribute name="on***" readonly="true">
+				<description>
+					<locale>
+						Enables in-line handler for *** event.
+					</locale>
+				</description>
+			</attribute>
+			<!--attribute name="class" readonly="false">
+				<description>
+					<locale>
+						Sets or retrieves CSS class name.
+					</locale>
+					<locale xml:lang="ru">
+						Позволяет получить или выставить имя класса, определенного в CSS.
+					</locale>
+				</description>
+			</attribute-->
+			<attribute name="xml:base" readonly="true">
+				<description>
+					<locale>
+						Retrieves baseURI for the object.
+					</locale>
+					<locale xml:lang="ru">
+						URI ссылка, которая определяет другой базовый URI отличный от базового URI документа для его фрагмента.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="xml:space" readonly="true" default="default">
+				<values>
+					<value name="preserve">
+						<description>
+							<locale>
+								All whitespaces will be preserved in the document.
+							</locale>
+							<locale xml:lang="ru">
+								Все пробельные символы сохраняются в объектной модели документа.
+							</locale>
+						</description>
+					</value>
+					<value name="default">
+						<description>
+							<locale>
+								Standard processing of whitespaces
+							</locale>
+							<locale xml:lang="ru">
+								Стандартная обработка пробельных символов.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale>
+						Instructs DOM implementation on how weather to preserve whitespace text nodes.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает, будут ли пробелы представлены в объектной модели фрагмента документа.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods>
+			<method name="getAttribute" type="String">
+				<arguments>
+					<argument name="sName" type="String" required="true">
+						<description>
+							<locale>
+								Attribute name
+							</locale>
+							<locale xml:lang="ru">
+								Имя атрибута.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Retrieves the value of the specified attribute.
+					</locale>
+					<locale xml:lang="ru">
+						Возвращает значение заданного атрибута.
+					</locale>
+				</description>
+			</method>
+			<method name="getAttributeNS" type="String">
+				<arguments>
+					<argument name="sNameSpaceURI" type="String" required="true">
+						<description>
+							<locale>
+								Namespace URI
+							</locale>
+							<locale xml:lang="ru">
+								URI пространства имен атрибута.
+							</locale>
+						</description>
+					</argument>
+					<argument name="sLocalName" type="String" required="true">
+						<description>
+							<locale>
+								Attribute name
+							</locale>
+							<locale xml:lang="ru">
+								Имя атрибута.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Retrieves the value of the specified attribute from the specified namespace.
+					</locale>
+					<locale xml:lang="ru">
+						Возвращает значение указанного атрибута из указанного пространства имен.
+					</locale>
+				</description>
+			</method>
+			<method name="setAttribute" type="Void">
+				<arguments>
+					<argument name="sName" type="String" required="true">
+						<description>
+							<locale>
+								Attribute name
+							</locale>
+							<locale xml:lang="ru">
+								Имя атрибута.
+							</locale>
+						</description>
+					</argument>
+					<argument name="sValue" type="String" required="true">
+						<description>
+							<locale>
+								Attribute value
+							</locale>
+							<locale xml:lang="ru">
+								Значение атрибута.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Sets the value of the specified attribute.
+					</locale>
+					<locale xml:lang="ru">
+						Выставляет значение заданного атрибута.
+					</locale>
+				</description>
+			</method>
+			<method name="setAttributeNS" type="Void">
+				<arguments>
+					<argument name="sNameSpaceURI" type="String" required="true">
+						<description>
+							<locale>
+								Namespace URI
+							</locale>
+							<locale xml:lang="ru">
+								URI пространства имен атрибута.
+							</locale>
+						</description>
+					</argument>
+					<argument name="sName" type="String" required="true">
+						<description>
+							<locale>
+								Attribute name
+							</locale>
+							<locale xml:lang="ru">
+								Имя атрибута.
+							</locale>
+						</description>
+					</argument>
+					<argument name="sValue" type="String" required="true">
+						<description>
+							<locale>
+								Attribute value
+							</locale>
+							<locale xml:lang="ru">
+								Значение атрибута.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Sets the value of the specified attribute from the given namespace.
+					</locale>
+					<locale xml:lang="ru">
+						Выставляет значение заданного атрибута из заданного пространства имен.
+					</locale>
+				</description>
+			</method>
+			<method name="getElementsByTagName" type="AMLNodeList">
+				<arguments>
+					<argument name="sName" type="String" required="true">
+						<description>
+							<locale>
+								Element name.
+							</locale>
+							<locale xml:lang="ru">
+								Имя элемента.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Retrieves a <link type="object">AMLNodeList</link> collection of <link type="object">AMLElement</link> objects based on the specified element name.
+					</locale>
+					<locale xml:lang="ru">
+						Возвращает коллекцию <link type="object">AMLNodeList</link> объектов <link type="object">AMLElement</link> по заданному имени в порядке следования их в документе.
+					</locale>
+				</description>
+			</method>
+			<method name="getElementsByTagNameNS" type="AMLNodeList">
+				<arguments>
+					<argument name="sNameSpaceURI" type="String" required="true">
+						<description>
+							<locale>
+								Namespace URI.
+							</locale>
+							<locale>
+								URI пространства имен элемента.
+							</locale>
+						</description>
+					</argument>
+					<argument name="sLocalName" type="String" required="true">
+						<description>
+							<locale>
+								Element name.
+							</locale>
+							<locale xml:lang="ru">
+								Имя элемента.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Retrieves a <link type="object">AMLNodeList</link> collection of <link type="object">AMLElement</link> objects based on the specified element name from the given namespace.
+					</locale>
+					<locale xml:lang="ru">
+						Возвращает коллекцию <link type="object">AMLNodeList</link> объектов <link type="object">AMLElement</link> по заданным имени и пространству имен в порядке следования их в документе.
+					</locale>
+				</description>
+			</method>
+			<method name="hasAttribute" type="Boolean">
+				<arguments>
+					<argument name="sName" type="String" required="true">
+						<description>
+							<locale>
+								Attribute name.
+							</locale>
+							<locale xml:lang="ru">
+								Имя атрибута.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Returns a value that indicates whether the object has specified attribute.
+					</locale>
+					<locale xml:lang="ru">
+						Возвращаемое значение указывает, имеет ли объект <link type="object">AMLElement</link> заданный атрибут или нет.
+					</locale>
+				</description>
+			</method>
+			<method name="hasAttributeNS" type="Boolean">
+				<arguments>
+					<argument name="sNameSpaceURI" type="String" required="true">
+						<description>
+							<locale>
+								Namespace URI.
+							</locale>
+							<locale xml:lang="ru">
+								URI пространства имен атрибута.
+							</locale>
+						</description>
+					</argument>
+					<argument name="sLocalName" type="String" required="true">
+						<description>
+							<locale>
+								Attribute name.
+							</locale>
+							<locale xml:lang="ru">
+								Имя атрибута.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Returns a value that indicates whether the object has specified attribute from the given namespace.
+					</locale>
+					<locale xml:lang="ru">
+						Возвращаемое значение указывает, имеет ли объект <link type="object">AMLElement</link> заданный атрибут из заданного пространства имен или нет.
+					</locale>
+				</description>
+			</method>
+			<method name="removeAttribute" type="Void">
+				<arguments>
+					<argument name="sName" type="String" required="true">
+						<description>
+							<locale>
+								Attribute name.
+							</locale>
+							<locale xml:lang="ru">
+								Имя атрибута.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Removes the given attribute from the element.
+					</locale>
+					<locale xml:lang="ru">
+						Удаляет заданный атрибут у элемента.
+					</locale>
+				</description>
+			</method>
+			<method name="removeAttributeNS" type="Void">
+				<arguments>
+					<argument name="sNameSpaceURI" type="String" required="true">
+						<description>
+							<locale>
+								Namespace URI.
+							</locale>
+							<locale xml:lang="ru">
+								URI пространства имен атрибута.
+							</locale>
+						</description>
+					</argument>
+					<argument name="sName" type="String" required="true">
+						<description>
+							<locale>
+								Attribute name.
+							</locale>
+							<locale xml:lang="ru">
+								Имя атрибута.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Removes the given attribute from the given namespace from the element.
+					</locale>
+					<locale xml:lang="ru">
+						Удаляет заданный атрибут из заданного пространства имен у элемента.
+					</locale>
+				</description>
+			</method>
+			<!-- DOM-Selectors -->
+			<method name="querySelector" type="AMLElement">
+				<arguments>
+					<argument name="sQuery" type="String" required="true">
+						<description>
+							<locale>
+								CSS query.
+							</locale>
+						</description>
+					</argument>
+					<argument name="fResolver" type="Function" required="false">
+						<description>
+							<locale>
+								Resolver function used to resolve namespace prefixes used in query.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Returns <link type="object">AMLElement</link> that matches CSS query.
+					</locale>
+					<locale xml:lang="ru">
+						Возвращает объект <link type="object">AMLElement</link> по заданному CSS запросу.
+					</locale>
+				</description>
+			</method>
+			<method name="querySelectorAll" type="AMLNodeList">
+				<arguments>
+					<argument name="sQuery" type="String" required="true">
+						<description>
+							<locale>
+								CSS query.
+							</locale>
+						</description>
+					</argument>
+					<argument name="fResolver" type="Function" required="false">
+						<description>
+							<locale>
+								Resolver function used to resolve namespace prefixes used in query.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Returns <link type="object">AMLNodeList</link> of <link type="object">AMLElement</link> that match CSS query.
+					</locale>
+					<locale xml:lang="ru">
+						Возвращает коллекцию <link type="object">AMLNodeList</link> из объектов <link type="object">AMLElement</link> по заданному запросу в порядке, в котором элементы следуют в документе.
+					</locale>
+				</description>
+			</method>
+			<!-- Ample methods -->
+			<method name="$activate" type="Void">
+				<description>
+					<locale>
+						Activates element by dispatching <link type="event">DOMActivate</link> event to the element.
+					</locale>
+				</description>
+			</method>
+			<method name="$getContainer" type="HTMLElement">
+				<arguments>
+					<argument name="sPseudoElement" type="String" required="false">
+						<description>
+							<locale>
+								Name of pseudo-element.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Returns a pointer to a (pseudo-) element in the shadow content.
+					</locale>
+				</description>
+			</method>
+			<method name="$setPseudoClass" type="Void">
+				<arguments>
+					<argument name="sName" type="String" required="true">
+						<description>
+							<locale>
+								Name of CSS pseudoclass
+							</locale>
+							<locale xml:lang="ru">
+								Имя псевдокласса.
+							</locale>
+						</description>
+					</argument>
+					<argument name="bState" type="Boolean" required="true">
+						<description>
+							<locale>
+								Flag indicating wether pseudoclass should be set or reset.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает, должен ли псевдокласс быть выставлен или снят.
+							</locale>
+						</description>
+					</argument>
+					<argument name="sPseudoElement" type="String" required="false">
+						<description>
+							<locale>
+								Name of pseudo-element.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Applies the pseudo class to an element.
+					</locale>
+					<locale xml:lang="ru">
+						Позволяет управлять псевдоклассами элемента.
+					</locale>
+				</description>
+			</method>
+			<!--  -->
+			<method name="getBoundingClientRect" type="TextRectangle">
+				<arguments />
+				<description>
+					<locale>
+						Returns an object with <em>top</em>, <em>right</em>, <em>bottom</em>, <em>left</em> members keeping
+						the absolute coordinates of the object in the screen.
+					</locale>
+				</description>
+			</method>
+			<method name="scrollIntoView" type="Void">
+				<arguments>
+					<argument name="top" type="Boolean">
+						<description>
+							<locale>
+								If value is true, scrolls the object so that top of the object is visible at the top of the window.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Causes the object to scroll into view, aligning it either at the top or bottom of the window.
+					</locale>
+				</description>
+			</method>
+		</methods>
+		<properties>
+			<property name="tagName" type="String" readonly="true">
+				<description>
+					<locale>
+						Retrieves the tag name of the object.
+					</locale>
+					<locale xml:lang="ru">
+						Возвращает имя тега для объекта <link type="object">AMLElement</link>.
+					</locale>
+				</description>
+			</property>
+			<property name="style" type="CSSStyleDeclaration" readonly="true">
+				<description>
+					<locale>
+						Return style declaration obejct.
+					</locale>
+					<locale xml:lang="ru">
+						Возвращает объект style элемента.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<events>
+			<!-- event name="focus" group="UIEvent" cancelable="false" bubbles="false">
+				<description>
+					<locale>
+						An event target receives focus.
+					</locale>
+					<locale xml:lang="ru">
+						Элемент получает фокус.
+					</locale>
+				</description>
+			</event>
+			<event name="blur" group="UIEvent" cancelable="false" bubbles="false">
+				<description>
+					<locale>
+						An event target loses focus.
+					</locale>
+					<locale xml:lang="ru">
+						Элемент теряет фокус.
+					</locale>
+				</description>
+			</event>
+			<event name="DOMFocusIn" group="UIEvent" cancelable="false" bubbles="true">
+				<description>
+					<locale xml:lang="ru">
+						Элемент получает фокус.
+					</locale>
+				</description>
+			</event>
+			<event name="DOMFocusOut" group="UIEvent" cancelable="false" bubbles="true">
+				<description>
+					<locale xml:lang="ru">
+						Элемент теряет фокус.
+					</locale>
+				</description>
+			</event-->
+			<event name="DOMActivate" group="UIEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						An activation behavior requested from element.
+					</locale>
+				</description>
+			</event>
+			<event name="click" group="MouseEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						A pointing device button is clicked over an element.
+					</locale>
+					<locale xml:lang="ru">
+						Произошел клик кнопкой мыши на элементе.
+					</locale>
+				</description>
+			</event>
+			<event name="dblclick" group="MouseEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						Fires when the user double-clicks the object.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается, когда происходит двойной щелчок мыши на объекте.
+					</locale>
+				</description>
+			</event>
+			<event name="contextmenu" group="MouseEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						<b>* legacy.</b> Fires when the user clicks the right mouse button in the client area, opening the context menu.
+						It is recommended that you use <link type="event">click</link> event and check <link type="property">button</link> if its value is 2.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается, когда происходит щелчок левой кнопкой мыши открывает контекстное меню.
+					</locale>
+				</description>
+			</event>
+			<event name="mouseup" group="MouseEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						A pointing device button is released over an element.
+					</locale>
+					<locale xml:lang="ru">
+						Кнопка мыши отпущена, когда курсор находится над элементом.
+					</locale>
+				</description>
+			</event>
+			<event name="mousedown" group="MouseEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						A pointing device button is pressed over an element.
+					</locale>
+					<locale xml:lang="ru">
+						Кнопка мыши нажата, когда курсор находится над элементом.
+					</locale>
+				</description>
+			</event>
+			<event name="mouseover" group="MouseEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						A pointing device is moved onto an element.
+					</locale>
+					<locale xml:lang="ru">
+						Курсор вошел в пределы границ элемента.
+					</locale>
+				</description>
+			</event>
+			<event name="mouseout" group="MouseEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						A pointing device is moved away from an element.
+					</locale>
+					<locale xml:lang="ru">
+						Курсор вышел за пределы границ элемента.
+					</locale>
+				</description>
+			</event>
+			<event name="mousemove" group="MouseEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						A pointing device is moved while it is over an element.
+					</locale>
+					<locale xml:lang="ru">
+						Курсор переместился, когда находился в пределах границ элемента.
+					</locale>
+				</description>
+			</event>
+			<event name="mouseenter" group="MouseEvent" cancelable="false" bubbles="false">
+				<description>
+					<locale>
+						Fires when the user moves the mouse pointer into the object.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается, когда указатель мыши входит в пределы границ объекта.
+					</locale>
+				</description>
+			</event>
+			<event name="mouseleave" group="MouseEvent" cancelable="false" bubbles="false">
+				<description>
+					<locale>
+						Fires when the user moves the mouse pointer outside the boundaries of the object.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается, когда указатель мыши выходит за пределы границ объекта.
+					</locale>
+				</description>
+			</event>
+			<event name="mousewheel" group="MouseWheelEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						Fires when the user wheels the mouse within the boundaries of the object.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается, когда прокручивается колесо мыши в пределах границ объекта.
+					</locale>
+				</description>
+			</event>
+			<event name="keyup" group="KeyboardEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						A key is released.
+					</locale>
+					<locale xml:lang="ru">
+						Клавиша отпущена.
+					</locale>
+				</description>
+			</event>
+			<event name="keydown" group="KeyboardEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						A key is pressed down.
+					</locale>
+					<locale xml:lang="ru">
+						Клавиша нажата.
+					</locale>
+				</description>
+			</event>
+			<event name="keypress" group="KeyboardEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						<b>* legacy.</b> Fires when the user presses key on the keyboard.
+						It is recommended that you use <link type="event">textInput</link> event instead.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается, когда происходит нажатие клавиши клавиатуры.
+					</locale>
+				</description>
+			</event>
+			<event name="textInput" group="TextEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						User typed in a character.
+					</locale>
+				</description>
+			</event>
+			<event name="DOMAttrModified" group="MutationEvent" cancelable="false" bubbles="true">
+				<description>
+					<locale>
+						Occurs after Attr.value has been modified and after an Attr node has been added to or removed from an Element.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается, если значение объекта <link type="object">AMLAttr</link> элемента было изменено или этот объект было добавлен/удален из элемента.
+					</locale>
+				</description>
+			</event>
+		</events>
+	</members>
+</object>

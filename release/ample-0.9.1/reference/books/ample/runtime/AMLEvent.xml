@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="AMLEvent">
+	<abstract>
+		<locale>
+			The Event interface is used to provide contextual information about an event to the handler processing the event
+		</locale>
+		<locale xml:lang="ru">
+			Интерфейс объекта Event используется для предоставления контекстной информации о событии обработчику этого события.
+		</locale>
+	</abstract>
+	<examples/>
+	<members>
+		<methods>
+			<method name="initEvent" type="Void">
+				<arguments>
+					<argument name="sEventType" type="String" required="true">
+						<description>
+							<locale>
+								Specifies the event type.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает на тип события (Event.type).
+							</locale>
+						</description>
+					</argument>
+					<argument name="bCanBubble" type="Boolean" required="true">
+						<description>
+							<locale>
+								Specifies whether or not the event can bubble.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает, может ли событие распространяться в фазе "bubbling".
+							</locale>
+						</description>
+					</argument>
+					<argument name="bCancelable" type="Boolean" required="true">
+						<description>
+							<locale>
+								Specifies whether or not the event's default action can be prevented.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает, возможно ли отменить ответную реакцию браузера по умолчанию на событие.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						The initEvent method is used to initialize the value of an Event created through the DocumentEvent interface.
+					</locale>
+					<locale xml:lang="ru">
+						Этот метод используется для инициализации значения объекта <link type="object">AMLEvent</link>, созданного через интерфейс DocumentEvent.
+					</locale>
+				</description>
+			</method>
+			<method name="preventDefault" type="Void">
+				<arguments />
+				<description>
+					<locale>
+						If an event is cancelable, the <link type="method">preventDefault</link> method is used to signify that the event is to be canceled, meaning any default action normally taken by the implementation as a result of the event will not occur.
+					</locale>
+					<locale xml:lang="ru">
+						Если возможно отменить ответную реакцию браузера по умолчанию на событие, метод <link type="method">preventDefault</link> используется для этого.
+					</locale>
+				</description>
+			</method>
+			<method name="stopPropagation" type="Void">
+				<arguments />
+				<description>
+					<locale>
+						The <link type="method">stopPropagation</link> method is used prevent further propagation of an event during event flow. The event will complete dispatch to all listeners on the current EventTarget before event flow stops. This method may be used during any stage of event flow.
+					</locale>
+					<locale xml:lang="ru">
+						Метод <link type="method">stopPropagation</link> используется для того, чтобы предотвратить дальнейшую передачу события по структуре документа. Передача события его обработчикам продолжится на текущем объекте EventTarget, а после исполнения всех обработчиков распространение события прекратится. Этот метод может быть использован в любой фазе распространения события.
+					</locale>
+				</description>
+			</method>
+			<method name="stopImmediatePropagation" type="Void">
+				<arguments />
+				<description>
+					<locale>
+						Prevents other event listeners from being triggered and, unlike <link type="method">stopPropagation</link>() its effect is immediate
+					</locale>
+					<locale xml:lang="ru">
+						Метод <link type="method">stopImmediatePropagation</link> используется для немедленной остановки распространения события. Передача события его обработчикам прекратится на текущем объекте EventTarget, а так же остановится распространение этого события.
+					</locale>
+				</description>
+			</method>
+		</methods>
+		<properties>
+			<property name="bubbles" type="Boolean" readonly="true">
+				<description>
+					<locale>
+						Used to indicate whether or not an event is a bubbling event.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает, может ли событие распространяться в фазе "bubbling".
+					</locale>
+				</description>
+			</property>
+			<property name="cancelable" type="Boolean" readonly="true">
+				<description>
+					<locale>
+						Used to indicate whether or not an event can have its default action prevented.
+					</locale>
+					<locale xml:lang="ru">
+						Указвает, возможно ли отменить ответную реакцию браузера по умолчанию на событие.
+					</locale>
+				</description>
+			</property>
+			<property name="currentTarget" type="AMLNode" readonly="true">
+				<description>
+					<locale>
+						Used to indicate the EventTarget whose EventListeners are currently being processed. This is particularly useful during capturing and bubbling.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает на объект EventTarget, обработчики которого обрабатывают событие. Используется в фазах "bubble" и "capture".
+					</locale>
+				</description>
+			</property>
+			<property name="eventPhase" type="Number" readonly="true">
+				<description>
+					<locale>
+						Used to indicate which phase of event flow is currently being evaluated.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает на текущую фазу распространения события.
+					</locale>
+				</description>
+			</property>
+			<property name="target" type="AMLNode" readonly="true">
+				<description>
+					<locale>
+						Used to indicate the EventTarget to which the event was originally dispatched.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает на объект EventTarget, которому событие было передано изначально.
+					</locale>
+				</description>
+			</property>
+			<property name="timeStamp" type="TimeStamp" readonly="true">
+				<description>
+					<locale>
+						Used to specify the time (in milliseconds relative to the epoch) at which the event was created.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает на время (в миллисекундах относительно начала эпохи), когда событие было создано.
+					</locale>
+				</description>
+			</property>
+			<property name="type" type="String" readonly="true">
+				<description>
+					<locale>
+						The name of the event (case-insensitive). The name must be an XML name.
+					</locale>
+					<locale xml:lang="ru">
+						Название события (чувствительно к регистру). Должно быть <a href="http://www.w3.org/TR/REC-xml#NT-Name">XML Name</a>.
+					</locale>
+				</description>
+			</property>
+			<property name="defaultPrevented" type="Boolean" readonly="true">
+				<description>
+					<locale>
+						Used to indicate whether <link type="method">preventDefault</link>() has been called for this event.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает, был ли во время обработки события его обработчиками вызван метод <link type="method">preventDefault</link>.
+					</locale>
+				</description>
+			</property>
+			<property name="namespaceURI" type="String" readonly="true">
+				<description>
+					<locale>
+						The namespace URI associated with this event at initialization time, or null if it is unspecified.
+					</locale>
+					<locale xml:lang="ru">
+						URI пространства имен, ассоциированное с событием при его создании, либо null, если не было указано.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<constants>
+			<constant name="CAPTURING_PHASE" value="1">
+				<description>
+					<locale>
+						The event is currently being evaluated at the target EventTarget.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает, что текущая фаза распространения события - "capture".
+					</locale>
+				</description>
+			</constant>
+			<constant name="AT_TARGET" value="2">
+				<description>
+					<locale>
+						The current event phase is the bubbling phase.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает, что событие находится на объекте EventTarget.
+					</locale>
+				</description>
+			</constant>
+			<constant name="BUBBLING_PHASE" value="3">
+				<description>
+					<locale>
+						The current event phase is the capturing phase.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает, что текущая фаза распространения события - "bubbling".
+					</locale>
+				</description>
+			</constant>
+		</constants>
+	</members>
+	<remarks>
+		<remark>
+			<locale>Events of that type:</locale>
+      <locale xml:lang="ru">События этого типа:</locale>
+      <ul>
+        <li><link type="event" href="runtime:AMLDocument">abort</link></li>
+        <li><link type="event" href="runtime:AMLDocument">error</link></li>
+        <li><link type="event" href="runtime:AMLDocument">load</link></li>
+        <li><link type="event" href="runtime:AMLDocument">unload</link></li>
+      </ul>
+		</remark>
+	</remarks>
+	<examples>
+		<example>
+			<locale xml:lang="ru">
+				Этот код иллюстрирует пример использования объекта AMLEvent.
+			</locale>
+			<code type="text/xml"><![CDATA[
+<div onclick="alert(event.currentTarget.tagName)">click me</div>
+			]]></code>
+			<locale xml:lang="ru">
+				По событию "click", выведется сообщение 'div'.
+			</locale>
+		</example>
+	</examples>
+</object>

@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<article>
+	<title>Scalable Vector Graphics (SVG) 1.2 Tiny</title>
+	<note>
+		<locale>
+			SVG 1.2 Tiny in Ample SDK is currently in development.
+		</locale>
+		<locale xml:lang="ru">
+			Реализация SVG 1.2 Tiny в <b>Ample SDK</b> находится в разработке.
+		</locale>
+	</note>
+	<abstract>
+		<locale>
+			SVG 1.2 Tiny is the modularized language for describing two-dimensional vector and mixed vector/raster graphics in XML.
+		</locale>
+	</abstract>
+	<content>
+		<section>
+			<title>
+				<locale>
+					Namespace URI
+				</locale>
+				<locale xml:lang="ru">
+					Пространство имен
+				</locale>
+			</title>
+			<content>
+				<locale>
+					SVG 1.2 Tiny defines a namespaces associated with the URI <uri>http://www.w3.org/2000/svg</uri>.
+				</locale>
+				<locale xml:lang="ru">
+					Пространство имен SVG 1.2 Tiny определяется URI <uri>http://www.w3.org/2000/svg</uri>
+				</locale>
+			</content>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Ample SDK implementation details
+				</locale>
+				<locale xml:lang="ru">
+					Реализация в Ample SDK
+				</locale>
+			</title>
+			<content>
+				<locale>
+					At the present moment SVG 1.2 Tiny in Ample SDK is in the development.
+				</locale>
+				<locale xml:lang="ru">
+					В настоящее время реализация языка SVG 1.2 Tiny в <b>Ample SDK</b> находится в стадии разработки.
+				</locale>
+			</content>
+		</section>
+	</content>
+	<seealso>
+		<link href="http://www.w3.org/TR/SVGTiny12/">Scalable Vector Graphics (SVG) 1.2 Tiny Specification (W3C)</link>
+	</seealso>
+</article>

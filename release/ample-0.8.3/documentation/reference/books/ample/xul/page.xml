@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="page" type="boxed">
+	<implements />
+	<abstract>
+		<locale xml:lang="ru">
+			Аналогичен элементу <link type="element">window</link> за исключением того,
+			что он используется для файлов, которые загружаются в <link type="element">iframe</link>.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes />
+		<methods />
+		<properties />
+		<events>
+			<event name="load" group="Event" cancelable="false" bubbles="false">
+				<description>
+					<locale xml:lang="ru">
+						Загорается сразу после того, как ядро загрузит объект.
+					</locale>
+				</description>
+			</event>
+			<event name="unload" group="Event" cancelable="false" bubbles="false">
+				<description>
+					<locale xml:lang="ru">
+						Загорается непосредственно перед тем, как объект будет выгружен.
+					</locale>
+				</description>
+			</event>
+		</events>
+	</members>
+</element>

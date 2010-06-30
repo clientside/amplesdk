@@ -1,0 +1,693 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="AMLNode">
+	<abstract>
+		<locale>
+			The AMLNode object is the primary datatype for the entire Ample Document Object Model.
+		</locale>
+		<locale xml:lang="ru">
+			Объект AMLNode является базовым объектом для объектной модели документа Ample (Ample Document Object Model).
+		</locale>
+	</abstract>
+	<remarks />
+	<examples/>
+	<members>
+		<attributes />
+		<methods>
+			<method name="appendChild" type="AMLNode">
+				<arguments>
+					<argument name="oElement" type="AMLNode" required="true">
+						<description>
+							<locale xml:lang="ru">
+								Элемент, который следует добавить.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Appends a child element to the object.
+					</locale>
+					<locale xml:lang="ru">
+						Добавляет дочерний элемент к объекту.
+					</locale>
+				</description>
+			</method>
+			<method name="insertBefore" type="AMLNode">
+				<arguments>
+					<argument name="oElement" type="AMLNode" required="true">
+						<description>
+							<locale xml:lang="ru">
+								Элемент, который следует добавить.
+							</locale>
+						</description>
+					</argument>
+					<argument name="oBefore" type="AMLNode" required="true">
+						<description>
+							<locale xml:lang="ru">
+								Элемент, перед которым будет произведено добавление.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Inserts a chlid element after the specifyed element to the object.
+					</locale>
+					<locale xml:lang="ru">
+						Добавляет дочерний элемент к объекту сразу после заданного элемента.
+					</locale>
+				</description>
+			</method>
+			<method name="removeChild" type="AMLNode">
+				<arguments>
+					<argument name="oChild" type="AMLNode" required="true">
+						<description>
+							<locale xml:lang="ru">
+								Дочерний узел, который следует удалить.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Removes a child node from the object.
+					</locale>
+					<locale xml:lang="ru">
+						Удаляет узел дочернего элемента из объекта.
+					</locale>
+				</description>
+			</method>
+			<method name="replaceChild" type="AMLNode">
+				<arguments>
+					<argument name="oNew" type="AMLNode" required="true">
+						<description>
+							<locale>
+							</locale>
+						</description>
+					</argument>
+					<argument name="oChild" type="AMLNode" required="true">
+						<description>
+							<locale>
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Replaces the given child node by another node.
+					</locale>
+					<locale xml:lang="ru">
+						Замещает дочерний узел другим узлом.
+					</locale>
+				</description>
+			</method>
+			<method name="hasAttributes" type="Boolean">
+				<description>
+					<locale>
+						Retrieves true if the node has any attributes.
+					</locale>
+					<locale xml:lang="ru">
+						Возвращает true, если узел содержит атрибуты.
+					</locale>
+				</description>
+			</method>
+			<method name="hasChildNodes" type="Boolean">
+				<description>
+					<locale>
+						Returns a value that indicates whether the object has children.
+					</locale>
+					<locale xml:lang="ru">
+						Возвращает значение, указывающее на наличие дочерних элементов объекта.
+					</locale>
+				</description>
+			</method>
+			<method name="cloneNode" type="AMLNode">
+				<arguments>
+					<argument name="bDeep" type="Boolean" required="true">
+						<description>
+							<locale>
+								Indicates wether the childnodes are also to be cloned.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает, копировать потомков узла или нет.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Creates a copy of node and returns it.
+					</locale>
+					<locale xml:lang="ru">
+						Создает копию узла и возвращает ее.
+					</locale>
+				</description>
+			</method>
+			<method name="lookupPrefix" type="String">
+				<arguments>
+					<argument name="sNameSpaceURI" type="String" required="true">
+						<description>
+							<locale>
+								The namespace URI to look for.
+							</locale>
+							<locale xml:lang="ru">
+								URI пространства имен для поиска.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Look up the prefix associated to the given namespace URI, starting from this node.
+					</locale>
+					<locale xml:lang="ru">
+						Находит префикс начиная с текущего узла, ассоциированный с заданным URI пространства имен.
+					</locale>
+				</description>
+			</method>
+			<method name="lookupNamespaceURI" type="String">
+				<arguments>
+					<argument name="sPrefix" type="String" required="true">
+						<description>
+							<locale>
+								The prefix to look for. If this parameter is null, the method will return the default namespace URI if any.
+							</locale>
+							<locale xml:lang="ru">
+								Префикс пространства имен для поиска. Если этот параметр выставлен в null, возвращаемым значением будет URI пространства имен по умолчанию, если таковое имеется.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Look up the namespace URI associated to the given prefix, starting from this node.
+					</locale>
+					<locale xml:lang="ru">
+						Находит URI пространства имен начиная с текущего узла по заданному префиксу.
+					</locale>
+				</description>
+			</method>
+			<method name="isDefaultNamespace" type="String">
+				<arguments>
+					<argument name="sNameSpaceURI" type="String" required="true">
+						<description>
+							<locale>
+								The namespace URI to look for.
+							</locale>
+							<locale xml:lang="ru">
+								URI пространства имен для проверки.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						This method checks if the specified namespaceURI is the default namespace or not.
+					</locale>
+					<locale xml:lang="ru">
+						Проверяет, является ли заданное URI пространства имен пространством имен по умолчанию.
+					</locale>
+				</description>
+			</method>
+			<method name="normalize" type="Void">
+				<description>
+					<locale>
+						Puts all Text nodes in the full depth of the sub-tree underneath this Node, including attribute nodes, into a "normal" form
+					</locale>
+					<locale xml:lang="ru">
+						Приводит все текстовые узлы, являющиеся потомками, включая <link type="object">AMLAttr</link>, к "нормальной" форме.
+					</locale>
+				</description>
+			</method>
+			<!-- DOM Level 2 -->
+			<method name="dispatchEvent" type="Boolean">
+				<arguments>
+					<argument name="oEvent" type="AMLEvent" required="true">
+						<description>
+							<locale>
+								The event to be dispatched.
+							</locale>
+							<locale xml:lang="ru">
+								Событие для передачи.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						This method allows the dispatch of events into the implementation's event model. Return value indicates whether any of the listeners which handled the event called preventDefault method on Event object.
+					</locale>
+					<locale xml:lang="ru">
+						Этот метод позволяет отправить событие в реализацию модели событий. Возвращаемое значение указывает, вызвал ли один из обработчиков события метод preventDefault объекта <link type="object">AMLEvent</link>.
+					</locale>
+				</description>
+			</method>
+			<method name="addEventListener" type="Void">
+				<arguments>
+					<argument name="sType" type="String" required="true">
+						<description>
+							<locale>
+								Specifies the Event.type associated with the event for which the user is registering.
+							</locale>
+							<locale xml:lang="ru">
+								Тип события (Event.type), для которого регистрируется обработчик.
+							</locale>
+						</description>
+					</argument>
+					<argument name="fListener" type="Function" required="true">
+						<description>
+							<locale>
+								Function to be called when the event occurs.
+							</locale>
+							<locale xml:lang="ru">
+								Функция, которая должна быть вызвана, если произойдет событие.
+							</locale>
+						</description>
+					</argument>
+					<argument name="bUseCapture" type="Boolean" required="true">
+						<description>
+							<locale>
+								If true, user wishes to add the event listener for the capture phase only, if false - for target and bubbling phases.
+							</locale>
+							<locale xml:lang="ru">
+								Если true, обработчик добавляется только для фазы "capture", с противном случае - для фаз "target" и "bubbling".
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						This method allows the registration of an event listener in the default group and, depending on the useCapture parameter, on the capture phase of the DOM event flow or its target and bubbling phases.
+					</locale>
+					<locale xml:lang="ru">
+						Этот метод позволяет зарегистрировать обработчик события.
+					</locale>
+				</description>
+			</method>
+			<method name="removeEventListener" type="Void">
+				<arguments>
+					<argument name="sType" type="String" required="true">
+						<description>
+							<locale>
+								Specifies the Event.type for which the user registered the event listener.
+							</locale>
+							<locale xml:lang="ru">
+								Тип события (Event.type), для которого был зарегистрирован обработчик.
+							</locale>
+						</description>
+					</argument>
+					<argument name="fListener" type="Function" required="true">
+						<description>
+							<locale>
+								Listener to be removed.
+							</locale>
+							<locale xml:lang="ru">
+								Обработчик, который следует удалить.
+							</locale>
+						</description>
+					</argument>
+					<argument name="bUseCapture" type="Boolean" required="true">
+						<description>
+							<locale>
+								Specifies whether the EventListener being removed was registered for the capture phase or not.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает на то, был ли обработчик зарегистрирован для фазы "capture" или нет.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						This method allows the removal of event listeners from the default group.
+					</locale>
+					<locale xml:lang="ru">
+						Этот метод позволяет удалить обработчик события.
+					</locale>
+				</description>
+			</method>
+			<!-- DOM Level 3 -->
+			<method name="canDispatch" type="Void">
+				<arguments>
+					<argument name="sNameSpaceURI" type="String" required="true">
+						<description>
+							<locale>
+								NamespaceURI of the event to be tested.
+							</locale>
+							<locale xml:lang="ru">
+								URI пространства имен события.
+							</locale>
+						</description>
+					</argument>
+					<argument name="sType" type="String" required="true">
+						<description>
+							<locale>
+								Event type.
+							</locale>
+							<locale xml:lang="ru">
+								Тип события (Event.type).
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Tests wether event of the specified namespace and type can be dispatched.
+					</locale>
+					<locale xml:lang="ru">
+						Проверяет, может ли событие с заданными типом и пространством имен быть отправлено в реализацию.
+					</locale>
+				</description>
+			</method>
+			<method name="compareDocumentPosition" type="Number">
+				<arguments>
+					<argument name="oNode" type="AMLNode">
+						<description>
+							<locale>
+								The node to compare against the reference node.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Compares the reference node, i.e. the node on which this method is being called,
+						with a node, i.e. the one passed as a parameter, with regard to their position in
+						the document and according to the document order.
+					</locale>
+				</description>
+			</method>
+		</methods>
+		<properties>
+			<property name="parentNode" type="AMLNode" readonly="true">
+				<description>
+					<locale>
+						Retrieves the parent object in the object hierarchy.
+					</locale>
+					<locale xml:lang="ru">
+						Родитель текущего объекта в иерархии.
+					</locale>
+				</description>
+			</property>
+			<property name="firstChild" type="AMLNode" readonly="true">
+				<description>
+					<locale>
+						Retrieves a reference to the first child for the object.
+					</locale>
+					<locale xml:lang="ru">
+						Первый дочерний узел объекта.
+					</locale>
+				</description>
+			</property>
+			<property name="lastChild" type="AMLNode" readonly="true">
+				<description>
+					<locale>
+						Retrieves a reference to the last child for the object.
+					</locale>
+					<locale xml:lang="ru">
+						Поседний дочерний узел объекта.
+					</locale>
+				</description>
+			</property>
+			<property name="nextSibling" type="AMLNode" readonly="true">
+				<description>
+					<locale>
+						Retrieves a reference to the next child of the parent for the object.
+					</locale>
+					<locale xml:lang="ru">
+						Следующий, после текущего, дочерний узел родительского узла и иерархии.
+					</locale>
+				</description>
+			</property>
+			<property name="previousSibling" type="AMLNode" readonly="true">
+				<description>
+					<locale>
+						Retrieves a reference to the previous child of the parent for the object.
+					</locale>
+					<locale xml:lang="ru">
+						Предыдущий, перед текущим, дочерний узел родительского узла и иерархии.
+					</locale>
+				</description>
+			</property>
+			<property name="nodeName" type="String" readonly="true">
+				<description>
+					<locale>
+						Retrieves the name of a particular type of node.
+					</locale>
+					<locale xml:lang="ru">
+						Имя узла.
+					</locale>
+				</description>
+			</property>
+			<property name="nodeType" type="Number" readonly="true">
+				<description>
+					<locale>
+						Retrieves the type of the requested node.
+					</locale>
+					<locale xml:lang="ru">
+						Тип узла.
+					</locale>
+				</description>
+			</property>
+			<property name="nodeValue" type="String" readonly="true">
+				<description>
+					<locale>
+						Retrieves the value of a node.
+					</locale>
+					<locale xml:lang="ru">
+						Значение узла.
+					</locale>
+				</description>
+			</property>
+			<property name="localName" type="String" readonly="true">
+				<description>
+					<locale>
+						Retrieves the local name of node.
+					</locale>
+					<locale xml:lang="ru">
+						Локальное имя (без префикса пространства имен) узла.
+					</locale>
+				</description>
+			</property>
+			<property name="prefix" type="String" readonly="true">
+				<description>
+					<locale>
+						Retrieves the namespace prefix specifief for the node.
+					</locale>
+					<locale xml:lang="ru">
+						Префикс пространства имен узла.
+					</locale>
+				</description>
+			</property>
+			<property name="namespaceURI" type="String" readonly="true">
+				<description>
+					<locale>
+						Retrieves the namespace URI.
+					</locale>
+					<locale xml:lang="ru">
+						URI пространства имен узла.
+					</locale>
+				</description>
+			</property>
+			<property name="baseURI" type="String" readonly="true">
+				<description>
+					<locale>
+						The absolute base URI of this node or null if the implementation wasn't able to obtain an absolute URI.
+					</locale>
+					<locale xml:lang="ru">
+						Абсолютное значение базового URI узла или null, если реализации не удалось получить это значение.
+					</locale>
+				</description>
+			</property>
+			<property name="ownerDocument" type="AMLDocument" readonly="true">
+				<description>
+					<locale>
+						Retrieves the <link type="object">AMLDocument</link> object associated with the node.
+					</locale>
+					<locale xml:lang="ru">
+						Объект <link type="object">AMLDocument</link>, в контексте которого находится узел.
+					</locale>
+				</description>
+			</property>
+			<property name="attributes" type="AMLNamedNodeMap" readonly="true">
+				<description>
+					<locale>
+						A collection containing the attributes of this node (if it is an <link type="object">AMLElement</link>) or null otherwise.
+					</locale>
+					<locale xml:lang="ru">
+						Колекция атрибутов узла, если это <link type="object">AMLElement</link> и null в противном случае.
+					</locale>
+				</description>
+			</property>
+			<property name="childNodes" type="AMLNodeList" readonly="true">
+				<description>
+					<locale>
+						A NodeList that contains all direct children of this node.
+					</locale>
+					<locale xml:lang="ru">
+						Объект <link type="object">AMLNodeList</link>, содержаший все дочерние элементы.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<constants>
+			<constant name="ELEMENT_NODE" value="1">
+				<description>
+					<locale>
+						The node is an <link type="object">AMLElement</link>.
+					</locale>
+					<locale xml:lang="ru">
+						Узел является <link type="object">AMLElement</link>.
+					</locale>
+				</description>
+			</constant>
+			<constant name="ATTRIBUTE_NODE" value="2">
+				<description>
+					<locale>
+						The node is an <link type="object">AMLAttr</link>.
+					</locale>
+					<locale xml:lang="ru">
+						Узел является <link type="object">AMLAttr</link>.
+					</locale>
+				</description>
+			</constant>
+			<constant name="TEXT_NODE" value="3">
+				<description>
+					<locale>
+						The node is a <link type="object">AMLText</link> node.
+					</locale>
+					<locale xml:lang="ru">
+						Узел является <link type="object">AMLText</link>.
+					</locale>
+				</description>
+			</constant>
+			<constant name="CDATA_SECTION_NODE" value="4">
+				<description>
+					<locale>
+						The node is a <link type="object">AMLCDATASection</link>.
+					</locale>
+					<locale xml:lang="ru">
+						Узел является <link type="object">AMLCDATASection</link>.
+					</locale>
+				</description>
+			</constant>
+			<constant name="ENTITY_REFERENCE_NODE" value="5">
+				<description>
+					<locale>
+						The node is an <link type="object">AMLEntityReference</link>.
+					</locale>
+					<locale xml:lang="ru">
+						Узел является <link type="object">AMLEntityReference</link>.
+					</locale>
+				</description>
+			</constant>
+			<constant name="ENTITY_NODE" value="6">
+				<description>
+					<locale>
+						The node is an AMLEntity.
+					</locale>
+					<locale xml:lang="ru">
+						Узел является AMLEntity.
+					</locale>
+				</description>
+			</constant>
+			<constant name="PROCESSING_INSTRUCTION_NODE" value="7">
+				<description>
+					<locale>
+						The node is a <link type="object">AMLProcessingInstruction</link>.
+					</locale>
+					<locale xml:lang="ru">
+						Узел является <link type="object">AMLProcessingInstruction</link>.
+					</locale>
+				</description>
+			</constant>
+			<constant name="COMMENT_NODE" value="8">
+				<description>
+					<locale>
+						The node is a <link type="object">AMLComment</link>.
+					</locale>
+					<locale xml:lang="ru">
+						Узел является <link type="object">AMLComment</link>.
+					</locale>
+				</description>
+			</constant>
+			<constant name="DOCUMENT_NODE" value="9">
+				<description>
+					<locale>
+						The node is a <link type="object">AMLDocument</link>.
+					</locale>
+					<locale xml:lang="ru">
+						Узел является <link type="object">AMLDocument</link>.
+					</locale>
+				</description>
+			</constant>
+			<constant name="DOCUMENT_TYPE_NODE" value="10">
+				<description>
+					<locale>
+						The node is a AMLDocumentType.
+					</locale>
+					<locale xml:lang="ru">
+						Узел является AMLDocumentType.
+					</locale>
+				</description>
+			</constant>
+			<constant name="DOCUMENT_FRAGMENT_NODE" value="11">
+				<description>
+					<locale>
+						The node is a <link type="object">AMLDocumentFragment</link>.
+					</locale>
+					<locale xml:lang="ru">
+						Узел является <link type="object">AMLDocumentFragment</link>.
+					</locale>
+				</description>
+			</constant>
+			<constant name="NOTATION_NODE" value="12">
+				<description>
+					<locale>
+						The node is a AMLNotation.
+					</locale>
+					<locale xml:lang="ru">
+						Узел является AMLNotation.
+					</locale>
+				</description>
+			</constant>
+		</constants>
+		<events>
+			<event name="DOMNodeInsertedIntoDocument" group="MutationEvent" cancelable="false" bubbles="false">
+				<description>
+					<locale>
+						A node has been inserted into a document.
+					</locale>
+				</description>
+			</event>
+			<event name="DOMNodeRemovedFromDocument" group="MutationEvent" cancelable="false" bubbles="false">
+				<description>
+					<locale>
+						A node is being removed from a document.
+					</locale>
+				</description>
+			</event>
+			<event name="DOMNodeInserted" group="MutationEvent" cancelable="false" bubbles="true">
+				<description>
+					<locale>
+						A node has been added as a child of another node or, in case of Attr nodes, has been added to an Element.
+					</locale>
+					<locale xml:lang="ru">
+						Был добавлен узел в структуру или объект <link type="object">AMLAttr</link> был добавлен к элементу.
+					</locale>
+				</description>
+			</event>
+			<event name="DOMNodeRemoved" group="MutationEvent" cancelable="false" bubbles="true">
+				<description>
+					<locale>
+						A node is being removed from its parent node or, in case of Attr nodes, removed from its ownerElement.
+					</locale>
+					<locale xml:lang="ru">
+						Был удален узел из структуры или объект <link type="object">AMLAttr</link> был удален из элемента.
+					</locale>
+				</description>
+			</event>
+		</events>
+	</members>
+</object>

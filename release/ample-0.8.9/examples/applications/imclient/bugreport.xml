@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="bugreport.css" type="text/css"?>
+<xul:wizard width="400" height="200"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	firstpage="data" lastpage="success"
+	title="This wizard will guide you through the reporting bug">
+
+	<!-- Resources -->
+	<xul:script src="bugreport.js" type="text/javascript" />
+
+	<xul:wizardpage pageid="data" next="process" description="Provide the data">
+		<xul:vbox flex="1">
+			<xul:label value="Please describe the error you've experienced"/>
+			<xul:spacer height="10" />
+			<xul:label value="Problem:" />
+			<xul:textbox width="100%"/>
+			<xul:label value="Message:" />
+			<xul:textbox multiline="true" width="100%" height="60"/>
+		</xul:vbox>
+	</xul:wizardpage>
+	<xul:wizardpage pageid="process" description="Processing">
+		<xul:label value="Sending your report..."/>
+	</xul:wizardpage>
+	<xul:wizardpage pageid="success" description="Successfully finished">
+		<xul:label value="Your report is sent. Thank you for providing us a feedback!"/>
+	</xul:wizardpage>
+	<xul:wizardpage pageid="failed" next="data" description="Failed">
+		<xul:label value="Sending your report is failed. Please go back and try again."/>
+	</xul:wizardpage>
+</xul:wizard>

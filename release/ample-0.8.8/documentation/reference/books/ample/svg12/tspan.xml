@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element name="tspan" extends="svg12:SVG12Element">
+	<abstract>
+		<locale>
+			Within a 'text' element, text and font properties and the current text position  can be adjusted with absolute or relative coordinate values by including a 'tspan' element.
+		</locale>
+	</abstract>
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="x">
+				<description>
+					<locale>
+						The corresponding list of absolute X coordinates for the glyphs corresponding to the characters within this element.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="y">
+				<description>
+					<locale>
+						The corresponding list of absolute Y coordinates for the glyphs corresponding to the characters within this element.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+	</members>
+</element>

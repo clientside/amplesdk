@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="statusbarpanel" type="boxed">
+	<implements />
+	<abstract>
+		<locale xml:lang="ru">
+			Один элемент из набора <link type="element">statusbar</link>.
+			Является специальным типом элемента <link type="element">button</link>,
+			отображаемым иным образом. В отличие от обычных кнопок, элемент <link type="element">statusbarpanel</link> может иметь либо текст, либо пиктограмму.
+			Этот элемент зачастую используется для отображения статуса.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="label" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						Текст для элемента.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="src" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						URL пиктограммы для элемента.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

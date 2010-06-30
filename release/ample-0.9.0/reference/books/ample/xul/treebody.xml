@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="treebody">
+	<implements />
+	<abstract>
+		<locale>
+			Can only be placed as direct child of <link type="element">tree</link>.
+		</locale>
+		<locale xml:lang="ru">
+			Контейнер для элементов <link type="element">treechildren</link>.
+			Может находиться только внутри элемента <link type="element">tree</link>.
+		</locale>
+	</abstract>
+	<remarks>
+		<remark>
+			<locale>
+				This element is not defined in XUL.
+				However you need to specify it in XUL documents in Ample SDK when using <link type="element">tree</link>.
+			</locale>
+			<locale xml:lang="ru">
+				Этот элемент не определен в спецификации XUL.
+				Тем не менее, его необходимо указывать в разметке, при использовании элемента <link type="element">tree</link>.
+			</locale>
+		</remark>
+	</remarks>
+	<examples />
+	<members>
+		<attributes />
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

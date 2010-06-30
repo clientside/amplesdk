@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Example: XInclude</title>
+		<script type="text/javascript" src="../../../ample/runtime.js"></script>
+		<script type="text/javascript" src="../../../ample/languages/aml/aml.js"></script>
+		<script type="text/javascript" src="../../../ample/languages/xhtml/xhtml.js"></script>
+	</head>
+	<body>
+		<script type="application/ample+xml"
+			xmlns="http://www.w3.org/1999/xhtml"
+			xmlns:aml="http://www.amplesdk.com/ns/aml">
+			<xi:include href="include.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+			<xi:include href="missing.xml" xmlns:xi="http://www.w3.org/2001/XInclude">
+				<xi:fallback>
+					<b>missing.xml could not be loaded, I am the fallback</b>
+				</xi:fallback>
+			</xi:include>
+		</script>
+	</body>
+</html>

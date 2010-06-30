@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<strings>
+	<title_element>Element</title_element>
+	<title_object>Object</title_object>
+	<title_interface>Interface</title_interface>
+	<title_extends>Extends</title_extends>
+
+	<members>Members Table</members>
+	<members_description>The following table lists the members exposed by the {name} object.</members_description>
+	<members_show_inherited>Show inherited members (marked with *)</members_show_inherited>
+
+	<impl_title>Implements</impl_title>
+	<impl_descr>Object {name} implements following functionality: </impl_descr>
+	<remarks>Remarks</remarks>
+	<examples>Examlpes</examples>
+	<seealso>See also</seealso>
+	<uri>Namespace identifier</uri>
+	<overview>Overview</overview>
+
+	<copyright>&#169; 2009 <a class="copyright" href="http://www.clientside.fi/" title="Clientside OY" target="_top" xmlns="http://www.w3.org/1999/xhtml">Clientside OY</a></copyright>
+	<link_external>Link to an external resource on the Internet</link_external>
+	<attention>Attention</attention>
+	<collapse_expand>Expand/Collapse</collapse_expand>
+
+	<show>Show:</show>
+	<constants>Constants</constants>
+	<properties>Properties</properties>
+	<methods>Methods</methods>
+	<events>Events</events>
+	<attributes>Attributes</attributes>
+
+	<attr_name>Attribute</attr_name>
+	<attr_ronly>Readonly</attr_ronly>
+	<attr_descr>Description</attr_descr>
+
+	<values_title>Acceptable values:</values_title>
+	<values_value>Value</values_value>
+	<values_descr>Description</values_descr>
+	<values_default>Default value</values_default>
+
+	<properties_name>Property</properties_name>
+	<properties_type>Type</properties_type>
+	<properties_ronly>Readonly</properties_ronly>
+	<properties_descr>Description</properties_descr>
+
+	<constants_name>Constant</constants_name>
+	<constants_value>Value</constants_value>
+	<constants_descr>Description</constants_descr>
+
+	<methods_name>Method</methods_name>
+	<methods_returns>Returns</methods_returns>
+	<methods_descr>Description</methods_descr>
+
+	<methods_syntax>Sytaxis:</methods_syntax>
+	<methods_args>Arguments:</methods_args>
+	<methods_arg_type>Type</methods_arg_type>
+	<methods_arg_o_title>Optional / Required</methods_arg_o_title>
+	<methods_arg_o>O/R</methods_arg_o>
+	<methods_arg_name>Name</methods_arg_name>
+	<methods_arg_descr>Description</methods_arg_descr>
+	<methods_arg_opt>Optional</methods_arg_opt>
+	<methods_arg_req>Required</methods_arg_req>
+
+	<event_name>Event</event_name>
+	<event_bubbleable>B</event_bubbleable>
+	<event_bubbleable_title>Bubbles</event_bubbleable_title>
+	<event_cancelable>C</event_cancelable>
+	<event_cancelable_title>Cancelable</event_cancelable_title>
+	<event_interface>Interface</event_interface>
+	<event_descr>Description</event_descr>
+</strings>

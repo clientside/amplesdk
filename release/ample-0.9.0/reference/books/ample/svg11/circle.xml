@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element name="circle" extends="svg11:SVG11ShapeElement">
+	<abstract>
+		<locale>
+			The 'circle' element defines a circle based on a center point and a radius.
+		</locale>
+	</abstract>
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="cx">
+				<description>
+					<locale>
+						The x-axis coordinate of the center of the circle.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="cy">
+				<description>
+					<locale>
+						The y-axis coordinate of the center of the circle.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="r">
+				<description>
+					<locale>
+						The radius of the circle.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+	</members>
+</element>

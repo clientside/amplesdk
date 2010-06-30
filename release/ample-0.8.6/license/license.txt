@@ -1,0 +1,181 @@
+  IMPORTANT: BY DOWNLOADING, INSTALLING, COPYING, ACCESSING, OR USING THE
+  SOFTWARE, YOU AGREE TO THE TERMS OF THIS AGREEMENT. IF YOU ARE ACCEPTING
+  THESE TERMS ON BEHALF OF ANOTHER PERSON OR A COMPANY OR OTHER LEGAL ENTITY,
+  YOU REPRESENT AND WARRANT THAT YOU HAVE FULL AUTHORITY TO BIND THAT PERSON,
+  COMPANY, OR LEGAL ENTITY TO THESE TERMS. IF YOU DO NOT AGREE TO THESE TERMS,
+  DO NOT DOWNLOAD, INSTALL, COPY, ACCESS, OR USE THE SOFTWARE.
+
+  Ample SDK Free License Agreement
+
+  This is a License Agreement (the "Agreement") between you and Clientside Oy,
+  Business ID: 22320945, post address: PL 1397, 00101 Helsinki, Finland.
+
+  1. Definitions.
+
+     "Ample SDK" means original program, software in source code format,
+  and whole or partial copies of the foregoing, including portions merged
+  into other programs.
+
+     "You" and "Your" refer to any person, entity or community acquiring or
+  using this Ample SDK.
+
+  2. License.
+
+  2.1 Subject to the terms and conditions of this Agreement, Clientside grants
+  to You a personal, non-exclusive, non-commercial, non-transferable license
+  (the "License") solely for non-profitable use e.g. educational or training
+  purposes or internal evaluation of the suitability of Ample SDK for Your
+  purposes.
+
+  2.2 You may not install the Ample SDK in any production environment nor
+  use it for commercial purposes (including a transfer to a third party against
+  remuneration). Except for the express license granted in the Section 2.1, any
+  other use requires that You acquire a commercial version of the Ample SDK
+  under the terms of the commercial Ample SDK License Agreement.
+
+  2.3 You agree to ensure that anyone who uses the Ample SDK (accessed either
+  locally or remotely) does so only for your authorized use and complies with
+  the terms of this Agreement.
+
+  2.4 Each License is for a single user and may be installed for use solely by
+  that person on no more than four (4) workstations belonging to a common
+  company or organization.
+
+  2.5 You acknowledge that Clientside has no obligation, express or implied,
+  to provide support or maintenance under this Agreement.
+
+  2.6 You may not: (a) use, copy, display, perform or distribute the Ample SDK
+  except as provided in this Agreement; (b) reverse assemble, reverse compile,
+  or otherwise translate the Ample SDK without the possibility of contractual
+  waiver; (c) sub-license, rent or lease the Ample SDK; or (d) modify
+  the Ample SDK, per se without prior written approval from Clientside.
+
+  3. Proprietary Rights.
+
+  3.1 All rights, title and interest in and to the Ample SDK and logo,
+  documentation in on-line format and the media on which it is recorded, and
+  all subsequent copies, regardless of the form or media in or on which the
+  original and other copies may exist and related items including all
+  intellectual property rights thereto, shall be the sole and exclusive
+  property of Clientside. Unless expressly provided in this Agreement,
+  Clientside does not grant You, Your distributors or customers any rights to
+  patents, copyrights, trade secrets, trademarks or any other rights in respect
+  of the items in Ample SDK. You agree to protect Clientside's patents,
+  copyrights, trade secrets, trademarks and any other rights in respect of the
+  items in Ample SDK.
+
+  3.2 You agree that all copies of items in this Ample SDK reproduced for any
+  reason by You will contain the same copyright, trademark, and other
+  proprietary notices as appropriate, as appear on or in the master items
+  delivered by Clientside in this Ample SDK.
+
+  4. Warranty.
+
+     Clientside licenses the Ample SDK, documentation and related items in
+  this Ample SDK to You only on an "AS IS" basis. With respect to Ample SDK
+  and other items in the Ample SDK used in the development of Product Offerings
+  Clientside makes no representation as to their adequacy for any particular
+  purpose or to produce any particular result. Clientside shall not be liable
+  for loss or damage arising out of this Agreement or from the distribution
+  or use of Ample SDK or any other product offerings of Clientside. CLIENTSIDE
+  AND ITS SUPPLIERS DISCLAIM ALL WARRANTIES, EITHER EXPRESSED OR IMPLIED,
+  INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY AND
+  FITNESS FOR A PARTICULAR PURPOSE OR NONINFRINGEMENT OF ANY THIRD PARTY RIGHT
+  IN RESPECT OF THE ITEMS IN THIS AMPLE SDK OR ANY SERVICES RELATED THERETO.
+
+  5. Limitation of Liability.
+
+     IN NO EVENT WILL CLIENTSIDE BE LIABLE TO YOU FOR ANY DIRECT,
+  CONSEQUENTIAL, INCIDENTAL OR SPECIAL DAMAGES INCLUDING ANY LOST PROFITS, LOST
+  SAVINGS, COSTS, FEES OR EXPENSES OF ANY KIND OR NATURE ARISING OUT OF ANY
+  PROVISION OF THIS AGREEMENT OR THE USE OR INABILITY TO USE THE ITEMS IN THIS
+  Ample SDK, EVEN IF THE REPRESENTATIVE OF CLIENTSIDE HAS BEEN ADVISED OF
+  THE POSSIBILITY OF SUCH DAMAGES, OR FOR ANY CLAIM BY ANY PARTY.
+  Notwithstanding any other provisions of this License Agreement, Clientside's
+  liability to You under this License Agreement shall not exceed to the amount
+  paid by You for this Ample SDK.
+
+  6. Indemnification.
+
+  6.1 You agree and acknowledge that your obligations under this Agreement are
+  necessary and reasonable in order to protect Clientside and that, in
+  addition to any other remedies that may be available, in law, in equity or
+  otherwise, Clientside shall be entitled to obtain injunctive relief against
+  the breach or threatened breach of this License Agreement or the continuation
+  of any such breach by you, without the necessity of proving actual damages.
+  Clientside is entitled to claim from You a liquidated damages amounting
+  to €50.000 of every breach of any term committed by You.
+
+  6.2 You agree to indemnify and hold Clientside harmless from and against
+  (a) any and all claims, actions or proceedings brought against Company by
+  third parties, and/or (b) all liabilities, damages, losses, and costs
+  (including without limitation court costs and reasonable attorney's fees and
+  fees of other professionals), in each case that arise out of or relate to
+  (a) your breach of this License Agreement, or (b) any claims brought by third
+  parties alleging special, direct, consequential, or incidental damage and
+  arising out of use or operation of the Ample SDK.
+
+  7. Confidential Information.
+
+     With respect to the Ample SDK, You agree that You will treat the Ample SDK
+  and its components, including without limitation, the Sample Code, with the
+  same degree of care as You accord to Your own confidential information,
+  which You exercise reasonable care to protect. Your obligations under this
+  section with respect to the Ample SDK shall terminate when You can document
+  that (i) it was in the public domain at or subsequent to the time it was
+  disclosed to You by Clientside through no fault of yours; (ii) it was
+  developed by Your employees or agents independently of and without reference
+  to any information communicated to You by Clientside; or (iii) the
+  communication was in response to a valid order by a court or other
+  governmental body, was otherwise required by law, or was necessary to
+  establish the rights of either party under this Agreement.
+
+  8. Termination.
+
+     This Agreement is effective until terminated. You may terminate your
+  License at any time. If you do so, all your License rights to the Ample SDK
+  are terminated. Clientside may terminate your License if you fail to comply
+  with the terms of this Agreement. All rights obligations and duties which,
+  by their nature, survive the expiration or termination of this Agreement
+  shall remain in effect beyond any such expiration or termination. You agree
+  to comply with all applicable laws and regulations.
+
+  9. Construction.
+
+     Should any provision of this Agreement require judicial interpretation,
+  the parties hereto agree that the court interpreting or construing the same
+  shall not apply a presumption that the terms hereof shall be more strictly
+  construed against one party by reason of the rule of construction that a
+  document is to be more strictly construed against the party who itself or
+  through its agents prepared the same, it being agreed that the parties hereto
+  and their respective agents have participated in the preparation hereof.
+
+  10. General.
+
+     This Agreement shall be governed and interpreted by the laws in force in
+  Finland, excluding the application of its conflict or choice of law rules.
+  Any dispute or controversy arising out of or relating to this Agreement
+  shall be referred to and determined by the district court of Helsinki
+  (Finland).
+
+     You may not assign Your rights or obligations granted under this
+  Agreement. None of the provisions of this Agreement shall be deemed to have
+  been waived by any act or acquiescence on the part of Clientside, its agents
+  or employees, but only by an instrument in writing signed by an authorized
+  signatory of Clientside. When conflicting language exists between this
+  Agreement and any other agreement included in this SDK, this Agreement shall
+  supersede. You acknowledge that You have read this Agreement, understand it
+  and that it is the complete and exclusive statement of your agreement with
+  Clientside which supersedes any prior agreement, oral or written, between
+  Clientside and You with respect to the subject matter of this Agreement.
+  No variation of the terms of this Agreement will be enforceable against
+  Clientside unless Clientside gives its express consent, in writing signed by
+  an authorized signatory of Clientside.
+
+  11. Integration.
+
+     This agreement contains the entire understanding of the parties with
+  respect to the subject matter of the agreement, and it supercedes all prior
+  understandings and agreements, whether written or oral, and all prior
+  dealings of the parties with respect to the subject matter hereof.
+

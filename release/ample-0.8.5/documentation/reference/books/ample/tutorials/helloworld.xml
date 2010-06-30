@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<article>
+	<title>Hello, World!</title>
+	<abstract>
+		<locale>
+			Creating applications with Ample SDK is as simple as doing that with plain HTML, JavaScript and DOM.
+		</locale>
+		<locale xml:lang="ru">
+			Нет ничего проще создания страничек с помощью Ample SDK. По большому счёту это ничем не отличается от обычной HTML разметки.
+		</locale>
+	</abstract>
+	<content>
+		<section>
+			<title>
+				<locale>
+					Hello World!
+				</locale>
+			</title>
+			<content>
+				<locale>
+			The following sample application will display "Hello, World!" message in bold on the screen.<br />
+			Once text is clicked there will be an alert popup shown notifying on the event.
+		<code type="text/xml"><![CDATA[<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Hello, World!</title>
+		<!-- (A) Ample SDK runtime and UI language -->
+		<script type="text/javascript" src="ample/runtime.js"></script>
+		<script type="text/javascript" src="ample/languages/xhtml/xhtml.js"></script>
+		<!-- (1) Styling -->
+		<style type="text/ample+css">
+			@namespace "http://www.w3.org/1999/xhtml";
+			b {
+				color: red;
+			}
+		</style>
+		<!-- (2) Logic -->
+		<script type="text/javascript">
+			function alertHelloWorld(oEvent) {
+				alert('Element "' + oEvent.target.tagName + '" was clicked');
+			}
+		</script>
+	</head>
+	<body>
+		<!-- (3) Layout -->
+		<script type="application/ample+xml">
+			<b onclick="alertHelloWorld(event)">Hello, World!</b>
+		</script>
+	</body>
+</html>
+			]]></code>
+			</locale>
+		</content>
+	</section>
+	<section>
+		<title>
+			<locale>
+				Comments
+			</locale>
+		</title>
+		<content>
+		<locale>
+			The 4 important areas of this sample document include:
+			<ul>
+				<li>(A) Ample SDK Runtime and relevant UI Languages</li>
+				<li>(1) <link href="../../ample/tutorials/develop_style.xml">Application Style</link>, stylesheet, defined in CSS</li>
+				<li>(2) <link href="../../ample/tutorials/develop_logic.xml">Application Logic</link>, code, written in JavaScript</li>
+				<li>(3) <link href="../../ample/tutorials/develop_layout.xml">Application Layout</link>, User Interface, defined in XML</li>
+			</ul>
+			All of the three Application's resource types instead of specifyng inline can be referred by an url:
+			Logic included with the <em>&lt;script type="text/javascript" src="" /&gt;</em> tag,
+			Style included with the <em>&lt;link type="text/ample+css" rel="stylesheet" href="" /&gt;</em> tag,
+			Layout referred with the <em>&lt;script type="application/ample+xml" src="" /&gt;</em> tag.
+		</locale>
+		</content>
+		</section>
+	</content>
+</article>

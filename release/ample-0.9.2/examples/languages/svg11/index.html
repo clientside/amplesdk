@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US">
+	<head>
+		<title>SVG</title>
+        <script type="text/javascript" src="../../../ample/runtime.js"></script>
+        <script type="text/javascript" src="../../../ample/languages/svg/svg.js"></script>
+        <style type="text/ample+css">
+			@namespace svg "http://www.w3.org/2000/svg";
+			svg|svg {
+        		border: dashed 1px gray;
+			}
+		</style>
+		<style>
+			html, body {
+				width: 100%;
+				height:100%;
+			}
+		</style>
+	</head>
+	<body>
+		<fieldset>
+			<table cellpadding="0" cellspacing="2" border="0">
+				<tbody>
+					<tr>
+						<td>Example</td>
+						<td>
+							<select id="select" onchange="loadExample(this.value)">
+								<optgroup label="Light Pictures">
+									<option value="cameleon.xml">cameleon.xml *</option>
+									<option value="heron-cendre.xml">heron-cendre.xml *</option>
+									<option value="Human.xml">Human.xml</option>
+									<option value="svg_has_a_posse.xml">svg_has_a_posse.xml *</option>
+									<option value="BlankMap-World_gray.xml">BlankMap-World_gray.xml</option>
+								</optgroup>
+								<optgroup label="Heavy Pictures">
+									<option value="angel.xml">angel.xml *</option>
+									<option value="car.xml">car.xml</option>
+									<option value="operashare.xml">operashare.xml</option>
+									<option value="tiger.xml">tiger.xml *</option>
+									<option value="tiger2.xml">tiger2.xml</option>
+									<option value="trident-event.xml">trident-event.xml *</option>
+									<option value="svgopen.xml">svgopen.xml *</option>
+									<option value="svgopen10.xml">svgopen10.xml</option>
+									<option value="BlankMap-World.xml">BlankMap-World.xml</option>
+									<option value="projectionpolaire10.xml">projectionpolaire10.xml</option>
+									<option value="centreeurope20.xml">centreeurope20.xml</option>
+									<option value="phone.xml">phone.xml</option>
+								</optgroup>
+								<optgroup label="manual tests (W3)">
+									<option value="arcs01.xml">arcs01.xml</option>
+									<option value="arcs02.xml">arcs02.xml</option>
+									<option value="cubic01.xml">cubic01.xml</option>
+									<option value="cubic02.xml">cubic02.xml</option>
+									<option value="quad01.xml">quad01.xml</option>
+								</optgroup>
+								<optgroup label="manual tests">
+									<option value="button.xml">button.xml</option>
+									<option value="textPath.xml">textPath.xml</option>
+									<option value="transform.xml">transform.xml</option>
+									<option value="transformations.xml">transformations.xml (shapes)</option>
+									<option value="transformations-groups.xml">transformations.xml (groups)</option>
+								</optgroup>
+								<optgroup label="TODO">
+									<option value="keycut.xml">keycut.xml</option>
+									<option value="babybottle.xml">babybottle.xml</option>
+									<option value="3dpie.xml">3dpie.xml *</option>
+									<option value="matrix.xml">matrix.xml</option>
+									<option value="building.xml">building.xml</option>
+									<option value="schematic.xml">schematic.xml</option>
+									<option value="toolpost.xml">toolpost.xml</option>
+									<option value="tetris.xml">tetris.xml</option>
+									<option value="scim.xml">scim.xml</option>
+									<option value="ford.xml">ford.xml</option>
+									<option value="grapes.xml">grapes.xml</option>
+									<option value="yinyang.xml">yinyang.xml</option>
+									<option value="zakura.xml">zakura.xml</option>
+									<option value="git.xml">git.xml</option>
+								</optgroup>
+								<option value="SGML.xml">SGML.xml</option>
+								<option value="PreserveAspectRatio.xml">PreserveAspectRatio.xml</option>
+								<option value="type-specimen.xml">type-specimen.xml</option>
+								<option value="wifi.xml">wifi.xml</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>Status</td>
+						<td id="container_time"></td>
+					</tr>
+					<tr>
+						<td>viewBox</td>
+						<td><input type="text" id="viewBox" size="17" onchange="ample.getElementById('container').firstChild.setAttribute('viewBox', this.value)"/></td>
+					</tr>
+					<tr>
+						<td>dimensions</td>
+						<td><input type="text" id="width" size="5" onchange="ample.getElementById('container').firstChild.setAttribute('width', this.value)"/>
+						x
+						<input type="text" id="height" size="5" onchange="ample.getElementById('container').firstChild.setAttribute('height', this.value)"/></td>
+					</tr>
+				</tbody>
+			</table>
+		</fieldset>
+		<br />
+
+		<script type="text/javascript">
+			var time = new Date();
+			function loadExample(sValue) {
+				// set app select
+				document.getElementById("select").value	= sValue;
+				// set app hash
+				if (document.location.hash.replace(/^#/, '') != sValue)
+					document.location.hash	= sValue;
+				// load SVG document
+				ample.getElementById('container').$load(sValue);
+			}
+			function onExampleLoad() {
+				document.getElementById('container_time').innerHTML = 'Rendered in ' + (new Date - time) + ' ms.'
+				//
+				var oElement	= ample.getElementById('container').firstChild;
+				if (oElement) {
+					document.getElementById("viewBox").value= oElement.getAttribute("viewBox");
+					document.getElementById("height").value	= oElement.getAttribute("height");
+					document.getElementById("width").value	= oElement.getAttribute("width");
+				}
+			}
+			function onExampleUnload() {
+				document.getElementById('container_time').innerHTML = 'Rendering...';
+				time = new Date();
+			}
+			// App start
+			ample.addEventListener("load", function(oEvent) {
+				//
+				var oContainer	= ample.getElementById('container');
+				oContainer.addEventListener("load", onExampleLoad, false);
+				oContainer.addEventListener("unload", onExampleUnload, false);
+
+				loadExample(document.location.hash.replace(/^#/, '') || 'cameleon.xml');
+				this.removeEventListener(oEvent.type, arguments.callee, false);
+			}, false);
+		</script>
+		<script type="application/ample+xml" id="container">
+		</script>
+ 	</body>
+</html>

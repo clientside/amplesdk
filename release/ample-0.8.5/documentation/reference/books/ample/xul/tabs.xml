@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="tabs" type="regular">
+	<implements />
+	<abstract>
+		<locale xml:lang="ru">
+			Строка закадок. Элемент <link type="element">tabs</link> должен быть расположен внутри элемента <link type="element">tabbox</link>, а в качестве дочерних содержать элементы <link type="element">tab</link>.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes />
+		<methods>
+			<method name="advanceSelectedTab" type="Void">
+				<arguments>
+					<argument name="nDir" type="Number" required="false">
+						<description>
+							<locale xml:lang="ru">
+								Направление перехода.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale xml:lang="ru">
+						Если аргумент <link type="attribute">nDir</link> выставлен в значение 1, выделение от текущей закладки перейдет к следующей. Если аргумент выставлен в значение -1, выделение от текущей закладки перейдет к предыдущей.
+					</locale>
+				</description>
+			</method>
+			<method name="appendItem" type="AMLElement">
+				<arguments>
+					<argument name="label" type="String" required="true">
+						<description>
+							<locale xml:lang="ru">
+								Текст для закладки.
+							</locale>
+						</description>
+					</argument>
+					<argument name="value" type="String" required="false">
+						<description>
+							<locale xml:lang="ru">
+								Данные, ассоциированные с элементом.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale xml:lang="ru">
+						Создает новый элемент <link type="element">tab</link> и добавляет его в конец элемента <link type="element">tabs</link>.
+					</locale>
+				</description>
+			</method>
+			<method name="insertItemAt" type="AMLElement">
+				<arguments>
+					<argument name="nIndex" type="Number" required="true">
+						<description>
+							<locale xml:lang="ru">
+								Порядковый номер в списке.
+							</locale>
+						</description>
+					</argument>
+					<argument name="label" type="String" required="true">
+						<description>
+							<locale xml:lang="ru">
+								Текст для закладки.
+							</locale>
+						</description>
+					</argument>
+					<argument name="value" type="String" required="false">
+						<description>
+							<locale xml:lang="ru">
+								Данные, ассоциированные с элементом.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale xml:lang="ru">
+						Создает новый элемент <link type="element">tab</link> и добавляет его в заданное место внутри элемента <link type="element">tabs</link>.
+					</locale>
+				</description>
+			</method>
+			<method name="removeItemAt" type="AMLElement">
+				<arguments>
+					<argument name="nIndex" type="Number" required="true">
+						<description>
+							<locale xml:lang="ru">
+								Порядковый номер в списке.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale xml:lang="ru">
+						Удаляет дочерний элемент из элемента <link type="element">tabs</link> по порядковому номеру.
+					</locale>
+				</description>
+			</method>
+		</methods>
+		<properties>
+			<property name="selectedIndex" type="Number" readonly="true">
+				<description>
+					<locale xml:lang="ru">
+						Порядковый номер выбранной в настоящее время закладки.
+					</locale>
+				</description>
+			</property>
+			<property name="selectedItem" type="AMLElement" readonly="true">
+				<description>
+					<locale xml:lang="ru">
+						Ссылка на выбранный в настоящее время элемент <link type="element">tab</link>.
+					</locale>
+				</description>
+			</property>
+			<property name="items" type="AMLNodeList" readonly="true">
+				<description>
+					<locale xml:lang="ru">
+						Коллекция дочерних элементов <link type="element">tab</link>.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<events>
+			<event name="select" group="Event" cancelable="false" bubbles="true">
+				<description>
+					<locale xml:lang="ru">
+						Загорается на элементе <link type="element">tabs</link>, когда изменяется выбранный элемент <link type="element">tab</link>.
+					</locale>
+				</description>
+			</event>
+<!--
+			<event name="beforeselect" group="Event" cancelable="true" bubbles="true">
+				<description>
+					 This event is sent to the <link type="element">tabs</link> element when the <link type="element">tab</link> is about to change. Return false if you want to prevent tab change.
+				</description>
+			</event>
+ -->
+		</events>
+	</members>
+</element>

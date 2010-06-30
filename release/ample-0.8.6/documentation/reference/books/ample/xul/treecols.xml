@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="treecols" type="regular">
+	<implements />
+	<abstract>
+		<locale xml:lang="ru">
+			Группа элементов <link type="element">treecol</link>.
+			Допускается использование только одного элемента <link type="element">treecols</link> в дереве.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes />
+		<methods />
+		<properties>
+			<property name="items" type="AMLNodeList" readonly="true">
+				<description>
+					<locale xml:lang="ru">
+						Коллекция элементов <link type="element">treecol</link>.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<events />
+	</members>
+</element>

@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="XULElement" extends="runtime:AMLElement">
+	<abstract>
+		<locale xml:lang="ru">
+			Представляет базовый элемент XUL.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples/>
+	<members>
+		<attributes>
+			<attribute name="align" default="stretch" readonly="false">
+				<values>
+					<value name="start">
+						<description>
+							<locale xml:lang="ru">
+								Дочерние элементы выравниваются по левому или верхнему углу блока.
+								Если размеры блока превышают совокупный размера дочерних элементов, пространство будет пустым справа или снизу соответственно.
+							</locale>
+						</description>
+					</value>
+					<value name="center">
+						<description>
+							<locale xml:lang="ru">
+								Дополнительное пустое пространство разделяется на две равные части слева и справа от дочерних таким образом, что дочерние элементы располагаются внутри блока по центру.
+							</locale>
+						</description>
+					</value>
+					<value name="end">
+						<description>
+							<locale xml:lang="ru">
+								Дочерние элементы выравниваются по правому или нижнему углу блока.
+								Если размеры блока превышают совокупный размер дочерних элементов, пространство будет пустым слева или сверху соответственно.
+							</locale>
+						</description>
+					</value>
+					<value name="stretch">
+						<description>
+							<locale xml:lang="ru">
+								Дочерние элементы растягиваются таким образом, чтобы занять всё пространство внутри блока.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale xml:lang="ru">
+						Указывает, как дочерние элементы будут выровнены внутри блока, если размер блока превышает совокупного размера дочерних элементов.
+						Для блоков с горизонтальной ориентацией указывает на выравнивание по вертикали.
+						Для блоков с вертикальной ориентацией указывает на выравнивание по горизонтали.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="pack" default="stretch" readonly="false">
+				<values>
+					<value name="start">
+						<description>
+							<locale xml:lang="ru">
+								Дочерние элементы располагаются в левом или верхнем углу блока.
+								Если размеры блока превышают совокупный размера дочерних элементов, пространство будет пустым справа или снизу соответственно.
+							</locale>
+						</description>
+					</value>
+					<value name="center">
+						<description>
+							<locale xml:lang="ru">
+								Дополнительное пустое пространство разделяется на две равные части слева и справа от дочерних таким образом, что дочерние элементы располагаются внутри блока по центру.
+							</locale>
+						</description>
+					</value>
+					<value name="end">
+						<description>
+							<locale xml:lang="ru">
+								Дочерние элементы располагаются в правом или нижнем углу блока.
+								Если размеры блока превышают совокупный размер дочерних элементов, пространство будет пустым слева или сверху соответственно.
+							</locale>
+						</description>
+					</value>
+					<value name="stretch">
+						<description>
+							<locale>
+								The child elements are stretched to fit the size of the box.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale xml:lang="ru">
+						Указывает, как дочерние элементы располагаются внутри блока, когда размер блока превышает совокупный размер дочерних элементов.
+						Для блоков с горизонтальной ориентацией указывает на расположение по горизонтали.
+						Для блоков с вертикальной ориентацией указывает на расположение по вертикали.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="flex" default="" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						Указывает на пропорции распределения размеров пустого пространства внутри
+						блока родительского элемента между его дочерними элементами.
+						Это значение не принимается в расчет, если среди соседних элементов нет другого,
+						у которого так же выставлен атрибут <link type="attribute">flex</link>.
+						Элементы с большим значением атрибута <link type="attribute">flex</link> занимают больше места,
+						чем элементы с меньшим значением.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="debug" default="false" readonly="true">
+				<values>
+					<value name="true">
+						<description>
+							<locale>
+								For  horizontally drawn elements the red border is shown, for vertically - the blue one.
+							</locale>
+						</description>
+					</value>
+					<value name="false">
+						<description/>
+					</value>
+				</values>
+				<description>
+					<locale xml:lang="ru">
+						Указывает, будут ли дополнительная рамка вокруг элемента.
+						Может быть полезным при определении ориентации элемента,
+						а так же при выставлении значения атрибута <link type="attribute">flex</link>.
+						Если выставлен в значение <b>true</b>, элементы, ориентированные горизонтально, будут отображаться с синей рамкой, а элементы, ориентированные вертикально, будут отображаться с красной рамкой.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="orient" default="" readonly="false">
+				<values>
+					<value name="horizontal">
+						<description>
+							<locale xml:lang="ru">
+								Дочерние элементы располагаются по горизонтали рядом друг с другом в порядке, в котором они следуют в XML.
+							</locale>
+						</description>
+					</value>
+					<value name="vertical">
+						<description>
+							<locale xml:lang="ru">
+								Дочерние элементы располагаются по вертикали друг под другом в порядке, в котором они следуют в XML.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale xml:lang="ru">
+						Указывает на ориентацию дочерних элементов.
+						Значение по умолчанию зависит от конкретного элемента.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="height" default="" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						Высота элемента в пикселях.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="width" default="" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						Ширина элемента в пикселях.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="style" default="" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						Стили CSS, применяемые к элементу.
+						Синтаксис идентичен синтаксису атрибута <link type="attribute">style</link> у HTML-элемента.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="context" default="" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						Должен быть выставлен в значение атрибута <link type="attribute">id</link> элемента <link type="element">popup</link>, который появится при контекстном нажатии.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="popup" default="" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						Должен быть выставлен в значение атрибута <link type="attribute">id</link> всплывающего элемента, который появится при обычном нажатии.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="tooltip" default="" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						Должен быть выставлен в значение атрибута <link type="attribute">id</link> элемента <link type="element">tooltip</link>, который появится при наведении мыши.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="tooltiptext" default="" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						Текстовое значение, которое отображается в элементе <link type="element">tooltip</link>, появляющемся при наведении мыши.
+					</locale>
+				</description>
+			</attribute>
+			<!--
+			<attribute name="context" default="" readonly="false">
+				<description>
+					Должен быть выставлен в значение атрибута <link type="attribute">id</link> элемента <link type="element">popup</link>, который появится при наведении мыши.
+					Should be set to the value of the id of the <link type="element">popup</link> element that should appear when the user context-clicks on the element. A context-click varies on each platform. Usually it will be a right click.
+				</description>
+			</attribute>
+			-->
+			<attribute name="class" default="" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						Указывает на class элемента.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="hidden" default="false" readonly="false">
+				<values>
+					<value name="true">
+						<description>
+							<locale xml:lang="ru">
+								Элемент видимый.
+							</locale>
+						</description>
+					</value>
+					<value name="false">
+						<description>
+							<locale xml:lang="ru">
+								Элемент невидимый.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale xml:lang="ru">
+						Указывает, показывается элемент или нет.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="command" default="false" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						Выставлен в значение атрибута <link type="attribute">id</link> элемента <link type="element">command</link>, который с ним связан.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="observes" default="false" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						Выставлен в значение атрибута <link type="attribute">id</link> элемента <link type="element">broadcaster</link>, который с ним связан.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties />
+		<events />
+	</members>
+</object>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULSelectElement" name="Tree">
+	<abstract>
+		<locale>
+			A container which can be used to hold a tabular or hierarchical set of rows of elements.
+			The tree may contain any number of rows and any number of columns.
+			Each row of the tree may contain child rows which are displayed indented from the parent.
+		</locale>
+		<locale xml:lang="ru">
+			Дерево - контейнер, который содержит иерархически структурированые строки элементов.
+			Дерево может содержать любое число строк и столбцов.
+			Каждая строка дерева может содержать дочерние строки,
+			которые отображаются с отступом от родительского элемента.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="type" readonly="true">
+				<values>
+					<value name="radio">
+						<description>
+							<locale>
+								Will show a radio element at the beginning of every row.
+							</locale>
+							<locale xml:lang="ru">
+								Управляющий элемент <link type="element">radio</link>.
+								Внимание: использование этого значения запретит множественное выделение в
+								элементе <link type="element">treeitem</link>.
+							</locale>
+						</description>
+					</value>
+					<value name="checkbox">
+						<description>
+							<locale>
+								Will show a checkbox element at the beginning of every row.
+							</locale>
+							<locale xml:lang="ru">
+								Управляющий элемент <link type="element">checkbox</link>.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale>
+						Adds a control element at the beginning of every row.
+					</locale>
+					<locale xml:lang="ru">
+						Добавляет управляющий элемент заданного типа в начало каждого элемента <link type="element">treecol</link> и <link type="element">treeitem</link>.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods>
+			<method name="refresh" type="Void">
+				<arguments />
+				<description>
+					<locale>
+						Redraws tree.
+					</locale>
+					<locale xml:lang="ru">
+						Обновляет содержимое дерева.
+						Может потребоваться после вызова таких методов, как <link type="method">appendItem</link>, когда дерево не перерисовывается автоматически.
+					</locale>
+				</description>
+			</method>
+		</methods>
+		<properties>
+			<property name="head" type="AMLElement" readonly="true">
+				<description>
+					<locale>
+						Contains a reference to <link type="element">treecols</link> element.
+					</locale>
+					<locale xml:lang="ru">
+						Ссылка на элемент <link type="element">treecols</link>.
+					</locale>
+				</description>
+			</property>
+			<property name="body" type="AMLElement" readonly="true">
+				<description>
+					<locale>
+						Contains a reference to <link type="element">treebody</link> element.
+					</locale>
+					<locale xml:lang="ru">
+						Ссылка на элемент <link type="element">treebody</link>.
+					</locale>
+				</description>
+			</property>
+			<property name="items" type="AMLNodeList" readonly="true">
+				<description>
+					<locale>
+						Contains a collection of <link type="element">treeitem</link> child elements.
+					</locale>
+					<locale xml:lang="ru">
+						Коллекция дочерних элементов <link type="element">treeitem</link>.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<events />
+	</members>
+</element>

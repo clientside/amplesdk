@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="menuseparator">
+	<implements />
+	<abstract>
+		<locale>
+			Used to create a separator between menu items. Typically drawn as a thin line.
+		</locale>
+		<locale xml:lang="ru">
+			Используется для создания разделителя между элементами <link type="element">menuitem</link>. Как правило, отображается в виде тонкой горизонтальной линии.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes />
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

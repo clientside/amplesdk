@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="listitem" type="regular">
+	<implements />
+	<abstract>
+		<locale xml:lang="ru">
+			Один элемент для <link type="element">listbox</link>.
+			Все элементы <link type="element">listitem</link> должны размещаться внутри элемента <link type="element">listbody</link>.
+			Для создания списков с несколькими столбцами, следует использовать элемент <link type="element">listcell</link>.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="selected" default="" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						Указывает, выбран элемент или нет.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="value" default="" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						Значение, ассоциированное с элементом.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods>
+		</methods>
+		<properties>
+		</properties>
+		<events>
+		</events>
+	</members>
+</element>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="iframe" type="regular">
+	<implements />
+	<abstract>
+		<locale xml:lang="ru">
+			Аналогичен элементу <b>iframe</b> в HTML.
+			Атрибут <link type="attribute">src</link> используется для указания пути к содержимому фрейма.
+			Содержимое должно быть отдельным документом.
+			Если указаны дочерние элементы элемента <link type="element">iframe</link>,
+			они будут проигнорированы.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="src" default="about:blank" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						URL документа, который будет отображен внутри элемента <link type="element">iframe</link>.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties>
+			<property name="contentDocument" readonly="true" type="AMLDocument">
+				<description>
+					<locale xml:lang="ru">
+						Ссылка на объект <b>AMLDocument</b> элемента <link type="object">iframe</link>.
+					</locale>
+				</description>
+			</property>
+			<property name="contentWindow" readonly="true" type="window">
+				<description>
+					<locale xml:lang="ru">
+						Ссылка на объект <link type="object">window</link> элемента <link type="element">iframe</link>.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<events>
+<!--
+			<event name="load" group="Event" cancelable="false" bubbles="false">
+				<description>
+					<locale xml:lang="ru">
+						Fires immediately after the document is loaded.
+					</locale>
+				</description>
+			</event>
+			<event name="unload" group="Event" cancelable="false" bubbles="false">
+				<description>
+					<locale xml:lang="ru">
+						Fires immediately before the document is unloaded.
+					</locale>
+				</description>
+			</event>
+-->
+		</events>
+	</members>
+</element>

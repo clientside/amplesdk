@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="treeitem">
+	<implements />
+	<abstract>
+		<locale>
+			A <link type="element">treeitem</link> should be placed inside a <link type="element">treechildren</link> element and should contain <link type="element">treerow</link> elements.
+			The <link type="element">treeitem</link> can be clicked by the user to select the row of the tree.
+			The <link type="element">treeitem</link> contains a single row and all of what appear to the user as that row's descendants.
+		</locale>
+		<locale xml:lang="ru">
+			Размещается внутри элемента <link type="element">treechildren</link> и должен
+			содержать элемент <link type="element">treerow</link>.
+			Является строкой дерева и содержит все элементы, являющиеся потомками этой строки (например, дочерние строки).
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="open" readonly="false">
+				<values>
+					<value name="true">
+						<description>
+							<locale>
+
+							</locale>
+							<locale xml:lang="ru">
+								Элемент раскрыт - дочерние элементы отображаются.
+							</locale>
+						</description>
+					</value>
+					<value name="false">
+						<description>
+							<locale>
+
+							</locale>
+							<locale xml:lang="ru">
+								Элемент закрыт - дочерние элементы не отображаются.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale>
+						For the menu type buttons, the open attribute is set to true when the menu is open.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает на раскрытость элемента при отрисовке.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="label">
+				<description>
+					<locale>
+						For trees with only a single column, the label may be placed directly on the <link type="element">treeitem</link> without the need for a <link type="element">treerow</link> and <link type="element">treecell</link> inside.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties>
+			<property name="row" readonly="true">
+				<description>
+					<locale>
+						Reference to a child <link type="element">treerow</link> element.
+					</locale>
+					<locale xml:lang="ru">
+						Ссылка на элемент <link type="element">treerow</link>.
+					</locale>
+				</description>
+			</property>
+			<property name="children" readonly="true">
+				<description>
+					<locale>
+						Reference to a child <link type="element">treechildren</link> element.
+					</locale>
+					<locale xml:lang="ru">
+						Ссылка на элемент <link type="element">treechildren</link>.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<events />
+	</members>
+</element>

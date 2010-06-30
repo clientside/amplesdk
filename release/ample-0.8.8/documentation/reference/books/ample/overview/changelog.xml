@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<article>
+	<title>Change Log</title>
+	<abstract>
+	</abstract>
+	<content>
+		<section>
+			<title>
+				<locale>Ample SDK 0.8 [22 December, 2008]</locale>
+			</title>
+		</section>
+		<section>
+			<title>
+				<locale>Ample SDK RC1 [24 December, 2007]</locale>
+			</title>
+		</section>
+		<section>
+			<title>
+				<locale>Ample SDK beta 4 [06 September, 2007]</locale>
+			</title>
+		</section>
+		<section>
+			<title>
+				<locale>Ample SDK beta 3 [12 April, 2007]</locale>
+			</title>
+		</section>
+		<section>
+			<title>
+				<locale>Ample SDK beta 2 [19 February, 2007]</locale>
+			</title>
+		</section>
+		<section>
+			<title>
+				<locale>Ample SDK beta 1 [05 January, 2007]</locale>
+			</title>
+		</section>
+	</content>
+</article>

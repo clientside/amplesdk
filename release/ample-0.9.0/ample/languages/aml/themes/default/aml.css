@@ -1,0 +1,92 @@
+/*
+	panelset
+*/
+aml|panelset {
+	/*border: solid 1px red;*/
+	background-color: silver;
+	overflow: hidden;
+	padding-right: 2px;
+	padding-bottom: 2px;
+}
+aml|panel {
+	width: inherit;
+	height: inherit;
+	overflow: hidden;
+	vertical-align: top;	/* specific browser */
+	margin-left: 1px;
+	margin-top: 1px;
+	border: solid 1px black;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+aml|panelset[rows] aml|panel {
+	/*border: solid 1px green;*/
+	background-color: lightgreen;
+}
+aml|panelset[cols] aml|panel {
+	display: inline-block;
+	/*border: solid 1px blue;*/
+	background-color: lightblue;
+}
+aml|panel::head {
+	border-bottom: solid 1px silver;
+	height: 18px;
+	line-height: 16px;
+	cursor: default;
+}
+aml|panel::label {
+	font-weight: bold;
+}
+aml|panel::icon {
+	margin-top: 1px;
+	width: 16px;
+	height: 16px;
+	float: right;
+	background: url(../../../xul/themes/default/media/datepicker.gif);
+}
+aml|panel::gateway {
+	overflow: auto;
+	width: inherit;
+	height: inherit;
+}
+/*
+	filepicker
+*/
+aml|filepicker::input {
+	width:  150px;
+}
+
+aml|filepicker::input[type=file] {
+	margin: 1px;
+	-moz-box-sizing: border-box;
+}
+
+/*
+	pager
+*/
+aml|pager {
+	border: solid 1px red;
+	height: 20px;
+}
+
+aml|pager::body {
+
+}
+
+aml|pager-item {
+	width:	20px;
+	cursor:	default;
+	background-color: pink;
+}
+
+aml|pager-item:hover {
+	background-color: lightgreen;
+}
+
+aml|pager-item:active {
+	background-color: lightblue;
+}
+
+aml|pager-item:selected {
+	background-color: blue;
+}

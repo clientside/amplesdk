@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema
+	targetNamespace="http://www.amplesdk.com/ns/aml"
+	elementFormDefault="qualified"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:aml="http://www.amplesdk.com/ns/aml">
+
+	<!-- Data-binding -->
+	<xsd:element name="data">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:any />
+			</xsd:sequence>
+			<xsd:attribute name="src" type="xsd:anyURI" />
+			<xsd:attribute name="type" default="application/xml">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="text/xml"/>
+						<xsd:enumeration value="application/xml"/>
+						<xsd:enumeration value="text/csv"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:attribute>
+			<xsd:anyAttribute />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="repeater">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:any />
+			</xsd:sequence>
+			<xsd:attribute name="data" type="xsd:IDREF" />
+			<xsd:attribute name="select" type="xsd:string" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<!-- Maps -->
+	<xsd:element name="map">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="aml:marker" />
+			</xsd:sequence>
+			<xsd:attribute name="longitude" type="xsd:float" />
+			<xsd:attribute name="latitude" type="xsd:float" />
+			<xsd:attribute name="altitude" type="xsd:integer" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="marker">
+		<xsd:complexType>
+			<xsd:attribute name="longitude" type="xsd:float" />
+			<xsd:attribute name="latitude" type="xsd:float" />
+			<xsd:attribute name="image" type="xsd:anyURI" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<!--  -->
+	<xsd:element name="timer">
+		<xsd:complexType>
+			<xsd:attribute name="autostart" type="xsd:boolean" />
+			<xsd:attribute name="interval" type="xsd:integer" />
+			<xsd:attribute name="timeout" type="xsd:integer" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="sound">
+		<xsd:complexType>
+			<xsd:attribute name="autoplay" type="xsd:boolean" />
+			<xsd:attribute name="src" type="xsd:anyURI" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<!-- Handlers Module -->
+	<xsd:element name="handler">
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:extension base="xsd:string">
+					<xsd:attribute name="event" use="required" type="xsd:NMTOKEN" />
+					<xsd:attribute name="propagate" default="continue">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:NMTOKEN">
+								<xsd:enumeration value="stop"/>
+								<xsd:enumeration value="continue"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:attribute>
+					<xsd:attribute name="defaultAction" default="perform">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:NMTOKEN">
+								<xsd:enumeration value="cancel"/>
+								<xsd:enumeration value="perform"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:attribute>
+					<xsd:attribute name="phase" default="default">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:NMTOKEN">
+								<xsd:enumeration value="capture"/>
+								<xsd:enumeration value="default"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:attribute>
+					<xsd:attribute name="type" use="required">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:enumeration value="text/javascript"/>
+								<xsd:enumeration value="application/javascript"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:attribute>
+				</xsd:extension>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+
+	<!-- Global Attributes Module -->
+	<xsd:attributeGroup name="aml.dragAndDrop">
+		<xsd:attribute name="draggable" type="xsd:boolean" />
+		<xsd:attribute name="droppable" type="xsd:boolean" />
+	</xsd:attributeGroup>
+
+	<xsd:attributeGroup name="aml.resize">
+		<xsd:attribute name="resizable" type="xsd:boolean" />
+	</xsd:attributeGroup>
+
+	<xsd:attributeGroup name="aml.select">
+		<xsd:attribute name="selectable" type="xsd:boolean" />
+	</xsd:attributeGroup>
+</xsd:schema>

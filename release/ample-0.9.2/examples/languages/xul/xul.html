@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<head>
+		<title>XUL Language - elements</title>
+		<script type="text/javascript" src="../../../ample/runtime.js"></script>
+		<script type="text/javascript" src="../../../ample/languages/xul/xul.js"></script>
+		<link type="text/ample+css" href="../../../ample/languages/xul/themes/default/xul.css" rel="ample-stylesheet"/>
+		<style type="text/aaa+css">
+			body, input, select, button {
+				font-size: 75%;
+			}
+		</style>
+		<style>
+			h3 {
+				margin-top: 0.5em;
+				margin-bottom: 0.5em;
+			}
+		</style>
+	</head>
+	<body xbgcolor="silver">
+		<h3>Toolbar</h3>
+		<script>ample.open()</script>
+		<xul:toolbar>
+			<xul:toolbargrippy />
+			<xul:toolbarbutton label="toolbarbutton" />
+			<xul:toolbarseparator />
+			<xul:toolbarbutton label="toolbarbutton 2" />
+			<xul:toolbarbutton type="menu" label="toolbarbutton (menu)">
+				<xul:menupopup>
+					<xul:menuitem label="item 0" />
+					<xul:menuitem label="item 1" />
+					<xul:menuitem label="item 2" />
+				</xul:menupopup>
+			</xul:toolbarbutton>
+			<xul:toolbarbutton type="menu-button" label="toolbarbutton (menu-button)">
+				<xul:menupopup>
+					<xul:menuitem label="item 0" />
+					<xul:menuitem label="item 1" />
+					<xul:menuitem label="item 2" />
+				</xul:menupopup>
+			</xul:toolbarbutton>
+		</xul:toolbar>
+		<script>ample.close()</script>
+
+		<h3>Menubar</h3>
+		<script>ample.open()</script>
+		<xul:menubar id="sample-menubar">
+			<xul:menu label="File">
+				<xul:menupopup>
+					<xul:menu label="New">
+						<xul:menupopup>
+							<xul:menuitem
+								label="Normal Text" />
+							<xul:menuitem
+								label="HTML Page" />
+						</xul:menupopup>
+					</xul:menu>
+					<xul:menuitem label="Open..." />
+					<xul:menuseparator />
+					<xul:menuitem label="Save" />
+					<xul:menuitem label="Save All" />
+					<xul:menuitem label="Save As.." />
+					<xul:menuseparator />
+					<xul:menuitem label="Exit" />
+				</xul:menupopup>
+			</xul:menu>
+			<xul:menu label="Types">
+				<xul:menupopup>
+					<xul:menu label="Radio">
+						<xul:menupopup>
+							<xul:menuitem
+								label="First Item" type="radio" name="testradio" />
+							<xul:menuitem
+								label="Second Item" type="radio" name="testradio" />
+							<xul:menuitem
+								label="Third Item" type="radio" name="testradio"
+								disabled="true" />
+							<xul:menuitem
+								label="Fourth Item" type="radio" name="testradio"
+								checked="true" disabled="true" />
+						</xul:menupopup>
+					</xul:menu>
+					<xul:menu label="Checkbox">
+						<xul:menupopup>
+							<xul:menuitem
+								label="First Item" type="checkbox" />
+							<xul:menuitem
+								label="Second Item" type="checkbox" />
+							<xul:menuitem
+								label="Third Item" type="checkbox" disabled="true" />
+							<xul:menuitem
+								label="Fourth Item" type="checkbox" checked="true"
+								disabled="true" />
+						</xul:menupopup>
+					</xul:menu>
+					<xul:menu
+						label="Test Disabled group" disabled="true">
+						<xul:menupopup>
+							<xul:menuitem
+								label="First Item" type="checkbox" />
+							<xul:menuitem
+								label="Second Item" type="checkbox" />
+							<xul:menuitem
+								label="Third Item" type="checkbox" disabled="true" />
+							<xul:menuitem
+								label="Fourth Item" type="checkbox" checked="true"
+								disabled="true" />
+						</xul:menupopup>
+					</xul:menu>
+					<xul:menuitem label="Image"
+						image="close.gif">
+						<xul:menupopup>
+							<xul:menuitem
+								label="First Item" type="checkbox" />
+							<xul:menuitem
+								label="Second Item" type="checkbox" />
+							<xul:menuitem
+								label="Third Item" type="checkbox" disabled="true" />
+							<xul:menuitem
+								label="Fourth Item" type="checkbox" checked="true"
+								disabled="true" />
+						</xul:menupopup>
+					</xul:menuitem>
+				</xul:menupopup>
+			</xul:menu>
+			<xul:menu label="Other" disabled="true"/>
+		</xul:menubar>
+		<script>ample.close()</script>
+
+		<h3>Tabbox</h3>
+		<script>ample.open()</script>
+		<xul:tabbox>
+			<xul:tabs>
+				<xul:tab label="Tab 0"/>
+				<xul:tab label="Tab 1"/>
+			</xul:tabs>
+			<xul:tabpanels>
+				<xul:tabpanel><xul:description>content 0</xul:description></xul:tabpanel>
+				<xul:tabpanel><xul:description>content 1</xul:description></xul:tabpanel>
+			</xul:tabpanels>
+		</xul:tabbox>
+		<xul:tabbox orient="horizontal">
+			<xul:tabs orient="vertical">
+				<xul:tab label="Tab 0"/>
+				<xul:tab label="Tab 1"/>
+			</xul:tabs>
+			<xul:tabpanels>
+				<xul:tabpanel><xul:description>content 0</xul:description></xul:tabpanel>
+				<xul:tabpanel><xul:description>content 1</xul:description></xul:tabpanel>
+			</xul:tabpanels>
+		</xul:tabbox>
+		<script>ample.close()</script>
+
+		<h3>Menulist</h3>
+		<script>ample.open()</script>
+		<xul:menulist>
+			<xul:menupopup>
+				<xul:menuitem
+					label="First Item" />
+				<xul:menuitem
+					label="Second Item" />
+				<xul:menuitem
+					label="Third Item" />
+				<xul:menuitem
+					label="Fourth Item"	disabled="true" />
+			</xul:menupopup>
+		</xul:menulist>
+		<xul:menulist>
+			<xul:menupopup>
+				<xul:menuitem
+					label="First Item" checked="true"/>
+				<xul:menuitem
+					label="Second Item" />
+				<xul:menuitem
+					label="Third Item" />
+				<xul:menuitem
+					label="Fourth Item"	disabled="true" />
+			</xul:menupopup>
+		</xul:menulist>
+		<xul:menulist disabled="true">
+			<xul:menupopup>
+				<xul:menuitem
+					label="First Item" checked="true" />
+				<xul:menuitem
+					label="Second Item" />
+				<xul:menuitem
+					label="Third Item" />
+				<xul:menuitem
+					label="Fourth Item"	disabled="true" />
+			</xul:menupopup>
+		</xul:menulist>
+		<script>ample.close()</script>
+
+		<h3>Datepicker</h3>
+		<script>ample.open()</script>
+		<xul:datepicker /><xul:datepicker value="2009/12/01" /><xul:datepicker value="2009/12/01" disabled="true"/>
+		<script>ample.close()</script>
+
+		<h3>Datepicker Pane</h3>
+		<script>ample.open()</script>
+		<xul:datepicker-pane /><xul:datepicker-pane value="2009/12/01" /><xul:datepicker-pane value="2009/12/01" disabled="true"/>
+		<script>ample.close()</script>
+
+		<h3>Colorpicker</h3>
+		<script>ample.open()</script>
+		<xul:colorpicker /><xul:colorpicker value="#ff00ee" /><xul:colorpicker value="#ff00ee" disabled="true"/>
+		<script>ample.close()</script>
+
+		<h3>Colorpicker Pane</h3>
+		<script>ample.open()</script>
+		<xul:colorpicker-pane /><xul:colorpicker-pane value="#ff00ee"/><xul:colorpicker-pane value="#ff00ee" disabled="true"/>
+		<script>ample.close()</script>
+
+		<h3>Timepicker</h3>
+		<script>ample.open()</script>
+		<xul:timepicker /><xul:timepicker /><xul:timepicker disabled="true"/>
+		<script>ample.close()</script>
+
+		<h3>Spinbuttons</h3>
+		<script>ample.open()</script>
+		<xul:spinbuttons /><xul:spinbuttons value="5"/><xul:spinbuttons disabled="true" value="2"/>
+		<script>ample.close()</script>
+
+		<h3>Textbox</h3>
+		<script>ample.open()</script>
+		<xul:textbox placeholder="Enter some text here"/><xul:textbox value="some text" /><xul:textbox value="some text" disabled="true"/>
+		<script>ample.close()</script>
+
+		<h3>Textbox multiline="true"</h3>
+		<script>ample.open()</script>
+		<xul:textbox multiline="true" placeholder="Enter some text here"/><xul:textbox multiline="true" value="some text"/><xul:textbox multiline="true" value="some text" disabled="true"/>
+		<script>ample.close()</script>
+
+		<h3>Scale</h3>
+		<script>ample.open()</script>
+		<xul:scale /><xul:scale value="5"/><xul:scale disabled="true" value="9"/>
+		<script>ample.close()</script>
+
+		<h3>Checkbox</h3>
+		<script>ample.open()</script>
+		<xul:checkbox label="label 0"/><xul:checkbox label="label 1" checked="true"/><xul:checkbox label="label 2" disabled="true"/>
+		<script>ample.close()</script>
+
+		<h3>Radio buttons</h3>
+		<script>ample.open()</script>
+		<xul:radiogroup orient="horizontal">
+		<xul:radio label="label 0" /><xul:radio label="label 1" selected="true"/><xul:radio label="label 2" disabled="true"/>
+		</xul:radiogroup>
+		<script>ample.close()</script>
+
+		<h3>Buttons</h3>
+		<script>ample.open()</script>
+		<xul:button label="Button 0" /><xul:button label="Button 1" /><xul:button label="Button 2" disabled="true"/>
+		<script>ample.close()</script>
+
+		<h3>Progressmeter</h3>
+		<script>ample.open()</script>
+		<xul:progressmeter /><xul:progressmeter mode="undetermined"/>
+		<script>ample.close()</script>
+
+		<h3>Windows</h3>
+	<div style="height:250px">
+		<script>ample.open()</script>
+		<xul:window title="Window" width="250" height="200" style="left:50px">
+			<xul:label value="label" />
+			<xul:textbox />
+			<xul:textbox />
+		</xul:window>
+
+		<xul:dialog title="Dialog" width="250" height="200" style="left:350px">
+			<xul:label value="label" />
+			<xul:textbox />
+			<xul:textbox />
+		</xul:dialog>
+
+		<xul:wizard title="Wizard" width="250" height="200" style="left:650px">
+			<xul:wizardpage label="Step 0" description="Details of the step 0">
+				<xul:label value="label" />
+				<xul:textbox />
+				<xul:textbox />
+			</xul:wizardpage>
+			<xul:wizardpage label="Step 1" description="Details of the step 1">
+				<xul:label value="label" />
+				<xul:textbox />
+				<xul:textbox />
+			</xul:wizardpage>
+		</xul:wizard>
+		<script>ample.close()</script>
+	</div>
+
+		<h3>Listbox</h3>
+		<script>ample.open()</script>
+		<xul:listbox height="200" type="checkbox">
+		    <xul:listhead>
+		        <xul:listheader width="30" minwidth="30" label="id"/>
+		        <xul:listheader width="600" minwidth="500" label="Name" tooltiptext="Shows firstname of the person. Click to sort."/>
+		        <xul:listheader label="column2" minwidth="200" tooltiptext="Shows lastname of the person. Click to sort."/>
+		        <xul:listheader width="200" minwidth="200" label="column2" tooltiptext="Shows person location. Click to sort."/>
+		    </xul:listhead>
+		    <xul:listbody id="listbody">
+		        <xul:listitem class="test">
+		            <xul:listcell label="1"></xul:listcell>
+		            <xul:listcell label="George"/>
+		            <xul:listcell label="House Painter"/>
+		            <xul:listcell label="USA"/>
+		        </xul:listitem>
+		        <xul:listitem class="test2">
+		            <xul:listcell label="2"></xul:listcell>
+		            <xul:listcell label="Mary Ellen"/>
+		            <xul:listcell label="Candle Maker"/>
+		            <xul:listcell label="Java"/>
+		        </xul:listitem>
+		        <xul:listitem class="test3">
+		            <xul:listcell label="3"></xul:listcell>
+		            <xul:listcell label="Roger"/>
+		            <xul:listcell label="Swashbuckler"/>
+		            <xul:listcell label="Great Britain"/>
+		        </xul:listitem>
+		        <xul:listitem class="test4">
+		            <xul:listcell label="4"></xul:listcell>
+		            <xul:listcell label="Sam"/>
+		            <xul:listcell label="Browm"/>
+		            <xul:listcell label="Falkland islands"/>
+		        </xul:listitem>
+		        <xul:listitem>
+		            <xul:listcell label="5"></xul:listcell>
+		            <xul:listcell label="Tom"/>
+		            <xul:listcell label="Jones"/>
+		            <xul:listcell label="Oceania"/>
+		        </xul:listitem>
+		        <xul:listitem>
+		            <xul:listcell label="6"></xul:listcell>
+		            <xul:listcell label="Pink"/>
+		            <xul:listcell label="Floyd"/>
+		            <xul:listcell label="Australia"/>
+		        </xul:listitem>
+		    </xul:listbody>
+		</xul:listbox>
+		<script>ample.close()</script>
+
+		<h3>Tree</h3>
+		<script>ample.open()</script>
+	        <xul:tree flex="1" height="200" type="checkbox" treelines="false">
+	          <xul:treecols>
+	              <xul:treecol id="firstname" minwidth="400" label="First Name" primary="true"/>
+	              <xul:treecol id="lastname" width="500" minwidth="500" label="Last Name"/>
+	              <xul:treecol id="something" width="150" minwidth="100" label="Something else"/>
+	          </xul:treecols>
+	          <xul:treebody>
+	              <xul:treechildren>
+	                <xul:treeitem open="true" container="true">
+	                  <xul:treerow>
+	                    <xul:treecell label="Guys"/>
+	                    <xul:treecell label="Test"/>
+	                    <xul:treecell label="Hm.."/>
+	                  </xul:treerow>
+	                  <xul:treechildren>
+	                    <xul:treeitem>
+	                      <xul:treerow>
+	                        <xul:treecell label="Bob"/>
+	                        <xul:treecell label="Carpenter"/>
+	                        <xul:treecell label="Hm.."/>
+	                      </xul:treerow>
+	                    </xul:treeitem>
+	                    <xul:treeitem open="true" container="true">
+	                      <xul:treerow>
+	                        <xul:treecell label="Jerry"/>
+	                        <xul:treecell label="Hodge"/>
+	                        <xul:treecell label="Hm.."/>
+	                      </xul:treerow>
+	                      <xul:treechildren>
+	                        <xul:treeitem>
+	                          <xul:treerow>
+	                            <xul:treecell label="Bob" xsrc="icon.gif"/>
+	                            <xul:treecell label="Carpenter"/>
+	                            <xul:treecell label="Hm.."/>
+	                          </xul:treerow>
+	                        </xul:treeitem>
+	                        <xul:treeitem>
+	                          <xul:treerow>
+	                            <xul:treecell label="Jerry" xsrc="icon.gif"/>
+	                            <xul:treecell label="Hodge"/>
+	                            <xul:treecell label="Hm.."/>
+	                          </xul:treerow>
+	                        </xul:treeitem>
+	                      </xul:treechildren>
+	                    </xul:treeitem>
+	                    <xul:treeitem>
+	                      <xul:treerow>
+	                        <xul:treecell label="Pink"/>
+	                        <xul:treecell label="Floyd"/>
+	                        <xul:treecell label="Hm.."/>
+	                      </xul:treerow>
+	                    </xul:treeitem>
+	                  </xul:treechildren>
+	                </xul:treeitem>
+                <xul:treeitem open="true" container="true">
+                  <xul:treerow>
+                    <xul:treecell label="Guys"/>
+                    <xul:treecell label="Test"/>
+                    <xul:treecell label="Hm.."/>
+                  </xul:treerow>
+                  <xul:treechildren>
+                    <xul:treeitem>
+                      <xul:treerow>
+                        <xul:treecell label="Bob"/>
+                        <xul:treecell label="Carpenter"/>
+                        <xul:treecell label="Hm.."/>
+                      </xul:treerow>
+                    </xul:treeitem>
+                    <xul:treeitem open="true" container="true">
+                      <xul:treerow>
+                        <xul:treecell label="Jerry"/>
+                        <xul:treecell label="Hodge"/>
+                        <xul:treecell label="Hm.."/>
+                      </xul:treerow>
+                      <xul:treechildren>
+                        <xul:treeitem>
+                          <xul:treerow>
+                            <xul:treecell label="Bob"/>
+                            <xul:treecell label="Carpenter"/>
+                            <xul:treecell label="Hm.."/>
+                          </xul:treerow>
+                        </xul:treeitem>
+                        <xul:treeitem>
+                          <xul:treerow>
+                            <xul:treecell label="Jerry"/>
+                            <xul:treecell label="Hodge"/>
+                            <xul:treecell label="Hm.."/>
+                          </xul:treerow>
+                        </xul:treeitem>
+                      </xul:treechildren>
+                    </xul:treeitem>
+                    <xul:treeitem>
+                      <xul:treerow>
+                        <xul:treecell label="Pink"/>
+                        <xul:treecell label="Floyd"/>
+                        <xul:treecell label="Hm.."/>
+                      </xul:treerow>
+                    </xul:treeitem>
+                  </xul:treechildren>
+                </xul:treeitem>
+                <xul:treeitem open="true" container="true">
+                  <xul:treerow>
+                    <xul:treecell label="Guys"/>
+                    <xul:treecell label="Test"/>
+                    <xul:treecell label="Hm.."/>
+                  </xul:treerow>
+                  <xul:treechildren>
+                    <xul:treeitem>
+                      <xul:treerow>
+                        <xul:treecell label="Bob"/>
+                        <xul:treecell label="Carpenter"/>
+                        <xul:treecell label="Hm.."/>
+                      </xul:treerow>
+                    </xul:treeitem>
+                    <xul:treeitem open="true" container="true">
+                      <xul:treerow>
+                        <xul:treecell label="Jerry"/>
+                        <xul:treecell label="Hodge"/>
+                        <xul:treecell label="Hm.."/>
+                      </xul:treerow>
+                      <xul:treechildren>
+                        <xul:treeitem>
+                          <xul:treerow>
+                            <xul:treecell label="Bob"/>
+                            <xul:treecell label="Carpenter"/>
+                            <xul:treecell label="Hm.."/>
+                          </xul:treerow>
+                        </xul:treeitem>
+                        <xul:treeitem open="true" container="true">
+                          <xul:treerow>
+                            <xul:treecell label="Jerry"/>
+                            <xul:treecell label="Hodge"/>
+                            <xul:treecell label="Hm.."/>
+                          </xul:treerow>
+                          <xul:treechildren>
+                            <xul:treeitem>
+                              <xul:treerow>
+                                <xul:treecell label="Bob"/>
+                                <xul:treecell label="Carpenter"/>
+                                <xul:treecell label="Hm.."/>
+                              </xul:treerow>
+                            </xul:treeitem>
+                            <xul:treeitem>
+                              <xul:treerow>
+                                <xul:treecell label="Jerry"/>
+                                <xul:treecell label="Hodge"/>
+                                <xul:treecell label="Hm.."/>
+                              </xul:treerow>
+                             </xul:treeitem>
+                           </xul:treechildren>
+                        </xul:treeitem>
+                      </xul:treechildren>
+                    </xul:treeitem>
+                    <xul:treeitem>
+                      <xul:treerow>
+                        <xul:treecell label="Pink"/>
+                        <xul:treecell label="Floyd"/>
+                        <xul:treecell label="Hm.."/>
+                      </xul:treerow>
+                    </xul:treeitem>
+                  </xul:treechildren>
+                </xul:treeitem>
+              </xul:treechildren>
+            </xul:treebody>
+        </xul:tree>
+		<script>ample.close()</script>
+
+		<h3>Editor</h3>
+		<script>ample.open()</script>
+		<xul:editor style="width:33%"><![CDATA[Text <i>in italic</i> and <b>in bold</b> put in CDATA]]></xul:editor>
+		<xul:editor style="width:33%" disabled="true"><![CDATA[Text <i>in italic</i> and <b>in bold</b> put in CDATA]]></xul:editor>
+		<script>ample.close()</script>
+
+		<h3>Groupbox + Grid</h3>
+		<script>ample.open()</script>
+		<xul:groupbox>
+			<xul:caption label="Groupbox"/>
+			<xul:grid>
+				<xul:rows>
+					<xul:row>
+						<xul:label value="Row 0" />
+						<xul:checkbox label="Label 0"/>
+					</xul:row>
+					<xul:row>
+						<xul:label value="Row 1" />
+						<xul:checkbox label="Label 1"/>
+					</xul:row>
+				</xul:rows>
+			</xul:grid>
+		</xul:groupbox>
+		<script>ample.close()</script>
+
+		<h3>@popup, @context, @tooltip and @tooltiptext attributes</h3>
+		<script>ample.open()</script>
+		<xul:popupset>
+			<xul:panel id="id_popup">
+				<xul:label value="popup" />
+			</xul:panel>
+			<xul:panel id="id_context">
+				<xul:label value="context" />
+			</xul:panel>
+			<xul:tooltip id="id_tooltip">
+				<xul:label value="tooltip" />
+			</xul:tooltip>
+		</xul:popupset>
+		<xul:vbox debug="true">
+			<xul:label value="@popup right click)" popup="id_popup"/>
+			<xul:label value="@context (left click)" context="id_context"/>
+			<xul:label value="@tooltip (hover)" tooltip="id_tooltip"/>
+			<xul:hbox debug="true">
+				<xul:label value="@tooltiptext (hover)" tooltiptext="Tooltip text"/>
+				<xul:label value="@tooltiptext (hover)" tooltiptext="Tooltip text"/>
+			</xul:hbox>
+		</xul:vbox>
+		<script>ample.close()</script>
+
+		<br /><br /><br /><br /><br /><br /><br /><br />
+	</body>
+</html>

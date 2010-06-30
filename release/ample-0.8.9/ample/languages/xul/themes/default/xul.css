@@ -1,0 +1,1235 @@
+xul|colorpicker-pane {
+	display:inline-block;
+	cursor:	default;
+	vertical-align: top;
+}
+
+xul|colorpicker-pane::palette {
+	width:  256px;
+	height: 256px;
+	background-image: url(media/huesaturation.jpg);
+}
+
+xul|colorpicker-pane::palette-shader {
+	width:  256px;
+	height: 256px;
+	background-color: #000000;
+}
+
+xul|colorpicker-pane::palette-pointer {
+	width:	19px;
+	height: 19px;
+	background-image: url(media/huesaturation_pointer.gif);
+}
+
+xul|colorpicker-pane::brightness {
+	width:	19px;
+}
+
+xul|colorpicker-pane::brightness-shader {
+	width:	19px;
+	height:	256px;
+	background-image: url(media/brightness_shader.png);
+}
+
+xul|colorpicker-pane::brightness-pointer {
+	width:	37px;
+	height: 9px;
+	line-height: 9px;
+	background-image: url(media/brightness_pointer.gif);
+}
+
+xul|colorpicker-pane::palette,
+xul|colorpicker-pane::brightness,
+xul|colorpicker-pane::color,
+xul|colorpicker-pane::value {
+	border: 1px inset #000000;
+}
+
+xul|colorpicker-pane::color {
+	height: 50px;
+}
+
+xul|colorpicker-pane::value {
+	width:	80px;
+}
+
+/* buttons */
+xul|colorpicker-pane::button-accept,
+xul|colorpicker-pane::button-cancel {
+	width:	80px;
+}
+xul|datepicker-pane {
+	cursor: default;
+	display:inline-block;
+	vertical-align: top;
+}
+xul|datepicker-pane::header {
+	background-color: #B4CBEA;
+	color: white;
+	text-align: center;
+	font-weight: bold;
+}
+xul|datepicker-pane::month {
+	height: 19px;
+	width: 84px;
+}
+xul|datepicker-pane::month-previous,
+xul|datepicker-pane::month-next {
+	width:	20px;
+	font-weight: bold;
+	text-align:	center;
+}
+xul|datepicker-pane::years-pane {
+	height:	17px;
+	line-height:17px;
+	width:	70px;
+	border: 1px solid #b4cbea;
+}
+xul|datepicker-pane::year {
+	vertical-align:	top;
+	padding:0;
+}
+xul|datepicker-pane::year-previous,
+xul|datepicker-pane::year-next {
+	height: 8px;
+	width: 16px;
+	line-height:	8px;
+	font-size: 1px;
+	background-image: url(media/spinbuttons.gif);
+	background-repeat: no-repeat;
+}
+xul|datepicker-pane::year-previous {
+	background-position: 0px 0px;
+}
+xul|datepicker-pane::year-next {
+	background-position: -16px 0px;
+}
+xul|datepicker-pane::year-previous:hover {
+	background-position: 0px -8px;
+}
+xul|datepicker-pane::year-next:hover {
+	background-position: -16px -8px;
+}
+
+xul|datepicker-pane:day {
+	width: 24px;
+	background-color: #f1f1f1;
+	color: black;
+}
+xul|datepicker-pane:day-weekend {
+	font-weight: bold;
+}
+xul|datepicker-pane:day-disabled {
+	background-color: #d0d0d0;
+	color: #F0F0F0;
+}
+xul|datepicker-pane:selected {
+	background-color: #B4CBEA;
+	color: white;
+}
+xul|datepicker-pane:week {
+	width: 1.5em;
+	/*height:18px;*/
+	color: gray;
+	font-style: italic;
+}
+xul|textbox,
+xul|editor,
+xul|colorpicker,
+xul|menulist,
+xul|datepicker,
+xul|timepicker,
+xul|spinbuttons {
+	margin: 1px;
+	display: inline-block;
+	line-height: 17px;
+	border: 1px solid ThreeDShadow;/*1px solid #7F9DB9*/;
+	background-color: Window;/*white*/;
+	-webkit-box-sizing: border-box;/* odd enough, no? */
+	-moz-box-sizing: border-box;/* odd enough, no? */
+}
+
+xul|colorpicker,
+xul|menulist,
+xul|datepicker,
+xul|timepicker,
+xul|spinbuttons {
+	height: 19px;
+}
+
+xul|textbox,
+xul|editor {
+	width:	200px;
+	outline: none; /* removes browser native outline when focused */
+}
+
+/* states */
+xul|textbox:focus,
+xul|editor:focus,
+xul|colorpicker:focus,
+xul|menulist:focus,
+xul|datepicker:focus,
+xul|timepicker:focus,
+xul|spinbuttons:focus {
+	border-color: lightblue;
+}
+
+xul|checkbox:disabled,
+xul|radio:disabled,
+xul|colorpicker:disabled,
+xul|menulist:disabled,
+xul|datepicker:disabled,
+xul|timepicker:disabled,
+xul|spinbuttons:disabled {
+	cursor: default;
+	color: GrayText;/*#aca899;*/
+}
+
+xul|colorpicker::input,
+xul|menulist::input,
+xul|datepicker::input,
+xul|timepicker::input,
+xul|spinbuttons::input {
+	background:	transparent;
+	vertical-align:	top;
+	height:	17px;
+	padding:0;
+	margin-right:1px;
+	outline: none; /* removes browser native outline when focused */
+}
+
+xul|colorpicker::button,
+xul|menulist::button,
+xul|datepicker::button {
+	width:  15px;
+	height: 15px;
+	margin: 1px;
+	font-size: 1px;
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+}
+
+xul|colorpicker::button:hover,
+xul|menulist::button:hover,
+xul|datepicker::button:hover {
+	background-position: 0px -15px;
+}
+
+xul|colorpicker::button:active,
+xul|menulist::button:active,
+xul|datepicker::button:active {
+	background-position: 0px -30px;
+}
+
+xul|colorpicker:disabled xul|colorpicker::button,
+xul|menulist:disabled xul|menulist::button,
+xul|datepicker:disabled xul|datepicker::button {
+	background-position: 0px -45px;
+}
+
+/* datepicker */
+xul|datepicker {
+	width:	90px;
+}
+
+xul|datepicker::button {
+	background-image: url(media/datepicker.gif);
+}
+
+/* colopicker */
+xul|colorpicker {
+	width:  90px;
+}
+
+xul|colorpicker::button {
+	background-image: url(media/colorpicker.gif);
+}
+
+/* menulist */
+xul|menulist {
+	width:  90px;
+}
+
+xul|menulist::button {
+	background-image: url(media/menulist.gif);
+}
+
+/* spinbuttons */
+xul|spinbuttons {
+	width: 60px;
+}
+
+xul|spinbuttons::button-up,
+xul|timepicker::button-up,
+xul|spinbuttons::button-down,
+xul|timepicker::button-down {
+	height: 8px;
+	width: 16px;
+	line-height:	8px;
+	background-image: url(media/spinbuttons.gif);
+	background-repeat: no-repeat;
+}
+
+xul|spinbuttons::button-up,
+xul|timepicker::button-up {
+	background-position: 0px 0px;
+}
+
+xul|spinbuttons::button-up:hover,
+xul|timepicker::button-up:hover {
+	background-position: 0px -8px;
+}
+
+xul|spinbuttons::button-up:active,
+xul|timepicker::button-up:active {
+	background-position: 0px -16px;
+}
+
+xul|spinbuttons:disabled xul|spinbuttons::button-up,
+xul|timepicker:disabled xul|timepicker::button-up {
+	background-position: 0px -24px;
+}
+
+xul|spinbuttons::button-down,
+xul|timepicker::button-down {
+	background-position: -16px 0px;
+}
+
+xul|spinbuttons::button-down:hover,
+xul|timepicker::button-down:hover {
+	background-position: -16px -8px;
+}
+
+xul|spinbuttons::button-down:active,
+xul|timepicker::button-down:active {
+	background-position: -16px -16px;
+}
+
+xul|spinbuttons:disabled xul|spinbuttons::button-down,
+xul|timepicker:disabled xul|timepicker::button-down {
+	background-position: -16px -24px;
+}
+
+/* timpicker */
+xul|timepicker {
+	width: 90px;
+}
+
+/* scale */
+xul|scale {
+	display: inline-block;
+	margin:	1px;
+	height:	19px;
+	width:	12em;
+}
+
+xul|scale * {
+	font-size: 1px;
+}
+
+xul|scale[orient=horizontal] {
+	background: url(media/scale_bar_horizontal.gif) repeat-x center;
+}
+
+xul|scale[orient=horizontal] xul|scale::button {
+	height:	21px;
+	width:	11px;
+	background-image: url(media/scale_button_down.gif);
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+}
+
+xul|scale[orient=horizontal] xul|scale::button:hover {
+	background-position: 0px -21px;
+}
+
+xul|scale[orient=horizontal] xul|scale::button:active {
+	background-position: 0px -42px;
+}
+
+xul|scale:disabled xul|scale[orient=horizontal] xul|scale::button {
+	background-position: 0px -63px;
+}
+
+/* radio / radiogroup */
+xul|radiogroup {
+
+}
+
+xul|radio {
+
+}
+
+/* checkbox */
+xul|checkbox {
+
+}
+
+/* */
+xul|datepicker xul|datepicker-pane,
+xul|colorpicker xul|colorpicker-pane {
+	position:	absolute;
+}
+/* button */
+xul|button {
+	margin: 0px;
+	margin-right: 1px;
+	cursor: default;
+}
+
+xul|progressmeter {
+	height:	17px;
+}
+
+xul|progressmeter * {
+	line-height: 1px;
+}
+
+xul|progressmeter::units {
+	height:	11px;
+	background:	#3C3 url(media/progressmeter_unit.gif) repeat-x;
+}
+
+xul|progressmeter-bar-middle {
+	background:	url(media/progressmeter_bar.gif) repeat-x;
+}
+
+xul|progressmeter-bar-left {
+	width:	4px;
+	background:	url(media/progressmeter_corner.gif) no-repeat 0px 0px;
+}
+
+xul|progressmeter-bar-right {
+	width:	4px;
+	background:	url(media/progressmeter_corner.gif) no-repeat -4px 0px;
+}
+
+/* div */
+xul|popup,
+xul|tooltip {
+    cursor:	default;
+    background-color:	#fff;
+    border:	solid 1px #aca899;
+	padding:2px;
+	z-index:1;
+}
+
+/* div */
+xul|splitter {
+	cursor:	default;
+}
+
+xul|splitter::image {
+	background-color:	silver;
+	border-color: silver;
+	border-style: inset;
+	border-width: 0;
+}
+
+xul|splitter-vertical {
+	width:	100%;
+	height:	9px;
+	cursor: n-resize;
+}
+
+xul|splitter-vertical xul|splitter::image {
+	width:	100%;
+	height: 9px;
+	border-width: 1px 0;
+	line-height: 1px;
+	background: transparent url(media/dimple.png) no-repeat scroll center center;
+}
+
+/* div */
+xul|splitter-horizontal {
+	width:	9px;
+	height: 100%;
+	cursor: e-resize;
+}
+
+xul|splitter-horizontal xul|splitter::image {
+	width:	9px;
+	height: 100%;
+	border-width: 0 1px;
+	background: transparent url(media/dimple.png) no-repeat scroll center center;
+}
+
+xul|splitter:hover xul|splitter::image {
+	background-color: gray;
+}
+
+xul|splitter:active xul|splitter::image {
+	background-color: white;
+	position:absolute;
+	z-index: 1;
+}
+
+xul|arrowscrollbox {
+
+}
+
+xul|arrowscrollbox-button {
+	background-color:	#fff;
+	background-repeat:	no-repeat;
+	border-width:	1px;
+	-moz-box-sizing:border-box;
+}
+
+xul|arrowscrollbox-button div {
+	width:	7px;
+	height: 7px;
+}
+
+xul|arrowscrollbox-button-normal {
+	border-style:	outset;
+}
+
+xul|arrowscrollbox-button-hover {
+	border-style:	inset;
+}
+
+xul|arrowscrollbox-button-up {
+	background-image:	url(media/scrollbox_arrow_up.gif);
+}
+
+xul|arrowscrollbox-button-up-normal {
+	background-position:	center 0px;
+}
+
+xul|arrowscrollbox-button-up-hover {
+	background-position:	center 1px;
+}
+
+xul|arrowscrollbox-button-down {
+	background-image:	url(media/scrollbox_arrow_down.gif);
+}
+
+xul|arrowscrollbox-button-down-normal {
+	background-position:	center 1px;
+}
+
+xul|arrowscrollbox-button-down-hover {
+	background-position:	center 2px;
+}
+
+xul|arrowscrollbox-button-left {
+	background-image:	url(media/scrollbox_arrow_left.gif);
+}
+
+xul|arrowscrollbox-button-left-normal {
+	background-position:	0px center;
+}
+
+xul|arrowscrollbox-button-left-hover {
+	background-position:	1px center;
+}
+
+xul|arrowscrollbox-button-right {
+	background-image:	url(media/scrollbox_arrow_right.gif);
+}
+
+xul|arrowscrollbox-button-right-normal {
+	background-position:	1px center;
+}
+
+xul|arrowscrollbox-button-right-hover {
+	background-position:	2px center;
+}
+
+xul|statusbar {
+	/*position:absolute;
+	bottom:0px;
+	left:0px;*/
+	cursor:		default;
+	background:	url(media/statusbar.gif) repeat-x;
+}
+
+xul|statusbarpanel {
+	background: url(media/statusbarpanel_splitter.gif) no-repeat right;
+	padding:	2px;
+}
+xul|listbox {
+	cursor: default !important;
+	border: 1px solid #7F9DB9;
+	background-color: white;
+}
+
+xul|listhead {
+	line-height: 18px;
+}
+
+xul|listhead::settings {
+	width:	16px;
+	height:	16px;
+	background-image: url(media/listhead_settings.gif);
+}
+
+xul|listheader {
+	font-weight: normal;
+	background-image: url(media/listheader.gif);
+	background-repeat: repeat-x;
+	background-position: 0px -2px;
+}
+
+xul|listheader:hover {
+	background-position: 0px -22px;
+}
+
+xul|listheader:active {
+	background-position: 0px -40px;
+}
+
+xul|listheader::label {
+	padding: 0px;
+	background-image: url(media/listheader_splitter.gif);
+	background-repeat: no-repeat;
+	background-position: left center;
+}
+
+xul|listheader::command,
+xul|listitem::command {
+	width:	16px;
+	height:	16px;
+	margin:	0px;
+	padding:0px;
+	vertical-align:	middle;
+	margin-left: 2px;
+}
+
+xul|listitem {
+	line-height:	18px;
+}
+
+xul|listitem:hover {
+	background-color: #cce1ff;
+}
+
+xul|listitem:selected {
+	background-color: gray;
+	color: white;
+}
+
+xul|listbox:focus xul|listitem:selected {
+	background-color: #316AC5;
+}
+
+xul|listcell {
+	padding-right:	2px;
+	padding-left:	2px;
+	white-space:	nowrap;
+	vertical-align: middle;
+}
+
+xul|listcell::command {
+	width:	16px;
+	height:	16px;
+	margin:	0px;
+	padding:0px;
+	vertical-align: middle;
+}
+/* Content Debugging */
+xul|box[debug=true] {
+	border-width:	1px;
+	border-style:	dashed;
+}
+
+xul|box[debug=true] xul|box {
+	border: dotted 1px gray;
+}
+/*
+xul|box[debug=true] xul|vbox {
+	border: dotted 1px red;
+}
+xul|box[debug=true] xul|hbox {
+	border: dotted 1px blue;
+}
+*/
+xul|vbox[debug=true] {
+	border-color:	red;
+	border-left-width:	2px;
+	border-left-style:	solid;
+	background-color:	#fee;
+}
+
+xul|hbox[debug=true] {
+	border-color:	blue;
+	border-top-width:	2px;
+	border-top-style:	solid;
+	background-color:	#eef;
+}
+
+xul|box {
+
+}
+
+xul|deck {
+	width:100%;
+	height:100%;
+}
+
+xul|groupbox {
+
+}
+
+xul|groupbox-head {
+	background: url(media/groupbox_horizontal.gif) repeat-x 0px 6px;
+}
+
+xul|groupbox-head-left {
+	width:	11px;
+	height:	22px;
+	background: url(media/groupbox_corner.gif) no-repeat 0px 11px;
+}
+
+xul|groupbox-head-right {
+	width:	11px;
+	background: url(media/groupbox_corner.gif) no-repeat -11px 11px;
+}
+
+xul|groupbox-body-left {
+	background: url(media/groupbox_vertical.gif) repeat-y;
+}
+
+xul|groupbox-body-right {
+	background: url(media/groupbox_vertical.gif) repeat-y;
+}
+
+xul|groupbox-foot {
+	height:	11px;
+	background: url(media/groupbox_horizontal.gif) repeat-x 0px 5px;
+}
+
+xul|groupbox-foot-left {
+	background: url(media/groupbox_corner.gif) no-repeat 0 -11px;
+}
+
+xul|groupbox-foot-right {
+	background: url(media/groupbox_corner.gif) no-repeat -11px -11px;
+}
+
+xul|caption {
+	background-color: Window;
+	color: darkblue;
+	padding-right:4px;
+	padding-left: 4px;
+	cursor: default !important;
+}
+
+xul|iframe {
+
+}
+
+xul|image {
+
+}
+
+xul|label {
+
+}
+
+xul|description {
+
+}
+
+xul|spacer {
+
+}
+
+xul|stack {
+
+}
+
+xul|grid {
+
+}
+
+xul|rows {
+
+}
+
+xul|row {
+
+}
+xul|menupopup {
+    cursor:	default !important;
+    background-color: Menu;
+    border-width:	1px;
+    border-style: 	solid;
+    border-color:	ThreeDHighlight ThreeDShadow ThreeDShadow ThreeDHighlight;/*#aca899;*/
+    padding:	2px;
+	z-index:	100;
+}
+
+xul|menuitem {
+    color: black;
+}
+xul|menuitem:hover {
+    color: white;
+    background-color: pink;
+}
+xul|menuitem:selected {
+    color: HighlightText;
+    background-color: Highlight;
+}
+xul|menuitem:disabled {
+	color:	GrayText;
+}
+xul|menuitem[type]::image {
+	background-repeat: no-repeat;
+	width:	16px;
+	height:	16px;
+	vertical-align: middle;
+}
+xul|menuitem[type=checkbox]::image {
+	background-position: 0px 16px;	/* hidden */
+	background-image: url(media/menuitem_checkbox.gif);
+}
+xul|menuitem[type=radio]::image {
+	background-position: 0px 16px;	/* hidden */
+	background-image: url(media/menuitem_radio.gif);
+}
+xul|menuitem::image:checked {
+	background-position: 0px 0px;
+}
+xul|menu {
+	color: black;
+}
+xul|menu:hover {
+    color: white;
+    background-color: pink;
+}
+xul|menu:selected {
+    color: HighlightText;
+    background-color: Highlight;
+}
+xul|menu:disabled {
+	color: GrayText;
+}
+xul|menu::arrow {
+	background-image:	url(media/menuitem_arrow.gif);
+	background-repeat:	no-repeat;
+	background-position: 0px 0px;
+	vertical-align: middle;
+	width: 16px;
+	height:16px;
+}
+xul|menu::label {
+	padding-left:	5px;
+	padding-right:	5px;
+}
+xul|menuitem:selected xul|menuitem::image:checked,
+xul|menuitem:selected xul|menuitem::image:checked/*,
+xul|menu:selected xul|menu::arrow*/ {
+	background-position: 0px -16px;
+}
+xul|menuitem:disabled xul|menuitem::image:checked,
+xul|menuitem:disabled xul|menuitem::image:checked,
+xul|menu:disabled xul|menu::arrow {
+	background-position: 0px -48px;
+}
+xul|menuseparator {
+    border-top:	solid 1px ThreeDShadow;/*#ACA899;*/
+	background-color:	ThreeDHighlight;
+	margin-top:		2px;
+	margin-bottom:	1px;
+	height:	1px;
+	line-height:	1px;
+}
+
+xul|menu::gateway xul|menupopup {
+	margin-left: 0;
+	margin-top:	0;
+}
+xul|menupopup::gateway xul|menupopup {
+	margin-left:16px;
+	margin-top:	-3px;
+}
+xul|tabbox {
+
+}
+
+xul|tabs {
+/*	border-bottom: solid 1px #919B9C;
+	margin-bottom: 1px;*/
+}
+
+xul|tab {
+	height:	20px;
+	padding-left:	5px;
+	padding-right:	10px;
+	padding-bottom:	1px;
+	vertical-align: bottom;
+	background: url(media/tab.gif) repeat-x 0px 0px;
+	white-space:	nowrap;
+	cursor:	default !important;
+}
+
+xul|tab:hover {
+	background-position: 0px -30px;
+}
+
+xul|tab:disabled {
+	background-position: 0px 0px;
+	color: gray;
+}
+
+xul|tab:selected {
+	background-position: 0px -60px;
+	padding-bottom: 3px;
+}
+
+xul|tab-separator {
+	width: 1px;
+	background: url(media/tab_separator.gif) no-repeat top;
+}
+
+xul|tab-remainder {
+
+}
+
+xul|tabpanels {
+	border: 1px solid #7F9DB9;
+	background-color: white;
+}
+
+xul|tabpanel {
+
+}
+xul|toolbox {
+
+}
+
+xul|toolbar,
+xul|menubar {
+	cursor: default !important;
+    background-color:	#F1F0E8;
+	border-bottom: solid 1px #D8D2BD;
+	border-top: solid 1px #FFF;
+}
+
+xul|toolbarseparator {
+	width:	3px;
+	height:	24px;
+	margin:	3px;
+	background:	url(media/toolbarseparator.gif) repeat-y;
+}
+
+xul|toolbargrippy {
+	width:	3px;
+	margin: 3px;
+	background: url(media/toolbargrippy.gif) repeat-y;
+}
+
+xul|toolbar xul|toolbargrippy {
+	line-height:	24px;
+}
+
+xul|menubar xul|toolbargrippy {
+	line-height:	14px;
+}
+
+xul|toolbarbutton {
+	height: 30px;
+	white-space: nowrap;
+}
+
+xul|toolbarbutton::gateway {
+	padding-right: 3px;
+	padding-left: 0px;
+	padding-bottom: 1px;
+}
+
+xul|toolbarbutton::arrow {
+	width:	8px;
+	background: url(media/toolbarbutton_arrow.gif) no-repeat center;
+}
+
+/* hover */
+xul|toolbarbutton:hover {
+	background-color: transparent;
+}
+
+xul|toolbarbutton:hover xul|toolbarbutton-top {
+	background: url(media/toolbarbutton_top_hover.gif) repeat-x top;
+}
+
+xul|toolbarbutton:hover xul|toolbarbutton-left {
+	background: #F1F0E8 url(media/toolbarbutton_left_hover.gif);
+}
+
+xul|toolbarbutton:hover xul|toolbarbutton-right {
+	background: #F1F0E8 url(media/toolbarbutton_right_hover.gif);
+}
+
+xul|toolbarbutton:hover xul|toolbarbutton-bottom {
+	background: url(media/toolbarbutton_bottom_hover.gif) repeat-x bottom;
+}
+
+/* active */
+xul|toolbarbutton:active {
+	background-color: #D8D2BD;
+}
+
+xul|toolbarbutton:active xul|toolbarbutton::gateway {
+	padding-right: 2px;
+	padding-left:  1px;
+	padding-top:   1px;
+	padding-bottom:0px;
+}
+
+xul|toolbarbutton:active xul|toolbarbutton-top {
+	background: url(media/toolbarbutton_top_pressed.gif) repeat-x top;
+}
+
+xul|toolbarbutton:active xul|toolbarbutton-left {
+	background: url(media/toolbarbutton_left_pressed.gif);
+}
+
+xul|toolbarbutton:active xul|toolbarbutton-right {
+	background: url(media/toolbarbutton_right_pressed.gif);
+}
+
+xul|toolbarbutton:active xul|toolbarbutton-bottom {
+	background: url(media/toolbarbutton_bottom_pressed.gif) repeat-x bottom;
+}
+
+/* disabled */
+xul|toolbarbutton:disabled {
+	color: GrayText;
+}
+xul|toolbarbutton:disabled xul|toolbarbutton-right,
+xul|toolbarbutton:disabled xul|toolbarbutton-top,
+xul|toolbarbutton:disabled xul|toolbarbutton-left,
+xul|toolbarbutton:disabled xul|toolbarbutton-bottom {
+	background: none;
+}
+xul|tooltip-pane {
+	border:	solid 1px black;
+	background-color:	lightyellow;
+	/*filter: blendTrans(duration=.1) progid:DXImageTransform.Microsoft.dropShadow(Color=AAAAAA,offX=2,offY=2,positive=true);*/
+	padding:2px;
+	line-height: 14px;
+}
+xul|tree {
+	cursor: default !important;
+	border: 1px solid #7F9DB9;
+	background-color: white;
+}
+
+xul|treecols {
+	line-height: 18px;
+}
+
+xul|treecols::settings {
+	width:	16px;
+	height:	16px;
+	background-image: url(media/treecols_settings.gif);
+}
+
+xul|treecol {
+	font-weight: normal;
+	background-image: url(media/treecol.gif);
+	background-repeat: repeat-x;
+	background-position: 0px -2px;
+}
+
+xul|treecol:hover {
+	background-position: 0px -22px;
+}
+
+xul|treecol:active {
+	background-position: 0px -40px;
+}
+
+xul|treecol::label {
+	padding: 0px;
+	background-image: url(media/treecol_splitter.gif);
+	background-repeat: no-repeat;
+	background-position: left center;
+}
+
+xul|treecol::command,
+xul|treeitem::command {
+	width:	16px;
+	height:	16px;
+	margin:	0px;
+	padding:0px;
+	vertical-align:	middle;
+	margin-left: 2px;
+}
+
+xul|treerow {
+	line-height:	18px;
+}
+
+xul|treerow:hover {
+	background-color: #cce1ff;
+}
+
+xul|treeitem:selected {
+	background-color: gray;
+	color: white;
+}
+
+xul|tree:focus xul|treeitem:selected {
+	background-color: #316AC5;
+}
+
+xul|treecell {
+	padding-right:	2px;
+	padding-left:	2px;
+	white-space:	nowrap;
+	vertical-align: middle;
+}
+
+xul|treecell::command {
+	width:	16px;
+	height:	16px;
+	margin:	0px;
+	padding:0px;
+	vertical-align: middle;
+}
+
+xul|treecell INPUT {
+	width:	14px;
+	height:	14px;
+	margin:	0px;
+	padding:0px;
+}
+
+xul|treecell-toc {
+	background-image:	url(media/treecell_toc.gif);
+	background-repeat:	no-repeat;
+	background-position:-72px center;
+	float: left;
+	width: 18px;
+	height: 18px;
+}
+
+xul|treecell-toc-opened {
+	background-position:-24px center;
+}
+
+xul|treecell-toc-closed {
+	background-position:0px center;
+}
+
+xul|treecell-line {
+	background-image:	url(media/treecell_line.gif);
+	background-repeat:	no-repeat;
+	background-position:-72px center;
+	float: left;
+	width: 18px;
+	height: 18px;
+}
+
+xul|treecell-line-regular {
+	background-position:0 center;
+}
+
+xul|treecell-line-next {
+	background-position:-24px center;
+}
+
+xul|treecell-line-last {
+	background-position:-48px center;
+}
+xul|page,
+xul|dialog,
+xul|wizard,
+xul|window {
+	position: absolute;
+	background-color: Window;/*#ECE9D8;*/
+}
+
+xul|dialog,
+xul|wizard,
+xul|window {
+	border: 1px #7F9DB9 outset;
+}
+
+xul|dialog::head,
+xul|wizard::head,
+xul|window::head {
+	cursor: default;
+	background-color:	#0033CC;
+}
+
+xul|dialog::body,
+xul|window::body,
+xul|wizard::body {
+    border-top: solid 1px #ffffff;
+	border-bottom:	solid 1px #aca899;
+}
+
+xul|wizard::body {
+	padding: 10px;
+	padding-left: 28px;
+	padding-right: 28px;
+}
+
+xul|wizard::foot,
+xul|dialog::foot {
+	height: 40px;
+    border-top: solid 1px #ffffff;
+}
+
+xul|dialog::button-accept,
+xul|dialog::button-cancel,
+xul|dialog::button-help,
+xul|wizard::button-back,
+xul|wizard::button-next,
+xul|wizard::button-finish,
+xul|wizard::button-cancel {
+    margin-right: 5px;
+	cursor: default !important;
+	width:	5em;
+}
+
+xul|dialog::title,
+xul|wizard::title,
+xul|window::title {
+	color: white;
+	font-weight: bold;
+	padding-left: 2px;
+	height: 1em;
+}
+
+xul|window::button-close {
+	width: 13px;
+	height:13px;
+	margin: 2px;
+	background-repeat: no-repeat;
+	background-image: url(media/button_close.gif);
+	background-position: 0px 0px;
+	font-size: 1px;
+}
+
+xul|window::button-close:hover {
+	background-position: 0px -13px;
+}
+
+xul|window::button-close:active {
+	background-position: 0px -26px;
+}
+
+xul|dialogheader,
+xul|wizardheader {
+	height: 60px;
+	border-bottom:	solid 1px #aca899;
+	background-color: #fff;
+	padding: 8px;
+	cursor: default !important;
+}
+
+xul|dialogheader::title,
+xul|wizardheader::title {
+	font-weight: bold;
+}
+
+xul|dialogheader::description,
+xul|wizardheader::description {
+	padding-top: 3px;
+	padding-left: 20px;
+}

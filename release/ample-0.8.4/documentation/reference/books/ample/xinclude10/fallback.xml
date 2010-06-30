@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element name="fallback">
+	<implements />
+	<abstract>
+		<locale>
+			The <link type="element">fallback</link> element appears as a child of an <link type="element">include</link> element. It provides a mechanism for recovering from missing resources.
+		</locale>
+		<locale xml:lang="ru">
+			Элемент <link type="element">fallback</link> является дочерним для элемента <link type="element">include</link>, предоставляя механизм обработки случаев, когда ресурс, подключаемый элементом <link type="element">include</link> недоступен для загрузки.
+		</locale>
+	</abstract>
+	<remarks>
+		<remark>
+			<locale>
+				The <link type="element">fallback</link> element can appear only as a child of an <link type="element">include</link> element.
+			</locale>
+			<locale xml:lang="ru">
+				Элемент <link type="element">fallback</link> может быть использован только внутри элемента <link type="element">include</link>.
+			</locale>
+		</remark>
+	</remarks>
+	<examples>
+		<example>
+			<description>
+				<locale>
+					In the given example an attempt to include <b>include.xml</b> document is being done,
+					and a fallback mechanism is provided that is in its turn tryes to include <b>include.txt</b>
+					document. In case both includes are failed, the text "Both includes are failed" will be
+					inserted into the document tree.
+				</locale>
+				<locale xml:lang="ru">
+					В примере производится попытка сначала подключить документ <b>include.xml</b>, а первый
+					элемент <b>fallback</b>, в случае недоступности документа <b>include.xml</b>,
+					предоставляет возможность подключить документ <b>include.txt</b>.
+					В случае, если не удалось загрузить оба ресурса, в структуру исходного документа будет
+					вставлен текст "Загрузка обоих документов невозможна".
+				</locale>
+			</description>
+			<code type="application/xml"><![CDATA[
+<xi:include href="include.xml" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<xi:fallback>
+		<xi:include href="include.txt" parse="text">
+			<xi:fallback>Both includes failed</xi:fallback>
+		</xi:include>
+	</xi:fallback>
+</xi:include>
+			]]></code>
+		</example>
+	</examples>
+	<members>
+		<attributes />
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

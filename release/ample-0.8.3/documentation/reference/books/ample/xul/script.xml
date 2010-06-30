@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="script" type="virtual">
+	<implements />
+	<abstract>
+		<locale xml:lang="ru">
+			Аналогично элементу <b>script</b> в HTML, используется для объявления скрипта,
+			который будет использоваться в документе <b>Ample SDK</b>.
+			Скрипты следует размещать в отдельных файлах, ссылаясь на них атрибутом <link type="attribute">src</link>.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="src" default="" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						URL скрипта.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

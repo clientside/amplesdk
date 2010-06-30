@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="commandset">
+	<implements />
+	<abstract>
+		<locale>
+			This element is not displayed and serves as a container for <link type="element">command</link> elements.
+		</locale>
+		<locale xml:lang="ru">
+			Контейнер для элементов <link type="element">command</link>.
+			Элемент <link type="element">commandset</link> и все содержащиеся в нем элементы не отображаются.
+			Так же этот элемент может быть использован для обновления статуса одного или нескольких
+			элементов <link type="element">command</link> по определенному событию.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes />
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

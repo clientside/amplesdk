@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="stack" type="regular">
+	<implements />
+	<abstract>
+		<locale xml:lang="ru">
+			Элемент, который отображает свои дочерние элементы друг над другом.
+			Первый дочерний элемент помещается в самый низ, а каждый последующий помещается над предыдущим.
+			Все дочерние элементы отображаются одновременно.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes />
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

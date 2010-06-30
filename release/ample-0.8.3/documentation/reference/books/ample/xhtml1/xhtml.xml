@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<article>
+	<title>XHTML™ 1.0 The Extensible HyperText Markup Language</title>
+	<abstract>
+		<locale>
+			XHTML is a family of current and future document types and modules that reproduce, subset, and extend HTML 4 [HTML4].
+		</locale>
+		<locale xml:lang="ru">
+			Язык XHTML является следующим шагом эволюции Интернет. Миграция на XHTML позволяет воспользоваться преимуществами XML документов в разметке HTML страниц, оставаясь уверенным в полной обратной совместимости разметки в будущем.
+		</locale>
+	</abstract>
+	<content>
+		<section>
+			<title>
+				<locale>
+					Namespace URI
+				</locale>
+				<locale xml:lang="ru">
+					Пространство имен
+				</locale>
+			</title>
+			<content>
+				<locale>
+					XHTML 1.0 defines a namespace associated with the URI <uri>http://www.w3.org/1999/xhtml</uri>
+				</locale>
+				<locale xml:lang="ru">
+					Пространство имен XHTML 1.0 определяется URI <uri>http://www.w3.org/1999/xhtml</uri>
+				</locale>
+			</content>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Ample SDK implementation details
+				</locale>
+				<locale xml:lang="ru">
+					Реализация в Ample SDK
+				</locale>
+			</title>
+			<content>
+				<locale>
+					Ample SDK fully implements XHTML 1.0
+				</locale>
+				<locale xml:lang="ru">
+					Ample SDK полностью реализует язык XHTML 1.0.
+				</locale>
+			</content>
+		</section>
+	</content>
+
+	<seealso>
+		<link href="http://www.w3.org/TR/xhtml1/">XHTML 1.0 The Extensible HyperText Markup Language (W3C)</link>
+	</seealso>
+</article>

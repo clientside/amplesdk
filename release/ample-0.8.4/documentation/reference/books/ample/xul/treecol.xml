@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="treecol" type="regular">
+	<implements />
+	<abstract>
+		<locale xml:lang="ru">
+			Столбец элемента <link type="element">tree</link>.
+			Отображает заголовок столбца, а так же содержит размер колонки и другую информацию.
+			Размещается внутри элемента <link type="element">treecols</link>.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="label" default="" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						Текст для элемента.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="primary" default="false" readonly="true">
+				<values>
+					<value name="true">
+						<description>
+							<locale xml:lang="ru">
+								Отступ и переключатели сворачивания/разворачивания уровня иерархии оторбажаются в колонке.
+							</locale>
+						</description>
+					</value>
+					<value name="false">
+						<description>
+							<locale xml:lang="ru">
+								Отступ и переключатели сворачивания/разворачивания уровня иерархии не оторбажаются в колонке.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale xml:lang="ru">
+						Указывает, будет ли визуально отображаться отступ и переключатели сворачивания/разворачивания уровня иерархии в колонке.
+						Если не будет колонки с указанным атрибутом <link type="attribute">primary</link>, использование вложенных строк допускается, но визуально это никак не будет отображаться.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="minwidth" default="" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						Минимальная ширина элемента.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="hideheader" default="false" readonly="false">
+				<values>
+					<value name="true">
+						<description>
+							<locale xml:lang="ru">
+								Заголовок столбца не отображается.
+							</locale>
+						</description>
+					</value>
+					<value name="false">
+						<description>
+							<locale xml:lang="ru">
+								Заголовок столбца отображается.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale xml:lang="ru">
+						Указывает на отображение заголовка столбца.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

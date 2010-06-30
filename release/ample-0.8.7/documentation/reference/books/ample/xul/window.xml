@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="window" type="boxed">
+	<implements />
+	<abstract>
+		<locale xml:lang="ru">
+			Описывает структуру окна верхнего уровня.
+			Является корневым узлом документа <b>Ample SDK</b>.
+			По умолчанию этот элемент является контейнером с горизонтальной ориентацией.
+			Поскольку <b>window</b> является <link type="element">box</link>, моно использовать
+			атрибуты элемента <link type="element">box</link>.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="title" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						Текст заголовка окна.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties />
+		<events>
+			<event name="load" group="Event" cancelable="false" bubbles="false">
+				<description>
+					<locale xml:lang="ru">
+						Заграется сразу после того, как ядро загрузит объект.
+					</locale>
+				</description>
+			</event>
+			<event name="unload" group="Event" cancelable="false" bubbles="false">
+				<description>
+					<locale xml:lang="ru">
+						Загорается непосредственно перед тем, как объект будет выгружен.
+					</locale>
+				</description>
+			</event>
+		</events>
+	</members>
+</element>

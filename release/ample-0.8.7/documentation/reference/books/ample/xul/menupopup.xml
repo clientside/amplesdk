@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULPopupElement" name="menupopup" type="regular">
+	<abstract>
+		<locale xml:lang="ru">
+			Контейнер для отрисовки меню. Помещается внутри <link type="element">menu</link>. Может содержать только элементы <link type="element">menuitem</link>.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes />
+		<methods />
+		<properties>
+			<property name="selectedItem" type="AMLElement" readonly="true">
+				<description>
+					<locale xml:lang="ru">
+						Ссылка на выделенный в настоящий момент элемент <link type="element">menuitem</link>.
+					</locale>
+				</description>
+			</property>
+			<property name="items" type="AMLNodeList">
+				<description>
+					<locale xml:lang="ru">
+						Коллекция всех дочерних элементов <link type="element">menuitem</link>.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<events />
+	</members>
+</element>

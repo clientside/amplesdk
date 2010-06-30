@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object extends="runtime:AMLElement" name="ChartElement">
+	<implements />
+	<abstract>
+		<locale>
+			Base object for all chart elements.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members />
+</object>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="statusbar" type="boxed">
+	<implements />
+	<abstract>
+		<locale xml:lang="ru">
+			Используется для создания статусной строки, которая размещается, как правило, внизу окна.
+			Как правило, является эквивалентным стандартного контейнера за тем исключением,
+			кто он отображается нмного по-другому.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes />
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<article>
+	<title>XML Binding Language (XBL) 2.0</title>
+	<note>
+		<locale>
+			XBL 2.0 in Ample SDK is currently in development.
+		</locale>
+		<locale xml:lang="ru">
+			Реализация XBL 2.0 в <b>Ample SDK</b> находится в разработке.
+		</locale>
+	</note>
+	<abstract>
+		<locale>
+			The XML Binding Language (XBL) describes the ability to associate elements in a document with script, event handlers, CSS, and more complex content models, which can be stored in another document.
+			This can be used to re-order and wrap content so that, for instance, simple HTML or XHTML markup can have complex CSS styles applied without requiring that the markup be polluted with multiple semantically neutral div elements.
+		</locale>
+		<locale xml:lang="ru">
+			XBL является механизмом переопределения стандартного представления и поведения элементов разметки путем привязывания этих элементов к соответствующим описаниям, называемым байндингами (привязками). Привязка может осуществляться несколькими способами: используя каскадные таблицы стилей, объектную модель документа DOM или используя XBL определить, что конкретный элемент является элементом из специфичного пространства имен, которое реализует определенный байндинг. Элемент, к которому происходит привязывание, называемый привязываемым элементом, приобретает новое поведение и представление, определяемое байндингом.
+		</locale>
+	</abstract>
+	<content>
+		<section>
+			<title>
+				<locale>
+					Namespace URI
+				</locale>
+				<locale xml:lang="ru">
+					Пространство имен
+				</locale>
+			</title>
+			<content>
+				<locale>
+					XBL 2.0 defines a namespace associated with the URI <uri>http://www.w3.org/ns/xbl</uri>
+				</locale>
+				<locale xml:lang="ru">
+					Пространство имен XBL 2.0 определяется URI <uri>http://www.w3.org/ns/xbl</uri>
+				</locale>
+			</content>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Ample SDK implementation details
+				</locale>
+				<locale xml:lang="ru">
+					Реализация в Ample SDK
+				</locale>
+			</title>
+			<content>
+				<locale>
+					At the present moment XBL 2.0 in Ample SDK is in the development.
+				</locale>
+				<locale xml:lang="ru">
+					В настоящее время реализация языка XBL 2.0 в <b>Ample SDK</b> находится в стадии разработки.
+				</locale>
+			</content>
+		</section>
+	</content>
+
+	<seealso>
+		<link href="http://www.w3.org/TR/xbl/">XML Binding Language 2.0 (W3C)</link>
+	</seealso>
+</article>

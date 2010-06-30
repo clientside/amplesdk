@@ -1,0 +1,471 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../stylesheets/book.xsl"?>
+<book name="Ample SDK 1.0">
+	<node title="Overview" open="true">
+		<node title="About Ample SDK" xurl="ample/overview/about.xml"/>
+		<node title="Tutorials" open="true">
+			<node title="Hello World!" url="ample/tutorials/helloworld.xml"/>
+			<node title="Creating Application">
+				<node title="Part I - Layout"/>
+				<node title="Part II - Style"/>
+				<node title="Part III - Logic"/>
+				<node title="Part IV - Accessibility"/>
+				<node title="Part V - Localization"/>
+			</node>
+			<node title="Extending Ample SDK">
+				<node title="Part I - Custom Markup Language" url="ample/tutorials/create_language.xml"/>
+				<node title="Part II - Custom Markup Element" url="ample/tutorials/create_component.xml" />
+				<node title="Part III - Custom Event Interface" url="ample/tutorials/create_event.xml" />
+			</node>
+		</node>
+		<node title="White papers">
+			<node title="Accessibility"/>
+			<node title="Localization"/>
+			<node title="Co-Existence"/>
+			<node title="Supported Platforms" xurl="ample/overview/compatibility.xml"/>
+		</node>
+		<node title="Change Log" url="ample/overview/changelog.xml"/>
+	</node>
+	<node title="Runtime" open="true">
+		<node title="Runtime" />
+		<node title="JavaScript technologies" open="true">
+			<node title="JavaScript technologies" />
+			<node title="DOM Level 2/3">
+				<node title="DOM Core">
+					<node title="AMLAttr" url="ample/runtime/AMLAttr.xml"/>
+					<node title="AMLCDATASection" url="ample/runtime/AMLCDATASection.xml"/>
+					<node title="AMLCharacterData" url="ample/runtime/AMLCharacterData.xml"/>
+					<node title="AMLComment" url="ample/runtime/AMLComment.xml"/>
+					<node title="AMLConfiguration" url="ample/runtime/AMLConfiguration.xml"/>
+					<node title="AMLDocument" url="ample/runtime/AMLDocument.xml"/>
+					<node title="AMLDocumentFragment" url="ample/runtime/AMLDocumentFragment.xml"/>
+					<node title="AMLElement" url="ample/runtime/AMLElement.xml"/>
+					<node title="AMLEntityReference" url="ample/runtime/AMLEntityReference.xml"/>
+					<node title="AMLError" url="ample/runtime/AMLError.xml"/>
+					<node title="AMLException" url="ample/runtime/AMLException.xml"/>
+					<node title="AMLNode" url="ample/runtime/AMLNode.xml"/>
+					<node title="AMLImplementation" url="ample/runtime/AMLImplementation.xml"/>
+					<node title="AMLNodeList" url="ample/runtime/AMLNodeList.xml"/>
+					<node title="AMLProcessingInstruction" url="ample/runtime/AMLProcessingInstruction.xml"/>
+					<node title="AMLStringList" url="ample/runtime/AMLStringList.xml"/>
+					<node title="AMLText" url="ample/runtime/AMLText.xml"/>
+				</node>
+				<node title="DOM Events">
+					<node title="AMLEvent" url="ample/runtime/AMLEvent.xml"/>
+					<node title="AMLCustomEvent" url="ample/runtime/AMLCustomEvent.xml"/>
+					<node title="AMLUIEvent" url="ample/runtime/AMLUIEvent.xml"/>
+					<node title="AMLMouseEvent" url="ample/runtime/AMLMouseEvent.xml"/>
+					<node title="AMLMouseWheelEvent" url="ample/runtime/AMLMouseWheelEvent.xml"/>
+					<node title="AMLKeyboardEvent" url="ample/runtime/AMLKeyboardEvent.xml"/>
+					<node title="AMLTextEvent" url="ample/runtime/AMLTextEvent.xml"/>
+					<node title="AMLMutationEvent" url="ample/runtime/AMLMutationEvent.xml"/>
+					<node title="AMLResizeEvent" url="ample/runtime/AMLResizeEvent.xml"/>
+					<node title="AMLDragEvent" url="ample/runtime/AMLDragEvent.xml"/>
+				</node>
+				<node title="DOM Load/Save">
+					<node title="LSReader" xurl="ample/runtime/LSReader.xml"/>
+					<node title="LSWriter" xurl="ample/runtime/LSWriter.xml"/>
+					<node title="LSParser" xurl="ample/runtime/LSParser.xml"/>
+					<node title="LSSerializer" xurl="ample/runtime/LSSerializer.xml"/>
+				</node>
+				<node title="DOM Helper Objects">
+					<node title="AMLNamespace" url="ample/runtime/AMLNamespace.xml"/>
+					<node title="AMLSerializer" url="ample/runtime/AMLSerializer.xml"/>
+					<node title="AMLDataTransfer" url="ample/runtime/AMLDataTransfer.xml"/>
+					<node title="AMLTreeWalker" xurl="ample/runtime/dom/AMLTreeWalker.xml"/>
+				</node>
+			</node>
+			<node title="UI managers">
+				<node title="AMLCapture" url="ample/runtime/mCapture.xml"/>
+				<node title="AMLDragAndDrop" url="ample/runtime/mDragAndDrop.xml"/>
+				<node title="AMLEffect" url="ample/runtime/mEffect.xml"/>
+				<node title="AMLFocus" url="ample/runtime/mFocus.xml"/>
+				<node title="AMLHistory" url="ample/runtime/mHistory.xml"/>
+				<node title="AMLLazyLoader" url="ample/runtime/mContentLoader.xml"/>
+				<node title="AMLLegacy" url="ample/runtime/mLegacy.xml"/>
+				<node title="AMLResize" url="ample/runtime/mResize.xml"/>
+				<node title="AMLSelection" url="ample/runtime/mSelection.xml"/>
+			</node>
+			<node title="JS objects">
+				<node title="JSON" url="ample/runtime/JSON.xml"/>
+			</node>
+			<node title="XML objects">
+				<node title="DOMParser" url="ample/runtime/DOMParser.xml"/>
+				<node title="XMLSerializer" url="ample/runtime/XMLSerializer.xml"/>
+				<node title="XSLTProcessor" url="ample/runtime/XSLTProcessor.xml"/>
+			</node>
+			<node title="I/O Objects">
+				<node title="JSONRequest" xurl="ample/runtime/JSONRequest.xml"/>
+				<node title="XMLHttpRequest" url="ample/runtime/XMLHttpRequest.xml"/>
+				<node title="Soap">
+					<node title="SoapCall" xurl="ample/runtime/SoapCall.xml"/>
+					<node title="SoapResponse" xurl="ample/runtime/SoapResponse.xml"/>
+				</node>
+				<node title="Xmpp">
+					<node title="XmppConnection" xurl="ample/runtime/XmppConnection.xml"/>
+					<node title="XmppPacket" xurl="ample/runtime/XmppPacket.xml"/>
+					<node title="XmppIQ" xurl="ample/runtime/XmppIQ.xml"/>
+					<node title="XmppMessage" xurl="ample/runtime/XmppMessage.xml"/>
+					<node title="XmppPresence" xurl="ample/runtime/XmppPresence.xml"/>
+					<node title="XmppRoster" xurl="ample/runtime/XmppRoster.xml"/>
+					<node title="XmppRosterEntry" xurl="ample/runtime/XmppRosterEntry.xml"/>
+					<node title="XmppRosterGroup" xurl="ample/runtime/XmppRosterGroup.xml"/>
+					<node title="XmppChat" xurl="ample/runtime/XmppClient.xml"/>
+					<node title="XmppGroupChat" xurl="ample/runtime/XmppGroupClient.xml"/>
+				</node>
+			</node>
+		</node>
+
+		<node title="XML technologies" open="true">
+			<node title="XML technologies" />
+			<node title="XInclude 1.0">
+				<node title="Overview" url="ample/xinclude10/xinclude10.xml"/>
+				<node title="XML Schema" url="ample/xinclude10/xinclude10.xsd" />
+				<node title="Elements">
+					<node title="include" url="ample/xinclude10/include.xml"/>
+					<node title="fallback" url="ample/xinclude10/fallback.xml"/>
+				</node>
+			</node>
+			<node title="XML Events 1.0">
+				<node title="Overview" url="ample/xmlevents10/xmlevents10.xml"/>
+				<node title="XML Schema" url="ample/xmlevents10/xmlevents10.xsd" />
+				<node title="Elements">
+					<node title="listener" url="ample/xmlevents10/listener.xml"/>
+				</node>
+			</node>
+			<node title="SMIL 3.0">
+				<node title="Overview" url="ample/smil30/smil30.xml"/>
+				<node title="XML Schema" />
+				<node title="Elements">
+					<node title="animate" url="ample/smil30/animate.xml" />
+					<node title="animateMotion" url="ample/smil30/animateMotion.xml" />
+					<node title="animateColor" url="ample/smil30/animateColor.xml" />
+					<node title="set" url="ample/smil30/set.xml" />
+					<node title="par" url="ample/smil30/par.xml" />
+					<node title="seq" url="ample/smil30/seq.xml" />
+					<node title="excl" url="ample/smil30/excl.xml" />
+				</node>
+			</node>
+			<node title="XML Schema 1.1">
+				<node title="Overview" url="ample/schema11/schema11-datatypes.xml"/>
+				<node title="XML Schema" xurl="ample/schema11/schema11-datatypes.xsd"/>
+				<!--node title="Objects">
+					<node title="XMLSchemaElement" xurl="ample/svg12/SVG11Element.xml"/>
+				</node-->
+				<node title="Elements">
+					<node title="schema" url="ample/schema11/schema.xml" />
+					<node title="simpleType" url="ample/schema11/simpleType.xml" />
+					<node title="union" url="ample/schema11/union.xml" />
+					<node title="list" url="ample/schema11/list.xml" />
+					<node title="restriction" url="ample/schema11/restriction.xml" />
+					<node title="length" url="ample/schema11/length.xml" />
+					<node title="minLength" url="ample/schema11/minLength.xml" />
+					<node title="maxLength" url="ample/schema11/maxLength.xml" />
+					<node title="pattern" url="ample/schema11/pattern.xml" />
+					<node title="whiteSpace" url="ample/schema11/whiteSpace.xml" />
+					<node title="maxInclusive" url="ample/schema11/maxInclusive.xml" />
+					<node title="minInclusive" url="ample/schema11/minInclusive.xml" />
+					<node title="maxExclusive" url="ample/schema11/maxExclusive.xml" />
+					<node title="minExclusive" url="ample/schema11/minExclusive.xml" />
+					<node title="totalDigits" url="ample/schema11/totalDigits.xml" />
+					<node title="fractionDigits" url="ample/schema11/fractionDigits.xml" />
+					<node title="minScale" url="ample/schema11/minScale.xml" />
+					<node title="maxScale" url="ample/schema11/maxScale.xml" />
+					<node title="enumeration" url="ample/schema11/enumeration.xml" />
+					<node title="assertion" url="ample/schema11/assertion.xml" />
+				</node>
+			</node>
+			<node title="REX 1.0">
+				<node title="Overview" url="ample/rex10/rex10.xml" />
+				<node title="XML Schema" />
+				<node title="Elements">
+					<node title="rex" />
+					<node title="event" />
+				</node>
+			</node>
+			<node title="XBL 2.0">
+				<node title="Overview" url="ample/xbl20/xbl20.xml"/>
+				<node title="XML Schema" />
+				<node title="Elements">
+					<node title="binding" />
+					<node title="script" />
+					<node title="handlers" />
+					<node title="handler" />
+					<node title="implementation" />
+					<node title="resources" />
+					<node title="style" />
+					<node title="prefetch" />
+					<node title="template" />
+					<node title="content" />
+					<node title="inherited" />
+					<node title="xbl" />
+				</node>
+			</node>
+		</node>
+	</node>
+	<node title="UI languages" open="true">
+		<node title="UI languages" />
+		<node title="XHTML 1.0">
+			<node title="Overview" url="ample/xhtml1/xhtml.xml" />
+			<node title="XML Schema strict" url="ample/xhtml1/xhtml1-strict.xsd"/>
+<!--
+			<node title="XML Schema transitional" url="ample/xhtml1/xhtml1-transitional.xsd"/>
+			<node title="XML Schema frameset" url="ample/xhtml1/xhtml1-frameset.xsd"/>
+			<node title="Objects">
+				<node title="XHTMLElement" xurl="ample/xhtml/XHTMLElement.xml"/>
+				<node title="XHTMLDocument" xurl="ample/xhtml/XHTMLDocument.xml"/>
+			</node>
+			<node title="Elements">
+			</node>
+ -->
+		</node>
+		<!-- node title="XHTML 2.0">
+			<node title="Overview" url="ample/xhtml2/xhtml2.xml"/>
+			<node title="XML Schema" xurl="ample/xhtml2/xhtml2.xsd"/>
+			<node title="Objects">
+				<node title="XHTML2Element" xurl="ample/xhtml2/XHTML2Element.xml"/>
+				<node title="XHTML2Document" xurl="ample/xhtml2/XHTML2Document.xml"/>
+			</node>
+			<node title="Elements">
+				<node title="handler" xurl="ample/xhtml2/elements/handler.xml"/>
+			</node>
+		</node-->
+		<node title="SVG 1.2 Tiny">
+			<node title="Overview" url="ample/svg12/svg12.xml"/>
+			<node title="XML Schema" xurl="ample/svg12/svg12.xsd"/>
+			<node title="Objects">
+				<node title="SVG12Element" url="ample/svg12/SVG12Element.xml"/>
+				<node title="SVG12ShapeElement" url="ample/svg12/SVG12ShapeElement.xml"/>
+				<node title="SVG12Document" xurl="ample/svg12/SVG12Document.xml"/>
+			</node>
+			<node title="Elements">
+				<node title="a" xurl="ample/svg12/a.xml"/>
+				<node title="circle" url="ample/svg12/circle.xml"/>
+				<node title="defs" xurl="ample/svg12/defs.xml"/>
+				<node title="desc" xurl="ample/svg12/desc.xml"/>
+				<node title="ellipse" url="ample/svg12/ellipse.xml"/>
+				<node title="foreignObject" url="ample/svg12/foreignObject.xml"/>
+				<node title="g" url="ample/svg12/g.xml"/>
+				<node title="image" xurl="ample/svg12/image.xml"/>
+				<node title="line" url="ample/svg12/line.xml"/>
+				<node title="lineGradient" xurl="ample/svg12/lineGradient.xml"/>
+				<node title="marker" xurl="ample/svg12/marker.xml"/>
+				<node title="path" url="ample/svg12/path.xml"/>
+				<node title="pattern" xurl="ample/svg12/pattern.xml"/>
+				<node title="polygon" url="ample/svg12/polygon.xml"/>
+				<node title="polyline" url="ample/svg12/polyline.xml"/>
+				<node title="radialGradient" xurl="ample/svg12/radialGradient.xml"/>
+				<node title="rect" url="ample/svg12/rect.xml"/>
+				<node title="script" xurl="ample/svg12/script.xml"/>
+				<node title="stop" xurl="ample/svg12/stop.xml"/>
+				<node title="style" xurl="ample/svg12/style.xml"/>
+				<node title="svg" url="ample/svg12/svg.xml"/>
+				<node title="text" xurl="ample/svg12/text.xml"/>
+				<node title="textPath" xurl="ample/svg12/textPath.xml"/>
+				<node title="title" xurl="ample/svg12/title.xml"/>
+				<node title="tspan" xurl="ample/svg12/tspan.xml"/>
+				<node title="use" xurl="ample/svg12/use.xml"/>
+			</node>
+		</node>
+		<node title="XForms 1.1">
+			<node title="Overview" url="ample/xforms11/xforms11.xml"/>
+			<node title="XML Schema" xurl="ample/xforms11/xforms11.xsd"/>
+			<!--node title="Objects">
+				<node title="XForms11Element" xurl="ample/svg12/XForms11Element.xml"/>
+			</node-->
+			<node title="Elements" />
+		</node>
+		<!--node title="WebForms 2.0">
+			<node title="Overview" url="ample/webforms2/webforms2.xml"  />
+			<node title="XML Schema" url="ample/webforms2/webforms2.xsd"/>
+			<node title="Objects">
+				<node title="WF2Element" xurl="ample/webforms2/WF2Element.xml"/>
+				<node title="WF2Document" xurl="ample/webforms2/WF2Document.xml"/>
+			</node>
+			<node title="Elements">
+				<node title="button" xurl="ample/webforms2/elements/button.xml"/>
+				<node title="datalist" xurl="ample/webforms2/elements/datalist.xml"/>
+				<node title="fieldset" xurl="ample/webforms2/elements/fieldset.xml"/>
+				<node title="form" xurl="ample/webforms2/elements/form.xml"/>
+				<node title="input" xurl="ample/webforms2/elements/input.xml"/>
+				<node title="label" xurl="ample/webforms2/elements/label.xml"/>
+				<node title="legend" xurl="ample/webforms2/elements/legend.xml"/>
+				<node title="optgroup" xurl="ample/webforms2/elements/optgroup.xml"/>
+				<node title="option" xurl="ample/webforms2/elements/option.xml"/>
+				<node title="output" xurl="ample/webforms2/elements/output.xml"/>
+				<node title="select" xurl="ample/webforms2/elements/select.xml"/>
+				<node title="textarea" xurl="ample/webforms2/elements/textarea.xml"/>
+			</node>
+			<node title="Interfaces">
+				<node title="iWF2Control" xurl="ample/webforms2/elements/iWF2Control.xml"/>
+			</node>
+		</node-->
+		<node title="XUL">
+			<node title="Overview" url="ample/xul/xul.xml"/>
+			<node title="XML Schema" xurl="ample/xul/xul.xsd"/>
+			<node title="Objects">
+				<node title="XULElement" url="ample/xul/XULElement.xml"/>
+				<node title="XULDocument" url="ample/xul/XULDocument.xml"/>
+				<node title="XULCommandDispatcher" xurl="ample/xul/XULCommandDispatcher.xml"/>
+				<node title="XULControllers" xurl="ample/xul/XULControllers.xml"/>
+			</node>
+			<node title="Elements">
+				<node title="Events handling">
+					<node title="broadcaster" url="ample/xul/broadcaster.xml"/>
+					<node title="broadcasterset" url="ample/xul/broadcasterset.xml"/>
+					<node title="command" url="ample/xul/command.xml"/>
+					<node title="commandset" url="ample/xul/commandset.xml"/>
+					<node title="key" url="ample/xul/key.xml"/>
+					<node title="keyset" url="ample/xul/keyset.xml"/>
+				</node>
+				<node title="Input Controls">
+					<node title="button" url="ample/xul/button.xml"/>
+					<node title="checkbox" url="ample/xul/checkbox.xml"/>
+					<node title="colorpicker" url="ample/xul/colorpicker.xml"/>
+					<node title="datepicker" url="ample/xul/datepicker.xml"/>
+					<node title="editor" url="ample/xul/editor.xml"/>
+					<node title="menulist" url="ample/xul/menulist.xml"/>
+					<node title="progressmeter" url="ample/xul/progressmeter.xml"/>
+					<node title="radio" url="ample/xul/radio.xml"/>
+					<node title="radiogroup" url="ample/xul/radiogroup.xml"/>
+					<node title="scale" url="ample/xul/scale.xml"/>
+					<node title="textbox" url="ample/xul/textbox.xml"/>
+					<node title="timepicker" url="ample/xul/timepicker.xml"/>
+				</node>
+				<node title="Interaction Controls">
+					<node title="Listbox">
+						<node title="listbody" url="ample/xul/listbody.xml"/>
+						<node title="listbox" url="ample/xul/listbox.xml"/>
+						<node title="listcell" url="ample/xul/listcell.xml"/>
+						<node title="listcol" url="ample/xul/listcol.xml"/>
+						<node title="listcols" url="ample/xul/listcols.xml"/>
+						<node title="listhead" url="ample/xul/listhead.xml"/>
+						<node title="listheader" url="ample/xul/listheader.xml"/>
+						<node title="listitem" url="ample/xul/listitem.xml"/>
+					</node>
+					<node title="Menus">
+						<node title="menu" url="ample/xul/menu.xml"/>
+						<node title="menubar" url="ample/xul/menubar.xml"/>
+						<node title="menuitem" url="ample/xul/menuitem.xml"/>
+						<node title="menupopup" url="ample/xul/menupopup.xml"/>
+						<node title="menuseparator" url="ample/xul/menuseparator.xml"/>
+					</node>
+					<node title="Tabbox">
+						<node title="tabbox" url="ample/xul/tabbox.xml"/>
+						<node title="tab" url="ample/xul/tab.xml"/>
+						<node title="tabs" url="ample/xul/tabs.xml"/>
+						<node title="tabpanel" url="ample/xul/tabpanel.xml"/>
+						<node title="tabpanels" url="ample/xul/tabpanels.xml"/>
+					</node>
+					<node title="Toolbar">
+						<node title="toolbar" url="ample/xul/toolbar.xml"/>
+						<node title="toolbarbutton" url="ample/xul/toolbarbutton.xml"/>
+						<node title="toolbargrippy" url="ample/xul/toolbargrippy.xml"/>
+						<node title="toolbarseparator" url="ample/xul/toolbarseparator.xml"/>
+						<node title="toolbox" url="ample/xul/toolbox.xml"/>
+					</node>
+					<node title="Tree">
+						<node title="tree" url="ample/xul/tree.xml"/>
+						<node title="treebody" url="ample/xul/treebody.xml"/>
+						<node title="treecell" url="ample/xul/treecell.xml"/>
+						<node title="treechildren" url="ample/xul/treechildren.xml"/>
+						<node title="treecol" url="ample/xul/treecol.xml"/>
+						<node title="treecols" url="ample/xul/treecols.xml"/>
+						<node title="treeitem" url="ample/xul/treeitem.xml"/>
+						<node title="treerow" url="ample/xul/treerow.xml"/>
+					</node>
+					<node title="popup" url="ample/xul/popup.xml"/>
+					<node title="popupset" url="ample/xul/popupset.xml"/>
+					<node title="statusbar" url="ample/xul/statusbar.xml"/>
+					<node title="statusbarpanel" url="ample/xul/statusbarpanel.xml"/>
+				</node>
+				<node title="Layout">
+					<node title="grid">
+						<node title="column" url="ample/xul/column.xml"/>
+						<node title="columns" url="ample/xul/columns.xml"/>
+						<node title="grid" url="ample/xul/grid.xml"/>
+						<node title="row" url="ample/xul/row.xml"/>
+						<node title="rows" url="ample/xul/rows.xml"/>
+					</node>
+					<node title="box" url="ample/xul/box.xml"/>
+					<node title="caption" url="ample/xul/caption.xml"/>
+					<node title="deck" url="ample/xul/deck.xml"/>
+					<node title="groupbox" url="ample/xul/groupbox.xml"/>
+					<node title="hbox" url="ample/xul/hbox.xml"/>
+					<node title="iframe" url="ample/xul/iframe.xml"/>
+					<node title="image" url="ample/xul/image.xml"/>
+					<node title="label" url="ample/xul/label.xml"/>
+					<node title="spacer" url="ample/xul/spacer.xml"/>
+					<node title="splitter" url="ample/xul/splitter.xml"/>
+					<node title="stack" url="ample/xul/stack.xml"/>
+					<node title="vbox" url="ample/xul/vbox.xml"/>
+				</node>
+				<node title="Resources">
+					<node title="script" url="ample/xul/script.xml"/>
+				</node>
+				<node title="Dialogs">
+					<node title="dialog" url="ample/xul/dialog.xml"/>
+					<node title="dialogheader" url="ample/xul/dialogheader.xml"/>
+					<node title="wizard" url="ample/xul/wizard.xml"/>
+					<node title="wizardpage" url="ample/xul/wizardpage.xml"/>
+				</node>
+				<node title="overlay" url="ample/xul/overlay.xml"/>
+				<node title="page" url="ample/xul/page.xml"/>
+				<node title="window" url="ample/xul/window.xml"/>
+			</node>
+			<node title="Interfaces">
+				<node title="iXULMultiSelect" url="ample/xul/iXULMultiSelect.xml"/>
+				<node title="iXULPopup" url="ample/xul/iXULPopup.xml"/>
+			</node>
+		</node>
+		<node title="HTML 5">
+			<node title="Overview" url="ample/html5/html5.xml" />
+			<node title="XML Schema" xurl="ample/html5/html5.xsd"/>
+			<node title="Objects">
+				<node title="HTML5Element" xurl="ample/aml/AMLElement.xml"/>
+				<node title="HTML5Document" xurl="ample/aml/AMLDocument.xml"/>
+			</node>
+			<node title="Elements">
+
+			</node>
+		</node>
+		<node title="AML 1.0">
+			<node title="Overview" url="ample/aml/aml.xml" />
+			<node title="XML Schema" url="ample/aml/aml.xsd"/>
+			<node title="Objects">
+				<node title="AMLElement" url="ample/aml/AMLElement.xml"/>
+				<node title="AMLDocument" xurl="ample/aml/AMLDocument.xml"/>
+			</node>
+			<node title="Elements">
+				<node title="Data Binding">
+					<node title="data" url="ample/aml/data.xml"/>
+					<node title="repeater" url="ample/aml/repeater.xml"/>
+				</node>
+				<node title="Data Views">
+					<node title="list" />
+					<node title="tree" />
+					<node title="columns" />
+					<node title="column" />
+				</node>
+				<node title="Diagrams">
+					<node title="chart" />
+					<node title="chartitem" />
+				</node>
+				<node title="Maps">
+					<node title="map" url="ample/aml/map.xml"/>
+					<node title="marker" url="ample/aml/marker.xml"/>
+					<node title="route" xurl="ample/aml/route.xml"/>
+					<node title="checkpoint" xurl="ample/aml/checkpoint.xml"/>
+				</node>
+				<node title="sound" url="ample/aml/sound.xml"/>
+				<node title="timer" url="ample/aml/timer.xml"/>
+				<node title="handler" url="ample/aml/handler.xml"/>
+				<!--node title="combobox" url="ample/aml/combobox.xml"/>
+				<node title="comboitem" url="ample/aml/comboitem.xml"/-->
+
+				<!--node title="sidebar" url="ample/aml/sidebar.xml"/>
+				<node title="filepicker" url="ample/aml/filepicker.xml"/-->
+ 			</node>
+		</node>
+	</node>
+</book>

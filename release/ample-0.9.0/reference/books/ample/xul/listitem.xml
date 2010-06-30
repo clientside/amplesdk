@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="listitem">
+	<implements />
+	<abstract>
+		<locale>
+			A single row in a <link type="element">listbox</link>.
+			The text of the <link type="element">listitem</link> is specified either using <link type="element">listcell</link> elements, or by placing a <link type="attribute">label</link> attribute directly on the <link type="element">listitem</link> element.
+		</locale>
+		<locale xml:lang="ru">
+			Один элемент для <link type="element">listbox</link>.
+			Все элементы <link type="element">listitem</link> должны размещаться внутри элемента <link type="element">listbody</link>.
+			Для создания списков с несколькими столбцами, следует использовать элемент <link type="element">listcell</link>.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="image">
+				<description>
+					<locale>
+						The URL of the image to appear on the element.
+						If this attribute is empty or left out, no image appears.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="label">
+				<description>
+					<locale>
+						The label that will appear on the element.
+						If this is left out, no text appears.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="selected" default="" readonly="true">
+				<description>
+					<locale>
+						Indicates whether the element is selected or not.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает, выбран элемент или нет.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="value" default="" readonly="false">
+				<description>
+					<locale>
+						The string attribute allows you to associate a data value with an element.
+					</locale>
+					<locale xml:lang="ru">
+						Значение, ассоциированное с элементом.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods>
+		</methods>
+		<properties>
+		</properties>
+		<events>
+		</events>
+	</members>
+</element>

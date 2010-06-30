@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<article>
+	<title>Synchronized Multimedia Integration Language (SMIL 3.0)</title>
+	<abstract>
+		<locale>
+			SMIL 3.0 is an XML-based language that allows authors to write interactive multimedia presentations.
+			Using SMIL, an author may describe the temporal behaviour of a multimedia presentation,
+			associate hyperlinks with media objects and describe the layout of the presentation on a screen.
+		</locale>
+		<locale xml:lang="ru">
+			SMIL является XML-языком, позволяющим создавать интерактивные мультимедийные презентации. Используя SMIL, предоставляется возможность описания поведения мультимедийных презентаций, ассоциирования гиперссылок с мультимедийными объектами, а так же описания структурного расположения презентации на экране.
+		</locale>
+	</abstract>
+	<content>
+		<section>
+			<title>
+				<locale>
+					Namespace URI
+				</locale>
+				<locale xml:lang="ru">
+					Пространство имен
+				</locale>
+			</title>
+			<content>
+				<locale>
+					SMIL 3.0 defines a namespace associated with the URI <uri>http://www.w3.org/2008/SMIL30/</uri>
+				</locale>
+				<locale xml:lang="ru">
+					Пространство имен SMIL 3.0 определяется URI <uri>http://www.w3.org/2008/SMIL30/</uri>
+				</locale>
+			</content>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Ample SDK implementation details
+				</locale>
+				<locale xml:lang="ru">
+					Реализация в Ample SDK
+				</locale>
+			</title>
+			<content>
+				<locale>
+					At the present moment SMIL 3.0 in Ample SDK is in the development. Following modules are already available for testing:
+					<ul>
+						<li><a href="http://www.w3.org/TR/SMIL3/smil-timing.html">5. SMIL 3.0 Timing and Synchronization</a></li>
+						<li><a href="http://www.w3.org/TR/SMIL3/smil-animation.html">12. SMIL 3.0 Animation</a></li>
+						<li><a href="http://www.w3.org/TR/SMIL3/smil-timemanip.html">14. SMIL 3.0 Time Manipulations</a></li>
+					</ul>
+				</locale>
+				<locale xml:lang="ru">
+					В настоящее время реализация языка SMIL 3.0 в <b>Ample SDK</b> находится в стадии разработки. Следующие модули уже доступны для тестирования:
+					<ul>
+						<li><a href="http://www.w3.org/TR/SMIL3/smil-timing.html">5. SMIL 3.0 Timing and Synchronization</a></li>
+						<li><a href="http://www.w3.org/TR/SMIL3/smil-animation.html">12. SMIL 3.0 Animation</a></li>
+						<li><a href="http://www.w3.org/TR/SMIL3/smil-timemanip.html">14. SMIL 3.0 Time Manipulations</a></li>
+					</ul>
+				</locale>
+			</content>
+		</section>
+	</content>
+
+	<seealso>
+		<link href="http://www.w3.org/TR/SMIL3/">Synchronized Multimedia Integration Language (SMIL 3.0) (W3C)</link>
+	</seealso>
+</article>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Example: SVG Language</title>
+		<script type="text/javascript" src="../../../ample/runtime.js"></script>
+		<script type="text/javascript" src="../../../ample/languages/svg/svg.js"></script>
+		<script type="text/javascript">
+			ample.domConfig.setParameter("ample-use-import", true);
+		</script>
+		<style type="text/ample+css">
+			@namespace svg "http://www.w3.org/2000/svg";
+			svg|circle {
+				fill: red;
+			}
+		</style>
+	</head>
+	<body>
+		<script type="application/ample+xml">
+			<svg:svg viewBox="0,0,800,800" width="8cm" height="8cm" xmlns:svg="http://www.w3.org/2000/svg"
+					onmouseover="this._fill = event.target.getAttribute('fill'); event.target.setAttribute('fill', '#f0eeaa')"
+					onmouseout="event.target.setAttribute('fill', this._fill)"
+					onmousedown="this._stroke = event.target.getAttribute('stroke'); event.target.setAttribute('stroke', '#eeaaf0')"
+					onmouseup="event.target.setAttribute('stroke', this._stroke)">
+				<svg:circle cx="200" cy="400" r="100" fill="#dddd00" stroke="#777700" stroke-width="2"/>
+				<svg:ellipse cx="600" cy="400" rx="200" ry="100" fill="#dddd00" stroke="#777700" stroke-width="2"/>
+				<svg:line x1="200" y1="200" x2="600" y2="600" stroke="#00dd00" stroke-width="2"/>
+				<svg:polygon points="420,100 300,210 170,250 123,234" fill="#cccccc" stroke="#000000" stroke-width="1"/>
+				<!--svg:polyline points="0,0 200,0 200,200 0,200" fill="red" stroke="#00dd00" stroke-width="2"/-->
+				<svg:rect rx="10" ry="10" width="200" height="200" x="600" y="0" fill="green"/>
+				<svg:g style="stroke:red;stroke-width:10">
+					<svg:path d="M250 150 L150 350 L350 350 Z" fill="blue"/>
+					<svg:path d="M250 150 L150 350 L50 50 Z" fill="blue"/>
+				</svg:g>
+				<svg:a href="asd" x="100" y="100">link</svg:a>
+				<svg:text x="100" y="100">text</svg:text>
+
+			</svg:svg>
+		</script>
+
+		<script type="application/ample+xml">
+			<svg:svg viewBox="0,0,800,800" width="8cm" height="8cm" xmlns:svg="http://www.w3.org/2000/svg">
+				<svg:g>
+					<svg:defs>
+						<svg:linearGradient id="MyLinearGradient">
+							<svg:stop offset="5%" stop-color="#F60" />
+							<svg:stop offset="95%" stop-color="#FF6" />
+						</svg:linearGradient>
+					</svg:defs>
+					<!-- Outline the drawing area in blue -->
+					<svg:rect fill="none" stroke="blue" x="1" y="1" width="798" height="398"/>
+					<!-- The rectangle is filled using a linear gradient paint server -->
+					<svg:rect fill="url(#MyLinearGradient)" stroke="black" stroke-width="5" x="100" y="100" width="600" height="200"/>
+				</svg:g>
+			</svg:svg>
+		</script>
+
+		<script type="application/ample+xml">
+			<svg:svg viewBox="0,0,800,800" width="8cm" height="8cm" xmlns:svg="http://www.w3.org/2000/svg">
+				<svg:g>
+					<svg:defs>
+						<svg:radialGradient id="MyRadialGradient" gradientUnits="userSpaceOnUse" cx="400" cy="200" r="300" fx="400" fy="200">
+							<svg:stop offset="0%" stop-color="red" />
+							<svg:stop offset="50%" stop-color="blue" />
+							<svg:stop offset="100%" stop-color="red" />
+						</svg:radialGradient>
+					</svg:defs>
+					<!-- Outline the drawing area in blue -->
+					<svg:rect fill="none" stroke="blue" x="1" y="1" width="798" height="398"/>
+					<!-- The rectangle is filled using a radial gradient paint server -->
+					<svg:rect fill="url(#MyRadialGradient)" stroke="black" stroke-width="5" x="100" y="100" width="600" height="200"/>
+				</svg:g>
+			</svg:svg>
+		</script>
+	</body>
+</html>

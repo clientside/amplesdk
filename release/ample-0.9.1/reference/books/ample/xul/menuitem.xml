@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="menuitem">
+	<implements />
+	<abstract>
+		<locale>
+			A single choice in a <link type="element">menupopup</link> element.
+		</locale>
+		<locale xml:lang="ru">
+			Элемент, представляющий единичный выбор в элементе <link type="element">menupopup</link>. По поведению элемент напоминает кнопку.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="label" default="" readonly="false">
+				<description>
+					<locale>
+						The label that will appear on the element.
+						If this is left out, no text appears.
+					</locale>
+					<locale xml:lang="ru">
+						Текстовая метка для элемента.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="image" default="" readonly="false">
+				<description>
+					<locale>
+						The URL of the image to appear on the element.
+						If this attribute is empty or left out, no image appears.
+					</locale>
+					<locale xml:lang="ru">
+						URL к пиктограмме для элемента.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="type" default="" readonly="true">
+				<values>
+					<value name="checkbox">
+						<description>
+							<locale>
+								The <link type="element">menuitem</link> is checked. The <link type="attribute">checked</link> attribute determines whether the <link type="element">menuitem</link> is checked or not.
+							</locale>
+							<locale xml:lang="ru">
+								Элемент является выделяемым. Атрибут <link type="attribute">checked</link> определяет, отмечен элемент или нет.
+							</locale>
+						</description>
+					</value>
+					<value name="radio">
+						<description>
+							<locale>
+								The <link type="element">menuitem</link> becomes part of a radio group.
+								Other <link type="element">menuitem</link>s that have the same value for their <link type="attribute">name</link> attributes are part of the same radio group.
+								Only one <link type="element">menuitem</link> in the same radio group can be checked at once.
+							</locale>
+							<locale xml:lang="ru">
+								Элемент становится частью группы выделяемых элементов.
+								Другие элементы <link type="element">menuitem</link> с тем же значением атрибута <link type="attribute">name</link> являются членами одной выделяемой группы.
+								В группе выделяемых элементов одновременно не может быть выделено более одного элемента <link type="element">menuitem</link>.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale>
+						Can be used to create checkable menuitems or for radio button menuitems.
+					</locale>
+					<locale xml:lang="ru">
+						Используется для создания выделяемых элементов меню.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="checked" default="" readonly="false">
+				<description>
+					<locale>
+						Indicates whether the element is checked or not.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает, выделен элемент или нет.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="value" default="" readonly="false">
+				<description>
+					<locale>
+						The string attribute allows you to associate a data value with an element.
+					</locale>
+					<locale xml:lang="ru">
+						Данные, ассоциированные с элементом.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="name">
+				<description>
+					<locale>
+						Radio menuitems with the same name as put into a group.
+						Only one <link type="element">menuitem</link> in each radio group can be checked at a time.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="selected">
+				<description>
+					<locale>
+						Indicates whether the element is selected or not.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="disabled" default="" readonly="false">
+				<description>
+					<locale>
+						Indicates whether the element is disabled or not.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties />
+		<events>
+<!--
+			<event name="command" group="Event" cancelable="false" bubbles="true">
+				<description>
+				</description>
+			</event>
+-->
+		</events>
+	</members>
+</element>

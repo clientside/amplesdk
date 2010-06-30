@@ -1,0 +1,342 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="client.css" type="text/css"?>
+<xul:window title="XMPP Client 0.1" context="none" width="300" height="500"
+	xmlns:aml="http://www.amplesdk.com/ns/aml"
+	xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+	<!-- Resources -->
+	<xul:script src="client.js" type="text/javascript" />
+	<xul:script src="XMLXmppProxy.js" type="text/javascript" />
+
+	<!-- Broadcasters -->
+	<xul:broadcasterset>
+		<!-- Contacts Broadcasters -->
+		<xul:broadcaster id="brd_contact_chat"	 	label="Send Message..."	image="img/icons/message.gif"/>
+		<xul:broadcaster id="brd_contact_file"	 	label="Send File..." />
+
+		<xul:broadcaster id="brd_contact_rename"	label="Rename..."		image="img/icons/rename.gif"/>
+		<xul:broadcaster id="brd_contact_delete"	label="Delete"			image="img/icons/delete.gif"/>
+		<xul:broadcaster id="brd_contact_move"		label="Move to..."/>
+		<xul:broadcaster id="brd_contact_block"		label="Block" />
+		<xul:broadcaster id="brd_contact_details"	label="User Details" 	image="img/icons/info.gif"/>
+		<xul:broadcaster id="brd_contact_history"	label="Message History" image="img/icons/history.gif"/>
+
+		<!-- Groups Broadcasters -->
+		<xul:broadcaster id="brd_group_rename" label="Rename..."	image="img/icons/rename.gif"/>
+		<xul:broadcaster id="brd_group_delete" label="Delete"		image="img/icons/delete.gif"/>
+
+		<!-- Contactlist Broadcasters -->
+		<xul:broadcaster id="brd_contactlist_groups_open"	label="Open all groups"/>
+		<xul:broadcaster id="brd_contactlist_groups_close"	label="Close all groups"/>
+		<xul:broadcaster id="brd_contactlist_show_offline"	label="Show offline contacts" checked="true" />
+		<xul:broadcaster id="brd_contactlist_show_groups"	label="Show Groups" />
+
+		<!-- Transports -->
+		<xul:broadcaster id="brd_transport_jab" label="Jabber" 	image="img/statuses/jab/on.gif"/>
+		<xul:broadcaster id="brd_transport_icq" label="ICQ" 	image="img/statuses/icq/on.gif"/>
+		<xul:broadcaster id="brd_transport_msn" label="MSN" 	image="img/statuses/msn/on.gif"/>
+		<xul:broadcaster id="brd_transport_yim" label="Yahoo!" 	image="img/statuses/yim/on.gif"/>
+		<xul:broadcaster id="brd_transport_aim" label="AOL" 	image="img/statuses/aim/on.gif"/>
+
+		<!-- System Commands-->
+		<xul:broadcaster id="brd_progress"/>
+		<xul:broadcaster id="brd_status" label="Initialized"/>
+	</xul:broadcasterset>
+
+	<!-- Commands -->
+	<xul:commandset>
+		<!-- Contacts Commands -->
+		<xul:command id="cmd_contact_options"	disabled="true"/>
+
+		<xul:command id="cmd_contact_chat"		disabled="true"/>
+		<xul:command id="cmd_contact_file"		disabled="true"/>
+
+		<xul:command id="cmd_contact_rename" />
+		<xul:command id="cmd_contact_delete" />
+		<xul:command id="cmd_contact_move" />
+		<xul:command id="cmd_contact_block" />
+
+		<xul:command id="cmd_contact_details" />
+		<xul:command id="cmd_contact_history" />
+
+		<!-- Groups Commands -->
+		<xul:command id="cmd_group_options"	disabled="true"/>
+		<xul:command id="cmd_group_rename" />
+		<xul:command id="cmd_group_delete" />
+
+		<!-- Contactlist Broadcasters -->
+		<xul:command id="cmd_contactlist_groups_open" 	oncommand="onCmdGroupsOpen()"/>
+		<xul:command id="cmd_contactlist_groups_close"	oncommand="onCmdGroupsClose()"/>
+		<xul:command id="cmd_contactlist_show_offline"	_oncommand="onCmdShowOffline()"/>
+		<xul:command id="cmd_contactlist_show_groups" disabled="true"/>
+
+		<!-- Transports -->
+		<xul:command id="cmd_transport_jab"	disabled="true"/>
+		<xul:command id="cmd_transport_icq"	disabled="true"/>
+		<xul:command id="cmd_transport_msn"	disabled="true"/>
+		<xul:command id="cmd_transport_yim"	disabled="true"/>
+		<xul:command id="cmd_transport_aim"	disabled="true"/>
+
+	</xul:commandset>
+
+	<!-- Sounds
+	<aml:sound id="snd_new_message"	src="sounds/message.wav"/>
+	-->
+
+	<!-- Popups -->
+	<xul:popupset>
+		<!-- Contact Contextmenu-->
+		<xul:menupopup id="ctx_contact">
+			<xul:menuitem observes="brd_contact_chat"	command="cmd_contact_chat"/>
+			<xul:menuitem observes="brd_contact_file"	command="cmd_contact_file"/>
+			<xul:menuseparator/>
+			<xul:menuitem observes="brd_contact_rename"	command="cmd_contact_rename"/>
+			<xul:menuitem observes="brd_contact_delete"	command="cmd_contact_delete"/>
+			<xul:menuitem observes="brd_contact_move"	command="cmd_contact_move"/>
+			<xul:menuseparator/>
+			<xul:menuitem observes="brd_contact_block"	command="cmd_contact_block"/>
+			<xul:menuseparator/>
+			<xul:menuitem observes="brd_contact_details"	command="cmd_contact_details"/>
+			<xul:menuitem observes="brd_contact_history"	command="cmd_contact_history"/>
+		</xul:menupopup>
+
+		<!-- Group Contextmenu-->
+		<xul:menupopup id="ctx_group">
+			<xul:menuitem observes="brd_group_rename"	command="cmd_group_rename"/>
+			<xul:menuitem observes="brd_group_delete"	command="cmd_group_delete"/>
+			<xul:menuseparator />
+			<xul:menuitem observes="brd_contactlist_groups_open"	command="cmd_contactlist_groups_open"/>
+			<xul:menuitem observes="brd_contactlist_groups_close"	command="cmd_contactlist_groups_close"/>
+		</xul:menupopup>
+
+		<!-- Contactlist Contextmenu-->
+		<xul:menupopup id="ctx_contactlist">
+			<xul:menuitem observes="brd_contactlist_show_offline"	command="cmd_contactlist_show_offline" type="checkbox"/>
+			<xul:menuitem observes="brd_contactlist_show_groups"	command="cmd_contactlist_show_groups" type="checkbox"/>
+			<xul:menuseparator />
+			<xul:menuitem observes="brd_contactlist_groups_open"	command="cmd_contactlist_groups_open"/>
+			<xul:menuitem observes="brd_contactlist_groups_close"	command="cmd_contactlist_groups_close"/>
+		</xul:menupopup>
+
+		<xul:menupopup id="pop_transport" onpopupshowing="onPopupTransportShowing(this)">
+			<xul:menuitem label="Sign in"/>
+			<xul:menuitem label="Sign out"/>
+			<xul:menuseparator />
+			<xul:menuitem label="Register"/>
+			<xul:menuitem label="Unregister"/>
+		</xul:menupopup>
+	</xul:popupset>
+
+	<!-- Main menubar -->
+	<xul:toolbox>
+		<xul:menubar>
+			<xul:toolbargrippy />
+			<xul:menu label="Main">
+				<xul:menupopup>
+					<xul:menuitem label="Sign In" oncommand="onCmdSignIn()"/>
+					<xul:menuitem label="Sign Out" oncommand="onCmdSignOut()"/>
+					<xul:menuseparator/>
+					<xul:menu label="Setup Transport">
+						<xul:menupopup>
+							<xul:menuitem command="cmd_transport_icq" observes="brd_transport_icq"/>
+							<xul:menuitem command="cmd_transport_aim" observes="brd_transport_aim"/>
+							<xul:menuitem command="cmd_transport_msn" observes="brd_transport_msn"/>
+							<xul:menuitem command="cmd_transport_yim" observes="brd_transport_yim"/>
+						</xul:menupopup>
+					</xul:menu>
+					<xul:menuitem label="Join Conference..."/>
+					<xul:menuseparator/>
+					<xul:menuitem label="Change Password"/>
+					<xul:menuitem label="Change Nickname"/>
+					<xul:menuseparator/>
+					<xul:menuitem label="My Details"/>
+					<xul:menuitem label="Preferences"/>
+					<xul:menuseparator/>
+					<xul:menuitem label="Exit"/>
+				</xul:menupopup>
+			</xul:menu>
+			<xul:menu label="Contact List">
+				<xul:menupopup>
+					<xul:menu label="New Contact">
+						<xul:menupopup>
+							<xul:menuitem command="cmd_transport_jab" observes="brd_transport_jab"/>
+							<xul:menuitem command="cmd_transport_icq" observes="brd_transport_icq"/>
+							<xul:menuitem command="cmd_transport_aim" observes="brd_transport_aim"/>
+							<xul:menuitem command="cmd_transport_msn" observes="brd_transport_msn"/>
+							<xul:menuitem command="cmd_transport_yim" observes="brd_transport_yim"/>
+						</xul:menupopup>
+					</xul:menu>
+					<xul:menu label="Contact Options" command="cmd_contact_options">
+						<xul:menupopup>
+							<xul:menuitem observes="brd_contact_chat"	command="cmd_contact_chat"/>
+							<xul:menuitem observes="brd_contact_file"	command="cmd_contact_file"/>
+							<xul:menuseparator/>
+							<xul:menuitem observes="brd_contact_rename"	command="cmd_contact_rename"/>
+							<xul:menuitem observes="brd_contact_delete"	command="cmd_contact_delete"/>
+							<xul:menuitem observes="brd_contact_move"	command="cmd_contact_move"/>
+							<xul:menuseparator/>
+							<xul:menuitem observes="brd_contact_block"	command="cmd_contact_block"/>
+							<xul:menuseparator/>
+							<xul:menuitem observes="brd_contact_details"	command="cmd_contact_details"/>
+							<xul:menuitem observes="brd_contact_history"	command="cmd_contact_history"/>
+						</xul:menupopup>
+					</xul:menu>
+					<xul:menuseparator/>
+					<xul:menuitem label="New Group..." image="img/icons/folder.gif"/>
+					<xul:menu label="Group Options" command="cmd_group_options">
+						<xul:menupopup>
+							<xul:menuitem observes="brd_group_rename" command="cmd_group_rename"/>
+							<xul:menuitem observes="brd_group_delete" command="cmd_group_rename"/>
+						</xul:menupopup>
+					</xul:menu>
+					<xul:menuitem observes="brd_contactlist_groups_open"	command="cmd_contactlist_groups_open"/>
+					<xul:menuitem observes="brd_contactlist_groups_close"	command="cmd_contactlist_groups_close"/>
+					<xul:menuseparator/>
+					<xul:menuitem label="Manage Blocked..."/>
+					<xul:menuseparator/>
+					<xul:menu label="Sorting">
+						<xul:menupopup>
+							<xul:menuitem label="By Name" type="radio" checked="true"/>
+							<xul:menuitem label="By Status" type="radio"/>
+						</xul:menupopup>
+					</xul:menu>
+					<xul:menuseparator/>
+					<xul:menuitem observes="brd_contactlist_show_offline"	command="cmd_contactlist_show_offline" type="checkbox"/>
+					<xul:menuitem observes="brd_contactlist_show_groups"	command="cmd_contactlist_show_groups" type="checkbox"/>
+				</xul:menupopup>
+			</xul:menu>
+			<xul:menu label="Help">
+				<xul:menupopup>
+					<xul:menuitem label="Help Topics"/>
+					<xul:menuitem label="Feedback &amp;amp; Support"/>
+					<xul:menuseparator/>
+					<xul:menuitem label="Report Bug" />
+					<xul:menuitem label="System Information"/>
+					<xul:menuseparator/>
+					<xul:menuitem label="About ngIM Client"/>
+				</xul:menupopup>
+			</xul:menu>
+		</xul:menubar>
+	</xul:toolbox>
+
+	<xul:deck flex="1" id="workspace">
+		<xul:vbox flex="1">
+			<xul:vbox width="120" align="center">
+				<!-- Login -->
+				<xul:spacer height="20" />
+				<xul:label value="Server:" />
+				<xul:menulist id="LoginServer" value="xmppsolutions.com" type="searchable" style="width:200px">
+					<xul:menupopup>
+						<xul:menuitem value="xmppsolutions.com" label="xmppsolutions.com"/>
+						<xul:menuitem value="jabber.org" label="jabber.org"/>
+						<xul:menuitem value="jabberserver.org" label="jabberserver.org"/>
+					</xul:menupopup>
+				</xul:menulist>
+				<xul:spacer height="5" />
+				<xul:label value="Login:" />
+				<xul:textbox id="LoginName" value="user"/>
+				<xul:spacer height="5" />
+				<xul:label value="Password:" />
+				<xul:textbox id="LoginPassword" value="password" type="password"/>
+				<xul:spacer height="5" />
+				<xul:checkbox id="LoginRemember" label="Remember me" checked="true"/>
+				<xul:spacer height="10" />
+				<xul:hbox flex="1" pack="center">
+					<xul:button label="Sign In" oncommand="signIn()"/>
+				</xul:hbox>
+			</xul:vbox>
+		</xul:vbox>
+
+		<xul:vbox height="100%">
+			<xul:toolbox>
+				<!-- My status -->
+				<xul:toolbar>
+					<xul:toolbargrippy />
+					<xul:toolbarbutton type="menu" label="Neil Sedaka (Offline)" image="img/statuses/jab/off.gif" tooltiptext="Click to change status">
+						<xul:menupopup>
+							<xul:menuitem type="checkbox" label="Invisible" />
+							<xul:menuseparator/>
+							<xul:menuitem label="Online" 		image="img/statuses/jab/on.gif"/>
+							<xul:menuitem label="Free for chat" image="img/statuses/jab/chat.gif"/>
+							<xul:menuitem label="Away" 			image="img/statuses/jab/away.gif"/>
+							<xul:menuitem label="Don't disturb" image="img/statuses/jab/dnd.gif"/>
+							<xul:menuitem label="Not available" image="img/statuses/jab/xa.gif"/>
+							<xul:menuitem label="Offline" 		image="img/statuses/jab/off.gif"/>
+						</xul:menupopup>
+					</xul:toolbarbutton>
+				</xul:toolbar>
+			</xul:toolbox>
+
+			<!-- Contact List -->
+			<xul:tree id="contactlist" context="ctx_contactlist" class="contactlist" flex="1">
+				<xul:treecols hidden="true">
+					<xul:treecol primary="true"/>
+					<xul:treecol width="40"/>
+				</xul:treecols>
+				<xul:treebody>
+					<xul:treechildren>
+						<xul:treeitem context="ctx_group" open="true" container="true" onselect="onGroupSelected(this)">
+							<xul:treerow>
+								<xul:treecell label="Friends"/>
+								<xul:treecell>
+									<xul:label value="1"/>/<xul:label value="2"/>
+								</xul:treecell>
+							</xul:treerow>
+							<xul:treechildren>
+								<xul:treeitem aml:draggable="true" context="ctx_contact" onselect="onContactSelected(this)" xondblclick="onContactChat(this)">
+									<xul:treerow>
+										<xul:treecell label="Ian Stephanson" src="img/statuses/icq/on.gif"/>
+										<xul:treecell />
+									</xul:treerow>
+								</xul:treeitem>
+								<xul:treeitem aml:draggable="true" context="ctx_contact" onselect="onContactSelected(this)">
+									<xul:treerow>
+										<xul:treecell label="Sam Brown" src="img/statuses/icq/off.gif"/>
+										<xul:treecell />
+									</xul:treerow>
+								</xul:treeitem>
+							</xul:treechildren>
+						</xul:treeitem>
+						<xul:treeitem context="ctx_group" onselect="onGroupSelected(this)">
+							<xul:treerow>
+								<xul:treecell label="Co-Workers"/>
+								<xul:treecell>
+									<xul:label value="0"/>/<xul:label value="0"/>
+								</xul:treecell>
+							</xul:treerow>
+						</xul:treeitem>
+					</xul:treechildren>
+				</xul:treebody>
+			</xul:tree>
+
+			<!-- Transports -->
+			<xul:toolbox>
+				<xul:toolbar>
+					<xul:box flex="1" align="center"></xul:box>
+					<xul:toolbarbutton type="menu" popup="pop_transport" command="cmd_transport_icq" image="img/statuses/icq/off.gif"/>
+					<xul:toolbarbutton type="menu" popup="pop_transport" command="cmd_transport_aim" image="img/statuses/aim/off.gif"/>
+					<xul:toolbarbutton type="menu" popup="pop_transport" command="cmd_transport_msn" image="img/statuses/msn/off.gif"/>
+					<xul:toolbarbutton type="menu" popup="pop_transport" command="cmd_transport_yim" image="img/statuses/yim/off.gif"/>
+				</xul:toolbar>
+			</xul:toolbox>
+
+			<!-- Statusbar
+			<xul:statusbar>
+				<xul:statusbarpanel observes="brd_status"/>
+				<xul:statusbarpanel width="100"><xul:progressmeter observes="brd_progress" width="100"/></xul:statusbarpanel>
+				<xul:statusbarpanel label="Online" width="100" align="center"/>
+			</xul:statusbar>
+			-->
+		</xul:vbox>
+
+		<xul:vbox height="100%" width="100%">
+			<xul:vbox align="center" pack="center">
+				<xul:label value="Contacting server..." />
+				<xul:spacer height="5" />
+				<xul:image src="img/progressbar.gif"/>
+				<xul:spacer height="10" />
+				<xul:button label="cancel" pack="center" />
+			</xul:vbox>
+		</xul:vbox>
+	</xul:deck>
+</xul:window>

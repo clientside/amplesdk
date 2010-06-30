@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="tabpanels">
+	<implements />
+	<abstract>
+		<locale>
+			A container to hold the set of pages in a <link type="element">tabbox</link>.
+			The <link type="element">tabpanels</link> element should be placed in a <link type="element">tabbox</link>.
+		</locale>
+		<locale xml:lang="ru">
+			Контейнер, который содержит страницы внутри элемента <link type="element">tabbox</link>.
+			Элемент <link type="element">tabpanels</link> должен быть помещен внутри элемента <link type="element">tabbox</link>.
+			Дочерние элементы становятся панелями закладки. Как правило, дочерними элементами являются <link type="element">tabpanel</link>.
+			При выборе элемента <link type="element">tab</link>, отображается панель с тем же порядковым номером, что и у закладки.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes />
+		<methods />
+		<properties>
+			<property name="selectedIndex" type="Number" readonly="true">
+				<description>
+					<locale>
+						Gets and sets the index of the currently selected panel. The first item is at index 0.
+					</locale>
+					<locale xml:lang="ru">
+						Номер отображаемого в настоящее время элемента <link type="element">tabpanel</link>. Первый элемент имеет порядковый номер 0.
+					</locale>
+				</description>
+			</property>
+			<property name="selectedPanel" type="Number" readonly="true">
+				<description>
+					<locale>
+						Holds a reference to the currently selected panel within a <link type="element">tabbox</link> element.
+					</locale>
+					<locale xml:lang="ru">
+						Ссылка на отображаемый в настоящее время элемент <link type="element">tabpanel</link>.
+					</locale>
+				</description>
+			</property>
+			<property name="items" type="AMLNodeList" readonly="true">
+				<description>
+					<locale>
+						Contains s collection of <link type="element">tabpanel</link> child elements.
+					</locale>
+					<locale xml:lang="ru">
+						Коллекция дочерних элементов <link type="element">tabpanel</link>.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<events />
+	</members>
+</element>

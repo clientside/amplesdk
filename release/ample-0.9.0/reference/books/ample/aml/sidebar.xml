@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="aml:AMLElement" name="sidebar">
+	<implements />
+	<abstract>
+		<locale xml:lang="ru">
+			Элемент <link type="element">sidebar</link> предназначен для...
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes />
+		<methods>
+			<method name="toggle" type="Void">
+				<arguments>
+					<argument name="bState" type="Boolean" default="false">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Toggles state of the component programmatically.
+					</locale>
+				</description>
+			</method>
+		</methods>
+		<properties />
+		<events />
+	</members>
+</element>

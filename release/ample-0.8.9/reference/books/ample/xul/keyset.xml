@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="keyset" type="virtual">
+	<implements />
+	<abstract>
+		<locale xml:lang="ru">
+			<warning>В настоящее время реализация этого элемента отсутствует в <b>Ample SDK</b>.</warning>
+			Контейнер для элементов <link type="element">key</link>. Элемент <link type="element">keyset</link> и все содержащиеся в нем элементы не отображаются.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+		</attributes>
+		<methods>
+		</methods>
+		<properties>
+		</properties>
+		<events>
+		</events>
+	</members>
+</element>

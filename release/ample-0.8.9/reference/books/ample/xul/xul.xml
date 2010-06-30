@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<article>
+	<title>XML User Interface Language (XUL)</title>
+	<abstract>
+		<locale>
+			XUL (XML User Interface Language) is Mozilla's XML-based language that lets you build feature-rich cross platform applications that can run connected or disconnected from the Internet.
+		</locale>
+		<locale xml:lang="ru">
+			XML User Interface Language (XUL) является языком разметки, предназначенным для описания пользовательских интерфейсов. С помощью XUL становится возможным легко реализовывать сложные интерактивные кросс-платформенные веб приложения.
+		</locale>
+	</abstract>
+	<content>
+		<section>
+			<title>
+				<locale>
+					Namespace URI
+				</locale>
+				<locale xml:lang="ru">
+					Пространство имен
+				</locale>
+			</title>
+			<content>
+				<locale>
+					XUL defines a namespace associated with the URI <uri>http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul</uri>
+				</locale>
+				<locale xml:lang="ru">
+					Пространство имен XUL определяется URI <uri>http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul</uri>
+				</locale>
+			</content>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Ample SDK implementation details
+				</locale>
+				<locale xml:lang="ru">
+					Реализация в Ample SDK
+				</locale>
+			</title>
+			<content>
+				<locale>
+					At the present, XUL implementation in Ample SDK lacks of RDF-based data-binding support.
+				</locale>
+				<locale xml:lang="ru">
+					В настоящее время реализация языка XUL в <b>Ample SDK</b> не является полной.
+					Хотя большинство элементов доступны для использования, реализация RDF для привязки к данным пока не рассматривается.
+				</locale>
+			</content>
+		</section>
+	</content>
+
+	<seealso>
+		<link href="http://developer.mozilla.org/en/XUL">XML User Interface Language (MDC)</link>
+	</seealso>
+</article>

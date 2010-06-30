@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Example: SVG Language</title>
+		<script type="text/javascript" src="../../../ample/runtime.js"></script>
+		<script type="text/javascript" src="../../../ample/languages/svg/svg.js"></script>
+		<style type="text/ample+css">
+			@namespace svg "http://www.w3.org/2000/svg";
+			svg|circle {
+				fill: red;
+			}
+		</style>
+	</head>
+	<body>
+		<script type="application/ample+xml">
+			<svg:svg viewBox="0,0,800,600" width="400px" height="300px" xmlns:svg="http://www.w3.org/2000/svg"
+					onmouseover="this._fill = event.target.getAttribute('fill'); event.target.setAttribute('fill', '#f0eeaa')"
+					onmouseout="event.target.setAttribute('fill', this._fill)"
+					onmousedown="this._stroke = event.target.getAttribute('stroke'); event.target.setAttribute('stroke', '#eeaaf0')"
+					onmouseup="event.target.setAttribute('stroke', this._stroke)">
+				<svg:circle cx="200" cy="400" r="100" fill="#dddd00" stroke="#777700" stroke-width="2"/>
+				<svg:ellipse cx="600" cy="400" rx="200" ry="100" fill="#dddd00" stroke="#777700" stroke-width="2"/>
+				<svg:line x1="200" y1="200" x2="600" y2="600" stroke="#00dd00" stroke-width="2"/>
+				<svg:polygon points="420,100 300,210 170,250 123,234" fill="#cccccc" stroke="#000000" stroke-width="1"/>
+				<!--svg:polyline points="0,0 200,0 200,200 0,200" fill="red" stroke="#00dd00" stroke-width="2"/-->
+				<svg:rect rx="10" ry="10" width="200" height="200" x="600" y="0" fill="green"/>
+				<svg:g style="stroke:red;stroke-width:10">
+					<svg:path d="M250 150 L150 350 L350 350 Z" fill="blue"/>
+					<svg:path d="M250 150 L150 350 L50 50 Z" fill="blue"/>
+				</svg:g>
+				<svg:a href="asd" x="100" y="100">link</svg:a>
+				<svg:text x="100" y="100">text</svg:text>
+
+			</svg:svg>
+		</script>
+
+		<script type="application/ample+xml">
+			<svg:svg viewBox="0,0,800,300" width="400px" height="300px" xmlns:svg="http://www.w3.org/2000/svg">
+				<svg:g>
+					<svg:defs>
+						<svg:linearGradient id="MyLinearGradient">
+							<svg:stop offset="25%" stop-color="#F60" />
+							<svg:stop offset="75%" stop-color="#FF6" />
+						</svg:linearGradient>
+
+						<svg:linearGradient id="MyLinearGradientDirection" x1="0" x2="100%" y1="100%" y2="0">
+							<svg:stop offset="25%" stop-color="#F60" />
+							<svg:stop offset="75%" stop-color="#FF6" />
+						</svg:linearGradient>
+
+						<svg:linearGradient id="MyLinearGradientOpacity">
+							<svg:stop offset="25%" stop-color="#F60" stop-opacity="0.5"/>
+							<svg:stop offset="75%" stop-color="#FF6" stop-opacity="0.5" />
+						</svg:linearGradient>
+
+						<svg:linearGradient id="MyLinearGradient2">
+							<svg:stop offset="0%" stop-color="#60F" />
+							<svg:stop offset="25%" stop-color="#F60" />
+							<svg:stop offset="50%" stop-color="#6F0" />
+							<svg:stop offset="75%" stop-color="#FF6" />
+							<svg:stop offset="100%" stop-color="#C06" />
+						</svg:linearGradient>
+
+						<svg:linearGradient id="MyLinearGradient2Direction" x1="0" x2="100%" y1="0" y2="100%">
+							<svg:stop offset="0%" stop-color="#60F" />
+							<svg:stop offset="25%" stop-color="#F60" />
+							<svg:stop offset="50%" stop-color="#6F0" />
+							<svg:stop offset="75%" stop-color="#FF6" />
+							<svg:stop offset="100%" stop-color="#C06" />
+						</svg:linearGradient>
+
+						<svg:linearGradient id="MyLinearGradient2Opacity">
+							<svg:stop offset="0%" stop-color="#60F" stop-opacity="0.5" />
+							<svg:stop offset="25%" stop-color="#F60" stop-opacity="0.5" />
+							<svg:stop offset="50%" stop-color="#6F0" stop-opacity="0.5" />
+							<svg:stop offset="75%" stop-color="#FF6" stop-opacity="0.5" />
+							<svg:stop offset="100%" stop-color="#C06" stop-opacity="0.5" />
+						</svg:linearGradient>
+					</svg:defs>
+<svg:rect fill="blue" stroke="black" stroke-width="2" x="0" y="0" width="550" height="400"/>
+
+					<!-- The rectangle is filled using a linear gradient paint server -->
+					<svg:rect fill="url(#MyLinearGradient)" stroke="black" stroke-width="2" x="50" y="50" width="300" height="100"/>
+
+					<!-- The rectangle is filled using a linear gradient paint server -->
+					<svg:rect fill="url(#MyLinearGradientDirection)" stroke="black" stroke-width="2" x="50" y="200" width="300" height="100"/>
+
+					<!-- The rectangle is filled using a linear gradient paint server -->
+					<svg:rect fill="url(#MyLinearGradientOpacity)" stroke="black" stroke-width="2" x="50" y="350" width="300" height="100"/>
+
+					<!-- The rectangle is filled using a linear gradient paint server -->
+					<svg:rect fill="url(#MyLinearGradient2)" stroke="black" stroke-width="2" x="400" y="50" width="300" height="100"/>
+
+					<!-- The rectangle is filled using a linear gradient paint server -->
+					<svg:rect fill="url(#MyLinearGradient2Direction)" stroke="black" stroke-width="2" x="400" y="200" width="300" height="100"/>
+
+					<!-- The rectangle is filled using a linear gradient paint server -->
+					<svg:rect fill="url(#MyLinearGradient2Opacity)" stroke="black" stroke-width="2" x="400" y="350" width="300" height="100"/>
+				</svg:g>
+			</svg:svg>
+		</script>
+
+		<script type="application/ample+xml">
+			<svg:svg viewBox="0,0,1200,400" width="600px" height="400px" xmlns:svg="http://www.w3.org/2000/svg">
+				<svg:g>
+					<svg:defs>
+						<svg:radialGradient id="MyRadialGradient" cx="50%" cy="50%" r="50%">
+							<svg:stop offset="25%" stop-color="#F60" />
+							<svg:stop offset="75%" stop-color="#FF6" />
+						</svg:radialGradient>
+
+						<svg:radialGradient id="MyRadialGradientOpacity">
+							<svg:stop offset="25%" stop-color="#F60" stop-opacity="50%"/>
+							<svg:stop offset="75%" stop-color="#FF6" stop-opacity="50%" />
+						</svg:radialGradient>
+
+						<svg:radialGradient id="MyRadialGradientFocus" cx="0" cy="0">
+							<svg:stop offset="25%" stop-color="#F60" />
+							<svg:stop offset="75%" stop-color="#FF6" />
+						</svg:radialGradient>
+
+						<svg:radialGradient id="MyRadialGradientRadius" cx="1" cy="0" r="1">
+							<svg:stop offset="25%" stop-color="#F60" />
+							<svg:stop offset="75%" stop-color="#FF6" />
+						</svg:radialGradient>
+
+						<svg:radialGradient id="MyRadialGradient2" cx="50%" cy="50%" r="50%">
+							<svg:stop offset="0%" stop-color="#60F" />
+							<svg:stop offset="25%" stop-color="#F60" />
+							<svg:stop offset="50%" stop-color="#6F0" />
+							<svg:stop offset="75%" stop-color="#FF6" />
+							<svg:stop offset="100%" stop-color="#C06" />
+						</svg:radialGradient>
+
+						<svg:radialGradient id="MyRadialGradient2Opacity">
+							<svg:stop offset="0%" stop-color="#60F" stop-opacity="50%" />
+							<svg:stop offset="25%" stop-color="#F60" stop-opacity="50%" />
+							<svg:stop offset="50%" stop-color="#6F0" stop-opacity="50%" />
+							<svg:stop offset="75%" stop-color="#FF6" stop-opacity="50%" />
+							<svg:stop offset="100%" stop-color="#C06" stop-opacity="50%" />
+						</svg:radialGradient>
+
+						<svg:radialGradient id="MyRadialGradient2Focus" cx="0" cy="0">
+							<svg:stop offset="0%" stop-color="#60F" />
+							<svg:stop offset="25%" stop-color="#F60" />
+							<svg:stop offset="50%" stop-color="#6F0" />
+							<svg:stop offset="75%" stop-color="#FF6" />
+							<svg:stop offset="100%" stop-color="#C06" />
+						</svg:radialGradient>
+
+						<svg:radialGradient id="MyRadialGradient2Radius" cx="1" cy="0" r="1">
+							<svg:stop offset="0%" stop-color="#60F" />
+							<svg:stop offset="25%" stop-color="#F60" />
+							<svg:stop offset="50%" stop-color="#6F0" />
+							<svg:stop offset="75%" stop-color="#FF6" />
+							<svg:stop offset="100%" stop-color="#C06" />
+						</svg:radialGradient>
+
+					</svg:defs>
+
+					<!-- The ellipse is filled using a radial gradient paint server -->
+					<svg:ellipse fill="url(#MyRadialGradient)" stroke="black" stroke-width="2" cx="150" cy="200" rx="100" ry="100"/>
+
+					<!-- The ellipse is filled using a radial gradient paint server -->
+					<svg:ellipse fill="url(#MyRadialGradientOpacity)" stroke="black" stroke-width="2" cx="400" cy="200" rx="100" ry="100"/>
+
+					<!-- The ellipse is filled using a radial gradient paint server -->
+					<svg:ellipse fill="url(#MyRadialGradientFocus)" stroke="black" stroke-width="2" cx="650" cy="200" rx="100" ry="100"/>
+
+					<!-- The ellipse is filled using a radial gradient paint server -->
+					<svg:ellipse fill="url(#MyRadialGradientRadius)" stroke="black" stroke-width="2" cx="900" cy="200" rx="100" ry="100"/>
+
+
+					<!-- The ellipse is filled using a radial gradient paint server -->
+					<svg:ellipse fill="url(#MyRadialGradient2)" stroke="black" stroke-width="2" cx="150" cy="450" rx="100" ry="100"/>
+
+					<!-- The ellipse is filled using a radial gradient paint server -->
+					<svg:ellipse fill="url(#MyRadialGradient2Opacity)" stroke="black" stroke-width="2" cx="400" cy="450" rx="100" ry="100"/>
+
+					<!-- The ellipse is filled using a radial gradient paint server -->
+					<svg:ellipse fill="url(#MyRadialGradient2Focus)" stroke="black" stroke-width="2" cx="650" cy="450" rx="100" ry="100"/>
+
+					<!-- The ellipse is filled using a radial gradient paint server -->
+					<svg:ellipse fill="url(#MyRadialGradient2Radius)" stroke="black" stroke-width="2" cx="900" cy="450" rx="100" ry="100"/>
+
+
+				</svg:g>
+			</svg:svg>
+		</script>
+
+	</body>
+</html>

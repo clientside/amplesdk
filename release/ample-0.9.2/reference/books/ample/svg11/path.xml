@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element name="path" extends="svg11:SVG11ShapeElement">
+	<abstract>
+		<locale>
+			The 'path' element represents the outline of a shape which can be filled or stroked.
+		</locale>
+	</abstract>
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="d">
+				<description>
+					<locale>
+						The definition of the outline of a shape.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+	</members>
+</element>

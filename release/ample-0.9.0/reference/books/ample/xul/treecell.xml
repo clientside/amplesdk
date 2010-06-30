@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="treecell">
+	<implements />
+	<abstract>
+		<locale>
+			A single cell in a <link type="element">tree</link>.
+			This element should be placed inside a <link type="element">treerow</link>.
+			You can set the text for the cell using the <link type="attribute">label</link> attribute.
+		</locale>
+		<locale xml:lang="ru">
+			Ячейка в элементе <link type="element">tree</link>.
+			Располагается внутри элемента <link type="element">treerow</link>.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="label" readonly="true">
+				<description>
+					<locale>
+						The label that will appear on the element.
+						If this is left out, no text appears.
+					</locale>
+					<locale xml:lang="ru">
+						Текст для элемента.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="src" readonly="true">
+				<description>
+					<locale>
+						Set this to the URL of an image to appear in the tree cell.
+						If this attribute is left out, no image appears.
+					</locale>
+					<locale xml:lang="ru">
+						URL пиктограммы для элемента.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties />
+		<events/>
+	</members>
+</element>

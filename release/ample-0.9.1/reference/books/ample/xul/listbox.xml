@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULSelectElement" name="Listbox">
+	<abstract>
+		<locale>
+			This element is used to create a list of items where one or more of the items may be selected.
+			A <link type="element">listbox</link> may contain multiple columns.
+			There are numerous methods which allow the items in the <link type="element">listbox</link> to be retrieved and modified.
+		</locale>
+		<locale xml:lang="ru">
+			Этот элемент используется для создания списка.
+			Является упрощенной версией элемента <link type="element">tree</link>.
+			Вложенные строки не поддерживаются, но элемент <link type="element">listbox</link> может содержать несколько столбцов.
+			Существует несколько способов получения и изменения элементов внутри <link type="element">listbox</link>.
+			Строки, которые не умещаются в визуальной части элемента, доступны через полосу прокрутки.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="type" readonly="true">
+				<values>
+					<value name="radio">
+						<description>
+							<locale>
+								Will show a radio element at the beginning of every row.
+							</locale>
+							<locale xml:lang="ru">
+								Управляющий элемент <link type="element">radio</link>. Внимание: использование этого значения запретит множественное выделение в элементе <link type="element">listbox</link>.
+							</locale>
+						</description>
+					</value>
+					<value name="checkbox">
+						<description>
+							<locale>
+								Will show a checkbox element at the beginning of every row.
+							</locale>
+							<locale xml:lang="ru">
+								Управляющий элемент <link type="element">checkbox</link>.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale>
+						Adds a control element at the beginning of every row.
+					</locale>
+					<locale xml:lang="ru">
+						Автоматически добавляет в начало каждого из дочерних элементов <link type="element">listhead</link> и <link type="element">listitem</link> заданный управляющий элемент.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties>
+			<property name="head" type="AMLElement" readonly="true">
+				<description>
+					<locale>
+						Contains a reference to <link type="element">listcols</link> element.
+					</locale>
+					<locale xml:lang="ru">
+						Ссылка на элемент <link type="element">listcols</link>.
+					</locale>
+				</description>
+			</property>
+			<property name="body" type="AMLElement" readonly="true">
+				<description>
+					<locale>
+						Contains a reference to <link type="element">listbody</link> element.
+					</locale>
+					<locale xml:lang="ru">
+						Ссылка на элемент <link type="element">listbody</link>.
+					</locale>
+				</description>
+			</property>
+			<property name="items" type="AMLNodeList" readonly="true">
+				<description>
+					<locale>
+						Contains a collection of <link type="element">listitem</link> child elements.
+					</locale>
+					<locale xml:lang="ru">
+						Коллекция элементов <link type="element">listitem</link>.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<events />
+	</members>
+</element>

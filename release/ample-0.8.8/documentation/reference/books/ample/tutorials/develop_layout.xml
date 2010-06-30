@@ -1,0 +1,392 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<article>
+	<title>Part I - Building the User Interface</title>
+	<abstract>
+		<locale>
+			In this tutorial we will go through a series of techniques and technologies used when creating a User Interface.
+		</locale>
+	</abstract>
+	<content>
+		<section>
+			<title>
+				<locale>
+					Introduction to markup-based UI Layout
+				</locale>
+			</title>
+			<content>
+				<locale>
+					<p>
+						Different UI Frameworks offer different means to define (or instantiate) a User Interface.
+						If we look at the existing Ajax frameworks, the most widely used approach is to use JavaScript,
+						where components of an interface get instantiated with a <em>new</em> JavaScript operator (for example <em>ExtJS</em>, <em>YUI</em>).
+						Another approach that is utilized for example in <em>Dojo</em> is using HTML with custom attributes.
+					</p>
+					<p>
+						In Ample SDK we have chosen for a markup-based approach, where a User Interface is defined in XML.
+						Actually, thanks to that choice, the developer is not limited to using XML,
+						he can still use JavaScript to dynamically create part of UI as well.
+					</p>
+					<p>The major benefits of this approach are:
+						<ul>
+							<li>UI code is easy to read and modify</li>
+							<li>Ability to style UI with CSS</li>
+							<li>Standard core API (enabling UI traversal / modification) - <em>DOM-Core (Level 2)</em></li>
+							<li>Standard events API (enabling UI interaction feedback) - <em>DOM-Events (Level 3)</em></li>
+							<li>Great separation of concerns between the UI and the Application</li>
+						</ul>
+					</p>
+				</locale>
+			</content>
+			<section>
+				<title>
+					<locale>
+						XML and Namespaces
+					</locale>
+				</title>
+				<content>
+					<locale>
+						<p>
+							XML is a general purpose markup language, one of whose intentions was to be human-legible.
+							That is exactly why it also suits well the purpose of laying out UI.
+							XML is at the heart of UI building in Ample SDK.
+						</p>
+						<p>
+							There is huge range of XML-based technologies that includes:
+							<ul>
+								<li>User Interface markup languages (such as XUL)</li>
+								<li>Transformation languages (such as XSL-T)</li>
+								<li>Hypertext markup languages (such as XHTML)</li>
+								<li>Vector Graphics markup languages (such as SVG or VML)</li>
+								<li>many more...</li>
+							</ul>
+						</p>
+						<p>
+							XML Namespaces concept enables usage of different XML "vocabularies" (or applications) in the same XML document.
+							By declaring a prefix and binding it to a dedicated namespace, the XML document author instructs an XML processor on which vocabulary’s tags he is using.
+						</p>
+						<note>
+							Writing XML code is not very different from writing HTML code.
+							The following main rules should be kept in mind:
+							<ul>
+								<li>Tags should always be closed</li>
+								<li>Attribute values should always be enclosed in quote signs</li>
+								<li>Namespaces used in the document should be declared</li>
+								<li>Certain text characters, such as "&amp;", "&lt;" and "&gt;" should be replaced with entities "&amp;amp;", "&amp;lt;" and "&amp;gt;"</li>
+								<li>Names of elements and attributes are case-sensitive</li>
+							</ul>
+						</note>
+					</locale>
+				</content>
+			</section>
+			<section>
+				<title>
+					<locale>
+						DOM Core
+					</locale>
+				</title>
+				<content>
+					<locale>
+						<p>
+							The <em>DOM (Document Object Model) Core</em> module provides an implementation-neutral API to the representation of a document in memory.
+						</p>
+						<p>
+							<em>DOM Core</em>'s main purposes is to enable:
+							<ul>
+								<li>Traversal</li>
+								<li>Creation</li>
+								<li>Alteration</li>
+							</ul>
+						</p>
+					</locale>
+				</content>
+			</section>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Embedding XML UI into a web page
+				</locale>
+			</title>
+			<content>
+				<p>
+					There are three ways to embed Ample SDK UI into a web page:
+				</p>
+			</content>
+			<section>
+				<title>
+					<locale>
+						Inline, using a script tag with <em>type="application/ample+xml"</em>
+					</locale>
+				</title>
+				<content>
+					<locale>
+						<code type="text/xml"><![CDATA[<body>
+	<!-- other HTML code -->
+	<script type="application/ample+xml">
+		<!-- Ample SDK inline XML markup -->
+	</script>
+	<!-- other HTML code -->
+</body>
+						]]></code>
+					</locale>
+				</content>
+			</section>
+			<section>
+				<title>
+					<locale>
+						Referencing a resource, using a script tag with <em>src</em> attribute
+					</locale>
+				</title>
+				<content>
+					<locale>
+						<code type="text/xml"><![CDATA[<body>
+	<!-- other HTML code -->
+	<script type="application/ample+xml" src="ui.xml"></script>
+	<!-- other HTML code -->
+</body>
+						]]></code>
+					</locale>
+				</content>
+			</section>
+			<section>
+				<title>
+					<locale>
+						Inline, using <em>ample.open()</em> and <em>ample.close()</em>
+					</locale>
+				</title>
+				<content>
+					<locale>
+						<code type="text/xml"><![CDATA[<body>
+	<!-- other HTML code -->
+	<script type="text/javascript">ample.open()</script>
+	<!-- Ample SDK inline XML markup -->
+	<script type="text/javascript">ample.close()</script>
+	<!-- other HTML code -->
+</body>
+						]]></code>
+						<p>The benefit of the last approach is SEO, search engines will index XML content.</p>
+					</locale>
+				</content>
+			</section>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Using XML for laying out UI declaratively
+				</locale>
+			</title>
+			<content>
+				<locale>
+					<p>
+						There are several UI technologies implemented in Ample SDK that you can use to define a User Interface with.
+					</p>
+					<p>
+						When using a certain UI technology in your application, you have to include its implementation library in addition to the inclusion of the Ample SDK runtime.
+						Note! This is also required for the use of XHTML 1.
+					</p>
+				</locale>
+			</content>
+			<section>
+				<title>
+					<locale>
+						XHTML 1 and XHTML 5 - General purpose Layout / Hyper Text Markup Technologies
+					</locale>
+				</title>
+				<content>
+					<locale>
+						<p>
+							Both XHTML1 and XHTML5 have their roots in HTML4, a language that you most likely know very well.
+							Unfortunately HTML is not always a good fit for application layouts.
+						</p>
+						<code type="text/xml"><![CDATA[<article>
+	<header>
+		<h1>Apples</h1>
+		<p>Tasty, delicious fruit!</p>
+	</header>
+	<p>The apple is the pomaceous fruit of the apple tree.</p>
+	<section>
+		<h1>Red Delicious</h1>
+		<p>These bright red apples are the most common found in many
+		supermarkets.</p>
+	</section>
+	<section>
+		<h1>Granny Smith</h1>
+		<p>These juicy, green apples and make a great filling for
+		apple pies.</p>
+	</section>
+	<footer>
+		<h1>Apples</h1>
+		<p>Tasty, delicious fruit!</p>
+	</footer>
+</article>
+						]]></code>
+					</locale>
+					<seealso>
+						<link href="../../ample/xhtml1/xhtml.xml">XHTML 1.0</link>
+					</seealso>
+				</content>
+			</section>
+			<section>
+				<title>
+					<locale>
+						XUL - Desktop like UI Technology
+					</locale>
+				</title>
+				<content>
+					<locale>
+						<p>
+							XUL is probably the only feature-complete XML-based UI technology that is well suited for the purpose of building applications. It has:
+						</p>
+						<ul>
+							<li>Layout: box, groupbox, stack, grid, tabbox</li>
+							<li>Input controls: checkbox, radio, datepicker, menulist, colorpicker, scale, textbox etc.</li>
+							<li>Lists and trees: listbox, tree</li>
+							<li>Bars: toolbar, menubar, statusbar</li>
+							<li>Popups: popup, menupopup</li>
+							<li>Dialogs: dialog, wizard</li>
+							<li>Commands: command, broadcaster</li>
+							<li>and more...</li>
+						</ul>
+						<p>
+							The example below shows how to create a dropdown with 3 items in it.
+						</p>
+						<code type="text/xml"><![CDATA[<xul:menulist xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<xul:menupopup id="items-popup">
+		<xul:menuitem label="Item 0" value="0"/>
+		<xul:menuitem label="Item 1" value="1"/>
+		<xul:menuitem label="Item 2" value="2"/>
+	</xul:menupopup>
+</xul:menulist>
+						]]></code>
+						<p>
+							The example below shows how to create a tabbox with 3 tabs which have input components in their content.
+						</p>
+						<code type="text/xml"><![CDATA[<xul:tabbox xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<xul:tabs>
+		<xul:tab label="checkbox" />
+		<xul:tab label="textbox" />
+		<xul:tab label="datepicker" />
+	</xul:tabs>
+	<xul:tabpanels>
+		<xul:tabpanel>
+			<xul:checkbox />
+		</xul:tabpanel>
+		<xul:tabpanel>
+			<xul:textbox />
+		</xul:tabpanel>
+		<xul:tabpanel>
+			<xul:datpicker />
+		</xul:tabpanel>
+	</xul:tabpanels>
+</xul:tabbox>
+					]]></code>
+					</locale>
+					<seealso>
+						<link href="../../ample/xul/xul.xml">XUL</link>
+					</seealso>
+				</content>
+			</section>
+			<section>
+				<title>
+					<locale>
+						SVG 1.2 Tiny - Vector Graphics Technology
+					</locale>
+				</title>
+				<content>
+					<locale>
+						<p>
+							SVG, Scalable Vector Graphics is the technology for drawning vector shapes. In Ample SDK we currently support follownig SVG modules:
+							<ul>
+								<li>Document Structure</li>
+								<li>Paths</li>
+								<li>Basic Shapes</li>
+								<li>Text</li>
+							</ul>
+							This is pretty much enough for building interactive graphics and diagrams.
+						</p>
+						<p>The following code demonstrates how you can create a pulsating circle with the help of SVG and SMIL</p>
+						<code type="text/xml"><![CDATA[<svg:svg viewBox="0,0 400,400" height="400px" width="400px"
+	xmlns:svg="http://www.w3.org/2000/svg"
+	xmlns:smil="http://www.w3.org/2008/SMIL30/">
+	<svg:circle cx="200" cy="200" r="10" fill="red" opacity="1" stroke="black" stroke-width="1">
+		<smil:animate begin="click" decelerate="0.5" to="200" attributeName="r" dur="500ms"/>
+	</svg:circle>
+</svg:svg>
+						]]></code>
+					</locale>
+					<seealso>
+						<link href="../../ample/svg12/svg12.xml">SVG 1.2 Tiny</link>
+					</seealso>
+				</content>
+			</section>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Using DOM-Core for building UI dynamically
+				</locale>
+			</title>
+			<content>
+				<p>
+					As mentioned earlier, a UI can also be build using pure JavaScript.
+					The functions you need for that are:
+					<ul>
+						<li>Document traversal: getElementById, getElementsByTagName, getElementsByTagNameNS (available on Document)</li>
+						<li>Elements creation: createElement, createElementNS (available on Document)</li>
+						<li>Attribute alteration: setAttribute, getAttribute, removeAttribute (available on Element)</li>
+						<li>Document alteration: appendChild, insertBefore, replaceChild (available on all Node)</li>
+					</ul>
+				</p>
+				<locale>
+					<code type="text/javascript"><![CDATA[var sXULNameSpace = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+
+var popup = ample.getElementById("items-popup");
+var item4 = ample.createElementNS(sXULNameSpace, "xul:menuitem");
+popup.appendChild(item4);
+item3.setAttribute("label", "Item 3");
+item3.setAttribute("value", "3");
+					]]></code>
+					<p>
+						In this code we created a new XUL <em>menuitem</em> element and added it to the list of items in the popup.
+					</p>
+				</locale>
+			</content>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Using XInclude to merge XML documents
+				</locale>
+			</title>
+			<content>
+				<locale>
+					<p>
+						It is not always convenient to work on a single XML document, because for example
+						your source document can become very large and hard to navigate through, or because
+						you might want to keep different areas of the application UI separate.
+					</p>
+					<p>
+						Using the XInclude technology can help assemble (merge) the final XML document out of such fragments.
+						It is important to understand that such a merge happens at the application UI build time.
+						So, first all occurances of <em>include</em> instructions are processed, and only after that the UI is drawn.
+						(Note: We will see in a later chapter how to load application UI fragments dynamically)
+					</p>
+					<code type="text/xml"><![CDATA[<div xmlns:xi="http://www.w3.org/2001/XInclude">
+	<xi:include href="Menubar.xml" />
+	<xi:include href="Editor.xml" />
+	<xi:include href="Statusbar.xml" />
+</div>
+					]]></code>
+					<p>
+						Worth mentioning is that there are server-side environments in which XInclude is supported,
+						and having specified the references in your document the server may end up processing the merge.
+					</p>
+				</locale>
+				<seealso>
+					<link href="../../ample/xinclude10/xinclude10.xml">XInclude 1.0</link>
+				</seealso>
+			</content>
+		</section>
+	</content>
+</article>

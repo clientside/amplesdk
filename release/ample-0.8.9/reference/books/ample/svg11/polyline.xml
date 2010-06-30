@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element name="polyline" extends="svg11:SVG11ShapeElement">
+	<abstract>
+		<locale>
+			The 'polyline' element defines a set of connected straight line segments.
+		</locale>
+	</abstract>
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="points">
+				<description>
+					<locale>
+						The points that make up the polyline.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+	</members>
+</element>

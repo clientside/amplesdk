@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="radiogroup">
+	<abstract>
+		<locale>
+			A group of <link type="element">radio</link> buttons.
+			Only one radio button inside the group can be selected at a time.
+			The <link type="element">radio</link> buttons may either direct children of the <link type="element">radiogroup</link> or descendants.
+		</locale>
+		<locale xml:lang="ru">
+			Группа элементов <link type="element">radio</link>.
+			Только один из дочерних элементов может быть выбран в один момент времени.
+			По умолчанию атрибут <link type="attribute">orient</link> имеет значение <b>vertical</b>.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes />
+		<methods>
+<!--
+			<method name="appendItem" type="AMLElement">
+				<arguments>
+					<argument name="sLabel" type="String" required="true">
+						<description>
+							Label to appear next to the button.
+						</description>
+					</argument>
+					<argument name="sValue" type="String" required="false">
+						<description>
+							 A data value associated with new item.
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					Creates a new <link type="element">radio</link> element and adds it to the end of the <link type="element">radiogroup</link>. You may optionally set a value. The function returns the new item.
+				</description>
+			</method>
+			<method name="insertItemAt" type="AMLElement">
+				<arguments>
+					<argument name="nIndex" type="Number" required="true">
+						<description>
+							Position index.
+						</description>
+					</argument>
+					<argument name="sLabel" type="String" required="true">
+						<description>
+							Label to appear next to the button.
+						</description>
+					</argument>
+					<argument name="sValue" type="String" required="false">
+						<description>
+							 A data value associated with new item.
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					  Creates a new <link type="element">radio</link> element and inserts it at a specific position in the <link type="element">radiogroup</link>.
+				</description>
+			</method>
+			<method name="removeItemAt" type="AMLElement">
+				<arguments>
+					<argument name="nIndex" type="Number" required="true">
+						<description>
+							Position index.
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					 Removes the child item from the <link type="element">radiogroup</link> at the given index.
+				</description>
+			</method>
+-->
+		</methods>
+		<properties>
+			<property name="items" type="AMLNodeList">
+				<description>
+					<locale>
+						Contains collection of <link type="element">radio</link> child elements.
+					</locale>
+					<locale xml:lang="ru">
+						Колекция дочерних элементов <link type="element">radio</link>.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<events />
+	</members>
+</element>

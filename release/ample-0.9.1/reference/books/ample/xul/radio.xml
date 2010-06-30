@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="radio">
+	<implements />
+	<abstract>
+		<locale>
+			An element that can be turned on and off. Radio buttons are almost always grouped together in groups.
+			Only one <link type="element">radio</link> button within the same <link type="element">radiogroup</link> may be selected at a time.
+		</locale>
+		<locale xml:lang="ru">
+			Элемент, который может быть включенным и выключенным.
+			Практически всегда элементы объединяются в группы.
+			Только один элемент <link type="element">radio</link> в одной группе (<link type="element">radiogroup</link>) может быть выделен одно и то же время.
+			При выделении одного из элементов <link type="element">radio</link>, все остальные из этой же группы становятся невыделенными.
+			Для описания назначения элемента, рядом с ним может быть размещен текст с использованием атрибута <link type="attribute">label</link>.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="disabled">
+				<description>
+					<locale>
+						Indicates whether the element is disabled or not.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="selected" default="" readonly="false">
+				<description>
+					<locale>
+						Indicates whether the element is selected or not.
+					</locale>
+					<locale xml:lang="ru">
+						Если атрибут выставлен в значение <b>true</b>, элемент выбран.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="value" default="" readonly="false">
+				<description>
+					<locale>
+						The string attribute allows you to associate a data value with an element.
+					</locale>
+					<locale xml:lang="ru">
+						Данные, ассоциированные с элементом.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="label" default="" readonly="false">
+				<description>
+					<locale>
+						The label that will appear on the element. If this is left out, no text appears.
+					</locale>
+					<locale xml:lang="ru">
+						Текст, располагающийся рядом с элементом.
+						Если места для отображения текста не хватает, он будет перенесен.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods>
+		</methods>
+		<properties>
+			<property name="group" type="AMLElement">
+				<description>
+					<locale>
+						Contains a reference to parent <link type="element">radiogroup</link> element.
+					</locale>
+					<locale xml:lang="ru">
+						Ссылка на родительский элемент <link type="element">radiogroup</link>.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<events>
+		</events>
+	</members>
+</element>

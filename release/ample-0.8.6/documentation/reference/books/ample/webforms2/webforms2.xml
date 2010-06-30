@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<article>
+	<title>Web Forms 2.0</title>
+	<warning>
+		<locale>
+			WebForms 2.0 in Ample SDK is currently in development.
+		</locale>
+		<locale xml:lang="ru">
+			Реализация Web Forms 2.0 в <b>Ample SDK</b> находится в разработке.
+		</locale>
+	</warning>
+	<abstract>
+		<locale>
+			Web Forms 2.0 is an extension to the forms features found in HTML4's Forms chapter and the corresponding DOM2 HTML interfaces.
+		</locale>
+		<locale xml:lang="ru">
+			Web Forms 2.0 является расширением стандартных форм из спецификации HTML4 и соответствующего ему интерфейса DOM2 HTML.
+			Спецификация Web Forms 2.0 относится как к HTML, так и к XHTML. Она предоставляет новые элементы для ввода данных фиксированного типа,
+			атрибуты для определения ограничений, механизм автогенерации фрагментов форм на основе шаблонов, новые интерфейсы DOM, новые события DOM для валидации
+			данных и отслеживания взаимосвязей, а так же инициализацию и передачу форм в виде XML. Эта спецификация так же стандартизует и систематизирует
+			существующие подходы в различных областях, которые не были прежде задокументированы, и проясняет некоторое взаимодействие HTML фрм с CSS.
+		</locale>
+	</abstract>
+	<content>
+		<section>
+			<title>
+				<locale>
+					Namespace URI
+				</locale>
+				<locale xml:lang="ru">
+					Пространство имен
+				</locale>
+			</title>
+			<content>
+				<locale>
+					Web Forms 2.0 does not define a new namespace while uses an existing one <uri>http://www.w3.org/1999/xhtml</uri>.
+				</locale>
+				<locale xml:lang="ru">
+					Спецификация Web Forms 2.0 не определяет новое пространство имен, но использует уже существующее, ассоциированное с URI <uri>http://www.w3.org/1999/xhtml</uri>.
+				</locale>
+			</content>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Ample SDK implementation details
+				</locale>
+				<locale xml:lang="ru">
+					Реализация в Ample SDK
+				</locale>
+			</title>
+			<content>
+				<locale>
+					At the present moment Web Forms 2.0 in Ample SDK is in the development.
+				</locale>
+				<locale xml:lang="ru">
+					В настоящее время реализация языка Web Forms 2.0 в <b>Ample SDK</b> находится в стадии разработки.
+				</locale>
+			</content>
+		</section>
+	</content>
+
+	<seealso>
+		<link href="http://www.w3.org/Submission/web-forms2/">Web Forms 2.0 (W3C Member Submission)</link>
+		<link href="http://www.whatwg.org/specs/web-forms/current-work/">Web Forms 2.0 (WHATWG)</link>
+	</seealso>
+</article>

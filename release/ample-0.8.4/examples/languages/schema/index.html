@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:aml="http://www.amplesdk.com/ns/aml" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<head>
+		<title>Example: XML Schema 1.1 (Datatypes)</title>
+		<script type="text/javascript" src="../../../ample/runtime.js"></script>
+		<script type="text/javascript" src="../../../ample/languages/xhtml/xhtml.js"></script>
+        <style type="text/ample+css">
+        	.input:valid {
+        		background-color: lightgreen;
+        	}
+        	.input:invalid {
+        		border: solid 1px red;
+        	}
+        </style>
+	</head>
+	<body>
+		<script type="application/ample+xml" xmlns:my="http://my">
+			<xs:schema targetNamespace="http://my" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+				<xs:simpleType name="gender">
+					<xs:restriction base="xs:NCName">
+						<xs:enumeration value="male" />
+						<xs:enumeration value="female" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:schema>
+
+			<form action="/" target="#target" onsubmit="if (!this.$validate()) alert('Some fields are invalid!'); else alert('All data is correct'); event.preventDefault()">
+				xs:integer: <input type="text" aml:type="xs:integer" onvalidate="" /> (not required)<br />
+				xs:boolean: <input type="text" aml:type="xs:boolean" aml:required="true" onvalidate="" /> (required)<br />
+				xs:NCName <input type="text" aml:type="xs:NCName" aml:required="true" onvalidate="" /> (required)<br />
+				my:gender: <input type="text" aml:type="my:gender" aml:required="true" onvalidate="" /> (required), 'male' or 'female'<br />
+				<input type="submit" value="send" />
+			</form>
+			<div id="target"></div>
+		</script>
+	</body>
+</html>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object extends="chart:ChartElement" name="ChartCanvasElement">
+	<implements />
+	<abstract>
+		<locale>
+			Base object for all chart types.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="title">
+				<description>
+					<locale>
+						Chart title displayed at the top.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="xAxisLabel">
+				<description>
+					<locale>
+						Label for the X Axis
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="yAxisLabel">
+				<description>
+					<locale>
+						Label for the X Axis
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods/>
+		<properties/>
+		<events/>
+	</members>
+</object>

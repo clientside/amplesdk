@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Example: Effects</title>
+		<script type="text/javascript" src="../../../ample/runtime.js"></script>
+		<script type="text/javascript" src="../../../ample/languages/xhtml/xhtml.js"></script>
+		<script type="text/javascript">
+			function on_MouseEnter(oEvent) {
+				oEvent.target.$play("background-color:#aaaaaa; border-color:#ff0000; opacity:0.8", 300);
+			}
+			function on_MouseLeave(oEvent) {
+				oEvent.target.$play("background-color:#ffffff; border-color:#ffbbbb; opacity: 1", 300);
+			}
+		</script>
+		<style type="text/css">
+			div div {
+				border: solid 1px #ffbbbb;
+				padding: 5px;
+				background-color: #ffffff;
+			}
+		</style>
+	</head>
+	<body>
+		<script type="application/ample+xml">
+			<div onmouseenter="on_MouseEnter(event)" onmouseleave="on_MouseLeave(event)">
+	        	<div onmouseenter="on_MouseEnter(event)" onmouseleave="on_MouseLeave(event)">
+	        		<div onmouseenter="on_MouseEnter(event)" onmouseleave="on_MouseLeave(event)">
+	        			<div onmouseenter="on_MouseEnter(event)" onmouseleave="on_MouseLeave(event)">
+				        	<div onmouseenter="on_MouseEnter(event)" onmouseleave="on_MouseLeave(event)">
+	        					<div onmouseenter="on_MouseEnter(event)" onmouseleave="on_MouseLeave(event)">
+	        						<div onmouseenter="on_MouseEnter(event)" onmouseleave="on_MouseLeave(event)">
+		        						<div onmouseenter="on_MouseEnter(event)" onmouseleave="on_MouseLeave(event)">
+			        						<div onmouseenter="on_MouseEnter(event)" onmouseleave="on_MouseLeave(event)">
+												<div onmouseenter="on_MouseEnter(event)" onmouseleave="on_MouseLeave(event)">
+													Hover me
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+		        		</div>
+	        		</div>
+				</div>
+			</div>
+		</script>
+	</body>
+</html>

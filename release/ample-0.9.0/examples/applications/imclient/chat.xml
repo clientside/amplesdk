@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chat.css" type="text/css"?>
+<xul:window width="400" height="200" title="Chat Window"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+	<!-- Resources -->
+	<xul:script src="chat.js" type="text/javascript" />
+
+	<!-- Broadcasters -->
+	<xul:broadcasterset>
+
+	</xul:broadcasterset>
+
+	<!-- Commands -->
+	<xul:commandset>
+
+	</xul:commandset>
+
+	<!-- Chat Window -->
+	<xul:vbox flex="1">
+		<xul:tabbox>
+			<xul:tabs>
+				<xul:tab label="Ian Sammerson" image="img/statuses/icq/on.gif" tooltiptext="test@xmppsolutions.com"/>
+				<xul:tab label="Sam Brown" image="img/statuses/aim/xa.gif" tooltiptext="sam@xmppsolutions.com"/>
+			</xul:tabs>
+		</xul:tabbox>
+		<xul:description flex="1" id="chat">test string <b>asd</b><br />test</xul:description>
+	</xul:vbox>
+
+	<xul:splitter />
+
+	<xul:vbox height="120">
+		<xul:toolbox>
+			<xul:toolbar>
+				<xul:toolbarbutton type="menu" label="Smile">
+					<xul:menupopup>
+						<xul:menuitem label=":("/>
+						<xul:menuitem label=":)"/>
+						<xul:menuitem label=";)"/>
+						<xul:menuitem label=";("/>
+					</xul:menupopup>
+				</xul:toolbarbutton>
+				<xul:toolbarbutton label="test"/>
+				<xul:toolbarbutton label="Add"/>
+				<xul:box pack="end" flex="1">
+					<xul:menulist label="Times New Roman" width="200">
+						<xul:menupopup width="200">
+							<xul:menuitem label="Times New Roman"/>
+							<xul:menuitem label="Verdana"/>
+							<xul:menuitem label="Arial"/>
+						</xul:menupopup>
+					</xul:menulist>
+					<xul:checkbox label="Bold" disabled="true"/>
+					<xul:checkbox label="Italic" />
+					<xul:checkbox label="Underlined" />
+				</xul:box>
+			</xul:toolbar>
+		</xul:toolbox>
+
+		<xul:textbox multiline="true" width="100%" height="100%" flex="1"/>
+
+		<xul:box pack="end" height="30">
+			<xul:button label="send" align="center"/>
+			<xul:button label="close" align="center"/>
+		</xul:box>
+	</xul:vbox>
+</xul:window>

@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//WHATWG//NONSGML HTML5//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Web forms 2 Demo page by Shwetank Dixit</title>
+		<script type="text/javascript" src="../../../ample/runtime.js"></script>
+		<script type="text/javascript" src="../../../ample/languages/xhtml/xhtml.js"></script>
+		<link type="text/ample+css" href="../../../ample/languages/xhtml/themes/default/xhtml.css" rel="stylesheet"/>
+<style>
+html {
+	font-family:Verdana;
+	font-size:0.95em;
+}
+
+
+h1 {
+	color:#5999DE;
+}
+form {
+	font:100% Lucinda Grande, Sans-serif;
+	margin: 0;
+	padding: 0;
+	min-width: 500px;
+	max-width: 600px;
+	width: 560px;
+	border:1px solid #ccc;
+	padding: 10px;
+}
+.entry {
+	margin-bottom:.5em;
+}
+label {
+	color:#666666;
+	float: left;
+	width: 130px;
+	padding: 0;
+	text-align: right;
+}
+input, textarea {
+	margin-left:10px;
+}
+.button {
+	padding-left:140px;
+	padding-bottom:5px;
+	padding-top:5px;
+}
+input:required {
+	outline: 1px red solid;
+	color:red;
+}
+</style>
+</head>
+<body>
+<h1><abbr>HTML</abbr> 5 Forms  Demo</h1>
+<p>Created by <a href="http://brucelawson.co.uk/tests/html5-forms-demo.html">Bruce Lawson</a> (inspired by <a href="http://my.opera.com/shwetankdixit">Shwetank Dixit</a> who wrote the <a href="http://shwetankdixit.com/testpages/webforms2demo.htm">original demo</a>)</p>
+<script>ample.open()</script>
+<form>
+    <!-- entry end -->
+    <div class="entry">
+        <label for="form-1">Name (required) </label>
+        <input id="form-1"  name= "haha" type="text" autofocus="autofocus" required="required" />
+        &lt;- autofocus here </div>
+    <!-- entry end -->
+    <div class="entry">
+        <label for="form-2">Title</label>
+        <input id="form-2"   list="mylist" type="text" />
+        <datalist id="mylist">
+            <option label="Mr" value="Mr" />
+            <option label="Ms" value="Ms" />
+            <option label="Prof" value="Mad Professor" />
+        </datalist>
+    </div>
+    <!-- entry end -->
+    <div class="entry">
+        <label for="form-4">Shoesize</label>
+        <input id="form-4"  name="age" type="number" min="18" max="25" />
+    </div>
+    <!-- entry end -->
+    <div class="entry">
+        <label for="form-5">Email (required)</label>
+        <input id="form-5"  name="email" type="email" required="required" />
+    </div>
+    <!-- entry end -->
+    <div class="entry">
+        <label for="form-6">Webpage</label>
+        <input id="form-6"  name="url" type="url" />
+    </div>
+    <!-- entry end -->
+    <div class="entry">
+        <label for="form-7">Date of Birth</label>
+        <input id="form-7"  name="dob" type="date" />
+    </div>
+    <!-- entry end -->
+    <div class="entry">
+        <label for="form-8">Attractiveness </label>
+        <input id="form-8"  name="a" type="range" min="1" max="10" value="0" />
+        <output name="result"  onforminput="value=a.value"  >0</output>
+    </div>
+    <!-- entry end -->
+    <div class="button">
+        <button type="submit">Submit</button>
+    </div>
+</form>
+<script>ample.close()</script>
+
+
+</body>
+</html>

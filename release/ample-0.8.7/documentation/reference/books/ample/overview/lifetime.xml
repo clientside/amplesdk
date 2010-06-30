@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<article>
+	<title>Ample SDK Lifetime</title>
+	<abstract>
+		<locale>
+			This document covers the client-side (front-end) lifetime of the Ample SDK application.
+		</locale>
+	</abstract>
+	<content>
+		<section>
+			<title>
+				<locale>
+					Ample SDK Lifetime
+				</locale>
+			</title>
+			<content>
+				<locale>
+					<img src="lifetime.png" />
+				</locale>
+			</content>
+			<section>
+				<title>
+					<locale>
+						Boot-time
+					</locale>
+				</title>
+				<content>
+					<locale>
+						<p>
+							The Ample SDK application boot-time starts as soon as the user navigates to a URL with empowered content
+							and ends right before web browser dispatches the <em>onload</em> event.
+							During this the time web browser loads the page and the resources known to it,
+							it parses HTML, CSS, creates the HTML DOM and executes scripts.
+						</p>
+						<p>
+							When the Ample SDK runtime is loaded by the web browser, the <em>uninitialized</em> <em><b>ample</b></em> document object is created.
+							The markup language implementation files will get executed next.
+						</p>
+					</locale>
+				</content>
+			</section>
+			<section>
+				<title>
+					<locale>
+						Build-time
+					</locale>
+				</title>
+				<content>
+					<locale>
+						<p>
+							Now that the browser has loaded the entire page and its resources, it dispatches the <em>onload</em> event.
+							Ample SDK gets notified and the build-time starts.
+						</p>
+						<p>
+							First Ample SDK searches through the page to see if there are
+							any stylesheets (<em>link</em> or <em>style</em> tags) with the <em>text/ample+css</em>  mime-type on the page.
+							When found, it will load and process those resources.
+						</p>
+						<p>
+							Next, Ample SDK looks for UI fragments (<em>script</em> tags) with the <em>application/ample+xml</em> mime-type.
+							It parses these fragments one by one, adds them to its own DOM (Document Object Model) structure,
+							renders to the web browser's DOM and notifies fragments of their readiness by dispatching a <em>load</em> event to their roots.
+						</p>
+						<p>
+							Finally Ample SDK dispatches a <em><b>load</b></em> event to the <em>ample</em> object notifying the application that the run-time is about to begin.
+							The application can now be sure that the UI is built, rendered and interactive.
+							From now on all primitive UI events originated in the web browser's DOM will get re-dispatched into the Ample SDK's DOM.
+						</p>
+					</locale>
+				</content>
+			</section>
+			<section>
+				<title>
+					<locale>
+						Run-time
+					</locale>
+				</title>
+				<content>
+					<locale>
+						<p>
+							The Ample SDK run-time kicks in right after the <em>load</em> event and lasts until the <em>unload</em> event.
+						</p>
+					</locale>
+				</content>
+			</section>
+			<section>
+				<title>
+					<locale>
+						Dispose-time
+					</locale>
+				</title>
+				<content>
+					<locale>
+						<p>
+							The dispose-time starts as soon as the user attempts to navigate away from the page.
+							The web browser will dispatch an <em>unload</em> event to its document.
+							Ample SDK will get immediately notified and will re-dispatch <em><b>unload</b></em> event
+							first to all UI fragments and then to the <em>ample</em> document object.
+						</p>
+					</locale>
+				</content>
+			</section>
+		</section>
+	</content>
+</article>

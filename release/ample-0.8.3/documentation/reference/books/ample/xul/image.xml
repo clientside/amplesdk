@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="image" type="regular">
+	<implements />
+	<abstract>
+		<locale xml:lang="ru">
+			Аналогичен элементу <b>image</b> в HTML.
+			Атрибут <link type="attribute">src</link> используется для указания URL для картинки.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="src" default="" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						URL картинки для отображения.
+						Если не указать, изображение не будет отображено.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties />
+		<events>
+			<event name="load" group="Event" cancelable="false" bubbles="false">
+				<description>
+					<locale xml:lang="ru">
+						Загорается по завершении загрузки картинки.
+						Если изменить атрибут <link type="attribute">src</link>,
+						событие произойдет когда загрузится новая картика.
+					</locale>
+				</description>
+			</event>
+			<event name="error" group="Event" cancelable="false" bubbles="false">
+				<description>
+					<locale xml:lang="ru">
+						Загорается при ошибке загрузки картинки.
+					</locale>
+				</description>
+			</event>
+		</events>
+	</members>
+</element>

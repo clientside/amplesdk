@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="toolbox" type="boxed">
+	<implements />
+	<abstract>
+		<locale xml:lang="ru">
+			Контейнер для элементов <link type="element">toolbar</link>.
+			Этот элемент типа <link type="element">box</link> по умолчанию имеет вертикальную ориентацию.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes />
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

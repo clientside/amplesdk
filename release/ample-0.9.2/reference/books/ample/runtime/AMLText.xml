@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="AMLText" extends="runtime:AMLCharacterData">
+	<abstract>
+		<locale>
+			Represents the textual content of element or attribute.
+		</locale>
+		<locale xml:lang="ru">
+			Является текстовым представлением содержимого элемента или атрибута.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples/>
+	<members>
+		<methods>
+			<method name="splitText" type="String">
+				<arguments>
+					<argument name="nOffset" type="Number" required="true">
+						<description>
+							<locale>
+								The 16-bit unit offset at which to split, starting from 0.
+							</locale>
+							<locale xml:lang="ru">
+								Смещение относительно начала.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Breaks the node into two nodes at the specified offset, keeping both in the tree as siblings.
+					</locale>
+					<locale xml:lang="ru">
+						Разбивает узел на два по заданному смещению, причем оба остаются в том же месте иерархии, являясь соседними узлами по отношению друг к другу.
+					</locale>
+				</description>
+			</method>
+		</methods>
+	</members>
+</object>

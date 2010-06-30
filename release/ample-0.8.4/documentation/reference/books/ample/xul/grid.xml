@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="grid" type="regular">
+	<implements />
+	<abstract>
+		<locale xml:lang="ru">
+			Элемент <link type="element">grid</link> используется для табличного отображения элементов.
+			Дочерними элементами могут быть только элементы <link type="element">rows</link>.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes />
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

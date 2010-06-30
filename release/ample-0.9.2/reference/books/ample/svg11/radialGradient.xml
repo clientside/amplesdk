@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element name="radialGradient" extends="svg11:SVG11Element">
+	<abstract>
+		<locale>
+			The 'radialGradient' element is used to define radial gradients.
+		</locale>
+	</abstract>
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="cx">
+				<description>
+					<locale>
+						Defines the center 'x' coordinate of the largest (i.e., outermost) circle for the radial gradient.
+						If the attribute is not specified, the effect is as if a value of "50%" were specified.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="cy">
+				<description>
+					<locale>
+						Defines the center 'y' coordinate of the largest (i.e., outermost) circle for the radial gradient.
+						If the attribute is not specified, the effect is as if a value of "50%" were specified.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="r">
+				<description>
+					<locale>
+						Defines the radius size of the largest (i.e., outermost) circle for the radial gradient.
+						If the attribute is not specified, the effect is as if a value of "50%" were specified.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="xlink:href">
+				<description>
+					<locale>
+						A URI reference to a different 'linearGradient' or 'radialGradient' element within the current SVG document fragment.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+	</members>
+</element>

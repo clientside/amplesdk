@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<article>
+	<title>XML Inclusions (XInclude) Version 1.0</title>
+	<abstract>
+		<locale>
+			Many programming languages provide an inclusion mechanism to facilitate modularity.
+			Markup languages also often have need of such a mechanism.
+			XInclude specification introduces a generic mechanism for merging XML documents
+			(as represented by their information sets) for use by applications that need such a facility.
+			The syntax leverages existing XML constructs - elements, attributes, and URI references.
+		</locale>
+		<locale xml:lang="ru">
+			Во многих языках предоставляется механизм подключения ресурсов для того, чтобы обеспечить модульный подход.
+			В потребности такого механизма не являются исключением и языки разметки.
+			Спецификация XInclude предоставляет общий механизм для объединения документов XML
+			(представленными их структурами - <link href="http://www.w3.org/TR/2004/REC-xml-infoset-20040204/" title="XML Information Set (Second Edition)">XML Information Set</link>)
+			для обеспечения приложенийми, которые это используют, модельного подхода.
+			Синтаксис XInclude использует существующие конструкции XML - элементы, атрибуты и ссылки URI.
+		</locale>
+	</abstract>
+	<content>
+		<section>
+			<title>
+				<locale>
+					Namespace URI
+				</locale>
+				<locale xml:lang="ru">
+					Пространство имен
+				</locale>
+			</title>
+			<content>
+				<locale>
+					XInclude defines a namespace associated with the URI <uri>http://www.w3.org/2001/XInclude</uri>
+				</locale>
+				<locale xml:lang="ru">
+					Пространство имен XInclude определяется URI <uri>http://www.w3.org/2001/XInclude</uri>
+				</locale>
+			</content>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Ample SDK implementation details
+				</locale>
+				<locale xml:lang="ru">
+					Реализация в Ample SDK
+				</locale>
+			</title>
+			<content>
+				<locale>
+					At the present moment, Ample SDK does not support XInclude content-negotiation attributes.
+				</locale>
+				<locale xml:lang="ru">
+					В настоящее время реализация языка XInclude в <b>Ample SDK</b> не является полной. Атрибуты, предназначенные для согласования контента подключаемого ресурса с сервером, который его предоставляет, не реализованы.
+				</locale>
+			</content>
+		</section>
+	</content>
+	<seealso>
+		<link href="http://www.w3.org/TR/xinclude/" title="XML Inclusions 1.0 (W3C)">XML Inclusions 1.0 (W3C)</link>
+	</seealso>
+</article>

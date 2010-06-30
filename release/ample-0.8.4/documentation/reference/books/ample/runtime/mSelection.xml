@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="AMLSelection">
+	<abstract>
+		<locale>
+			Implements Text Selection controlling behavior.
+		</locale>
+	</abstract>
+	<remarks/>
+	<examples/>
+	<members>
+		<methods />
+		<properties>
+			<property name="$selectable" type="Boolean">
+				<description>
+					<locale>
+						Keeps a flag indicating whether element's text content can be selected.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<attributes />
+		<events />
+	</members>
+</object>

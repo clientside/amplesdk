@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element name="SVG12Element" extends="runtime:AMLElement">
+	<abstract>
+		<locale>
+			Base class for SVG Elements.
+		</locale>
+	</abstract>
+	<examples />
+	<members>
+		<attributes />
+	</members>
+</element>

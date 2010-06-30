@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<article>
+	<title>Scalable Vector Graphics (SVG) 1.1</title>
+	<abstract>
+		<locale>
+			SVG 1.1 is the modularized language for describing two-dimensional vector and mixed vector/raster graphics in XML.
+		</locale>
+	</abstract>
+	<content>
+		<section>
+			<title>
+				<locale>
+					Namespace URI
+				</locale>
+				<locale xml:lang="ru">
+					Пространство имен
+				</locale>
+			</title>
+			<content>
+				<locale>
+					SVG 1.1 defines a namespaces associated with the URI <uri>http://www.w3.org/2000/svg</uri>.
+				</locale>
+				<locale xml:lang="ru">
+					Пространство имен SVG 1.1 определяется URI <uri>http://www.w3.org/2000/svg</uri>
+				</locale>
+			</content>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Ample SDK implementation details
+				</locale>
+				<locale xml:lang="ru">
+					Реализация в Ample SDK
+				</locale>
+			</title>
+			<content>
+				<locale>
+					At the present moment SVG 1.1 in Ample SDK is in the development. Following modules are already available for testing:
+					<ul>
+						<li><a href="http://www.w3.org/TR/SVG/struct.html">5. Document Structure</a></li>
+						<li><a href="http://www.w3.org/TR/SVG/paths.html">8. Paths</a></li>
+						<li><a href="http://www.w3.org/TR/SVG/shapes.html">9. Basic Shapes</a></li>
+						<li><a href="http://www.w3.org/TR/SVG/text.html">10. Text</a></li>
+					</ul>
+				</locale>
+				<locale xml:lang="ru">
+					В настоящее время реализация языка SVG 1.1 в <b>Ample SDK</b> находится в стадии разработки.  Следующие модули уже доступны для тестирования:
+					<ul>
+						<li><a href="http://www.w3.org/TR/SVG/struct.html">5. Document Structure</a></li>
+						<li><a href="http://www.w3.org/TR/SVG/paths.html">8. Paths</a></li>
+						<li><a href="http://www.w3.org/TR/SVG/shapes.html">9. Basic Shapes</a></li>
+						<li><a href="http://www.w3.org/TR/SVG/text.html">10. Text</a></li>
+					</ul>
+				</locale>
+			</content>
+		</section>
+	</content>
+	<seealso>
+		<link href="http://www.w3.org/TR/SVGTiny12/">Scalable Vector Graphics (SVG) 1.2 Tiny Specification (W3C)</link>
+	</seealso>
+</article>

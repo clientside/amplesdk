@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="label">
+	<implements />
+	<abstract>
+		<locale>
+			This element is used to provide a label for a control element.
+			If the user clicks the label, it will move the focus to the associated control, specified with the <link type="attribute">control</link> attribute.
+		</locale>
+		<locale xml:lang="ru">
+			Этот элемент используется для предоставления метки управляющему элементу. Так же может быть использовано для отображения текстовой информации.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="value" default="" readonly="false">
+				<description>
+					<locale>
+						The text to be used for the label.
+					</locale>
+					<locale xml:lang="ru">
+						Текст для метки.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="control" default="" readonly="false">
+				<description>
+					<locale>
+						This attribute should be set to the id of an element that the label is associated with. When the user clicks on the label, the associated element is given the focus.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

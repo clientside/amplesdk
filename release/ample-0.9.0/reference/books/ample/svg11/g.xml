@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element name="g" extends="svg11:SVG11ShapeElement">
+	<abstract>
+		<locale>
+			The 'g' element is a container element for grouping together related graphics elements.
+		</locale>
+	</abstract>
+	<examples />
+	<members>
+		<attributes />
+	</members>
+</element>

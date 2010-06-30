@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="AMLKeyboardEvent" extends="runtime:AMLUIEvent">
+	<abstract>
+		<locale>
+			The KeyboardEvent interface provides specific contextual information associated with keyboard devices.
+		</locale>
+		<locale xml:lang="ru">
+			Интерфейс KeyboardEvent предоставляет контекстную информацию, специфичную для клавишных устройств ввода.
+		</locale>
+	</abstract>
+	<examples/>
+	<members>
+		<methods>
+			<method name="initKeyboardEvent" type="Void">
+				<arguments>
+					<argument name="sEventType" type="String" required="true">
+						<description>
+							<locale>
+								Specifies the event type.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает на тип события (Event.type).
+							</locale>
+						</description>
+					</argument>
+					<argument name="bCanBubble" type="Boolean" required="true">
+						<description>
+							<locale>
+								Specifies whether or not the event can bubble.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает, может ли событие распространяться в фазе "bubbling".
+							</locale>
+						</description>
+					</argument>
+					<argument name="bCancelable" type="Boolean" required="true">
+						<description>
+							<locale>
+								Specifies whether or not the event's default action can be prevented.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает, возможно ли отменить ответную реакцию браузера по умолчанию на событие.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						The initKeyboardEvent method is used to initialize the value of a KeyboardEvent object.
+					</locale>
+					<locale xml:lang="ru">
+						Метод initKeyboardEvent используется для инициализации значения объекта KeyboardEvent.
+					</locale>
+				</description>
+			</method>
+			<method name="getModifierState" type="Boolean">
+				<arguments>
+					<argument name="sModifier" type="String" required="true">
+						<description>
+							<locale>
+								A modifier key identifier. Common modifier keys are "Alt", "AltGraph", "CapsLock", "Control", "Meta", "NumLock", "Scroll", or "Shift"
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Queries the state of a modifier using a key identifier.
+					</locale>
+				</description>
+			</method>
+		</methods>
+		<attributes />
+		<properties>
+			<property name="keyIdentifier" type="String" readonly="true">
+				<description>
+					<locale>
+						Holds the identifier of the key.
+					</locale>
+				</description>
+			</property>
+			<property name="keyLocation" type="Number" readonly="true">
+				<description>
+					<locale>
+						Contains an indication of the location of they key on the device.
+					</locale>
+				</description>
+			</property>
+			<property name="ctrlKey" type="Boolean" readonly="true">
+				<description>
+					<locale>
+						Used to indicate whether the 'ctrl' key was depressed during the firing of the event.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает, была ли нажата клавиша CTRL в момент возникновения события.
+					</locale>
+				</description>
+			</property>
+			<property name="metaKey" type="Boolean" readonly="true">
+				<description>
+					<locale>
+						Used to indicate whether the 'meta' key was depressed during the firing of the event. On some platforms this key may map to an alternative key name.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает, была ли нажата клавиша META в момент возникновения события. На некоторых платформах эта клавиша ассоциирована с другим названием.
+					</locale>
+				</description>
+			</property>
+			<property name="shiftKey" type="Boolean" readonly="true">
+				<description>
+					<locale>
+						Used to indicate whether the 'shift' key was depressed during the firing of the event.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает, была ли нажата клавиша SHIFT в момент возникновения события.
+					</locale>
+				</description>
+			</property>
+			<property name="altKey" type="Boolean" readonly="true">
+				<description>
+					<locale>
+						Used to indicate whether the 'alt' key was depressed during the firing of the event. On some platforms this key may map to an alternative key name.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает, была ли нажата клавиша ALT в момент возникновения события. На некоторых платформах эта клавиша может быть ассоциирована с другим названием.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<constants>
+			<constant name="DOM_KEY_LOCATION_LEFT" value="1">
+				<description>
+					<locale>
+						The key activated is in the left key location (there is more than one possible location for this key). Example: the left Shift key on a PC 101 Key US keyboard.
+					</locale>
+				</description>
+			</constant>
+			<constant name="DOM_KEY_LOCATION_NUMPAD" value="3">
+				<description>
+					<locale>
+						The key activation originated on the numeric keypad or with a virtual key corresponding to the numeric keypad. Example: the '1' key on a PC 101 Key US keyboard located on the numeric pad.
+					</locale>
+				</description>
+			</constant>
+			<constant name="DOM_KEY_LOCATION_RIGHT" value="2">
+				<description>
+					<locale>
+						The key activation is in the right key location (there is more than one possible location for this key). Example: the right Shift key on a PC 101 Key US keyboard.
+					</locale>
+				</description>
+			</constant>
+			<constant name="DOM_KEY_LOCATION_STANDARD" value="0">
+				<description>
+					<locale>
+						The key activation is not distinguished as the left or right version of the key, and did not originate from the numeric keypad (or did not originate with a virtual key corresponding to the numeric keypad). Example: the 'Q' key on a PC 101 Key US keyboard.
+					</locale>
+				</description>
+			</constant>
+		</constants>
+	</members>
+	<remarks>
+		<remark>
+			<locale>Events of that type:</locale>
+      <locale xml:lang="ru">События этого типа:</locale>
+      <ul>
+        <li><link type="event" href="runtime:AMLElement">keydown</link></li>
+        <li><link type="event" href="runtime:AMLElement">keyup</link></li>
+        <li><link type="event" href="runtime:AMLElement">keypress</link> (deprecated)</li>
+      </ul>
+		</remark>
+	</remarks>
+	<examples />
+</object>

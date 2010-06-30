@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element name="line" extends="svg11:SVG11ShapeElement">
+	<abstract>
+		<locale>
+			The 'line' element defines a line segment that starts at one point and ends at another.
+		</locale>
+	</abstract>
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="x1">
+				<description>
+					<locale>
+						The x-axis coordinate of the start of the line.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="y1">
+				<description>
+					<locale>
+						The y-axis coordinate of the center of the ellipse.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="x2">
+				<description>
+					<locale>
+						The x-axis coordinate of the end of the line.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="y2">
+				<description>
+					<locale>
+						The y-axis coordinate of the end of the line.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+	</members>
+</element>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element name="simpleType">
+	<abstract>
+		<locale>
+			Simple type definitions provide for constraining character information item [children] of element and attribute information items.
+		</locale>
+	</abstract>
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="name">
+				<description>
+					<locale>
+						An xs:NCName value. Optional.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="final">
+				<description>
+					<locale>
+						Specifies whether this definition is final.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

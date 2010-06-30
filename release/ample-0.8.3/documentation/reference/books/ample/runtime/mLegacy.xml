@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="AMLCompatible">
+	<abstract>
+		<locale>
+			Implements Backwards compatibility functionality.
+		</locale>
+		<locale xml:lang="ru">
+			Реализует функциональность обратной совместимости.
+		</locale>
+	</abstract>
+	<remarks/>
+	<examples/>
+	<members>
+		<methods />
+		<properties />
+		<attributes />
+		<events>
+			<event name="contextmenu" group="MouseEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						Fires when the user clicks the right mouse button in the client area, opening the context menu.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается, когда происходит щелчок левой кнопкой мыши открывает контекстное меню.
+					</locale>
+				</description>
+			</event>
+			<event name="mouseenter" group="MouseEvent" cancelable="false" bubbles="false">
+				<description>
+					<locale>
+						Fires when the user moves the mouse pointer into the object.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается, когда указатель мыши входит в пределы границ объекта.
+					</locale>
+				</description>
+			</event>
+			<event name="mouseleave" group="MouseEvent" cancelable="false" bubbles="false">
+				<description>
+					<locale>
+						Fires when the user moves the mouse pointer outside the boundaries of the object.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается, когда указатель мыши выходит за пределы границ объекта.
+					</locale>
+				</description>
+			</event>
+			<event name="keypress" group="KeyboardEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						Fires when the user presses key on the keyboard.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается, когда происходит нажатие клавиши клавиатуры.
+					</locale>
+				</description>
+			</event>
+		</events>
+	</members>
+</object>

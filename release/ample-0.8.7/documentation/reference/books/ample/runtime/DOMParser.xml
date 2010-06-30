@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="DOMParser">
+	<abstract>
+		<locale>
+			Parses XML string into DOM structure.
+		</locale>
+		<locale xml:lang="ru">
+			Парсит строку XML в DOM структуру.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<properties>
+			<property name="baseURI" type="String">
+				<description>
+					<locale>
+						Set/Get the baseURI to be set to the result document object.
+					</locale>
+					<locale xml:lang="ru">
+						Получить/выставить baseURI для результирующего документа.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<methods>
+			<method name="parseFromString" type="Document">
+				<arguments>
+					<argument name="sXml" required="true" type="String">
+						<description>
+							<locale>
+								The UTF16 string to be parsed.
+							</locale>
+							<locale xml:lang="ru">
+								Строка в кодировке UTF16 для парсинга.
+							</locale>
+						</description>
+					</argument>
+					<argument name="sContentType" required="true" type="String">
+						<description>
+							<locale>
+								The content type of the string. Accepted "text/xml".
+							</locale>
+							<locale xml:lang="ru">
+								Тип строки. Допустимо значение "text/xml".
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Parses the given XML string into DOM Document object.
+					</locale>
+					<locale xml:lang="ru">
+						Парсит заданную строку XML в объект DOM Document.
+					</locale>
+				</description>
+			</method>
+		</methods>
+	</members>
+</object>

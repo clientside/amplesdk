@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<article>
+	<title>Chart Markup Language</title>
+	<abstract>
+		<locale>
+			The Chart Markup Language contains common chart components.
+		</locale>
+	</abstract>
+	<content>
+		<section>
+			<title>
+				<locale>
+					Namespace URI
+				</locale>
+			</title>
+			<content>
+				<locale>
+					Chart Markup Language defines a namespaces associated with the URI <b>http://www.amplesdk.com/ns/chart</b>.
+				</locale>
+			</content>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Ample SDK implementation details
+				</locale>
+			</title>
+			<content>
+				<locale>
+					This language is being developed by <a href="http://www.clientside.fi/">Clientside OY</a> company.
+				</locale>
+			</content>
+		</section>
+	</content>
+</article>

@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html xmlns:c="http://www.amplesdk.com/ns/chart" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Charts</title>
+		<script type="text/javascript" src="../../../ample/runtime.js"></script>
+		<script type="text/javascript" src="../../../ample/languages/chart/chart.js"></script>
+		<link type="text/ample+css" href="../../../ample/languages/chart/themes/default/chart.css" rel="stylesheet"/>
+		<script type="text/javascript" src="../../../ample/languages/xhtml/xhtml.js"></script>
+		<style type="text/css">
+		body {
+			font-family: Tahoma;
+		}
+		 h3, p {
+		 	margin-top: 0.5em;
+		 	margin-bottom: 0.5em;
+		 }
+		</style>
+	</head>
+	<body>
+		<script>ample.open()</script>
+
+<h3>Column chart</h3>
+<p>
+	Options: stacked, orientation, join bars
+</p>
+<c:bar title="Column chart" orient="horizontal" xAxisLabel="X Axis" yAxisLabel="Y Label" xAxisValueLabels="1999,2000,2001,2002,2003">
+	<c:group label="Set 0">
+		<c:item value="10" />
+		<c:item value="20" />
+		<c:item value="30" />
+		<c:item value="40" />
+		<c:item value="50" />
+	</c:group>
+	<c:group label="Set 1">
+		<c:item value="20" />
+		<c:item value="10" />
+		<c:item value="25" />
+		<c:item value="45" />
+		<c:item value="15" />
+	</c:group>
+	<c:group label="Set 2">
+		<c:item value="30" />
+		<c:item value="30" />
+		<c:item value="5" />
+		<c:item value="10" />
+		<c:item value="40" />
+	</c:group>
+	<c:group label="Set 3">
+		<c:item value="15" />
+		<c:item value="25" />
+		<c:item value="35" />
+		<c:item value="30" />
+		<c:item value="10" />
+	</c:group>
+	<!-- c:group label="Set 2" values="5;15;30;25" /-->
+</c:bar>
+<c:bar title="Column chart (one series)" orient="horizontal">
+	<c:group label="Set 0">
+		<c:item value="10" />
+		<c:item value="20" />
+		<c:item value="30" />
+		<c:item value="40" />
+		<c:item value="50" />
+	</c:group>
+</c:bar>
+<br />
+<c:bar title="Column chart (stack)" type="stack" orient="horizontal" xAxisLabel="X Axis" yAxisLabel="Y Label">
+	<c:group label="Set 0">
+		<c:item value="10" />
+		<c:item value="20" />
+		<c:item value="30" />
+		<c:item value="40" />
+		<c:item value="50" />
+	</c:group>
+	<c:group label="Set 1">
+		<c:item value="20" />
+		<c:item value="10" />
+		<c:item value="25" />
+		<c:item value="45" />
+		<c:item value="15" />
+	</c:group>
+	<c:group label="Set 2">
+		<c:item value="30" />
+		<c:item value="30" />
+		<c:item value="5" />
+		<c:item value="10" />
+		<c:item value="40" />
+	</c:group>
+	<c:group label="Set 3">
+		<c:item value="15" />
+		<c:item value="25" />
+		<c:item value="35" />
+		<c:item value="30" />
+		<c:item value="10" />
+	</c:group>
+	<!-- c:group label="Set 2" values="5;15;30;25" /-->
+</c:bar>
+<c:bar title="Column chart (percentage)" type="percentage" orient="horizontal" xAxisLabel="X Axis" yAxisLabel="Y Label">
+	<c:group label="Set 0">
+		<c:item value="10" />
+		<c:item value="20" />
+		<c:item value="30" />
+		<c:item value="40" />
+		<c:item value="50" />
+	</c:group>
+	<c:group label="Set 1">
+		<c:item value="20" />
+		<c:item value="10" />
+		<c:item value="25" />
+		<c:item value="45" />
+		<c:item value="15" />
+	</c:group>
+	<c:group label="Set 2">
+		<c:item value="30" />
+		<c:item value="30" />
+		<c:item value="5" />
+		<c:item value="10" />
+		<c:item value="40" />
+	</c:group>
+	<c:group label="Set 3">
+		<c:item value="15" />
+		<c:item value="25" />
+		<c:item value="35" />
+		<c:item value="30" />
+		<c:item value="10" />
+	</c:group>
+	<!-- c:group label="Set 2" values="5;15;30;25" /-->
+</c:bar>
+
+<h3>Bar chart</h3>
+<p>
+	Options: stacked, orientation, join bars
+</p>
+<c:bar title="Bar chart" xAxisLabel="X Axis" yAxisLabel="Y Label" xAxisValueLabels="1999,2000,2001,2002,2003">
+	<c:group label="Set 0">
+		<c:item value="10" />
+		<c:item value="20" />
+		<c:item value="30" />
+		<c:item value="40" />
+		<c:item value="50" />
+	</c:group>
+	<c:group label="Set 1">
+		<c:item value="20" />
+		<c:item value="10" />
+		<c:item value="25" />
+		<c:item value="45" />
+		<c:item value="15" />
+	</c:group>
+	<c:group label="Set 2">
+		<c:item value="30" />
+		<c:item value="30" />
+		<c:item value="5" />
+		<c:item value="10" />
+		<c:item value="40" />
+	</c:group>
+	<c:group label="Set 3">
+		<c:item value="15" />
+		<c:item value="25" />
+		<c:item value="35" />
+		<c:item value="30" />
+		<c:item value="10" />
+	</c:group>
+	<!-- c:group label="Set 2" values="5;15;30;25" /-->
+</c:bar>
+<c:bar title="Bar chart (one series)">
+	<c:group label="Set 0">
+		<c:item value="10" />
+		<c:item value="20" />
+		<c:item value="30" />
+		<c:item value="40" />
+		<c:item value="50" />
+	</c:group>
+</c:bar>
+<br />
+<c:bar title="Bar chart (stack)" type="stack" xAxisLabel="X Axis" yAxisLabel="Y Label">
+	<c:group label="Set 0">
+		<c:item value="10" />
+		<c:item value="20" />
+		<c:item value="30" />
+		<c:item value="40" />
+		<c:item value="50" />
+	</c:group>
+	<c:group label="Set 1">
+		<c:item value="20" />
+		<c:item value="10" />
+		<c:item value="25" />
+		<c:item value="45" />
+		<c:item value="15" />
+	</c:group>
+	<c:group label="Set 2">
+		<c:item value="30" />
+		<c:item value="30" />
+		<c:item value="5" />
+		<c:item value="10" />
+		<c:item value="40" />
+	</c:group>
+	<c:group label="Set 3">
+		<c:item value="15" />
+		<c:item value="25" />
+		<c:item value="35" />
+		<c:item value="30" />
+		<c:item value="10" />
+	</c:group>
+	<!-- c:group label="Set 2" values="5;15;30;25" /-->
+</c:bar>
+<c:bar title="Bar chart (percentage)" type="percentage" xAxisLabel="X Axis" yAxisLabel="Y Label">
+	<c:group label="Set 0">
+		<c:item value="10" />
+		<c:item value="20" />
+		<c:item value="30" />
+		<c:item value="40" />
+		<c:item value="50" />
+	</c:group>
+	<c:group label="Set 1">
+		<c:item value="20" />
+		<c:item value="10" />
+		<c:item value="25" />
+		<c:item value="45" />
+		<c:item value="15" />
+	</c:group>
+	<c:group label="Set 2">
+		<c:item value="30" />
+		<c:item value="30" />
+		<c:item value="5" />
+		<c:item value="10" />
+		<c:item value="40" />
+	</c:group>
+	<c:group label="Set 3">
+		<c:item value="15" />
+		<c:item value="25" />
+		<c:item value="35" />
+		<c:item value="30" />
+		<c:item value="10" />
+	</c:group>
+	<!-- c:group label="Set 2" values="5;15;30;25" /-->
+</c:bar>
+
+<h3>Line chart</h3>
+<p>
+	Options: percentage, stacked (boolean), spline (type)
+</p>
+<c:line title="Line chart"
+	xAxisLabel="X Axis long label" xAxisType="Number"
+	yAxisLabel="Y Axis long label" yAxisType="Number">
+	<c:group label="Set 0">
+		<c:item value="0,30" />
+		<c:item value="1,20" />
+		<c:item value="2,15" />
+		<c:item value="3,30" />
+		<c:item value="4,30" />
+		<c:item value="5,40" />
+		<c:item value="6,30" />
+		<c:item value="7,20" />
+		<c:item value="8,30" />
+		<c:item value="9,15" />
+		<c:item value="10,10" />
+		<c:item value="11,20" />
+		<c:item value="12,15" />
+		<c:item value="13,30" />
+		<c:item value="14,30" />
+		<c:item value="15,40" />
+		<c:item value="16,30" />
+		<c:item value="17,20" />
+		<c:item value="18,30" />
+		<c:item value="19,15" />
+		<c:item value="20,30" />
+		<c:item value="21,5" />
+	</c:group>
+	<c:group label="Set 1">
+		<c:item value="0,20" />
+		<c:item value="1,10" />
+		<c:item value="2,25" />
+		<c:item value="3,40" />
+		<c:item value="4,20" />
+		<c:item value="5,10" />
+		<c:item value="6,20" />
+		<c:item value="7,30" />
+		<c:item value="8,40" />
+		<c:item value="9,25" />
+		<c:item value="10,20" />
+		<c:item value="11,10" />
+		<c:item value="12,25" />
+		<c:item value="13,40" />
+		<c:item value="14,20" />
+		<c:item value="15,10" />
+		<c:item value="16,20" />
+		<c:item value="17,30" />
+		<c:item value="18,40" />
+		<c:item value="19,25" />
+		<c:item value="20,20" />
+		<c:item value="21,10" />
+	</c:group>
+	<c:group label="Set 2">
+		<c:item value="0,10" />
+		<c:item value="1,30" />
+		<c:item value="2,25" />
+		<c:item value="3,10" />
+		<c:item value="4,20" />
+		<c:item value="5,30" />
+		<c:item value="6,40" />
+		<c:item value="7,5" />
+		<c:item value="8,10" />
+		<c:item value="9,25" />
+		<c:item value="10,20" />
+		<c:item value="11,10" />
+		<c:item value="12,5" />
+		<c:item value="13,10" />
+		<c:item value="14,5" />
+		<c:item value="15,10" />
+		<c:item value="16,20" />
+		<c:item value="17,40" />
+		<c:item value="18,20" />
+		<c:item value="19,5" />
+		<c:item value="20,20" />
+		<c:item value="21,15" />
+	</c:group>
+	<c:group label="Set 3">
+		<c:item value="0,12" />
+		<c:item value="1,18" />
+		<c:item value="2,16" />
+		<c:item value="3,12" />
+		<c:item value="4,24" />
+		<c:item value="5,16" />
+		<c:item value="6,18" />
+		<c:item value="7,16" />
+		<c:item value="8,16" />
+		<c:item value="9,22" />
+		<c:item value="10,24" />
+		<c:item value="11,26" />
+		<c:item value="12,28" />
+		<c:item value="13,32" />
+		<c:item value="14,28" />
+		<c:item value="15,34" />
+		<c:item value="16,16" />
+		<c:item value="17,24" />
+		<c:item value="18,22" />
+		<c:item value="19,12" />
+		<c:item value="20,14" />
+		<c:item value="21,16" />
+	</c:group>
+	<c:group label="Set 4">
+		<c:item value="0,12" />
+		<c:item value="1,32" />
+		<c:item value="2,25" />
+		<c:item value="3,22" />
+		<c:item value="4,26" />
+		<c:item value="5,36" />
+		<c:item value="6,32" />
+		<c:item value="7,15" />
+		<c:item value="8,14" />
+		<c:item value="9,10" />
+		<c:item value="10,12" />
+		<c:item value="11,20" />
+		<c:item value="12,22" />
+		<c:item value="13,24" />
+		<c:item value="14,26" />
+		<c:item value="15,28" />
+		<c:item value="16,32" />
+		<c:item value="17,24" />
+		<c:item value="18,26" />
+		<c:item value="19,22" />
+		<c:item value="20,20" />
+		<c:item value="21,16" />
+	</c:group>
+	<!-- c:group label="Set 2" values="0,5;1,15;2,30;3,25" />
+	<c:group label="Set 2" values="0,15;1,25;2,10;3,15" /-->
+</c:line>
+<c:line title="Line chart (one series)"
+	xAxisLabel="X Axis long label" xAxisType="Number"
+	yAxisLabel="Y Axis long label" yAxisType="Number">
+	<c:group label="Set 0">
+		<c:item value="0,30" />
+		<c:item value="1,20" />
+		<c:item value="2,15" />
+		<c:item value="3,30" />
+		<c:item value="4,30" />
+		<c:item value="5,40" />
+		<c:item value="6,30" />
+		<c:item value="7,20" />
+		<c:item value="8,30" />
+		<c:item value="9,15" />
+		<c:item value="10,10" />
+		<c:item value="11,20" />
+		<c:item value="12,15" />
+		<c:item value="13,30" />
+		<c:item value="14,30" />
+		<c:item value="15,40" />
+		<c:item value="16,30" />
+		<c:item value="17,20" />
+		<c:item value="18,30" />
+		<c:item value="19,15" />
+		<c:item value="20,30" />
+		<c:item value="21,5" />
+	</c:group>
+</c:line>
+<br />
+<c:line title="Line chart (stack)" type="stack"
+	xAxisLabel="X Axis long label" xAxisType="Number"
+	yAxisLabel="Y Axis long label" yAxisType="Number">
+	<c:group label="Set 0">
+		<c:item value="0,30" />
+		<c:item value="1,20" />
+		<c:item value="2,15" />
+		<c:item value="3,30" />
+		<c:item value="4,30" />
+		<c:item value="5,40" />
+		<c:item value="6,30" />
+		<c:item value="7,20" />
+		<c:item value="8,30" />
+		<c:item value="9,15" />
+		<c:item value="10,10" />
+		<c:item value="11,20" />
+		<c:item value="12,15" />
+		<c:item value="13,30" />
+		<c:item value="14,30" />
+		<c:item value="15,40" />
+		<c:item value="16,30" />
+		<c:item value="17,20" />
+		<c:item value="18,30" />
+		<c:item value="19,15" />
+		<c:item value="20,30" />
+		<c:item value="21,5" />
+	</c:group>
+	<c:group label="Set 1">
+		<c:item value="0,20" />
+		<c:item value="1,10" />
+		<c:item value="2,25" />
+		<c:item value="3,40" />
+		<c:item value="4,20" />
+		<c:item value="5,10" />
+		<c:item value="6,20" />
+		<c:item value="7,30" />
+		<c:item value="8,40" />
+		<c:item value="9,25" />
+		<c:item value="10,20" />
+		<c:item value="11,10" />
+		<c:item value="12,25" />
+		<c:item value="13,40" />
+		<c:item value="14,20" />
+		<c:item value="15,10" />
+		<c:item value="16,20" />
+		<c:item value="17,30" />
+		<c:item value="18,40" />
+		<c:item value="19,25" />
+		<c:item value="20,20" />
+		<c:item value="21,10" />
+	</c:group>
+	<c:group label="Set 2">
+		<c:item value="0,10" />
+		<c:item value="1,30" />
+		<c:item value="2,25" />
+		<c:item value="3,10" />
+		<c:item value="4,20" />
+		<c:item value="5,30" />
+		<c:item value="6,40" />
+		<c:item value="7,5" />
+		<c:item value="8,10" />
+		<c:item value="9,25" />
+		<c:item value="10,20" />
+		<c:item value="11,10" />
+		<c:item value="12,5" />
+		<c:item value="13,10" />
+		<c:item value="14,5" />
+		<c:item value="15,10" />
+		<c:item value="16,20" />
+		<c:item value="17,40" />
+		<c:item value="18,20" />
+		<c:item value="19,5" />
+		<c:item value="20,20" />
+		<c:item value="21,15" />
+	</c:group>
+	<c:group label="Set 3">
+		<c:item value="0,12" />
+		<c:item value="1,18" />
+		<c:item value="2,16" />
+		<c:item value="3,12" />
+		<c:item value="4,24" />
+		<c:item value="5,16" />
+		<c:item value="6,18" />
+		<c:item value="7,16" />
+		<c:item value="8,16" />
+		<c:item value="9,22" />
+		<c:item value="10,24" />
+		<c:item value="11,26" />
+		<c:item value="12,28" />
+		<c:item value="13,32" />
+		<c:item value="14,28" />
+		<c:item value="15,34" />
+		<c:item value="16,16" />
+		<c:item value="17,24" />
+		<c:item value="18,22" />
+		<c:item value="19,12" />
+		<c:item value="20,14" />
+		<c:item value="21,16" />
+	</c:group>
+	<c:group label="Set 4">
+		<c:item value="0,12" />
+		<c:item value="1,32" />
+		<c:item value="2,25" />
+		<c:item value="3,22" />
+		<c:item value="4,26" />
+		<c:item value="5,36" />
+		<c:item value="6,32" />
+		<c:item value="7,15" />
+		<c:item value="8,14" />
+		<c:item value="9,10" />
+		<c:item value="10,12" />
+		<c:item value="11,20" />
+		<c:item value="12,22" />
+		<c:item value="13,24" />
+		<c:item value="14,26" />
+		<c:item value="15,28" />
+		<c:item value="16,32" />
+		<c:item value="17,24" />
+		<c:item value="18,26" />
+		<c:item value="19,22" />
+		<c:item value="20,20" />
+		<c:item value="21,16" />
+	</c:group>
+	<!-- c:group label="Set 2" values="0,5;1,15;2,30;3,25" />
+	<c:group label="Set 2" values="0,15;1,25;2,10;3,15" /-->
+</c:line>
+<c:line title="Line chart (percentage)" type="percentage"
+	xAxisLabel="X Axis long label" xAxisType="Number"
+	yAxisLabel="Y Axis long label" yAxisType="Number">
+	<c:group label="Set 0">
+		<c:item value="0,30" />
+		<c:item value="1,20" />
+		<c:item value="2,15" />
+		<c:item value="3,30" />
+		<c:item value="4,30" />
+		<c:item value="5,40" />
+		<c:item value="6,30" />
+		<c:item value="7,20" />
+		<c:item value="8,30" />
+		<c:item value="9,15" />
+		<c:item value="10,10" />
+		<c:item value="11,20" />
+		<c:item value="12,15" />
+		<c:item value="13,30" />
+		<c:item value="14,30" />
+		<c:item value="15,40" />
+		<c:item value="16,30" />
+		<c:item value="17,20" />
+		<c:item value="18,30" />
+		<c:item value="19,15" />
+		<c:item value="20,30" />
+		<c:item value="21,5" />
+	</c:group>
+	<c:group label="Set 1">
+		<c:item value="0,20" />
+		<c:item value="1,10" />
+		<c:item value="2,25" />
+		<c:item value="3,40" />
+		<c:item value="4,20" />
+		<c:item value="5,10" />
+		<c:item value="6,20" />
+		<c:item value="7,30" />
+		<c:item value="8,40" />
+		<c:item value="9,25" />
+		<c:item value="10,20" />
+		<c:item value="11,10" />
+		<c:item value="12,25" />
+		<c:item value="13,40" />
+		<c:item value="14,20" />
+		<c:item value="15,10" />
+		<c:item value="16,20" />
+		<c:item value="17,30" />
+		<c:item value="18,40" />
+		<c:item value="19,25" />
+		<c:item value="20,20" />
+		<c:item value="21,10" />
+	</c:group>
+	<c:group label="Set 2">
+		<c:item value="0,10" />
+		<c:item value="1,30" />
+		<c:item value="2,25" />
+		<c:item value="3,10" />
+		<c:item value="4,20" />
+		<c:item value="5,30" />
+		<c:item value="6,40" />
+		<c:item value="7,5" />
+		<c:item value="8,10" />
+		<c:item value="9,25" />
+		<c:item value="10,20" />
+		<c:item value="11,10" />
+		<c:item value="12,5" />
+		<c:item value="13,10" />
+		<c:item value="14,5" />
+		<c:item value="15,10" />
+		<c:item value="16,20" />
+		<c:item value="17,40" />
+		<c:item value="18,20" />
+		<c:item value="19,5" />
+		<c:item value="20,20" />
+		<c:item value="21,15" />
+	</c:group>
+	<c:group label="Set 3">
+		<c:item value="0,12" />
+		<c:item value="1,18" />
+		<c:item value="2,16" />
+		<c:item value="3,12" />
+		<c:item value="4,24" />
+		<c:item value="5,16" />
+		<c:item value="6,18" />
+		<c:item value="7,16" />
+		<c:item value="8,16" />
+		<c:item value="9,22" />
+		<c:item value="10,24" />
+		<c:item value="11,26" />
+		<c:item value="12,28" />
+		<c:item value="13,32" />
+		<c:item value="14,28" />
+		<c:item value="15,34" />
+		<c:item value="16,16" />
+		<c:item value="17,24" />
+		<c:item value="18,22" />
+		<c:item value="19,12" />
+		<c:item value="20,14" />
+		<c:item value="21,16" />
+	</c:group>
+	<c:group label="Set 4">
+		<c:item value="0,12" />
+		<c:item value="1,32" />
+		<c:item value="2,25" />
+		<c:item value="3,22" />
+		<c:item value="4,26" />
+		<c:item value="5,36" />
+		<c:item value="6,32" />
+		<c:item value="7,15" />
+		<c:item value="8,14" />
+		<c:item value="9,10" />
+		<c:item value="10,12" />
+		<c:item value="11,20" />
+		<c:item value="12,22" />
+		<c:item value="13,24" />
+		<c:item value="14,26" />
+		<c:item value="15,28" />
+		<c:item value="16,32" />
+		<c:item value="17,24" />
+		<c:item value="18,26" />
+		<c:item value="19,22" />
+		<c:item value="20,20" />
+		<c:item value="21,16" />
+	</c:group>
+	<!-- c:group label="Set 2" values="0,5;1,15;2,30;3,25" />
+	<c:group label="Set 2" values="0,15;1,25;2,10;3,15" /-->
+</c:line>
+
+<h3>Area chart</h3>
+<p>
+	Options: percentage, stacked (boolean), spline (type)
+</p>
+<c:line title="Line chart" area="true"
+	xAxisLabel="X Axis long label" xAxisType="Number"
+	yAxisLabel="Y Axis long label" yAxisType="Number">
+	<c:group label="Set 0">
+		<c:item value="0,30" />
+		<c:item value="1,20" />
+		<c:item value="2,15" />
+		<c:item value="3,30" />
+		<c:item value="4,30" />
+		<c:item value="5,40" />
+		<c:item value="6,30" />
+		<c:item value="7,20" />
+		<c:item value="8,30" />
+		<c:item value="9,15" />
+		<c:item value="10,10" />
+		<c:item value="11,20" />
+		<c:item value="12,15" />
+		<c:item value="13,30" />
+		<c:item value="14,30" />
+		<c:item value="15,40" />
+		<c:item value="16,30" />
+		<c:item value="17,20" />
+		<c:item value="18,30" />
+		<c:item value="19,15" />
+		<c:item value="20,30" />
+		<c:item value="21,5" />
+	</c:group>
+	<c:group label="Set 1">
+		<c:item value="0,20" />
+		<c:item value="1,10" />
+		<c:item value="2,25" />
+		<c:item value="3,40" />
+		<c:item value="4,20" />
+		<c:item value="5,10" />
+		<c:item value="6,20" />
+		<c:item value="7,30" />
+		<c:item value="8,40" />
+		<c:item value="9,25" />
+		<c:item value="10,20" />
+		<c:item value="11,10" />
+		<c:item value="12,25" />
+		<c:item value="13,40" />
+		<c:item value="14,20" />
+		<c:item value="15,10" />
+		<c:item value="16,20" />
+		<c:item value="17,30" />
+		<c:item value="18,40" />
+		<c:item value="19,25" />
+		<c:item value="20,20" />
+		<c:item value="21,10" />
+	</c:group>
+	<c:group label="Set 2">
+		<c:item value="0,10" />
+		<c:item value="1,30" />
+		<c:item value="2,25" />
+		<c:item value="3,10" />
+		<c:item value="4,20" />
+		<c:item value="5,30" />
+		<c:item value="6,40" />
+		<c:item value="7,5" />
+		<c:item value="8,10" />
+		<c:item value="9,25" />
+		<c:item value="10,20" />
+		<c:item value="11,10" />
+		<c:item value="12,5" />
+		<c:item value="13,10" />
+		<c:item value="14,5" />
+		<c:item value="15,10" />
+		<c:item value="16,20" />
+		<c:item value="17,40" />
+		<c:item value="18,20" />
+		<c:item value="19,5" />
+		<c:item value="20,20" />
+		<c:item value="21,15" />
+	</c:group>
+	<c:group label="Set 3">
+		<c:item value="0,12" />
+		<c:item value="1,18" />
+		<c:item value="2,16" />
+		<c:item value="3,12" />
+		<c:item value="4,24" />
+		<c:item value="5,16" />
+		<c:item value="6,18" />
+		<c:item value="7,16" />
+		<c:item value="8,16" />
+		<c:item value="9,22" />
+		<c:item value="10,24" />
+		<c:item value="11,26" />
+		<c:item value="12,28" />
+		<c:item value="13,32" />
+		<c:item value="14,28" />
+		<c:item value="15,34" />
+		<c:item value="16,16" />
+		<c:item value="17,24" />
+		<c:item value="18,22" />
+		<c:item value="19,12" />
+		<c:item value="20,14" />
+		<c:item value="21,16" />
+	</c:group>
+	<c:group label="Set 4">
+		<c:item value="0,12" />
+		<c:item value="1,32" />
+		<c:item value="2,25" />
+		<c:item value="3,22" />
+		<c:item value="4,26" />
+		<c:item value="5,36" />
+		<c:item value="6,32" />
+		<c:item value="7,15" />
+		<c:item value="8,14" />
+		<c:item value="9,10" />
+		<c:item value="10,12" />
+		<c:item value="11,20" />
+		<c:item value="12,22" />
+		<c:item value="13,24" />
+		<c:item value="14,26" />
+		<c:item value="15,28" />
+		<c:item value="16,32" />
+		<c:item value="17,24" />
+		<c:item value="18,26" />
+		<c:item value="19,22" />
+		<c:item value="20,20" />
+		<c:item value="21,16" />
+	</c:group>
+	<!-- c:group label="Set 2" values="0,5;1,15;2,30;3,25" />
+	<c:group label="Set 2" values="0,15;1,25;2,10;3,15" /-->
+</c:line>
+<c:line title="Area chart (one series)" area="true"
+	xAxisLabel="X Axis long label" xAxisType="Number"
+	yAxisLabel="Y Axis long label" yAxisType="Number">
+	<c:group label="Set 0">
+		<c:item value="0,30" />
+		<c:item value="1,20" />
+		<c:item value="2,15" />
+		<c:item value="3,30" />
+		<c:item value="4,30" />
+		<c:item value="5,40" />
+		<c:item value="6,30" />
+		<c:item value="7,20" />
+		<c:item value="8,30" />
+		<c:item value="9,15" />
+		<c:item value="10,10" />
+		<c:item value="11,20" />
+		<c:item value="12,15" />
+		<c:item value="13,30" />
+		<c:item value="14,30" />
+		<c:item value="15,40" />
+		<c:item value="16,30" />
+		<c:item value="17,20" />
+		<c:item value="18,30" />
+		<c:item value="19,15" />
+		<c:item value="20,30" />
+		<c:item value="21,5" />
+	</c:group>
+</c:line>
+<br />
+<c:line title="Area chart (stack)" type="stack" area="true"
+	xAxisLabel="X Axis long label" xAxisType="Number"
+	yAxisLabel="Y Axis long label" yAxisType="Number">
+	<c:group label="Set 0">
+		<c:item value="0,30" />
+		<c:item value="1,20" />
+		<c:item value="2,15" />
+		<c:item value="3,30" />
+		<c:item value="4,30" />
+		<c:item value="5,40" />
+		<c:item value="6,30" />
+		<c:item value="7,20" />
+		<c:item value="8,30" />
+		<c:item value="9,15" />
+		<c:item value="10,10" />
+		<c:item value="11,20" />
+		<c:item value="12,15" />
+		<c:item value="13,30" />
+		<c:item value="14,30" />
+		<c:item value="15,40" />
+		<c:item value="16,30" />
+		<c:item value="17,20" />
+		<c:item value="18,30" />
+		<c:item value="19,15" />
+		<c:item value="20,30" />
+		<c:item value="21,5" />
+	</c:group>
+	<c:group label="Set 1">
+		<c:item value="0,20" />
+		<c:item value="1,10" />
+		<c:item value="2,25" />
+		<c:item value="3,40" />
+		<c:item value="4,20" />
+		<c:item value="5,10" />
+		<c:item value="6,20" />
+		<c:item value="7,30" />
+		<c:item value="8,40" />
+		<c:item value="9,25" />
+		<c:item value="10,20" />
+		<c:item value="11,10" />
+		<c:item value="12,25" />
+		<c:item value="13,40" />
+		<c:item value="14,20" />
+		<c:item value="15,10" />
+		<c:item value="16,20" />
+		<c:item value="17,30" />
+		<c:item value="18,40" />
+		<c:item value="19,25" />
+		<c:item value="20,20" />
+		<c:item value="21,10" />
+	</c:group>
+	<c:group label="Set 2">
+		<c:item value="0,10" />
+		<c:item value="1,30" />
+		<c:item value="2,25" />
+		<c:item value="3,10" />
+		<c:item value="4,20" />
+		<c:item value="5,30" />
+		<c:item value="6,40" />
+		<c:item value="7,5" />
+		<c:item value="8,10" />
+		<c:item value="9,25" />
+		<c:item value="10,20" />
+		<c:item value="11,10" />
+		<c:item value="12,5" />
+		<c:item value="13,10" />
+		<c:item value="14,5" />
+		<c:item value="15,10" />
+		<c:item value="16,20" />
+		<c:item value="17,40" />
+		<c:item value="18,20" />
+		<c:item value="19,5" />
+		<c:item value="20,20" />
+		<c:item value="21,15" />
+	</c:group>
+	<c:group label="Set 3">
+		<c:item value="0,12" />
+		<c:item value="1,18" />
+		<c:item value="2,16" />
+		<c:item value="3,12" />
+		<c:item value="4,24" />
+		<c:item value="5,16" />
+		<c:item value="6,18" />
+		<c:item value="7,16" />
+		<c:item value="8,16" />
+		<c:item value="9,22" />
+		<c:item value="10,24" />
+		<c:item value="11,26" />
+		<c:item value="12,28" />
+		<c:item value="13,32" />
+		<c:item value="14,28" />
+		<c:item value="15,34" />
+		<c:item value="16,16" />
+		<c:item value="17,24" />
+		<c:item value="18,22" />
+		<c:item value="19,12" />
+		<c:item value="20,14" />
+		<c:item value="21,16" />
+	</c:group>
+	<c:group label="Set 4">
+		<c:item value="0,12" />
+		<c:item value="1,32" />
+		<c:item value="2,25" />
+		<c:item value="3,22" />
+		<c:item value="4,26" />
+		<c:item value="5,36" />
+		<c:item value="6,32" />
+		<c:item value="7,15" />
+		<c:item value="8,14" />
+		<c:item value="9,10" />
+		<c:item value="10,12" />
+		<c:item value="11,20" />
+		<c:item value="12,22" />
+		<c:item value="13,24" />
+		<c:item value="14,26" />
+		<c:item value="15,28" />
+		<c:item value="16,32" />
+		<c:item value="17,24" />
+		<c:item value="18,26" />
+		<c:item value="19,22" />
+		<c:item value="20,20" />
+		<c:item value="21,16" />
+	</c:group>
+	<!-- c:group label="Set 2" values="0,5;1,15;2,30;3,25" />
+	<c:group label="Set 2" values="0,15;1,25;2,10;3,15" /-->
+</c:line>
+<c:line title="Area chart (percentage)" type="percentage" area="true"
+	xAxisLabel="X Axis long label" xAxisType="Number"
+	yAxisLabel="Y Axis long label" yAxisType="Number">
+	<c:group label="Set 0">
+		<c:item value="0,30" />
+		<c:item value="1,20" />
+		<c:item value="2,15" />
+		<c:item value="3,30" />
+		<c:item value="4,30" />
+		<c:item value="5,40" />
+		<c:item value="6,30" />
+		<c:item value="7,20" />
+		<c:item value="8,30" />
+		<c:item value="9,15" />
+		<c:item value="10,10" />
+		<c:item value="11,20" />
+		<c:item value="12,15" />
+		<c:item value="13,30" />
+		<c:item value="14,30" />
+		<c:item value="15,40" />
+		<c:item value="16,30" />
+		<c:item value="17,20" />
+		<c:item value="18,30" />
+		<c:item value="19,15" />
+		<c:item value="20,30" />
+		<c:item value="21,5" />
+	</c:group>
+	<c:group label="Set 1">
+		<c:item value="0,20" />
+		<c:item value="1,10" />
+		<c:item value="2,25" />
+		<c:item value="3,40" />
+		<c:item value="4,20" />
+		<c:item value="5,10" />
+		<c:item value="6,20" />
+		<c:item value="7,30" />
+		<c:item value="8,40" />
+		<c:item value="9,25" />
+		<c:item value="10,20" />
+		<c:item value="11,10" />
+		<c:item value="12,25" />
+		<c:item value="13,40" />
+		<c:item value="14,20" />
+		<c:item value="15,10" />
+		<c:item value="16,20" />
+		<c:item value="17,30" />
+		<c:item value="18,40" />
+		<c:item value="19,25" />
+		<c:item value="20,20" />
+		<c:item value="21,10" />
+	</c:group>
+	<c:group label="Set 2">
+		<c:item value="0,10" />
+		<c:item value="1,30" />
+		<c:item value="2,25" />
+		<c:item value="3,10" />
+		<c:item value="4,20" />
+		<c:item value="5,30" />
+		<c:item value="6,40" />
+		<c:item value="7,5" />
+		<c:item value="8,10" />
+		<c:item value="9,25" />
+		<c:item value="10,20" />
+		<c:item value="11,10" />
+		<c:item value="12,5" />
+		<c:item value="13,10" />
+		<c:item value="14,5" />
+		<c:item value="15,10" />
+		<c:item value="16,20" />
+		<c:item value="17,40" />
+		<c:item value="18,20" />
+		<c:item value="19,5" />
+		<c:item value="20,20" />
+		<c:item value="21,15" />
+	</c:group>
+	<c:group label="Set 3">
+		<c:item value="0,12" />
+		<c:item value="1,18" />
+		<c:item value="2,16" />
+		<c:item value="3,12" />
+		<c:item value="4,24" />
+		<c:item value="5,16" />
+		<c:item value="6,18" />
+		<c:item value="7,16" />
+		<c:item value="8,16" />
+		<c:item value="9,22" />
+		<c:item value="10,24" />
+		<c:item value="11,26" />
+		<c:item value="12,28" />
+		<c:item value="13,32" />
+		<c:item value="14,28" />
+		<c:item value="15,34" />
+		<c:item value="16,16" />
+		<c:item value="17,24" />
+		<c:item value="18,22" />
+		<c:item value="19,12" />
+		<c:item value="20,14" />
+		<c:item value="21,16" />
+	</c:group>
+	<c:group label="Set 4">
+		<c:item value="0,12" />
+		<c:item value="1,32" />
+		<c:item value="2,25" />
+		<c:item value="3,22" />
+		<c:item value="4,26" />
+		<c:item value="5,36" />
+		<c:item value="6,32" />
+		<c:item value="7,15" />
+		<c:item value="8,14" />
+		<c:item value="9,10" />
+		<c:item value="10,12" />
+		<c:item value="11,20" />
+		<c:item value="12,22" />
+		<c:item value="13,24" />
+		<c:item value="14,26" />
+		<c:item value="15,28" />
+		<c:item value="16,32" />
+		<c:item value="17,24" />
+		<c:item value="18,26" />
+		<c:item value="19,22" />
+		<c:item value="20,20" />
+		<c:item value="21,16" />
+	</c:group>
+	<!-- c:group label="Set 2" values="0,5;1,15;2,30;3,25" />
+	<c:group label="Set 2" values="0,15;1,25;2,10;3,15" /-->
+</c:line>
+
+<h3>Bubble chart</h3>
+<p>
+	Options: bubble size
+</p>
+<c:bubble title="Bubble chart" xAxisLabel="Axis X" yAxisLabel="Axis Y">
+	<c:group label="Set 0">
+		<c:item value="5,10,5" />
+		<c:item value="10,20,10" />
+		<c:item value="20,15,1" />
+		<c:item value="30,30,2" />
+	</c:group>
+	<c:group label="Set 1">
+		<c:item value="5,20,8" />
+		<c:item value="15,10,4" />
+		<c:item value="25,25,1" />
+		<c:item value="35,40,3" />
+	</c:group>
+	<c:group label="Set 2">
+		<c:item value="5,30,8" />
+		<c:item value="10,30,4" />
+		<c:item value="20,45,1" />
+		<c:item value="30,50,3" />
+	</c:group>
+</c:bubble>
+<c:bubble title="Bubble chart (one series)" xAxisLabel="Axis X" yAxisLabel="Axis Y">
+	<c:group label="Set 0">
+		<c:item value="5,10,5" />
+		<c:item value="10,20,10" />
+		<c:item value="15,10,10" />
+		<c:item value="20,15,1" />
+		<c:item value="25,25,1" />
+		<c:item value="30,30,100" />
+		<c:item value="35,10,5" />
+		<c:item value="40,20,10" />
+		<c:item value="45,10,10" />
+		<c:item value="50,15,1" />
+		<c:item value="55,25,1" />
+		<c:item value="60,30,2" />
+		<c:item value="65,30,20" />
+	</c:group>
+</c:bubble>
+
+<h3>Map chart</h3>
+<p>
+	Options: no
+</p>
+<c:map title="World map">
+	<c:group label="Set 0">
+		<c:item value="us,100"/>
+		<c:item value="ru,90"/>
+		<c:item value="ca,20"/>
+		<c:item value="se,50"/>
+	</c:group>
+	<c:group label="Set 1">
+		<c:item value="nl,10"/>
+		<c:item value="fr,100"/>
+		<c:item value="gb,20"/>
+		<c:item value="lt,50"/>
+		<c:item value="in,120"/>
+	</c:group>
+	<c:group label="Set 2">
+		<c:item value="jp,10"/>
+		<c:item value="ro,50"/>
+		<c:item value="cn,20"/>
+		<c:item value="de,100"/>
+		<c:item value="ug,50"/>
+	</c:group>
+</c:map>
+<c:map title="World map (one series)">
+	<c:group label="Set 0">
+		<c:item value="us,100" label="value 0"/>
+		<c:item value="ru,10" label="value 1"/>
+		<c:item value="fi,20" label="value 2"/>
+		<c:item value="se,50" label="value 3"/>
+	</c:group>
+</c:map>
+<!--
+<h3>Stream chart</h3>
+<p>
+	Options: no
+</p>
+<c:stream title="Stream chart">
+	<c:group>
+		<c:item value="10"/>
+		<c:item value="20"/>
+		<c:item value="30"/>
+		<c:item value="40"/>
+	</c:group>
+</c:stream>
+ -->
+<h3>Radar chart</h3>
+<p>
+	Options: no
+</p>
+<c:radar title="Radar chart">
+	<c:group label="Set 0">
+		<c:item value="10" />
+		<c:item value="20" />
+		<c:item value="15" />
+		<c:item value="30" />
+		<c:item value="20" />
+	</c:group>
+	<c:group label="Set 1">
+		<c:item value="20" />
+		<c:item value="10" />
+		<c:item value="25" />
+		<c:item value="40" />
+		<c:item value="50" />
+	</c:group>
+	<c:group label="Set 2">
+		<c:item value="5" />
+		<c:item value="15" />
+		<c:item value="10" />
+		<c:item value="20" />
+		<c:item value="40" />
+	</c:group>
+</c:radar>
+<c:radar title="Radar chart (one series)">
+	<c:group label="Set 0">
+		<c:item value="10" />
+		<c:item value="20" />
+		<c:item value="15" />
+		<c:item value="30" />
+		<c:item value="20" />
+	</c:group>
+</c:radar>
+
+<h3>Doughnut chart (orientation)</h3>
+<p>
+	Options: no
+</p>
+<c:doughnut title="Net applications Browsers Stats">
+	<!--c:group label="2007 Q1">
+		<c:item label="Explorer" value="79.38" />
+		<c:item label="Firefox" value="14.35" />
+		<c:item label="Safari" value="4.70" />
+		<c:item label="Chrome" value="0" />
+		<c:item label="Opera" value="0.50" />
+	</c:group>
+	<c:group label="2007 Q2">
+		<c:item label="Explorer" value="78.76" />
+		<c:item label="Firefox" value="14.92" />
+		<c:item label="Safari" value="4.66" />
+		<c:item label="Chrome" value="0" />
+		<c:item label="Opera" value="0.46" />
+	</c:group>
+	<c:group label="2007 Q3">
+		<c:item label="Explorer" value="78.85" />
+		<c:item label="Firefox" value="14.69" />
+		<c:item label="Safari" value="4.80" />
+		<c:item label="Chrome" value="0" />
+		<c:item label="Opera" value="0.51" />
+	</c:group>
+	<c:group label="2007 Q4">
+		<c:item label="Explorer" value="79.16" />
+		<c:item label="Firefox" value="15.84" />
+		<c:item label="Safari" value="2.39" />
+		<c:item label="Chrome" value="0" />
+		<c:item label="Opera" value="1.78" />
+	</c:group>
+	<c:group label="2008 Q1">
+		<c:item label="Explorer" value="77.83" />
+		<c:item label="Firefox" value="16.86" />
+		<c:item label="Safari" value="2.65" />
+		<c:item label="Chrome" value="0" />
+		<c:item label="Opera" value="1.84" />
+	</c:group>
+	<c:group label="2008 Q2">
+		<c:item label="Explorer" value="76.24" />
+		<c:item label="Firefox" value="18.16" />
+		<c:item label="Safari" value="2.73" />
+		<c:item label="Chrome" value="0" />
+		<c:item label="Opera" value="1.97" />
+	</c:group>
+	<c:group label="2008 Q3">
+		<c:item label="Explorer" value="74.93" />
+		<c:item label="Firefox" value="19.07" />
+		<c:item label="Safari" value="2.73" />
+		<c:item label="Chrome" value="0.37" />
+		<c:item label="Opera" value="2.06" />
+	</c:group>
+	<c:group label="2008 Q4">
+		<c:item label="Explorer" value="71.99" />
+		<c:item label="Firefox" value="20.78" />
+		<c:item label="Safari" value="3.11" />
+		<c:item label="Chrome" value="1.16" />
+		<c:item label="Opera" value="2.15" />
+	</c:group-->
+	<c:group xlabel="2009 Q1">
+		<c:item label="Explorer" value="69.13" />
+		<c:item label="Firefox" value="22.67" />
+		<c:item label="Safari" value="3.58" />
+		<c:item label="Chrome" value="1.56" />
+		<c:item label="Opera" value="2.18" />
+	</c:group>
+	<c:group xlabel="2009 Q2">
+		<c:item label="Explorer" value="68.06" />
+		<c:item label="Firefox" value="23.00" />
+		<c:item label="Safari" value="3.67" />
+		<c:item label="Chrome" value="2.13" />
+		<c:item label="Opera" value="2.05" />
+	</c:group>
+	<c:group xlabel="2009 Q3">
+		<c:item label="Explorer" value="66.80" />
+		<c:item label="Firefox" value="23.06" />
+		<c:item label="Safari" value="4.13" />
+		<c:item label="Chrome" value="2.86" />
+		<c:item label="Opera" value="2.07" />
+	</c:group>
+	<c:group xlabel="2009 Q4">
+		<c:item label="Explorer" value="63.94"/>
+		<c:item label="Firefox" value="24.44"/>
+		<c:item label="Safari" value="4.40"/>
+		<c:item label="Chrome" value="3.87"/>
+		<c:item label="Opera" value="2.26"/>
+	</c:group>
+</c:doughnut>
+
+<c:doughnut title="Doughnut chart (one series)">
+	<c:group xlabel="Set 0">
+		<c:item value="10" label="value 0" />
+		<c:item value="10" label="value 1" />
+		<c:item value="10" label="value 2" />
+		<c:item value="50" label="value 3" />
+		<c:item value="10" label="value 4" />
+		<c:item value="10" label="value 5" />
+		<c:item value="10" label="value 6" />
+	</c:group>
+</c:doughnut>
+
+<!-- Single-set charts -->
+<h3>Funnel chart</h3>
+<p>
+	Options: no
+</p>
+<c:funnel title="Funnel chart">
+	<c:item value="40" label="value 0"/>
+	<c:item value="30" label="value 1" />
+	<c:item value="20" label="value 2" />
+	<c:item value="10" label="value 3" />
+	<c:item value="5" label="value 4" />
+</c:funnel>
+
+<h3>Pie chart</h3>
+<p>
+	Options: no
+</p>
+<c:pie title="Pie chart">
+	<c:item value="40" label="value 0"/>
+	<c:item value="30" label="value 1"/>
+	<c:item value="20" label="value 2"/>
+	<c:item value="40" label="value 3"/>
+	<c:item value="10" label="value 4" />
+	<c:item value="5" label="value 5" />
+</c:pie>
+
+		<script>ample.close()</script>
+	</body>
+</html>

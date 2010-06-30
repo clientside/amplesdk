@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<div xmlns="http://www.w3.org/1999/xhtml">
+	<i>I am in include.xml and I am loaded by XInclude!</i>
+</div>

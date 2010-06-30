@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULPopupElement" name="popup" type="boxed">
+	<abstract>
+		<locale xml:lang="ru">
+			Контейнер, отображаемый в дочернем окне. Всплывающий контейнер не имеет специальной рамки.
+			Всплывающие контейнеры могут появляться, когда у элемента, на котором загорается событие <link type="event">click</link>,
+			атрибут <link type="attribute">popup</link> выставлен в значени идентификатора всплывающего контейнера.
+			Всплывающий контейнер является элементом типа <link type="element">box</link> с вертикальной ориентацией по умолчанию.
+			Все элементы <link type="element">popup</link> должны быть размещены в контейнере <link type="element">popupset</link>.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes />
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

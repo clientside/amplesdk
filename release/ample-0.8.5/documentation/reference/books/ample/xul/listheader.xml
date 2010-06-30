@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="listheader" type="regular">
+	<implements />
+	<abstract>
+		<locale xml:lang="ru">
+			Заголовок столбца элемента <link type="element">listbox</link>. Размещается внутри элемента <link type="element">listhead</link>.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="label" readonly="false" default="">
+				<description>
+					<locale xml:lang="ru">
+						Текстовая метка внутри элемента <link type="element">listheader</link>.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="minwidth" readonly="false" default="">
+				<description>
+					<locale xml:lang="ru">
+						Минимальная ширина элемента.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

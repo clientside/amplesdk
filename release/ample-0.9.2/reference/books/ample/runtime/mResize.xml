@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="AMLResize">
+	<abstract>
+		<locale>
+			Implements Resize functionality.
+		</locale>
+		<locale xml:lang="ru">
+			Реализует функциональность изменения размеров с помощью интерфейса пользователя.
+		</locale>
+	</abstract>
+	<remarks/>
+	<examples/>
+	<members>
+		<methods />
+		<properties>
+			<property name="$resizable" type="Boolean">
+				<description>
+					<locale>
+						Keeps a flag indicating whether element size can be modified.
+					</locale>
+					<locale xml:lang="ru">
+						Если true, размеры элемента могут быть изменены.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<attributes />
+		<events>
+			<event name="resizestart" group="ResizeEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						Fires when user starts resizing an object.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается на объекте, когда пользователь начинает операцию над ним.
+						Свойство <link type="property">edge</link> содержит значение of the edge
+					</locale>
+				</description>
+			</event>
+			<event name="resizeend" group="ResizeEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						Fires when user ends resizing an object.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается на объекте, когда пользователь отпускает кнопку мыши, заканчивая операцию над ним.
+						Свойство <link type="property">edge</link> содержит значение of the edge
+					</locale>
+				</description>
+			</event>
+			<event name="resize" group="ResizeEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						Fires continuously while user is resizing object.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается на объекте непрерывно, пока его размеры изменяются пользователем.
+						Свойство <link type="property">edge</link> содержит значение of the edge
+					</locale>
+				</description>
+			</event>
+		</events>
+		<pseudoclasses>
+			<pseudoclass name="resize">
+				<description>
+					<locale>
+						Applied to the resized element during operation
+					</locale>
+				</description>
+			</pseudoclass>
+		</pseudoclasses>
+	</members>
+</object>

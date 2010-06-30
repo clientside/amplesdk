@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element name="par">
+	<abstract>
+		<locale>
+			The excl element is a time container with semantics based upon par, but with the additional constraint that only one child element may play at any given time.
+		</locale>
+	</abstract>
+	<examples />
+	<members>
+		<attributes>
+			<!-- Simple animation -->
+			<attribute name="begin">
+				<description>
+					<locale>
+						Defines when the element becomes active.
+					</locale>
+				</description>
+			</attribute>
+
+			<attribute name="dur">
+				<description>
+					<locale>
+						Specifies the simple duration.
+					</locale>
+				</description>
+			</attribute>
+
+			<attribute name="end">
+				<description>
+					<locale>
+						Defines an end value for the element that may constrain the active duration.
+					</locale>
+				</description>
+			</attribute>
+
+			<!-- Repeat -->
+			<attribute name="repeatCount">
+				<description>
+					<locale>
+						Specifies the number of iterations of the simple duration (Numeric value). When set to "indefinite" the element is defined to repeat indefinitely
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="repeatDur">
+				<description>
+					<locale>
+						Specifies the total duration for repeat (Clock value). When set to "indefinite" the element is defined to repeat indefinitely
+					</locale>
+				</description>
+			</attribute>
+
+			<!-- Time manipulations module -->
+			<attribute name="autoReverse">
+				<values>
+					<value name="true">
+						<description>
+							<locale>
+								Reverse playing.
+							</locale>
+						</description>
+					</value>
+					<value name="false">
+						<description>
+							<locale>
+								Do not reverse playing.
+								This is the default.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale>
+						Controls autoReverse playback mode.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="accelerate">
+				<description>
+					<locale>
+						Defines a simple acceleration of time for the element.
+						Legal values are floating point values between 0 and 1 (inclusive).
+						The default value is 0 (no acceleration).
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="decelerate">
+				<description>
+					<locale>
+						Defines a simple deceleration of time for the element.
+						Legal values are floating point values between 0 and 1 (inclusive).
+						The default value is 0 (no deceleration).
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="speed">
+				<description>
+					<locale>
+						The speed attribute controls the local playback speed of an element, to speed up or slow down the effective rate of play relative to the parent time container.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

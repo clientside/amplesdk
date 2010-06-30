@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULPopupElement" name="menupopup">
+	<abstract>
+		<locale>
+			A container used to display the contents of a popup menu.
+			When a menupopup is open, it floats above the window and may extend outside the window border.
+		</locale>
+		<locale xml:lang="ru">
+			Контейнер для отрисовки меню. Помещается внутри <link type="element">menu</link>. Может содержать только элементы <link type="element">menuitem</link>.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes />
+		<methods />
+		<properties>
+			<property name="selectedItem" type="AMLElement" readonly="true">
+				<description>
+					<locale>
+						Contains a reference top the selected <link type="element">menuitem</link> element.
+					</locale>
+					<locale xml:lang="ru">
+						Ссылка на выделенный в настоящий момент элемент <link type="element">menuitem</link>.
+					</locale>
+				</description>
+			</property>
+			<property name="items" type="AMLNodeList">
+				<description>
+					<locale>
+						Contains a collection of <link type="element">menuitem</link> child elements.
+					</locale>
+					<locale xml:lang="ru">
+						Коллекция всех дочерних элементов <link type="element">menuitem</link>.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<events />
+	</members>
+</element>

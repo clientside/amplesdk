@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:smil="http://www.w3.org/2008/SMIL30/">
+	<head>
+		<title>Example: SMIL</title>
+		<script type="text/javascript" src="../../../ample/runtime.js"></script>
+		<script type="text/javascript" src="../../../ample/languages/xhtml/xhtml.js"></script>
+        <style type="text/css">
+        	h5, h4, h3 {
+        		margin-top: 5px;
+        		margin-bottom: 5px;
+        	}
+        	h3 {
+        		border-bottom: solid 1px silver;
+        	}
+        	h4 {
+        		border-bottom: double 3px silver;
+        	}
+        	.animateable {
+        		width:  250px;
+        		height:	16px;
+        		position:	relative;
+        		border: solid 1px red;
+        		background-color: pink;
+        		margin: 5px;
+        		font: normal 12px Arial;
+        	}
+        </style>
+	</head>
+	<body>
+		<h3>SMIL 3.0</h3>
+		<script type="application/ample+xml">
+			<h4>Simple Animation (linear)</h4>
+			<h5>set @attributeName="left"</h5>
+			<div class="animateable" style="left: 0px; top: 0px">
+				<smil:set begin="click" dur="1s" to="200px" attributeName="left" attributeType="CSS" />
+				smil:set @to
+			</div>
+
+			<h5>animate @attributeName="left"</h5>
+			<div class="animateable" style="left: 0px; top: 0px">
+				<smil:animate begin="click" dur="300ms" from="50px" to="200px" attributeName="left" attributeType="CSS" />
+				smil:animate @from/@to
+			</div>
+			<div class="animateable" style="left: 0px; top: 0px">
+				<smil:animate begin="click" dur="1s" to="200px" attributeName="left" attributeType="CSS" />
+				smil:animate @to
+			</div>
+			<div class="animateable" style="left: 0px; top: 0px">
+				<smil:animate begin="click" dur="1s" from="50px" by="150px" attributeName="left" attributeType="CSS" />
+				smil:animate @from/@by
+			</div>
+			<div class="animateable" style="left: 0px; top: 0px">
+				<smil:animate begin="click" dur="1s" by="200px" attributeName="left" attributeType="CSS" />
+				smil:animate @by
+			</div>
+			<div class="animateable" style="left: 0px; top: 0px">
+				<smil:animate begin="click" dur="1s" values="50px;100px;150px;200px" attributeName="left" attributeType="CSS" />
+				smil:animate @values
+			</div>
+			<div class="animateable" style="left: 0px; top: 0px">
+				<smil:animate begin="click" dur="1s" calcMode="discrete" values="50px;100px;150px;200px" attributeName="left" attributeType="CSS" />
+				smil:animate @values @calcMode=discrete
+			</div>
+			<div class="animateable" style="left: 0px; top: 0px">
+				<smil:animate begin="click" dur="1s" calcMode="paced" values="50px;50px;50px;50px" attributeName="left" attributeType="CSS" />
+				smil:animate @values @calcMode=paced
+			</div>
+
+			<h5>animateMotion</h5>
+			<div class="animateable" style="left: 0px; top: 0px">
+				<smil:animateMotion begin="click" dur="1s" from="0px 0px" to="100px 200px" attributeType="CSS" />
+				smil:animateMotion @from/@to
+			</div>
+			<div class="animateable" style="left: 0px; top: 0px">
+				<smil:animateMotion begin="click" dur="1s" by="200px 200px" attributeType="CSS" />
+				smil:animateMotion @by
+			</div>
+
+			<h5>animateColor attributeName="background-color"</h5>
+			<div class="animateable" style="left: 0px; top: 0px">
+				<smil:animateColor begin="click" dur="1s" from="rgb(0, 0, 0)" to="rgb(255, 255, 255)" attributeName="background-color" attributeType="CSS" />
+				smil:animateColor rgb(d, d, d) @from/@to
+			</div>
+			<div class="animateable" style="left: 0px; top: 0px">
+				<smil:animateColor begin="click" dur="1s" from="#000000" to="#ffffff" attributeName="background-color" attributeType="CSS" />
+				smil:animateColor #hhh @from/@to
+			</div>
+			<div class="animateable" style="left: 0px; top: 0px">
+				<smil:animateColor begin="click" dur="1s" from="#000" to="#fff" attributeName="background-color" attributeType="CSS" />
+				smil:animateColor #hhhhhh @from/@to
+			</div>
+			<div class="animateable" style="left: 0px; top: 0px">
+				<smil:animateColor begin="click" dur="1s" from="red" to="blue" attributeName="background-color" attributeType="CSS" />
+				smil:animateColor @from=red/@to=blue
+			</div>
+			<div class="animateable" style="left: 0px; top: 0px">
+				<smil:animateColor begin="click" dur="1s" to="green" attributeName="background-color" attributeType="CSS" />
+				smil:animateColor @to
+			</div>
+
+			<h4>Repetition</h4>
+			<div class="animateable" style="left: 0px; top: 0px">
+				<smil:animate begin="click" repeatCount="5" dur="1s" from="50px" to="200px" attributeName="left" attributeType="CSS" />
+				smil:animate @repeatCount=5
+			</div>
+
+			<div class="animateable" style="left: 0px; top: 0px">
+				<smil:animate begin="click" repeatDur="5s" dur="1s" from="50px" to="200px" attributeName="left" attributeType="CSS" />
+				smil:animate @repeatDur=5s
+			</div>
+
+			<h4>Time Manipulations</h4>
+			<div class="animateable" style="left: 0px; top: 0px">
+				<smil:animate begin="click" autoReverse="true" dur="1s" from="50px" to="200px" attributeName="left" attributeType="CSS" />
+				smil:animate @autoReverse=true
+			</div>
+			<div class="animateable" style="left: 0px; top: 0px">
+				<smil:animate begin="click" speed="0.5" dur="1s" from="50px" to="200px" attributeName="left" attributeType="CSS" />
+				smil:animate @speed=0.5
+			</div>
+			<div class="animateable" style="left: 0px; top: 0px">
+				<smil:animate begin="click" accelerate="0.5" dur="1s" from="50px" to="200px" attributeName="left" attributeType="CSS" />
+				smil:animate @accelerate=0.5
+			</div>
+			<div class="animateable" style="left: 0px; top: 0px">
+				<smil:animate begin="click" decelerate="0.5" dur="1s" from="50px" to="200px" attributeName="left" attributeType="CSS" />
+				smil:animate @decelerate=0.5
+			</div>
+
+			<!--h4>Additive and Cummulative</h4>
+			<div class="animateable" style="left: 0px; top: 0px">
+				<smil:animate begin="click" accumulate="sum" repeatCount="5" dur="1s" from="50px" to="200px" attributeName="left" attributeType="CSS" />
+				smil:animate @accumulate=sum
+			</div>
+			<div class="animateable" style="left: 0px; top: 0px">
+				<smil:animate begin="click" additive="sum" accumulate="sum" repeatCount="5" dur="1s" from="50px" to="200px" attributeName="left" attributeType="CSS" />
+				smil:animate @additive=sum
+			</div-->
+
+			<!--h4>Parallel</h4>
+			<div class="animateable" style="left: 0px; top: 0px">
+				<smil:par begin="click" dur="1s">
+					<smil:animate from="50px" to="200px" attributeName="left" attributeType="CSS" />
+					<smil:animate from="50px" to="200px" attributeName="top" attributeType="CSS" />
+				</smil:par>
+				smil:par / 2 * animate @from/@to
+			</div>
+
+			<h4>Sequential</h4>
+			<div class="animateable" style="left: 0px; top: 0px">
+				<smil:seq begin="click" dur="1s">
+					<smil:animate from="50px" to="200px" attributeName="left" attributeType="CSS" />
+					<smil:animate from="50px" to="200px" attributeName="top" attributeType="CSS" />
+				</smil:seq>
+				smil:seq / 2 * animate @from/@to
+			</div-->
+		</script>
+ 	</body>
+</html>

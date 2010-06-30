@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" xmlns:svg="http://www.w3.org/2000/svg">
+	<head>
+		<title>Units</title>
+        <script type="text/javascript" src="../../../ample/runtime.js"></script>
+        <script type="text/javascript" src="../../../ample/languages/svg/svg.js"></script>
+        <style>
+        	h5 {
+        		margin: 1em;
+        		margin-left: 0px;
+        	}
+        	/* border around container */
+        	div {
+				border: solid 1px silver;
+        	}
+        	.svg-svg {
+        		background-color: #f0f0f0;
+        	}/*
+        	.svg-rect {
+				border: solid 1px blue;
+        	}
+        	.svg-text {
+				border: solid 1px red;
+				align:left;
+        	}*/
+        </style>
+	</head>
+	<body>
+		<h3>1. Circles </h3>
+		<script type="text/javascript">ample.open()</script>
+			<svg:svg viewBox="0,0 200,200" width="200px" height="100px">
+				<svg:circle cx="100" cy="100" r="50" stroke="red"/>
+			</svg:svg>
+		</script>
+
+		<script type="text/javascript">ample.open()</script>
+			<svg:svg viewBox="0,0 200,200" width="200px" height="200px">
+				<svg:circle cx="100" cy="100" r="50" stroke="red"/>
+			</svg:svg>
+		</script>
+
+		<script type="text/javascript">ample.open()</script>
+			<svg:svg viewBox="0,0 200,200" width="200px" height="400px">
+				<svg:circle cx="100" cy="100" r="50" stroke="red"/>
+			</svg:svg>
+		</script>
+
+		<script type="text/javascript">ample.open()</script>
+			<svg:svg viewBox="0,0 200,200" width="100px" height="200px">
+				<svg:circle cx="100" cy="100" r="50" stroke="red"/>
+			</svg:svg>
+		</script>
+
+		<script type="text/javascript">ample.open()</script>
+			<svg:svg viewBox="0,0 200,200" width="100px" height="400px">
+				<svg:circle cx="100" cy="100" r="50" stroke="red"/>
+			</svg:svg>
+		</script>
+
+		<script type="text/javascript">ample.open()</script>
+			<svg:svg viewBox="0,0 200,200" width="400px" height="100px">
+				<svg:circle cx="100" cy="100" r="50" stroke="red"/>
+			</svg:svg>
+		</script>
+
+		<script type="text/javascript">ample.open()</script>
+			<svg:svg viewBox="0,0 200,200" width="400px" height="400px">
+				<svg:circle cx="100" cy="100" r="50" stroke="red"/>
+			</svg:svg>
+		</script>
+
+		<h3>2. Rectangles / Text</h3>
+		<h5>viewBox="0,0 1000,200" width="1000px" height="200px"</h5>
+		<script type="text/javascript">ample.open()</script>
+			<svg:svg viewBox="0,0 1000,200" width="1000px" height="200px">
+				<svg:rect x="100" y="100" height="100" width="100" stroke="silver" stroke-width="50" fill="none"/>
+				<svg:rect x="300" y="100" height="100" width="100" stroke="silver" stroke-width="50pt" fill="none"/>
+				<svg:rect x="500" y="100" height="100" width="100" stroke="silver" stroke-width="50px" fill="none"/>
+				<svg:rect x="700" y="100" height="100" width="100" stroke="silver" stroke-width="2cm" fill="none"/>
+				<svg:rect x="900" y="100" height="100" width="100" stroke="silver" stroke-width="1" fill="none"/>
+				<svg:g fill="white">
+					<svg:text x="100" y="100" fill="yellow" stroke="green" font-size="50">M. Text</svg:text>
+					<svg:text x="300" y="100" stroke="green" font-size="50pt">M. Text</svg:text>
+					<svg:text x="500" y="100" stroke="green" font-size="50px">M. Text</svg:text>
+					<svg:text x="700" y="100" stroke="green" font-size="2cm">M. Text</svg:text>
+					<svg:text x="900" y="100" stroke="green" font-size="50">M. Text</svg:text>
+				</svg:g>
+			</svg:svg>
+		<script type="text/javascript">ample.close()</script>
+
+		<h5>viewBox="0,0 1000,100" width="1000px" height="200px"</h5>
+		<script type="text/javascript">ample.open()</script>
+			<svg:svg viewBox="0,0 1000,100" width="1000px" height="200px">
+				<svg:rect x="100" y="100" height="100" width="100" stroke="silver" stroke-width="50" fill="none"/>
+				<svg:rect x="300" y="100" height="100" width="100" stroke="silver" stroke-width="50pt" fill="none"/>
+				<svg:rect x="500" y="100" height="100" width="100" stroke="silver" stroke-width="50px" fill="none"/>
+				<svg:rect x="700" y="100" height="100" width="100" stroke="silver" stroke-width="2cm" fill="none"/>
+
+				<svg:text x="100" y="100" stroke="green" font-size="50">M. Text</svg:text>
+				<svg:text x="300" y="100" stroke="green" font-size="50pt">M. Text</svg:text>
+				<svg:text x="500" y="100" stroke="green" font-size="50px">M. Text</svg:text>
+				<svg:text x="700" y="100" stroke="green" font-size="2cm">M. Text</svg:text>
+			</svg:svg>
+		<script type="text/javascript">ample.close()</script>
+
+		<h5>viewBox="0,0 1000,200" width="1000px" height="100px"</h5>
+		<script type="text/javascript">ample.open()</script>
+			<svg:svg viewBox="0,0 1000,200" width="1000px" height="100px">
+				<svg:rect x="100" y="100" height="100" width="100" stroke="silver" stroke-width="50" fill="none"/>
+				<svg:rect x="300" y="100" height="100" width="100" stroke="silver" stroke-width="50pt" fill="none"/>
+				<svg:rect x="500" y="100" height="100" width="100" stroke="silver" stroke-width="50px" fill="none"/>
+				<svg:rect x="700" y="100" height="100" width="100" stroke="silver" stroke-width="2cm" fill="none"/>
+
+				<svg:text x="100" y="100" stroke="green" font-size="50">M. Text</svg:text>
+				<svg:text x="300" y="100" stroke="green" font-size="50pt">M. Text</svg:text>
+				<svg:text x="500" y="100" stroke="green" font-size="50px">M. Text</svg:text>
+				<svg:text x="700" y="100" stroke="green" font-size="2cm">M. Text</svg:text>
+			</svg:svg>
+		<script type="text/javascript">ample.close()</script>
+
+		<h5>viewBox="0,0 1000,100" width="1000px" height="100px"</h5>
+		<script type="text/javascript">ample.open()</script>
+			<svg:svg viewBox="0,0 1000,100" width="1000px" height="100px">
+				<svg:rect x="100" y="100" height="100" width="100" stroke="silver" stroke-width="50" fill="none"/>
+				<svg:rect x="300" y="100" height="100" width="100" stroke="silver" stroke-width="50pt" fill="none"/>
+				<svg:rect x="500" y="100" height="100" width="100" stroke="silver" stroke-width="50px" fill="none"/>
+				<svg:rect x="700" y="100" height="100" width="100" stroke="silver" stroke-width="2cm" fill="none"/>
+
+				<svg:text x="100" y="100" stroke="green" font-size="50">M. Text</svg:text>
+				<svg:text x="300" y="100" stroke="green" font-size="50pt">M. Text</svg:text>
+				<svg:text x="500" y="100" stroke="green" font-size="50px">M. Text</svg:text>
+				<svg:text x="700" y="100" stroke="green" font-size="2cm">M. Text</svg:text>
+			</svg:svg>
+		<script type="text/javascript">ample.close()</script>
+
+ 	</body>
+</html>

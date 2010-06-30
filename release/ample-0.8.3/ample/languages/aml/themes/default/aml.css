@@ -1,0 +1,41 @@
+/*
+	filepicker
+*/
+aml|filepicker::input {
+	width:  150px;
+}
+
+aml|filepicker::input[type=file] {
+	margin: 1px;
+	-moz-box-sizing: border-box;
+}
+
+/*
+	pager
+*/
+aml|pager {
+	border: solid 1px red;
+	height: 20px;
+}
+
+aml|pager::body {
+
+}
+
+aml|pager-item {
+	width:	20px;
+	cursor:	default;
+	background-color: pink;
+}
+
+aml|pager-item:hover {
+	background-color: lightgreen;
+}
+
+aml|pager-item:active {
+	background-color: lightblue;
+}
+
+aml|pager-item:selected {
+	background-color: blue;
+}

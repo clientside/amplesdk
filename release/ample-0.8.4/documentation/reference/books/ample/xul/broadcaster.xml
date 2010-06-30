@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="broadcaster" type="virtual">
+	<implements />
+	<abstract>
+		<locale xml:lang="ru">
+			Этот элемент используется в случаях, когда необходимо, чтобы несколько элементов
+			имели один или несколько общих значений атрибута, или же когда необходимо,
+			чтобы элементы реагировали на их изменение.
+			Любой элемент, который слушает элемент <link type="element">broadcaster</link> (обсервер),
+			будет предоставлять свои атрибуты, размещенные на нем, для общего использования.
+			Например, если элемент <link type="element">broadcaster</link> имеет атрибут <link type="attribute">label</link>,
+			обсерверы будут использовать его значение. Если его значение изменяется,
+			значение атрибута <link type="attribute">label</link> у всех обсерверов изменится
+			автоматически и загорится событие <link type="event">broadcast</link>.
+			Для элементов <link type="element">menuitem</link> и <link type="element">button</link> вместо
+			элемента <link type="element">broadcaster</link> следует использовать
+			элемент <link type="element">command</link>.
+			Элемент <link type="element">broadcater</link> должен быть размещен внутри
+			элемента <link type="element">broadcasterset</link>.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes />
+		<methods />
+		<properties />
+		<events>
+<!--
+			<event name="broadcast" cancelable="false">
+				<description>
+					This event handler is called when the broadcast is activated. This occurs when some attribute of the element <link type="element">broadcaster</link> is changed.
+				</description>
+			</event>
+-->
+		</events>
+	</members>
+</element>

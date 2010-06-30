@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US">
+	<head>
+		<title>SVG Photo Album</title>
+        <script type="text/javascript" src="../../../ample/runtime.js"></script>
+        <script type="text/javascript" src="../../../ample/languages/svg/svg.js"></script>
+        <style type="text/css">
+	        html, body {
+	        	height: 100%;
+	        }
+        </style>
+	</head>
+	<body>
+		<h4>SVG Photo Album</h4>
+		<p>
+			This is a test for SVG gallery (taken from http://people.mozilla.com/~vladimir/demos/photos.svg)
+		</p>
+	<script type="text/javascript">
+      var SVG = "http://www.w3.org/2000/svg";
+      var XLINK = "http://www.w3.org/1999/xlink";
+      var hotspot = "rgba(0,200,200,0.3)";
+
+      var currentTransform = null;
+
+      function doload() {
+          var images;
+
+          // Load a few images; some extra stuff here for make
+          // testing from file:// URLs easier -- it will load
+          // standard wallpapers on OSX or Vista.
+        try {
+          if (window.localtion.toString().indexOf("http") != -1) {
+              images = [ "http://farm1.static.flickr.com/234/535566372_33c1025c7b_o.jpg",
+                         "http://farm2.static.flickr.com/1159/534271166_db0f114a5d_o.jpg",
+                         "http://farm1.static.flickr.com/120/313853602_d759910c1e_b.jpg",
+                         "http://farm1.static.flickr.com/122/313940834_8bf97d364e_b.jpg" ];
+          } else if (window.localtion.toString().toLowerCase().indexOf("users") != -1) {
+              images = ["file:///Library/Desktop Pictures/Nature/Flowing Rock.jpg",
+                        "file:///Library/Desktop Pictures/Nature/Stones.jpg",
+                        "file:///Library/Desktop Pictures/Plants/Lotus.jpg",
+                        "file:///Library/Desktop Pictures/Plants/Dandelion.jpg" ];
+          } else {
+              images = ["file:///c:/Windows/Web/Wallpaper/img9.jpg",
+                        "file:///c:/Windows/Web/Wallpaper/img7.jpg",
+                        "file:///c:/Windows/Web/Wallpaper/img11.jpg",
+                        "file:///c:/Windows/Web/Wallpaper/img10.jpg"];
+          }
+        } catch (e) {
+          images = [ "http://farm1.static.flickr.com/234/535566372_33c1025c7b_o.jpg",
+                     "http://farm2.static.flickr.com/1159/534271166_db0f114a5d_o.jpg",
+                     "http://farm1.static.flickr.com/120/313853602_d759910c1e_b.jpg",
+                     "http://farm1.static.flickr.com/122/313940834_8bf97d364e_b.jpg" ];
+        }
+
+          // Load the images in the background, and only add them once they're
+          // loaded (and, presumably, cached by the broser)
+          for (var k = 0; k < images.length; k++) {
+              var img = new Image();
+
+              // do some hackyness here to get the correct variables
+              // to the function
+              img.onload = function(k, url) { return function() {
+                      var g = addImage(url, 1.0);
+                      g.setAttribute("opacity", "1.0");
+                      g.vTranslate = [100 + Math.random() * 300 + (k%3) * 250,
+                                      100 + Math.random() * 300 + (k/3) * 280];
+                      var c = 0.25 + (Math.random() * .25);
+                      g.vScale = c; // 0.25; // 0.001;
+                      g.vRotate = (Math.random() * 40) - 20;
+
+                      setupTransform(g.getAttribute("id"));
+                      rampOpacityUp(g);
+                  }
+              } (k, images[k]);
+
+              img.src = images[k];
+          }
+
+          ample.getElementById("canvas").addEventListener("mousemove", onMouseMove, false);
+          ample.getElementById("canvas").addEventListener("mouseup", onMouseUp, false);
+          ample.getElementById("background-rect").addEventListener("mousemove", onMouseMove, false);
+          ample.getElementById("background-rect").addEventListener("mouseup", onMouseUp, false);
+      }
+
+      // convenience function to set X, Y, width, and height attributes
+      function svgSetXYWH(el, x, y, w, h) {
+          el.setAttribute("x", x);
+          el.setAttribute("y", y);
+          el.setAttribute("width", w);
+          el.setAttribute("height", h);
+      }
+
+      // create a new clickable rect [x,y,w,h] with the givenfill/stroke
+      // with the given handler on mouse down
+      function newClickableRect(id, x, y, w, h, fill, stroke, handler) {
+          var p = ample.createElementNS(SVG, "rect");
+          p.setAttribute("id", id);
+          svgSetXYWH(p, x, y, w, h);
+          p.setAttribute("rx", 30);
+          p.setAttribute("ry", 30);
+          p.setAttribute("fill", fill);
+          p.setAttribute("stroke", stroke);
+          p.setAttribute("stroke-width", 10);
+          p.addEventListener("mousedown", handler, false);
+          return p;
+      }
+
+      // create all the elements for the given image URL.
+      // this includes the toplevel group, the image itself,
+      // and the clickable hotspots used for rotating the image.
+      var nextImageId = 0;
+      function addImage(url, initOpacity) {
+          var imgw = 1000;
+          var imgh = 700;
+
+          var id = nextImageId++;
+          var s = "image" + id;
+          var g = ample.createElementNS(SVG, "g");
+          ample.getElementById("canvas").appendChild(g);
+
+          g.setAttribute("id", s);
+          g.addEventListener("mouseover", onEnterImage, false);
+          g.addEventListener("mouseout", onExitImage, false);
+          g.addEventListener("mousedown", function(evt) { startTransform(evt, "c", "move"); evt.preventDefault(); }, false);
+
+          if (initOpacity != null)
+        	  g.setAttribute("opacity", initOpacity);
+
+          var image = ample.createElementNS(SVG, "image");
+          image.setAttribute("id", s+"-img");
+          svgSetXYWH(image, -imgw/2, -imgh/2, imgw, imgh);
+          image.setAttribute("preserveAspectRatio", "xMinYMin slice");
+          // todo
+          image.setAttributeNS(XLINK, "href", url);
+          //image.setAttribute("xlink:href", url);
+          g.appendChild(image);
+
+          var rect = ample.createElementNS(SVG, "rect");
+          rect.setAttribute("id", s+"-border");
+          svgSetXYWH(rect, -imgw/2, -imgh/2, imgw, imgh);
+          rect.setAttribute("stroke", "black");
+          rect.setAttribute("rx", "10");
+          rect.setAttribute("ry", "10");
+          rect.setAttribute("stroke-width", "20");
+          rect.setAttribute("fill", "none");
+
+          g.appendChild(rect);
+
+          var g2 = ample.createElementNS(SVG, "g");
+          g2.setAttribute("id", s+"-overlay");
+          g2.setAttribute("class", "image-overlay");
+          g2.setAttribute("style", "visibility: hidden");
+
+
+          g.appendChild(g2);
+
+          var rsz = 200;
+
+          g2.appendChild(newClickableRect(s+"-tl", -imgw/2, -imgh/2, rsz, rsz,
+                                          hotspot, "rgba(100,100,200,0.5)",
+                                          function (evt) { return startTransform(evt, 'tl', 'rotate'); }));
+          g2.appendChild(newClickableRect(s+"-tr", imgw/2-rsz, -imgh/2, rsz, rsz,
+                                          hotspot, "rgba(100,100,200,0.5)",
+                                          function (evt) { return startTransform(evt, 'tr', 'rotate'); }));
+          g2.appendChild(newClickableRect(s+"-br", imgw/2-rsz, imgh/2-rsz, rsz, rsz,
+                                          hotspot, "rgba(100,100,200,0.5)",
+                                          function (evt) { return startTransform(evt, 'br', 'rotate'); }));
+          g2.appendChild(newClickableRect(s+"-bl", -imgw/2, imgh/2-rsz, rsz, rsz,
+                                          hotspot, "rgba(100,100,200,0.5)",
+                                          function (evt) { return startTransform(evt, 'bl', 'rotate'); }));
+          /*
+          g2.appendChild(newClickableRect(s+"-c", -rsz/2, -rsz/2, rsz, rsz,
+                                          hotspot, "rgba(100,100,100,0.5)",
+                                          function (evt) { return startTransform(evt, 'c', 'scale'); }));
+          */
+
+
+
+
+          return g;
+      }
+
+      function bringToFront(s) {
+          var el = ample.getElementById(s);
+
+//          el.parentNode.removeChild(el);
+          ample.getElementById("canvas").appendChild(el);
+      }
+
+      // take the transforms saved on the element and turn them into
+      // svg transform syntax
+      function setupTransform(s) {
+          var g = ample.getElementById(s);
+          var g2 = ample.getElementById(s + "-overlay");
+
+          g.setAttribute("transform", "translate(" + g.vTranslate[0] + "," + g.vTranslate[1] + ") " +
+                         "scale(" + g.vScale + "," + g.vScale + ") " +
+                         "rotate(" + g.vRotate + ") ");
+      }
+
+      function baseName(ev) {
+          var id = ev.target.getAttribute("id");
+          return id.substr(0, id.indexOf("-"));
+      }
+
+      function onEnterImage(ev) {
+          var e = baseName(ev);
+          if (!e)
+              return;
+          ample.getElementById(e + '-overlay').style.visibility = "visible";
+          ev.preventDefault();
+      }
+
+      function onExitImage(ev) {
+          var e = baseName(ev);
+          if (!e)
+              return;
+          ample.getElementById(e + '-overlay').style.visibility = "hidden";
+          ev.preventDefault();
+      }
+
+      function startTransform(ev, corner, what) {
+          // ignore if something else is already going on
+          if (currentTransform != null)
+              return;
+
+          var e = baseName(ev);
+          if (!e)
+              return;
+
+          bringToFront(e);
+          var g = ample.getElementById(e);
+
+          currentTransform = { what: what, el: e, corner: corner, g: g,
+                               s: g.vScale, r: g.vRotate, t: g.vTranslate,
+                               x: ev.clientX, y: ev.clientY };
+          rampOpacityDown(currentTransform.g);
+      }
+
+      function onMouseUp(ev) {
+          if (currentTransform)
+              rampOpacityUp(currentTransform.g);
+          currentTransform = null;
+          ev.preventDefault();
+      }
+
+      function onMouseMove(ev) {
+          if (!("currentTransform" in window) ||
+              currentTransform == null)
+              return;
+
+          var ex = ev.clientX;
+          var ey = ev.clientY;
+          var pos = currentTransform.g.vTranslate;
+
+          if (currentTransform.what == "rotate") {
+              var r2d = 360.0 / (2.0 * Math.PI);
+
+              var lastAngle = Math.atan2(currentTransform.y - pos[1],
+                                         currentTransform.x - pos[0]) * r2d;
+              var curAngle = Math.atan2(ey - pos[1],
+                                        ex - pos[0]) * r2d;
+
+              currentTransform.g.vRotate += (curAngle - lastAngle);
+
+              var lastLen = Math.sqrt(Math.pow(currentTransform.y - pos[1], 2) +
+                                      Math.pow(currentTransform.x - pos[0], 2));
+              var curLen = Math.sqrt(Math.pow(ey - pos[1], 2) +
+                                     Math.pow(ex - pos[0], 2));
+
+              currentTransform.g.vScale = currentTransform.g.vScale * (curLen / lastLen);
+
+          } else if (currentTransform.what == "move") {
+              var xd = ev.clientX - currentTransform.x;
+              var yd = ev.clientY - currentTransform.y;
+
+              currentTransform.g.vTranslate = [ pos[0] + xd, pos[1] + yd ];
+          }
+
+          currentTransform.x = ex;
+          currentTransform.y = ey;
+
+          setupTransform(currentTransform.el);
+
+          ev.preventDefault();
+      }
+
+      function rampOpacityDown(g) {
+          g.setAttribute("opacity", "1.0");
+          var rampFunc = function () {
+              var o = parseFloat(g.getAttribute("opacity")) - 0.05;
+              g.setAttribute("opacity", o);
+              if (o > 0.7)
+                  setTimeout(rampFunc, 10);
+          }
+          rampFunc();
+      }
+
+      function rampOpacityUp(g) {
+    	  g.setAttribute("opacity", "0.7");
+          var rampFunc = function () {
+              var o = parseFloat(g.getAttribute("opacity")) + 0.05;
+              g.setAttribute("opacity", o);
+              if (o < 1.0)
+                  setTimeout(rampFunc, 10);
+          }
+          rampFunc();
+      }
+</script>
+
+<script type="application/ample+xml" onload="doload()" style="height:100%">
+<svg xmlns="http://www.w3.org/2000/svg"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:svg="http://www.w3.org/2000/svg"
+ id="canvas" width="100%" height="100%">
+
+  <rect id="background-rect" x="0%" y="0%" width="100%" height="100%" fill="#aaaaaa"/>
+
+</svg>
+</script>
+</body>
+</html>

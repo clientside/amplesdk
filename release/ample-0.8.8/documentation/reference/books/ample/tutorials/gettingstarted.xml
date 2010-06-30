@@ -1,0 +1,206 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<article>
+	<title>Getting Started</title>
+	<abstract>
+		<locale>
+			<p>
+				In this section we will explain where to download Ample SDK,
+				how to set up the development environment which will include:
+				the client in which the application runs,<br />
+				the server which serves application resources,
+				the IDE that is used for developing code and
+				the debugger that will help debugging the code.
+				Finally we will see how to deploy Ample SDK for use.
+			</p>
+		</locale>
+	</abstract>
+	<content>
+		<section>
+			<title>
+				<locale>
+					Downloading Ample SDK
+				</locale>
+			</title>
+			<content>
+				<locale>
+					<p>
+						If you haven't yet downloaded Ample SDK, go to the <link href="http://www.amplesdk.com/download/" title="Product site">Download Ample SDK</link> online web page and obtain a copy.
+						On this page you can always get the latest <em>stable version</em> of the software as well as the latest <em>weekly build</em>.
+						It is usually safe to download the <em>weekly build</em> for development purposes.
+						The software available on the site is licensed under the "Free License".
+					</p>
+				</locale>
+			</content>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Setting up Development Environment
+				</locale>
+			</title>
+			<content>
+				<locale>
+					<p>
+						It is very likely that you already have a development environment setup that you are comfortable with.
+						If so, you may skip reading this section and jump to the next section.
+					</p>
+				</locale>
+			</content>
+
+			<section>
+				<title>
+					<locale>
+						The Client
+					</locale>
+				</title>
+				<content>
+					<locale>
+						<p>
+							In order for an Ample SDK application to run, a standalone or embedded web browser is required.
+							The most widely used web browsers are:
+						</p>
+						<ul>
+						    <li><link href="http://www.microsoft.com/windows/internet-explorer/" target="_blank" title="Product site">Internet Explorer 6+</link></li>
+						    <li><link href="http://www.mozilla.org/" target="_blank" title="Product site">Mozilla Firefox 2+</link></li>
+						    <li><link href="http://www.opera.com/" target="_blank" title="Product site">Opera 9+</link></li>
+						    <li><link href="http://www.apple.com/safari/" target="_blank" title="Product site">Apple Safari 3+</link></li>
+						    <li><link href="http://www.google.com/chrome/" target="_blank" title="Product site">Google Chrome 0+</link></li>
+						    <li><link href="http://konqueror.kde.org/" target="_blank" title="Product site">Konqueror 3.5+</link></li>
+						</ul>
+						<p>
+							Pick up any, but remember: you will need more than one browser installed on your system
+							in order to thoroughly test your application before it goes live.
+							Although Ample SDK shields you from many differences between browsers,
+							you may still run into an issue that was not covered.
+							This is mostly true for CSS styling where rendering behavior is not only strongly inconsistent across major browsers,
+							but also gets changed with the evolution of their software.
+							We recommend testing your application thorough in at least the four most widely used browsers: Internet Explorer, Mozilla Firefox, Opera and Safari (or Chrome).
+						</p>
+					</locale>
+				</content>
+			</section>
+			<section>
+				<title>
+					<locale>
+						The Server
+					</locale>
+				</title>
+				<content>
+					<locale>
+						<p>
+							You can use any web server to serve your application files.
+							The most widely used web servers are:
+						</p>
+						<ul>
+							<li><link href="http://httpd.apache.org/" title="Product site">Apache</link></li>
+							<li>IIS</li>
+							<li><link href="http://tomcat.apache.org/" title="Product site">Tomcat</link></li>
+						</ul>
+						<p>
+							The choice of a web server usually depends on server-side technology you need, such as .Net, Java, PHP or Ruby.
+						</p>
+					</locale>
+				</content>
+			</section>
+			<section>
+				<title>
+					<locale>
+						The IDE
+					</locale>
+				</title>
+				<content>
+					<locale>
+						<p>
+							There is never a good recommendation on a what IDE to use. Some like apples, some like pears.
+							However these are probably features of an IDE that you will find useful:
+						</p>
+						<ol>
+							<li>Markup code highlighting / completion / validation</li>
+							<li>CSS code highlighting / completion</li>
+							<li>JavaScript code highlighting / completion</li>
+						</ol>
+						<p>
+							The most widely used IDEs are:
+						</p>
+						<ul>
+							<li><link href="http://www.eclipse.org/" title="Product site">Eclipse</link></li>
+							<li><link href="http://www.netbeans.com/" title="Product site">Netbeans</link></li>
+							<li><link href="http://www.aptana.com/" title="Product site">Aptana</link></li>
+						</ul>
+						<note>
+							Ample SDK comes with an integration plugin for Aptana IDE, that enables features highlighted above.
+						</note>
+					</locale>
+				</content>
+			</section>
+			<section>
+				<title>
+					<locale>
+						The Debugger
+					</locale>
+				</title>
+				<content>
+					<locale>
+						<p>
+							The choice of a debugger application usually depends on the choice of web browser made earlier.
+							A good debugger usually has the following features:
+						</p>
+						<ol>
+							<li>DOM introspection</li>
+							<li>JavaScript debugging</li>
+							<li>CSS runtime editing</li>
+							<li>Network monitor</li>
+						</ol>
+						<p>
+							Here Firefox's "<link href="https://addons.mozilla.org/en-US/firefox/addon/1843" title="Product site">Firebug</link>" is worth looking into,
+							or Internet Explorer's "Development Tools" that is of a great value, included in IE 8 and later.
+						</p>
+					</locale>
+				</content>
+			</section>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Deploying Ample SDK
+				</locale>
+			</title>
+			<content>
+				<locale>
+					<p>
+						Deploying Ample SDK for development is as easy as unpacking the downloaded archive into a directory on your web server (for the sake of the following section let's call it <em>{AMPLESDK_ROOT}</em>).
+						Worth mentioning here is that you can also run examples as well as your applications directly from the file system, however when developing real applications you will most likely need a web server to enable server-side scripting.
+					</p>
+				</locale>
+			</content>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Running a "Hello World!" application
+				</locale>
+			</title>
+			<content>
+				<locale>
+					<p>
+						Now when you have everything in place you can try and run the "Hello World!" application.
+						Navigate to <em>{AMPLESDK_ROOT}/examples/helloworld.html</em> file in your browser and see the result.
+						If everything is right you should see a page with the red text "Hello world!" in bold.
+						When clicking on the text an alert should popup with a message about the name of the element that you clicked on.
+					</p>
+					<p>
+						If you do not get the result described, there might be two reasons:
+					</p>
+					<ol>
+						<li>You are running application from the file system in a browser with high security restrictions (Solution: lift security restrictions in your browser)</li>
+						<li>Your web server does not serve content properly (Solution: examine the network activity details)</li>
+					</ol>
+					<p>
+						You may also try other examples accessible at <em>{AMPLESDK_ROOT}/examples/index.html</em>
+					</p>
+				</locale>
+			</content>
+		</section>
+	</content>
+</article>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="menuitem" type="regular">
+	<implements />
+	<abstract>
+		<locale xml:lang="ru">
+			Элемент, представляющий единичный выбор в элементе <link type="element">menupopup</link>. По поведению элемент напоминает кнопку.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="label" default="" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						Текстовая метка для элемента.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="image" default="" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						URL к пиктограмме для элемента.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="type" default="" readonly="true">
+				<values>
+					<value name="checkbox">
+						<description>
+							<locale xml:lang="ru">
+								Элемент является выделяемым. Атрибут <link type="attribute">checked</link> определяет, отмечен элемент или нет.
+							</locale>
+						</description>
+					</value>
+					<value name="radio">
+						<description>
+							<locale xml:lang="ru">
+								Элемент становится частью группы выделяемых элементов.
+								Другие элементы <link type="element">menuitem</link> с тем же значением атрибута <link type="attribute">name</link> являются членами одной выделяемой группы.
+								В группе выделяемых элементов одновременно не может быть выделено более одного элемента <link type="element">menuitem</link>.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale xml:lang="ru">
+						Используется для создания выделяемых элементов меню.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="checked" default="" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						Указывает, выделен элемент или нет.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="value" default="" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						Данные, ассоциированные с элементом.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties />
+		<events>
+<!--
+			<event name="command" group="Event" cancelable="false" bubbles="true">
+				<description>
+				</description>
+			</event>
+-->
+		</events>
+	</members>
+</element>

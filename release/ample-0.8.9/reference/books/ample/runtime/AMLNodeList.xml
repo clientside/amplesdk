@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="AMLNodeList">
+	<abstract>
+		<locale>
+			The NodeList interface provides the abstraction of an ordered collection of nodes.
+		</locale>
+		<locale xml:lang="ru">
+			Объект NodeList является абстрактной коллекцией узлов.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples/>
+	<members>
+		<methods>
+			<method name="item" type="AMLNode">
+				<arguments>
+					<argument name="nIndex" type="Number" required="true">
+						<description>
+							<locale>
+								Index into the collection.
+							</locale>
+							<locale xml:lang="ru">
+								Индекс в коллекции.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Returns the indexth item in the collection.
+					</locale>
+					<locale xml:lang="ru">
+						Возвращает элемент коллекции по индексу.
+					</locale>
+				</description>
+			</method>
+		</methods>
+		<properties>
+			<property name="length" type="Number" readonly="true">
+				<description>
+					<locale>
+						The number of nodes in the list.
+					</locale>
+					<locale xml:lang="ru">
+						Число элементов в коллекции.
+					</locale>
+				</description>
+			</property>
+		</properties>
+	</members>
+</object>

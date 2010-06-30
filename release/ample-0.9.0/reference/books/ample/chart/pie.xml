@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="chart:ChartCanvasElement" name="pie">
+	<implements />
+	<abstract>
+		<locale>
+			Pie chart.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members />
+</element>

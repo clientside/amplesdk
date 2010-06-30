@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="AMLCapture">
+	<abstract>
+		<locale>
+			Implements UI capturing functionality by forwarding UI events.
+		</locale>
+	</abstract>
+	<remarks/>
+	<examples/>
+	<members>
+		<methods>
+			<method name="$setCapture" type="Void">
+				<arguments>
+					<argument name="bContainerCapture" type="Boolean" required="false">
+						<description>
+							<locale>
+								A Boolean that specifies capture mode.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Sets the mouse capture to the object that belongs to the current document.
+					</locale>
+				</description>
+			</method>
+			<method name="$releaseCapture" type="Void">
+				<description>
+					<locale>
+						Removes mouse capture from the object in the current document.
+					</locale>
+				</description>
+			</method>
+		</methods>
+		<properties />
+		<attributes />
+		<events>
+			<event name="losecapture" group="UIEvent" cancelable="false" bubbles="false">
+				<description>
+					<locale>
+						Sends the event notification to the object that is losing the mouse capture.
+					</locale>
+				</description>
+			</event>
+		</events>
+	</members>
+</object>

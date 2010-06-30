@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<article>
+	<title>About Ample SDK</title>
+	<abstract>
+		<locale>
+
+		</locale>
+		<locale xml:lang="ru">
+
+		</locale>
+	</abstract>
+	<content>
+		<section>
+			<title>
+				<locale>
+					Ample SDK purpose
+				</locale>
+				<locale xml:lang="ru">
+
+				</locale>
+			</title>
+			<content>
+				<locale>
+
+				</locale>
+				<locale xml:lang="ru">
+
+				</locale>
+			</content>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Ample SDK benefits
+				</locale>
+				<locale xml:lang="ru">
+
+				</locale>
+			</title>
+			<content>
+				<locale>
+
+				</locale>
+				<locale xml:lang="ru">
+
+				</locale>
+			</content>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Ample SDK architecture
+				</locale>
+				<locale xml:lang="ru">
+
+				</locale>
+			</title>
+			<content>
+				<locale>
+
+				</locale>
+				<locale xml:lang="ru">
+
+				</locale>
+			</content>
+		</section>
+	</content>
+</article>

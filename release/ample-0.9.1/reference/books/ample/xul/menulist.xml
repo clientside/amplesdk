@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="menulist">
+	<implements />
+	<abstract>
+		<description>
+			<locale>
+				An element that can be used for drop-down choice lists.
+				The user may select one of the elements displayed in the <link type="element">menulist</link>.
+				The currently selected choice is displayed on the <link type="element">menulist</link> element.
+				To create the drop-down, put a <link type="element">menupopup</link> inside the <link type="element">menulist</link> containing the choices as <link type="element">menuitem</link> elements.
+			</locale>
+		</description>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="value">
+				<description>
+					<locale>
+						The string attribute allows you to associate a data value with an element.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="editable">
+				<description>
+					<locale>
+						Indicates that the value of the <link type="element">menulist</link> can be modified by typing directly into the value field.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="disabled">
+				<description>
+					<locale>
+						Indicates whether the element is disabled or not.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

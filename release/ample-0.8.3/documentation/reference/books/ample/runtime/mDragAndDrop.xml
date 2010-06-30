@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="AMLDragAndDrop">
+	<abstract>
+		<locale>
+			Implements Drag And Drop functionality
+		</locale>
+		<locale xml:lang="ru">
+			Реализует функциональность перетаскивания.
+		</locale>
+	</abstract>
+	<remarks/>
+	<examples/>
+	<members>
+		<methods />
+		<properties>
+			<property name="$draggable" type="Boolean">
+				<description>
+					<locale>
+						If true, element is draggable.
+					</locale>
+					<locale xml:lang="ru">
+						Если true, элемент может перетаскиваться.
+					</locale>
+				</description>
+			</property>
+			<property name="$droppable" type="Boolean">
+				<description>
+					<locale>
+						If true, element is a valid drag target.
+					</locale>
+					<locale xml:lang="ru">
+						Если true, элемент может являться местом оставления перетаскиваемого объекта.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<attributes />
+		<events>
+			<event name="dragstart" group="DragEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						Fires on the source object when the user starts to drag an object.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается на объекте, когда пользователь начинает его перетаскивать.
+					</locale>
+				</description>
+			</event>
+			<event name="dragend" group="DragEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						Fires on the source object when the user releases the mouse at the close of a drag operation.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается на объекте, когда пользователь отпускает кнопку мыши, заканчивая его перетаскивание.
+					</locale>
+				</description>
+			</event>
+			<event name="dragenter" group="DragEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						Fires on the target element when the user drags the object to a valid drop target.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается на объекте - валидном месте оставления, когда указатель мыши входит в пределы границ  во время перетаскивания другого объекта.
+					</locale>
+				</description>
+			</event>
+			<event name="dragover" group="DragEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</event>
+			<event name="dragleave" group="DragEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						Fires on the target object when the user moves the mouse out of a valid drop target during a drag operation.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается на объекте - валидном месте оставления, когда указатель мыши выходит за пределы границ  во время перетаскивания другого объекта.
+					</locale>
+				</description>
+			</event>
+			<event name="drag" group="DragEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						Fires on the source object continuously during a drag operation.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается на объекте непрерывно, пока его перетаскивает пользователь.
+					</locale>
+				</description>
+			</event>
+			<event name="drop" group="DragEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						Fires on the target object when the mouse button is released during a drag-and-drop operation.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается на объекте - валидном месте оставления, когда кнопка мыши отпускается во время операции перетаскивания.
+					</locale>
+				</description>
+			</event>
+		</events>
+	</members>
+</object>

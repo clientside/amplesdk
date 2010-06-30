@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="aml:AMLElement" name="comboitem">
+	<implements />
+	<abstract>
+		<locale>
+			A child element of <link type="element">combobox</link>.
+		</locale>
+		<locale xml:lang="ru">
+			Дочерний элемент из списка в <link type="element">combobox</link>.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="value">
+				<description>
+					<locale>
+						Element value.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods/>
+		<properties/>
+		<events/>
+	</members>
+</element>

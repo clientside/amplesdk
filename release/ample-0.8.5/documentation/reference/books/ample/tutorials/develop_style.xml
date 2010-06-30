@@ -1,0 +1,179 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<article>
+	<title>Part II - Styling Application</title>
+	<abstract>
+		<locale>
+			In this tutorial we will go through a series of techniques and technologies used when styling User Interface.
+		</locale>
+	</abstract>
+	<content>
+		<section>
+			<title>
+				<locale>
+					Introduction to CSS
+				</locale>
+			</title>
+			<content>
+				<locale>
+					<p>
+						CSS or Cascading Style Sheets technology is designed to take UI presentation details (presentation styles) away from UI markup.
+						The technology proved its use in the world of web-browsers although its support has been limited for quite a while in some user agents.
+						In Ample SDK you can use more kinds of CSS selectors than available in browsers,
+						that is due to a more sophisticated approach to the UI and components.
+					</p>
+					<note>
+						It is common in HTML world to specify element styles inline with <em>style</em> attribute.
+						Although this is possible in Ample SDK too, we recommend avoiding such practice and using <em>class</em> attribute with a corresponding stylesheet declared.
+					</note>
+				</locale>
+			</content>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Embedding CSS stylesheets into a web page
+				</locale>
+			</title>
+			<content>
+				<locale>
+					<p>
+						CSS stylesheets created to be applied to the Ample SDK UI fragments can be embedded into a web page in following ways:
+					</p>
+				</locale>
+			</content>
+			<section>
+				<title>
+					<locale>
+						Inline, using style tag with <em>type="text/ample+css"</em>
+					</locale>
+				</title>
+				<content>
+					<locale>
+						<code type="text/xml"><![CDATA[<style type="text/ample+css">
+	/* Ample SDK inline stylesheet */
+</style>						]]></code>
+					</locale>
+				</content>
+			</section>
+			<section>
+				<title>
+					<locale>
+						Referencing a resource, using link tag with <em>href</em> attribute
+					</locale>
+				</title>
+				<content>
+					<locale>
+						<code type="text/xml"><![CDATA[<link type="text/ample+css" rel="stylesheet" href="stylesheet.css"/>
+						]]></code>
+					</locale>
+				</content>
+			</section>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Using CSS for styling UI
+				</locale>
+			</title>
+			<!--content>
+				<locale>
+					TODO:
+				</locale>
+			</content-->
+
+			<section>
+				<title>
+					<locale>
+						Namespaces selectors for styling component
+					</locale>
+				</title>
+				<content>
+					<locale>
+						<p>
+							Along with XML, CSS also added a module that allows selectors to be written and matched for elements found in certain namespaces.
+						</p>
+						<code type="text/css"><![CDATA[@namespace xul "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+
+xul|menulist {
+	width: 200px;
+}
+						]]></code>
+						<p>
+							In the example above, we declared a prefix <em>xul</em> to be bound to <em>http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul</em> namespace
+							thus making element selector to be applied only to whose element with the name menulist that are actually found in the xul namespace.
+						</p>
+						<p>
+							It is important to remember that even XHTML stylesheet that typically doesn't use prefixes needs a namespace declaration.
+						</p>
+						<code type="text/css"><![CDATA[@namespace "http://www.w3.org/1999/xhtml";
+
+input {
+	font-family: Courier;
+}
+						]]></code>
+					</locale>
+				</content>
+			</section>
+			<section>
+				<title>
+					<locale>
+						Pseudo-classes selectors for styling component state
+					</locale>
+				</title>
+				<content>
+					<locale>
+						<p>
+							Pseudo-class selectors are usually used to style content in its dynamic state.
+							Some of the pseudo-class selectors you might be familar with are <em>hover</em>, <em>focus</em> etc.
+						</p>
+						<code type="text/css"><![CDATA[@namespace xul "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+
+xul|datepicker:focus {
+	background-color: pink;
+}
+						]]></code>
+						<p>
+							In the CSS code above we added pink background-color to the datepicker component to be applied when component has focus.
+						</p>
+					</locale>
+				</content>
+			</section>
+			<section>
+				<title>
+					<locale>
+						Pseudo-elements selectors for styling component content
+					</locale>
+				</title>
+				<content>
+					<locale>
+						<p>
+							Pseudo-elements selectors are used to style component substructures. Some of the pseudo-elements selectors are <em>first-letter</em> etc.
+						</p>
+						<code type="text/css"><![CDATA[@namespace xul "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+
+xul|colorpicker::input {
+	border: solid 1px blue;
+}
+						]]></code>
+						<p>
+							In the CSS code above we added a border to the input field of the XUL colorpicker component.
+						</p>
+					</locale>
+				</content>
+			</section>
+		</section>
+		<!--section>
+			<title>
+				<locale>
+					Limitations
+				</locale>
+			</title>
+			<content>
+				<locale>
+					TODO:
+				</locale>
+			</content>
+		</section-->
+	</content>
+</article>

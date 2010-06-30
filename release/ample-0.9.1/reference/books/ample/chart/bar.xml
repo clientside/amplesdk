@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="chart:ChartCanvasElement" name="bar">
+	<implements />
+	<abstract>
+		<locale>
+			Bar chart.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="type" default="normal">
+				<values>
+					<value name="normal">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</value>
+					<value name="percentage">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</value>
+					<value name="stack">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale>
+						Type of the chart.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+	</members>
+</element>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="listcell" type="regular">
+	<implements />
+	<abstract>
+		<locale xml:lang="ru">
+			Ячейка элемента <link type="element">listbox</link>, содержащаяся внутри <link type="element">listitem</link>.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="label" readonly="true">
+				<description>
+					<locale xml:lang="ru">
+						Текстовая метка, которая появится в элементе <link type="element">listcell</link>.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="image" readonly="true">
+				<description>
+					<locale xml:lang="ru">
+						URL к пиктограмме, которая будет использована в элементе <link type="element">listcell</link>.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties />
+		<events/>
+	</members>
+</element>

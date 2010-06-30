@@ -1,0 +1,743 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="AMLDocument" extends="runtime:AMLNode">
+	<abstract>
+		<locale>
+			Represents the document in a given browser window.
+		</locale>
+		<locale xml:lang="ru">
+			Документ в окне браузера.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples/>
+	<implements>
+		<interface name="runtime:mHistory" />
+	</implements>
+	<members>
+		<methods>
+			<method name="createElement" type="AMLElement">
+				<arguments>
+					<argument name="sTagName" type="String" required="true">
+						<description>
+							<locale>
+								The name of the element type to instantiate
+							</locale>
+							<locale xml:lang="ru">
+								Название элемента, экземпляр которого будет создан.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Creates an element of the type specified.
+					</locale>
+					<locale xml:lang="ru">
+						Создает элемент указанного типа.
+					</locale>
+				</description>
+			</method>
+			<method name="createElementNS" type="AMLElement">
+				<arguments>
+					<argument name="sNameSpaceURI" type="String" required="true">
+						<description>
+							<locale>
+								Namespace of the element to be created.
+							</locale>
+							<locale xml:lang="ru">
+								Пространство имен создаваемого элемента.
+							</locale>
+						</description>
+					</argument>
+					<argument name="sQualifiedName" type="String" required="true">
+						<description>
+							<locale>
+								Element's qualified name to be created.
+							</locale>
+							<locale xml:lang="ru">
+								Имя создаваемого элемента (qualified name).
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Creates an element of the given qualified name and namespace URI.
+					</locale>
+					<locale xml:lang="ru">
+						Создает элемент с заданным именем в заданном пространстве имен.
+					</locale>
+				</description>
+			</method>
+			<method name="createDocumentFragment" type="AMLDocumentFragment">
+				<description>
+					<locale>
+						Creates an empty DocumentFragment object.
+					</locale>
+					<locale xml:lang="ru">
+						Создает объект <link type="object">DocumentFragment</link>.
+					</locale>
+				</description>
+			</method>
+			<method name="createTextNode" type="AMLText">
+				<arguments>
+					<argument name="sData" type="String">
+						<description>
+							<locale>
+								The data for the node.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Creates a Text node given the specified string.
+					</locale>
+					<locale xml:lang="ru">
+						Создает объект <link type="object">AMLText</link> по заданной строке.
+					</locale>
+				</description>
+			</method>
+			<method name="createComment" type="AMLComment">
+				<arguments>
+					<argument name="sData" type="String">
+						<description>
+							<locale>
+								The data for the node.
+							</locale>
+							<locale xml:lang="ru">
+								Данные для узла.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Creates a Comment node given the specified string.
+					</locale>
+					<locale xml:lang="ru">
+						Создает  узел <link type="object">AMLComment</link> по заданной строке.
+					</locale>
+				</description>
+			</method>
+			<method name="createCDATASection" type="AMLCDATASection">
+				<arguments>
+					<argument name="sData" type="String">
+						<description>
+							<locale>
+								The data for the node.
+							</locale>
+							<locale xml:lang="ru">
+								Данные для узла.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Creates a <link type="object">AMLCDATASection</link> node whose value is the specified string.
+					</locale>
+					<locale xml:lang="ru">
+						Создает узел <link type="object">AMLCDATASection</link>, значением которого будет заданная строка.
+					</locale>
+				</description>
+			</method>
+			<method name="createProcessingInstruction" type="AMLProcessingInstruction">
+				<arguments>
+					<argument name="sTarget" type="String">
+						<description>
+							<locale>
+								The target part of the processing instruction.
+							</locale>
+							<locale xml:lang="ru">
+								Название обрабатывающей инструкции.
+							</locale>
+						</description>
+					</argument>
+					<argument name="sData" type="String">
+						<description>
+							<locale>
+								The data for the node.
+							</locale>
+							<locale xml:lang="ru">
+								Данные для узла.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Creates a ProcessingInstruction node given the specified name and data strings.
+					</locale>
+					<locale xml:lang="ru">
+						Создает объект <link type="object">AMLProcessingInstruction</link> по заданным имени и данным.
+					</locale>
+				</description>
+			</method>
+			<method name="createAttribute" type="AMLAttr">
+				<arguments>
+					<argument name="sName" type="String">
+						<description>
+							<locale>
+								The name of the attribute.
+							</locale>
+							<locale xml:lang="ru">
+								Имя атрибута.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Creates an Attr of the given name.
+					</locale>
+					<locale xml:lang="ru">
+						Создает объект <link type="object">AMLAttr</link> по заданному имени.
+					</locale>
+				</description>
+			</method>
+			<method name="createAttributeNS" type="AMLAttr">
+				<arguments>
+					<argument name="sNameSpaceURI" type="String" required="true">
+						<description>
+							<locale>
+								Namespace of the attribute to be created.
+							</locale>
+							<locale xml:lang="ru">
+								Пространство имен создаваемого атрибута.
+							</locale>
+						</description>
+					</argument>
+					<argument name="sQualifiedName" type="String" required="true">
+						<description>
+							<locale>
+								Attr's qualified name to be created.
+							</locale>
+							<locale xml:lang="ru">
+								Имя создаваемого атрибута (qualified name).
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Creates an attribute of the given qualified name and namespace URI.
+					</locale>
+					<locale xml:lang="ru">
+						Создает объект <link type="object">AMLAttr</link> по заданным имени и пространству имен.
+					</locale>
+				</description>
+			</method>
+			<method name="createEntityReference" type="AMLEntityReference">
+				<arguments>
+					<argument name="sName" type="String" required="true">
+						<description>
+							<locale>
+								The name of the entity to reference.
+							</locale>
+							<locale xml:lang="ru">
+								Имя создаваемого <link type="object">AMLEntityReference</link>.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Creates an EntityReference object.
+					</locale>
+					<locale xml:lang="ru">
+						Создает объект <link type="object">AMLEntityReference</link>.
+					</locale>
+				</description>
+			</method>
+			<method name="getElementById" type="AMLElement">
+				<arguments>
+					<argument name="sId" type="String" required="true">
+						<description>
+							<locale>
+								Element identifier
+							</locale>
+							<locale xml:lang="ru">
+								Идентификатор элемента.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Returns the Element that has an ID attribute with the given value.
+					</locale>
+					<locale xml:lang="ru">
+						Возвращает ссылку на <link type="object">AMLElement</link>, у которого атрибут ID соответствует заданному.
+					</locale>
+				</description>
+			</method>
+			<method name="getElementsByTagName" type="AMLNodeList">
+				<arguments>
+					<argument name="sTagName" type="String" required="true">
+						<description>
+							<locale>
+								Element tag name.
+							</locale>
+							<locale xml:lang="ru">
+								Имя элемента.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Returns a <link type="object">AMLNodeList</link> of all the <link type="object">AMLElement</link>s in document order with a given tag name and are contained in the document.
+					</locale>
+					<locale xml:lang="ru">
+						Возвращает коллекцию <link type="object">AMLNodeList</link> из объектов <link type="object">AMLElement</link> по заданному имени в порядке, в котором элементы следуют в документе.
+					</locale>
+				</description>
+			</method>
+			<method name="getElementsByTagNameNS" type="AMLNodeList">
+				<arguments>
+					<argument name="sNameSpaceURI" type="String" required="true">
+						<description>
+							<locale>
+								Namespace URI.
+							</locale>
+							<locale xml:lang="ru">
+								URI пространства имен элемента.
+							</locale>
+						</description>
+					</argument>
+					<argument name="sLocalName" type="String" required="true">
+						<description>
+							<locale>
+								Local name.
+							</locale>
+							<locale xml:lang="ru">
+								Имя элемента.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Returns a <link type="object">AMLNodeList</link> of all the <link type="object">AMLElement</link>s with a given local name and namespace URI in document order.
+					</locale>
+					<locale xml:lang="ru">
+						Возвращает коллекцию <link type="object">AMLNodeList</link> из всех объектов <link type="object">AMLElement</link> по заданным имени и пространству имен в порядке, в котором элементы следуют в документе.
+					</locale>
+				</description>
+			</method>
+			<method name="importNode" type="AMLNode">
+				<arguments>
+					<argument name="oNode" type="AMLNode" required="true">
+						<description>
+							<locale>
+								The node to import.
+							</locale>
+							<locale xml:lang="ru">
+								Узел для импорта.
+							</locale>
+						</description>
+					</argument>
+					<argument name="bDeep" type="Boolean" required="true">
+						<description>
+							<locale>
+								If true, recursively import the subtree under the specified node; if false, import only the node itself
+							</locale>
+							<locale xml:lang="ru">
+								Если true, импортировать узел с его структурой, с противном случае импортировать непосредственно сам узел без его структуры.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Imports a node from another document to this document, without altering or removing the source node from the original document.
+					</locale>
+					<locale xml:lang="ru">
+						Импортирует узел из одного документа в другой без изменения или удаления узла в оригинальном документе.
+					</locale>
+				</description>
+			</method>
+			<!-- DOM Level 2 -->
+			<method name="dispatchEvent" type="Boolean">
+				<arguments>
+					<argument name="oEvent" type="Event" required="true">
+						<description>
+							<locale>
+								The event to be dispatched.
+							</locale>
+							<locale xml:lang="ru">
+								Отправляемое событие.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						This method allows the dispatch of events into the implementation's event model. Return value indicates whether any of the listeners which handled the event called preventDefault method on Event object.
+					</locale>
+					<locale xml:lang="ru">
+						Этот метод позволяет отправить событие в реализацию модели событий. Возвращаемое значение указывает, вызвал ли один из обработчиков события метод preventDefault объекта <link type="object">AMLEvent</link>.
+					</locale>
+				</description>
+			</method>
+			<method name="addEventListener" type="Void">
+				<arguments>
+					<argument name="sType" type="String" required="true">
+						<description>
+							<locale>
+								Specifies the Event.type associated with the event for which the user is registering.
+							</locale>
+							<locale xml:lang="ru">
+								Тип события (Event.type), для которого регистрируется обработчик.
+							</locale>
+						</description>
+					</argument>
+					<argument name="fListener" type="Function" required="true">
+						<description>
+							<locale>
+								Function to be called when the event occurs.
+							</locale>
+							<locale xml:lang="ru">
+								Функция, которая должна быть вызвана, если произойдет событие.
+							</locale>
+						</description>
+					</argument>
+					<argument name="bUseCapture" type="Boolean" required="true">
+						<description>
+							<locale>
+								If true, user wishes to add the event listener for the capture phase only, if false - for target and bubbling phases.
+							</locale>
+							<locale xml:lang="ru">
+								Если true, обработчик добавляется только для фазы "capture", с противном случае - для фаз "target" и "bubbling".
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						This method allows the registration of an event listener in the default group and, depending on the useCapture parameter, on the capture phase of the DOM event flow or its target and bubbling phases.
+					</locale>
+					<locale xml:lang="ru">
+						Этот метод позволяет зарегистрировать обработчик события.
+					</locale>
+				</description>
+			</method>
+			<method name="removeEventListener" type="Void">
+				<arguments>
+					<argument name="sType" type="String" required="true">
+						<description>
+							<locale>
+								Specifies the Event.type for which the user registered the event listener.
+							</locale>
+							<locale xml:lang="ru">
+								Тип события (Event.type), для которого был зарегистрирован обработчик.
+							</locale>
+						</description>
+					</argument>
+					<argument name="fListener" type="Function" required="true">
+						<description>
+							<locale>
+								Listener to be removed.
+							</locale>
+							<locale xml:lang="ru">
+								Обработчик, который следует удалить.
+							</locale>
+						</description>
+					</argument>
+					<argument name="bUseCapture" type="Boolean" required="true">
+						<description>
+							<locale>
+								Specifies whether the EventListener being removed was registered for the capture phase or not.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает на то, был ли обработчик зарегистрирован для фазы "capture" или нет.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						This method allows the removal of event listeners from the default group.
+					</locale>
+					<locale xml:lang="ru">
+						Этот метод позволяет удалить обработчик события.
+					</locale>
+				</description>
+			</method>
+			<!-- DOM Level 3 -->
+			<method name="createEvent" type="Event">
+				<arguments>
+					<argument name="sEventType" type="String" required="true">
+						<description>
+							<locale>
+								Type of event.
+							</locale>
+							<locale xml:lang="ru">
+								Тип события (Event.type).
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Creates an instance of the <link type="object">AMLEvent</link>.
+					</locale>
+					<locale xml:lang="ru">
+						Создает экземпляр объекта <link type="object">AMLEvent</link>.
+					</locale>
+				</description>
+			</method>
+			<method name="canDispatch" type="Void">
+				<arguments>
+					<argument name="sNameSpaceURI" type="String" required="true">
+						<description>
+							<locale>
+								NamespaceURI of the event to be tested.
+							</locale>
+							<locale xml:lang="ru">
+								URI пространства имен события.
+							</locale>
+						</description>
+					</argument>
+					<argument name="sType" type="String" required="true">
+						<description>
+							<locale>
+								Event type.
+							</locale>
+							<locale xml:lang="ru">
+								Тип события (Event.type).
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Tests wether event of the specified namespace and type can be dispatched.
+					</locale>
+					<locale xml:lang="ru">
+						Проверяет, может ли событие с заданными типом и пространством имен быть отправлено в реализацию.
+					</locale>
+				</description>
+			</method>
+			<!-- DOM-Selectors -->
+			<method name="querySelector" type="AMLElement">
+				<arguments>
+					<argument name="sQuery" type="String" required="true">
+						<description>
+							<locale>
+								CSS query.
+							</locale>
+						</description>
+					</argument>
+					<argument name="fResolver" type="Function" required="false">
+						<description>
+							<locale>
+								Resolver function used to resolve namespace prefixes used in query.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Returns <link type="object">AMLElement</link> that matches CSS query.
+					</locale>
+					<locale xml:lang="ru">
+						Возвращает объект <link type="object">AMLElement</link> по заданному CSS запросу.
+					</locale>
+				</description>
+			</method>
+			<method name="querySelectorAll" type="AMLNodeList">
+				<arguments>
+					<argument name="sQuery" type="String" required="true">
+						<description>
+							<locale>
+								CSS query.
+							</locale>
+						</description>
+					</argument>
+					<argument name="fResolver" type="Function" required="false">
+						<description>
+							<locale>
+								Resolver function used to resolve namespace prefixes used in query.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Returns <link type="object">AMLNodeList</link> of <link type="object">AMLElement</link> that match CSS query.
+					</locale>
+					<locale xml:lang="ru">
+						Возвращает коллекцию <link type="object">AMLNodeList</link> из объектов <link type="object">AMLElement</link> по заданному запросу в порядке, в котором элементы следуют в документе.
+					</locale>
+				</description>
+			</method>
+			<!-- Ample Methods -->
+			<method name="$getElementPosition" type="Object">
+				<arguments>
+					<argument name="oElement" type="AMLElement" required="true">
+						<description>
+							<locale>
+								Element
+							</locale>
+							<locale xml:lang="ru">
+								Объект <link type="object">AMLElement</link>.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Retrieves the object containing element absolute position/sizes in pixels.
+					</locale>
+					<locale xml:lang="ru">
+						Возвращает объект, содержащий абсолютные размеры и позиционирование элемента в документе.
+					</locale>
+				</description>
+			</method>
+			<method name="open" type="Void">
+				<description>
+					<locale>
+						Opens Ample fragment. This method can only be called while page is loading.
+					</locale>
+				</description>
+			</method>
+			<method name="close" type="Void">
+				<description>
+					<locale>
+						Closes Ample fragment. This method can only be called while page is loading.
+					</locale>
+				</description>
+			</method>
+		</methods>
+		<properties>
+			<property name="documentElement" type="AMLElement" readonly="true">
+				<description>
+					<locale>
+						Retrieves a reference to the root node of the document.
+					</locale>
+					<locale xml:lang="ru">
+						Возвращает ссылку на корневой узел документа.
+					</locale>
+				</description>
+			</property>
+			<property name="implementation" type="AMLImplementation" readonly="true">
+				<description>
+					<locale>
+						The DOMImplementation object that handles this document.
+					</locale>
+					<locale xml:lang="ru">
+						Объект <link type="object">AMLImplementation</link> для документа.
+					</locale>
+				</description>
+			</property>
+			<property name="domConfig" type="AMLConfiguration" readonly="true">
+				<description>
+					<locale>
+						The <link type="object">AMLConfiguration</link> associated with this document.
+					</locale>
+					<locale xml:lang="ru">
+						Объект <link type="object">AMLConfiguration</link> для документа.
+					</locale>
+				</description>
+			</property>
+			<property name="doctype" type="AMLDocumentType" readonly="true">
+				<description>
+					<locale>
+						The Document Type Declaration associated with this document.
+					</locale>
+					<locale xml:lang="ru">
+						Определение типа документа (DTD - Document Type Definition), ассоциированное с документом.
+					</locale>
+				</description>
+			</property>
+			<!--  Ample properties -->
+			<property name="activeElement" type="AMLElement" readonly="true">
+				<description>
+					<locale>
+						Retrieves a reference to an element in the document that currently has focus.
+					</locale>
+				</description>
+			</property>
+			<property name="$model" type="XSModel" readonly="true">
+				<description>
+					<locale>
+						Retrieves a reference to an XML Schema model.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<events>
+			<event name="load" group="Event" cancelable="false" bubbles="false">
+				<description>
+					<locale>
+						Fires immediately after the engine loads the object.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается сразу же после загрузки объекта ядром.
+					</locale>
+				</description>
+			</event>
+			<event name="unload" group="Event" cancelable="false" bubbles="false">
+				<description>
+					<locale>
+						Fires immediately before the object is unloaded.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается непосредственно перед тем, как объект будет выгружен.
+					</locale>
+				</description>
+			</event>
+			<event name="abort" group="Event" cancelable="false" bubbles="true">
+				<description>
+					<locale>
+						The loading of the document, or a resource linked from it, is stopped before being entirely loaded.
+					</locale>
+					<locale xml:lang="ru">
+						Загрузка документа или ресурса, связанного с ним, была прервана до полной его загрузки.
+					</locale>
+				</description>
+			</event>
+			<event name="error" group="Event" cancelable="false" bubbles="true">
+				<description>
+					<locale>
+						A resource failed to load, or has been loaded but cannot be interpreted according to its semantics such as an invalid image, a script execution error, or non-well-formed XML.
+					</locale>
+					<locale xml:lang="ru">
+						Ресурс не бы загружен или был загружен, но не был должным образом обработан вследствие неверной семантики (например, ошибки исполнения скрипта, некорректной структуры XML документа).
+					</locale>
+				</description>
+			</event>
+			<event name="resize" group="UIEvent" cancelable="false" bubbles="true">
+				<description>
+					<locale>
+						A document view has been resized.
+					</locale>
+					<locale xml:lang="ru">
+						Произошло изменение размеров документа.
+					</locale>
+				</description>
+			</event>
+			<event name="scroll" group="UIEvent" cancelable="false" bubbles="true">
+				<description>
+					<locale>
+						A document view has been scrolled.
+					</locale>
+					<locale xml:lang="ru">
+						Произошла прокрутка документа.
+					</locale>
+				</description>
+			</event>
+			<event name="readystatechange" group="CustomEvent" cancelable="false" bubbles="false">
+				<description>
+					<locale>
+						Fires when the state of the object has changed.
+						The detail property of the event contains state information (0 = uninitialized, 1 = loading, 2 = loaded, 3 = interactive, 4 = complete)
+					</locale>
+				</description>
+			</event>
+		</events>
+	</members>
+</object>

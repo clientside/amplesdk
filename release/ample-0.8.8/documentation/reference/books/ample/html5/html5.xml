@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<article>
+	<title>HTML 5 - A vocabulary and associated APIs for HTML and XHTML</title>
+	<warning>
+		<locale>
+			HTML 5 in Ample SDK is currently in development.
+		</locale>
+		<locale xml:lang="ru">
+			Реализация HTML 5 в <b>Ample SDK</b> находится в разработке.
+		</locale>
+	</warning>
+	<abstract>
+		<locale>
+			HTML 5 is the 5th major revision of the core language of the World Wide Web:
+			the Hypertext Markup Language (HTML). In this version, new features are introduced
+			to help Web application authors, new elements are introduced based on research into
+			prevailing authoring practices, and special attention has been given to defining clear
+			conformance criteria for user agents in an effort to improve interoperability.
+		</locale>
+	</abstract>
+	<content>
+		<section>
+			<title>
+				<locale>
+					Namespace URI
+				</locale>
+				<locale xml:lang="ru">
+					Пространство имен
+				</locale>
+			</title>
+			<content>
+				<locale>
+					HTML 5 uses a namespaces associated with the URI <uri>http://www.w3.org/1999/xhtml</uri>.
+				</locale>
+				<locale xml:lang="ru">
+					Пространство имен HTML 5 определяется URI <uri>http://www.w3.org/1999/xhtml</uri>
+				</locale>
+			</content>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Ample SDK implementation details
+				</locale>
+				<locale xml:lang="ru">
+					Реализация в Ample SDK
+				</locale>
+			</title>
+			<content>
+				<locale>
+					At the present moment HTML 5 in Ample SDK is in the development.
+				</locale>
+				<locale xml:lang="ru">
+					В настоящее время реализация языка HTML 5 в <b>Ample SDK</b> находится в стадии разработки.
+				</locale>
+			</content>
+		</section>
+	</content>
+	<seealso>
+		<link href="http://www.w3.org/TR/html5/">HTML 5 - A vocabulary and associated APIs for HTML and XHTML (W3C)</link>
+	</seealso>
+</article>

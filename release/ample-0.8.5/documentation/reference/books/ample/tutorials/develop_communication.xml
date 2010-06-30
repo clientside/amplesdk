@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<article>
+	<title>Part IV - Enabling Client-Server Communication</title>
+	<abstract>
+		<locale>
+			In this tutorial we will go through a series of techniques and technologies used when implementing client-server communication.
+		</locale>
+	</abstract>
+	<content>
+		<section>
+			<title>
+				<locale>
+					Introduction to Client-Server communication
+				</locale>
+			</title>
+			<content>
+				<locale>
+					TODO:
+				</locale>
+			</content>
+			<section>
+				<title>
+					<locale>
+						Communication Protocols
+					</locale>
+				</title>
+				<content>
+					<locale>
+						TODO:
+					</locale>
+				</content>
+			</section>
+			<section>
+				<title>
+					<locale>
+						Data serialization/de-serialization formats
+					</locale>
+				</title>
+				<content>
+					<locale>
+						TODO:
+					</locale>
+				</content>
+			</section>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Using XMLHttpRequest object
+				</locale>
+			</title>
+			<content>
+				<locale>
+					TODO:
+				</locale>
+			</content>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Using SOAPRequest object
+				</locale>
+			</title>
+			<content>
+				<locale>
+					TODO:
+				</locale>
+			</content>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Using DOMParser / XMLSerializer objects
+				</locale>
+			</title>
+			<content>
+				<locale>
+					TODO:
+				</locale>
+			</content>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Using JSON object
+				</locale>
+			</title>
+			<content>
+				<locale>
+					TODO:
+				</locale>
+			</content>
+		</section>
+	</content>
+</article>

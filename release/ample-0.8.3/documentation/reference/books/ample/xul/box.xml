@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="box" type="boxed">
+	<implements />
+	<abstract>
+		<locale xml:lang="ru">
+			Элемент-контейнер, может содержать любое количество дочерних элементов.
+			При наличии атрибута <link type="attribute">orient</link> в значении <b>horizontal</b>,
+			дочерние элементы располагаются слева направо в порядке их следования в разметке.
+			Если атрибут <link type="attribute">orient</link> выставлен в значение <b>vertical</b>,
+			дочерние элементы располагаются сверху вниз. Дочерние элементы не перекрывают друг друга.
+			По умолчанию атрибут <link type="attribute">orient</link> имеет значение <b>horizontal</b>.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes />
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

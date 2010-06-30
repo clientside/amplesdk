@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="listcell">
+	<implements />
+	<abstract>
+		<locale>
+			A single cell of a <link type="element">listbox</link>.
+		</locale>
+		<locale xml:lang="ru">
+			Ячейка элемента <link type="element">listbox</link>, содержащаяся внутри <link type="element">listitem</link>.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="label" readonly="true">
+				<description>
+					<locale>
+						The label that will appear on the element. If this is left out, no text appears.
+					</locale>
+					<locale xml:lang="ru">
+						Текстовая метка, которая появится в элементе <link type="element">listcell</link>.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="image" readonly="true">
+				<description>
+					<locale>
+						The URL of the image to appear on the element.
+						If this attribute is empty or left out, no image appears.
+					</locale>
+					<locale xml:lang="ru">
+						URL к пиктограмме, которая будет использована в элементе <link type="element">listcell</link>.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties />
+		<events/>
+	</members>
+</element>

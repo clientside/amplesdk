@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<strings>
+	<title_element>Элемент</title_element>
+	<title_object>Объект</title_object>
+	<title_interface>Интерфейс</title_interface>
+	<title_extends>Расширяет</title_extends>
+
+	<members>Члены</members>
+	<members_description>В таблице представлены члены {name}. Выберите закладку слева для выбора типа членов.</members_description>
+	<members_show_inherited>Показывать наследованные члены (помечены *)</members_show_inherited>
+
+	<impl_title>Реализации</impl_title>
+	<impl_descr>Элемент {name} реализует следующие интерфейсы: </impl_descr>
+	<remarks>Примечания</remarks>
+	<examples>Примеры</examples>
+	<seealso>Смотри так же</seealso>
+	<uri>Пространство имен</uri>
+	<overview>Содержание</overview>
+
+	<copyright>&#169; 2009 <a class="copyright" href="http://www.clientside.fi/" title="Clientside OY" target="_top" xmlns="http://www.w3.org/1999/xhtml">Clientside OY</a></copyright>
+	<link_external>ссылка на внешний ресурс в интернете</link_external>
+	<attention>Внимание</attention>
+	<collapse_expand>Развернуть/Свернуть</collapse_expand>
+
+	<show>Показать:</show>
+	<constants>константы</constants>
+	<properties>свойства</properties>
+	<methods>методы</methods>
+	<events>события</events>
+	<attributes>атрибуты</attributes>
+
+	<attr_name>Атрибут</attr_name>
+	<attr_ronly>Для чтения</attr_ronly>
+	<attr_descr>Описание</attr_descr>
+
+	<values_title>Возможные значения:</values_title>
+	<values_value>Значение</values_value>
+	<values_descr>Описание</values_descr>
+	<values_default>Значение по умолчанию</values_default>
+
+	<properties_name>Свойство</properties_name>
+	<properties_type>Тип</properties_type>
+	<properties_ronly>Для чтения</properties_ronly>
+	<properties_descr>Описание</properties_descr>
+
+	<constants_name>Константа</constants_name>
+	<constants_value>Значение</constants_value>
+	<constants_descr>Описание</constants_descr>
+
+	<methods_name>Метод</methods_name>
+	<methods_returns>Возвращает</methods_returns>
+	<methods_descr>Описание</methods_descr>
+	<methods_syntax>Синтаксис:</methods_syntax>
+	<methods_args>Аргументы:</methods_args>
+	<methods_arg_type>Тип</methods_arg_type>
+	<methods_arg_o_title>Опциональный/Обязательный</methods_arg_o_title>
+	<methods_arg_o>O/R</methods_arg_o>
+	<methods_arg_name>Имя</methods_arg_name>
+	<methods_arg_descr>Описание</methods_arg_descr>
+	<methods_arg_opt>Optional</methods_arg_opt>
+	<methods_arg_req>Required</methods_arg_req>
+
+	<event_name>Событие</event_name>
+	<event_bubbleable>B</event_bubbleable>
+	<event_bubbleable_title>Bubbles</event_bubbleable_title>
+	<event_cancelable>C</event_cancelable>
+	<event_cancelable_title>Cancelable</event_cancelable_title>
+	<event_interface>Интерфейс</event_interface>
+	<event_descr>Описание</event_descr>
+</strings>

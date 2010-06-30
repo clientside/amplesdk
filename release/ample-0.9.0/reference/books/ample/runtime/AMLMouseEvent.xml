@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="AMLMouseEvent" extends="runtime:AMLUIEvent">
+	<abstract>
+		<locale>
+			The MouseEvent interface provides specific contextual information associated with Mouse events.
+		</locale>
+		<locale xml:lang="ru">
+			Интерфейс MouseEvent предоставляет контекстную информацию, специфичную для событий манипулятора "мышь".
+		</locale>
+	</abstract>
+	<examples/>
+	<members>
+		<methods>
+			<method name="initMouseEvent" type="Void">
+				<arguments>
+					<argument name="sEventType" type="String" required="true">
+						<description>
+							<locale>
+								Specifies the event type.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает на тип события (Event.type).
+							</locale>
+						</description>
+					</argument>
+					<argument name="bCanBubble" type="Boolean" required="true">
+						<description>
+							<locale>
+								Specifies whether or not the event can bubble.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает, может ли событие распространяться в фазе "bubbling".
+							</locale>
+						</description>
+					</argument>
+					<argument name="bCancelable" type="Boolean" required="true">
+						<description>
+							<locale>
+								Specifies whether or not the event's default action can be prevented.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает, возможно ли отменить ответную реакцию браузера по умолчанию на событие.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						The initMouseEvent method is used to initialize the value of a MouseEvent object.
+					</locale>
+					<locale xml:lang="ru">
+						Метод initMouseEvent используется для инициализации значения объекта MouseEvent.
+					</locale>
+				</description>
+			</method>
+			<method name="getModifierState" type="Boolean">
+				<arguments>
+					<argument name="sModifier" type="String" required="true">
+						<description>
+							<locale>
+								A modifier key identifier. Common modifier keys are "Alt", "AltGraph", "CapsLock", "Control", "Meta", "NumLock", "Scroll", or "Shift"
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Queries the state of a modifier using a key identifier.
+					</locale>
+				</description>
+			</method>
+		</methods>
+		<properties>
+			<property name="altKey" type="Boolean" readonly="true">
+				<values>
+					<value name="true">
+						<description>
+							<locale xml:lang="ru">
+								ALT был нажат.
+							</locale>
+						</description>
+					</value>
+					<value name="false">
+						<description>
+							<locale xml:lang="ru">
+								ALT не был нажат.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale>
+						Used to indicate whether the 'alt' key was depressed during the firing of the event. On some platforms this key may map to an alternative key name.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает, была ли нажата клавиша ALT в момент возникновения события. На некоторых платформах эта клавиша может быть ассоциирована с другим названием.
+					</locale>
+				</description>
+			</property>
+			<property name="button" type="Number" readonly="true">
+				<values>
+					<value name="0">
+						<description>
+							<locale xml:lang="ru">
+								Левая кнопка мыши. (Для левши - правая).
+							</locale>
+						</description>
+					</value>
+					<value name="1">
+						<description>
+							<locale xml:lang="ru">
+								Средняя кнопка мыши.
+							</locale>
+						</description>
+					</value>
+					<value name="2">
+						<description>
+							<locale xml:lang="ru">
+								Правая кнопка мыши. (Для левши - левая).
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale>
+						During mouse events caused by the depression or release of a mouse button, button is used to indicate which mouse button changed state.
+						The values for button range from zero to indicate the left button of the mouse, one to indicate the middle button if present, and two to indicate the right button.
+						For mice configured for left handed use in which the button actions are reversed the values are instead read from right to left.
+					</locale>
+					<locale xml:lang="ru">
+						Если событие было вызвано нажатием или отпусканием кнопки мыши, свойство <link type="property">button</link> указывает на кнопку, которая изменила свое состояние.
+					</locale>
+				</description>
+			</property>
+			<property name="clientX" type="Number" readonly="true">
+				<description>
+					<locale>
+						The horizontal coordinate at which the event occurred relative to the DOM implementation's client area.
+					</locale>
+					<locale xml:lang="ru">
+						Горизонтальная координата мест, где произошло сбытие, относительно системы координат документа.
+					</locale>
+				</description>
+			</property>
+			<property name="clientY" type="Number" readonly="true">
+				<description>
+					<locale>
+						The vertical coordinate at which the event occurred relative to the DOM implementation's client area.
+					</locale>
+					<locale xml:lang="ru">
+						Вертикальная координата мест, где произошло сбытие, относительно системы координат документа.
+					</locale>
+				</description>
+			</property>
+			<property name="ctrlKey" type="Boolean" readonly="true">
+				<values>
+					<value name="true">
+						<description>
+							<locale xml:lang="ru">
+								CTRL был нажат.
+							</locale>
+						</description>
+					</value>
+					<value name="false">
+						<description>
+							<locale xml:lang="ru">
+								CTRL не был нажат.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale>
+						Used to indicate whether the 'ctrl' key was depressed during the firing of the event.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает, была ли нажата клавиша CTRL в момент возникновения события.
+					</locale>
+				</description>
+			</property>
+			<property name="metaKey" type="Boolean" readonly="true">
+				<values>
+					<value name="true">
+						<description>
+							<locale xml:lang="ru">
+								META была нажата.
+							</locale>
+						</description>
+					</value>
+					<value name="false">
+						<description>
+							<locale xml:lang="ru">
+								META не была нажата.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale>
+						Used to indicate whether the 'meta' key was depressed during the firing of the event. On some platforms this key may map to an alternative key name.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает, была ли нажата клавиша META в момент возникновения события. На некоторых платформах эта клавиша ассоциирована с другим названием.
+					</locale>
+				</description>
+			</property>
+			<property name="relatedTarget" type="EventTarget" readonly="true">
+				<description>
+					<locale>
+						Used to identify a secondary EventTarget related to a UI event. Currently this attribute is used with the mouseover event to indicate the EventTarget which the pointing device exited and with the mouseout event to indicate the EventTarget which the pointing device entered.
+					</locale>
+					<locale xml:lang="ru">
+						Используется для идентификации вторичного EventTarget для события. В настоящее время используется для события <link type="event">mouseover</link> чтобы указать, с какого элемента указатель ушел и для события <link type="event">mouseout</link> чтобы указать, с на какой элемент указатель пришел.
+					</locale>
+				</description>
+			</property>
+			<property name="screenX" type="Number" readonly="true">
+				<description>
+					<locale>
+						The horizontal coordinate at which the event occurred relative to the origin of the screen coordinate system.
+					</locale>
+					<locale xml:lang="ru">
+						Горизонтальная координата мест, где произошло сбытие, относительно системы координат экрана.
+					</locale>
+				</description>
+			</property>
+			<property name="screenY" type="Number" readonly="true">
+				<description>
+					<locale>
+						The vertical coordinate at which the event occurred relative to the origin of the screen coordinate system.
+					</locale>
+					<locale xml:lang="ru">
+						Вертикальная координата мест, где произошло сбытие, относительно системы координат экрана.
+					</locale>
+				</description>
+			</property>
+			<property name="shiftKey" type="Boolean" readonly="true">
+				<values>
+					<value name="true">
+						<description>
+							<locale xml:lang="ru">
+								SHIFT был нажат.
+							</locale>
+						</description>
+					</value>
+					<value name="false">
+						<description>
+							<locale xml:lang="ru">
+								SHIFT не был нажат.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale>
+						Used to indicate whether the 'shift' key was depressed during the firing of the event.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает, была ли нажата клавиша SHIFT в момент возникновения события.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<constants />
+	</members>
+	<remarks>
+		<remark>
+			<locale>Events of that type:</locale>
+      <locale xml:lang="ru">События этого типа:</locale>
+      <ul>
+        <li><link type="event" href="runtime:AMLElement">click</link></li>
+        <li><link type="event" href="runtime:AMLElement">dblclick</link></li>
+        <li><link type="event" href="runtime:AMLElement">mousedown</link></li>
+        <li><link type="event" href="runtime:AMLElement">mousemove</link></li>
+        <li><link type="event" href="runtime:AMLElement">mouseout</link></li>
+        <li><link type="event" href="runtime:AMLElement">mouseover</link></li>
+        <li><link type="event" href="runtime:AMLElement">mouseup</link></li>
+        <li><link type="event" href="runtime:AMLElement">contextmenu</link></li>
+        <li><link type="event" href="runtime:AMLElement">mouseenter</link></li>
+        <li><link type="event" href="runtime:AMLElement">mouseleave</link></li>
+      </ul>
+		</remark>
+	</remarks>
+	<examples />
+</object>

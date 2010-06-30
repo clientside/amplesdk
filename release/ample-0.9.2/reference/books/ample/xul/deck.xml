@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="deck">
+	<implements />
+	<abstract>
+		<locale>
+			An element that displays only one of its children at a time.
+		</locale>
+		<locale xml:lang="ru">
+			Элемент, который одновременно может отображать только один дочерний элемент.
+			Атрибут <link type="attribute">selectedIndex</link> определяет этот дочерний элемент.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="selectedIndex" default="" readonly="false">
+				<description>
+					<locale>
+						Gets and sets the index of the currently selected panel.
+						The first item is at index 0.
+					</locale>
+					<locale xml:lang="ru">
+						Задает порядковый номер отображаемого в настоящий момент дочернего элемента.
+						Нумерация начинается с нуля.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties>
+			<property name="selectedIndex" type="Number" readonly="true">
+				<description>
+					<locale>
+						Returns the index of the currently selected item.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает на порядковый номер отображаемого в настоящий момент дочернего элемента.
+						Нумерация начинается с нуля.
+					</locale>
+				</description>
+			</property>
+			<property name="selectedPanel" type="AMLElement" readonly="true">
+				<description>
+					<locale>
+						Holds a reference to the currently selected panel within a deck element.
+					</locale>
+					<locale xml:lang="ru">
+						Ссылка на отображаемый в настоящий момент дочерний элемент.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<events>
+			<event name="select" group="Event" cancelable="false" bubbles="false">
+				<description>
+					<locale>
+						Fires when selected child element changes.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается при смене отображаемого дочернего элемента.
+					</locale>
+				</description>
+			</event>
+		</events>
+	</members>
+</element>

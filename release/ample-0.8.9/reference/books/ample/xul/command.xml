@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="command" type="virtual">
+	<implements />
+	<abstract>
+		<locale>
+			A command element can be used to invoke an operation that can come from multiple  sources.
+			For example, a clipboard paste operation can be invoked from the Edit  menu, a context menu and by pressing a keyboard shortcut.
+			You attach the code  to the command using the <link type="attribute">oncommand</link> attribute.
+			It will be called no matter how it  is invoked by the user.
+			In addition, disabling the command will automatically  disable the menu items and keyboard shortcuts.
+			Commands are identified by their id. Like a <link type="element">broadcaster</link>, commands forward attributes to other elements.
+			You should put all your <link type="element">command</link> elements into <link type="element">commandset</link> placeholder.
+		</locale>
+		<locale xml:lang="ru">
+			Элемент <link type="element">command</link> может быть использован для операциq, которые могут быть инициированы из разных источников.
+			Например, вставка данных из буфера обмена может быть инициирована из контекстного меню, меню редактирования или нажатием сочетания горячих клавиш.
+			Код обработчика присоединяется с использованием атрибута <link type="attribute">oncommand</link>.
+			Этот код будет исполнен вне зависимости от того, каким образом его вызовет пользователь.
+			Запрещая элемент <link type="element">command</link>, автоматически запретятся все способы вызова его пользователем (пункты меню, сочетания горячих клавиш и так далее).
+			Элементы <link type="element">command</link> имеют уникальный идентификатор. Как и элемент <link type="element">broadcaster</link>, элементы <link type="element">command</link> имеют общие атрибуты с привязанными к ним элементами.
+			Все элементы <link type="element">command</link> должны помещаться в элемент <link type="element">commandset</link>.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes />
+		<methods />
+		<properties />
+		<events>
+			<event name="command" group="Event" cancelable="false" bubbles="true">
+				<description>
+					<locale xml:lang="ru">
+						Загорается, когда элемент активируется.
+						Это происходит, когда пользователь выбирает пункт меню или использует сочетание горячих клавиш,
+						присоединенное к элементу <link type="element">command</link>.
+					</locale>
+				</description>
+			</event>
+		</events>
+	</members>
+</element>

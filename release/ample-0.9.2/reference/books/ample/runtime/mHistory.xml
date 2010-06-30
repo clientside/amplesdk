@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="AMLHistory">
+	<abstract>
+		<locale>
+			Implements browser history navigation.
+		</locale>
+		<locale xml:lang="ru">
+			Реализует поддержку истории навигации браузера.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples/>
+	<members>
+		<methods>
+			<method name="$bookmark" type="Void">
+				<arguments>
+					<argument name="sHash" type="String" required="true">
+						<description>
+							<locale>
+								Hash value.
+							</locale>
+							<locale xml:lang="ru">
+								Значение метки.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Adds a page with specifyed marker (as hash) into the browser history. The <link type="event">hashchange</link> event is not fired at this point.
+					</locale>
+					<locale xml:lang="ru">
+						Добавляет страницу с указанной меткой (которая является хэшем) в историю навигации браузера.
+					</locale>
+				</description>
+			</method>
+		</methods>
+		<properties />
+		<attributes />
+		<events>
+			<event name="hashchange" group="HashChangeEvent" cancelable="false" bubbles="false">
+				<description>
+					<locale>
+						Fires on the document when user navigates browser history. Please note this event is not fired when <link type="method">$bookmark</link> method is called.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается на объекте <link type="object">AMLDocument</link>, когда пользователь перемещается по истории навигации браузера.
+					</locale>
+				</description>
+			</event>
+		</events>
+	</members>
+</object>

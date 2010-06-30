@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<article>
+	<title>Remote Events for XML (REX) 1.0</title>
+	<warning>
+		<locale>
+			REX 1.0 in Ample SDK is currently in development.
+		</locale>
+		<locale xml:lang="ru">
+			Реализация REX 1.0 в <b>Ample SDK</b> находится в разработке.
+		</locale>
+	</warning>
+	<abstract>
+		<locale>
+			Remote Events for XML (REX) 1.0 is an XML  [XML] grammar for representing events as they are defined in DOM 3 Events [DOM3EV], primarily but not exclusively for purposes of transmission.
+			It enables one endpoint to interact remotely with another endpoint holding a DOM representation by sending it DOM Events as if they had occurred directly at the same location.
+		</locale>
+		<locale xml:lang="ru">
+			Язык Remote Events for XML (REX) является разметкой, которая представляет события, описанные в <link href="http://www.w3.org/TR/DOM-Level-3-Events/" title="Document Object Model (DOM) Level 3 Events Specification">DOM 3 Events</link>, для передачи их по сети вне зависимости от транспорта. REX позволяет передавать DOM события по сети из одной точки в другую (обе имеют DOM представления) так, как если бы они они происходили в одном документе в одном месте. REX не определяет, каким образом происходит инициация соединения между двумя точками, а так же его разрыв.
+		</locale>
+	</abstract>
+	<content>
+		<section>
+			<title>
+				<locale>
+					Namespace URI
+				</locale>
+				<locale xml:lang="ru">
+					Простанство имен
+				</locale>
+			</title>
+			<content>
+				<locale>
+					REX 1.0 defines a namespaces associated with the URI <uri>http://www.w3.org/ns/rex</uri>.
+				</locale>
+				<locale xml:lang="ru">
+					Пространство имен REX 1.0 определяется URI <uri>http://www.w3.org/ns/rex</uri>
+				</locale>
+			</content>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Ample SDK implementation details
+				</locale>
+				<locale xml:lang="ru">
+					Реализация в Ample SDK
+				</locale>
+			</title>
+			<content>
+				<locale>
+					At the present moment REX 1.0 in Ample SDK is in the development.
+				</locale>
+				<locale xml:lang="ru">
+					В настоящее время реализация языка REX 1.0 в <b>Ample SDK</b> находится в разработке.
+				</locale>
+			</content>
+		</section>
+	</content>
+
+	<seealso>
+		<link href="http://www.w3.org/TR/rex/">REX 1.0 (W3C)</link>
+	</seealso>
+</article>

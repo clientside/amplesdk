@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="dialogheader" type="boxed">
+	<implements />
+	<abstract>
+		<locale xml:lang="ru">
+			Строка заголовка для диалога.
+			Этот элемент должен быть размещен внутри элемента <link type="element">dialog</link>.
+			Заголовок может иметь название и описание.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="title" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						Название элемента.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="description" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						Описание, сопровождающее название элемента.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

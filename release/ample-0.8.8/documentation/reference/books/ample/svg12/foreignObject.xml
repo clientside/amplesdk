@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element name="foreignObject" extends="svg12:SVG12Element">
+	<abstract>
+		<locale>
+			The 'foreignObject' element allows for inclusion of a foreign namespace which has its graphical content drawn by a different user agent.
+		</locale>
+	</abstract>
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="x">
+				<description>
+					<locale>
+						The x-axis coordinate of one corner of the rectangular region into which the referenced document is placed.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="y">
+				<description>
+					<locale>
+						The y-axis coordinate of one corner of the rectangular region into which the referenced document is placed.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="width">
+				<description>
+					<locale>
+						The width of the rectangular region into which the referenced document is placed.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="height">
+				<description>
+					<locale>
+						The height of the rectangular region into which the referenced document is placed.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="transform">
+				<values>
+					<value name="matrix(a b c d e f)">
+						<description>
+							<locale>
+								Specifies transformation matrix [a b c d e f]
+							</locale>
+						</description>
+					</value>
+					<value name="translate(tx [ty])">
+						<description>
+							<locale>
+								Specifies a translation by tx and ty.
+							</locale>
+						</description>
+					</value>
+					<value name="scale(sx [sy])">
+						<description>
+							<locale>
+								Specifies a scale operation by sx and sy.
+							</locale>
+						</description>
+					</value>
+					<value name="rotate(rotate-angle [cx cy])">
+						<description>
+							<locale>
+								Specifies a rotation by rotate-angle degrees about a given point.
+							</locale>
+						</description>
+					</value>
+					<value name="skewX(skew-angle)">
+						<description>
+							<locale>
+								Specifies a skew transformation along the x-axis.
+							</locale>
+						</description>
+					</value>
+					<value name="skewY(skew-angle)">
+						<description>
+							<locale>
+								Specifies a skew transformation along the y-axis.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale>
+						This attribute specifies a list of coordinate system transformations to apply to the element it appears on. The individual transform definitions are separated by white space and/or a comma.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+	</members>
+</element>

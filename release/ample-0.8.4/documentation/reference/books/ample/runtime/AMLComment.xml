@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="AMLComment" extends="runtime:AMLCharacterData">
+	<abstract>
+		<locale>
+			Represents a comment.
+		</locale>
+		<locale xml:lang="ru">
+			Комментарий.
+		</locale>
+	</abstract>
+	<note>
+		This kind of node does not get instantiated in Ample SDK.
+	</note>
+	<remarks />
+	<examples/>
+	<members />
+</object>

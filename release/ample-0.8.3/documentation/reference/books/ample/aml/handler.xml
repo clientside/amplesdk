@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="aml:AMLElement" name="handler">
+	<implements />
+	<abstract>
+		<locale xml:lang="ru">
+			Элемент <link type="element">handler</link> предназначен для регистрации обработчиков событий других элементов.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples>
+		<example>
+			<locale xml:lang="ru">
+				В примере регистрируется обработчик события "click" для элемента xhtml:div.
+				Если пользователь кликнет на тексте, всплывет стандартное диалоговое окно с типом события,
+				которое привело к исполнению обработчика.
+			</locale>
+			<code type="application/xml"><![CDATA[
+<div xmlns="ttp://www.w3.org/1999/xhtml" xmlns:aml="http://www.amplesdk.com/ns/aml">
+	<aml:handler event="click" type="text/javascript">
+		alert(event.type);
+	</aml:handler>
+	Click me!
+</div>	]]></code>
+		</example>
+	</examples>
+	<members>
+		<attributes>
+			<attribute name="event">
+				<description>
+					<locale xml:lang="ru">
+						Задает тип события, для которого будет зарегистрирован обработчик.
+						Если этот атрибут не указан, обработчик будет вызван непосредственно
+						при обработке элемента <link type="element">handler</link> ядром.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="type" readonly="true">
+				<values>
+					<value name="text/javascript">
+						<description>
+							<locale xml:lang="ru">
+								Код должен быть написан на скриптовом языке JavaScript.
+							</locale>
+						</description>
+					</value>
+					<value name="application/javascript">
+						<description>
+							<locale xml:lang="ru">
+								Код должен быть написан на скриптовом языке JavaScript.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale xml:lang="ru">
+						Обязательный атрибут, задает mime-type кода обработчика события.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="phase" readonly="true" default="default">
+				<values>
+					<value name="capture">
+						<description>
+							<locale xml:lang="ru">
+								Обработчик исполняется в фазе "capture".
+							</locale>
+						</description>
+					</value>
+					<value name="default">
+						<description>
+							<locale xml:lang="ru">
+								Обработчик исполняется в фазах "bubbling" и "target".
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale xml:lang="ru">
+						Необязательный атрибут, задает фазу активации обработчика события указанного типа.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="propagate" readonly="true" default="continue">
+				<values>
+					<value name="stop">
+						<description>
+							<locale xml:lang="ru">
+								Распространение события остановится на текущем узле документа, но все обработчики этого события на текущем узле будут активированы.
+							</locale>
+						</description>
+					</value>
+					<value name="continue">
+						<description>
+							<locale xml:lang="ru">
+								Распространение события продолжается после исполнения обработчика (если распространение не было остановлено другими способами, например, через скрипт или другим обработчиком).
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale xml:lang="ru">
+						Необязательный атрибут <link type="attribute">propagate</link> указывает, будет ли распространено событие после исполнения всех обработчиков на текущем узле.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="defaultAction" readonly="true" default="perform">
+				<values>
+					<value name="cancel">
+						<description>
+							<locale xml:lang="ru">
+								Если событие cancelable, отменяет ответную реакцию браузера по умолчанию на событие.
+							</locale>
+						</description>
+					</value>
+					<value name="perform">
+						<description>
+							<locale xml:lang="ru">
+								Разрешает ответную реакцию браузера по умолчанию на событие (если оно не было отменено другими способами, например, скриптом или другим обработчиком события).
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale xml:lang="ru">
+						Необязательный атрибут <link type="attribute">defaultAction</link> указывает, будет ли выполнена ответная реакция браузера по умолчанию на событие.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

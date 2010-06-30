@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="treeitem" type="regular">
+	<implements />
+	<abstract>
+		<locale xml:lang="ru">
+			Размещается внутри элемента <link type="element">treechildren</link> и должен
+			содержать элемент <link type="element">treerow</link>.
+			Является строкой дерева и содержит все элементы, являющиеся потомками этой строки (например, дочерние строки).
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="open" readonly="false">
+				<values>
+					<value name="true">
+						<description>
+							<locale xml:lang="ru">
+								Элемент раскрыт - дочерние элементы отображаются.
+							</locale>
+						</description>
+					</value>
+					<value name="false">
+						<description>
+							<locale xml:lang="ru">
+								Элемент закрыт - дочерние элементы не отображаются.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale xml:lang="ru">
+						Указывает на раскрытость элемента при отрисовке.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties>
+			<property name="row" readonly="true">
+				<description>
+					<locale xml:lang="ru">
+						Ссылка на элемент <link type="element">treerow</link>.
+					</locale>
+				</description>
+			</property>
+			<property name="children" readonly="true">
+				<description>
+					<locale xml:lang="ru">
+						Ссылка на элемент <link type="element">treechildren</link>.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<events />
+	</members>
+</element>

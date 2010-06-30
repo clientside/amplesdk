@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element name="whiteSpace">
+	<abstract>
+		<locale>
+			Facet whiteSpace constrains the value space of types derived from string such that the various behaviors specified in Attribute Value Normalization in [XML] are realized.
+		</locale>
+	</abstract>
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="value">
+				<values>
+					<value name="preserve">
+						<description>
+							<locale>
+								No normalization is done, the value is not changed.
+							</locale>
+						</description>
+					</value>
+					<value name="replace">
+						<description>
+							<locale>
+								All occurrences of #x9 (tab), #xA (line feed) and #xD (carriage return) are replaced with #x20 (space).
+							</locale>
+						</description>
+					</value>
+					<value name="collapse">
+						<description>
+							<locale>
+								After the processing implied by replace, contiguous sequences of #x20's are collapsed to a single #x20, and leading and trailing #x20's are removed.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale>
+						Defines the value space.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="fixed">
+				<values>
+					<value name="true">
+						<description>
+							<locale>
+								The facet is fixed.
+							</locale>
+						</description>
+					</value>
+					<value name="false">
+						<description>
+							<locale>
+								The facet is not fixed.
+								This is the default.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale>
+						Specifies whether facet is fixed.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

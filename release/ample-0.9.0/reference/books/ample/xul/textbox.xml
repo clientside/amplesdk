@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="textbox">
+	<abstract>
+		<locale>
+			An input field where the user can enter text.
+			It is similar to the HTML input element.
+			Only one line of text is displayed by default.
+			The <link type="attribute">multiline</link> attribute can be specified to display a field with multiple rows.
+		</locale>
+		<locale xml:lang="ru">
+			Поле для ввода текстовой информации.
+			По умолчанию, отображается только одна строка текста.
+			Для ввода многострочного текста может быть указан атрибут <link type="attribute">multiline</link> в значении <b>true</b>.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="disabled">
+				<description>
+					<locale>
+						Indicates whether the element is disabled or not.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="type" default="" readonly="true">
+				<values>
+					<value name="password">
+						<description>
+							<locale>
+								A textbox that hides what is typed, used for entering passwords.
+							</locale>
+							<locale xml:lang="ru">
+								Поле для ввода текста, которое не отображает реально вводимые данные.
+								Используется для ввода паролей.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale>
+						You can set the type attribute to one of the values below for a more specialized type of textbox.
+						Don't set the type if you wish to use a regular textbox.
+					</locale>
+					<locale xml:lang="ru">
+						Используется для более специфичных полей для ввода текста.
+						Не используйте этот атрибут, если хочется использовать стандартной поле для ввода текста.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="multiline" default="false" readonly="true">
+				<description>
+					<locale>
+						If true, the textbox displays multiple lines.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает на возможность ввода многострочного текста.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="value" default="" readonly="false">
+				<description>
+					<locale>
+						The default value entered in a textbox.
+					</locale>
+					<locale xml:lang="ru">
+						Данные, ассоциированные с элементом.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="readOnly" type="String" readonly="false" default="false">
+				<description>
+					<locale>
+						If set to true, then the user cannot change the value of the element.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает, доступно ли содержимое объекта для редактирования.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="maxlength" default="" readonly="false">
+				<description>
+					<locale>
+						The maximum number of characters that the textbox allows to be entered.
+					</locale>
+					<locale xml:lang="ru">
+						Максимально количество символов, доступное для ввода.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="rows" default="" readonly="false">
+				<description>
+					<locale>
+						The number of rows to display in the element.
+					</locale>
+					<locale xml:lang="ru">
+						Количество строк элемента. Используется только при атрибуте <link type="attribute">multiline</link> выставленном в значение <b>true</b>.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="cols" default="" readonly="false">
+				<description>
+					<locale>
+						For multiline textboxes, the number of columns to display.
+					</locale>
+					<locale xml:lang="ru">
+						Количество столбцов элемента. Используется только при атрибуте <link type="attribute">multiline</link> выставленном в значение <b>true</b>.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

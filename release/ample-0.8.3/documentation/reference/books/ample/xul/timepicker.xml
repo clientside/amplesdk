@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="timepicker">
+	<abstract>
+		<locale>
+
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="name">
+				<description>
+					<locale>
+						Name of the parameter to be used when sending with <b>form</b>.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="value" readonly="false">
+				<description>
+					<locale>
+						Component value.
+					</locale>
+					<locale xml:lang="ru">
+						Содержит значение компонента.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="min" default="0" readonly="false">
+				<description>
+					<locale>
+						Minimal allowed value.
+					</locale>
+					<locale xml:lang="ru">
+						Задает минимальное значение диапазона.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="max" readonly="false">
+				<description>
+					<locale>
+						Maximal allowed value.
+					</locale>
+					<locale xml:lang="ru">
+						Задает максимальное значение диапазона.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties />
+		<events>
+			<event name="change" group="Event" cancelable="false" bubbles="true">
+				<description>
+					<locale>
+						Fires when user selects a new date.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается при изменении значения компонента.
+					</locale>
+				</description>
+			</event>
+		</events>
+	</members>
+</element>

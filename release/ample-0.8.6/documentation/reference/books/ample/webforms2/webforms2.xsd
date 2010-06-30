@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	targetNamespace="http://www.w3.org/1999/xhtml" 
+	xmlns:wf2="http://www.w3.org/1999/xhtml" 
+	elementFormDefault="qualified">
+
+	<xsd:simpleType name="FormMethod">
+	<!-- 
+	(get"* | "post" | "put" | "delete")
+	 -->
+	</xsd:simpleType>
+
+	<xsd:simpleType name="ReplaceMode">
+	<!-- 
+	("document"* | "values")
+	 -->
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Character">
+
+	</xsd:simpleType>
+
+	<xsd:simpleType name="ContentType">
+
+	</xsd:simpleType>
+
+	<xsd:simpleType name="ContentTypes">
+
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Charset">
+
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Charsets">
+
+	</xsd:simpleType>
+
+	<!-- Form elements -->
+	<xsd:element name="form">
+		<xsd:complexType>
+			<xsd:attribute name="accept" type="wf2:ContentTypes" />
+			<xsd:attribute name="accept-charset" type="wf2:Charsets" />
+			<xsd:attribute name="action" type="xsd:anyURI" />
+			<xsd:attribute name="data" type="xsd:anyURI" />
+			<xsd:attribute name="enctype" type="wf2:Charset" />
+			<xsd:attribute name="method" type="wf2:FormMethod" />
+			<xsd:attribute name="replace" type="wf2:ReplaceMode" />
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="fieldset">
+		<xsd:complexType>
+			<xsd:attribute name="disabled" type="xsd:boolean" />
+			<xsd:attribute name="form" type="xsd:IDREF" />
+		</xsd:complexType>
+	</xsd:element>
+	
+	<!-- Formctrl elements -->
+	<xsd:element name="input">
+
+	</xsd:element>
+
+	<xsd:element name="select">
+		<xsd:complexType>
+			<xsd:attribute name="accesskey" type="wf2:Character"/>
+			<xsd:attribute name="autofocus" type="xsd:boolean"/>
+			<xsd:attribute name="data" type="xsd:anyURI" />
+			<xsd:attribute name="disabled" type="xsd:boolean" />
+			<xsd:attribute name="form" type="xsd:IDREF" />
+			<xsd:attribute name="multiple" type="xsd:boolean" />
+			<xsd:attribute name="name" type="xsd:NMTOKEN" />
+			<xsd:attribute name="size" type="xsd:int" />
+			<xsd:attribute name="tabindex" type="xsd:int" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="textarea">
+
+	</xsd:element>
+
+	<xsd:element name="output">
+		<xsd:complexType>
+			<xsd:attribute name="for" type="xsd:IDREF"/>
+			<xsd:attribute name="form" type="xsd:IDREF" />
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="button">
+
+	</xsd:element>
+	
+	<xsd:element name="label">
+		<xsd:complexType>
+			<xsd:attribute name="accesskey" type="wf2:Character"/>
+			<xsd:attribute name="for" type="xsd:IDREF"/>
+			<xsd:attribute name="name" type="xsd:NMTOKEN" />
+		</xsd:complexType>
+	</xsd:element>
+	
+	<!-- Form+formctrl elements -->
+	<xsd:element name="datalist">
+		<xsd:complexType>
+			<xsd:attribute name="data" type="xsd:anyURI" />
+		</xsd:complexType>
+	</xsd:element>
+	
+	<!-- Other -->
+	<xsd:element name="optgroup">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="wf2:optgroup"/>
+				<xsd:element ref="wf2:option"/>
+			</xsd:sequence>
+			<xsd:attribute name="disabled" type="xsd:boolean" />
+			<xsd:attribute name="label" type="xsd:string" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="option">
+		<xsd:complexType>
+			<xsd:attribute name="disabled" type="xsd:boolean" />
+			<xsd:attribute name="label" type="xsd:string" />
+			<xsd:attribute name="selected" type="xsd:boolean" />
+			<xsd:attribute name="value" type="xsd:string" />
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="legend">
+		<xsd:complexType>
+			<xsd:attribute name="accesskey" type="wf2:Character"/>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

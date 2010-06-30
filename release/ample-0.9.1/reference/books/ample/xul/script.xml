@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="script">
+	<implements />
+	<abstract>
+		<locale>
+			Much like the HTML script element, this is used to declare a script to be used by the XUL window.
+		</locale>
+		<locale xml:lang="ru">
+			Аналогично элементу <b>script</b> в HTML, используется для объявления скрипта,
+			который будет использоваться в документе <b>Ample SDK</b>.
+			Скрипты следует размещать в отдельных файлах, ссылаясь на них атрибутом <link type="attribute">src</link>.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="src" default="" readonly="false">
+				<description>
+					<locale>
+						The URL of the script.
+					</locale>
+					<locale xml:lang="ru">
+						URL скрипта.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="type" readonly="true" default="application/javascript">
+				<description>
+					<locale>
+						The language of the script.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

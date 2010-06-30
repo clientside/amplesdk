@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="AMLCapture">
+	<abstract>
+		<locale>
+			Implements UI capturing functionality by forwarding UI events.
+		</locale>
+	</abstract>
+	<remarks/>
+	<examples/>
+	<members>
+		<methods>
+			<method name="setCapture" type="Void">
+				<arguments>
+					<argument name="bContainerCapture" type="Boolean" required="false">
+						<description>
+							<locale>
+								A Boolean that specifies capture mode.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Sets the mouse capture to the object that belongs to the current document.
+					</locale>
+				</description>
+			</method>
+			<method name="$setCapture" type="Void">
+				<arguments>
+					<argument name="bContainerCapture" type="Boolean" required="false">
+						<description>
+							<locale>
+								A Boolean that specifies capture mode.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Deprecated. Use <link type="method">setCapture</link> instead.
+					</locale>
+				</description>
+			</method>
+			<method name="releaseCapture" type="Void">
+				<description>
+					<locale>
+						Removes mouse capture from the object in the current document.
+					</locale>
+				</description>
+			</method>
+			<method name="$releaseCapture" type="Void">
+				<description>
+					<locale>
+						Deprecated. Use <link type="method">releaseCapture</link> instead.
+					</locale>
+				</description>
+			</method>
+			<!-- Modality -->
+			<method name="$setModal" type="Void">
+				<description>
+					<locale>
+						Sets element in a modal state if it is not yet modal, otherwise throws exception.
+						UI Events originated outside this element get supressed,
+						except for one <link type="event">capture</link> that is fired upon a click outside modal area.
+						If there was an element set in modal state before, it will pushed to the stack of modals.
+					</locale>
+				</description>
+			</method>
+			<method name="$releaseModal" type="Void">
+				<description>
+					<locale>
+						Brings element to a normal (non-modal) state if it was set to modal before, otherwise throws exception.
+						In case there was another element set in modal mode before the one being released,
+						it will regain modal state.
+					</locale>
+				</description>
+			</method>
+		</methods>
+		<properties />
+		<attributes />
+		<events>
+			<event name="losecapture" group="UIEvent" cancelable="false" bubbles="false">
+				<description>
+					<locale>
+						Fires when the object is losing the mouse capture.
+					</locale>
+				</description>
+			</event>
+			<event name="capture" group="UIEvent" cancelable="false" bubbles="true">
+				<description>
+					<locale>
+						Fires when user clicks outside either an element set as modal or to receive capture.
+					</locale>
+				</description>
+			</event>
+		</events>
+	</members>
+</object>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element name="ellipse" extends="svg12:SVG12ShapeElement">
+	<abstract>
+		<locale>
+			The 'ellipse' element defines an ellipse which is axis-aligned with the current user coordinate system based on a center point and two radii.
+		</locale>
+	</abstract>
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="cx">
+				<description>
+					<locale>
+						The x-axis coordinate of the center of the ellipse.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="cy">
+				<description>
+					<locale>
+						The y-axis coordinate of the center of the ellipse.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="rx">
+				<description>
+					<locale>
+						The x-axis radius of the ellipse.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="ry">
+				<description>
+					<locale>
+						The y-axis radius of the ellipse.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+	</members>
+</element>

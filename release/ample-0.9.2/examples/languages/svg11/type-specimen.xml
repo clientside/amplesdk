@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:smil="http://www.w3.org/2008/SMIL30/" version="1.1"
+viewBox="0 0 420 649"
+	width="420" height="649">
+	<title>Type specimen for Junction font</title>
+	<defs>
+		<style type="text/css">
+
+	@font-face {
+		src: url(../fonts/Junction.otf) format("opentype");
+  		font-family: "Junction";
+	}
+
+			#bg {fill: rgb(238, 225, 161); stroke: rgb(49, 33, 16); }
+			#lc-bg { fill:rgb(206, 103, 0); xvisibility: hidden; }
+			#bg-2 { fill: saddlebrown; }
+			#font-bg { fill:rgb(49, 33, 16); xvisibility: hidden; }
+			.svg-text { font-family: "Junction", serif;text-anchor:middle; xvisibility: hidden }
+			#main-text {
+				font-size:80px; fill: rgb(213, 200, 141); font-weight: bold; xvisibility: hidden;
+			}
+			#main-text .svg-tspan { font-weight: 300; xvisibility: hidden; }
+			#uc-text {
+				font-size: 20px; fill: rgb(49, 33, 16); font-weight: bold;
+			}
+			#uc-text .svg-tspan { font-weight: 400; }
+			#lc-text { font-size: 14px; fill: rgb(213, 200, 141); font-weight: bold; letter-spacing: 1px;}
+			#tagline { font-size: 20px; fill: black; font-weight: 900; }
+			#tagline .svg-tspan/*:first-of-type*/ { fill: rgb(213, 200, 141); font-size: 20px; letter-spacing: 1px;}
+			#tagline tspan:nth-of-type(2) { font-weight: 400; letter-spacing: -1px; font-size: 17px; }
+			#tagline tspan:nth-of-type(3) { font-weight: 500; font-size: 14px; letter-spacing: -1px;}
+			#tagline tspan:nth-of-type(4) { font-size: 13px;  letter-spacing: -1px;font-weight: 900; fill:saddlebrown; }
+		</style>
+	</defs>
+	<rect id="bg" x="0" y="0" width="100%" height="100%" />
+	<rect id="lc-bg" x="0" y="300" width="600" height="79" transform="rotate(45 63 276)">
+		<set attributeType="CSS" attributeName="visibility" to="visible" begin="1s"/>
+		<animate attributeType="XML" attributeName="width" from="0" to="600" dur="2s" begin="1s"/>
+	</rect>
+	<rect id="bg-2" x="0" y="211" width="395" height="83" transform="rotate(45 95 173)">
+		<animate attributeType="XML" attributeName="width" from="0" to="395" dur="2s" begin="0"/>
+	</rect>
+	<rect id="font-bg" x="0" y="200" width="800" height="115" transform="rotate(-45 388 480)">
+		<set attributeType="CSS" attributeName="visibility" to="visible" begin="1.8s"/>
+		<animate attributeType="XML" attributeName="width" from="0" to="800" dur="1.5s" begin="1.8s"/>
+	</rect>
+	<text id="main-text" x="230" y="350" transform="rotate(-45 230 350)">Junction
+		<set attributeType="CSS" attributeName="visibility" to="visible" begin="3s"/>
+	</text>
+	<text id="uc-text"  x="235" y="150" transform="rotate(-45 300 180)">ABCDEFGHIJ<tspan dy="20" x="285">KLMNOPQRSTUVWXYZ
+		<set attributeType="CSS" attributeName="visibility" to="visible" begin="2s"/>
+		<animate attributeType="XML" attributeName="x" from="550" to="285" dur="1s" begin="2s"/>
+
+	</tspan>
+		<set attributeType="CSS" attributeName="visibility" to="visible" begin="2"/>
+		<animate attributeType="XML" attributeName="x" from="500" to="235" dur="1s" begin="2s"/>
+	</text>
+	<text id="lc-text"  x="73" y="350" transform="rotate(45 75 350)">abcdef
+	<tspan dy="15" dx="-110">ghijklmnopqr
+		<set attributeType="CSS" attributeName="visibility" to="visible" begin="1.5s"/>
+	</tspan><tspan dy="17" dx="-42">stuv
+		<set attributeType="CSS" attributeName="visibility" to="visible" begin="1.5s"/>
+	</tspan><tspan dy="17" dx="-42">wxyz
+		<set attributeType="CSS" attributeName="visibility" to="visible" begin="1.5s"/>
+	</tspan>
+		<set attributeType="CSS" attributeName="visibility" to="visible" begin="1.5s"/>
+	</text>
+	<text id="tagline"  x="265" y="380" transform="rotate(-45 290 385)">In war
+		<set attributeType="CSS" attributeName="visibility" to="visible" begin="3.5s"/>
+	<tspan dx="12" dy="4">TRUTH
+		<set attributeType="CSS" attributeName="visibility" to="visible" begin="4s"/>
+		<set attributeType="CSS" attributeName="visibility" to="hidden" begin="4.3s"/>
+		<set attributeType="CSS" attributeName="visibility" to="visible" begin="4.6s"/>
+		<set attributeType="CSS" attributeName="visibility" to="hidden" begin="4.9s"/>
+		<set attributeType="CSS" attributeName="visibility" to="visible" begin="5.2s"/>
+	</tspan><tspan dx="10"> is the first casualty
+		<set attributeType="CSS" attributeName="visibility" to="visible" begin="4.5s"/>
+	</tspan><tspan dy="18" dx="-76">by
+		<set attributeType="CSS" attributeName="visibility" to="visible" begin="4.5s"/>
+	</tspan><tspan>Aeschylus
+		<set attributeType="CSS" attributeName="visibility" to="visible" begin="4.5s"/>
+	</tspan></text>
+
+
+</svg>

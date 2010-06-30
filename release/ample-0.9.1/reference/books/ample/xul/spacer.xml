@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="spacer">
+	<implements />
+	<abstract>
+		<locale>
+			An element that takes up space but does not display anything.
+			It is usually used to place spacing within a container.
+			If you don't specify that the spacer has a size or is flexible, the spacer does not occupy any space.
+		</locale>
+		<locale xml:lang="ru">
+			Элемент занимает пространство, но ничего не отображает.
+			Как правило, используется для вставки свободных промежутков внутри контейнера.
+			Если не указать размеры или атрибут <link type="attribute">flex</link>,
+			элемент не займет место в интерфейсе.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes />
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="XULSelectElement" extends="xul:XULElement">
+	<abstract>
+		<locale>
+			Represents base functionality for selection elements.
+		</locale>
+		<locale xml:lang="ru">
+			Реализует функциональность XULMultiSelect
+		</locale>
+	</abstract>
+	<examples/>
+	<members>
+		<methods>
+			<method name="selectAll" type="Void">
+				<arguments />
+				<description>
+					<locale xml:lang="ru">
+						Выделяет все элементы. После выделения отсылается событие select.
+					</locale>
+				</description>
+			</method>
+			<method name="clearSelection" type="Void">
+				<arguments />
+				<description>
+					<locale xml:lang="ru">
+						Снимает выделение со всех элементов.
+					</locale>
+				</description>
+			</method>
+			<method name="selectItem" type="Void">
+				<arguments>
+					<argument name="oItem" type="AMLElement" required="true">
+						<description>
+							<locale xml:lang="ru">
+								Элемент, который следует выделить.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale xml:lang="ru">
+						Снимает выделение со всех элементов и выделяет заданный элемент.
+						После выделения отсылается событие <link type="event">select</link>.
+					</locale>
+				</description>
+			</method>
+			<method name="toggleItemSelection" type="Void">
+				<arguments>
+					<argument name="oItem" type="AMLElement" required="true">
+						<description>
+							<locale xml:lang="ru">
+								Элемент, статус которого необходимо инверсировать.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale xml:lang="ru">
+						Изменяет статус выделения элемента на противоположное:
+						если элемент выделен, выделение снимается, если элемент не выделен, он выделяется.
+						Выделение всех остальных элементов списка не изменяется.
+					</locale>
+				</description>
+			</method>
+			<method name="addItemToSelection" type="Void">
+				<arguments>
+					<argument name="oItem" type="AMLElement" required="true">
+						<description>
+							<locale xml:lang="ru">
+								Элемент, который будет добавлен к выделению.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale xml:lang="ru">
+						Выделяет заданный элемент, не изменяя статус выделения остальных элементов.
+					</locale>
+				</description>
+			</method>
+			<method name="removeItemFromSelection" type="Void">
+				<arguments>
+					<argument name="oItem" type="AMLElement" required="true">
+						<description>
+							<locale xml:lang="ru">
+								Элемент, который будет удален из выделения.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale xml:lang="ru">
+						Снимает выделение заданного элемента, не изменяя статус выделения остальных элементов.
+					</locale>
+				</description>
+			</method>
+			<method name="selectItemRange" type="Void">
+				<arguments>
+					<argument name="oItemFirst" type="AMLElement" required="true">
+						<description>
+							<locale xml:lang="ru">
+								Первый элемент из диапазона.
+							</locale>
+						</description>
+					</argument>
+					<argument name="oItemLast" type="AMLElement" required="true">
+						<description>
+							<locale xml:lang="ru">
+								Последний элемент из диапазона.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale xml:lang="ru">
+						Выделяет элементы между двумя заданными включительно.
+						Выделение со всех остальных элементов снимается.
+						Этот метод не имеет никакого эффекта для списков без множественного выделения.
+						После выделения отсылается событие <link type="event">select</link>.
+					</locale>
+				</description>
+			</method>
+			<method name="scrollToIndex" type="Void">
+				<arguments>
+					<argument name="nIndex" type="Number" required="true">
+						<description>
+							<locale xml:lang="ru">
+								Индекс элемента, до которого будет прокручен список.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale xml:lang="ru">
+						Прокручивает список до элемента с указанным индексом.
+					</locale>
+				</description>
+			</method>
+		</methods>
+		<properties>
+			<property name="currentItem" type="AMLElement" readonly="true">
+				<description>
+					<locale xml:lang="ru">
+						Указывает на последний выделенный элемент.
+					</locale>
+				</description>
+			</property>
+			<property name="selectedItems" type="AMLNodeList">
+				<description>
+					<locale xml:lang="ru">
+						Коллекция выделенных элементов.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<attributes>
+			<attribute name="seltype" type="String" readonly="false">
+				<values>
+					<value name="single">
+						<description>
+							<locale xml:lang="ru">
+								Можно выделить только одну строку.
+							</locale>
+						</description>
+					</value>
+					<value name="multiple">
+						<description>
+							<locale xml:lang="ru">
+								Можно выделить несколько строк.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale xml:lang="ru">
+						Указывает, возможно ли множественное выделение.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<events>
+			<event name="select" group="Event" cancelable="false" bubbles="true">
+				<description>
+					<locale xml:lang="ru">
+						Загорается, когда изменяется выделение.
+					</locale>
+				</description>
+			</event>
+		</events>
+		<pseudoclasses>
+			<pseudoclass name="selected">
+				<description>
+					<locale>
+						Applied to element when it is selected.
+					</locale>
+				</description>
+			</pseudoclass>
+		</pseudoclasses>
+	</members>
+</object>

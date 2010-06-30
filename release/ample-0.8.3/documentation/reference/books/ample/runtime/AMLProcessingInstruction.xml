@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="AMLProcessingInstruction" extends="runtime:AMLNode">
+	<abstract>
+		<locale>
+			Represents a "processing instruction", used in XML as a way to keep processor-specific information in the text of the document.
+		</locale>
+		<locale xml:lang="ru">
+			Является "обрабатывающей инструкцией", используемой в XML для хранения информации, предназначенной для какого-либо обработчика, в тексте документа.
+		</locale>
+	</abstract>
+	<examples>
+		<example>
+			<code type="application/xml"><![CDATA[
+<?xml-stylesheet href="stylesheet.css"?>
+			]]></code>
+			<locale>
+				This processing instruction has <link type="attribute">target</link> 'xml-stylesheet' and <link type="attribute">data</link> 'href="stylesheet.css"'.
+			</locale>
+			<locale xml:lang="ru">
+				Эта обрабатывающая инструкция имеет <link type="attribute">target</link> 'xml-stylesheet' и <link type="attribute">data</link> 'href="stylesheet.css"'.
+			</locale>
+		</example>
+	</examples>
+	<members>
+		<properties>
+			<property name="data" type="String">
+				<description>
+					<locale>
+						Data of the instruction.
+					</locale>
+					<locale xml:lang="ru">
+						Данные инструкции.
+					</locale>
+				</description>
+			</property>
+			<property name="target" type="String" readonly="true">
+				<description>
+					<locale>
+						Processing instruction target.
+					</locale>
+					<locale xml:lang="ru">
+						Название обрабатывающей инструкции.
+					</locale>
+				</description>
+			</property>
+		</properties>
+	</members>
+</object>

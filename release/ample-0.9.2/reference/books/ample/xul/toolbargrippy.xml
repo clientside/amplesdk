@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="toolbargrippy">
+	<implements />
+	<abstract>
+		<locale>
+			The notch on the side of a <link type="element">toolbar</link> which can be used to collapse and expand it.
+			This element is used internally by the <link type="element">toolbar</link> and should only be used directly when modifying its theme.
+		</locale>
+		<locale xml:lang="ru">
+			Специальный элемент сбоку элемента <link type="element">toolbar</link>,
+			который используется для сворачивания и разворачивания панели инструментов.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes />
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

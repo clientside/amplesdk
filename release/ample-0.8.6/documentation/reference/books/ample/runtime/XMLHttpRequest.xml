@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="XMLHttpRequest">
+	<abstract>
+		<locale>
+			Object that provides some HTTP client functionality.
+		</locale>
+		<locale xml:lang="ru">
+			Объект предоставляет некоторую функциональность HTTP клиента.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<properties>
+			<property name="readyState" type="Number">
+				<description>
+					<locale>
+						The state of the object (0 - Uninitialized, 1 - Open, 2 - Sent, 3 - Receiving, 4 - Loaded).
+					</locale>
+					<locale xml:lang="ru">
+						Состояние объекта (0 - Не инициализирован, 1 - Открыт, 2 - Запрос послан, 3 - Поступает ответ, 4 - Ответ получен).
+					</locale>
+				</description>
+			</property>
+			<property name="onreadystatechange" type="Function">
+				<description>
+					<locale>
+						An attribute that represents a function that MUST be invoked when readyState changes value.
+					</locale>
+					<locale xml:lang="ru">
+						Атрибут, который ссылается на функцию, которая ДОЛЖНА быть вызвана при изменении свойства readyState.
+					</locale>
+				</description>
+			</property>
+			<property name="responseText" type="String">
+				<description>
+					<locale>
+						The body of the data received so far.
+					</locale>
+					<locale xml:lang="ru">
+						Текстовое представление полученных данных.
+					</locale>
+				</description>
+			</property>
+			<property name="responseXML" type="Document">
+				<description>
+					<locale>
+						Document object, representing the parsed data.
+					</locale>
+					<locale xml:lang="ru">
+						Объект DOM Document, представляющий структуру отпарсенных данных.
+					</locale>
+				</description>
+			</property>
+			<property name="status" type="Number">
+				<description>
+					<locale>
+						Represents the HTTP status code. (Available when readyState is 3 or 4)
+					</locale>
+					<locale xml:lang="ru">
+						Является кодом статуса HTTP-ответа. (Доступен, когда свойство readyState 3 или 4)
+					</locale>
+				</description>
+			</property>
+			<property name="statusText" type="String">
+				<description>
+					<locale>
+						Represents the HTTP status text sent by the server.
+					</locale>
+					<locale xml:lang="ru">
+						Текстовое представление HTTP-статуса, возвращенное сервером.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<methods>
+			<method name="open" type="Void">
+				<arguments>
+					<argument name="sMethod" type="String" required="true">
+						<description>
+							<locale>
+								The HTTP method.
+							</locale>
+							<locale xml:lang="ru">
+								 Метод HTTP запроса.
+							</locale>
+						</description>
+					</argument>
+					<argument name="sUrl" type="String" required="true">
+						<description>
+							<locale>
+								The URL to which to send the request.
+							</locale>
+							<locale xml:lang="ru">
+								URL, на который будет послан запрос.
+							</locale>
+						</description>
+					</argument>
+					<argument name="bAsync" type="Boolean">
+						<description>
+							<locale>
+								Indicates wether request should be asynchronous.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает, будет ли запрос асинхронным или нет.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Meant to be a script-only method for initializing a request.
+					</locale>
+					<locale xml:lang="ru">
+						Метод, инициализирующий запрос.
+					</locale>
+				</description>
+			</method>
+			<method name="send" type="Void">
+				<arguments>
+					<argument name="vData" required="true" type="Node">
+						<description>
+							<locale>
+								Data to be sent to the server.
+							</locale>
+							<locale xml:lang="ru">
+								Данные, которые будут отправлены на сервер.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Sends request to the server located by the URL provided when opening connection.
+					</locale>
+					<locale xml:lang="ru">
+						Посылает запрос на сервер, расположенный по URL, указанный при инициализации запроса.
+					</locale>
+				</description>
+			</method>
+			<method name="abort" type="Void">
+				<description>
+					<locale>
+						Cancels network activity and resets the object.
+					</locale>
+					<locale xml:lang="ru">
+						Отменяет запрос, посланный на сервер и сбрасывает настройки объекта.
+					</locale>
+				</description>
+			</method>
+			<method name="setRequestHeader" type="Void">
+				<arguments>
+					<argument name="sHeader" required="true" type="String">
+						<description>
+							<locale>
+								The name of the header to set in the request.
+							</locale>
+							<locale xml:lang="ru">
+								Имя заголовка запроса.
+							</locale>
+						</description>
+					</argument>
+					<argument name="sValue" required="true" type="String">
+						<description>
+							<locale>
+								The body of the header.
+							</locale>
+							<locale xml:lang="ru">
+								Содержимое заголовка запроса.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Sets a HTTP request header for HTTP requests. May only be called after the connection is opened.
+					</locale>
+					<locale xml:lang="ru">
+						Выставляет заголовок HTTP запроса. Может использоваться только после того, как запрос проинициализирован.
+					</locale>
+				</description>
+			</method>
+			<method name="getResponseHeader" type="String">
+				<arguments>
+					<argument name="sHeader" required="true" type="String">
+						<description>
+							<locale>
+								The name of the header to retrieve.
+							</locale>
+							<locale xml:lang="ru">
+								Имя заголовка запроса.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Returns the text of the header with the specified name for HTTP requests.
+					</locale>
+					<locale xml:lang="ru">
+						Возвращает текстовое значение запрашиваемого заголовка HTTP запроса.
+					</locale>
+				</description>
+			</method>
+			<method name="getAllResponseHeaders" type="String">
+				<description>
+					<locale>
+						Retrieves the string consisting of all HTTP headers.
+					</locale>
+					<locale xml:lang="ru">
+						Возвращает строку, содержащую все заголовки HTTP ответа.
+					</locale>
+				</description>
+			</method>
+		</methods>
+	</members>
+</object>

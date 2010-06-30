@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="listhead">
+	<implements />
+	<abstract>
+		<locale>
+			A header row of a <link type="element">listbox</link>.
+			It is usual to place <link type="element">listheader</link> elements inside the <link type="element">listhead</link>, one for each column.
+		</locale>
+		<locale xml:lang="ru">
+			Строка-заголовок элемента <link type="element">listbox</link>. Как правило, элемент <link type="element">listheader</link> помещается внутри элемента <link type="element">listhead</link> для каждого столбца.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes />
+		<methods />
+		<properties>
+			<property name="items" type="AMLNodeList" readonly="true">
+				<description>
+					<locale>
+						Contains a collection of <link type="element">listheader</link> child elements.
+					</locale>
+					<locale xml:lang="ru">
+						Коллекция элементов <link type="element">listheader</link>.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<events />
+	</members>
+</element>

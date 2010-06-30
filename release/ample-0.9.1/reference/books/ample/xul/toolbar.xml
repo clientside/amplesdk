@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="toolbar">
+	<implements />
+	<abstract>
+		<locale>
+			A container which typically contains a row of buttons.
+			It is a type of box that defaults to horizontal orientation.
+		</locale>
+		<locale xml:lang="ru">
+			Панель инструментов.
+			Контейнер, который, как правило, содержит набор кнопок.
+			Этот тип элемента <link type="box">box</link> имеет горизонтальную ориентацию по умолчанию.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes />
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

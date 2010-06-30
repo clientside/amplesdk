@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="columns">
+	<implements />
+	<abstract>
+		<locale>
+			Defines the columns of a <link type="element">grid</link>.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+		</attributes>
+		<methods>
+		</methods>
+		<properties>
+		</properties>
+		<events>
+		</events>
+	</members>
+</element>

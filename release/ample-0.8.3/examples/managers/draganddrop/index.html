@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<title>Example: Drag And Drop</title>
+		<script type="text/javascript" src="../../../ample/runtime.js"></script>
+		<script type="text/javascript" src="../../../ample/languages/xhtml/xhtml.js"></script>
+		<script type="text/javascript" src="../../../ample/languages/aml/aml.js"></script>
+		<style type="text/css">
+			.draggable {
+				width:	100px;
+				height:	100px;
+				background-color: pink;
+				border: solid 1px red;
+				cursor: move;
+			}
+			.droppable {
+				width: 300px;
+				height: 320px;
+				padding: 10px;
+				float: left;
+				background-color: lightgreen;
+				border: solid 1px green;
+			}
+		</style>
+		<style type="text/ample+css">
+			@namespace x "http://www.w3.org/1999/xhtml";
+
+			x|div:drag {
+				border-color: black;
+			}
+			x|div:drop {
+				border-style: dashed;
+			}
+		</style>
+	</head>
+	<body>
+		<script type="application/ample+xml"
+			xmlns:x="http://www.w3.org/1999/xhtml"
+			xmlns:aml="http://www.amplesdk.com/ns/aml"
+			ondrop="if (event.relatedTarget.parentNode != event.target) event.target.appendChild(event.relatedTarget)"
+			ondragstart="event.target.style.position = 'relative'"
+			ondragend="event.target.style.position = ''"
+			>
+			<x:div aml:droppable="true" class="droppable">
+				<x:div aml:draggable="true" class="draggable">
+					Container 1: drag me and drop to another container
+				</x:div>
+				<x:div aml:draggable="true" class="draggable">
+					Container 2: drag me and drop to another container
+				</x:div>
+				<x:div aml:draggable="true" class="draggable">
+					Container 3: drag me and drop to another container
+				</x:div>
+			</x:div>
+			<x:div aml:droppable="true" class="droppable">
+
+			</x:div>
+		</script>
+	</body>
+</html>

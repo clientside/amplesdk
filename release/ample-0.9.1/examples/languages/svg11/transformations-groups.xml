@@ -1,0 +1,42 @@
+<?xml version="1.0" standalone="no"?>
+<svg viewBox="0,0 400,400" width="600px" height="600px" version="1.1"
+	xmlns:smil="http://www.w3.org/2008/SMIL30/"
+    xmlns="http://www.w3.org/2000/svg">
+    <text x="20" y="20" font-size="14px">Groups Transformations</text>
+
+	<g stroke="black" stroke-width="3" fill="none">
+		<rect y="50" x="100" width="100" height="100"/>
+		<circle cy="100" cx="300" r="50"/>
+	</g>
+
+	<g transform="rotate(15)" stroke="red" stroke-width="3" fill="none">
+		<rect y="50" x="100" width="100" height="100"/>
+		<circle cy="100" cx="300" r="50"/>
+	</g>
+
+	<g transform="matrix(0.7,0.3,0.3,0.7,50,50)" stroke="green" stroke-width="3" fill="none">
+		<rect y="50" x="100" width="100" height="100"/>
+		<circle cy="100" cx="300" r="50"/>
+	</g>
+
+	<g transform="scale(0.6,0.4)" stroke="blue" stroke-width="3" fill="none">
+		<rect y="50" x="100" width="100" height="100"/>
+		<circle cy="100" cx="300" r="50"/>
+	</g>
+
+	<g transform="translate(50, 50)" stroke="brown" stroke-width="3" fill="none">
+		<rect y="50" x="100" width="100" height="100"/>
+		<circle cy="100" cx="300" r="50"/>
+	</g>
+
+	<g transform="skewX(15)" stroke="olive" stroke-width="3" fill="none">
+		<rect y="50" x="100" width="100" height="100"/>
+		<circle cy="100" cx="300" r="50"/>
+	</g>
+
+	<g transform="skewX(15)" stroke="gold" stroke-width="3" fill="none">
+		<rect y="50" x="100" width="100" height="100"/>
+		<circle cy="100" cx="300" r="50"/>
+	</g>
+
+</svg>

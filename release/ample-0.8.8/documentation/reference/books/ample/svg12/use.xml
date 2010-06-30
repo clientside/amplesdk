@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element name="use" extends="svg12:SVG12Element">
+	<abstract>
+		<locale>
+			The 'use' element references another element and indicates that the graphical contents of that element is included/drawn at that given point in the document.
+		</locale>
+	</abstract>
+	<examples />
+	<members>
+		<attributes />
+	</members>
+</element>

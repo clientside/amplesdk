@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="AMLConfiguration">
+	<abstract>
+		<locale>
+			Configuration object.
+		</locale>
+		<locale xml:lang="ru">
+			Объект Configuration.
+		</locale>
+	</abstract>
+	<examples/>
+	<members>
+		<properties>
+			<property name="parameterNames" type="DOMStringList" readonly="true">
+				<description>
+					<locale>
+						The list of the parameters supported by this DOMConfiguration object and for which at least one value can be set by the application.
+						Note that this list can also contain parameter names defined outside this specification.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<methods>
+			<method name="canSetParameter" type="Boolean">
+				<arguments>
+					<argument name="sName" type="String" required="true">
+						<description>
+							<locale>
+								Parameter name
+							</locale>
+							<locale xml:lang="ru">
+								Название параметра
+							</locale>
+						</description>
+					</argument>
+					<argument name="oValue" type="Object" required="true">
+						<description>
+							<locale>
+								Parameter value
+							</locale>
+							<locale xml:lang="ru">
+								Значение параметра
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Checks if <link type="object">AMLConfiguration</link> parameter value can be set.
+					</locale>
+					<locale xml:lang="ru">
+						Позволяет выставить значение параметра работы объекта <link type="object">AMLConfiguration</link>.
+					</locale>
+				</description>
+			</method>
+			<method name="setParameter" type="Void">
+				<arguments>
+					<argument name="sName" type="String" required="true">
+						<description>
+							<locale>
+								Parameter name
+							</locale>
+							<locale xml:lang="ru">
+								Название параметра
+							</locale>
+						</description>
+					</argument>
+					<argument name="oValue" type="Object" required="true">
+						<description>
+							<locale>
+								Parameter value
+							</locale>
+							<locale xml:lang="ru">
+								Значение параметра
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Sets <link type="object">AMLConfiguration</link> parameter value.
+					</locale>
+					<locale xml:lang="ru">
+						Позволяет выставить значение параметра работы объекта <link type="object">AMLConfiguration</link>.
+					</locale>
+				</description>
+			</method>
+			<method name="getParameter" type="Object">
+				<arguments>
+					<argument name="sName" type="String" required="true">
+						<description>
+							<locale>
+								Parameter name
+							</locale>
+							<locale xml:lang="ru">
+								Название параметра
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Returns <link type="object">AMLConfiguration</link> parameter value.
+					</locale>
+					<locale xml:lang="ru">
+						Позволяет получить значение параметра работы объекта <link type="object">AMLConfiguration</link>.
+					</locale>
+				</description>
+			</method>
+			<!-- Ample methods -->
+			<method name="setNamespace" type="Void">
+				<arguments>
+					<argument name="sNameSpaceURI" type="String" required="true">
+						<description>
+							<locale>
+								Namespace URI.
+							</locale>
+						</description>
+					</argument>
+					<argument name="oNamespace" type="AMLNamespace" required="true">
+						<description>
+							<locale>
+								Namespace implementation object.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Registers namespace implementation with the environment.
+					</locale>
+				</description>
+			</method>
+			<method name="getNamespace" type="AMLNamespace">
+				<arguments>
+					<argument name="sNameSpaceURI" type="String" required="true">
+						<description>
+							<locale>
+								Namespace URI.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Retrieves namespace implementation.
+					</locale>
+				</description>
+			</method>
+		</methods>
+	</members>
+	<remarks>
+		<remark>
+			<locale>
+				<p>List of supported parameters:</p>
+				<ul>
+					<li><b>error-handler</b> - If an error is encountered in the document, the implementation will call back the ErrorHandler registered using this parameter</li>
+					<li><b>ample-use-style-property</b> - enable/disable style property on elements</li>
+					<li><b>ample-use-dom-events</b> - enable/disable DOM Mutation events</li>
+					<li><b>ample-use-dom-capture</b> - enable/disable events capture phase</li>
+					<li><b>ample-module-history-fix</b> - Fix initial value of the location.hash property in Internet Explorer (used in <link type="object">mHistory</link>)</li>
+					<li><b>ample-use-import</b> - Render by importing shadow content</li>
+					<li><b>ample-version</b> - Ample version identifier</li>
+				</ul>
+			</locale>
+			<locale xml:lang="ru">
+				<p>List of supported parameters:</p>
+				<ul>
+					<li><b>error-handler</b> - If an error is encountered in the document, the implementation will call back the ErrorHandler registered using this parameter</li>
+					<li><b>ample-use-style-property</b> - включить или отключить поддержку доступа к стилям через свойство style</li>
+					<li><b>ample-use-dom-events</b> - включить или отключить события DOM</li>
+					<li><b>ample-use-dom-capture</b> - weather events should have capture phase</li>
+					<li><b>ample-module-history-fix</b> - починить начальное значение свойства location.hash в Internet Explorer (модуль <link type="object">mHistory</link>)</li>
+					<li><b>ample-use-import</b> - Render by importing shadow content</li>
+					<li><b>ample-version</b> - Ample version identifier</li>
+				</ul>
+			</locale>
+		</remark>
+	</remarks>
+</object>

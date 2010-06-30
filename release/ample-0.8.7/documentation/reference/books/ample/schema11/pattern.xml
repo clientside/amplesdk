@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element name="pattern">
+	<abstract>
+		<locale>
+			Facet pattern is a constraint on the value space of a datatype which is achieved by constraining the lexical space to literals which match each member of a set of patterns.
+		</locale>
+	</abstract>
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="value">
+				<description>
+					<locale>
+						Set of regular expressions.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

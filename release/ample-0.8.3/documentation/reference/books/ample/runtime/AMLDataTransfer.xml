@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="AMLDataTransfer">
+	<abstract>
+		<locale>
+			DataTransfer objects can conceptually contain various kinds of data.
+		</locale>
+	</abstract>
+	<remarks />
+	<members>
+		<properties>
+			<property name="dropEffect" type="String">
+				<description>
+					<locale>
+						Controls the drag-and-drop feedback that the user is given during a drag-and-drop operation.
+					</locale>
+				</description>
+			</property>
+			<property name="effectAllowed" type="String">
+				<description>
+					<locale>
+						Used in the drag-and-drop processing model to initialise the dropEffect attribute during the dragenter and dragover events.
+					</locale>
+				</description>
+			</property>
+			<property name="types" type="StringList" readonly="true">
+				<description>
+					<locale>
+						Contains the list of formats that are stored in the DataTransfer object.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<methods>
+			<method name="clearData" type="Void">
+				<arguments>
+					<argument name="sFormat" type="String" required="true">
+						<description>
+							<locale>
+								Data format.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Clears the DataTransfer object of any data associated with the given format.
+					</locale>
+				</description>
+			</method>
+			<method name="setData" type="Void">
+				<arguments>
+					<argument name="sFormat" type="String" required="true">
+						<description>
+							<locale>
+								Data format.
+							</locale>
+						</description>
+					</argument>
+					<argument name="sData" type="String" required="true">
+						<description>
+							<locale>
+								Data content.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Adds data to the data stored in the DataTransfer object, labeled as being of the type format.
+					</locale>
+				</description>
+			</method>
+			<method name="getData" type="String">
+				<arguments>
+					<argument name="sFormat" type="String" required="true">
+						<description>
+							<locale>
+								Data format.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Returns the data that is associated with the type format, if any.
+					</locale>
+				</description>
+			</method>
+			<method name="setDragImage" type="Void">
+				<arguments>
+					<argument name="oImage" type="AMLElement" required="true">
+						<description>
+							<locale>
+								Reference to an image element.
+							</locale>
+						</description>
+					</argument>
+					<argument name="nX" type="Number" required="true">
+						<description>
+							<locale>
+								Left coordinate.
+							</locale>
+						</description>
+					</argument>
+					<argument name="nY" type="Number" required="true">
+						<description>
+							<locale>
+								Top coordinate.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Sets which element to use to generate the drag feedback.
+					</locale>
+				</description>
+			</method>
+			<method name="addElement" type="Void">
+				<arguments>
+					<argument name="oElement" type="AMLElement" required="true">
+						<description>
+							<locale>
+								Reference to an element.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						An alternative way of specifying how the user agent is to render the drag feedback.
+						It adds an element to the DataTransfer object.
+					</locale>
+				</description>
+			</method>
+		</methods>
+	</members>
+	<examples>
+		<example>
+			<code type="application/xml"><![CDATA[
+<div ondrop="event.dataTransfer.getData('text/plain')">
+	<div aml:draggable="true"></div>
+	<div aml:draggable="true"></div>
+</div>
+			]]></code>
+		</example>
+	</examples>
+</object>

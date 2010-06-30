@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="listbody">
+	<implements />
+	<abstract>
+		<locale>
+			Can only be placed as direct child of <link type="element">listbox</link>.
+		</locale>
+		<locale xml:lang="ru">
+			Контейнер для элементов <link type="element">listitem</link>.
+		</locale>
+	</abstract>
+	<remarks>
+		<remark>
+			<locale>
+				This element is not defined in XUL.
+				However you need to specify it in XUL documents in Ample SDK when using <link type="element">listbox</link>.
+			</locale>
+			<locale xml:lang="ru">
+				Этот элемент не определен в спецификации XUL, но его необходимо указать в разметке при использовании элемента <link type="element">listbox</link>.
+			</locale>
+		</remark>
+	</remarks>
+	<examples />
+	<members>
+		<attributes />
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

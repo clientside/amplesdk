@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<title>Example: Content loader</title>
+		<script type="text/javascript" src="../../../ample/runtime.js"></script>
+		<script type="text/javascript" src="../../../ample/languages/xhtml/xhtml.js"></script>
+		<script type="text/javascript" src="../../../ample/languages/aml/aml.js"></script>
+	</head>
+	<body>
+		<script type="application/ample+xml"
+			xmlns="http://www.w3.org/1999/xhtml"
+			xmlns:aml="http://www.amplesdk.com/ns/aml">
+
+			<b onclick="ample.getElementById('target1').$load('content1.xml')" style="cursor:pointer">Load (content 1)</b>
+			<div id="target1"/>
+
+			<b onclick="ample.getElementById('target2').$load('content2.xml')" style="cursor:pointer">Events for found resource (content 2)</b>
+			<div id="target2" onload="alert('content 2 is loaded')" onunload="alert('content 2 is unloaded')" onerror="alert('error happend to content 2')"/>
+
+			<b onclick="ample.getElementById('target3').$load('content3.xml')" style="cursor:pointer">Events for not found resource (content 3)</b>
+			<div id="target3" onload="alert('content 3 is loaded')" onunload="alert('content 2 is unloaded')" onerror="alert('error happend to content 3')"/>
+
+		</script>
+	</body>
+</html>

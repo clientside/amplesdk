@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="button">
+	<implements />
+	<abstract>
+		<locale>
+			A button that can be pressed by the user.
+		</locale>
+		<locale xml:lang="ru">
+			Кнопка, элемент, который может быть нажат.
+			Обработчики событий могут отслеживать нажатия мышью, клавиатурой и др.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="disabled" default="" readonly="false">
+				<description>
+					<locale>
+						Indicates whether the element is disabled or not.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="label" default="" readonly="false">
+				<description>
+					<locale>
+						The label that will appear on the element. If this is left out, no text appears.
+					</locale>
+					<locale xml:lang="ru">
+						Текст для элемента.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="image" default="" readonly="false">
+				<description>
+					<locale>
+						he URL of the image to appear on the element. If this attribute is empty or left out, no image appears.
+					</locale>
+					<locale xml:lang="ru">
+						URL к пиктограмме для элемента.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties />
+		<events>
+			<event name="command" group="Event" cancelable="false" bubbles="true">
+				<description>
+					<locale>
+						Fires when element activated.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается при нажатии кнопки.
+					</locale>
+				</description>
+			</event>
+		</events>
+	</members>
+</element>

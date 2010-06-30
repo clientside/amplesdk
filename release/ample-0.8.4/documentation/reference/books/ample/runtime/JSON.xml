@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="JSON" singleton="true">
+	<abstract>
+		<locale>
+			JSON object.
+		</locale>
+	</abstract>
+	<remarks>
+		<remark>
+			JSON object is a singleton and it cannot be instantiated. All its methods are considered to be static.
+		</remark>
+	</remarks>
+	<examples/>
+	<members>
+		<methods>
+			<method name="stringify" type="String">
+				<arguments>
+					<argument name="vValue" type="Variant">
+						<description>
+							<locale>
+								Value to stringify.
+							</locale>
+						</description>
+					</argument>
+					<argument name="fReplacer" type="Function" required="false">
+						<description>
+							<locale>
+								The replacer can be a function that can replace values, or an array of strings that will select the keys.
+							</locale>
+						</description>
+					</argument>
+					<argument name="vSpace" type="Variant" required="false">
+						<description>
+							<locale>
+								Use of the space parameter can produce text that is more easily readable.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Creates JSON representation for the object.
+					</locale>
+				</description>
+			</method>
+			<method name="parse" type="Variant">
+				<arguments>
+					<argument name="sText" type="String">
+						<description>
+							<locale>
+								JSON text to parse.
+							</locale>
+						</description>
+					</argument>
+					<argument name="fReviver" type="String" required="false">
+						<description>
+							<locale>
+								Each name/value pair will be passed to a reviver function for possible transformation.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Parses text into a JavaScript value if the text is a valid JSON text.
+					</locale>
+				</description>
+			</method>
+		</methods>
+		<properties />
+		<constants />
+	</members>
+	<examples />
+</object>

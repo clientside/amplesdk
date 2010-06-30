@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../../../stylesheets/page.xsl"?>
+<interface name="iWF2Input">
+	<abstract>
+		Implements functionality of user Input Control.
+	</abstract>
+	<remarks/>
+	<examples/>
+	<members>
+		<methods>
+			<method name="isValid" type="Boolean">
+				<arguments />
+				<description>
+					Returns the boolean value that says wether the input content of an element is valid or not.
+				</description>
+			</method>
+		</methods>
+		<properties />
+		<attributes>
+			<attribute name="name" type="String" readonly="true">
+				<description>
+					Retrieves the name of the control.
+				</description>
+			</attribute>
+			<attribute name="bubbletext" type="String" readonly="false">
+				<description>
+					Sets the message to be appeared when the field validation fails.
+				</description>
+			</attribute>
+			<attribute name="required" type="String" readonly="false" default="false">
+				<values>
+					<value name="true">
+						<description>
+							The field assumed as a not valid untill user enters something.
+						</description>
+					</value>
+					<value name="false">
+						<description>
+							The field is not required to be filled in.
+						</description>
+					</value>
+				</values>				
+				<description>
+					Indicates wether or not the field should be filled. Data validation mechanism will report user about this requirement.
+				</description>
+			</attribute>
+			<attribute name="value" type="String" readonly="false">
+				<description>
+					Retrieves or sets the selected value of the control.
+				</description>
+			</attribute>
+			<attribute name="disabled" type="String" readonly="false" default="false">
+				<values>
+					<value name="true">
+						<description>
+							The field is disabled.
+						</description>
+					</value>
+					<value name="false">
+						<description>
+							The field is not disabled.
+						</description>
+					</value>
+				</values>
+				<description>
+					Disables/Enables field.
+				</description>
+			</attribute>
+			<attribute name="tabIndex" type="Number" readonly="false">
+				<description>
+					The tab order of the element. The tab order is the order in which the focus is moved when the user presses the Tab key. Elements with a higher <link type="attribute">tabIndex</link> are later in the tab order sequence.
+				</description>
+			</attribute>
+		</attributes>
+		<events>
+			<event name="change" group="Event" cancelable="false" bubbles="true">
+				<description>
+					 Fires when the contents of the control have changed. 
+				</description>
+			</event>
+		</events>
+	</members>
+</interface>

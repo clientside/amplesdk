@@ -1,0 +1,731 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<article>
+	<title>Part III - Writing Application Logic</title>
+	<abstract>
+		<locale>
+			In this tutorial we will go through a series of techniques and technologies used when developing logic.
+		</locale>
+	</abstract>
+	<content>
+		<section>
+			<title>
+				<locale>
+					Introduction to the programming model
+				</locale>
+			</title>
+			<content>
+				<locale>
+					<p>
+						Now that we have looked at how to <link href="../../ample/tutorials/develop_layout.xml">layout</link> and <link href="../../ample/tutorials/develop_style.xml">style</link> Application UI
+						we can go deeper into the questions about how to build the application logic.
+						We will be mainly concerned with the aspect of handling <em>View</em> interaction <em>event</em>s and implementing <em>Mediator</em>s, that you might known being attributes of the <link href="http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller" title="Link to Wikipedia article about MVC">MVC</link> pattern used in software engineering.
+						If you are not familiar with the approach mentioned, we would advice you to get acquainted with it, however knowing MVC is not a requirement to understand this chapter.
+					</p>
+					<p>
+						Implementing application [View] logic is about receiving UI events and updating UI state appropriately.
+						In Ample SDK the Application UI is represented by a DOM tree (mainly built with UI elements),
+						that you can access or modify in a standard and consistent way.
+						UI events are fired on elements in the tree with which the user interacts.
+						Once dispatched get propagated through the tree and can be picked up for handling.
+					</p>
+					<note>
+						When developing Application Logic with Ample SDK there is no need to bother with any differences that you know exist in DOM implementations of different web browsers.
+						You can safely use and benefit from standard cross-browser APIs.
+					</note>
+				</locale>
+			</content>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Embedding JavaScript View Logic into a web page
+				</locale>
+			</title>
+			<content>
+				<locale>
+					There are two ways to embed Ample SDK JavaScript Logic into a web page:
+				</locale>
+			</content>
+			<section>
+				<title>
+					<locale>
+						Inline, using a script tag with <em>type="text/javascript"</em>
+					</locale>
+				</title>
+				<content>
+					<locale>
+						<code type="text/xml"><![CDATA[<script type="text/javascript">
+	/* JavaScript UI Logic */
+</script>
+						]]></code>
+					</locale>
+				</content>
+			</section>
+			<section>
+				<title>
+					<locale>
+						Referencing a resource, using script tag with <em>src</em> attribute
+					</locale>
+				</title>
+				<content>
+					<locale>
+						<code type="text/xml"><![CDATA[<script type="text/javascript" src="application.js"></script>
+						]]></code>
+					</locale>
+				</content>
+			</section>
+		</section>
+		<section>
+			<title>
+				<locale>
+					The <em>ample</em> scripting object
+				</locale>
+			</title>
+			<content>
+				<locale>
+					<p>
+						The <em>ample</em> scripting object in the Ample SDK is similar to the <em>document</em> scripting object available in the browser.
+						It provides the starting point for the Ample SDK Document Object Model.
+					</p>
+					<note>
+						Note! The Ample SDK Document Object Model contains Ample SDK UI fragments only.
+					</note>
+				</locale>
+			</content>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Implementing View Logic
+				</locale>
+			</title>
+			<content>
+				<locale>
+					<p>
+						Since you very likely have a decent experience in coding against the DOM,
+						you will find much of this section's content familiar.
+						A nice short recap (or intro) can still be worth spending a couple of minutes on,
+						so let's take a quick look at the APIs available and their usage examples.
+					</p>
+					<p>
+						Implementing View Logic in a client-side application is mainly about:
+					</p>
+					<ul>
+						<li>Accessing / Modifing Application Tree</li>
+						<li>Registering / Handling Events</li>
+					</ul>
+				</locale>
+			</content>
+			<section>
+				<title>
+					<locale>
+						Navigating Document Tree
+					</locale>
+				</title>
+				<content>
+					<locale>
+						<p>
+							When User Interface XML markup is parsed, a Document Object Model (DOM) is created for it.
+							The DOM (or application tree) can easily be traversed with help of the "DOM Core" and "Selectors API" APIs.
+							Let's create a simple application layout and try using different APIs to navigate it.
+						</p>
+						<code type="text/xml"><![CDATA[<div id="root">
+	<div class="wrapper">
+		<h3>Header</h3>
+		<div>First child</div>
+		<hr />
+		<div>Second child</div>
+		<hr />
+		<div>Third child</div>
+	</div>
+</div>
+						]]></code>
+						<p>
+							The three sets of APIs listed below all do the same task - they allow for selecting nodes in the Application Tree:
+						</p>
+						<ol>
+							<li>firstChild, lastChild, previousSibling, nextSibling, childNodes, parentNode etc.</li>
+							<li>getElementById, getElementsByTagName and getElementsByTagNameNS</li>
+							<li>querySelector and querySelectorAll</li>
+						</ol>
+						<p>
+							The first set is the base set of properties that make up the DOM structure.
+							You can use it, however it is not very efficient.
+							Here is an example of how this API could be used to find the second HR element
+							(supposing we have a reference to the root element retrieved by some means
+							and we need to find the second HR element):
+						</p>
+						<code type="text/javascript"><![CDATA[var oElement	= oRoot.firstChild.lastChild.previousSibling;
+						]]></code>
+						<p>
+							The second set of APIs is a little bit more sophisticated.
+							These functions wrap implementations of traversing the DOM thus making the task as whole simplier to specify.
+						</p>
+						<code type="text/javascript"><![CDATA[var oElement	= ample.getElementById("root").getElementsByTagName("hr")[1];
+						]]></code>
+						<p>
+							The third API has been standardised recently.
+							Probably this one is the most sophisticated yet easy to learn.
+							It allows you to use the CSS selectors syntax to match elements in the document.
+							Let's see how the previous tasks could be executed with that approach.
+						</p>
+						<code type="text/javascript"><![CDATA[var oElement	= ample.querySelectorAll("#root hr")[1];
+						]]></code>
+					</locale>
+				</content>
+			</section>
+			<section>
+				<title>
+					<locale>
+						Altering the Document Tree
+					</locale>
+				</title>
+				<content>
+					<locale>
+						<p>
+							During the application runtime you may need to modify the Application Tree by changing its structure and element's attribute values in order to
+							dynamically add more controls or modify their states. To do that you need to know three sets of DOM Core API:
+						</p>
+						<ol>
+							<li>setAttribute / setAttributeNS, getAttribute / getAttributeNS and removeAttribute / removeAttributeNS</li>
+							<li>createElement / createElementNS, createtextNode, appendChild, insertBefore, removeChild and replaceChild</li>
+							<li>importNode</li>
+						</ol>
+						<p>
+							The first set of API functions allows for dynamic modification of component states or some aspects of its visual representation.
+							The example below shows how to set the fill color on an SVG rect element:
+						</p>
+						<code type="text/javascript"><![CDATA[var oElement	= ample.getElementById('my_circle');
+oElement.setAttribute("fill", "red");
+						]]></code>
+						<p>
+							The second set allows for dynamic instantiation of components, inserting them into the tree or moving them around.
+							For example in the code below we add a new XUL menulist item to the list of the items in dropdown:
+						</p>
+						<code type="text/javascript"><![CDATA[var sXulNS	= "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+
+var oPopup	= ample.getElementById('my_menulist'),
+	oItem	= ample.createElementNS(sXulNS, "xul:menuitem");
+oPopup.appendChild(oItem);
+oItem.setAttribute("label", "New item");
+						]]></code>
+						<p>
+							Although text nodes are supported in Ample SDK, it is recommended to avoid using them.
+							This greatly improves the coding experience and makes application markup cleaner.
+						</p>
+						<p>
+							It is often good practice to not load the entire application UI at once but to construct its parts when the user really needs them.
+							You could use DOM APIs to create elements, text nodes, add them to the tree, set attributes, etc., but this is not always efficient.
+							Instead you can load a piece of UI markup from the server and add it to the Application Tree as a whole.
+						</p>
+						<code type="text/javascript"><![CDATA[var oRequest	= new XMLHttpRequest;
+oRequest.open("GET", "settings.xml", true);
+oRequest.onreadystatechange	= function() {
+	if (this.readyState == 4) {
+		var oElement = ample.importNode(this.responseXML.documentElement, true);
+		ample.getElementById("settings_area").appendChild(oElement);
+	}
+}
+oRequest.send(null);
+						]]></code>
+						<p>
+							It is usually not allowed to append nodes directly from one document to another. A special operation needs to be executed first.
+							<em>importNode</em> method imports an XML DOM node into Ample DOM and returns a reference to the imported structure.
+							Right after that procedure, the imported structure can be added to the Ample DOM, for example by calling <em>appendChild</em>
+							at the desired location.
+						</p>
+						<note>
+							Note! The importNode method expects exactly two arguments, where the second one should indicate whether the entire subtree should be imported or only the root node.
+						</note>
+					</locale>
+				</content>
+			</section>
+			<section>
+				<title>
+					<locale>
+						Registering Event Handlers and Handling Events
+					</locale>
+				</title>
+				<content>
+					<locale>
+						<p>
+							Event handlers (or listeners) are pieces of JavaScript code that get executed upon the occurence of an event.
+							You can specify an event handler in UI markup or attach it at the runtime by the means of JavaScript.
+						</p>
+						<ol>
+							<li>Dynamically, using the DOM Events API
+								<code type="text/javascript"><![CDATA[oElement.addEventListener("click", function(oEvent) {
+	alert(oEvent.currentTarget.getAttribute('value'))
+}, false);
+								]]></code>
+								<p>
+									An event listener which is added using the DOM has the element as the <em>this</em> execution context.
+								</p>
+							</li>
+							<li>Inline, using a <em>on{event}</em> attribute
+								<code type="text/xml"><![CDATA[<xul:scale onchange="alert(this.getAttribute('value'))" min="0" max="100" value="50"/>
+								]]></code>
+								<p>
+									An event listener which is added with the <em>on{event}</em> attribute has the element as the <em>this</em> execution context as well.
+									Additionally, it has a predefined <em>event</em> variable available in the script.
+								</p>
+							</li>
+						</ol>
+						<note>
+							Event flow in Ample SDK supports all 3 phases of the propagation: capturing, target and bubbling.
+						</note>
+					</locale>
+				</content>
+			</section>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Using UI Managers for common UI tasks
+				</locale>
+			</title>
+			<content>
+				<locale>
+					<p>
+						<em>UI Managers</em> are mini-services living in the Ample SDK Runtime.
+						They usually listen to the very primitive events and talk to the base APIs
+						in order to generate other more sophisticated events and APIs.
+						UI Managers add their functionality to Element and/or Document base nodes
+						thus making it available to any elements in your UI.
+					</p>
+				</locale>
+			</content>
+
+			<section>
+				<title>
+					<locale>
+						Drag And Drop Manager
+					</locale>
+				</title>
+				<content>
+					<locale>
+						<p>
+							The Drag and Drop manager implementation has been greatly inspired by the one present in the Internet Explorer browser,
+							which is now also part of HTML5 standardization effort.
+						</p>
+						<p>
+							In Ample SDK any visual element can be dragged or dropped onto.
+							In order for an element to become draggable it should have a property <em>$draggable</em> set to <em>true</em>, to become droppable - a <em>$droppable</em> property needs to be set to <em>true</em>.
+							Once you have marked element as draggable or droppable you can start listening to the Drag And Drop events.
+							Many of the events have a default action associated with it, and canceling those events default action is possible.
+							Below is the overview of events available for handling during Drag And Drop session:
+						</p>
+						<ul>
+							<li>dragstart (fires on source)</li>
+							<li>dragenter (fires on target)</li>
+							<li>drag (fires on source)</li>
+							<li>dragover (fires on target)</li>
+							<li>dragleave (fires on target)</li>
+							<li>drop (fires on target)</li>
+							<li>dragend (fires on source)</li>
+						</ul>
+						<p>
+							Below you can see an example where items from one box can be dragged onto another box:
+						</p>
+						<code type="text/xml"><![CDATA[<div xmlns:aml="http://www.amplesdk.com/ns/aml"
+	ondrop="if (event.relatedTarget.parentNode != event.target)
+			event.target.appendChild(event.relatedTarget)">
+	<div aml:droppable="true" class="droppable">
+		<div aml:draggable="true" class="draggable">
+			Container 1: drag me and drop to another container
+		</div>
+		<div aml:draggable="true" class="draggable">
+			Container 2: drag me and drop to another container
+		</div>
+	</div>
+	<div aml:droppable="true" class="droppable">
+
+	</div>
+</div>
+						]]></code>
+						<p>
+							And a stylesheet for it:
+						</p>
+						<code type="text/css"><![CDATA[@namespace "http://www.w3.org/1999/xhtml";
+
+.draggable {
+	width:	100px;
+	height:	100px;
+	background-color: pink;
+	border: solid 1px red;
+	cursor: move;
+}
+.droppable {
+	width: 300px;
+	height: 320px;
+	padding: 10px;
+	float: left;
+	background-color: lightgreen;
+	border: solid 1px green;
+}
+
+div:drag {
+	border-color: black;
+	position: relative;
+}
+div:drop {
+	border-style: dashed;
+}
+						]]></code>
+						<p>
+							In this example we marked elements as being draggable or droppable declaratively with the help of attributes from the AML language global attributes module.
+							(You should include this language implementation in the head of your application page.)
+							Also we have used dynamic pseudo-classes to style elements in their <em>drag</em> or <em>drop</em> states.
+						</p>
+						<note>
+							During the <em>Drag And Drop</em> session no other <link href="../../ample/runtime/AMLMouseEvent.xml">MouseEvent</link>s are fired.
+						</note>
+					</locale>
+					<seealso>
+						<link href="../../ample/runtime/mDragAndDrop.xml">Drag And Drop Manager API</link>
+					</seealso>
+				</content>
+			</section>
+			<section>
+				<title>
+					<locale>
+						Resize Manager
+					</locale>
+				</title>
+				<content>
+					<locale>
+						<p>
+							The Resize Manager allows you to define resizable behavior of elements.
+							This feature might be used for example to allow user input elements to be resized by the user.
+						</p>
+						<p>
+							You can indicate that an element is resizable (i.e. the user can modify its size with the mouse) by setting a property <em>$resizable</em> to the value of <em>true</em>.
+							It is also possible to set the behavior of all instances of a certain element on a page to become resizable by prototyping its <em>$resizable</em> property.
+							This is used for example in the XUL language implementation to provide all <em>window</em> and <em>wizard</em> components with resizable behavior.
+							Below is the overview of events available for handling during a Resize session:
+						</p>
+						<ul>
+							<li>resizestart</li>
+							<li>resize</li>
+							<li>resizeend</li>
+						</ul>
+						<p>
+							Below you can see an example where a div is set to be resizable:
+						</p>
+						<code type="text/xml"><![CDATA[<div aml:resizable="true" class="resizable" xmlns:aml="http://www.amplesdk.com/ns/aml">
+	Resize me
+</div>
+						]]></code>
+						<p>
+							And a stylesheet for it:
+						</p>
+						<code type="text/css"><![CDATA[@namespace "http://www.w3.org/1999/xhtml";
+
+div.resizable {
+	width:	250px;
+	height:	250px;
+	background-color:	pink;
+	border:	solid 1px red;
+	max-width:	500px;
+}
+div.resizable:resize {
+	background-color:	lightyellow;
+}
+						]]></code>
+						<p>
+							Here again we used the AML language global attributes to indicate declaratively that the element is resizable.
+							We also used the <em>resize</em> dynamic pseudo-class to change the visual appearance of the element during the Resize operation.
+						</p>
+					</locale>
+					<seealso>
+						<link href="../../ample/runtime/mResize.xml">Resize Manager API</link>
+					</seealso>
+				</content>
+			</section>
+			<section>
+				<title>
+					<locale>
+						Browser History Manager
+					</locale>
+				</title>
+				<content>
+					<locale>
+						<p>
+							The Browser History Manager implements functionality that is needed to handle user navigation in a SPI (Single Page Interface).
+							It is assumed that Internet Explorer has pioneered the <em>hashchange</em> event implementation, however worth mentioning is that Ample SDK has had support for that event since earlier.
+						</p>
+						<p>
+							Whenever a hash part of the URL in the address bar changes a <em>hashchange</em> event is dispatched to the document, which can be picked up and handled according to the UI needs.
+							With the method <em>$bookmark</em> you can add application states to the browser history, which will appear as hash values in the address bar.
+							Below is the list of members implemented by the Browser History Manager that are available to the developer:
+						</p>
+						<ul>
+							<li>hashchange event (fires on document)</li>
+							<li>$bookmark method (available on document)</li>
+						</ul>
+						<p>
+							The example below illustrates in greater details how to work with the Browser History Manager:
+						</p>
+						<code type="text/css"><![CDATA[#marker {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    background: #add8e6;
+    border: 1px solid #4a6f7b;
+    left: 0px;
+}
+						]]></code>
+						<code type="text/xml"><![CDATA[<div>
+	<button onclick="onButtonClick('position1')" style="width:120px;">location 1</button>
+	<button onclick="onButtonClick('position1')" style="width:120px;">location 2</button>
+	<button onclick="onButtonClick('position3')" style="width:120px;">location 3</button>
+</div>
+<div id="history">marker</div>
+						]]></code>
+						<code type="text/javascript"><![CDATA[// turn on IE initial hash state fix
+ample.domConfig.setParameter("ample-module-history-fix", true);
+
+function onButtonClick(sLocation) {
+	doHistoryMove(sLocation);
+	this.ownerDocument.$bookmark(sLocation);
+}
+
+function doHistoryMove(sWhere) {
+	var oMarker	= ample.getElementById("marker");
+	switch(sWhere) {
+		case "position1":
+			oMarker.$play('left:100px', 500, AMLElement.EFFECT_DECELERATE);
+			break;
+		case "position2":
+			oMarker.$play('left:250px', 500, AMLElement.EFFECT_DECELERATE);
+			break;
+		case "position3":
+			oMarker.$play('left:400px', 500, AMLElement.EFFECT_DECELERATE);
+			break;
+		default:
+			oMarker.$play('left:0px', 500, AMLElement.EFFECT_DECELERATE);
+			break;
+	}
+}
+
+ample.addEventListener("hashchange", function(oEvent) {
+	doHistoryMove(oEvent.detail);
+}, false);
+
+ample.addEventListener("load", function(oEvent) {
+	var sHash = window.location.hash.replace(/^#/, '');
+	if (sHash)
+		doHistoryMove(sHash);
+}, false);
+
+						]]></code>
+						<p>
+							Clicking a button shifts the marker div to a predefined location and also puts its position in the browser history.
+							Later on, trying to navigate with the browser back/forward buttons will lead to restoring the position of the marker saved in history.
+						</p>
+						<note>
+							Internet Explorer doesn't handle an empty hash properly,
+							which is why in your application you need to set a special configuration parameter that will enqueue an initial history item to fix that problem.
+						</note>
+					</locale>
+					<seealso>
+						<link href="../../ample/runtime/mHistory.xml">Browser History Manager API</link>
+					</seealso>
+				</content>
+			</section>
+			<section>
+				<title>
+					<locale>
+						Capture Manager
+					</locale>
+				</title>
+				<content>
+					<locale>
+						<p>
+							The Capture Manager facilitates implementations of modality (for example modal dialogs) in your application.
+							When you need a certain area of the UI to become modal you can set a capture to that area,
+							which will lead to all UI events happening outside it to be forwarded to the captured area.
+						</p>
+						<note>
+							You can release the capture from the document by calling $releaseCapture on the <em>ample</em> document object.
+						</note>
+						<p>
+							Below is the list of members implemented by the Capture Manager that are available to the developer:
+						</p>
+						<ul>
+							<li>losecapture event (fires on element)</li>
+							<li>$setCapture/$releaseCapture methods (available on element)</li>
+							<li>$releaseCapture method (available on document)</li>
+						</ul>
+						<p>
+							Take a look at the example below.
+							If you click the 'alert' button first, you will get an alert box displayed.
+							However if you set a capture to the 'dialog' by clicking the 'set capture' button first and then try to click 'alert', you will get nothing.
+							The capture can be removed from the dialog by clicking the 'release capture' button.
+						</p>
+						<code type="text/xml"><![CDATA[<div>
+	<button onclick="alert('Hello')">alert</button>
+	<div id="dialog" style="border: solid 1px red">
+		<button onclick="this.parentNode.$releaseCapture(true)">release capture</button>
+	</div>
+	<button onclick="ample.getElementById('dialog').$setCapture(true)">set capture</button>
+</div>
+						]]></code>
+					</locale>
+					<seealso>
+						<link href="../../ample/runtime/mCapture.xml">Capture Manager API</link>
+					</seealso>
+				</content>
+			</section>
+			<section>
+				<title>
+					<locale>
+						Selection Manager
+					</locale>
+				</title>
+				<content>
+					<locale>
+						<p>
+							Selection Manager helps managing text selectability in your application.
+							This is indeed a rare task you would want to perform, however sometimes preventing certain parts of the application or page
+							to be selectable can be useful.
+						</p>
+						<p>
+							Below is the list of members implemented by the Selection Manager that are available to the developer:
+						</p>
+						<ul>
+							<li>$selectable property (available on element)</li>
+						</ul>
+						<p>
+							The example below demonstrates how text selectability could be managed with the <em>aml:selectable</em> attribute.
+						</p>
+						<code type="text/xml"><![CDATA[<div xmlns:aml="http://www.amplesdk.com/ns/aml">
+	<div style="margin:10px; padding:10px; border:solid 1px red">
+		selectable
+		<div style="margin:10px; padding:10px; border:solid 1px green" aml:selectable="false">
+			not selectable
+		</div>
+		selectable
+	</div>
+	<div style="margin:10px; padding:10px; border:solid 1px red" aml:selectable="false">
+		not selectable
+		<div style="margin:10px; padding:10px; border:solid 1px green">
+			not selectable
+		</div>
+		not selectable
+	</div>
+	<div style="margin:10px; padding:10px; border:solid 1px red" aml:selectable="false">
+		not selectable
+		<div style="margin:10px; padding:10px; border:solid 1px green" aml:selectable="true">
+			selectable
+		</div>
+		not selectable
+	</div>
+</div>
+						]]></code>
+					</locale>
+					<seealso>
+						<link href="../../ample/runtime/mSelection.xml">Selection Manager API</link>
+					</seealso>
+				</content>
+			</section>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Using SMIL 3 for Animations
+				</locale>
+			</title>
+			<content>
+				<locale>
+					<p>
+						SMIL 3.0 is an XML-based language that allows authors to write interactive multimedia presentations.
+						In Ample SDK there is an implementation of selected modules from that language specification.
+						The amount of modules we implemented is sufficient for defining advanced animation effects in your application.
+					</p>
+					<p>
+						The example below demonstrates how a pulsing behavior could be implemented for an SVG circle element.
+						It will start when a user clicks on the circle, will repeat 3 times and then revert to its initial state.
+					</p>
+					<code type="text/xml"><![CDATA[<svg:svg viewBox="0,0 400,400" height="400px" width="400px"
+	xmlns:svg="http://www.w3.org/2000/svg"
+	xmlns:smil="http://www.w3.org/2008/SMIL30/">
+	<svg:circle cx="200" cy="200" r="10" fill="red" opacity="1" stroke="black" stroke-width="1">
+		<smil:animate begin="click"
+			dur="500ms" decelerate="0.5" repeatCount="3"
+			to="200" attributeName="r" attributeType="XML"/>
+	</svg:circle>
+</svg:svg>
+					]]></code>
+					<note>
+						SMIL animations can run over attributes or style properties of any visual elements found in your application.
+					</note>
+				</locale>
+				<seealso>
+					<link href="../../ample/smil30/smil30.xml">SMIL 3.0 Language</link>
+				</seealso>
+			</content>
+		</section>
+		<!--section>
+			<title>
+				<locale>
+					Using XML Schema 1.1 Datatypes for user input validation
+				</locale>
+			</title>
+			<content>
+				<locale>
+					TODO:
+				</locale>
+			</content>
+		</section-->
+		<section>
+			<title>
+				<locale>
+					Using XSLTProcessor
+				</locale>
+			</title>
+			<content>
+				<locale>
+					<p>
+						The XSLTProcessor object is used to perform XSL-T transformations.
+						It transforms one XML document into another XML document by applying an XSL-T stylesheet.
+						You may want use XSL-T transformations in order to transform your server response into another format.
+					</p>
+					<note>
+						If you need to insert the result of a transformation into an Ample document, you should first import the generated document by calling the <em>importNode</em> function.
+					</note>
+					<p>
+						In the example below we load an input document and a stylesheet.
+						Then we transform the input document with the help of a stylesheet into the output document.
+						In the end we alert the result of the transformation (output document), serialized with the help of <em>XMLSerializer</em> object.
+					</p>
+					<code><![CDATA[var oXMLHttpRequest	= new XMLHttpRequest;
+
+// Load stylesheet document
+oXMLHttpRequest.open("GET", "stylesheet.xsl", false);
+oXMLHttpRequest.send(null);
+var oStylesheet	= oXMLHttpRequest.responseXML;
+
+// Load input document
+oXMLHttpRequest.open("GET", "input.xml", false);
+oXMLHttpRequest.send(null);
+var oInput		= oXMLHttpRequest.responseXML;
+
+// Create XSLTProcessor and import stylesheet into it
+var oXSLTProcessor	= new XSLTProcessor;
+oXSLTProcessor.importStylesheet(oStylesheet);
+
+// Transform input document to output document and alert result
+var oOutput	= oXSLTProcessor.transformToDocument(oInput);
+alert(new XMLSerializer().serializeToString(oOutput));
+					]]></code>
+				</locale>
+				<seealso>
+					<link href="../../ample/runtime/XSLTProcessor.xml">XSLTProcessor API</link>
+					<link href="../../ample/runtime/XMLSerializer.xml">XMLSerializer API</link>
+				</seealso>
+			</content>
+		</section>
+	</content>
+</article>

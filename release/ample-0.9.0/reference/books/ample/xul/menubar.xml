@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="menubar">
+	<implements />
+	<abstract>
+		<locale>
+			A container that usually contains <link type="element">menu</link> elements.
+		</locale>
+		<locale xml:lang="ru">
+			Контейнер для элементов <link type="element">menu</link>.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+<!--
+			<attribute name="statusbar" readonly="false">
+				<description>
+					<locale>
+						If you set this attribute to the id of a <link type="element">statusbar</link> element, the <link type="attribute">label</link> on the statusbar will update to the text of the items on the menu as the user moves the mouse over them.
+					</locale>
+				</description>
+			</attribute>
+-->
+		</attributes>
+		<methods />
+		<properties>
+			<property name="selectedItem" type="AMLElement" readonly="true">
+				<description>
+					<locale>
+						Contains a reference to currently selected <link type="element">menu</link> element.
+					</locale>
+					<locale xml:lang="ru">
+						Ссылка на элемент <link type="element">menu</link>, выделенный в настоящее время.
+					</locale>
+				</description>
+			</property>
+			<property name="items" type="AMLNodeList">
+				<description>
+					<locale>
+						Contians a collection of <link type="element">menu</link> child elements.
+					</locale>
+					<locale xml:lang="ru">
+						Коллекция всех дочерних элементов <link type="element">menu</link>.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<events />
+	</members>
+</element>

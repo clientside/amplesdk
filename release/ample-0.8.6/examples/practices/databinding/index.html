@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Example: Data binding</title>
+        <script type="text/javascript" src="../../../ample/runtime.js"></script>
+        <script type="text/javascript" src="../../../ample/languages/aml/aml.js"></script>
+        <link type="text/ample+css" href="../../../ample/languages/aml/themes/default/aml.css" rel="stylesheet"/>
+        <script type="text/javascript" src="../../../ample/languages/xhtml/xhtml.js"></script>
+
+        <style type="text/css">
+        	.table {
+				background-color: silver;
+        	}
+        	.table th {
+				background-color: gray;
+				color: white;
+        	}
+        	.table tr {
+				background-color: white;
+        	}
+        	.table button {
+        		width: 60px;
+        	}
+        </style>
+	</head>
+	<body>
+		<h3>Inline Data</h3>
+
+		<script type="application/ample+xml"
+			xmlns:aml="http://www.amplesdk.com/ns/aml">
+			<aml:data id="data_inline" type="application/xml">
+				<people xmlns="">
+					<person>
+						<firstName>Peter</firstName>
+						<lastName>Poncha</lastName>
+						<age>34</age>
+					</person>
+					<person>
+						<firstName>John</firstName>
+						<lastName>Peer</lastName>
+						<age>22</age>
+					</person>
+					<person>
+						<firstName>Ian</firstName>
+						<lastName>Vermeer</lastName>
+						<age>44</age>
+					</person>
+					<person>
+						<firstName>Sandy</firstName>
+						<lastName>Johnson</lastName>
+						<age>30</age>
+					</person>
+					<person>
+						<firstName>Remy</firstName>
+						<lastName>Martin</lastName>
+						<age>39</age>
+					</person>
+				</people>
+			</aml:data>
+
+			Consumer 1
+			<table class="table" cellspacing="1" cellpadding="1">
+				<thead>
+					<tr>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Age</th>
+					</tr>
+				</thead>
+				<tbody>
+					<aml:repeater data="data_inline" select="people person">
+						<tr>
+							<td>{firstName}</td>
+							<td>{lastName}</td>
+							<td>{age}</td>
+						</tr>
+					</aml:repeater>
+				</tbody>
+			</table>
+			<br />
+
+			Consumer 2
+			<table class="table" cellspacing="1" cellpadding="1">
+				<thead>
+					<tr>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Age</th>
+					</tr>
+				</thead>
+				<tbody>
+					<aml:repeater data="data_inline" select="people person">
+						<tr>
+							<td>{firstName}</td>
+							<td>{lastName}</td>
+							<td>{age}</td>
+						</tr>
+					</aml:repeater>
+				</tbody>
+			</table>
+			<br />
+			Actions on data source:
+			<button>
+				<aml:handler event="click" type="text/javascript"><![CDATA[
+					var aElements	= ample.querySelectorAll("#data_inline person:nth-child(even) age");
+					for (var nIndex = 0; nIndex < aElements.length; nIndex++)
+						aElements[nIndex].firstChild.replaceData(0, aElements[nIndex].firstChild.length, "31");
+				]]></aml:handler>
+				set even persons age to 31
+			</button>
+			<button>
+				<aml:handler event="click" type="text/javascript"><![CDATA[
+					var aElements	= ample.querySelectorAll("#data_inline person:nth-child(odd) age");
+					for (var nIndex = 0; nIndex < aElements.length; nIndex++)
+						aElements[nIndex].firstChild.replaceData(0, aElements[nIndex].firstChild.length, "18");
+				]]></aml:handler>
+				set odd persons age to 18
+			</button>
+		</script>
+
+		<h3>External Data</h3>
+
+		<script type="application/ample+xml"
+			xmlns:aml="http://www.amplesdk.com/ns/aml">
+
+			<aml:data id="data_external" type="application/xml" src="data.xml" />
+
+			<table class="table" cellspacing="1" cellpadding="1">
+				<thead>
+					<tr>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Age</th>
+					</tr>
+				</thead>
+				<tbody>
+					<aml:repeater data="data_external" select="people person">
+						<tr>
+							<td>{firstName}</td>
+							<td>{lastName}</td>
+							<td>{age}</td>
+						</tr>
+					</aml:repeater>
+				</tbody>
+			</table>
+		</script>
+	</body>
+</html>

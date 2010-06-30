@@ -1,0 +1,23 @@
+body {
+	font-family: Courier;
+}
+
+li {
+	font-size: 0.8em;
+}
+
+A {
+	text-decoration: none;
+}
+
+A:hover {
+	text-decoration: underline;
+}
+
+ul {
+	padding-bottom: 1em;
+}
+
+h3 {
+	border-bottom: double 3px;
+}

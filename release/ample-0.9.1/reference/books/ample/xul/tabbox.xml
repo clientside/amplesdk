@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="tabbox">
+	<implements />
+	<abstract>
+		<locale>
+			A container used to display a set of tabbed pages of elements.
+			A row of tabs is displayed at the top of <link type="element">tabbox</link> which may be used to switch between each page.
+			The <link type="element">tabbox</link> should contain two children, the first a <link type="element">tabs</link> element which contains the tabs and the second a <link type="element">tabpanels</link> element which contains the contents of the pages.
+		</locale>
+		<locale xml:lang="ru">
+			Контейнер для создания переключаемых страниц.
+			Элемент <link type="element">tabbox</link> должен иметь только два дочерних элемента: элемент <link type="element">tabs</link>, который содержит закладки и элемент <link type="element">tabpanels</link>, который содержит содержимое страниц, привязанных к соответствующим закладкам.
+			Этот тип элемента <link type="element">box</link> по умолчанию имеет вертикальную ориентацию.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes />
+		<methods />
+		<properties>
+			<property name="tabs" type="AMLElement" readonly="true">
+				<description>
+					<locale>
+						Contains a reference to <link type="element">tabs</link> element.
+					</locale>
+					<locale xml:lang="ru">
+						Ссылка на дочерний элемент <link type="element">tabs</link>.
+					</locale>
+				</description>
+			</property>
+			<property name="tabpanels" type="AMLElement" readonly="true">
+				<description>
+					<locale>
+						Contains a reference to <link type="element">tabpanels</link> element.
+					</locale>
+					<locale xml:lang="ru">
+						Ссылка на дочерний элемент <link type="element">tabpanels</link>.
+					</locale>
+				</description>
+			</property>
+			<property name="selectedIndex" type="Number" readonly="true">
+				<description>
+					<locale>
+						Returns the index of the currently selected item.
+					</locale>
+					<locale xml:lang="ru">
+						Содержит порядковый номер выбранной в настоящее время закладки.
+					</locale>
+				</description>
+			</property>
+			<property name="selectedPanel" type="AMLElement" readonly="true">
+				<description>
+					<locale>
+						Holds a reference to the currently selected panel within a <link type="element">tabbox</link> element.
+					</locale>
+					<locale xml:lang="ru">
+						Ссылка на выбранный в настоящее время элемент <link type="element">tabpanel</link>.
+					</locale>
+				</description>
+			</property>
+			<property name="selectedTab" type="AMLElement" readonly="true">
+				<description>
+					<locale>
+						A reference to the currently selected tab, which will always be one of the tab elements in the <link type="element">tabs</link> element.
+					</locale>
+					<locale xml:lang="ru">
+						Ссылка на выбранный в настоящее время элемент <link type="element">tab</link>, который всегда является одним из дочерних элементов элемента <link type="element">tabs</link>.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<events />
+	</members>
+</element>

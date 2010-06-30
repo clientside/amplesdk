@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="AMLFocus">
+	<abstract>
+		<locale>
+			Implements Focus functionality
+		</locale>
+		<locale xml:lang="ru">
+			Реализует функциональность фокуса.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples/>
+	<members>
+		<methods>
+			<method name="focus" type="Void">
+				<arguments />
+				<description>
+					<locale>
+						Moves focus to the element.
+					</locale>
+					<locale xml:lang="ru">
+						Перемещает фокус на элемент.
+					</locale>
+				</description>
+			</method>
+			<method name="blur" type="Void">
+				<arguments />
+				<description>
+					<locale>
+						Removes focus from the element.
+					</locale>
+					<locale xml:lang="ru">
+						Убирает фокус с элемента.
+					</locale>
+				</description>
+			</method>
+			<!-- Ample Extended Methods -->
+			<method name="$isAccessible" type="Boolean">
+				<arguments />
+				<description>
+					<locale>
+						Indicates wether element can be focused.
+					</locale>
+					<locale xml:lang="ru">
+						Возвращаемое значение указывает, доступен ли элемент.
+					</locale>
+				</description>
+			</method>
+		</methods>
+		<properties>
+			<property name="tabIndex" type="Number">
+				<description>
+					<locale>
+						Sets value used to specify
+						control position in tab sequence. When value is set to 0,
+						control will be accessed in the document order, when -1,
+						control will not be accessible at all.
+					</locale>
+					<locale xml:lang="ru">
+						Позволяет прочитать/выставить значение, указывающее на позицию элемента в последовательности перехода фокуса. Когда значение выставлено в 0, элемент получит фокус согласно его расположению в иерархии внутри документа; когда значение выставлено в -1, элемент не получит фокус.
+					</locale>
+				</description>
+			</property>
+			<property name="accessKey" type="String">
+				<description>
+					<locale>
+						Sets the accelerator key for the object.
+					</locale>
+					<locale xml:lang="ru">
+						Позволяет прочитать/выставить клавишу быстрого доступа к элементу.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<attributes />
+		<events>
+			<event name="focus" group="UIEvent" cancelable="false" bubbles="false">
+				<description>
+					<locale>
+						Fires when element receives focus.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается, когда элемент получает фокус.
+					</locale>
+				</description>
+			</event>
+			<event name="blur" group="UIEvent" cancelable="false" bubbles="false">
+				<description>
+					<locale>
+						Fires when element looses focus.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается, когда элемент теряет фокус.
+					</locale>
+				</description>
+			</event>
+			<event name="DOMFocusIn" group="UIEvent" cancelable="false" bubbles="true">
+				<description>
+					<locale>
+						An object receives focus.
+						The focus is given to the element before the dispatch of this event type.
+						This event type is dispatched after the event type focus.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается, когда элемент получает фокус.
+					</locale>
+				</description>
+			</event>
+			<event name="DOMFocusOut" group="UIEvent" cancelable="false" bubbles="true">
+				<description>
+					<locale>
+						An object loses focus.
+						The focus is taken from the element before the dispatch of this event type.
+						This event type is dispatched after the event type blur.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается, когда элемент теряет фокус.
+					</locale>
+				</description>
+			</event>
+		</events>
+		<pseudoclasses>
+			<pseudoclass name="focus">
+				<description>
+					<locale>
+						Applied to the element when it has focus
+					</locale>
+				</description>
+			</pseudoclass>
+		</pseudoclasses>
+	</members>
+</object>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="aml:AMLElement" name="combobox">
+	<abstract>
+		<locale xml:lang="ru">
+			Элемент предназначен для создания списка элементов <link type="element">comboitem</link>.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="name">
+				<description>
+					<locale>
+						Name of the parameter to be used when sending with <b>form</b>.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="value" default="">
+				<description>
+					<locale xml:lang="ru">
+						Содержит значение компонента.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="filter" default="false">
+				<values>
+					<value name="true">
+						<description>
+							<locale xml:lang="ru">
+								При вводе значения, выпадающий список будет отфильтрован по вхождению подстроки ввода в начало значения <link type="element">compoitem</link>
+							</locale>
+						</description>
+					</value>
+					<value name="false">
+						<description>
+							<locale xml:lang="ru">
+								Выпадающий список не фильтруется.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale xml:lang="ru">
+						Указывает, будет ли выполняться фильтрование выпадающего списка.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods>
+			<method name="appendItem" type="comboitem">
+				<arguments>
+					<argument name="sLabel" type="String" required="true">
+						<description>
+							<locale xml:lang="ru">
+								Текст, который появится в списке.
+							</locale>
+						</description>
+					</argument>
+					<argument name="sValue" type="String" required="false">
+						<description>
+							<locale xml:lang="ru">
+								Значение, ассоциированное с элементом.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale xml:lang="ru">
+						Создает новый <link type="element">comboitem</link> и добавляет его в конец списка внутри <link type="element">combobox</link>.
+					</locale>
+				</description>
+			</method>
+			<method name="insertItemAt" type="comboitem">
+				<arguments>
+					<argument name="nIndex" type="Number" required="true">
+						<description>
+							<locale xml:lang="ru">
+								Номер позиции в списке.
+							</locale>
+						</description>
+					</argument>
+					<argument name="sLabel" type="String" required="true">
+						<description>
+							<locale xml:lang="ru">
+								Текст, который появится в списке.
+							</locale>
+						</description>
+					</argument>
+					<argument name="sValue" type="String" required="false">
+						<description>
+							<locale xml:lang="ru">
+								Значение, ассоциированное с элементом.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale xml:lang="ru">
+						Создает новый <link type="element">comboitem</link> и добавляет его после указанной позиции в списке внутри <link type="element">combobox</link>.
+					</locale>
+				</description>
+			</method>
+			<method name="removeItemAt" type="comboitem">
+				<arguments>
+					<argument name="nIndex" type="Number" required="true">
+						<description>
+							<locale xml:lang="ru">
+								Номер позиции в списке.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale xml:lang="ru">
+						Удаляет дочерний элемент <link type="element">comboitem</link> в указанной позиции.
+					</locale>
+				</description>
+			</method>
+		</methods>
+		<properties>
+			<property name="items" type="AMLNodeList">
+				<description>
+					<locale xml:lang="ru">
+						Содержит коллекцию элементов <link type="element">comboitem</link>.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<events>
+			<event name="change" group="Event" cancelable="false" bubbles="true">
+				<description>
+					<locale xml:lang="ru">
+						Загорается при изменении значения компонента.
+					</locale>
+				</description>
+			</event>
+		</events>
+	</members>
+</element>

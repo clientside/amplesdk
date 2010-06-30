@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>XUL Language - work in progress</title>
+		<script type="text/javascript" src="../../../ample/runtime.js"></script>
+		<script type="text/javascript" src="../../../ample/languages/xul/xul.js"></script>
+		<link type="text/ample+css" href="../../../ample/languages/xul/themes/default/xul.css" rel="stylesheet"/>
+		<style type="text/css">
+		body * {
+			font-family:Verdana, Tahoma, Arial, sans-serif;
+			font-size:	11px;
+		}
+		</style>
+	</head>
+	<body>
+		<script type="application/ample+xml"
+			xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+			<xul:tabbox>
+				<xul:tabs>
+					<xul:tab label="Listbox" />
+					<xul:tab label="Tree" />
+				</xul:tabs>
+				<xul:tabpanels>
+				<xul:tabpanel>
+					<xul:listbox type="checkbox" height="200">
+					    <xul:listhead>
+					        <xul:listheader width="30" minwidth="30" label="id"/>
+					        <xul:listheader minwidth="500" label="Name" tooltiptext="Shows firstname of the person. Click to sort."/>
+					        <xul:listheader label="column2" minwidth="200" tooltiptext="Shows lastname of the person. Click to sort."/>
+					        <xul:listheader width="200" minwidth="200" label="column2" tooltiptext="Shows person location. Click to sort."/>
+					    </xul:listhead>
+					    <xul:listbody id="listbody">
+					        <xul:listitem class="test">
+					            <xul:listcell label="1"></xul:listcell>
+					            <xul:listcell label="George"/>
+					            <xul:listcell label="House Painter"/>
+					            <xul:listcell label="USA"/>
+					        </xul:listitem>
+					        <xul:listitem class="test2">
+					            <xul:listcell label="2"></xul:listcell>
+					            <xul:listcell label="Mary Ellen"/>
+					            <xul:listcell label="Candle Maker"/>
+					            <xul:listcell label="Java"/>
+					        </xul:listitem>
+					        <xul:listitem class="test3">
+					            <xul:listcell label="3"></xul:listcell>
+					            <xul:listcell label="Roger"/>
+					            <xul:listcell label="Swashbuckler"/>
+					            <xul:listcell label="Great Britain"/>
+					        </xul:listitem>
+					        <xul:listitem class="test4">
+					            <xul:listcell label="4"></xul:listcell>
+					            <xul:listcell label="Sam"/>
+					            <xul:listcell label="Browm"/>
+					            <xul:listcell label="Falkland islands"/>
+					        </xul:listitem>
+					        <xul:listitem>
+					            <xul:listcell label="5"></xul:listcell>
+					            <xul:listcell label="Tom"/>
+					            <xul:listcell label="Jones"/>
+					            <xul:listcell label="Oceania"/>
+					        </xul:listitem>
+					        <xul:listitem>
+					            <xul:listcell label="6"></xul:listcell>
+					            <xul:listcell label="Pink"/>
+					            <xul:listcell label="Floyd"/>
+					            <xul:listcell label="Australia"/>
+					        </xul:listitem>
+					        <xul:listitem class="test">
+					            <xul:listcell label="1"></xul:listcell>
+					            <xul:listcell label="George"/>
+					            <xul:listcell label="House Painter"/>
+					            <xul:listcell label="USA"/>
+					        </xul:listitem>
+					        <xul:listitem class="test2">
+					            <xul:listcell label="2"></xul:listcell>
+					            <xul:listcell label="Mary Ellen"/>
+					            <xul:listcell label="Candle Maker"/>
+					            <xul:listcell label="Java"/>
+					        </xul:listitem>
+					        <xul:listitem class="test3">
+					            <xul:listcell label="3"></xul:listcell>
+					            <xul:listcell label="Roger"/>
+					            <xul:listcell label="Swashbuckler"/>
+					            <xul:listcell label="Great Britain"/>
+					        </xul:listitem>
+					        <xul:listitem class="test4">
+					            <xul:listcell label="4"></xul:listcell>
+					            <xul:listcell label="Sam"/>
+					            <xul:listcell label="Browm"/>
+					            <xul:listcell label="Falkland islands"/>
+					        </xul:listitem>
+					        <xul:listitem>
+					            <xul:listcell label="5"></xul:listcell>
+					            <xul:listcell label="Tom"/>
+					            <xul:listcell label="Jones"/>
+					            <xul:listcell label="Oceania"/>
+					        </xul:listitem>
+					        <xul:listitem>
+					            <xul:listcell label="6"></xul:listcell>
+					            <xul:listcell label="Pink"/>
+					            <xul:listcell label="Floyd"/>
+					            <xul:listcell label="Australia"/>
+					        </xul:listitem>
+					    </xul:listbody>
+					</xul:listbox>
+				</xul:tabpanel>
+					<xul:tabpanel>
+				        <xul:tree flex="1" height="200" type="checkbox">
+				          <xul:treecols>
+				              <xul:treecol id="firstname" minwidth="400" label="First Name" primary="true"/>
+				              <xul:treecol id="lastname" width="400" minwidth="400" label="Last Name"/>
+				          </xul:treecols>
+				          <xul:treebody>
+				              <xul:treechildren>
+				                <xul:treeitem open="true" container="true">
+				                  <xul:treerow>
+				                    <xul:treecell label="Guys"/>
+				                    <xul:treecell label="Test"/>
+				                  </xul:treerow>
+				                  <xul:treechildren>
+				                    <xul:treeitem>
+				                      <xul:treerow>
+				                        <xul:treecell label="Bob"/>
+				                        <xul:treecell label="Carpenter"/>
+				                      </xul:treerow>
+				                    </xul:treeitem>
+				                    <xul:treeitem open="true" container="true">
+				                      <xul:treerow>
+				                        <xul:treecell label="Jerry"/>
+				                        <xul:treecell label="Hodge"/>
+				                      </xul:treerow>
+				                      <xul:treechildren>
+				                        <xul:treeitem>
+				                          <xul:treerow>
+				                            <xul:treecell label="Bob" src="icon.gif"/>
+				                            <xul:treecell label="Carpenter"/>
+				                          </xul:treerow>
+				                        </xul:treeitem>
+				                        <xul:treeitem>
+				                          <xul:treerow>
+				                            <xul:treecell label="Jerry" src="icon.gif"/>
+				                            <xul:treecell label="Hodge"/>
+				                          </xul:treerow>
+				                        </xul:treeitem>
+				                      </xul:treechildren>
+				                    </xul:treeitem>
+				                    <xul:treeitem>
+				                      <xul:treerow>
+				                        <xul:treecell label="Pink"/>
+				                        <xul:treecell label="Floyd"/>
+				                      </xul:treerow>
+				                    </xul:treeitem>
+				                  </xul:treechildren>
+				                </xul:treeitem>
+			                <xul:treeitem open="true" container="true">
+			                  <xul:treerow>
+			                    <xul:treecell label="Guys"/>
+			                    <xul:treecell label="Test"/>
+			                  </xul:treerow>
+			                  <xul:treechildren>
+			                    <xul:treeitem>
+			                      <xul:treerow>
+			                        <xul:treecell label="Bob"/>
+			                        <xul:treecell label="Carpenter"/>
+			                      </xul:treerow>
+			                    </xul:treeitem>
+			                    <xul:treeitem open="true" container="true">
+			                      <xul:treerow>
+			                        <xul:treecell label="Jerry"/>
+			                        <xul:treecell label="Hodge"/>
+			                      </xul:treerow>
+			                      <xul:treechildren>
+			                        <xul:treeitem>
+			                          <xul:treerow>
+			                            <xul:treecell label="Bob"/>
+			                            <xul:treecell label="Carpenter"/>
+			                          </xul:treerow>
+			                        </xul:treeitem>
+			                        <xul:treeitem>
+			                          <xul:treerow>
+			                            <xul:treecell label="Jerry"/>
+			                            <xul:treecell label="Hodge"/>
+			                          </xul:treerow>
+			                        </xul:treeitem>
+			                      </xul:treechildren>
+			                    </xul:treeitem>
+			                    <xul:treeitem>
+			                      <xul:treerow>
+			                        <xul:treecell label="Pink"/>
+			                        <xul:treecell label="Floyd"/>
+			                      </xul:treerow>
+			                    </xul:treeitem>
+			                  </xul:treechildren>
+			                </xul:treeitem>
+			                <xul:treeitem open="true" container="true">
+			                  <xul:treerow>
+			                    <xul:treecell label="Guys"/>
+			                    <xul:treecell label="Test"/>
+			                  </xul:treerow>
+			                  <xul:treechildren>
+			                    <xul:treeitem>
+			                      <xul:treerow>
+			                        <xul:treecell label="Bob"/>
+			                        <xul:treecell label="Carpenter"/>
+			                      </xul:treerow>
+			                    </xul:treeitem>
+			                    <xul:treeitem open="true" container="true">
+			                      <xul:treerow>
+			                        <xul:treecell label="Jerry"/>
+			                        <xul:treecell label="Hodge"/>
+			                      </xul:treerow>
+			                      <xul:treechildren>
+			                        <xul:treeitem>
+			                          <xul:treerow>
+			                            <xul:treecell label="Bob"/>
+			                            <xul:treecell label="Carpenter"/>
+			                          </xul:treerow>
+			                        </xul:treeitem>
+			                        <xul:treeitem open="true" container="true">
+			                          <xul:treerow>
+			                            <xul:treecell label="Jerry"/>
+			                            <xul:treecell label="Hodge"/>
+			                          </xul:treerow>
+			                          <xul:treechildren>
+			                            <xul:treeitem>
+			                              <xul:treerow>
+			                                <xul:treecell label="Bob"/>
+			                                <xul:treecell label="Carpenter"/>
+			                              </xul:treerow>
+			                            </xul:treeitem>
+			                            <xul:treeitem>
+			                              <xul:treerow>
+			                                <xul:treecell label="Jerry"/>
+			                                <xul:treecell label="Hodge"/>
+			                              </xul:treerow>
+			                             </xul:treeitem>
+			                           </xul:treechildren>
+			                        </xul:treeitem>
+			                      </xul:treechildren>
+			                    </xul:treeitem>
+			                    <xul:treeitem>
+			                      <xul:treerow>
+			                        <xul:treecell label="Pink"/>
+			                        <xul:treecell label="Floyd"/>
+			                      </xul:treerow>
+			                    </xul:treeitem>
+			                  </xul:treechildren>
+			                </xul:treeitem>
+			              </xul:treechildren>
+			            </xul:treebody>
+			        </xul:tree>
+				</xul:tabpanel>
+			</xul:tabpanels>
+		</xul:tabbox>
+		</script>
+	</body>
+</html>

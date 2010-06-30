@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element name="length">
+	<abstract>
+		<locale>
+			Facet length defines the number of units of length, where units of length varies depending on the type that is being derived from.
+		</locale>
+	</abstract>
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="value">
+				<description>
+					<locale>
+						Defines the value space.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="fixed">
+				<values>
+					<value name="true">
+						<description>
+							<locale>
+								The facet is fixed.
+							</locale>
+						</description>
+					</value>
+					<value name="false">
+						<description>
+							<locale>
+								The facet is not fixed.
+								This is the default.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale>
+						Specifies whether facet is fixed.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

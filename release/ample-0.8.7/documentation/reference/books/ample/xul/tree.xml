@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULSelectElement" name="Tree" type="regular">
+	<abstract>
+		<locale xml:lang="ru">
+			Дерево - контейнер, который содержит иерархически структурированые строки элементов.
+			Дерево может содержать любое число строк и столбцов.
+			Каждая строка дерева может содержать дочерние строки,
+			которые отображаются с отступом от родительского элемента.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="type" readonly="true">
+				<values>
+					<value name="radio">
+						<description>
+							<locale xml:lang="ru">
+								Управляющий элемент <link type="element">radio</link>.
+								Внимание: использование этого значения запретит множественное выделение в
+								элементе <link type="element">treeitem</link>.
+							</locale>
+						</description>
+					</value>
+					<value name="checkbox">
+						<description>
+							<locale xml:lang="ru">
+								Управляющий элемент <link type="element">checkbox</link>.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale xml:lang="ru">
+						Добавляет управляющий элемент заданного типа в начало каждого элемента <link type="element">treecol</link> и <link type="element">treeitem</link>.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods>
+			<method name="refresh" type="Void">
+				<arguments />
+				<description>
+					<locale xml:lang="ru">
+						Обновляет содержимое дерева.
+						Может потребоваться после вызова таких методов, как <link type="method">appendItem</link>, когда дерево не перерисовывается автоматически.
+					</locale>
+				</description>
+			</method>
+		</methods>
+		<properties>
+			<property name="head" type="AMLElement" readonly="true">
+				<description>
+					<locale xml:lang="ru">
+						Ссылка на элемент <link type="element">treecols</link>.
+					</locale>
+				</description>
+			</property>
+			<property name="body" type="AMLElement" readonly="true">
+				<description>
+					<locale xml:lang="ru">
+						Ссылка на элемент <link type="element">treebody</link>.
+					</locale>
+				</description>
+			</property>
+			<property name="items" type="AMLNodeList" readonly="true">
+				<description>
+					<locale xml:lang="ru">
+						Коллекция дочерних элементов <link type="element">treeitem</link>.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<events />
+	</members>
+</element>

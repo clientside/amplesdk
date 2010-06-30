@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="key" type="virtual">
+	<implements />
+	<abstract>
+		<locale xml:lang="ru">
+			Элемент <link type="element">key</link> определяет горячие клавиши.
+			Когда активируются горячие клавиши, могут вызываться заранее определенные обработчики событий.
+			Элемент <link type="element">key</link> должен помещаться в элемент <link type="element">keyset</link>.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="key" default="" readonly="false">
+				<description>
+					<locale>
+						The character that is must be pressed. This should be set to a displayable character.
+					</locale>
+					<locale xml:lang="ru">
+						Символ, который следует нажать. Должен являться отображаемым символом.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="keycode" default="" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						Этот атрибут используется вместо атрибута <link type="attribute">key</link> для клавиш, которые не имеют отображения (например, клавиша ввода или функциональные клавиши).
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="keytext" default="" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						Текстовая подсказка для горячей клавиши. Этот текст появится рядом с текстом элемента <link type="element">menuitem</link>, если этот элемент ассоциирован с элементом <link type="element">key</link> чрез атрибут <link type="attribute">key</link>.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="modifiers" default="" readonly="false">
+				<values>
+					<value name="shift">
+						<description>
+							<locale xml:lang="ru">
+								Клавиша "SHIFT".
+							</locale>
+						</description>
+					</value>
+					<value name="alt">
+						<description>
+							<locale xml:lang="ru">
+								Клавиша "ALT". На макинтоше это клавиша "OPTION".
+							</locale>
+						</description>
+					</value>
+					<value name="meta">
+						<description>
+							<locale xml:lang="ru">
+								Иета-клавиша. На макинтоше это клавиша "COMMAND".
+							</locale>
+						</description>
+					</value>
+					<value name="control">
+						<description>
+							<locale xml:lang="ru">
+								Клавиша "CTRL".
+							</locale>
+						</description>
+					</value>
+					<value name="accel">
+						<description>
+							<locale>
+								The key used for keyboard shortcuts on the user's platform.
+								Usually, this would be the value you would use.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale xml:lang="ru">
+						Список клавиш-модификаторов, которые должны быть нажаты для вызова горячей клавиши.
+						Если необходимо использование нескольких клавиш-модификаторов,
+						они должны быть разделены запятыми или пробелами.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties />
+		<events>
+			<event name="command" group="Event" cancelable="false" bubbles="true">
+				<description>
+					<locale xml:lang="ru">
+						Это событие загорается, когда элемент активируется.
+						В большинстве случаев доступно несколько способов активации этого элемента.
+						Например, элемент <link type="element">button</link> может быть активирован
+						нажатием на нем мыши или нажатием клавиши ввода в тот момент, когда он в фокусе.
+						Элементы меню могут быть активированы мышью или использванием клавиши быстрого доступа.
+						Всегда следует использовать событие <link type="event">command</link> вместо
+						события <link type="event">click</link>, так как оно будет вызвано всеми доступными способами.
+					</locale>
+				</description>
+			</event>
+		</events>
+	</members>
+</element>

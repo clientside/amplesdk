@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="hbox" type="boxed">
+	<implements />
+	<abstract>
+		<locale xml:lang="ru">
+			Элемент-контейнер, может содержать любое количество дочерних элементов.
+			Эквивалентен элементу <link type="element">box</link> с горизонтальной ориентацией по умолчанию.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes />
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

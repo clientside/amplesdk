@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="AMLImplementation">
+	<abstract>
+		<locale>
+			Represents an implementation object.
+		</locale>
+		<locale xml:lang="ru">
+			Объект реализации.
+		</locale>
+	</abstract>
+	<remarks />
+	<members>
+		<properties />
+		<methods>
+			<method name="createDocument" type="AMLDocument">
+				<arguments>
+					<argument name="sNameSpaceURI" type="String" required="true">
+						<description>
+							<locale>
+								The namespace URI of the document element to create or null.
+							</locale>
+							<locale xml:lang="ru">
+								URI пространства имен корневого элемента документа, который будет создан, или null.
+							</locale>
+						</description>
+					</argument>
+					<argument name="sQualifiedName" type="String" required="true">
+						<description>
+							<locale>
+								The qualified name of the document element to be created or null.
+							</locale>
+							<locale xml:lang="ru">
+								Название (<a href="http://www.w3.org/TR/REC-xml-names/#ns-qualnames">Qualified Name</a>) документа, который будет создан, или null.
+							</locale>
+						</description>
+					</argument>
+					<argument name="oDocumentType" type="AMLDocumentType" required="true">
+						<description>
+							<locale>
+								The type of document to be created or null.
+							</locale>
+							<locale xml:lang="ru">
+								Тип документа, который будет создан, или null.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Creates a <link type="object">AMLDocument</link> object of the specified type with its document element.
+					</locale>
+					<locale xml:lang="ru">
+						Создает объект <link type="object">AMLDocument</link> указанного типа.
+					</locale>
+				</description>
+			</method>
+			<method name="createDocumentType" type="AMLDocumentType">
+				<arguments>
+					<argument name="sQualifiedName" type="String" required="true">
+						<description>
+							<locale>
+								The qualified name of the document type to be created.
+							</locale>
+							<locale xml:lang="ru">
+								Тип документа (<a href="http://www.w3.org/TR/REC-xml-names/#ns-qualnames">Qualified Name</a>), который будет создан.
+							</locale>
+						</description>
+					</argument>
+					<argument name="sPublicId" type="String" required="true">
+						<description>
+							<locale>
+								The external subset public identifier.
+							</locale>
+						</description>
+					</argument>
+					<argument name="sSystemId" type="String" required="true">
+						<description>
+							<locale xml:lang="ru">
+								The external subset system identifier.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Creates an empty DocumentType node.
+					</locale>
+					<locale xml:lang="ru">
+						Создает пустой DocumentType.
+					</locale>
+				</description>
+			</method>
+			<method name="hasFeature" type="Boolean">
+				<arguments>
+					<argument name="sFeature" type="String" required="true">
+						<description>
+							<locale>
+								The name of the feature requested.
+							</locale>
+							<locale xml:lang="ru">
+								Название запрашиваемой возможности.
+							</locale>
+						</description>
+					</argument>
+					<argument name="sVersion" type="String" required="true">
+						<description>
+							<locale>
+								The version number of the feature to test.
+							</locale>
+							<locale xml:lang="ru">
+								Номер версии запрашиваемой возможности.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Test if the DOM implementation implements a specific feature and version.
+					</locale>
+					<locale xml:lang="ru">
+						Проверяет, имеет ли объект DOM Implementation возможность запрашиваемой версии.
+					</locale>
+				</description>
+			</method>
+		</methods>
+	</members>
+	<examples />
+</object>

@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<article>
+	<title>Hello, World!</title>
+	<abstract>
+		<locale>
+			Creating applications with Ample SDK is as simple as doing it with plain HTML and cross-browser DOM.
+		</locale>
+		<locale xml:lang="ru">
+			Нет ничего проще создания страничек с помощью Ample SDK. По большому счёту это ничем не отличается от обычной HTML разметки.
+		</locale>
+	</abstract>
+	<content>
+		<locale>
+			<p>
+				The following sample application will display "Hello, World!" message in bold on the screen.
+				Once text is clicked there will be an alert popup shown notifying on the event.
+			</p>
+		</locale>
+		<code type="application/xml"><![CDATA[
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Hello, World!</title>
+		<script type="text/javascript" src="ample/runtime.js"></script>
+		<script type="text/javascript" src="ample/languages/xhtml/xhtml.js"></script>
+		<style type="text/ample+css">
+			@namespace x "http://www.w3.org/1999/xhtml";
+			x|b {
+				color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<script type="application/ample+xml" xmlns:x="http://www.w3.org/1999/xhtml">
+			<x:b onclick="alert('Element was clicked')">Hello, World!</x:b>
+		</script>
+	</body>
+</html>
+			]]></code>
+		<note>
+			<locale>
+				Please note, there is a prefix <b>x</b> defined on the &lt;script /&gt; tag that is bound to XHTML namespace.
+			</locale>
+		</note>
+	</content>
+</article>

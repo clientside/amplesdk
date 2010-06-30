@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="colorpicker" type="regular">
+	<abstract>
+		<locale xml:lang="ru">
+			Элемент отображается как <link type="element">textbox</link> с расположенным рядом
+			элементом <link type="element">button</link>.
+			При нажатии на кнопку, появляется элемент <link type="element">popup</link> с палитрой цветов,
+			доступных для выбора.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="value" default="" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						Данные, ассоциированные с элементом.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

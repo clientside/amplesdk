@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<article>
+	<title>Solution Architecture</title>
+	<abstract>
+		<locale>
+			This document covers the client-side (front-end) solution architecture of an Application written against Ample SDK framework.
+		</locale>
+	</abstract>
+	<content>
+		<section>
+			<title>
+				<locale>
+					Solution Architecture
+				</locale>
+			</title>
+			<content>
+				<locale>
+					<img src="architecture.png" />
+				</locale>
+			</content>
+			<section>
+				<title>
+					<locale>
+						Application UI layer
+					</locale>
+				</title>
+				<content>
+					<locale>
+						<p>
+							This is the layer that comprises application resources.
+						</p>
+						<ul>
+							<li>Layout, resource type: <em>XML</em> (technologies: <em>XHTML, XUL, SVG 1.2, XHTML5</em>)</li>
+							<li>Style, resource type: <em>CSS</em> (technologies: <em>CSS2.1, CSS3-namespaces, CSS3-ui</em>)</li>
+							<li>Logic, resource type: <em>JavaScript</em> (technologies: <em>DOM-Core, DOM-Events, Selectors API, XMLHttpRequest, JSON etc.</em>)</li>
+						</ul>
+					</locale>
+				</content>
+			</section>
+			<section>
+				<title>
+					<locale>
+						Ample SDK layer
+					</locale>
+				</title>
+				<content>
+					<locale>
+						<p>
+							Ample SDK layer is the framework that shields <em>Application UI</em> layer from <em>Browser</em> layer.<br />
+							It hosts:
+						</p>
+						<ul>
+							<li>Runtime, that enables core DOM modules implementation, componentization model and UI managers</li>
+							<li>UI languages, that are User Interface markup languages implementations</li>
+						</ul>
+					</locale>
+				</content>
+			</section>
+			<section>
+				<title>
+					<locale>
+						Browser layer
+					</locale>
+				</title>
+				<content>
+					<locale>
+						This is the abstract container that includes all web browsers supported with all their differences and quirks<br />
+						Here different engines' wrappers reside:
+						<ul>
+							<li>Trident (Internet Explorer)</li>
+							<li>Gecko (Mozilla, Firefox)</li>
+							<li>Presto (Opera)</li>
+							<li>Webkit (Safari, Chrome, Air)</li>
+							<li>KHTML (Konqueror)</li>
+						</ul>
+					</locale>
+				</content>
+			</section>
+		</section>
+	</content>
+</article>

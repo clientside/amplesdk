@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<article>
+	<title>XHTML 2.0</title>
+	<warning>
+		<locale>
+			Реализация XHTML 2.0 в <b>Ample SDK</b> находится в разработке.
+		</locale>
+	</warning>
+	<abstract>
+		Язык разметки XHTML 2.0 является языком разметки общего назначения для представления документов во всемирной сети (World Wide Web). Он не является попыткой создать универсальный язык разметки, подходящий всем для любых целей. XHTML 2.0 предоставляет набор наиболее часто используемых элементов для разметки, которые могут быть расширены атрибутами <i>class</i> и <i>role</i> на элементах <b>div</b> и <b>span</b> в комбинации с каскадными таблицами стилей
+		XHTML 2 is a general purpose markup language designed for representing documents
+		for a wide range of purposes across the World Wide Web. To this end it does not
+		attempt to be all things to all people, supplying every possible markup idiom,
+		but to supply a generally useful set of elements, with the possibility of extension
+		using the class and role attributes on the span and div elements in combination with
+		style sheets, and attributes from the metadata attributes collection.
+	</abstract>
+	<content>
+		<section title="Пространство имен XHTML 2.0">
+			Пространство имен XHTML 2.0 определяется URI <uri>http://www.w3.org/2002/06/xhtml2/</uri>
+		</section>
+		<section title="Реализация в Ample SDK">
+			В настоящее время реализация языка XHTML 2.0 в <b>Ample SDK</b> находится в стадии разработки.
+		</section>
+	</content>
+
+	<seealso>
+		<link href="http://www.w3.org/TR/xhtml2/xhtml2.html">XHTML 2.0 (W3C)</link>
+	</seealso>
+</article>

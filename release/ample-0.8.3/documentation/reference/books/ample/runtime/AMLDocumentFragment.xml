@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="AMLDocumentFragment" extends="runtime:AMLNode">
+	<abstract>
+		<locale>
+			DocumentFragment is a "lightweight" or "minimal" Document object.
+		</locale>
+		<locale xml:lang="ru">
+			DocumentFragment является "облегченным" или "минимальным" вариантом объекта <link type="object">AMLDocument</link>.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples/>
+	<members />
+</object>

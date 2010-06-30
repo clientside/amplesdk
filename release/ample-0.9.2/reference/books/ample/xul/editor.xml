@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="editor">
+	<abstract>
+		<warning>
+			<locale>
+				This element is not yet supported.
+			</locale>
+			<locale xml:lang="ru">
+				В настоящее время реализация этого элемента в <b>Ample SDK</b> отсутствует.
+			</locale>
+		</warning>
+		<locale>
+			A frame which is expected to contain an editable document.
+			Set the value of the <link type="attribute">editortype</link> attribute to html to create an editor document.
+		</locale>
+		<locale xml:lang="ru">
+			Контейнер, содержащий документ с возможностью редактирования. При установке значения атрибута <link type="element">editortype</link> в "html", будет создан редактор документа.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes />
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

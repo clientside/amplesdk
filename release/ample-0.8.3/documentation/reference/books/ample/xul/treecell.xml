@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="treecell" type="regular">
+	<implements />
+	<abstract>
+		<locale xml:lang="ru">
+			Ячейка в элементе <link type="element">tree</link>.
+			Располагается внутри элемента <link type="element">treerow</link>.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="label" readonly="true">
+				<description>
+					<locale xml:lang="ru">
+						Текст для элемента.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="src" readonly="true">
+				<description>
+					<locale xml:lang="ru">
+						URL пиктограммы для элемента.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties />
+		<events/>
+	</members>
+</element>

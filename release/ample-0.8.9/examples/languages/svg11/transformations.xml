@@ -1,0 +1,51 @@
+<?xml version="1.0" standalone="no"?>
+<svg viewBox="0,0 1200,1200" width="1200px" height="1200px" version="1.1"
+	xmlns:smil="http://www.w3.org/2008/SMIL30/"
+    xmlns="http://www.w3.org/2000/svg">
+    <text x="20" y="20" font-size="20px">Shapes Transformations</text>
+
+	<!--  rect -->
+	<rect y="50" x="0" width="100" height="100" stroke="black" stroke-width="3" fill="none"/>
+
+	<rect y="50" x="150" width="100" height="100" stroke="red" stroke-width="3" fill="none" transform="rotate(15)"/>
+
+	<rect y="50" x="300" width="100" height="100" stroke="green" stroke-width="3" fill="none" transform="matrix(0.7,0.3,0.3,0.7,50,50)"/>
+
+	<rect y="50" x="450" width="100" height="100" stroke="blue" stroke-width="3" fill="none" transform="scale(0.6,0.4)"/>
+
+	<rect y="50" x="600" width="100" height="100" stroke="brown" stroke-width="3" fill="none" transform="translate(50, 50)"/>
+
+	<rect y="50" x="750" width="100" height="100" stroke="olive" stroke-width="3" fill="none" transform="skewX(15)"/>
+
+	<rect y="50" x="900" width="100" height="100" stroke="gold" stroke-width="3" fill="none" transform="skewY(15)"/>
+
+	<!--  circle -->
+	<circle cy="250" cx="50" r="50" stroke="black" stroke-width="3" fill="none"/>
+
+	<circle cy="250" cx="200" r="50" stroke="red" stroke-width="3" fill="none" transform="rotate(15)"/>
+
+	<circle cy="250" cx="350" r="50" stroke="green" stroke-width="3" fill="none" transform="matrix(0.7,0.3,0.3,0.7,50,50)"/>
+
+	<circle cy="250" cx="500" r="50" stroke="blue" stroke-width="3" fill="none" transform="scale(0.6,0.4)"/>
+
+	<circle cy="250" cx="650" r="50" stroke="brown" stroke-width="3" fill="none" transform="translate(50, 50)"/>
+
+	<circle cy="250" cx="800" r="50" stroke="olive" stroke-width="3" fill="none" transform="skewX(15)"/>
+
+	<circle cy="250" cx="950" r="50" stroke="gold" stroke-width="3" fill="none" transform="skewY(15)"/>
+
+	<!--  text -->
+	<text y="450" x="0" width="100" height="100" stroke="black" stroke-width="3" fill="none" font-size="50px">No transformation</text>
+
+	<text y="450" x="150" width="100" height="100" stroke="red" stroke-width="3" fill="none" transform="rotate(15)" font-size="50px">rotate(15)</text>
+
+	<text y="450" x="300" width="100" height="100" stroke="green" stroke-width="3" fill="none" transform="matrix(0.7,0.3,0.3,0.7,50,50)" font-size="50px">matrix(0.7,0.3,0.3,0.7,50,50)</text>
+
+	<text y="450" x="450" width="100" height="100" stroke="blue" stroke-width="3" fill="none" transform="scale(0.6,0.4)" font-size="50px">scale(0.6,0.4)</text>
+
+	<text y="450" x="600" width="100" height="100" stroke="brown" stroke-width="3" fill="none" transform="translate(50, 50)" font-size="50px">translate(50, 50)</text>
+
+	<text y="450" x="750" width="100" height="100" stroke="olive" stroke-width="3" fill="none" transform="skewX(15)" font-size="50px">skewX(15)</text>
+
+	<text y="450" x="900" width="100" height="100" stroke="gold" stroke-width="3" fill="none" transform="skewY(15)" font-size="50px">skewY(15)</text>
+</svg>

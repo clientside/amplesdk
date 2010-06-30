@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="overlay">
+	<abstract>
+		<locale>
+			An overlay is used when it is desirable for a block of content to be shared between several different windows.
+			It can also be used to append or alter content in an existing window.
+			An overlay is defined in a separate XUL file.
+			Overlays are applied while the XUL is being loaded.
+		</locale>
+		<locale xml:lang="ru">
+			Этот элемент используется в случаях, когда необходимо,
+			чтобы фрагмент содержимого был доступен в нескольких различных окнах.
+			Помимо этого, он может быть использован для добавления или замещения содержимого окна.
+			Overlay определяется в отдельном XUL-файле. Overlay'и применяются в процессе загрузки XUL.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes />
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

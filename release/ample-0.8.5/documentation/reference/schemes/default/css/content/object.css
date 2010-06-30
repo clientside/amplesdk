@@ -1,0 +1,145 @@
+TABLE.members {
+	border: 1px solid #6eb95e;
+	height: 240px;
+}
+
+TR.members-head {
+	background-color: #6eb95e;
+}
+
+TR.members-head TD {
+	font-family: Arial;
+	font-weight: bold;
+	font-size: 130%;
+	color: white;
+	padding: 4px;
+	text-transform: capitalize;
+	text-align: left;
+}
+
+TD.members-menu {
+	width: 21px;
+	height: 18px;
+}
+
+TD.members-menu A {
+	width: 21px;
+	height: 18px;
+	display: block;
+}
+
+A.members-menu-close {
+	background-image: url("../../img/members_close.gif");
+}
+
+A.members-menu-open {
+	background-image: url("../../img/members_open.gif");
+}
+/*
+TD.members-menu IMG {
+	width: 21px;
+	height: 18px;
+	border: none;
+	visibility: hidden;
+}
+*/
+TD.members-tabs {
+	background-color: #eeeeee;
+	border-right: 3px solid #6eb95e;
+	width: 120px;
+	padding: 5px;
+}
+
+TD.members-tab {
+	border-top: solid 1px #6eb95e;
+	cursor: pointer;
+	display: block;
+	width: 120px;
+	padding: 6px 5px 8px 5px;
+	margin: 0px;
+	text-transform: capitalize;
+	line-height: auto;
+}
+
+TD.members-tab-normal {
+
+}
+
+TD.members-tab-hover {
+	background-color: #dddddd;
+}
+
+TD.members-tab-pressed {
+	background-color: #999999;
+	color: white;
+}
+
+DIV.members-pane {
+	width: 510px;
+	height: 240px;
+}
+
+DIV.members-pane-close {
+	overflow: scroll;
+	overflow: -moz-scrollbars-vertical;
+	overflow-y: scroll;
+}
+
+DIV.members-pane-open {
+
+}
+
+TABLE.members-list {
+	border: 1px solid #c1c1c1;
+	border-collapse: collapse;
+}
+
+TABLE.members-list TD {
+	padding: 2px 4px 2px 4px;
+	border: 1px solid #c1c1c1;
+}
+
+TABLE.members-list THEAD {
+	background: #cdefc2;
+	cursor: default;
+}
+
+TABLE.members-list TBODY {
+	background: #fff;
+}
+
+TABLE.members-list TABLE.inner {
+	border: solid 1px #c1c1c1;
+	border-collapse: collapse;
+}
+
+TABLE.members-list TD, TABLE.members-list TABLE.inner TD {
+	vertical-align: top;
+}
+
+TABLE.members-list TABLE.inner UL {
+	margin: 5px auto 5px 10px;
+	padding: 0px;
+	list-style-type: none;
+}
+
+/* */
+.show_inherited {
+	font-style: italic;
+}
+
+.member-inherited {
+
+}
+
+.hide-inherited .member-inherited {
+	display: none;
+}
+
+/* */
+A.object {
+	color:	green;
+}
+A.object:hover {
+	color:	#00bb00;
+}

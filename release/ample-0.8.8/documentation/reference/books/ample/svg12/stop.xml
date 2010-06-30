@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element name="stop" extends="svg12:SVG12Element">
+	<abstract>
+		<locale>
+			The ramp of colors to use on a gradient is defined by the 'stop' elements that are child elements to either the 'linearGradient'  element or the 'radialGradient'  element.
+		</locale>
+	</abstract>
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="stop-color">
+				<description>
+					<locale>
+						The 'stop-color' property indicates what color to use at that gradient stop.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="stop-opacity">
+				<description>
+					<locale>
+						The 'stop-opacity' property defines the opacity of a given gradient stop.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="offset">
+				<description>
+					<locale>
+						The offset attribute is either a number (usually ranging from 0 to 1) or a percentage which indicates where the gradient stop is placed.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+	</members>
+</element>

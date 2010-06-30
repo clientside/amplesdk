@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="AMLSerialier">
+	<abstract>
+		<locale>
+			Implements capabilities of serialization DOM (Ample) structure to XML string.
+		</locale>
+		<locale xml:lang="ru">
+			Реализует возможность сериализации DOM (Ample) структуру в строку XML.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<methods>
+			<method name="serializeToString" type="String">
+				<arguments>
+					<argument name="oNode" required="true" type="AMLNode">
+						<description>
+							<locale>
+								The root of the subtree to be serialized. This could be any node, including a Document.
+							</locale>
+							<locale xml:lang="ru">
+								Корневой элемент ветки дерева, которую следует сериализовать. Это может быть любой узел, включая Document.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						The subtree rooted by the specified element is serialized to a string.
+					</locale>
+					<locale xml:lang="ru">
+						Сериализует ветвь дерева, начиная с указанного узла, в строку.
+					</locale>
+				</description>
+			</method>
+		</methods>
+	</members>
+</object>

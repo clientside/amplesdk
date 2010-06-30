@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="AMLCDATASection" extends="runtime:AMLText">
+	<abstract>
+		<locale>
+			Represents a CDATA Section.
+		</locale>
+		<locale xml:lang="ru">
+			Является блоком данных типа CDATA.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members />
+</object>

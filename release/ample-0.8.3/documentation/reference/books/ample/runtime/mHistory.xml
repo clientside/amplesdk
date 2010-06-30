@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="AMLHistory">
+	<abstract>
+		<locale>
+			Implements browser history navigation.
+		</locale>
+		<locale xml:lang="ru">
+			Реализует поддержку истории навигации браузера.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples/>
+	<members>
+		<methods>
+			<method name="$bookmark" type="Void">
+				<arguments>
+					<argument name="sMarker" type="String" required="true">
+						<description>
+							<locale>
+								Marker value.
+							</locale>
+							<locale xml:lang="ru">
+								Значение метки.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Adds a page with specifyed marker (as hash) into the browser history.
+					</locale>
+					<locale xml:lang="ru">
+						Добавляет страницу с указанной меткой (которая является хэшем) в историю навигации браузера.
+					</locale>
+				</description>
+			</method>
+		</methods>
+		<properties />
+		<attributes />
+		<events>
+			<event name="navigate" group="CustomEvent" cancelable="false" bubbles="false">
+				<description>
+					<locale>
+						Fires on the document when user navigates browser history. Property <link type="property">detail</link> contains value of marker (hash), user navigated to.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается на объекте <link type="object">AMLDocument</link>, когда пользователь перемещается по истории навигации браузера.
+						Свойство <link type="property">detail</link> содержит значение метки (хэша), на которую пользователь перешел.
+					</locale>
+				</description>
+			</event>
+		</events>
+	</members>
+</object>

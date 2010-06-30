@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="listbody" type="regular">
+	<implements />
+	<abstract>
+		<locale xml:lang="ru">
+			Контейнер для элементов <link type="element">listitem</link>.
+		</locale>
+	</abstract>
+	<remarks>
+		<remark>
+			<locale xml:lang="ru">
+				Этот элемент не определен в спецификации XUL, но его необходимо указать в разметке при использовании элемента <link type="element">listbox</link>.
+			</locale>
+		</remark>
+	</remarks>
+	<examples />
+	<members>
+		<attributes />
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

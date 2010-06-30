@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<article>
+	<title>XML Schema 1.1 Part 2: Datatypes</title>
+	<note>
+		<locale>
+			XML Schema 1.1 Part 2: Datatypes in Ample SDK is currently in development.
+		</locale>
+		<locale xml:lang="ru">
+			Реализация XML Schema 1.1 Part 2: Datatypes в <b>Ample SDK</b> находится в разработке.
+		</locale>
+	</note>
+	<abstract>
+		<locale>
+			"XML Schema 1.1 Part 2: Datatypes" defines facilities for defining datatypes to be used in XML Schemas
+			as well as other XML specifications. The datatype language, which is itself represented
+			in XML 1.0, provides a superset of the capabilities found in XML 1.0 document type definitions (DTDs)
+			for specifying datatypes on elements and attributes.
+		</locale>
+	</abstract>
+	<content>
+		<section>
+			<title>
+				<locale>
+					Namespace URI
+				</locale>
+				<locale xml:lang="ru">
+					Пространство имен
+				</locale>
+			</title>
+			<content>
+				<locale>
+					XML Schema 1.1 defines a namespaces associated with the URI <uri>http://www.w3.org/2001/XMLSchema</uri>.
+				</locale>
+				<locale xml:lang="ru">
+					Пространство имен XML Schema 1.1 определяется URI <uri>http://www.w3.org/2001/XMLSchema</uri>
+				</locale>
+			</content>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Ample SDK implementation details
+				</locale>
+				<locale xml:lang="ru">
+					Реализация в Ample SDK
+				</locale>
+			</title>
+			<content>
+				<locale>
+					At the present moment "XML Schema 1.1 Part 2: Datatypes" in Ample SDK is in the development.
+				</locale>
+				<locale xml:lang="ru">
+					В настоящее время реализация языка "XML Schema 1.1 Part 2: Datatypes" в <b>Ample SDK</b> находится в стадии разработки.
+				</locale>
+			</content>
+		</section>
+	</content>
+	<seealso>
+		<link href="http://www.w3.org/TR/xmlschema-2/">XML Schema Part 2: Datatypes (W3C)</link>
+	</seealso>
+</article>

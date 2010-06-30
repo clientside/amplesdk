@@ -1,0 +1,304 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<article>
+	<title>Part II - Creating custom Component</title>
+	<abstract>
+		<locale>
+			This tutorial will guide you through a series of steps explaining how you create
+			a custom Element Component and use it in your application.
+			For the practical purpose we will take well-known component "spinner" as a good use case in this tutorial.
+			Before starting to read this document, please be sure you've read <a href="create_language.xml">Part I - Creating custom Markup Language</a>.
+		</locale>
+	</abstract>
+	<content>
+		<p>
+			Before starting implementation of a component you usually go through
+			the design phase where following areas should be tackled:
+		</p>
+		<ol>
+			<li>Visual Design - How shall component look</li>
+			<li>Interaction Design - How shall component behave upon user interaction</li>
+			<li>Functional Design - What API (properties, methods and events) shall component implement</li>
+		</ol>
+		<p>
+			Now, assume the design phase has been undergone and we know well what our "spinner" component is going to be.
+		</p>
+		<section>
+			<title>
+				<locale>Defining constructor</locale>
+			</title>
+			<content>
+				<locale>
+					<p>
+						The constructor is usually used in order to instantiate component collections that, for example,
+						keep XHTML form elements children in the "elements" property or to initialize some private properties.
+						Note, the component is not part of the application tree at the moment when constructor is called,
+						thus it does not make any good sense to try and access its DOM properties. Also, the component
+						visuals are not created by this moment either, so interacting with them would result into a run-time exception.
+					</p>
+					<p>
+						In the spinner component constructor we do not need to do anything, thus its body is left empty.
+					</p>
+				</locale>
+			</content>
+			<code><![CDATA[
+var MySpinner	= function() {
+
+}
+
+MySpinner.prototype	= new AMLElement;
+			]]></code>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Defining presentation
+				</locale>
+			</title>
+			<content>
+				<locale>
+					<p>
+						The visual presentation of a component (that is usually referred to as shadow tree) is usually
+						created in pure HTML. This part of the component lives its own life in the browser's DOM.
+						The template for the shadow tree is created with JavaScript (opposed to, for example, <link href="http://www.w3.org/TR/xbl">XBL 2.0</link>
+						technology where it gets specified in XML) with help of <b>$getTagOpen</b> and <b>$getTagClose</b> members.
+					</p>
+			<code><![CDATA[
+MySpinner.prototype.$getTagOpen		= function() {
+	var sOpenTag	= '<div class="my-spinner ' + this.getAttribute("class") + '">' +
+						'<input class="my-spinner--input" type="text" autocomplete="off"'
+							' value="'+	this.getAttribute("value") + '"' +
+							' onchange="ample.$getElementByAnonymousContent(this)._onChange(event)"/>' +
+						'<button class="my-spinner--button-up"/>' +
+						'<button class="my-spinner--button-down"/>';
+
+	return sOpenTag;
+};
+
+MySpinner.prototype.$getTagClose	= function() {
+	var sCloseTag	= '</div>';
+
+	return sCloseTag;
+};
+			]]></code>
+					<p>
+						There is several important things highlighted here:
+						<ul>
+							<li>Attribute values are rendered directly into the shadow content</li>
+							<li>Pseudo-elements specified with special class attribute syntax <b>{prefix}-{localName}--{pseudoElement}</b></li>
+							<li>Handlers bound to the Ample DOM element instance inline</li>
+						</ul>
+					</p>
+					<p>
+						If an element is not expected to take any child tags on the page, usage of <b>$getTagOpen</b>/<b>$getTagClose</b> pair
+						can be changed to a specification of a single <b>$getTag</b> method, whose default implementation is to call two aforementioned
+						tags and merge their output into single string.
+					</p>
+				</locale>
+			</content>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Defining attributes default values
+				</locale>
+			</title>
+			<content>
+				<locale>
+					<p>
+						A component often has attributes that are normally responsible for keeping its state.
+						Attributes might have default values, whose specification can be done on a component
+						<b>attributes</b> static property.
+					</p>
+			<code><![CDATA[
+MySpinner.attributes	= {
+	min:	"0",
+	max:	"9",
+	step:	"1",
+	value:	"0"
+};
+			]]></code>
+				</locale>
+			</content>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Defining properties/methods
+				</locale>
+			</title>
+			<content>
+				<locale>
+					<p>
+						Properties are opposed to attributes, and it is not that simple to explain when to use what.
+						The common practice (if you take XUL or XHTML markup languages' elements) is to have component properties
+						duplicating all attributes while leaving application developer with a recommendation to interact with properties.
+						Within Ample SDK framework it is recommended not to use properties for public APIs at all, since it is not
+						possible in every browser to define proper properties handling mechanisms (setters/getters).
+						Still your component can have properties enabled although [mutually] read-only ones. An example - <b>selectedIndex</b>
+						property of some selection-based component.
+						Methods are always valuable. For example, you could have a method <b>close()</b> on a "window" component (although, note,
+						this same functionality could have been enabled by implementing <b>open</b> attribute)
+					</p>
+					<p>
+						In case with our "spinner" component, we definitely need <b>select</b> method and we can also have <b>value</b>
+						property that will keep the value as Number.
+					</p>
+			<code><![CDATA[
+MySpinner.prototype.value	= 0;
+
+MySpinner.prototype.select	= function() {
+	this.$getContainer("input").select();
+};
+			]]></code>
+				</locale>
+			</content>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Dispatching events
+				</locale>
+			</title>
+			<content>
+				<locale>
+					<p>
+						A component dispatches an event usually when its state changes.
+						For example, an XHTML input component dispatches "change" event once it value changed.
+					</p>
+					<p>
+						In case of our "spinner" component we shall dispatch a <b>change</b> event as well upon the
+						component state change. The event has to bubble and should not be preventable
+						(since it gets dispatched after change has taken place).
+					</p>
+			<code><![CDATA[
+var oEvent	= this.ownerDocument.createEvent("Event");
+oEvent.initEvent("change", true, false);
+this.dispatchEvent(oEvent);
+			]]></code>
+				</locale>
+			</content>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Implementing events default actions
+				</locale>
+			</title>
+			<content>
+				<locale>
+					<p>
+						A component while running in the Ample SDK execution container gets notified with events
+						coming from the other components and distributing through the DOM tree as well as with a set of
+						generic events defined in DOM-Events-Level-3 specification. Although component instance can
+						have multiple instance-level event handlers associated (registered with "on..." attributes or
+						by calling <b>addEventListener</b> method), it is also possible to specify component class-level
+						handlers. These often can be referred to as events default actions implementations. You can specify
+						class-level event handlers by defining a <b>handlers</b> static property on the component class and
+						registering event handlers by their names with it.
+					</p>
+			<code><![CDATA[
+MySpinner.handlers   = {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this) {
+			switch (oEvent.attrName) {
+				case "value":
+					// Set public property to reflect the state
+					this.value	= oEvent.attrValue * 1;
+					// Update input field
+					this.$getContainer("input").value	= oEvent.attrValue;
+					// Dispatch "change" event here
+					break;
+			}
+		}
+	},
+	"keydown":	function(oEvent) {
+		var nValue	= this.getAttribute("value") * 1,
+			nStep	= this.getAttribute("step") * 1;
+		switch (oEvent.keyIdentifier) {
+			case "Up":
+				if (nValue + nStep <= this.getAttribute("max") * 1)
+					this.setAttribute("value", nValue + nStep);
+				break;
+
+			case "Down":
+				if (nValue - nStep >= this.getAttribute("min") * 1)
+					this.setAttribute("value", nValue - nStep);
+				break;
+		}
+	}
+}
+			]]></code>
+				</locale>
+			</content>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Styling component
+				</locale>
+			</title>
+			<content>
+				<locale>
+					<p>
+						Ample SDK enables styling facilities by implementing CSS features, such as namespaces,
+						pseudo-classes and pseudo-elements. In order to make use of those, you will need to
+						specify different mime-type for your stylesheets on your pages, namely <b>text/ample+css</b>.
+					</p>
+			<code type="application/xml"><![CDATA[
+<link type="text/ample+css" href="style.css"/>
+<style type="text/ample+css">
+/*
+	Inline stylesheet
+*/
+</style>
+			]]></code>
+					<p>
+						In these stylesheets you can define rules in a standard manner:
+					</p>
+			<code type="text/css"><![CDATA[
+@import namespace url('http://www.mybusiness.com/ns/ui');
+
+my|spinner {
+	border: solid 1px blue;
+}
+my|spinner::input {
+	border: none;
+	color:	black;
+	background:	transparent;
+}
+my|spinner::button-up,
+my|spinner::button-down {
+	background-image:	url('media/spinner.gif');
+	background-repeat:	no-repeat;
+	height: 8px;
+	width:	16px;
+}
+my|spinner::button-down {
+	background-position-x: -16px;
+}
+my|spinner::button-up:hover,
+my|spinner::button-down:hover {
+	background-position-y: -8px;
+}
+my|spinner::button-up:active,
+my|spinner::button-down:active {
+	background-position-y: -16px;
+}
+
+my|spinner::button-up:disabled,
+my|spinner::button-down:disabled {
+	background-position-y: -24px;
+}
+			]]></code>
+					<p>
+						The pseudo-elements (whose names appear after <b>::</b> selector)
+						classes will be applied to elements in the shadow tree that had their
+						pseudo-elements defined by providing a corresponding class name, for example: my-spinner--button-up.
+						The pseudo-classes are set by the component at the run-time by calling <b>$setPseudoClass</b> element method.
+					</p>
+				</locale>
+			</content>
+		</section>
+	</content>
+</article>

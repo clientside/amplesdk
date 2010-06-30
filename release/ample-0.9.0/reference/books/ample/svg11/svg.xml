@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element name="svg" extends="svg11:SVG11Element">
+	<abstract>
+		<locale>
+			A 'svg' element is the root element for the SVG document fragment.
+		</locale>
+	</abstract>
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="viewBox">
+				<description>
+					<locale>
+						Specifies a rectangular region into which child graphical content must be fit.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="width">
+				<description>
+					<locale>
+						The intrinsic width of the SVG document fragment.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="height">
+				<description>
+					<locale>
+						The intrinsic height of the SVG document fragment.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+	</members>
+</element>

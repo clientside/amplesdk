@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="treecol">
+	<implements />
+	<abstract>
+		<locale>
+			A column of a <link type="element">tree</link>.
+			It displays the column header and holds the size and other information about the column.
+		</locale>
+		<locale xml:lang="ru">
+			Столбец элемента <link type="element">tree</link>.
+			Отображает заголовок столбца, а так же содержит размер колонки и другую информацию.
+			Размещается внутри элемента <link type="element">treecols</link>.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="label" default="" readonly="false">
+				<description>
+					<locale>
+						The label that will appear on the element.
+						If this is left out, no text appears.
+					</locale>
+					<locale xml:lang="ru">
+						Текст для элемента.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="primary" default="false" readonly="true">
+				<description>
+					<locale>
+						If set to true, the <link type="element">treecol</link> will have indentation and twisties drawn to the left of it to indicate the hierarchy level of the rows.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает, будет ли визуально отображаться отступ и переключатели сворачивания/разворачивания уровня иерархии в колонке.
+						Если не будет колонки с указанным атрибутом <link type="attribute">primary</link>, использование вложенных строк допускается, но визуально это никак не будет отображаться.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="minwidth" default="" readonly="false">
+				<description>
+					<locale>
+						Minimal width.
+					</locale>
+					<locale xml:lang="ru">
+						Минимальная ширина элемента.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="width">
+				<description>
+					<locale>
+						The preferred width of the tree column.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="hideheader" default="false" readonly="false">
+				<description>
+					<locale>
+						Set this to true to indicate that the tree column header should be displayed without any column header styling.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает на отображение заголовка столбца.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="treerow" type="regular">
+	<implements />
+	<abstract>
+		<locale xml:lang="ru">
+			Строка дерева. Размещается внутри элемента <link type="element">treeitem</link>.
+			Дочерними элементами являются <link type="element">treecell</link>.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes />
+		<methods />
+		<properties>
+			<property name="cells" type="AMLNodeList" readonly="true">
+				<description>
+					<locale xml:lang="ru">
+						Коллекция дочерних элементов <link type="element">treecell</link>.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<events />
+	</members>
+</element>

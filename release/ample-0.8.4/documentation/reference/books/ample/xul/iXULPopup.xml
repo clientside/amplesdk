@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<interface name="iXULPopup">
+	<abstract>
+		<locale xml:lang="ru">
+			Реализует функциональность popup
+		</locale>
+	</abstract>
+	<examples/>
+	<members>
+		<methods>
+			<method name="showPopup" type="Void">
+				<arguments>
+					<argument name="oElement" type="String" required="true">
+						<description>
+							<locale xml:lang="ru">
+								Элемент, относительно которого будет позиционироваться всплывающее окно,
+								если nLeft и nTop выставлены в значение -1.
+							</locale>
+						</description>
+					</argument>
+					<argument name="nLeft" type="Number" required="true">
+						<description>
+							<locale xml:lang="ru">
+								Расстояние от левого края окна браузера в пикселях или "-1" для позиционирования относительно oElement.
+							</locale>
+						</description>
+					</argument>
+					<argument name="nTop" type="Number" required="true">
+						<description>
+							<locale xml:lang="ru">
+								Расстояние от верхнего края окна браузера в пикселях или "-1" для позиционирования относительно oElement.
+							</locale>
+						</description>
+					</argument>
+					<argument name="sPopupType" type="String" required="true">
+						<description>
+							<locale xml:lang="ru">
+								Тип всплывающего окна. Может быть одним из следующим значений: "popup", "context", "tooltip".
+							</locale>
+						</description>
+					</argument>
+					<argument name="sAnchor" type="String" required="true">
+						<description>
+							<locale xml:lang="ru">
+								Соответствует атрибуту popupanchor элемента oElement.
+							</locale>
+						</description>
+					</argument>
+					<argument name="sAlign" type="String" required="false">
+						<description>
+							<locale xml:lang="ru">
+								Соответствует атрибуту popupalign элемента oElement.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale xml:lang="ru">
+						Открывает всплывающее окно.
+					</locale>
+				</description>
+			</method>
+			<method name="hidePopup" type="Void">
+				<arguments />
+				<description>
+					<locale xml:lang="ru">
+						Закрывает всплывающее окно.
+					</locale>
+				</description>
+			</method>
+		</methods>
+		<attributes>
+			<attribute name="position" default="" readonly="false">
+				<values>
+					<value name="after_start">
+						<description>
+							<locale xml:lang="ru">
+								Всплывающее окно появится под элементом, верхним левым углом касаясь нижнего левого угла элемента.
+							</locale>
+						</description>
+					</value>
+					<value name="after_end">
+						<description>
+							<locale xml:lang="ru">
+								Всплывающее окно появится под элементом, верхним правым углом касаясь нижнего правого угла элемента.
+							</locale>
+						</description>
+					</value>
+					<value name="before_start">
+						<description>
+							<locale xml:lang="ru">
+								Всплывающее окно появится над элементом, нижним левым углом касаясь верхнего левого угла элемента.
+							</locale>
+						</description>
+					</value>
+					<value name="before_end">
+						<description>
+							<locale xml:lang="ru">
+								Всплывающее окно появится над элементом, нижним правым углом касаясь верхнего правого угла элемента.
+							</locale>
+						</description>
+					</value>
+					<value name="end_after">
+						<description>
+							<locale xml:lang="ru">
+								Всплывающее окно появится справа от элемента, нижним левым углом касаясь нижнего правого угла элемента.
+							</locale>
+						</description>
+					</value>
+					<value name="end_before">
+						<description>
+							<locale xml:lang="ru">
+								Всплывающее окно появится справа от элемента, верхним левым углом касаясь верхнего правого угла элемента.
+							</locale>
+						</description>
+					</value>
+					<value name="start_after">
+						<description>
+							<locale xml:lang="ru">
+								Всплывающее окно появится слева от элемента, нижним правым углом касаясь нижнего левого угла элемента.
+							</locale>
+						</description>
+					</value>
+					<value name="start_before">
+						<description>
+							<locale xml:lang="ru">
+								Всплывающее окно появится слева от элемента, верхним правым углом касаясь верхнего левого угла элемента.
+							</locale>
+						</description>
+					</value>
+					<value name="overlap">
+						<description>
+							<locale xml:lang="ru">
+								Всплывающее окно появится поверх элемента, верхним левым углом касаясь верхнего левого угла элемента.
+							</locale>
+						</description>
+					</value>
+					<value name="at_pointer">
+						<description>
+							<locale xml:lang="ru">
+								Всплывающее окно появится касаясь верхним левым углом курсора мыши.
+							</locale>
+						</description>
+					</value>
+					<value name="after_pointer">
+						<description>
+							<locale xml:lang="ru">
+								Всплывающее окно появится на одной вертикали с курсором мыши под элементом.
+								Это значение может быть использовано для всплывающих окон типа "tooltip".
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale xml:lang="ru">
+						Указывает, где появится всплывающее окно относительно элемента, активация которого приводит к появлению окна.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<properties />
+		<events>
+			<event name="popuphidden" group="Event" cancelable="false" bubbles="false">
+				<description>
+					<locale xml:lang="ru">
+						Отсылается всплывающему окну после того, как оно будет спрятано.
+					</locale>
+				</description>
+			</event>
+			<event name="popuphiding" group="Event" cancelable="true" bubbles="false">
+				<description>
+					<locale xml:lang="ru">
+						Отсылается всплывающему окну перед тем, как оно будет спрятано.
+					</locale>
+				</description>
+			</event>
+			<event name="popupshowing" group="Event" cancelable="true" bubbles="false">
+				<description>
+					<locale xml:lang="ru">
+						Отсылается всплывающему окну непосредственно перед тем, как оно будет показано.
+						Используется для динамического выставления команд меню, когда пользователь инициирует его показ.
+						Возвращая false из обработчика этого события можно запретить показ всплывающего окна.
+					</locale>
+				</description>
+			</event>
+			<event name="popupshown" group="Event" cancelable="false" bubbles="false">
+				<description>
+					<locale xml:lang="ru">
+						Отсылается всплывающему окну после того, как оно будет показано - аналогично событию <b>onload</b>,
+						которое отсылается объекту <b>window</b> после его открытия.
+					</locale>
+				</description>
+			</event>
+		</events>
+	</members>
+	<remarks>
+		<remark>
+			<description>
+				<locale>
+					Elements that implement this interface:
+					<link type="element" href="xul:menupopup">menupopup</link>,
+					<link type="element" href="xul:popup">popup</link>
+				</locale>
+			</description>
+		</remark>
+	</remarks>
+</interface>

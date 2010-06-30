@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Hello, World!</title>
+		<!-- (A) Ample SDK runtime and UI language -->
+		<script type="text/javascript" src="../ample/runtime.js"></script>
+		<script type="text/javascript" src="../ample/languages/xhtml/xhtml.js"></script>
+		<!-- (1) Styling -->
+		<style type="text/ample+css">
+			@namespace "http://www.w3.org/1999/xhtml";
+			b {
+				color: red;
+			}
+		</style>
+		<!-- (2) Logic -->
+		<script type="text/javascript">
+			function alertHelloWorld(oEvent) {
+				alert('Element "' + oEvent.target.tagName + '" was clicked');
+			}
+		</script>
+	</head>
+	<body>
+		<!-- (3) Layout -->
+		<script type="application/ample+xml">
+			<b onclick="alertHelloWorld(event)">Hello, World!</b>
+		</script>
+	</body>
+</html>

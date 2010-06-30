@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>XUL Language - windows</title>
+		<script type="text/javascript" src="../../../../ample/runtime.js"></script>
+		<script type="text/javascript" src="../../../../ample/languages/xul/xul.js"></script>
+		<link type="text/ample+css" href="../../../../ample/languages/xul/themes/default/xul.css" rel="stylesheet"/>
+		<style type="text/ample+css">
+			xul|window,
+			xul|dialog,
+			xul|wizard {
+				width: 300px;
+				height:150px;
+				border: 1px pink outset;
+			}
+			xul|window::title,
+			xul|dialog::title,
+			xul|wizard::title {
+				color: yellow;
+			}
+			xul|window::head,
+			xul|dialog::head,
+			xul|wizard::head {
+				background-color: red;
+			}
+			xul|window::body,
+			xul|dialog::body,
+			xul|wizard::body {
+				background-color: pink;
+			}
+		</style>
+	</head>
+	<body>
+		<script type="application/ample+xml"
+			xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+			<xul:button onclick="ample.getElementById('window').setAttribute('hidden', 'false')">Open Window</xul:button>
+			<xul:button onclick="ample.getElementById('dialog').setAttribute('hidden', 'false')">Open Dialog</xul:button>
+			<xul:button onclick="ample.getElementById('wizard').setAttribute('hidden', 'false')">Open Wizard</xul:button>
+			<xul:spacer height="5"/>
+			<xul:window id="window" title="Window" hidden="true">
+				<xul:label value="window" />
+			</xul:window>
+			<xul:spacer height="5"/>
+			<xul:dialog id="dialog" title="Dialog" hidden="true">
+				<xul:label value="dialog" />
+			</xul:dialog>
+			<xul:spacer height="5"/>
+			<xul:wizard id="wizard" title="Wizard" hidden="true" firstpage="page 1" lastpage="page 2">
+				<xul:wizardpage pageid="page 1" label="Step 1" description="Description 1" next="page 2">
+					<xul:label value="page 1" />
+				</xul:wizardpage>
+				<xul:wizardpage pageid="page 2" label="Step 2" description="Description 2">
+					<xul:label value="page 2" />
+				</xul:wizardpage>
+			</xul:wizard>
+		</script>
+	</body>
+</html>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element name="include">
+	<implements />
+	<abstract>
+		<locale>
+			The <link type="element">include</link> elements in the source infoset serve as inclusion transformation instructions.
+		</locale>
+		<locale xml:lang="ru">
+			Элементы <link type="element">include</link> в исходной структуре данных (<link href="http://www.w3.org/TR/2004/REC-xml-infoset-20040204/" title="XML Information Set (Second Edition)">XML Information Set</link>) позволяют подключать внешние ресурсы, изменяя исходную структуру.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples>
+		<example>
+			<description>
+				<locale>
+					A simple example where <b>include.xml</b> document is being included into the document tree.
+				</locale>
+				<locale xml:lang="ru">
+					Простой пример использования XInclude: подключается документ <b>include.xml</b>.
+				</locale>
+			</description>
+			<code type="text/xml"><![CDATA[
+<xi:include href="include.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+			]]></code>
+		</example>
+	</examples>
+	<members>
+		<attributes>
+			<attribute name="href" readonly="true">
+				<description>
+					Значение, которое после соответствующего экранирования является URI или <link href="http://www.ietf.org/rfc/rfc3987.txt" title="RFC 3987: Internationalized Resource Identifiers (IRIs)">IRI</link> ссылкой на расположение подключаемого ресурса.
+				</description>
+			</attribute>
+			<attribute name="parse" readonly="true" default="xml">
+				<values>
+					<value name="xml">
+						<description>
+							<locale>
+								A value which, after appropriate escaping has been performed, results in a URI reference or an IRI reference specifying the location of the resource to include.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает, что необходимо загружать подключаемый ресурс как XML, а исходная и подключаемая структуры должны быть объединены.
+							</locale>
+						</description>
+					</value>
+					<value name="text">
+						<description>
+							<locale>
+								indicates that the resource must be included as the character information items.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает, что необходимо загружать подключаемый ресурс как текст, добавляя в исходную структуру текстовые узлы.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale>
+						Indicates that the resource must be parsed as XML and the infosets merged
+					</locale>
+					<locale xml:lang="ru">
+						Указывает, загружать ли подключаемый ресурс как XML или как текст.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="xpointer" readonly="true">
+				<description>
+					<locale>
+						When <link type="attribute">parse</link> has value xml, the XPointer contained in the <link type="attribute">xpointer</link> attribute is evaluated to identify a portion of the resource to include.
+					</locale>
+					<locale xml:lang="ru">
+						Если атрибут <link type="attribute">parse</link> выставен в значение "xml", <link href="http://www.w3.org/TR/xptr/" title="XML Pointer Language (XPointer)">XPointer</link> из атрибута <link type="attribute">xpointer</link> используется для определения фрагмента подключаемого ресурса.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="encoding" readonly="true">
+				<description>
+					<locale>
+						The <link type="attribute">encoding</link> attribute specifies how the resource is to be translated.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает на кодировку подключаемого ресурса, так как в случае, если атрибут <link type="attribute">parse</link> выставлен в значение "text", не всегда представляется возможным определить кодировку.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="accept" readonly="true">
+				<description>
+					<locale>
+						The value of the <link type="attribute">accept</link> attribute may be used by the XInclude processor to aid in content negotiation.
+					</locale>
+					<locale xml:lang="ru">
+						Значение может быть использовано процессором XInclude для согласования типа контента подключаемого ресурса с сервером, который его предоставляет.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="accept-language" readonly="true">
+				<description>
+					<locale>
+						The value of the <link type="attribute">accept-language</link> attribute may be used by the XInclude processor to aid in content negotiation.
+					</locale>
+					<locale xml:lang="ru">
+						Значение может быть использовано процессором XInclude для согласования языка контента подключаемого ресурса с сервером, который его предоставляет.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

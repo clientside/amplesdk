@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<article>
+	<title>Part III - Creating custom Event Interface</title>
+	<abstract>
+		<locale>
+			This tutorial will guide you through a series of steps explaining how you create
+			a custom Event Interface and use it in your component or application.
+		</locale>
+	</abstract>
+	<content>
+		<section>
+			<title>
+				<locale>
+					What is an Event Interface?
+				</locale>
+			</title>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Defining an Event Interface
+				</locale>
+			</title>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Using Event Interface
+				</locale>
+			</title>
+			<content>
+
+			</content>
+		</section>
+	</content>
+</article>

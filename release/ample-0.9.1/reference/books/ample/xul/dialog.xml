@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="dialog">
+	<implements />
+	<abstract>
+		<locale>
+			This element should be used in place of the <link type="element">window</link> element for dialog boxes.
+			The <link type="attribute">buttons</link> attribute may be used to set which buttons should appear in the dialog box.
+		</locale>
+		<locale xml:lang="ru">
+			Этот элемент следует использовать вместо элемента <link type="element">window</link> для диалоговых окон.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="title" readonly="false">
+				<description>
+					<locale>
+						The text to appear in the title bar of the window.
+					</locale>
+					<locale xml:lang="ru">
+						Текст для отображения в заголовке окна.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="buttons" readonly="false">
+				<values>
+					<value name="accept">
+						<description>
+							<locale>
+								The OK button, which will accept the changes when pressed.
+								This button will also be the default button.
+							</locale>
+							<locale xml:lang="ru">
+								Принять диалог
+							</locale>
+						</description>
+					</value>
+					<value name="cancel">
+						<description>
+							<locale>
+								The cancel button which will cancel the operation.
+							</locale>
+							<locale xml:lang="ru">
+								Отказаться от диалога
+							</locale>
+						</description>
+					</value>
+					<value name="help">
+						<description>
+							<locale>
+								A help button for displaying help about the dialog.
+							</locale>
+							<locale xml:lang="ru">
+								Показать вспомогательную информацию
+							</locale>
+						</description>
+					</value>
+					<value name="disclosure">
+						<description>
+							<locale>
+								A button to show more information. This might be a button or a disclosure triangle.
+							</locale>
+							<locale xml:lang="ru">
+								Закрыть диалог
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale>
+						A comma-separated list of buttons to appear on the dialog box.
+					</locale>
+					<locale xml:lang="ru">
+						Список кнопок, разделенный запятыми, которые появятся в диалоге.
+						Кнопки будут размещены в стандартных местах в зависимости от платформы,
+						а так же автоматически будут обрабатываться их события.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods>
+			<method name="acceptDialog" type="Void">
+				<arguments />
+				<description>
+					<locale>
+						Accepts the dialog and closes it, similar to pressing the OK button.
+					</locale>
+					<locale xml:lang="ru">
+						Принимает и закрывает диалог, как если бы пользователь нажал кнопку "accept".
+					</locale>
+				</description>
+			</method>
+			<method name="cancelDialog" type="Void">
+				<arguments />
+				<description>
+					<locale>
+						Cancels the dialog and closes it, similar to pressing the Cancel button.
+					</locale>
+					<locale xml:lang="ru">
+						Отказывает и закрывает диалог, как если бы пользователь нажал кнопку "cancel".
+					</locale>
+				</description>
+			</method>
+			<method name="centerWindowOnScreen" type="Void">
+				<arguments />
+				<description>
+					<locale>
+						Centers the dialog on the screen.
+					</locale>
+					<locale xml:lang="ru">
+						Располагает диалог по центру экрана.
+					</locale>
+				</description>
+			</method>
+		</methods>
+		<properties />
+		<events>
+			<event name="load" group="Event" cancelable="false" bubbles="false">
+				<description>
+					<locale>
+						Fires after element is loaded.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается сразу же после того, как ядро загрузит объект.
+					</locale>
+				</description>
+			</event>
+			<event name="unload" group="Event" cancelable="false" bubbles="false">
+				<description>
+					<locale>
+						Fires before element is unloaded.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается непосредственно перед тем, как объект будет выгружен.
+					</locale>
+				</description>
+			</event>
+			<event name="dialogaccept" group="Event" cancelable="true" bubbles="false">
+				<description>
+					<locale>
+						Called when the accept button is pressed, or when the <link type="method">acceptDialog</link> method is called.
+						If the handler returns true, the dialog will indeed go away, but if it returns false it will not.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается, когда нажата кнопка "accept" или когда вызван метод <link type="method">acceptDialog</link>.
+					</locale>
+				</description>
+			</event>
+			<event name="dialogcancel" group="Event" cancelable="true" bubbles="false">
+				<description>
+					<locale>
+						Called when the "cancel" button is pressed or when the <link type="method">cancelDialog</link> method is called.
+						If the routine returns true, the dialog will indeed go away, but if it returns false it will not.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается, когда нажата кнопка "cancel" или когда вызван метод <link type="method">cancelDialog</link>.
+					</locale>
+				</description>
+			</event>
+			<event name="dialogdisclosure" group="Event" cancelable="false" bubbles="false">
+				<description>
+					<locale>
+						Called when the "disclosure" button is pressed.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается, когда нажата кнопка "disclosure".
+					</locale>
+				</description>
+			</event>
+			<event name="dialoghelp" group="Event" cancelable="false" bubbles="false">
+				<description>
+					<locale>
+						Called when the "help" button is pressed.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается, когда нажата кнопка "help".
+					</locale>
+				</description>
+			</event>
+		</events>
+	</members>
+</element>

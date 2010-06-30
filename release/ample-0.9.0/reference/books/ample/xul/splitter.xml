@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="xul:XULElement" name="splitter">
+	<implements />
+	<abstract>
+		<locale>
+			An element which should appear before or after an element inside a container.
+			When the splitter is dragged, the sibling elements of the splitter are resized.
+		</locale>
+		<locale xml:lang="ru">
+			Может быть размещен внутри контейнера перед или после элемента.
+			При перетаскивании элемента <link type="element">splitter</link> прилегающие к нему элементы изменяют свой размер.
+			При размещении элемента <link type="element">splitter</link> внутри горизонтально ориентированного контейнера,
+			изменяется горизонтальный размер прилегающих элементов.
+			При размещении элемента <link type="element">splitter</link> внутри вертикально ориентированного контейнера,
+			изменяется вертикальный размер прилегающих элементов.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="resizeafter" default="closest" readonly="false">
+				<values>
+					<value name="closest">
+						<description>
+							<locale>
+								The element immediately to the right or below the splitter resizes.
+							</locale>
+							<locale xml:lang="ru">
+								Первый элемент справа или снизу изменяет свой размер.
+							</locale>
+						</description>
+					</value>
+					<value name="farthest">
+						<description>
+							<locale>
+								The element that is the farthest away from the splitter to the right or below the splitter resizes.
+							</locale>
+							<locale xml:lang="ru">
+								Самый дальний элемент справа или снизу изменяет свой размер.
+							</locale>
+						</description>
+					</value>
+					<value name="flex">
+						<description>
+							<locale>
+								The closest flexible element resizes.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale>
+						This attribute indicates which element to the right or below the splitter should be resized when the splitter is repositioned.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает, какой элемент справа или снизу от элемента <link type="element">splitter</link> должен изменять свой размер при перемещении элемента <link type="element">splitter</link>.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="resizebefore" default="closest" readonly="false">
+				<values>
+					<value name="closest">
+						<description>
+							<locale>
+								The element immediately to the right or below the splitter resizes.
+							</locale>
+							<locale xml:lang="ru">
+								Первый элемент слева или сверху изменяет свой размер.
+							</locale>
+						</description>
+					</value>
+					<value name="farthest">
+						<description>
+							<locale>
+								The element that is the farthest away from the splitter to the right or below the splitter resizes.
+							</locale>
+							<locale xml:lang="ru">
+								Самый дальний элемент слева или сверху изменяет свой размер.
+							</locale>
+						</description>
+					</value>
+					<value name="flex">
+						<description>
+							<locale>
+								The closest flexible element resizes.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale>
+						This attribute indicates which element to the left or above the splitter should be resized when the splitter is repositioned.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает, какой элемент слева или сверху от элемента <link type="element">splitter</link>
+						должен изменять свой размер при перемещении элемента <link type="element">splitter</link>.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

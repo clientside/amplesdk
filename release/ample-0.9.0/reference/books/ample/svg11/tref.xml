@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element name="tref" extends="svg11:SVG11Element">
+	<abstract>
+		<locale>
+			The 'tref' element references another text element.
+		</locale>
+	</abstract>
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="xlink:href">
+				<description>
+					<locale>
+						A URI reference to an <link type="element">text</link> within an SVG document.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+	</members>
+</element>

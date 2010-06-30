@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<article>
+	<title>Part IV - Creating custom UI Manager</title>
+	<abstract>
+		<locale>
+			This tutorial will guide you through a series of steps explaining how you create
+			a custom UI manager and use it in your component or application.
+		</locale>
+	</abstract>
+	<content>
+		<section>
+			<title>
+				<locale>
+					What is a UI Manager?
+				</locale>
+			</title>
+			<content>
+				<locale>
+					TODO
+				</locale>
+			</content>
+		</section>
+	</content>
+</article>

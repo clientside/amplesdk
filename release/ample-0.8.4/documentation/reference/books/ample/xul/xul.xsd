@@ -1,0 +1,2080 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--DOCTYPE schema PUBLIC "-//W3C//DTD XMLSCHEMA 200010//EN" "XMLSchema.dtd"-->
+<!--
+@copyright:
+X-Power Computing group Inc., 2003
+@description:
+An XML Schema defines the elements, attributes and attribute values of an XML document.
+Schema is object oriented, elements and attributes are objects defined in terms of element and attribute types. The heirarchy of types starts with one of a set of primitive types. Types are defined as either a simple type (composed of a primitive type) or a complex type (defined in terms of some content model).
+(We use a naming standard here where all user defined types, i.e. non primitive types, have names that are captilized.) Every element and attribute is defined in terms of at least a name and type - each "element" element will have a "name" and a "type" attribute.
+@notes:
+(1) This schema represents XUL 1.0 as used in Mozilla 1.0/Netscape7 and afterwards,
+	i.e. not an earlier version like the one used in Netscape 6.
+(2) We use the 2001 version of XMLSCHEMA which includes extensions and restrictions.
+(3) The organization and structure of this schema is optimized for XPath access by XULMaker,
+	the XUL visual editor/designer. (XULMaker uses this schema to populate an element listbox,
+	attribute listbox and an attribute value listbox, where population is restricted to the
+	context of the currently active element, the currently selected element, the currently
+	selected attribute respectively.) e.g.
+	(a) All elements are declared within the schema element, and are defined by  a corresponding type.
+	(b) "xul:booleanType" is defined to replace the built XML Schema type "boolean" so that we
+		may have an attribute values list of "true" and "false"
+(4)  
+@naming convention:
+(1) All types have names ending with "Type"
+(2) Element types have names ending with "ElementType"
+(3) Abstract element types start with a capitalized name, e.g. "BoxElementType"
+(4) Concrete element types start with the element name, which is necessarily all lower case,
+    e.g. "boxElementType"
+@contents:
+The file is organized as follows:
+(1) list of elements
+     (a) alphabetically ordered list of all elements where each element is defined in terms of an element type.
+     (b) element groups
+(2) list of element types, ordered in terms of a top down heirarchy, where each element type is defined in terms of 
+     (a) a parent type (identified by its extension base attribute),
+     (b) a content model to describe the order, presence and repeatability of child elements
+     		(This defines the contained elements for a given element)
+     (c) a list of attributes (or  a referenced attribute group),
+(3) list of attributes and attribute groups 
+(4) list of attribute types
+@TODO
+(1) local attribute declarations should reference a global or group attribute. The local attribute declaration
+    should include the annotation/documentation
+(2) place global elements in a separate import file allowing for variatins: a) with/without documentation b) different languages
+(3) find a better way of organizing the CommandAttributeGroup
+(4) Incomplete: browser, 
+-->
+<!-- ================================================================================= -->
+<!-- Schema                                                                            -->
+<!-- ================================================================================= -->
+<xsd:schema id="XMLSCHEMA"  
+xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+targetNamespace="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+elementFormDefault="qualified"
+attributeFormDefault="unqualified"
+>
+<!-- this is required by XMLSpy but needs to be removed for xulmaker
+xmlns="http://www.w3.org/2001/XMLSchema"
+-->
+<!-- this trips up XMLSpy 3.0
+targetNamespace="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+-->
+	<xsd:annotation>
+		<xsd:documentation xml:lang="en">
+			XUL Schema defines the elements, and attributes for a XUL document, a document which
+			defines the display of web page in terms of UI, user interface, widgets. A XUL
+			document may be displayed in any web browser that supports the XUL language. This
+			includes Mozilla 1.0, Netscape 7, and Phoenix. XUL is an XML conformant language.
+		</xsd:documentation>
+	</xsd:annotation>
+	<!-- ================================================================================= -->
+	<!-- Elements                                                                          -->
+	<!-- ================================================================================= -->
+	<xsd:element name="action" type="xul:actionElementType"/>
+	<xsd:element name="arrowscrollbox" type="xul:arrowscrollboxElementType"/>
+	<xsd:element name="autorepeatbutton" type="xul:autorepeatbuttonElementType"/>
+	<xsd:element name="binding" type="xul:bindingElementType"/>
+	<xsd:element name="bindings" type="xul:bindingsElementType"/>
+	<xsd:element name="box" type="xul:boxElementType"/>
+	<xsd:element name="broadcaster" type="xul:broadcasterElementType"/>
+	<xsd:element name="broadcasterset" type="xul:broadcastersetElementType"/>
+	<xsd:element name="browser" type="xul:browserElementType"/>
+	<xsd:element name="button" type="xul:buttonElementType"/>
+	<xsd:element name="caption" type="xul:captionElementType"/>
+	<xsd:element name="checkbox" type="xul:checkboxElementType"/>
+	<xsd:element name="colorpicker" type="xul:colorpickerElementType"/>
+	<xsd:element name="column" type="xul:columnElementType"/>
+	<xsd:element name="columns" type="xul:columnsElementType"/>
+	<xsd:element name="command" type="xul:commandElementType"/>
+	<xsd:element name="commands" type="xul:commandsElementType"/>
+	<xsd:element name="commandset" type="xul:commandsetElementType"/>
+	<xsd:element name="conditions" type="xul:conditionsElementType"/>
+	<xsd:element name="content" type="xul:contentElementType"/>
+	<xsd:element name="deck" type="xul:deckElementType"/>
+	<xsd:element name="description" type="xul:descriptionElementType"/>
+	<xsd:element name="dialog" type="xul:dialogElementType">
+		<xsd:annotation>
+			<xsd:documentation>The root element of a XUL dialog.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="editor" type="xul:editorElementType"/>
+	<xsd:element name="grid" type="xul:gridElementType"/>
+	<xsd:element name="grippy" type="xul:grippyElementType"/>
+	<xsd:element name="groupbox" type="xul:groupboxElementType"/>
+	<xsd:element name="hbox" type="xul:hboxElementType"/>
+	<xsd:element name="iframe" type="xul:iframeElementType"/>
+	<xsd:element name="image" type="xul:imageElementType"/>
+	<xsd:element name="key" type="xul:keyElementType"/>
+	<xsd:element name="keyset" type="xul:keysetElementType"/>
+	<xsd:element name="label" type="xul:labelElementType"/>
+	<xsd:element name="listbox" type="xul:listboxElementType"/>
+	<xsd:element name="listcell" type="xul:listcellElementType"/>
+	<xsd:element name="listcol" type="xul:listcolElementType"/>
+	<xsd:element name="listcols" type="xul:listcolsElementType"/>
+	<xsd:element name="listhead" type="xul:listheadElementType"/>
+	<xsd:element name="listheader" type="xul:listheaderElementType"/>
+	<xsd:element name="listitem" type="xul:listitemElementType"/>
+	<xsd:element name="member" type="xul:memberElementType"/>
+	<xsd:element name="menu" type="xul:menuElementType"/>
+	<xsd:element name="menubar" type="xul:menubarElementType"/>
+	<xsd:element name="menuitem" type="xul:menuitemElementType"/>
+	<xsd:element name="menulist" type="xul:menulistElementType"/>
+	<xsd:element name="menupopup" type="xul:menupopupElementType"/>
+	<xsd:element name="menuseparator" type="xul:menuseparatorElementType"/>
+	<xsd:element name="observes" type="xul:observesElementType"/>
+	<xsd:element name="overlay" type="xul:overlayElementType">
+		<xsd:annotation>
+			<xsd:documentation>The root element of a XUL overlay document.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="page" type="xul:pageElementType">
+		<xsd:annotation>
+			<xsd:documentation>The root element of an internal XUL doc inside an enclosing window.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="popup" type="xul:popupElementType"/>
+	<xsd:element name="popupset" type="xul:popupsetElementType"/>
+	<xsd:element name="progressmeter" type="xul:progressmeterElementType"/>
+	<xsd:element name="radio" type="xul:radioElementType"/>
+	<xsd:element name="radiogroup" type="xul:radiogroupElementType"/>
+	<xsd:element name="resizer" type="xul:resizerElementType"/>
+	<xsd:element name="resourcebundle" type="xul:resourcebundleElementType"/>
+	<xsd:element name="row" type="xul:rowElementType"/>
+	<xsd:element name="rows" type="xul:rowsElementType"/>
+	<xsd:element name="rule" type="xul:ruleElementType"/>
+	<xsd:element name="script" type="xul:scriptElementType"/>
+	<xsd:element name="scrollbar" type="xul:scrollbarElementType"/>
+	<xsd:element name="scrollbarbutton" type="xul:scrollbarbuttonElementType"/>
+	<xsd:element name="scrollbox" type="xul:scrollboxElementType"/>
+	<xsd:element name="separator" type="xul:separatorElementType"/>
+	<xsd:element name="slider" type="xul:sliderElementType"/>
+	<xsd:element name="spacer" type="xul:spacerElementType"/>
+	<xsd:element name="splitter" type="xul:splitterElementType"/>
+	<xsd:element name="stack" type="xul:stackElementType"/>
+	<xsd:element name="statusbar" type="xul:statusbarElementType"/>
+	<xsd:element name="statusbarpanel" type="xul:statusbarpanelElementType"/>
+	<xsd:element name="stringbundle" type="xul:stringbundleElementType"/>
+	<xsd:element name="stringbundleset" type="xul:stringbundlesetElementType"/>
+	<xsd:element name="tab" type="xul:tabElementType"/>
+	<xsd:element name="tabbox" type="xul:tabboxElementType"/>
+	<xsd:element name="tabbrowser" type="xul:tabbrowserElementType"/>
+	<xsd:element name="tabs" type="xul:tabsElementType"/>
+	<xsd:element name="tabpanel" type="xul:tabpanelElementType"/>
+	<xsd:element name="tabpanels" type="xul:tabpanelsElementType"/>
+	<xsd:element name="template" type="xul:templateElementType"/>
+	<xsd:element name="textbox" type="xul:textboxElementType"/>
+	<xsd:element name="textnode" type="xul:textnodeElementType"/>
+	<xsd:element name="thumb" type="xul:thumbElementType"/>
+	<xsd:element name="titlebar" type="xul:titlebarElementType"/>
+	<xsd:element name="toolbar" type="xul:toolbarElementType"/>
+	<xsd:element name="toolbarbutton" type="xul:toolbarbuttonElementType"/>
+	<xsd:element name="toolbargrippy" type="xul:toolbargrippyElementType"/>
+	<xsd:element name="toolbaritem" type="xul:toolbaritemElementType"/>
+	<xsd:element name="toolbarpalette" type="xul:toolbarpaletteElementType"/>
+	<xsd:element name="toolbarset" type="xul:toolbarsetElementType"/>
+	<xsd:element name="toolbox" type="xul:toolboxElementType"/>
+	<xsd:element name="tooltip" type="xul:tooltipElementType"/>
+	<xsd:element name="tree" type="xul:treeElementType"/>
+	<xsd:element name="treecols" type="xul:treecolsElementType"/>
+	<xsd:element name="treecol" type="xul:treecolElementType"/>
+	<xsd:element name="treechildren" type="xul:treechildrenElementType"/>
+	<xsd:element name="treeitem" type="xul:treeitemElementType"/>
+	<xsd:element name="treerow" type="xul:treerowElementType"/>
+	<xsd:element name="treecell" type="xul:treecellElementType"/>
+	<xsd:element name="treeseparator" type="xul:treeseparatorElementType"/>
+	<xsd:element name="triple" type="xul:tripleElementType"/>
+	<xsd:element name="vbox" type="xul:vboxElementType"/>
+	<xsd:element name="window" type="xul:windowElementType">
+		<xsd:annotation>
+			<xsd:documentation>The root element of a XUL document</xsd:documentation>
+			<!--icon type="small">window.gif</icon-->
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="wizard" type="xul:wizardElementType">
+		<xsd:annotation>
+			<xsd:documentation>The root element of a XUL assistant window.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="wizardpage" type="xul:wizardpageElementType"/>
+	<!-- ================================================================================= -->
+	<!-- Info Container Element Group                                                      -->
+	<!-- ================================================================================= -->
+	<xsd:group name="InfoContainerElementGroup">
+		<xsd:sequence minOccurs="0" maxOccurs="unbounded">
+			<xsd:choice>
+				<xsd:element ref="xul:broadcasterset"/>
+				<xsd:element ref="xul:commandset"/>
+				<xsd:element ref="xul:keyset"/>
+				<xsd:element ref="xul:popupset"/>
+				<xsd:element ref="xul:resourcebundle"/>
+				<xsd:element ref="xul:script"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:group>
+	<!-- ================================================================================= -->
+	<!-- Box Container Element Group                                                       -->
+	<!-- ================================================================================= -->
+	<!--
+	(1) This is a group of "generic" or "top level" box containers.
+	(2) Other box containers are specific to a context and are therefore not defined as a group.
+	e.g.
+	"tabs" is a specific box container element - it may only exist as a child of a "tabbox" element.
+	"tab" is a specific box container element - it may only exist as a child of a "tabs" element.
+	Furthermore, these specific (non-generic) box container elements are either intermediate
+	or terminal box container elements. We make the distinction because terminal box container
+	elements may contain any of these generic box container elements, whereas intermediate box
+	container elements may not.
+	e.g.
+	"tab" is a specific terminal box container element which may contain any of these
+	generic box container elements. 
+	Specific terminal box container elements include: tab, tabpanel listcell, treecell, etc.
+	(3) This group of elements always appear in a context where any one of the elements may
+	appear in any order any number of times. This is why these characteristics are defined here
+	as part of the group definition rather than in the place where this group is referenced.
+	-->
+	<xsd:group name="BoxContainerElementGroup">
+		<xsd:sequence minOccurs="0" maxOccurs="unbounded">
+			<xsd:choice>
+				<xsd:element ref="xul:box"/>
+				<xsd:element ref="xul:vbox"/>
+				<xsd:element ref="xul:hbox"/>
+				<xsd:element ref="xul:deck"/>
+				<xsd:element ref="xul:stack"/>
+				<xsd:element ref="xul:groupbox"/>
+				<xsd:element ref="xul:grid"/>
+				<xsd:element ref="xul:radiogroup"/>
+				<xsd:element ref="xul:scrollbox"/>
+				<xsd:element ref="xul:tabbox"/>
+				<xsd:element ref="xul:tree"/>
+				<xsd:element ref="xul:popup"/>
+				<xsd:element ref="xul:toolbox"/>
+				<xsd:element ref="xul:menubar"/>
+				<xsd:element ref="xul:toolbar"/>
+				<xsd:element ref="xul:statusbar"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:group>
+	<!-- ================================================================================= -->
+	<!-- Widgets Group                                                                     -->
+	<!-- ================================================================================= -->
+	<!-- Widget elements may appear in "generic" Box Container Elements and in any one of the
+	specific (non-generic) terminal box container elements.
+	Specific terminal box container elements include: tab, tabpanel listcell, treecell, etc.
+	Although its not a widget, we include the template element here because a template may
+	occur anywhere where a widget may occur.
+	-->
+	<xsd:group name="WidgetElementGroup">
+		<xsd:sequence minOccurs="0" maxOccurs="unbounded">
+			<xsd:choice>
+				<xsd:element ref="xul:button"/>
+				<xsd:element ref="xul:checkbox"/>
+				<xsd:element ref="xul:label"/>
+				<xsd:element ref="xul:listbox"/>
+				<xsd:element ref="xul:radio"/>
+				<xsd:element ref="xul:textbox"/>
+				<xsd:element ref="xul:spacer"/>
+				<xsd:element ref="xul:splitter"/>
+				<xsd:element ref="xul:template"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:group>
+	<!-- ********************************************************************************* -->
+	<!-- *                                                                               * -->
+	<!-- *                                Element Types                                  * -->
+	<!-- *                                                                               * -->
+	<!-- ********************************************************************************* -->
+	<!--
+
+XULElementType
+	|
+	+-InfoElementType
+	|	|
+	|	+- broadcasterSetElementType
+	|	|
+	|	+- broadcasterElementType
+	|	|
+	|	+- commandsElementType
+	|	|
+	|	+- commandSetElementType
+	|	|
+	|	+- commandElementType
+	|	|
+	|	+- keysetElementType
+	|	|
+	|	+- keyElementType
+	|
+	+-TemplateElementType
+	|	|
+	|	+- templateElementType
+	|	|
+	|	+- ruleElementType
+	|	|
+	|	+- actionElementType
+	|	|
+	|	+- bindingsElementType
+	|	|
+	|	+- bindingElementType
+	|	|
+	|	+- conditionsElementType
+	|	|
+	|	+- contentElementType
+	|
+	+-BoxElementType
+		|
+		+-RootElementType
+		|	|
+		|	+- windowElementType
+		|	|
+		|	+- dialogElementType
+		|	|
+		|	+- pageElementType
+		|	|
+		|	+- wizardElementType
+		|	|
+		|	+- overlayElementType
+		|
+		+-arrowscrollboxElementType
+
+-->
+	<!-- ********************************************************************************* -->
+	<!--                                                                                   -->
+	<!--                                 XULElementType                                    -->
+	<!--                                                                                   -->
+	<!-- ********************************************************************************* -->
+	<!-- common elements and attributes to XULElementType -->
+	<xsd:complexType name="XULElementType">
+		<xsd:attribute name="observes" type="xul:idType" use="optional"/>
+	</xsd:complexType>
+	<!-- ********************************************************************************* -->
+	<!--                                                                                   -->
+	<!--                                 RootElementTypes                                  -->
+	<!--                                                                                   -->
+	<!-- ********************************************************************************* -->
+	<!-- ================================================================================= -->
+	<!-- windowElementType                                                                 -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="windowElementType">
+		<xsd:annotation>
+			<xsd:documentation>
+				The root element of a XUL document. It describes the structure of a top-level window. 
+				It is by default a horizontally oriented box. As with all box-like elements, all box attributes
+				can be used. By default, the window will have a platform-specific frame around it.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+				<xsd:choice minOccurs="0" maxOccurs="unbounded">
+					<xsd:element ref="xul:titlebar"/>
+					<xsd:element ref="xul:resizer"/>
+					<xsd:element ref="xul:splitter"/>
+					<xsd:group ref="xul:InfoContainerElementGroup"/>
+					<xsd:group ref="xul:BoxContainerElementGroup"/>
+					<xsd:group ref="xul:WidgetElementGroup"/>
+				</xsd:choice>
+				<xsd:attribute name="screenX" type="xul:positionType">
+					<xsd:annotation>
+						<xsd:documentation>
+							The horizontal position that the window appears on the screen.															</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="screenY" type="xul:positionType">
+					<xsd:annotation>
+						<xsd:documentation>
+							The vertical position that the window appears on the screen.															</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="sizemode" type="xul:sizemodeAttributeType">
+					<xsd:annotation>
+						<xsd:documentation>The state of the window.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="title" type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation>
+							 The text to appear on the title bar of the window.																</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="windowtype" type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation>
+							Set to a string which can be used to identify the type of window.
+							This might be used, for example, to distingush between a browser window
+							and an editor window.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- pageElementType                                                                   -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="pageElementType">
+		<xsd:annotation>
+			<xsd:documentation>
+				 The root element of an internal XUL doc inside an enclosing window.
+				 Similar to a window, except it should be used for XUL files that are to be loaded into an iframe.								</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+				<xsd:choice minOccurs="0" maxOccurs="unbounded">
+					<xsd:group ref="xul:InfoContainerElementGroup"/>
+					<xsd:group ref="xul:BoxContainerElementGroup"/>
+					<xsd:group ref="xul:WidgetElementGroup"/>
+				</xsd:choice>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- wizardElementType                                                                 -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="wizardElementType">
+		<xsd:annotation>
+			<xsd:documentation>
+				 The root element of a XUL assistant window.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+				<xsd:sequence>
+					<xsd:element ref="xul:wizardpage"/>
+					<xsd:choice minOccurs="0" maxOccurs="unbounded">
+						<xsd:group ref="xul:InfoContainerElementGroup"/>
+						<xsd:group ref="xul:BoxContainerElementGroup"/>
+						<xsd:group ref="xul:WidgetElementGroup"/>
+					</xsd:choice>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- dialogElementType                                                                 -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="dialogElementType">
+		<xsd:annotation>
+			<xsd:documentation>
+				 The root element of a XUL dialog window.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+				<xsd:choice minOccurs="0" maxOccurs="unbounded">
+					<xsd:group ref="xul:InfoContainerElementGroup"/>
+					<xsd:group ref="xul:BoxContainerElementGroup"/>
+					<xsd:group ref="xul:WidgetElementGroup"/>
+				</xsd:choice>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- overlayElementType                                                                -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="overlayElementType">
+		<xsd:annotation>
+			<xsd:documentation>
+				 The root element of a XUL overlay document/file.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+				<xsd:choice minOccurs="0" maxOccurs="unbounded">
+					<xsd:group ref="xul:InfoContainerElementGroup"/>
+					<xsd:group ref="xul:BoxContainerElementGroup"/>
+					<xsd:group ref="xul:WidgetElementGroup"/>
+				</xsd:choice>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ********************************************************************************* -->
+	<!--                                                                                   -->
+	<!--                       InfoElementType                                             -->
+	<!--                                                                                   -->
+	<!-- ********************************************************************************* -->
+	<!-- common elements and attributes to InfoElementType -->
+	<xsd:complexType name="InfoElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:XULElementType">
+				<xsd:choice minOccurs="0" maxOccurs="unbounded">
+					<xsd:element ref="xul:broadcasterset"/>
+					<xsd:element ref="xul:broadcaster"/>
+					<xsd:element ref="xul:commands"/>
+					<xsd:element ref="xul:commandset"/>
+					<xsd:element ref="xul:command"/>
+					<xsd:element ref="xul:keyset"/>
+					<xsd:element ref="xul:key"/>
+					<xsd:element ref="xul:popupset"/>
+					<xsd:element ref="xul:popup"/>
+					<xsd:element ref="xul:resourcebundle"/>
+					<xsd:element ref="xul:overlay"/>
+				</xsd:choice>
+				<xsd:attributeGroup ref="xul:EventHandlerAttributeGroup"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- broadcastersetElementType                                                         -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="broadcastersetElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:InfoElementType">
+				<xsd:choice minOccurs="0" maxOccurs="unbounded">
+					<xsd:element ref="xul:broadcaster"/>
+				</xsd:choice>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- broadcasterElementType                                                            -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="broadcasterElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:InfoElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- commandsElementType                                                               -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="commandsElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:InfoElementType">
+				<xsd:sequence>
+					<xsd:element ref="xul:commandset"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- commandsetElementType                                                             -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="commandsetElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:InfoElementType">
+				<xsd:sequence>
+					<xsd:element ref="xul:command"/>
+				</xsd:sequence>
+				<xsd:attribute name="commandupdater" type="xul:booleanType"/>
+				<xsd:attribute name="events" type="xsd:string"/>
+<!--
+				<xsd:attribute name="oncommandupdate" type="xsd:string"/>
+-->
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- commandElementType                                                                -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="commandElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:InfoElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- keysetElementType                                                                 -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="keysetElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:InfoElementType">
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element ref="xul:key"/>
+				</xsd:choice>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- keyElementType                                                                    -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="keyElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:InfoElementType">
+				<xsd:attribute name="cancel" type="xsd:string"/>
+				<xsd:attribute name="charcode" type="xsd:string"/>
+				<xsd:attribute ref="xul:disabled"/>
+				<xsd:attribute name="keycode" type="xsd:string"/>
+				<xsd:attribute name="modifiers" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- observesElementType                                                               -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="observesElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:InfoElementType">
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- resourcebundleElementType                                                         -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="resourcebundleElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:InfoElementType">
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- stringbundlesetElementType                                                         -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="stringbundlesetElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:InfoElementType">
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- stringbundleElementType                                                         -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="stringbundleElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:InfoElementType">
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- scriptElementType                                                                 -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="scriptElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:InfoElementType">
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ********************************************************************************* -->
+	<!--                                                                                   -->
+	<!--                             TemplateElementTypes                                  -->
+	<!--                                                                                   -->
+	<!-- ********************************************************************************* -->
+	<xsd:complexType name="TemplateElementType">
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+			<xsd:element ref="xul:action"/>
+			<xsd:element ref="xul:bindings"/>
+			<xsd:element ref="xul:binding"/>
+			<xsd:element ref="xul:conditions"/>
+			<xsd:element ref="xul:content"/>
+			<xsd:element ref="xul:template"/>
+		</xsd:choice>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- templateElementType                                                                   -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="templateElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:TemplateElementType">
+				<xsd:choice minOccurs="0" maxOccurs="unbounded">
+					<xsd:element ref="xul:rule"/>
+				</xsd:choice>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- ruleElementType                                                                   -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="ruleElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:TemplateElementType">
+				<xsd:choice minOccurs="0" maxOccurs="unbounded">
+					<xsd:element ref="xul:action"/>
+					<xsd:element ref="xul:bindings"/>
+					<xsd:element ref="xul:conditions"/>
+				</xsd:choice>
+				<xsd:attribute name="iscontainer" type="xul:booleanType"/>
+				<xsd:attribute name="isempty" type="xul:booleanType"/>
+				<xsd:attribute name="parent" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- actionElementType                                                                 -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="actionElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:TemplateElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- bindingsElementType                                                               -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="bindingsElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:TemplateElementType">
+				<xsd:choice minOccurs="1" maxOccurs="unbounded">
+					<xsd:element ref="xul:binding"/>
+				</xsd:choice>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- bindingElementType                                                                -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="bindingElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:TemplateElementType">
+				<xsd:attribute name="object" type="xul:RDFType"/>
+				<xsd:attribute name="predicate" type="xul:RDFPropertyType"/>
+				<xsd:attribute name="subject" type="xul:RDFType"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- conditionsElementType                                                             -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="conditionsElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:TemplateElementType">
+				<xsd:choice minOccurs="0" maxOccurs="unbounded">
+					<xsd:element ref="xul:content"/>
+					<xsd:element ref="xul:member"/>
+					<xsd:element ref="xul:triple"/>
+				</xsd:choice>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- contentElementType                                                                -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="contentElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:TemplateElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- memberElementType                                                                -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="memberElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:TemplateElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- tripleElementType                                                                -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="tripleElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:TemplateElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ********************************************************************************* -->
+	<!-- BoxElementType                                                                    -->
+	<!-- ********************************************************************************* -->
+	<!-- common elements and attributes to BoxElementType -->
+	<xsd:complexType name="BoxElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:XULElementType">
+				<xsd:choice minOccurs="0" maxOccurs="unbounded">
+					<xsd:element ref="xul:arrowscrollbox"/>
+					<xsd:element ref="xul:autorepeatbutton"/>
+					<xsd:element ref="xul:box"/>
+					<xsd:element ref="xul:button"/>
+					<xsd:element ref="xul:browser"/>
+					<xsd:element ref="xul:caption"/>
+					<xsd:element ref="xul:checkbox"/>
+					<xsd:element ref="xul:colorpicker"/>
+					<xsd:element ref="xul:column"/>
+					<xsd:element ref="xul:columns"/>
+					<xsd:element ref="xul:deck"/>
+					<xsd:element ref="xul:description"/>
+					<xsd:element ref="xul:dialog"/>
+					<xsd:element ref="xul:editor"/>
+					<xsd:element ref="xul:grid"/>
+					<xsd:element ref="xul:grippy"/>
+					<xsd:element ref="xul:groupbox"/>
+					<xsd:element ref="xul:hbox"/>
+					<xsd:element ref="xul:iframe"/>
+					<xsd:element ref="xul:image"/>
+					<xsd:element ref="xul:label"/>
+					<xsd:element ref="xul:listbox"/>
+					<xsd:element ref="xul:listcol"/>
+					<xsd:element ref="xul:listcols"/>
+					<xsd:element ref="xul:listhead"/>
+					<xsd:element ref="xul:listitem"/>
+					<xsd:element ref="xul:listcell"/>
+					<xsd:element ref="xul:menu"/>
+					<xsd:element ref="xul:menubar"/>
+					<xsd:element ref="xul:menuitem"/>
+					<xsd:element ref="xul:menulist"/>
+					<xsd:element ref="xul:menupopup"/>
+					<xsd:element ref="xul:menuseparator"/>
+					<xsd:element ref="xul:page"/>
+					<xsd:element ref="xul:radio"/>
+					<xsd:element ref="xul:radiogroup"/>
+					<xsd:element ref="xul:splitter"/>
+					<xsd:element ref="xul:stack"/>
+					<xsd:element ref="xul:statusbar"/>
+					<xsd:element ref="xul:vbox"/>
+					<xsd:element ref="xul:tabbox"/>
+					<xsd:element ref="xul:toolbar"/>
+					<xsd:element ref="xul:toolbox"/>
+					<xsd:element ref="xul:key"/>
+					<xsd:element ref="xul:keyset"/>
+					<xsd:element ref="xul:tab"/>
+					<xsd:element ref="xul:tabs"/>
+					<xsd:element ref="xul:tabpanel"/>
+					<xsd:element ref="xul:tabpanels"/>
+					<xsd:element ref="xul:popup"/>
+					<xsd:element ref="xul:popupset"/>
+					<xsd:element ref="xul:progressmeter"/>
+					<xsd:element ref="xul:radio"/>
+					<xsd:element ref="xul:radiogroup"/>
+					<xsd:element ref="xul:row"/>
+					<xsd:element ref="xul:rows"/>
+					<xsd:element ref="xul:scrollbox"/>
+					<xsd:element ref="xul:separator"/>
+					<xsd:element ref="xul:spacer"/>
+				</xsd:choice>
+				<xsd:attributeGroup ref="xul:BoxAttributeGroup"/>
+				<xsd:attributeGroup ref="xul:EventHandlerAttributeGroup"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- arrowscrollboxElementType                                                         -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="arrowscrollboxElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+				<xsd:choice minOccurs="0" maxOccurs="unbounded">
+					<xsd:group ref="xul:BoxContainerElementGroup"/>
+					<xsd:group ref="xul:WidgetElementGroup"/>
+				</xsd:choice>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- autorepeatbuttonElementType                                                       -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="autorepeatbuttonElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+				<xsd:choice minOccurs="0" maxOccurs="unbounded">
+					<xsd:group ref="xul:BoxContainerElementGroup"/>
+					<xsd:group ref="xul:WidgetElementGroup"/>
+				</xsd:choice>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- boxElementType                                                                    -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="boxElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+				<xsd:choice minOccurs="0" maxOccurs="unbounded">
+					<xsd:group ref="xul:BoxContainerElementGroup"/>
+					<xsd:group ref="xul:WidgetElementGroup"/>
+				</xsd:choice>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- vboxElementType                                                                   -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="vboxElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+				<xsd:choice minOccurs="0" maxOccurs="unbounded">
+					<xsd:group ref="xul:BoxContainerElementGroup"/>
+					<xsd:group ref="xul:WidgetElementGroup"/>
+				</xsd:choice>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- browserElementType                                                                -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="browserElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- buttonElementType                                                                 -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="buttonElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+				<xsd:choice minOccurs="0" maxOccurs="1">
+					<xsd:element ref="xul:image"/>
+				</xsd:choice>
+				<xsd:attribute name="autocheck" type="xul:booleanType"/>
+				<xsd:attribute name="checkstate" type="xul:booleanType"/>
+				<xsd:attribute name="dlgtype">
+					<xsd:annotation>
+						<xsd:documentation>
+							 The type of the button. This should be set to create a special button
+							 in a dialog box.
+						</xsd:documentation>
+					</xsd:annotation>
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<xsd:enumeration value="accept"/>
+							<xsd:enumeration value="cancel"/>
+							<xsd:enumeration value="help"/>
+							<xsd:enumeration value="disclosure"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:attribute>
+				<xsd:attribute name="group" type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation>
+							Buttons with the same value for their group attribute are put into the
+							same group. Only one button from each group can be checked at a time.
+							If one is checked, the others are unchecked.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="open" type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation/>
+					</xsd:annotation>
+				</xsd:attribute>
+				<!-- attribute ref="xul:orient">
+					<xsd:annotation>
+						<xsd:documentation>
+							Along with the dir attribute, the orient attribute is used to indicate
+							where the button's image appears in relation to the the label.
+						</xsd:documentation>
+					</xsd:annotation>
+				</attribute -->
+				<xsd:attribute ref="xul:type">
+					<xsd:annotation>
+						<xsd:documentation>
+							The type of button. If this attribute is not present, a normal button
+							is created. Leave the attribute out for a normal button.
+						</xsd:documentation>
+					</xsd:annotation>
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<xsd:enumeration value="checkbox" default="true">
+								<xsd:annotation>
+									<xsd:documentation>
+										This type of button can be in two states. The user can click
+										the button to switch between the states. This is not the same
+										as a checkbox because it looks like a button. The off state is
+										displayed like a regular button and the on state is displayed
+										like a pressed button.
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:enumeration>
+							<xsd:enumeration value="menu">
+								<xsd:annotation>
+									<xsd:documentation>
+										Set the type attribute to the value 'menu' to create a button
+										with a menu popup. Place a menupopup element inside the button
+										in this case.
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:enumeration>
+							<xsd:enumeration value="menu-button">
+								<xsd:annotation>
+									<xsd:documentation>
+										You can also use the value 'menu-button' to create a button with
+										a menu. This second value will typically cause the button to be
+										displayed with an arrow to the side indicating that a menu is
+										present. This type of button is used for Mozilla's back and forward
+										buttons.
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:enumeration>
+							<xsd:enumeration value="radio">
+								<xsd:annotation>
+									<xsd:documentation>
+										The button acts like a radio button. Only one button in the group
+										can be on a once.	
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:enumeration>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:attribute>
+				<xsd:attributeGroup ref="xul:CommandAttributeGroup"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- captionElementType                                                                -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="captionElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+				<xsd:attribute ref="xul:label"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- checkboxElementType                                                               -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="checkboxElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+				<xsd:attribute ref="xul:label"/>
+				<xsd:attributeGroup ref="xul:CommandAttributeGroup"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- colorpickerElementType                                                            -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="colorpickerElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+				<xsd:attribute name="color"/>
+				<xsd:attribute ref="xul:type"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- columnsElementType                                                                -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="columnsElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+				<xsd:sequence minOccurs="0" maxOccurs="unbounded">
+					<xsd:element ref="xul:column"/>
+					<xsd:element ref="xul:splitter"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- columnElementType                                                                 -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="columnElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+				<xsd:choice minOccurs="0" maxOccurs="unbounded">
+					<xsd:group ref="xul:BoxContainerElementGroup"/>
+					<xsd:group ref="xul:WidgetElementGroup"/>
+				</xsd:choice>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- deckElementType                                                                   -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="deckElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+				<xsd:attribute name="selectedIndex" type="xsd:integer"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- descriptionElementType                                                            -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="descriptionElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- editorElementType                                                                 -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="editorElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- gridElementType                                                                   -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="gridElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+				<xsd:choice>
+					<xsd:element ref="xul:columns"/>
+					<xsd:element ref="xul:rows"/>
+				</xsd:choice>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- grippyElementType                                                                 -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="grippyElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- groupboxElementType                                                               -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="groupboxElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- hboxElementType                                                                   -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="hboxElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+				<xsd:choice minOccurs="0" maxOccurs="unbounded">
+					<xsd:group ref="xul:BoxContainerElementGroup"/>
+					<xsd:group ref="xul:WidgetElementGroup"/>
+				</xsd:choice>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- wizardpageElementType                                                                   -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="wizardpageElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- iframeElementType                                                                 -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="iframeElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- imageElementType                                                                  -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="imageElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- labelElementType                                                                  -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="labelElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- textboxElementType                                                                -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="textboxElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+				<xsd:attribute ref="disabled" type="xul:booleanType" use="optional"/>
+				<xsd:attribute name="focused" type="xul:booleanType" use="optional"/>
+				<xsd:attribute name="maxlength" type="xsd:integer" use="optional"/>
+				<xsd:attribute name="multiline" type="xul:booleanType" use="optional"/>
+				<xsd:attribute name="oninput" type="xul:scriptType" use="optional"/>
+				<xsd:attribute name="readonly" type="xul:booleanType" use="optional"/>
+				<xsd:attribute name="size" type="xsd:integer" use="optional"/>
+				<xsd:attribute ref="type" type="xsd:string" use="optional"/>
+				<xsd:attribute ref="value" type="xsd:string" use="optional"/>
+				<xsd:attribute name="wrap" type="xul:booleanType" use="optional"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- textnodeElementType                                                               -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="textnodeElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ********************************************************************************* -->
+	<!-- Listbox Types                                                                     -->
+	<!-- ********************************************************************************* -->
+	<!-- ================================================================================= -->
+	<!-- listboxElementType                                                                -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="listboxElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+				<xsd:sequence>
+					<xsd:element ref="xul:listcols" minOccurs="1"/>
+					<xsd:element ref="xul:listhead" minOccurs="0"/>
+					<xsd:element ref="xul:listitem" minOccurs="1" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- listcellElementType                                                               -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="listcellElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+				<!--group ref="xul:BoxContainers"/-->
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- listcolsElementType                                                               -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="listcolsElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+				<xsd:sequence>
+					<xsd:element ref="xul:listcol" minOccurs="1" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- listcolElementType                                                                -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="listcolElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- listheadElementType                                                               -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="listheadElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+				<xsd:sequence>
+					<xsd:element ref="xul:listheader" minOccurs="1" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- listheaderElementType                                                             -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="listheaderElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- listitemElementType                                                               -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="listitemElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+				<xsd:sequence>
+					<xsd:element ref="xul:listcell" minOccurs="1" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ********************************************************************************* -->
+	<!-- Menu Types                                                                        -->
+	<!-- ********************************************************************************* -->
+	<!-- ================================================================================= -->
+	<!-- menuElementType                                                                  -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="menuElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- menubarElementType                                                                -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="menubarElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- menuitemElementType                                                               -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="menuitemElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- menulistElementType                                                               -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="menulistElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- menupopupElementType                                                              -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="menupopupElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- menuseparatorElementType                                                          -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="menuseparatorElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- popupElementType                                                                  -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="popupElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- popupsetElementType                                                               -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="popupsetElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- progressmeterElementType                                                          -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="progressmeterElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- radiogroupElementType                                                             -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="radiogroupElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+				<xsd:sequence>
+					<xsd:element ref="xul:caption" minOccurs="0" maxOccurs="1"/>
+					<xsd:element ref="xul:radio" minOccurs="1" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- radioElementType                                                                  -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="radioElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- rowsElementType                                                                   -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="rowsElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+				<xsd:sequence>
+					<xsd:element ref="xul:row"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- rowElementType                                                                    -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="rowElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+				<xsd:choice minOccurs="0" maxOccurs="unbounded">
+					<xsd:group ref="xul:BoxContainerElementGroup"/>
+					<xsd:group ref="xul:WidgetElementGroup"/>
+				</xsd:choice>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ********************************************************************************* -->
+	<!-- Scrollbox Types                                                                   -->
+	<!-- ********************************************************************************* -->
+	<!-- ================================================================================= -->
+	<!-- scrollboxElementType                                                              -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="scrollboxElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+				<xsd:sequence>
+					<xsd:element ref="xul:scrollbar" minOccurs="0" maxOccurs="1"/>
+					<xsd:group ref="xul:BoxContainerElementGroup"/>
+					<xsd:group ref="xul:WidgetElementGroup"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- scrollbarElementType                                                              -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="scrollbarElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+				<xsd:sequence minOccurs="0" maxOccurs="unbounded">
+					<xsd:element ref="xul:scrollbarbutton" minOccurs="0" maxOccurs="1"/>
+					<xsd:element ref="xul:slider" minOccurs="0" maxOccurs="1"/>
+					<xsd:element ref="xul:thumb" minOccurs="0" maxOccurs="1"/>
+					<xsd:element ref="xul:scrollbarbutton" minOccurs="0" maxOccurs="1"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- scrollbarbuttonElementType                                                        -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="scrollbarbuttonElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- sliderElementType                                                                 -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="sliderElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- thumbElementType                                                                  -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="thumbElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- stackElementType                                                                  -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="stackElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- statusbarElementType                                                              -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="statusbarElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- statusbarpanelElementType                                                         -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="statusbarpanelElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ********************************************************************************* -->
+	<!-- Toolbar Types                                                                     -->
+	<!-- ********************************************************************************* -->
+	<!-- ================================================================================= -->
+	<!-- toolboxElementType                                                                -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="toolboxElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- toolbarsetElementType                                                                -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="toolbarsetElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- toolbarElementType                                                                -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="toolbarElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- toolbarbuttonElementType                                                          -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="toolbarbuttonElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- toolbargrippyElementType                                                          -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="toolbargrippyElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- toolbaritemElementType                                                            -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="toolbaritemElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- toolbarpaletteElementType                                                         -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="toolbarpaletteElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- tabbrowserElementType                                                             -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="tabbrowserElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ********************************************************************************* -->
+	<!-- Tabpanel Types                                                                    -->
+	<!-- ********************************************************************************* -->
+	<!-- ================================================================================= -->
+	<!-- tabboxElementType                                                                 -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="tabboxElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+				<xsd:choice minOccurs="2" maxOccurs="2">
+					<!-- both tabs and tabpanels must occur once each in either order -->
+					<xsd:element ref="xul:tabs"/>
+					<xsd:element ref="xul:tabpanels"/>
+				</xsd:choice>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- tabsElementType                                                                   -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="tabsElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+				<xsd:sequence>
+					<xsd:element ref="xul:tab" minOccurs="1" maxOccurs="unbounded"/>
+					<!-- number of tab elements must equal the number of tabpanel elements -->
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- tabElementType                                                                    -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="tabElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- tabpanelsElementType                                                              -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="tabpanelsElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+				<xsd:sequence>
+					<xsd:element ref="xul:tabpanel" maxOccurs="unbounded"/>
+					<!-- number of tabpanel elements must equal the number of tab elements -->
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- tabpanelElementType                                                               -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="tabpanelElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+				<xsd:choice minOccurs="0" maxOccurs="unbounded">
+					<xsd:group ref="xul:BoxContainerElementGroup"/>
+					<xsd:group ref="xul:WidgetElementGroup"/>
+				</xsd:choice>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ********************************************************************************* -->
+	<!-- Tree Element Types                                                                -->
+	<!-- ********************************************************************************* -->
+	<!-- ================================================================================= -->
+	<!-- treeElementType                                                                   -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="treeElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+				<xsd:sequence>
+					<xsd:element ref="xul:treecols" minOccurs="0" maxOccurs="1"/>
+					<xsd:element ref="xul:treechildren" minOccurs="0" maxOccurs="1"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- treecolsElementType                                                               -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="treecolsElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+				<xsd:sequence>
+					<xsd:element ref="xul:treecol" minOccurs="1" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- treecolElementType                                                                -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="treecolElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+				<xsd:choice minOccurs="0" maxOccurs="unbounded">
+					<xsd:group ref="xul:BoxContainerElementGroup"/>
+					<xsd:group ref="xul:WidgetElementGroup"/>
+				</xsd:choice>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- treechildrenElementType                                                           -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="treechildrenElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+				<xsd:sequence>
+					<xsd:element ref="xul:treeitem" minOccurs="1" maxOccurs="1"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- treeitemElementType                                                               -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="treeitemElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+				<xsd:sequence>
+					<xsd:element ref="xul:treerow" minOccurs="1" maxOccurs="unbounded"/>
+					<xsd:element ref="xul:treechildren" minOccurs="0" maxOccurs="1"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- treerowElementType                                                                -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="treerowElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+				<xsd:sequence>
+					<xsd:element ref="xul:treecell" minOccurs="1" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- treecellElementType                                                               -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="treecellElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType">
+				<xsd:choice minOccurs="0" maxOccurs="unbounded">
+					<xsd:group ref="xul:BoxContainerElementGroup"/>
+					<xsd:group ref="xul:WidgetElementGroup"/>
+				</xsd:choice>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- treeseparatorElementType                                                          -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="treeseparatorElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ********************************************************************************* -->
+	<!-- Utility Box Types                                                                 -->
+	<!-- ********************************************************************************* -->
+	<!-- ================================================================================= -->
+	<!-- titlebarElementType                                                                -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="titlebarElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- resizerElementType                                                                -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="resizerElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- splitterElementType                                                               -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="splitterElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- separatorElementType                                                              -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="separatorElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- spacerElementType                                                                 -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="spacerElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ================================================================================= -->
+	<!-- tooltipElementType                                                                 -->
+	<!-- ================================================================================= -->
+	<xsd:complexType name="tooltipElementType">
+		<xsd:complexContent>
+			<xsd:extension base="xul:BoxElementType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- ********************************************************************************* -->
+	<!-- *                                                                               * -->
+	<!-- *                              Attributes                                       * -->
+	<!-- *                                                                               * -->
+	<!-- ********************************************************************************* -->
+	<!-- ================================================================================= -->
+	<!-- Common (Global) Attributes                                                        -->
+	<!-- ================================================================================= -->
+	<xsd:attribute name="disabled" type="xul:booleanType"/>
+	<xsd:attribute name="label" type="xsd:string"/>
+	<xsd:attribute name="value" type="xsd:string"/>
+	<xsd:attribute name="type" type="xsd:string"/>
+	<!-- ================================================================================= -->
+	<!-- Event Handler Attribute Group                                                     -->
+	<!-- ================================================================================= -->
+	<xsd:attributeGroup name="EventHandlerAttributeGroup">
+		<xsd:attribute name="onblur" type="xsd:string"/>
+		<xsd:attribute name="onbroadcast" type="xsd:string"/>
+		<xsd:attribute name="onclick" type="xsd:string"/>
+		<xsd:attribute name="onclose" type="xsd:string"/>
+		<xsd:attribute name="oncommand" type="xsd:string"/>
+		<xsd:attribute name="oncommandupdate" type="xsd:string"/>
+		<xsd:attribute name="oncontextmenu" type="xsd:string"/>
+		<xsd:attribute name="ondblclick" type="xsd:string"/>
+		<xsd:attribute name="ondragdrop" type="xsd:string"/>
+		<xsd:attribute name="ondragenter" type="xsd:string"/>
+		<xsd:attribute name="ondragexit" type="xsd:string"/>
+		<xsd:attribute name="ondraggesture" type="xsd:string"/>
+		<xsd:attribute name="ondragover" type="xsd:string"/>
+		<xsd:attribute name="onfocus" type="xsd:string"/>
+		<xsd:attribute name="oninput" type="xsd:string"/>
+		<xsd:attribute name="onkeydown" type="xsd:string"/>
+		<xsd:attribute name="onkeypress" type="xsd:string"/>
+		<xsd:attribute name="onkeyup" type="xsd:string"/>
+		<xsd:attribute name="onload" type="xsd:string"/>
+		<xsd:attribute name="onmousedown" type="xsd:string"/>
+		<xsd:attribute name="onmousemove" type="xsd:string"/>
+		<xsd:attribute name="onmouseout" type="xsd:string"/>
+		<xsd:attribute name="onmouseover" type="xsd:string"/>
+		<xsd:attribute name="onmouseup" type="xsd:string"/>
+		<xsd:attribute name="onoverflow" type="xsd:string"/>
+		<xsd:attribute name="onoverflowchanged" type="xsd:string"/>
+		<xsd:attribute name="onpopuphidden" type="xsd:string"/>
+		<xsd:attribute name="onpopuphidding" type="xsd:string"/>
+		<xsd:attribute name="onpopupshowing" type="xsd:string"/>
+		<xsd:attribute name="onpopupshown" type="xsd:string"/>
+		<xsd:attribute name="onunderflow" type="xsd:string"/>
+		<xsd:attribute name="onunload" type="xsd:string"/>
+	</xsd:attributeGroup>
+	<!-- ================================================================================= -->
+	<!-- XUL Attribute Group                                                               -->
+	<!-- ================================================================================= -->
+	<xsd:attributeGroup name="XULElementAttributes">
+		<xsd:annotation>
+			<xsd:documentation>Attributes that can be placed on any XUL element.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attributeGroup ref="xul:EventHandlerAttributeGroup"/>
+	</xsd:attributeGroup>
+	<!-- ================================================================================= -->
+	<!-- Box Attribute Group                                                               -->
+	<!-- ================================================================================= -->
+	<xsd:attributeGroup name="BoxAttributeGroup">
+		<xsd:attribute name="align" type="xul:alignAttributeType" use="optional"/>
+		<xsd:attribute name="allowevents" type="xul:booleanType" use="optional"/>
+		<xsd:attribute name="allownegativeassertions" type="xul:booleanType" use="optional"/>
+		<xsd:attribute name="class" type="xsd:string" use="optional"/>
+		<xsd:attribute name="coalesceduplicatearcs" type="xul:booleanType" use="optional"/>
+		<xsd:attribute name="collapsed" type="xul:booleanType" use="optional"/>
+		<xsd:attribute name="container" type="xul:booleanType" use="optional"/>
+		<xsd:attribute name="containment" type="xul:RDFPropertyType" use="optional"/>
+		<xsd:attribute name="contextmenu" type="xul:idType" use="optional"/>
+		<xsd:attribute name="datasources" type="xsd:string" use="optional"/>
+		<xsd:attribute name="debug" type="xul:booleanType" use="optional"/>
+		<xsd:attribute name="dir" type="xul:dirAttributeType" use="optional"/>
+		<xsd:attribute name="empty" type="xul:booleanType" use="optional"/>
+		<xsd:attribute name="equalsize" type="xul:equalsizeAttributeType" use="optional"/>
+		<xsd:attribute name="flags" type="xul:flagsAttributeType" use="optional"/>
+		<xsd:attribute name="flex" type="xsd:nonNegativeInteger" use="optional"/>
+		<xsd:attribute name="flexgroup" type="xsd:integer" use="optional"/>
+		<xsd:attribute name="height" type="xul:sizeType" use="optional"/>
+		<xsd:attribute name="hidden" type="xul:booleanType" use="optional"/>
+		<xsd:attribute name="id" type="xsd:ID" use="optional"/>
+		<xsd:attribute name="insertafter" type="xul:idType" use="optional"/>
+		<xsd:attribute name="insertbefore" type="xul:idType" use="optional"/>
+		<xsd:attribute name="left" type="xul:positionType" use="optional"/>
+		<xsd:attribute name="maxheight" type="xul:sizeType" use="optional"/>
+		<xsd:attribute name="maxwidth" type="xul:sizeType" use="optional"/>
+		<xsd:attribute name="menu" type="xul:idType" use="optional"/>
+		<xsd:attribute name="minheight" type="xul:sizeType" use="optional"/>
+		<xsd:attribute name="minwidth" type="xul:sizeType" use="optional"/>
+		<xsd:attribute name="ordinal" type="xsd:nonNegativeInteger" use="optional"/>
+		<xsd:attribute name="orient" type="xul:orientAttributeType" use="optional"/>
+		<xsd:attribute name="pack" type="xul:packAttributeType" use="optional"/>
+		<xsd:attribute name="persist" type="xul:listType" use="optional"/>
+		<xsd:attribute name="position" type="xsd:integer" use="optional"/>
+		<xsd:attribute name="ref" type="xsd:string" use="optional"/>
+		<xsd:attribute name="removeelement" type="xul:booleanType" use="optional"/>
+		<xsd:attribute name="statustext" type="xsd:string" use="optional"/>
+		<xsd:attribute name="style" type="xul:styleType" use="optional"/>
+		<xsd:attribute name="template" type="xul:idType" use="optional"/>
+		<xsd:attribute name="tooltip" type="xul:idType" use="optional"/>
+		<xsd:attribute name="tooltiptext" type="xsd:string" use="optional"/>
+		<xsd:attribute name="top" type="xul:positionType" use="optional"/>
+		<xsd:attribute name="uri" type="xsd:anyURI" use="optional"/>
+		<xsd:attribute name="width" type="xul:sizeType" use="optional"/>
+	</xsd:attributeGroup>
+	<!-- ================================================================================= -->
+	<!-- Command Attribute Group                                                           -->
+	<!-- ================================================================================= -->
+	<xsd:attributeGroup name="CommandAttributeGroup">
+				<xsd:attribute name="accesskey" type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation>
+							This should be set to a letter that is used as a shortcut key.
+							This letter should be one of the characters that appears in the label
+							text for the button. This letter will typically be drawn underlined,
+							although this behavior will be platform and skin specific. When the
+							user presses ALT (or a similar key that varies on each platform) and
+							the access key, the button will be activated from anywhere in the window.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="checked" type="xul:booleanType">
+					<xsd:annotation>
+						<xsd:documentation>
+ 							Indicates whether the button is checked or not.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="command" type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation>
+							Set to an id of a command element that is being observed by the element.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="crop">
+					<xsd:annotation>
+						<xsd:documentation>
+							If the label of the button is too small to fit in its given space, the text
+							will be cropped on the side specified by the crop attribute. An ellipsis
+							will be placed in place of the cropped text. If the box direction is right
+							to left (rtl), the cropping is reversed.
+						</xsd:documentation>
+					</xsd:annotation>
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<xsd:enumeration value="none"/>
+							<xsd:enumeration value="start"/>
+							<xsd:enumeration value="end"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:attribute>
+				<xsd:attribute ref="xul:disabled" type="xul:booleanType">
+					<xsd:annotation>
+						<xsd:documentation>
+							If this attribute is set to true, the button is disabled. This is usually
+							drawn with the text in grey. If the button is disabled, the function of
+							the button cannot be performed. Leave the attribute out entirely for a
+							regular enabled button.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="image" type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation>
+							The URL of the image to appear on the button. If this is attribute is
+							left out, no image appears. The position of the image is determined by
+							the dir and orient attributes.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute ref="xul:label" type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation>
+							The label that will appear on the button. If this is left out, no text
+							appears.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="tabindex" type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation/>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute ref="value" type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation>
+							 A value associated with the button. You may use it in a script for your
+							own purposes.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+	</xsd:attributeGroup>
+	<!-- ********************************************************************************* -->
+	<!-- *                                                                               * -->
+	<!-- *                              Attribute Types                                  * -->
+	<!-- *                                                                               * -->
+	<!-- ********************************************************************************* -->
+	<!-- ================================================================================= -->
+	<!-- Common Attribute Types                                                            -->
+	<!-- ================================================================================= -->
+	<xsd:simpleType name="booleanType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="true"/>
+			<xsd:enumeration value="false"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="sizeType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="\d(px)?"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="positionType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="\d(px)?"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="idType">
+		<xsd:restriction base="xsd:IDREF"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="listType">
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="styleType">
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="RDFPropertyType">
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="RDFType">
+		<!-- RDF node URI or RDF literal value -->
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="scriptType">
+		<!-- a script (e.g. JavaScript) string -->
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<!-- ================================================================================= -->
+	<!-- alignAttributeType                                                                -->
+	<!-- ================================================================================= -->
+	<xsd:simpleType name="alignAttributeType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="start"/>
+			<xsd:enumeration value="center"/>
+			<xsd:enumeration value="end"/>
+			<xsd:enumeration value="baseline"/>
+			<xsd:enumeration value="stretch"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- ================================================================================= -->
+	<!-- dirAttributeType                                                                  -->
+	<!-- ================================================================================= -->
+	<xsd:simpleType name="dirAttributeType">
+		<xsd:annotation>
+			<xsd:documentation>
+				 Specifies which side of the button's label that its image is placed.									</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="ltr"/>
+			<xsd:enumeration value="rtl"/>
+			<!--enumeration value="normal"/>
+			<xsd:enumeration value="reverse"/-->
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- ================================================================================= -->
+	<!-- equalsizeAttributeType                                                            -->
+	<!-- ================================================================================= -->
+	<xsd:simpleType name="equalsizeAttributeType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="always"/>
+			<xsd:enumeration value="never"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- ================================================================================= -->
+	<!-- flagsAttributeType                                                                -->
+	<!-- ================================================================================= -->
+	<xsd:simpleType name="flagsAttributeType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="dont-test-empty"/>
+			<xsd:enumeration value="dont-build-content"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- ================================================================================= -->
+	<!-- orientAttributeType                                                               -->
+	<!-- ================================================================================= -->
+	<xsd:simpleType name="orientAttributeType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="horizontal"/>
+			<xsd:enumeration value="vertical"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- ================================================================================= -->
+	<!-- packAttributeType                                                                 -->
+	<!-- ================================================================================= -->
+	<xsd:simpleType name="packAttributeType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="start"/>
+			<xsd:enumeration value="center"/>
+			<xsd:enumeration value="end"/>
+			<xsd:enumeration value="justify"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- ================================================================================= -->
+	<!-- sizemodeAttributeType                                                             -->
+	<!-- ================================================================================= -->
+	<xsd:simpleType name="sizemodeAttributeType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="maximized">
+				<xsd:annotation>
+					<xsd:documentation>
+						The window is maximized, and occupies the full size of the screen.	
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="minimized">
+				<xsd:annotation>
+					<xsd:documentation>
+						The window is minimized, or hidden.	
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="normal">
+				<xsd:annotation>
+					<xsd:documentation>
+						The window appears in a normal state at the desired size.	
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- ================================================================================= -->
+</xsd:schema>

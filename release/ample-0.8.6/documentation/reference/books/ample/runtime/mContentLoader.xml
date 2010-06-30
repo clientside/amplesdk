@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="AMLContentLoader">
+	<abstract>
+		<locale>
+			Implements data lazy loading functionality
+		</locale>
+		<locale xml:lang="ru">
+			Реализует функциональность по загрузке данных.
+		</locale>
+	</abstract>
+	<remarks/>
+	<examples/>
+	<members>
+		<methods>
+			<method name="$load" type="Void">
+				<arguments>
+					<argument name="sUrl" type="String" required="true">
+						<description>
+							<locale>
+								URL
+							</locale>
+							<locale xml:lang="ru">
+								URL для загрузки.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Loads content from the remote resource specified by the sUrl argument
+					</locale>
+					<locale xml:lang="ru">
+						Загружает данные с удаленного ресурса, заданного аргументом.
+					</locale>
+				</description>
+			</method>
+		</methods>
+		<properties />
+		<attributes />
+		<events>
+			<event name="load" group="Event" cancelable="false" bubbles="false">
+				<description>
+					<locale>
+						Fires immediately after the engine loads the object.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается сразу же после загрузки данных ядром.
+					</locale>
+				</description>
+			</event>
+			<event name="unload" group="Event" cancelable="false" bubbles="false">
+				<description>
+					<locale>
+						Fires immediately before the object is unloaded.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается непосредственно перед выгрузкой.
+					</locale>
+				</description>
+			</event>
+			<event name="error" group="Event" cancelable="false" bubbles="true">
+				<description>
+					<locale>
+						Fires when an error occurs during object loading.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается, когда в процессе загрузки ресурса возникает ошибка.
+					</locale>
+				</description>
+			</event>
+		</events>
+	</members>
+</object>

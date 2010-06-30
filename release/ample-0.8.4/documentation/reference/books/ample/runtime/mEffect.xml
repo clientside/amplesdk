@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="AMLEffect">
+	<abstract>
+		<locale>
+			Implements Effects functionality
+		</locale>
+		<locale xml:lang="ru">
+			Реализует функциональность различных эффектов.
+		</locale>
+	</abstract>
+	<remarks/>
+	<examples/>
+	<members>
+		<constants>
+			<constant name="EFFECT_LINEAR" value="1">
+				<description>
+					<locale>
+						Value change is linear.
+					</locale>
+					<locale xml:lang="ru">
+						Значение изменяется линейно.
+					</locale>
+				</description>
+			</constant>
+			<constant name="EFFECT_ACCELERATE" value="2">
+				<description>
+					<locale>
+						Value change is accelerated.
+					</locale>
+					<locale xml:lang="ru">
+						Изменение значения ускоряется.
+					</locale>
+				</description>
+			</constant>
+			<constant name="EFFECT_DECELERATE" value="3">
+				<description>
+					<locale>
+						Value change is decelerated.
+					</locale>
+					<locale xml:lang="ru">
+						Изменение значения замедляется.
+					</locale>
+				</description>
+			</constant>
+		</constants>
+		<methods>
+			<method name="$play" type="Number">
+				<arguments>
+					<argument name="sStyle" type="String" required="true">
+						<description>
+							<locale>
+								CSS declaration.
+							</locale>
+							<locale xml:lang="ru">
+								Декларация CSS.
+							</locale>
+						</description>
+					</argument>
+					<argument name="nDuration" type="Number" required="true">
+						<description>
+							<locale>
+								Effect duration in milliseconds
+							</locale>
+							<locale xml:lang="ru">
+								Длительность эффекта в миллисекундах.
+							</locale>
+						</description>
+					</argument>
+					<argument name="nType" type="Number" required="false">
+						<description>
+							<locale>
+								Type of timing.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Starts playing effect and returns the process identifier.
+					</locale>
+					<locale xml:lang="ru">
+						Начинает воспроизведение эффекта и возвращает идентификатор процесса.
+					</locale>
+				</description>
+			</method>
+			<method name="$stop" type="Void">
+				<arguments>
+					<argument name="nEffect" type="String" required="true">
+						<description>
+							<locale>
+								Process identifier got from <link type="method">play</link> method call.
+							</locale>
+							<locale xml:lang="ru">
+								Идентификатор ресурса, возвращенный методом <link type="method">play</link>.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Stops plying effect.
+					</locale>
+					<locale xml:lang="ru">
+						Останавливает воспроизведение эффекта.
+					</locale>
+				</description>
+			</method>
+		</methods>
+		<properties />
+		<attributes />
+		<events>
+			<event name="effectstart" group="CustomEvent" cancelable="false" bubbles="false">
+				<description>
+					<locale>
+						Fires when effect is started.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается когда воспроизведение эффекта начинается.
+					</locale>
+				</description>
+			</event>
+			<event name="effectend" group="CustomEvent" cancelable="false" bubbles="false">
+				<description>
+					<locale>
+						Fires when effect is ended.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается когда воспроизведение эффекта заканчивается.
+					</locale>
+				</description>
+			</event>
+		</events>
+	</members>
+</object>
