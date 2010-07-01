@@ -10,13 +10,13 @@
 // :hover pseudo-class
 function fAMLUI_mouseEnter(oEvent) {
 	var oElement	= oEvent.target;
-	if (oElement.$hoverable)
+	if (oElement.$hoverable && oElement.$isAccessible())
 		fAMLElement_setPseudoClass(oElement, "hover", true);
 };
 
 function fAMLUI_mouseLeave(oEvent) {
 	var oElement	= oEvent.target;
-	if (oElement.$hoverable)
+	if (oElement.$hoverable && oElement.$isAccessible())
 		fAMLElement_setPseudoClass(oElement, "hover", false);
 };
 
