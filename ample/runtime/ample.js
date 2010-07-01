@@ -92,7 +92,7 @@ function fAML_validate(aArguments, aParameters, sFunction) {
 //->Debug
 	var sFunction	= "anonymous";
 	try {
-		sFunction	= cString(fAML_validate.caller).match(/function ([^ ]+)\(/)[1];
+		sFunction	= cString(fAML_validate.caller).match(/function ([^\s]+)\(/)[1];
 	} catch (oError) {}
 //<-Debug
 
