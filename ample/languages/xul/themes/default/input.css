@@ -33,6 +33,7 @@ xul|spinbuttons::input {
 	padding:0;
 	padding-left: 1px;
 	color: inherit;
+	font-size: inherit;
 	outline: none; /* removes browser native outline when focused */
 }
 
