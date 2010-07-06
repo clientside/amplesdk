@@ -856,8 +856,11 @@ function fAML_setStyle(oElementDOM, sName, sValue) {
 			var sFilter	= cString(oElementDOM.currentStyle.filter),
 				bFilter	= sFilter.match(/opacity=([\.0-9]+)/i);
 			if (sValue < 1) {
-				if (!bFilter)
+				if (!bFilter) {
 					oStyle.filter	= sFilter + ' ' + "progid" + ':' + "DXImageTransform.Microsoft.Alpha" + '(' + "opacity" + '=100)';
+					if (!oElementDOM.currentStyle.hasLayout)
+						oElementDOM.style.zoom	= "1";
+				}
 				oElementDOM.filters.item("DXImageTransform.Microsoft.Alpha").opacity	= cMath.round(sValue * 100);
 			}
 			else
