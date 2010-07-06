@@ -142,16 +142,6 @@ cXULElement_colorpicker.prototype.$getTagOpen	= function() {
 				</div>\
 				<div class="xul-colorpicker--gateway">' + this.pane.$getTag() + '</div>\
 			</div>';
-
-	return '<table class="xul-colorpicker' + (this.attributes["disabled"] == "true" ? " xul-colorpicker_disabled" : "") + '" cellpadding="0" cellspacing="0" border="0">\
-				<tbody>\
-					<tr>\
-						<td width="100%"><input class="xul-colorpicker--input" type="text" autocomplete="off" value="' + this.attributes["value"] + '"' + (this.attributes["disabled"] == "true" ? ' disabled="true"' : '') +' maxlength="7" onchange="ample.$instance(this)._onChange(event)" style="border:0px solid white;width:100%;" onselectstart="event.cancelBubble=true;" /></td>\
-						<td valign="top"><div class="xul-colorpicker--button" onmousedown="return false;"/></td>\
-					</tr>\
-					<tr><td class="xul-colorpicker--gateway" colspan="2">' + this.pane.$getTag() + '</td></tr>\
-				</tbody>\
-			</table>';
 };
 
 // Register Element with language
