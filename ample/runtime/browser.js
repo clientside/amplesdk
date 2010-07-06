@@ -757,10 +757,10 @@ function fAML_parseStyleSheet(sCSS, sUri) {
 	if (bTrident && nVersion < 9) {
 		// Rewrite display:inline-block to display:inline (IE8-)
 		if (nVersion < 8)
-			sCSS	= sCSS.replace(/display\s*:\s*inline-block/g, 'display:inline;zoom:1;');
+			sCSS	= sCSS.replace(/display\s*:\s*inline-block/g, 'display:inline;zoom:1');
 		// Rewrite opacity
 		sCSS	= sCSS.replace(/(?:[^-])opacity\s*:\s*([\d.]+)/g, function(sMatch, nOpacity) {
-			return "filter" + ':' + "progid" + ':' + "DXImageTransform.Microsoft.Alpha" + '(' + "opacity" + '=' + nOpacity * 100 + ');' + "opacity" + ':' + nOpacity;
+			return "filter" + ':' + "progid" + ':' + "DXImageTransform.Microsoft.Alpha" + '(' + "opacity" + '=' + nOpacity * 100 + ');zoom:1';
 		});
 	}
 	else
