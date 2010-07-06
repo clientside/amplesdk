@@ -135,6 +135,14 @@ cXULElement_colorpicker.handlers	= {
 
 // Element Render: open
 cXULElement_colorpicker.prototype.$getTagOpen	= function() {
+	return '<div class="xul-colorpicker' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '') + (this.attributes["disabled"] == "true" ? " xul-colorpicker_disabled" : "") + '">\
+				<div class="xul-colorpicker--field">\
+					<div class="xul-colorpicker--button" onmousedown="return false;"><br /></div>\
+					<input class="xul-colorpicker--input" type="text" autocomplete="off" value="' + this.attributes["value"] + '"' + (this.attributes["disabled"] == "true" ? ' disabled="true"' : '') +' maxlength="7" onchange="ample.$instance(this)._onChange(event)" style="border:0px solid white;width:100%;" onselectstart="event.cancelBubble=true;" />\
+				</div>\
+				<div class="xul-colorpicker--gateway">' + this.pane.$getTag() + '</div>\
+			</div>';
+
 	return '<table class="xul-colorpicker' + (this.attributes["disabled"] == "true" ? " xul-colorpicker_disabled" : "") + '" cellpadding="0" cellspacing="0" border="0">\
 				<tbody>\
 					<tr>\

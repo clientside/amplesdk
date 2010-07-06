@@ -5,10 +5,8 @@ xul|menulist,
 xul|datepicker,
 xul|timepicker,
 xul|spinbuttons {
-	box-sizing: content-box;
-	margin: 1px;
-	line-height: 17px;
 	border: 1px solid silver;
+	margin:	1px;
 	background-color: Window;
 	display: inline-block;
 }
@@ -31,8 +29,7 @@ xul|datepicker::input,
 xul|timepicker::input,
 xul|spinbuttons::input {
 	background:	transparent;
-	vertical-align:	top;
-	height:	17px;
+	vertical-align: top;
 	padding:0;
 	padding-left: 1px;
 	color: inherit;
@@ -46,6 +43,8 @@ xul|textbox[multiline=true] {
 xul|colorpicker::button,
 xul|menulist::button,
 xul|datepicker::button {
+	position:absolute;
+	right: 0;
 	width:  15px;
 	height: 15px;
 	margin: 1px;
@@ -108,11 +107,13 @@ xul|spinbuttons::button-up,
 xul|timepicker::button-up,
 xul|spinbuttons::button-down,
 xul|timepicker::button-down {
+	position:absolute;
+	right: 0;
 	height: 8px;
 	width: 16px;
-	line-height:	8px;
 	background-image: url(media/spinbuttons.gif);
 	background-repeat: no-repeat;
+	font-size: 1px;
 }
 
 xul|spinbuttons::button-up,
@@ -137,6 +138,7 @@ xul|timepicker:disabled xul|timepicker::button-up {
 
 xul|spinbuttons::button-down,
 xul|timepicker::button-down {
+	top: 8px;
 	background-position: -16px 0px;
 }
 
@@ -167,7 +169,6 @@ xul|scale {
 	height:	19px;
 	width:	200px;
 	display: inline-block;
-	border: solid 1px transparent;
 }
 
 xul|scale[orient=horizontal] {
@@ -196,7 +197,8 @@ xul|scale:disabled xul|scale[orient=horizontal] xul|scale::button {
 
 /* radio / radiogroup */
 xul|radiogroup {
-	border: solid 1px transparent;
+	display: inline-block;
+	margin: 1px;
 }
 
 xul|radio {
@@ -205,7 +207,7 @@ xul|radio {
 
 /* checkbox */
 xul|checkbox {
-	border: solid 1px transparent;
+	margin: 1px;
 }
 
 xul|radio::input,
@@ -233,6 +235,17 @@ xul|datepicker::gateway {
 	margin-left: -1px;
 }
 
+xul|colorpicker::field,
+xul|timepicker::field,
+xul|datepicker::field,
+xul|menulist::field,
+xul|spinbuttons::field {
+	position:relative;
+	padding-right: 17px;
+	padding-left:1px;
+	height: 17px;
+}
+
 /* states */
 xul|textbox:focus,
 xul|editor:focus,
@@ -249,9 +262,8 @@ xul|spinbuttons:focus {
 xul|checkbox:focus,
 xul|radiogroup:focus,
 xul|scale:focus {
-	border-width: 1px;
-	border-color: #7F9DB9;
-	border-style: dotted;
+	border: dotted 1px #7F9DB9;
+	margin: 0;
 }
 
 xul|textbox:disabled,

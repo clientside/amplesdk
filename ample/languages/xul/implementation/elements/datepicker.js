@@ -130,6 +130,14 @@ cXULElement_datepicker.handlers	= {
 
 // component renderers
 cXULElement_datepicker.prototype.$getTagOpen	= function() {
+	return '<div class="xul-datepicker' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '') + (this.getAttribute('disabled') == "true" ? " xul-datepicker_disabled" : "") + '"' + (this.hasAttribute("style") ? ' style="' + this.getAttribute("style") + '"' : '')+ '>\
+				<div class="xul-datepicker--field">\
+					<div class="xul-datepicker--button" onmousedown="return false;"><br /></div>\
+					<input class="xul-datepicker--input" type="text" maxlength="10" value="' + this.getAttribute("value") + '"' + (this.getAttribute('disabled') == "true" ? ' disabled="true"' : "") +' style="border:0px solid white;width:100%;" />\
+				</div>\
+				<div class="xul-datepicker--gateway">' + this.pane.$getTag() + '</div>\
+			</div>';
+
 	return '<table class="xul-datepicker' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '') + (this.getAttribute('disabled') == "true" ? " xul-datepicker_disabled" : "") + '"' + (this.hasAttribute("style") ? ' style="' + this.getAttribute("style") + '"' : '')+ ' cellpadding="0" cellspacing="0" border="0">\
 				<tbody>\
 					<tr>\
