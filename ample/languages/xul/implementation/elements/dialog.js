@@ -155,24 +155,26 @@ cXULElement_dialog.prototype.$getTagOpen	= function()
 						</tbody>\
 					</table>\
 				</div>\
-				<div class="xul-dialogheader xul-dialog--header" style="display:none"><div class="xul-dialogheader--title xul-dialog--label"></div><div class="xul-dialogheader--description xul-dialog--description"></div></div>\
-				<div class="xul-dialog--body xul-dialog--gateway">';
+				<div class="xul-dialog--body" style="height:100%">\
+					<div class="xul-dialogheader xul-dialog--header" style="display:none"><div class="xul-dialogheader--title xul-dialog--label"></div><div class="xul-dialogheader--description xul-dialog--description"></div></div>\
+					<div class="xul-dialog--gateway" style="height:100%">';
 };
 
 // Element Render: close
 cXULElement_dialog.prototype.$getTagClose	= function()
 {
-	return '	</div>\
-				<div class="xul-dialog--foot">\
-					<table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%" align="' +(this.attributes["buttonalign"] == "start" ? "left" : this.attributes["buttonalign"] == "center" ? "center" : "right")+ '">\
-						<tbody>\
-							<tr>\
-								<td width="100%">' + this.buttons['help'].$getTag() + '</td>\
-								<td>' + this.buttons['accept'].$getTag() + '</td>\
-								<td>' + this.buttons['cancel'].$getTag() + '</td>\
-							</tr>\
-						</tbody>\
-					</table>\
+	return '		</div>\
+					<div class="xul-dialog--footer">\
+						<table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%" align="' +(this.attributes["buttonalign"] == "start" ? "left" : this.attributes["buttonalign"] == "center" ? "center" : "right")+ '">\
+							<tbody>\
+								<tr>\
+									<td width="100%">' + this.buttons['help'].$getTag() + '</td>\
+									<td>' + this.buttons['accept'].$getTag() + '</td>\
+									<td>' + this.buttons['cancel'].$getTag() + '</td>\
+								</tr>\
+							</tbody>\
+						</table>\
+					</div>\
 				</div>\
 			</div>';
 };

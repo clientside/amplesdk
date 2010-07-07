@@ -31,27 +31,25 @@ xul|window::head {
 	background-color:	#0033CC;
 }
 
-xul|dialog::body,
-xul|window::body,
-xul|wizard::body {
+xul|dialog::gateway,
+xul|window::gateway,
+xul|wizard::gateway {
 	overflow:	hidden;
-	height:	100%;
 }
 
-xul|wizard::foot,
-xul|dialog::foot {
-	width: 100%;
+xul|wizard::footer,
+xul|dialog::footer {
 	height: 39px;
 	border-top:	solid 1px gray;
 }
 
-xul|dialog::foot xul|button.accept,
-xul|dialog::foot xul|button.cancel,
-xul|dialog::foot xul|button.help,
-xul|wizard::foot xul|button.back,
-xul|wizard::foot xul|button.next,
-xul|wizard::foot xul|button.finish,
-xul|wizard::foot xul|button.cancel {
+xul|dialog::footer xul|button.accept,
+xul|dialog::footer xul|button.cancel,
+xul|dialog::footer xul|button.help,
+xul|wizard::footer xul|button.back,
+xul|wizard::footer xul|button.next,
+xul|wizard::footer xul|button.finish,
+xul|wizard::footer xul|button.cancel {
     margin-right: 5px;
 	cursor: default !important;
 	width:	5em;
@@ -86,7 +84,6 @@ xul|window::button-close:active {
 
 xul|dialogheader,
 xul|wizardheader {
-	width: 100%;
 	height: 59px;
 	border-bottom:	solid 1px #aca899;
 	background-color: white;

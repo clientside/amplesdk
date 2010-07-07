@@ -254,25 +254,27 @@ cXULElement_wizard.prototype.$getTagOpen    = function() {
 						</tbody>\
 					</table>\
 				</div>\
-				<div class="xul-wizardheader xul-wizard--header"><div class="xul-wizardheader--title xul-wizard--label"></div><div class="xul-wizardheader--description xul-wizard--description"></div></div>\
-				<div class="xul-wizard--body xul-wizard--gateway">';
+				<div class="xul-wizard--body" style="height:100%">\
+					<div class="xul-wizardheader xul-wizard--header"><div class="xul-wizardheader--title xul-wizard--label"></div><div class="xul-wizardheader--description xul-wizard--description"></div></div>\
+					<div class="xul-wizard--gateway" style="height:100%">';
 };
 
 // Element Render: close
 cXULElement_wizard.prototype.$getTagClose  = function() {
-	return '	</div>\
-				<div class="xul-wizard--foot">\
-					<table cellpadding="0" cellspacing="0" border="0" height="100%" align="' +(this.attributes["buttonalign"] == "start" ? "left" : this.attributes["buttonalign"] == "center" ? "center" : "right")+ '">\
-						<tbody>\
-							<tr>\
-								<td>' + this.buttons['back'].$getTag() + '</td>\
-								<td>' + this.buttons['next'].$getTag() + '</td>\
-								<td>' + this.buttons['finish'].$getTag() + '</td>\
-								<td width="8"><br /></td>\
-								<td>' + this.buttons['cancel'].$getTag() + '</td>\
-							</tr>\
-						</tbody>\
-					</table>\
+	return '		</div>\
+					<div class="xul-wizard--footer">\
+						<table cellpadding="0" cellspacing="0" border="0" height="100%" align="' +(this.attributes["buttonalign"] == "start" ? "left" : this.attributes["buttonalign"] == "center" ? "center" : "right")+ '">\
+							<tbody>\
+								<tr>\
+									<td>' + this.buttons['back'].$getTag() + '</td>\
+									<td>' + this.buttons['next'].$getTag() + '</td>\
+									<td>' + this.buttons['finish'].$getTag() + '</td>\
+									<td width="8"><br /></td>\
+									<td>' + this.buttons['cancel'].$getTag() + '</td>\
+								</tr>\
+							</tbody>\
+						</table>\
+					</div>\
 				</div>\
 	    	</div>';
 };
