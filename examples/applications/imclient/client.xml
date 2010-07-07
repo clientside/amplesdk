@@ -221,7 +221,7 @@
 
 	<xul:deck flex="1" id="workspace">
 		<xul:vbox flex="1">
-			<xul:vbox width="120" align="center">
+			<xul:vbox width="200" align="center">
 				<!-- Login -->
 				<xul:spacer height="20" />
 				<xul:label value="Server:" />
@@ -234,10 +234,10 @@
 				</xul:menulist>
 				<xul:spacer height="5" />
 				<xul:label value="Login:" />
-				<xul:textbox id="LoginName" value="user"/>
+				<xul:textbox id="LoginName" value="user" style="width:200px"/>
 				<xul:spacer height="5" />
 				<xul:label value="Password:" />
-				<xul:textbox id="LoginPassword" value="password" type="password"/>
+				<xul:textbox id="LoginPassword" value="password" type="password" style="width:200px"/>
 				<xul:spacer height="5" />
 				<xul:checkbox id="LoginRemember" label="Remember me" checked="true"/>
 				<xul:spacer height="10" />
