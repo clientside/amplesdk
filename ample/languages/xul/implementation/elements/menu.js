@@ -89,8 +89,8 @@ cXULElement_menu.prototype.$getTagOpen	= function() {
         			<td nowrap="nowrap" class="xul-menu--label">' + (this.attributes["label"] || ' ')+ '</td>\
         			<td valign="top" class="xul-menupopup--gateway">';
     else
-        return '	<td nowrap="nowrap" valign="center" class="xul-menu' + (this.attributes["disabled"] == "true" ? " xul-menu_disabled" : "") + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">' +
-        				'<div class="xul-menu--label">' + (this.attributes["label"] || ' ') + '</div>\
+        return '	<td nowrap="nowrap" valign="center" class="xul-menu' + (this.attributes["disabled"] == "true" ? " xul-menu_disabled" : "") + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">\
+        				<div class="xul-menu--label">' + (this.attributes["label"] || ' ') + '</div>\
         				<div class="xul-menu--gateway">';
 };
 
