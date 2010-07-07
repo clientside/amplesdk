@@ -62,6 +62,11 @@ function fAMLDragAndDrop_onMouseDown(oEvent)
 		    nAMLDragAndDrop_dragState	= nAMLDragAndDrop_STATE_CAPTURED;
 			oAMLDragAndDrop_dragSource	= oElement;
 
+		    // Simulate initial mousemove event
+			fSetTimeout(function() {
+				fAMLDragAndDrop_onMouseMove.call(oEvent.currentTarget, oEvent);
+			});
+
 			return;
 		}
 	}

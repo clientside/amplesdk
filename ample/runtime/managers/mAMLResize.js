@@ -72,6 +72,11 @@ function fAMLResize_onMouseDown(oEvent)
 	    nAMLResize_resizeState	= nAMLResize_STATE_CAPTURED;
 
 	    fAMLCapture_setCapture(oAMLResize_resizeNode, true);
+
+	    // Simulate initial mousemove event
+		fSetTimeout(function() {
+			fAMLResize_onMouseMove.call(oEvent.currentTarget, oEvent);
+		});
 	}
 };
 
@@ -296,10 +301,9 @@ function fAMLResize_onMouseUp(oEvent)
 	}
 
     nAMLResize_resizeState	= nAMLResize_STATE_RELEASED;
-	oAMLResize_resizeNode	= null;
-
-	// reset cursor
-	oUADocument.documentElement.style.cursor	= '';
+    // Update position
+    nAMLResize_mouseX	= oEvent.clientX;
+    nAMLResize_mouseY	= oEvent.clientY;
 };
 
 function fAMLResize_onKeyDown(oEvent) {
