@@ -3,7 +3,6 @@ xul|button {
 	margin: 0px;
 	margin-right: 1px;
 	cursor: default;
-	font-size: inherit;
 }
 
 xul|progressmeter {
