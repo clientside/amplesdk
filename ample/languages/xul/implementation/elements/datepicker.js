@@ -16,28 +16,29 @@ var cXULElement_datepicker	= function() {
 cXULElement_datepicker.prototype  = new cXULInputElement;
 
 //
-cXULElement_datepicker.prototype.hidden	= true;
-cXULElement_datepicker.prototype.pane	= true;
+cXULElement_datepicker.prototype.popup	= true;
 
 // Public Methods
 cXULElement_datepicker.prototype.toggle	= function(bState) {
-	if (bState === true || (!arguments.length && this.hidden)) {
+	var bHidden	= this.popup.getAttribute("hidden") == "true";
+	if (bState === true || (!arguments.length && bHidden)) {
 		// Update pane state
-		this.pane.setAttribute("min", this.getAttribute("min"));
-		this.pane.setAttribute("max", this.getAttribute("max"));
-		this.pane.setAttribute("value", this.getAttribute("value"));
+		this.popup.setAttribute("min", this.getAttribute("min"));
+		this.popup.setAttribute("max", this.getAttribute("max"));
+		this.popup.setAttribute("value", this.getAttribute("value"));
 
 		// show pane
-		this.pane.showPopup(this, -1, -1, cXULPopupElement.POPUP_TYPE_POPUP);
+		this.popup.showPopup(this, -1, -1, cXULPopupElement.POPUP_TYPE_POPUP);
 	}
-	else {
-		this.pane.hidePopup();
+	else
+	if (!bHidden) {
+		this.popup.hidePopup();
 	}
 };
 
 // handlers
 cXULElement_datepicker.handlers	= {
-	"mousedown":function(oEvent) {
+	"mousedown":	function(oEvent) {
 		if (!this.$isAccessible())
 			return;
 
@@ -45,7 +46,7 @@ cXULElement_datepicker.handlers	= {
 		if (oEvent.target == this && oEvent.button == 0 && oEvent.$pseudoTarget == this.$getContainer("button"))
 			this.toggle();
 	},
-	"mouseenter":function(oEvent) {
+	"mouseenter":	function(oEvent) {
 		if (!this.$isAccessible())
 			return;
 
@@ -69,7 +70,7 @@ cXULElement_datepicker.handlers	= {
 		this.$getContainer("input").focus();
 	},
 	"blur":		function(oEvent) {
-		if (!this.hidden)
+		if (this.popup.getAttribute("hidden") != "true")
 			this.toggle(false);
 		this.$getContainer("input").blur();
 	},
@@ -77,9 +78,9 @@ cXULElement_datepicker.handlers	= {
 		if (oEvent.target == this) {
 			var that	= this;
 			// create a shared pane and hide it
-			this.pane	= this.$appendChildAnonymous(this.ownerDocument.createElementNS(this.namespaceURI, "xul:datepicker-pane"));
-			this.pane.setAttribute("style", "display:none");
-			this.pane.addEventListener("change", function(oEvent) {
+			this.popup	= this.$appendChildAnonymous(this.ownerDocument.createElementNS(this.namespaceURI, "xul:datepicker-pane"));
+			this.popup.setAttribute("hidden", "true");
+			this.popup.addEventListener("change", function(oEvent) {
 				// hide pane
 				this.hidePopup();
 
@@ -90,20 +91,12 @@ cXULElement_datepicker.handlers	= {
 
 				that.focus();
 			}, false);
-			this.pane.addEventListener("popupshown", function(oEvent) {
-				that.hidden	= false;
-				this.ownerDocument.popupNode	= this;
-			}, false);
-			this.pane.addEventListener("popuphidden", function(oEvent) {
-				that.hidden	= true;
-				this.ownerDocument.popupNode	= null;
-			}, false);
 		}
 	},
 	"DOMNodeRemoved":	function(oEvent) {
 		if (oEvent.target == this) {
-			this.$removeChildAnonymous(this.pane);
-			this.pane	= null;
+			this.$removeChildAnonymous(this.popup);
+			this.popup	= null;
 		}
 	},
 	"DOMAttrModified":	function(oEvent) {
@@ -132,10 +125,10 @@ cXULElement_datepicker.handlers	= {
 cXULElement_datepicker.prototype.$getTagOpen	= function() {
 	return '<div class="xul-datepicker' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '') + (this.getAttribute('disabled') == "true" ? " xul-datepicker_disabled" : "") + '"' + (this.hasAttribute("style") ? ' style="' + this.getAttribute("style") + '"' : '')+ '>\
 				<div class="xul-datepicker--field">\
-					<div class="xul-datepicker--button" onmousedown="return false;"><br /></div>\
+					<div class="xul-datepicker--button"><br /></div>\
 					<input class="xul-datepicker--input" type="text" maxlength="10" value="' + this.getAttribute("value") + '"' + (this.getAttribute('disabled') == "true" ? ' disabled="true"' : "") +' style="border:0px solid white;width:100%;" />\
 				</div>\
-				<div class="xul-datepicker--gateway">' + this.pane.$getTag() + '</div>\
+				<div class="xul-datepicker--gateway">' + this.popup.$getTag() + '</div>\
 			</div>';
 };
 

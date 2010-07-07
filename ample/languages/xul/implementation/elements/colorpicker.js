@@ -11,23 +11,24 @@ var cXULElement_colorpicker	= function(){};
 cXULElement_colorpicker.prototype	= new cXULInputElement;
 
 //
-cXULElement_colorpicker.prototype.pane	= null;
-cXULElement_colorpicker.prototype.hidden	= true;
+cXULElement_colorpicker.prototype.popup	= null;
 
 cXULElement_colorpicker.attributes	= {};
 cXULElement_colorpicker.attributes.value	= "";
 
 // Public Methods
 cXULElement_colorpicker.prototype.toggle	= function(bState) {
-	if (bState === true || (!arguments.length && this.hidden)) {
+	var bHidden	= this.popup.getAttribute("hidden") == "true";
+	if (bState === true || (!arguments.length && bHidden)) {
 		// Update pane state
-		this.pane.setAttribute("value", this.getAttribute("value"));
+		this.popup.setAttribute("value", this.getAttribute("value"));
 
 		// show pane
-		this.pane.showPopup(this, -1, -1, cXULPopupElement.POPUP_TYPE_POPUP);
+		this.popup.showPopup(this, -1, -1, cXULPopupElement.POPUP_TYPE_POPUP);
 	}
-	else {
-		this.pane.hidePopup();
+	else
+	if (!bHidden) {
+		this.popup.hidePopup();
 	}
 };
 
@@ -41,7 +42,7 @@ cXULElement_colorpicker.prototype._onChange	= function(oEvent) {
 
 // Class Events handlers
 cXULElement_colorpicker.handlers	= {
-	"mousedown":function(oEvent) {
+	"mousedown":	function(oEvent) {
 		if (!this.$isAccessible())
 			return;
 
@@ -49,7 +50,7 @@ cXULElement_colorpicker.handlers	= {
 		if (oEvent.target == this && oEvent.button == 0 && oEvent.$pseudoTarget == this.$getContainer("button"))
 			this.toggle();
 	},
-	"mouseenter":function(oEvent) {
+	"mouseenter":	function(oEvent) {
 		if (!this.$isAccessible())
 			return;
 
@@ -73,7 +74,7 @@ cXULElement_colorpicker.handlers	= {
 		this.$getContainer("input").focus();
 	},
 	"blur":		function(oEvent) {
-		if (!cXULElement_colorpicker.hidden)
+		if (this.popup.getAttribute("hidden") != "true")
 			this.toggle(false);
 		this.$getContainer("input").blur();
 	},
@@ -81,9 +82,9 @@ cXULElement_colorpicker.handlers	= {
 		if (oEvent.target == this) {
 			var that	= this;
 			// create a shared pane and hide it
-			this.pane	= this.$appendChildAnonymous(this.ownerDocument.createElementNS(this.namespaceURI, "xul:colorpicker-pane"));
-			this.pane.setAttribute("style", "display:none");
-			this.pane.addEventListener("accept", function(oEvent) {
+			this.popup	= this.$appendChildAnonymous(this.ownerDocument.createElementNS(this.namespaceURI, "xul:colorpicker-pane"));
+			this.popup.setAttribute("hidden", "true");
+			this.popup.addEventListener("accept", function(oEvent) {
 				// hide pane
 				this.hidePopup();
 
@@ -94,24 +95,16 @@ cXULElement_colorpicker.handlers	= {
 
 				that.focus();
 			}, false);
-			this.pane.addEventListener("cancel", function(oEvent) {
+			this.popup.addEventListener("cancel", function(oEvent) {
 				// hide pane
 				this.hidePopup();
-			}, false);
-			this.pane.addEventListener("popupshown", function(oEvent) {
-				that.hidden	= false;
-				this.ownerDocument.popupNode	= this;
-			}, false);
-			this.pane.addEventListener("popuphidden", function(oEvent) {
-				that.hidden	= true;
-				this.ownerDocument.popupNode	= null;
 			}, false);
 		}
 	},
 	"DOMNodeRemoved":	function(oEvent) {
 		if (oEvent.target == this) {
-			this.$removeChildAnonymous(this.pane);
-			this.pane	= null;
+			this.$removeChildAnonymous(this.popup);
+			this.popup	= null;
 		}
 	},
 	"DOMAttrModified":	function(oEvent) {
@@ -137,10 +130,10 @@ cXULElement_colorpicker.handlers	= {
 cXULElement_colorpicker.prototype.$getTagOpen	= function() {
 	return '<div class="xul-colorpicker' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '') + (this.attributes["disabled"] == "true" ? " xul-colorpicker_disabled" : "") + '">\
 				<div class="xul-colorpicker--field">\
-					<div class="xul-colorpicker--button" onmousedown="return false;"><br /></div>\
+					<div class="xul-colorpicker--button"><br /></div>\
 					<input class="xul-colorpicker--input" type="text" autocomplete="off" value="' + this.attributes["value"] + '"' + (this.attributes["disabled"] == "true" ? ' disabled="true"' : '') +' maxlength="7" onchange="ample.$instance(this)._onChange(event)" style="border:0px solid white;width:100%;" onselectstart="event.cancelBubble=true;" />\
 				</div>\
-				<div class="xul-colorpicker--gateway">' + this.pane.$getTag() + '</div>\
+				<div class="xul-colorpicker--gateway">' + this.popup.$getTag() + '</div>\
 			</div>';
 };
 

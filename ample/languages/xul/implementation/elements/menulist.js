@@ -27,9 +27,6 @@ cXULElement_menulist.prototype.selectedIndex	=-1;
 cXULElement_menulist.prototype.selectedText		= null;
 cXULElement_menulist.prototype.selectedItem		= null;	// TODO
 
-// Private Properties
-cXULElement_menulist.hidden	= true;
-
 // Public Methods
 cXULElement_menulist.prototype.$getValue	= function() {
 	return this.$getContainer("input").value;
@@ -78,20 +75,16 @@ cXULElement_menulist.prototype.select	= function() {
 };
 
 cXULElement_menulist.prototype.toggle	= function(bState) {
-	var oPane	= this.menupopup;
-	if (!oPane)
+	if (!this.menupopup)
 		return;
-	if (bState === true || (!arguments.length && cXULElement_menulist.hidden)) {
+	var bHidden	= this.menupopup.getAttribute("hidden") == "true";
+	if (bState === true || (!arguments.length && bHidden)) {
 		// show pane
-		oPane.showPopup(this, -1, -1, cXULPopupElement.POPUP_TYPE_POPUP);
-		oPane.opener		= this;
-		cXULElement_menulist.hidden	= false;
-		this.ownerDocument.popupNode	= oPane;	// ???
+		this.menupopup.showPopup(this, -1, -1, cXULPopupElement.POPUP_TYPE_POPUP);
 	}
-	else {
-		oPane.hidePopup();
-		oPane.opener		= null;
-		cXULElement_menulist.hidden	= true;
+	else
+	if (!bHidden) {
+		this.menupopup.hidePopup();
 	}
 };
 
@@ -123,7 +116,7 @@ cXULElement_menulist.handlers	= {
 	"keydown":	function(oEvent) {
 		switch (oEvent.keyIdentifier) {
 			case "Up":
-				if (cXULElement_menulist.hidden)
+				if (this.menupopup.getAttribute("hidden") == "true")
 					this.toggle(true);
 				else {
 					var nIndex  = this.selectedIndex;
@@ -142,7 +135,7 @@ cXULElement_menulist.handlers	= {
 				break;
 
 			case "Down":
-				if (cXULElement_menulist.hidden)
+				if (this.menupopup.getAttribute("hidden") == "true")
 					this.toggle(true);
 				else
 				{
@@ -166,7 +159,7 @@ cXULElement_menulist.handlers	= {
 				break;
 
 			case "Enter":   // enter
-				if (!cXULElement_menulist.hidden) {
+				if (this.menupopup.getAttribute("hidden") != "true") {
 					if (this.items[this.selectedIndex]) {
 						this.selectedText	= this.items[this.selectedIndex].getAttribute("label");
 						this.setAttribute("value", this.selectedText);
@@ -231,8 +224,9 @@ cXULElement_menulist.handlers	= {
 		this.$getContainer("input").focus();
 	},
 	"blur":		function(oEvent) {
+		if (this.menupopup.getAttribute("hidden") != "true")
+			this.toggle(false);
 		this.$getContainer("input").blur();
-//		this.toggle(false);
 	},
 	"DOMActivate":	function(oEvent) {
 		if (oEvent.target instanceof cXULElement_menuitem) {
@@ -296,7 +290,7 @@ cXULElement_menulist.handlers	= {
 cXULElement_menulist.prototype.$getTagOpen		= function() {
 	return	'<div class="xul-menulist' +(this.attributes["disabled"] == "true" ? " xul-menulist_disabled" : '') + (this.attributes["class"] ? ' ' + this.attributes["class"] : '') + '"' + (this.attributes["style"] ? ' style="' + this.attributes["style"] + '"' : '') +'>\
 				<div class="xul-menulist--field">\
-					<div class="xul-menulist--button" onmouseout="ample.$instance(this).$setPseudoClass(\'active\', false, \'button\');" onmousedown="if (ample.$instance(this).attributes.disabled != \'true\') ample.$instance(this).$setPseudoClass(\'active\', true, \'button\'); return false;" onmouseup="if (ample.$instance(this).attributes.disabled != \'true\') ample.$instance(this).$setPseudoClass(\'active\', false, \'button\');" oncontextmenu="return false;"><br /></div>\
+					<div class="xul-menulist--button" onmouseout="ample.$instance(this).$setPseudoClass(\'active\', false, \'button\');" onmousedown="if (ample.$instance(this).attributes.disabled != \'true\') ample.$instance(this).$setPseudoClass(\'active\', true, \'button\');" onmouseup="if (ample.$instance(this).attributes.disabled != \'true\') ample.$instance(this).$setPseudoClass(\'active\', false, \'button\');" oncontextmenu="return false;"><br /></div>\
 					<input class="xul-menulist--input" type="text" autocomplete="off" style="border:0px solid white;width:100%;" onselectstart="event.cancelBubble=true;" onchange="ample.$instance(this)._onChange(event)" value="' + this.attributes["value"] + '"' + (this.attributes["disabled"] == "true" ? ' disabled="disabled"' : '') + (this.attributes["editable"] != "true" || this.attributes["readonly"] ? ' readonly="true"' : '') + (this.attributes["name"] ? ' name="' + this.attributes["name"] + '"' : '') + '/>\
 				</div>\
 				<div class="xul-menulist--gateway">';
