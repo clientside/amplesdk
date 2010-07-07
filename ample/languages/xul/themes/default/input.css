@@ -171,13 +171,16 @@ xul|scale {
 	display: inline-block;
 }
 
-xul|scale[orient=horizontal] {
+xul|scale[orient=horizontal] xul|scale::bar {
+	margin-left: 3px;
+	margin-right: 3px;
 	background: url(media/scale_bar_horizontal.gif) repeat-x center;
 }
 
 xul|scale[orient=horizontal] xul|scale::button {
 	height:	21px;
 	width:	12px;
+	margin-left: -1px;
 	background-image: url(media/scale_button_down.gif);
 	background-repeat: no-repeat;
 	background-position: 0px 0px;
@@ -191,7 +194,7 @@ xul|scale[orient=horizontal] xul|scale::button:active {
 	background-position: 0px -42px;
 }
 
-xul|scale:disabled xul|scale[orient=horizontal] xul|scale::button {
+xul|scale:disabled xul|scale::button {
 	background-position: 0px -63px;
 }
 

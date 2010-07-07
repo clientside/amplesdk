@@ -190,24 +190,14 @@ cXULElement_scale.getLeft	= function(oInstance, sValue) {
 
 // Element Render: open
 cXULElement_scale.prototype.$getTagOpen	= function() {
-    var sHtml   = '<table cellpadding="0" cellspacing="0" border="0" class="xul-scale' + (this.attributes["disabled"] ? " xul-scale_disabled" : '') + '" ' + (this.attributes["style"] ? ' style="' + this.attributes["style"] + '"': '') + '>';
-    sHtml  += '<tbody>';
-    sHtml  += '<tr>';
-    sHtml  += '<td><div style="width:3px" /></td>';
-    sHtml  += '<td width="100%" class="xul-scale-orient-' +(this.attributes["orient"] == "vertical" ? "vertical" : "horizontal") + '">';
-    sHtml  += '<div class="xul-scale--button" style="position:relative;left:0px;top:0px;" onmouseout="if (!ample.$instance(this).attributes.disabled) ample.$instance(this).$setPseudoClass(\'hover\', false, \'button\')" onmouseover="if (!ample.$instance(this).attributes.disabled) ample.$instance(this).$setPseudoClass(\'hover\', true, \'button\')" onmousedown="if (!ample.$instance(this).attributes.disabled) {return ample.$instance(this)._onButtonMouseDown(event);}"><br /></div>';
-    sHtml  += '</td>';
-    sHtml  += '<td><div style="width:3px"><input type="text" value="' + this.attributes["value"] + '" autocomplete="off"';
-    if (this.attributes["name"])
-        sHtml  += ' name="' + this.attributes["name"] + '"';
-    if (this.attributes["disabled"])
-        sHtml  += ' disabled="' + "disabled" + '"';
-    sHtml  += ' style="display:none;width:1px;height:1px;" class="xul-scale--input"/></div></td>';
-    sHtml  += '</tr>';
-	sHtml  += '</tbody>';
-    sHtml  += '</table>';
-
-    return sHtml;
+	return '<div class="xul-scale' + (this.attributes["disabled"] ? " xul-scale_disabled" : '') + (" xul-scale-orient-" +(this.attributes["orient"] == "vertical" ? "vertical" : "horizontal")) + '"' + (this.attributes["style"] ? ' style="' + this.attributes["style"] + '"': '') + '>\
+				<div class="xul-scale--before" style="float:left"></div>\
+				<div class="xul-scale--after" style="float:right"></div>\
+				<div class="xul-scale--bar">\
+					<div class="xul-scale--button" style="position:relative;font-size:1px;" onmouseout="if (!ample.$instance(this).attributes.disabled) ample.$instance(this).$setPseudoClass(\'hover\', false, \'button\')" onmouseover="if (!ample.$instance(this).attributes.disabled) ample.$instance(this).$setPseudoClass(\'hover\', true, \'button\')" onmousedown="if (!ample.$instance(this).attributes.disabled) {return ample.$instance(this)._onButtonMouseDown(event);}"></div>\
+				</div>\
+				<input type="text" value="' + this.attributes["value"] + '" autocomplete="off" style="display:none;width:1px;height:1px;" class="xul-scale--input"/>\
+			</div>';
 };
 
 // Register Element with language
