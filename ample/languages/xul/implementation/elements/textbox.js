@@ -84,7 +84,8 @@ cXULElement_textbox.prototype.$getTagOpen	= function(oElement) {
 	var bMultiline	= this.attributes["multiline"] == "true";
     return	'<div class="xul-textbox' + (bMultiline ? ' xul-textbox-multiline-true' : '') + (this.attributes["disabled"] == "true" ? " xul-textbox_disabled" : '')+ '" style="'+
 				(this.attributes["height"] ? 'height:' + this.attributes["height"] + ';' : '')+
-				(this.attributes["width"] ? 'width:' + this.attributes["width"] + ';' : '')+ '">\
+				(this.attributes["width"] ? 'width:' + this.attributes["width"] + ';' : '')+
+				(this.attributes["style"] ? this.attributes["style"] : '')+'">\
 				<div class="xul-textbox--placeholder" style="position:absolute;' + (this.getAttribute("value") == '' ? '' : 'display:none')+ '" onmousedown="var o = ample.$instance(this); setTimeout(function(){o.$getContainer(\'input\').focus();o.$getContainer(\'input\').select()}, 0)">' + this.getAttribute("placeholder") + '</div>\
 				<div class="xul-textbox--field">\
 					<' +
