@@ -9,27 +9,33 @@ xul|progressmeter {
 	height:	17px;
 }
 
-xul|progressmeter * {
-	line-height: 1px;
-}
-
-xul|progressmeter::units {
-	height:	11px;
+xul|progressmeter::value {
+	height:	10px;
+	top: 4px;
 	background:	#3C3 url(media/progressmeter_unit.gif) repeat-x;
 }
 
-xul|progressmeter-bar-middle {
+xul|progressmeter::bar {
+	margin-left: 4px;
+	margin-right: 4px;
+	height: 17px;
 	background:	url(media/progressmeter_bar.gif) repeat-x;
 }
 
-xul|progressmeter-bar-left {
+xul|progressmeter::before,
+xul|progressmeter::after {
 	width:	4px;
-	background:	url(media/progressmeter_corner.gif) no-repeat 0px 0px;
+	height: 17px;
+	background-image: url(media/progressmeter_corner.gif);
+	background-repeat: no-repeat;
 }
 
-xul|progressmeter-bar-right {
-	width:	4px;
-	background:	url(media/progressmeter_corner.gif) no-repeat -4px 0px;
+xul|progressmeter::before {
+	background-position: 0px 0px;
+}
+
+xul|progressmeter::after {
+	background-position: -4px 0px;
 }
 
 /* div */
