@@ -37,8 +37,6 @@ cXULElement_datepicker_pane.prototype.value	= null;
 cXULElement_datepicker_pane.prototype.min	= null;
 cXULElement_datepicker_pane.prototype.max	= null;
 
-cXULElement_datepicker_pane.prototype.opener	= null;
-
 // Public methods
 cXULElement_datepicker_pane.prototype.show	= function(nLeft, nTop) {
 	var oEvent	= this.ownerDocument.createEvent("CustomEvent");
