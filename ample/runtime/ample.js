@@ -496,14 +496,14 @@ function fAML_processScripts() {
 			if (oAttribute.nodeName.match(/^xmlns($|:)/))
 				oNamespaces[oAttribute.nodeName]	= oAttribute.nodeValue;
 
-	function fAML_hashToString(oHash) {
+	function fAML_hashToString(hHash) {
 		var aAttributes	= [], sAttribute;
 		for (sAttribute in oNamespaces)
-			if (oNamespaces.hasOwnProperty(sAttribute) && !(sAttribute in oHash))
-				oHash[sAttribute]	= oNamespaces[sAttribute];
-		for (sAttribute in oHash)
-			if (oHash.hasOwnProperty(sAttribute))
-				aAttributes.push(' ' + sAttribute + '="' + oHash[sAttribute] + '"');
+			if (oNamespaces.hasOwnProperty(sAttribute) && !(sAttribute in hHash))
+				hHash[sAttribute]	= oNamespaces[sAttribute];
+		for (sAttribute in hHash)
+			if (hHash.hasOwnProperty(sAttribute))
+				aAttributes.push(' ' + sAttribute + '="' + hHash[sAttribute] + '"');
 		return aAttributes.join('');
 	};
 
