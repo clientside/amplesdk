@@ -409,26 +409,6 @@ cXULElement_editor.initializeDocument	= function(oInstance) {
 		oDOMDocument.attachEvent("onkeydown", fOnKeyDown);
 		oDOMDocument.attachEvent("onmousedown", fOnMouseDown);
 	}
-	// In Firefox 3.6, CTRL+B|I|U invoke browser shortcuts, so we need to redefine behaviour for content editable area
-	if (window.controllers)
-		oDOMDocument.addEventListener("keydown", function(oEvent) {
-			if (oEvent.ctrlKey) {
-				switch (oEvent.keyCode) {
-					case 66:	// b
-						this.execCommand('bold', false, null);
-						oEvent.preventDefault();
-						break;
-					case 73:	// i
-						this.execCommand('italic', false, null);
-						oEvent.preventDefault();
-						break;
-					case 85:	// u
-						this.execCommand('underline', false, null);
-						oEvent.preventDefault();
-						break;
-				}
-			}
-		}, false);
 };
 
 cXULElement_editor.finalizeDocument	= function(oInstance) {
