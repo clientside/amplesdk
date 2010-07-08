@@ -328,14 +328,14 @@
 
 		<echo message="Merging into: ${temp.languages.dir}/xhtml-raw.js" level="info"/>
 		<concat destfile="${temp.languages.dir}/xhtml-raw.js" fixlastline="yes">
-			<fileset file="${source.xhtml.dir}/implementation/xhtml.js" />
-			<fileset dir="${source.xhtml.dir}/implementation/classes/">
+			<fileset file="${source.xhtml.dir}/xhtml.js" />
+			<fileset dir="${source.xhtml.dir}/classes/">
 				<include name="*.js" />
 			</fileset>
-			<fileset dir="${source.xhtml.dir}/implementation/managers/">
+			<fileset dir="${source.xhtml.dir}/managers/">
 				<include name="*.js" />
 			</fileset>
-			<fileset dir="${source.xhtml.dir}/implementation/elements/">
+			<fileset dir="${source.xhtml.dir}/elements/">
 				<include name="*.js" />
 			</fileset>
 		</concat>
@@ -362,11 +362,11 @@
 
 		<echo message="Merging into: ${temp.languages.dir}/html5-raw.js" level="info"/>
 		<concat destfile="${temp.languages.dir}/html5-raw.js" fixlastline="yes">
-			<fileset file="${source.html5.dir}/implementation/html5.js" />
-			<fileset dir="${source.html5.dir}/implementation/classes/">
+			<fileset file="${source.html5.dir}/html5.js" />
+			<fileset dir="${source.html5.dir}/classes/">
 				<include name="*.js" />
 			</fileset>
-			<fileset dir="${source.html5.dir}/implementation/elements/">
+			<fileset dir="${source.html5.dir}/elements/">
 				<include name="*.js" />
 			</fileset>
 		</concat>
@@ -393,14 +393,14 @@
 
 		<echo message="Merging into: ${temp.languages.dir}/aml-raw.js" level="info"/>
 		<concat destfile="${temp.languages.dir}/aml-raw.js" fixlastline="yes">
-			<fileset file="${source.aml.dir}/implementation/aml.js" />
-			<fileset dir="${source.aml.dir}/implementation/classes/">
+			<fileset file="${source.aml.dir}/aml.js" />
+			<fileset dir="${source.aml.dir}/classes/">
 				<include name="*.js" />
 			</fileset>
-			<fileset dir="${source.aml.dir}/implementation/attributes/">
+			<fileset dir="${source.aml.dir}/attributes/">
 				<include name="*.js" />
 			</fileset>
-			<fileset dir="${source.aml.dir}/implementation/elements/">
+			<fileset dir="${source.aml.dir}/elements/">
 				<include name="*.js" />
 			</fileset>
 		</concat>
@@ -440,14 +440,14 @@
 
 		<echo message="Merging into: ${temp.languages.dir}/xul-raw.js" level="info"/>
 		<concat destfile="${temp.languages.dir}/xul-raw.js" fixlastline="yes">
-			<fileset file="${source.xul.dir}/implementation/xul.js" />
-			<fileset dir="${source.xul.dir}/implementation/classes/">
+			<fileset file="${source.xul.dir}/xul.js" />
+			<fileset dir="${source.xul.dir}/classes/">
 				<include name="*.js" />
 			</fileset>
-			<fileset dir="${source.xul.dir}/implementation/managers/">
+			<fileset dir="${source.xul.dir}/managers/">
 				<include name="*.js" />
 			</fileset>
-			<fileset dir="${source.xul.dir}/implementation/elements/">
+			<fileset dir="${source.xul.dir}/elements/">
 				<include name="*.js" />
 			</fileset>
 		</concat>
@@ -498,11 +498,11 @@
 
 		<echo message="Merging into: ${temp.languages.dir}/mobile-raw.js" level="info"/>
 		<concat destfile="${temp.languages.dir}/mobile-raw.js" fixlastline="yes">
-			<fileset file="${source.mobile.dir}/implementation/mobile.js" />
-			<fileset dir="${source.mobile.dir}/implementation/classes/">
+			<fileset file="${source.mobile.dir}/mobile.js" />
+			<fileset dir="${source.mobile.dir}/classes/">
 				<include name="*.js" />
 			</fileset>
-			<fileset dir="${source.mobile.dir}/implementation/elements/">
+			<fileset dir="${source.mobile.dir}/elements/">
 				<include name="*.js" />
 			</fileset>
 		</concat>
@@ -542,11 +542,11 @@
 
 		<echo message="Merging into: ${temp.languages.dir}/svg-raw.js" level="info"/>
 		<concat destfile="${temp.languages.dir}/svg-raw.js" fixlastline="yes">
-			<fileset file="${source.svg.dir}/implementation/svg.js" />
-			<fileset dir="${source.svg.dir}/implementation/classes/">
+			<fileset file="${source.svg.dir}/svg.js" />
+			<fileset dir="${source.svg.dir}/classes/">
 				<include name="*.js" />
 			</fileset>
-			<fileset dir="${source.svg.dir}/implementation/elements/">
+			<fileset dir="${source.svg.dir}/elements/">
 				<include name="*.js" />
 			</fileset>
 		</concat>
@@ -573,11 +573,11 @@
 
 		<echo message="Merging into: ${temp.languages.dir}/chart-raw.js" level="info"/>
 		<concat destfile="${temp.languages.dir}/chart-raw.js" fixlastline="yes">
-			<fileset file="${source.chart.dir}/implementation/chart.js" />
-			<fileset dir="${source.chart.dir}/implementation/classes/">
+			<fileset file="${source.chart.dir}/chart.js" />
+			<fileset dir="${source.chart.dir}/classes/">
 				<include name="*.js" />
 			</fileset>
-			<fileset dir="${source.chart.dir}/implementation/elements/">
+			<fileset dir="${source.chart.dir}/elements/">
 				<include name="*.js" />
 			</fileset>
 		</concat>
