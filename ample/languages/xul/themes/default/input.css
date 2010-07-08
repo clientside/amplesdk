@@ -13,8 +13,20 @@ xul|spinbuttons {
 
 xul|textbox,
 xul|editor {
-	width:	180px;
 	outline: none; /* removes browser native outline when focused */
+}
+
+xul|editor {
+	height:	200px;
+	width:	600px;
+}
+
+xul|textbox {
+	width:	180px;
+}
+
+xul|textbox[multiline=true] {
+	height:	60px;
 }
 
 xul|textbox::placeholder {
@@ -34,10 +46,6 @@ xul|spinbuttons::input {
 	padding-left: 1px;
 	color: inherit;
 	outline: none; /* removes browser native outline when focused */
-}
-
-xul|textbox[multiline=true] {
-	height:	60px;
 }
 
 xul|colorpicker::button,
