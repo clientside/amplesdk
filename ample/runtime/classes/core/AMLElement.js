@@ -751,34 +751,36 @@ cAMLElement.prototype.$getContainer	= function(sName)
 function fAMLElement_getBoundingClientRect(oElement, sPseudo)
 {
     var oElementDOM	= oElement.$getContainer(sPseudo),
-		oClientRect	= oElementDOM.getBoundingClientRect ? oElementDOM.getBoundingClientRect() : null,
 		oRectangle	= {},
 		oNode,
 		nLeft	= 0,
 		nTop	= 0,
-		nRight,
-		nBottom;
+		nRight	= 0,
+		nBottom	= 0;
 
-	// if 'getBoundingClientRect' is supported in the given browser
-	if (oClientRect) {
-		nLeft	= oClientRect.left;
-		nTop	= oClientRect.top;
-		nRight	= oClientRect.right;
-		nBottom	= oClientRect.bottom;
-	}
-	else {
-		// Calculate offsets
-		for (oNode = oElementDOM; oNode; oNode = oNode.offsetParent) {
-			nLeft	+= oNode.offsetLeft;
-			nTop	+= oNode.offsetTop;
+	if (oElementDOM) {
+		// if 'getBoundingClientRect' is supported in the given browser
+		if (oElementDOM.getBoundingClientRect) {
+			var oClientRect	= oElementDOM.getBoundingClientRect();
+			nLeft	= oClientRect.left;
+			nTop	= oClientRect.top;
+			nRight	= oClientRect.right;
+			nBottom	= oClientRect.bottom;
 		}
-	    for (oNode = oElementDOM; oNode.nodeType == 1; oNode = oNode.parentNode) {
-	    	nLeft	-= oNode.scrollLeft;
-	    	nTop	-= oNode.scrollTop;
+		else {
+			// Calculate offsets
+			for (oNode = oElementDOM; oNode; oNode = oNode.offsetParent) {
+				nLeft	+= oNode.offsetLeft;
+				nTop	+= oNode.offsetTop;
+			}
+		    for (oNode = oElementDOM; oNode.nodeType == 1; oNode = oNode.parentNode) {
+		    	nLeft	-= oNode.scrollLeft;
+		    	nTop	-= oNode.scrollTop;
+			}
+		    //
+			nRight	= nLeft + oElementDOM.offsetWidth;
+			nBottom	= nTop + oElementDOM.offsetHeight;
 		}
-	    //
-		nRight	= nLeft + oElementDOM.offsetWidth;
-		nBottom	= nTop + oElementDOM.offsetHeight;
 	}
 	oRectangle.left		= nLeft;
 	oRectangle.top		= nTop;
