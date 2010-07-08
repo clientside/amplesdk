@@ -35,6 +35,19 @@
 
 		echo "Obfuscating contents\n";
 
+		$oCompiler->addOmmitArray(array(
+			"http://www.amplesdk.com/ns/aml",
+			"http://www.w3.org/1999/XSL/Transform",
+			"http://www.w3.org/1999/xhtml",
+			"http://www.w3.org/2000/svg",
+			"http://www.w3.org/2000/xmlns/",
+			"http://www.w3.org/2001/XInclude",
+			"http://www.w3.org/2001/XMLSchema",
+			"http://www.w3.org/2001/xml-events",
+			"http://www.w3.org/2008/SMIL30/",
+			"http://www.w3.org/XML/1998/namespace"
+		));
+
 		//
 		$oCompiler->stripComments();
 		$oCompiler->stripSpaces();
