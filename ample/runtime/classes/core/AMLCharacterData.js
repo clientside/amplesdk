@@ -19,7 +19,7 @@ function fAMLCharacterData_appendData(oNode, sData)
 {
 	var sValueOld	= oNode.data;
 	oNode.data		+= sData;
-	oNode.length		= oNode.data.length;
+	oNode.length	= oNode.data.length;
 	oNode.nodeValue	= oNode.data;
 
 	// Fire Mutation event
@@ -45,7 +45,7 @@ function fAMLCharacterData_deleteData(oNode, nOffset, nLength)
 {
 	var sValueOld	= oNode.data;
 	oNode.data		= oNode.data.substring(0, nOffset) + oNode.data.substring(nOffset, nOffset + nLength);
-	oNode.length		= oNode.data.length;
+	oNode.length	= oNode.data.length;
 	oNode.nodeValue	= oNode.data;
 
 	// Fire Mutation event
@@ -150,5 +150,7 @@ cAMLCharacterData.prototype.substringData	= function(nOffset, nLength)
 
 cAMLCharacterData.prototype.$getContainer	= function()
 {
-	return this.parentNode && this.parentNode.$getContainer() ? this.parentNode.$getContainer().childNodes[this.parentNode.childNodes.$indexOf(this)] : null;
+	var oParent	= this.parentNode,
+		oGateway;
+	return oParent &&(oGateway =(oParent.$getContainer("gateway") || oParent.$getContainer())) ? oGateway.childNodes[oParent.childNodes.$indexOf(this)] : null;
 };
