@@ -33,6 +33,10 @@ cXULElement_editor.handlers	= {
 			// Dispatch change event
 			cXULInputElement.dispatchChange(this);
 		}
+		if (window.controllers)
+			document.body.focus();
+		else
+			window.focus();
 		//
 		cXULElement_editor.resetButtons(this);
 	},
@@ -352,18 +356,57 @@ cXULElement_editor.initializeDocument	= function(oInstance) {
 			oInstance.dispatchEvent(oMouseEvent);
 		}
 	};
+	function fOnKeyUp(oEvent) {
+		if (oEvent.keyCode == 9 && oInstance.ownerDocument.activeElement == oInstance)
+			fUpdateState(oEvent);
+	};
+	function fOnKeyDown(oEvent) {
+		// Re-dispatch event to the element
+		if (oInstance.$isAccessible() && oEvent.keyCode == 9) {
+			var oKeydownEvent	= oInstance.ownerDocument.createEvent("KeyboardEvent");
+			oKeydownEvent.initKeyboardEvent("keydown", true, true, window, "Tab", null, (oEvent.ctrlKey ? "Control" : "") + (oEvent.shiftKey ? "Shift" : "") + (oEvent.altKey ? "Alt" : ""));
+			oKeydownEvent.$pseudoTarget	= oInstance.$getContainer("frame");
+			oInstance.dispatchEvent(oKeydownEvent);
+			if (!window.controllers) {
+				if (oEvent.preventDefault)
+					oEvent.preventDefault();
+				else
+					oEvent.returnValue	= false;
+			}
+		}
+		// In Firefox 3.6, CTRL+B|I|U invoke browser shortcuts, so we need to redefine behaviour for content editable area
+		if (window.controllers)
+			if (oEvent.ctrlKey) {
+				switch (oEvent.keyCode) {
+					case 66:	// b
+						this.execCommand('bold', false, null);
+						oEvent.preventDefault();
+						break;
+					case 73:	// i
+						this.execCommand('italic', false, null);
+						oEvent.preventDefault();
+						break;
+					case 85:	// u
+						this.execCommand('underline', false, null);
+						oEvent.preventDefault();
+						break;
+				}
+			}
+	};
 	var fUpdateState = function(oEvent) {
 		if (oInstance.$isAccessible())
 			cXULElement_editor.updateButtons(oInstance);
 	};
 	if (oDOMDocument.addEventListener) {
 		oDOMDocument.addEventListener("mouseup", fUpdateState, true);
-		oDOMDocument.addEventListener("keyup", fUpdateState, true);
+		oDOMDocument.addEventListener("keyup", fOnKeyUp, true);
+		oDOMDocument.addEventListener("keydown", fOnKeyDown, false);
 		oDOMDocument.addEventListener("mousedown", fOnMouseDown, true);
 	}
 	else {
 		oDOMDocument.attachEvent("onmouseup", fUpdateState);
-		oDOMDocument.attachEvent("onkeyup", fUpdateState);
+		oDOMDocument.attachEvent("onkeyup", fOnKeyUp);
+		oDOMDocument.attachEvent("onkeydown", fOnKeyDown);
 		oDOMDocument.attachEvent("onmousedown", fOnMouseDown);
 	}
 	// In Firefox 3.6, CTRL+B|I|U invoke browser shortcuts, so we need to redefine behaviour for content editable area
@@ -392,12 +435,14 @@ cXULElement_editor.finalizeDocument	= function(oInstance) {
 	var oDOMDocument	= oInstance.$getContainer("frame").contentWindow.document;
 /*	if (oDOMDocument.removeEventListener) {
 		oDOMDocument.removeEventListener("mouseup", fUpdateState, true);
-		oDOMDocument.removeEventListener("keyup", fUpdateState, true);
+		oDOMDocument.removeEventListener("keyup", fOnKeyUp, true);
+		oDOMDocument.removeEventListener("keydown", fOnKeyDown, true);
 		oDOMDocument.removeEventListener("mousedown", fOnMouseDown, true);
 	}
 	else {
 		oDOMDocument.detachEvent("onmouseup", fUpdateState);
-		oDOMDocument.detachEvent("onkeyup", fUpdateState);
+		oDOMDocument.detachEvent("onkeyup", fOnKeyUp);
+		oDOMDocument.detachEvent("onkeydown", fOnKeyDownState);
 		oDOMDocument.detachEvent("onmousedown", fOnMouseDown);
 	}*/
 };
@@ -499,7 +544,7 @@ cXULElement_editor.resetButtons	= function(oInstance) {
 // presentation
 cXULElement_editor.prototype.$getTagOpen	= function() {
 	return '<div class="xul-editor' + (this.getAttribute("disabled") == "true" ? ' xul-editor_disabled' : '') + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '"' + (this.hasAttribute("style") ? ' style="' + this.getAttribute("style") + '"' : '')+ '>\
-				<div class="xul-editor--toolbar" style="position:relative" onmousedown="return false">\
+				<div class="xul-editor--toolbar" style="position:relative" xonmousedown="return false">\
 					<div>'+
 						(function(){
 							var aHtml	= [];
