@@ -74,6 +74,9 @@ cXULElement_editor.handlers	= {
 			});
 		});
 	},
+	"DOMNodeRemovedFromDocument":	function() {
+		cXULElement_editor.finalizeDocument(this);
+	},
 	"DOMNodeInserted":	function(oEvent) {
 		// Insert lists
 		if (oEvent.target == this) {
@@ -245,9 +248,6 @@ cXULElement_editor.handlers	= {
 			this.$removeChildAnonymous(this._elementFormat);
 			this._elementFormat		= null;
 		}
-	},
-	"DOMNodeRemovedFromDocument":	function() {
-		cXULElement_editor.finalizeDocument(this);
 	}
 };
 
@@ -498,7 +498,7 @@ cXULElement_editor.resetButtons	= function(oInstance) {
 
 // presentation
 cXULElement_editor.prototype.$getTagOpen	= function() {
-	return '<div class="xul-editor' + (this.getAttribute("disabled") == "true" ? ' xul-editor_disabled' : '') + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '"' + (this.hasAttribute("style") ? ' style="' + this.getAttribute("style") + '"' : '')+ '><div style="display:none"></div>\
+	return '<div class="xul-editor' + (this.getAttribute("disabled") == "true" ? ' xul-editor_disabled' : '') + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '"' + (this.hasAttribute("style") ? ' style="' + this.getAttribute("style") + '"' : '')+ '>\
 				<div class="xul-editor--toolbar" style="position:relative" onmousedown="return false">\
 					<div>'+
 						(function(){
@@ -541,12 +541,13 @@ cXULElement_editor.prototype.$getTagOpen	= function() {
 					</div>\
 				</div>\
 				<div class="xul-editor--input" style="position:relative;height:100%;">\
-					<iframe class="xul-editor--frame" src="about:blank" frameborder="0" allowtransparency="true" style="width:100%;height:100%">';
+					<iframe class="xul-editor--frame" src="about:blank" frameborder="0" allowtransparency="true" style="width:100%;height:100%"></iframe>\
+				</div>\
+				<div class="xul-editor--gateway" style="display:none">';
 };
 
 cXULElement_editor.prototype.$getTagClose	= function() {
-	return '		</iframe>\
-				</div>\
+	return 		'</div>\
 			</div>';
 };
 
