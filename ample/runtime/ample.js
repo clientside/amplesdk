@@ -278,8 +278,14 @@ function fAML_register(oElement) {
 //		oAML_shadow[oElement.uniqueID]	= {};
 
 		// Register "identified" Instance
-		if (oElement.attributes.id)
-			oAML_ids[oElement.attributes.id]	= oElement;
+		var sId	= oElement.attributes.id;
+		if (sId) {
+//->Debug
+			if (oAML_ids[sId])
+				fAML_warn(nAML_NOT_UNIQUE_ID_WRN, [sId]);
+//<-Debug
+			oAML_ids[sId]	= oElement;
+		}
 
 		// Set style property
 		if (oAMLConfiguration_values["ample-use-style-property"]) {
