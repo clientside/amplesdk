@@ -773,12 +773,13 @@ function fAML_changeReadyState(sValue) {
 oAMLConfiguration_values["error-handler"]	= null;
 oAMLConfiguration_values["element-content-whitespace"]	= false;	// in DOM-Core spec the default value is true
 oAMLConfiguration_values["entities"]	= false;	// in DOM-Core spec the default value is true
-oAMLConfiguration_values["comments"]	= false; // in DOM-Core spec the default value is true
+oAMLConfiguration_values["comments"]	= false; 	// in DOM-Core spec the default value is true
 // set ample parameters
 oAMLConfiguration_values["ample-use-style-property"]= true;		// -> ample-core-style
-oAMLConfiguration_values["ample-module-history-fix"]=  false;	// -> ample-history
-oAMLConfiguration_values["ample-version"]	= '@project.version@';
-oAMLConfiguration_values["ample-user-agent"]= '@project.userAgent@';
+oAMLConfiguration_values["ample-module-history-fix"]= false;	// -> ample-history
+oAMLConfiguration_values["ample-version"]		= '@project.version@';
+oAMLConfiguration_values["ample-user-locale"]	= oUANavigator.language || oUANavigator.userLanguage || 'en';
+oAMLConfiguration_values["ample-user-agent"]	= '@project.userAgent@';
 
 var oAML_implementation	= new cAMLImplementation,
 	oAML_configuration	= new cAMLConfiguration,
