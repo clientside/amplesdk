@@ -1,36 +1,36 @@
 <?
     $aFiles		= array();
-    $aFiles[]		= "implementation/mobile.js";
-    $aFiles[]		= "implementation/classes/cMobileElement.js";
+    $aFiles[]		= "mobile.js";
+    $aFiles[]		= "classes/cMobileElement.js";
 
 	// data
-	$aFiles[]		= "implementation/elements/data/image.js";
-	$aFiles[]		= "implementation/elements/data/scroll.js";
-	$aFiles[]		= "implementation/elements/data/tablecell.js";
-	$aFiles[]		= "implementation/elements/data/text.js";
-	$aFiles[]		= "implementation/elements/data/web.js";
+	$aFiles[]		= "elements/data/image.js";
+	$aFiles[]		= "elements/data/scroll.js";
+	$aFiles[]		= "elements/data/tablecell.js";
+	$aFiles[]		= "elements/data/text.js";
+	$aFiles[]		= "elements/data/web.js";
 
 	// input
-	$aFiles[]		= "implementation/elements/input/activity.js";
-	$aFiles[]		= "implementation/elements/input/page.js";
-	$aFiles[]		= "implementation/elements/input/progress.js";
-	$aFiles[]		= "implementation/elements/input/roundrect.js";
-	$aFiles[]		= "implementation/elements/input/segmented.js";
-	$aFiles[]		= "implementation/elements/input/slider.js";
-	$aFiles[]		= "implementation/elements/input/switch.js";
-	$aFiles[]		= "implementation/elements/input/textfield.js";
+	$aFiles[]		= "elements/input/activity.js";
+	$aFiles[]		= "elements/input/page.js";
+	$aFiles[]		= "elements/input/progress.js";
+	$aFiles[]		= "elements/input/roundrect.js";
+	$aFiles[]		= "elements/input/segmented.js";
+	$aFiles[]		= "elements/input/slider.js";
+	$aFiles[]		= "elements/input/switch.js";
+	$aFiles[]		= "elements/input/textfield.js";
 
 	// windows
-	$aFiles[]		= "implementation/elements/windows/barbutton.js";
-	$aFiles[]		= "implementation/elements/windows/fixedspace.js";
-	$aFiles[]		= "implementation/elements/windows/flexiblespace.js";
-	$aFiles[]		= "implementation/elements/windows/navigationbar.js";
-	$aFiles[]		= "implementation/elements/windows/navigationitem.js";
-	$aFiles[]		= "implementation/elements/windows/search.js";
-	$aFiles[]		= "implementation/elements/windows/tabbar.js";
-	$aFiles[]		= "implementation/elements/windows/tabbaritem.js";
-	$aFiles[]		= "implementation/elements/windows/toolbar.js";
-	$aFiles[]		= "implementation/elements/windows/view.js";
+	$aFiles[]		= "elements/windows/barbutton.js";
+	$aFiles[]		= "elements/windows/fixedspace.js";
+	$aFiles[]		= "elements/windows/flexiblespace.js";
+	$aFiles[]		= "elements/windows/navigationbar.js";
+	$aFiles[]		= "elements/windows/navigationitem.js";
+	$aFiles[]		= "elements/windows/search.js";
+	$aFiles[]		= "elements/windows/tabbar.js";
+	$aFiles[]		= "elements/windows/tabbaritem.js";
+	$aFiles[]		= "elements/windows/toolbar.js";
+	$aFiles[]		= "elements/windows/view.js";
 
     $sOutput	= "";
     for ($nIndex = 0; $nIndex < count($aFiles); $nIndex++)
