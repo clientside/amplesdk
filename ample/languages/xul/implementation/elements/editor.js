@@ -498,7 +498,7 @@ cXULElement_editor.resetButtons	= function(oInstance) {
 
 // presentation
 cXULElement_editor.prototype.$getTagOpen	= function() {
-	return '<div class="xul-editor' + (this.getAttribute("disabled") == "true" ? ' xul-editor_disabled' : '') + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '"><div style="display:none"></div>\
+	return '<div class="xul-editor' + (this.getAttribute("disabled") == "true" ? ' xul-editor_disabled' : '') + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '"' + (this.hasAttribute("style") ? ' style="' + this.getAttribute("style") + '"' : '')+ '><div style="display:none"></div>\
 				<div class="xul-editor--toolbar" style="position:relative" onmousedown="return false">\
 					<div>'+
 						(function(){
