@@ -15,6 +15,10 @@
     $aFiles[]	= "managers/oXULPopupManager.js";
     $aFiles[]	= "managers/oXULReflowManager.js";
     $aFiles[]	= "managers/oXULWindowManager.js";
+    $aFiles[]	= "managers/oXULLocaleManager.js";
+
+	// locales
+	$aFiles[]	= "locale/en-us.js";
 
     // elements
     // windowing

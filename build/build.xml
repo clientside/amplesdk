@@ -447,6 +447,9 @@
 			<fileset dir="${source.xul.dir}/managers/">
 				<include name="*.js" />
 			</fileset>
+			<fileset dir="${source.xul.dir}/locale/">
+				<include name="*.js" />
+			</fileset>
 			<fileset dir="${source.xul.dir}/elements/">
 				<include name="*.js" />
 			</fileset>
