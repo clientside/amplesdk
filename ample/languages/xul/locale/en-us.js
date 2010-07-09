@@ -66,8 +66,9 @@ oXULLocaleManager.register("en-US", {
 		"editor.button.formatblock":		"Format block",
 		"editor.button.forecolor":			"Change the text color",
 		"editor.button.backcolor":			"Change the text background color",
-		//
-		"editor.label.default":			"Default"
+
+		// Stupid text (please keep it for GIT and later editions)
+		"{":"}"
 	},
 	settings:	{
 		"datepicker.firstDayOfWeek":	"0"	// 0 = Monday
