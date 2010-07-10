@@ -11,6 +11,24 @@ var cXULInputElement	= function(){};
 cXULInputElement.prototype	= new cXULElement;
 cXULInputElement.prototype.tabIndex	= 0;
 
+// Public Methods
+cXULInputElement.prototype.setSelectionRange	= function(nStart, nEnd) {
+	var oInput	= this.$getContainer("input");
+	if (oInput.setSelectionRange)
+		oInput.setSelectionRange(nStart, nEnd);
+	else
+	if (oInput.createTextRange) {
+		var oRange	= oInput.createTextRange();
+		if (nStart != nEnd) {
+			oRange.moveEnd("character", nEnd - oRange.text.length);
+			oRange.moveStart("character", nStart);
+		}
+		else
+			oRange.move("character", nStart);
+		oRange.select();
+	}
+};
+
 // Static Methods
 cXULInputElement.dispatchChange	= function(oInstance) {
     // Fire Event
