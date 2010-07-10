@@ -12,8 +12,23 @@ cXULInputElement.prototype	= new cXULElement;
 cXULInputElement.prototype.tabIndex	= 0;
 
 // Public Methods
-cXULInputElement.prototype.setSelectionRange	= function(nStart, nEnd) {
-	var oInput	= this.$getContainer("input");
+cXULInputElement.getSelectionRange	= function(oInstance) {
+	var oInput	= oInstance.$getContainer("input");
+	if (oInput.setSelectionRange)
+		return [oInput.selectionStart, oInput.selectionEnd];
+	else
+	if (oInput.createTextRange) {
+		var oDocumentRange	= document.selection.createRange(),
+			oRange	= oInput.createTextRange().duplicate();
+		oRange.setEndPoint("EndToEnd", oDocumentRange);
+		return [oRange.text.length - oDocumentRange.text.length, oRange.text.length];
+	}
+	else
+		return [0, 0];
+};
+
+cXULInputElement.setSelectionRange	= function(oInstance, nStart, nEnd) {
+	var oInput	= oInstance.$getContainer("input");
 	if (oInput.setSelectionRange)
 		oInput.setSelectionRange(nStart, nEnd);
 	else
