@@ -97,6 +97,10 @@ fAMLExporter_export(cAMLResizeEvent,	"AMLResizeEvent");
 fAMLExporter_export(cAMLHashChangeEvent,"AMLHashChangeEvent");
 // Selectors
 fAMLExporter_export(cAMLNodeSelector,	"AMLNodeSelector");
+//->Source
+//Range
+fAMLExporter_export(cAMLRange,			"AMLRange");
+//<-Source
 
 // XML Objects
 if (!window.DOMParser)

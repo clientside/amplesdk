@@ -145,6 +145,8 @@
 				AMLTouchList.js"/>
 			<filelist dir="${source.runtime.dir}/classes/selectors/" files="
 				AMLNodeSelector.js"/>
+			<filelist dir="${source.runtime.dir}/classes/range/" files="
+				AMLRange.js"/>
 			<!-- Animation engine -->
 			<filelist dir="${source.runtime.dir}/classes/animation/" files="
 				AMLElementAnimation.js"/>

@@ -338,6 +338,17 @@ cAMLDocument.prototype.importNode	= function(oNode, bDeep)
 		throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
 
+//->Source
+cAMLDocument.prototype.createRange		= function() {
+	var oRange	= new cAMLRange;
+	fAMLRange_setStart(oRange, this, 0);
+	fAMLRange_setEnd(oRange, this, 0);
+	oRange.commonAncestorContainer	= this;
+	oRange.collapsed	= true;
+	return oRange;
+};
+//<-Source
+
 // nsIDOM3Document
 cAMLDocument.prototype.adoptNode		= function(oNode)
 {

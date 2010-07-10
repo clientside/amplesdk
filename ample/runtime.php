@@ -42,6 +42,9 @@
 	// Selectors API
 	$aFiles[]	= "runtime/classes/selectors/AMLNodeSelector.js";
 
+	// Range
+	$aFiles[]	= "runtime/classes/range/AMLRange.js";
+
 	// Extensions
 	// Animation
 	$aFiles[]	= "runtime/classes/animation/AMLElementAnimation.js";
