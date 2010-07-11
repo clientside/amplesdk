@@ -24,7 +24,8 @@ var nAML_NOT_WELLFORMED_WRN			= 'a',	// Use strings in order to not intersect wi
 	nAML_MISSING_ATTRIBUTE_WRN		= 'g',
 	nAML_INVALID_ATTRIBUTE_WRN		= 'h',
 	nAML_UNKNOWN_SIMPLE_TYPE_WRN	= 'i',
-	nAML_ERROR_ANIMATING_ATTR_WRN	= 'j';
+	nAML_ERROR_ANIMATING_ATTR_WRN	= 'j',
+	nAML_DOCUMENT_INVALID_STATE_WRN	= 'k';
 
 function fAML_format(sMessage, aArguments) {
 	for (var nIndex = 0; nIndex < aArguments.length; nIndex++)
@@ -71,6 +72,7 @@ oAML_messages[nAML_MISSING_ATTRIBUTE_WRN]	= 'Required attribute "%0" is missing 
 oAML_messages[nAML_INVALID_ATTRIBUTE_WRN]	= 'Attribute "%0" value "%1" is invalid. Element processing skipped';
 oAML_messages[nAML_UNKNOWN_SIMPLE_TYPE_WRN]	= 'Simple type definition "%0" not found';
 oAML_messages[nAML_ERROR_ANIMATING_ATTR_WRN]= 'Error animating %0 atttribute with %1 value';
+oAML_messages[nAML_DOCUMENT_INVALID_STATE_WRN]	= 'Document invalid state';
 //<-Debug
 
 // Validation implementation
@@ -800,11 +802,19 @@ oAML_document.open	= function() {
 		oElement.parentNode.removeChild(oElement);
 		oUADocument.write('<' + "script" + ' ' + "type" + '="' + "application/ample+xml" + '"' + '>');
 	}
+//->Debug
+	else
+		fAML_warn(nAML_DOCUMENT_INVALID_STATE_WRN);
+//<-Debug
 };
 
 oAML_document.close	= function() {
 	if (oAML_document.readyState == "loading")
 		oUADocument.write('</' + "script" + '>');
+//->Debug
+	else
+		fAML_warn(nAML_DOCUMENT_INVALID_STATE_WRN);
+//<-Debug
 };
 
 oAML_document.$instance	= function(oNode) {
