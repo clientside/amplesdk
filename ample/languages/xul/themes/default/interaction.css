@@ -197,6 +197,7 @@ xul|spinbuttons::button-down {
 	background-image: url(media/spinbuttons.gif);
 	background-repeat: no-repeat;
 	font-size: 1px;
+	line-height: 8px;
 }
 
 xul|spinbuttons::button-up {

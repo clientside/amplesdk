@@ -28,6 +28,10 @@ xul|textbox[type=number] {
 	width: 44px;
 }
 
+xul|textbox[type=search] xul|textbox::button {
+	background: url(media/textbox_search.png) no-repeat 0px 1px;
+}
+
 xul|textbox[multiline=true] {
 	height:	60px;
 }
@@ -50,10 +54,11 @@ xul|timepicker::input {
 	outline: none; /* removes browser native outline when focused */
 }
 
+xul|textbox::button,
 xul|colorpicker::button,
 xul|menulist::button,
 xul|datepicker::button,
-xul|textbox::button {
+xul|timepicker::button {
 	position:absolute;
 	right: 0;
 	width:  15px;

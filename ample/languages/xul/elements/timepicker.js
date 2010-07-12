@@ -79,7 +79,7 @@ cXULElement_timepicker.prototype.$getTagOpen		= function() {
     var aTime    = this.attributes["value"].match(/([0-9]{2}):([0-9]{2}):([0-9]{2})$/);
     return '<div class="xul-timepicker' + (this.attributes["disabled"] == "true" ? " xul-timepicker_disabled" : '') + '">\
 				<div class="xul-timepicker--field">\
-    				' + this.spinButtons.$getTag() + '\
+   					' + this.spinButtons.$getTag() + '\
 					<input type="text" class="xul-timepicker--input" maxlength="8"' +(this.attributes["disabled"] == "true" ? ' disabled="true"' : '')+ ' style="border:0px solid white;width:100%;" value="' + (aTime ? aTime[1] : "00") + ':' + (aTime ? aTime[2] : "00") + ':' + (aTime ? aTime[3] : "00") + '" onchange="ample.$instance(this)._onInputTimeChange(event,  \'minutes\', this.value)" onkeydown="return ample.$instance(this)._onTimeKeyDown(event, \'minutes\')" onselectstart="event.cancelBubble=true" onkeypress="if (event.keyCode == 38 || event.keyCode == 40) return false" />\
 				</div>\
 			</div>';
