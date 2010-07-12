@@ -38,6 +38,21 @@
 							</locale>
 						</description>
 					</value>
+					<value name="number">
+						<description>
+							<locale>
+							 	A textbox that only allows the user to enter numbers.
+							 	In addition, arrow buttons appear next to the textbox to let the user step through values.
+							</locale>
+						</description>
+					</value>
+					<value name="search">
+						<description>
+							<locale>
+							 	A textbox intended for searching.
+							</locale>
+						</description>
+					</value>
 				</values>
 				<description>
 					<locale>
@@ -70,7 +85,7 @@
 					</locale>
 				</description>
 			</attribute>
-			<attribute name="readOnly" type="String" readonly="false" default="false">
+			<attribute name="readonly" type="String" readonly="false" default="false">
 				<description>
 					<locale>
 						If set to true, then the user cannot change the value of the element.
@@ -107,6 +122,36 @@
 					</locale>
 					<locale xml:lang="ru">
 						Количество столбцов элемента. Используется только при атрибуте <link type="attribute">multiline</link> выставленном в значение <b>true</b>.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="min" default="0">
+				<description>
+					<locale>
+						The minimum value that the scale or number box may be set to.
+						The default value is 0.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="max" default="Infinity">
+				<description>
+					<locale>
+						The maximum value that the scale or number box may be set to.
+						The default value is Infinity for number boxes.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="increment" default="1">
+				<description>
+					<locale>
+						The amount by which the value (for number boxes) attribute changes when the arrows are clicked. The default value is 1.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="placeholder">
+				<description>
+					<locale>
+						A string that appears in the textbox when it has no value.
 					</locale>
 				</description>
 			</attribute>

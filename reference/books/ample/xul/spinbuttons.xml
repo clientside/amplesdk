@@ -10,17 +10,35 @@
 	<remarks />
 	<examples />
 	<members>
-		<attributes>
-			<attribute name="value">
+		<attributes />
+		<methods>
+			<method name="spin" type="Void">
+				<arguments>
+					<argument name="direction" type="Boolean">
+						<description>
+							<locale>
+								Direction of the spin effect.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
 				<description>
 					<locale>
-						Component value.
+						Causes spin event to fire.
 					</locale>
 				</description>
-			</attribute>
-		</attributes>
-		<methods />
+			</method>
+		</methods>
 		<properties />
-		<events />
+		<events>
+			<event name="spin" interface="CustomEvent">
+				<description>
+					<locale>
+						Fired when user clicks the up or down buttons.
+						The event is being continiously dispatched while user is holding the button.
+					</locale>
+				</description>
+			</event>
+		</events>
 	</members>
 </element>

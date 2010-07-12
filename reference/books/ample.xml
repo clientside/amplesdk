@@ -382,7 +382,6 @@
 					<node title="radio" url="ample/xul/radio.xml"/>
 					<node title="radiogroup" url="ample/xul/radiogroup.xml"/>
 					<node title="scale" url="ample/xul/scale.xml"/>
-					<node title="spinbuttons" url="ample/xul/spinbuttons.xml"/>
 					<!-- splitter on Mozilla belongs here -->
 					<node title="textbox" url="ample/xul/textbox.xml"/>
 					<node title="timepicker" url="ample/xul/timepicker.xml"/>
@@ -448,6 +447,7 @@
 					<node title="dropmarker" xurl="ample/xul/dropmarker.xml"/>
 					<node title="scrollbar" xurl="ample/xul/scrollbar.xml"/>
 					<node title="scrollcorner" xurl="ample/xul/scrollcorner.xml"/>
+					<node title="spinbuttons" url="ample/xul/spinbuttons.xml"/>
 					<!-- spinbuttons on Mozilla belongs here -->
 				</node>
 			</node>
