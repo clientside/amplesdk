@@ -28,7 +28,7 @@ cXULElement_timepicker.prototype._onInputTimeChange    = function(oEvent, sName,
 cXULElement_timepicker.handlers	= {
 	"focus":	function(oEvent) {
 		var oInput	= this.$getContainer("input");
-		cXULElement_timepicker.setEditComponent(this, oInput.lastCursorPosition || cXULElement_timepicker.getEditComponent(this));
+		cXULElement_timepicker.setEditComponent(this, oInput.lastCursorPosition || 'h');
 		oInput.focus();
 	},
 	"blur":		function(oEvent) {
@@ -147,31 +147,31 @@ cXULElement_timepicker.handlers	= {
 
 cXULElement_timepicker.getEditComponent	= function(oInstance) {
 	var aRange	= cXULInputElement.getSelectionRange(oInstance);
-	if (aRange[1] < 3)
-		return 'h';
+	if (aRange[1] > 5)
+		return 's';
 	else
-	if (aRange[1] < 6)
+	if (aRange[1] > 2)
 		return 'm';
 	else
-		return 's';
+		return 'h';
 };
 
 cXULElement_timepicker.setEditComponent	= function(oInstance, sComponent) {
 	var nStart	= 0,
 		nEnd	= 8;
 	switch (sComponent) {
-		case 'h':
-			nStart	= 0;
-			nEnd	= 2;
+		case 's':
+			nStart	= 6;
+			nEnd	= 8;
 			break;
 		case 'm':
 			nStart	= 3;
 			nEnd	= 5;
 			break;
-		case 's':
+		case 'h':
 		default:
-			nStart	= 6;
-			nEnd	= 8;
+			nStart	= 0;
+			nEnd	= 2;
 			break;
 	}
 	cXULInputElement.setSelectionRange(oInstance, nStart, nEnd);
