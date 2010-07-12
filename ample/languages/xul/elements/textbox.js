@@ -33,13 +33,8 @@ cXULElement_textbox.handlers	= {
 	},
 	"keydown":	function(oEvent) {
 		if (this.attributes["type"] == "number") {
-			if (oEvent.keyIdentifier == "Up" || oEvent.keyIdentifier == "Down") {
-				var nValue	=(this.getAttribute("value") * 1 || 0) + (oEvent.keyIdentifier == "Up" ? 1 :-1);
-				if (nValue >= this.getAttribute("min") * 1 && nValue <= this.getAttribute("max") * 1) {
-					this.setAttribute("value", nValue);
-					cXULInputElement.dispatchChange(this);
-				}
-			}
+			if (oEvent.keyIdentifier == "Up" || oEvent.keyIdentifier == "Down")
+				this.spinButtons.spin(oEvent.keyIdentifier == "Up");
 		}
 	},
 	"keyup":	function(oEvent) {
@@ -95,7 +90,7 @@ cXULElement_textbox.handlers	= {
 			this.spinButtons.setAttribute("disabled", this.attributes["disabled"] || "false");
 			var that	= this;
 			this.spinButtons.addEventListener("spin", function(oEvent) {
-				var nValue	=(that.getAttribute("value") * 1 || 0) + oEvent.detail;
+				var nValue	=(that.getAttribute("value") * 1 || 0) + (oEvent.detail ? 1 :-1);
 				if (nValue >= that.getAttribute("min") * 1 && nValue <= that.getAttribute("max") * 1) {
 					that.setAttribute("value", nValue);
 					cXULInputElement.dispatchChange(this);

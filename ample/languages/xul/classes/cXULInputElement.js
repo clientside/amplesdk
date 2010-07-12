@@ -20,7 +20,9 @@ cXULInputElement.getSelectionRange	= function(oInstance) {
 	if (oInput.createTextRange) {
 		var oDocumentRange	= document.selection.createRange(),
 			oRange	= oInput.createTextRange().duplicate();
+		try {
 		oRange.setEndPoint("EndToEnd", oDocumentRange);
+		} catch (e) {}
 		return [oRange.text.length - oDocumentRange.text.length, oRange.text.length];
 	}
 	else

@@ -19,11 +19,11 @@ cXULElement_spinbuttons.timeout		= null;
 cXULElement_spinbuttons.handlers	= {
 	"mousedown":	function(oEvent) {
 		if (oEvent.$pseudoTarget == this.$getContainer("button-up")) {
-			this.increment();
+			this.spin(true);
 			var that	= this;
 			cXULElement_spinbuttons.timeout	= setTimeout(function() {
 				cXULElement_spinbuttons.interval	= setInterval(function() {
-					that.increment();
+					that.spin(true);
 				}, 100);
 			}, 500);
 			this.$setPseudoClass("active", true, "button-up");
@@ -32,11 +32,11 @@ cXULElement_spinbuttons.handlers	= {
 		}
 		else
 		if (oEvent.$pseudoTarget == this.$getContainer("button-down")) {
-			this.decrement();
+			this.spin(false);
 			var that	= this;
 			cXULElement_spinbuttons.timeout	= setTimeout(function() {
 				cXULElement_spinbuttons.interval	= setInterval(function() {
-					that.decrement();
+					that.spin(false);
 				}, 100);
 			}, 500);
 			this.$setPseudoClass("active", true, "button-down");
@@ -66,15 +66,9 @@ cXULElement_spinbuttons.handlers	= {
 };
 
 //
-cXULElement_spinbuttons.prototype.increment	= function() {
+cXULElement_spinbuttons.prototype.spin	= function(bForward) {
 	var oEvent	= this.ownerDocument.createEvent("CustomEvent");
-	oEvent.initCustomEvent("spin", false, false, +1);
-	this.dispatchEvent(oEvent);
-};
-
-cXULElement_spinbuttons.prototype.decrement	= function() {
-	var oEvent	= this.ownerDocument.createEvent("CustomEvent");
-	oEvent.initCustomEvent("spin", false, false, -1);
+	oEvent.initCustomEvent("spin", false, false, bForward);
 	this.dispatchEvent(oEvent);
 };
 
