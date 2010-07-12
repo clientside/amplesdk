@@ -3,8 +3,7 @@ xul|editor,
 xul|colorpicker,
 xul|menulist,
 xul|datepicker,
-xul|timepicker,
-xul|spinbuttons {
+xul|timepicker {
 	border: 1px solid silver;
 	margin:	1px;
 	background-color: Window;
@@ -25,6 +24,10 @@ xul|textbox {
 	width:	180px;
 }
 
+xul|textbox[type=number] {
+	width: 44px;
+}
+
 xul|textbox[multiline=true] {
 	height:	60px;
 }
@@ -38,8 +41,7 @@ xul|textbox::input,
 xul|colorpicker::input,
 xul|menulist::input,
 xul|datepicker::input,
-xul|timepicker::input,
-xul|spinbuttons::input {
+xul|timepicker::input {
 	background:	transparent;
 	vertical-align: top;
 	padding:0;
@@ -50,7 +52,8 @@ xul|spinbuttons::input {
 
 xul|colorpicker::button,
 xul|menulist::button,
-xul|datepicker::button {
+xul|datepicker::button,
+xul|textbox::button {
 	position:absolute;
 	right: 0;
 	width:  15px;
@@ -106,68 +109,9 @@ xul|menulist::button {
 	background-image: url(media/menulist.gif);
 }
 
-/* spinbuttons */
-xul|spinbuttons {
-	width: 60px;
-}
-
-xul|spinbuttons::button-up,
-xul|timepicker::button-up,
-xul|spinbuttons::button-down,
-xul|timepicker::button-down {
-	position:absolute;
-	right: 0;
-	height: 8px;
-	width: 16px;
-	background-image: url(media/spinbuttons.gif);
-	background-repeat: no-repeat;
-	font-size: 1px;
-}
-
-xul|spinbuttons::button-up,
-xul|timepicker::button-up {
-	background-position: 0px 0px;
-}
-
-xul|spinbuttons::button-up:hover,
-xul|timepicker::button-up:hover {
-	background-position: 0px -8px;
-}
-
-xul|spinbuttons::button-up:active,
-xul|timepicker::button-up:active {
-	background-position: 0px -16px;
-}
-
-xul|spinbuttons:disabled xul|spinbuttons::button-up,
-xul|timepicker:disabled xul|timepicker::button-up {
-	background-position: 0px -24px;
-}
-
-xul|spinbuttons::button-down,
-xul|timepicker::button-down {
-	top: 8px;
-	background-position: -16px 0px;
-}
-
-xul|spinbuttons::button-down:hover,
-xul|timepicker::button-down:hover {
-	background-position: -16px -8px;
-}
-
-xul|spinbuttons::button-down:active,
-xul|timepicker::button-down:active {
-	background-position: -16px -16px;
-}
-
-xul|spinbuttons:disabled xul|spinbuttons::button-down,
-xul|timepicker:disabled xul|timepicker::button-down {
-	background-position: -16px -24px;
-}
-
 /* timpicker */
 xul|timepicker {
-	width: 90px;
+	width: 70px;
 }
 
 /* scale */
@@ -255,8 +199,7 @@ xul|textbox::field,
 xul|colorpicker::field,
 xul|timepicker::field,
 xul|datepicker::field,
-xul|menulist::field,
-xul|spinbuttons::field {
+xul|menulist::field {
 	position:relative;
 	padding-right: 17px;
 	padding-left:1px;
@@ -265,6 +208,11 @@ xul|spinbuttons::field {
 
 xul|textbox::field {
 	padding-right: 1px;
+}
+
+xul|textbox[type=number] xul|textbox::field,
+xul|textbox[type=search] xul|textbox::field {
+	padding-right: 17px;
 }
 
 xul|textbox[multiline=true] xul|textbox::field {
@@ -277,8 +225,7 @@ xul|editor:focus,
 xul|colorpicker:focus,
 xul|menulist:focus,
 xul|datepicker:focus,
-xul|timepicker:focus,
-xul|spinbuttons:focus {
+xul|timepicker:focus {
 	border-color: #7F9DB9;
 	border-width: 2px;
 	margin:	0;
@@ -296,8 +243,7 @@ xul|editor:disabled,
 xul|colorpicker:disabled,
 xul|menulist:disabled,
 xul|datepicker:disabled,
-xul|timepicker:disabled,
-xul|spinbuttons:disabled {
+xul|timepicker:disabled {
 	background-color: rgb(235, 235, 228);
 }
 
@@ -307,7 +253,6 @@ xul|colorpicker:disabled,
 xul|menulist:disabled,
 xul|datepicker:disabled,
 xul|timepicker:disabled,
-xul|spinbuttons:disabled,
 xul|checkbox:disabled,
 xul|radio:disabled {
 	cursor: default;

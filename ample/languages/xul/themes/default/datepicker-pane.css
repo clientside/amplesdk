@@ -4,6 +4,13 @@ xul|datepicker-pane {
 	display:inline-block;
 	margin: 1px;
 }
+xul|datepicker-pane xul|menulist {
+	width: 90px;
+}
+xul|datepicker-pane xul|textbox {
+	width: 60px;
+}
+
 xul|datepicker-pane xul|menupopup::shadow-bottom,
 xul|datepicker-pane xul|menupopup::shadow-right {
 	display: none;

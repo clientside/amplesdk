@@ -23,7 +23,6 @@ xul|textbox,
 xul|colorpicker,
 xul|menulist,
 xul|datepicker,
-xul|timepicker,
-xul|spinbuttons {
+xul|timepicker {
 	border-radius: 3px;
 }

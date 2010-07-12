@@ -200,12 +200,13 @@ cXULElement_datepicker_pane.handlers	= {
 		    	oElement.setAttribute("label", cXULElement_datepicker_pane.months[nIndex]);
 		    }
 			// Year spinner
-			this._elementYear	= this.$appendChildAnonymous(this.ownerDocument.createElementNS(this.namespaceURI, "xul:spinbuttons"));
+			this._elementYear	= this.$appendChildAnonymous(this.ownerDocument.createElementNS(this.namespaceURI, "xul:textbox"));
+			this._elementYear.setAttribute("type", "number");
 			this._elementYear.tabIndex	=-1;
 			this._elementYear.setAttribute("value", this.current.getFullYear());
 			this._elementYear.setAttribute("max", Infinity);
 			this._elementYear.addEventListener("change", function(oEvent) {
-				that.doSelectYear(this.$getValue());
+				that.doSelectYear(this.getAttribute("value"));
 				// Stop propagation
 				oEvent.stopPropagation();
 			}, false);

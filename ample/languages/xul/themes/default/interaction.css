@@ -181,3 +181,53 @@ xul|statusbarpanel {
 	background: url(media/statusbarpanel_splitter.gif) no-repeat right;
 	padding:	2px;
 }
+
+
+/* spinbuttons */
+xul|spinbuttons {
+	width: 16px;
+}
+
+xul|spinbuttons::button-up,
+xul|spinbuttons::button-down {
+	position:absolute;
+	right: 0;
+	height: 8px;
+	width: 16px;
+	background-image: url(media/spinbuttons.gif);
+	background-repeat: no-repeat;
+	font-size: 1px;
+}
+
+xul|spinbuttons::button-up {
+	background-position: 0px 0px;
+}
+
+xul|spinbuttons::button-up:hover {
+	background-position: 0px -8px;
+}
+
+xul|spinbuttons::button-up:active {
+	background-position: 0px -16px;
+}
+
+xul|spinbuttons:disabled xul|spinbuttons::button-up {
+	background-position: 0px -24px;
+}
+
+xul|spinbuttons::button-down {
+	top: 8px;
+	background-position: -16px 0px;
+}
+
+xul|spinbuttons::button-down:hover {
+	background-position: -16px -8px;
+}
+
+xul|spinbuttons::button-down:active {
+	background-position: -16px -16px;
+}
+
+xul|spinbuttons:disabled xul|spinbuttons::button-down {
+	background-position: -16px -24px;
+}
