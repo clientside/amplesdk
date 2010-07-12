@@ -216,11 +216,6 @@
 		<xul:timepicker /><xul:timepicker /><xul:timepicker disabled="true"/>
 		<script>ample.close()</script>
 
-		<h3>Spinbuttons</h3>
-		<script>ample.open()</script>
-		<xul:spinbuttons /><xul:spinbuttons value="5"/><xul:spinbuttons disabled="true" value="2"/>
-		<script>ample.close()</script>
-
 		<h3>Textbox</h3>
 		<script>ample.open()</script>
 		<xul:textbox placeholder="Enter some text here"/><xul:textbox value="some text" /><xul:textbox value="some text" disabled="true"/>
@@ -229,6 +224,16 @@
 		<h3>Textbox multiline="true"</h3>
 		<script>ample.open()</script>
 		<xul:textbox multiline="true" placeholder="Enter some text here"/><xul:textbox multiline="true" value="some text"/><xul:textbox multiline="true" value="some text" disabled="true"/>
+		<script>ample.close()</script>
+
+		<h3>Textbox type="number"</h3>
+		<script>ample.open()</script>
+		<xul:textbox type="number"/><xul:textbox type="number" value="0" /><xul:textbox type="number" value="0" disabled="true"/>
+		<script>ample.close()</script>
+
+		<h3>Textbox type="search"</h3>
+		<script>ample.open()</script>
+		<xul:textbox type="search" placeholder="Type to search"/><xul:textbox type="search" /><xul:textbox type="search" disabled="true"/>
 		<script>ample.close()</script>
 
 		<h3>Scale</h3>
