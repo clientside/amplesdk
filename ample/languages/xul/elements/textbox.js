@@ -13,7 +13,7 @@ cXULElement_textbox.prototype	= new cXULInputElement;
 // Attributes Defaults
 cXULElement_textbox.attributes	= {
 	"min":		"0",
-	"max":		"100",
+	"max":		"Infinity",
 	"increment":"1",
 	"value":	""
 };

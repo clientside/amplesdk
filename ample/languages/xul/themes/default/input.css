@@ -28,6 +28,10 @@ xul|textbox[type=number] {
 	width: 44px;
 }
 
+xul|textbox[type=number] xul|textbox::input {
+	text-align: right;
+}
+
 xul|textbox[type=search] xul|textbox::button {
 	background: url(media/textbox_search.png) no-repeat 0px 1px;
 }
@@ -217,7 +221,10 @@ xul|textbox::field {
 
 xul|textbox[type=number] xul|textbox::field,
 xul|textbox[type=search] xul|textbox::field {
-	padding-right: 17px;
+	padding-right: 19px;
+}
+xul|textbox[type=number] xul|textbox::input {
+	padding-right: 2px;
 }
 
 xul|textbox[multiline=true] xul|textbox::field {
