@@ -28,15 +28,6 @@ cXULElement_menulist.prototype.selectedText		= null;
 cXULElement_menulist.prototype.selectedItem		= null;	// TODO
 
 // Public Methods
-cXULElement_menulist.prototype.$getValue	= function() {
-	return this.$getContainer("input").value;
-};
-
-cXULElement_menulist.prototype.$setValue	= function(sValue) {
-	this.$getContainer("input").value	= sValue;
-};
-
-// Public Methods
 cXULElement_menulist.prototype.select	= function() {
 	this.$getContainer("input").select();
 };
@@ -230,12 +221,12 @@ cXULElement_menulist.handlers	= {
 	},
 	"DOMActivate":	function(oEvent) {
 		if (oEvent.target instanceof cXULElement_menuitem) {
-			var sValue	= this.$getValue();
+			var sValue	= this.$getContainer("input").value;
 			this.setAttribute("value", oEvent.target.getAttribute("label"));
 			this.selectedIndex	= this.items.$indexOf(oEvent.target);
 		    this.toggle(false);
 
-			if (sValue != this.$getValue()) {
+			if (sValue != this.$getContainer("input").value) {
 			    // Fire Event
 				cXULInputElement.dispatchChange(this);
 			}
@@ -245,7 +236,7 @@ cXULElement_menulist.handlers	= {
 		if (oEvent.target == this) {
 			switch (oEvent.attrName) {
 				case "value":
-					this.$setValue(oEvent.newValue);
+					this.$getContainer("input").value	= oEvent.newValue || '';
 					break;
 
 				case "disabled":

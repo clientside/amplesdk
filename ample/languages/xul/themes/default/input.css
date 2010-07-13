@@ -178,7 +178,7 @@ xul|scale[orient=vertical] {
 xul|scale[orient=vertical] xul|scale::bar {
 	width: 19px;
 	height: 100%;
-	background: url(media/scale_bar_horizontal.gif) repeat-y center;
+	background: url(media/scale_bar_vertical.gif) repeat-y center;
 }
 
 xul|scale[orient=vertical] xul|scale::button {
