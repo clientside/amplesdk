@@ -61,6 +61,7 @@ oAML_messages[cAMLException.AML_SELECTOR_ATTRIBUTE_ERR]		= 'Unknown attribute se
 oAML_messages[cAMLException.AML_NOT_INITIALIZED_ERR]		= 'Object "%0" has not been initialized';
 oAML_messages[cAMLException.AML_MODAL_SET_MODAL_ERR]		= 'Element is already modal';
 oAML_messages[cAMLException.AML_MODAL_RELEASE_MODAL_ERR]	= 'Element can not be released';
+oAML_messages[cAMLException.AML_MEMBER_MISSING_ERR]			= 'Object does not have a method named "%0"';
 
 oAML_messages[nAML_NOT_WELLFORMED_WRN]		= 'Not well-formed XML';
 oAML_messages[nAML_NOT_UNIQUE_ID_WRN]		= 'Duplicate ID attribute value "%0" used';

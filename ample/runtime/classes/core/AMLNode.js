@@ -462,7 +462,7 @@ cAMLNode.prototype.addEventListener		= function(sEventType, fListener, bUseCaptu
 	// Validate arguments
 	fAML_validate(arguments, [
 		["eventType",	cString],
-		["listener",	cFunction],
+		["listener",	cObject],
 		["useCapture",	cBoolean,	true]
 	]);
 
@@ -487,7 +487,7 @@ cAMLNode.prototype.removeEventListener	= function(sEventType, fListener, bUseCap
 	// Validate arguments
 	fAML_validate(arguments, [
 		["eventType",	cString],
-		["listener",	cFunction],
+		["listener",	cObject],
 		["useCapture",	cBoolean,	true]
 	]);
 
@@ -516,9 +516,16 @@ function fAMLNode_handleEvent(oNode, oEvent) {
 
 	// Notify listeners
     if (oNode.$listeners && oNode.$listeners[oEvent.type])
-    	for (var nIndex = 0, aListeners = oNode.$listeners[oEvent.type]; nIndex < aListeners.length && !oEvent._stoppedImmediately; nIndex++)
-    		if (oEvent.eventPhase == cAMLEvent.AT_TARGET || aListeners[nIndex][1] == (oEvent.eventPhase == cAMLEvent.CAPTURING_PHASE))
-    			fAMLNode_executeHandler(oNode, aListeners[nIndex][0], oEvent);
+    	for (var nIndex = 0, aListeners = oNode.$listeners[oEvent.type], fListener; nIndex < aListeners.length && !oEvent._stoppedImmediately; nIndex++)
+    		if (oEvent.eventPhase == cAMLEvent.AT_TARGET || aListeners[nIndex][1] == (oEvent.eventPhase == cAMLEvent.CAPTURING_PHASE)) {
+    			if (typeof(fListener = aListeners[nIndex][0]) == "function")
+    				fAMLNode_executeHandler(oNode, aListeners[nIndex][0], oEvent);
+    			else
+    			if (typeof fListener.handleEvent == "function")
+    				fAMLNode_executeHandler(fListener, fListener.handleEvent, oEvent);
+    			else
+    				throw new cAMLException(cAMLException.AML_MEMBER_MISSING_ERR, null, ["handleEvent"]);
+    		}
 
 	var oNamespace,
 		cElement,

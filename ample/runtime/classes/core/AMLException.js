@@ -49,6 +49,7 @@ cAMLException.AML_SELECTOR_ATTRIBUTE_ERR	=-4;
 cAMLException.AML_NOT_INITIALIZED_ERR		=-5;
 cAMLException.AML_MODAL_SET_MODAL_ERR		=-6;
 cAMLException.AML_MODAL_RELEASE_MODAL_ERR	=-7;
+cAMLException.AML_MEMBER_MISSING_ERR		=-8;
 
 //
 cAMLException.prototype.code	= null;
