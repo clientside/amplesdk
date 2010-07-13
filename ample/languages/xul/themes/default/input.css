@@ -125,26 +125,34 @@ xul|timepicker {
 
 /* scale */
 xul|scale {
+	display: inline-block;
 	box-sizing: content-box;
 	margin:	1px;
+}
+
+xul|scale::button:active {
+	z-index: 1;
+}
+
+/* scale: horizontal */
+xul|scale[orient=horizontal] {
 	height:	19px;
 	width:	200px;
-	display: inline-block;
+	padding-left: 6px;
+	padding-right: 7px;
 }
 
 xul|scale[orient=horizontal] xul|scale::bar {
-	margin-left: 3px;
-	margin-right: 3px;
+	width: 100%;
+	height: 19px;
 	background: url(media/scale_bar_horizontal.gif) repeat-x center;
 }
 
 xul|scale[orient=horizontal] xul|scale::button {
 	height:	21px;
 	width:	12px;
-	margin-left: -1px;
-	background-image: url(media/scale_button_down.gif);
-	background-repeat: no-repeat;
-	background-position: 0px 0px;
+	margin-left: -5px;
+	background: url(media/scale_button_down.gif) no-repeat 0px 0px;
 }
 
 xul|scale[orient=horizontal] xul|scale::button:hover {
@@ -155,7 +163,40 @@ xul|scale[orient=horizontal] xul|scale::button:active {
 	background-position: 0px -42px;
 }
 
-xul|scale:disabled xul|scale::button {
+xul|scale[orient=horizontal].xul|scale:disabled xul|scale::button {
+	background-position: 0px -63px;
+}
+
+/* scale: vertical */
+xul|scale[orient=vertical] {
+	height:	200px;
+	width:	19px;
+	padding-top: 6px;
+	padding-bottom: 7px;
+}
+
+xul|scale[orient=vertical] xul|scale::bar {
+	width: 19px;
+	height: 100%;
+	background: url(media/scale_bar_horizontal.gif) repeat-y center;
+}
+
+xul|scale[orient=vertical] xul|scale::button {
+	height:	12px;
+	width:	21px;
+	margin-top: -5px;
+	background: url(media/scale_button_down.gif) no-repeat 0px 0px;
+}
+
+xul|scale[orient=vertical] xul|scale::button:hover {
+	background-position: 0px -21px;
+}
+
+xul|scale[orient=vertical] xul|scale::button:active {
+	background-position: 0px -42px;
+}
+
+xul|scale[orient=vertical].xul|scale:disabled xul|scale::button {
 	background-position: 0px -63px;
 }
 
