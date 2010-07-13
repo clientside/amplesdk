@@ -143,7 +143,7 @@ cXULElement_menupopup.prototype.$getTagOpen	= function() {
 				<div class="xul-menupopup--shadow-right" style="position:absolute;"></div>\
 				<div class="xul-menupopup--shadow-bottom" style="position:absolute;font-size:1px;"></div>\
 				<table cellpadding="0" cellspacing="0" border="0" cols="4">\
-					<tbody class="ns-menupopup--gateway">';
+					<tbody class="xul-menupopup--gateway">';
 };
 
 // Element Render: close

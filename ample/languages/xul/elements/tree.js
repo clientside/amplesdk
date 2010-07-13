@@ -171,7 +171,7 @@ cXULElement_tree.handlers	= {
 cXULElement_tree.prototype.$getTagOpen		= function() {
     return '<div class="xul-tree' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + (this.attributes["disabled"] == "true" ? " xul-tree_disabled" : "") + '"' + (this.attributes["style"] ? ' style="' + this.attributes["style"] + '"' : '')+ '>\
     			<div style="position:relative;height:100%;top:0;padding-bottom:inherit;">\
-    				<div class="ns-tree--resizer" style="height:100%;position:absolute;top:0px;display:none;z-index:1"></div>\
+    				<div class="xul-tree--resizer" style="height:100%;position:absolute;top:0px;display:none;z-index:1"></div>\
     				<table cellpadding="0" cellspacing="0" border="0" height="' +(this.attributes["height"] ? this.attributes["height"] : '100%')+ '" width="' +(this.attributes["width"] ? this.attributes["width"] : '100%')+ '">\
     					<tbody class="xul-tree--gateway">';
 };
