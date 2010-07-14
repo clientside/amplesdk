@@ -55,6 +55,11 @@ xul|treecol::resizer {
 	cursor: col-resize;
 }
 
+xul|listbox:disabled xul|listheader::resizer,
+xul|tree:disabled xul|treecol::resizer {
+	cursor: default;
+}
+
 xul|listheader::command,
 xul|listitem::command,
 xul|treecol::command,

@@ -45,7 +45,7 @@ cXULElement_listhead.prototype._onCommandClick   = function(oEvent) {
 // Class events handlers
 cXULElement_listhead.handlers	= {
 	"click":	function(oEvent) {
-		if (!this.$isAccessible())
+		if (!this.$isAccessible() || !this.parentNode.$isAccessible() || !this.parentNode.parentNode.$isAccessible())
 			return;
 
 		if (oEvent.button == 2 || (oEvent.button == 0 && oEvent.target == this && oEvent.$pseudoTarget == this.$getContainer("settings"))) {
