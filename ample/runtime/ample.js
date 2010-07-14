@@ -85,7 +85,7 @@ oAML_messages[nAML_DOCUMENT_INVALID_STATE_WRN]	= 'Document invalid state';
  */
 //->Debug
 var aAML_endings	= 'st-nd-rd-th'.split('-'),
-	rAML_function	= /function ([^\s]+)\(/;
+	rAML_function	= /function ([^\s]*)\(/;
 //<-Debug
 function fAML_validate(aArguments, aParameters) {
 	var fCaller	= null;
@@ -96,7 +96,7 @@ function fAML_validate(aArguments, aParameters) {
 //->Debug
 	var sFunction	= "anonymous";
 	try {
-		sFunction	= cString(fAML_validate.caller).match(rAML_function)[1];
+		sFunction	= cString(fAML_validate.caller).match(rAML_function)[1] || "anonymous";
 	} catch (oError) {}
 //<-Debug
 
