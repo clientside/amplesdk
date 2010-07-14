@@ -53,10 +53,11 @@ cXULElement_treecell.handlers	= {
 
 // Element Render: open
 cXULElement_treecell.prototype.$getTagOpen	= function() {
-    var sHtml   = '<td class="xul-treecell">';
-
-	var oChildren	= this.parentNode.parentNode.parentNode;
-    if (oChildren.tree && oChildren.tree.head && this.parentNode.cells && (oChildren.tree.head._getPrimaryColIndex() == this.parentNode.cells.$indexOf(this))) {
+	var oChildren	= this.parentNode.parentNode.parentNode,
+		oHead	= oChildren && oChildren.tree ? oChildren.tree.head : null,
+		nCellIndex	= this.parentNode.childNodes.$indexOf(this);
+	var sHtml   = '<td class="xul-treecell"' + (oHead && oHead.childNodes[nCellIndex] && oHead.childNodes[nCellIndex].attributes["hidden"] == "true" ? ' style="display:none"' : '') + '>';
+    if (oHead && oHead._getPrimaryColIndex() == nCellIndex) {
         var oElementCurrent = this;
         do {
             if (oElementCurrent instanceof cXULElement_treeitem)

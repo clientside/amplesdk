@@ -63,7 +63,7 @@ cXULElement_treerow.prototype.$getTagOpen	= function() {
 
 	return '<tr class="xul-treerow' + (this.attributes["class"] ? " xul-treerow_" + this.attributes["class"] : '') + '"' + (this.parentNode.parentNode.parentNode.attributes["open"] == "false" ? ' style="display:none"' : '')+ '>' +
 	    	(this.parentNode.attributes["label"] || (oTree && (oTree.attributes["type"] == "checkbox" || oTree.attributes["type"] == "radio"))
-			? ('<td style="padding:0" align="center" onmousedown="event.cancelBubble=true" class="xul-treecell">' +
+			? ('<td style="padding:0" align="left" onmousedown="event.cancelBubble=true" class="xul-treecell">' +
 				(this.parentNode.attributes["label"]
 				? '<div class="xul-treecell--gateway">' + this.parentNode.attributes["label"] + '</div>'
 				: (oTree.attributes["type"] == "checkbox"
@@ -77,7 +77,8 @@ cXULElement_treerow.prototype.$getTagOpen	= function() {
 
 // Element Render: close
 cXULElement_treerow.prototype.$getTagClose	= function() {
-    return '</tr>';
+    return 		'<td class="xul-treecell"></td>\
+    		</tr>';
 };
 
 // Register Element with language

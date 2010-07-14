@@ -99,7 +99,7 @@ cXULElement_listhead.prototype.$getTagOpen	= function() {
 							<thead>\
 								<tr class="xul-listhead--gateway">' +
     								(this.parentNode.attributes["type"] == "checkbox" || this.parentNode.attributes["type"] == "radio"
-    								? ('<td class="xul-listheader" width="20" align="center" style="width:20px;padding:0;">' +
+    								? ('<th class="xul-listheader" width="20" align="left" style="width:20px;padding:0;">' +
     										'<div>' +
 		        								(this.parentNode.attributes["type"] == "checkbox"
         										? '<input type="checkbox" name="' + this.parentNode.uniqueID + '_cmd" class="xul-listheader--command" onclick="return ample.$instance(this)._onCommandClick(event)" autocomplete="off" />'
@@ -108,13 +108,14 @@ cXULElement_listhead.prototype.$getTagOpen	= function() {
 													: ' ')) +
 											'</div>' +
 											'<div style="height:1pt;font-size:1px;width:20px;"></div>'+
-										'</td>')
+										'</th>')
 									: '');
 };
 
 // Element Render: close
 cXULElement_listhead.prototype.$getTagClose	= function() {
-	return 						'</tr>\
+	return 							'<th class="xul-listheader"><br /></th>\
+								</tr>\
 							</thead>\
 						</table>\
 					</div>\

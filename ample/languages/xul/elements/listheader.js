@@ -50,7 +50,7 @@ cXULElement_listheader.handlers	= {
 			switch (oEvent.attrName) {
 				case "width":
 					this.$getContainer().width	= oEvent.newValue || '';
-					this.parentNode.parentNode.body.$getContainer("foot").rows[0].cells[this.parentNode.items.$indexOf(this) + 1].width	= oEvent.newValue || '';
+					this.parentNode.parentNode.body.$getContainer("foot").rows[0].cells[this.parentNode.items.$indexOf(this) + (this.parentNode.parentNode.attributes["type"] ? 1 : 0)].width	= oEvent.newValue || '';
 					break;
 
 				case "label":
@@ -62,7 +62,7 @@ cXULElement_listheader.handlers	= {
 			    	this.$getContainer().style.display	= oEvent.newValue == "true" ? "none" : "";
 			        for (var nIndex = 0, aItems = this.parentNode.parentNode.items; nIndex < aItems.length; nIndex++)
 			        	aItems[nIndex].cells[nCell].setAttribute("hidden", oEvent.newValue);
-			        this.parentNode.parentNode.body.$getContainer("foot").rows[0].cells[nCell + 1].style.display	= oEvent.newValue == "true" ? "none" : "";
+			        this.parentNode.parentNode.body.$getContainer("foot").rows[0].cells[nCell + (this.parentNode.parentNode.attributes["type"] ? 1 : 0)].style.display	= oEvent.newValue == "true" ? "none" : "";
 					break;
 
 				default:
@@ -82,7 +82,10 @@ cXULElement_listheader.handlers	= {
 
 // Element Render: open
 cXULElement_listheader.prototype.$getTagOpen	= function() {
-	return '<th class="xul-listheader' +(this.attributes["class"] ? " " + this.attributes["class"] : "")+ '"' +(this.attributes["width"] ? ' width="' + this.attributes["width"] + '"' : "")+ ' align="left">\
+	return '<th class="xul-listheader' +(this.attributes["class"] ? " " + this.attributes["class"] : "")+ '"' +
+				(this.attributes["width"] ? ' width="' + this.attributes["width"] + '"' : "") +
+				(this.attributes["hidden"] == "true" ? ' style="display:none"' : "") +
+				' align="left">\
 				<div>\
 					<div class="xul-listheader--resizer"><br /></div>\
     				<div class="xul-listheader--label"> ' + (this.attributes["label"] || "");

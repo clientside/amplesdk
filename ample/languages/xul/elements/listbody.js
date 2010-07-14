@@ -56,7 +56,8 @@ cXULElement_listbody.prototype.$getTagClose	= function() {
         if (this.parentNode.attributes["type"] == "checkbox" || this.parentNode.attributes["type"] == "radio")
         	aHtml.push('<td width="20"><div style="width:20px;"/></td>');
         for (var nIndex = 0, aItems = this.parentNode.firstChild.childNodes, oItem; oItem = aItems[nIndex]; nIndex++)
-        	aHtml.push('<td' + (oItem.attributes["width"] ? ' width="' + oItem.attributes["width"] + '"' : '') + '><div style="height:1px;' + (oItem.attributes["minwidth"] ? 'width:' + oItem.attributes["minwidth"] + 'px' : '') + '"/></td>');
+        	aHtml.push('<td' + (oItem.attributes["width"] ? ' width="' + oItem.attributes["width"] + '"' : '') + (oItem.attributes["hidden"] == "true" ? ' style="display:none"' : '') + '><div style="height:1px;' + (oItem.attributes["minwidth"] ? 'width:' + oItem.attributes["minwidth"] + 'px' : '') + '"/></td>');
+        aHtml.push('<td></td>');
     	aHtml.push('</tr>');
     	aHtml.push('</tfoot>');
     }

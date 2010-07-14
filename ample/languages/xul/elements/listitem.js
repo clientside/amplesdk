@@ -89,7 +89,7 @@ cXULElement_listitem.prototype.$getTagOpen	= function() {
 	var oListBox	= this.parentNode.parentNode;
 	return '<tr class="xul-listitem' + (this.attributes["class"] ? " xul-listitem_" + this.attributes["class"] : "") + '">' +
 				(this.attributes["label"] || (oListBox && (oListBox.attributes["type"] == "checkbox" || oListBox.attributes["type"] == "radio"))
-				? ('<td style="padding:0" align="center" onmousedown="event.cancelBubble=true;" class="xul-listcell">' +
+				? ('<td style="padding:0" align="left" onmousedown="event.cancelBubble=true;" class="xul-listcell">' +
 					(this.attributes["label"]
 					? '<div class="xul-listcell--gateway">' + this.attributes["label"] + '</div>'
 					: (this.parentNode.parentNode.attributes["type"] == "checkbox"
@@ -103,7 +103,8 @@ cXULElement_listitem.prototype.$getTagOpen	= function() {
 
 // Element Render: close
 cXULElement_listitem.prototype.$getTagClose	= function() {
-	return '</tr>';
+	return 		'<td class="xul-listcell"></td>\
+			</tr>';
 };
 
 // Register Element with language

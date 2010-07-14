@@ -27,12 +27,13 @@ cXULElement_listcell.handlers	= {
 		if (this.parentNode instanceof cXULElement_listitem)
 			this.parentNode.cells.$remove(oEvent.target);
 	}
-}
+};
 
 // Element Render: open
 cXULElement_listcell.prototype.$getTagOpen	= function()
 {
-    var sHtml   = '<td class="xul-listcell"><div class="xul-listcell--gateway">';
+	var oHeader	= this.parentNode.parentNode.parentNode.firstChild.childNodes[this.parentNode.childNodes.$indexOf(this)];
+    var sHtml   = '<td class="xul-listcell"' + (oHeader && oHeader.attributes["hidden"] == "true" ? ' style="display:none"' : '') + '><div class="xul-listcell--gateway">';
     if (this.attributes["image"])
         sHtml  += '<img src="' + this.attributes["image"] + '" align="absmiddle"/> ';
     if (this.attributes["label"])

@@ -274,8 +274,6 @@ cXULSelectElement.getSettingsPopup	= function(oInstance) {
 			oItem.setAttribute("label", oInstance.items[nIndex].getAttribute("label"));
 			if (oInstance.items[nIndex].getAttribute("hidden") != "true")
 				oItem.setAttribute("checked", "true");
-			if (!oInstance.items[nIndex].hasAttribute("width"))
-				oItem.setAttribute("disabled",  "true");
 			oPopup.appendChild(oItem);
 		}
 	}
