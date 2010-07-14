@@ -86,7 +86,7 @@ oAML_messages[nAML_DOCUMENT_INVALID_STATE_WRN]	= 'Document invalid state';
 //->Debug
 var aAML_endings	= 'st-nd-rd-th'.split('-');
 //<-Debug
-function fAML_validate(aArguments, aParameters, sFunction) {
+function fAML_validate(aArguments, aParameters) {
 	var fCaller	= null;
 	// Has to be wrapped in try/catch because Firebug throws "Permission denied to get property on Function.caller" in XMLHttpRequest
 	try {
