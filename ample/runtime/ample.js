@@ -55,7 +55,7 @@ oAML_messages[cAMLException.TYPE_MISMATCH_ERR]				= 'The type of an object is in
 // AML Exceptions
 // Errors
 oAML_messages[cAMLException.AML_ARGUMENT_MISSING_ERR]		= 'Missing required %0 argument "%1" in "%2" function call';
-oAML_messages[cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR]	= 'Incompatible type of %0 argument "%1" in "%2" function call';
+oAML_messages[cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR]	= 'Incompatible type of %0 argument "%1" in "%2" function call. Expecting "%3"';
 oAML_messages[cAMLException.AML_SELECTOR_ELEMENT_ERR]		= 'Unknown element selector "%0"';
 oAML_messages[cAMLException.AML_SELECTOR_ATTRIBUTE_ERR]		= 'Unknown attribute selector "%0"';
 oAML_messages[cAMLException.AML_NOT_INITIALIZED_ERR]		= 'Object "%0" has not been initialized';
@@ -84,7 +84,8 @@ oAML_messages[nAML_DOCUMENT_INVALID_STATE_WRN]	= 'Document invalid state';
  * ]);
  */
 //->Debug
-var aAML_endings	= 'st-nd-rd-th'.split('-');
+var aAML_endings	= 'st-nd-rd-th'.split('-'),
+	rAML_function	= /function ([^\s]+)\(/;
 //<-Debug
 function fAML_validate(aArguments, aParameters) {
 	var fCaller	= null;
@@ -95,7 +96,7 @@ function fAML_validate(aArguments, aParameters) {
 //->Debug
 	var sFunction	= "anonymous";
 	try {
-		sFunction	= cString(fAML_validate.caller).match(/function ([^\s]+)\(/)[1];
+		sFunction	= cString(fAML_validate.caller).match(rAML_function)[1];
 	} catch (oError) {}
 //<-Debug
 
@@ -136,7 +137,7 @@ function fAML_validate(aArguments, aParameters) {
 			if (!bValid)
 				throw new cAMLException(cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR, fCaller
 //->Debug
-										, [sArgument, aParameter[0], sFunction]
+										, [sArgument, aParameter[0], sFunction, cString(aParameter[1]).match(rAML_function)[1]]
 //<-Debug
 				);
 		}
