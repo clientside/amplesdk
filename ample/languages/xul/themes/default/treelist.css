@@ -4,6 +4,7 @@ xul|tree {
 	border: 1px solid silver;
 	background-color: white;
 	margin: 1px;
+	height: 200px; /* default height */
 }
 
 xul|listbox:focus,

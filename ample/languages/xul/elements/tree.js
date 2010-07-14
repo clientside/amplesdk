@@ -169,10 +169,12 @@ cXULElement_tree.handlers	= {
 
 // Element Render: open
 cXULElement_tree.prototype.$getTagOpen		= function() {
-    return '<div class="xul-tree' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + (this.attributes["disabled"] == "true" ? " xul-tree_disabled" : "") + '"' + (this.attributes["style"] ? ' style="' + this.attributes["style"] + '"' : '')+ '>\
+	var sHeight	= this.attributes["height"],
+		sWidth	= this.attributes["width"];
+    return '<div class="xul-tree' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + (this.attributes["disabled"] == "true" ? " xul-tree_disabled" : "") + '" style="' + (sHeight ? 'height:' + (sHeight * 1 == sHeight ? sHeight + "px" : sHeight) + ';' : '') + (sWidth ? 'width:' + (sWidth * 1 == sWidth ? sWidth + "px" : sWidth) + ';' : '') + (this.attributes["style"] ? this.attributes["style"] + '' : '') + '">\
     			<div style="position:relative;height:100%;top:0;padding-bottom:inherit;">\
     				<div class="xul-tree--resizer" style="height:100%;position:absolute;top:0px;display:none;z-index:1"></div>\
-    				<table cellpadding="0" cellspacing="0" border="0" height="' +(this.attributes["height"] ? this.attributes["height"] : '100%')+ '" width="' +(this.attributes["width"] ? this.attributes["width"] : '100%')+ '">\
+    				<table cellpadding="0" cellspacing="0" border="0" height="' +(sHeight ? sHeight : '100%')+ '" width="' +(sWidth ? sWidth : '100%')+ '">\
     					<tbody class="xul-tree--gateway">';
 };
 
