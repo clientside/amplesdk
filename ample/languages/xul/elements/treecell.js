@@ -10,13 +10,12 @@
 var cXULElement_treecell	= function(){};
 cXULElement_treecell.prototype   = new cXULElement;
 
-// Private methods
-cXULElement_treecell.prototype._onNodeClick	= function(oEvent) {
-	this.parentNode.parentNode.setAttribute("open", this.parentNode.parentNode.getAttribute("open") == "true" ? "false" : "true");
-};
-
 // Class Events Handlers
 cXULElement_treecell.handlers	= {
+	"mousedown":	function(oEvent) {
+		if (oEvent.target == this && oEvent.$pseudoTarget == this.$getContainer("toc"))
+			this.parentNode.parentNode.setAttribute("open", this.parentNode.parentNode.getAttribute("open") == "true" ? "false" : "true");
+	},
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this) {
 			switch (oEvent.attrName)  {
@@ -61,7 +60,7 @@ cXULElement_treecell.prototype.$getTagOpen	= function() {
         var oElementCurrent = this;
         do {
             if (oElementCurrent instanceof cXULElement_treeitem)
-                sHtml  += '<div onmousedown="return ample.$instance(this)._onNodeClick(event);" class="xul-treecell-line"><br /></div>';
+                sHtml  += '<div class="xul-treecell-line"><br /></div>';
             else
             if (oElementCurrent instanceof cXULElement_tree)
                 break;
