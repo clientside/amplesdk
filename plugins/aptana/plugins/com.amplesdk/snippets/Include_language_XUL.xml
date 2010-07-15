@@ -4,4 +4,4 @@
 	toolTip: XUL language bundle (put it in the HEAD section)
 -->
 		<script type="text/javascript" src="lib/ample/languages/xul/xul.js"></script>
-		<link type="text/ample+css" href="lib/ample/languages/xul/themes/default/xul.css" rel="stylesheet"/>
+		<link type="text/css" href="lib/ample/languages/xul/themes/default/style.css" rel="stylesheet"/>

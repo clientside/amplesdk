@@ -9,6 +9,6 @@ RewriteRule ^(.+)$ runtime.php
 RewriteCond %{REQUEST_URI} languages/([^.]*)/([^.]*).js
 RewriteRule ^(.+)$ languages/%1/%1.php
 
-## Ample languages/{language}/themes/{theme}/{theme}.css -> languages/{language}/themes/{theme}/{theme}.php
+## Ample languages/{language}/themes/{theme}/style.css -> languages/{language}/themes/{theme}/style.php
 RewriteCond %{REQUEST_URI} languages/([^\/]+)/themes/([^\/]+)/([^.]*).css
-RewriteRule ^(.+)$ languages/%1/themes/%2/%2.php
+RewriteRule ^(.+)$ languages/%1/themes/%2/style.php

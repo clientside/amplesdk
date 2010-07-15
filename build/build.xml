@@ -415,6 +415,21 @@
 			<arg value="--strip-Source" />
 		</exec>
 
+		<echo message="Merging into: ${temp.languages.dir}/aml-raw.css" level="info"/>
+		<concat destfile="${temp.languages.dir}/aml-raw.css" fixlastline="yes">
+			<fileset dir="${source.aml.dir}/themes/default/">
+				<include name="*.css"/>
+			</fileset>
+		</concat>
+
+		<echo message="Wrapping into: ${temp.languages.dir}/aml.css" level="info"/>
+		<exec executable="${executable.php}" failonerror="true">
+			<arg value="resources/compiler/css.php" />
+			<arg value="${temp.languages.dir}/aml-raw.css" />
+			<arg value="${temp.languages.dir}/aml.css" />
+			<arg value="--obfuscate" />
+		</exec>
+
 		<!-- package -->
 		<mkdir dir="${target.aml.dir}" />
 		<concat destfile="${target.aml.dir}/aml.js" fixlastline="yes">
@@ -424,11 +439,8 @@
 
 		<echo message="Copying default theme to: ${target.aml.dir}/themes/default/" level="info"/>
 		<mkdir dir="${target.aml.dir}/themes/default/" />
-		<concat destfile="${target.aml.dir}/themes/default/aml.css" fixlastline="yes">
-			<fileset dir="${source.aml.dir}/themes/default/">
-				<include name="*.css"/>
-			</fileset>
-		</concat>
+		<copy tofile="${target.aml.dir}/themes/default/style-dev.css" file="${temp.languages.dir}/aml-raw.css" />
+		<copy tofile="${target.aml.dir}/themes/default/style.css" file="${temp.languages.dir}/aml.css" />
 		<copy todir="${target.aml.dir}/themes/default/">
 			<fileset dir="${source.aml.dir}/themes/default/">
 				<include name="media/**"/>
@@ -465,18 +477,18 @@
 			<arg value="--strip-Source" />
 		</exec>
 
-		<echo message="Merging into: ${temp.languages.dir}/xul.css" level="info"/>
-		<concat destfile="${temp.languages.dir}/xul.css" fixlastline="yes">
+		<echo message="Merging into: ${temp.languages.dir}/xul-raw.css" level="info"/>
+		<concat destfile="${temp.languages.dir}/xul-raw.css" fixlastline="yes">
 			<fileset dir="${source.xul.dir}/themes/default/">
 				<include name="*.css"/>
 			</fileset>
 		</concat>
 
-		<echo message="Wrapping into: ${temp.languages.dir}/xul-pre.css" level="info"/>
+		<echo message="Wrapping into: ${temp.languages.dir}/xul.css" level="info"/>
 		<exec executable="${executable.php}" failonerror="true">
 			<arg value="resources/compiler/css.php" />
+			<arg value="${temp.languages.dir}/xul-raw.css" />
 			<arg value="${temp.languages.dir}/xul.css" />
-			<arg value="${temp.languages.dir}/xul-pre.css" />
 			<arg value="--obfuscate" />
 		</exec>
 
@@ -486,11 +498,12 @@
 			<fileset file="${copying.js}" />
 			<fileset file="${temp.languages.dir}/xul-raw-wrapped.js" />
 		</concat>
+
 		<echo message="Copying default theme to: ${target.xul.dir}/themes/default/" level="info"/>
 		<mkdir dir="${target.xul.dir}/themes/default/" />
+		<copy tofile="${target.xul.dir}/themes/default/style-dev.css" file="${temp.languages.dir}/xul-raw.css" />
+		<copy tofile="${target.xul.dir}/themes/default/style.css" file="${temp.languages.dir}/xul.css" />
 		<copy todir="${target.xul.dir}/themes/default/">
-			<fileset file="${temp.languages.dir}/xul.css" />
-			<fileset file="${temp.languages.dir}/xul-pre.css" />
 			<fileset dir="${source.xul.dir}/themes/default/">
 				<include name="media/**"/>
 			</fileset>
@@ -526,19 +539,6 @@
 			<fileset file="${copying.js}" />
 			<fileset file="${temp.languages.dir}/mobile-raw-wrapped.js" />
 		</concat>
-
-		<echo message="Copying default theme to: ${target.mobile.dir}/themes/default/" level="info"/>
-		<mkdir dir="${target.mobile.dir}/themes/default/" />
-		<concat destfile="${target.mobile.dir}/themes/default/mobile.css" fixlastline="yes">
-			<fileset dir="${source.mobile.dir}/themes/default/">
-				<include name="*.css"/>
-			</fileset>
-		</concat>
-		<copy todir="${target.mobile.dir}/themes/default/">
-			<fileset dir="${source.mobile.dir}/themes/default/">
-				<include name="media/**"/>
-			</fileset>
-		</copy>
 	</target>
 
 	<target name="BUILD_AMPLE_LANGUAGES_SVG" unless="skip.ample.languages.svg">
@@ -595,18 +595,18 @@
 			<arg value="--strip-Source" />
 		</exec>
 
-		<echo message="Merging into: ${temp.languages.dir}/chart.css" level="info"/>
-		<concat destfile="${temp.languages.dir}/chart.css" fixlastline="yes">
+		<echo message="Merging into: ${temp.languages.dir}/chart-raw.css" level="info"/>
+		<concat destfile="${temp.languages.dir}/chart-raw.css" fixlastline="yes">
 			<fileset dir="${source.chart.dir}/themes/default/">
 				<include name="*.css"/>
 			</fileset>
 		</concat>
 
-		<echo message="Wrapping into: ${temp.languages.dir}/chart-pre.css" level="info"/>
+		<echo message="Wrapping into: ${temp.languages.dir}/chart.css" level="info"/>
 		<exec executable="${executable.php}" failonerror="true">
 			<arg value="resources/compiler/css.php" />
+			<arg value="${temp.languages.dir}/chart-raw.css" />
 			<arg value="${temp.languages.dir}/chart.css" />
-			<arg value="${temp.languages.dir}/chart-pre.css" />
 			<arg value="--obfuscate" />
 		</exec>
 
@@ -618,9 +618,9 @@
 		</concat>
 		<echo message="Copying default theme to: ${target.chart.dir}/themes/default/" level="info"/>
 		<mkdir dir="${target.chart.dir}/themes/default/" />
+		<copy tofile="${target.chart.dir}/themes/default/style-dev.css" file="${temp.languages.dir}/chart-raw.css" />
+		<copy tofile="${target.chart.dir}/themes/default/style.css" file="${temp.languages.dir}/chart.css" />
 		<copy todir="${target.chart.dir}/themes/default/">
-			<fileset file="${temp.languages.dir}/chart.css" />
-			<fileset file="${temp.languages.dir}/chart-pre.css" />
 			<fileset dir="${source.chart.dir}/themes/default/">
 				<include name="media/**"/>
 			</fileset>
