@@ -11,6 +11,13 @@ var cXULElement_treecol	= function(){};
 cXULElement_treecol.prototype	= new cXULElement;
 cXULElement_treecol.prototype.$hoverable	= true;
 
+// Default attribute values
+cXULElement_treecol.attributes	= {
+	"width":	"100",
+	"minwidth":	"10",
+	"sortDirection":	"natural"
+};
+
 //Public Methods
 cXULElement_treecol.prototype.$isAccessible	= function() {
 	return this.parentNode.parentNode.$isAccessible();
