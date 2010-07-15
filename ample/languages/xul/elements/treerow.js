@@ -77,7 +77,7 @@ cXULElement_treerow.prototype.$getTagOpen	= function() {
 
 // Element Render: close
 cXULElement_treerow.prototype.$getTagClose	= function() {
-    return 		'<td class="xul-treecell"></td>\
+    return 		'<td class="xul-treecell" width="100%"></td>\
     		</tr>';
 };
 

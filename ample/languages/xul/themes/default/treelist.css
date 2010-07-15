@@ -28,6 +28,7 @@ xul|treecols::settings {
 	width:	16px;
 	height:	18px;
 	background: url(media/listhead_settings.gif) 0 0;
+	right: 20px;
 }
 
 xul|listheader,
@@ -50,9 +51,10 @@ xul|listheader::resizer,
 xul|treecol::resizer {
 	width: 5px;
 	height: 18px;
-	float: right;
 	background: url(media/listheader_splitter.gif) no-repeat 2px center;
 	cursor: col-resize;
+	position: absolute;
+	right: 0px;
 }
 
 xul|listbox:disabled xul|listheader::resizer,
@@ -95,8 +97,39 @@ xul|tree:focus xul|treeitem:selected {
 
 xul|listcell,
 xul|treecell {
+/*	white-space:	nowrap;
+	vertical-align: middle;*/
+}
+
+xul|listcell::box,
+xul|treecell::box,
+xul|listheader::box,
+xul|treecol::box {
+	position:relative;
+}
+
+xul|listcell::label,
+xul|treecell::label,
+xul|listheader::label,
+xul|treecol::label {
 	white-space:	nowrap;
 	vertical-align: middle;
+	overflow:hidden;
+	text-overflow: ellipsis;-o-text-overflow: ellipsis;-moz-text-overflow: ellipsis;-webkit-text-overflow: ellipsis;
+	position:absolute;
+	white-space:nowrap;
+}
+
+xul|listcell::box,
+xul|treecell::box,
+xul|listheader::box,
+xul|treecol::box,
+xul|listcell::label,
+xul|treecell::label,
+xul|listheader::label,
+xul|treecol::label {
+	height: 1.15em; /* works fine when font-size is given somewhere */
+	width:100%;
 }
 
 xul|listcell::command,

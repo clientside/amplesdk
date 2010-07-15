@@ -49,9 +49,9 @@ cXULElement_listheader.handlers	= {
 		if (oEvent.target == this) {
 			switch (oEvent.attrName) {
 				case "width":
-					this.$getContainer().width	= oEvent.newValue || '';
-					this.parentNode.parentNode.body.$getContainer("foot").rows[0].cells[this.parentNode.items.$indexOf(this) + (this.parentNode.parentNode.attributes["type"] ? 1 : 0)].width	= oEvent.newValue || '';
-					break;
+					this.$getContainer("box").style.width	= oEvent.newValue != null ? oEvent.newValue + "px" : '';
+					this.parentNode.parentNode.body.$getContainer("foot").rows[0].cells[this.parentNode.items.$indexOf(this) + (this.parentNode.parentNode.attributes["type"] ? 1 : 0)].getElementsByTagName("div")[0].style.width	= oEvent.newValue != null ? oEvent.newValue + "px" : '';
+				break;
 
 				case "label":
 					this.$getContainer("label").innerHTML	= oEvent.newValue || '';
@@ -82,18 +82,15 @@ cXULElement_listheader.handlers	= {
 
 // Element Render: open
 cXULElement_listheader.prototype.$getTagOpen	= function() {
-	return '<th class="xul-listheader' +(this.attributes["class"] ? " " + this.attributes["class"] : "")+ '"' +
-				(this.attributes["width"] ? ' width="' + this.attributes["width"] + '"' : "") +
-				(this.attributes["hidden"] == "true" ? ' style="display:none"' : "") +
-				' align="left">\
-				<div>\
-					<div class="xul-listheader--resizer"><br /></div>\
-    				<div class="xul-listheader--label"> ' + (this.attributes["label"] || "");
+	return '<th class="xul-listheader' +(this.attributes["class"] ? " " + this.attributes["class"] : "")+ '"' +(this.attributes["hidden"] == "true" ? ' style="display:none"' : "")+ ' align="left">\
+				<div class="xul-listheader--box"' + (this.attributes["width"] ? ' style="width:' + this.attributes["width"] + 'px"' : "") + '>\
+    				<div class="xul-listheader--label xul-listheader--gateway"> ' + (this.attributes["label"] || "");
 };
 
 // Element Render: close
 cXULElement_listheader.prototype.$getTagClose	= function() {
 	return			'</div>\
+					<div class="xul-listheader--resizer"><br /></div>\
 				</div>\
 				<div class="xul-listheader--stretch" style="height:1pt;font-size:1px;' + (this.attributes["minwidth"] ? 'width:' + this.attributes["minwidth"] + 'px' : '') + '"></div>\
     		</th>';

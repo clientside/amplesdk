@@ -16,7 +16,18 @@ cXULElement_listcell.prototype	= new cXULElement;
 cXULElement_listcell.handlers	= {
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this) {
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			switch (oEvent.attrName)  {
+				case "label":
+			        this.$getContainer("gateway").innerHTML  =(this.attributes["src"] ? '<img src="' + this.attributes["src"] + '" align="absmiddle" /> ' :'') + (oEvent.newValue || '');
+					break;
+
+				case "src":
+			        this.$getContainer("gateway").innerHTML  =(oEvent.newValue ? '<img src="' + oEvent.newValue + '" align="absmiddle" /> ' :'') + (this.attributes["label"] || '');
+					break;
+
+				default:
+					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			}
 		}
 	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
@@ -33,7 +44,7 @@ cXULElement_listcell.handlers	= {
 cXULElement_listcell.prototype.$getTagOpen	= function()
 {
 	var oHeader	= this.parentNode.parentNode.parentNode.firstChild.childNodes[this.parentNode.childNodes.$indexOf(this)];
-    var sHtml   = '<td class="xul-listcell"' + (oHeader && oHeader.attributes["hidden"] == "true" ? ' style="display:none"' : '') + '><div class="xul-listcell--gateway">';
+    var sHtml   = '<td class="xul-listcell"' + (oHeader && oHeader.attributes["hidden"] == "true" ? ' style="display:none"' : '') + '><div class="xul-listcell--box"><div class="xul-listcell--label xul-listcell--gateway">';
     if (this.attributes["image"])
         sHtml  += '<img src="' + this.attributes["image"] + '" align="absmiddle"/> ';
     if (this.attributes["label"])
@@ -45,7 +56,7 @@ cXULElement_listcell.prototype.$getTagOpen	= function()
 // Element Render: close
 cXULElement_listcell.prototype.$getTagClose	= function()
 {
-    return '</div></td>';
+    return '</div></div></td>';
 };
 
 // Register Element with language

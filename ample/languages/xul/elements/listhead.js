@@ -93,7 +93,7 @@ cXULElement_listhead.handlers	= {
 cXULElement_listhead.prototype.$getTagOpen	= function() {
     return '<tr' + (this.attributes["hidden"] == "true" ? ' style="display:none"' : '') + '>\
 				<td class="xul-listhead--container">\
-					<div class="xul-listheader" style="float:right"><div class="xul-listheader--label"><div class="xul-listhead--settings"><br /></div></div></div>\
+					<div class="xul-listheader" style="float:right"><div class="xul-listhead--settings"><br /></div></div>\
 					<div class="xul-listhead--area" style="height:18px;overflow:hidden;position:relative;">\
 						<table cellpadding="0" cellspacing="0" border="0" width="100%" style="position:absolute;" class="xul-listhead">\
 							<thead>\
@@ -114,7 +114,7 @@ cXULElement_listhead.prototype.$getTagOpen	= function() {
 
 // Element Render: close
 cXULElement_listhead.prototype.$getTagClose	= function() {
-	return 							'<th class="xul-listheader"><br /></th>\
+	return 							'<th class="xul-listheader" width="100%"><br /></th>\
 								</tr>\
 							</thead>\
 						</table>\

@@ -56,7 +56,8 @@ cXULElement_treecell.prototype.$getTagOpen	= function() {
 		oHead	= oChildren && oChildren.tree ? oChildren.tree.head : null,
 		nCellIndex	= this.parentNode.childNodes.$indexOf(this);
 	var sHtml   = '<td class="xul-treecell"' + (oHead && oHead.childNodes[nCellIndex] && oHead.childNodes[nCellIndex].attributes["hidden"] == "true" ? ' style="display:none"' : '') + '>';
-    if (oHead && oHead._getPrimaryColIndex() == nCellIndex) {
+    sHtml  += '<div class="xul-treecell--box"><div class="xul-treecell--label">';
+	if (oHead && oHead._getPrimaryColIndex() == nCellIndex) {
         var oElementCurrent = this;
         do {
             if (oElementCurrent instanceof cXULElement_treeitem)
@@ -67,7 +68,7 @@ cXULElement_treecell.prototype.$getTagOpen	= function() {
         } while(oElementCurrent = oElementCurrent.parentNode);
     }
 
-    sHtml  += '<div class="xul-treecell--gateway">';
+	sHtml	+= '<div class="xul-treecell--gateway">';
     if (this.attributes["src"])
         sHtml  += '<img src="' + this.attributes["src"] + '" align="absmiddle"/> ';
     sHtml  += this.attributes["label"] ? this.attributes["label"] : '';
@@ -77,7 +78,7 @@ cXULElement_treecell.prototype.$getTagOpen	= function() {
 
 // Element Render: close
 cXULElement_treecell.prototype.$getTagClose	= function() {
-    return '</div></td>';
+    return '</div></div></div></td>';
 };
 
 // Register Element with language

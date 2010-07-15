@@ -37,7 +37,7 @@ cXULElement_treechildren.prototype._refresh	= function(aStack, nPrimaryCol) {
     for (var nItem = 0, oItem, oElementDOM; nItem < nItems; nItem++) {
         // Path
         oItem		= oChildren.items[nItem];
-        oElementDOM	= oItem.row.cells[nPrimaryCol].$getContainer();
+        oElementDOM	= oItem.row.cells[nPrimaryCol].$getContainer("label");
 
         if (bTreeLines) {
 	        // Line
