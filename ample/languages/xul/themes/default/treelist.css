@@ -115,7 +115,7 @@ xul|treecol::label {
 	white-space:	nowrap;
 	vertical-align: middle;
 	overflow:hidden;
-	text-overflow: ellipsis;-o-text-overflow: ellipsis;-moz-text-overflow: ellipsis;-webkit-text-overflow: ellipsis;
+	text-overflow: ellipsis;
 	position:absolute;
 	white-space:nowrap;
 }

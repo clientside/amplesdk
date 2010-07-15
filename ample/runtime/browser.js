@@ -754,38 +754,45 @@ function fAML_parseStyleSheet(sCSS, sUri) {
 				sCSS	= sCSS.replace(aImports[nIndex], fAML_parseStyleSheet(fAML_loadStyleSheet(aUrl[1]), aUrl[1]));
 
 	// 4. Convert styles
-	if (bTrident && nVersion < 9) {
+	if (bTrident) {
 		// Rewrite display:inline-block to display:inline (IE8-)
 		if (nVersion < 8)
 			sCSS	= sCSS.replace(/display\s*:\s*inline-block/g, 'display:inline;zoom:1');
 		// Rewrite opacity
-		sCSS	= sCSS.replace(/(?:[^-])opacity\s*:\s*([\d.]+)/g, function(sMatch, nOpacity) {
-			return "filter" + ':' + "progid" + ':' + "DXImageTransform.Microsoft.Alpha" + '(' + "opacity" + '=' + nOpacity * 100 + ');zoom:1';
-		});
+		if (nVersion < 9)
+			sCSS	= sCSS.replace(/(?:[^-])opacity\s*:\s*([\d.]+)/g, function(sMatch, nOpacity) {
+				return "filter" + ':' + "progid" + ':' + "DXImageTransform.Microsoft.Alpha" + '(' + "opacity" + '=' + nOpacity * 100 + ');zoom:1';
+			});
 	}
 	else
-	if (bGecko || bWebKit) {
+	if (bGecko || bWebKit || bOpera) {
 		var sBefore	= '$1$2$3-',
 			sAfter	= '-$1$2$3';
-		// Rewrite box-shadow
+		// Rewrite text-overflow
 		sCSS	= sCSS
-					.replace(/(?:\s|;)(box-shadow\s*:\s*)(.+)(\n|;)/gi, sBefore + (bGecko ? "moz" : "webkit") + sAfter)
-					.replace(/(?:\s|;)(outline-radius\s*:\s*)(.+)(\n|;)/gi, sBefore + (bGecko ? "moz" : "webkit") + sAfter)
-					.replace(/(?:\s|;)(border-radius\s*:\s*)(.+)(\n|;)/gi, sBefore + (bGecko ? "moz" : "webkit") + sAfter);
-		if (bGecko) {
-			// Rewrite box-sizing
-			sCSS	= sCSS.replace(/(?:\s|;)(box-sizing\s*:\s*)(.+)(\n|;)/gi, sBefore + "moz" + sAfter);
-			// Rewrite border-radius
-			sBefore	= sBefore + 'moz-border-radius-';
-			sAfter	= ':$2$3';
+					.replace(/(?:\s|;)(text-overflow\s*:\s*)(.+)(\n|;)/gi, sBefore + (bOpera ? "o" : bGecko ? "moz" : "webkit") + sAfter)
+		//
+		if (!bOpera) {
+			// Rewrite box-shadow
 			sCSS	= sCSS
-						.replace(/(?:\s|;)(border-top-left-radius\s*:\s*)(.+)(\n|;)/gi, sBefore + 'topleft' + sAfter)
-						.replace(/(?:\s|;)(border-top-right-radius\s*:\s*)(.+)(\n|;)/gi, sBefore + 'topright' + sAfter)
-						.replace(/(?:\s|;)(border-bottom-left-radius\s*:\s*)(.+)(\n|;)/gi, sBefore + 'bottomleft' + sAfter)
-						.replace(/(?:\s|;)(border-bottom-right-radius\s*:\s*)(.+)(\n|;)/gi, sBefore + 'bottomright' + sAfter);
+						.replace(/(?:\s|;)(box-shadow\s*:\s*)(.+)(\n|;)/gi, sBefore + (bGecko ? "moz" : "webkit") + sAfter)
+						.replace(/(?:\s|;)(outline-radius\s*:\s*)(.+)(\n|;)/gi, sBefore + (bGecko ? "moz" : "webkit") + sAfter)
+						.replace(/(?:\s|;)(border-radius\s*:\s*)(.+)(\n|;)/gi, sBefore + (bGecko ? "moz" : "webkit") + sAfter);
+			if (bGecko) {
+				// Rewrite box-sizing
+				sCSS	= sCSS.replace(/(?:\s|;)(box-sizing\s*:\s*)(.+)(\n|;)/gi, sBefore + "moz" + sAfter);
+				// Rewrite border-radius
+				sBefore	= sBefore + 'moz-border-radius-';
+				sAfter	= ':$2$3';
+				sCSS	= sCSS
+							.replace(/(?:\s|;)(border-top-left-radius\s*:\s*)(.+)(\n|;)/gi, sBefore + 'topleft' + sAfter)
+							.replace(/(?:\s|;)(border-top-right-radius\s*:\s*)(.+)(\n|;)/gi, sBefore + 'topright' + sAfter)
+							.replace(/(?:\s|;)(border-bottom-left-radius\s*:\s*)(.+)(\n|;)/gi, sBefore + 'bottomleft' + sAfter)
+							.replace(/(?:\s|;)(border-bottom-right-radius\s*:\s*)(.+)(\n|;)/gi, sBefore + 'bottomright' + sAfter);
+			}
+			// Rewrite linear-gradient
+//			sCSS	= sCSS.replace(/(\s|;)(background-image\s*:\s*)(linear-gradient\(.+\))(\n|;)/gi, "$1$2$3$4$1$2\-moz\-$3$4");
 		}
-		// Rewrite linear-gradient
-//		sCSS	= sCSS.replace(/(\s|;)(background-image\s*:\s*)(linear-gradient\(.+\))(\n|;)/gi, "$1$2$3$4$1$2\-moz\-$3$4");
 	}
 
 	// 5. Modify selectors
