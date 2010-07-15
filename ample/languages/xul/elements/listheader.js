@@ -11,8 +11,9 @@ var cXULElement_listheader	= function(){};
 cXULElement_listheader.prototype	= new cXULElement;
 cXULElement_listheader.prototype.$hoverable	= true;
 
-// Private Properties
-cXULElement_listheader.prototype._sortDir	= "none";
+cXULElement_listheader.attributes	= {
+	"sortDirection":	"natural"
+};
 
 // Public Methods
 cXULElement_listheader.prototype.$isAccessible	= function() {
@@ -40,14 +41,16 @@ cXULElement_listheader.handlers	= {
 		cXULSelectElement.onResize(oEvent);
 	},
 	"click":		function(oEvent) {
-	    if (oEvent.button < 2 && oEvent.$pseudoTarget != this.$getContainer("resizer")) {
-	        this._sortDir   = this._sortDir != "asc" ? "asc" : "desc";
-	        this.parentNode.parentNode.sort(this.$getContainer().cellIndex, this._sortDir == "asc");
-	    }
+	    if (oEvent.button < 2 && oEvent.$pseudoTarget != this.$getContainer("resizer"))
+	    	this.setAttribute("sortDirection", this.getAttribute("sortDirection") != "ascending" ? "ascending" : "descending");
 	},
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this) {
 			switch (oEvent.attrName) {
+				case "sortDirection":
+					cXULElement_listbox.sort(this.parentNode.parentNode, this.$getContainer().cellIndex, oEvent.newValue == "ascending");
+					break;
+
 				case "width":
 					this.$getContainer("box").style.width	= oEvent.newValue != null ? oEvent.newValue + "px" : '';
 					this.parentNode.parentNode.body.$getContainer("foot").rows[0].cells[this.parentNode.items.$indexOf(this) + (this.parentNode.parentNode.attributes["type"] ? 1 : 0)].getElementsByTagName("div")[0].style.width	= oEvent.newValue != null ? oEvent.newValue + "px" : '';
