@@ -9,7 +9,7 @@
 
 //->Debug
 function fAML_warn(nWarning, aArguments) {
-	var	oErrorHandler	= oAMLConfiguration_values["error-handler"];
+	var oErrorHandler	= oAMLConfiguration_values["error-handler"];
 	if (oErrorHandler)
 		oErrorHandler.handleError(new cAMLError(fAML_format(oAML_messages[nWarning], aArguments || []), cAMLError.SEVERITY_WARNING));
 };
@@ -669,7 +669,7 @@ function fAML_processScripts() {
 };
 
 function fAML_processStyleSheets() {
-	var	aElements,
+	var aElements,
 		oElement;
 
 	// Process inline StyleSheets

@@ -7,7 +7,7 @@
  *
  */
 
-var	nAMLResize_STATE_RELEASED	= 0,	// Constants
+var nAMLResize_STATE_RELEASED	= 0,	// Constants
 	nAMLResize_STATE_CAPTURED	= 1,
 	nAMLResize_STATE_RESIZED	= 2,
 

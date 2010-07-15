@@ -176,7 +176,7 @@ function fAMLFocus_onKeyDown(oEvent) {
 
 		// Otherwise
 		if (!oFocusGroup) {
-			var	oRoot	= oAML_modalNode || this.documentElement,
+			var oRoot	= oAML_modalNode || this.documentElement,
 				nTabIndexMax	=-nInfinity,
 				nTabIndexMin	= nInfinity,
 				nTabIndexNext	= nTabIndexMin,

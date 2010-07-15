@@ -875,7 +875,7 @@ function fAML_setStyle(oElementDOM, sName, sValue) {
 };
 
 function fAML_stringToHash(sValue, sPrefix) {
-	for (var hValue = {}, aValues = sValue.split(';'), nIndex = 0, aValue; nIndex < aValues.length; nIndex++)
+	for (var hValue = {}, aValues = sValue.split(';'), nIndex = 0, nLength = aValues.length, aValue; nIndex < nLength; nIndex++)
 		hValue[(aValue = aValues[nIndex].split(':'))[0]]	=(sPrefix || '') + aValue[1];
 	return hValue;
 };

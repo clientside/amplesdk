@@ -7,7 +7,7 @@
  *
  */
 
-var	nAMLDragAndDrop_STATE_RELEASED	= 0,	// Constants
+var nAMLDragAndDrop_STATE_RELEASED	= 0,	// Constants
 	nAMLDragAndDrop_STATE_CAPTURED	= 1,
 	nAMLDragAndDrop_STATE_DRAGGED	= 2,
 

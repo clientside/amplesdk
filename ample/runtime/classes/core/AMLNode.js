@@ -501,7 +501,7 @@ function fAMLNode_executeHandler(oNode, fHandler, oEvent) {
 	}
 	catch (oException) {
 		if (oException instanceof cAMLException) {
-			var	oErrorHandler	= oAMLConfiguration_values["error-handler"];
+			var oErrorHandler	= oAMLConfiguration_values["error-handler"];
 			if (oErrorHandler)
 				oErrorHandler.handleError(new cAMLError(oException.message, cAMLError.SEVERITY_ERROR, oException));
 		}
