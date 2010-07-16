@@ -99,6 +99,14 @@ cAMLNode.prototype.appendChild	= function(oNode)
 		["node",	cAMLNode]
 	]);
 
+	// Additional check: do not allow adding document nodes as children
+	if (oNode.nodeType == cAMLNode.DOCUMENT_NODE)
+		throw new cAMLException(cAMLException.HIERARCHY_REQUEST_ERR);
+
+	// Additional check: if document has documentElement already, no other children can be added
+	if (this.nodeType == cAMLNode.DOCUMENT_NODE && this.lastChild && this.lastChild.nodeType == cAMLNode.ELEMENT_NODE)
+		throw new cAMLException(cAMLException.HIERARCHY_REQUEST_ERR);
+
 	return fAMLNode_appendChild(this, oNode);
 };
 
@@ -146,6 +154,14 @@ cAMLNode.prototype.insertBefore	= function(oNode, oBefore)
 		["node",	cAMLNode],
 		["before",	cAMLNode, false, true]
 	]);
+
+	// Additional check: do not allow adding document nodes as children
+	if (oNode.nodeType == cAMLNode.DOCUMENT_NODE)
+		throw new cAMLException(cAMLException.HIERARCHY_REQUEST_ERR);
+
+	// Additional check: if document has documentElement already, no other children can be added
+	if (this.nodeType == cAMLNode.DOCUMENT_NODE && this.lastChild && this.lastChild.nodeType == cAMLNode.ELEMENT_NODE)
+		throw new cAMLException(cAMLException.HIERARCHY_REQUEST_ERR);
 
 	if (oBefore) {
 		if (this.childNodes.$indexOf(oBefore) !=-1)
