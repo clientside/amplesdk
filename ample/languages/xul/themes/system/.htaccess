@@ -1,0 +1,17 @@
+## Rewrite engine
+RewriteEngine on
+
+# oschrome
+RewriteCond %{HTTP_USER_AGENT} "CrOS"
+RewriteRule ^(.*) ../oschrome/$1
+
+# osxp
+RewriteCond %{HTTP_USER_AGENT} "Windows"
+RewriteRule ^(.*) ../osxp/$1
+
+# osmac
+RewriteCond %{HTTP_USER_AGENT} "Mac OS X"
+RewriteRule ^(.*) ../osmac/$1
+
+# default
+RewriteRule ^(.*) ../default/$1
