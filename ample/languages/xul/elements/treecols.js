@@ -91,7 +91,7 @@ cXULElement_treecols.prototype.$getTagOpen	= function() {
     return '<tr' + (this.attributes["hidden"] == "true" ? ' style="display:none"' : '') + '>\
 				<td class="xul-treecols--container" valign="top" height="1">\
 					<div class="xul-treecol" style="float:right"><div class="xul-treecols--settings"><br /></div></div>\
-					<div class="xul-treecols--area" style="height:18px;overflow:hidden;position:relative;">\
+					<div class="xul-treecols--area" style="height:20px;overflow:hidden;position:relative;">\
 						<table cellpadding="0" cellspacing="0" border="0" width="100%" class="xul-treecols" style="position:absolute">\
 							<thead>\
 								<tr class="xul-treecols--gateway">' +

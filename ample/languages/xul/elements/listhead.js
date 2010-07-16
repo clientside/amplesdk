@@ -94,7 +94,7 @@ cXULElement_listhead.prototype.$getTagOpen	= function() {
     return '<tr' + (this.attributes["hidden"] == "true" ? ' style="display:none"' : '') + '>\
 				<td class="xul-listhead--container">\
 					<div class="xul-listheader" style="float:right"><div class="xul-listhead--settings"><br /></div></div>\
-					<div class="xul-listhead--area" style="height:18px;overflow:hidden;position:relative;">\
+					<div class="xul-listhead--area" style="height:20px;overflow:hidden;position:relative;">\
 						<table cellpadding="0" cellspacing="0" border="0" width="100%" style="position:absolute;" class="xul-listhead">\
 							<thead>\
 								<tr class="xul-listhead--gateway">' +
