@@ -56,6 +56,7 @@ oAML_messages[cAMLException.TYPE_MISMATCH_ERR]				= 'The type of an object is in
 // Errors
 oAML_messages[cAMLException.AML_ARGUMENT_MISSING_ERR]		= 'Missing required %0 argument "%1" in "%2" function call';
 oAML_messages[cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR]	= 'Incompatible type of %0 argument "%1" in "%2" function call. Expecting "%3"';
+oAML_messages[cAMLException.AML_ARGUMENT_NULL_ERR]			= 'null is not allowed value of %0 argument "%1" in "%2" function call';
 oAML_messages[cAMLException.AML_SELECTOR_ELEMENT_ERR]		= 'Unknown element selector "%0"';
 oAML_messages[cAMLException.AML_SELECTOR_ATTRIBUTE_ERR]		= 'Unknown attribute selector "%0"';
 oAML_messages[cAMLException.AML_NOT_INITIALIZED_ERR]		= 'Object "%0" has not been initialized';
@@ -85,7 +86,8 @@ oAML_messages[nAML_DOCUMENT_INVALID_STATE_WRN]	= 'Document invalid state';
  */
 //->Debug
 var aAML_endings	= 'st-nd-rd-th'.split('-'),
-	rAML_function	= /function ([^\s]*)\(/;
+	rAML_function	= /function ([^\s]*)\(/,
+	oAML_types		= fAML_stringToHash('0:Node;1:Element;9:Document');
 //<-Debug
 function fAML_validate(aArguments, aParameters) {
 	var fCaller	= null;
@@ -101,45 +103,53 @@ function fAML_validate(aArguments, aParameters) {
 //<-Debug
 
 	// Iterate over parameters list
-	for (var nIndex = 0, nLength = aArguments.length, aParameter, oArgument, bValid; aParameter = aParameters[nIndex]; nIndex++) {
-		oArgument	= aArguments[nIndex];
+	for (var nIndex = 0, nLength = aArguments.length, aParameter, vValue, bValid; aParameter = aParameters[nIndex]; nIndex++) {
+		vValue	= aArguments[nIndex];
 //->Debug
 		var sArgument	=(nIndex + 1)+ aAML_endings[nIndex < 3 ? nIndex : 3];
 //<-Debug
-		// see if argument is passed
+		// see if argument is missing
 		if (nLength < nIndex + 1 && !aParameter[2])
 			throw new cAMLException(cAMLException.AML_ARGUMENT_MISSING_ERR, fCaller
 //->Debug
-									, [sArgument, aParameter[0], sFunction]
+								, [sArgument, aParameter[0], sFunction]
 //<-Debug
 			);
 
-		// see if argument has correct type
 		if (nLength > nIndex) {
-			if (oArgument === null && aParameter[3])
-				bValid	= true;
-			else
+			if (vValue === null) {
+				// See if null is allowed
+				if (!aParameter[3])
+					throw new cAMLException(cAMLException.AML_ARGUMENT_NULL_ERR, fCaller
+//->Debug
+										, [sArgument, aParameter[0], sFunction]
+//<-Debug
+					);
+			}
+			else {
+				// see if argument has correct type
 				switch (aParameter[1]) {
 					// Primitive types
-					case cString:		bValid	= typeof oArgument == "string";		break;
-					case cBoolean:		bValid	= typeof oArgument == "boolean";	break;
-					case cNumber:		bValid	= typeof oArgument == "number";		break;
-					case cFunction:		bValid	= typeof oArgument == "function";	break;
+					case cString:		bValid	= typeof vValue == "string";	break;
+					case cBoolean:		bValid	= typeof vValue == "boolean";	break;
+					case cNumber:		bValid	= typeof vValue == "number";	break;
+					case cFunction:		bValid	= typeof vValue == "function";	break;
 					// Virtual types
-					case cXMLNode:		bValid	= oArgument && !fIsNaN(oArgument.nodeType);	break;
-					case cXMLElement:	bValid	= oArgument && oArgument.nodeType == 1;		break;
-					case cXMLDocument:	bValid	= oArgument && oArgument.nodeType == 9;		break;
+					case cXMLNode:		bValid	= vValue && !fIsNaN(vValue.nodeType);	break;
+					case cXMLElement:	bValid	= vValue && vValue.nodeType == 1;		break;
+					case cXMLDocument:	bValid	= vValue && vValue.nodeType == 9;		break;
 					// Object types
-					case cObject:		bValid	= true;								break;
-					default:			bValid	= oArgument instanceof aParameter[1];
+					case cObject:		bValid	= true;							break;
+					default:			bValid	= vValue instanceof aParameter[1];
 				}
 
-			if (!bValid)
-				throw new cAMLException(cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR, fCaller
+				if (!bValid)
+					throw new cAMLException(cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR, fCaller
 //->Debug
-										, [sArgument, aParameter[0], sFunction, cString(aParameter[1]).match(rAML_function)[1]]
+										, [sArgument, aParameter[0], sFunction, oAML_types[aParameter[1]] || cString(aParameter[1]).match(rAML_function)[1]]
 //<-Debug
-				);
+					);
+			}
 		}
 	}
 };

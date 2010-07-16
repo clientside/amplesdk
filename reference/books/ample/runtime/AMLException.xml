@@ -212,21 +212,49 @@
 					</locale>
 				</description>
 			</constant>
-			<constant name="AML_SELECTOR_ELEMENT_ERR" value="-3">
+			<constant name="AML_ARGUMENT_WRONG_TYPE_ERR" value="-3">
+				<description>
+					<locale>
+						null is not allowed value in function call.
+					</locale>
+				</description>
+			</constant>
+			<constant name="AML_SELECTOR_ELEMENT_ERR" value="-4">
 				<description>
 					<locale>
 						Unknown element selector.
 					</locale>
 				</description>
 			</constant>
-			<constant name="AML_SELECTOR_ATTRIBUTE_ERR" value="-4">
+			<constant name="AML_SELECTOR_ATTRIBUTE_ERR" value="-5">
 				<description>
 					<locale>
 						Unknown attribute selector.
 					</locale>
 				</description>
 			</constant>
-			<constant name="AML_NOT_INITIALIZED_ERR" value="-5">
+			<constant name="AML_NOT_INITIALIZED_ERR" value="-6">
+				<description>
+					<locale>
+						Object has not been initialized.
+					</locale>
+				</description>
+			</constant>
+			<constant name="AML_MODAL_SET_MODAL_ERR" value="-7">
+				<description>
+					<locale>
+						Object has not been initialized.
+					</locale>
+				</description>
+			</constant>
+			<constant name="AML_MODAL_RELEASE_MODAL_ERR" value="-8">
+				<description>
+					<locale>
+						Object has not been initialized.
+					</locale>
+				</description>
+			</constant>
+			<constant name="AML_MEMBER_MISSING_ERR" value="-9">
 				<description>
 					<locale>
 						Object has not been initialized.
