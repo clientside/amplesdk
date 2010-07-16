@@ -14,18 +14,18 @@ var cXULElement_datepicker_pane	= function() {
 };
 
 cXULElement_datepicker_pane.months	= [
-	"January",
-	"February",
-	"March",
-	"April",
-	"May",
-	"June",
-	"July",
-	"August",
-	"September",
-	"October",
-	"November",
-	"December"
+	oXULLocaleManager.getText("datepicker.month.january"),
+	oXULLocaleManager.getText("datepicker.month.february"),
+	oXULLocaleManager.getText("datepicker.month.march"),
+	oXULLocaleManager.getText("datepicker.month.april"),
+	oXULLocaleManager.getText("datepicker.month.may"),
+	oXULLocaleManager.getText("datepicker.month.june"),
+	oXULLocaleManager.getText("datepicker.month.july"),
+	oXULLocaleManager.getText("datepicker.month.august"),
+	oXULLocaleManager.getText("datepicker.month.september"),
+	oXULLocaleManager.getText("datepicker.month.october"),
+	oXULLocaleManager.getText("datepicker.month.november"),
+	oXULLocaleManager.getText("datepicker.month.december")
 ];
 
 // component prototype
@@ -289,13 +289,13 @@ cXULElement_datepicker_pane.$getTagDays	= function(oInstance, oDate) {
 					<thead class="xul-datepicker-pane--header">\
 						<tr>\
 							 <td>&nbsp;</td>\
-							 <td class="xul-datepicker-pane-head-day">M</td>\
-							 <td class="xul-datepicker-pane-head-day">T</td>\
-							 <td class="xul-datepicker-pane-head-day">W</td>\
-							 <td class="xul-datepicker-pane-head-day">T</td>\
-							 <td class="xul-datepicker-pane-head-day">F</td>\
-							 <td class="xul-datepicker-pane-head-day">S</td>\
-							 <td class="xul-datepicker-pane-head-day">S</td>\
+							 <td class="xul-datepicker-pane-head-day">' + oXULLocaleManager.getText("datepicker.day.monday").substr(0,1) + '</td>\
+							 <td class="xul-datepicker-pane-head-day">' + oXULLocaleManager.getText("datepicker.day.tuesday").substr(0,1) + '</td>\
+							 <td class="xul-datepicker-pane-head-day">' + oXULLocaleManager.getText("datepicker.day.wednesday").substr(0,1) + '</td>\
+							 <td class="xul-datepicker-pane-head-day">' + oXULLocaleManager.getText("datepicker.day.thursday").substr(0,1) + '</td>\
+							 <td class="xul-datepicker-pane-head-day">' + oXULLocaleManager.getText("datepicker.day.friday").substr(0,1) + '</td>\
+							 <td class="xul-datepicker-pane-head-day">' + oXULLocaleManager.getText("datepicker.day.saturday").substr(0,1) + '</td>\
+							 <td class="xul-datepicker-pane-head-day">' + oXULLocaleManager.getText("datepicker.day.sunday").substr(0,1) + '</td>\
 						</tr>\
 					</thead>\
 					<tbody>\

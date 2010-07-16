@@ -84,7 +84,7 @@ cXULElement_dialog.handlers	= {
 			oElement.addEventListener("DOMActivate", function(oEvent) {
 				that.acceptDialog();
 			}, false);
-			oElement.setAttribute("label", "OK");
+			oElement.setAttribute("label", oXULLocaleManager.getText("dialog.button.accept"));
 			oElement.setAttribute("class", "accept");
 			if (this.attributes["buttons"].indexOf("accept") ==-1)
 				oElement.setAttribute("hidden", "true");
@@ -94,7 +94,7 @@ cXULElement_dialog.handlers	= {
 			oElement.addEventListener("DOMActivate", function(oEvent) {
 				that.cancelDialog();
 			}, false);
-			oElement.setAttribute("label", "Cancel");
+			oElement.setAttribute("label", oXULLocaleManager.getText("dialog.button.cancel"));
 			oElement.setAttribute("class", "cancel");
 			if (this.attributes["buttons"].indexOf("cancel") ==-1)
 				oElement.setAttribute("hidden", "true");
@@ -106,7 +106,7 @@ cXULElement_dialog.handlers	= {
 		        oEvent2.initEvent("dialoghelp", false, true);
 		        that.dispatchEvent(oEvent2);
 			}, false);
-			oElement.setAttribute("label", "Help");
+			oElement.setAttribute("label", oXULLocaleManager.getText("dialog.button.help"));
 			oElement.setAttribute("class", "help");
 			if (this.attributes["buttons"].indexOf("help") ==-1)
 				oElement.setAttribute("hidden", "true");

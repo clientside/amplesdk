@@ -136,7 +136,7 @@ cXULElement_wizard.handlers	= {
 			oElement.addEventListener("DOMActivate", function(oEvent) {
 				that.rewind();
 			}, false);
-			oElement.setAttribute("label", "&lt; Back");
+			oElement.setAttribute("label", oXULLocaleManager.getText("dialog.button.previous"));
 			oElement.setAttribute("class", "back");
 			this.buttons["back"]	= oElement;
 			// Next
@@ -144,7 +144,7 @@ cXULElement_wizard.handlers	= {
 			oElement.addEventListener("DOMActivate", function(oEvent) {
 				that.advance();
 			}, false);
-			oElement.setAttribute("label", "Next &gt;");
+			oElement.setAttribute("label", oXULLocaleManager.getText("dialog.button.next"));
 			oElement.setAttribute("class", "next");
 			this.buttons["next"]	= oElement;
 			// Finish
@@ -152,7 +152,7 @@ cXULElement_wizard.handlers	= {
 			oElement.addEventListener("DOMActivate", function(oEvent) {
 		        that.finish();
 			}, false);
-			oElement.setAttribute("label", "Finish");
+			oElement.setAttribute("label", oXULLocaleManager.getText("dialog.button.finish"));
 			oElement.setAttribute("class", "finish");
 			this.buttons["finish"]	= oElement;
 			// Cancel
@@ -160,7 +160,7 @@ cXULElement_wizard.handlers	= {
 			oElement.addEventListener("DOMActivate", function(oEvent) {
 				that.cancel();
 			}, false);
-			oElement.setAttribute("label", "Cancel");
+			oElement.setAttribute("label", oXULLocaleManager.getText("dialog.button.cancel"));
 			oElement.setAttribute("class", "cancel");
 			this.buttons["cancel"]	= oElement;
 		}
