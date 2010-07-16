@@ -792,7 +792,7 @@ oAMLConfiguration_values["comments"]	= false; 	// in DOM-Core spec the default v
 oAMLConfiguration_values["ample-use-style-property"]= true;		// -> ample-core-style
 oAMLConfiguration_values["ample-module-history-fix"]= false;	// -> ample-history
 oAMLConfiguration_values["ample-version"]		= '@project.version@';
-oAMLConfiguration_values["ample-user-locale"]	= oUANavigator.language || oUANavigator.userLanguage || 'en';
+oAMLConfiguration_values["ample-user-locale"]	= oUANavigator.language || oUANavigator.userLanguage || 'en-US';
 oAMLConfiguration_values["ample-user-agent"]	= '@project.userAgent@';
 
 var oAML_implementation	= new cAMLImplementation,
