@@ -70,9 +70,9 @@ cXULElement_treebody.prototype.$getTagClose	= function() {
     	aHtml.push('<tfoot class="xul-treebody--foot">');
     	aHtml.push('<tr>');
         if (this.parentNode.attributes["type"] == "checkbox" || this.parentNode.attributes["type"] == "radio")
-        	aHtml.push('<td width="20" style="width:20px"><div style="width:20px" /></td>');
+        	aHtml.push('<td width="20" style="width:20px"><div style="width:20px"></div></td>');
         for (var nIndex = 0, aItems = this.parentNode.head.items, oItem; oItem = aItems[nIndex]; nIndex++)
-        	aHtml.push('<td' + (oItem.attributes["hidden"] == "true" ? ' style="display:none"' : '') + '><div style="height:1px;' + (oItem.attributes["width"] ? 'width:' + oItem.attributes["width"] + 'px;' : '') + '"/><div style="height:1px;' + (oItem.attributes["minwidth"] ? 'width:' + oItem.attributes["minwidth"] + 'px' : '') + '"/></td>');
+        	aHtml.push('<td' + (oItem.attributes["hidden"] == "true" ? ' style="display:none"' : '') + '><div style="height:1px;' + (oItem.attributes["width"] ? 'width:' + oItem.attributes["width"] + 'px;' : '') + '"></div><div style="height:1px;' + (oItem.attributes["minwidth"] ? 'width:' + oItem.attributes["minwidth"] + 'px' : '') + '"></div></td>');
         aHtml.push('<td></td>');
         aHtml.push('</tr>');
         aHtml.push('</tfoot>');
