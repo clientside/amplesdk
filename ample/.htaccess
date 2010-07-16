@@ -1,14 +1,6 @@
 ## Rewrite engine
 RewriteEngine on
 
-## Ample Runtime
-RewriteCond %{REQUEST_URI} runtime.js
-RewriteRule ^(.+)$ runtime.php
-
-## Ample languages/{language}/{language}.js -> languages/{language}/{language}.php
-RewriteCond %{REQUEST_URI} languages/([^.]*)/([^.]*).js
-RewriteRule ^(.+)$ languages/%1/%1.php
-
-## Ample languages/{language}/themes/{theme}/style.css -> languages/{language}/themes/{theme}/style.php
-RewriteCond %{REQUEST_URI} languages/([^\/]+)/themes/([^\/]+)/([^.]*).css
-RewriteRule ^(.+)$ languages/%1/themes/%2/style.php
+##
+RewriteRule ^(.+).js $1.php
+RewriteRule ^(.+).css $1.php
