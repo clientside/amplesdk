@@ -19,5 +19,5 @@ UI Language implementation:
 	ample/languages/{LANGUAGE}/{LANGUAGE}.js
  -> ample/languages/{LANGUAGE}/implementation/**.js
 UI Language theme:
-	ample/languages/{LANGUAGE}/themes/{THEME}/{LANGUAGE}.css
+	ample/languages/{LANGUAGE}/themes/{THEME}/style.css
  -> ample/languages/{LANGUAGE}/themes/{THEME}/**.css
