@@ -765,14 +765,14 @@ function fAML_parseStyleSheet(sCSS, sUri) {
 			});
 	}
 	else
-	if (bGecko || bWebKit || bOpera) {
+	if (bGecko || bWebKit || bPresto) {
 		var sBefore	= '$1$2$3-',
 			sAfter	= '-$1$2$3';
 		// Rewrite text-overflow
 		sCSS	= sCSS
-					.replace(/(?:\s|;)(text-overflow\s*:\s*)(.+)(\n|;)/gi, sBefore + (bOpera ? "o" : bGecko ? "moz" : "webkit") + sAfter)
+					.replace(/(?:\s|;)(text-overflow\s*:\s*)(.+)(\n|;)/gi, sBefore + (bPresto ? "o" : bGecko ? "moz" : "webkit") + sAfter)
 		//
-		if (!bOpera) {
+		if (!bPresto) {
 			// Rewrite box-shadow
 			sCSS	= sCSS
 						.replace(/(?:\s|;)(box-shadow\s*:\s*)(.+)(\n|;)/gi, sBefore + (bGecko ? "moz" : "webkit") + sAfter)
