@@ -328,11 +328,11 @@ cAMLDocument.prototype.importNode	= function(oNode, bDeep)
 {
 	// Validate arguments
 	fAML_validate(arguments, [
-		["node",	cXMLElement],
+		["node",	cXMLNode],
 		["deep",	cBoolean]
 	]);
 
-	if (oNode && oNode.nodeType == cAMLNode.ELEMENT_NODE)
+	if (oNode.nodeType == cAMLNode.ELEMENT_NODE)
 		return fAML_import(oNode);
 	else
 		throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
