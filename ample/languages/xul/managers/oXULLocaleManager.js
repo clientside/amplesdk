@@ -9,7 +9,11 @@
 
 var oXULLocaleManager	=(function(){
 	// Private variables
-	var oLocales	= {};
+	var oLocales	= {},
+		oLanguages	= {
+			"en":	"us",
+			"it":	"it"
+		};
 
 	// Public object
 	return {
@@ -17,7 +21,10 @@ var oXULLocaleManager	=(function(){
 			oLocales[sLocale.toLowerCase()]	= oLocale;
 		},
 		getText:	function(sName) {
-			return (oLocales[ample.domConfig.getParameter("ample-user-locale").toLowerCase()] || oLocales["en-us"]).dictionary[sName] || '???';
+			var sLocale	= ample.domConfig.getParameter("ample-user-locale").toLowerCase();
+			if (sLocale.split("-").length < 2)
+				sLocale+= "-" + oLanguages[sLocale];
+			return (oLocales[sLocale] || oLocales["en-us"]).dictionary[sName] || 'null';
 		}
 	};
 })();
