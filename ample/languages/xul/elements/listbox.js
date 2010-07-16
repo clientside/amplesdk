@@ -124,7 +124,7 @@ cXULElement_listbox.prototype.$getTagOpen	= function() {
     return '<div class="xul-listbox' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + (this.attributes["disabled"] == "true" ? " xul-listbox_disabled" : "") + '" style="' + (sHeight ? 'height:' + (sHeight * 1 == sHeight ? sHeight + "px" : sHeight) + ';' : '') + (sWidth ? 'width:' + (sWidth * 1 == sWidth ? sWidth + "px" : sWidth) + ';' : '') + (this.attributes["style"] ? this.attributes["style"] + '' : '') + '">\
     			<div style="position:relative;height:100%;top:0;padding-bottom:inherit;">\
     				<div class="xul-listbox--resizer" style="height:100%;position:absolute;top:0px;display:none;z-index:1"></div>\
-					<table cellpadding="0" cellspacing="0" border="0" height="' +(sHeight ? sHeight : '100%')+ '" width="' +(sWidth ? sWidth : '100%')+ '">\
+    				<table cellpadding="0" cellspacing="0" border="0" height="' +(sHeight ? sHeight : '100%')+ '" width="' +(sWidth ? sWidth : '100%')+ '" style="position:absolute">\
 						<tbody class="xul-listbox--gateway">';
 };
 
@@ -132,7 +132,7 @@ cXULElement_listbox.prototype.$getTagOpen	= function() {
 cXULElement_listbox.prototype.$getTagClose	= function() {
     return 				'</tbody>\
     				</table>\
-    			</div>\
+   				</div>\
     		</div>';
 };
 
