@@ -19,6 +19,7 @@
 
 	// locales
 	$aFiles[]	= "locale/en-us.js";
+	$aFiles[]	= "locale/it-it.js";
 
     // elements
     // windowing
