@@ -47,7 +47,7 @@ cXULElement_treecol.handlers	= {
 		if (oEvent.target == this) {
 			switch (oEvent.attrName) {
 				case "width":
-					this.$getContainer("box").style.width	= oEvent.newValue != null ? oEvent.newValue + "px" : '';
+					this.$getContainer("stretch").style.width	= oEvent.newValue != null ? oEvent.newValue + "px" : '';
 					this.parentNode.parentNode.body.$getContainer("foot").rows[0].cells[this.parentNode.items.$indexOf(this) + (this.parentNode.parentNode.attributes["type"] ? 1 : 0)].getElementsByTagName("div")[0].style.width	= oEvent.newValue != null ? oEvent.newValue + "px" : '';
 					break;
 
@@ -75,7 +75,7 @@ cXULElement_treecol.handlers	= {
 // Element Render: open
 cXULElement_treecol.prototype.$getTagOpen	= function() {
 	return '<td class="xul-treecol' +(this.attributes["class"] ? " " + this.attributes["class"] : "")+ '"' + (this.attributes["hidden"] == "true" ? ' style="display:none"' : "")+ ' align="left">\
-				<div class="xul-treecol--box"' + (this.attributes["width"] ? ' style="width:' + this.attributes["width"] + 'px"' : "") + '>\
+				<div class="xul-treecol--box">\
 					<div class="xul-treecol--label xul-treecol--gateway"> ' +(this.attributes["label"] || "");
 };
 
@@ -84,7 +84,8 @@ cXULElement_treecol.prototype.$getTagClose	= function() {
     return			'</div>\
 					<div class="xul-treecol--resizer"><br /></div>\
 				</div>\
-				<div class="xul-treecol--stretch" style="height:1pt;font-size:1px;' + (this.attributes["minwidth"] ? 'width:' + this.attributes["minwidth"] + 'px' : '') + '"></div>\
+				<div class="xul-treecol--stretch" style="height:1pt;font-size:1px;' + (this.attributes["width"] ? 'width:' + this.attributes["width"] + 'px' : '') + '"></div>\
+				<div style="height:1pt;font-size:1px;' + (this.attributes["minwidth"] ? 'width:' + this.attributes["minwidth"] + 'px' : '') + '"></div>\
     		</td>';
 };
 
