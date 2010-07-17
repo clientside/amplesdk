@@ -76,7 +76,11 @@ function fAMLSelector_select(aFrom, sToken, sFilter, sArguments, fResolver) {
     if (oAMLSelector_elementSelectors[sToken])
         oAMLSelector_elementSelectors[sToken](aReturn, aFrom, sFilter, sArguments, fResolver);
 	else
-		throw new cAMLException(cAMLException.AML_SELECTOR_ELEMENT_ERR, fAMLSelector_query.caller.caller, [sToken]);
+		throw new cAMLException(cAMLException.AML_SELECTOR_ELEMENT_ERR, fAMLSelector_query.caller.caller
+//->Debug
+				, [sToken]
+//<-Debug
+		);
     return aReturn;
 };
 
@@ -278,7 +282,11 @@ oAMLSelector_elementSelectors['@'] = function(aReturn, aFrom, sString, sArgument
 					aReturn.push(oElement);
 		}
 		else
-			throw new cAMLException(cAMLException.AML_SELECTOR_ATTRIBUTE_ERR, fAMLSelector_query.caller.caller, [sCompare]);
+			throw new cAMLException(cAMLException.AML_SELECTOR_ATTRIBUTE_ERR, fAMLSelector_query.caller.caller
+//->Debug
+					, [sCompare]
+//->Debug
+			);
 	}
 };
 
