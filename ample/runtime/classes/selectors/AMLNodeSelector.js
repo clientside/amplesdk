@@ -285,7 +285,7 @@ oAMLSelector_elementSelectors['@'] = function(aReturn, aFrom, sString, sArgument
 			throw new cAMLException(cAMLException.AML_SELECTOR_ATTRIBUTE_ERR, fAMLSelector_query.caller.caller
 //->Debug
 					, [sCompare]
-//->Debug
+//<-Debug
 			);
 	}
 };
