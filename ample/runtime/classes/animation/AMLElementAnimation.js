@@ -169,7 +169,7 @@ cAMLElement.prototype.$play	= function(sParams, nDuration, vType, fHandler, sPse
 		["params",		cString],
 		["duration",	cNumber],
 		["type",		cObject, true],
-		["handler",		cFunction, true],
+		["handler",		cFunction, true, true],
 		["pseudoElement",	cString, true]
 	]);
 
