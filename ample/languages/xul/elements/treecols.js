@@ -89,14 +89,14 @@ cXULElement_treecols.handlers	= {
 // Element Render: open
 cXULElement_treecols.prototype.$getTagOpen	= function() {
     return '<tr' + (this.attributes["hidden"] == "true" ? ' style="display:none"' : '') + '>\
-				<td class="xul-treecols--container" valign="top" height="1">\
+				<td class="xul-treecols--container">\
 					<div class="xul-treecol" style="float:right"><div class="xul-treecols--settings"><br /></div></div>\
 					<div class="xul-treecols--area" style="height:20px;overflow:hidden;position:relative;">\
 						<table cellpadding="0" cellspacing="0" border="0" width="100%" class="xul-treecols" style="position:absolute">\
 							<tbody>\
 								<tr class="xul-treecols--gateway" style="height:1em">' +
     								(this.parentNode.attributes["type"] == "checkbox" || this.parentNode.attributes["type"] == "radio"
-    								? ('<td class="xul-treecol" width="20" align="left" style="width:20px;padding:0;">' +
+    								? ('<td class="xul-treecol" width="20" style="width:20px;padding:0;">' +
     										'<div>' +
 		    									(this.parentNode.attributes["type"] == "checkbox"
 		        								? '<input type="checkbox" name="' + this.parentNode.uniqueID + '_cmd" class="xul-treecol--command" onclick="return ample.$instance(this)._onCommandClick(event)" autocomplete="off" />'
