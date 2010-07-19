@@ -104,19 +104,13 @@ xul|treecol::label {
 	white-space:	nowrap;
 	vertical-align: middle;
 	text-overflow: ellipsis;
-	overflow:hidden;
 }
 
 xul|listcell::box,
 xul|treecell::box,
 xul|listheader::box,
-xul|treecol::box/*,
-xul|listcell::label,
-xul|treecell::label,
-xul|listheader::label,
-xul|treecol::label*/ {
+xul|treecol::box {
 	height: 1.15em; /* works fine when font-size is given somewhere */
-	width:100%;
 }
 
 xul|listcell::command,

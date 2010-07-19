@@ -75,8 +75,8 @@ cXULElement_treecol.handlers	= {
 // Element Render: open
 cXULElement_treecol.prototype.$getTagOpen	= function() {
 	return '<td class="xul-treecol' +(this.attributes["class"] ? " " + this.attributes["class"] : "")+ '"' + (this.attributes["hidden"] == "true" ? ' style="display:none"' : "")+ ' align="left">\
-				<div class="xul-treecol--box" style="position:relative">\
-					<div class="xul-treecol--label xul-treecol--gateway" style="position:absolute;"> ' +(this.attributes["label"] || "");
+				<div class="xul-treecol--box" style="position:relative;width:100%;">\
+					<div class="xul-treecol--label xul-treecol--gateway" style="position:absolute;width:100%;overflow:hidden;"> ' +(this.attributes["label"] || "");
 };
 
 // Element Render: close
