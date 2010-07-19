@@ -44,7 +44,7 @@ cXULElement_listcell.handlers	= {
 cXULElement_listcell.prototype.$getTagOpen	= function()
 {
 	var oHeader	= this.parentNode.parentNode.parentNode.firstChild.childNodes[this.parentNode.childNodes.$indexOf(this)];
-    var sHtml   = '<td class="xul-listcell"' + (oHeader && oHeader.attributes["hidden"] == "true" ? ' style="display:none"' : '') + '><div class="xul-listcell--box"><div class="xul-listcell--label xul-listcell--gateway">';
+    var sHtml   = '<td class="xul-listcell"' + (oHeader && oHeader.attributes["hidden"] == "true" ? ' style="display:none;"' : '') + '><div class="xul-listcell--box" style="position:relative;"><div class="xul-listcell--label xul-listcell--gateway" style="position:absolute;">';
     if (this.attributes["image"])
         sHtml  += '<img src="' + this.attributes["image"] + '" align="absmiddle"/> ';
     if (this.attributes["label"])

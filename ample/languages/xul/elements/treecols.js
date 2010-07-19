@@ -94,7 +94,7 @@ cXULElement_treecols.prototype.$getTagOpen	= function() {
 					<div class="xul-treecols--area" style="height:20px;overflow:hidden;position:relative;">\
 						<table cellpadding="0" cellspacing="0" border="0" width="100%" class="xul-treecols" style="position:absolute">\
 							<thead>\
-								<tr class="xul-treecols--gateway">' +
+								<tr class="xul-treecols--gateway" style="height:1em">' +
     								(this.parentNode.attributes["type"] == "checkbox" || this.parentNode.attributes["type"] == "radio"
     								? ('<th class="xul-treecol" width="20" align="left" style="width:20px;padding:0;">' +
     										'<div>' +

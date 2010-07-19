@@ -56,12 +56,12 @@ cXULElement_treecell.prototype.$getTagOpen	= function() {
 		oHead	= oChildren && oChildren.tree ? oChildren.tree.head : null,
 		nCellIndex	= this.parentNode.childNodes.$indexOf(this);
 	var sHtml   = '<td class="xul-treecell"' + (oHead && oHead.childNodes[nCellIndex] && oHead.childNodes[nCellIndex].attributes["hidden"] == "true" ? ' style="display:none"' : '') + '>';
-    sHtml  += '<div class="xul-treecell--box"><div class="xul-treecell--label">';
+    sHtml  += '<div class="xul-treecell--box" style="position:relative"><div class="xul-treecell--label" style="position:absolute;">';
 	if (oHead && oHead._getPrimaryColIndex() == nCellIndex) {
         var oElementCurrent = this;
         do {
             if (oElementCurrent instanceof cXULElement_treeitem)
-                sHtml  += '<div class="xul-treecell-line"><br /></div>';
+                sHtml  += '<div class="xul-treecell-line" style="float:left;"><br /></div>';
             else
             if (oElementCurrent instanceof cXULElement_tree)
                 break;

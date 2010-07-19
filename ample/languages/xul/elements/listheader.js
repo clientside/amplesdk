@@ -89,14 +89,14 @@ cXULElement_listheader.handlers	= {
 // Element Render: open
 cXULElement_listheader.prototype.$getTagOpen	= function() {
 	return '<th class="xul-listheader' +(this.attributes["class"] ? " " + this.attributes["class"] : "")+ '"' +(this.attributes["hidden"] == "true" ? ' style="display:none"' : "")+ ' align="left">\
-				<div class="xul-listheader--box">\
-    				<div class="xul-listheader--label xul-listheader--gateway"> ' + (this.attributes["label"] || "");
+				<div class="xul-listheader--box" style="position:relative">\
+    				<div class="xul-listheader--label xul-listheader--gateway" style="position:absolute;"> ' + (this.attributes["label"] || "");
 };
 
 // Element Render: close
 cXULElement_listheader.prototype.$getTagClose	= function() {
 	return			'</div>\
-					<div class="xul-listheader--resizer"><br /></div>\
+					<div class="xul-listheader--resizer" style="position: absolute;right:0px;"><br /></div>\
 				</div>\
 				<div class="xul-listheader--stretch" style="height:1pt;font-size:1px;' + (this.attributes["width"] ? 'width:' + this.attributes["width"] + 'px' : "") + '"></div>\
 				<div style="height:1pt;font-size:1px;' + (this.attributes["minwidth"] ? 'width:' + this.attributes["minwidth"] + 'px' : '') + '"></div>\

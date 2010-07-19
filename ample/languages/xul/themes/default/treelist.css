@@ -48,8 +48,6 @@ xul|treecol::resizer {
 	height: 18px;
 	background: url(media/listheader_splitter.gif) no-repeat 2px center;
 	cursor: col-resize;
-	position: absolute;
-	right: 0px;
 }
 
 xul|listbox:disabled xul|listheader::resizer,
@@ -99,13 +97,6 @@ xul|treecol {
 	padding: 1px;
 }
 
-xul|listcell::box,
-xul|treecell::box,
-xul|listheader::box,
-xul|treecol::box {
-	position:relative;
-}
-
 xul|listcell::label,
 xul|treecell::label,
 xul|listheader::label,
@@ -114,18 +105,16 @@ xul|treecol::label {
 	vertical-align: middle;
 	text-overflow: ellipsis;
 	overflow:hidden;
-	position:absolute;
-	white-space:nowrap;
 }
 
 xul|listcell::box,
 xul|treecell::box,
 xul|listheader::box,
-xul|treecol::box,
+xul|treecol::box/*,
 xul|listcell::label,
 xul|treecell::label,
 xul|listheader::label,
-xul|treecol::label {
+xul|treecol::label*/ {
 	height: 1.15em; /* works fine when font-size is given somewhere */
 	width:100%;
 }
@@ -150,7 +139,6 @@ xul|tree::resizer {
 /* Tree-specific */
 xul|treecell::toc,
 xul|treecell-line {
-	float: left;
 	width: 18px;
 	height: 18px;
 }
