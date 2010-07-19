@@ -55,7 +55,7 @@ xul|tree:disabled xul|treecol::resizer {
 }
 
 xul|listitem,
-xul|treerow
+xul|treerow,
 xul|listhead,
 xul|treecols {
 	line-height:	18px;
