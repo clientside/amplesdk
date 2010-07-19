@@ -99,7 +99,7 @@ cXULElement_listhead.prototype.$getTagOpen	= function() {
 							<tbody>\
 								<tr class="xul-listhead--gateway" style="height:1em">' +
     								(this.parentNode.attributes["type"] == "checkbox" || this.parentNode.attributes["type"] == "radio"
-    								? ('<td class="xul-listheader" width="20" style="width:20px;padding:0;">' +
+    								? ('<td class="xul-listheader" style="width:20px;padding:0;">' +
     										'<div>' +
 		        								(this.parentNode.attributes["type"] == "checkbox"
         										? '<input type="checkbox" name="' + this.parentNode.uniqueID + '_cmd" class="xul-listheader--command" onclick="return ample.$instance(this)._onCommandClick(event)" autocomplete="off" />'

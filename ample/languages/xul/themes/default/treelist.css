@@ -23,12 +23,11 @@ xul|treecols::settings {
 	width:	16px;
 	height:	18px;
 	background: url(media/listhead_settings.gif) 0 0;
-	right: 20px;
 }
 
 xul|listheader,
 xul|treecol {
-	background: url(media/listheader.gif) repeat-x 0px 0;
+	background: url(media/listheader.gif) repeat-x 0 0;
 }
 
 xul|listheader:hover,

@@ -96,7 +96,7 @@ cXULElement_treecols.prototype.$getTagOpen	= function() {
 							<tbody>\
 								<tr class="xul-treecols--gateway" style="height:1em">' +
     								(this.parentNode.attributes["type"] == "checkbox" || this.parentNode.attributes["type"] == "radio"
-    								? ('<td class="xul-treecol" width="20" style="width:20px;padding:0;">' +
+    								? ('<td class="xul-treecol" style="width:20px;padding:0;">' +
     										'<div>' +
 		    									(this.parentNode.attributes["type"] == "checkbox"
 		        								? '<input type="checkbox" name="' + this.parentNode.uniqueID + '_cmd" class="xul-treecol--command" onclick="return ample.$instance(this)._onCommandClick(event)" autocomplete="off" />'
