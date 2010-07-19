@@ -88,7 +88,6 @@ xul|treecell::label,
 xul|listheader::label,
 xul|treecol::label {
 	white-space:	nowrap;
-	vertical-align: middle;
 	text-overflow: ellipsis;
 }
 

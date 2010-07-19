@@ -93,11 +93,11 @@ cXULElement_listhead.handlers	= {
 cXULElement_listhead.prototype.$getTagOpen	= function() {
     return '<tr' + (this.attributes["hidden"] == "true" ? ' style="display:none"' : '') + '>\
 				<td class="xul-listhead--container">\
-					<div class="xul-listheader" style="float:right"><div class="xul-listhead--settings"><br /></div></div>\
+					<div class="xul-listheader" style="float:right;width:16px"><div class="xul-listhead--settings"><br /></div></div>\
 					<div class="xul-listhead--area" style="height:20px;overflow:hidden;position:relative;">\
 						<table cellpadding="0" cellspacing="0" border="0" width="100%" style="position:absolute;" class="xul-listhead">\
 							<tbody>\
-								<tr class="xul-listhead--gateway" style="height:1em">' +
+								<tr class="xul-listhead--gateway" style="height:1em;vertical-align:top">' +
     								(this.parentNode.attributes["type"] == "checkbox" || this.parentNode.attributes["type"] == "radio"
     								? ('<td class="xul-listheader" style="width:20px;padding:0;">' +
     										'<div>' +

@@ -61,7 +61,7 @@ cXULElement_treerow.prototype.$getTagOpen	= function() {
     if (this.parentNode.parentNode.parentNode.attributes["open"] == "false")
         this.parentNode.parentNode.attributes["hidden"] = "true";
 
-	return '<tr class="xul-treerow' + (this.attributes["class"] ? " xul-treerow_" + this.attributes["class"] : '') + '" style="height:1em;' + (this.parentNode.parentNode.parentNode.attributes["open"] == "false" ? 'display:none' : '')+ '">' +
+	return '<tr class="xul-treerow' + (this.attributes["class"] ? " xul-treerow_" + this.attributes["class"] : '') + '" style="height:1em;vertical-align:top;' + (this.parentNode.parentNode.parentNode.attributes["open"] == "false" ? 'display:none' : '')+ '">' +
 	    	(this.parentNode.attributes["label"] || (oTree && (oTree.attributes["type"] == "checkbox" || oTree.attributes["type"] == "radio"))
 			? ('<td style="padding:0" onmousedown="event.cancelBubble=true" class="xul-treecell">' +
 				(this.parentNode.attributes["label"]
