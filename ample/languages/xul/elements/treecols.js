@@ -93,10 +93,10 @@ cXULElement_treecols.prototype.$getTagOpen	= function() {
 					<div class="xul-treecol" style="float:right"><div class="xul-treecols--settings"><br /></div></div>\
 					<div class="xul-treecols--area" style="height:20px;overflow:hidden;position:relative;">\
 						<table cellpadding="0" cellspacing="0" border="0" width="100%" class="xul-treecols" style="position:absolute">\
-							<thead>\
+							<tbody>\
 								<tr class="xul-treecols--gateway" style="height:1em">' +
     								(this.parentNode.attributes["type"] == "checkbox" || this.parentNode.attributes["type"] == "radio"
-    								? ('<th class="xul-treecol" width="20" align="left" style="width:20px;padding:0;">' +
+    								? ('<td class="xul-treecol" width="20" align="left" style="width:20px;padding:0;">' +
     										'<div>' +
 		    									(this.parentNode.attributes["type"] == "checkbox"
 		        								? '<input type="checkbox" name="' + this.parentNode.uniqueID + '_cmd" class="xul-treecol--command" onclick="return ample.$instance(this)._onCommandClick(event)" autocomplete="off" />'
@@ -105,15 +105,15 @@ cXULElement_treecols.prototype.$getTagOpen	= function() {
 													: ' ')) +
 											'</div>' +
 											'<div style="height:1pt;font-size:1px;width:20px;"></div>'+
-										'</th>')
+										'</td>')
 									: '');
 };
 
 // Element Render: close
 cXULElement_treecols.prototype.$getTagClose	= function() {
-	return 							'<th class="xul-treecol" width="100%"><br /></th>\
+	return 							'<td class="xul-treecol" width="100%"><br /></td>\
 								</tr>\
-							</thead>\
+							</tbody>\
 						</table>\
 					</div>\
 				</td>\

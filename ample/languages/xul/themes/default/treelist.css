@@ -28,7 +28,6 @@ xul|treecols::settings {
 
 xul|listheader,
 xul|treecol {
-	font-weight: normal;
 	background: url(media/listheader.gif) repeat-x 0px 0;
 }
 
