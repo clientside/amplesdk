@@ -133,6 +133,7 @@ function fAML_validate(aArguments, aParameters) {
 					case cString:		bValid	= typeof vValue == "string";	break;
 					case cBoolean:		bValid	= typeof vValue == "boolean";	break;
 					case cNumber:		bValid	= typeof vValue == "number";	break;
+					case cObject:		bValid	= true;							break;
 					// Virtual types
 					case cXMLNode:		bValid	= vValue && !fIsNaN(vValue.nodeType);	break;
 					case cXMLElement:	bValid	= vValue && vValue.nodeType == 1;		break;
