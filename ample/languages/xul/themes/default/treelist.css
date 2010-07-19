@@ -54,18 +54,6 @@ xul|tree:disabled xul|treecol::resizer {
 	cursor: default;
 }
 
-xul|listheader::command,
-xul|listitem::command,
-xul|treecol::command,
-xul|treeitem::command {
-	width:	16px;
-	height:	16px;
-	margin:	0px;
-	padding:0px;
-	vertical-align:	middle;
-	margin-left: 2px;
-}
-
 xul|listitem,
 xul|treerow
 xul|listhead,
@@ -112,13 +100,17 @@ xul|treecol::box {
 	height: 1.15em; /* works fine when font-size is given somewhere */
 }
 
+xul|listheader::command,
+xul|listitem::command,
+xul|treecol::command,
+xul|treeitem::command,
 xul|listcell::command,
 xul|treecell::command {
 	width:	16px;
 	height:	16px;
 	margin:	0px;
 	padding:0px;
-	vertical-align: middle;
+	vertical-align:	middle;
 }
 
 xul|listbox::resizer,
