@@ -281,10 +281,10 @@ cXULElement_menulist.handlers	= {
 
 // Element Render: open
 cXULElement_menulist.prototype.$getTagOpen		= function() {
-	return	'<div class="xul-menulist' +(this.attributes["disabled"] == "true" ? " xul-menulist_disabled" : '') + (this.attributes["class"] ? ' ' + this.attributes["class"] : '') + '"' + (this.attributes["style"] ? ' style="' + this.attributes["style"] + '"' : '') +'>\
+	return	'<div class="xul-menulist' +(!this.$isAccessible() ? " xul-menulist_disabled" : '') + (this.attributes["class"] ? ' ' + this.attributes["class"] : '') + '"' + (this.attributes["style"] ? ' style="' + this.attributes["style"] + '"' : '') +'>\
 				<div class="xul-menulist--field">\
-					<div class="xul-menulist--button" onmouseout="ample.$instance(this).$setPseudoClass(\'active\', false, \'button\');" onmousedown="if (ample.$instance(this).attributes.disabled != \'true\') ample.$instance(this).$setPseudoClass(\'active\', true, \'button\');" onmouseup="if (ample.$instance(this).attributes.disabled != \'true\') ample.$instance(this).$setPseudoClass(\'active\', false, \'button\');" oncontextmenu="return false;"><br /></div>\
-					<input class="xul-menulist--input" type="text" autocomplete="off" style="border:0px solid white;width:100%;" onselectstart="event.cancelBubble=true;" onchange="ample.$instance(this)._onChange(event)" value="' + this.attributes["value"] + '"' + (this.attributes["disabled"] == "true" ? ' disabled="disabled"' : '') + (this.attributes["editable"] != "true" || this.attributes["readonly"] ? ' readonly="true"' : '') + (this.attributes["name"] ? ' name="' + this.attributes["name"] + '"' : '') + '/>\
+					<div class="xul-menulist--button" onmouseout="ample.$instance(this).$setPseudoClass(\'active\', false, \'button\');" onmousedown="if (ample.$instance(this).$isAccessible()) ample.$instance(this).$setPseudoClass(\'active\', true, \'button\');" onmouseup="if (ample.$instance(this).$isAccessible()) ample.$instance(this).$setPseudoClass(\'active\', false, \'button\');" oncontextmenu="return false;"><br /></div>\
+					<input class="xul-menulist--input" type="text" autocomplete="off" style="border:0px solid white;width:100%;" onselectstart="event.cancelBubble=true;" onchange="ample.$instance(this)._onChange(event)" value="' + this.attributes["value"] + '"' + (!this.$isAccessible() ? ' disabled="disabled"' : '') + (this.attributes["editable"] != "true" || this.attributes["readonly"] ? ' readonly="true"' : '') + (this.attributes["name"] ? ' name="' + this.attributes["name"] + '"' : '') + '/>\
 				</div>\
 				<div class="xul-menulist--gateway">';
 };

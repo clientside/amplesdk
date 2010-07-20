@@ -87,7 +87,7 @@ cXULElement_textbox.handlers	= {
 	"DOMNodeInserted":	function(oEvent) {
 		if (oEvent.target == this) {
 			this.spinButtons	= this.ownerDocument.createElementNS(this.namespaceURI, "xul:spinbuttons");
-			this.spinButtons.setAttribute("disabled", this.attributes["disabled"] || "false");
+			this.spinButtons.setAttribute("disabled", this.$isAccessible() ? "false" : "true");
 			var that	= this;
 			this.spinButtons.addEventListener("spin", function(oEvent) {
 				var nValue	=(that.getAttribute("value") * 1 || 0) + (oEvent.detail ? 1 :-1);
@@ -115,7 +115,7 @@ cXULElement_textbox.prototype._onChange  = function(oEvent) {
 // Element Render: open
 cXULElement_textbox.prototype.$getTagOpen	= function(oElement) {
 	var bMultiline	= this.attributes["multiline"] == "true";
-    return	'<div class="xul-textbox' + (bMultiline ? ' xul-textbox-multiline-true' : '') + " xul-textbox-type-" + (this.attributes["type"] || '') + (this.attributes["disabled"] == "true" ? " xul-textbox_disabled" : '')+ '" style="'+
+    return	'<div class="xul-textbox' + (bMultiline ? ' xul-textbox-multiline-true' : '') + " xul-textbox-type-" + (this.attributes["type"] || '') + (!this.$isAccessible() ? " xul-textbox_disabled" : '')+ '" style="'+
 				(this.attributes["height"] ? 'height:' + this.attributes["height"] + ';' : '')+
 				(this.attributes["width"] ? 'width:' + this.attributes["width"] + ';' : '')+
 				(this.attributes["style"] ? this.attributes["style"] : '')+'">\
@@ -130,7 +130,7 @@ cXULElement_textbox.prototype.$getTagOpen	= function(oElement) {
 							: 'input type="text"')+
 						' class="xul-textbox--input" name="' + this.attributes["name"] + '" autocomplete="off" style="width:100%;' + (bMultiline ? 'height:100%;' : '') + 'border:0px solid white;"'+
 						' onblur="ample.$instance(this)._onChange(event)" onselectstart="event.cancelBubble=true;"'+
-						(this.attributes["disabled"] == "true" ? ' disabled="true"' : '')+
+						(!this.$isAccessible() ? ' disabled="true"' : '')+
 						(this.attributes["readonly"] == "true" ? ' readonly="true"' : '')+
 						(this.hasAttribute("maxlength") ? ' maxlength="' + this.getAttribute("maxlength") + '"' : '')+
 					(bMultiline

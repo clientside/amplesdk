@@ -62,7 +62,7 @@ cXULElement_checkbox.prototype._onChange = function(oEvent) {
 
 // Element Render: open
 cXULElement_checkbox.prototype.$getTagOpen		= function() {
-    var sHtml   = '<label class="xul-checkbox' + (this.attributes["disabled"] == "true" ? " xul-checkbox_disabled" : "") + (this.attributes["checked"] == "true" ? " xul-checkbox_checked" : "") + '">';
+    var sHtml   = '<label class="xul-checkbox' + (!this.$isAccessible() ? " xul-checkbox_disabled" : "") + (this.attributes["checked"] == "true" ? " xul-checkbox_checked" : "") + '">';
     sHtml	+= '<input type="checkbox" name="' + this.attributes["name"] + '" class="xul-checkbox--input"';
     if (this.attributes["checked"] == "true" || this.attributes["value"] == "on")
     {
@@ -75,7 +75,7 @@ cXULElement_checkbox.prototype.$getTagOpen		= function() {
         this.attributes["checked"]  = "false";
         this.attributes["value"]    = "off";
     }
-    if (this.attributes["disabled"] == "true")
+    if (!this.$isAccessible())
         sHtml  += ' disabled="true"';
     sHtml  += ' onclick="return ample.$instance(this)._onChange(event);" autocomplete="off" />';
     sHtml  += '<span class="xul-checkbox--label">' +(this.attributes["label"] ? this.attributes["label"] : '')+ '</span>';

@@ -123,10 +123,10 @@ cXULElement_datepicker.handlers	= {
 
 // component renderers
 cXULElement_datepicker.prototype.$getTagOpen	= function() {
-	return '<div class="xul-datepicker' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '') + (this.getAttribute('disabled') == "true" ? " xul-datepicker_disabled" : "") + '"' + (this.hasAttribute("style") ? ' style="' + this.getAttribute("style") + '"' : '')+ '>\
+	return '<div class="xul-datepicker' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '') + (!this.$isAccessible() ? " xul-datepicker_disabled" : "") + '"' + (this.hasAttribute("style") ? ' style="' + this.getAttribute("style") + '"' : '')+ '>\
 				<div class="xul-datepicker--field">\
 					<div class="xul-datepicker--button"><br /></div>\
-					<input class="xul-datepicker--input" type="text" maxlength="10" value="' + this.getAttribute("value") + '"' + (this.getAttribute('disabled') == "true" ? ' disabled="true"' : "") +' style="border:0px solid white;width:100%;" />\
+					<input class="xul-datepicker--input" type="text" maxlength="10" value="' + this.getAttribute("value") + '"' + (!this.$isAccessible() ? ' disabled="true"' : "") +' style="border:0px solid white;width:100%;" />\
 				</div>\
 				<div class="xul-datepicker--gateway">' + this.popup.$getTag() + '</div>\
 			</div>';

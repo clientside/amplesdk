@@ -134,7 +134,7 @@ cXULElement_scale.redraw	= function(oInstance) {
 
 // Element Render: open
 cXULElement_scale.prototype.$getTagOpen	= function() {
-	return '<div class="xul-scale' + (this.attributes["disabled"] ? " xul-scale_disabled" : '') + (" xul-scale-orient-" +(this.attributes["orient"] == "vertical" ? "vertical" : "horizontal")) + '"' + (this.attributes["style"] ? ' style="' + this.attributes["style"] + '"': '') + '>\
+	return '<div class="xul-scale' + (!this.$isAccessible() ? " xul-scale_disabled" : '') + (" xul-scale-orient-" +(this.attributes["orient"] == "vertical" ? "vertical" : "horizontal")) + '"' + (this.attributes["style"] ? ' style="' + this.attributes["style"] + '"': '') + '>\
 				<div class="xul-scale--before" style="float:left"></div>\
 				<div class="xul-scale--after" style="float:right"></div>\
 				<div class="xul-scale--bar" onmousedown="return false" style="position:relative"></div>\

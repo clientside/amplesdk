@@ -41,7 +41,7 @@ cXULElement_menupopup.prototype.selectItem	= function(oItem) {
 
 	if (oItem) {
 	    // Show new element
-		if (oItem.menupopup && oItem.getAttribute("disabled") != "true") {
+		if (oItem.menupopup && oItem.$isAccessible()) {
 			var oMenuPopupNew	= oItem.menupopup;
 			this._timeOutShow	= setTimeout(function() {
 				oMenuPopupNew.showPopup(null, -1, -1, cXULPopupElement.POPUP_TYPE_POPUP);
@@ -86,7 +86,7 @@ cXULElement_menupopup.prototype._onKeyDown	= function(oEvent)
 			break;
 
 		case 39:	// right
-			if (this.selectedItem.menupopup && this.selectedItem.attributes["disabled"] != "true")
+			if (this.selectedItem.menupopup && this.selectedItem.$isAccessible())
 			{
 				this.selectedItem.menupopup.selectItem(this.selectedItem.menupopup.items[0]);
 				this.selectedItem.menupopup.$getContainer().focus();

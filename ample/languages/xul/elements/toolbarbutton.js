@@ -107,7 +107,7 @@ cXULElement_toolbarbutton.handlers	= {
 // Element Render: open
 cXULElement_toolbarbutton.prototype.$getTagOpen	= function() {
 	var sType	= this.getAttribute("type");
-    return '<table cellpadding="0" cellspacing="0" border="0" class="xul-toolbarbutton' + (this.attributes["disabled"] == "true" ? " xul-toolbarbutton_disabled" : "") + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">\
+    return '<table cellpadding="0" cellspacing="0" border="0" class="xul-toolbarbutton' + (!this.$isAccessible() ? " xul-toolbarbutton_disabled" : "") + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">\
 				<tbody>\
 					<tr height="3">\
 						<td width="3" rowspan="3" class="xul-toolbarbutton-left"><div style="width:3px"/></td>\

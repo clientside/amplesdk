@@ -112,13 +112,13 @@ cXULElement_radio.prototype._onClick = function(oEvent) {
 
 // Element Render: open
 cXULElement_radio.prototype.$getTagOpen	= function() {
-    var sHtml   = '<label class="xul-radio' + ((this.group && this.group.attributes["disabled"] == "true") || this.attributes["disabled"] == "true" ? " xul-radio_disabled" : "") + (this.attributes["selected"] == "true" ? " xul-radio_selected" : "") + '">';
+    var sHtml   = '<label class="xul-radio' + (!this.$isAccessible() ? " xul-radio_disabled" : "") + (this.attributes["selected"] == "true" ? " xul-radio_selected" : "") + '">';
     sHtml	+= '<input type="radio" autocomplete="off"';
     if (this.attributes["value"])
         sHtml  += ' value="' + this.attributes["value"] + '"';
     if (this.attributes["selected"] == "true")
         sHtml  += ' checked="true"';
-    if (this.attributes["disabled"] == "true")
+    if (!this.$isAccessible())
         sHtml  += ' disabled="true"';
     sHtml  += ' onclick="ample.$instance(this)._onClick(event)" class="xul-radio--input" />';
     sHtml  += '<span class="xul-radio--label">' + (this.attributes["label"] ? this.attributes["label"] : '') + '</span>';

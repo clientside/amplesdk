@@ -12,10 +12,6 @@ cXULElement_menu.prototype	= new cXULElement;
 
 cXULElement_menu.prototype.$hoverable	= true;
 
-cXULElement_menu.prototype.$isAccessible	= function() {
-	return true;
-};
-
 // Public Properties
 cXULElement_menu.prototype.menupopup	= null;	// Reference link to a menupopup element
 
@@ -84,12 +80,12 @@ cXULElement_menu.handlers	= {
 // Element Render: open
 cXULElement_menu.prototype.$getTagOpen	= function() {
     if (this.parentNode instanceof cXULElement_menupopup)
-        return '<tr class="xul-menu' + (this.attributes["disabled"] == "true" ? " xul-menu_disabled" : "") + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">\
+        return '<tr class="xul-menu' + (!this.$isAccessible() ? " xul-menu_disabled" : "") + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">\
         			<td width="18"><div class="xul-menu--control"' +(this.attributes["image"] ? ' style="background-image:url('+ this.attributes["image"] + ')"' : '')+ '></div></td>\
         			<td nowrap="nowrap" class="xul-menu--label">' + (this.attributes["label"] || ' ')+ '</td>\
         			<td valign="top" class="xul-menupopup--gateway">';
     else
-        return '	<td nowrap="nowrap" valign="center" class="xul-menu' + (this.attributes["disabled"] == "true" ? " xul-menu_disabled" : "") + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">\
+        return '	<td nowrap="nowrap" valign="center" class="xul-menu' + (!this.$isAccessible() ? " xul-menu_disabled" : "") + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">\
         				<div class="xul-menu--label">' + (this.attributes["label"] || ' ') + '</div>\
         				<div class="xul-menu--gateway">';
 };
@@ -98,7 +94,7 @@ cXULElement_menu.prototype.$getTagOpen	= function() {
 cXULElement_menu.prototype.$getTagClose	= function() {
     if (this.parentNode instanceof cXULElement_menupopup)
         return 		'</td>\
-        			<td width="16"><div class="xul-menu--arrow' + (this.getAttribute("disabled") == "true" ? ' xul-menu--arrow_disabled' : '')+ '"><br /></div></td>\
+        			<td width="16"><div class="xul-menu--arrow' + (!this.$isAccessible() ? ' xul-menu--arrow_disabled' : '')+ '"><br /></div></td>\
         		</tr>';
     else
         return '		</div>\
