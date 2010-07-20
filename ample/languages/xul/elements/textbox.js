@@ -44,6 +44,7 @@ cXULElement_textbox.handlers	= {
 		if (oEvent.target == this) {
 			switch (oEvent.attrName) {
 				case "value":
+					this.$getContainer("placeholder").style.display	= oEvent.newValue ? "none" : '';
 					this.$getContainer("input").value    = oEvent.newValue || '';
 					break;
 
