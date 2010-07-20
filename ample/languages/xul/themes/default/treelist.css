@@ -21,7 +21,7 @@ xul|tree:disabled {
 xul|listhead::settings,
 xul|treecols::settings {
 	width:	16px;
-	height:	18px;
+	height:	20px;
 	background: url(media/listhead_settings.gif) 0 0;
 }
 
@@ -44,6 +44,7 @@ xul|listheader::resizer,
 xul|treecol::resizer {
 	width: 5px;
 	height: 18px;
+	margin-right:-2px;
 	background: url(media/listheader_splitter.gif) no-repeat 2px center;
 	cursor: col-resize;
 }
@@ -78,7 +79,8 @@ xul|listcell,
 xul|listheader,
 xul|treecell,
 xul|treecol {
-	padding: 1px;
+	padding-left: 1px;
+	padding-right: 1px;
 }
 
 xul|listcell::label,
