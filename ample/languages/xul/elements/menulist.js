@@ -105,6 +105,8 @@ cXULElement_menulist.handlers	= {
 		this.$setPseudoClass("hover", false, "button");
 	},
 	"keydown":	function(oEvent) {
+		if (!this.menupopup)
+			return;
 		switch (oEvent.keyIdentifier) {
 			case "Up":
 				if (this.menupopup.getAttribute("hidden") == "true")
@@ -215,7 +217,7 @@ cXULElement_menulist.handlers	= {
 		this.$getContainer("input").focus();
 	},
 	"blur":		function(oEvent) {
-		if (this.menupopup.getAttribute("hidden") != "true")
+		if (this.menupopup && this.menupopup.getAttribute("hidden") != "true")
 			this.toggle(false);
 		this.$getContainer("input").blur();
 	},
