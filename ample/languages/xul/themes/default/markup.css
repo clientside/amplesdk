@@ -95,7 +95,9 @@ xul|image {
 }
 
 xul|label {
-
+	vertical-align:	top;
+	padding-left: 3px;
+	padding-right: 2px;
 }
 
 xul|description {
