@@ -90,16 +90,14 @@ var aAML_endings	= 'st-nd-rd-th'.split('-'),
 	oAML_types		= fAML_stringToHash('0:Node;1:Element;9:Document');
 //<-Debug
 function fAML_validate(aArguments, aParameters) {
-	var fCaller	= null;
+	var fCallee	= aArguments.callee,
+		fCaller	= null;
 	// Has to be wrapped in try/catch because Firebug throws "Permission denied to get property on Function.caller" in XMLHttpRequest
 	try {
-		fCaller	= fAML_validate.caller.caller;
+		fCaller	= fCallee.caller;
 	} catch (oError) {}
 //->Debug
-	var sFunction	= "anonymous";
-	try {
-		sFunction	= cString(fAML_validate.caller).match(rAML_function) ? cRegExp.$1 : "anonymous";
-	} catch (oError) {}
+	var sFunction	= cString(fCallee).match(rAML_function) ? cRegExp.$1 : "anonymous";
 //<-Debug
 
 	// Iterate over parameters list
