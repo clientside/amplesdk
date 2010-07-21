@@ -95,7 +95,7 @@ function fAML_validate(aArguments, aParameters) {
 	// Has to be wrapped in try/catch because Firebug throws "Permission denied to get property on Function.caller" in XMLHttpRequest
 	try {
 		fCaller	= fCallee.caller;
-	} catch (oError) {}
+	} catch (oException) {}
 //->Debug
 	var sFunction	= cString(fCallee).match(rAML_function) ? cRegExp.$1 : "anonymous";
 //<-Debug
@@ -731,7 +731,7 @@ function fAML_initialize() {
 	try {
 		if (bTrident && nVersion < 7)
 			oUADocument.execCommand("BackgroundImageCache", false, true);
-	} catch (oError){};
+	} catch (oException){};
 
     // Fire Event
     var oEventLoad = new cAMLEvent;

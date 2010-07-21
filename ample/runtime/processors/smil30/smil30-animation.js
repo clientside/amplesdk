@@ -112,7 +112,7 @@ function fAMLSMIL30_animation_setAttributeValue(oAnimation, aValue) {
 				oAnimation.targetElement.setAttribute(oAnimation.attributeName, aValue[2] ? aValue[2] + '(' + aValue[0] + ')' : aValue.join(''));
 		}
 	}
-	catch (oError) {
+	catch (oException) {
 //->Debug
 		fAML_warn(nAML_ERROR_ANIMATING_ATTR_WRN, [oAnimation.attributeName, aValue]);
 //<-Debug
