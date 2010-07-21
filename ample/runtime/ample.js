@@ -130,9 +130,9 @@ function fAML_validate(aArguments, aParameters) {
 				// see if argument has correct type
 				switch (aParameter[1]) {
 					// Primitive types
-					case cString:		bValid	= typeof vValue == "string";	break;
-					case cBoolean:		bValid	= typeof vValue == "boolean";	break;
-					case cNumber:		bValid	= typeof vValue == "number";	break;
+					case cString:		bValid	= typeof vValue == "string"	|| vValue instanceof cString;	break;
+					case cBoolean:		bValid	= typeof vValue == "boolean"|| vValue instanceof cBoolean;	break;
+					case cNumber:		bValid	=(typeof vValue == "number" && vValue != nNaN)|| vValue instanceof cNumber;	break;
 					case cObject:		bValid	= true;							break;
 					// Virtual types
 					case cXMLNode:		bValid	= vValue && !fIsNaN(vValue.nodeType);	break;
