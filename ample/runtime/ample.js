@@ -157,14 +157,14 @@ var oAML_processors	= {},
 	oAML_all	= {},
 	oAML_ids	= {};
 
-function fAML_import(oElementDOM, oNode, bCollapse) {
+function fAML_import(oElementDOM, bDeep, oNode, bCollapse) {
 	switch (oElementDOM.nodeType) {
 		case cAMLNode.ELEMENT_NODE:
 			var oProcessor	= oAML_processors[oElementDOM.namespaceURI];
 			if (oProcessor) {
 				// if element was returned from traversal, it should be processed
 				if (oElementDOM = oProcessor.traverse(oElementDOM, oNode))
-					fAML_import(oElementDOM, oNode);
+					fAML_import(oElementDOM, bDeep, oNode);
 			}
 			else {
 				// Create element (note: in IE, namespaceURI is empty string if not specified, hence "oElementDOM.namespaceURI || null")
@@ -207,8 +207,9 @@ function fAML_import(oElementDOM, oNode, bCollapse) {
 					fAMLNode_appendChild(oNode, oElement);
 
 				// Render Children
-				for (var nIndex = 0, nLength = oElementDOM.childNodes.length; nIndex < nLength; nIndex++)
-					fAML_import(oElementDOM.childNodes[nIndex], oElement, bCollapse);
+				if (bDeep)
+					for (var nIndex = 0, nLength = oElementDOM.childNodes.length; nIndex < nLength; nIndex++)
+						fAML_import(oElementDOM.childNodes[nIndex], bDeep, oElement, bCollapse);
 			}
 			break;
 
@@ -266,8 +267,9 @@ function fAML_import(oElementDOM, oNode, bCollapse) {
 			break;
 
 		case cAMLNode.DOCUMENT_NODE:
-			for (var nIndex = 0, nLength = oElementDOM.childNodes.length; nIndex < nLength; nIndex++)
-				fAML_import(oElementDOM.childNodes[nIndex], oNode, bCollapse);
+			if (bDeep)
+				for (var nIndex = 0, nLength = oElementDOM.childNodes.length; nIndex < nLength; nIndex++)
+					fAML_import(oElementDOM.childNodes[nIndex], bDeep, oNode, bCollapse);
 			break;
 
 		case cAMLNode.DOCUMENT_TYPE_NODE:
@@ -582,7 +584,7 @@ function fAML_processScripts() {
 			oParserError	= oDocument.getElementsByTagName("parsererror")[0];
 		    if (oDocument.documentElement && !oParserError) {
 		    	// import XML DOM into Ample DOM
-		    	oElement	= fAML_import(oDocument.documentElement, null, true);
+		    	oElement	= fAML_import(oDocument.documentElement, true, null, true);
 		    	delete oElement.attributes["xmlns" + ':' + "aml"];	// dirty hack (namespace is declared on document)
 		    	// render Ample DOM
 		    	if (bTrident) {

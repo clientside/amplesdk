@@ -333,7 +333,7 @@ cAMLDocument.prototype.importNode	= function(oNode, bDeep)
 	]);
 
 	if (oNode.nodeType == cAMLNode.ELEMENT_NODE)
-		return fAML_import(oNode);
+		return fAML_import(oNode, bDeep);
 	else
 		throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
