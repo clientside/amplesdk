@@ -86,7 +86,7 @@ oAML_messages[nAML_DOCUMENT_INVALID_STATE_WRN]	= 'Document invalid state';
  */
 //->Debug
 var aAML_endings	= 'st-nd-rd-th'.split('-'),
-	rAML_function	= /function ([^\s]*)\(/,
+	rAML_function	= /function ([^\s]+)\(/,
 	oAML_types		= fAML_stringToHash('0:Node;1:Element;9:Document');
 //<-Debug
 function fAML_validate(aArguments, aParameters) {
@@ -98,7 +98,7 @@ function fAML_validate(aArguments, aParameters) {
 //->Debug
 	var sFunction	= "anonymous";
 	try {
-		sFunction	= cString(fAML_validate.caller).match(rAML_function)[1] || "anonymous";
+		sFunction	= cString(fAML_validate.caller).match(rAML_function) ? cRegExp.$1 : "anonymous";
 	} catch (oError) {}
 //<-Debug
 
@@ -145,7 +145,7 @@ function fAML_validate(aArguments, aParameters) {
 				if (!bValid)
 					throw new cAMLException(cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR, fCaller
 //->Debug
-										, [sArgument, aParameter[0], sFunction, oAML_types[aParameter[1]] || cString(aParameter[1]).match(rAML_function)[1]]
+										, [sArgument, aParameter[0], sFunction, oAML_types[aParameter[1]] ||(cString(aParameter[1]).match(rAML_function) ? cRegExp.$1 : "anonymous")]
 //<-Debug
 					);
 			}
