@@ -27,6 +27,7 @@
 
 			x|div:drag {
 				border-color: black;
+				position: relative;
 			}
 			x|div:drop {
 				border-style: dashed;
@@ -37,10 +38,7 @@
 		<script type="application/ample+xml"
 			xmlns:x="http://www.w3.org/1999/xhtml"
 			xmlns:aml="http://www.amplesdk.com/ns/aml"
-			ondrop="if (event.relatedTarget.parentNode != event.target) event.target.appendChild(event.relatedTarget)"
-			ondragstart="event.target.style.position = 'relative'"
-			ondragend="event.target.style.position = ''"
-			>
+			ondragenter="event.dataTransfer.dropEffect = 'move'">
 			<x:div aml:droppable="true" class="droppable">
 				<x:div aml:draggable="true" class="draggable">
 					Container 1: drag me and drop to another container
