@@ -165,7 +165,7 @@ if (!cArray.prototype.indexOf)
 		}
 		// search
 		for (var vValue; nIndex < nLength; nIndex++)
-			if (!(typeof(vValue = this[nIndex]) === "undefined") || nIndex in this)
+			if (!(typeof(vValue = this[nIndex]) == "undefined") || nIndex in this)
 				if (vValue === oElement)
 					return nIndex;
 		return -1;
@@ -194,7 +194,7 @@ if (!cArray.prototype.lastIndexOf)
 		}
 		// search
 		for (var vValue; nIndex >= 0; nIndex--)
-			if (!(typeof(vValue = this[nIndex]) === "undefined") || nIndex in this)
+			if (!(typeof(vValue = this[nIndex]) == "undefined") || nIndex in this)
 				if (vValue === oElement)
 					return nIndex;
 		return -1;
@@ -210,7 +210,7 @@ if (!cArray.prototype.filter)
 		]);
 
 		for (var nIndex = 0, nLength = this.length, aResult = [], vValue; nIndex < nLength; nIndex++)
-			if (!(typeof(vValue = this[nIndex]) === "undefined") || nIndex in this)
+			if (!(typeof(vValue = this[nIndex]) == "undefined") || nIndex in this)
 				if (fCallback.call(oReceiver, vValue, nIndex, this))
 					aResult.push(vValue);
 		return aResult;
@@ -225,7 +225,7 @@ if (!cArray.prototype.forEach)
 		]);
 
 		for (var nIndex = 0, nLength = this.length, vValue; nIndex < nLength; nIndex++)
-			if (!(typeof(vValue = this[nIndex]) === "undefined") || nIndex in this)
+			if (!(typeof(vValue = this[nIndex]) == "undefined") || nIndex in this)
 				fCallback.call(oReceiver, vValue, nIndex, this);
 	}, "forEach");
 
@@ -238,7 +238,7 @@ if (!cArray.prototype.every)
 		]);
 
 		for (var nIndex = 0, nLength = this.length, vValue; nIndex < nLength; nIndex++)
-			if (!(typeof(vValue = this[nIndex]) === "undefined") || nIndex in this)
+			if (!(typeof(vValue = this[nIndex]) == "undefined") || nIndex in this)
 				if (!fCallback.call(oReceiver, vValue, nIndex, this))
 					return false;
 		return true;
@@ -253,7 +253,7 @@ if (!cArray.prototype.map)
 		]);
 
 		for (var nIndex = 0, nLength = this.length, aResult = new cArray(nLength), vValue; nIndex < nLength; nIndex++)
-			if (!(typeof(vValue = this[nIndex]) === "undefined") || nIndex in this)
+			if (!(typeof(vValue = this[nIndex]) == "undefined") || nIndex in this)
 				aResult[nIndex] = fCallback.call(oReceiver, vValue, nIndex, this);
 		return aResult;
 	}, "map");
@@ -267,7 +267,7 @@ if (!cArray.prototype.some)
 		]);
 
 		for (var nIndex = 0, nLength = this.length, vValue; nIndex < nLength; nIndex++)
-			if (!(typeof(vValue = this[nIndex]) === "undefined") || nIndex in this)
+			if (!(typeof(vValue = this[nIndex]) == "undefined") || nIndex in this)
 				if (fCallback.call(oReceiver, vValue, nIndex, this))
 					return true;
 		return false;
