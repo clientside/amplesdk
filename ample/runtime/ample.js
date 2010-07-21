@@ -109,7 +109,7 @@ function fAML_validate(aArguments, aParameters) {
 		var sArgument	=(nIndex + 1)+ aAML_endings[nIndex < 3 ? nIndex : 3];
 //<-Debug
 		// see if argument is missing
-		if (nLength < nIndex + 1 && !aParameter[2])
+		if (typeof vValue == "undefined" && !aParameter[2])
 			throw new cAMLException(cAMLException.AML_ARGUMENT_MISSING_ERR, fCaller
 //->Debug
 								, [sArgument, aParameter[0], sFunction]
