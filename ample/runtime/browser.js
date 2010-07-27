@@ -56,32 +56,6 @@ function fGetUIEventButton(oEvent) {
 	return 0;
 };
 
-var bTrident	= false,
-	bGecko		= false,
-	bPresto		= false,
-	bWebKit		= false,
-/*	bKHTML		= false,*/
-	nVersion	= 0;
-
-if (!!oUADocument.namespaces) {
-	bTrident	= true;
-	nVersion	= oUANavigator.userAgent.match(/MSIE ([\d.]+)/)[1];
-}
-else
-if (!!window.controllers) {
-	bGecko		= true;
-	nVersion	= fParseFloat(oUANavigator.userAgent.match(/rv:([\d.]+)/)[1]);
-}
-else
-if (!!window.opera) {
-	bPresto		= true;
-//	nVersion	= oUANavigator.userAgent.match(/Presto\/([\d.]+)/)[1];
-}
-else
-if (oUANavigator.userAgent.match(/AppleWebKit\/([\d.]+)/)[1]) {
-	bWebKit		= true;
-}
-
 // Private Variables
 var oAML_factory	= oUADocument.createElement("span"),
 	bKeyDown	= false;
