@@ -222,7 +222,7 @@ if (!oJSON) {
 
 		// Validate arguments
 		fAML_validate(arguments, [
-			["text",	cString]
+			["string",	cString]
 		]);
 
 // The parse method takes a text and an optional reviver function, and returns
