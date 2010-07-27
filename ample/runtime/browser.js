@@ -693,12 +693,11 @@ function fAML_replaceNode(oOld, oNew) {
 };
 
 function fAML_getResponseDocument(oRequest) {
-	var oDocument	= oRequest.responseXML;
+	var oDocument	= oRequest.responseXML,
+		sText		= oRequest.responseText;
 	// Try parsing responseText
-	if (bTrident && oDocument && !oDocument.documentElement && oRequest.getResponseHeader("Content-Type").match(/[^\/]+\/[^\+]+\+xml/)) {
-		oDocument	= new fActiveXObject("Microsoft.XMLDOM");
-		oDocument.loadXML(oRequest.responseText);
-	}
+	if (bTrident && sText && oDocument && !oDocument.documentElement && oRequest.getResponseHeader("Content-Type").match(/[^\/]+\/[^\+]+\+xml/))
+		oDocument	= new cDOMParser().parseFromString(sText, "text/xml");
 	// Check if there is no error in document
 	if (oDocument)
 		if ((bTrident && oDocument.parseError != 0) || !oDocument.documentElement || (oDocument.documentElement && oDocument.documentElement.tagName == "parsererror"))

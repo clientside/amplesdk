@@ -190,26 +190,9 @@ if (!cXMLHttpRequest || (bTrident && nVersion == 7)) {
 			oRequest['on' + "readystatechange"].call(this, oEventPseudo);
 	};
 
-	function fGetDocument(oRequest) {
-		var oDocument	= oRequest.responseXML,
-			sResponse	= oRequest.responseText;
-		// Try parsing responseText
-		if (/*bIE && */sResponse && oDocument && !oDocument.documentElement && oRequest.getResponseHeader("Content-Type").match(/[^\/]+\/[^\+]+\+xml/)) {
-			oDocument	= new fActiveXObject("Microsoft.XMLDOM");
-			oDocument.async				= false;
-			oDocument.validateOnParse	= false;
-			oDocument.loadXML(sResponse);
-		}
-		// Check if there is no error in document
-		if (oDocument)
-			if (/*(bIE && */oDocument.parseError != 0/*) || !oDocument.documentElement || (oDocument.documentElement && oDocument.documentElement.tagName == "parsererror")*/)
-				return null;
-		return oDocument;
-	};
-
 	function fSynchronizeValues(oRequest) {
 		try {	oRequest.responseText	= oRequest._object.responseText;	} catch (e) {}
-		try {	oRequest.responseXML	= fGetDocument(oRequest._object);	} catch (e) {}
+		try {	oRequest.responseXML	= fAML_getResponseDocument(oRequest._object);	} catch (e) {}
 		try {	oRequest.status			= oRequest._object.status;			} catch (e) {}
 		try {	oRequest.statusText		= oRequest._object.statusText;		} catch (e) {}
 	};
