@@ -1045,10 +1045,8 @@ function fAMLElement_onReadyStateChange(oRequest, oElement)
 
 function fAMLElement_clear(oElement)
 {
-	if (oElement._request) {
-		oElement._request['on' + "readystatechange"]	= new cFunction;
+	if (oElement._request)
 	    delete oElement._request;
-	}
 	if (oElement._timeout) {
 		fClearTimeout(oElement._timeout);
 		delete oElement._timeout;
