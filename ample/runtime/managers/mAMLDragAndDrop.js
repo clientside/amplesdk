@@ -410,8 +410,6 @@ cAMLDataTransfer.prototype.addElement		= function(oElement) {
 	]);
 
 	oAMLDragAndDrop_image.appendChild(oElement);
-	oAMLDragAndDrop_image.style.marginLeft	= (nLeft || 0) + "px";
-	oAMLDragAndDrop_image.style.marginTop	= (nTop || 0) + "px";
 };
 
 // Attaching to implementation
