@@ -790,6 +790,7 @@ oAMLConfiguration_values["comments"]	= false; 	// in DOM-Core spec the default v
 // set ample parameters
 oAMLConfiguration_values["ample-use-style-property"]= true;		// -> ample-core-style
 oAMLConfiguration_values["ample-module-history-fix"]= false;	// -> ample-history
+oAMLConfiguration_values["ample-enable-transitions"]= false;
 oAMLConfiguration_values["ample-version"]		= '@project.version@';
 oAMLConfiguration_values["ample-user-locale"]	= oUANavigator.language || oUANavigator.userLanguage || 'en-US';
 oAMLConfiguration_values["ample-user-agent"]	= '@project.userAgent@';

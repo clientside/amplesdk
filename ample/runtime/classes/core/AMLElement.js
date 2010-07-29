@@ -875,19 +875,47 @@ function fAMLElement_getRegExp(sName, sContainer) {
 		:	oAMLElement_cache[sName + sContainer] = new cRegExp('(^|\\s)[-\\w]*' + sContainer + '(_\\w+)?' + '_' + sName + '(_\\w+)?' + '(|$)', 'g');
 };
 
+var aInterestingPropertiesCSS	= [
+                             	   "font-size", "font-weight", "line-height"
+                             	   ,"opacity", "color"
+                             	   ,"background-color"
+                             	   ,"background-position"
+                             	   ,"width", "height"
+                             	   ,"top", "left", "right", "bottom"
+                             	   ,"margin-top", "margin-left", "margin-right", "margin-bottom"
+                             	   ,"padding-top", "padding-left", "padding-right", "padding-bottom"
+                             	   ,"border-top-color", "border-left-color", "border-right-color", "border-bottom-color"
+                             	   ,"border-top-width", "border-left-width", "border-right-width", "border-bottom-width"
+                             	   ,"outline-top-color", "outline-left-color", "outline-right-color", "outline-bottom-color"
+                             	   ,"outline-top-width", "outline-left-width", "outline-right-width", "outline-bottom-width"
+                             	   ];
+var aInterestingPropertiesDOM	=(function() {
+	for (var nIndex = 0, nLength = aInterestingPropertiesCSS.length, aValue = []; nIndex < nLength; nIndex++)
+		aValue.push(fAML_toCssPropertyName(aInterestingPropertiesCSS[nIndex]));
+	return aValue;
+})();
+
 function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 {
 	var oElementDOM	= oElement.$getContainer(sContainer),
 		sClass		= fAMLElement_getAttribute(oElement, "class").trim(),
 		aClass		= sClass.length ? sClass.split(/\s+/g) : null,
 		sPseudoName	= sContainer ? '--' + sContainer : '',
-		sTagName	=(oElement.prefix ? oElement.prefix + '-' : '') + oElement.localName;
+		sTagName	=(oElement.prefix ? oElement.prefix + '-' : '') + oElement.localName,
+		bTransition	= oAMLConfiguration_values["ample-enable-transitions"];
 
 //->Source
 //console.warn("processing: " + oElement.tagName + ' ' + sName + '(' + (bValue ? 'true' : 'false') + ')');
 //console.log("before: ", oElementDOM.className);
 //<-Source
 	if (oElementDOM) {
+		if (bTransition) {
+			var oStyle	= fAML_getComputedStyle(oElementDOM),
+				oBefore	= {};
+			for (var nIndex = 0, nLength = aInterestingPropertiesDOM.length; nIndex < nLength; nIndex++)
+				oBefore[aInterestingPropertiesDOM[nIndex]]	= oStyle[aInterestingPropertiesDOM[nIndex]];
+		}
+
 		var sOldName= bTrident && nVersion < 8 ? oElementDOM.className : oElementDOM.getAttribute("class") || '',
 			bMatch	= sOldName.match(fAMLElement_getRegExp(sName, sPseudoName)),
 			sPseudo,
@@ -951,6 +979,31 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 					oElementDOM.setAttribute("class", sNewName);
 			}
 		}
+
+		if (bTransition) {
+			var oStyle	= fAML_getComputedStyle(oElementDOM),
+				oAfter	= {};
+			for (var nIndex = 0, nLength = aInterestingPropertiesDOM.length; nIndex < nLength; nIndex++)
+				oAfter[aInterestingPropertiesDOM[nIndex]]	= oStyle[aInterestingPropertiesDOM[nIndex]];
+			var aPropertiesAfter	= [],
+				aPropertiesReset	= [];
+			for (var sKey in oAfter) {
+				if (oAfter[sKey] != oBefore[sKey]) {
+					if (!oElementDOM.style[oAfter[sKey]])
+						aPropertiesReset.push(sKey);
+					oElementDOM.style[sKey]	= oBefore[sKey];
+					aPropertiesAfter.push(sKey + ":" + oAfter[sKey]);
+				}
+			}
+
+			if (aPropertiesAfter.length) {
+				fAMLElementAnimation_play(oElement, aPropertiesAfter.join(';'), 300, 3, function() {
+					for (var nIndex = 0; nIndex < aPropertiesReset.length; nIndex++)
+						oElementDOM.style[aPropertiesReset[nIndex]]	= '';
+				});
+			}
+		}
+
 	}
 //->Debug
 	else
