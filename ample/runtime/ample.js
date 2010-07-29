@@ -581,8 +581,8 @@ function fAML_processScripts() {
 			    														'</' + "aml" + ':' + "#document-fragment".substr(1) + '>', "text/xml");
 			}
 
-			oParserError	= oDocument.getElementsByTagName("parsererror")[0];
-		    if (oDocument.documentElement && !oParserError) {
+			oParserError	= oDocument ? oDocument.getElementsByTagName("parsererror")[0] : null;
+		    if (oDocument && oDocument.documentElement && !oParserError) {
 		    	// import XML DOM into Ample DOM
 		    	oElement	= fAML_import(oDocument.documentElement, true, null, true);
 		    	delete oElement.attributes["xmlns" + ':' + "aml"];	// dirty hack (namespace is declared on document)
@@ -660,7 +660,7 @@ function fAML_processScripts() {
 			    }
 			    else
 			    // Trident
-			    if (oDocument.parseError) {
+			    if (oDocument && oDocument.parseError) {
 					oElementNew.innerText	= 'XML Parsing Error: ' + oDocument.parseError.reason + '\n' +
 													'Location: ' + (oDocument.parseError.url || oUALocation) + '\n' +
 													'Line Number: ' + oDocument.parseError.line + ', Column ' + oDocument.parseError.linepos + ':\n'+
