@@ -29,7 +29,7 @@ function fAMLElementAnimation_play(oElement, sParams, nDuration, vType, fHandler
 	oEffect._interval	= fSetInterval(function(){fAMLElementAnimation_process(nEffect)}, 20);
 
 	// read end params from input
-	var aParams	= sParams.split(/[,;]/),
+	var aParams	= sParams.split(/\s*;\s*/),
 		aParam;
 	for (var nIndex = 0; nIndex < aParams.length; nIndex++)
 		if (aParam = aParams[nIndex].match(/([a-z\-]+)\s*\:\s*(.+)/i))
