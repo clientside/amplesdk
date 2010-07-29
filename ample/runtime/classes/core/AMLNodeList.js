@@ -29,7 +29,7 @@ cAMLNodeList.prototype.item		= function(nIndex)
 cAMLNodeList.prototype.$add		= function(oNode, nPosition)
 {
 	if (arguments.length > 1)
-		if (!fIsNaN(nPosition) && nPosition - 1 < this.length && nPosition >-1)
+		if (nPosition - 1 < this.length && nPosition >-1)
 			for (var nIndex = this.length; nIndex > nPosition - 1; nIndex--)
 				this[nIndex]	= this[nIndex - 1];
 		else
