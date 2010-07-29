@@ -40,39 +40,6 @@ var aQuery	= (function() {
 		return '[object aQuery]';
 	};
 
-	// Collection
-	fQuery.prototype.get	= function(nIndex) {
-		return this[nIndex] || null;
-	};
-
-	fQuery.prototype.first	= function() {
-		var aQuery	= new fQuery;
-		if (this.length)
-			aQuery[aQuery.length++]	= this[0];
-		return aQuery;
-	};
-
-	fQuery.prototype.last	= function() {
-		var aQuery	= new fQuery;
-		if (this.length)
-			aQuery[aQuery.length++]	= this[this.length - 1];
-		return aQuery;
-	};
-
-	fQuery.prototype.slice	= function(nFirst, nLast) {
-		var aQuery	= new fQuery;
-		// TODO: negative values, optional last
-		if (nFirst >-1 && nLast < this.length)
-			for (var nIndex = nFirst; nIndex < nLast; nIndex++)
-				aQuery[aQuery.length++]	= this[nIndex];
-		return aQuery;
-	};
-
-	fQuery.prototype.each	= function(fCallback, aArguments) {
-		for (var nIndex = 0; nIndex < this.length; nIndex++)
-			fCallback.apply(this[nIndex], aArguments || [nIndex, this[nIndex]]);
-	};
-
 	//
 	var aQuery;
 	(aQuery	= function(vArgument1, vArgument2, vArgument3) {
@@ -85,10 +52,15 @@ var aQuery	= (function() {
 
 	// Extension Mechanism
 	(aQuery.extend	= function(sName, fFunction) {
-		if (!fQuery.prototype.hasOwnProperty(sName))
+		if (!fQuery.prototype.hasOwnProperty(sName)) {
 			fQuery.prototype[sName]	= fFunction;
+			// Wrap nicely
+			fFunction.toString	= function() {
+				return 'function ' + sName + '() {\n\t[ample code]\n}';
+			};
+		}
 		else
-			throw 'aQuery already has an extension with "' + sName + '" name';
+			throw 'ample already has an extension with "' + sName + '" name';
 	}).toString	= function() {
 		return 'function extend() {\n\t[ample code]\n}';
 	};
@@ -99,6 +71,39 @@ var aQuery	= (function() {
 	}).toString	= function() {
 		return 'function ready() {\n\t[ample code]\n}';
 	};
+
+	// Collection
+	aQuery.extend("get", function(nIndex) {
+		return this[nIndex] || null;
+	});
+
+	aQuery.extend("first",	function() {
+		var aQuery	= new fQuery;
+		if (this.length)
+			aQuery[aQuery.length++]	= this[0];
+		return aQuery;
+	});
+
+	aQuery.extend("last",	function() {
+		var aQuery	= new fQuery;
+		if (this.length)
+			aQuery[aQuery.length++]	= this[this.length - 1];
+		return aQuery;
+	});
+
+	aQuery.extend("slice",	function(nFirst, nLast) {
+		var aQuery	= new fQuery;
+		// TODO: negative values, optional last
+		if (nFirst >-1 && nLast < this.length)
+			for (var nIndex = nFirst; nIndex < nLast; nIndex++)
+				aQuery[aQuery.length++]	= this[nIndex];
+		return aQuery;
+	});
+
+	aQuery.extend("each",	function(fCallback, aArguments) {
+		for (var nIndex = 0; nIndex < this.length; nIndex++)
+			fCallback.apply(this[nIndex], aArguments || [nIndex, this[nIndex]]);
+	});
 
 	// Lookup namespaces
 	aQuery.namespaces	= {};

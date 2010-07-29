@@ -23,7 +23,10 @@ aQuery.extend("attr", function(vArgument1, vArgument2) {
 // Text (get/set)
 aQuery.extend("text", function(vArgument1) {
 	if (arguments.length > 0) {
-
+		// Replace children with a text node
+	}
+	else {
+		// Get inner text
 	}
 });
 
