@@ -3,6 +3,7 @@
 
 	//
 	$aFiles[]	= "aquery/aquery.js";
+	$aFiles[]	= "aquery/plugins/css.js";
 	$aFiles[]	= "aquery/plugins/dom.js";
 	$aFiles[]	= "aquery/plugins/events.js";
 	$aFiles[]	= "aquery/plugins/effects.js";
