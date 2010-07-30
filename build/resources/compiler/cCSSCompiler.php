@@ -43,7 +43,7 @@
 	        $sData	= str_replace("	",   		" ",   		$sData);
 
 	        // Strip ' : ' spaces around
-	        $sData	= preg_replace('/ *([=\+\:\|\^<>\{\};]) */', '$1', $sData);
+	        $sData	= preg_replace('/ *([=\+\:\|\^<>\{\};,]) */', '$1', $sData);
 
 	        // strip all more than one spaces
 	        $sData	= preg_replace("/\s\s+/",	"",			$sData);
