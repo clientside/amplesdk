@@ -65,6 +65,7 @@
 		<mkdir dir="${target.ample.dir}" />
 
 		<antcall target="BUILD_AMPLE_RUNTIME" />
+		<antcall target="BUILD_AMPLE_AQUERY" />
 		<antcall target="BUILD_AMPLE_LANGUAGES" />
 	</target>
 
@@ -302,6 +303,37 @@
 			<fileset file="${copying.js}" />
 			<fileset file="${temp.runtime.dir}/runtime-dev.js" />
 		</concat>
+	</target>
+
+	<target name="BUILD_AMPLE_AQUERY" unless="skip.ample.aquery">
+		<property name="source.aquery.dir" value="${source.dir}/ample/aquery/" />
+		<property name="target.aquery.dir" value="${target.dir}/ample/" />
+		<property name="temp.aquery.dir" value="${temp.dir}/aquery/" />
+
+		<mkdir dir="${temp.aquery.dir}" />
+		<mkdir dir="${target.aquery.dir}" />
+
+		<echo message="Merging into: ${temp.aquery.dir}/aquery-raw.js" level="info"/>
+
+		<concat destfile="${temp.aquery.dir}/aquery-raw.js" fixlastline="yes">
+			<!-- aQuery -->
+			<filelist dir="${source.aquery.dir}/" files="
+				aquery.js"/>
+			<!-- Plugins -->
+			<filelist dir="${source.aquery.dir}/plugins/" files="
+				css.js,
+				dom.js,
+				effects.js,
+				events.js"/>
+		</concat>
+
+		<concat destfile="${target.aquery.dir}/aquery.js" fixlastline="yes">
+			<fileset file="${copying.js}" />
+			<fileset file="${temp.aquery.dir}/aquery-raw.js" />
+		</concat>
+
+		<!-- clean up temp dir -->
+		<delete dir="${temp.aquery.dir}" />
 	</target>
 
 	<target name="BUILD_AMPLE_LANGUAGES" unless="skip.ample.languages">
