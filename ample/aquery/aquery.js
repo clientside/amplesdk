@@ -33,6 +33,9 @@ var aQuery	= (function() {
 				this.selector	= vArgument1;
 			}
 		}
+		else
+		if (vArgument1 instanceof AMLElement)
+			this[this.length++]	= vArgument1;
 	};
 	fQuery.prototype.length	= 0;
 	fQuery.prototype.selector	= "";
