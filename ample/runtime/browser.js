@@ -825,11 +825,6 @@ function fAML_getStyle(oElementDOM, sName) {
 		else
 			return cString(oStyle[sName]) || '1';
 	}
-	else
-	if (sName == "backgroundPosition") {
-		if (oStyle[sName] == "0% 0%" || oStyle[sName] == "none" || oStyle[sName] == "")
-			return "0px 0px";
-	}
 	//
 	return oStyle[sName == "borderColor" ? "borderBottomColor" : sName];
 };

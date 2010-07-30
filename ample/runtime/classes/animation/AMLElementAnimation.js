@@ -30,10 +30,11 @@ function fAMLElementAnimation_play(oElement, sParams, nDuration, vType, fHandler
 
 	// read end params from input
 	var aParams	= sParams.split(/\s*;\s*/),
+		sParam,
 		aParam;
 	for (var nIndex = 0; nIndex < aParams.length; nIndex++)
 		if (aParam = aParams[nIndex].match(/([a-z\-]+)\s*\:\s*(.+)/i))
-			oEffect._data[fAML_toCssPropertyName(aParam[1])]	= [fAMLSMIL30_parseValue(fAML_getStyle(oEffect._container, fAML_toCssPropertyName(aParam[1]))), fAMLSMIL30_parseValue(aParam[2])];
+			oEffect._data[sParam = fAML_toCssPropertyName(aParam[1])]	= [fAMLSMIL30_parseValue(fAMLElementAnimation_adjustStyleValue(sParam, fAML_getStyle(oEffect._container, sParam))), fAMLSMIL30_parseValue(fAMLElementAnimation_adjustStyleValue(sParam, aParam[2]))];
 
 	// delete running effects on new effect properties for the same element
 	for (var nIndex = 0, oEffectOld; nIndex < aAMLElementAnimation_effects.length; nIndex++)
@@ -153,6 +154,19 @@ function fAMLElementAnimation_clear(nEffect)
 
 	// delete effect
 	aAMLElementAnimation_effects[nEffect]	= null;
+};
+
+// Utilities
+function fAMLElementAnimation_adjustStyleValue(sName, sValue) {
+	if (sName == "backgroundPosition") {
+		if (sValue == "0% 0%" || sValue == "none" || sValue == "")
+			return "0px 0px";
+	}
+	else
+	if (sName.match(/top|left|bottom|right/i)) {
+		return sValue == "auto" ? "0px" : sValue;
+	}
+	return sValue;
 };
 
 // Attaching to implementation
