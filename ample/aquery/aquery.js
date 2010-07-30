@@ -121,7 +121,7 @@ var aQuery	= (function() {
 		aNameSpaces.push(sKey + '="' + aQuery.namespaces[sKey] + '"');
 	var sNameSpaces	= aNameSpaces.join(' ');
 	function fResolver(sPrefix) {
-		return aQuery.namespaces[sPrefix];
+		return aQuery.namespaces["xmlns" + (sPrefix ? ":" + sPrefix : '')];
 	}
 	//
 	return aQuery;
