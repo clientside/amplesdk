@@ -112,15 +112,13 @@ function fAMLDragAndDrop_onMouseUp(oEvent)
 
 	    // Execute default action
 	    var bDefaultPrevented	= oEvent.defaultPrevented || oEvent.button/* || oEventDragEnd.defaultPrevented*/;
-	    if (!bDefaultPrevented) {
+	    if (!bDefaultPrevented && oAMLDragAndDrop_dropTarget && oAMLDragAndDrop_dropTarget != oAMLDragAndDrop_dragSource.parentNode) {
 		    if (oAMLDragAndDrop_dataTransfer.dropEffect == "copy") {
-		    	if (oAMLDragAndDrop_dropTarget)
-		    		oAMLDragAndDrop_dropTarget.appendChild(oAMLDragAndDrop_dragSource.cloneNode(true));	// TODO: remove @id attribute values
+	    		oAMLDragAndDrop_dropTarget.appendChild(oAMLDragAndDrop_dragSource.cloneNode(true));	// TODO: remove @id attribute values
 		    }
 		    else
 		    if (oAMLDragAndDrop_dataTransfer.dropEffect == "move") {
-		    	if (oAMLDragAndDrop_dropTarget)
-		    		oAMLDragAndDrop_dropTarget.appendChild(oAMLDragAndDrop_dragSource);
+	    		oAMLDragAndDrop_dropTarget.appendChild(oAMLDragAndDrop_dragSource);
 		    }
 	    }
 
