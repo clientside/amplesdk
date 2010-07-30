@@ -26,7 +26,7 @@ var aQuery	= (function() {
 			}
 			else {
 				// CSS selector
-				var aResult	= (vArgument2 || ample.documentElement).querySelectorAll(vArgument1, vArgument3 || fResolver);
+				var aResult	= (vArgument2 || ample).querySelectorAll(vArgument1, vArgument3 || fResolver);
 				for (var nIndex = 0; nIndex < aResult.length; nIndex++)
 					this[nIndex]	= aResult[nIndex];
 				this.length	= nIndex;
@@ -116,6 +116,8 @@ var aQuery	= (function() {
 				aQuery.namespaces[oAttribute.nodeName]	= oAttribute.nodeValue;
 	if (!aQuery.namespaces["xmlns"])
 		aQuery.namespaces["xmlns"]	= "http://www.w3.org/1999/xhtml";
+	if (!aQuery.namespaces["xmlns:aml"])
+		aQuery.namespaces["xmlns:aml"]	= "http://www.amplesdk.com/ns/aml";
 	var aNameSpaces	= [];
 	for (var sKey in aQuery.namespaces)
 		aNameSpaces.push(sKey + '="' + aQuery.namespaces[sKey] + '"');
