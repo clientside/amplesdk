@@ -23,90 +23,241 @@ aQuery.extend("attr", function(vArgument1, vArgument2) {
 aQuery.extend("text", function(vArgument1) {
 	if (arguments.length > 0) {
 		// Replace children with a text node
+		this.each(function() {
+			while (this.lastChild)
+				this.removeChild(this.lastChild);
+			// Add child
+			this.appendChild(this.ownerDocument.createTextNode(vArgument1));
+		});
 	}
 	else {
 		// Get inner text
+		var aText	= [];
+		this.each(function(){
+			(function fText(oNode) {
+				for (; oNode; oNode = oNode.nextSibling)
+					if (oNode instanceof AMLCharacterData)
+						aText.push(oNode.data);
+					else
+					if (oNode instanceof AMLElement && oNode.hasChildNodes())
+						aText.push(fText(oNode.firstChild));
+			})(this);
+		});
+		return aText.join('');
 	}
+	return this;
 });
 
 // Structure
 //
 aQuery.extend("appendTo", function(vArgument1) {
-	this.each(function() {
-		vArgument1.appendChild(this);
-	});
+	if (this.length) {
+		//
+		var oQuery	= vArgument1;
+		if (!(oQuery instanceof aQuery))
+			oQuery	= aQuery(oQuery);
+		//
+		var that	= this;
+		oQuery.each(function() {
+			var oParent	= this;
+			that.each(function() {
+				oParent.appendChild(this.cloneNode(true));
+			});
+		});
+	}
 	return this;
 });
 
 aQuery.extend("prependTo", function(vArgument1) {
-	var oBefore	= vArgument1.firstChild;
-	this.each(function() {
-		vArgument1.insertBefore(this, oBefore);
-	});
+	if (this.length) {
+		//
+		var oQuery	= vArgument1;
+		if (!(oQuery instanceof aQuery))
+			oQuery	= aQuery(oQuery);
+		//
+		var that	= this;
+		oQuery.each(function() {
+			var oParent	= this,
+				oBefore	= this.firstChild;
+			that.each(function() {
+				oParent.insertBefore(this.cloneNode(true), oBefore);
+			});
+		});
+	}
 	return this;
 });
 
 aQuery.extend("insertBefore", function(vArgument1) {
-	this.each(function() {
-		vArgument1.parentNode.insertBefore(this, vArgument1);
-	});
+	if (this.length) {
+		//
+		var oQuery	= vArgument1;
+		if (!(oQuery instanceof aQuery))
+			oQuery	= aQuery(oQuery);
+		//
+		var that	= this;
+		oQuery.each(function() {
+			var oNode	= this,
+				oBefore	= this;
+			that.each(function() {
+				oNode.parentNode.insertBefore(this.cloneNode(true), oBefore);
+			});
+		});
+	}
 	return this;
 });
 
 aQuery.extend("insertAfter", function(vArgument1) {
-	this.each(function() {
-		vArgument1.parentNode.appendChild(this);
-	});
+	if (this.length) {
+		//
+		var oQuery	= vArgument1;
+		if (!(oQuery instanceof aQuery))
+			oQuery	= aQuery(oQuery);
+		//
+		var that	= this;
+		oQuery.each(function() {
+			var oNode	= this,
+				oBefore	= this.nextSibling;
+			that.each(function() {
+				oNode.parentNode.insertBefore(this.cloneNode(true), oBefore);
+			});
+		});
+	}
+	return this;
+});
+
+aQuery.extend("replaceAll", function(vArgument1) {
+	if (this.length) {
+		//
+		var oQuery	= vArgument1;
+		if (!(oQuery instanceof aQuery))
+			oQuery	= aQuery(oQuery);
+		//
+		var that	= this;
+		oQuery.each(function() {
+			var oNode	= this,
+				oBefore	= this;
+			that.each(function() {
+				oNode.parentNode.insertBefore(this.cloneNode(true), oBefore);
+			});
+			this.parentNode.removeChild(this);
+		});
+	}
 	return this;
 });
 
 //
 aQuery.extend("append", function(vArgument1) {
-	var oQuery	= vArgument1;
-	if (!(oQuery instanceof aQuery))
-		oQuery	= aQuery(oQuery);
 	if (this.length) {
-		var oParent	= this[0];
-		oQuery.each(function() {
-			oParent.appendChild(this);
+		//
+		var oQuery	= vArgument1;
+		if (!(oQuery instanceof aQuery))
+			oQuery	= aQuery(oQuery);
+		//
+		this.each(function() {
+			var oParent	= this;
+			oQuery.each(function() {
+				oParent.appendChild(this.cloneNode(true));
+			});
 		});
 	}
 	return this;
 });
 
 aQuery.extend("prepend", function(vArgument1) {
+	if (this.length) {
+		//
+		var oQuery	= vArgument1;
+		if (!(oQuery instanceof aQuery))
+			oQuery	= aQuery(oQuery);
+		//
+		this.each(function() {
+			var oParent	= this,
+				oBefore	= this.firstChild;
+			oQuery.each(function() {
+				oParent.insertBefore(this.cloneNode(true), oBefore);
+			});
+		});
+	}
 	return this;
 });
 
 aQuery.extend("before", function(vArgument1) {
+	if (this.length) {
+		//
+		var oQuery	= vArgument1;
+		if (!(oQuery instanceof aQuery))
+			oQuery	= aQuery(oQuery);
+		//
+		this.each(function() {
+			var oNode	= this,
+				oBefore	= this;
+			oQuery.each(function() {
+				oNode.parentNode.insertBefore(this.cloneNode(true), oBefore);
+			});
+		});
+	}
 	return this;
 });
 
 aQuery.extend("after", function(vArgument1) {
+	if (this.length) {
+		//
+		var oQuery	= vArgument1;
+		if (!(oQuery instanceof aQuery))
+			oQuery	= aQuery(oQuery);
+		//
+		this.each(function() {
+			var oNode	= this,
+				oBefore	= this.nextSibling;
+			oQuery.each(function() {
+				oNode.parentNode.insertBefore(this.cloneNode(true), oBefore);
+			});
+		});
+	}
 	return this;
 });
 
 //
 aQuery.extend("remove", function(vArgument1) {
+	this.each(function() {
+		this.parentNode.removeChild(this);
+	});
 	return this;
 });
 
-aQuery.extend("empty", function(vArgument1) {
+aQuery.extend("empty", function() {
+	this.each(function() {
+		while (this.lastChild)
+			this.removeChild(this.lastChild);
+	});
 	return this;
 });
 
 //
-aQuery.extend("replaceAll", function(vArgument1) {
-	// TODO
-	return this;
-});
-
 aQuery.extend("replaceWith", function(vArgument1) {
-	// TODO
+	if (this.length) {
+		//
+		var oQuery	= vArgument1;
+		if (!(oQuery instanceof aQuery))
+			oQuery	= aQuery(oQuery);
+		//
+		this.each(function() {
+			var oNode	= this,
+				oBefore	= this;
+			oQuery.each(function() {
+				oNode.parentNode.insertBefore(this.cloneNode(true), oBefore);
+			});
+			this.parentNode.removeChild(this);
+		});
+	}
 	return this;
 });
 
 //
-aQuery.extend("clone", function(vArgument1) {
-	return this;
+aQuery.extend("clone", function() {
+	var oQuery	= aQuery();
+	this.each(function() {
+		oQuery[oQuery.length++]	= this.cloneNode(true);
+	});
+	return oQuery;
 });
