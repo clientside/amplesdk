@@ -138,8 +138,11 @@ function fAMLElementAnimation_process(nEffect)
 			oData	= oEffect._data[sKey];
 			aValue	= fAMLSMIL30_animation_sumValues(oData[0], fAMLSMIL30_animation_multiplyValue(fAMLSMIL30_animation_subValues(oData[1], oData[0]), nRatio));
 			// Color value
-			if (aValue && aValue[1] == '#')
+			if (aValue[1] == '#')
 				aValue	= ['#', fAML_numberToHex(aValue[0][0] * 255) + fAML_numberToHex(aValue[0][1] * 255) + fAML_numberToHex(aValue[0][2] * 255)];
+			else
+			if (sKey == "backgroundPosition")
+				aValue	= [Math.round(aValue[0][0]), aValue[1], ' ', Math.round(aValue[0][1]), aValue[1]];
 			//
 			fAML_setStyle(oEffect._container, sKey, aValue.join(''));
 		}
