@@ -3,10 +3,10 @@
 
 	//
 	$aFiles[]	= "aquery/aquery.js";
-	$aFiles[]	= "aquery/plugins/css.js";
-	$aFiles[]	= "aquery/plugins/dom.js";
-	$aFiles[]	= "aquery/plugins/events.js";
-	$aFiles[]	= "aquery/plugins/effects.js";
+	$aFiles[]	= "aquery/modules/css.js";
+	$aFiles[]	= "aquery/modules/dom.js";
+	$aFiles[]	= "aquery/modules/events.js";
+	$aFiles[]	= "aquery/modules/effects.js";
 
 	$sOutput	= "";
 	for ($nIndex = 0; $nIndex < count($aFiles); $nIndex++)
