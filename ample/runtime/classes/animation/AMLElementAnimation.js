@@ -164,8 +164,12 @@ function fAMLElementAnimation_clear(nEffect)
 
 // Utilities
 function fAMLElementAnimation_adjustStyleValue(sName, sValue) {
+	if (sName == "opacity") {
+		if (sValue == '')
+			return '1';
+	}
 	if (sName == "backgroundPosition") {
-		if (sValue == "0% 0%" || sValue == "none" || sValue == "")
+		if (sValue == "0% 0%" || sValue == "none" || sValue == '')
 			return "0px 0px";
 	}
 	else
