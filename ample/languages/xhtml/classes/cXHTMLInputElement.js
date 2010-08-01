@@ -7,7 +7,9 @@
  *
  */
 
-var oXHTMLNamespace	= new AMLNamespace;
+var cHTMLInputElement	= function(){};
 
-// Register language
-ample.domConfig.setNamespace("http://www.w3.org/1999/xhtml", oXHTMLNamespace);
+cHTMLInputElement.prototype	= new cXHTMLElement;
+
+// Accessibility
+cHTMLInputElement.prototype.tabIndex	= 0;

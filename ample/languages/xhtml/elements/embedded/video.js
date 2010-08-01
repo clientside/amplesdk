@@ -7,11 +7,11 @@
  *
  */
 
-var cXHTMLElement_tt	= function(){};
-cXHTMLElement_tt.prototype	= new cXHTMLElement;
+var cXHTMLElement_video	= function(){};
+cXHTMLElement_video.prototype	= new cXHTMLElement;
 
 // Class Events Handlers
-cXHTMLElement_tt.handlers	= {
+cXHTMLElement_video.handlers	= {
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this)
 			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
@@ -19,4 +19,5 @@ cXHTMLElement_tt.handlers	= {
 };
 
 // Register Element with language
-oXHTMLNamespace.setElement("tt", cXHTMLElement_tt);
+oXHTMLNamespace.setElement("video", cXHTMLElement_video);
+

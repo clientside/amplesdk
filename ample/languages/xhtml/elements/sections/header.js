@@ -7,11 +7,11 @@
  *
  */
 
-var cXHTMLElement_big	= function(){};
-cXHTMLElement_big.prototype	= new cXHTMLElement;
+var cXHTMLElement_header	= function(){};
+cXHTMLElement_header.prototype	= new cXHTMLElement;
 
 // Class Events Handlers
-cXHTMLElement_big.handlers	= {
+cXHTMLElement_header.handlers	= {
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this)
 			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
@@ -19,4 +19,4 @@ cXHTMLElement_big.handlers	= {
 };
 
 // Register Element with language
-oXHTMLNamespace.setElement("big", cXHTMLElement_big);
+oXHTMLNamespace.setElement("header", cXHTMLElement_header);

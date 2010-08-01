@@ -7,11 +7,11 @@
  *
  */
 
-var cXHTMLElement_acronym	= function(){};
-cXHTMLElement_acronym.prototype	= new cXHTMLElement;
+var cXHTMLElement_output	= function(){};
+cXHTMLElement_output.prototype	= new cXHTMLElement;
 
 // Class Events Handlers
-cXHTMLElement_acronym.handlers	= {
+cXHTMLElement_output.handlers	= {
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this)
 			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
@@ -19,4 +19,4 @@ cXHTMLElement_acronym.handlers	= {
 };
 
 // Register Element with language
-oXHTMLNamespace.setElement("acronym", cXHTMLElement_acronym);
+oXHTMLNamespace.setElement("output", cXHTMLElement_output);
