@@ -7,11 +7,11 @@
  *
  */
 
-var cXHTMLElement_area	= function(){};
-cXHTMLElement_area.prototype	= new cXHTMLElement;
+var cXHTMLElement_keygen	= function(){};
+cXHTMLElement_keygen.prototype	= new cXHTMLElement;
 
 // Class Events Handlers
-cXHTMLElement_area.handlers	= {
+cXHTMLElement_keygen.handlers	= {
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this)
 			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
@@ -19,4 +19,4 @@ cXHTMLElement_area.handlers	= {
 };
 
 // Register Element with language
-oXHTMLNamespace.setElement("area", cXHTMLElement_area);
+oXHTMLNamespace.setElement("keygen", cXHTMLElement_keygen);
