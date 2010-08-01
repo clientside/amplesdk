@@ -174,7 +174,7 @@ cAMLDocument.prototype.createElement	= function(sName)
 	]);
 
 	// Invoke actual implementation
-	return fAMLDocument_createElementNS(this, "http://www.w3.org/1999/xhtml", sName);
+	return fAMLDocument_createElementNS(this, this.documentElement.namespaceURI, sName);
 };
 
 function fAMLDocument_createElementNS(oDocument, sNameSpaceURI, sQName)
