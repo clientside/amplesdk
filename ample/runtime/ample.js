@@ -797,11 +797,9 @@ oAMLConfiguration_values["ample-user-agent"]	= '@project.userAgent@';
 
 var oAML_implementation	= new cAMLImplementation,
 	oAML_configuration	= new cAMLConfiguration,
-	oAML_document		= fAMLImplementation_createDocument(oAML_implementation, oUADocument.documentElement.getAttribute("xmlns") || null, "aml" + ':' + "document", null);
+	oAML_document		= fAMLImplementation_createDocument(oAML_implementation, "http://www.amplesdk.com/ns/aml", "aml" + ':' + "document", null);
 
 // Dirty adjustment
-oAML_document.documentElement.namespaceURI	=
-oAML_document.documentElement.attributes["xmlns" + ':' + "aml"]	= "http://www.amplesdk.com/ns/aml";
 oAML_document.documentElement.$getContainer	= function(sName) {return sName && sName != "gateway" ? null : oUADocument.body};
 
 // ample object members

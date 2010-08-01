@@ -25,7 +25,6 @@ function fAMLImplementation_createDocument(oImplementation, sNameSpaceURI, sQNam
 {
 	// Create docuemnt
 	var oDocument	= new cAMLDocument;
-	oDocument.namespaceURI	= sNameSpaceURI;
 	oDocument.implementation= oImplementation;
 	oDocument.domConfig		= oAML_configuration;
 	oDocument.childNodes	= new cAMLNodeList;
@@ -42,7 +41,7 @@ function fAMLImplementation_createDocument(oImplementation, sNameSpaceURI, sQNam
 	{
 		oDocument.documentElement	= fAMLDocument_createElementNS(oDocument, sNameSpaceURI, sQName);
 		if (sNameSpaceURI)
-			oDocument.documentElement.attributes["xmlns" + (sQName.match(/^([^:]):/) ? ':' + cRegExp.$1 : '')]	= sNameSpaceURI;
+			oDocument.documentElement.attributes["xmlns" + (sQName.match(/^([^:]+):/) ? ':' + cRegExp.$1 : '')]	= sNameSpaceURI;
 		fAMLNode_appendChild(oDocument, oDocument.documentElement);
 	    // Register
 		fAML_register(oDocument.documentElement);
