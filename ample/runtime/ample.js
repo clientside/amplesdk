@@ -199,7 +199,7 @@ function fAML_import(oElementDOM, bDeep, oNode, bCollapse) {
 				}
 //->Debug
 				else
-				if (oNamespace)
+				if (oNamespace && sLocalName != "#document-fragment".substr(1))
 					fAML_warn(nAML_UNKNOWN_ELEMENT_NS_WRN, [sLocalName, sNameSpaceURI]);
 //<-Debug
 				// and append it to parent (if there is one)
@@ -547,7 +547,7 @@ function fAML_processScripts() {
                 		oAttributes[sAttribute]	= fAML_encodeEntities(sAttribute == "style" ? oElementDOM[sAttribute].cssText : oAttribute.nodeValue);
 			}
 
-			// Add default namespace if missing
+			// Add default namespace if missing (for rendering only)
 			if (!oAttributes["xmlns"])
 				oAttributes["xmlns"]	= "http://www.w3.org/1999/xhtml";
 
@@ -563,13 +563,16 @@ function fAML_processScripts() {
 				bReferenced	= true;
 			}
 			else {
+				if (!oAttributes["xmlns" + ':' + "aml"])
+					oAttributes["xmlns" + ':' + "aml"]	= "http://www.amplesdk.com/ns/aml";
+
 				// Create fragment
 			    oDocument   = new cDOMParser().parseFromString(//		"<?" + "xml" + ' ' + 'version="1.0"' + "?>" +
 																		'<!' + "DOCTYPE" + ' ' + "#document".substr(1) + '[' + sAML_entities + ']>' +
 //->Debug
 																		'\n' +
 //<-Debug
-			    														'<' + "div" + fAML_hashToString(oAttributes).replace(/&/g, '&amp;') + '>' +
+			    														'<' + "aml" + ':' + "#document-fragment".substr(1) + fAML_hashToString(oAttributes).replace(/&/g, '&amp;') + '>' +
 //->Debug
 			    														'\n' +
 //<-Debug
@@ -577,13 +580,14 @@ function fAML_processScripts() {
 //->Debug
 			    														'\n' +
 //<-Debug
-			    														'</' + "div" + '>', "text/xml");
+			    														'</' + "aml" + ':' + "#document-fragment".substr(1) + '>', "text/xml");
 			}
 
 			oParserError	= oDocument ? oDocument.getElementsByTagName("parsererror")[0] : null;
 		    if (oDocument && oDocument.documentElement && !oParserError) {
 		    	// import XML DOM into Ample DOM
 		    	oElement	= fAML_import(oDocument.documentElement, true, null, true);
+		    	delete oElement.attributes["xmlns" + ':' + "aml"];	// dirty hack (namespace is declared on document)
 		    	// render Ample DOM
 		    	if (bTrident) {
 		    		oElementNew	= oUADocument.createElement("div");
