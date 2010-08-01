@@ -547,6 +547,10 @@ function fAML_processScripts() {
                 		oAttributes[sAttribute]	= fAML_encodeEntities(sAttribute == "style" ? oElementDOM[sAttribute].cssText : oAttribute.nodeValue);
 			}
 
+			// Add default namespace if missing (for rendering only)
+			if (!oAttributes["xmlns"])
+				oAttributes["xmlns"]	= "http://www.w3.org/1999/xhtml";
+
 			if (oElementDOM.getAttribute("src")) {
 				var oRequest	= new cXMLHttpRequest;
 				oRequest.open("GET", oElementDOM.src, false);
@@ -561,12 +565,10 @@ function fAML_processScripts() {
 			else {
 				if (!oAttributes["xmlns" + ':' + "aml"])
 					oAttributes["xmlns" + ':' + "aml"]	= "http://www.amplesdk.com/ns/aml";
-				if (!oAttributes["xmlns"] && oAML_document.namespaceURI)
-					oAttributes["xmlns"]	= oAML_document.namespaceURI;
 
 				// Create fragment
 			    oDocument   = new cDOMParser().parseFromString(//		"<?" + "xml" + ' ' + 'version="1.0"' + "?>" +
-																		'<!' + "DOCTYPE" + ' ' + "#document-fragment".substr(1) + '[' + sAML_entities + ']>' +
+																		'<!' + "DOCTYPE" + ' ' + "#document".substr(1) + '[' + sAML_entities + ']>' +
 //->Debug
 																		'\n' +
 //<-Debug
@@ -608,10 +610,6 @@ function fAML_processScripts() {
 					// duplicate id problem
 		    		if (!bReferenced && !oAttributes['id'])
 		    			oAttributes['id']	= oElement.uniqueID;
-
-					// Add default namespace if missing (for rendering only)
-					if (!oAttributes["xmlns"])
-						oAttributes["xmlns"]	= "http://www.w3.org/1999/xhtml";
 
 		    		oElementNew	= oUADocument.importNode(new cDOMParser().parseFromString('<!' + "DOCTYPE" + ' ' + "div" + ' ' + '[' + sAML_entities + ']>' +
 //->Debug
