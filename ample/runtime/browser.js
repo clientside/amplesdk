@@ -97,7 +97,7 @@ function fAML_render(oNode) {
 				// Add namespace declarations to the shadow content
 				if (!("xmlns" + (oNode.prefix ? ':' + oNode.prefix : '') in oNode.attributes) || (oNode.namespaceURI != "http://www.w3.org/2000/svg" && oNode.namespaceURI != "http://www.w3.org/1999/xhtml"))
 					sHtml	= sHtml.replace(/^(<(?:(\w+)(:))?(\w+))/, '$1 ' + "xmlns" + '$3$2="' + (oNode.namespaceURI == "http://www.w3.org/2000/svg" ? "http://www.w3.org/2000/svg" : "http://www.w3.org/1999/xhtml") + '"');
-				return oUADocument.importNode(new cDOMParser().parseFromString('<!' + "DOCTYPE" + ' ' + "#document-fragment".substr(1) + '[' + sAML_entities + ']>' + sHtml, "text/xml").documentElement, true);
+				return oUADocument.importNode(new cDOMParser().parseFromString('<!' + "DOCTYPE" + ' ' + "div" + '[' + sAML_entities + ']>' + sHtml, "text/xml").documentElement, true);
 			}
 		}
 	}

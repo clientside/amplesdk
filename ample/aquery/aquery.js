@@ -13,7 +13,7 @@ var aQuery	= (function() {
 		if (typeof vArgument1 == "string") {
 			if (vArgument1.substr(0,1) == "<") {
 				// XML string
-				var oDocument	= new DOMParser().parseFromString('<aml:document xmlns:aml="http://www.amplesdk.com/ns/aml"><aml:document-fragment ' + sNameSpaces + '>' + vArgument1 + '</aml:document-fragment></aml:document>', "text/xml");
+				var oDocument	= new DOMParser().parseFromString('<div ' + sNameSpaces + '>' + vArgument1 + '</div>', "text/xml");
 				if (!oDocument || ((document.namespaces && oDocument.parseError != 0) || !oDocument.documentElement || (oDocument.documentElement && oDocument.documentElement.tagName == "parsererror"))) {
 					// TODO: Report warning
 				}
@@ -119,8 +119,6 @@ var aQuery	= (function() {
 				aQuery.namespaces[oAttribute.nodeName]	= oAttribute.nodeValue;
 	if (!aQuery.namespaces["xmlns"])
 		aQuery.namespaces["xmlns"]	= "http://www.w3.org/1999/xhtml";
-	if (!aQuery.namespaces["xmlns:aml"])
-		aQuery.namespaces["xmlns:aml"]	= "http://www.amplesdk.com/ns/aml";
 	var aNameSpaces	= [];
 	for (var sKey in aQuery.namespaces)
 		aNameSpaces.push(sKey + '="' + aQuery.namespaces[sKey] + '"');
