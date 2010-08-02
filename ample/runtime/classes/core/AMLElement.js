@@ -906,7 +906,10 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 				oBefore	= {};
 			for (var nIndex = 0, nLength = aInterestingPropertiesDOM.length, sKey; nIndex < nLength; nIndex++) {
 				sKey = aInterestingPropertiesDOM[nIndex];
-				oBefore[sKey]	= oStyle[sKey];
+				if (bTrident && nVersion < 9 && sKey == "backgroundPosition")
+					oBefore[sKey]	= oStyle[sKey + 'X'] + ' ' + oStyle[sKey + 'Y'];
+				else
+					oBefore[sKey]	= oStyle[sKey];
 			}
 		}
 
@@ -976,16 +979,18 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 
 		if (bTransition) {
 			var oStyle	= fAML_getComputedStyle(oElementDOM),
-				oAfter	= {},
 				aPropertiesAfter	= [],
 				aPropertiesReset	= [];
 			for (var nIndex = 0, nLength = aInterestingPropertiesDOM.length, sKey, sValue; nIndex < nLength; nIndex++) {
 				sKey = aInterestingPropertiesDOM[nIndex];
-				sValue	= oStyle[sKey];
+				if (bTrident && nVersion < 9 && sKey == "backgroundPosition")
+					sValue	= oStyle[sKey + 'X'] + ' ' + oStyle[sKey + 'Y'];
+				else
+					sValue	= oStyle[sKey];
 				if (oBefore[sKey] != sValue) {
 					if (!oElementDOM.style[sValue])
 						aPropertiesReset.push(sKey);
-					oElementDOM.style[sKey]	= oBefore[sKey];
+					fAML_setStyle(oElementDOM, sKey, oBefore[sKey]);
 					aPropertiesAfter.push(sKey + ":" + sValue);
 				}
 			}
@@ -993,7 +998,7 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 			if (aPropertiesAfter.length) {
 				fAMLElementAnimation_play(oElement, aPropertiesAfter.join(';'), 300, 3, function() {
 					for (var nIndex = 0; nIndex < aPropertiesReset.length; nIndex++)
-						oElementDOM.style[aPropertiesReset[nIndex]]	= '';
+						fAML_setStyle(oElementDOM, aPropertiesReset[nIndex], '');
 				});
 			}
 		}

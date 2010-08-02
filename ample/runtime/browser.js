@@ -97,7 +97,7 @@ function fAML_render(oNode) {
 				// Add namespace declarations to the shadow content
 				if (!("xmlns" + (oNode.prefix ? ':' + oNode.prefix : '') in oNode.attributes) || (oNode.namespaceURI != "http://www.w3.org/2000/svg" && oNode.namespaceURI != "http://www.w3.org/1999/xhtml"))
 					sHtml	= sHtml.replace(/^(<(?:(\w+)(:))?(\w+))/, '$1 ' + "xmlns" + '$3$2="' + (oNode.namespaceURI == "http://www.w3.org/2000/svg" ? "http://www.w3.org/2000/svg" : "http://www.w3.org/1999/xhtml") + '"');
-				return oUADocument.importNode(new cDOMParser().parseFromString('<!' + "DOCTYPE" + ' ' + "#document-fragment".substr(1) + '[' + sAML_entities + ']>' + sHtml, "text/xml").documentElement, true);
+				return oUADocument.importNode(new cDOMParser().parseFromString('<!' + "DOCTYPE" + ' ' + "div" + '[' + sAML_entities + ']>' + sHtml, "text/xml").documentElement, true);
 			}
 		}
 	}
@@ -819,11 +819,12 @@ function fAML_getComputedStyle(oElementDOM) {
 
 function fAML_getStyle(oElementDOM, sName) {
 	var oStyle	= fAML_getComputedStyle(oElementDOM);
-	if (sName == "opacity") {
-		if (bTrident && nVersion < 9)
+	if (bTrident && nVersion < 9) {
+		if (sName == "opacity")
 			return cString(cString(oStyle.filter).match(/opacity=([\.0-9]+)/i) ? oElementDOM.filters.item("DXImageTransform.Microsoft.Alpha").opacity / 100 : 1);
 		else
-			return cString(oStyle[sName]) || '1';
+		if (sName == "backgroundPosition")
+			return oStyle[sName + 'X'] + ' ' + oStyle[sName + 'Y'];
 	}
 	//
 	return oStyle[sName == "borderColor" ? "borderBottomColor" : sName];
@@ -831,8 +832,8 @@ function fAML_getStyle(oElementDOM, sName) {
 
 function fAML_setStyle(oElementDOM, sName, sValue) {
 	var oStyle	= oElementDOM.style;
-	if (sName == "opacity") {
-		if (bTrident && nVersion < 9) {
+	if (bTrident && nVersion < 9) {
+		if (sName == "opacity") {
 			var sFilter	= cString(oElementDOM.currentStyle.filter),
 				bFilter	= sFilter.match(/opacity=([\.0-9]+)/i);
 			if (sValue < 1) {
@@ -846,12 +847,18 @@ function fAML_setStyle(oElementDOM, sName, sValue) {
 			else
 			if (oElementDOM.filters.length == 1 && bFilter)	// Single opacity filter applied
 				oStyle.removeAttribute("filter");
+			return;
 		}
 		else
-			oStyle[sName]	= sValue;
+		if (sName == "backgroundPosition") {
+			var aValue	=(sValue || ' ').split(' ');
+			oStyle[sName + 'X']	= aValue[0];
+			oStyle[sName + 'Y']	= aValue[1];
+			return;
+		}
 	}
-	else
-		oStyle[sName]	= sValue;
+	//
+	oStyle[sName]	= sValue;
 };
 
 function fAML_stringToHash(sValue, sPrefix) {

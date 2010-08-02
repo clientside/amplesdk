@@ -349,7 +349,6 @@
 		<antcall target="BUILD_AMPLE_LANGUAGES_XHTML" />
 		<antcall target="BUILD_AMPLE_LANGUAGES_SVG" />
 		<antcall target="BUILD_AMPLE_LANGUAGES_CHART" />
-		<antcall target="BUILD_AMPLE_LANGUAGES_HTML5" />
 		<antcall target="BUILD_AMPLE_LANGUAGES_MOBILE" />
 
 		<!-- clean up temp dir -->
@@ -370,7 +369,7 @@
 				<include name="*.js" />
 			</fileset>
 			<fileset dir="${source.xhtml.dir}/elements/">
-				<include name="*.js" />
+				<include name="*/*.js" />
 			</fileset>
 		</concat>
 
@@ -388,37 +387,32 @@
 			<fileset file="${copying.js}" />
 			<fileset file="${temp.languages.dir}/xhtml-raw-wrapped.js" />
 		</concat>
-	</target>
 
-	<target name="BUILD_AMPLE_LANGUAGES_HTML5" unless="skip.ample.languages.html5">
-		<property name="source.html5.dir" value="${source.languages.dir}/html5/" />
-		<property name="target.html5.dir" value="${target.languages.dir}/html5/" />
-
-		<echo message="Merging into: ${temp.languages.dir}/html5-raw.js" level="info"/>
-		<concat destfile="${temp.languages.dir}/html5-raw.js" fixlastline="yes">
-			<fileset file="${source.html5.dir}/html5.js" />
-			<fileset dir="${source.html5.dir}/classes/">
-				<include name="*.js" />
-			</fileset>
-			<fileset dir="${source.html5.dir}/elements/">
-				<include name="*.js" />
+		<!-- Themes -->
+		<echo message="Merging into: ${temp.languages.dir}/xhtml-raw.css" level="info"/>
+		<concat destfile="${temp.languages.dir}/xhtml-raw.css" fixlastline="yes">
+			<fileset dir="${source.xhtml.dir}/themes/default/">
+				<include name="*.css"/>
 			</fileset>
 		</concat>
 
-		<echo message="Wrapping into: ${temp.languages.dir}/html5-raw-wrapped.js" level="info"/>
+		<echo message="Wrapping into: ${temp.languages.dir}/xhtml.css" level="info"/>
 		<exec executable="${executable.php}" failonerror="true">
-			<arg value="resources/compiler/js.php" />
-			<arg value="${temp.languages.dir}/html5-raw.js" />
-			<arg value="${temp.languages.dir}/html5-raw-wrapped.js" />
-			<arg value="--strip-Source" />
+			<arg value="resources/compiler/css.php" />
+			<arg value="${temp.languages.dir}/xhtml-raw.css" />
+			<arg value="${temp.languages.dir}/xhtml.css" />
+			<arg value="--obfuscate" />
 		</exec>
 
-		<!-- package -->
-		<mkdir dir="${target.html5.dir}" />
-		<concat destfile="${target.html5.dir}/html5.js" fixlastline="yes">
-			<fileset file="${copying.js}" />
-			<fileset file="${temp.languages.dir}/html5-raw-wrapped.js" />
-		</concat>
+		<echo message="Copying default theme to: ${target.xhtml.dir}/themes/default/" level="info"/>
+		<mkdir dir="${target.xhtml.dir}/themes/default/" />
+		<copy tofile="${target.xhtml.dir}/themes/default/style-dev.css" file="${temp.languages.dir}/xhtml-raw.css" />
+		<copy tofile="${target.xhtml.dir}/themes/default/style.css" file="${temp.languages.dir}/xhtml.css" />
+		<copy todir="${target.xhtml.dir}/themes/default/">
+			<fileset dir="${source.xhtml.dir}/themes/default/">
+				<include name="media/**"/>
+			</fileset>
+		</copy>
 	</target>
 
 	<target name="BUILD_AMPLE_LANGUAGES_AML" unless="skip.ample.languages.aml">
