@@ -8,8 +8,15 @@
  */
 
 aQuery.extend("css", function(vArgument1, vArgument2) {
+	// Validate API call
+	aQuery.guard(arguments, [
+		["name",	window.String],
+		["value",	window.String, true]
+	]);
+
+	// Invoke implementation
 	if (arguments.length > 1)
-		this.each(function() {
+		aQuery.each(this, function() {
 			this.$setStyle(vArgument1, vArgument2);
 		});
 	else

@@ -8,16 +8,32 @@
  */
 
 // Events
-aQuery.extend("bind", function(sType, fListener, bCapture) {
-	this.each(function() {
-		this.addEventListener(sType, fListener, bCapture || false);
+aQuery.extend("bind", function(sType, fHandler, bCapture) {
+	// Validate API call
+	aQuery.guard(arguments, [
+		["type",	window.String],
+		["handler",	window.Function],
+		["capture",	window.Boolean,	true]
+	]);
+
+	// Invoke implementation
+	aQuery.each(this, function() {
+		this.addEventListener(sType, fHandler, bCapture || false);
 	});
 	return this;
 });
 
-aQuery.extend("unbind", function(sType, fListener, bCaprure) {
-	this.each(function() {
-		this.removeEventListener(sType, fListener, bCapture || false);
+aQuery.extend("unbind", function(sType, fHandler, bCaprure) {
+	// Validate API call
+	aQuery.guard(arguments, [
+		["type",	window.String],
+		["handler",	window.Function],
+		["capture",	window.Boolean,	true]
+	]);
+
+	// Invoke implementation
+	aQuery.each(this, function() {
+		this.removeEventListener(sType, fHandler, bCapture || false);
 	});
 	return this;
 });

@@ -9,5 +9,14 @@
 
 //
 aQuery.extend("animate", function(oBag, nSpeed, fEasing, fCallback) {
+	// Validate API call
+	aQuery.guard(arguments, [
+		["bag",		window.Object, true],
+		["speend",	window.Object, true],
+		["easing",		window.Function, true],
+		["callback",	window.Function, true]
+	]);
+
+	// Invoke implementation
 	return this;
 });

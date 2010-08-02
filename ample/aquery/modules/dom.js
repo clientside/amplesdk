@@ -9,8 +9,15 @@
 
 // Attributes (get/set)
 aQuery.extend("attr", function(vArgument1, vArgument2) {
+	// Validate API call
+	aQuery.guard(arguments, [
+		["name",	window.String],
+		["value",	window.Object, true]
+	]);
+
+	// Invoke implementation
 	if (arguments.length > 1)
-		this.each(function() {
+		aQuery.each(this, function() {
 			this.setAttribute(vArgument1, vArgument2);
 		});
 	else
@@ -21,9 +28,15 @@ aQuery.extend("attr", function(vArgument1, vArgument2) {
 
 // Text (get/set)
 aQuery.extend("text", function(vArgument1) {
+	// Validate API call
+	aQuery.guard(arguments, [
+		["value",	window.Object, true]
+	]);
+
+	// Invoke implementation
 	if (arguments.length > 0) {
 		// Replace children with a text node
-		this.each(function() {
+		aQuery.each(this, function() {
 			while (this.lastChild)
 				this.removeChild(this.lastChild);
 			// Add child
@@ -33,13 +46,13 @@ aQuery.extend("text", function(vArgument1) {
 	else {
 		// Get inner text
 		var aText	= [];
-		this.each(function(){
+		aQuery.each(this, function(){
 			(function fText(oNode) {
 				for (; oNode; oNode = oNode.nextSibling)
-					if (oNode instanceof AMLCharacterData)
+					if (oNode instanceof window.AMLCharacterData)
 						aText.push(oNode.data);
 					else
-					if (oNode instanceof AMLElement && oNode.hasChildNodes())
+					if (oNode instanceof window.AMLElement && oNode.hasChildNodes())
 						aText.push(fText(oNode.firstChild));
 			})(this);
 		});
@@ -51,6 +64,12 @@ aQuery.extend("text", function(vArgument1) {
 // Structure
 //
 aQuery.extend("appendTo", function(vArgument1) {
+	// Validate API call
+	aQuery.guard(arguments, [
+		["target",	window.Object]
+	]);
+
+	// Invoke implementation
 	if (this.length) {
 		//
 		var oQuery	= vArgument1;
@@ -58,7 +77,7 @@ aQuery.extend("appendTo", function(vArgument1) {
 			oQuery	= aQuery(oQuery);
 		//
 		var that	= this;
-		oQuery.each(function() {
+		aQuery.each(oQuery, function() {
 			var oParent	= this;
 			that.each(function() {
 				oParent.appendChild(this.cloneNode(true));
@@ -69,6 +88,12 @@ aQuery.extend("appendTo", function(vArgument1) {
 });
 
 aQuery.extend("prependTo", function(vArgument1) {
+	// Validate API call
+	aQuery.guard(arguments, [
+		["target",	window.Object]
+	]);
+
+	// Invoke implementation
 	if (this.length) {
 		//
 		var oQuery	= vArgument1;
@@ -76,10 +101,10 @@ aQuery.extend("prependTo", function(vArgument1) {
 			oQuery	= aQuery(oQuery);
 		//
 		var that	= this;
-		oQuery.each(function() {
+		aQuery.each(oQuery, function() {
 			var oParent	= this,
 				oBefore	= this.firstChild;
-			that.each(function() {
+			aQuery.each(that, function() {
 				oParent.insertBefore(this.cloneNode(true), oBefore);
 			});
 		});
@@ -88,6 +113,12 @@ aQuery.extend("prependTo", function(vArgument1) {
 });
 
 aQuery.extend("insertBefore", function(vArgument1) {
+	// Validate API call
+	aQuery.guard(arguments, [
+		["anchor",	window.Object]
+	]);
+
+	// Invoke implementation
 	if (this.length) {
 		//
 		var oQuery	= vArgument1;
@@ -95,10 +126,10 @@ aQuery.extend("insertBefore", function(vArgument1) {
 			oQuery	= aQuery(oQuery);
 		//
 		var that	= this;
-		oQuery.each(function() {
+		aQuery.each(oQuery, function() {
 			var oNode	= this,
 				oBefore	= this;
-			that.each(function() {
+			aQuery.each(that, function() {
 				oNode.parentNode.insertBefore(this.cloneNode(true), oBefore);
 			});
 		});
@@ -107,6 +138,12 @@ aQuery.extend("insertBefore", function(vArgument1) {
 });
 
 aQuery.extend("insertAfter", function(vArgument1) {
+	// Validate API call
+	aQuery.guard(arguments, [
+		["anchor",	window.Object]
+	]);
+
+	// Invoke implementation
 	if (this.length) {
 		//
 		var oQuery	= vArgument1;
@@ -114,10 +151,10 @@ aQuery.extend("insertAfter", function(vArgument1) {
 			oQuery	= aQuery(oQuery);
 		//
 		var that	= this;
-		oQuery.each(function() {
+		aQuery.each(oQuery, function() {
 			var oNode	= this,
 				oBefore	= this.nextSibling;
-			that.each(function() {
+			aQuery.each(that, function() {
 				oNode.parentNode.insertBefore(this.cloneNode(true), oBefore);
 			});
 		});
@@ -126,6 +163,12 @@ aQuery.extend("insertAfter", function(vArgument1) {
 });
 
 aQuery.extend("replaceAll", function(vArgument1) {
+	// Validate API call
+	aQuery.guard(arguments, [
+		["source",	window.Object]
+	]);
+
+	// Invoke implementation
 	if (this.length) {
 		//
 		var oQuery	= vArgument1;
@@ -133,10 +176,10 @@ aQuery.extend("replaceAll", function(vArgument1) {
 			oQuery	= aQuery(oQuery);
 		//
 		var that	= this;
-		oQuery.each(function() {
+		aQuery.each(oQuery, function() {
 			var oNode	= this,
 				oBefore	= this;
-			that.each(function() {
+			aQuery.each(that, function() {
 				oNode.parentNode.insertBefore(this.cloneNode(true), oBefore);
 			});
 			this.parentNode.removeChild(this);
@@ -147,15 +190,21 @@ aQuery.extend("replaceAll", function(vArgument1) {
 
 //
 aQuery.extend("append", function(vArgument1) {
+	// Validate API call
+	aQuery.guard(arguments, [
+		["source",	window.Object]
+	]);
+
+	// Invoke implementation
 	if (this.length) {
 		//
 		var oQuery	= vArgument1;
 		if (!(oQuery instanceof aQuery))
 			oQuery	= aQuery(oQuery);
 		//
-		this.each(function() {
+		aQuery.each(this, function() {
 			var oParent	= this;
-			oQuery.each(function() {
+			aQuery.each(oQuery, function() {
 				oParent.appendChild(this.cloneNode(true));
 			});
 		});
@@ -164,16 +213,22 @@ aQuery.extend("append", function(vArgument1) {
 });
 
 aQuery.extend("prepend", function(vArgument1) {
+	// Validate API call
+	aQuery.guard(arguments, [
+		["source",	window.Object]
+	]);
+
+	// Invoke implementation
 	if (this.length) {
 		//
 		var oQuery	= vArgument1;
 		if (!(oQuery instanceof aQuery))
 			oQuery	= aQuery(oQuery);
 		//
-		this.each(function() {
+		aQuery.each(this, function() {
 			var oParent	= this,
 				oBefore	= this.firstChild;
-			oQuery.each(function() {
+			aQuery.each(oQuery, function() {
 				oParent.insertBefore(this.cloneNode(true), oBefore);
 			});
 		});
@@ -182,16 +237,22 @@ aQuery.extend("prepend", function(vArgument1) {
 });
 
 aQuery.extend("before", function(vArgument1) {
+	// Validate API call
+	aQuery.guard(arguments, [
+		["source",	window.Object]
+	]);
+
+	// Invoke implementation
 	if (this.length) {
 		//
 		var oQuery	= vArgument1;
 		if (!(oQuery instanceof aQuery))
 			oQuery	= aQuery(oQuery);
 		//
-		this.each(function() {
+		aQuery.each(this, function() {
 			var oNode	= this,
 				oBefore	= this;
-			oQuery.each(function() {
+			aQuery.each(oQuery, function() {
 				oNode.parentNode.insertBefore(this.cloneNode(true), oBefore);
 			});
 		});
@@ -200,16 +261,22 @@ aQuery.extend("before", function(vArgument1) {
 });
 
 aQuery.extend("after", function(vArgument1) {
+	// Validate API call
+	aQuery.guard(arguments, [
+		["source",	window.Object]
+	]);
+
+	// Invoke implementation
 	if (this.length) {
 		//
 		var oQuery	= vArgument1;
 		if (!(oQuery instanceof aQuery))
 			oQuery	= aQuery(oQuery);
 		//
-		this.each(function() {
+		aQuery.each(this, function() {
 			var oNode	= this,
 				oBefore	= this.nextSibling;
-			oQuery.each(function() {
+			aQuery.each(oQuery, function() {
 				oNode.parentNode.insertBefore(this.cloneNode(true), oBefore);
 			});
 		});
@@ -218,15 +285,17 @@ aQuery.extend("after", function(vArgument1) {
 });
 
 //
-aQuery.extend("remove", function(vArgument1) {
-	this.each(function() {
+aQuery.extend("remove", function() {
+	// Invoke implementation
+	aQuery.each(this, function() {
 		this.parentNode.removeChild(this);
 	});
 	return this;
 });
 
 aQuery.extend("empty", function() {
-	this.each(function() {
+	// Invoke implementation
+	aQuery.each(this, function() {
 		while (this.lastChild)
 			this.removeChild(this.lastChild);
 	});
@@ -235,16 +304,22 @@ aQuery.extend("empty", function() {
 
 //
 aQuery.extend("replaceWith", function(vArgument1) {
+	// Validate API call
+	aQuery.guard(arguments, [
+		["source",	window.Object]
+	]);
+
+	// Invoke implementation
 	if (this.length) {
 		//
 		var oQuery	= vArgument1;
 		if (!(oQuery instanceof aQuery))
 			oQuery	= aQuery(oQuery);
 		//
-		this.each(function() {
+		aQuery.each(this, function() {
 			var oNode	= this,
 				oBefore	= this;
-			oQuery.each(function() {
+			aQuery.each(oQuery, function() {
 				oNode.parentNode.insertBefore(this.cloneNode(true), oBefore);
 			});
 			this.parentNode.removeChild(this);
@@ -255,8 +330,9 @@ aQuery.extend("replaceWith", function(vArgument1) {
 
 //
 aQuery.extend("clone", function() {
+	// Invoke implementation
 	var oQuery	= aQuery();
-	this.each(function() {
+	aQuery.each(this, function() {
 		oQuery[oQuery.length++]	= this.cloneNode(true);
 	});
 	return oQuery;
