@@ -320,16 +320,24 @@
 			<filelist dir="${source.aquery.dir}/" files="
 				aquery.js"/>
 			<!-- Plugins -->
-			<filelist dir="${source.aquery.dir}/plugins/" files="
+			<filelist dir="${source.aquery.dir}/modules/" files="
 				css.js,
 				dom.js,
 				effects.js,
 				events.js"/>
 		</concat>
 
+		<exec executable="${executable.php}" failonerror="true">
+			<arg value="resources/compiler/js.php" />
+			<arg value="${temp.aquery.dir}/aquery-raw.js" />
+			<arg value="${temp.aquery.dir}/aquery.js" />
+			<arg value="--obfuscate" />
+			<arg value="--strip-Source" />
+			<arg value="--strip-Debug" />
+		</exec>
 		<concat destfile="${target.aquery.dir}/aquery.js" fixlastline="yes">
 			<fileset file="${copying.js}" />
-			<fileset file="${temp.aquery.dir}/aquery-raw.js" />
+			<fileset file="${temp.aquery.dir}/aquery.js" />
 		</concat>
 
 		<!-- clean up temp dir -->
