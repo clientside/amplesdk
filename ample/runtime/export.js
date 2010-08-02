@@ -121,7 +121,10 @@ if (!window.XMLHttpRequest)
 if (!window.JSON)
 	fAMLExporter_export(oJSON,	"JSON");
 
-// Wrap 'Static Methods'
+// Special virtual type
+fAMLExporter_wrapMember(cArguments,	"Arguments");
+
+//
 fAMLExporter_export(fAmple,	"ample");
 
 // JavaScript 1.5

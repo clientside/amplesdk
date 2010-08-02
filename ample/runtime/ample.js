@@ -113,7 +113,7 @@ fAmple.ready	= function(fHandler) {
 	oAML_document.addEventListener("load", fHandler, false);
 };
 
-fAmple.guard	= function(oArguments, aParameters) {
+fAmple.guard	= function(aArguments, aParameters) {
 	// Validate API call
 	fAML_validate(arguments, [
 		["arguments",	cArguments],
@@ -121,7 +121,7 @@ fAmple.guard	= function(oArguments, aParameters) {
 	]);
 
 	// Invoke implementation
-	fAML_validate(oArguments, aArguments);
+	fAML_validate(aArguments, aParameters);
 };
 
 // Ajax
