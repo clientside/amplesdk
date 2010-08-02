@@ -140,6 +140,7 @@ xul|scale[orient=horizontal] {
 	width:	200px;
 	padding-left: 6px;
 	padding-right: 7px;
+	vertical-align: top;
 }
 
 xul|scale[orient=horizontal] xul|scale::bar {
