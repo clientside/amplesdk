@@ -267,21 +267,31 @@ cAMLElement.prototype.replaceChild	= function(oNode, oOld)
     return oOld;
 };
 
-cAMLElement.prototype.cloneNode	= function(bDeep)
+function fAMLElement_cloneNode(oNode, bDeep)
 {
 	// Create Element
-	var oElement	= fAMLDocument_createElementNS(this.ownerDocument, this.namespaceURI, this.nodeName);
+	var oElement	= fAMLDocument_createElementNS(oNode.ownerDocument, oNode.namespaceURI, oNode.nodeName);
 
 	// Copy Attributes
-	for (var sName in this.attributes)
-		if (this.attributes.hasOwnProperty(sName))
-			oElement.attributes[sName]	= this.attributes[sName];
+	for (var sName in oNode.attributes)
+		if (oNode.attributes.hasOwnProperty(sName))
+			oElement.attributes[sName]	= oNode.attributes[sName];
 
 	// Append Children
 	if (bDeep)
-		for (var nIndex = 0, oNode; oNode = this.childNodes[nIndex]; nIndex++)
-			fAMLNode_appendChild(oElement, oNode.cloneNode(bDeep));
+		for (var nIndex = 0; nIndex < oNode.childNodes.length; nIndex++)
+			fAMLNode_appendChild(oElement, oNode.childNodes[nIndex].cloneNode(bDeep));
 	return oElement;
+};
+
+cAMLElement.prototype.cloneNode	= function(bDeep)
+{
+	// Validate arguments
+	fAML_validate(arguments, [
+		["deep",	cBoolean]
+	]);
+
+	return fAMLElement_cloneNode(this, bDeep);
 };
 
 function fAMLElement_hazAttribute(oElement, sName)
