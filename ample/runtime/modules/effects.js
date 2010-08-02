@@ -8,7 +8,7 @@
  */
 
 //
-pAmple.prototype.animate	= function(oBag, nSpeed, fEasing, fCallback) {
+cAMLQuery.prototype.animate	= function(oBag, nSpeed, fEasing, fCallback) {
 	// Validate API call
 	fAML_validate(arguments, [
 		["bag",		cObject, true],

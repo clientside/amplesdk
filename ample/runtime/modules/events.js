@@ -8,7 +8,7 @@
  */
 
 // Events
-pAmple.prototype.trigger	= function(sType, oDetail) {
+cAMLQuery.prototype.trigger	= function(sType, oDetail) {
 	// Validate API call
 	fAML_validate(arguments, [
 		["type",	cString],
@@ -25,7 +25,7 @@ pAmple.prototype.trigger	= function(sType, oDetail) {
 	});
 };
 
-pAmple.prototype.bind	= function(sType, fHandler, bCapture) {
+cAMLQuery.prototype.bind	= function(sType, fHandler, bCapture) {
 	// Validate API call
 	fAML_validate(arguments, [
 		["type",	cString],
@@ -40,7 +40,7 @@ pAmple.prototype.bind	= function(sType, fHandler, bCapture) {
 	return this;
 };
 
-pAmple.prototype.unbind	= function(sType, fHandler, bCaprure) {
+cAMLQuery.prototype.unbind	= function(sType, fHandler, bCaprure) {
 	// Validate API call
 	fAML_validate(arguments, [
 		["type",	cString],

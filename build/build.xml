@@ -110,7 +110,8 @@
 		<concat destfile="${temp.runtime.dir}/runtime-core.js" fixlastline="yes">
 			<!-- Helper Objects -->
 			<filelist dir="${source.runtime.dir}/classes/" files="
-				AMLNamespace.js"/>
+				AMLNamespace.js,
+				AMLQuery.js"/>
 			<!-- DOM Core/Events/Selectors -->
 			<filelist dir="${source.runtime.dir}/classes/events/" files="
 				AMLEvent.js,

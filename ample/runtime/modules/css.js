@@ -7,7 +7,7 @@
  *
  */
 
-pAmple.prototype.css	= function(vArgument1, vArgument2) {
+cAMLQuery.prototype.css	= function(vArgument1, vArgument2) {
 	// Validate API call
 	fAML_validate(arguments, [
 		["name",	cString],

@@ -8,7 +8,7 @@
  */
 
 // Attributes (get/set)
-pAmple.prototype.attr	= function(vArgument1, vArgument2) {
+cAMLQuery.prototype.attr	= function(vArgument1, vArgument2) {
 	// Validate API call
 	fAML_validate(arguments, [
 		["name",	cString],
@@ -28,7 +28,7 @@ pAmple.prototype.attr	= function(vArgument1, vArgument2) {
 };
 
 // Text (get/set)
-pAmple.prototype.text	= function(vArgument1) {
+cAMLQuery.prototype.text	= function(vArgument1) {
 	// Validate API call
 	fAML_validate(arguments, [
 		["value",	cObject, true]
@@ -64,7 +64,7 @@ pAmple.prototype.text	= function(vArgument1) {
 
 // Structure
 //
-pAmple.prototype.appendTo	= function(vArgument1) {
+cAMLQuery.prototype.appendTo	= function(vArgument1) {
 	// Validate API call
 	fAML_validate(arguments, [
 		["target",	cObject]
@@ -88,7 +88,7 @@ pAmple.prototype.appendTo	= function(vArgument1) {
 	return this;
 };
 
-pAmple.prototype.prependTo	= function(vArgument1) {
+cAMLQuery.prototype.prependTo	= function(vArgument1) {
 	// Validate API call
 	fAML_validate(arguments, [
 		["target",	cObject]
@@ -113,7 +113,7 @@ pAmple.prototype.prependTo	= function(vArgument1) {
 	return this;
 };
 
-pAmple.prototype.insertBefore	= function(vArgument1) {
+cAMLQuery.prototype.insertBefore	= function(vArgument1) {
 	// Validate API call
 	fAML_validate(arguments, [
 		["anchor",	cObject]
@@ -138,7 +138,7 @@ pAmple.prototype.insertBefore	= function(vArgument1) {
 	return this;
 };
 
-pAmple.prototype.insertAfter	= function(vArgument1) {
+cAMLQuery.prototype.insertAfter	= function(vArgument1) {
 	// Validate API call
 	fAML_validate(arguments, [
 		["anchor",	cObject]
@@ -163,7 +163,7 @@ pAmple.prototype.insertAfter	= function(vArgument1) {
 	return this;
 };
 
-pAmple.prototype.replaceAll	= function(vArgument1) {
+cAMLQuery.prototype.replaceAll	= function(vArgument1) {
 	// Validate API call
 	fAML_validate(arguments, [
 		["source",	cObject]
@@ -190,7 +190,7 @@ pAmple.prototype.replaceAll	= function(vArgument1) {
 };
 
 //
-pAmple.prototype.append	= function(vArgument1) {
+cAMLQuery.prototype.append	= function(vArgument1) {
 	// Validate API call
 	fAML_validate(arguments, [
 		["source",	cObject]
@@ -213,7 +213,7 @@ pAmple.prototype.append	= function(vArgument1) {
 	return this;
 };
 
-pAmple.prototype.prepend	= function(vArgument1) {
+cAMLQuery.prototype.prepend	= function(vArgument1) {
 	// Validate API call
 	fAML_validate(arguments, [
 		["source",	cObject]
@@ -237,7 +237,7 @@ pAmple.prototype.prepend	= function(vArgument1) {
 	return this;
 };
 
-pAmple.prototype.before	= function(vArgument1) {
+cAMLQuery.prototype.before	= function(vArgument1) {
 	// Validate API call
 	fAML_validate(arguments, [
 		["source",	cObject]
@@ -261,7 +261,7 @@ pAmple.prototype.before	= function(vArgument1) {
 	return this;
 };
 
-pAmple.prototype.after	= function(vArgument1) {
+cAMLQuery.prototype.after	= function(vArgument1) {
 	// Validate API call
 	fAML_validate(arguments, [
 		["source",	cObject]
@@ -286,7 +286,7 @@ pAmple.prototype.after	= function(vArgument1) {
 };
 
 //
-pAmple.prototype.remove	= function() {
+cAMLQuery.prototype.remove	= function() {
 	// Invoke implementation
 	fAmple_each(this, function() {
 		this.parentNode.removeChild(this);
@@ -294,7 +294,7 @@ pAmple.prototype.remove	= function() {
 	return this;
 };
 
-pAmple.prototype.empty	= function() {
+cAMLQuery.prototype.empty	= function() {
 	// Invoke implementation
 	fAmple_each(this, function() {
 		while (this.lastChild)
@@ -304,7 +304,7 @@ pAmple.prototype.empty	= function() {
 };
 
 //
-pAmple.prototype.replaceWith	= function(vArgument1) {
+cAMLQuery.prototype.replaceWith	= function(vArgument1) {
 	// Validate API call
 	fAML_validate(arguments, [
 		["source",	cObject]
@@ -330,7 +330,7 @@ pAmple.prototype.replaceWith	= function(vArgument1) {
 };
 
 //
-pAmple.prototype.clone	= function() {
+cAMLQuery.prototype.clone	= function() {
 	// Invoke implementation
 	var oQuery	= fAmple();
 	fAmple_each(this, function() {
