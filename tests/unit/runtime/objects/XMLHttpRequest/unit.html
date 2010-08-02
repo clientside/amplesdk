@@ -15,6 +15,56 @@
 			function testXMLHttpRequest() {
 				assertNotUndefined(XMLHttpRequest);
 			}
+
+			// Synch
+			function testXMLHttpRequest_sync() {
+				var aReadyStates	= [];
+
+				// check if all states are fired properly
+				var oRequest	= new XMLHttpRequest;
+				oRequest.onreadystatechange	= function() {
+					aReadyStates.push(oRequest.readyState);
+				}
+				oRequest.open("GET", "data.xml", false);
+				oRequest.send(null);
+				assertEquals("1234", aReadyStates.join(""));
+			}
+
+			function testXMLHttpRequest_sync_abort() {
+
+			}
+
+			function testXMLHttpRequest_sync_setRequestHeader() {
+
+			}
+
+			function testXMLHttpRequest_sync_getResponseHeader() {
+
+			}
+
+			function testXMLHttpRequest_sync_getResponseHeadersAll() {
+
+			}
+
+			function testXMLHttpRequest_async() {
+				// check if all states are fired properly
+			}
+
+			function testXMLHttpRequest_async_abort() {
+
+			}
+
+			function testXMLHttpRequest_async_setRequestHeader() {
+
+			}
+
+			function testXMLHttpRequest_async_getResponseHeader() {
+
+			}
+
+			function testXMLHttpRequest_async_getResponseHeadersAll() {
+
+			}
     	</script>
 	</head>
 	<body>

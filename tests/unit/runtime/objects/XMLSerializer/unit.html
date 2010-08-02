@@ -15,6 +15,18 @@
 			function testXMLSerializer() {
 				assertNotUndefined(XMLSerializer);
 			}
+
+			function testXMLSerializer_serializeToString() {
+				var sDocument	= '<?xml version="1.0"?><my:test xmlns:my="http://myns"/>';
+				var oDocument	= new DOMParser().parseFromString(sDocument, 'text/xml');
+				assertEquals(sDocument, new XMLSerializer().serializeToString(oDocument));
+			}
+
+			function testXMLSerializer_serializeToStringNoXmlDeclaration() {
+				var sDocument	= '<my:test xmlns:my="http://myns"/>';
+				var oDocument	= new DOMParser().parseFromString(sDocument, 'text/xml');
+				assertEquals(sDocument, new XMLSerializer().serializeToString(oDocument));
+			}
     	</script>
 	</head>
 	<body>

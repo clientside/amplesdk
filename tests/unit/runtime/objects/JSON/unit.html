@@ -15,6 +15,25 @@
 			function testJSON() {
 				assertNotUndefined(JSON);
 			}
+
+			function testJSON_parse() {
+				var oObject	= JSON.parse('{"string":"string","boolean":true,"number":1,"array":["x"]}');
+				assertEquals("string", oObject.string);
+				assertEquals(true, oObject.boolean);
+				assertEquals(1, oObject.number);
+				assertEquals("x", oObject.array[0]);
+			}
+
+			function testJSON_stringify() {
+				var oObject	= {
+					"string":	"string",
+					"boolean":	true,
+					"number":	1,
+					"array":	["x"]
+				}
+				var sString	= JSON.stringify(oObject);
+				assertEquals('{"string":"string","boolean":true,"number":1,"array":["x"]}', sString);
+			}
     	</script>
 	</head>
 	<body>

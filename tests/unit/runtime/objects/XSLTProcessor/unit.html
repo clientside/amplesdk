@@ -12,8 +12,57 @@
 
 		<!-- Tests -->
 		<script type="text/javascript">
+			// Prepare tests
+			var oXMLHttpRequest	= new XMLHttpRequest;
+
+			oXMLHttpRequest.open("GET", "stylesheet.xsl", false);
+			oXMLHttpRequest.send(null);
+			var oStylesheet	= oXMLHttpRequest.responseXML;
+
+			oXMLHttpRequest.open("GET", "input.xml", false);
+			oXMLHttpRequest.send(null);
+			var oInput		= oXMLHttpRequest.responseXML;
+
+			oXMLHttpRequest.open("GET", "input2.xml", false);
+			oXMLHttpRequest.send(null);
+			var oParameter	= oXMLHttpRequest.responseXML;
+
+			//
 			function testXSLTProcessor() {
 				assertNotUndefined(XSLTProcessor);
+			}
+
+			function testXSLTProcessor_importStylesheet() {
+
+			}
+
+			function testXSLTProcessor_setParameter() {
+
+			}
+
+			function testXSLTProcessor_transformToDocument() {
+				var oXSLTProcessor	= new XSLTProcessor;
+			}
+
+			function testXSLTProcessor_transformToFragment() {
+
+			}
+
+			function testXSLTProcessor_transformToDocumentWithParams() {
+				// transform
+				var oXSLTProcessor	= new XSLTProcessor;
+				oXSLTProcessor.importStylesheet(oStylesheet);
+				oXSLTProcessor.setParameter(null, "string", "---");
+				oXSLTProcessor.setParameter(null, "node", oParameter);
+
+				var oOutputDocument	= oXSLTProcessor.transformToDocument(oInput);
+				var oOutputFragment	= oXSLTProcessor.transformToFragment(oInput, new DOMParser().parseFromString('<?xml version="1.0"?><test />', "text/xml"));
+				//
+				document.getElementById("output").innerHTML	=
+											"<h3>document " + oOutputDocument.nodeType + "</h3>" +
+											"<pre>" + new XMLSerializer().serializeToString(oOutputDocument) + "</pre>" +
+											"<h3>fragment " + oOutputFragment.nodeType + "</h3>" +
+											"<pre>" + new XMLSerializer().serializeToString(oOutputFragment) + "</pre>";
 			}
     	</script>
 	</head>
