@@ -34,6 +34,20 @@ function fAmple(vArgument1, vArgument2, vArgument3) {
 							oQuery[oQuery.length++]	= oAML_document.importNode(aElements[nIndex], true);
 			}
 			else {
+				if (arguments.length > 1)
+					if (!(vArgument2 instanceof cAMLNode))
+						throw new cAMLException(cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR, fAmple.caller
+//->Debug
+							, ['2' + aAML_endings[1], "context", "ample", "AMLNode"]
+//<-Debug
+						);
+				if (arguments.length > 2 && vArgument3 !== null)
+					if (!(vArgument3 instanceof cFunction))
+						throw new cAMLException(cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR, fAmple.caller
+//->Debug
+							, ['3' + aAML_endings[2], "query", "ample", "Function"]
+//<-Debug
+						);
 				// CSS selector
 				var aResult;
 				try {
@@ -44,6 +58,7 @@ function fAmple(vArgument1, vArgument2, vArgument3) {
 					oException.caller	= fAmple.caller;
 					throw oException;
 				}
+				oQuery.length	= 0;
 				for (var nIndex = 0; nIndex < aResult.length; nIndex++)
 					oQuery[oQuery.length++]	= aResult[nIndex];
 				oQuery.selector	= vArgument1;
@@ -55,7 +70,7 @@ function fAmple(vArgument1, vArgument2, vArgument3) {
 		else
 			throw new cAMLException(cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR, fAmple.caller
 //->Debug
-				, ["1st", "query", "ample", 'String" or "AMLElement', "undefined"]
+				, ['1' + aAML_endings[0], "query", "ample", "String" + '" or "' + "AMLElement"]
 //<-Debug
 			);
 	}
@@ -67,7 +82,6 @@ function fAmple(vArgument1, vArgument2, vArgument3) {
 // Magic
 fAmple.prototype	= cAMLQuery.prototype;
 
-// Dangerous! No API validation
 function fAmple_each(oQuery, fCallback, aArguments) {
 	for (var nIndex = 0; nIndex < oQuery.length; nIndex++)
 		fCallback.apply(oQuery[nIndex], aArguments || [nIndex, oQuery[nIndex]]);
@@ -96,6 +110,17 @@ fAmple.ready	= function(fHandler) {
 
 	// Invoke implementation
 	oAML_document.addEventListener("load", fHandler, false);
+};
+
+fAmple.guard	= function(oArguments, aParameters) {
+	// Validate API call
+	fAML_validate(arguments, [
+		["arguments",	cArguments],
+		["parameters",	cArray]
+	]);
+
+	// Invoke implementation
+	fAML_validate(oArguments, aArguments);
 };
 
 // Ajax

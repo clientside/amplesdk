@@ -139,6 +139,7 @@ function fAML_validate(aArguments, aParameters) {
 					case cXMLElement:	bValid	= vValue && vValue.nodeType == 1;		break;
 					case cXMLDocument:	bValid	= vValue && vValue.nodeType == 9;		break;
 					// Complex types
+					case cArguments:	bValid	= typeof vValue == "object" && "callee" in vValue;	break;
 					default:			bValid	= vValue instanceof aParameter[1];
 				}
 
