@@ -105,7 +105,7 @@
 			</method>
 
 			<!-- DOM -->
-			<method name="attr" type="AMLQuery">
+			<method name="attr" type="Variant">
 				<description>
 					<locale>
 
