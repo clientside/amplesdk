@@ -140,7 +140,6 @@ xul|scale[orient=horizontal] {
 	width:	200px;
 	padding-left: 6px;
 	padding-right: 7px;
-	vertical-align: top;
 }
 
 xul|scale[orient=horizontal] xul|scale::bar {
@@ -207,8 +206,10 @@ xul|radiogroup {
 	margin: 1px;
 }
 
-xul|radio {
-
+xul|radio,
+xul|checkbox {
+	display: inline-block;
+	cursor:	default;
 }
 
 /* checkbox */
@@ -218,15 +219,70 @@ xul|checkbox {
 
 xul|radio::label,
 xul|checkbox::label {
-	padding-right:	2px;
-	padding-left:	2px;
+	margin-left: 20px;
+	margin-right: 4px;
 	vertical-align:	baseline;
 }
 
 xul|radio::input,
 xul|checkbox::input {
+	float: left;
+	height:	16px;
+	width:	16px;
 	vertical-align:	baseline;
 	margin: 2px;
+	background-image: url(media/controls.gif);
+	background-repeat: no-repeat;
+}
+
+xul|checkbox::input {
+	background-position: 0 -32px;
+}
+
+xul|checkbox:hover xul|checkbox::input {
+	background-position: -16px -32px;
+}
+
+xul|checkbox:disabled xul|checkbox::input {
+	background-position: -32px -32px;
+}
+
+xul|checkbox:checked xul|checkbox::input {
+	background-position: 0px -48px;
+}
+
+xul|checkbox:hover:checked xul|checkbox::input {
+	background-position: -16px -48px;
+}
+
+xul|checkbox:disabled:checked xul|checkbox::input {
+	background-position: -32px -48px;
+}
+
+xul|radio::input {
+	background-position: 0 0;
+}
+
+xul|radio:hover xul|radio::input {
+	background-position: -16px 0;
+}
+
+xul|radiogroup:disabled xul|radio::input,
+xul|radio:disabled xul|radio::input {
+	background-position: -32px 0;
+}
+
+xul|radio:selected xul|radio::input {
+	background-position: 0px -16px;
+}
+
+xul|radio:hover:selected xul|radio::input {
+	background-position: -16px -16px;
+}
+
+xul|radiogroup:disabled xul|radio:selected xul|radio::input,
+xul|radio:disabled:selected xul|radio::input {
+	background-position: -32px -16px;
 }
 
 /* */
@@ -311,6 +367,7 @@ xul|menulist:disabled,
 xul|datepicker:disabled,
 xul|timepicker:disabled,
 xul|checkbox:disabled,
+xul|radiogroup:disabled xul|radio,
 xul|radio:disabled {
 	cursor: default;
 	color: GrayText;/*#aca899;*/

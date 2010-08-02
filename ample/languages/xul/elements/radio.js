@@ -10,6 +10,8 @@
 var cXULElement_radio	= function(){};
 cXULElement_radio.prototype   = new cXULElement;
 
+cXULElement_radio.prototype.$hoverable	= true;
+
 cXULElement_radio.prototype.group	= null;
 
 // Public Methods
@@ -19,19 +21,19 @@ cXULElement_radio.prototype.$isAccessible	= function() {
 
 // Events Handlers
 cXULElement_radio.handlers	= {
-	"focus":	function(oEvent) {
-		this.$getContainer("input").focus();
-		this.setAttribute("selected", "true");
-	},
-	"blur":		function(oEvent) {
-		this.$getContainer("input").blur();
+	"click":	function(oEvent) {
+		if (oEvent.button == 0) {
+			this.setAttribute("selected", "true");
+		    // Fire Event
+			if (this.group)
+				cXULInputElement.dispatchChange(this.group);
+		}
 	},
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this) {
 			switch (oEvent.attrName) {
 				case "disabled":
 					this.$setPseudoClass("disabled", oEvent.newValue == "true");
-					this.$getContainer("input").disabled	= oEvent.newValue == "true";
 					break;
 
 				case "label":
@@ -39,25 +41,26 @@ cXULElement_radio.handlers	= {
 					break;
 
 				case "value":
-					this.$getContainer("input").value    = oEvent.newValue || '';
 					break;
 
 				case "selected":
-					if (oEvent.newValue == "true") {
-						// deselect previously selected radio
-						if (this.group.items[this.group.selectedIndex])
-							this.group.items[this.group.selectedIndex].setAttribute("selected", "false");
+					var oGroup	= this.group;
+					if (oGroup) {
+						if (oEvent.newValue == "true") {
+							// deselect previously selected radio
+							if (oGroup.selectedItem)
+								oGroup.selectedItem.setAttribute("selected", "false");
 
-						this.group.selectedIndex    = this.group.items.$indexOf(this);
-						this.group.selectedItem     = this.group.items[this.group.selectedIndex];
-						this.group.attributes["value"]  = this.attributes["value"];
+							oGroup.selectedIndex	= this.group.items.$indexOf(this);
+							oGroup.selectedItem		= this;
+							oGroup.attributes["value"]  = this.attributes["value"];
+						}
+						else {
+							oGroup.selectedIndex	=-1;
+							oGroup.selectedItem		= null;
+							oGroup.attributes["value"]  = "";
+						}
 					}
-					else {
-						this.group.selectedIndex    =-1;
-						this.group.selectedItem     = null;
-						this.group.attributes["value"]  = "";
-					}
-					this.$getContainer("input").checked	= oEvent.newValue == "true";
 					this.$setPseudoClass("selected", oEvent.newValue == "true");
 					break;
 
@@ -71,7 +74,6 @@ cXULElement_radio.handlers	= {
 			if (oElement instanceof cXULElement_radiogroup)
 				break;
 		if (oElement) {
-			this.$getContainer("input").name	= oElement.uniqueID + "_radio";
 			oElement.items.$add(this);
 			this.group   = oElement;
 			//
@@ -79,7 +81,6 @@ cXULElement_radio.handlers	= {
 				oElement.selectedIndex	= oElement.items.length - 1;
 				oElement.selectedItem	= this;
 			}
-
 		}
 	},
 	"DOMNodeRemovedFromDocument":	function(oEvent) {
@@ -94,42 +95,24 @@ cXULElement_radio.handlers	= {
 				}
 			}
 			//
-			this.$getContainer("input").name	= "";
 			oElement.items.$remove(this);
 			this.group   = null;
 		}
 	}
 };
 
-cXULElement_radio.prototype._onClick = function(oEvent) {
-    if (this.group) {
-        this.setAttribute("selected", "true");
-
-	    // Fire Event
-        cXULInputElement.dispatchChange(this.group);
-    }
-};
-
 // Element Render: open
-cXULElement_radio.prototype.$getTagOpen	= function() {
-    var sHtml   = '<label class="xul-radio' + (!this.$isAccessible() ? " xul-radio_disabled" : "") + (this.attributes["selected"] == "true" ? " xul-radio_selected" : "") + '">';
-    sHtml	+= '<input type="radio" autocomplete="off"';
-    if (this.attributes["value"])
-        sHtml  += ' value="' + this.attributes["value"] + '"';
-    if (this.attributes["selected"] == "true")
-        sHtml  += ' checked="true"';
-    if (!this.$isAccessible())
-        sHtml  += ' disabled="true"';
-    sHtml  += ' onclick="ample.$instance(this)._onClick(event)" class="xul-radio--input" />';
-    sHtml  += '<span class="xul-radio--label">' + (this.attributes["label"] ? this.attributes["label"] : '') + '</span>';
-
-
-    return sHtml;
+cXULElement_radio.prototype.$getTagOpen		= function() {
+	var bSelected	= this.attributes["selected"] == "true",
+		bDisabled	= !this.$isAccessible();
+	return '<div class="xul-radio' + (bDisabled ? " xul-radio_disabled" : "") + (bSelected ? " xul-radio_selected" : "") + (bSelected && bDisabled ? " xul-radio_selected_disabled xul-radio_disabled_selected" : "") + '">\
+				<div class="xul-radio--input"></div>\
+				<div class="xul-radio--label">' +(this.attributes["label"] || '')+ '</div>';
 };
 
 // Element Render: close
 cXULElement_radio.prototype.$getTagClose	= function() {
-    return '</label>';
+	return '</div>';
 };
 
 // Register Element with language

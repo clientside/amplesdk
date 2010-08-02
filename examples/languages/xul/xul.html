@@ -251,7 +251,11 @@
 		<h3>Radio buttons</h3>
 		<script>ample.open()</script>
 		<xul:radiogroup orient="horizontal">
-		<xul:radio label="label 0" /><xul:radio label="label 1" selected="true"/><xul:radio label="label 2" disabled="true"/><xul:radio label="label 3" selected="true" disabled="true"/>
+		<xul:radio label="label 0" /><xul:radio label="label 1" selected="true"/><xul:radio label="label 2" disabled="true"/><xul:radio label="label 3" disabled="true"/>
+		</xul:radiogroup>
+		<xul:radiogroup orient="horizontal" disabled="true">
+		<xul:radio label="label 0" />
+		<xul:radio label="label 1" selected="true"/>
 		</xul:radiogroup>
 		<script>ample.close()</script>
 

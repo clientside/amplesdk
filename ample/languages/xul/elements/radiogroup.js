@@ -53,8 +53,6 @@ cXULElement_radiogroup.handlers	= {
 				case "disabled":
 					var oElementDOM	= this.$getContainer();
 					this.$setPseudoClass("disabled", oEvent.newValue == "true");
-					for (var nIndex = 0; nIndex < this.items.length; nIndex++)
-						this.items.setAttribute("disabled", oEvent.newValue);
 					break;
 
 				default:

@@ -10,39 +10,37 @@
 var cXULElement_checkbox	= function(){};
 cXULElement_checkbox.prototype	= new cXULInputElement;
 
-// Apply Behaviours
+cXULElement_checkbox.prototype.$hoverable	= true;
 
 // Public Methods
 
 // Class Events handlers
 cXULElement_checkbox.handlers	= {
-	"focus":	function(oEvent) {
-		this.$getContainer("input").focus();
-	},
-	"blur":		function(oEvent) {
-		this.$getContainer("input").blur();
+	"click":	function(oEvent) {
+		if (oEvent.button == 0) {
+			this.setAttribute("checked", this.getAttribute("checked") == "true" ? "false" : "true");
+		    // Fire Event
+			cXULInputElement.dispatchChange(this);
+		}
 	},
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this) {
 			switch (oEvent.attrName) {
 				case "disabled":
 			    	this.$setPseudoClass("disabled", oEvent.newValue == "true");
-			        this.$getContainer("input").disabled	= oEvent.newValue == "true";
 			        break;
 
 		    	case "value":
-			        this.$getContainer("input").checked  =(oEvent.newValue == "on" ? true : false);
-			        this.attributes["checked"]	=(oEvent.newValue == "on" ? "true" : "false");
+		    		this.setAttribute("checked", oEvent.newValue == "on" ? "true" : "false");
 			        break;
 
 		    	case "checked":
-			        this.$getContainer("input").checked  =(oEvent.newValue == "true" ? true : false);
-			        this.attributes["value"]	=(oEvent.newValue == "true" ? "on" : "off");
+			        this.setAttribute("value", oEvent.newValue == "true" ? "on" : "off");
 			        this.$setPseudoClass("checked", oEvent.newValue == "true");
 			        break;
 
 		    	case "label":
-		    		this.$getContainer("label").innerHTML =(oEvent.newValue || '');
+		    		this.$getContainer("label").innerHTML = oEvent.newValue || '';
 		    		break;
 
 		    	default:
@@ -52,40 +50,18 @@ cXULElement_checkbox.handlers	= {
 	}
 };
 
-//
-cXULElement_checkbox.prototype._onChange = function(oEvent) {
-	this.setAttribute("checked", this.$getContainer("input").checked.toString());
-
-    // Fire Event
-	cXULInputElement.dispatchChange(this);
-};
-
 // Element Render: open
 cXULElement_checkbox.prototype.$getTagOpen		= function() {
-    var sHtml   = '<label class="xul-checkbox' + (!this.$isAccessible() ? " xul-checkbox_disabled" : "") + (this.attributes["checked"] == "true" ? " xul-checkbox_checked" : "") + '">';
-    sHtml	+= '<input type="checkbox" name="' + this.attributes["name"] + '" class="xul-checkbox--input"';
-    if (this.attributes["checked"] == "true" || this.attributes["value"] == "on")
-    {
-        sHtml  += ' checked="true"';
-        this.attributes["checked"]  = "true";
-        this.attributes["value"]    = "on";
-    }
-    else
-    {
-        this.attributes["checked"]  = "false";
-        this.attributes["value"]    = "off";
-    }
-    if (!this.$isAccessible())
-        sHtml  += ' disabled="true"';
-    sHtml  += ' onclick="return ample.$instance(this)._onChange(event);" autocomplete="off" />';
-    sHtml  += '<span class="xul-checkbox--label">' +(this.attributes["label"] ? this.attributes["label"] : '')+ '</span>';
-
-    return sHtml;
+	var bChecked	= this.attributes["checked"] == "true",
+		bDisabled	= !this.$isAccessible();
+	return '<div class="xul-checkbox' + (bDisabled ? " xul-checkbox_disabled" : "") + (bChecked ? " xul-checkbox_checked" : "") + (bChecked && bDisabled ? " xul-checkbox_checked_disabled xul-checkbox_disabled_checked" : "") + '">\
+				<div class="xul-checkbox--input"></div>\
+				<div class="xul-checkbox--label">' +(this.attributes["label"] || '')+ '</div>';
 };
 
 // Element Render: close
 cXULElement_checkbox.prototype.$getTagClose	= function() {
-    return '</label>';
+	return '</div>';
 };
 
 // Register Element with language
