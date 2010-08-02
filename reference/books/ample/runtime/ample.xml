@@ -3,7 +3,12 @@
 <object name="ample">
 	<abstract>
 		<locale>
-			jQuery-like API to Ample SDK
+			jQuery-like API to Ample SDK. Can be called in any of the following 3 flavours.
+			<ul>
+				<li><link type="object">AMLQuery</link> <link type="object">ample</link>(String <em>selector</em>[, <link type="object">AMLNode</link> <em>context</em>[, Function <em>NSResolver</em>]])</li>
+				<li><link type="object">AMLQuery</link> <link type="object">ample</link>(String <em>xml</em>)</li>
+				<li><link type="object">AMLQuery</link> <link type="object">ample</link>(<link type="object">AMLElement</link> <em>element</em>)</li>
+			</ul>
 		</locale>
 	</abstract>
 	<remarks />
@@ -25,17 +30,56 @@
 				</description>
 			</property>
 			<property name="document" type="AMLDocument" readonly="true">
-
+				<description>
+					<locale>
+						Retrieves a reference to the Ample SDK document.
+					</locale>
+				</description>
 			</property>
-			<property name="namespaces" type="Object" readonly="true">
-
+			<property name="namespaces" type="Object">
+				<description>
+					<locale>
+						Retrieves a reference to a hash object of namespaces collected from the root element of the hosting document.
+					</locale>
+				</description>
 			</property>
 		</properties>
 		<methods>
-			<method name="ajax" type="Void">
+			<method name="guard" type="Void">
+				<arguments>
+					<argument name="arguments" type="Arguments">
+						<description>
+							<locale>
+								arguments object.
+							</locale>
+						</description>
+					</argument>
+					<argument name="parameters" type="Array">
+						<description>
+							<locale>
+								array of parameter definitions.
+								Each parameter definition is an array in the following format: {String} name, {Function} type[, {Boolean} optional, {Boolean} allownull]
+							</locale>
+						</description>
+					</argument>
+				</arguments>
 				<description>
 					<locale>
-
+						Helps validating API in custom extensions.
+					</locale>
+				</description>
+			</method>
+			<method name="ajax" type="Void">
+				<argument name="bag" type="Object">
+					<description>
+						<locale>
+							Properties bag.
+						</locale>
+					</description>
+				</argument>
+				<description>
+					<locale>
+						Executes an XMLHttpRequest.
 					</locale>
 				</description>
 			</method>
