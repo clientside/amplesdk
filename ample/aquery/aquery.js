@@ -18,7 +18,7 @@ var aQuery	= (function() {
 					// TODO: Report warning
 				}
 				else {
-					var oDocumentElement	= ample.importNode(oDocument.documentElement.firstChild, true);
+					var oDocumentElement	= ample.importNode(oDocument.documentElement, true);
 					for (var nIndex = 0, aElements = oDocumentElement.childNodes; nIndex < aElements.length; nIndex++)
 						this[nIndex]	= aElements[nIndex];
 					this.length	= nIndex;
@@ -73,6 +73,13 @@ var aQuery	= (function() {
 		ample.addEventListener("load", fFunction, false);
 	}).toString	= function() {
 		return 'function ready() {\n\t[ample code]\n}';
+	};
+
+	// Ajax
+	(aQuery.ajax	= function(oBag) {
+		// TODO
+	}).toString	= function() {
+		return 'function ajax() {\n\t[ample code]\n}';
 	};
 
 	// Collection
