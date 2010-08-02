@@ -31,9 +31,10 @@ function fAmple(vArgument1, vArgument2, vArgument3) {
 				else
 					for (var nIndex = 0, aElements = oDocument.documentElement.childNodes; nIndex < aElements.length; nIndex++)
 						if (aElements[nIndex].nodeType == cAMLNode.ELEMENT_NODE)
-							oQuery[oQuery.length++]	= oAML_document.importNode(aElements[nIndex], true);
+							oQuery[oQuery.length++]	= fAML_import(aElements[nIndex], true);
 			}
 			else {
+				// Validate API call (custom)
 				if (arguments.length > 1)
 					if (!(vArgument2 instanceof cAMLNode))
 						throw new cAMLException(cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR, fAmple.caller
@@ -48,10 +49,10 @@ function fAmple(vArgument1, vArgument2, vArgument3) {
 							, ['3' + aAML_endings[2], "query", "ample", "Function"]
 //<-Debug
 						);
-				// CSS selector
+				// Invoke implementation
 				var aResult;
 				try {
-					aResult	= (vArgument2 || oAML_document).querySelectorAll(vArgument1, vArgument3 || fResolver);
+					aResult	= fAMLSelector_query([vArgument2 || oAML_document], vArgument1, vArgument3 || fResolver);
 				}
 				catch (oException) {
 					// Re-point caller property and re-throw error

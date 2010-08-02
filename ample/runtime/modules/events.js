@@ -19,9 +19,9 @@ cAMLQuery.prototype.trigger	= function(sType, oDetail) {
 	if (arguments.length < 2)
 		oDetail	= null;
 	fAmple_each(this, function() {
-		var oEvent	= oAML_document.createEvent("CustomEvent");
+		var oEvent	= new cAMLCustomEvent;
 		oEvent.initCustomEvent(sType, true, true, oDetail);
-		this.dispatchEvent(oEvent);
+		fAMLNode_dispatchEvent(this, oEvent);
 	});
 };
 
@@ -35,7 +35,7 @@ cAMLQuery.prototype.bind	= function(sType, fHandler, bCapture) {
 
 	// Invoke implementation
 	fAmple_each(this, function() {
-		this.addEventListener(sType, fHandler, bCapture || false);
+		fAMLEventTarget_addEventListener(this, sType, fHandler, bCapture || false);
 	});
 	return this;
 };
@@ -50,7 +50,7 @@ cAMLQuery.prototype.unbind	= function(sType, fHandler, bCaprure) {
 
 	// Invoke implementation
 	fAmple_each(this, function() {
-		this.removeEventListener(sType, fHandler, bCapture || false);
+		fAMLEventTarget_removeEventListener(this, sType, fHandler, bCapture || false);
 	});
 	return this;
 };
