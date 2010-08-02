@@ -64,6 +64,7 @@
 	$aFiles[]	= "runtime/classes/JSON.js";
 
 	// Runtime
+	$aFiles[]	= "runtime/utilities.js";
 	$aFiles[]	= "runtime/browser.js";
 	$aFiles[]	= "runtime/ample.js";
 
@@ -116,7 +117,7 @@
 	// XML Schema 1.1 Instance
 	$aFiles[]	= "runtime/processors/xmlschema11-instance/xmlschema11-instance.js";
 */
-	// Modules
+	// Managers
 	$aFiles[]	= "runtime/managers/mAMLFocus.js";
 	$aFiles[]	= "runtime/managers/mAMLResize.js";
 	$aFiles[]	= "runtime/managers/mAMLDragAndDrop.js";
@@ -125,6 +126,13 @@
 	$aFiles[]	= "runtime/managers/mAMLCapture.js";
 	$aFiles[]	= "runtime/managers/mAMLHistory.js";
 	$aFiles[]	= "runtime/managers/mAMLTouch.js";
+
+	// Modules
+	$aFiles[]	= "runtime/modules/collection.js";
+	$aFiles[]	= "runtime/modules/css.js";
+	$aFiles[]	= "runtime/modules/dom.js";
+	$aFiles[]	= "runtime/modules/effects.js";
+	$aFiles[]	= "runtime/modules/events.js";
 
 	//
 	$aFiles[]	= "runtime/export.js";

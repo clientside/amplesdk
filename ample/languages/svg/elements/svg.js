@@ -121,7 +121,7 @@ if (cSVGElement.useVML) {
 			aWidth	= this.getAttribute("width").match(/([\d.]+)([%\w]*)/) || [],
 			aHeight	= this.getAttribute("height").match(/([\d.]+)([%\w]*)/) || [];
 		return '<div class="svg-svg' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="position:relative;display:inline-block;overflow:hidden;' + (this.hasAttribute("style") ? this.getAttribute("style") : '') + '"\
-					onresize="var o = ample.$instance(this); ample.domConfig.getNamespace(o.namespaceURI).getElement(o.localName).resize(o)">\
+					onresize="var o = ample.$instance(this); ample.document.domConfig.getNamespace(o.namespaceURI).getElement(o.localName).resize(o)">\
 					<svg2vml:group class="svg-svg--gateway" style="position:absolute;display:none;"\
 						coordOrigin="0,0"\
 						coordSize="' + (aViewBox[2] || aWidth[1] || 600) + ',' + (aViewBox[3] || aHeight[1] || 600) + '"\

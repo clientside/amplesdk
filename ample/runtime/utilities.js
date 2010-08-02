@@ -25,7 +25,8 @@ var nAML_NOT_WELLFORMED_WRN			= 'a',	// Use strings in order to not intersect wi
 	nAML_INVALID_ATTRIBUTE_WRN		= 'h',
 	nAML_UNKNOWN_SIMPLE_TYPE_WRN	= 'i',
 	nAML_ERROR_ANIMATING_ATTR_WRN	= 'j',
-	nAML_DOCUMENT_INVALID_STATE_WRN	= 'k';
+	nAML_DOCUMENT_INVALID_STATE_WRN	= 'k',
+	nAML_REWRITING_LOADED_PLUGIN_WRN= 'l';
 
 function fAML_format(sMessage, aArguments) {
 	for (var nIndex = 0; nIndex < aArguments.length; nIndex++)
@@ -73,8 +74,9 @@ oAML_messages[nAML_UNKNOWN_ATTRIBUTE_NS_WRN]= 'Attribute "%0" definition is miss
 oAML_messages[nAML_MISSING_ATTRIBUTE_WRN]	= 'Required attribute "%0" is missing from "%1" element. Element processing skipped';
 oAML_messages[nAML_INVALID_ATTRIBUTE_WRN]	= 'Attribute "%0" value "%1" is invalid. Element processing skipped';
 oAML_messages[nAML_UNKNOWN_SIMPLE_TYPE_WRN]	= 'Simple type definition "%0" not found';
-oAML_messages[nAML_ERROR_ANIMATING_ATTR_WRN]= 'Error animating %0 atttribute with %1 value';
+oAML_messages[nAML_ERROR_ANIMATING_ATTR_WRN]= 'Error animating "%0" atttribute with "%1" value';
 oAML_messages[nAML_DOCUMENT_INVALID_STATE_WRN]	= 'Document invalid state';
+oAML_messages[nAML_REWRITING_LOADED_PLUGIN_WRN]	= 'Re-writing plugin "%0" which is already loaded';
 //<-Debug
 
 // Validation implementation
@@ -199,7 +201,7 @@ function fAML_import(oElementDOM, bDeep, oNode, bCollapse) {
 				}
 //->Debug
 				else
-				if (oNamespace && sLocalName != "#document-fragment".substr(1))
+				if (oNamespace)
 					fAML_warn(nAML_UNKNOWN_ELEMENT_NS_WRN, [sLocalName, sNameSpaceURI]);
 //<-Debug
 				// and append it to parent (if there is one)
@@ -485,9 +487,9 @@ var sAML_entities	= '',
 for (var nIndex = 0, nLength = aEntities.length; nIndex < nLength; nIndex++)
 	sAML_entities	+= '<!' + "ENTITY" + ' ' + aEntities[nIndex] + ' "&#' +(160 + nIndex)+ ';">';
 
+//
 function fAML_processScripts() {
 	var oDocument,
-    	oNamespaces = {},
     	oParserError,
     	oParserMessage,
 		aElements,
@@ -500,24 +502,22 @@ function fAML_processScripts() {
     	oAttributes,
     	bReferenced;
 
-	// Collect attributes from document root element
-	if (bTrident)
-		for (var nIndex = 0, aAttributes = oUADocument.namespaces; oAttribute = aAttributes[nIndex]; nIndex++)
-			oNamespaces["xmlns" + (oAttribute.name == "xmlns" ? '' : ':') + oAttribute.name]	= oAttribute.urn;
-	else
-		for (var nIndex = 0, aAttributes = oUADocument.documentElement.attributes; oAttribute = aAttributes[nIndex]; nIndex++)
-			if (oAttribute.nodeName.match(/^xmlns($|:)/))
-				oNamespaces[oAttribute.nodeName]	= oAttribute.nodeValue;
-
-	function fAML_hashToString(hHash) {
+	function fHashToString(hHash) {
 		var aAttributes	= [], sAttribute;
-		for (sAttribute in oNamespaces)
-			if (oNamespaces.hasOwnProperty(sAttribute) && !(sAttribute in hHash))
-				hHash[sAttribute]	= oNamespaces[sAttribute];
+		for (sAttribute in fAmple.namespaces)
+			if (!(sAttribute in hHash) && fAmple.namespaces.hasOwnProperty(sAttribute))
+				hHash[sAttribute]	= fAmple.namespaces[sAttribute];
 		for (sAttribute in hHash)
 			if (hHash.hasOwnProperty(sAttribute))
 				aAttributes.push(' ' + sAttribute + '="' + hHash[sAttribute] + '"');
 		return aAttributes.join('');
+	};
+
+	function fGetTagChildren(oElement) {
+		var aHtml	= [];
+		for (var nIndex = 0, aElement = oElement.childNodes; nIndex < aElement.length; nIndex++)
+			aHtml.push(aElement[nIndex].$getTag());
+		return aHtml.join('');
 	};
 
 	// Process script tags
@@ -547,10 +547,6 @@ function fAML_processScripts() {
                 		oAttributes[sAttribute]	= fAML_encodeEntities(sAttribute == "style" ? oElementDOM[sAttribute].cssText : oAttribute.nodeValue);
 			}
 
-			// Add default namespace if missing (for rendering only)
-			if (!oAttributes["xmlns"])
-				oAttributes["xmlns"]	= "http://www.w3.org/1999/xhtml";
-
 			if (oElementDOM.getAttribute("src")) {
 				var oRequest	= new cXMLHttpRequest;
 				oRequest.open("GET", oElementDOM.src, false);
@@ -563,16 +559,13 @@ function fAML_processScripts() {
 				bReferenced	= true;
 			}
 			else {
-				if (!oAttributes["xmlns" + ':' + "aml"])
-					oAttributes["xmlns" + ':' + "aml"]	= "http://www.amplesdk.com/ns/aml";
-
 				// Create fragment
 			    oDocument   = new cDOMParser().parseFromString(//		"<?" + "xml" + ' ' + 'version="1.0"' + "?>" +
-																		'<!' + "DOCTYPE" + ' ' + "#document".substr(1) + '[' + sAML_entities + ']>' +
+																		'<!' + "DOCTYPE" + ' ' + "script" + '[' + sAML_entities + ']>' +
 //->Debug
 																		'\n' +
 //<-Debug
-			    														'<' + "aml" + ':' + "#document-fragment".substr(1) + fAML_hashToString(oAttributes).replace(/&/g, '&amp;') + '>' +
+			    														'<' + "script" + ' ' + "type" + '="' + "application/ample+xml" + '"' + fHashToString(oAttributes).replace(/&/g, '&amp;') + '>' +
 //->Debug
 			    														'\n' +
 //<-Debug
@@ -580,7 +573,7 @@ function fAML_processScripts() {
 //->Debug
 			    														'\n' +
 //<-Debug
-			    														'</' + "aml" + ':' + "#document-fragment".substr(1) + '>', "text/xml");
+			    														'</' + "script" + '>', "text/xml");
 			}
 
 			oParserError	= oDocument ? oDocument.getElementsByTagName("parsererror")[0] : null;
@@ -591,7 +584,7 @@ function fAML_processScripts() {
 		    	if (bTrident) {
 		    		oElementNew	= oUADocument.createElement("div");
 		    		fAML_replaceNode(oElementDOM, oElementNew);
-			    	oElementNew.innerHTML = oElement.$getTag();
+			    	oElementNew.innerHTML = fGetTagChildren(oElement);
 
 					// Map attributes
 					if (oElementDOM.style.cssText)
@@ -610,15 +603,16 @@ function fAML_processScripts() {
 		    		if (!bReferenced && !oAttributes['id'])
 		    			oAttributes['id']	= oElement.uniqueID;
 
-		    		oElementNew	= oUADocument.importNode(new cDOMParser().parseFromString('<!' + "DOCTYPE" + ' ' + "div" + ' ' + '[' + sAML_entities + ']>' +
+		    		oElementNew	= oUADocument.importNode(new cDOMParser().parseFromString(
+		    															'<!' + "DOCTYPE" + ' ' + "div" + ' ' + '[' + sAML_entities + ']>' +
 //->Debug
 																		'\n' +
 //<-Debug
-		    															'<' + "div" + fAML_hashToString(oAttributes).replace(/&/g, '&amp;') + '>' +
+		    															'<' + "div" + fHashToString(oAttributes).replace(/&/g, '&amp;') + '>' +
 //->Debug
 																		'\n' +
 //<-Debug
-		    															oElement.$getTag() +
+																		fGetTagChildren(oElement) +
 //->Debug
 																		'\n' +
 //<-Debug
@@ -801,49 +795,6 @@ oAML_document.documentElement.$getContainer	= function(sName) {return sName && s
 
 // ample object members
 oAML_document.readyState	= "loading";
-
-oAML_document.open	= function() {
-	if (oAML_document.readyState == "loading") {
-		var aElements	= oUADocument.getElementsByTagName("script"),
-			oElement	= aElements[aElements.length - 1];
-		oElement.parentNode.removeChild(oElement);
-		oUADocument.write('<' + "script" + ' ' + "type" + '="' + "application/ample+xml" + '"' + '>');
-	}
-//->Debug
-	else
-		fAML_warn(nAML_DOCUMENT_INVALID_STATE_WRN);
-//<-Debug
-};
-
-oAML_document.close	= function() {
-	if (oAML_document.readyState == "loading")
-		oUADocument.write('</' + "script" + '>');
-//->Debug
-	else
-		fAML_warn(nAML_DOCUMENT_INVALID_STATE_WRN);
-//<-Debug
-};
-
-oAML_document.$instance	= function(oNode) {
-    for (var oElement, sId; oNode; oNode = oNode.parentNode)
-        if ((sId = oNode.id) && (oElement = (oAML_ids[sId] || oAML_all[sId])))
-            return oElement;
-    return null;
-};
-/*
-oAML_document.$class	= function(oNode) {
-	var oElement	= oAML_document.$instance(oNode);
-	if (oElement) {
-		var sNameSpaceURI	= oElement.namespaceURI,
-			oNamespace	= oAML_namespaces[sNameSpaceURI];
-		return oNamespace && oNamespace.elements[sNameSpaceURI] ? oNamespace.elements[sNameSpaceURI] : cAMLElement;
-	}
-	return null;
-};
-*/
-oAML_document.$resolveUri	= function(sUri, sBaseUri) {
-	return fAML_resolveUri(sUri, sBaseUri);
-};
 
 //->Debug
 // Enable debugging

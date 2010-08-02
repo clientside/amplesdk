@@ -21,7 +21,7 @@ var oXULLocaleManager	=(function(){
 			oLocales[sLocale.toLowerCase()]	= oLocale;
 		},
 		getText:	function(sName) {
-			var sLocale	= ample.domConfig.getParameter("ample-user-locale").toLowerCase();
+			var sLocale	= ample.document.domConfig.getParameter("ample-user-locale").toLowerCase();
 			if (sLocale.split("-").length < 2)
 				sLocale+= "-" + oLanguages[sLocale];
 			return (oLocales[sLocale] || oLocales["en-us"]).dictionary[sName] || 'null';

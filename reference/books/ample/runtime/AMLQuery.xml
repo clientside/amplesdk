@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="AMLQuery">
+	<abstract>
+		<locale>
+			Holds a collection of elements returned from <link type="object">ample</link>() function call.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<properties>
+			<property name="length" type="Number">
+				<description>
+					<locale>
+						Holds the length of the collection returned.
+					</locale>
+				</description>
+			</property>
+			<property name="selector" type="String">
+				<description>
+					<locale>
+						Holds the CSS selector query used.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<methods>
+			<!-- Collection -->
+			<method name="get" type="AMLElement">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="first" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="last" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="slice" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="each" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+
+			<!-- Effects -->
+			<method name="animate" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+
+			<!-- Css -->
+			<method name="css" type="Variant">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+
+			<!-- Events -->
+			<method name="bind" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="unbind" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="trigger" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+
+			<!-- DOM -->
+			<method name="attr" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="text" type="Variant">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="appendTo" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="prependTo" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="insertBefore" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="insertAfter" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="replaceAll" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="append" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="prepend" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="before" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="after" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="remove" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="empty" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="replaceWith" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="clone" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+		</methods>
+	</members>
+</object>

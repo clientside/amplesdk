@@ -101,7 +101,7 @@ cAMLHashChangeEvent.prototype.initHashChangeEvent	= function(sType, bCanBubble, 
 };
 
 // Attaching to implementation
-oAML_document.$bookmark	= function(sHash) {
+fAmple.$bookmark	= function(sHash) {
 	// Validate arguments
 	fAML_validate(arguments, [
 		["hash",		cString]

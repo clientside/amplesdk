@@ -354,7 +354,7 @@ function fAMLSMIL30_onUnLoad() {
 };
 
 // Attaching to implementation
-oAML_document.$time	= aAMLSMIL30_elements;
+fAmple.$time	= aAMLSMIL30_elements;
 
 // Registering Event Handlers
 fAMLEventTarget_addEventListener(oAML_document, "load",	fAMLSMIL30_onLoad, false);

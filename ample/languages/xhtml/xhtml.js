@@ -10,4 +10,4 @@
 var oXHTMLNamespace	= new AMLNamespace;
 
 // Register language
-ample.domConfig.setNamespace("http://www.w3.org/1999/xhtml", oXHTMLNamespace);
+ample.document.domConfig.setNamespace("http://www.w3.org/1999/xhtml", oXHTMLNamespace);

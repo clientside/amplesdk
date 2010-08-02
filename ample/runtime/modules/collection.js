@@ -9,53 +9,53 @@
 
 
 // Collection
-aQuery.extend("get", function(nIndex) {
+pAmple.prototype.get	= function(nIndex) {
 	// Validate API call
-	aQuery.guard(arguments, [
-		["index",	window.Number]
+	fAML_validate(arguments, [
+		["index",	cNumber]
 	]);
 
 	// Invoke implementation
 	return this[nIndex];
-});
+};
 
-aQuery.extend("first",	function() {
-	var oQuery	= new aQuery;
+pAmple.prototype.first	= function() {
+	var oQuery	= new fAmple;
 	if (this.length)
 		oQuery[oQuery.length++]	= this[0];
 	return oQuery;
-});
+};
 
-aQuery.extend("last",	function() {
-	var oQuery	= new aQuery;
+pAmple.prototype.last	= function() {
+	var oQuery	= new fAmple;
 	if (this.length)
-		oQuery[aQuery.length++]	= this[this.length - 1];
+		oQuery[fAmple.length++]	= this[this.length - 1];
 	return oQuery;
-});
+};
 
-aQuery.extend("slice",	function(nFirst, nLast) {
+pAmple.prototype.slice	= function(nFirst, nLast) {
 	// Validate API call
-	aQuery.guard(arguments, [
-		["first",	window.Number],
-		["last",	window.Number, true]
+	fAML_validate(arguments, [
+		["first",	cNumber],
+		["last",	cNumber, true]
 	]);
 
 	// Invoke implementation
-	var oQuery	= new aQuery;
+	var oQuery	= new fAmple;
 	// TODO: negative values, optional last
 	if (nFirst >-1 && nLast < this.length)
 		for (var nIndex = nFirst; nIndex < nLast; nIndex++)
 			oQuery[oQuery.length++]	= this[nIndex];
 	return oQuery;
-});
+};
 
-aQuery.extend("each",	function(fCallback, aArguments) {
+pAmple.prototype.each	= function(fCallback, aArguments) {
 	// Validate API call
-	aQuery.guard(arguments, [
-		["callback",	window.Function],
-		["arguments",	window.Object, true]
+	fAML_validate(arguments, [
+		["callback",	cFunction],
+		["arguments",	cObject, true]
 	]);
 
 	// Invoke implementation
-	aQuery.each(this, fCallback, aArguments);
-});
+	fAmple_each(this, fCallback, aArguments);
+};

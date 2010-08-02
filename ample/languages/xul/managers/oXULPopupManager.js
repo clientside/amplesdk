@@ -13,11 +13,11 @@ var oXULPopupManager	= (function () {
 	var oTooltipPane	= null;
 
 	// Extend ample document to XULDocument
-	ample.tooltipNode	= null;
-	ample.popupNode		= null;
+	ample.document.tooltipNode	= null;
+	ample.document.popupNode	= null;
 
 	// Attaching manager to document
-	ample.addEventListener("mouseenter",	function(oEvent) {
+	ample.document.addEventListener("mouseenter",	function(oEvent) {
 		for (var oElement = oEvent.target, oTooltip; oElement.nodeType != AMLNode.DOCUMENT_NODE; oElement = oElement.parentNode) {
 			if (oElement.$isAccessible()) {
 			    if (oElement.attributes["tooltiptext"]) {
@@ -46,14 +46,14 @@ var oXULPopupManager	= (function () {
 		}
 	}, true);
 
-	ample.addEventListener("mouseleave",	function(oEvent) {
+	ample.document.addEventListener("mouseleave",	function(oEvent) {
 		if (this.tooltipNode)	{
 			this.tooltipNode.hidePopup();
 			this.tooltipNode	= null;
 		}
 	}, true);
 
-	ample.addEventListener("click",	function(oEvent) {
+	ample.document.addEventListener("click",	function(oEvent) {
 		for (var oElement = oEvent.target, oPopup; oElement.nodeType != AMLNode.DOCUMENT_NODE; oElement = oElement.parentNode) {
 			if (oElement.$isAccessible()) {
 				if (oEvent.button == 2) {
@@ -81,7 +81,7 @@ var oXULPopupManager	= (function () {
 		}
 	}, true);
 
-	ample.addEventListener("mousedown",	function(oEvent) {
+	ample.document.addEventListener("mousedown",	function(oEvent) {
 		// Hide popup node
 		if (this.popupNode && !(oEvent.target == this.popupNode ||(oEvent.target.compareDocumentPosition(this.popupNode) & AMLNode.DOCUMENT_POSITION_CONTAINS))) {
 			this.popupNode.hidePopup();

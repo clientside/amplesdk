@@ -9,7 +9,7 @@
 
 var oXULCommandDispatcher	= (function () {
 	//
-	ample.addEventListener("DOMNodeInsertedIntoDocument", function(oEvent) {
+	ample.document.addEventListener("DOMNodeInsertedIntoDocument", function(oEvent) {
 		if (oEvent.target instanceof cXULElement) {
 			var oElement, sName, sValue;
 			if (sValue = oEvent.target.attributes["command"]) {
@@ -43,4 +43,4 @@ var oXULCommandDispatcher	= (function () {
 })();
 
 // Register with DOM
-ample.commandDispatcher	= oXULCommandDispatcher;
+ample.document.commandDispatcher	= oXULCommandDispatcher;

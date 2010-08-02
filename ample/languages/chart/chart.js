@@ -10,4 +10,4 @@
 var oChartNamespace	= new AMLNamespace;
 
 // Register language
-ample.domConfig.setNamespace("http://www.amplesdk.com/ns/chart", oChartNamespace);
+ample.document.domConfig.setNamespace("http://www.amplesdk.com/ns/chart", oChartNamespace);

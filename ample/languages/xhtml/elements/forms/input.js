@@ -45,7 +45,7 @@ cXHTMLElement_input.prototype.$validate	= function() {
 			var aQName	= sDataType.split(':'),
 				sNameSpaceURI	= this.lookupNamespaceURI(aQName[0]),
 				sLocalName		= aQName[1],
-				oDataType		= this.ownerDocument.$model.getTypeDefinition(sNameSpaceURI, sLocalName);
+				oDataType		= ample.$model.getTypeDefinition(sNameSpaceURI, sLocalName);
 
 			if (oDataType)
 				bValid	= oDataType.$validate(sValue);

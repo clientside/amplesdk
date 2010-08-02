@@ -7,20 +7,25 @@
  *
  */
 
-aQuery.extend("css", function(vArgument1, vArgument2) {
+pAmple.prototype.css	= function(vArgument1, vArgument2) {
 	// Validate API call
-	aQuery.guard(arguments, [
-		["name",	window.String],
-		["value",	window.String, true]
+	fAML_validate(arguments, [
+		["name",	cString],
+		["value",	cString, true]
 	]);
 
 	// Invoke implementation
-	if (arguments.length > 1)
-		aQuery.each(this, function() {
-			this.$setStyle(vArgument1, vArgument2);
+	if (arguments.length > 1) {
+		fAmple_each(this, function() {
+			var oElementDOM	= this.$getContainer();
+			if (oElementDOM)
+				fAML_setStyle(oElementDOM, vArgument1, vArgument2);
 		});
+		return this;
+	}
 	else
-	if (this.length)
-		return this[0].$getStyle(vArgument1);
-	return this;
-});
+	if (this.length) {
+		var oElementDOM	= this[0].$getContainer();
+		return oElementDOM ? fAML_getStyle(oElementDOM, vArgument1) : '';
+	}
+};

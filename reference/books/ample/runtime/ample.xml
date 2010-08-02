@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="ample">
+	<abstract>
+		<locale>
+			jQuery-like API to Ample SDK
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<properties>
+			<property name="$model" type="XSModel" readonly="true">
+				<description>
+					<locale>
+						Retrieves a reference to the XML Schema model.
+					</locale>
+				</description>
+			</property>
+			<property name="$time" type="SMILTimeContainer" readonly="true">
+				<description>
+					<locale>
+						Retrieves a reference to the SMIL document time container.
+					</locale>
+				</description>
+			</property>
+			<property name="document" type="AMLDocument" readonly="true">
+
+			</property>
+			<property name="namespaces" type="Object" readonly="true">
+
+			</property>
+		</properties>
+		<methods>
+			<method name="ajax" type="Void">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="ready" type="Void">
+				<arguments>
+					<argument name="handler" type="Function">
+						<description>
+							<locale>
+								Handler function.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Registers a handler to be executed when page has been completely loaded.
+					</locale>
+				</description>
+			</method>
+			<method name="extend" type="Void">
+				<arguments>
+					<argument name="name" type="String">
+						<description>
+							<locale>
+								Name of the function to be registered.
+							</locale>
+						</description>
+					</argument>
+					<argument name="function" type="Function">
+						<description>
+							<locale>
+								Function pointer to be registered.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Provides extensibility API.
+					</locale>
+				</description>
+			</method>
+			<!--  -->
+			<method name="open" type="Void">
+				<description>
+					<locale>
+						Opens Ample SDK fragment. This method can only be called while page is loading.
+					</locale>
+				</description>
+			</method>
+			<method name="close" type="Void">
+				<description>
+					<locale>
+						Closes Ample SDK fragment. This method can only be called while page is loading.
+					</locale>
+				</description>
+			</method>
+			<method name="$instance" type="AMLElement">
+				<arguments>
+					<argument name="oElement" type="HTMLElement">
+						<description>
+							DOM HTML element
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Finds corresponding to the HTML DOM element in the Ample SDK DOM.
+					</locale>
+				</description>
+			</method>
+		</methods>
+	</members>
+</object>

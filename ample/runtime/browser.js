@@ -24,7 +24,7 @@ function fDetachEvent(oNode, sEvent, fHandler) {
 
 // Finds AMLElement by event target
 function fGetEventTarget(oEvent) {
-    return oAML_document.$instance(oEvent.srcElement || oEvent.target) || oAML_document.documentElement;
+    return fAmple.$instance(oEvent.srcElement || oEvent.target) || oAML_document.documentElement;
 };
 
 function fGetUIEventPseudo(oEvent) {

@@ -10,4 +10,4 @@
 var oAMLNamespace	= new AMLNamespace;
 
 // Register namespace
-ample.domConfig.setNamespace("http://www.amplesdk.com/ns/aml", oAMLNamespace);
+ample.document.domConfig.setNamespace("http://www.amplesdk.com/ns/aml", oAMLNamespace);

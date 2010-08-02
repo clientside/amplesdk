@@ -53,8 +53,8 @@ if (cSVGElement.useVML) {
 	cSVGElement_image.resolveXmlBase	= function(oElement, sUri) {
 		for (var oNode = oElement, sBaseUri = ''; oNode != null && oNode.nodeType != 9; oNode = oNode.parentNode)
 			if (sBaseUri = oNode.getAttribute("xml:base"))
-				sUri	= oElement.ownerDocument.$resolveUri(sUri, sBaseUri);
-		return oElement.ownerDocument.$resolveUri(sUri, String(document.location));
+				sUri	= ample.$resolveUri(sUri, sBaseUri);
+		return ample.$resolveUri(sUri, String(document.location));
 	};
 
 	// presentation

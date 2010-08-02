@@ -8,32 +8,49 @@
  */
 
 // Events
-aQuery.extend("bind", function(sType, fHandler, bCapture) {
+pAmple.prototype.trigger	= function(sType, oDetail) {
 	// Validate API call
-	aQuery.guard(arguments, [
-		["type",	window.String],
-		["handler",	window.Function],
-		["capture",	window.Boolean,	true]
+	fAML_validate(arguments, [
+		["type",	cString],
+		["detail",	oDetail, true, true]
 	]);
 
 	// Invoke implementation
-	aQuery.each(this, function() {
+	if (arguments.length < 2)
+		oDetail	= null;
+	fAmple_each(this, function() {
+		var oEvent	= oAML_document.createEvent("CustomEvent");
+		oEvent.initCustomEvent(sType, true, true, oDetail);
+		this.dispatchEvent(oEvent);
+	});
+};
+
+pAmple.prototype.bind	= function(sType, fHandler, bCapture) {
+	// Validate API call
+	fAML_validate(arguments, [
+		["type",	cString],
+		["handler",	cFunction],
+		["capture",	cBoolean,	true]
+	]);
+
+	// Invoke implementation
+	fAmple_each(this, function() {
 		this.addEventListener(sType, fHandler, bCapture || false);
 	});
 	return this;
-});
+};
 
-aQuery.extend("unbind", function(sType, fHandler, bCaprure) {
+pAmple.prototype.unbind	= function(sType, fHandler, bCaprure) {
 	// Validate API call
-	aQuery.guard(arguments, [
-		["type",	window.String],
-		["handler",	window.Function],
-		["capture",	window.Boolean,	true]
+	fAML_validate(arguments, [
+		["type",	cString],
+		["handler",	cFunction],
+		["capture",	cBoolean,	true]
 	]);
 
 	// Invoke implementation
-	aQuery.each(this, function() {
+	fAmple_each(this, function() {
 		this.removeEventListener(sType, fHandler, bCapture || false);
 	});
 	return this;
-});
+};

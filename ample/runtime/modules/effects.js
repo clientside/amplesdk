@@ -8,15 +8,15 @@
  */
 
 //
-aQuery.extend("animate", function(oBag, nSpeed, fEasing, fCallback) {
+pAmple.prototype.animate	= function(oBag, nSpeed, fEasing, fCallback) {
 	// Validate API call
-	aQuery.guard(arguments, [
-		["bag",		window.Object, true],
-		["speend",	window.Object, true],
-		["easing",		window.Function, true],
-		["callback",	window.Function, true]
+	fAML_validate(arguments, [
+		["bag",		cObject, true],
+		["speend",	cObject, true],
+		["easing",		cFunction, true],
+		["callback",	cFunction, true]
 	]);
 
 	// Invoke implementation
 	return this;
-});
+};

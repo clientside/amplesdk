@@ -10,4 +10,4 @@
 var oXULNamespace	= new AMLNamespace;
 
 // Register language
-ample.domConfig.setNamespace("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul", oXULNamespace);
+ample.document.domConfig.setNamespace("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul", oXULNamespace);

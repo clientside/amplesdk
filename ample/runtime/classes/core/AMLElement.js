@@ -1027,27 +1027,6 @@ cAMLElement.prototype.$setPseudoClass	= function(sName, bState, sContainer)
 	fAMLElement_setPseudoClass(this, sName, bState, sContainer);
 };
 
-cAMLElement.prototype.$getStyle	= function(sName) {
-	// Validate arguments
-	fAML_validate(arguments, [
-		["name",	cString]
-	]);
-	//
-	var oElementDOM	= this.$getContainer();
-	return oElementDOM ? fAML_getStyle(oElementDOM, sName) : '';
-};
-
-cAMLElement.prototype.$setStyle	= function(sName, sValue) {
-	// Validate arguments
-	fAML_validate(arguments, [
-		["name",	cString],
-		["value",	cObject],
-	]);
-	var oElementDOM	= this.$getContainer();
-	if (oElementDOM)
-		fAML_setStyle(oElementDOM, sName, sValue);
-};
-
 // Content Loader
 function fAMLElement_load(oElement, sUrl, sMethod, oHeaders, sData)
 {

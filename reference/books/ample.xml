@@ -3,6 +3,7 @@
 <book name="Ample SDK 1.0">
 	<node title="Runtime" open="true">
 		<node title="JavaScript technologies" open="true">
+			<node title="ample" url="ample/runtime/ample.xml"/>
 			<!--node title="JavaScript technologies" /-->
 			<node title="DOM Level 2/3" open="true">
 				<!--node title="DOM Level 2/3" xurl="ample/runtime/dom.xml"/-->
@@ -49,6 +50,7 @@
 					<node title="LSSerializer" xurl="ample/runtime/LSSerializer.xml"/>
 				</node>
 				<node title="DOM Helper Objects">
+					<node title="AMLQuery" url="ample/runtime/AMLQuery.xml"/>
 					<node title="AMLNamespace" url="ample/runtime/AMLNamespace.xml"/>
 					<!--node title="AMLSerializer" url="ample/runtime/AMLSerializer.xml"/-->
 					<node title="AMLDataTransfer" url="ample/runtime/AMLDataTransfer.xml"/>

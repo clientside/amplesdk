@@ -120,14 +120,8 @@ if (!window.XMLHttpRequest)
 if (!window.JSON)
 	fAMLExporter_export(oJSON,	"JSON");
 
-// Publish ample object here
-window.ample	= oAML_document;
 // Wrap 'Static Methods'
-fAMLExporter_wrapMember(oAML_document.close,		"close");
-fAMLExporter_wrapMember(oAML_document.open,			"open");
-fAMLExporter_wrapMember(oAML_document.$bookmark,	"$bookmark");
-fAMLExporter_wrapMember(oAML_document.$instance,	"$instance");
-fAMLExporter_wrapMember(oAML_document.$resolveUri,	"$resolveUri");
+fAMLExporter_export(fAmple,	"ample");
 
 // JavaScript 1.5
 if (!cArray.prototype.push)
