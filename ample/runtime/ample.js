@@ -102,11 +102,12 @@ fAmple.extend	= function(oSource, oTarget) {
 	]);
 
 	if (oSource instanceof cFunction) {
-		if (oSource.prototype instanceof cAMLElement)
-			oAML_elements[oSource.namespaceURI + '#' + oSource.localName]	= oSource;
+		var oPrototype	= oSource.prototype;
+		if (oPrototype instanceof cAMLElement)
+			oAML_elements[oPrototype.namespaceURI + '#' + oPrototype.localName]	= oSource;
 		else
-		if (oSource.prototype instanceof cAMLAttribute)
-			oAML_attributes[oSource.namespaceURI + '#' + oSource.localName]	= oSource;
+		if (oPrototype instanceof cAMLAttr)
+			oAML_attributes[oPrototype.namespaceURI + '#' + oPrototype.localName]	= oSource;
 		else
 			throw "Uknown type";
 	}
