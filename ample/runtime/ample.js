@@ -156,6 +156,48 @@ fAmple.ajax	= function(oBag) {
 	// TODO
 };
 
+// Bind shortcut
+fAmple.bind	= function(sType, fHandler, bCapture) {
+	// Validate API call
+	fAML_validate(arguments, [
+		["type",	cString],
+		["handler",	cFunction],
+		["capture",	cBoolean,	true]
+	]);
+
+	// Invoke implementation
+	fAMLEventTarget_addEventListener(oAML_document, sType, fHandler, bCapture || false);
+};
+
+// Unbind shortcut
+fAmple.unbind	= function(sType, fHandler, bCapture) {
+	// Validate API call
+	fAML_validate(arguments, [
+		["type",	cString],
+		["handler",	cFunction],
+		["capture",	cBoolean,	true]
+	]);
+
+	// Invoke implementation
+	fAMLEventTarget_removeEventListener(oAML_document, sType, fHandler, bCapture || false);
+};
+
+fAmple.trigger	= function(sType, oDetail) {
+	// Validate API call
+	fAML_validate(arguments, [
+		["type",	cString],
+		["detail",	oDetail, true, true]
+	]);
+
+	// Invoke implementation
+	if (arguments.length < 2)
+		oDetail	= null;
+
+	var oEvent	= new cAMLCustomEvent;
+	oEvent.initCustomEvent(sType, true, true, oDetail);
+	fAMLNode_dispatchEvent(oAML_document);
+};
+
 // Lookup namespaces
 fAmple.namespaces	= {};
 if (bTrident)
