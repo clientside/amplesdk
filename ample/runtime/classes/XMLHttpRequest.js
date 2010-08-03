@@ -187,7 +187,7 @@ if (!cXMLHttpRequest || (bTrident && nVersion == 7)) {
 			cXMLHttpRequest.onreadystatechange.apply(oRequest);
 */
 		if (oRequest['on' + "readystatechange"] instanceof cFunction)
-			oRequest['on' + "readystatechange"].call(this, oEventPseudo);
+			oRequest['on' + "readystatechange"]();
 	};
 
 	function fSynchronizeValues(oRequest) {
