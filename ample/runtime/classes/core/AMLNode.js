@@ -61,9 +61,8 @@ function fAMLNode_getTextContent(oNode) {
 		if (oChild.nodeType == cAMLNode.TEXT_NODE || oChild.nodeType == cAMLNode.CDATA_SECTION)
 			aText.push(oChild.data);
 		else
-		if (oChild.nodeType == cAMLNode.ELEMENT_NODE)
-			if (oChild.firstChild)
-				aText.push(fAMLNode_getTextContent(oChild));
+		if (oChild.nodeType == cAMLNode.ELEMENT_NODE && oChild.firstChild)
+			aText.push(fAMLNode_getTextContent(oChild));
 	return aText.join('');
 };
 
