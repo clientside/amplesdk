@@ -84,6 +84,29 @@
 					</locale>
 				</description>
 			</method>
+			<method name="config" type="Variant">
+				<arguments>
+					<argument name="name" type="String">
+						<description>
+							<locale>
+								Parameter name
+							</locale>
+						</description>
+					</argument>
+					<argument name="value" type="Variant" required="false">
+						<description>
+							<locale>
+								Parameter value
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Sets or retrieves paramater.
+					</locale>
+				</description>
+			</method>
 			<method name="ready" type="Void">
 				<arguments>
 					<argument name="handler" type="Function">

@@ -151,6 +151,21 @@ fAmple.guard	= function(aArguments, aParameters) {
 	fAML_validate(aArguments, aParameters);
 };
 
+fAmple.config	= function(vArgument1, vArgument2) {
+	// Validate API call
+	fAML_validate(arguments, [
+		["name",	cString],
+		["value",	cObject, true]
+	]);
+
+	// Invoke implementation
+	var sPrefix	= "ample" + '-';
+	if (arguments.length > 1)
+		oAML_document.domConfig.setParameter(sPrefix + vArgument1, vArgument2);
+	else
+		return oAML_document.domConfig.getParameter(sPrefix + vArgument1);
+};
+
 // Ajax
 fAmple.ajax	= function(oBag) {
 	// TODO
