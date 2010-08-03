@@ -363,6 +363,30 @@
 					</locale>
 				</description>
 			</method>
+			<!-- Data -->
+			<method name="data" type="Variant">
+				<arguments>
+					<argument name="name" type="String">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+					<argument name="value" type="Object" required="false">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
 		</methods>
 	</members>
 </object>
