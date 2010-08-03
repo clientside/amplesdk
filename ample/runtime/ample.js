@@ -109,7 +109,11 @@ fAmple.extend	= function(oSource, oTarget) {
 		if (oPrototype instanceof cAMLAttr)
 			oAML_attributes[oPrototype.namespaceURI + '#' + oPrototype.localName]	= oSource;
 		else
-			throw "Uknown type";
+			throw new cAMLException(cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR, fAmple.caller
+//->Debug
+				, ['1' + aAML_endings[0], "source", "extend", "AMLAttr" + '" or "' + "AMLElement"]
+//<-Debug
+			);
 	}
 	else {
 		if (!oTarget)
