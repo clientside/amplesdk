@@ -418,8 +418,7 @@ function fAMLElement_setAttributeNS(oElement, sNameSpaceURI, sQName, sValue)
 		// Global attributes module
 		if (!(sQName in oElement.attributes) && !(sQName == "xmlns" || sNameSpaceURI == "http://www.w3.org/2000/xmlns/" || sNameSpaceURI == "http://www.w3.org/XML/1998/namespace"))
 		{
-			var oNamespace	= oAML_namespaces[sNameSpaceURI],
-				cAttribute	= oNamespace ? oNamespace.attributes[sLocalName] : null,
+			var cAttribute	= oAML_attributes[sNameSpaceURI + '#' + sLocalName],
 				oAttribute,
 				oEvent;
 
@@ -591,8 +590,7 @@ function fAMLElement_removeAttributeNS(oElement, sNameSpaceURI, sLocalName)
 		// Global attributes module
 		if (sQName in oElement.attributes && !(sLocalName == "xmlns" || sNameSpaceURI == "http://www.w3.org/2000/xmlns/" || sNameSpaceURI == "http://www.w3.org/XML/1998/namespace"))
 		{
-			var oNamespace	= oAML_namespaces[sNameSpaceURI],
-				cAttribute	= oNamespace ? oNamespace.attributes[sLocalName] : null,
+			var cAttribute	= oAML_attributes[sNameSpaceURI + '#' + sLocalName],
 				sValue		= oElement.attributes[sQName],
 				oAttribute,
 				oEvent;

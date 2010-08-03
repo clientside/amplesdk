@@ -543,20 +543,19 @@ function fAMLNode_handleEvent(oNode, oEvent) {
     				throw new cAMLException(cAMLException.AML_MEMBER_MISSING_ERR, null, ["handleEvent"]);
     		}
 
-	var oNamespace,
-		cElement,
+	var cElement,
 		cAttribute;
 
 	// Event default actions implementation
 	if (oEvent.eventPhase != cAMLEvent.CAPTURING_PHASE && !oEvent.defaultPrevented) {
 		if (oNode.nodeType == 1) {
-			if ((oNamespace = oAML_namespaces[oNode.namespaceURI]) && (cElement = oNamespace.elements[oNode.localName]))
+			if (cElement = oAML_elements[oNode.namespaceURI + '#' + oNode.localName])
 				if (cElement.handlers && cElement.handlers[oEvent.type])
 					cElement.handlers[oEvent.type].call(oNode, oEvent);
 		}
 		else
 		if (oNode.nodeType == 2) {
-			if ((oNamespace = oAML_namespaces[oNode.namespaceURI]) && (cAttribute = oNamespace.attributes[oNode.localName]))
+			if (cAttribute = oAML_attributes[oNode.namespaceURI + '#' + oNode.localName])
 				if (cAttribute.handlers && cAttribute.handlers[oEvent.type])
 					cAttribute.handlers[oEvent.type].call(oNode, oEvent);
 		}

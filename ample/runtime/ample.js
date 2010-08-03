@@ -201,12 +201,7 @@ fAmple.$instance	= function(oNode) {
 /*
 fAmple.$class	= function(oNode) {
 	var oElement	= fAmple.$instance(oNode);
-	if (oElement) {
-		var sNameSpaceURI	= oElement.namespaceURI,
-			oNamespace	= oAML_namespaces[sNameSpaceURI];
-		return oNamespace && oNamespace.elements[sNameSpaceURI] ? oNamespace.elements[sNameSpaceURI] : cAMLElement;
-	}
-	return null;
+	return oElement ? oAML_elements[oElement.namespaceURI + '#' + oElement.localName] || cAMLElement : null;
 };
 */
 fAmple.$resolveUri	= function(sUri, sBaseUri) {

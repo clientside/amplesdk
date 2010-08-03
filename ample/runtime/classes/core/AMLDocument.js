@@ -182,8 +182,7 @@ function fAMLDocument_createElementNS(oDocument, sNameSpaceURI, sQName)
 	var aQName		= sQName.split(':'),
 		sLocalName	= aQName.pop(),
 		sPrefix		= aQName.pop() || null,
-		oNamespace	= oAML_namespaces[sNameSpaceURI],
-		cElement	= oNamespace ? oNamespace.elements[sLocalName] : null,
+		cElement	= oAML_elements[sNameSpaceURI + '#' + sLocalName],
 		oElement	= new (cElement || cAMLElement),
 		sName;
 

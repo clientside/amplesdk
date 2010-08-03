@@ -156,6 +156,8 @@ function fAML_validate(aArguments, aParameters) {
 
 var oAML_processors	= {},
 	oAML_namespaces	= {},
+	oAML_elements	= {},
+	oAML_attributes	= {},
 //	oAML_shadow	= {},
 	oAML_all	= {},
 	oAML_ids	= {};
@@ -192,9 +194,7 @@ function fAML_import(oElementDOM, bDeep, oNode, bCollapse) {
 				}
 
 				// Copy default attributes values if not specified
-				var oNamespace	= oAML_namespaces[sNameSpaceURI],
-					cElement	= oNamespace ? oNamespace.elements[sLocalName] : null;
-
+				var cElement	= oAML_elements[sNameSpaceURI + '#' + sLocalName];
 				if (cElement) {
 					for (sName in cElement.attributes)
 						if (cElement.attributes.hasOwnProperty(sName) && !(sName in oAttributes))
@@ -202,7 +202,6 @@ function fAML_import(oElementDOM, bDeep, oNode, bCollapse) {
 				}
 //->Debug
 				else
-				if (oNamespace)
 					fAML_warn(nAML_UNKNOWN_ELEMENT_NS_WRN, [sLocalName, sNameSpaceURI]);
 //<-Debug
 				// and append it to parent (if there is one)
@@ -324,9 +323,7 @@ function fAML_register(oElement) {
 					sNameSpaceURI;
 
 				if (sName != "xmlns" && sPrefix && sPrefix != "xmlns" && (sNameSpaceURI = fAMLNode_lookupNamespaceURI(oElement, sPrefix))) {
-					var oNamespace	= oAML_namespaces[sNameSpaceURI],
-						cAttribute	= oNamespace ? oNamespace.attributes[sLocalName] : null;
-
+					var cAttribute	= oAML_attributes[sNameSpaceURI + '#' + sLocalName];
 					if (cAttribute)	{
 						// oAttribute used to create fake object
 						var oAttribute	= new cAttribute;
@@ -350,7 +347,6 @@ function fAML_register(oElement) {
 					}
 //->Debug
 					else
-					if (oNamespace)
 						fAML_warn(nAML_UNKNOWN_ATTRIBUTE_NS_WRN, [sLocalName, sNameSpaceURI]);
 //<-Debug
 				}

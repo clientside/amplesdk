@@ -23,7 +23,7 @@ cAMLNamespace.prototype.setAttribute	= function(sName, cAttribute) {
 	if (!(cAttribute.prototype instanceof cAMLAttr))
 		throw new cAMLException(cAMLException.TYPE_MISMATCH_ERR);
 
-	this.attributes[sName]	= cAttribute;
+	oAML_attributes[this.namespaceURI + '#' + sName]	= cAttribute;
 
 	//
 	cAttribute.prototype.namespaceURI	= this.namespaceURI;
@@ -31,7 +31,7 @@ cAMLNamespace.prototype.setAttribute	= function(sName, cAttribute) {
 };
 
 cAMLNamespace.prototype.getAttribute	= function(sName) {
-	return this.attributes[sName] || null;
+	return oAML_attributes[this.namespaceURI + '#' + sName] || null;
 };
 
 cAMLNamespace.prototype.setElement	= function(sName, cElement) {
@@ -44,7 +44,7 @@ cAMLNamespace.prototype.setElement	= function(sName, cElement) {
 	if (!(cElement.prototype instanceof cAMLElement))
 		throw new cAMLException(cAMLException.TYPE_MISMATCH_ERR);
 
-	this.elements[sName]	= cElement;
+	oAML_elements[this.namespaceURI + '#' + sName]	= cElement;
 
 	//
 	cElement.prototype.namespaceURI	= this.namespaceURI;
@@ -52,5 +52,5 @@ cAMLNamespace.prototype.setElement	= function(sName, cElement) {
 };
 
 cAMLNamespace.prototype.getElement	= function(sName) {
-	return this.elements[sName] || null;
+	return oAML_elements[this.namespaceURI + '#' + sName] || null;
 };
