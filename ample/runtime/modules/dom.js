@@ -8,7 +8,7 @@
  */
 
 // Attributes (get/set)
-cAMLQuery.prototype.attr	= function(vArgument1, vArgument2) {
+cAMLQuery.prototype.attr	= function(sName, sValue) {
 	// Validate API call
 	fAML_validate(arguments, [
 		["name",	cString],
@@ -17,18 +17,22 @@ cAMLQuery.prototype.attr	= function(vArgument1, vArgument2) {
 
 	// Invoke implementation
 	if (arguments.length > 1) {
+		var aQName		= sName.split(':'),
+			sNameSpaceURI	= null;
+		if (aQName.length > 1)
+			sNameSpaceURI	= fAmple.namespaces["xmlns" + ':' + aQName[0]] || null;
 		fAmple_each(this, function() {
-			fAMLElement_setAttribute(this, vArgument1, cString(vArgument2));
+			fAMLElement_setAttributeNS(this, sNameSpaceURI, sName, cString(sValue));
 		});
 		return this;
 	}
 	else
 	if (this.length)
-		return fAMLElement_getAttribute(this[0], vArgument1);
+		return fAMLElement_getAttribute(this[0], sName);
 };
 
 // Text (get/set)
-cAMLQuery.prototype.text	= function(vArgument1) {
+cAMLQuery.prototype.text	= function(sValue) {
 	// Validate API call
 	fAML_validate(arguments, [
 		["value",	cObject, true]
@@ -41,7 +45,7 @@ cAMLQuery.prototype.text	= function(vArgument1) {
 			while (this.lastChild)
 				fAMLElement_removeChild(this, this.lastChild);
 			// Add child
-			fAMLElement_appendChild(this, fAMLDocument_createTextNode(this.ownerDocument, cString(vArgument1)));
+			fAMLElement_appendChild(this, fAMLDocument_createTextNode(this.ownerDocument, cString(sValue)));
 		});
 		return this;
 	}
@@ -49,14 +53,7 @@ cAMLQuery.prototype.text	= function(vArgument1) {
 		// Get inner text
 		var aText	= [];
 		fAmple_each(this, function(){
-			(function fText(oNode) {
-				for (; oNode; oNode = oNode.nextSibling)
-					if (oNode instanceof cAMLCharacterData)
-						aText.push(oNode.data);
-					else
-					if (oNode instanceof cAMLElement && oNode.firstChild)
-						aText.push(fText(oNode.firstChild));
-			})(this);
+			aText.push(fAMLSelector_getTextContent(this));
 		});
 		return aText.join('');
 	}

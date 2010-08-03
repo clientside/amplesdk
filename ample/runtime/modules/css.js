@@ -7,7 +7,7 @@
  *
  */
 
-cAMLQuery.prototype.css	= function(vArgument1, vArgument2) {
+cAMLQuery.prototype.css	= function(sName, sValue) {
 	// Validate API call
 	fAML_validate(arguments, [
 		["name",	cString],
@@ -19,13 +19,13 @@ cAMLQuery.prototype.css	= function(vArgument1, vArgument2) {
 		fAmple_each(this, function() {
 			var oElementDOM	= this.$getContainer();
 			if (oElementDOM)
-				fAML_setStyle(oElementDOM, vArgument1, vArgument2);
+				fAML_setStyle(oElementDOM, sName, sValue);
 		});
 		return this;
 	}
 	else
 	if (this.length) {
 		var oElementDOM	= this[0].$getContainer();
-		return oElementDOM ? fAML_getStyle(oElementDOM, vArgument1) : '';
+		return oElementDOM ? fAML_getStyle(oElementDOM, sName) : '';
 	}
 };

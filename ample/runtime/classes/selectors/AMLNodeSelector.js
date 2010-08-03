@@ -94,14 +94,15 @@ function fAMLSelector_getText(sString) {
 };
 
 function fAMLSelector_getTextContent(oElement) {
-	var sText	= '', oNode;
-	for (var nIndex = 0, oNode; oNode = oElement.childNodes[nIndex]; nIndex++)
-		if (oNode.nodeType == cAMLNode.ELEMENT_NODE)
-			sText	+= fAMLSelector_getTextContent(oNode);
+	for (var nIndex = 0, aText = [], oNode; oNode = oElement.childNodes[nIndex]; nIndex++)
+		if (oNode.nodeType == cAMLNode.ELEMENT_NODE) {
+			if (oNode.firstChild)
+				aText.push(fAMLSelector_getTextContent(oNode));
+		}
 		else
 		if (oNode.nodeType == cAMLNode.TEXT_NODE || oNode.nodeType == cAMLNode.CDATA_SECTION)
-			sText	+= oNode.data;
-	return sText;
+			aText.push(oNode.data);
+	return aText.join('');
 };
 
 function fAMLSelector_getNextSibling(oElement)
