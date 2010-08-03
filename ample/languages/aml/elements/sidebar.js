@@ -8,7 +8,7 @@
  */
 
 var cAMLElement_sidebar	= function(){};
-cAMLElement_sidebar.prototype	= new cAMLElement;
+cAMLElement_sidebar.prototype	= new cAMLElement("sidebar");
 
 // Public methods
 cAMLElement_sidebar.prototype.toggle	= function(bState)
@@ -53,5 +53,5 @@ cAMLElement_sidebar.prototype.$getTagClose	= function()
     return '</div>';
 };
 
-// Register Element with language
-oAMLNamespace.setElement("sidebar", cAMLElement_sidebar);
+// Register Element
+ample.extend(cAMLElement_sidebar);

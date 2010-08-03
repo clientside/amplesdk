@@ -8,7 +8,7 @@
  */
 
 var cAMLElement_handler	= function(){};
-cAMLElement_handler.prototype	= new cAMLElement;
+cAMLElement_handler.prototype	= new cAMLElement("handler");
 
 // Class Event Handlers
 cAMLElement_handler.handlers	= {
@@ -30,5 +30,5 @@ cAMLElement_handler.handlers	= {
 
 cAMLElement_handler.prototype.$getTag	= function(){return ''};
 
-// Register Element with language
-oAMLNamespace.setElement("handler", cAMLElement_handler);
+// Register Element
+ample.extend(cAMLElement_handler);

@@ -8,7 +8,7 @@
  */
 
 var cSVGElement_svg	= function(){};
-cSVGElement_svg.prototype	= new cSVGElement;
+cSVGElement_svg.prototype	= new cSVGElement("svg");
 
 if (cSVGElement.useVML) {
 	// Implementation for IE
@@ -115,13 +115,17 @@ if (cSVGElement.useVML) {
 		];
 	};
 
+	cSVGElement_svg.prototype.$resize	= function() {
+		cSVGElement_svg.resize(this);
+	};
+
 	// presentation
 	cSVGElement_svg.prototype.$getTagOpen	= function() {
 		var aViewBox= this.getAttribute("viewBox").split(/[\s,]/) || [],
 			aWidth	= this.getAttribute("width").match(/([\d.]+)([%\w]*)/) || [],
 			aHeight	= this.getAttribute("height").match(/([\d.]+)([%\w]*)/) || [];
 		return '<div class="svg-svg' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="position:relative;display:inline-block;overflow:hidden;' + (this.hasAttribute("style") ? this.getAttribute("style") : '') + '"\
-					onresize="var o = ample.$instance(this); ample.document.domConfig.getNamespace(o.namespaceURI).getElement(o.localName).resize(o)">\
+					onresize="ample.$instance(this).$resize()">\
 					<svg2vml:group class="svg-svg--gateway" style="position:absolute;display:none;"\
 						coordOrigin="0,0"\
 						coordSize="' + (aViewBox[2] || aWidth[1] || 600) + ',' + (aViewBox[3] || aHeight[1] || 600) + '"\
@@ -149,5 +153,5 @@ else {
 }
 
 
-// Register Element with language
-oSVGNamespace.setElement("svg", cSVGElement_svg);
+// Register Element
+ample.extend(cSVGElement_svg);

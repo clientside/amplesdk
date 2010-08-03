@@ -108,7 +108,7 @@ var JsUnitClient	= (function() {
 						function setUpPage() {\
 							setUpPageStatus = "running";\
 						};\
-						ample.addEventListener("load", function() {\
+						ample.document.addEventListener("load", function() {\
 							setUpPageStatus = "complete";\
 						}, false)\
 								</script>');

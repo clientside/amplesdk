@@ -8,8 +8,7 @@
  */
 
 var cAMLAttr_resizable	= function(){};
-
-cAMLAttr_resizable.prototype	= new AMLAttr;
+cAMLAttr_resizable.prototype	= new cAMLAttr("resizable");
 
 // Class Events Handlers
 cAMLAttr_resizable.handlers	= {
@@ -21,5 +20,5 @@ cAMLAttr_resizable.handlers	= {
 	}
 };
 
-// Register Attribute with language
-oAMLNamespace.setAttribute("resizable", cAMLAttr_resizable);
+// Register Attribute
+ample.extend(cAMLAttr_resizable);

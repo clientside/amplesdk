@@ -11,7 +11,7 @@ var cAMLElement_data	= function()
 {
 	this.customers	= new AMLNodeList;
 };
-cAMLElement_data.prototype	= new cAMLElement;
+cAMLElement_data.prototype	= new cAMLElement("data");
 
 // Public properties
 cAMLElement_data.prototype.customers	= null;
@@ -137,5 +137,6 @@ cAMLElement_data.prototype.$getTag	= function()
 	return "";
 };
 
-// Register Element with language
-oAMLNamespace.setElement("data", cAMLElement_data);
+// Register Element
+ample.extend(cAMLElement_data);
+

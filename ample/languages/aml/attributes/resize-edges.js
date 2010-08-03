@@ -8,8 +8,7 @@
  */
 
 var cAMLAttr_resize_edges	= function(){};
-
-cAMLAttr_resize_edges.prototype	= new AMLAttr;
+cAMLAttr_resize_edges.prototype	= new cAMLAttr("resize-edges");
 
 // Class Events Handlers
 cAMLAttr_resize_edges.handlers	= {
@@ -25,5 +24,5 @@ cAMLAttr_resize_edges.handlers	= {
 	}
 };
 
-// Register Attribute with language
-oAMLNamespace.setAttribute("resize-edges", cAMLAttr_resize_edges);
+// Register Attribute
+ample.extend(cAMLAttr_resize_edges);

@@ -7,8 +7,11 @@
  *
  */
 
-var cXULPopupElement	= function(){};
+var cXULPopupElement	= function() {
+	cXULElement.apply(this, arguments);
+};
 cXULPopupElement.prototype	= new cXULElement;
+cXULPopupElement.prototype.localName	= "#element-popup";
 
 // Constants
 cXULPopupElement.POPUP_TYPE_POPUP	= 0;
@@ -172,3 +175,6 @@ cXULPopupElement.fireEventOnPopup	= function(oInstance, sName)
 
     return oInstance.dispatchEvent(oEvent);
 };
+
+// Register Element
+ample.extend(cXULPopupElement);

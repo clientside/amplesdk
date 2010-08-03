@@ -11,7 +11,7 @@ var cXULElement_treerow	= function() {
     // Collections
     this.cells      = new AMLNodeList;
 };
-cXULElement_treerow.prototype	= new cXULElement;
+cXULElement_treerow.prototype	= new cXULElement("treerow");
 cXULElement_treerow.prototype.$hoverable	= true;
 
 // Public Methods
@@ -81,5 +81,5 @@ cXULElement_treerow.prototype.$getTagClose	= function() {
     		</tr>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("treerow", cXULElement_treerow);
+// Register Element
+ample.extend(cXULElement_treerow);

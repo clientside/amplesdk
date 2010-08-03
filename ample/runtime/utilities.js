@@ -155,7 +155,6 @@ function fAML_validate(aArguments, aParameters) {
 };
 
 var oAML_processors	= {},
-	oAML_namespaces	= {},
 	oAML_elements	= {},
 	oAML_attributes	= {},
 //	oAML_shadow	= {},
@@ -581,7 +580,7 @@ function fAML_processScripts() {
 		    	if (bTrident) {
 		    		oElementNew	= oUADocument.createElement("div");
 		    		fAML_replaceNode(oElementDOM, oElementNew);
-			    	oElementNew.innerHTML = fGetTagChildren(oElement);
+			    	oElementNew.innerHTML = bReferenced ? oElement.$getTag() : fGetTagChildren(oElement);
 
 					// Map attributes
 					if (oElementDOM.style.cssText)
@@ -609,7 +608,7 @@ function fAML_processScripts() {
 //->Debug
 																		'\n' +
 //<-Debug
-																		fGetTagChildren(oElement) +
+																		(bReferenced ? oElement.$getTag() : fGetTagChildren(oElement)) +
 //->Debug
 																		'\n' +
 //<-Debug

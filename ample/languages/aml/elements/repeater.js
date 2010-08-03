@@ -8,7 +8,7 @@
  */
 
 var cAMLElement_repeater	= function(){};
-cAMLElement_repeater.prototype	= new cAMLElement;
+cAMLElement_repeater.prototype	= new cAMLElement("repeater");
 
 // Public properties
 cAMLElement_repeater.prototype.data	= null;
@@ -151,5 +151,5 @@ cAMLElement_repeater._resolveValue	= function(sQuery, oData, fResolver)
 	return oElement && oElement.firstChild ? oElement.firstChild.data : '';
 };
 
-// Register Element with language
-oAMLNamespace.setElement("repeater", cAMLElement_repeater);
+// Register Element
+ample.extend(cAMLElement_repeater);

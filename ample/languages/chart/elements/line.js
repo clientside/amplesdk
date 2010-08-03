@@ -8,7 +8,7 @@
  */
 
 var cChartElement_line	= function(){};
-cChartElement_line.prototype	= new cChartElement;
+cChartElement_line.prototype	= new cChartElement("line");
 
 cChartElement_line.handlers	= {
 	'DOMNodeInsertedIntoDocument':	function() {
@@ -312,5 +312,5 @@ cChartElement_line.getMarkerPath	= function(nX, nY, nType) {
 	}
 };
 
-// Register Element with language
-oChartNamespace.setElement("line", cChartElement_line);
+// Register Element
+ample.extend(cChartElement_line);

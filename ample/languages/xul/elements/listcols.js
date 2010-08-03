@@ -11,7 +11,7 @@ var cXULElement_listcols	= function() {
     // Collections
     this.items  = new AMLNodeList;
 };
-cXULElement_listcols.prototype	= new cXULElement;
+cXULElement_listcols.prototype	= new cXULElement("listcols");
 
 // Class Events Handlers
 cXULElement_listcols.handlers	= {
@@ -36,5 +36,5 @@ cXULElement_listcols.prototype.$getTagClose	= function() {
 			</table>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("listcols", cXULElement_listcols);
+// Register Element
+ample.extend(cXULElement_listcols);

@@ -8,7 +8,7 @@
  */
 
 var cXULElement_separator	= function(){};
-cXULElement_separator.prototype = new cXULElement;
+cXULElement_separator.prototype = new cXULElement("separator");
 
 // Class Events Handlers
 cXULElement_separator.handlers	= {
@@ -24,5 +24,5 @@ cXULElement_separator.prototype.$getTagOpen	= function() {
 	return '<div class="xul-separator" style="height:1.5em;width:1.5em;"><img height="1" width="1" /></div>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("separator", cXULElement_separator);
+// Register Element
+ample.extend(cXULElement_separator);

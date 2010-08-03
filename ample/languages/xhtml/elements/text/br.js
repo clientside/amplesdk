@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_br	= function(){};
-cXHTMLElement_br.prototype	= new cXHTMLElement;
+cXHTMLElement_br.prototype	= new cXHTMLElement("br");
 
 // Class Events Handlers
 cXHTMLElement_br.handlers	= {
@@ -32,5 +32,5 @@ cXHTMLElement_br.prototype.$getTagClose	= function() {
 	return '';
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("br", cXHTMLElement_br);
+// Register Element
+ample.extend(cXHTMLElement_br);

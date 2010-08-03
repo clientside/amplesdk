@@ -8,7 +8,7 @@
  */
 
 var cXULElement_listcol	= function(){};
-cXULElement_listcol.prototype    = new cXULElement;
+cXULElement_listcol.prototype    = new cXULElement("listcol");
 
 // Class event handler
 cXULElement_listcol.handlers	= {
@@ -39,5 +39,5 @@ cXULElement_listcol.prototype.$getTagOpen	= function() {
     return '<td class="xul-listcol"><img height="1"/></td>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("listcol", cXULElement_listcol);
+// Register Element
+ample.extend(cXULElement_listcol);

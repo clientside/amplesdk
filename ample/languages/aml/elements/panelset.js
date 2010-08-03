@@ -8,7 +8,7 @@
  */
 
 var cAMLElement_panelset	= function(){};
-cAMLElement_panelset.prototype	= new cAMLElement;
+cAMLElement_panelset.prototype	= new cAMLElement("panelset");
 
 cAMLElement_panelset.handlers	= {
 	"DOMAttrModified":	function(oEvent) {
@@ -78,5 +78,5 @@ cAMLElement_panelset.prototype.$getTagClose	= function()
     return 	'</div>';
 };
 
-// Register Element with language
-oAMLNamespace.setElement("panelset", cAMLElement_panelset);
+// Register Element
+ample.extend(cAMLElement_panelset);

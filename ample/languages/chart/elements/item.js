@@ -8,7 +8,7 @@
  */
 
 var cChartElement_item	= function(){};
-cChartElement_item.prototype	= new cChartElement;
+cChartElement_item.prototype	= new cChartElement("item");
 cChartElement_item.prototype.$hoverable	 = true;
 
 cChartElement_item.handlers	= {
@@ -50,5 +50,5 @@ else {
 	};
 }
 
-// Register Element with language
-oChartNamespace.setElement("item", cChartElement_item);
+// Register Element
+ample.extend(cChartElement_item);

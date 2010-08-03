@@ -14,7 +14,7 @@ var cXHTMLElement_select	= function() {
     this.options.add	= function (oElement, nIndex) {oSelf.add(oElement, nIndex)};
     this.options.remove	= function (nIndex) {oSelf.remove(nIndex)};
 };
-cXHTMLElement_select.prototype	= new cXHTMLElement;
+cXHTMLElement_select.prototype	= new cXHTMLElement("select");
 cXHTMLElement_select.prototype.tabIndex		= 0;
 
 // Public Properties
@@ -87,5 +87,5 @@ cXHTMLElement_select.prototype.$getTagOpen	= function() {
     return sHtml + '>';
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("select", cXHTMLElement_select);
+// Register Element
+ample.extend(cXHTMLElement_select);

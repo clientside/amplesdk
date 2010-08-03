@@ -8,7 +8,7 @@
  */
 
 var cXULElement_iframe	= function(){};
-cXULElement_iframe.prototype = new cXULElement;
+cXULElement_iframe.prototype = new cXULElement("iframe");
 cXULElement_iframe.prototype.tabIndex	= 0;
 
 // Public Properties
@@ -62,5 +62,5 @@ cXULElement_iframe.prototype.$getTagClose	= function() {
     return '</iframe>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("iframe", cXULElement_iframe);
+// Register Element
+ample.extend(cXULElement_iframe);

@@ -8,7 +8,7 @@
  */
 
 var cXULElement_toolbox	= function(){};
-cXULElement_toolbox.prototype	= new cXULElement;
+cXULElement_toolbox.prototype	= new cXULElement("toolbox");
 cXULElement_toolbox.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
 
 cXULElement_toolbox.attributes	= {};
@@ -33,5 +33,5 @@ cXULElement_toolbox.prototype.$getTagClose	= function() {
     return '</div>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("toolbox", cXULElement_toolbox);
+// Register Element
+ample.extend(cXULElement_toolbox);

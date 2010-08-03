@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_nav	= function(){};
-cXHTMLElement_nav.prototype	= new cXHTMLElement;
+cXHTMLElement_nav.prototype	= new cXHTMLElement("nav");
 
 // Class Events Handlers
 cXHTMLElement_nav.handlers	= {
@@ -18,5 +18,5 @@ cXHTMLElement_nav.handlers	= {
 	}
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("nav", cXHTMLElement_nav);
+// Register Element
+ample.extend(cXHTMLElement_nav);

@@ -8,7 +8,7 @@
  */
 
 var cChartElement_pie	= function(){};
-cChartElement_pie.prototype	= new cChartElement;
+cChartElement_pie.prototype	= new cChartElement("pie");
 
 cChartElement_pie.handlers	= {
 	'DOMNodeInsertedIntoDocument':	function(oEvent) {
@@ -155,5 +155,5 @@ else {
 	};
 }
 
-// Register Element with language
-oChartNamespace.setElement("pie", cChartElement_pie);
+// Register Element
+ample.extend(cChartElement_pie);

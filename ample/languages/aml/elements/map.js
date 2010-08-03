@@ -8,7 +8,7 @@
  */
 
 var cAMLElement_map	= function(){};
-cAMLElement_map.prototype	= new cAMLElement;
+cAMLElement_map.prototype	= new cAMLElement("map");
 
 // Public Properties
 
@@ -61,5 +61,5 @@ cAMLElement_map.prototype.$getTagClose	= function()
     return '</div>';
 };
 
-// Register Element with language
-oAMLNamespace.setElement("map", cAMLElement_map);
+// Register Element
+ample.extend(cAMLElement_map);

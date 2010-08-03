@@ -8,7 +8,7 @@
  */
 
 var cXULElement_treecol	= function(){};
-cXULElement_treecol.prototype	= new cXULElement;
+cXULElement_treecol.prototype	= new cXULElement("treecol");
 cXULElement_treecol.prototype.$hoverable	= true;
 
 // Default attribute values
@@ -89,5 +89,5 @@ cXULElement_treecol.prototype.$getTagClose	= function() {
     		</td>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("treecol", cXULElement_treecol);
+// Register Element
+ample.extend(cXULElement_treecol);

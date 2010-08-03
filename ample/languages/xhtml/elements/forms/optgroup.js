@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_optgroup	= function(){};
-cXHTMLElement_optgroup.prototype	= new cXHTMLElement;
+cXHTMLElement_optgroup.prototype	= new cXHTMLElement("optgroup");
 
 // Class Events Handlers
 cXHTMLElement_optgroup.handlers	= {
@@ -18,5 +18,5 @@ cXHTMLElement_optgroup.handlers	= {
 	}
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("optgroup", cXHTMLElement_optgroup);
+// Register Element
+ample.extend(cXHTMLElement_optgroup);

@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_address	= function(){};
-cXHTMLElement_address.prototype	= new cXHTMLElement;
+cXHTMLElement_address.prototype	= new cXHTMLElement("address");
 
 // Class Events Handlers
 cXHTMLElement_address.handlers	= {
@@ -18,5 +18,5 @@ cXHTMLElement_address.handlers	= {
 	}
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("address", cXHTMLElement_address);
+// Register Element
+ample.extend(cXHTMLElement_address);

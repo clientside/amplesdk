@@ -9,7 +9,7 @@
 
 var cXULElement_box	= function(){};
 
-cXULElement_box.prototype	= new cXULElement;
+cXULElement_box.prototype	= new cXULElement("box");
 cXULElement_box.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
 
 // Class Handlers
@@ -24,5 +24,5 @@ cXULElement_box.handlers	= {
 	}
 };
 
-// Register Element with language
-oXULNamespace.setElement("box", cXULElement_box);
+// Register Element
+ample.extend(cXULElement_box);

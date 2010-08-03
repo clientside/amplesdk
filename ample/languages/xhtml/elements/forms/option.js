@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_option	= function(){};
-cXHTMLElement_option.prototype	= new cXHTMLElement;
+cXHTMLElement_option.prototype	= new cXHTMLElement("option");
 
 // Class Events Handlers
 cXHTMLElement_option.handlers	= {
@@ -18,5 +18,5 @@ cXHTMLElement_option.handlers	= {
 	}
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("option", cXHTMLElement_option);
+// Register Element
+ample.extend(cXHTMLElement_option);

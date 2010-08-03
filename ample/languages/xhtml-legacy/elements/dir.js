@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_dir	= function(){};
-cXHTMLElement_dir.prototype	= new cXHTMLElement;
+cXHTMLElement_dir.prototype	= new cXHTMLElement("dir");
 
-// Register Element with language
-oXHTMLNamespace.setElement("dir", cXHTMLElement_dir);
+// Register Element
+ample.extend(cXHTMLElement_dir);

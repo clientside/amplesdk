@@ -16,7 +16,7 @@ var cXULElement_editor	= function() {
 };
 
 // component prototype
-cXULElement_editor.prototype	= new cXULInputElement;
+cXULElement_editor.prototype	= new cXULInputElement("editor");
 
 cXULElement_editor.prototype.contentDocument	= null;
 
@@ -576,5 +576,5 @@ cXULElement_editor.prototype.$getTagClose	= function() {
 			</div>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("editor", cXULElement_editor);
+// Register Element
+ample.extend(cXULElement_editor);

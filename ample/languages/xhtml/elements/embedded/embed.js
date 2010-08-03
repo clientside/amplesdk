@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_embed	= function(){};
-cXHTMLElement_embed.prototype	= new cXHTMLElement;
+cXHTMLElement_embed.prototype	= new cXHTMLElement("embed");
 
 // Class Events Handlers
 cXHTMLElement_embed.handlers	= {
@@ -18,6 +18,6 @@ cXHTMLElement_embed.handlers	= {
 	}
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("embed", cXHTMLElement_embed);
+// Register Element
+ample.extend(cXHTMLElement_embed);
 

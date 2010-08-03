@@ -11,7 +11,7 @@ var cXULElement_treechildren	= function() {
     // Public Collections
     this.items  = new AMLNodeList;
 };
-cXULElement_treechildren.prototype	= new cXULElement;
+cXULElement_treechildren.prototype	= new cXULElement("treechildren");
 
 // Public Properties
 cXULElement_treechildren.prototype.tree	= null;
@@ -102,5 +102,5 @@ cXULElement_treechildren.prototype.$getContainer	= function(sName) {
 	return sName == "gateway" ? this.parentNode.$getContainer("gateway") : null;
 };
 
-// Register Element with language
-oXULNamespace.setElement("treechildren", cXULElement_treechildren);
+// Register Element
+ample.extend(cXULElement_treechildren);

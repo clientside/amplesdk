@@ -8,7 +8,7 @@
  */
 
 var cXULElement_label	= function(){};
-cXULElement_label.prototype  = new cXULElement;
+cXULElement_label.prototype  = new cXULElement("label");
 
 // Public Methods
 
@@ -48,5 +48,5 @@ cXULElement_label.prototype.$getTagClose	= function() {
     return '</label>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("label", cXULElement_label);
+// Register Element
+ample.extend(cXULElement_label);

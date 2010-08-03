@@ -8,7 +8,7 @@
  */
 
 var cAMLElement_xhtml	= function(){};
-cAMLElement_xhtml.prototype	= new cAMLElement;
+cAMLElement_xhtml.prototype	= new cAMLElement("xhtml");
 
 // Public properties
 cAMLElement_xhtml.prototype.innerHTML	= null;
@@ -18,5 +18,5 @@ cAMLElement_xhtml.prototype.$getTag	= function()
 	return this.innerHTML;
 };
 
-// Register Element with language
-oAMLNamespace.setElement("xhtml", cAMLElement_xhtml);
+// Register Element
+ample.extend(cAMLElement_xhtml);

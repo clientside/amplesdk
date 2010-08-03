@@ -7,8 +7,12 @@
  *
  */
 
-var cSVGElement	= function(){};
+var cSVGElement	= function(sLocalName) {
+	this.localName	= sLocalName;
+};
 cSVGElement.prototype	= new AMLElement;
+cSVGElement.prototype.namespaceURI	= "http://www.w3.org/2000/svg";
+cSVGElement.prototype.localName		= "-element";
 
 cSVGElement.useVML	= navigator.userAgent.match(/MSIE ([\d.]+)/) && RegExp.$1 < 9;
 
@@ -824,5 +828,5 @@ else {
 	};
 };
 
-// Register Element with language
-oSVGNamespace.setElement("#element", cSVGElement);
+// Register Element
+ample.extend(cSVGElement);

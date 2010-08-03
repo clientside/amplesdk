@@ -8,7 +8,7 @@
  */
 
 var cXULElement_window	= function(){};
-cXULElement_window.prototype	= new cXULWindowElement;
+cXULElement_window.prototype	= new cXULWindowElement("window");
 cXULElement_window.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
 
 // Attributes Defaults
@@ -69,5 +69,5 @@ cXULElement_window.prototype.$getTagClose	= function() {
 			</div>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("window", cXULElement_window);
+// Register Element
+ample.extend(cXULElement_window);

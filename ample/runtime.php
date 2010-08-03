@@ -50,7 +50,7 @@
 	$aFiles[]	= "runtime/classes/animation/AMLElementAnimation.js";
 
 	// AML addons
-	$aFiles[]	= "runtime/classes/AMLNamespace.js";
+//	$aFiles[]	= "runtime/classes/AMLNamespace.js";
 //	$aFiles[]	= "runtime/classes/AMLSerializer.js";
 	$aFiles[]	= "runtime/classes/AMLQuery.js";
 

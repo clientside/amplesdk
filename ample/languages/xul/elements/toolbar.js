@@ -8,7 +8,7 @@
  */
 
 var cXULElement_toolbar	= function(){};
-cXULElement_toolbar.prototype	= new cXULElement;
+cXULElement_toolbar.prototype	= new cXULElement("toolbar");
 cXULElement_toolbar.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
 
 // Accessibility
@@ -33,5 +33,5 @@ cXULElement_toolbar.prototype.$getTagClose	= function() {
     return '</div>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("toolbar", cXULElement_toolbar);
+// Register Element
+ample.extend(cXULElement_toolbar);

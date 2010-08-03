@@ -8,7 +8,7 @@
  */
 
 var cSVGElement_textPath	= function(){};
-cSVGElement_textPath.prototype	= new cSVGElement;
+cSVGElement_textPath.prototype	= new cSVGElement("textPath");
 
 if (cSVGElement.useVML) {
 	// Implementation for IE
@@ -83,5 +83,5 @@ if (cSVGElement.useVML) {
 	};
 };
 
-// Register Element with language
-oSVGNamespace.setElement("textPath", cSVGElement_textPath);
+// Register Element
+ample.extend(cSVGElement_textPath);

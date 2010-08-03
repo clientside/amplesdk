@@ -8,7 +8,7 @@
  */
 
 var cAMLElement_sound	= function(){};
-cAMLElement_sound.prototype	= new cAMLElement;
+cAMLElement_sound.prototype	= new cAMLElement("sound");
 
 // Public Methods
 cAMLElement_sound.prototype.setAttribute	= function(sName, sValue)
@@ -54,5 +54,5 @@ cAMLElement_sound.prototype.$getTagOpen	= function()
 	return '<object classid="' + "clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95" + '" style="' + "display:none" + '"><param name="' + "AutoStart" + '" value="false"/></object>';
 };
 
-// Register Element with language
-oAMLNamespace.setElement("sound", cAMLElement_sound);
+// Register Element
+ample.extend(cAMLElement_sound);

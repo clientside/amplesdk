@@ -8,7 +8,7 @@
  */
 
 var cXULElement_tabpanel	= function(){};
-cXULElement_tabpanel.prototype	= new cXULElement;
+cXULElement_tabpanel.prototype	= new cXULElement("tabpanel");
 cXULElement_tabpanel.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
 
 // Attributes Defaults
@@ -55,5 +55,5 @@ cXULElement_tabpanel.prototype.$getTagClose	= function() {
     return '</div>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("tabpanel", cXULElement_tabpanel);
+// Register Element
+ample.extend(cXULElement_tabpanel);

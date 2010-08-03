@@ -8,7 +8,7 @@
  */
 
 var cXULElement_statusbar	= function(){};
-cXULElement_statusbar.prototype	= new cXULElement;
+cXULElement_statusbar.prototype	= new cXULElement("statusbar");
 cXULElement_statusbar.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
 
 // Attributes Defaults
@@ -38,5 +38,5 @@ cXULElement_statusbar.prototype.$getTagClose	= function() {
     return '</div>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("statusbar", cXULElement_statusbar);
+// Register Element
+ample.extend(cXULElement_statusbar);

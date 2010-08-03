@@ -8,7 +8,7 @@
  */
 
 var cXULElement_radio	= function(){};
-cXULElement_radio.prototype   = new cXULElement;
+cXULElement_radio.prototype   = new cXULElement("radio");
 
 cXULElement_radio.prototype.group	= null;
 
@@ -132,5 +132,5 @@ cXULElement_radio.prototype.$getTagClose	= function() {
     return '</label>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("radio", cXULElement_radio);
+// Register Element
+ample.extend(cXULElement_radio);

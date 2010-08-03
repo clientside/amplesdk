@@ -11,7 +11,7 @@ var cXULElement_tabpanels	= function() {
     // Collections
     this.items      = new AMLNodeList;
 };
-cXULElement_tabpanels.prototype  = new cXULElement;
+cXULElement_tabpanels.prototype  = new cXULElement("tabpanels");
 
 // Public Properties
 cXULElement_tabpanels.prototype.selectedIndex	= null; // Not implemented
@@ -54,5 +54,5 @@ cXULElement_tabpanels.prototype.$getTagClose	= function() {
 			</div>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("tabpanels", cXULElement_tabpanels);
+// Register Element
+ample.extend(cXULElement_tabpanels);

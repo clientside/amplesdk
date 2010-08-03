@@ -8,7 +8,7 @@
  */
 
 var cXULElement_treecell	= function(){};
-cXULElement_treecell.prototype   = new cXULElement;
+cXULElement_treecell.prototype   = new cXULElement("treecell");
 
 // Class Events Handlers
 cXULElement_treecell.handlers	= {
@@ -81,5 +81,5 @@ cXULElement_treecell.prototype.$getTagClose	= function() {
     return '</div></div></div></td>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("treecell", cXULElement_treecell);
+// Register Element
+ample.extend(cXULElement_treecell);

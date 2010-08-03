@@ -84,7 +84,7 @@ fAMLExporter_export(cAMLTouch,				"AMLTouch");
 fAMLExporter_export(cAMLTouchList,			"AMLTouchList");
 
 // Ample objects
-fAMLExporter_export(cAMLNamespace,		"AMLNamespace");
+//fAMLExporter_export(cAMLNamespace,		"AMLNamespace");
 fAMLExporter_export(cAMLQuery,			"AMLQuery");
 //fAMLExporter_export(cAMLSerializer,	"AMLSerializer");
 //fAMLExporter_export(cAMLTreeWalker,	"AMLTreeWalker");

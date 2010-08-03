@@ -10,7 +10,7 @@
 var cXHTMLElement_fieldset	= function() {
 	this.elements	= new AMLNodeList;
 };
-cXHTMLElement_fieldset.prototype	= new cXHTMLElement;
+cXHTMLElement_fieldset.prototype	= new cXHTMLElement("fieldset");
 
 //Public Properties
 cXHTMLElement_fieldset.prototype.elements	= null;
@@ -23,5 +23,5 @@ cXHTMLElement_fieldset.handlers	= {
 	}
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("fieldset", cXHTMLElement_fieldset);
+// Register Element
+ample.extend(cXHTMLElement_fieldset);

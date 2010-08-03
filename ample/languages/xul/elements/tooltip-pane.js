@@ -8,7 +8,7 @@
  */
 
 var cXULElement_tooltip_pane	= function(){};
-cXULElement_tooltip_pane.prototype	= new cXULPopupElement;
+cXULElement_tooltip_pane.prototype	= new cXULPopupElement("tooltip-pane");
 
 // Public Methods
 cXULElement_tooltip_pane.prototype.setText	= function(sValue) {
@@ -37,5 +37,5 @@ cXULElement_tooltip_pane.prototype.$getTagClose	= function() {
 			</div>';
 };
 
-// Register Widget with language
-oXULNamespace.setElement("tooltip-pane", cXULElement_tooltip_pane);
+// Register Element
+ample.extend(cXULElement_tooltip_pane);

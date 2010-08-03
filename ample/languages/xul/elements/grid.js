@@ -11,7 +11,7 @@ var cXULElement_grid	= function() {
     this.cols   = new AMLNodeList;
     this.rows   = new AMLNodeList;
 };
-cXULElement_grid.prototype	= new cXULElement;
+cXULElement_grid.prototype	= new cXULElement("grid");
 
 // Attributes Defaults
 cXULElement_grid.attributes	= {};
@@ -26,5 +26,5 @@ cXULElement_grid.handlers	= {
 	}
 };
 
-// Register Element with language
-oXULNamespace.setElement("grid", cXULElement_grid);
+// Register Element
+ample.extend(cXULElement_grid);

@@ -8,7 +8,7 @@
  */
 
 var cSVGElement_tspan	= function(){};
-cSVGElement_tspan.prototype	= new cSVGElement;
+cSVGElement_tspan.prototype	= new cSVGElement("tspan");
 
 if (cSVGElement.useVML) {
 
@@ -85,5 +85,5 @@ if (cSVGElement.useVML) {
 	};
 };
 
-// Register Element with language
-oSVGNamespace.setElement("tspan", cSVGElement_tspan);
+// Register Element
+ample.extend(cSVGElement_tspan);

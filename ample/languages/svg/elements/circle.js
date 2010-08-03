@@ -8,7 +8,7 @@
  */
 
 var cSVGElement_circle	= function(){};
-cSVGElement_circle.prototype	= new cSVGElement;
+cSVGElement_circle.prototype	= new cSVGElement("circle");
 
 if (cSVGElement.useVML) {
 	// Implementation for IE
@@ -68,5 +68,5 @@ if (cSVGElement.useVML) {
 	};
 };
 
-// Register Element with language
-oSVGNamespace.setElement("circle", cSVGElement_circle);
+// Register Element
+ample.extend(cSVGElement_circle);

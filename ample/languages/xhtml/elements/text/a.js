@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_a	= function(){};
-cXHTMLElement_a.prototype	= new cXHTMLElement;
+cXHTMLElement_a.prototype	= new cXHTMLElement("a");
 cXHTMLElement_a.prototype.tabIndex	= 0;
 cXHTMLElement_a.prototype.$hoverable= true;
 
@@ -53,5 +53,5 @@ cXHTMLElement_a.handlers	= {
 	}
 }
 
-// Register Element with language
-oXHTMLNamespace.setElement("a", cXHTMLElement_a);
+// Register Element
+ample.extend(cXHTMLElement_a);

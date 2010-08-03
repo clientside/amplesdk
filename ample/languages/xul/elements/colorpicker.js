@@ -8,7 +8,7 @@
  */
 
 var cXULElement_colorpicker	= function(){};
-cXULElement_colorpicker.prototype	= new cXULInputElement;
+cXULElement_colorpicker.prototype	= new cXULInputElement("colorpicker");
 
 //
 cXULElement_colorpicker.prototype.popup	= null;
@@ -137,5 +137,5 @@ cXULElement_colorpicker.prototype.$getTagOpen	= function() {
 			</div>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("colorpicker", cXULElement_colorpicker);
+// Register Element
+ample.extend(cXULElement_colorpicker);

@@ -9,7 +9,7 @@
 
 var cXULElement_arrowscrollbox	= function() {};
 
-cXULElement_arrowscrollbox.prototype	= new cXULElement;
+cXULElement_arrowscrollbox.prototype	= new cXULElement("arrowscrollbox");
 cXULElement_arrowscrollbox.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
 
 // Attributes Defaults
@@ -86,5 +86,5 @@ cXULElement_arrowscrollbox.prototype.$getTagClose	= function() {
     return sHtml;
 };
 
-// Register Element with language
-oXULNamespace.setElement("arrowscrollbox", cXULElement_arrowscrollbox);
+// Register Element
+ample.extend(cXULElement_arrowscrollbox);

@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_legend	= function(){};
-cXHTMLElement_legend.prototype	= new cXHTMLElement;
+cXHTMLElement_legend.prototype	= new cXHTMLElement("legend");
 
 // Class Events Handlers
 cXHTMLElement_legend.handlers	= {
@@ -18,5 +18,5 @@ cXHTMLElement_legend.handlers	= {
 	}
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("legend", cXHTMLElement_legend);
+// Register Element
+ample.extend(cXHTMLElement_legend);

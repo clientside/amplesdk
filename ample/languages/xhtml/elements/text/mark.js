@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_mark	= function(){};
-cXHTMLElement_mark.prototype	= new cXHTMLElement;
+cXHTMLElement_mark.prototype	= new cXHTMLElement("mark");
 
 // Class Events Handlers
 cXHTMLElement_mark.handlers	= {
@@ -18,5 +18,5 @@ cXHTMLElement_mark.handlers	= {
 	}
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("mark", cXHTMLElement_mark);
+// Register Element
+ample.extend(cXHTMLElement_mark);

@@ -1,6 +1,5 @@
 <?
     $aFiles		= array();
-    $aFiles[]		= "mobile.js";
     $aFiles[]		= "classes/cMobileElement.js";
 
 	// data

@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_blockquote	= function(){};
-cXHTMLElement_blockquote.prototype	= new cXHTMLElement;
+cXHTMLElement_blockquote.prototype	= new cXHTMLElement("blockquote");
 
 // Class Events Handlers
 cXHTMLElement_blockquote.handlers	= {
@@ -18,5 +18,5 @@ cXHTMLElement_blockquote.handlers	= {
 	}
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("blockquote", cXHTMLElement_blockquote);
+// Register Element
+ample.extend(cXHTMLElement_blockquote);

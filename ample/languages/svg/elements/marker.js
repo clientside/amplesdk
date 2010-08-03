@@ -8,7 +8,7 @@
  */
 
 var cSVGElement_marker	= function(){};
-cSVGElement_marker.prototype	= new cSVGElement;
+cSVGElement_marker.prototype	= new cSVGElement("marker");
 
 if (cSVGElement.useVML) {
 	// Implementation for IE
@@ -23,5 +23,5 @@ if (cSVGElement.useVML) {
 	};
 };
 
-// Register Element with language
-oSVGNamespace.setElement("marker", cSVGElement_marker);
+// Register Element
+ample.extend(cSVGElement_marker);

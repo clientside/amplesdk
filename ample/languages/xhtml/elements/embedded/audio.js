@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_audio	= function(){};
-cXHTMLElement_audio.prototype	= new cXHTMLElement;
+cXHTMLElement_audio.prototype	= new cXHTMLElement("audio");
 
 // Class Events Handlers
 cXHTMLElement_audio.handlers	= {
@@ -18,6 +18,6 @@ cXHTMLElement_audio.handlers	= {
 	}
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("audio", cXHTMLElement_audio);
+// Register Element
+ample.extend(cXHTMLElement_audio);
 

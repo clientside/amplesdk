@@ -11,7 +11,7 @@ var cXULElement_menupopup	= function() {
     // Collections
     this.items  = new AMLNodeList;
 };
-cXULElement_menupopup.prototype	= new cXULPopupElement;
+cXULElement_menupopup.prototype	= new cXULPopupElement("menupopup");
 
 // Public Properties
 cXULElement_menupopup.prototype.selectedItem	= null;
@@ -153,5 +153,5 @@ cXULElement_menupopup.prototype.$getTagClose	= function() {
 			</div>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("menupopup", cXULElement_menupopup);
+// Register Element
+ample.extend(cXULElement_menupopup);

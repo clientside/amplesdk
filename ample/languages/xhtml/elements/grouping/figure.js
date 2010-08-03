@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_figure	= function(){};
-cXHTMLElement_figure.prototype	= new cXHTMLElement;
+cXHTMLElement_figure.prototype	= new cXHTMLElement("figure");
 
 // Class Events Handlers
 cXHTMLElement_figure.handlers	= {
@@ -18,5 +18,5 @@ cXHTMLElement_figure.handlers	= {
 	}
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("figure", cXHTMLElement_figure);
+// Register Element
+ample.extend(cXHTMLElement_figure);

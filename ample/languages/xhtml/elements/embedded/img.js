@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_img	= function(){};
-cXHTMLElement_img.prototype	= new cXHTMLElement;
+cXHTMLElement_img.prototype	= new cXHTMLElement("img");
 
 // Class Events Handlers
 cXHTMLElement_img.handlers	= {
@@ -32,5 +32,5 @@ cXHTMLElement_img.prototype.$getTagClose	= function() {
 	return '';
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("img", cXHTMLElement_img);
+// Register Element
+ample.extend(cXHTMLElement_img);

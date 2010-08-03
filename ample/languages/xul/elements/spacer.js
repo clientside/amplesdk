@@ -8,7 +8,7 @@
  */
 
 var cXULElement_spacer	= function(){};
-cXULElement_spacer.prototype = new cXULElement;
+cXULElement_spacer.prototype = new cXULElement("spacer");
 
 //Class Events Handlers
 cXULElement_spacer.handlers	= {
@@ -29,5 +29,5 @@ cXULElement_spacer.prototype.$getTagOpen	= function() {
     return sHtml;
 };
 
-// Register Element with language
-oXULNamespace.setElement("spacer", cXULElement_spacer);
+// Register Element
+ample.extend(cXULElement_spacer);

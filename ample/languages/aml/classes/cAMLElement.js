@@ -7,9 +7,14 @@
  *
  */
 
-var cAMLElement	= function(){};
+var cAMLElement	= function(sLocalName) {
+	this.localName	= sLocalName;
+};
 cAMLElement.prototype	= new AMLElement;
+cAMLElement.prototype.namespaceURI	= "http://www.amplesdk.com/ns/aml";
+cAMLElement.prototype.localName		= "#element";
+
 cAMLElement.prototype.AMLElement	= new AMLElement;
 
-// Register Element with language
-oAMLNamespace.setElement("#element", cAMLElement);
+// Register Element
+ample.extend(cAMLElement);

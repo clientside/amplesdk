@@ -8,7 +8,7 @@
  */
 
 var cXULElement_spinbuttons	= function(){};
-cXULElement_spinbuttons.prototype	= new cXULElement;
+cXULElement_spinbuttons.prototype	= new cXULElement("spinbuttons");
 
 // Private property
 cXULElement_spinbuttons.captured	= false;
@@ -80,5 +80,5 @@ cXULElement_spinbuttons.prototype.$getTagOpen	= function() {
 			</div>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("spinbuttons", cXULElement_spinbuttons);
+// Register Element
+ample.extend(cXULElement_spinbuttons);

@@ -1,6 +1,5 @@
 <?
     $aFiles		= array();
-    $aFiles[]		= "chart.js";
     $aFiles[]		= "classes/cChartElement.js";
 
     //

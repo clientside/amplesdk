@@ -8,8 +8,7 @@
  */
 
 var cAMLAttr_draggable	= function(){};
-
-cAMLAttr_draggable.prototype	= new AMLAttr;
+cAMLAttr_draggable.prototype	= new cAMLAttr("draggable");
 
 // Class Events Handlers
 cAMLAttr_draggable.handlers	= {
@@ -21,5 +20,5 @@ cAMLAttr_draggable.handlers	= {
 	}
 };
 
-// Register Attribute with language
-oAMLNamespace.setAttribute("draggable", cAMLAttr_draggable);
+// Register Attribute
+ample.extend(cAMLAttr_draggable);

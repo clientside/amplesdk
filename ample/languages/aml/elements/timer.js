@@ -8,7 +8,7 @@
  */
 
 var cAMLElement_timer	= function(){};
-cAMLElement_timer.prototype	= new cAMLElement;
+cAMLElement_timer.prototype	= new cAMLElement("timer");
 
 // Private Properties
 cAMLElement_timer.prototype._interval	= null;
@@ -80,5 +80,5 @@ cAMLElement_timer.handlers	= {
 	}
 };
 
-// Register Element with language
-oAMLNamespace.setElement("timer", cAMLElement_timer);
+// Register Element
+ample.extend(cAMLElement_timer);

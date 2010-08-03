@@ -8,7 +8,7 @@
  */
 
 var cXULElement_toolbarseparator	= function(){};
-cXULElement_toolbarseparator.prototype	= new cXULElement;
+cXULElement_toolbarseparator.prototype	= new cXULElement("toolbarseparator");
 
 // Class Events Handlers
 cXULElement_toolbarseparator.handlers	= {
@@ -24,5 +24,5 @@ cXULElement_toolbarseparator.prototype.$getTagOpen	= function() {
     return '<div class="xul-toolbarseparator"><br /></div>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("toolbarseparator", cXULElement_toolbarseparator);
+// Register Element
+ample.extend(cXULElement_toolbarseparator);

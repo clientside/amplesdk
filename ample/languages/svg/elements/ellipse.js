@@ -8,7 +8,7 @@
  */
 
 var cSVGElement_ellipse	= function(){};
-cSVGElement_ellipse.prototype	= new cSVGElement;
+cSVGElement_ellipse.prototype	= new cSVGElement("eclipse");
 
 if (cSVGElement.useVML) {
 	// Implementation for IE
@@ -70,5 +70,5 @@ if (cSVGElement.useVML) {
 	};
 };
 
-// Register Element with language
-oSVGNamespace.setElement("ellipse", cSVGElement_ellipse);
+// Register Element
+ample.extend(cSVGElement_ellipse);

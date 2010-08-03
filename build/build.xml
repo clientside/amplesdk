@@ -110,7 +110,6 @@
 		<concat destfile="${temp.runtime.dir}/runtime-core.js" fixlastline="yes">
 			<!-- Helper Objects -->
 			<filelist dir="${source.runtime.dir}/classes/" files="
-				AMLNamespace.js,
 				AMLQuery.js"/>
 			<!-- DOM Core/Events/Selectors -->
 			<filelist dir="${source.runtime.dir}/classes/events/" files="
@@ -338,7 +337,6 @@
 
 		<echo message="Merging into: ${temp.languages.dir}/xhtml-raw.js" level="info"/>
 		<concat destfile="${temp.languages.dir}/xhtml-raw.js" fixlastline="yes">
-			<fileset file="${source.xhtml.dir}/xhtml.js" />
 			<fileset dir="${source.xhtml.dir}/classes/">
 				<include name="*.js" />
 			</fileset>
@@ -398,7 +396,6 @@
 
 		<echo message="Merging into: ${temp.languages.dir}/aml-raw.js" level="info"/>
 		<concat destfile="${temp.languages.dir}/aml-raw.js" fixlastline="yes">
-			<fileset file="${source.aml.dir}/aml.js" />
 			<fileset dir="${source.aml.dir}/classes/">
 				<include name="*.js" />
 			</fileset>
@@ -457,7 +454,6 @@
 
 		<echo message="Merging into: ${temp.languages.dir}/xul-raw.js" level="info"/>
 		<concat destfile="${temp.languages.dir}/xul-raw.js" fixlastline="yes">
-			<fileset file="${source.xul.dir}/xul.js" />
 			<fileset dir="${source.xul.dir}/classes/">
 				<include name="*.js" />
 			</fileset>
@@ -550,7 +546,6 @@
 
 		<echo message="Merging into: ${temp.languages.dir}/svg-raw.js" level="info"/>
 		<concat destfile="${temp.languages.dir}/svg-raw.js" fixlastline="yes">
-			<fileset file="${source.svg.dir}/svg.js" />
 			<fileset dir="${source.svg.dir}/classes/">
 				<include name="*.js" />
 			</fileset>

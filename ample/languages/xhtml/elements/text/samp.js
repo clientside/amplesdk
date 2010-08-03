@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_samp	= function(){};
-cXHTMLElement_samp.prototype	= new cXHTMLElement;
+cXHTMLElement_samp.prototype	= new cXHTMLElement("samp");
 
 // Class Events Handlers
 cXHTMLElement_samp.handlers	= {
@@ -18,5 +18,5 @@ cXHTMLElement_samp.handlers	= {
 	}
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("samp", cXHTMLElement_samp);
+// Register Element
+ample.extend(cXHTMLElement_samp);

@@ -44,24 +44,3 @@ cAMLConfiguration.prototype.canSetParameter	= function(sName, vValue) {
 
 	return this.parameterNames.contains(sName);
 };
-
-// TODO: deprecate
-cAMLConfiguration.prototype.setNamespace	= function(sNameSpaceURI, oNamespace) {
-	// Validate arguments
-	fAML_validate(arguments, [
-		["namespaceURI",	cString,	true, true],
-		["namespace",		cAMLNamespace]
-	]);
-
-	oAML_namespaces[sNameSpaceURI] = oNamespace;
-	oNamespace.namespaceURI	= sNameSpaceURI;
-};
-
-cAMLConfiguration.prototype.getNamespace	= function(sNameSpaceURI) {
-	// Validate arguments
-	fAML_validate(arguments, [
-		["namespaceURI",	cString,	true, true]
-	]);
-
-	return oAML_namespaces[sNameSpaceURI] || null;
-};

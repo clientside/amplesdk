@@ -8,8 +8,7 @@
  */
 
 var cAMLAttr_droppable	= function(){};
-
-cAMLAttr_droppable.prototype	= new AMLAttr;
+cAMLAttr_droppable.prototype	= new cAMLAttr("droppable");
 
 // Class Events Handlers
 cAMLAttr_droppable.handlers		= {
@@ -21,5 +20,5 @@ cAMLAttr_droppable.handlers		= {
 	}
 };
 
-// Register Attribute with language
-oAMLNamespace.setAttribute("droppable", cAMLAttr_droppable);
+// Register Attribute
+ample.extend(cAMLAttr_droppable);

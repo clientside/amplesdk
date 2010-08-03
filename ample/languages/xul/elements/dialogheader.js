@@ -8,7 +8,7 @@
  */
 
 var cXULElement_dialogheader	= function(){};
-cXULElement_dialogheader.prototype	= new cXULElement;
+cXULElement_dialogheader.prototype	= new cXULElement("dialogheader");
 cXULElement_dialogheader.prototype.viewType	= cXULElement.VIEW_TYPE_VIRTUAL;
 
 // Class Event Handlers
@@ -43,5 +43,5 @@ cXULElement_dialogheader.prototype.$getTag	= function() {
 	return '';
 };
 
-// Register Element with language
-oXULNamespace.setElement("dialogheader", cXULElement_dialogheader);
+// Register Element
+ample.extend(cXULElement_dialogheader);

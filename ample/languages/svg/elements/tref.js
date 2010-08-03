@@ -8,7 +8,7 @@
  */
 
 var cSVGElement_tref	= function(){};
-cSVGElement_tref.prototype	= new cSVGElement;
+cSVGElement_tref.prototype	= new cSVGElement("tref");
 
 if (cSVGElement.useVML) {
 
@@ -79,5 +79,5 @@ if (cSVGElement.useVML) {
 	};
 };
 
-//Register Element with language
-oSVGNamespace.setElement("tref", cSVGElement_tref);
+// Register Element
+ample.extend(cSVGElement_tref);

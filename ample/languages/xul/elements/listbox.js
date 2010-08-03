@@ -12,7 +12,7 @@ var cXULElement_listbox	= function() {
     this.items  = new AMLNodeList;
 	this.selectedItems	= new AMLNodeList;
 };
-cXULElement_listbox.prototype    = new cXULSelectElement;
+cXULElement_listbox.prototype    = new cXULSelectElement("listbox");
 
 //
 cXULElement_listbox.prototype.head	= null; // Reference to oXULElement_listhead
@@ -136,5 +136,5 @@ cXULElement_listbox.prototype.$getTagClose	= function() {
     		</div>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("listbox", cXULElement_listbox);
+// Register Element
+ample.extend(cXULElement_listbox);

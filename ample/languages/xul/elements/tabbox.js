@@ -8,7 +8,7 @@
  */
 
 var cXULElement_tabbox	= function(){};
-cXULElement_tabbox.prototype	= new cXULElement;
+cXULElement_tabbox.prototype	= new cXULElement("tabbox");
 
 // Public Properties
 cXULElement_tabbox.prototype.tabs		= null; // Reference to tabs child element
@@ -41,5 +41,5 @@ cXULElement_tabbox.prototype.$getTagClose	= function() {
     return '</div>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("tabbox", cXULElement_tabbox);
+// Register Element
+ample.extend(cXULElement_tabbox);

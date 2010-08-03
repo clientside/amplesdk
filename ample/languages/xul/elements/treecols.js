@@ -11,7 +11,7 @@ var cXULElement_treecols	= function() {
     // Collections
     this.items  = new AMLNodeList;
 };
-cXULElement_treecols.prototype   = new cXULElement;
+cXULElement_treecols.prototype   = new cXULElement("treecols");
 
 // Public Methods
 cXULElement_treecols.$isAccessible	= function() {
@@ -120,5 +120,5 @@ cXULElement_treecols.prototype.$getTagClose	= function() {
 			</tr>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("treecols", cXULElement_treecols);
+// Register Element
+ample.extend(cXULElement_treecols);

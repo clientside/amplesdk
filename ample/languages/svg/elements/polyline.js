@@ -8,7 +8,7 @@
  */
 
 var cSVGElement_polyline	= function(){};
-cSVGElement_polyline.prototype	= new cSVGElement;
+cSVGElement_polyline.prototype	= new cSVGElement("polyline");
 
 if (cSVGElement.useVML) {
 	// Implementation for IE
@@ -64,5 +64,5 @@ if (cSVGElement.useVML) {
 	};
 };
 
-// Register Element with language
-oSVGNamespace.setElement("polyline", cSVGElement_polyline);
+// Register Element
+ample.extend(cSVGElement_polyline);

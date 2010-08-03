@@ -8,7 +8,7 @@
  */
 
 var cXULElement_timepicker	= function(){};
-cXULElement_timepicker.prototype	= new cXULInputElement;
+cXULElement_timepicker.prototype	= new cXULInputElement("timepicker");
 
 // Default attributes
 cXULElement_timepicker.attributes	= {
@@ -188,5 +188,5 @@ cXULElement_timepicker.prototype.$getTagOpen		= function() {
 			</div>';
 };
 
-// Register Widget with language
-oXULNamespace.setElement("timepicker", cXULElement_timepicker);
+// Register Element
+ample.extend(cXULElement_timepicker);

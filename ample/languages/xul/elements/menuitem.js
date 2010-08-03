@@ -8,7 +8,7 @@
  */
 
 var cXULElement_menuitem	= function(){};
-cXULElement_menuitem.prototype	= new cXULElement;
+cXULElement_menuitem.prototype	= new cXULElement("menuitem");
 
 cXULElement_menuitem.prototype.$hoverable	= true;
 
@@ -126,5 +126,5 @@ cXULElement_menuitem.prototype.$getTagClose		= function() {
 			</tr>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("menuitem", cXULElement_menuitem);
+// Register Element
+ample.extend(cXULElement_menuitem);

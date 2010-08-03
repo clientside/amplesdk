@@ -8,7 +8,7 @@
  */
 
 var cXULElement_deck	= function(){};
-cXULElement_deck.prototype	= new cXULElement;
+cXULElement_deck.prototype	= new cXULElement("deck");
 //cXULElement_deck.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
 
 // Public Properties
@@ -68,5 +68,5 @@ cXULElement_deck.prototype.$getTagClose	= function() {
     return '</div>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("deck", cXULElement_deck);
+// Register Element
+ample.extend(cXULElement_deck);

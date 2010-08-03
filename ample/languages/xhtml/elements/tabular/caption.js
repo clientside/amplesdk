@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_caption	= function(){};
-cXHTMLElement_caption.prototype	= new cXHTMLElement;
+cXHTMLElement_caption.prototype	= new cXHTMLElement("caption");
 
 // Class Events Handlers
 cXHTMLElement_caption.handlers	= {
@@ -18,5 +18,5 @@ cXHTMLElement_caption.handlers	= {
 	}
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("caption", cXHTMLElement_caption);
+// Register Element
+ample.extend(cXHTMLElement_caption);

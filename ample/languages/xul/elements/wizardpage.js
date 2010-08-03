@@ -8,7 +8,7 @@
  */
 
 var cXULElement_wizardpage	= function(){};
-cXULElement_wizardpage.prototype = new cXULElement;
+cXULElement_wizardpage.prototype = new cXULElement("wizardpage");
 cXULElement_wizardpage.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
 
 // Attributes Defaults
@@ -69,5 +69,5 @@ cXULElement_wizardpage.prototype.$getTagClose	= function() {
     return '</div>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("wizardpage", cXULElement_wizardpage);
+// Register Element
+ample.extend(cXULElement_wizardpage);

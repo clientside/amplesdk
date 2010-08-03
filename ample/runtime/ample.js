@@ -173,6 +173,10 @@ function fResolver(sPrefix) {
 };
 
 fAmple.document	= oAML_document;
+//->Source
+fAmple.elements		= oAML_elements;
+fAmple.attributes	= oAML_attributes;
+//<-Source
 
 //
 fAmple.open	= function() {

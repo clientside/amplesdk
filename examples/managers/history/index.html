@@ -5,7 +5,7 @@
 		<script type="text/javascript" src="../../../ample/runtime.js"></script>
 		<script type="text/javascript" src="../../../ample/languages/xhtml/xhtml.js"></script>
 		<script type="text/javascript">
-			ample.domConfig.setParameter("ample-module-history-fix", true);
+			ample.document.domConfig.setParameter("ample-module-history-fix", true);
 		</script>
 	</head>
 	<body>
@@ -29,7 +29,7 @@
 			<button onclick="window.history.forward()">forth &gt;</button>
 		</script>
 		<script type="text/javascript">
-			ample.addEventListener("hashchange", onNavigate, false);
+			ample.document.addEventListener("hashchange", onNavigate, false);
 			function onNavigate(oEvent)
 			{
 				document.getElementById("navigator").innerHTML+= "navigated to: " + oEvent.newURL + "<br />";

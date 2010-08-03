@@ -8,7 +8,7 @@
  */
 
 var cAMLElement_pager	= function(){};
-cAMLElement_pager.prototype  = new cAMLElement;
+cAMLElement_pager.prototype  = new cAMLElement("marker");
 
 // Default Attributes
 cAMLElement_pager.attributes	= {
@@ -98,5 +98,5 @@ cAMLElement_pager.prototype.$getTagOpen	= function()
     return sHtml;
 };
 
-// Register Element with language
-oAMLNamespace.setElement("pager", cAMLElement_pager);
+// Register Element
+ample.extend(cAMLElement_pager);

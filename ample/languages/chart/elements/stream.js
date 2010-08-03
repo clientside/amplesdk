@@ -8,7 +8,7 @@
  */
 
 var cChartElement_stream	= function(){};
-cChartElement_stream.prototype	= new cChartElement;
+cChartElement_stream.prototype	= new cChartElement("stream");
 
-// Register Element with language
-oChartNamespace.setElement("stream", cChartElement_stream);
+// Register Element
+ample.extend(cChartElement_stream);

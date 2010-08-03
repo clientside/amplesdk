@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_iframe	= function(){};
-cXHTMLElement_iframe.prototype	= new cXHTMLElement;
+cXHTMLElement_iframe.prototype	= new cXHTMLElement("iframe");
 
 // Class Events Handlers
 cXHTMLElement_iframe.handlers	= {
@@ -18,6 +18,6 @@ cXHTMLElement_iframe.handlers	= {
 	}
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("iframe", cXHTMLElement_iframe);
+// Register Element
+ample.extend(cXHTMLElement_iframe);
 

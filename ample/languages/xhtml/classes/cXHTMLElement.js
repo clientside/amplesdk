@@ -7,9 +7,13 @@
  *
  */
 
-var cXHTMLElement	= function(){};
+var cXHTMLElement	= function(sLocalName) {
+	this.localName	= sLocalName;
+};
 
 cXHTMLElement.prototype	= new AMLElement;
+cXHTMLElement.prototype.namespaceURI= "http://www.w3.org/1999/xhtml";
+cXHTMLElement.prototype.localName	= "#element";
 cXHTMLElement.prototype.accessKey	= null;
 
 // Public methods
@@ -62,5 +66,5 @@ cXHTMLElement.prototype.$getTagClose	= function() {
     return '</' + (this.localName in cXHTMLElement.html524 ? cXHTMLElement.html524[this.localName] : this.localName) + '>';
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("#element", cXHTMLElement);
+// Register Element
+ample.extend(cXHTMLElement);

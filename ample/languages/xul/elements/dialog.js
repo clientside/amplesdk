@@ -10,7 +10,7 @@
 var cXULElement_dialog	= function(){
 	this.buttons	= {};
 };
-cXULElement_dialog.prototype	= new cXULWindowElement;
+cXULElement_dialog.prototype	= new cXULWindowElement("dialog");
 cXULElement_dialog.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
 
 // Attributes Defaults
@@ -179,5 +179,5 @@ cXULElement_dialog.prototype.$getTagClose	= function()
 			</div>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("dialog", cXULElement_dialog);
+// Register Element
+ample.extend(cXULElement_dialog);

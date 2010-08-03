@@ -8,7 +8,7 @@
  */
 
 var cXULElement_script	= function(){};
-cXULElement_script.prototype	= new cXULElement;
+cXULElement_script.prototype	= new cXULElement("script");
 
 // Attributes Defaults
 cXULElement_script.attributes	= {};
@@ -53,5 +53,5 @@ cXULElement_script.prototype.$getTagClose	= function() {
     return '</script>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("script", cXULElement_script);
+// Register Element
+ample.extend(cXULElement_script);

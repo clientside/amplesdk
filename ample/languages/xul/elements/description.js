@@ -8,7 +8,7 @@
  */
 
 var cXULElement_description	= function(){};
-cXULElement_description.prototype    = new cXULElement;
+cXULElement_description.prototype    = new cXULElement("description");
 
 // Class Events Handlers
 cXULElement_description.handlers	= {
@@ -36,5 +36,5 @@ cXULElement_description.prototype.$getTagClose	= function() {
     return '</div>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("description", cXULElement_description);
+// Register Element
+ample.extend(cXULElement_description);

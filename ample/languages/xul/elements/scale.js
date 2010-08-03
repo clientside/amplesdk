@@ -9,7 +9,7 @@
 
 var cXULElement_scale = function(){};
 
-cXULElement_scale.prototype	= new cXULInputElement;
+cXULElement_scale.prototype	= new cXULInputElement("scale");
 
 cXULElement_scale.attributes	= {
 	"min":	"0",
@@ -142,5 +142,5 @@ cXULElement_scale.prototype.$getTagOpen	= function() {
 			</div>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("scale", cXULElement_scale);
+// Register Element
+ample.extend(cXULElement_scale);

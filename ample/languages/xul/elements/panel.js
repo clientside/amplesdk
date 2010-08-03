@@ -1,5 +1,5 @@
 var cXULElement_panel	= function(){};
-cXULElement_panel.prototype	= new cXULPopupElement;
+cXULElement_panel.prototype	= new cXULPopupElement("panel");
 cXULElement_panel.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
 
 // Attributes Defaults
@@ -39,5 +39,5 @@ cXULElement_panel.prototype.$getTagClose	= function() {
     return '</div>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("panel", cXULElement_panel);
+// Register Element
+ample.extend(cXULElement_panel);

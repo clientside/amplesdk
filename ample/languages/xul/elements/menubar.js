@@ -12,7 +12,7 @@ var cXULElement_menubar	= function()
     // Collections
     this.items  = new AMLNodeList;
 };
-cXULElement_menubar.prototype	= new cXULElement;
+cXULElement_menubar.prototype	= new cXULElement("menubar");
 cXULElement_menubar.prototype.tabIndex		= 0;
 cXULElement_menubar.prototype.$selectable	= false;
 
@@ -93,5 +93,5 @@ cXULElement_menubar.prototype.$getTagClose	= function()
 			</div>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("menubar", cXULElement_menubar);
+// Register Element
+ample.extend(cXULElement_menubar);

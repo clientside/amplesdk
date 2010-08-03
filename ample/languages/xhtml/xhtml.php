@@ -1,6 +1,5 @@
 <?
     $aFiles		= array();
-    $aFiles[]	= "xhtml.js";
 
     // classes
     $aFiles[]	= "classes/cXHTMLElement.js";

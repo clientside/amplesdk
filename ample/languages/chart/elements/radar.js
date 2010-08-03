@@ -8,7 +8,7 @@
  */
 
 var cChartElement_radar	= function(){};
-cChartElement_radar.prototype	= new cChartElement;
+cChartElement_radar.prototype	= new cChartElement("radar");
 
 cChartElement_radar.handlers	= {
 	'DOMNodeInsertedIntoDocument':	function(oEvent) {
@@ -184,5 +184,5 @@ else {
 	};
 }
 
-// Register Element with language
-oChartNamespace.setElement("radar", cChartElement_radar);
+// Register Element
+ample.extend(cChartElement_radar);

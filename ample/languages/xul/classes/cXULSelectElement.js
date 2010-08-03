@@ -7,8 +7,11 @@
  *
  */
 
-var cXULSelectElement	= function(){};
+var cXULSelectElement	= function() {
+	cXULElement.apply(this, arguments);
+};
 cXULSelectElement.prototype	= new cXULElement;
+cXULSelectElement.prototype.localName	= "#element-select";
 
 // Public Properties
 cXULSelectElement.prototype.currentItem		= null; // last selected item element
@@ -345,3 +348,6 @@ cXULSelectElement.onResizeEnd	= function(oEvent) {
 		oHeader.setAttribute("width", nWidth);
 	}
 };
+
+// Register Element
+ample.extend(cXULSelectElement);

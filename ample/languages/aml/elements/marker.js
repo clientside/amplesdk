@@ -8,7 +8,7 @@
  */
 
 var cAMLElement_marker	= function(){};
-cAMLElement_marker.prototype	= new cAMLElement;
+cAMLElement_marker.prototype	= new cAMLElement("marker");
 
 // Public Properties
 cAMLElement_marker.prototype.setAttribute  = function(sName, sValue)
@@ -49,5 +49,5 @@ cAMLElement_marker.handlers	= {
 	}
 };
 
-// Register Element with language
-oAMLNamespace.setElement("marker", cAMLElement_marker);
+// Register Element
+ample.extend(cAMLElement_marker);

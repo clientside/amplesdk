@@ -11,7 +11,7 @@ var cXULElement_listhead	= function() {
     // Collections
     this.items  = new AMLNodeList;
 };
-cXULElement_listhead.prototype   = new cXULElement;
+cXULElement_listhead.prototype   = new cXULElement("listhead");
 
 // Private Methods
 cXULElement_listhead.$isAccessible	= function() {
@@ -123,5 +123,5 @@ cXULElement_listhead.prototype.$getTagClose	= function() {
 			</tr>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("listhead", cXULElement_listhead);
+// Register Element
+ample.extend(cXULElement_listhead);

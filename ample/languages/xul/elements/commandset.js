@@ -8,10 +8,10 @@
  */
 
 var cXULElement_commandset	= function(){};
-cXULElement_commandset.prototype = new cXULElement;
+cXULElement_commandset.prototype = new cXULElement("commandset");
 cXULElement_commandset.prototype.viewType    = cXULElement.VIEW_TYPE_VIRTUAL;
 
 // Public Methods
 
-// Register Element with language
-oXULNamespace.setElement("commandset", cXULElement_commandset);
+// Register Element
+ample.extend(cXULElement_commandset);

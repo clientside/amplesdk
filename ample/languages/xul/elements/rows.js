@@ -8,7 +8,7 @@
  */
 
 var cXULElement_rows	= function(){};
-cXULElement_rows.prototype	= new cXULElement;
+cXULElement_rows.prototype	= new cXULElement("rows");
 /*
 // Class Events Handlers
 cXULElement_rows.handlers	= {
@@ -19,5 +19,5 @@ cXULElement_rows.handlers	= {
 	}
 };
 */
-// Register Element with language
-oXULNamespace.setElement("rows", cXULElement_rows);
+// Register Element
+ample.extend(cXULElement_rows);

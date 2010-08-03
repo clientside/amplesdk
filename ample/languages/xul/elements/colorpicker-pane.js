@@ -13,7 +13,7 @@ var cXULElement_colorpicker_pane  = function() {
     this.y  = 0;
     this.b  = 1;
 };
-cXULElement_colorpicker_pane.prototype	= new cXULPopupElement;
+cXULElement_colorpicker_pane.prototype	= new cXULPopupElement("colorpicker-pane");
 
 cXULElement_colorpicker_pane.attributes	= {};
 cXULElement_colorpicker_pane.attributes.value	= "#FF0000";
@@ -285,5 +285,5 @@ cXULElement_colorpicker_pane._toHex    = function(nValue) {
         return sHexCharacters.charAt(Math.floor(nValue / 16)) + sHexCharacters.charAt(nValue % 16);
 };
 
-// Register Widget with language
-oXULNamespace.setElement("colorpicker-pane", cXULElement_colorpicker_pane);
+// Register Element
+ample.extend(cXULElement_colorpicker_pane);

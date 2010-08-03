@@ -8,7 +8,7 @@
  */
 
 var cXULElement_key	= function(){};
-cXULElement_key.prototype	= new cXULElement;
+cXULElement_key.prototype	= new cXULElement("key");
 cXULElement_key.prototype.viewType	= cXULElement.VIEW_TYPE_VIRTUAL;
 
 // Static Methods
@@ -61,5 +61,5 @@ cXULElement_key.handlers	= {
 	}
 };
 
-// Register Element with language
-oXULNamespace.setElement("key", cXULElement_key);
+// Register Element
+ample.extend(cXULElement_key);

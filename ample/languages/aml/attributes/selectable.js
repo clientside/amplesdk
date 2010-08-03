@@ -8,8 +8,7 @@
  */
 
 var cAMLAttr_selectable	= function(){};
-
-cAMLAttr_selectable.prototype	= new AMLAttr;
+cAMLAttr_selectable.prototype	= new cAMLAttr("selectable");
 
 // Class Events Handlers
 cAMLAttr_selectable.handlers	= {
@@ -21,5 +20,5 @@ cAMLAttr_selectable.handlers	= {
 	}
 };
 
-// Register Attribute with language
-oAMLNamespace.setAttribute("selectable", cAMLAttr_selectable);
+// Register Attribute
+ample.extend(cAMLAttr_selectable);

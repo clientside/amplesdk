@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_dialog	= function(){};
-cXHTMLElement_dialog.prototype	= new cXHTMLElement;
+cXHTMLElement_dialog.prototype	= new cXHTMLElement("dialog");
 
 // Class Events Handlers
 cXHTMLElement_dialog.handlers	= {
@@ -18,5 +18,5 @@ cXHTMLElement_dialog.handlers	= {
 	}
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("dialog", cXHTMLElement_dialog);
+// Register Element
+ample.extend(cXHTMLElement_dialog);

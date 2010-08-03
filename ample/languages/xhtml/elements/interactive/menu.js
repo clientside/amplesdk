@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_menu	= function(){};
-cXHTMLElement_menu.prototype	= new cXHTMLElement;
+cXHTMLElement_menu.prototype	= new cXHTMLElement("menu");
 
 // Class Events Handlers
 cXHTMLElement_menu.handlers	= {
@@ -18,5 +18,5 @@ cXHTMLElement_menu.handlers	= {
 	}
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("menu", cXHTMLElement_menu);
+// Register Element
+ample.extend(cXHTMLElement_menu);

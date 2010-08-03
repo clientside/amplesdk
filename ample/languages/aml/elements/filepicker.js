@@ -8,7 +8,8 @@
  */
 
 var cAMLElement_filepicker	= function(){};
-cAMLElement_filepicker.prototype = new cAMLElement;
+cAMLElement_filepicker.prototype = new cAMLElement("filepicker");
+//
 cAMLElement_filepicker.prototype.tabIndex	= 0;
 
 cAMLElement_filepicker.prototype.$isAccessible	= function()
@@ -62,5 +63,5 @@ cAMLElement_filepicker.prototype.$getTagClose	= function()
     return '</span>';
 };
 
-// Register Element with language
-oAMLNamespace.setElement("filepicker", cAMLElement_filepicker);
+// Register Element
+ample.extend(cAMLElement_filepicker);

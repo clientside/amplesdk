@@ -8,7 +8,7 @@
  */
 
 var cXULElement_toolbargrippy	= function(){};
-cXULElement_toolbargrippy.prototype  = new cXULElement;
+cXULElement_toolbargrippy.prototype  = new cXULElement("toolbargrippy");
 
 // Class Events Handlers
 cXULElement_toolbargrippy.handlers	= {
@@ -28,5 +28,5 @@ cXULElement_toolbargrippy.prototype.$getTagClose	= function() {
 	return this.parentNode instanceof cXULElement_menubar ? "</td>" : "";
 };
 
-// Register Element with language
-oXULNamespace.setElement("toolbargrippy", cXULElement_toolbargrippy);
+// Register Element
+ample.extend(cXULElement_toolbargrippy);

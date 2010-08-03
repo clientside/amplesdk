@@ -8,7 +8,7 @@
  */
 
 var cSVGElement_polygon	= function(){};
-cSVGElement_polygon.prototype	= new cSVGElement;
+cSVGElement_polygon.prototype	= new cSVGElement("polygon");
 
 if (cSVGElement.useVML) {
 	// Implementation for IE
@@ -64,5 +64,5 @@ if (cSVGElement.useVML) {
 	};
 };
 
-// Register Element with language
-oSVGNamespace.setElement("polygon", cSVGElement_polygon);
+// Register Element
+ample.extend(cSVGElement_polygon);

@@ -8,7 +8,7 @@
  */
 
 var cSVGElement_radialGradient	= function(){};
-cSVGElement_radialGradient.prototype	= new cSVGElement;
+cSVGElement_radialGradient.prototype	= new cSVGElement("radialGradient");
 
 if (cSVGElement.useVML) {
 	// Implementation for IE
@@ -31,5 +31,5 @@ if (cSVGElement.useVML) {
 	};
 };
 
-// Register Element with language
-oSVGNamespace.setElement("radialGradient", cSVGElement_radialGradient);
+// Register Element
+ample.extend(cSVGElement_radialGradient);

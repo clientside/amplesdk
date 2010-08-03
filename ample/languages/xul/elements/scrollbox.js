@@ -8,7 +8,7 @@
  */
 
 var cXULElement_scrollbox	= function(){};
-cXULElement_scrollbox.prototype	= new cXULElement;
+cXULElement_scrollbox.prototype	= new cXULElement("scrollbox");
 cXULElement_scrollbox.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
 
 // Class Events Handlers
@@ -30,5 +30,5 @@ cXULElement_scrollbox.prototype.$getTagClose	= function() {
     return '</div>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("scrollbox", cXULElement_scrollbox);
+// Register Element
+ample.extend(cXULElement_scrollbox);

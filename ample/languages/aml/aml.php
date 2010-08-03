@@ -1,6 +1,6 @@
 <?
     $aFiles		= array();
-    $aFiles[]	= "aml.js";
+    $aFiles[]	= "classes/cAMLAttr.js";
     $aFiles[]	= "classes/cAMLElement.js";
 
     // elements

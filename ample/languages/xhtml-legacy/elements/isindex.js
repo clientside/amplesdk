@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_isindex	= function(){};
-cXHTMLElement_isindex.prototype	= new cXHTMLElement;
+cXHTMLElement_isindex.prototype	= new cXHTMLElement("isindex");
 
-// Register Element with language
-oXHTMLNamespace.setElement("isindex", cXHTMLElement_isindex);
+// Register Element
+ample.extend(cXHTMLElement_isindex);

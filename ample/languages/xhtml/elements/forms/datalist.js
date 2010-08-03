@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_datalist	= function(){};
-cXHTMLElement_datalist.prototype	= new cXHTMLElement;
+cXHTMLElement_datalist.prototype	= new cXHTMLElement("datalist");
 
 // Class Events Handlers
 cXHTMLElement_datalist.handlers	= {
@@ -18,7 +18,7 @@ cXHTMLElement_datalist.handlers	= {
 	}
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("datalist", cXHTMLElement_datalist);
+// Register Element
+ample.extend(cXHTMLElement_datalist);
 
 

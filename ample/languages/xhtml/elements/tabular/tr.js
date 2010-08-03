@@ -10,7 +10,7 @@
 var cXHTMLElement_tr	= function() {
 	this.cells	= new AMLNodeList;
 };
-cXHTMLElement_tr.prototype	= new cXHTMLElement;
+cXHTMLElement_tr.prototype	= new cXHTMLElement("tr");
 
 // Public Properties
 cXHTMLElement_tr.prototype.cells	= null;
@@ -43,5 +43,5 @@ cXHTMLElement_tr.handlers	= {
 	}
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("tr", cXHTMLElement_tr);
+// Register Element
+ample.extend(cXHTMLElement_tr);

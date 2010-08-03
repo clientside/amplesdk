@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_input	= function(){};
-cXHTMLElement_input.prototype	= new cXHTMLElement;
+cXHTMLElement_input.prototype	= new cXHTMLElement("input");
 cXHTMLElement_input.prototype.tabIndex	= 0;
 
 // Public Properties
@@ -125,5 +125,5 @@ cXHTMLElement_input.prototype.$getTagClose	= function() {
 	return '';
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("input", cXHTMLElement_input);
+// Register Element
+ample.extend(cXHTMLElement_input);

@@ -8,7 +8,7 @@
  */
 
 var cXULElement_listbody	= function(){};
-cXULElement_listbody.prototype   = new cXULElement;
+cXULElement_listbody.prototype   = new cXULElement("listbody");
 
 // Public Methods
 
@@ -71,5 +71,5 @@ cXULElement_listbody.prototype.$getTagClose	= function() {
     return aHtml.join('');
 };
 
-// Register Element with language
-oXULNamespace.setElement("listbody", cXULElement_listbody);
+// Register Element
+ample.extend(cXULElement_listbody);
