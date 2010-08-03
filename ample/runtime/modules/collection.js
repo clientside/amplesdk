@@ -19,6 +19,21 @@ cAMLQuery.prototype.get	= function(nIndex) {
 	return this[nIndex];
 };
 
+cAMLQuery.prototype.eq	= function(nIndex) {
+	// Validate API call
+	fAML_validate(arguments, [
+		["index",	cNumber]
+	]);
+
+	// Invoke implementation
+	var oQuery	= new cAMLQuery;
+	if (nIndex < 0)
+		nIndex	= this.length + nIndex;
+	if (this[nIndex])
+		oQuery[oQuery.length++]	= this[nIndex];
+	return oQuery;
+};
+
 cAMLQuery.prototype.first	= function() {
 	var oQuery	= new cAMLQuery;
 	if (this.length)

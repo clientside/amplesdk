@@ -28,6 +28,31 @@
 		<methods>
 			<!-- Collection -->
 			<method name="get" type="AMLElement">
+				<arguments>
+					<argument name="index" type="Number">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="eq" type="AMLElement">
+				<arguments>
+					<argument name="index" type="Number">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
 				<description>
 					<locale>
 
@@ -49,6 +74,22 @@
 				</description>
 			</method>
 			<method name="slice" type="AMLQuery">
+				<arguments>
+					<argument name="first" type="Number">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+					<argument name="last" type="Number" required="false">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
 				<description>
 					<locale>
 
@@ -56,6 +97,22 @@
 				</description>
 			</method>
 			<method name="each" type="AMLQuery">
+				<arguments>
+					<argument name="callback" type="Function">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+					<argument name="arguments" type="Object" required="false">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
 				<description>
 					<locale>
 
@@ -74,6 +131,22 @@
 
 			<!-- Css -->
 			<method name="css" type="Variant">
+				<arguments>
+					<argument name="name" type="String">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+					<argument name="value" type="String" required="false">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
 				<description>
 					<locale>
 
@@ -161,6 +234,22 @@
 
 			<!-- DOM -->
 			<method name="attr" type="Variant">
+				<arguments>
+					<argument name="name" type="String">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+					<argument name="value" type="String" required="false">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
 				<description>
 					<locale>
 
@@ -168,6 +257,15 @@
 				</description>
 			</method>
 			<method name="text" type="Variant">
+				<arguments>
+					<argument name="value" type="String" required="false">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
 				<description>
 					<locale>
 
