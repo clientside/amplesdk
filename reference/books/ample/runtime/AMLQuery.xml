@@ -83,23 +83,78 @@
 
 			<!-- Events -->
 			<method name="bind" type="AMLQuery">
+				<arguments>
+					<argument name="type" type="String">
+						<description>
+							<locale>
+								Event name
+							</locale>
+						</description>
+					</argument>
+					<argument name="handler" type="Function">
+						<description>
+							<locale>
+								Handler function
+							</locale>
+						</description>
+					</argument>
+					<argument name="capture" type="Boolean" required="false">
+						<description>
+							<locale>
+								If true, the handler will be executed during capture phase only
+							</locale>
+						</description>
+					</argument>
+				</arguments>
 				<description>
 					<locale>
-
+						Registers a handler with every element in set
 					</locale>
 				</description>
 			</method>
 			<method name="unbind" type="AMLQuery">
+				<arguments>
+					<argument name="type" type="String">
+						<description>
+							<locale>
+								Event name
+							</locale>
+						</description>
+					</argument>
+					<argument name="handler" type="Function">
+						<description>
+							<locale>
+								Handler function
+							</locale>
+						</description>
+					</argument>
+					<argument name="capture" type="Boolean" required="false">
+						<description>
+							<locale>
+								If true, the handler will be executed during capture phase only
+							</locale>
+						</description>
+					</argument>
+				</arguments>
 				<description>
 					<locale>
-
+						Unregisters a handler from every element in set
 					</locale>
 				</description>
 			</method>
 			<method name="trigger" type="AMLQuery">
+				<arguments>
+					<argument name="type" type="String">
+						<description>
+							<locale>
+								Event name
+							</locale>
+						</description>
+					</argument>
+				</arguments>
 				<description>
 					<locale>
-
+						Triggers an event on every element in set
 					</locale>
 				</description>
 			</method>

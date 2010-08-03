@@ -102,24 +102,24 @@
 			</method>
 			<method name="extend" type="Void">
 				<arguments>
-					<argument name="name" type="String">
+					<argument name="source" type="Object">
 						<description>
 							<locale>
-								Name of the function to be registered.
+								Extension object to extend.
 							</locale>
 						</description>
 					</argument>
-					<argument name="function" type="Function">
+					<argument name="target" type="Object" required="false">
 						<description>
 							<locale>
-								Function pointer to be registered.
+								Target object for extension. If ommited, <link type="object">ample</link> object itself is in use.
 							</locale>
 						</description>
 					</argument>
 				</arguments>
 				<description>
 					<locale>
-						Provides extensibility API.
+						Provides extensibility point.
 					</locale>
 				</description>
 			</method>
@@ -149,6 +149,83 @@
 				<description>
 					<locale>
 						Finds corresponding to the HTML DOM element in the Ample SDK DOM.
+					</locale>
+				</description>
+			</method>
+			<!-- Events -->
+			<method name="bind" type="Void">
+				<arguments>
+					<argument name="type" type="String">
+						<description>
+							<locale>
+								Event name
+							</locale>
+						</description>
+					</argument>
+					<argument name="handler" type="Function">
+						<description>
+							<locale>
+								Handler function
+							</locale>
+						</description>
+					</argument>
+					<argument name="capture" type="Boolean" required="false">
+						<description>
+							<locale>
+								If true, the handler will be executed during capture phase only
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Registers a handler with document
+					</locale>
+				</description>
+			</method>
+			<method name="unbind" type="Void">
+				<arguments>
+					<argument name="type" type="String">
+						<description>
+							<locale>
+								Event name
+							</locale>
+						</description>
+					</argument>
+					<argument name="handler" type="Function">
+						<description>
+							<locale>
+								Handler function
+							</locale>
+						</description>
+					</argument>
+					<argument name="capture" type="Boolean" required="false">
+						<description>
+							<locale>
+								If true, the handler will be executed during capture phase only
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Unregisters a handler from document
+					</locale>
+				</description>
+			</method>
+			<method name="trigger" type="Void">
+				<arguments>
+					<argument name="type" type="String">
+						<description>
+							<locale>
+								Event name
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Triggers an event on document
 					</locale>
 				</description>
 			</method>
