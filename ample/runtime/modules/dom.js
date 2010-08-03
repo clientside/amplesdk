@@ -41,7 +41,7 @@ cAMLQuery.prototype.text	= function(vArgument1) {
 			while (this.lastChild)
 				fAMLElement_removeChild(this, this.lastChild);
 			// Add child
-			fAMLElement_appendChild(this, fAMLDocument_createTextNode(this.ownerDocument, vArgument1));
+			fAMLElement_appendChild(this, fAMLDocument_createTextNode(this.ownerDocument, cString(vArgument1)));
 		});
 		return this;
 	}
