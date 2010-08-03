@@ -94,17 +94,34 @@ function fAmple_each(oQuery, fCallback, aArguments) {
 };
 
 // Extension Mechanism
-fAmple.extend	= function(sName, fFunction) {
+fAmple.extend	= function(oSource, oTarget) {
 	// Validate API call
 	fAML_validate(arguments, [
-		["name",		cString],
-		["function",	cFunction]
+		["source",	cObject],
+		["target",	cObject, true]
 	]);
+
+	if (oSource instanceof cFunction) {
+		if (oSource.prototype instanceof cAMLElement)
+			oAML_elements[oSource.namespaceURI + '#' + oSource.localName]	= oSource;
+		else
+		if (oSource.prototype instanceof cAMLAttribute)
+			oAML_attributes[oSource.namespaceURI + '#' + oSource.localName]	= oSource;
+		else
+			throw "Uknown type";
+	}
+	else {
+		if (!oTarget)
+			oTarget	= fAmple.prototype;
+		for (var sName in oSource) {
 //->Debug
-	if (cAMLQuery.prototype.hasOwnProperty(sName))
-		fAML_warn(nAML_REWRITING_LOADED_PLUGIN_WRN, [sName]);
+			if (oTarget == fAmple.prototype && oTarget.hasOwnProperty(sName))
+				fAML_warn(nAML_REWRITING_LOADED_PLUGIN_WRN, [sName]);
 //<-Debug
-	fAMLExporter_exportMember(cAMLQuery.prototype, fFunction, sName);
+			if (oSource.hasOwnProperty(sName))
+				oTarget[sName]	= oSource[sName];
+		}
+	}
 };
 
 // Ready event
