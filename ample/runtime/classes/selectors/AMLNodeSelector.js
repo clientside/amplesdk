@@ -93,18 +93,6 @@ function fAMLSelector_getText(sString) {
 	return rAMLSelector_quotes.test(sString) ? sString.slice(1, -1) : sString;
 };
 
-function fAMLSelector_getTextContent(oElement) {
-	for (var nIndex = 0, aText = [], oNode; oNode = oElement.childNodes[nIndex]; nIndex++)
-		if (oNode.nodeType == cAMLNode.ELEMENT_NODE) {
-			if (oNode.firstChild)
-				aText.push(fAMLSelector_getTextContent(oNode));
-		}
-		else
-		if (oNode.nodeType == cAMLNode.TEXT_NODE || oNode.nodeType == cAMLNode.CDATA_SECTION)
-			aText.push(oNode.data);
-	return aText.join('');
-};
-
 function fAMLSelector_getNextSibling(oElement)
 {
 	while (oElement = oElement.nextSibling)
@@ -361,7 +349,7 @@ oAMLSelector_elementSelectors['~'] = function(aReturn, aFrom, sTagName, sArgumen
 // pseudo-classes
 // -----------------------------------------------------------------------
 oAMLSelector_pseudoClasses["contains"] = function(oElement, sText) {
-	return fAMLSelector_getText(sText).indexOf(fAMLSelector_getTextContent(oElement)) !=-1;
+	return fAMLSelector_getText(sText).indexOf(fAMLNode_getTextContent(oElement)) !=-1;
 };
 
 oAMLSelector_pseudoClasses["root"] = function(oElement) {

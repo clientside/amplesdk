@@ -56,6 +56,17 @@ cAMLNode.DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC	= 32;
 // Private Properties
 cAMLNode.prototype.$listeners	= null;
 
+function fAMLNode_getTextContent(oNode) {
+	for (var nIndex = 0, aText = [], oChild; oChild = oNode.childNodes[nIndex]; nIndex++)
+		if (oChild.nodeType == cAMLNode.TEXT_NODE || oChild.nodeType == cAMLNode.CDATA_SECTION)
+			aText.push(oChild.data);
+		else
+		if (oChild.nodeType == cAMLNode.ELEMENT_NODE)
+			if (oChild.firstChild)
+				aText.push(fAMLNode_getTextContent(oChild));
+	return aText.join('');
+};
+
 // nsIDOMNode
 function fAMLNode_appendChild(oParent, oNode)
 {

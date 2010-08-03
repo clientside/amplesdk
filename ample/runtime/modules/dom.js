@@ -53,7 +53,7 @@ cAMLQuery.prototype.text	= function(sValue) {
 		// Get inner text
 		var aText	= [];
 		fAmple_each(this, function(){
-			aText.push(fAMLSelector_getTextContent(this));
+			aText.push(fAMLNode_getTextContent(this));
 		});
 		return aText.join('');
 	}
