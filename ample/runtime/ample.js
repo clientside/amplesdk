@@ -69,9 +69,14 @@ function fAmple(vArgument1, vArgument2, vArgument3) {
 		if (vArgument1 instanceof cAMLElement)
 			oQuery[oQuery.length++]	= vArgument1;
 		else
+		if (vArgument1 instanceof cAMLQuery)
+			fAmple_each(vArgument1, function() {
+				oQuery[oQuery.length++]	= this;
+			});
+		else
 			throw new cAMLException(cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR, fAmple.caller
 //->Debug
-				, ['1' + aAML_endings[0], "query", "ample", "String" + '" or "' + "AMLElement"]
+				, ['1' + aAML_endings[0], "query", "ample", "String" + '", "' + "AMLQuery" + '" or "' + "AMLElement"]
 //<-Debug
 			);
 	}

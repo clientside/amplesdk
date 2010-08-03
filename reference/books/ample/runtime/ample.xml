@@ -3,10 +3,11 @@
 <object name="ample">
 	<abstract>
 		<locale>
-			jQuery-like API to Ample SDK. Can be called in any of the following 3 flavours.
+			jQuery-like API to Ample SDK. Can be called in any of the following flavours.
 			<ul>
 				<li><link type="object">AMLQuery</link> <link type="object">ample</link>(String <em>selector</em>[, <link type="object">AMLNode</link> <em>context</em>[, Function <em>NSResolver</em>]])</li>
 				<li><link type="object">AMLQuery</link> <link type="object">ample</link>(String <em>xml</em>)</li>
+				<li><link type="object">AMLQuery</link> <link type="object">ample</link>(<link type="object">AMLQuery</link> <em>collection</em>)</li>
 				<li><link type="object">AMLQuery</link> <link type="object">ample</link>(<link type="object">AMLElement</link> <em>element</em>)</li>
 			</ul>
 		</locale>
