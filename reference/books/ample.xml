@@ -184,31 +184,9 @@
 	</node>
 	<node title="UI languages" open="true">
 		<!--node title="UI languages" /-->
-		<node title="XHTML 1.0">
-			<node title="Overview" url="ample/xhtml1/xhtml.xml" />
-			<node title="XML Schema strict" url="ample/xhtml1/xhtml1-strict.xsd"/>
-<!--
-			<node title="XML Schema transitional" url="ample/xhtml1/xhtml1-transitional.xsd"/>
-			<node title="XML Schema frameset" url="ample/xhtml1/xhtml1-frameset.xsd"/>
-			<node title="Objects">
-				<node title="XHTMLElement" xurl="ample/xhtml/XHTMLElement.xml"/>
-				<node title="XHTMLDocument" xurl="ample/xhtml/XHTMLDocument.xml"/>
-			</node>
-			<node title="Elements">
-			</node>
- -->
+		<node title="HTML 5">
+			<node title="Overview" url="ample/html5/html5.xml" />
 		</node>
-		<!-- node title="XHTML 2.0">
-			<node title="Overview" url="ample/xhtml2/xhtml2.xml"/>
-			<node title="XML Schema" xurl="ample/xhtml2/xhtml2.xsd"/>
-			<node title="Objects">
-				<node title="XHTML2Element" xurl="ample/xhtml2/XHTML2Element.xml"/>
-				<node title="XHTML2Document" xurl="ample/xhtml2/XHTML2Document.xml"/>
-			</node>
-			<node title="Elements">
-				<node title="handler" xurl="ample/xhtml2/elements/handler.xml"/>
-			</node>
-		</node-->
 		<node title="SVG 1.1">
 			<node title="Overview" url="ample/svg11/svg11.xml"/>
 			<node title="XML Schema" xurl="ample/svg11/svg11.xsd"/>
@@ -453,17 +431,6 @@
 					<!-- spinbuttons on Mozilla belongs here -->
 				</node>
 			</node>
-		</node>
-		<node title="HTML 5">
-			<node title="Overview" url="ample/html5/html5.xml" />
-			<node title="XML Schema" xurl="ample/html5/html5.xsd"/>
-			<!-- node title="Objects">
-				<node title="HTML5Element" xurl="ample/aml/AMLElement.xml"/>
-				<node title="HTML5Document" xurl="ample/aml/AMLDocument.xml"/>
-			</node-->
-			<!-- node title="Elements">
-
-			</node-->
 		</node>
 		<node title="AML 1.0">
 			<node title="Overview" url="ample/aml/aml.xml" />
