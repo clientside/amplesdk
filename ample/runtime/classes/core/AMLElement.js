@@ -416,7 +416,7 @@ function fAMLElement_setAttributeNS(oElement, sNameSpaceURI, sQName, sValue)
 		}
 
 		// Global attributes module
-		if (!(sQName in oElement.attributes) && !(sQName == "xmlns" || sNameSpaceURI == "http://www.w3.org/2000/xmlns/" || sNameSpaceURI == "http://www.w3.org/XML/1998/namespace"))
+		if (!(sQName == "xmlns" || sNameSpaceURI == "http://www.w3.org/2000/xmlns/" || sNameSpaceURI == "http://www.w3.org/XML/1998/namespace"))
 		{
 			var cAttribute	= oAML_attributes[sNameSpaceURI + '#' + sLocalName],
 				oAttribute,
@@ -435,6 +435,17 @@ function fAMLElement_setAttributeNS(oElement, sNameSpaceURI, sQName, sValue)
 				oAttribute.namespaceURI	= sNameSpaceURI;
 				oAttribute.name		= sQName;
 				oAttribute.value	= sValue;
+
+				if (sQName in oElement.attributes)
+				{
+					// Fire Mutation event (pseudo)
+					oEvent = new cAMLMutationEvent;
+					oEvent.initMutationEvent("DOMNodeRemovedFromDocument", false, false, null, null, null, null, null);
+					oEvent.target	=
+					oEvent.currentTarget	= oAttribute;
+					oEvent.eventPhase		= cAMLEvent.AT_TARGET;
+					fAMLNode_handleEvent(oAttribute, oEvent);
+				}
 
 				// Fire Mutation event (pseudo)
 				oEvent = new cAMLMutationEvent;
