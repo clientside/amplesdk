@@ -230,6 +230,8 @@ else
 			fAmple.namespaces[oAttribute.nodeName]	= oAttribute.nodeValue;
 if (!fAmple.namespaces["xmlns"])
 	fAmple.namespaces["xmlns"]	= "http://www.w3.org/1999/xhtml";
+if (!fAmple.namespaces["xmlns:aml"])
+	fAmple.namespaces["xmlns:aml"]	= "http://www.amplesdk.com/ns/aml";
 //
 function fResolver(sPrefix) {
 	return fAmple.namespaces["xmlns" + (sPrefix ? ":" + sPrefix : '')] || null;
