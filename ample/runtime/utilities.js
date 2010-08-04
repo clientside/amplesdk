@@ -26,7 +26,8 @@ var nAML_NOT_WELLFORMED_WRN			= 'a',	// Use strings in order to not intersect wi
 	nAML_UNKNOWN_SIMPLE_TYPE_WRN	= 'i',
 	nAML_ERROR_ANIMATING_ATTR_WRN	= 'j',
 	nAML_DOCUMENT_INVALID_STATE_WRN	= 'k',
-	nAML_REWRITING_LOADED_PLUGIN_WRN= 'l';
+	nAML_REWRITING_LOADED_PLUGIN_WRN= 'l',
+	nAML_CONFIGURATION_READONLY_WRN	= 'm';
 
 function fAML_format(sMessage, aArguments) {
 	for (var nIndex = 0; nIndex < aArguments.length; nIndex++)
@@ -77,6 +78,7 @@ oAML_messages[nAML_UNKNOWN_SIMPLE_TYPE_WRN]	= 'Simple type definition "%0" not f
 oAML_messages[nAML_ERROR_ANIMATING_ATTR_WRN]= 'Error animating "%0" atttribute with "%1" value';
 oAML_messages[nAML_DOCUMENT_INVALID_STATE_WRN]	= 'Document invalid state';
 oAML_messages[nAML_REWRITING_LOADED_PLUGIN_WRN]	= 'Re-writing plugin "%0" which is already loaded';
+oAML_messages[nAML_CONFIGURATION_READONLY_WRN]	= 'Configuration parameter "%0" is readonly. Value has not been set';
 //<-Debug
 
 // Validation implementation

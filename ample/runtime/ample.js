@@ -151,7 +151,7 @@ fAmple.guard	= function(aArguments, aParameters) {
 	fAML_validate(aArguments, aParameters);
 };
 
-fAmple.config	= function(vArgument1, vArgument2) {
+fAmple.config	= function(sName, oValue) {
 	// Validate API call
 	fAML_validate(arguments, [
 		["name",	cString],
@@ -160,10 +160,16 @@ fAmple.config	= function(vArgument1, vArgument2) {
 
 	// Invoke implementation
 	var sPrefix	= "ample" + '-';
-	if (arguments.length > 1)
-		oAML_document.domConfig.setParameter(sPrefix + vArgument1, vArgument2);
+	if (arguments.length > 1) {
+		if (sName != "version")
+			oAML_document.domConfig.setParameter(sPrefix + sName, oValue);
+//->Debug
+		else
+			fAML_warn(nAML_CONFIGURATION_READONLY_WRN, [sName]);
+//<-Debug
+	}
 	else
-		return oAML_document.domConfig.getParameter(sPrefix + vArgument1);
+		return oAML_document.domConfig.getParameter(sPrefix + sName);
 };
 
 // Ajax
