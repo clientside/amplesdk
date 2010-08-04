@@ -103,7 +103,15 @@
 				</arguments>
 				<description>
 					<locale>
-						Sets or retrieves paramater.
+						Sets or retrieves a parameter. List of parameters:
+						<ul>
+							<li><b>version</b> - Ample SDK version number</li>
+							<li><b>user-agent</b> - Ample SDK user agent string</li>
+							<li><b>user-locale</b> - User locale</li>
+							<li><b>enable-transitions</b> - enable/disable transitions globally</li>
+							<li><b>use-style-property</b> - enable/disable style property on elements</li>
+							<li><b>module-history-fix</b> - fix initial value of the location.hash property in Internet Explorer (used in <link type="object">mHistory</link>)</li>
+						</ul>
 					</locale>
 				</description>
 			</method>
