@@ -203,6 +203,7 @@ function fAML_import(oElementDOM, bDeep, oNode, bCollapse) {
 				}
 //->Debug
 				else
+				if (!(sNameSpaceURI == "http://www.w3.org/1999/xhtml" && sLocalName == "script" && oAttributes["type"] == "application/ample+xml"))
 					fAML_warn(nAML_UNKNOWN_ELEMENT_NS_WRN, [sLocalName, sNameSpaceURI]);
 //<-Debug
 				// and append it to parent (if there is one)
