@@ -14,13 +14,13 @@ var oAMLXMLSchema11_implementation	= {},
 
 oAMLXMLSchema11_implementation.traverse	= function(oElementDOM, oNode) {
 	if ((oElementDOM.localName || oElementDOM.baseName) == "schema") {
-		var sNamespaceURI	= oElementDOM.getAttribute("targetNamespace");
-		if (sNamespaceURI) {
+		var sNameSpaceURI	= oElementDOM.getAttribute("targetNamespace");
+		if (sNameSpaceURI) {
 			// Create new namespace item
 			var oNamespaceItem	= new cAMLXSNamespaceItem;
-			oNamespaceItem.schemaNamespace	= sNamespaceURI;
+			oNamespaceItem.schemaNamespace	= sNameSpaceURI;
 			// Register new namespace item
-			oAMLXMLSchema11_model.namespaces.$add(sNamespaceURI);
+			oAMLXMLSchema11_model.namespaces.$add(sNameSpaceURI);
 			oAMLXMLSchema11_model.namespaceItems.$add(oNamespaceItem);
 
 			// traverse children
