@@ -13,52 +13,55 @@ var nAMLSelector_iterator	= 0,
 
 function fAMLSelector_query(aFrom, sQuery, fResolver, bMatchOne)
 {
-    var aMatch	= new cAMLNodeList,
-    	aBase	= aFrom;
-    // process comma separated selectors
-    var aSelectors = fAMLSelector_parseSelector(sQuery).split(rAMLSelector_comma), nSelector, aSelector;
-    for (nSelector = 0; nSelector < aSelectors.length; nSelector++) {
-        // convert the selector to a stream
-        aSelector = fAMLSelector_toStream(aSelectors[nSelector]);
-		aFrom = aBase;
+    var aMatch	= new cAMLNodeList;
+    if (sQuery = fAMLSelector_parseSelector(sQuery)) {
+	    // process comma separated selectors
+	    var aBase	= aFrom,
+	    	aSelectors = sQuery.split(rAMLSelector_comma),
+	    	nSelector,
+	    	aSelector;
+	    for (nSelector = 0; nSelector < aSelectors.length; nSelector++) {
+	        // convert the selector to a stream
+	        aSelector = fAMLSelector_toStream(aSelectors[nSelector]);
+			aFrom = aBase;
 
-        // process the stream
-        var nIndex = 0, sToken, sFilter, sArguments, bBracketRounded, bBracketSquare;
-        while (nIndex < aSelector.length) {
-            sToken = aSelector[nIndex++];
-            sFilter = aSelector[nIndex++];
-            // some pseudo-classes allow arguments to be passed
-            //  e.g. nth-child(even)
-            sArguments = '';
-            bBracketRounded	= aSelector[nIndex] == '(';
-            bBracketSquare	= aSelector[nIndex-1] == '[';
-            if (bBracketRounded || bBracketSquare) {
-            	if (bBracketSquare)
-            		nIndex--;
-                while (aSelector[nIndex++] != (bBracketRounded ? ')' : ']') && nIndex < aSelector.length)
-                    sArguments += aSelector[nIndex];
-                sArguments = sArguments.slice(0, -1);
-            }
-            // process a token/filter pair use cached results if possible
-            aFrom = fAMLSelector_select(aFrom, sToken, sFilter, sArguments, fResolver);
-        }
-        // Setting _cssIndex enables selection uniqueness
-        for (nIndex = 0; nIndex < aFrom.length; nIndex++) {
-        	if (aFrom[nIndex]._cssIndex != nAMLSelector_iterator) {
-        		aMatch[aMatch.length++]	= aFrom[nIndex];
-				if (bMatchOne)
-					return aMatch;
-				//
-        		aFrom[nIndex]._cssIndex	= nAMLSelector_iterator;
-        	}
-        }
+	        // process the stream
+	        var nIndex = 0, sToken, sFilter, sArguments, bBracketRounded, bBracketSquare;
+	        while (nIndex < aSelector.length) {
+	            sToken = aSelector[nIndex++];
+	            sFilter = aSelector[nIndex++];
+	            // some pseudo-classes allow arguments to be passed
+	            //  e.g. nth-child(even)
+	            sArguments = '';
+	            bBracketRounded	= aSelector[nIndex] == '(';
+	            bBracketSquare	= aSelector[nIndex-1] == '[';
+	            if (bBracketRounded || bBracketSquare) {
+	            	if (bBracketSquare)
+	            		nIndex--;
+	                while (aSelector[nIndex++] != (bBracketRounded ? ')' : ']') && nIndex < aSelector.length)
+	                    sArguments += aSelector[nIndex];
+	                sArguments = sArguments.slice(0, -1);
+	            }
+	            // process a token/filter pair use cached results if possible
+	            aFrom = fAMLSelector_select(aFrom, sToken, sFilter, sArguments, fResolver);
+	        }
+	        // Setting _cssIndex enables selection uniqueness
+	        for (nIndex = 0; nIndex < aFrom.length; nIndex++) {
+	        	if (aFrom[nIndex]._cssIndex != nAMLSelector_iterator) {
+	        		aMatch[aMatch.length++]	= aFrom[nIndex];
+					if (bMatchOne)
+						return aMatch;
+					//
+	        		aFrom[nIndex]._cssIndex	= nAMLSelector_iterator;
+	        	}
+	        }
+	    }
+
+		// Remove temporarily set _cssIndex
+		for (var nIndex = 0; nIndex < aMatch.length; nIndex++)
+			delete aMatch[nIndex]._cssIndex;
+		nAMLSelector_iterator++;
     }
-
-	// Remove temporarily set _cssIndex
-	for (var nIndex = 0; nIndex < aMatch.length; nIndex++)
-		delete aMatch[nIndex]._cssIndex;
-	nAMLSelector_iterator++;
-
     return aMatch;
 };
 
