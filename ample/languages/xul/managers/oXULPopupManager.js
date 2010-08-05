@@ -12,12 +12,12 @@ var oXULPopupManager	= (function () {
 	// Local variables
 	var oTooltipPane	= null;
 
-	// Extend ample document to XULDocument
-	ample.document.tooltipNode	= null;
-	ample.document.popupNode	= null;
+	// Extend ample object to XULDocument
+	ample.tooltipNode	= null;
+	ample.popupNode		= null;
 
 	// Attaching manager to document
-	ample.document.addEventListener("mouseenter",	function(oEvent) {
+	ample.bind("mouseenter",	function(oEvent) {
 		for (var oElement = oEvent.target, oTooltip; oElement.nodeType != AMLNode.DOCUMENT_NODE; oElement = oElement.parentNode) {
 			if (oElement.$isAccessible()) {
 			    if (oElement.attributes["tooltiptext"]) {
@@ -32,28 +32,28 @@ var oXULPopupManager	= (function () {
 			    	}
 					oTooltip.setText(oElement.attributes["tooltiptext"]);
 		        	oTooltip.showPopup(null, oEvent.clientX + document.documentElement.scrollLeft, oEvent.clientY + 18 + document.documentElement.scrollTop, cXULPopupElement.POPUP_TYPE_TOOLTIP);
-		    		this.tooltipNode	= oTooltip;
+		    		ample.tooltipNode	= oTooltip;
 			    }
 			    else
 			    if (oElement.attributes["tooltip"]) {
 			    	oTooltip	= this.getElementById(oElement.attributes["tooltip"]);
 			    	if (oTooltip) {
 			    		oTooltip.showPopup(null, oEvent.clientX + document.documentElement.scrollLeft, oEvent.clientY + 18 + document.documentElement.scrollTop, cXULPopupElement.POPUP_TYPE_TOOLTIP);
-			    		this.tooltipNode	= oTooltip;
+			    		ample.tooltipNode	= oTooltip;
 			    	}
 			    }
 			}
 		}
 	}, true);
 
-	ample.document.addEventListener("mouseleave",	function(oEvent) {
-		if (this.tooltipNode)	{
-			this.tooltipNode.hidePopup();
-			this.tooltipNode	= null;
+	ample.bind("mouseleave",	function(oEvent) {
+		if (ample.tooltipNode)	{
+			ample.tooltipNode.hidePopup();
+			ample.tooltipNode	= null;
 		}
 	}, true);
 
-	ample.document.addEventListener("click",	function(oEvent) {
+	ample.bind("click",	function(oEvent) {
 		for (var oElement = oEvent.target, oPopup; oElement.nodeType != AMLNode.DOCUMENT_NODE; oElement = oElement.parentNode) {
 			if (oElement.$isAccessible()) {
 				if (oEvent.button == 2) {
@@ -81,7 +81,7 @@ var oXULPopupManager	= (function () {
 		}
 	}, true);
 
-	ample.document.addEventListener("mousedown",	function(oEvent) {
+	ample.bind("mousedown",	function(oEvent) {
 		// Hide popup node
 		if (this.popupNode && !(oEvent.target == this.popupNode ||(oEvent.target.compareDocumentPosition(this.popupNode) & AMLNode.DOCUMENT_POSITION_CONTAINS))) {
 			this.popupNode.hidePopup();
@@ -91,9 +91,9 @@ var oXULPopupManager	= (function () {
 			oEvent.stopPropagation();
 		}
 		// hide tooltip node
-		if (this.tooltipNode) {
-			this.tooltipNode.hidePopup();
-			this.tooltipNode= null;
+		if (ample.tooltipNode) {
+			ample.tooltipNode.hidePopup();
+			ample.tooltipNode= null;
 		}
 	}, true);
 

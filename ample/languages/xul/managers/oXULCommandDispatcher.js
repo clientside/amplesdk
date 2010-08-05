@@ -9,7 +9,7 @@
 
 var oXULCommandDispatcher	= (function () {
 	//
-	ample.document.addEventListener("DOMNodeInsertedIntoDocument", function(oEvent) {
+	ample.bind("DOMNodeInsertedIntoDocument", function(oEvent) {
 		if (oEvent.target instanceof cXULElement) {
 			var oElement, sName, sValue;
 			if (sValue = oEvent.target.attributes["command"]) {
@@ -29,7 +29,7 @@ var oXULCommandDispatcher	= (function () {
 				}
 			}
 		}
-	}, true);
+	});
 
 	// Public Object
 	return {
@@ -42,5 +42,5 @@ var oXULCommandDispatcher	= (function () {
 	}
 })();
 
-// Register with DOM
-ample.document.commandDispatcher	= oXULCommandDispatcher;
+// Register with ample object
+ample.commandDispatcher	= oXULCommandDispatcher;

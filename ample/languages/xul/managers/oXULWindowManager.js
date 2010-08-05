@@ -13,7 +13,7 @@ var oXULWindowManager	= (function () {
 	var nWindowIndex	= 1;
 
 	// Attaching manager to document
-	ample.document.addEventListener("mousedown",	function(oEvent) {
+	ample.bind("mousedown",	function(oEvent) {
 		// manage windows stack
 		for (var oElement = oEvent.target, oStyle; oElement; oElement = oElement.parentNode)
 			if (oElement instanceof cXULElement_window || oElement instanceof cXULElement_dialog || oElement instanceof cXULElement_wizard)

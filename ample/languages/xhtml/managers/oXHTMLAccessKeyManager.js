@@ -9,7 +9,7 @@
 
 var oXHTMLAccessKeyManager	= (function () {
 	// Attaching manager to document
-	ample.document.addEventListener("keydown",	function(oEvent) {
+	ample.bind("keydown",	function(oEvent) {
 		if (oEvent.altKey && oEvent.keyIdentifier != "Alt") {
 			var aKey	= oEvent.keyIdentifier.match(/U\+([\dA-F]{4})/),
 				sKey	= aKey ? String.fromCharCode(parseInt(aKey[1], 16)) : oEvent.keyIdentifier;
@@ -26,7 +26,7 @@ var oXHTMLAccessKeyManager	= (function () {
 				}
 			}
 		}
-	}, false);
+	});
 
 	// Public Object
 	return {

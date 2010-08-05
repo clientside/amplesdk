@@ -99,7 +99,7 @@ cXULPopupElement.prototype.showPopup	= function(oElement, nLeft, nTop, nType, oA
     }
 /*
 	if (this.popupType == cXULPopupElement.POPUP_TYPE_TOOLTIP)
-        this.ownerDocument.tooltipNode	= this;
+        ample.tooltipNode	= this;
     else
     {
         this.ownerDocument.popupNode	= this;
@@ -133,7 +133,7 @@ cXULPopupElement.prototype.hidePopup	= function()
         return;
 /*
 	if (this.popupType == cXULPopupElement.POPUP_TYPE_TOOLTIP)
-    	this.ownerDocument.tooltipNode	= null;
+    	ample.tooltipNode	= null;
 	else
     {
     	this.ownerDocument.popupNode	= null;
