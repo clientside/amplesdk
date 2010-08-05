@@ -30,7 +30,7 @@ function fAmple(vArgument1, vArgument2, vArgument3) {
 														'<div' + sNameSpaces + '>' +
 														vArgument1 +
 														'</div>', "text/xml");
-				if (!oDocument || ((window.document.namespaces && oDocument.parseError != 0) || !oDocument.documentElement || oDocument.getElementsByTagName("parsererror").length))
+				if (!oDocument || ((oUADocument.namespaces && oDocument.parseError != 0) || !oDocument.documentElement || oDocument.getElementsByTagName("parsererror").length))
 					throw new cAMLException(cAMLException.SYNTAX_ERR, oAmple.caller);
 				else
 					for (var nIndex = 0, aElements = oDocument.documentElement.childNodes; nIndex < aElements.length; nIndex++)
