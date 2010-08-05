@@ -211,7 +211,7 @@ function fAMLFocus_onKeyDown(oEvent) {
 		// Focus new element
 		if (oFocusGroup)
 			fAMLFocus_focus(oFocusGroup);
-/*	});	*/
+/*	}, 0);	*/
 		// Prevents browser-based focus manager
 		oEvent.preventDefault();
 	}

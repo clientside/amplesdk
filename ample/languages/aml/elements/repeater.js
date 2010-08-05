@@ -84,7 +84,7 @@ cAMLElement_repeater.prototype.refresh	= function()
 		// execute refresh
 		self._timeout	= null;
 		self.repeat();
-	});
+	}, 0);
 };
 
 cAMLElement_repeater.prototype.repeat	= function()

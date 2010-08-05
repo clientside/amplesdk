@@ -222,8 +222,8 @@ fAmple.trigger	= function(sType, oDetail) {
 // Lookup namespaces
 fAmple.namespaces	= {};
 if (bTrident)
-	for (var nIndex = 0, aAttributes = oUADocument.namespaces, oAttribute; oAttribute = aAttributes[nIndex]; nIndex++)
-		fAmple.namespaces["xmlns" + ':' + oAttribute.name]	= oAttribute.urn;
+	for (var nIndex = 0, aAttributes = oUADocument.namespaces, oAttribute, nLength = aAttributes.length; nIndex < nLength; nIndex++)
+		fAmple.namespaces["xmlns" + ':' + (oAttribute = aAttributes[nIndex]).name]	= oAttribute.urn;
 else
 	for (var nIndex = 0, aAttributes = oUADocument.documentElement.attributes, oAttribute; oAttribute = aAttributes[nIndex]; nIndex++)
 		if (oAttribute.nodeName.match(/^xmlns($|:)/))

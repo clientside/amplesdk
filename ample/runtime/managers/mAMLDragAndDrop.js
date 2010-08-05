@@ -65,7 +65,7 @@ function fAMLDragAndDrop_onMouseDown(oEvent)
 		    // Simulate initial mousemove event
 			fSetTimeout(function() {
 				fAMLDragAndDrop_onMouseMove.call(oEvent.currentTarget, oEvent);
-			});
+			}, 0);
 
 			return;
 		}

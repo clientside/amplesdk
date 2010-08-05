@@ -76,7 +76,7 @@ function fAMLResize_onMouseDown(oEvent)
 	    // Simulate initial mousemove event
 		fSetTimeout(function() {
 			fAMLResize_onMouseMove.call(oEvent.currentTarget, oEvent);
-		});
+		}, 0);
 	}
 };
 

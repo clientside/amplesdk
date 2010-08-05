@@ -55,7 +55,7 @@ cXULElement_editor.handlers	= {
 						cXULElement_editor.finalizeDocument(that);
 						setTimeout(function() {
 							cXULElement_editor.initializeDocument(that);
-						});
+						}, 0);
 					}
 					break;
 			}
@@ -75,8 +75,8 @@ cXULElement_editor.handlers	= {
 				oDOMElement.contentWindow.document.designMode	= "on";
 			setTimeout(function(){
 				cXULElement_editor.initializeDocument(that);
-			});
-		});
+			}, 0);
+		}, 0);
 	},
 	"DOMNodeRemovedFromDocument":	function() {
 		cXULElement_editor.finalizeDocument(this);

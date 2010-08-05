@@ -42,7 +42,7 @@ cAMLElement_sound.handlers	= {
 			var oSelf	= this;
 			window.setTimeout(function() {
 				oSelf.setAttribute("src", oSelf.getAttribute("src"));
-			});
+			}, 0);
 		}
 //		;ample.$instance(this).setAttribute("' + "autostart" + '", "' + this.getAttribute("autostart") + '");', 0);
 	}

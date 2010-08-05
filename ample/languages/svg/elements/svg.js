@@ -147,7 +147,7 @@ else {
 				var oEventLoad	= that.ownerDocument.createEvent("Event");
 				oEventLoad.initEvent("load", false, false);
 				that.dispatchEvent(oEventLoad);
-			});
+			}, 0);
 		}
 	};
 }

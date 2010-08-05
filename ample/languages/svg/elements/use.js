@@ -31,7 +31,7 @@ if (cSVGElement.useVML) {
 
 						that.parentNode.insertBefore(oNode, that);
 					}
-//				});
+//				}, 0);
 			}
 		}
 	};
