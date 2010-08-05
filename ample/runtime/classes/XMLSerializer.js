@@ -11,7 +11,7 @@ if (!cXMLSerializer) {
 	cXMLSerializer = function(){};
 	cXMLSerializer.prototype.serializeToString = function(oNode) {
 		// Validate arguments
-		fAML_validate(arguments, [
+		fGuard(arguments, [
 			["node",	cXMLNode]
 		]);
 

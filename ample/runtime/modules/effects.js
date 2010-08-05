@@ -10,7 +10,7 @@
 //
 cAMLQuery.prototype.animate	= function(oBag, nSpeed, fEasing, fCallback) {
 	// Validate API call
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["bag",		cObject, true],
 		["speend",	cObject, true],
 		["easing",		cFunction, true],

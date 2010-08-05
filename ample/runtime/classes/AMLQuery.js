@@ -11,3 +11,8 @@
 var cAMLQuery	= function(){};
 cAMLQuery.prototype.length		= 0;
 cAMLQuery.prototype.selector	= '';
+
+function fAMLQuery_each(oQuery, fCallback, aArguments) {
+	for (var nIndex = 0; nIndex < oQuery.length; nIndex++)
+		fCallback.apply(oQuery[nIndex], aArguments || [nIndex, oQuery[nIndex]]);
+};

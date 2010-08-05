@@ -20,7 +20,7 @@ oAMLXInclude10_implementation.traverse	= function(oElementDOM, oNode) {
 		oRequest.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 		oRequest.setRequestHeader("X-User-Agent", oAMLConfiguration_values["ample-user-agent"]);
 		oRequest.send(null);
-		if (oDocument = fAML_getResponseDocument(oRequest)) {
+		if (oDocument = fBrowser_getResponseDocument(oRequest)) {
 			// set xml:base according to spec
 			if (!oDocument.documentElement.getAttribute("xml:base"))
 				oDocument.documentElement.setAttribute("xml:base", sHref);
@@ -36,9 +36,9 @@ oAMLXInclude10_implementation.traverse	= function(oElementDOM, oNode) {
 	}
 //->Debug
 	else
-		fAML_warn(nAML_UNKNOWN_ELEMENT_NS_WRN, [oElementDOM.tagName, oElementDOM.namespaceURI]);
+		fUtilities_warn(sAML_UNKNOWN_ELEMENT_NS_WRN, [oElementDOM.tagName, oElementDOM.namespaceURI]);
 //<-Debug
 };
 
 // register processor
-oAML_processors[sAMLXInclude10_namespaceURI]	= oAMLXInclude10_implementation;
+oAMLImplementation_processors[sAMLXInclude10_namespaceURI]	= oAMLXInclude10_implementation;

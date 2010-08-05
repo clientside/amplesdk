@@ -17,7 +17,7 @@ cAMLMouseWheelEvent.prototype.initMouseWheelEvent	= function(sType, bCanBubble, 
 {
 /*
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["type",		cString],
 		["canBubble",	cBoolean],
 		["cancelable",	cBoolean]

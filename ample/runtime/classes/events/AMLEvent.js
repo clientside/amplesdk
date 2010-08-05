@@ -39,7 +39,7 @@ cAMLEvent.prototype.initEvent		= function(sType, bCanBubble, bCancelable)
 {
 /*
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["type",		cString],
 		["canBubble",	cBoolean],
 		["cancelable",	cBoolean]

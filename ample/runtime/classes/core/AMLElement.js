@@ -35,11 +35,11 @@ function fAMLElement_appendChild(oParent, oNode)
 	var oGateway, oElement;
 	if (oParent.nodeType == cAMLNode.ELEMENT_NODE)
 		if (oGateway =(oParent.$getContainer("gateway") || oParent.$getContainer()))
-			if (oElement = (oNode.$getContainer() || fAML_render(oNode)))
+			if (oElement = (oNode.$getContainer() || fBrowser_render(oNode)))
 		   		oGateway.appendChild(oElement);
 	// Register Instance
-	if (oAML_all[oParent.uniqueID])
-		fAML_register(oNode);
+	if (oAMLDocument_all[oParent.uniqueID])
+		fAMLDocument_register(oParent.ownerDocument, oNode);
 
 	//
     return oNode;
@@ -48,7 +48,7 @@ function fAMLElement_appendChild(oParent, oNode)
 cAMLElement.prototype.appendChild	= function(oNode)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["node",	cAMLNode]
 	]);
 
@@ -84,8 +84,8 @@ cAMLElement.prototype.$appendChildAnonymous	= function(oNode)
     fAMLNode_dispatchEvent(oNode, oEvent);
 
 	// Register Instance
-	if (oAML_all[this.uniqueID])
-		fAML_register(oNode);
+	if (oAMLDocument_all[this.uniqueID])
+		fAMLDocument_register(this.ownerDocument, oNode);
 
 	return oNode;
 };
@@ -99,7 +99,7 @@ function fAMLElement_insertBefore(oParent, oNode, oBefore)
 	var oGateway, oChild;
 	if (oParent.nodeType == cAMLNode.ELEMENT_NODE)
 		if ((oGateway =(oParent.$getContainer("gateway") || oParent.$getContainer())))
-			if (oChild = (oNode.$getContainer() || fAML_render(oNode)))
+			if (oChild = (oNode.$getContainer() || fBrowser_render(oNode)))
 	    		oGateway.insertBefore(oChild, function() {
 	    			for (var oElement; oBefore; oBefore = oBefore.nextSibling)
 	    				if (oElement = oBefore.$getContainer())
@@ -107,8 +107,8 @@ function fAMLElement_insertBefore(oParent, oNode, oBefore)
 	    			return null;
 	    		}());
 	// Register Instance
-	if (oAML_all[oParent.uniqueID])
-		fAML_register(oNode);
+	if (oAMLDocument_all[oParent.uniqueID])
+		fAMLDocument_register(oParent.ownerDocument, oNode);
 
 	//
     return oNode;
@@ -117,7 +117,7 @@ function fAMLElement_insertBefore(oParent, oNode, oBefore)
 cAMLElement.prototype.insertBefore	= function(oNode, oBefore)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["node",	cAMLNode],
 		["before",	cAMLNode, false, true]
 	]);
@@ -151,8 +151,8 @@ function fAMLElement_removeChild(oParent, oNode)
 	fAMLNode_dispatchEvent(oNode, oEvent);
 
 	// Unregister Instance
-	if (oAML_all[oParent.uniqueID])
-		fAML_unregister(oNode);
+	if (oAMLDocument_all[oParent.uniqueID])
+		fAMLDocument_unregister(oParent.ownerDocument, oNode);
 
 	// Remove from DOM
 	var oGateway, oChild;
@@ -174,7 +174,7 @@ function fAMLElement_removeChild(oParent, oNode)
 cAMLElement.prototype.removeChild	= function(oNode)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["node",	cAMLNode]
 	]);
 
@@ -206,8 +206,8 @@ cAMLElement.prototype.$removeChildAnonymous	= function(oNode)
     this.$childNodesAnonymous.$remove(oNode);
 
 	// Register Instance
-	if (oAML_all[this.uniqueID])
-		fAML_unregister(oNode);
+	if (oAMLDocument_all[this.uniqueID])
+		fAMLDocument_unregister(this.ownerDocument, oNode);
 
 	return oNode;
 };
@@ -218,18 +218,18 @@ function fAMLElement_replaceChild(oParent, oNode, oOld)
 	fAMLNode_replaceChild(oParent, oNode, oOld);
 
 	// Unregister Instance
-	fAML_unregister(oOld);
+	fAMLDocument_unregister(oParent.ownerDocument, oOld);
 
 	// Replace in from DOM
 	var oElement, oGateway, oChild;
 	if (oParent.nodeType == cAMLNode.ELEMENT_NODE)
 		if ((oGateway =(oParent.$getContainer("gateway") || oParent.$getContainer())) && (oChild = oOld.$getContainer()))
-			if (oElement = (oNode.$getContainer() || fAML_render(oNode)))
+			if (oElement = (oNode.$getContainer() || fBrowser_render(oNode)))
 		    	oGateway.replaceChild(oElement, oChild);
 
 	// Register Instance
-	if (oAML_all[oParent.uniqueID])
-		fAML_register(oNode);
+	if (oAMLDocument_all[oParent.uniqueID])
+		fAMLDocument_register(oParent.ownerDocument, oNode);
 
 	return oOld;
 };
@@ -237,7 +237,7 @@ function fAMLElement_replaceChild(oParent, oNode, oOld)
 cAMLElement.prototype.replaceChild	= function(oNode, oOld)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["node",	cAMLNode],
 		["old",		cAMLNode, false, true]
 	]);
@@ -287,7 +287,7 @@ function fAMLElement_cloneNode(oNode, bDeep)
 cAMLElement.prototype.cloneNode	= function(bDeep)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["deep",	cBoolean]
 	]);
 
@@ -302,7 +302,7 @@ function fAMLElement_hazAttribute(oElement, sName)
 cAMLElement.prototype.hasAttribute	= function(sName)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["name",		cString]
 	]);
 
@@ -321,7 +321,7 @@ function fAMLElement_hazAttributeNS(oElement, sNameSpaceURI, sLocalName)
 cAMLElement.prototype.hasAttributeNS	= function(sNameSpaceURI, sLocalName)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["namespaceURI",	cString, false, true]
 		["localName",		cString]
 	]);
@@ -337,13 +337,13 @@ function fAMLElement_setAttribute(oElement, sName, sValue)
 
     if (sValueOld != sValue) {
     	// Only operate on shadow if element is in the DOM
-    	if (oAML_all[oElement.uniqueID] && (sName == 'id' || sName == "class" || sName == "style")) {
+    	if (oAMLDocument_all[oElement.uniqueID] && (sName == 'id' || sName == "class" || sName == "style")) {
     		// Find shadow content first
     		var oElementDOM	= oElement.$getContainer();
     		if (sName == 'id') {
 	    		if (sValue)
-	    			oAML_ids[sValue]	= oElement;
-    			delete oAML_ids[sValueOld];
+	    			oAMLDocument_ids[sValue]	= oElement;
+    			delete oAMLDocument_ids[sValueOld];
 	    	}
     		// Update view
     		if (oElementDOM) {
@@ -366,7 +366,7 @@ function fAMLElement_setAttribute(oElement, sName, sValue)
     	oElement.attributes[sName]	= sValue;
 
     	// Fire Mutation event
-    	if (oAML_all[oElement.uniqueID]) {
+    	if (oAMLDocument_all[oElement.uniqueID]) {
 		    var oEvent = new cAMLMutationEvent;
 		    oEvent.initMutationEvent("DOMAttrModified", true, false, null, bValue ? sValueOld : null, sValue, sName, bValue ? cAMLMutationEvent.MODIFICATION : cAMLMutationEvent.ADDITION);
 		    fAMLNode_dispatchEvent(oElement, oEvent);
@@ -377,7 +377,7 @@ function fAMLElement_setAttribute(oElement, sName, sValue)
 cAMLElement.prototype.setAttribute	= function(sName, sValue)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["name",		cString],
 		["value",		cObject]
 	]);
@@ -418,7 +418,7 @@ function fAMLElement_setAttributeNS(oElement, sNameSpaceURI, sQName, sValue)
 		// Global attributes module
 		if (!(sQName == "xmlns" || sNameSpaceURI == "http://www.w3.org/2000/xmlns/" || sNameSpaceURI == "http://www.w3.org/XML/1998/namespace"))
 		{
-			var cAttribute	= oAML_attributes[sNameSpaceURI + '#' + sLocalName],
+			var cAttribute	= oAMLImplementation_attributes[sNameSpaceURI + '#' + sLocalName],
 				oAttribute,
 				oEvent;
 
@@ -465,7 +465,7 @@ function fAMLElement_setAttributeNS(oElement, sNameSpaceURI, sQName, sValue)
 cAMLElement.prototype.setAttributeNS	= function(sNameSpaceURI, sQName, sValue)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["namespaceURI",	cString, false, true],
 		["qualifiedName",	cString],
 		["value",			cObject]
@@ -484,7 +484,7 @@ cAMLElement.prototype.setAttributeNodeNS	= function(oAttribute)
 //->Source
 /*
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["node",		cAMLAttr]
 	]);
 
@@ -504,7 +504,7 @@ function fAMLElement_getAttribute(oElement, sName)
 cAMLElement.prototype.getAttribute	= function(sName)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["name",		cString]
 	]);
 
@@ -523,7 +523,7 @@ function fAMLElement_getAttributeNS(oElement, sNameSpaceURI, sLocalName)
 cAMLElement.prototype.getAttributeNS	= function(sNameSpaceURI, sLocalName)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["namespaceURI",	cString, false, true],
 		["localName",		cString]
 	]);
@@ -546,11 +546,11 @@ function fAMLElement_removeAttribute(oElement, sName)
 	if (sName in oElement.attributes) {
 		var sValueOld	= oElement.attributes[sName];
 		// Only operate on shadow if element is in the DOM
-    	if (oAML_all[oElement.uniqueID] && (sName == 'id' || sName == "class" || sName == "style")) {
+    	if (oAMLDocument_all[oElement.uniqueID] && (sName == 'id' || sName == "class" || sName == "style")) {
     		// Find shadow content
     		var oElementDOM	= oElement.$getContainer();
     		if (sName == 'id') {
-		    	delete oAML_ids[sValueOld];
+		    	delete oAMLDocument_ids[sValueOld];
 		    }
 		    // Update view
 		    if (oElementDOM) {
@@ -572,7 +572,7 @@ function fAMLElement_removeAttribute(oElement, sName)
 	    delete oElement.attributes[sName];
 
 		// Fire Mutation event
-	    if (oAML_all[oElement.uniqueID]) {
+	    if (oAMLDocument_all[oElement.uniqueID]) {
 		    var oEvent = new cAMLMutationEvent;
 		    oEvent.initMutationEvent("DOMAttrModified", true, false, null, sValueOld, null, sName, cAMLMutationEvent.REMOVAL);
 		    fAMLNode_dispatchEvent(oElement, oEvent);
@@ -582,7 +582,7 @@ function fAMLElement_removeAttribute(oElement, sName)
 
 cAMLElement.prototype.removeAttribute	= function(sName)
 {
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["name",	cString]
 	]);
 
@@ -601,7 +601,7 @@ function fAMLElement_removeAttributeNS(oElement, sNameSpaceURI, sLocalName)
 		// Global attributes module
 		if (sQName in oElement.attributes && !(sLocalName == "xmlns" || sNameSpaceURI == "http://www.w3.org/2000/xmlns/" || sNameSpaceURI == "http://www.w3.org/XML/1998/namespace"))
 		{
-			var cAttribute	= oAML_attributes[sNameSpaceURI + '#' + sLocalName],
+			var cAttribute	= oAMLImplementation_attributes[sNameSpaceURI + '#' + sLocalName],
 				sValue		= oElement.attributes[sQName],
 				oAttribute,
 				oEvent;
@@ -640,7 +640,7 @@ function fAMLElement_removeAttributeNS(oElement, sNameSpaceURI, sLocalName)
 cAMLElement.prototype.removeAttributeNS	= function(sNameSpaceURI, sLocalName)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["namespaceURI",	cString, false, true],
 		["localName",		cString]
 	]);
@@ -678,7 +678,7 @@ function fAMLElement_getElementsByTagName(oElement, sTagName)
 cAMLElement.prototype.getElementsByTagName	= function(sTagName)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["name",	cString]
 	]);
 
@@ -706,7 +706,7 @@ function fAMLElement_getElementsByTagNameNS(oElement, sNameSpaceURI, sLocalName)
 cAMLElement.prototype.getElementsByTagNameNS	= function(sNameSpaceURI, sLocalName)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["namespaceURI",	cString],
 		["localName",		cString]
 	]);
@@ -815,7 +815,7 @@ cAMLElement.prototype.getBoundingClientRect	= function(sPseudo)
 cAMLElement.prototype.$getContainer	= function(sName)
 {
 	var sShadow	= '#' +(sName || ''),
-		oCache	= oAML_shadow[this.uniqueID] ||(oAML_shadow[this.uniqueID] = {});
+		oCache	= oAMLDocument_shadow[this.uniqueID] ||(oAMLDocument_shadow[this.uniqueID] = {});
 
 	if (sShadow in oCache)
 		return oCache[sShadow];
@@ -921,7 +921,7 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 //<-Source
 	if (oElementDOM) {
 		if (bTransition) {
-			var oStyle	= fAML_getComputedStyle(oElementDOM),
+			var oStyle	= fBrowser_getComputedStyle(oElementDOM),
 				oBefore	= {};
 			for (var nIndex = 0, nLength = aInterestingPropertiesDOM.length, sKey; nIndex < nLength; nIndex++) {
 				sKey = aInterestingPropertiesDOM[nIndex];
@@ -997,7 +997,7 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 		}
 
 		if (bTransition) {
-			var oStyle	= fAML_getComputedStyle(oElementDOM),
+			var oStyle	= fBrowser_getComputedStyle(oElementDOM),
 				aPropertiesAfter	= [],
 				aPropertiesReset	= [];
 			for (var nIndex = 0, nLength = aInterestingPropertiesDOM.length, sKey, sValue; nIndex < nLength; nIndex++) {
@@ -1009,7 +1009,7 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 				if (oBefore[sKey] != sValue) {
 					if (!oElementDOM.style[sValue])
 						aPropertiesReset.push(sKey);
-					fAML_setStyle(oElementDOM, sKey, oBefore[sKey]);
+					fBrowser_setStyle(oElementDOM, sKey, oBefore[sKey]);
 					aPropertiesAfter.push(sKey + ":" + sValue);
 				}
 			}
@@ -1017,7 +1017,7 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 			if (aPropertiesAfter.length) {
 				fAMLElementAnimation_play(oElement, aPropertiesAfter.join(';'), 300, 3, function() {
 					for (var nIndex = 0; nIndex < aPropertiesReset.length; nIndex++)
-						fAML_setStyle(oElementDOM, aPropertiesReset[nIndex], '');
+						fBrowser_setStyle(oElementDOM, aPropertiesReset[nIndex], '');
 				});
 			}
 		}
@@ -1025,7 +1025,7 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 	}
 //->Debug
 	else
-		fAML_warn(nAML_NOT_FOUND_SHADOW_WRN, [oElement.tagName, sContainer || '']);
+		fUtilities_warn(sAML_NOT_FOUND_SHADOW_WRN, [oElement.tagName, sContainer || '']);
 //<-Debug
 
 //->Source
@@ -1037,7 +1037,7 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 cAMLElement.prototype.$setPseudoClass	= function(sName, bState, sContainer)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["name",	cString],
 		["state",	cBoolean],
 		["pseudoElement",	cString, true]
@@ -1091,19 +1091,19 @@ function fAMLElement_onReadyStateChange(oRequest, oElement)
 		// Clear
 		fAMLElement_clear(oElement);
 
-	    var oDocument	= fAML_getResponseDocument(oRequest),
+	    var oDocument	= fBrowser_getResponseDocument(oRequest),
 			oEvent		= new cAMLEvent;
 	    if (oDocument)
 	    {
 			// Render Content
-	    	fAMLElement_appendChild(oElement, fAML_import(oDocument.documentElement, true, null));
+	    	fAMLElement_appendChild(oElement, fAMLDocument_import(oElement.ownerDocument, oDocument.documentElement, true, null));
 			// Initialize event
 			oEvent.initEvent("load", false, false);
 	    }
 	    else
 	    {
 //->Debug
-			fAML_warn(nAML_NOT_WELLFORMED_WRN);
+			fUtilities_warn(sAML_NOT_WELLFORMED_WRN);
 //<-Debug
 
 			// Initialize event
@@ -1141,7 +1141,7 @@ function fAMLElement_abort(oElement)
 cAMLElement.prototype.$load		= function(sUrl, sMethod, oHeaders, sData)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["url",		cString],
 		["method",	cString, true, true],
 		["headers",	cObject, true, true],
@@ -1158,7 +1158,7 @@ cAMLElement.prototype.$abort	= function()
 
 cAMLElement.prototype.scrollIntoView	= function(bTop) {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["top",	cBoolean, true, false]	// Optional, null is not allowed
 	]);
 

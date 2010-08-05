@@ -105,7 +105,7 @@ function fAMLNode_appendChild(oParent, oNode)
 cAMLNode.prototype.appendChild	= function(oNode)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["node",	cAMLNode]
 	]);
 
@@ -160,7 +160,7 @@ function fAMLNode_insertBefore(oParent, oNode, oBefore)
 cAMLNode.prototype.insertBefore	= function(oNode, oBefore)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["node",	cAMLNode],
 		["before",	cAMLNode, false, true]
 	]);
@@ -206,7 +206,7 @@ function fAMLNode_removeChild(oParent, oNode)
 cAMLNode.prototype.removeChild	= function(oNode)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["node",	cAMLNode]
 	]);
 
@@ -225,7 +225,7 @@ function fAMLNode_replaceChild(oParent, oNode, oOld)
 cAMLNode.prototype.replaceChild	= function(oNode, oOld)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["node",	cAMLNode],
 		["old",		cAMLNode, false, true]
 	]);
@@ -291,7 +291,7 @@ function fAMLNode_lookupPrefix(oNode, sNameSpaceURI)
 cAMLNode.prototype.lookupPrefix	= function(sNameSpaceURI)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["namespaceURI",	cString, false, true]
 	]);
 
@@ -325,7 +325,7 @@ function fAMLNode_lookupNamespaceURI(oNode, sPrefix)
 cAMLNode.prototype.lookupNamespaceURI	= function(sPrefix)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["prefix",	cString, false, true]
 	]);
 
@@ -368,7 +368,7 @@ function fAMLNode_compareDocumentPosition(oNode, oChild)
 cAMLNode.prototype.compareDocumentPosition	= function(oChild)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["node",	cAMLNode]
 	]);
 
@@ -486,7 +486,7 @@ function fAMLEventTarget_addEventListener(oNode, sEventType, fListener, bUseCapt
 cAMLNode.prototype.addEventListener		= function(sEventType, fListener, bUseCapture)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["eventType",	cString],
 		["listener",	cObject],
 		["useCapture",	cBoolean,	true]
@@ -511,7 +511,7 @@ function fAMLEventTarget_removeEventListener(oNode, sEventType, fListener, bUseC
 cAMLNode.prototype.removeEventListener	= function(sEventType, fListener, bUseCapture)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["eventType",	cString],
 		["listener",	cObject],
 		["useCapture",	cBoolean,	true]
@@ -559,13 +559,13 @@ function fAMLNode_handleEvent(oNode, oEvent) {
 	// Event default actions implementation
 	if (oEvent.eventPhase != cAMLEvent.CAPTURING_PHASE && !oEvent.defaultPrevented) {
 		if (oNode.nodeType == 1) {
-			if (cElement = oAML_elements[oNode.namespaceURI + '#' + oNode.localName])
+			if (cElement = oAMLImplementation_elements[oNode.namespaceURI + '#' + oNode.localName])
 				if (cElement.handlers && cElement.handlers[oEvent.type])
 					cElement.handlers[oEvent.type].call(oNode, oEvent);
 		}
 		else
 		if (oNode.nodeType == 2) {
-			if (cAttribute = oAML_attributes[oNode.namespaceURI + '#' + oNode.localName])
+			if (cAttribute = oAMLImplementation_attributes[oNode.namespaceURI + '#' + oNode.localName])
 				if (cAttribute.handlers && cAttribute.handlers[oEvent.type])
 					cAttribute.handlers[oEvent.type].call(oNode, oEvent);
 		}
@@ -677,7 +677,7 @@ function fAMLNode_dispatchEvent(oNode, oEvent)
 cAMLNode.prototype.dispatchEvent	= function(oEvent)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["event",	cAMLEvent]
 	]);
 
@@ -732,7 +732,7 @@ cAMLNode.prototype.selectNodes	= function(sXPath)
 		switch (oNode.nodeType)
 		{
 			case cAMLNode.ELEMENT_NODE:
-				aNodeList.$add(oAML_all[oNode.getAttribute('_')]);
+				aNodeList.$add(oAMLDocument_all[oNode.getAttribute('_')]);
 				break;
 
 			case cAMLNode.ATTRIBUTE_NODE:
@@ -784,7 +784,7 @@ function fAMLNode_toXML(oNode)
 			oAttributes	= oNode.attributes;
 			for (sName in oAttributes)
 				if (oAttributes.hasOwnProperty(sName))
-					aHtml.push(' ' + sName + '=' + '"' + fAML_encodeEntities(oAttributes[sName]) + '"');
+					aHtml.push(' ' + sName + '=' + '"' + fUtilities_encodeEntities(oAttributes[sName]) + '"');
 //			aHtml.push(' ' + '_' + '=' + '"' + oNode.uniqueID + '"');
 			if (oNode.hasChildNodes()) {
 				aHtml.push('>');

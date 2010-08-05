@@ -11,7 +11,7 @@
 // Collection
 cAMLQuery.prototype.get	= function(nIndex) {
 	// Validate API call
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["index",	cNumber]
 	]);
 
@@ -21,7 +21,7 @@ cAMLQuery.prototype.get	= function(nIndex) {
 
 cAMLQuery.prototype.eq	= function(nIndex) {
 	// Validate API call
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["index",	cNumber]
 	]);
 
@@ -44,13 +44,13 @@ cAMLQuery.prototype.first	= function() {
 cAMLQuery.prototype.last	= function() {
 	var oQuery	= new cAMLQuery;
 	if (this.length)
-		oQuery[fAmple.length++]	= this[this.length - 1];
+		oQuery[oAmple.length++]	= this[this.length - 1];
 	return oQuery;
 };
 
 cAMLQuery.prototype.slice	= function(nFirst, nLast) {
 	// Validate API call
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["first",	cNumber],
 		["last",	cNumber, true]
 	]);
@@ -66,11 +66,11 @@ cAMLQuery.prototype.slice	= function(nFirst, nLast) {
 
 cAMLQuery.prototype.each	= function(fCallback, aArguments) {
 	// Validate API call
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["callback",	cFunction],
 		["arguments",	cObject, true]
 	]);
 
 	// Invoke implementation
-	fAmple_each(this, fCallback, aArguments);
+	fAMLQuery_each(this, fCallback, aArguments);
 };

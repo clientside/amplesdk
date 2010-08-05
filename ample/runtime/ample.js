@@ -7,6 +7,11 @@
  *
  */
 
+// Create Ample SDK document object
+var oAmple_document		= fAMLImplementation_createDocument(new cAMLImplementation, "http://www.w3.org/1999/xhtml", "body", null);
+oAmple_document.documentElement.$getContainer	= function(sName) {return sName && sName != "gateway" ? null : oUADocument.body};
+oAmple_document.readyState	= "loading";
+
 //
 function fAmple(vArgument1, vArgument2, vArgument3) {
 	// Validate API call
@@ -15,48 +20,47 @@ function fAmple(vArgument1, vArgument2, vArgument3) {
 		if (typeof vArgument1 == "string" || vArgument1 instanceof cString) {
 			if (vArgument1.substr(0,1) == "<") {
 				// XML string
-				var sNameSpaces	= (function() {
-					var aNameSpaces	= [];
-					for (var sKey in fAmple.namespaces)
-						aNameSpaces.push(sKey + '="' + fAmple.namespaces[sKey] + '"');
-					return ' ' + aNameSpaces.join(' ');
-				})();
-				var oDocument	= new cDOMParser().parseFromString(
-														'<!' + "DOCTYPE" + ' ' + "div" + '[' + sAML_entities + ']>' +
+				var aNameSpaces	= [];
+				for (var sKey in oAmple.namespaces)
+					aNameSpaces.push(sKey + '="' + oAmple.namespaces[sKey] + '"');
+				//
+				var sNameSpaces	= ' ' + aNameSpaces.join(' ');
+					oDocument	= new cDOMParser().parseFromString(
+														'<!' + "DOCTYPE" + ' ' + "div" + '[' + aUtilities_entities + ']>' +
 														'<div' + sNameSpaces + '>' +
 														vArgument1 +
 														'</div>', "text/xml");
 				if (!oDocument || ((window.document.namespaces && oDocument.parseError != 0) || !oDocument.documentElement || oDocument.getElementsByTagName("parsererror").length))
-					throw new cAMLException(cAMLException.SYNTAX_ERR, fAmple.caller);
+					throw new cAMLException(cAMLException.SYNTAX_ERR, oAmple.caller);
 				else
 					for (var nIndex = 0, aElements = oDocument.documentElement.childNodes; nIndex < aElements.length; nIndex++)
 						if (aElements[nIndex].nodeType == cAMLNode.ELEMENT_NODE)
-							oQuery[oQuery.length++]	= fAML_import(aElements[nIndex], true);
+							oQuery[oQuery.length++]	= fAMLDocument_import(oAmple_document, aElements[nIndex], true);
 			}
 			else {
 				// Validate API call (custom)
 				if (arguments.length > 1)
 					if (!(vArgument2 instanceof cAMLNode))
-						throw new cAMLException(cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR, fAmple.caller
+						throw new cAMLException(cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR, oAmple.caller
 //->Debug
-							, ['2' + aAML_endings[1], "context", "ample", "AMLNode"]
+							, ['2' + oGuard_endings[1], "context", "ample", "AMLNode"]
 //<-Debug
 						);
 				if (arguments.length > 2 && vArgument3 !== null)
 					if (!(vArgument3 instanceof cFunction))
-						throw new cAMLException(cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR, fAmple.caller
+						throw new cAMLException(cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR, oAmple.caller
 //->Debug
-							, ['3' + aAML_endings[2], "query", "ample", "Function"]
+							, ['3' + oGuard_endings[2], "query", "ample", "Function"]
 //<-Debug
 						);
 				// Invoke implementation
 				var aResult;
 				try {
-					aResult	= fAMLSelector_query([vArgument2 || oAML_document], vArgument1, vArgument3 || fResolver);
+					aResult	= fAMLSelector_query([vArgument2 || oAmple_document], vArgument1, vArgument3 || fAmple_resolver);
 				}
 				catch (oException) {
 					// Re-point caller property and re-throw error
-					oException.caller	= fAmple.caller;
+					oException.caller	= oAmple.caller;
 					throw oException;
 				}
 				oQuery.length	= 0;
@@ -70,13 +74,13 @@ function fAmple(vArgument1, vArgument2, vArgument3) {
 			oQuery[oQuery.length++]	= vArgument1;
 		else
 		if (vArgument1 instanceof cAMLQuery)
-			fAmple_each(vArgument1, function() {
+			fAMLQuery_each(vArgument1, function() {
 				oQuery[oQuery.length++]	= this;
 			});
 		else
-			throw new cAMLException(cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR, fAmple.caller
+			throw new cAMLException(cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR, oAmple.caller
 //->Debug
-				, ['1' + aAML_endings[0], "query", "ample", "String" + '", "' + "AMLQuery" + '" or "' + "AMLElement"]
+				, ['1' + oGuard_endings[0], "query", "ample", "String" + '", "' + "AMLQuery" + '" or "' + "AMLElement"]
 //<-Debug
 			);
 	}
@@ -84,19 +88,22 @@ function fAmple(vArgument1, vArgument2, vArgument3) {
 	// Invoke implementation
 	return oQuery;
 };
-
 // Magic
 fAmple.prototype	= cAMLQuery.prototype;
 
-function fAmple_each(oQuery, fCallback, aArguments) {
-	for (var nIndex = 0; nIndex < oQuery.length; nIndex++)
-		fCallback.apply(oQuery[nIndex], aArguments || [nIndex, oQuery[nIndex]]);
-};
+// Create Ample object
+var oAmple	= fAmple;
+oAmple.document		= oAmple_document;
+oAmple.namespaces	= {};
+//->Source
+oAmple.elements		= oAMLImplementation_elements;
+oAmple.attributes	= oAMLImplementation_attributes;
+//<-Source
 
 // Extension Mechanism
-fAmple.extend	= function(oSource, oTarget) {
+oAmple.extend	= function(oSource, oTarget) {
 	// Validate API call
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["source",	cObject],
 		["target",	cObject, true]
 	]);
@@ -104,24 +111,24 @@ fAmple.extend	= function(oSource, oTarget) {
 	if (oSource instanceof cFunction) {
 		var oPrototype	= oSource.prototype;
 		if (oPrototype instanceof cAMLElement)
-			oAML_elements[oPrototype.namespaceURI + '#' + oPrototype.localName]	= oSource;
+			oAMLImplementation_elements[oPrototype.namespaceURI + '#' + oPrototype.localName]	= oSource;
 		else
 		if (oPrototype instanceof cAMLAttr)
-			oAML_attributes[oPrototype.namespaceURI + '#' + oPrototype.localName]	= oSource;
+			oAMLImplementation_attributes[oPrototype.namespaceURI + '#' + oPrototype.localName]	= oSource;
 		else
 			throw new cAMLException(cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR, null
 //->Debug
-				, ['1' + aAML_endings[0], "source", "extend", "AMLAttr" + '" or "' + "AMLElement"]
+				, ['1' + oGuard_endings[0], "source", "extend", "AMLAttr" + '" or "' + "AMLElement"]
 //<-Debug
 			);
 	}
 	else {
 		if (!oTarget)
-			oTarget	= fAmple.prototype;
+			oTarget	= oAmple.prototype;
 		for (var sName in oSource) {
 //->Debug
-			if (oTarget == fAmple.prototype && oTarget.hasOwnProperty(sName))
-				fAML_warn(nAML_REWRITING_LOADED_PLUGIN_WRN, [sName]);
+			if (oTarget == oAmple.prototype && oTarget.hasOwnProperty(sName))
+				fUtilities_warn(sAML_REWRITING_LOADED_PLUGIN_WRN, [sName]);
 //<-Debug
 			if (oSource.hasOwnProperty(sName))
 				oTarget[sName]	= oSource[sName];
@@ -130,30 +137,30 @@ fAmple.extend	= function(oSource, oTarget) {
 };
 
 // Ready event
-fAmple.ready	= function(fHandler) {
+oAmple.ready	= function(fHandler) {
 	// Validate API call
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["handler",	cFunction]
 	]);
 
 	// Invoke implementation
-	oAML_document.addEventListener("load", fHandler, false);
+	oAmple_document.addEventListener("load", fHandler, false);
 };
 
-fAmple.guard	= function(aArguments, aParameters) {
+oAmple.guard	= function(aArguments, aParameters) {
 	// Validate API call
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["arguments",	cArguments],
 		["parameters",	cArray]
 	]);
 
 	// Invoke implementation
-	fAML_validate(aArguments, aParameters);
+	fGuard(aArguments, aParameters);
 };
 
-fAmple.config	= function(sName, oValue) {
+oAmple.config	= function(sName, oValue) {
 	// Validate API call
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["name",	cString],
 		["value",	cObject, true]
 	]);
@@ -162,50 +169,50 @@ fAmple.config	= function(sName, oValue) {
 	var sPrefix	= "ample" + '-';
 	if (arguments.length > 1) {
 		if (sName != "version")
-			oAML_document.domConfig.setParameter(sPrefix + sName, oValue);
+			oAmple_document.domConfig.setParameter(sPrefix + sName, oValue);
 //->Debug
 		else
-			fAML_warn(nAML_CONFIGURATION_READONLY_WRN, [sName]);
+			fUtilities_warn(sAML_CONFIGURATION_READONLY_WRN, [sName]);
 //<-Debug
 	}
 	else
-		return oAML_document.domConfig.getParameter(sPrefix + sName);
+		return oAmple_document.domConfig.getParameter(sPrefix + sName);
 };
 
 // Ajax
-fAmple.ajax	= function(oBag) {
+oAmple.ajax	= function(oBag) {
 	// TODO
 };
 
 // Bind shortcut
-fAmple.bind	= function(sType, fHandler, bCapture) {
+oAmple.bind	= function(sType, fHandler, bCapture) {
 	// Validate API call
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["type",	cString],
 		["handler",	cFunction],
 		["capture",	cBoolean,	true]
 	]);
 
 	// Invoke implementation
-	fAMLEventTarget_addEventListener(oAML_document, sType, fHandler, bCapture || false);
+	fAMLEventTarget_addEventListener(oAmple_document, sType, fHandler, bCapture || false);
 };
 
 // Unbind shortcut
-fAmple.unbind	= function(sType, fHandler, bCapture) {
+oAmple.unbind	= function(sType, fHandler, bCapture) {
 	// Validate API call
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["type",	cString],
 		["handler",	cFunction],
 		["capture",	cBoolean,	true]
 	]);
 
 	// Invoke implementation
-	fAMLEventTarget_removeEventListener(oAML_document, sType, fHandler, bCapture || false);
+	fAMLEventTarget_removeEventListener(oAmple_document, sType, fHandler, bCapture || false);
 };
 
-fAmple.trigger	= function(sType, oDetail) {
+oAmple.trigger	= function(sType, oDetail) {
 	// Validate API call
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["type",	cString],
 		["detail",	oDetail, true, true]
 	]);
@@ -216,36 +223,29 @@ fAmple.trigger	= function(sType, oDetail) {
 
 	var oEvent	= new cAMLCustomEvent;
 	oEvent.initCustomEvent(sType, true, true, oDetail);
-	fAMLNode_dispatchEvent(oAML_document);
+	fAMLNode_dispatchEvent(oAmple_document);
 };
 
 // Lookup namespaces
-fAmple.namespaces	= {};
 if (bTrident)
 	for (var nIndex = 0, aAttributes = oUADocument.namespaces, oAttribute, nLength = aAttributes.length; nIndex < nLength; nIndex++)
-		fAmple.namespaces["xmlns" + ':' + (oAttribute = aAttributes[nIndex]).name]	= oAttribute.urn;
+		oAmple.namespaces["xmlns" + ':' + (oAttribute = aAttributes[nIndex]).name]	= oAttribute.urn;
 else
 	for (var nIndex = 0, aAttributes = oUADocument.documentElement.attributes, oAttribute; oAttribute = aAttributes[nIndex]; nIndex++)
 		if (oAttribute.nodeName.match(/^xmlns($|:)/))
-			fAmple.namespaces[oAttribute.nodeName]	= oAttribute.nodeValue;
-if (!fAmple.namespaces["xmlns"])
-	fAmple.namespaces["xmlns"]	= "http://www.w3.org/1999/xhtml";
-if (!fAmple.namespaces["xmlns:aml"])
-	fAmple.namespaces["xmlns:aml"]	= "http://www.amplesdk.com/ns/aml";
+			oAmple.namespaces[oAttribute.nodeName]	= oAttribute.nodeValue;
+if (!oAmple.namespaces["xmlns"])
+	oAmple.namespaces["xmlns"]	= "http://www.w3.org/1999/xhtml";
+if (!oAmple.namespaces["xmlns:aml"])
+	oAmple.namespaces["xmlns:aml"]	= "http://www.amplesdk.com/ns/aml";
 //
-function fResolver(sPrefix) {
-	return fAmple.namespaces["xmlns" + (sPrefix ? ":" + sPrefix : '')] || null;
+function fAmple_resolver(sPrefix) {
+	return oAmple.namespaces["xmlns" + (sPrefix ? ":" + sPrefix : '')] || null;
 };
 
-fAmple.document	= oAML_document;
-//->Source
-fAmple.elements		= oAML_elements;
-fAmple.attributes	= oAML_attributes;
-//<-Source
-
 //
-fAmple.open	= function() {
-	if (oAML_document.readyState == "loading") {
+oAmple.open	= function() {
+	if (oAmple_document.readyState == "loading") {
 		var aElements	= oUADocument.getElementsByTagName("script"),
 			oElement	= aElements[aElements.length - 1];
 		oElement.parentNode.removeChild(oElement);
@@ -253,31 +253,31 @@ fAmple.open	= function() {
 	}
 //->Debug
 	else
-		fAML_warn(nAML_DOCUMENT_INVALID_STATE_WRN);
+		fUtilities_warn(sAML_DOCUMENT_INVALID_STATE_WRN);
 //<-Debug
 };
 
-fAmple.close	= function() {
-	if (oAML_document.readyState == "loading")
+oAmple.close	= function() {
+	if (oAmple_document.readyState == "loading")
 		oUADocument.write('</' + "script" + '>');
 //->Debug
 	else
-		fAML_warn(nAML_DOCUMENT_INVALID_STATE_WRN);
+		fUtilities_warn(sAML_DOCUMENT_INVALID_STATE_WRN);
 //<-Debug
 };
 
-fAmple.$instance	= function(oNode) {
+oAmple.$instance	= function(oNode) {
     for (var oElement, sId; oNode; oNode = oNode.parentNode)
-        if ((sId = oNode.id) && (oElement = (oAML_ids[sId] || oAML_all[sId])))
+        if ((sId = oNode.id) && (oElement = (oAMLDocument_ids[sId] || oAMLDocument_all[sId])))
             return oElement;
     return null;
 };
 /*
-fAmple.$class	= function(oNode) {
-	var oElement	= fAmple.$instance(oNode);
-	return oElement ? oAML_elements[oElement.namespaceURI + '#' + oElement.localName] || cAMLElement : null;
+oAmple.$class	= function(oNode) {
+	var oElement	= oAmple.$instance(oNode);
+	return oElement ? oAMLImplementation_elements[oElement.namespaceURI + '#' + oElement.localName] || cAMLElement : null;
 };
 */
-fAmple.$resolveUri	= function(sUri, sBaseUri) {
-	return fAML_resolveUri(sUri, sBaseUri);
+oAmple.$resolveUri	= function(sUri, sBaseUri) {
+	return fUtilities_resolveUri(sUri, sBaseUri);
 };

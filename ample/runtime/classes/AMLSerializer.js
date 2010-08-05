@@ -13,7 +13,7 @@ var cAMLSerializer	= function (){};
 cAMLSerializer.prototype.serializeToString	= function(oNode)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["node",	cAMLNode]
 	]);
 
@@ -32,7 +32,7 @@ cAMLSerializer.prototype.serializeToString	= function(oNode)
 				oAttributes	= oNode.attributes;
 				for (sName in oAttributes)
 					if (oAttributes.hasOwnProperty(sName))
-						aHtml.push(' ' + sName + '=' + '"' + fAML_encodeEntities(oAttributes[sName]) + '"');
+						aHtml.push(' ' + sName + '=' + '"' + fUtilities_encodeEntities(oAttributes[sName]) + '"');
 	//			aHtml.push(' ' + '_' + '=' + '"' + oNode.uniqueID + '"');
 				if (oNode.hasChildNodes()) {
 					aHtml.push('>');

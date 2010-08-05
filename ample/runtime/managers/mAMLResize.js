@@ -95,7 +95,7 @@ function fAMLResize_onMouseMove(oEvent)
 			{
 				var oElementDOM	= oElement.$getContainer(),
 					oPosition	= fAMLElement_getBoundingClientRect(oElement),
-					oComputedStyle	= fAML_getComputedStyle(oElementDOM),
+					oComputedStyle	= fBrowser_getComputedStyle(oElementDOM),
 					nResize		= nAMLResize_EDGE_NONE,
 					nResizeEdges= oElement.$resizeEdges || 15,
 					sCursor		= '';
@@ -177,7 +177,7 @@ function fAMLResize_onMouseMove(oEvent)
 		}
 
 		// set capture and prevent selection
-		fAML_toggleSelect(false);
+		fBrowser_toggleSelect(false);
 		if (bTrident)
 			oAMLResize_resizeNode.$getContainer().setCapture();
 
@@ -187,7 +187,7 @@ function fAMLResize_onMouseMove(oEvent)
 		nAMLResize_clientLeft		= oStyle.left;
 		nAMLResize_clientTop		= oStyle.top;
 
-		var oComputedStyle	= fAML_getComputedStyle(oElementDOM),
+		var oComputedStyle	= fBrowser_getComputedStyle(oElementDOM),
 			bBackCompat		= oUADocument.compatMode == "BackCompat";
 
 		// move resizable position to (0, 0)
@@ -210,12 +210,12 @@ function fAMLResize_onMouseMove(oEvent)
 	    nAMLResize_offsetTop		= oPosition.top		- oPositionP.top;
 
 		// Retrieve min/max allowed height/width
-		nAMLResize_widthMin		= fParseInt(oComputedStyle[fAML_toCssPropertyName("min-width")] || oComputedStyle["min-width"]) || 0;
-		nAMLResize_widthMax		= fParseInt(oComputedStyle[fAML_toCssPropertyName("max-width")] || oComputedStyle["max-width"]) || nInfinity;
+		nAMLResize_widthMin		= fParseInt(oComputedStyle[fUtilities_toCssPropertyName("min-width")] || oComputedStyle["min-width"]) || 0;
+		nAMLResize_widthMax		= fParseInt(oComputedStyle[fUtilities_toCssPropertyName("max-width")] || oComputedStyle["max-width"]) || nInfinity;
 		if (nAMLResize_widthMax < 0)	// Opera 10.5 returns -1
 			nAMLResize_widthMax	= nInfinity;
-		nAMLResize_heightMin	= fParseInt(oComputedStyle[fAML_toCssPropertyName("min-height")]|| oComputedStyle["min-height"]) || 0;
-		nAMLResize_heightMax	= fParseInt(oComputedStyle[fAML_toCssPropertyName("max-height")]|| oComputedStyle["max-height"]) || nInfinity;
+		nAMLResize_heightMin	= fParseInt(oComputedStyle[fUtilities_toCssPropertyName("min-height")]|| oComputedStyle["min-height"]) || 0;
+		nAMLResize_heightMax	= fParseInt(oComputedStyle[fUtilities_toCssPropertyName("max-height")]|| oComputedStyle["max-height"]) || nInfinity;
 		if (nAMLResize_heightMax < 0)	// Opera 10.5 returns -1
 			nAMLResize_heightMax= nInfinity;
     }
@@ -292,7 +292,7 @@ function fAMLResize_onMouseUp(oEvent)
 		}
 
 		// End session
-		fAML_toggleSelect(true);
+		fBrowser_toggleSelect(true);
 		if (bTrident)
 			oAMLResize_resizeNode.$getContainer().releaseCapture();
 
@@ -348,7 +348,7 @@ cAMLElement.prototype.$resizable	= false;
 cAMLElement.prototype.$resizeEdges	= 0;
 
 // Registering Event Handlers
-fAMLEventTarget_addEventListener(oAML_document, "mousedown",	fAMLResize_onMouseDown,		false);
-fAMLEventTarget_addEventListener(oAML_document, "mousemove",	fAMLResize_onMouseMove,		false);
-fAMLEventTarget_addEventListener(oAML_document, "mouseup",		fAMLResize_onMouseUp,		false);
-fAMLEventTarget_addEventListener(oAML_document, "keydown",		fAMLResize_onKeyDown,		false);
+fAMLEventTarget_addEventListener(oAmple_document, "mousedown",	fAMLResize_onMouseDown,		false);
+fAMLEventTarget_addEventListener(oAmple_document, "mousemove",	fAMLResize_onMouseMove,		false);
+fAMLEventTarget_addEventListener(oAmple_document, "mouseup",		fAMLResize_onMouseUp,		false);
+fAMLEventTarget_addEventListener(oAmple_document, "keydown",		fAMLResize_onKeyDown,		false);

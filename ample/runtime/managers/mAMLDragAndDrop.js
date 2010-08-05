@@ -132,7 +132,7 @@ function fAMLDragAndDrop_onMouseUp(oEvent)
 		}
 
 		// End session
-		fAML_toggleSelect(true);
+		fBrowser_toggleSelect(true);
 		if (bTrident)
 			oElementDOM.releaseCapture();
 
@@ -186,7 +186,7 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
 		}
 
 		// set capture and prevent selection
-		fAML_toggleSelect(false);
+		fBrowser_toggleSelect(false);
 		if (bTrident)
 			oElementDOM.setCapture();
 		fAMLCapture_setCapture(oAMLDragAndDrop_dragSource, true);
@@ -195,7 +195,7 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
 		oAMLDragAndDrop_image.style.display	= '';
 
 		// fill in array with drag targets
-		var aElements	= fAMLElement_getElementsByTagName(oAML_modalNode || this.documentElement, '*');
+		var aElements	= fAMLElement_getElementsByTagName(oBrowser_modalNode || this.documentElement, '*');
 		for (var nIndex = 0, nLength = aElements.length; nIndex < nLength; nIndex++)
 			if (aElements[nIndex].$droppable)
 				aAMLDragAndDrop_dropTargets.push(aElements[nIndex]);
@@ -390,7 +390,7 @@ cAMLDataTransfer.prototype.getData	= function(sFormat) {
 
 cAMLDataTransfer.prototype.setDragImage	= function(oImage, nLeft, nTop) {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["image",	cXMLElement],
 		["left",	cNumber,	true],
 		["top",		cNumber,	true]
@@ -403,7 +403,7 @@ cAMLDataTransfer.prototype.setDragImage	= function(oImage, nLeft, nTop) {
 
 cAMLDataTransfer.prototype.addElement		= function(oElement) {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["element",	cXMLElement]
 	]);
 
@@ -415,7 +415,7 @@ cAMLElement.prototype.$draggable	= false;
 cAMLElement.prototype.$droppable	= false;
 
 // Registering Event Handlers
-fAMLEventTarget_addEventListener(oAML_document, "mousedown",	fAMLDragAndDrop_onMouseDown,	false);
-fAMLEventTarget_addEventListener(oAML_document, "mousemove",	fAMLDragAndDrop_onMouseMove,	false);
-fAMLEventTarget_addEventListener(oAML_document, "mouseup",		fAMLDragAndDrop_onMouseUp,		false);
-fAMLEventTarget_addEventListener(oAML_document, "keydown",		fAMLDragAndDrop_onKeyDown,		false);
+fAMLEventTarget_addEventListener(oAmple_document, "mousedown",	fAMLDragAndDrop_onMouseDown,	false);
+fAMLEventTarget_addEventListener(oAmple_document, "mousemove",	fAMLDragAndDrop_onMouseMove,	false);
+fAMLEventTarget_addEventListener(oAmple_document, "mouseup",		fAMLDragAndDrop_onMouseUp,		false);
+fAMLEventTarget_addEventListener(oAmple_document, "keydown",		fAMLDragAndDrop_onKeyDown,		false);

@@ -13,9 +13,9 @@ var cAMLException	= function(nException) {
 	var sMessage	= "Ample" + ' ' + "exception" + ': ' + nException;
 //->Debug
 	// Replace placeholders
-	sMessage	= oAML_messages[nException] || "Unknown error";
+	sMessage	= oAMLException_messages[nException] || "Unknown error";
 	if (arguments.length > 2)
-		sMessage	= fAML_format(sMessage, arguments[2]);
+		sMessage	= fAMLException_format(sMessage, arguments[2]);
 //<-Debug
 
 	this.message= sMessage;
@@ -59,3 +59,40 @@ cAMLException.prototype.message	= null;
 cAMLException.prototype.toString	= function() {
 	return this.message;
 };
+
+function fAMLException_format(sMessage, aArguments) {
+	for (var nIndex = 0; nIndex < aArguments.length; nIndex++)
+		sMessage	= sMessage.replace('%' + nIndex, aArguments[nIndex]);
+	return sMessage;
+};
+
+//->Debug
+var oAMLException_messages	= {};
+oAMLException_messages[cAMLException.INDEX_SIZE_ERR]				= 'Index or size is negative or greater than the allowed amount';
+//oAMLException_messages[cAMLException.DOMSTRING_SIZE_ERR]			= '';
+oAMLException_messages[cAMLException.HIERARCHY_REQUEST_ERR]			= 'Node cannot be inserted at the specified point in the hierarchy';
+//oAMLException_messages[cAMLException.WRONG_DOCUMENT_ERR]			= '';
+//oAMLException_messages[cAMLException.INVALID_CHARACTER_ERR]		= '';
+//oAMLException_messages[cAMLException.NO_DATA_ALLOWED_ERR]			= '';
+//oAMLException_messages[cAMLException.NO_MODIFICATION_ALLOWED_ERR]	= '';
+oAMLException_messages[cAMLException.NOT_FOUND_ERR]					= 'An attempt is made to reference a Node in a context where it does not exist';
+oAMLException_messages[cAMLException.NOT_SUPPORTED_ERR]				= 'Implementation does not support the requested type of object or operation';
+//oAMLException_messages[cAMLException.INUSE_ATTRIBUTE_ERR]			= '';
+//oAMLException_messages[cAMLException.INVALID_STATE_ERR]			= '';
+oAMLException_messages[cAMLException.SYNTAX_ERR]					= 'An invalid or illegal string is specified';
+//oAMLException_messages[cAMLException.INVALID_MODIFICATION_ERR]	= '';
+//oAMLException_messages[cAMLException.NAMESPACE_ERR]				= '';
+//oAMLException_messages[cAMLException.INVALID_ACCESS_ERR]			= '';
+//oAMLException_messages[cAMLException.VALIDATION_ERR]				= '';
+oAMLException_messages[cAMLException.TYPE_MISMATCH_ERR]				= 'The type of an object is incompatible with the expected type of the parameter';
+// AML Exceptions
+oAMLException_messages[cAMLException.AML_ARGUMENT_MISSING_ERR]		= 'Missing required %0 argument "%1" in "%2" function call';
+oAMLException_messages[cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR]	= 'Incompatible type of %0 argument "%1" in "%2" function call. Expecting "%3"';
+oAMLException_messages[cAMLException.AML_ARGUMENT_NULL_ERR]			= 'null is not allowed value of %0 argument "%1" in "%2" function call';
+oAMLException_messages[cAMLException.AML_SELECTOR_ELEMENT_ERR]		= 'Unknown element selector "%0"';
+oAMLException_messages[cAMLException.AML_SELECTOR_ATTRIBUTE_ERR]	= 'Unknown attribute selector "%0"';
+oAMLException_messages[cAMLException.AML_NOT_INITIALIZED_ERR]		= 'Object "%0" has not been initialized';
+oAMLException_messages[cAMLException.AML_MODAL_SET_MODAL_ERR]		= 'Element is already modal';
+oAMLException_messages[cAMLException.AML_MODAL_RELEASE_MODAL_ERR]	= 'Element can not be released';
+oAMLException_messages[cAMLException.AML_MEMBER_MISSING_ERR]		= 'Object does not have a method named "%0"';
+//<-Debug

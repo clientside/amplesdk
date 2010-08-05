@@ -9,23 +9,23 @@
 
 cAMLQuery.prototype.css	= function(sName, sValue) {
 	// Validate API call
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["name",	cString],
 		["value",	cString, true]
 	]);
 
 	// Invoke implementation
 	if (arguments.length > 1) {
-		fAmple_each(this, function() {
+		fAMLQuery_each(this, function() {
 			var oElementDOM	= this.$getContainer();
 			if (oElementDOM)
-				fAML_setStyle(oElementDOM, sName, sValue);
+				fBrowser_setStyle(oElementDOM, sName, sValue);
 		});
 		return this;
 	}
 	else
 	if (this.length) {
 		var oElementDOM	= this[0].$getContainer();
-		return oElementDOM ? fAML_getStyle(oElementDOM, sName) : '';
+		return oElementDOM ? fBrowser_getStyle(oElementDOM, sName) : '';
 	}
 };

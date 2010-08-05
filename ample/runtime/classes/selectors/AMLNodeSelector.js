@@ -480,7 +480,7 @@ cAMLDocument.prototype.querySelector		=
 cAMLNodeSelector.prototype.querySelector	= function(sCSS, fResolver)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["query",		cString],
 		["NSResolver",	cFunction, true]
 	]);
@@ -494,7 +494,7 @@ cAMLDocument.prototype.querySelectorAll		=
 cAMLNodeSelector.prototype.querySelectorAll	= function(sCSS, fResolver)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["query",		cString],
 		["NSResolver",	cFunction, true]
 	]);

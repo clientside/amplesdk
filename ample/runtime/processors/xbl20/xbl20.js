@@ -22,7 +22,7 @@ var cXBLImplementationsList	= function(){};
 cXBLImplementationsList.prototype.length	= 0;
 cXBLImplementationsList.prototype.item	= function(nIndex) {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["index",	cNumber]
 	]);
 
@@ -37,7 +37,7 @@ cAMLDocument.prototype.bindingDocuments	= null;
 
 cAMLDocument.prototype.loadBindingDocument	= function(sDocumentUri) {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["documentURI",	cString]
 	]);
 
@@ -49,7 +49,7 @@ cAMLElement.prototype.xblImplementations	= null;
 
 cAMLElement.prototype.addBinding	= function(sBindingUri) {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["bindingURI",	cString]
 	]);
 
@@ -58,7 +58,7 @@ cAMLElement.prototype.addBinding	= function(sBindingUri) {
 
 cAMLElement.prototype.removeBinding	= function(sBindingUri) {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["bindingURI",	cString]
 	]);
 
@@ -67,7 +67,7 @@ cAMLElement.prototype.removeBinding	= function(sBindingUri) {
 
 cAMLElement.prototype.hasBinding	= function(sBindingUri) {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["bindingURI",	cString]
 	]);
 
@@ -75,4 +75,4 @@ cAMLElement.prototype.hasBinding	= function(sBindingUri) {
 };
 
 // register processor
-oAML_processors[sXBL20_namespaceURI]	= oXBL20_implementation;
+oAMLImplementation_processors[sXBL20_namespaceURI]	= oXBL20_implementation;

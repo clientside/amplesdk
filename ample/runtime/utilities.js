@@ -8,422 +8,48 @@
  */
 
 //->Debug
-function fAML_warn(nWarning, aArguments) {
+var sAML_NOT_WELLFORMED_WRN			= 'Not well-formed XML',
+	sAML_NOT_UNIQUE_ID_WRN			= 'Duplicate ID attribute value "%0" used',
+	sAML_NOT_FOUND_SHADOW_WRN		= 'Shadow content was not found. Element "%0" quiried for pseudo-element "%1"',
+	sAML_FEATURE_DEPRECATED_WRN		= 'Feature "%0" had been deprecated. Use "%1" instead',
+	sAML_UNKNOWN_ELEMENT_NS_WRN		= 'Element "%0" definition is missing from "%1" namespace. Element processing skipped',
+	sAML_UNKNOWN_ATTRIBUTE_NS_WRN	= 'Attribute "%0" definition is missing from "%1" namespace. Attribute processing skipped',
+	sAML_MISSING_ATTRIBUTE_WRN		= 'Required attribute "%0" is missing from "%1" element. Element processing skipped',
+	sAML_INVALID_ATTRIBUTE_WRN		= 'Attribute "%0" value "%1" is invalid. Element processing skipped',
+	sAML_UNKNOWN_SIMPLE_TYPE_WRN	= 'Simple type definition "%0" not found',
+	sAML_ERROR_ANIMATING_ATTR_WRN	= 'Error animating "%0" atttribute with "%1" value',
+	sAML_DOCUMENT_INVALID_STATE_WRN	= 'Document invalid state',
+	sAML_REWRITING_LOADED_PLUGIN_WRN= 'Re-writing plugin "%0" which is already loaded',
+	sAML_CONFIGURATION_READONLY_WRN	= 'Configuration parameter "%0" is readonly. Value has not been set';
+
+function fUtilities_warn(sWarning, aArguments) {
 	var oErrorHandler	= oAMLConfiguration_values["error-handler"];
 	if (oErrorHandler)
-		oErrorHandler.handleError(new cAMLError(fAML_format(oAML_messages[nWarning], aArguments || []), cAMLError.SEVERITY_WARNING));
+		oErrorHandler.handleError(new cAMLError(fAMLException_format(sWarning, aArguments || []), cAMLError.SEVERITY_WARNING));
 };
-
-// Warnings
-var nAML_NOT_WELLFORMED_WRN			= 'a',	// Use strings in order to not intersect with exceptions
-	nAML_NOT_UNIQUE_ID_WRN			= 'b',
-	nAML_NOT_FOUND_SHADOW_WRN		= 'c',
-	nAML_FEATURE_DEPRECATED_WRN		= 'd',
-	nAML_UNKNOWN_ELEMENT_NS_WRN		= 'e',
-	nAML_UNKNOWN_ATTRIBUTE_NS_WRN	= 'f',
-	nAML_MISSING_ATTRIBUTE_WRN		= 'g',
-	nAML_INVALID_ATTRIBUTE_WRN		= 'h',
-	nAML_UNKNOWN_SIMPLE_TYPE_WRN	= 'i',
-	nAML_ERROR_ANIMATING_ATTR_WRN	= 'j',
-	nAML_DOCUMENT_INVALID_STATE_WRN	= 'k',
-	nAML_REWRITING_LOADED_PLUGIN_WRN= 'l',
-	nAML_CONFIGURATION_READONLY_WRN	= 'm';
-
-function fAML_format(sMessage, aArguments) {
-	for (var nIndex = 0; nIndex < aArguments.length; nIndex++)
-		sMessage	= sMessage.replace('%' + nIndex, aArguments[nIndex]);
-	return sMessage;
-};
-
-var oAML_messages	= {};
-oAML_messages[cAMLException.INDEX_SIZE_ERR]					= 'Index or size is negative or greater than the allowed amount';
-//oAML_messages[cAMLException.DOMSTRING_SIZE_ERR]			= '';
-oAML_messages[cAMLException.HIERARCHY_REQUEST_ERR]			= 'Node cannot be inserted at the specified point in the hierarchy';
-//oAML_messages[cAMLException.WRONG_DOCUMENT_ERR]			= '';
-//oAML_messages[cAMLException.INVALID_CHARACTER_ERR]		= '';
-//oAML_messages[cAMLException.NO_DATA_ALLOWED_ERR]			= '';
-//oAML_messages[cAMLException.NO_MODIFICATION_ALLOWED_ERR]	= '';
-oAML_messages[cAMLException.NOT_FOUND_ERR]					= 'An attempt is made to reference a Node in a context where it does not exist';
-oAML_messages[cAMLException.NOT_SUPPORTED_ERR]				= 'Implementation does not support the requested type of object or operation';
-//oAML_messages[cAMLException.INUSE_ATTRIBUTE_ERR]			= '';
-//oAML_messages[cAMLException.INVALID_STATE_ERR]			= '';
-oAML_messages[cAMLException.SYNTAX_ERR]						= 'An invalid or illegal string is specified';
-//oAML_messages[cAMLException.INVALID_MODIFICATION_ERR]		= '';
-//oAML_messages[cAMLException.NAMESPACE_ERR]				= '';
-//oAML_messages[cAMLException.INVALID_ACCESS_ERR]			= '';
-//oAML_messages[cAMLException.VALIDATION_ERR]				= '';
-oAML_messages[cAMLException.TYPE_MISMATCH_ERR]				= 'The type of an object is incompatible with the expected type of the parameter';
-
-// AML Exceptions
-// Errors
-oAML_messages[cAMLException.AML_ARGUMENT_MISSING_ERR]		= 'Missing required %0 argument "%1" in "%2" function call';
-oAML_messages[cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR]	= 'Incompatible type of %0 argument "%1" in "%2" function call. Expecting "%3"';
-oAML_messages[cAMLException.AML_ARGUMENT_NULL_ERR]			= 'null is not allowed value of %0 argument "%1" in "%2" function call';
-oAML_messages[cAMLException.AML_SELECTOR_ELEMENT_ERR]		= 'Unknown element selector "%0"';
-oAML_messages[cAMLException.AML_SELECTOR_ATTRIBUTE_ERR]		= 'Unknown attribute selector "%0"';
-oAML_messages[cAMLException.AML_NOT_INITIALIZED_ERR]		= 'Object "%0" has not been initialized';
-oAML_messages[cAMLException.AML_MODAL_SET_MODAL_ERR]		= 'Element is already modal';
-oAML_messages[cAMLException.AML_MODAL_RELEASE_MODAL_ERR]	= 'Element can not be released';
-oAML_messages[cAMLException.AML_MEMBER_MISSING_ERR]			= 'Object does not have a method named "%0"';
-
-oAML_messages[nAML_NOT_WELLFORMED_WRN]		= 'Not well-formed XML';
-oAML_messages[nAML_NOT_UNIQUE_ID_WRN]		= 'Duplicate ID attribute value "%0" used';
-oAML_messages[nAML_NOT_FOUND_SHADOW_WRN]	= 'Shadow content was not found. Element "%0" quiried for pseudo-element "%1"';
-oAML_messages[nAML_FEATURE_DEPRECATED_WRN]	= 'Feature "%0" had been deprecated. Use "%1" instead';
-oAML_messages[nAML_UNKNOWN_ELEMENT_NS_WRN]	= 'Element "%0" definition is missing from "%1" namespace. Element processing skipped';
-oAML_messages[nAML_UNKNOWN_ATTRIBUTE_NS_WRN]= 'Attribute "%0" definition is missing from "%1" namespace. Attribute processing skipped';
-oAML_messages[nAML_MISSING_ATTRIBUTE_WRN]	= 'Required attribute "%0" is missing from "%1" element. Element processing skipped';
-oAML_messages[nAML_INVALID_ATTRIBUTE_WRN]	= 'Attribute "%0" value "%1" is invalid. Element processing skipped';
-oAML_messages[nAML_UNKNOWN_SIMPLE_TYPE_WRN]	= 'Simple type definition "%0" not found';
-oAML_messages[nAML_ERROR_ANIMATING_ATTR_WRN]= 'Error animating "%0" atttribute with "%1" value';
-oAML_messages[nAML_DOCUMENT_INVALID_STATE_WRN]	= 'Document invalid state';
-oAML_messages[nAML_REWRITING_LOADED_PLUGIN_WRN]	= 'Re-writing plugin "%0" which is already loaded';
-oAML_messages[nAML_CONFIGURATION_READONLY_WRN]	= 'Configuration parameter "%0" is readonly. Value has not been set';
 //<-Debug
 
-// Validation implementation
-/*
- * Syntaxis:
- * fAML_validate(arguments, [
- * 		[sArgumentName,	cArgumentType, bOptional, bNullAllowed]
- * ]);
- */
-//->Debug
-var aAML_endings	= 'st-nd-rd-th'.split('-'),
-	rAML_function	= /function ([^\s]+)\(/,
-	oAML_types		= fAML_stringToHash('0:Node;1:Element;9:Document');
-//<-Debug
-function fAML_validate(aArguments, aParameters) {
-	var fCallee	= aArguments.callee,
-		fCaller	= null;
-	// Has to be wrapped in try/catch because Firebug throws "Permission denied to get property on Function.caller" in XMLHttpRequest
-	try {
-		fCaller	= fCallee.caller;
-	} catch (oException) {}
-//->Debug
-	var sFunction	= cString(fCallee).match(rAML_function) ? cRegExp.$1 : "anonymous";
-//<-Debug
-
-	// Iterate over parameters list
-	for (var nIndex = 0, nLength = aArguments.length, aParameter, vValue, bValid; aParameter = aParameters[nIndex]; nIndex++) {
-		vValue	= aArguments[nIndex];
-//->Debug
-		var sArgument	=(nIndex + 1)+ aAML_endings[nIndex < 3 ? nIndex : 3];
-//<-Debug
-		// see if argument is missing
-		if (typeof vValue == "undefined" && !aParameter[2])
-			throw new cAMLException(cAMLException.AML_ARGUMENT_MISSING_ERR, fCaller
-//->Debug
-								, [sArgument, aParameter[0], sFunction]
-//<-Debug
-			);
-
-		if (nLength > nIndex) {
-			if (vValue === null) {
-				// See if null is allowed
-				if (!aParameter[3])
-					throw new cAMLException(cAMLException.AML_ARGUMENT_NULL_ERR, fCaller
-//->Debug
-										, [sArgument, aParameter[0], sFunction]
-//<-Debug
-					);
-			}
-			else {
-				// see if argument has correct type
-				switch (aParameter[1]) {
-					// Primitive types
-					case cString:		bValid	= typeof vValue == "string"	|| vValue instanceof cString;	break;
-					case cBoolean:		bValid	= typeof vValue == "boolean"|| vValue instanceof cBoolean;	break;
-					case cNumber:		bValid	=(typeof vValue == "number" || vValue instanceof cNumber) && !fIsNaN(vValue);	break;
-					case cObject:		bValid	= true;							break;
-					// Virtual types
-					case cXMLNode:		bValid	= vValue && !fIsNaN(vValue.nodeType);	break;
-					case cXMLElement:	bValid	= vValue && vValue.nodeType == 1;		break;
-					case cXMLDocument:	bValid	= vValue && vValue.nodeType == 9;		break;
-					// Complex types
-					case cArguments:	bValid	= typeof vValue == "object" && "callee" in vValue;	break;
-					default:			bValid	= vValue instanceof aParameter[1];
-				}
-
-				if (!bValid)
-					throw new cAMLException(cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR, fCaller
-//->Debug
-										, [sArgument, aParameter[0], sFunction, oAML_types[aParameter[1]] ||(cString(aParameter[1]).match(rAML_function) ? cRegExp.$1 : "anonymous")]
-//<-Debug
-					);
-			}
-		}
-	}
-};
-
-var oAML_processors	= {},
-	oAML_elements	= {},
-	oAML_attributes	= {},
-//	oAML_shadow	= {},
-	oAML_all	= {},
-	oAML_ids	= {};
-
-function fAML_import(oElementDOM, bDeep, oNode, bCollapse) {
-	switch (oElementDOM.nodeType) {
-		case cAMLNode.ELEMENT_NODE:
-			var oProcessor	= oAML_processors[oElementDOM.namespaceURI];
-			if (oProcessor) {
-				// if element was returned from traversal, it should be processed
-				if (oElementDOM = oProcessor.traverse(oElementDOM, oNode))
-					fAML_import(oElementDOM, bDeep, oNode);
-			}
-			else {
-				// Create element (note: in IE, namespaceURI is empty string if not specified, hence "oElementDOM.namespaceURI || null")
-				var oElement	= fAMLDocument_createElementNS(oAML_document, oElementDOM.namespaceURI || null, oElementDOM.nodeName),
-					sNameSpaceURI	= oElement.namespaceURI,
-					sLocalName	= oElement.localName,
-					oAttributes	= oElement.attributes,
-					aAttributes = oElementDOM.attributes,
-					oAttribute, sName, sValue;
-
-				for (var nIndex = 0, nLength = aAttributes.length; nIndex < nLength; nIndex++) {
-					// oAttribute used to cache object
-					oAttribute	= aAttributes[nIndex];
-					sName	= oAttribute.nodeName;
-					sValue	= oAttribute.nodeValue;
-
-					// Inline event handler
-					if (sName.indexOf('on') == 0)
-						oElement[sName]	= new cFunction(sNameSpaceURI == "http://www.w3.org/2000/svg" ? "evt" : "event", bCollapse ? fAML_decodeEntities(sValue) : sValue);
-					else
-						oAttributes[sName]	= bCollapse ? sValue : fAML_encodeEntities(sValue);
-				}
-
-				// Copy default attributes values if not specified
-				var cElement	= oAML_elements[sNameSpaceURI + '#' + sLocalName];
-				if (cElement) {
-					for (sName in cElement.attributes)
-						if (cElement.attributes.hasOwnProperty(sName) && !(sName in oAttributes))
-							oAttributes[sName]	= cElement.attributes[sName];
-				}
-//->Debug
-				else
-				if (!(sNameSpaceURI == "http://www.w3.org/1999/xhtml" && sLocalName == "script" && oAttributes["type"] == "application/ample+xml"))
-					fAML_warn(nAML_UNKNOWN_ELEMENT_NS_WRN, [sLocalName, sNameSpaceURI]);
-//<-Debug
-				// and append it to parent (if there is one)
-				if (oNode)
-					fAMLNode_appendChild(oNode, oElement);
-
-				// Render Children
-				if (bDeep)
-					for (var nIndex = 0, nLength = oElementDOM.childNodes.length; nIndex < nLength; nIndex++)
-						fAML_import(oElementDOM.childNodes[nIndex], bDeep, oElement, bCollapse);
-			}
-			break;
-
-		case cAMLNode.ENTITY_REFERENCE_NODE:
-			if (oNode.lastChild instanceof cAMLCharacterData)
-				fAMLCharacterData_appendData(oNode.lastChild, oElementDOM.text);
-			else
-				fAMLNode_appendChild(oNode, fAMLDocument_createTextNode(oAML_document, oElementDOM.text));
-			break;
-
-		case cAMLNode.TEXT_NODE:
-			var sValue	= oElementDOM.nodeValue;
-			if (!bCollapse)
-				sValue	= fAML_encodeEntities(sValue);
-
-			if (sValue.trim() != '') {
-				if (oNode.lastChild instanceof cAMLCharacterData)
-					fAMLCharacterData_appendData(oNode.lastChild, sValue);
-				else
-					fAMLNode_appendChild(oNode, fAMLDocument_createTextNode(oAML_document, sValue));
-			}
-			break;
-
-		case cAMLNode.CDATA_SECTION_NODE:
-			fAMLNode_appendChild(oNode, fAMLDocument_createCDATASection(oAML_document, oElementDOM.nodeValue));
-			break;
-
-		case cAMLNode.COMMENT_NODE:
-//->Source
-/*
-			fAMLNode_appendChild(oElement, oElement.ownerDocument.createComment(oElementDOM.nodeValue));
-*/
-//<-Source
-			break;
-
-		case cAMLNode.PROCESSING_INSTRUCTION_NODE:
-			switch (oElementDOM.target)	{
-				case "xml":
-					break;
-
-				case "xml-stylesheet":
-					if (oElementDOM.nodeValue.match(/href=["']([^"']+)["']/)) {
-						var sHref	= cRegExp.$1;
-						if (oElementDOM.nodeValue.match(/type=["']([^"']+)["']/))
-							if (cRegExp.$1 == "text/css" || cRegExp.$1 == "text/ample+css") {
-								var sCSS	= fAML_loadStyleSheet(sHref);
-								if (sCSS)
-									oUADocument.getElementsByTagName("head")[0].appendChild(fAML_createStyleSheet(sCSS, sHref));
-							}
-					}
-					// no break is left intentionally
-				default:
-					fAMLNode_appendChild(oNode, fAMLDocument_createProcessingInstruction(oAML_document, oElementDOM.nodeName, oElementDOM.nodeValue));
-			}
-			break;
-
-		case cAMLNode.DOCUMENT_NODE:
-			if (bDeep)
-				for (var nIndex = 0, nLength = oElementDOM.childNodes.length; nIndex < nLength; nIndex++)
-					fAML_import(oElementDOM.childNodes[nIndex], bDeep, oNode, bCollapse);
-			break;
-
-		case cAMLNode.DOCUMENT_TYPE_NODE:
-			break;
-
-		default:
-			throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
-	}
-	return oElement;
-};
-
-function fAML_register(oElement) {
-	//
-	if (oElement.nodeType == cAMLNode.ELEMENT_NODE && !oAML_all[oElement.uniqueID]) {
-		// Register Instance
-		oAML_all[oElement.uniqueID]	= oElement;
-
-		// Cache for shadow links
-//		oAML_shadow[oElement.uniqueID]	= {};
-
-		// Register "identified" Instance
-		var sId	= oElement.attributes.id;
-		if (sId) {
-//->Debug
-			if (oAML_ids[sId])
-				fAML_warn(nAML_NOT_UNIQUE_ID_WRN, [sId]);
-//<-Debug
-			oAML_ids[sId]	= oElement;
-		}
-
-		// Set style property
-		if (oAMLConfiguration_values["ample-use-style-property"]) {
-			var oElementDOM	= oElement.$getContainer();
-			if (oElementDOM)
-				oElement.style	= oElementDOM.style;
-		}
-
-		// Fire Mutation event on Element
-		var oEvent = new cAMLMutationEvent;
-		oEvent.initMutationEvent("DOMNodeInsertedIntoDocument", false, false, null, null, null, null, null);
-		fAMLNode_dispatchEvent(oElement, oEvent);
-
-		// Global attributes module
-		for (var sName in oElement.attributes) {
-			if (oElement.attributes.hasOwnProperty(sName)) {
-				var aQName		= sName.split(':'),
-					sLocalName	= aQName.pop(),
-					sPrefix		= aQName.pop() || null,
-					sNameSpaceURI;
-
-				if (sName != "xmlns" && sPrefix && sPrefix != "xmlns" && (sNameSpaceURI = fAMLNode_lookupNamespaceURI(oElement, sPrefix))) {
-					var cAttribute	= oAML_attributes[sNameSpaceURI + '#' + sLocalName];
-					if (cAttribute)	{
-						// oAttribute used to create fake object
-						var oAttribute	= new cAttribute;
-						oAttribute.ownerDocument= oAML_document;
-						oAttribute.ownerElement	= oElement;
-						oAttribute.name			=
-						oAttribute.nodeName		= sName;
-						oAttribute.value		=
-						oAttribute.nodeValue	= oElement.attributes[sName];
-						oAttribute.localName	= sLocalName;
-						oAttribute.prefix		= sPrefix;
-						oAttribute.namespaceURI	= sNameSpaceURI;
-
-						// Fire Mutation event (pseudo)
-						oEvent = new cAMLMutationEvent;
-						oEvent.initMutationEvent("DOMNodeInsertedIntoDocument", false, false, null, null, null, null, null);
-						oEvent.target	=
-						oEvent.currentTarget	= oAttribute;
-						oEvent.eventPhase		= cAMLEvent.AT_TARGET;
-						fAMLNode_handleEvent(oAttribute, oEvent);
-					}
-//->Debug
-					else
-						fAML_warn(nAML_UNKNOWN_ATTRIBUTE_NS_WRN, [sLocalName, sNameSpaceURI]);
-//<-Debug
-				}
-			}
-		}
-
-		var nIndex,
-			oNode;
-
-		// Process anonymous children
-		for (nIndex = 0; oNode = oElement.$childNodesAnonymous[nIndex]; nIndex++)
-			fAML_register(oNode);
-
-		// Process children
-		for (nIndex = 0; oNode = oElement.childNodes[nIndex]; nIndex++)
-			fAML_register(oNode);
-	}
-};
-
-function fAML_unregister(oElement) {
-	//
-	if (oElement.nodeType == cAMLNode.ELEMENT_NODE && oAML_all[oElement.uniqueID]) {
-		// Fire Mutation event
-		var oEvent = new cAMLMutationEvent;
-		oEvent.initMutationEvent("DOMNodeRemovedFromDocument", false, false, null, null, null, null, null);
-		fAMLNode_dispatchEvent(oElement, oEvent);
-
-		// Unset style property
-		if (oAMLConfiguration_values["ample-use-style-property"])
-			delete oElement.style;
-
-		// Unregister Instance
-		delete oAML_all[oElement.uniqueID];
-
-		// Cache for shadow links
-//		delete oAML_shadow[oElement.uniqueID];
-
-		// Unregister "identified" Instance
-		if (oElement.attributes.id)
-			delete oAML_ids[oElement.attributes.id];
-
-		var nIndex,
-			oNode;
-
-		// Process children
-		for (nIndex = 0; oNode = oElement.childNodes[nIndex]; nIndex++)
-			fAML_unregister(oNode);
-
-		// Process anonymous children
-		for (nIndex = 0; oNode = oElement.$childNodesAnonymous[nIndex]; nIndex++)
-			fAML_unregister(oNode);
-	}
-};
-
-var oAML_uriCache	= {};
+var fUtilities_uriCache	= {};
 /*
  * Returns an array of uri components:
  * [scheme, authority, path, query, fragment]
  */
-function fAML_getUriComponents(sUri)
+function fUtilities_getUriComponents(sUri)
 {
-	var aResult	= oAML_uriCache[sUri] ||(oAML_uriCache[sUri] = sUri.match(/^(([^:\/?#]+):)?(\/\/([^\/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?/));
+	var aResult	= fUtilities_uriCache[sUri] ||(fUtilities_uriCache[sUri] = sUri.match(/^(([^:\/?#]+):)?(\/\/([^\/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?/));
 	return [aResult[2], aResult[4], aResult[5], aResult[7], aResult[9]];
 };
 
-function fAML_resolveUri(sUri, sBaseUri)
+function fUtilities_resolveUri(sUri, sBaseUri)
 {
 	if (sUri == '' || sUri.charAt(0) == '#')
 		return sBaseUri;
 
-	var aUri = fAML_getUriComponents(sUri);
+	var aUri = fUtilities_getUriComponents(sUri);
 	if (aUri[0])	// scheme
 		return sUri;
 
-	var aBaseUri = fAML_getUriComponents(sBaseUri);
+	var aBaseUri = fUtilities_getUriComponents(sBaseUri);
 	aUri[0] = aBaseUri[0];	// scheme
 
 	if (!aUri[1]) {
@@ -471,20 +97,20 @@ function fAML_resolveUri(sUri, sBaseUri)
 	return aResult.join('');
 };
 
-function fAML_encodeEntities(sValue) {
+function fUtilities_encodeEntities(sValue) {
 	return sValue.replace(/&(?![a-z]+;)/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 };
 
-function fAML_decodeEntities(sValue) {
+function fUtilities_decodeEntities(sValue) {
 	return sValue.replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
 };
 
 //<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd" [
 //]>
-var sAML_entities	= '',
+var aUtilities_entities	= '',
 	aEntities		= 'nbsp iexcl cent pound curren yen brvbar sect uml copy ordf laquo not shy reg macr deg plusmn sup2 sup3 acute micro para middot cedil sup1 ordm raquo frac14 frac12 frac34 iquest Agrave Aacute Acirc Atilde Auml Aring AElig Ccedil Egrave Eacute Ecirc Euml Igrave Iacute Icirc Iuml ETH Ntilde Ograve Oacute Ocirc Otilde Ouml times Oslash Ugrave Uacute Ucirc Uuml Yacute THORN szlig agrave aacute acirc atilde auml aring aelig ccedil egrave eacute ecirc euml igrave iacute icirc iuml eth ntilde ograve oacute ocirc otilde ouml divide oslash ugrave uacute ucirc uuml yacute thorn yuml'.split(' ');
 for (var nIndex = 0, nLength = aEntities.length; nIndex < nLength; nIndex++)
-	sAML_entities	+= '<!' + "ENTITY" + ' ' + aEntities[nIndex] + ' "&#' +(160 + nIndex)+ ';">';
+	aUtilities_entities	+= '<!' + "ENTITY" + ' ' + aEntities[nIndex] + ' "&#' +(160 + nIndex)+ ';">';
 
 //
 function fAML_processScripts() {
@@ -503,9 +129,9 @@ function fAML_processScripts() {
 
 	function fHashToString(hHash) {
 		var aAttributes	= [], sAttribute;
-		for (sAttribute in fAmple.namespaces)
-			if (!(sAttribute in hHash) && fAmple.namespaces.hasOwnProperty(sAttribute))
-				hHash[sAttribute]	= fAmple.namespaces[sAttribute];
+		for (sAttribute in oAmple.namespaces)
+			if (!(sAttribute in hHash) && oAmple.namespaces.hasOwnProperty(sAttribute))
+				hHash[sAttribute]	= oAmple.namespaces[sAttribute];
 		for (sAttribute in hHash)
 			if (hHash.hasOwnProperty(sAttribute))
 				aAttributes.push(' ' + sAttribute + '="' + hHash[sAttribute] + '"');
@@ -543,7 +169,7 @@ function fAML_processScripts() {
 		        aAttributes = oElementDOM.attributes;
 		        for (var nAttribute = 0; oAttribute = aAttributes[nAttribute]; nAttribute++)
 		        	if (oAttribute.specified && (sAttribute = oAttribute.nodeName.toLowerCase()) != "type")
-                		oAttributes[sAttribute]	= fAML_encodeEntities(sAttribute == "style" ? oElementDOM[sAttribute].cssText : oAttribute.nodeValue);
+                		oAttributes[sAttribute]	= fUtilities_encodeEntities(sAttribute == "style" ? oElementDOM[sAttribute].cssText : oAttribute.nodeValue);
 			}
 
 			if (oElementDOM.getAttribute("src")) {
@@ -554,13 +180,13 @@ function fAML_processScripts() {
 				oRequest.send(null);
 
 				// loaded fragment
-				oDocument	= fAML_getResponseDocument(oRequest);
+				oDocument	= fBrowser_getResponseDocument(oRequest);
 				bReferenced	= true;
 			}
 			else {
 				// Create fragment
 			    oDocument   = new cDOMParser().parseFromString(//		"<?" + "xml" + ' ' + 'version="1.0"' + "?>" +
-																		'<!' + "DOCTYPE" + ' ' + "script" + '[' + sAML_entities + ']>' +
+																		'<!' + "DOCTYPE" + ' ' + "script" + '[' + aUtilities_entities + ']>' +
 //->Debug
 																		'\n' +
 //<-Debug
@@ -578,11 +204,11 @@ function fAML_processScripts() {
 			oParserError	= oDocument ? oDocument.getElementsByTagName("parsererror")[0] : null;
 		    if (oDocument && oDocument.documentElement && !oParserError) {
 		    	// import XML DOM into Ample DOM
-		    	oElement	= fAML_import(oDocument.documentElement, true, null, true);
+		    	oElement	= fAMLDocument_import(oAmple_document, oDocument.documentElement, true, null, true);
 		    	// render Ample DOM
 		    	if (bTrident) {
 		    		oElementNew	= oUADocument.createElement("div");
-		    		fAML_replaceNode(oElementDOM, oElementNew);
+		    		fBrowser_replaceNode(oElementDOM, oElementNew);
 			    	oElementNew.innerHTML = bReferenced ? oElement.$getTag() : fGetTagChildren(oElement);
 
 					// Map attributes
@@ -603,7 +229,7 @@ function fAML_processScripts() {
 		    			oAttributes['id']	= oElement.uniqueID;
 
 		    		oElementNew	= oUADocument.importNode(new cDOMParser().parseFromString(
-		    															'<!' + "DOCTYPE" + ' ' + "div" + ' ' + '[' + sAML_entities + ']>' +
+		    															'<!' + "DOCTYPE" + ' ' + "div" + ' ' + '[' + aUtilities_entities + ']>' +
 //->Debug
 																		'\n' +
 //<-Debug
@@ -620,10 +246,10 @@ function fAML_processScripts() {
 		    	}
 
 				//
-		    	fAMLNode_appendChild(oAML_document.documentElement, oElement);
+		    	fAMLNode_appendChild(oAmple_document.documentElement, oElement);
 
 				// Register tree
-				fAML_register(oElement);
+				fAMLDocument_register(oAmple_document, oElement);
 
 			    // Fire load Event
 		    	var oEventLoad = new cAMLEvent;
@@ -632,7 +258,7 @@ function fAML_processScripts() {
 		    }
 		    else {
 				oElementNew	= oUADocument.createElement("pre");
-				fAML_replaceNode(oElementDOM, oElementNew);
+				fBrowser_replaceNode(oElementDOM, oElementNew);
 		    	oElementNew.innerHTML	= "script" + ' ' + "parsererror";
 //->Debug
 				// First "standard" errors output
@@ -660,7 +286,7 @@ function fAML_processScripts() {
 //<-Debug
 
 //->Debug
-			    fAML_warn(nAML_NOT_WELLFORMED_WRN);
+			    fUtilities_warn(sAML_NOT_WELLFORMED_WRN);
 //<-Debug
 		    }
 		}
@@ -677,7 +303,7 @@ function fAML_processStyleSheets() {
     	oElement	= aElements[nIndex];
 
     	if (oElement.getAttribute("type") == "text/ample+css")
-    		fAML_replaceNode(oElement, fAML_createStyleSheet(oElement.innerHTML, oUALocation.href, oElement.getAttribute("media")));
+    		fBrowser_replaceNode(oElement, fBrowser_createStyleSheet(oElement.innerHTML, oUALocation.href, oElement.getAttribute("media")));
 	}
 
 	// Process external StyleSheets
@@ -689,127 +315,114 @@ function fAML_processStyleSheets() {
 		if (oElement.getAttribute("type") != "text/ample+css")
 			nSkip++;
 		else
-			fAML_replaceNode(oElement, fAML_createStyleSheet(fAML_loadStyleSheet(oElement.href), oElement.href, oElement.getAttribute("media")));
+			fBrowser_replaceNode(oElement, fBrowser_createStyleSheet(fBrowser_loadStyleSheet(oElement.href), oElement.href, oElement.getAttribute("media")));
     }
 };
 
-function fAML_initialize() {
-//->Source
-	oUADocument.title	= "Processing...";
-//<-Source
+function fAML_parseStyleSheet(sCSS, sUri) {
+	// 1. Remove namespace declarations
+	var aNameSpaces = sCSS.match(/@namespace\s+([\w-]+\s+)?(url\()?(['"])?[^'";\s]+(['"])?\)?;?/g);
+	if (aNameSpaces)
+		for (var nIndex = 0; nIndex < aNameSpaces.length; nIndex++)
+			sCSS	= sCSS.replace(aNameSpaces[nIndex], '');
 
-//->Source
-    var oDateCSS	= new cDate;
-//<-Source
+	// 2. Rewrite Relative URLs
+	var aCSS	= sCSS.match(/url\s*\([^\)]+\)/g);
+	if (aCSS)
+		for (var nIndex = 0, nLength = aCSS.length, aUrl; nIndex < nLength; nIndex++)
+			if (aUrl = aCSS[nIndex].match(/url\s*\(['"]?([^\)"']+)['"]?\)/i))
+				sCSS	= sCSS.replace(aCSS[nIndex], "url" + '("' + fUtilities_resolveUri(aUrl[1], sUri) + '")');
 
-	// Process CSS stylesheets
-	fAML_processStyleSheets();
+	// 3. Process imports
+	var aImports	= sCSS.match(/@import\s+url\s*\(\s*['"]?[^'"]+['"]?\s*\)\s*;?/g);
+	if (aImports)
+		for (var nIndex = 0, nLength = aImports.length; nIndex < nLength; nIndex++)
+			if (aUrl = aImports[nIndex].match(/url\s*\(['"]?([^\)"']+)['"]?\)/i))
+				sCSS	= sCSS.replace(aImports[nIndex], fAML_parseStyleSheet(fBrowser_loadStyleSheet(aUrl[1]), aUrl[1]));
 
-//->Source
-    var oDateXML	= new cDate;
-//<-Source
-
-	// Process XML markup
-	fAML_processScripts();
-
-	// change readystate to "interactive"
-	fAML_changeReadyState("interactive");
-
-	// Set documentElement style pointer object
-    if (oAMLConfiguration_values["ample-use-style-property"])
-    	oAML_document.documentElement.style	= oUADocument.body.style;
-
-	// IE background images cache fix
-	try {
-		if (bTrident && nVersion < 7)
-			oUADocument.execCommand("BackgroundImageCache", false, true);
-	} catch (oException){};
-
-    // Fire Event
-    var oEventLoad = new cAMLEvent;
-    oEventLoad.initEvent("load", false, false);
-    fAMLNode_dispatchEvent(oAML_document, oEventLoad);
-
-	// change readystate to "complete"
-	fAML_changeReadyState("complete");
-
-//->Source
-	var nElements	= fAMLElement_getElementsByTagName(oAML_document, '*').length,
-		nAnonymous	= (function(){var nLength = 0; for (var sKey in oAML_all) if (oAML_all.hasOwnProperty(sKey)) nLength++; return nLength})();
-	oUADocument.title	=	"Ample: " + nElements + " (+" + (nAnonymous - nElements) + " anonymous). " +
-							"DHTML: " + oUADocument.getElementsByTagName('*').length + ". " +
-							"CSS time: " + (oDateXML - oDateCSS) + " ms. " +
-							"XML time: " + (new cDate - oDateXML) + " ms. ";
-//<-Source
-};
-
-function fAML_finalize() {
-	var aElements = oAML_document.documentElement.childNodes,
-		oEventUnload;
-	for (var nIndex = 0; nIndex < aElements.length; nIndex++) {
-	    // fire unload event on fragments
-		oEventUnload = new cAMLEvent;
-	    oEventUnload.initEvent("unload", false, false);
-	    fAMLNode_dispatchEvent(aElements[nIndex], oEventUnload);
+	// 4. Convert styles
+	if (bTrident) {
+		// Rewrite display:inline-block to display:inline (IE8-)
+		if (nVersion < 8)
+			sCSS	= sCSS.replace(/display\s*:\s*inline-block/g, 'display:inline;zoom:1');
+		// Rewrite opacity
+		if (nVersion < 9)
+			sCSS	= sCSS.replace(/(?:[^-])opacity\s*:\s*([\d.]+)/g, function(sMatch, nOpacity) {
+				return "filter" + ':' + "progid" + ':' + "DXImageTransform.Microsoft.Alpha" + '(' + "opacity" + '=' + nOpacity * 100 + ');zoom:1';
+			});
+	}
+	else
+	if (bGecko || bWebKit || bPresto) {
+		var sBefore	= '$1$2$3-',
+			sAfter	= '-$1$2$3';
+		// Rewrite text-overflow
+		sCSS	= sCSS
+					.replace(/(?:\s|;)(text-overflow\s*:\s*)(.+)(\n|;)/gi, sBefore + (bPresto ? "o" : bGecko ? "moz" : "webkit") + sAfter);
+		//
+		if (!bPresto) {
+			// Rewrite box-shadow
+			sCSS	= sCSS
+						.replace(/(?:\s|;)(box-shadow\s*:\s*)(.+)(\n|;)/gi, sBefore + (bGecko ? "moz" : "webkit") + sAfter)
+						.replace(/(?:\s|;)(outline-radius\s*:\s*)(.+)(\n|;)/gi, sBefore + (bGecko ? "moz" : "webkit") + sAfter)
+						.replace(/(?:\s|;)(border-radius\s*:\s*)(.+)(\n|;)/gi, sBefore + (bGecko ? "moz" : "webkit") + sAfter);
+			if (bGecko) {
+				// Rewrite box-sizing
+				sCSS	= sCSS.replace(/(?:\s|;)(box-sizing\s*:\s*)(.+)(\n|;)/gi, sBefore + "moz" + sAfter);
+				// Rewrite border-radius
+				sBefore	= sBefore + 'moz-border-radius-';
+				sAfter	= ':$2$3';
+				sCSS	= sCSS
+							.replace(/(?:\s|;)(border-top-left-radius\s*:\s*)(.+)(\n|;)/gi, sBefore + 'topleft' + sAfter)
+							.replace(/(?:\s|;)(border-top-right-radius\s*:\s*)(.+)(\n|;)/gi, sBefore + 'topright' + sAfter)
+							.replace(/(?:\s|;)(border-bottom-left-radius\s*:\s*)(.+)(\n|;)/gi, sBefore + 'bottomleft' + sAfter)
+							.replace(/(?:\s|;)(border-bottom-right-radius\s*:\s*)(.+)(\n|;)/gi, sBefore + 'bottomright' + sAfter);
+			}
+			// Rewrite linear-gradient
+//			sCSS	= sCSS.replace(/(\s|;)(background-image\s*:\s*)(linear-gradient\(.+\))(\n|;)/gi, "$1$2$3$4$1$2\-moz\-$3$4");
+		}
 	}
 
-    // fire unload event on document
-    oEventUnload = new cAMLEvent;
-    oEventUnload.initEvent("unload", false, false);
-    fAMLNode_dispatchEvent(oAML_document, oEventUnload);
-
-	// free memory
-    fAML_unregister(oAML_document.documentElement);
-};
-
-function fAML_changeReadyState(sValue) {
-	//
-	oAML_document.readyState	= sValue;
-
-	// Dispatch
-	var oReadyStateChangeEvent	= new cAMLEvent;
-	oReadyStateChangeEvent.initEvent("readystatechange", false, false);
-	fAMLNode_dispatchEvent(oAML_document, oReadyStateChangeEvent);
-};
-
-// set standard parameters
-oAMLConfiguration_values["error-handler"]	= null;
-oAMLConfiguration_values["element-content-whitespace"]	= false;	// in DOM-Core spec the default value is true
-oAMLConfiguration_values["entities"]	= false;	// in DOM-Core spec the default value is true
-oAMLConfiguration_values["comments"]	= false; 	// in DOM-Core spec the default value is true
-// set ample parameters
-oAMLConfiguration_values["ample-use-style-property"]= true;		// -> ample-core-style
-oAMLConfiguration_values["ample-module-history-fix"]= false;	// -> ample-history
-oAMLConfiguration_values["ample-enable-transitions"]= false;
-oAMLConfiguration_values["ample-version"]		= '@project.version@';
-oAMLConfiguration_values["ample-user-locale"]	= oUANavigator.language || oUANavigator.userLanguage || 'en-US';
-oAMLConfiguration_values["ample-user-agent"]	= '@project.userAgent@';
-
-var oAML_implementation	= new cAMLImplementation,
-	oAML_configuration	= new cAMLConfiguration,
-	oAML_document		= fAMLImplementation_createDocument(oAML_implementation, "http://www.w3.org/1999/xhtml", "body", null);
-
-// Dirty adjustment
-oAML_document.documentElement.$getContainer	= function(sName) {return sName && sName != "gateway" ? null : oUADocument.body};
-
-// ample object members
-oAML_document.readyState	= "loading";
-
-//->Debug
-// Enable debugging
-var oAML_errorHandler	= {};
-oAML_errorHandler.handleError	= function(oError) {
-	var oConsole	= window.console;
-	if (oError.severity == cAMLError.SEVERITY_WARNING) {
-		// Warning in console
-		if (oConsole)
-			oConsole.warn(oError.message);
-		return true;
+	// 5. Modify selectors
+	var aCSS	= [],
+		aRules	= sCSS.match(/[^{]+{[^}]*}/g);
+	if (aRules) {
+		for (var nIndex = 0, nLength = aRules.length, aRule; nIndex < nLength; nIndex++) {
+			aRule	= aRules[nIndex].match(/([^{]+)({[^}]*})/);
+			aCSS.push(aRule[1]
+//						.replace(/([\s>+~,])(?:([\w]+)\|)?([\w]+)/g, '$1.$2-$3')		// Element
+						.replace(/\|/g, '-')							// Namespace
+						.replace(/([\s>+~,]|not\()([\w])/g, '$1.$2')	// Element
+						.replace(/\[([\w]+)=?([\w]+)?\]/g, '-$1-$2')	// Attribute
+						.replace(/::/g, '--')							// Pseudo-element
+						.replace(/:nth-child\((\d+)\)/g, '_nth-child-$1')	// Pseudo-class nth-child
+						.replace(/:(?!last-child|first-child|not)/g, '_')	// Pseudo-class
+//						.replace(/>/g, '--' + "gateway" + '>').replace(/(--gateway){2,}/g, '--' + "gateway")// > selector
+						,
+						aRule[2]);
+		}
+		sCSS	= aCSS.join('');
 	}
-	// Error in console
-	if (oConsole)
-		oConsole.error(oError.message + '\n' + oError.relatedException.caller);
-	return false;
+
+	return sCSS;
 };
-oAMLConfiguration_values["error-handler"]	= oAML_errorHandler;
-//<-Debug
+
+function fUtilities_toCssPropertyName(sName) {
+	for (var nIndex = 1, aValue = sName.split('-'); nIndex < aValue.length; nIndex++)
+    	aValue[nIndex] = aValue[nIndex].substr(0, 1).toUpperCase() + aValue[nIndex].substr(1);
+	return aValue.join('');
+};
+
+function fUtilities_stringToHash(sValue, sPrefix) {
+	for (var hValue = {}, aValues = sValue.split(';'), nIndex = 0, nLength = aValues.length, aValue; nIndex < nLength; nIndex++)
+		hValue[(aValue = aValues[nIndex].split(':'))[0]]	=(sPrefix || '') + aValue[1];
+	return hValue;
+};
+
+function fUtilities_numberToHex(nValue, nLength/* =2 */) {
+	var sValue	= cMath.abs(cMath.floor(nValue)).toString(16);
+	if (!nLength)
+		nLength	= 2;
+	if (sValue.length < nLength)
+		sValue	= cArray(nLength + 1 - sValue.length).join('0') + sValue;
+	return sValue;
+};

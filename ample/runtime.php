@@ -66,6 +66,7 @@
 
 	// Runtime
 	$aFiles[]	= "runtime/utilities.js";
+	$aFiles[]	= "runtime/guard.js";
 	$aFiles[]	= "runtime/browser.js";
 	$aFiles[]	= "runtime/ample.js";
 

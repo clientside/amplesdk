@@ -10,7 +10,7 @@
 // Events
 cAMLQuery.prototype.trigger	= function(sType, oDetail) {
 	// Validate API call
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["type",	cString],
 		["detail",	oDetail, true, true]
 	]);
@@ -18,7 +18,7 @@ cAMLQuery.prototype.trigger	= function(sType, oDetail) {
 	// Invoke implementation
 	if (arguments.length < 2)
 		oDetail	= null;
-	fAmple_each(this, function() {
+	fAMLQuery_each(this, function() {
 		var oEvent	= new cAMLCustomEvent;
 		oEvent.initCustomEvent(sType, true, true, oDetail);
 		fAMLNode_dispatchEvent(this, oEvent);
@@ -27,14 +27,14 @@ cAMLQuery.prototype.trigger	= function(sType, oDetail) {
 
 cAMLQuery.prototype.bind	= function(sType, fHandler, bCapture) {
 	// Validate API call
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["type",	cString],
 		["handler",	cFunction],
 		["capture",	cBoolean,	true]
 	]);
 
 	// Invoke implementation
-	fAmple_each(this, function() {
+	fAMLQuery_each(this, function() {
 		fAMLEventTarget_addEventListener(this, sType, fHandler, bCapture || false);
 	});
 	return this;
@@ -42,14 +42,14 @@ cAMLQuery.prototype.bind	= function(sType, fHandler, bCapture) {
 
 cAMLQuery.prototype.unbind	= function(sType, fHandler, bCaprure) {
 	// Validate API call
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["type",	cString],
 		["handler",	cFunction],
 		["capture",	cBoolean,	true]
 	]);
 
 	// Invoke implementation
-	fAmple_each(this, function() {
+	fAMLQuery_each(this, function() {
 		fAMLEventTarget_removeEventListener(this, sType, fHandler, bCapture || false);
 	});
 	return this;

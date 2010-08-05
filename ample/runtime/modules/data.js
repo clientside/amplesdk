@@ -11,14 +11,14 @@ var oAMLQuery_cache	= {};
 
 cAMLQuery.prototype.data	= function(sName, oValue) {
 	// Validate API call
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["name",	cString],
 		["value",	cObject, true, true]
 	]);
 
 	// Invoke implementation
 	if (arguments.length > 1) {
-		fAmple_each(this, function() {
+		fAMLQuery_each(this, function() {
 			if (oValue == null)
 				delete oAMLQuery_cache[this.uniqueID];
 			else

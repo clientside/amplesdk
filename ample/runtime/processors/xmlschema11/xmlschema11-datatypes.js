@@ -336,7 +336,7 @@ oAMLXMLSchema11_processors["schema"]["simpleType"]	= function(oElementDOM, oName
 	}
 //->Debug
 	else
-		fAML_warn(nAML_MISSING_ATTRIBUTE_WRN, ["name", oElementDOM.tagName]);
+		fUtilities_warn(sAML_MISSING_ATTRIBUTE_WRN, ["name", oElementDOM.tagName]);
 //<-Debug
 };
 oAMLXMLSchema11_processors["simpleType"]	= {};
@@ -351,7 +351,7 @@ oAMLXMLSchema11_processors["simpleType"]["list"]	= function(oElementDOM, oType) 
 			oType.itemType	= oItemType;
 //->Debug
 		else
-			fAML_warn(nAML_UNKNOWN_SIMPLE_TYPE_WRN, [sItemType]);
+			fUtilities_warn(sAML_UNKNOWN_SIMPLE_TYPE_WRN, [sItemType]);
 //<-Debug
 	}
 	oType.variety	= cAMLXSSimpleTypeDefinition.VARIETY_LIST;
@@ -370,7 +370,7 @@ oAMLXMLSchema11_processors["simpleType"]["union"]	= function(oElementDOM, oType)
 				oType.memberTypes.$add(oMemberType);
 //->Debug
 			else
-				fAML_warn(nAML_UNKNOWN_SIMPLE_TYPE_WRN, [aMemberTypes[nIndex]]);
+				fUtilities_warn(sAML_UNKNOWN_SIMPLE_TYPE_WRN, [aMemberTypes[nIndex]]);
 //<-Debug
 		}
 	}
@@ -393,13 +393,13 @@ oAMLXMLSchema11_processors["simpleType"]["restriction"]	= function(oElementDOM, 
 		}
 //->Debug
 		else
-			fAML_warn(nAML_UNKNOWN_SIMPLE_TYPE_WRN, [sBase]);
+			fUtilities_warn(sAML_UNKNOWN_SIMPLE_TYPE_WRN, [sBase]);
 //<-Debug
 		oType.variety		= cAMLXSSimpleTypeDefinition.VARIETY_ATOMIC;
 	}
 //->Debug
 	else
-		fAML_warn(nAML_MISSING_ATTRIBUTE_WRN, ["base", oElementDOM.tagName]);
+		fUtilities_warn(sAML_MISSING_ATTRIBUTE_WRN, ["base", oElementDOM.tagName]);
 //<-Debug
 };
 oAMLXMLSchema11_processors["list"]	= {};
@@ -472,7 +472,7 @@ oAMLXMLSchema11_processors["restriction"]["maxScale"]	= function(oElementDOM, oT
 	}
 //->Debug
 	else
-		fAML_warn(nAML_MISSING_ATTRIBUTE_WRN, ["value", oElementDOM.tagName]);
+		fUtilities_warn(sAML_MISSING_ATTRIBUTE_WRN, ["value", oElementDOM.tagName]);
 //<-Debug
 };
 // Multi-value Facets
@@ -504,6 +504,6 @@ oAMLXMLSchema11_processors["restriction"]["enumeration"]	= function(oElementDOM,
 	}
 //->Debug
 	else
-		fAML_warn(nAML_MISSING_ATTRIBUTE_WRN, ["value", oElementDOM.tagName]);
+		fUtilities_warn(sAML_MISSING_ATTRIBUTE_WRN, ["value", oElementDOM.tagName]);
 //<-Debug
 };

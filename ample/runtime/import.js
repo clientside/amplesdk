@@ -71,7 +71,7 @@ if (!!oUADocument.namespaces) {
 else
 if (!!window.controllers) {
 	bGecko		= true;
-	nVersion	= fParseFloat(oUANavigator.userAgent.match(/rv:([\d.]+)/)[1]);
+//	nVersion	= fParseFloat(oUANavigator.userAgent.match(/rv:([\d.]+)/)[1]);
 }
 else
 if (!!window.opera) {

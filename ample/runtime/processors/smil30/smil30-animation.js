@@ -72,13 +72,13 @@ function fAMLSMIL30_animation_getAttributeValue(oAnimation) {
 	if (oAnimation.attributeType == "CSS") {
 		var oElementDOM	= oAnimation.targetElement.$getContainer();
 		if (oAnimation.type == "animateMotion") {
-			var oStyle	= fAML_getComputedStyle(oElementDOM),
+			var oStyle	= fBrowser_getComputedStyle(oElementDOM),
 				oValue1	= fAMLSMIL30_parseValue(oStyle["top"]),
 				oValue2	= fAMLSMIL30_parseValue(oStyle["left"]);
 			aValue	= [[oValue1[0], oValue2[0]], oValue1[1]];
 		}
 		else
-			aValue	= fAMLSMIL30_parseValue(fAML_getStyle(oElementDOM, fAML_toCssPropertyName(oAnimation.attributeName)));
+			aValue	= fAMLSMIL30_parseValue(fBrowser_getStyle(oElementDOM, fUtilities_toCssPropertyName(oAnimation.attributeName)));
 	}
 	else {	// "XML" = "auto"
 		if (oAnimation.type == "animateMotion")
@@ -93,7 +93,7 @@ function fAMLSMIL30_animation_setAttributeValue(oAnimation, aValue) {
 	try {
 		// Color value
 		if (aValue && aValue[1] == '#')
-			aValue	= ['#', fAML_numberToHex(aValue[0][0] * 255) + fAML_numberToHex(aValue[0][1] * 255) + fAML_numberToHex(aValue[0][2] * 255)];
+			aValue	= ['#', fUtilities_numberToHex(aValue[0][0] * 255) + fUtilities_numberToHex(aValue[0][1] * 255) + fUtilities_numberToHex(aValue[0][2] * 255)];
 
 		if (oAnimation.attributeType == "CSS") {
 			var oElementDOM	= oAnimation.targetElement.$getContainer();
@@ -103,7 +103,7 @@ function fAMLSMIL30_animation_setAttributeValue(oAnimation, aValue) {
 				oStyle.left	= aValue[0][1] +(aValue[1] || 'px');	// default to "px"
 			}
 			else
-				fAML_setStyle(oElementDOM, fAML_toCssPropertyName(oAnimation.attributeName), aValue.join(''));
+				fBrowser_setStyle(oElementDOM, fUtilities_toCssPropertyName(oAnimation.attributeName), aValue.join(''));
 		}
 		else {	// "XML" = "auto"
 			if (oAnimation.type == "animateMotion")
@@ -114,7 +114,7 @@ function fAMLSMIL30_animation_setAttributeValue(oAnimation, aValue) {
 	}
 	catch (oException) {
 //->Debug
-		fAML_warn(nAML_ERROR_ANIMATING_ATTR_WRN, [oAnimation.attributeName, aValue]);
+		fUtilities_warn(sAML_ERROR_ANIMATING_ATTR_WRN, [oAnimation.attributeName, aValue]);
 //<-Debug
 	}
 };

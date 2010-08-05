@@ -21,7 +21,7 @@ function fAMLTouch_onTouchStart(oEvent) {
 		nAMLTouch_clientY	= oEvent.touches[0].clientY;
 		//
 		for (var oElement = oEvent.target.$getContainer(), oStyle, sOverflow; oElement && oElement.nodeType == 1; oElement = oElement.parentNode) {
-			oStyle	= fAML_getComputedStyle(oElement);
+			oStyle	= fBrowser_getComputedStyle(oElement);
 			bAMLTouch_scrollLeft	=
 			bAMLTouch_scrollTop		= (sOverflow = oStyle.overflow) == "auto" || sOverflow == "scroll";
 			if ((sOverflow = oStyle.overflowX) == "auto" || sOverflow == "scroll")
@@ -45,7 +45,7 @@ function fAMLTouch_onTouchMove(oEvent) {
 	// Simulate wheel event
 	if (nAMLTouch_clientY - nClientY) {
 		var oEventMouseWheel	= new cAMLMouseWheelEvent;
-		oEventMouseWheel.initMouseWheelEvent("mousewheel", true, true, window, null, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, 0, null, fGetKeyboardEventModifiersList(oEvent), nAMLTouch_clientY	- nClientY);
+		oEventMouseWheel.initMouseWheelEvent("mousewheel", true, true, window, null, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, 0, null, fBrowser_getKeyboardEventModifiersList(oEvent), nAMLTouch_clientY	- nClientY);
 		oEventMouseWheel.$pseudoTarget	= oEvent.$pseudoTarget;
 		fAMLNode_dispatchEvent(oEvent.target, oEventMouseWheel);
 	}
@@ -67,6 +67,6 @@ function fAMLTouch_onTouchEnd(oEvent) {
 };
 
 // Attaching to implementation
-fAMLEventTarget_addEventListener(oAML_document, "touchstart",	fAMLTouch_onTouchStart,	false);
-fAMLEventTarget_addEventListener(oAML_document, "touchmove",	fAMLTouch_onTouchMove,	false);
-fAMLEventTarget_addEventListener(oAML_document, "touchend",		fAMLTouch_onTouchEnd,	false);
+fAMLEventTarget_addEventListener(oAmple_document, "touchstart",	fAMLTouch_onTouchStart,	false);
+fAMLEventTarget_addEventListener(oAmple_document, "touchmove",	fAMLTouch_onTouchMove,	false);
+fAMLEventTarget_addEventListener(oAmple_document, "touchend",		fAMLTouch_onTouchEnd,	false);

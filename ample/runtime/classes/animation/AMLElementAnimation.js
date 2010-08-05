@@ -34,7 +34,7 @@ function fAMLElementAnimation_play(oElement, sParams, nDuration, vType, fHandler
 		aParam;
 	for (var nIndex = 0; nIndex < aParams.length; nIndex++)
 		if (aParam = aParams[nIndex].match(/([a-z\-]+)\s*\:\s*(.+)/i))
-			oEffect._data[sParam = fAML_toCssPropertyName(aParam[1])]	= [fAMLSMIL30_parseValue(fAMLElementAnimation_adjustStyleValue(sParam, fAML_getStyle(oEffect._container, sParam))), fAMLSMIL30_parseValue(fAMLElementAnimation_adjustStyleValue(sParam, aParam[2]))];
+			oEffect._data[sParam = fUtilities_toCssPropertyName(aParam[1])]	= [fAMLSMIL30_parseValue(fAMLElementAnimation_adjustStyleValue(sParam, fBrowser_getStyle(oEffect._container, sParam))), fAMLSMIL30_parseValue(fAMLElementAnimation_adjustStyleValue(sParam, aParam[2]))];
 
 	// delete running effects on new effect properties for the same element
 	for (var nIndex = 0, oEffectOld; nIndex < aAMLElementAnimation_effects.length; nIndex++)
@@ -66,12 +66,12 @@ function fAMLElementAnimation_stop(nEffect)
 			aValue	= oData[1];
 			// Color value
 			if (aValue && aValue[1] == '#')
-				aValue	= ['#', fAML_numberToHex(aValue[0][0] * 255) + fAML_numberToHex(aValue[0][1] * 255) + fAML_numberToHex(aValue[0][2] * 255)];
+				aValue	= ['#', fUtilities_numberToHex(aValue[0][0] * 255) + fUtilities_numberToHex(aValue[0][1] * 255) + fUtilities_numberToHex(aValue[0][2] * 255)];
 			else
 			if (sKey == "backgroundPosition")
 				aValue	= [aValue[0][0], aValue[1], ' ', aValue[0][1], aValue[1]];
 			//
-			fAML_setStyle(oEffect._container, sKey, aValue.join(''));
+			fBrowser_setStyle(oEffect._container, sKey, aValue.join(''));
 		}
 
 	var oEventEffectEnd	= new cAMLEvent;
@@ -88,7 +88,7 @@ function fAMLElementAnimation_process(nEffect)
 		oEffect._timestamp	= new cDate;
 
 	// clear effect if node was removed
-	if (!oAML_all[oEffect._element.uniqueID])
+	if (!oAMLDocument_all[oEffect._element.uniqueID])
 		return fAMLElementAnimation_clear(nEffect);
 
 	// stop effect if the time is up
@@ -142,12 +142,12 @@ function fAMLElementAnimation_process(nEffect)
 			aValue	= fAMLSMIL30_animation_sumValues(oData[0], fAMLSMIL30_animation_multiplyValue(fAMLSMIL30_animation_subValues(oData[1], oData[0]), nRatio));
 			// Color value
 			if (aValue[1] == '#')
-				aValue	= ['#', fAML_numberToHex(aValue[0][0] * 255) + fAML_numberToHex(aValue[0][1] * 255) + fAML_numberToHex(aValue[0][2] * 255)];
+				aValue	= ['#', fUtilities_numberToHex(aValue[0][0] * 255) + fUtilities_numberToHex(aValue[0][1] * 255) + fUtilities_numberToHex(aValue[0][2] * 255)];
 			else
 			if (sKey == "backgroundPosition")
 				aValue	= [aValue[0][0], aValue[1], ' ', aValue[0][1], aValue[1]];
 			//
-			fAML_setStyle(oEffect._container, sKey, aValue.join(''));
+			fBrowser_setStyle(oEffect._container, sKey, aValue.join(''));
 		}
 };
 
@@ -189,7 +189,7 @@ cAMLElement.EFFECT_BOUNCE		= nAMLElementAnimation_EFFECT_BOUNCE;
 cAMLElement.prototype.$play	= function(sParams, nDuration, vType, fHandler, sPseudo)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["params",		cString],
 		["duration",	cNumber],
 		["type",		cObject, true],
@@ -203,7 +203,7 @@ cAMLElement.prototype.$play	= function(sParams, nDuration, vType, fHandler, sPse
 cAMLElement.prototype.$stop	= function(nEffect)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["effect",		cNumber]
 	]);
 

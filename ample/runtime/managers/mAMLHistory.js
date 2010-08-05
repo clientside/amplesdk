@@ -50,7 +50,7 @@ function fAMLHistory_onHashChange() {
 			if (sAMLHistory_new != sHash) {
 				var oEvent	= new cAMLHashChangeEvent;
 				oEvent.initHashChangeEvent("hashchange", true, false, sUrl + (sAMLHistory_prev ? '#' : '') + sAMLHistory_prev, sUrl + (sHash ? '#' : '') + sHash);
-				fAMLNode_dispatchEvent(oAML_document, oEvent);
+				fAMLNode_dispatchEvent(oAmple_document, oEvent);
 			}
 			//
 			sAMLHistory_prev	= sHash;
@@ -61,7 +61,7 @@ function fAMLHistory_onHashChange() {
 
 function fAMLHistory_onLoad(oEvent) {
 	if (bTrident && nVersion > 7)
-		fAttachEvent(window, "hashchange", fAMLHistory_onHashChange);
+		fBrowser_attachEvent(window, "hashchange", fAMLHistory_onHashChange);
 	else {
 		var sHash	= oUALocation.hash.replace(/^#/, '');
 		if (bTrident) {
@@ -79,7 +79,7 @@ function fAMLHistory_onLoad(oEvent) {
 
 function fAMLHistory_onUnLoad(oEvent) {
 	if (bTrident && nVersion > 7)
-		fDetachEvent(window, "hashchange", fAMLHistory_onHashChange);
+		fBrowser_detachEvent(window, "hashchange", fAMLHistory_onHashChange);
 	else
 		fClearTimeout(nAMLHistory_timeout);
 };
@@ -101,9 +101,9 @@ cAMLHashChangeEvent.prototype.initHashChangeEvent	= function(sType, bCanBubble, 
 };
 
 // Attaching to implementation
-fAmple.$bookmark	= function(sHash) {
+oAmple.$bookmark	= function(sHash) {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["hash",		cString]
 	]);
 
@@ -111,5 +111,5 @@ fAmple.$bookmark	= function(sHash) {
 };
 
 // Registering Event Handlers
-fAMLEventTarget_addEventListener(oAML_document, "load",		fAMLHistory_onLoad,		false);
-fAMLEventTarget_addEventListener(oAML_document, "unload",	fAMLHistory_onUnLoad,	false);
+fAMLEventTarget_addEventListener(oAmple_document, "load",		fAMLHistory_onLoad,		false);
+fAMLEventTarget_addEventListener(oAmple_document, "unload",	fAMLHistory_onUnLoad,	false);

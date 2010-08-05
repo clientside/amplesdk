@@ -23,10 +23,10 @@ oAMLXMLEvents10_implementation.traverse	= function(oElementDOM, oNode) {
 	}
 //->Debug
 	else {
-		fAML_warn(nAML_UNKNOWN_ELEMENT_NS_WRN, [oElementDOM.tagName, oElementDOM.namespaceURI]);
+		fUtilities_warn(sAML_UNKNOWN_ELEMENT_NS_WRN, [oElementDOM.tagName, oElementDOM.namespaceURI]);
 	}
 //<-Debug
 };
 
 // register processor
-oAML_processors[sAMLXMLEvents10_namespaceURI]	= oAMLXMLEvents10_implementation;
+oAMLImplementation_processors[sAMLXMLEvents10_namespaceURI]	= oAMLXMLEvents10_implementation;
