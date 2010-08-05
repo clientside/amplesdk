@@ -58,7 +58,7 @@ cAMLNode.prototype.$listeners	= null;
 
 function fAMLNode_getTextContent(oNode) {
 	for (var nIndex = 0, aText = [], oChild; oChild = oNode.childNodes[nIndex]; nIndex++)
-		if (oChild.nodeType == cAMLNode.TEXT_NODE || oChild.nodeType == cAMLNode.CDATA_SECTION)
+		if (oChild.nodeType == cAMLNode.TEXT_NODE || oChild.nodeType == cAMLNode.CDATA_SECTION_NODE)
 			aText.push(oChild.data);
 		else
 		if (oChild.nodeType == cAMLNode.ELEMENT_NODE && oChild.firstChild)
