@@ -31,8 +31,8 @@
 				<xsl:for-each select="$page/*/members/*/*">
 					<xsl:variable name="abstract" select="normalize-space(description/locale[@xml:lang='en' or not(@xml:lang)])" />
 					<entry title="{@name}">
-						<xsl:attribute name="href"><xsl:value-of select="$name" />.<xsl:value-of select="$url" />#<xsl:value-of select="local-name()" />-<xsl:value-of select="@name" /></xsl:attribute>
-						(<xsl:value-of select="@name" />)
+						<xsl:attribute name="href"><xsl:value-of select="$url" />#<xsl:value-of select="local-name()" />-<xsl:value-of select="@name" /></xsl:attribute>
+						(<xsl:value-of select="$name" />)
 						<xsl:value-of select="substring($abstract, 0, 75)" />
 						<xsl:if test="string-length($abstract) &gt; 75">...</xsl:if>
 					</entry>
