@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_output	= function(){};
-cXHTMLElement_output.prototype	= new cXHTMLElement("outpu");
+cXHTMLElement_output.prototype	= new cXHTMLElement("output");
 
 // Class Events Handlers
 cXHTMLElement_output.handlers	= {
