@@ -179,11 +179,6 @@ oAmple.config	= function(sName, oValue) {
 		return oAmple_document.domConfig.getParameter(sPrefix + sName);
 };
 
-// Ajax
-oAmple.ajax	= function(oBag) {
-	// TODO
-};
-
 // Bind shortcut
 oAmple.bind	= function(sType, fHandler, bCapture) {
 	// Validate API call

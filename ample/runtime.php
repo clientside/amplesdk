@@ -131,6 +131,7 @@
 
 	// Modules
 	$aFiles[]	= "runtime/modules/collection.js";
+	$aFiles[]	= "runtime/modules/ajax.js";
 	$aFiles[]	= "runtime/modules/css.js";
 	$aFiles[]	= "runtime/modules/dom.js";
 	$aFiles[]	= "runtime/modules/effects.js";

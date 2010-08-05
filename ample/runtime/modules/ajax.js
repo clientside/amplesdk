@@ -7,14 +7,10 @@
  *
  */
 
-//
-cAMLQuery.prototype.animate	= function(oProperties, nSpeed, fEasing, fCallback) {
+oAmple.ajax	= function(oSettings) {
 	// Validate API call
 	fGuard(arguments, [
-		["properties",	cObject, true],
-		["speed",		cObject, true],
-		["easing",		cFunction, true],
-		["callback",	cFunction, true]
+		["settings",	cObject]
 	]);
 
 	// Invoke implementation
