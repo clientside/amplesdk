@@ -15,17 +15,26 @@
 		<xsl:param name="page" select="document(@url)" />
 		<xsl:choose>
 			<xsl:when test="$page[article]">
-				<entry title="{normalize-space($page/article/title)}" href="{$url}" />
-				<xsl:for-each select="$page/article/content/section">
-					<entry title="- {normalize-space(title/locale[1])}" href="{$url}" />
-				</xsl:for-each>
+				<xsl:variable name="abstract" select="normalize-space($page/*/abstract/locale[@xml:lang='en' or not(@xml:lang)])" />
+				<entry title="{normalize-space($page/article/title)}" href="{$url}">
+					<xsl:value-of select="substring($abstract, 0, 75)" />
+					<xsl:if test="string-length($abstract) &gt; 75">...</xsl:if>
+				</entry>
 			</xsl:when>
 			<xsl:when test="$page[object | element | interface]">
 				<xsl:variable name="name" select="$page/*/@name" />
-				<entry title="{normalize-space($name)}" href="{$url}"/>
+				<xsl:variable name="abstract" select="normalize-space($page/*/abstract/locale[@xml:lang='en' or not(@xml:lang)])" />
+				<entry title="{$name}" href="{$url}">
+					<xsl:value-of select="substring($abstract, 0, 75)" />
+					<xsl:if test="string-length($abstract) &gt; 75">...</xsl:if>
+				</entry>
 				<xsl:for-each select="$page/*/members/*/*">
-					<entry title="{normalize-space(@name)} ({$name})">
-						<xsl:attribute name="href"><xsl:value-of select="$url" />#<xsl:value-of select="local-name()" />-<xsl:value-of select="@name" /></xsl:attribute>
+					<xsl:variable name="abstract" select="normalize-space(description/locale[@xml:lang='en' or not(@xml:lang)])" />
+					<entry title="{@name}">
+						<xsl:attribute name="href"><xsl:value-of select="$name" />.<xsl:value-of select="$url" />#<xsl:value-of select="local-name()" />-<xsl:value-of select="@name" /></xsl:attribute>
+						(<xsl:value-of select="@name" />)
+						<xsl:value-of select="substring($abstract, 0, 75)" />
+						<xsl:if test="string-length($abstract) &gt; 75">...</xsl:if>
 					</entry>
 				</xsl:for-each>
 			</xsl:when>
