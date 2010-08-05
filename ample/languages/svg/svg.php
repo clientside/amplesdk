@@ -75,9 +75,9 @@
 	header("Content-type: application/javascript");
 
 	echo
-//			"(function(){" .
+			"(function(){" .
 				$sOutput .
-//			"})();" .
+			"})();" .
 			""
 	;
 ?>
