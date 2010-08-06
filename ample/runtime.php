@@ -79,8 +79,6 @@
 //	$aFiles[]	= "runtime/processors/smil30/classes/cAMLTimeEvent.js";
 	// XBL 2.0
 //	$aFiles[]	= "runtime/processors/xbl20/xbl20.js";
-	// XInclude 1.0
-	$aFiles[]	= "runtime/processors/xinclude10/xinclude10.js";
 	// XML Events 1.0
 	$aFiles[]	= "runtime/processors/xmlevents10/xmlevents10.js";
 	// XML Schema 1.1

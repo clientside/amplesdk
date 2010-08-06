@@ -330,7 +330,36 @@ function fAMLDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse
 	switch (oElementDOM.nodeType) {
 		case cAMLNode.ELEMENT_NODE:
 			var sNameSpaceURI	= oElementDOM.namespaceURI || null,
+				sLocalName		= oElementDOM.localName || oElementDOM.baseName,
 				oProcessor	= oAMLImplementation_processors[sNameSpaceURI];
+			if (sNameSpaceURI == "http://www.w3.org/2001/XInclude") {
+				if (sLocalName == "include") {
+					var oRequest	= new cXMLHttpRequest,
+						oResponse,
+						sHref	= oElementDOM.getAttribute("href");
+					oRequest.open("GET", sHref, false);
+					oRequest.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+					oRequest.setRequestHeader("X-User-Agent", oAMLConfiguration_values["ample-user-agent"]);
+					oRequest.send(null);
+					if (oResponse = fBrowser_getResponseDocument(oRequest)) {
+						// set xml:base according to spec
+						if (!oResponse.documentElement.getAttribute("xml:base"))
+							oResponse.documentElement.setAttribute("xml:base", sHref);
+						fAMLDocument_importNode(oDocument, oResponse, bDeep, oNode, bCollapse);
+					}
+					else {
+						// lookup if there is fallback
+						oElementDOM	= oElementDOM.getElementsByTagName('*')[0];
+						if (oElementDOM && (oElementDOM.localName || oElementDOM.baseName).toLowerCase() == "fallback" && oElementDOM.namespaceURI == sNameSpaceURI && oElementDOM.firstChild)
+							fAMLDocument_importNode(oDocument, oElementDOM.getElementsByTagName('*')[0] || oElementDOM.childNodes[0], bDeep, oNode, bCollapse);
+					}
+				}
+//->Debug
+				else
+					fUtilities_warn(sAML_UNKNOWN_ELEMENT_NS_WRN, [oElementDOM.tagName, oElementDOM.namespaceURI]);
+//<-Debug
+			}
+			else
 			if (oProcessor) {
 				// if element was returned from traversal, it should be processed
 				if (oElementDOM = oProcessor.traverse(oElementDOM, oNode))
@@ -339,7 +368,6 @@ function fAMLDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse
 			else {
 				// Create element (note: in IE, namespaceURI is empty string if not specified, hence "oElementDOM.namespaceURI || null")
 				var oElement	= fAMLDocument_createElementNS(oDocument, sNameSpaceURI, oElementDOM.nodeName),
-					sLocalName	= oElement.localName,
 					oAttributes	= oElement.attributes,
 					aAttributes = oElementDOM.attributes,
 					oAttribute, sName, sValue;
