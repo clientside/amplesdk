@@ -723,14 +723,24 @@ function fBrowser_getComputedStyle(oElementDOM) {
 	return oElementDOM.currentStyle || window.getComputedStyle(oElementDOM, null);
 };
 
-function fBrowser_getStyle(oElementDOM, sName) {
-	var oStyle	= fBrowser_getComputedStyle(oElementDOM);
+function fBrowser_getStyle(oElementDOM, sName, oStyle) {
+	if (!oStyle)
+		oStyle	= fBrowser_getComputedStyle(oElementDOM);
 	if (bTrident && nVersion < 9) {
 		if (sName == "opacity")
-			return cString(cString(oStyle.filter).match(/opacity=([\.0-9]+)/i) ? oElementDOM.filters.item("DXImageTransform.Microsoft.Alpha").opacity / 100 : 1);
+			return sName in oStyle ? oStyle[sName] : cString(cString(oStyle.filter).match(/opacity=([\.0-9]+)/i) ? oElementDOM.filters.item("DXImageTransform.Microsoft.Alpha").opacity / 100 : 1);
 		else
 		if (sName == "backgroundPosition")
 			return oStyle[sName + 'X'] + ' ' + oStyle[sName + 'Y'];
+		else
+		if (sName == "width" || sName == "height") {
+			var sValue	= oStyle[sName];
+			if (sValue == "auto") {
+				var oClientRect	= oElementDOM.getBoundingClientRect();
+				return sName == "width" ? oClientRect["right"] - oClientRect["left"] : oClientRect["bottom"] - oClientRect["top"];
+			}
+			return sValue;
+		}
 	}
 	//
 	return oStyle[sName == "borderColor" ? "borderBottomColor" : sName];

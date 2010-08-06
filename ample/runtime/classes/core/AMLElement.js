@@ -929,18 +929,11 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 				oBefore	= {},
 				nIndex, nLength, sKey;
 			if (bTransition)
-				for (nIndex = 0, nLength = aCSSTransition.length; nIndex < nLength; nIndex++) {
-					sKey = aCSSTransition[nIndex];
-					oBefore[sKey]	= oStyle[sKey];
-				}
+				for (nIndex = 0, nLength = aCSSTransition.length; nIndex < nLength; nIndex++)
+					oBefore[sKey = aCSSTransition[nIndex]]	= fBrowser_getStyle(oElementDOM, sKey, oStyle);
 			if (bAnimation)
-				for (nIndex = 0, nLength = aCSSAnimation.length; nIndex < nLength; nIndex++) {
-					sKey = aCSSAnimation[nIndex];
-					if (bTrident && nVersion < 9 && sKey == "backgroundPosition")
-						oBefore[sKey]	= oStyle[sKey + 'X'] + ' ' + oStyle[sKey + 'Y'];
-					else
-						oBefore[sKey]	= oStyle[sKey];
-				}
+				for (nIndex = 0, nLength = aCSSAnimation.length; nIndex < nLength; nIndex++)
+					oBefore[sKey = aCSSAnimation[nIndex]]	= fBrowser_getStyle(oElementDOM, sKey, oStyle);
 		}
 
 		var sOldName= bTrident && nVersion < 8 ? oElementDOM.className : oElementDOM.getAttribute("class") || '',
@@ -1009,15 +1002,16 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 		// Animation + Transition effects
 		if (bTransition || bAnimation) {
 			var oStyle	= fBrowser_getComputedStyle(oElementDOM),
+				oOwnStyle	= oElementDOM.style,
 				aPropertiesAfter	= [],
 				aPropertiesReset	= [],
 				nIndex, nLength, sKey, sValue;
 			if (bTransition)
 				for (nIndex = 0, nLength = aCSSTransition.length; nIndex < nLength; nIndex++) {
 					sKey = aCSSTransition[nIndex];
-					sValue	= oStyle[sKey];
+					sValue	= fBrowser_getStyle(oElementDOM, sKey, oStyle);
 					if (oBefore[sKey] != sValue) {
-						if (!oElementDOM.style[sValue])
+						if (!oOwnStyle[sValue])
 							aPropertiesReset.push(sKey);
 						fBrowser_setStyle(oElementDOM, sKey, oBefore[sKey]);
 						aPropertiesAfter.push(sKey + ":" + sValue);
@@ -1026,12 +1020,9 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 			if (bAnimation)
 				for (nIndex = 0, nLength = aCSSAnimation.length; nIndex < nLength; nIndex++) {
 					sKey = aCSSAnimation[nIndex];
-					if (bTrident && nVersion < 9 && sKey == "backgroundPosition")
-						sValue	= oStyle[sKey + 'X'] + ' ' + oStyle[sKey + 'Y'];
-					else
-						sValue	= oStyle[sKey];
+					sValue	= fBrowser_getStyle(oElementDOM, sKey, oStyle);
 					if (oBefore[sKey] != sValue) {
-						if (!oElementDOM.style[sValue])
+						if (!oOwnStyle[sValue])
 							aPropertiesReset.push(sKey);
 						fBrowser_setStyle(oElementDOM, sKey, oBefore[sKey]);
 						aPropertiesAfter.push(sKey + ":" + sValue);
@@ -1039,7 +1030,7 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 				}
 
 			if (aPropertiesAfter.length) {
-				fAMLElementAnimation_play(oElement, aPropertiesAfter.join(';'), 300, 3, function() {
+				fAMLElementAnimation_play(oElement, aPropertiesAfter.join(';'), 1000, 3, function() {
 					for (var nIndex = 0; nIndex < aPropertiesReset.length; nIndex++)
 						fBrowser_setStyle(oElementDOM, aPropertiesReset[nIndex], '');
 				});
