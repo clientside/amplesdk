@@ -110,16 +110,27 @@ function fAMLDragAndDrop_onMouseUp(oEvent)
 	    oEventDragEnd.$pseudoTarget	= oEvent.$pseudoTarget;
 	    fAMLNode_dispatchEvent(oAMLDragAndDrop_dragSource, oEventDragEnd);
 
+	    var bDefaultPrevented	= oEvent.defaultPrevented || oEvent.button/* || oEventDragEnd.defaultPrevented*/,
+	    	bPlay	= oAMLConfiguration_values["ample-enable-animations"] &&(bDefaultPrevented || oAMLDragAndDrop_dataTransfer.dropEffect == "move" || oAMLDragAndDrop_dataTransfer.dropEffect == "copy");
+	    if (bPlay) {
+		    var sLeft	= oElementDOM.style.left,
+		    	sTop	= oElementDOM.style.top;
+		    // Commit
+		    oElementDOM.style.left	= nAMLDragAndDrop_clientLeft;
+		    oElementDOM.style.top	= nAMLDragAndDrop_clientTop;
+	    	var oRect1	= fAMLElement_getBoundingClientRect(oAMLDragAndDrop_dragSource);
+	    	// Rollback
+		    oElementDOM.style.left	= sLeft;
+		    oElementDOM.style.top	= sTop;
+	    }
+
 	    // Execute default action
-	    var bDefaultPrevented	= oEvent.defaultPrevented || oEvent.button/* || oEventDragEnd.defaultPrevented*/;
 	    if (!bDefaultPrevented && oAMLDragAndDrop_dropTarget && oAMLDragAndDrop_dropTarget != oAMLDragAndDrop_dragSource.parentNode) {
-		    if (oAMLDragAndDrop_dataTransfer.dropEffect == "copy") {
+		    if (oAMLDragAndDrop_dataTransfer.dropEffect == "copy")
 	    		oAMLDragAndDrop_dropTarget.appendChild(oAMLDragAndDrop_dragSource.cloneNode(true));	// TODO: remove @id attribute values
-		    }
 		    else
-		    if (oAMLDragAndDrop_dataTransfer.dropEffect == "move") {
+		    if (oAMLDragAndDrop_dataTransfer.dropEffect == "move")
 	    		oAMLDragAndDrop_dropTarget.appendChild(oAMLDragAndDrop_dragSource);
-		    }
 	    }
 
 		if (bDefaultPrevented || oAMLDragAndDrop_dataTransfer.dropEffect == "move" || oAMLDragAndDrop_dataTransfer.dropEffect == "copy")
@@ -131,11 +142,18 @@ function fAMLDragAndDrop_onMouseUp(oEvent)
 				};
 
 		    // Restore element position
-			if (oAMLConfiguration_values["ample-enable-animations"]) {
+			if (bPlay) {
+				// Commit
+			    oElementDOM.style.left	= nAMLDragAndDrop_clientLeft;
+			    oElementDOM.style.top	= nAMLDragAndDrop_clientTop;
+				var oRect2	= fAMLElement_getBoundingClientRect(oAMLDragAndDrop_dragSource);
+				// Rollback
+			    oElementDOM.style.left	=(fParseInt(sLeft) + oRect1.left - oRect2.left)+ 'px';
+			    oElementDOM.style.top	=(fParseInt(sTop) + oRect1.top - oRect2.top)+ 'px';
+				//
 				var oProperties	= {};
 				oProperties["left"]		= nAMLResize_clientLeft || "auto";
 				oProperties["top"]		= nAMLResize_clientTop || "auto";
-				//
 				fAMLElementAnimation_play(oAMLDragAndDrop_dragSource, oProperties, 300, 3, fRestore);
 			}
 			else
