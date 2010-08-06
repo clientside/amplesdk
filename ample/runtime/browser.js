@@ -752,7 +752,7 @@ function fBrowser_setStyle(oElementDOM, sName, sValue) {
 		if (sName == "opacity") {
 			var sFilter	= cString(oElementDOM.currentStyle.filter),
 				bFilter	= sFilter.match(/opacity=([\.0-9]+)/i);
-			if (sValue < 1) {
+			if (sValue != '' && sValue < 1) {
 				if (!bFilter) {
 					oStyle.filter	= sFilter + ' ' + "progid" + ':' + "DXImageTransform.Microsoft.Alpha" + '(' + "opacity" + '=100)';
 					if (!oElementDOM.currentStyle.hasLayout)
