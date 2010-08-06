@@ -31,9 +31,10 @@ function fAMLElementAnimation_play(oElement, oProperties, nDuration, vType, fHan
 	oEffect._interval	= fSetInterval(function(){fAMLElementAnimation_process(nEffect)}, 20);
 
 	// read end params from input
+	var sName;
 	for (var sKey in oProperties)
 		if (oProperties.hasOwnProperty(sKey))
-			oEffect._data[sKey = fUtilities_toCssPropertyName(sKey)]	= [fAMLSMIL30_parseValue(fAMLElementAnimation_adjustStyleValue(oElementDOM, sKey, fBrowser_getStyle(oElementDOM, sKey, oStyle))), fAMLSMIL30_parseValue(fAMLElementAnimation_adjustStyleValue(oElementDOM, sKey, oProperties[sKey]))];
+			oEffect._data[sName = fUtilities_toCssPropertyName(sKey)]	= [fAMLSMIL30_parseValue(fAMLElementAnimation_adjustStyleValue(oElementDOM, sName, fBrowser_getStyle(oElementDOM, sName, oStyle))), fAMLSMIL30_parseValue(fAMLElementAnimation_adjustStyleValue(oElementDOM, sName, oProperties[sKey]))];
 
 	// delete running effects on new effect properties for the same element
 	for (var nIndex = 0, oEffectOld; nIndex < aAMLElementAnimation_effects.length; nIndex++)
