@@ -7,12 +7,12 @@
  *
  */
 
-var nAMLElementAnimation_EFFECT_LINEAR		= 1,	// Constants
-	nAMLElementAnimation_EFFECT_ACCELERATE	= 2,
-	nAMLElementAnimation_EFFECT_DECELERATE	= 3,
-	nAMLElementAnimation_EFFECT_SPRING		= 4,
-	nAMLElementAnimation_EFFECT_BOUNCE		= 5,
-	aAMLElementAnimation_effects	= [];				// Variables
+var nAMLElementAnimation_EFFECT_LINEAR		= 0,	// Constants
+	nAMLElementAnimation_EFFECT_EASE		= 1,
+	nAMLElementAnimation_EFFECT_EASE_IN		= 2,
+	nAMLElementAnimation_EFFECT_EASE_OUT	= 3,
+	nAMLElementAnimation_EFFECT_EASE_IN_OUT	= 4,
+	aAMLElementAnimation_effects	= [];			// Variables
 
 function fAMLElementAnimation_play(oElement, oProperties, nDuration, vType, fHandler, sPseudo)
 {
@@ -84,7 +84,8 @@ function fAMLElementAnimation_stop(nEffect)
 
 function fAMLElementAnimation_process(nEffect)
 {
-	var oEffect	= aAMLElementAnimation_effects[nEffect];
+	var oEffect	= aAMLElementAnimation_effects[nEffect],
+		nDuration	= oEffect._duration;
 		oEffect._timestamp	= new cDate;
 
 	// clear effect if node was removed
@@ -103,30 +104,30 @@ function fAMLElementAnimation_process(nEffect)
 	var nRatio	= 0;
 	if (oEffect._duration)
 	{
-		var nRatioRaw	=(oEffect._timestamp - oEffect._start) / oEffect._duration;
+		var nRatioRaw	=(oEffect._timestamp - oEffect._start) / nDuration;
 		if (oEffect._type instanceof cFunction)
 			nRatio	= oEffect._type(nRatioRaw);
 		else
 		{
 			switch (oEffect._type)
 			{
-				case nAMLElementAnimation_EFFECT_ACCELERATE:
-					nRatio	= cMath.pow(nRatioRaw, cMath.E);
+				case nAMLElementAnimation_EFFECT_EASE:
+					nRatio	= fAMLElementAnimation_cubicBezier(nRatioRaw, 0.25, 0.1, 0.25, 1.0, nDuration);
 					break;
 
-				case nAMLElementAnimation_EFFECT_DECELERATE:
-					nRatio	= cMath.pow(nRatioRaw, 1 / cMath.E);
+				case nAMLElementAnimation_EFFECT_EASE_IN:
+					nRatio	= fAMLElementAnimation_cubicBezier(nRatioRaw, 0.42, 0, 1, 1, nDuration);
 					break;
 
-				case nAMLElementAnimation_EFFECT_SPRING:
-					nRatio	= nRatioRaw;
+				case nAMLElementAnimation_EFFECT_EASE_OUT:
+					nRatio	= fAMLElementAnimation_cubicBezier(nRatioRaw, 0, 0, 0.58, 1.0, nDuration);
 					break;
 
-				case nAMLElementAnimation_EFFECT_BOUNCE:
-					nRatio	= nRatioRaw;
+				case nAMLElementAnimation_EFFECT_EASE_IN_OUT:
+					nRatio	= fAMLElementAnimation_cubicBezier(nRatioRaw, 0.42, 0, 0.58, 1.0, nDuration);
 					break;
 
-				default:
+				default:	// also linear
 					nRatio	= nRatioRaw;
 			}
 		}
@@ -184,12 +185,74 @@ function fAMLElementAnimation_adjustStyleValue(oElementDOM, sName, sValue) {
 	return sValue;
 };
 
+// UnitBezier.h, WebCore_animation_AnimationBase.cpp
+function fAMLElementAnimation_cubicBezier(t, a, b, c, d, nDuration) {
+	var ax=0,bx=0,cx=0,ay=0,by=0,cy=0;
+	// `ax t^3 + bx t^2 + cx t' expanded using Horner's rule.
+    function fSampleCurveX(t) {
+    	return ((ax*t+bx)*t+cx)*t;
+    };
+    function fSampleCurveY(t) {
+    	return ((ay*t+by)*t+cy)*t;
+    };
+    function fSampleCurveDerivativeX(t) {
+    	return (3.0*ax*t+2.0*bx)*t+cx;
+    };
+	// The epsilon value to pass given that the animation is going to run over |dur| seconds. The longer the
+	// animation, the more precision is needed in the timing function result to avoid ugly discontinuities.
+	function fSolveEpsilon(nDuration) {
+		return 1.0/(200.0*nDuration);
+	};
+    function fSolve(x,nEpsilon) {
+    	return fSampleCurveY(fSolveCurveX(x,nEpsilon));
+    };
+	// Given an x value, find a parametric value it came from.
+    function fSolveCurveX(x,nEpsilon) {
+    	var t0,t1,t2,x2,d2,i;
+		function fFabs(n) {
+			return n >= 0 ? n : 0-n;
+		}
+        // First try a few iterations of Newton's method -- normally very fast.
+        for (t2=x, i=0; i<8; i++) {
+        	x2=fSampleCurveX(t2)-x;
+        	if(fFabs(x2)<nEpsilon)
+        		return t2;
+        	d2=fSampleCurveDerivativeX(t2);
+        	if (fFabs(d2) < 1e-6)
+        		break;
+        	t2=t2-x2/d2;
+        }
+        // Fall back to the bisection method for reliability.
+        t0=0.0; t1=1.0; t2=x;
+        if(t2<t0)
+        	return t0;
+        if(t2>t1)
+        	return t1;
+        while(t0<t1) {
+        	x2=fSampleCurveX(t2);
+        	if(fFabs(x2-x)<nEpsilon)
+        		return t2;
+        	if(x>x2)
+        		t0=t2;
+        	else
+        		t1=t2;
+        	t2=(t1-t0)*.5+t0;
+        }
+        return t2; // Failure.
+    };
+	// Calculate the polynomial coefficients, implicit first and last control points are (0,0) and (1,1).
+	cx=3.0*a; bx=3.0*(c-a)-cx; ax=1.0-cx-bx; cy=3.0*b; by=3.0*(d-b)-cy; ay=1.0-cy-by;
+	// Convert from input time to parametric value in curve, then from that to output time.
+	return fSolve(t, fSolveEpsilon(nDuration));
+};
+
+
 // Attaching to implementation
 cAMLElement.EFFECT_LINEAR		= nAMLElementAnimation_EFFECT_LINEAR;
-cAMLElement.EFFECT_ACCELERATE	= nAMLElementAnimation_EFFECT_ACCELERATE;
-cAMLElement.EFFECT_DECELERATE	= nAMLElementAnimation_EFFECT_DECELERATE;
-cAMLElement.EFFECT_SPRING		= nAMLElementAnimation_EFFECT_SPRING;
-cAMLElement.EFFECT_BOUNCE		= nAMLElementAnimation_EFFECT_BOUNCE;
+cAMLElement.EFFECT_NORMAL		= nAMLElementAnimation_EFFECT_EASE;
+cAMLElement.EFFECT_ACCELERATE	= nAMLElementAnimation_EFFECT_EASE_IN;
+cAMLElement.EFFECT_DECELERATE	= nAMLElementAnimation_EFFECT_EASE_OUT;
+cAMLElement.EFFECT_SPRING		= nAMLElementAnimation_EFFECT_EASE_IN_OUT;
 
 cAMLElement.prototype.$play	= function(sParams, nDuration, vType, fHandler, sPseudo)
 {
