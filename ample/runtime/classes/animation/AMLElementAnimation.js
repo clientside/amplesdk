@@ -18,9 +18,11 @@ function fAMLElementAnimation_play(oElement, oProperties, nDuration, vType, fHan
 {
 	// initialize effect
 	var oEffect	= {},
-		nEffect	= aAMLElementAnimation_effects.length;
+		nEffect	= aAMLElementAnimation_effects.length,
+		oElementDOM	= oElement.$getContainer(sPseudo),
+		oStyle	= fBrowser_getComputedStyle(oElementDOM);
 	oEffect._element	= oElement;
-	oEffect._container	= oElement.$getContainer(sPseudo);
+	oEffect._container	= oElementDOM;
 	oEffect._duration	= nDuration;
 	oEffect._callback	= fHandler;
 	oEffect._type		= vType;
@@ -29,21 +31,20 @@ function fAMLElementAnimation_play(oElement, oProperties, nDuration, vType, fHan
 	oEffect._interval	= fSetInterval(function(){fAMLElementAnimation_process(nEffect)}, 20);
 
 	// read end params from input
-	var oStyle	= fBrowser_getComputedStyle(oEffect._container);
 	for (var sKey in oProperties)
 		if (oProperties.hasOwnProperty(sKey))
-			oEffect._data[sKey = fUtilities_toCssPropertyName(sKey)]	= [fAMLSMIL30_parseValue(fAMLElementAnimation_adjustStyleValue(sKey, fBrowser_getStyle(oEffect._container, sKey, oStyle))), fAMLSMIL30_parseValue(fAMLElementAnimation_adjustStyleValue(sKey, oProperties[sKey]))];
+			oEffect._data[sKey = fUtilities_toCssPropertyName(sKey)]	= [fAMLSMIL30_parseValue(fAMLElementAnimation_adjustStyleValue(oElementDOM, sKey, fBrowser_getStyle(oElementDOM, sKey, oStyle))), fAMLSMIL30_parseValue(fAMLElementAnimation_adjustStyleValue(oElementDOM, sKey, oProperties[sKey]))];
 
 	// delete running effects on new effect properties for the same element
 	for (var nIndex = 0, oEffectOld; nIndex < aAMLElementAnimation_effects.length; nIndex++)
-		if ((oEffectOld = aAMLElementAnimation_effects[nIndex]) && oEffectOld._element == oEffect._element)
+		if ((oEffectOld = aAMLElementAnimation_effects[nIndex]) && oEffectOld._element == oElement)
 			for (var sKey in oEffectOld._data)
 				if (oEffectOld._data.hasOwnProperty(sKey) && oEffect._data[sKey])
 					delete oEffectOld._data[sKey];
 
 	var oEventEffectStart	= new cAMLEvent;
 	oEventEffectStart.initEvent("effectstart", false, false);
-	fAMLNode_dispatchEvent(oEffect._element, oEventEffectStart);
+	fAMLNode_dispatchEvent(oElement, oEventEffectStart);
 
 	// return effect resource identificator
 	return aAMLElementAnimation_effects.push(oEffect);
@@ -161,15 +162,18 @@ function fAMLElementAnimation_clear(nEffect)
 };
 
 // Utilities
-function fAMLElementAnimation_adjustStyleValue(sName, sValue) {
+function fAMLElementAnimation_adjustStyleValue(oElementDOM, sName, sValue) {
 	if (sName == "opacity")
 		return sValue == '' ? '1' : sValue;
 	else
 	if (sName == "backgroundPosition")
 		return(sValue == "0% 0%" || sValue == "none" || sValue == '')? "0px 0px" : sValue;
 	else
-	if (sName == "lineHeight")
-		return sValue == "normal" ? '1' : sValue;
+	if (sName == "lineHeight") {
+		if (bTrident && nVersion < 9 && sValue == "normal")
+			return fBrowser_getStyle(oElementDOM, "fontSize");
+		return sValue;
+	}
 	else
 	if (sName.match(/border(.+)Width/))
 		return sValue == "medium" ? '3px' : sValue;
