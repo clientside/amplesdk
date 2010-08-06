@@ -92,8 +92,8 @@ function fAmple(vArgument1, vArgument2, vArgument3) {
 fAmple.prototype	= cAMLQuery.prototype;
 
 // Create Ample object
-var oAmple	= fAmple;
-oAmple.document		= oAmple_document;
+var oAmple	= oAmple_document;
+oAmple.query	= fAmple;
 oAmple.namespaces	= {};
 //->Source
 oAmple.elements		= oAMLImplementation_elements;
