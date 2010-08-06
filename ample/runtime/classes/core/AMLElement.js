@@ -667,7 +667,7 @@ function fAMLElement_getElementsByTagName(oElement, sTagName)
 			if (oNode.nodeType == cAMLNode.ELEMENT_NODE) {
 				if (bTagName || sTagName == oNode.tagName)
 					aElements.$add(oNode);
-				if (oNode.childNodes.length)
+				if (oNode.firstChild)
 					arguments.callee(oNode);
 			}
 		}
@@ -695,7 +695,7 @@ function fAMLElement_getElementsByTagNameNS(oElement, sNameSpaceURI, sLocalName)
 			if (oNode.nodeType == cAMLNode.ELEMENT_NODE) {
 				if ((bLocalName || sLocalName == oNode.localName) && (bNameSpaceURI || sNameSpaceURI == oNode.namespaceURI))
 					aElements.$add(oNode);
-				if (oNode.childNodes.length)
+				if (oNode.firstChild)
 					arguments.callee(oNode);
 			}
 		}
