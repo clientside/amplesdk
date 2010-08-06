@@ -35,7 +35,7 @@ function fAmple(vArgument1, vArgument2, vArgument3) {
 				else
 					for (var nIndex = 0, aElements = oDocument.documentElement.childNodes; nIndex < aElements.length; nIndex++)
 						if (aElements[nIndex].nodeType == cAMLNode.ELEMENT_NODE)
-							oQuery[oQuery.length++]	= fAMLDocument_import(oAmple_document, aElements[nIndex], true);
+							oQuery[oQuery.length++]	= fAMLDocument_importNode(oAmple_document, aElements[nIndex], true);
 			}
 			else {
 				// Validate API call (custom)

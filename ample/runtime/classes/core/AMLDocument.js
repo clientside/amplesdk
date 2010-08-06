@@ -326,14 +326,14 @@ cAMLDocument.prototype.getElementsByTagNameNS	= function(sNameSpaceURI, sLocalNa
 	return fAMLElement_getElementsByTagNameNS(this, sNameSpaceURI, sLocalName);
 };
 
-function fAMLDocument_import(oDocument, oElementDOM, bDeep, oNode, bCollapse) {
+function fAMLDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse) {
 	switch (oElementDOM.nodeType) {
 		case cAMLNode.ELEMENT_NODE:
 			var oProcessor	= oAMLImplementation_processors[oElementDOM.namespaceURI];
 			if (oProcessor) {
 				// if element was returned from traversal, it should be processed
 				if (oElementDOM = oProcessor.traverse(oElementDOM, oNode))
-					fAMLDocument_import(oDocument, oElementDOM, bDeep, oNode);
+					fAMLDocument_importNode(oDocument, oElementDOM, bDeep, oNode);
 			}
 			else {
 				// Create element (note: in IE, namespaceURI is empty string if not specified, hence "oElementDOM.namespaceURI || null")
@@ -376,7 +376,7 @@ function fAMLDocument_import(oDocument, oElementDOM, bDeep, oNode, bCollapse) {
 				// Render Children
 				if (bDeep)
 					for (var nIndex = 0, nLength = oElementDOM.childNodes.length; nIndex < nLength; nIndex++)
-						fAMLDocument_import(oDocument, oElementDOM.childNodes[nIndex], bDeep, oElement, bCollapse);
+						fAMLDocument_importNode(oDocument, oElementDOM.childNodes[nIndex], bDeep, oElement, bCollapse);
 			}
 			break;
 
@@ -436,7 +436,7 @@ function fAMLDocument_import(oDocument, oElementDOM, bDeep, oNode, bCollapse) {
 		case cAMLNode.DOCUMENT_NODE:
 			if (bDeep)
 				for (var nIndex = 0, nLength = oElementDOM.childNodes.length; nIndex < nLength; nIndex++)
-					fAMLDocument_import(oDocument, oElementDOM.childNodes[nIndex], bDeep, oNode, bCollapse);
+					fAMLDocument_importNode(oDocument, oElementDOM.childNodes[nIndex], bDeep, oNode, bCollapse);
 			break;
 
 		case cAMLNode.DOCUMENT_TYPE_NODE:
@@ -457,7 +457,7 @@ cAMLDocument.prototype.importNode	= function(oNode, bDeep)
 	]);
 
 	if (oNode.nodeType == cAMLNode.ELEMENT_NODE)
-		return fAMLDocument_import(this, oNode, bDeep);
+		return fAMLDocument_importNode(this, oNode, bDeep);
 	else
 		throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };

@@ -1096,7 +1096,7 @@ function fAMLElement_onReadyStateChange(oRequest, oElement)
 	    if (oDocument)
 	    {
 			// Render Content
-	    	fAMLElement_appendChild(oElement, fAMLDocument_import(oElement.ownerDocument, oDocument.documentElement, true, null));
+	    	fAMLElement_appendChild(oElement, fAMLDocument_importNode(oElement.ownerDocument, oDocument.documentElement, true, null));
 			// Initialize event
 			oEvent.initEvent("load", false, false);
 	    }

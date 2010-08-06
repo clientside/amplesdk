@@ -204,7 +204,7 @@ function fAML_processScripts() {
 			oParserError	= oDocument ? oDocument.getElementsByTagName("parsererror")[0] : null;
 		    if (oDocument && oDocument.documentElement && !oParserError) {
 		    	// import XML DOM into Ample DOM
-		    	oElement	= fAMLDocument_import(oAmple_document, oDocument.documentElement, true, null, true);
+		    	oElement	= fAMLDocument_importNode(oAmple_document, oDocument.documentElement, true, null, true);
 		    	// render Ample DOM
 		    	if (bTrident) {
 		    		oElementNew	= oUADocument.createElement("div");
