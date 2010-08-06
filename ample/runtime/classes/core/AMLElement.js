@@ -892,19 +892,21 @@ function fAMLElement_getRegExp(sName, sContainer) {
 		:	oAMLElement_cache[sName + sContainer] = new cRegExp('(^|\\s)[-\\w]*' + sContainer + '(_\\w+)?' + '_' + sName + '(_\\w+)?' + '(|$)', 'g');
 };
 
-var aInterestingPropertiesDOM	= [
-                             	   "fontSize", "fontWeight", "lineHeight"
-                             	   ,"opacity", "color"
-                             	   ,"backgroundColor"
-                             	   ,"backgroundPosition"
-                             	   ,"width", "height"
-                             	   ,"top", "left", "right", "bottom"
-                             	   ,"marginTop", "marginLeft", "marginRight", "marginBottom"
-                             	   ,"paddingTop", "paddingLeft", "paddingRight", "paddingBottom"
-                             	   ,"borderTopColor", "borderLeftColor", "borderRightColor", "borderBottomColor"
-                             	   ,"borderTopWidth", "borderLeftWidth", "borderRightWidth", "borderBottomWidth"
-                             	   ,"outlineColor", "outlineWidth"
-                             	   ];
+var aCSSAnimation	= [
+			"top", "left", "right", "bottom"
+			,"width", "height"
+			,"fontSize"/*, "fontWeight"*/, "lineHeight"
+			,"marginTop", "marginLeft", "marginRight", "marginBottom"
+			,"paddingTop", "paddingLeft", "paddingRight", "paddingBottom"
+			,"borderTopWidth", "borderLeftWidth", "borderRightWidth", "borderBottomWidth"
+			,"outlineWidth"
+	],
+	aCSSTransition	= [
+			"opacity", "color"
+			,"backgroundColor", "backgroundPosition"
+			,"borderTopColor", "borderLeftColor", "borderRightColor", "borderBottomColor"
+			,"outlineColor"
+	];
 
 function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 {
@@ -913,23 +915,32 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 		aClass		= sClass.length ? sClass.split(/\s+/g) : null,
 		sPseudoName	= sContainer ? '--' + sContainer : '',
 		sTagName	=(oElement.prefix ? oElement.prefix + '-' : '') + oElement.localName,
-		bTransition	= oAMLConfiguration_values["ample-enable-transitions"];
+		bTransition	= oAMLConfiguration_values["ample-enable-transitions"],
+		bAnimation	= oAMLConfiguration_values["ample-enable-animations"];
 
 //->Source
 //console.warn("processing: " + oElement.tagName + ' ' + sName + '(' + (bValue ? 'true' : 'false') + ')');
 //console.log("before: ", oElementDOM.className);
 //<-Source
 	if (oElementDOM) {
-		if (bTransition) {
+		// Animation + Transition effects
+		if (bTransition || bAnimation) {
 			var oStyle	= fBrowser_getComputedStyle(oElementDOM),
-				oBefore	= {};
-			for (var nIndex = 0, nLength = aInterestingPropertiesDOM.length, sKey; nIndex < nLength; nIndex++) {
-				sKey = aInterestingPropertiesDOM[nIndex];
-				if (bTrident && nVersion < 9 && sKey == "backgroundPosition")
-					oBefore[sKey]	= oStyle[sKey + 'X'] + ' ' + oStyle[sKey + 'Y'];
-				else
+				oBefore	= {},
+				nIndex, nLength, sKey;
+			if (bTransition)
+				for (nIndex = 0, nLength = aCSSTransition.length; nIndex < nLength; nIndex++) {
+					sKey = aCSSTransition[nIndex];
 					oBefore[sKey]	= oStyle[sKey];
-			}
+				}
+			if (bAnimation)
+				for (nIndex = 0, nLength = aCSSAnimation.length; nIndex < nLength; nIndex++) {
+					sKey = aCSSAnimation[nIndex];
+					if (bTrident && nVersion < 9 && sKey == "backgroundPosition")
+						oBefore[sKey]	= oStyle[sKey + 'X'] + ' ' + oStyle[sKey + 'Y'];
+					else
+						oBefore[sKey]	= oStyle[sKey];
+				}
 		}
 
 		var sOldName= bTrident && nVersion < 8 ? oElementDOM.className : oElementDOM.getAttribute("class") || '',
@@ -995,24 +1006,37 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 					oElementDOM.setAttribute("class", sNewName);
 			}
 		}
-
-		if (bTransition) {
+		// Animation + Transition effects
+		if (bTransition || bAnimation) {
 			var oStyle	= fBrowser_getComputedStyle(oElementDOM),
 				aPropertiesAfter	= [],
-				aPropertiesReset	= [];
-			for (var nIndex = 0, nLength = aInterestingPropertiesDOM.length, sKey, sValue; nIndex < nLength; nIndex++) {
-				sKey = aInterestingPropertiesDOM[nIndex];
-				if (bTrident && nVersion < 9 && sKey == "backgroundPosition")
-					sValue	= oStyle[sKey + 'X'] + ' ' + oStyle[sKey + 'Y'];
-				else
+				aPropertiesReset	= [],
+				nIndex, nLength, sKey, sValue;
+			if (bTransition)
+				for (nIndex = 0, nLength = aCSSTransition.length; nIndex < nLength; nIndex++) {
+					sKey = aCSSTransition[nIndex];
 					sValue	= oStyle[sKey];
-				if (oBefore[sKey] != sValue) {
-					if (!oElementDOM.style[sValue])
-						aPropertiesReset.push(sKey);
-					fBrowser_setStyle(oElementDOM, sKey, oBefore[sKey]);
-					aPropertiesAfter.push(sKey + ":" + sValue);
+					if (oBefore[sKey] != sValue) {
+						if (!oElementDOM.style[sValue])
+							aPropertiesReset.push(sKey);
+						fBrowser_setStyle(oElementDOM, sKey, oBefore[sKey]);
+						aPropertiesAfter.push(sKey + ":" + sValue);
+					}
 				}
-			}
+			if (bAnimation)
+				for (nIndex = 0, nLength = aCSSAnimation.length; nIndex < nLength; nIndex++) {
+					sKey = aCSSAnimation[nIndex];
+					if (bTrident && nVersion < 9 && sKey == "backgroundPosition")
+						sValue	= oStyle[sKey + 'X'] + ' ' + oStyle[sKey + 'Y'];
+					else
+						sValue	= oStyle[sKey];
+					if (oBefore[sKey] != sValue) {
+						if (!oElementDOM.style[sValue])
+							aPropertiesReset.push(sKey);
+						fBrowser_setStyle(oElementDOM, sKey, oBefore[sKey]);
+						aPropertiesAfter.push(sKey + ":" + sValue);
+					}
+				}
 
 			if (aPropertiesAfter.length) {
 				fAMLElementAnimation_play(oElement, aPropertiesAfter.join(';'), 300, 3, function() {

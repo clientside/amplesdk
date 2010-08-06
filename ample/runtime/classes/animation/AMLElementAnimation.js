@@ -164,18 +164,23 @@ function fAMLElementAnimation_clear(nEffect)
 
 // Utilities
 function fAMLElementAnimation_adjustStyleValue(sName, sValue) {
-	if (sName == "opacity") {
-		if (sValue == '')
-			return '1';
-	}
-	if (sName == "backgroundPosition") {
-		if (sValue == "0% 0%" || sValue == "none" || sValue == '')
-			return "0px 0px";
-	}
+	if (sName == "opacity")
+		return sValue == '' ? '1' : sValue;
 	else
-	if (sName.match(/top|left|bottom|right/i)) {
+	if (sName == "backgroundPosition")
+		return(sValue == "0% 0%" || sValue == "none" || sValue == '')? "0px 0px" : sValue;
+	else
+	if (sName == "lineHeight")
+		return sValue == "normal" ? '1' : sValue;
+	else
+	if (sName.match(/border(.+)Width/))
+		return sValue == "medium" ? '3px' : sValue;
+	else
+	if (sName.match(/top|left|bottom|right/i))
 		return sValue == "auto" ? "0px" : sValue;
-	}
+	else
+	if (sName == "width" || sName == "height")
+		return sValue == "auto" ? '1px' : sValue;
 	return sValue;
 };
 
