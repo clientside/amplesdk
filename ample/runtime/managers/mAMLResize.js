@@ -282,13 +282,26 @@ function fAMLResize_onMouseUp(oEvent)
 
 		if (oEventResizeEnd.defaultPrevented || (oEvent.defaultPrevented || oEvent.button))
 		{
-			var oStyle		= oAMLResize_resizeNode.$getContainer().style;
+			var oStyle		= oAMLResize_resizeNode.$getContainer().style,
+				fRestore	= function() {
+				    oStyle.width	= nAMLResize_clientWidth;
+				    oStyle.height	= nAMLResize_clientHeight;
+					oStyle.left		= nAMLResize_clientLeft;
+					oStyle.top		= nAMLResize_clientTop;
+				};
 
 		    // Restore element position
-		    oStyle.width	= nAMLResize_clientWidth;
-		    oStyle.height	= nAMLResize_clientHeight;
-			oStyle.left		= nAMLResize_clientLeft;
-			oStyle.top		= nAMLResize_clientTop;
+			if (oAMLConfiguration_values["ample-enable-animations"]) {
+				var oProperties	= {};
+				oProperties["left"]		= nAMLResize_clientLeft || "auto";
+				oProperties["top"]		= nAMLResize_clientTop || "auto";
+				oProperties["width"]	= nAMLResize_clientWidth || "auto";
+				oProperties["height"]	= nAMLResize_clientHeight || "auto";
+				//
+				fAMLElementAnimation_play(oAMLResize_resizeNode, oProperties, 300, 3, fRestore);
+			}
+			else
+				fRestore();
 		}
 
 		// End session

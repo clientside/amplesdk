@@ -124,11 +124,22 @@ function fAMLDragAndDrop_onMouseUp(oEvent)
 
 		if (bDefaultPrevented || oAMLDragAndDrop_dataTransfer.dropEffect == "move" || oAMLDragAndDrop_dataTransfer.dropEffect == "copy")
 		{
-			var oStyle		= oElementDOM.style;
+			var oStyle		= oElementDOM.style,
+				fRestore	= function() {
+					oStyle.left		= nAMLDragAndDrop_clientLeft;
+					oStyle.top		= nAMLDragAndDrop_clientTop;
+				};
 
 		    // Restore element position
-			oStyle.left		= nAMLDragAndDrop_clientLeft;
-			oStyle.top		= nAMLDragAndDrop_clientTop;
+			if (oAMLConfiguration_values["ample-enable-animations"]) {
+				var oProperties	= {};
+				oProperties["left"]		= nAMLResize_clientLeft || "auto";
+				oProperties["top"]		= nAMLResize_clientTop || "auto";
+				//
+				fAMLElementAnimation_play(oAMLDragAndDrop_dragSource, oProperties, 300, 3, fRestore);
+			}
+			else
+				fRestore();
 		}
 
 		// End session
