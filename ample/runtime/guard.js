@@ -31,7 +31,7 @@ function fGuard(aArguments, aParameters) {
 //<-Debug
 
 	// Iterate over parameters list
-	for (var nIndex = 0, nLength = aArguments.length, aParameter, vValue, bValid; aParameter = aParameters[nIndex]; nIndex++) {
+	for (var nIndex = 0, nLength = aArguments.length, aParameter, vValue; aParameter = aParameters[nIndex]; nIndex++) {
 		vValue	= aArguments[nIndex];
 //->Debug
 		var sArgument	=(nIndex + 1)+ oGuard_endings[nIndex < 3 ? nIndex : 3];
@@ -54,30 +54,59 @@ function fGuard(aArguments, aParameters) {
 //<-Debug
 					);
 			}
-			else {
-				// see if argument has correct type
-				switch (aParameter[1]) {
-					// Primitive types
-					case cString:		bValid	= typeof vValue == "string"	|| vValue instanceof cString;	break;
-					case cBoolean:		bValid	= typeof vValue == "boolean"|| vValue instanceof cBoolean;	break;
-					case cNumber:		bValid	=(typeof vValue == "number" || vValue instanceof cNumber) && !fIsNaN(vValue);	break;
-					case cObject:		bValid	= true;							break;
-					// Virtual types
-					case cXMLNode:		bValid	= vValue && !fIsNaN(vValue.nodeType);	break;
-					case cXMLElement:	bValid	= vValue && vValue.nodeType == 1;		break;
-					case cXMLDocument:	bValid	= vValue && vValue.nodeType == 9;		break;
-					// Complex types
-					case cArguments:	bValid	= typeof vValue == "object" && "callee" in vValue;	break;
-					default:			bValid	= vValue instanceof aParameter[1];
-				}
-
-				if (!bValid)
-					throw new cAMLException(cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR, fCaller
+			else
+			// see if argument has correct type
+			if (!fGuard_instanceOf(vValue, aParameter[1]))
+				throw new cAMLException(cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR, fCaller
 //->Debug
-										, [sArgument, aParameter[0], sFunction, oGuard_types[aParameter[1]] ||(cString(aParameter[1]).match(rGuard_function) ? cRegExp.$1 : "anonymous")]
+									, [sArgument, aParameter[0], sFunction, oGuard_types[aParameter[1]] ||(cString(aParameter[1]).match(rGuard_function) ? cRegExp.$1 : "anonymous")]
 //<-Debug
-					);
-			}
+				);
 		}
 	}
 };
+
+function fGuard_instanceOf(vValue, cType) {
+	// Primitive types
+	if (cType == cString)
+		return typeof vValue == "string" || vValue instanceof cType;
+	else
+	if (cType == cBoolean)
+		return typeof vValue == "boolean" || vValue instanceof cType;
+	else
+	if (cType == cNumber)
+		return(typeof vValue == "number" || vValue instanceof cType) &&!fIsNaN(vValue);
+	// Virtual types
+	else
+	if (cType == cXMLNode)
+		return vValue &&!fIsNaN(vValue.nodeType);
+	else
+	if (cType == cXMLElement)
+		return vValue && vValue.nodeType == 1;
+	else
+	if (cType == cXMLDocument)
+		return vValue && vValue.nodeType == 9;
+	// Special type Arguments (pseudo type for JavaScript arguments object)
+	else
+	if (cType == cArguments)
+		return typeof vValue == "object" && "callee" in vValue;
+	// Complex types
+	return cType == cObject ? true : vValue instanceof cType;
+};
+/*
+function fGuard_typeof(vValue) {
+	if (typeof vValue == "string" || vValue instanceof cString)
+		return cString;
+	else
+	if (typeof vValue == "boolean" || vValue instanceof cBoolean)
+		return cBoolean;
+	else
+	if (typeof vValue == "number" || vValue instanceof cNumber)
+		return cNumber;
+	else
+	if (typeof vValue == "object" && "callee" in vValue)
+		return cArguments;
+	else
+		return vValue.constructor;
+};
+*/
