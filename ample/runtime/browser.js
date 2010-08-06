@@ -728,7 +728,7 @@ function fBrowser_getStyle(oElementDOM, sName, oStyle) {
 		oStyle	= fBrowser_getComputedStyle(oElementDOM);
 	if (bTrident && nVersion < 9) {
 		if (sName == "opacity")
-			return sName in oStyle ? oStyle[sName] : cString(cString(oStyle.filter).match(/opacity=([\.0-9]+)/i) ? oElementDOM.filters.item("DXImageTransform.Microsoft.Alpha").opacity / 100 : 1);
+			return cString(cString(oStyle.filter).match(/opacity=([\.0-9]+)/i) ? oElementDOM.filters.item("DXImageTransform.Microsoft.Alpha").opacity / 100 : 1);
 		else
 		if (sName == "backgroundPosition")
 			return oStyle[sName + 'X'] + ' ' + oStyle[sName + 'Y'];
@@ -737,7 +737,7 @@ function fBrowser_getStyle(oElementDOM, sName, oStyle) {
 			var sValue	= oStyle[sName];
 			if (sValue == "auto") {
 				var oClientRect	= oElementDOM.getBoundingClientRect();
-				return sName == "width" ? oClientRect["right"] - oClientRect["left"] : oClientRect["bottom"] - oClientRect["top"];
+				return cString(sName == "width" ? oClientRect["right"] - oClientRect["left"] : oClientRect["bottom"] - oClientRect["top"]);
 			}
 			return sValue;
 		}
