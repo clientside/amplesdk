@@ -329,7 +329,8 @@ cAMLDocument.prototype.getElementsByTagNameNS	= function(sNameSpaceURI, sLocalNa
 function fAMLDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse) {
 	switch (oElementDOM.nodeType) {
 		case cAMLNode.ELEMENT_NODE:
-			var oProcessor	= oAMLImplementation_processors[oElementDOM.namespaceURI];
+			var sNameSpaceURI	= oElementDOM.namespaceURI || null,
+				oProcessor	= oAMLImplementation_processors[sNameSpaceURI];
 			if (oProcessor) {
 				// if element was returned from traversal, it should be processed
 				if (oElementDOM = oProcessor.traverse(oElementDOM, oNode))
@@ -337,8 +338,7 @@ function fAMLDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse
 			}
 			else {
 				// Create element (note: in IE, namespaceURI is empty string if not specified, hence "oElementDOM.namespaceURI || null")
-				var oElement	= fAMLDocument_createElementNS(oDocument, oElementDOM.namespaceURI || null, oElementDOM.nodeName),
-					sNameSpaceURI	= oElement.namespaceURI,
+				var oElement	= fAMLDocument_createElementNS(oDocument, sNameSpaceURI, oElementDOM.nodeName),
 					sLocalName	= oElement.localName,
 					oAttributes	= oElement.attributes,
 					aAttributes = oElementDOM.attributes,
