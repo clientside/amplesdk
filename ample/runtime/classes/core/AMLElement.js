@@ -1001,11 +1001,10 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 		}
 		// Animation + Transition effects
 		if (bTransition || bAnimation) {
-			var oStyle	= fBrowser_getComputedStyle(oElementDOM),
-				oOwnStyle	= oElementDOM.style,
+			var oOwnStyle	= oElementDOM.style,
 				oPropertiesAfter	= {},
 				aPropertiesReset	= [],
-				bAnimate	= false,
+				bPlay	= false,
 				nIndex, nLength, sKey, sValue;
 			if (bTransition)
 				for (nIndex = 0, nLength = aCSSTransition.length; nIndex < nLength; nIndex++) {
@@ -1016,8 +1015,8 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 							aPropertiesReset.push(sKey);
 						fBrowser_setStyle(oElementDOM, sKey, oBefore[sKey]);
 						oPropertiesAfter[sKey]	= sValue;
-						if (!bAnimate)
-							bAnimate	= true;
+						if (!bPlay)
+							bPlay	= true;
 					}
 				}
 			if (bAnimation)
@@ -1029,12 +1028,12 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 							aPropertiesReset.push(sKey);
 						fBrowser_setStyle(oElementDOM, sKey, oBefore[sKey]);
 						oPropertiesAfter[sKey]	= sValue;
-						if (!bAnimate)
-							bAnimate	= true;
+						if (!bPlay)
+							bPlay	= true;
 					}
 				}
 
-			if (bAnimate) {
+			if (bPlay) {
 				fAMLElementAnimation_play(oElement, oPropertiesAfter, 300, 3, function() {
 					for (var nIndex = 0; nIndex < aPropertiesReset.length; nIndex++)
 						fBrowser_setStyle(oElementDOM, aPropertiesReset[nIndex], '');
