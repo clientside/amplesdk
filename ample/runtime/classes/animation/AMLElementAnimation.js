@@ -14,7 +14,7 @@ var nAMLElementAnimation_EFFECT_LINEAR		= 1,	// Constants
 	nAMLElementAnimation_EFFECT_BOUNCE		= 5,
 	aAMLElementAnimation_effects	= [];				// Variables
 
-function fAMLElementAnimation_play(oElement, sParams, nDuration, vType, fHandler, sPseudo)
+function fAMLElementAnimation_play(oElement, oProperties, nDuration, vType, fHandler, sPseudo)
 {
 	// initialize effect
 	var oEffect	= {},
@@ -29,13 +29,10 @@ function fAMLElementAnimation_play(oElement, sParams, nDuration, vType, fHandler
 	oEffect._interval	= fSetInterval(function(){fAMLElementAnimation_process(nEffect)}, 20);
 
 	// read end params from input
-	var oStyle	= fBrowser_getComputedStyle(oEffect._container),
-		aParams	= sParams.split(/\s*;\s*/),
-		sParam,
-		aParam;
-	for (var nIndex = 0; nIndex < aParams.length; nIndex++)
-		if (aParam = aParams[nIndex].match(/([a-z\-]+)\s*\:\s*(.+)/i))
-			oEffect._data[sParam = fUtilities_toCssPropertyName(aParam[1])]	= [fAMLSMIL30_parseValue(fAMLElementAnimation_adjustStyleValue(sParam, fBrowser_getStyle(oEffect._container, sParam, oStyle))), fAMLSMIL30_parseValue(fAMLElementAnimation_adjustStyleValue(sParam, aParam[2]))];
+	var oStyle	= fBrowser_getComputedStyle(oEffect._container);
+	for (var sKey in oProperties)
+		if (oProperties.hasOwnProperty(sKey))
+			oEffect._data[sKey = fUtilities_toCssPropertyName(sKey)]	= [fAMLSMIL30_parseValue(fAMLElementAnimation_adjustStyleValue(sKey, fBrowser_getStyle(oEffect._container, sKey, oStyle))), fAMLSMIL30_parseValue(fAMLElementAnimation_adjustStyleValue(sKey, oProperties[sKey]))];
 
 	// delete running effects on new effect properties for the same element
 	for (var nIndex = 0, oEffectOld; nIndex < aAMLElementAnimation_effects.length; nIndex++)
@@ -200,7 +197,15 @@ cAMLElement.prototype.$play	= function(sParams, nDuration, vType, fHandler, sPse
 		["pseudoElement",	cString, true]
 	]);
 
-	return fAMLElementAnimation_play(this, sParams, nDuration, vType, fHandler, sPseudo);
+	var oProperties	= {};
+		aParams	= sParams.split(/\s*;\s*/),
+		sParam,
+		aParam;
+	for (var nIndex = 0; nIndex < aParams.length; nIndex++)
+		if (aParam = aParams[nIndex].match(/([a-z\-]+)\s*\:\s*(.+)/i))
+			oProperties[aParam[1]]	= aParam[2];
+
+	return fAMLElementAnimation_play(this, oProperties, nDuration, vType, fHandler, sPseudo);
 };
 
 cAMLElement.prototype.$stop	= function(nEffect)
