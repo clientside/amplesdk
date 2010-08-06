@@ -201,9 +201,8 @@ cAMLElement.prototype.$play	= function(sParams, nDuration, vType, fHandler, sPse
 		["pseudoElement",	cString, true]
 	]);
 
-	var oProperties	= {};
+	var oProperties	= {},
 		aParams	= sParams.split(/\s*;\s*/),
-		sParam,
 		aParam;
 	for (var nIndex = 0; nIndex < aParams.length; nIndex++)
 		if (aParam = aParams[nIndex].match(/([a-z\-]+)\s*\:\s*(.+)/i))
