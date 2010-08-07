@@ -167,7 +167,6 @@
 				mAMLResize.js,
 				mAMLDragAndDrop.js,
 				mAMLSelection.js,
-				mAMLUI.js,
 				mAMLCapture.js,
 				mAMLHistory.js,
 				mAMLTouch.js"/>

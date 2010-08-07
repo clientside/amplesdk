@@ -400,6 +400,7 @@ function fBrowser_onMouseMove(oEvent) {
     	nButton 	= fBrowser_getUIEventButton(oEvent),
     	nIndexCommon=-1,
     	aElements	= new cAMLNodeList,
+    	oElement,
     	oEventMouseMove = new cAMLMouseEvent,
     	oEventMouseLeave,
 		oEventMouseEnter;
@@ -414,7 +415,7 @@ function fBrowser_onMouseMove(oEvent) {
 	if (!(nAMLDragAndDrop_dragState || nAMLResize_resizeState)) {
 		if (aBrowser_mouseNodes[0] != oTarget) {
 			// find common relative
-			for (var oElement = oTarget; oElement.nodeType != cAMLNode.DOCUMENT_NODE; oElement = oElement.parentNode) {
+			for (oElement = oTarget; oElement.nodeType != cAMLNode.DOCUMENT_NODE; oElement = oElement.parentNode) {
 				aElements.$add(oElement);
 				if (nIndexCommon ==-1)
 					nIndexCommon = aBrowser_mouseNodes.$indexOf(oElement);
@@ -424,23 +425,33 @@ function fBrowser_onMouseMove(oEvent) {
 
 			// propagate mouseleave branch
 			for (var nIndex = 0; nIndex < nIndexCommon; nIndex++) {
+				oElement	= aBrowser_mouseNodes[nIndex];
 				// do not dispatch event if outside modal
-				if (!oBrowser_modalNode || fBrowser_isDescendant(aBrowser_mouseNodes[nIndex], oBrowser_modalNode)) {
+				if (!oBrowser_modalNode || fBrowser_isDescendant(oElement, oBrowser_modalNode)) {
+				    // Remove :hover pseudo-class
+					if (oElement.$hoverable && oElement.$isAccessible())
+						fAMLElement_setPseudoClass(oElement, "hover", false);
+					//
 					oEventMouseLeave = new cAMLMouseEvent;
 				    oEventMouseLeave.initMouseEvent("mouseleave", false, false, window, null, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, oEvent.metaKey, nButton, aBrowser_mouseNodes[nIndex + 1] || null);
 				    oEventMouseLeave.$pseudoTarget	= oPseudo;
-				    fAMLNode_dispatchEvent(aBrowser_mouseNodes[nIndex], oEventMouseLeave);
+				    fAMLNode_dispatchEvent(oElement, oEventMouseLeave);
 				}
 			}
 
 			// propagate mouseenter branch
 			for (var nIndex	= nIndexCommon + aElements.length - aBrowser_mouseNodes.length; nIndex > 0; nIndex--) {
+				oElement	= aElements[nIndex - 1];
 				// do not dispatch event if outside modal
-				if (!oBrowser_modalNode || fBrowser_isDescendant(aElements[nIndex - 1], oBrowser_modalNode)) {
-				    oEventMouseEnter = new cAMLMouseEvent;
+				if (!oBrowser_modalNode || fBrowser_isDescendant(oElement, oBrowser_modalNode)) {
+				    // Add :hover pseudo-class
+					if (oElement.$hoverable && oElement.$isAccessible())
+						fAMLElement_setPseudoClass(oElement, "hover", true);
+					//
+					oEventMouseEnter = new cAMLMouseEvent;
 				    oEventMouseEnter.initMouseEvent("mouseenter", false, false, window, null, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, oEvent.metaKey, nButton, aElements[nIndex] || null);
 				    oEventMouseEnter.$pseudoTarget	= oPseudo;
-				    fAMLNode_dispatchEvent(aElements[nIndex - 1], oEventMouseEnter);
+				    fAMLNode_dispatchEvent(oElement, oEventMouseEnter);
 				}
 		    }
 

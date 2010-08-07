@@ -25,6 +25,9 @@ function fAMLFocus_focus(oElement) {
 			// Set document active element
 			oElement.ownerDocument.activeElement	= oElement;
 
+			// Add :focus pseudo-class
+			fAMLElement_setPseudoClass(oElement, "focus", true);
+
 			var oEvent	= new cAMLUIEvent;
 			oEvent.initUIEvent("focus", false, false, window, null);
 			fAMLNode_dispatchEvent(oElement, oEvent);
@@ -45,6 +48,9 @@ function fAMLFocus_blur(oElement) {
 
 			// Unset document active element
 			oElement.ownerDocument.activeElement	= oBrowser_modalNode || oAmple_document.documentElement;
+
+			// Remove :focus pseudo-class
+			fAMLElement_setPseudoClass(oElement, "focus", false);
 
 			// If element has not been removed from DOM
 			var oEvent	= new cAMLUIEvent;

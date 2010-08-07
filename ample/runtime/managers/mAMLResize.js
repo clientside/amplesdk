@@ -176,6 +176,9 @@ function fAMLResize_onMouseMove(oEvent)
 			return;
 		}
 
+		// Add :resize pseudo-class
+		fAMLElement_setPseudoClass(oAMLResize_resizeNode, "resize", true);
+
 		// set capture and prevent selection
 		fBrowser_toggleSelect(false);
 		if (bTrident)
@@ -274,6 +277,9 @@ function fAMLResize_onMouseUp(oEvent)
 
 	if (nAMLResize_resizeState == nAMLResize_STATE_RESIZED)
 	{
+		// Remove :resize pseudo-class
+		fAMLElement_setPseudoClass(oAMLResize_resizeNode, "resize", false);
+
 		// fire onresizeend event
 		var oEventResizeEnd	= new cAMLResizeEvent;
 	    oEventResizeEnd.initResizeEvent("resizeend", true, true, window, null, nAMLResize_resizeEdge);

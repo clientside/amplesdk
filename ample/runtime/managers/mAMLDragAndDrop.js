@@ -93,6 +93,9 @@ function fAMLDragAndDrop_onMouseUp(oEvent)
 			    fAMLNode_dispatchEvent(oAMLDragAndDrop_dropTarget, oEventDrop);
 			}
 
+			// Remove :drop pseudo-class
+			fAMLElement_setPseudoClass(oAMLDragAndDrop_dropTarget, "drop", false);
+
 			// fire ondragleave event
 			var oEventDragLeave	= new cAMLDragEvent;
 		    oEventDragLeave.initDragEvent("dragleave", true, true, window, null, oAMLDragAndDrop_dataTransfer);
@@ -103,6 +106,9 @@ function fAMLDragAndDrop_onMouseUp(oEvent)
 
 	    // Clear array of drag target
 		aAMLDragAndDrop_dropTargets.length	= 0;
+
+		// Remove :drag pseudo-class
+		fAMLElement_setPseudoClass(oAMLDragAndDrop_dragSource, "drag", false);
 
 		// fire ondragend event
 		var oEventDragEnd	= new cAMLDragEvent;
@@ -214,6 +220,9 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
 			return;
 		}
 
+		// Add :drag pseudo-class
+		fAMLElement_setPseudoClass(oAMLDragAndDrop_dragSource, "drag", true);
+
 		// set capture and prevent selection
 		fBrowser_toggleSelect(false);
 		if (bTrident)
@@ -296,6 +305,8 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
 
 	// if there was a drop target and it is different from a new one
 	if (oAMLDragAndDrop_dropTarget && (nTarget < 0 || aAMLDragAndDrop_dropTargets[nTarget] != oAMLDragAndDrop_dropTarget)) {
+		// Remove :drop pseudo-class
+		fAMLElement_setPseudoClass(oAMLDragAndDrop_dropTarget, "drop", false);
 		// fire ondragleave event
 		var oEventDragLeave	= new cAMLDragEvent;
 	    oEventDragLeave.initDragEvent("dragleave", true, true, window, null, oAMLDragAndDrop_dataTransfer);
@@ -309,6 +320,9 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
 		if (aAMLDragAndDrop_dropTargets[nTarget] != oAMLDragAndDrop_dropTarget)
 		{
 			oAMLDragAndDrop_dropTarget	= aAMLDragAndDrop_dropTargets[nTarget];
+
+			// Add :drop pseudo-class
+			fAMLElement_setPseudoClass(oAMLDragAndDrop_dropTarget, "drop", true);
 
 			// fire ondragenter event
 			var oEventDragEnter	= new cAMLDragEvent;

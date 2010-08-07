@@ -20,6 +20,9 @@ cAMLElement.prototype.uniqueID	= null;
 cAMLElement.prototype.style	= null;
 
 //
+cAMLElement.prototype.$hoverable	= false;
+
+//
 cAMLElement.prototype.$childNodesAnonymous	= null;
 
 // Private Variables
