@@ -330,8 +330,7 @@ function fAMLDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse
 	switch (oElementDOM.nodeType) {
 		case cAMLNode.ELEMENT_NODE:
 			var sNameSpaceURI	= oElementDOM.namespaceURI || null,
-				sLocalName		= oElementDOM.localName || oElementDOM.baseName,
-				oProcessor	= oAMLImplementation_processors[sNameSpaceURI];
+				sLocalName		= oElementDOM.localName || oElementDOM.baseName;
 			if (sNameSpaceURI == "http://www.w3.org/2001/XInclude") {
 				if (sLocalName == "include") {
 					var oRequest	= new cXMLHttpRequest,
@@ -358,12 +357,6 @@ function fAMLDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse
 				else
 					fUtilities_warn(sAML_UNKNOWN_ELEMENT_NS_WRN, [oElementDOM.tagName, oElementDOM.namespaceURI]);
 //<-Debug
-			}
-			else
-			if (oProcessor) {
-				// if element was returned from traversal, it should be processed
-				if (oElementDOM = oProcessor.traverse(oElementDOM, oNode))
-					fAMLDocument_importNode(oDocument, oElementDOM, bDeep, oNode);
 			}
 			else {
 				// Create element (note: in IE, namespaceURI is empty string if not specified, hence "oElementDOM.namespaceURI || null")

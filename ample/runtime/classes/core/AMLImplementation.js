@@ -9,8 +9,7 @@
 
 var cAMLImplementation	= function(){};
 
-var oAMLImplementation_processors	= {},
-	oAMLImplementation_elements		= {},
+var oAMLImplementation_elements		= {},
 	oAMLImplementation_attributes	= {};
 
 // nsIDOMImplementation Level 1
