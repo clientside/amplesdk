@@ -10,6 +10,13 @@
 	<examples />
 	<members>
 		<properties>
+			<property name="context" type="AMLNode">
+				<description>
+					<locale>
+						Holds the context of the selection query executed.
+					</locale>
+				</description>
+			</property>
 			<property name="length" type="Number">
 				<description>
 					<locale>
@@ -20,7 +27,7 @@
 			<property name="selector" type="String">
 				<description>
 					<locale>
-						Holds the CSS selector query used.
+						Holds the CSS selector used in selection query.
 					</locale>
 				</description>
 			</property>
@@ -122,6 +129,43 @@
 
 			<!-- Effects -->
 			<method name="animate" type="AMLQuery">
+				<arguments>
+					<argument name="properties" type="Object">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+					<argument name="timing" type="Variant" required="false">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+					<argument name="easing" type="Variant" required="false">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+					<argument name="callback" type="Function" required="false">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="stop" type="AMLQuery">
 				<description>
 					<locale>
 
@@ -415,6 +459,13 @@
 				<description>
 					<locale>
 						Loads data from the server and apends it to the first element in colection.
+					</locale>
+				</description>
+			</method>
+			<method name="abort">
+				<description>
+					<locale>
+						Aborts loading operation.
 					</locale>
 				</description>
 			</method>

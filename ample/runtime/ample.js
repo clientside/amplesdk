@@ -39,34 +39,44 @@ function fAmple(vArgument1, vArgument2, vArgument3) {
 			}
 			else {
 				// Validate API call (custom)
-				if (arguments.length > 1)
+				// Context
+				if (arguments.length > 1) {
 					if (!(vArgument2 instanceof cAMLNode))
 						throw new cAMLException(cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR, oAmple.caller
 //->Debug
 							, ['2' + oGuard_endings[1], "context", "ample", "AMLNode"]
 //<-Debug
 						);
-				if (arguments.length > 2 && vArgument3 !== null)
+				}
+				else
+					vArgument2	= oAmple_document;
+				// Resolver
+				if (arguments.length > 2 && vArgument3 !== null) {
 					if (!(vArgument3 instanceof cFunction))
 						throw new cAMLException(cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR, oAmple.caller
 //->Debug
 							, ['3' + oGuard_endings[2], "query", "ample", "Function"]
 //<-Debug
 						);
+				}
+				else
+					vArgument3	= fAmple_resolver;
+				//
+				oQuery.length	= 0;
+				oQuery.context	= vArgument2;
+				oQuery.selector	= vArgument1;
 				// Invoke implementation
 				var aResult;
 				try {
-					aResult	= fAMLSelector_query([vArgument2 || oAmple_document], vArgument1, vArgument3 || fAmple_resolver);
+					aResult	= fAMLSelector_query([oQuery.context], vArgument1, vArgument3);
 				}
 				catch (oException) {
 					// Re-point caller property and re-throw error
 					oException.caller	= oAmple.caller;
 					throw oException;
 				}
-				oQuery.length	= 0;
 				for (var nIndex = 0; nIndex < aResult.length; nIndex++)
 					oQuery[oQuery.length++]	= aResult[nIndex];
-				oQuery.selector	= vArgument1;
 			}
 		}
 		else

@@ -9,6 +9,7 @@
 
 // Query function
 var cAMLQuery	= function(){};
+cAMLQuery.prototype.context		= null;
 cAMLQuery.prototype.length		= 0;
 cAMLQuery.prototype.selector	= '';
 
