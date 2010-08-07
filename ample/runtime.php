@@ -79,8 +79,6 @@
 //	$aFiles[]	= "runtime/processors/smil30/classes/cAMLTimeEvent.js";
 	// XBL 2.0
 //	$aFiles[]	= "runtime/processors/xbl20/xbl20.js";
-	// XML Events 1.0
-	$aFiles[]	= "runtime/processors/xmlevents10/xmlevents10.js";
 	// XML Schema 1.1
 	$aFiles[]	= "runtime/processors/xmlschema11/classes/cAMLXSConstants.js";
 	$aFiles[]	= "runtime/processors/xmlschema11/classes/cAMLXSException.js";

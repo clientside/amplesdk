@@ -185,7 +185,6 @@
 	</target>
 
 	<target name="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES" unless="skip.ample.runtime.languages">
-		<antcall target="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES_XMLEVENTS" />
 		<antcall target="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES_SMIL" />
 		<antcall target="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES_XMLSCHEMA" />
 	</target>
@@ -203,14 +202,6 @@
 			<!-- REX 1.0 -->
 			<filelist dir="${source.runtime.dir}/processors/rex10/" files="
 				rex10.js"/>
-		</concat>
-	</target>
-
-	<target name="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES_XMLEVENTS" unless="skip.ample.runtime.languages.xmlevents">
-		<concat destfile="${temp.runtime.dir}/runtime-languages.js" fixlastline="yes" append="yes">
-			<!-- XML Events 1.0 -->
-			<filelist dir="${source.runtime.dir}/processors/xmlevents10/" files="
-				xmlevents10.js"/>
 		</concat>
 	</target>
 

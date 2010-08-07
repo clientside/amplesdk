@@ -378,18 +378,38 @@ function fAMLDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse
 						oAttributes[sName]	= bCollapse ? sValue : fUtilities_encodeEntities(sValue);
 				}
 
-				// Copy default attributes values if not specified
-				var cElement	= oAMLImplementation_elements[sNameSpaceURI + '#' + sLocalName];
-				if (cElement) {
-					for (sName in cElement.attributes)
-						if (cElement.attributes.hasOwnProperty(sName) && !(sName in oAttributes))
-							oAttributes[sName]	= cElement.attributes[sName];
-				}
+				if (sNameSpaceURI == "http://www.w3.org/2001/xml-events") {
+					if (sLocalName == "listener") {
+						if (oNode)
+							fAMLEventTarget_addEventListener(oNode,
+								oElementDOM.getAttribute("event"),
+								cFunction("event",	(oElementDOM.getAttribute("propagate") == "stop" ? "event" + ".stopPropagation();" : '') +
+													(oElementDOM.getAttribute("defaultAction") == "cancel" ? "event" + ".preventDefault();" : '') +
+													(oElementDOM.getAttribute("handler") && oElementDOM.getAttribute("handler").indexOf("javascript" + ':') == 0 ? oElementDOM.getAttribute("handler").substr(cString("javascript" + ':').length) : '')
+											),
+								oElementDOM.getAttribute("phase") == "capture"
+							);
+					}
 //->Debug
-				else
-				if (!(sNameSpaceURI == "http://www.w3.org/1999/xhtml" && sLocalName == "script" && oAttributes["type"] == "application/ample+xml"))
-					fUtilities_warn(sAML_UNKNOWN_ELEMENT_NS_WRN, [sLocalName, sNameSpaceURI]);
+					else
+						fUtilities_warn(sAML_UNKNOWN_ELEMENT_NS_WRN, [oElementDOM.tagName, sNameSpaceURI]);
 //<-Debug
+				}
+				else {
+					// Copy default attributes values if not specified
+					var cElement	= oAMLImplementation_elements[sNameSpaceURI + '#' + sLocalName];
+					if (cElement) {
+						for (sName in cElement.attributes)
+							if (cElement.attributes.hasOwnProperty(sName) && !(sName in oAttributes))
+								oAttributes[sName]	= cElement.attributes[sName];
+					}
+//->Debug
+					else
+					if (!(sNameSpaceURI == "http://www.w3.org/1999/xhtml" && sLocalName == "script" && oAttributes["type"] == "application/ample+xml"))
+						fUtilities_warn(sAML_UNKNOWN_ELEMENT_NS_WRN, [oElementDOM.tagName, sNameSpaceURI]);
+//<-Debug
+				}
+
 				// and append it to parent (if there is one)
 				if (oNode)
 					fAMLNode_appendChild(oNode, oElement);
