@@ -185,6 +185,7 @@
 	</target>
 
 	<target name="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES" unless="skip.ample.runtime.languages">
+		<antcall target="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES_AML" />
 		<antcall target="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES_SMIL" />
 		<antcall target="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES_XMLSCHEMA" />
 	</target>
@@ -202,6 +203,21 @@
 			<!-- REX 1.0 -->
 			<filelist dir="${source.runtime.dir}/processors/rex10/" files="
 				rex10.js"/>
+		</concat>
+	</target>
+
+	<target name="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES_AML" unless="skip.ample.runtime.languages.aml">
+		<concat destfile="${temp.runtime.dir}/runtime-languages.js" fixlastline="yes" append="yes">
+			<!-- SMIL 3.0 -->
+			<filelist dir="${source.runtime.dir}/processors/aml/classes/" files="
+				cAMLAttr.js,
+				cAMLElement.js"/>
+			<fileset dir="${source.runtime.dir}/processors/aml/attributes/">
+				<include name="*.js" />
+			</fileset>
+			<fileset dir="${source.runtime.dir}/processors/aml/elements/">
+				<include name="*.js" />
+			</fileset>
 		</concat>
 	</target>
 
@@ -303,7 +319,7 @@
 		<mkdir dir="${target.languages.dir}" />
 		<mkdir dir="${temp.languages.dir}" />
 
-		<antcall target="BUILD_AMPLE_LANGUAGES_AML" />
+		<antcall target="BUILD_AMPLE_LANGUAGES_AUI" />
 		<antcall target="BUILD_AMPLE_LANGUAGES_XUL" />
 		<antcall target="BUILD_AMPLE_LANGUAGES_XHTML" />
 		<antcall target="BUILD_AMPLE_LANGUAGES_SVG" />
@@ -373,59 +389,56 @@
 		</copy>
 	</target>
 
-	<target name="BUILD_AMPLE_LANGUAGES_AML" unless="skip.ample.languages.aml">
-		<property name="source.aml.dir" value="${source.languages.dir}/aml/" />
-		<property name="target.aml.dir" value="${target.languages.dir}/aml/" />
+	<target name="BUILD_AMPLE_LANGUAGES_AUI" unless="skip.ample.languages.aui">
+		<property name="source.aui.dir" value="${source.languages.dir}/aui/" />
+		<property name="target.aui.dir" value="${target.languages.dir}/aui/" />
 
-		<echo message="Merging into: ${temp.languages.dir}/aml-raw.js" level="info"/>
-		<concat destfile="${temp.languages.dir}/aml-raw.js" fixlastline="yes">
-			<fileset dir="${source.aml.dir}/classes/">
+		<echo message="Merging into: ${temp.languages.dir}/aui-raw.js" level="info"/>
+		<concat destfile="${temp.languages.dir}/aui-raw.js" fixlastline="yes">
+			<fileset dir="${source.aui.dir}/classes/">
 				<include name="*.js" />
 			</fileset>
-			<fileset dir="${source.aml.dir}/attributes/">
-				<include name="*.js" />
-			</fileset>
-			<fileset dir="${source.aml.dir}/elements/">
+			<fileset dir="${source.aui.dir}/elements/">
 				<include name="*.js" />
 			</fileset>
 		</concat>
 
-		<echo message="Wrapping into: ${temp.languages.dir}/aml-raw-wrapped.js" level="info"/>
+		<echo message="Wrapping into: ${temp.languages.dir}/aui-raw-wrapped.js" level="info"/>
 		<exec executable="${executable.php}" failonerror="true">
 			<arg value="resources/compiler/js.php" />
-			<arg value="${temp.languages.dir}/aml-raw.js" />
-			<arg value="${temp.languages.dir}/aml-raw-wrapped.js" />
+			<arg value="${temp.languages.dir}/aui-raw.js" />
+			<arg value="${temp.languages.dir}/aui-raw-wrapped.js" />
 			<arg value="--strip-Source" />
 		</exec>
 
-		<echo message="Merging into: ${temp.languages.dir}/aml-raw.css" level="info"/>
-		<concat destfile="${temp.languages.dir}/aml-raw.css" fixlastline="yes">
-			<fileset dir="${source.aml.dir}/themes/default/">
+		<echo message="Merging into: ${temp.languages.dir}/aui-raw.css" level="info"/>
+		<concat destfile="${temp.languages.dir}/aui-raw.css" fixlastline="yes">
+			<fileset dir="${source.aui.dir}/themes/default/">
 				<include name="*.css"/>
 			</fileset>
 		</concat>
 
-		<echo message="Wrapping into: ${temp.languages.dir}/aml.css" level="info"/>
+		<echo message="Wrapping into: ${temp.languages.dir}/aui.css" level="info"/>
 		<exec executable="${executable.php}" failonerror="true">
 			<arg value="resources/compiler/css.php" />
-			<arg value="${temp.languages.dir}/aml-raw.css" />
-			<arg value="${temp.languages.dir}/aml.css" />
+			<arg value="${temp.languages.dir}/aui-raw.css" />
+			<arg value="${temp.languages.dir}/aui.css" />
 			<arg value="--obfuscate" />
 		</exec>
 
 		<!-- package -->
-		<mkdir dir="${target.aml.dir}" />
-		<concat destfile="${target.aml.dir}/aml.js" fixlastline="yes">
+		<mkdir dir="${target.aui.dir}" />
+		<concat destfile="${target.aui.dir}/aui.js" fixlastline="yes">
 			<fileset file="${copying.js}" />
-			<fileset file="${temp.languages.dir}/aml-raw-wrapped.js" />
+			<fileset file="${temp.languages.dir}/aui-raw-wrapped.js" />
 		</concat>
 
-		<echo message="Copying default theme to: ${target.aml.dir}/themes/default/" level="info"/>
-		<mkdir dir="${target.aml.dir}/themes/default/" />
-		<copy tofile="${target.aml.dir}/themes/default/style-dev.css" file="${temp.languages.dir}/aml-raw.css" />
-		<copy tofile="${target.aml.dir}/themes/default/style.css" file="${temp.languages.dir}/aml.css" />
-		<copy todir="${target.aml.dir}/themes/default/">
-			<fileset dir="${source.aml.dir}/themes/default/">
+		<echo message="Copying default theme to: ${target.aui.dir}/themes/default/" level="info"/>
+		<mkdir dir="${target.aui.dir}/themes/default/" />
+		<copy tofile="${target.aui.dir}/themes/default/style-dev.css" file="${temp.languages.dir}/aui-raw.css" />
+		<copy tofile="${target.aui.dir}/themes/default/style.css" file="${temp.languages.dir}/aui.css" />
+		<copy todir="${target.aui.dir}/themes/default/">
+			<fileset dir="${source.aui.dir}/themes/default/">
 				<include name="media/**"/>
 			</fileset>
 		</copy>

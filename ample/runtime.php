@@ -70,6 +70,19 @@
 	$aFiles[]	= "runtime/browser.js";
 	$aFiles[]	= "runtime/ample.js";
 
+	// AML
+	$aFiles[]	= "runtime/processors/aml/classes/cAMLAttr.js";
+	$aFiles[]	= "runtime/processors/aml/classes/cAMLElement.js";
+	$aFiles[]	= "runtime/processors/aml/attributes/draggable.js";
+	$aFiles[]	= "runtime/processors/aml/attributes/droppable.js";
+	$aFiles[]	= "runtime/processors/aml/attributes/resizable.js";
+	$aFiles[]	= "runtime/processors/aml/attributes/selectable.js";
+	$aFiles[]	= "runtime/processors/aml/attributes/resize-edges.js";
+	$aFiles[]	= "runtime/processors/aml/elements/data.js";
+	$aFiles[]	= "runtime/processors/aml/elements/handler.js";
+	$aFiles[]	= "runtime/processors/aml/elements/repeater.js";
+	$aFiles[]	= "runtime/processors/aml/elements/timer.js";
+/*
 	// Processors
 //	$aFiles[]	= "runtime/processors/rex10/rex10.js";
 	// SMIL 3.0
@@ -97,6 +110,7 @@
 	$aFiles[]	= "runtime/processors/xmlschema11/xmlschema11-datatypes.js";
 	// XML Schema 1.1 (Built-in Data Types)
 	$aFiles[]	= "runtime/processors/xmlschema11/builtin/xmlschema11-builtin.js";
+*/
 /*
 	// XML Schema 1.1 (structure)
 	$aFiles[]	= "runtime/processors/xmlschema11/xmlschema11-structures.js";

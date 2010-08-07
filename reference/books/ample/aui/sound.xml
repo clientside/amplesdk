@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="aui:AUIElement" name="sound">
+	<implements />
+	<abstract>
+		<locale>
+			Specifies a reference to an audio file.
+		</locale>
+		<locale xml:lang="ru">
+			Элемент <link type="element">sound</link> предназначен для воспроизведения звуков.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="src" readonly="false">
+				<description>
+					<locale xml:lang="ru">
+						URL звукового файла для воспроизведения.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="autoplay" readonly="true" default="false">
+				<values>
+					<value name="true">
+						<description>
+							<locale xml:lang="ru">
+								Звук будет воспроизведен непосредственно после загрузки.
+							</locale>
+						</description>
+					</value>
+					<value name="false">
+						<description>
+							<locale xml:lang="ru">
+								Звук не будет воспроизведен непосредственно после загрузки.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale xml:lang="ru">
+						Указывает, будет ли звук воспроизведен непосредственно после загрузки или нет.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods>
+			<method name="play" type="Void">
+				<arguments />
+				<description>
+					<locale xml:lang="ru">
+						Начинает воспроизведение звука.
+					</locale>
+				</description>
+			</method>
+			<method name="stop" type="Void">
+				<arguments />
+				<description>
+					<locale xml:lang="ru">
+						Останавливает воспроизведение звука.
+					</locale>
+				</description>
+			</method>
+		</methods>
+		<properties />
+		<events />
+	</members>
+</element>

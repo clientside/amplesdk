@@ -19,7 +19,38 @@
 				</description>
 			</property>
 		</properties>
-		<attributes />
+		<attributes>
+			<attribute name="aml:selectable" readonly="false" default="inherit">
+				<values>
+					<value name="true">
+						<description>
+							<locale>
+								Text selection is enabled on element
+							</locale>
+						</description>
+					</value>
+					<value name="false">
+						<description>
+							<locale>
+								Text selection is disabled on element
+							</locale>
+						</description>
+					</value>
+					<value name="inherit">
+						<description>
+							<locale>
+								Text selection behavior is inherited from its parent container.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale>
+						Enables/disables text selection on element.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
 		<events />
 	</members>
 </object>

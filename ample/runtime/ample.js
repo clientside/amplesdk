@@ -100,14 +100,7 @@ oAmple.elements		= oAMLImplementation_elements;
 oAmple.attributes	= oAMLImplementation_attributes;
 //<-Source
 
-// Extension Mechanism
-oAmple.extend	= function(oSource, oTarget) {
-	// Validate API call
-	fGuard(arguments, [
-		["source",	cObject],
-		["target",	cObject, true]
-	]);
-
+function fAmple_extend(oSource, oTarget) {
 	if (oSource instanceof cFunction) {
 		var oPrototype	= oSource.prototype;
 		if (oPrototype instanceof cAMLElement)
@@ -134,6 +127,18 @@ oAmple.extend	= function(oSource, oTarget) {
 				oTarget[sName]	= oSource[sName];
 		}
 	}
+};
+
+// Extension Mechanism
+oAmple.extend	= function(oSource, oTarget) {
+	// Validate API call
+	fGuard(arguments, [
+		["source",	cObject],
+		["target",	cObject, true]
+	]);
+
+	// Invoke implementation
+	fAmple_extend(oSource, oTarget);
 };
 
 // Ready event

@@ -112,6 +112,16 @@
 					<node title="listener" url="ample/xmlevents10/listener.xml"/>
 				</node>
 			</node>
+			<node title="AML 1.0">
+				<node title="Overview" url="ample/aml/aml.xml"/>
+				<node title="XML Schema" url="ample/aml/aml.xsd" />
+				<node title="Elements">
+					<node title="data" url="ample/aml/data.xml"/>
+					<node title="handler" url="ample/aml/handler.xml"/>
+					<node title="repeater" url="ample/aml/repeater.xml"/>
+					<node title="timer" url="ample/aml/timer.xml"/>
+				</node>
+			</node>
 			<node title="SMIL 3.0">
 				<node title="Overview" url="ample/smil30/smil30.xml"/>
 				<node title="XML Schema" />
@@ -432,27 +442,26 @@
 				</node>
 			</node>
 		</node>
-		<node title="AML 1.0">
-			<node title="Overview" url="ample/aml/aml.xml" />
-			<node title="XML Schema" url="ample/aml/aml.xsd"/>
+		<node title="AUI 1.0">
+			<node title="Overview" url="ample/aui/aui.xml" />
+			<node title="XML Schema" url="ample/aui/aui.xsd"/>
 			<node title="Objects">
-				<node title="AMLElement" url="ample/aml/AMLElement.xml"/>
-				<node title="AMLDocument" xurl="ample/aml/AMLDocument.xml"/>
+				<node title="AUIElement" url="ample/aui/AUIElement.xml"/>
 			</node>
 			<node title="Elements">
-				<node title="Data Binding">
-					<node title="data" url="ample/aml/data.xml"/>
-					<node title="repeater" url="ample/aml/repeater.xml"/>
-				</node>
 				<node title="Maps">
-					<node title="map" url="ample/aml/map.xml"/>
-					<node title="marker" url="ample/aml/marker.xml"/>
-					<node title="route" xurl="ample/aml/route.xml"/>
-					<node title="checkpoint" xurl="ample/aml/checkpoint.xml"/>
+					<node title="map" url="ample/aui/map.xml"/>
+					<node title="marker" url="ample/aui/marker.xml"/>
+					<node title="route" xurl="ample/aui/route.xml"/>
+					<node title="checkpoint" xurl="ample/aui/checkpoint.xml"/>
 				</node>
-				<node title="sound" url="ample/aml/sound.xml"/>
-				<node title="timer" url="ample/aml/timer.xml"/>
-				<node title="handler" url="ample/aml/handler.xml"/>
+				<node title="filepicker" url="ample/aui/filepicker.xml"/>
+				<node title="pager" xurl="ample/aui/pager.xml"/>
+				<node title="panel" xurl="ample/aui/panel.xml"/>
+				<node title="panelset" xurl="ample/aui/panelset.xml"/>
+				<node title="sidebar" xurl="ample/aui/sidebar.xml"/>
+				<node title="sound" xurl="ample/aui/sound.xml"/>
+				<node title="xhtml" xurl="ample/aui/xhtml.xml"/>
  			</node>
 		</node>
 	</node>
