@@ -387,6 +387,37 @@
 					</locale>
 				</description>
 			</method>
+			<!-- Ajax -->
+			<method name="load" type="AMLQuery">
+				<arguments>
+					<argument name="url" type="String">
+						<description>
+							<locale>
+								A string containing the URL to which the request is sent.
+							</locale>
+						</description>
+					</argument>
+					<argument name="data" type="Object" required="false">
+						<description>
+							<locale>
+								Data to be sent with request.
+							</locale>
+						</description>
+					</argument>
+					<argument name="complete" type="Function" required="false">
+						<description>
+							<locale>
+								Function to be executed on request completion.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Loads data from the server and apends it to the first element in colection.
+					</locale>
+				</description>
+			</method>
 		</methods>
 	</members>
 </object>

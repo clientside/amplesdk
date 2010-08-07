@@ -598,36 +598,6 @@
 					</locale>
 				</description>
 			</method>
-			<!-- Content Loader -->
-			<method name="$load" type="Void">
-				<arguments>
-					<argument name="sUrl" type="String" required="true">
-						<description>
-							<locale>
-								URL
-							</locale>
-							<locale xml:lang="ru">
-								URL для загрузки.
-							</locale>
-						</description>
-					</argument>
-				</arguments>
-				<description>
-					<locale>
-						Loads element content from the remote resource specified by the sUrl argument
-					</locale>
-					<locale xml:lang="ru">
-						Загружает данные с удаленного ресурса, заданного аргументом.
-					</locale>
-				</description>
-			</method>
-			<method name="$abort" type="Void">
-				<description>
-					<locale>
-						Aborts load operation initated by the call of <link type="method">$load</link> method.
-					</locale>
-				</description>
-			</method>
 			<!-- Effects -->
 			<method name="$play" type="Number">
 				<arguments>

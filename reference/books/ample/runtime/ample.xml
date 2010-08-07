@@ -46,6 +46,7 @@
 			</property>
 		</properties>
 		<methods>
+			<!-- Guard -->
 			<method name="guard" type="Void">
 				<arguments>
 					<argument name="arguments" type="Arguments">
@@ -70,20 +71,24 @@
 					</locale>
 				</description>
 			</method>
-			<method name="ajax" type="Void">
-				<argument name="bag" type="Object">
-					<description>
-						<locale>
-							Properties bag.
-						</locale>
-					</description>
-				</argument>
+			<!-- Ajax -->
+			<method name="ajax" type="XMLHttpRequest">
+				<arguments>
+					<argument name="settings" type="Object">
+						<description>
+							<locale>
+								Properties bag.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
 				<description>
 					<locale>
 						Executes an XMLHttpRequest.
 					</locale>
 				</description>
 			</method>
+			<!-- Config -->
 			<method name="config" type="Variant">
 				<arguments>
 					<argument name="name" type="String">
