@@ -8,7 +8,7 @@
  */
 
 var cXULElement_button	= function(){};
-cXULElement_button.prototype	= new cXULElement;
+cXULElement_button.prototype	= new cXULElement("button");
 cXULElement_button.prototype.tabIndex	= 0;
 cXULElement_button.prototype.$hoverable	= true;
 
@@ -75,5 +75,5 @@ cXULElement_button.prototype.$getTagClose	= function()
     return '</button>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("button", cXULElement_button);
+// Register Element
+ample.extend(cXULElement_button);

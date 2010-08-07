@@ -9,6 +9,7 @@
 
 var cXULElement_vbox	= function(){};
 cXULElement_vbox.prototype	= new cXULElement_box;
+cXULElement_vbox.prototype.localName	= "vbox";
 
 // Attributes Defaults
 cXULElement_vbox.attributes	= {};
@@ -26,5 +27,5 @@ cXULElement_vbox.handlers	= {
 	}
 };
 
-// Register Element with language
-oXULNamespace.setElement("vbox", cXULElement_vbox);
+// Register Element
+ample.extend(cXULElement_vbox);

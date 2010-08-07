@@ -7,9 +7,14 @@
  *
  */
 
-var cHTMLInputElement	= function(){};
+var cHTMLInputElement	= function() {
+	cXHTMLElement.apply(this, arguments);
+};
 
-cHTMLInputElement.prototype	= new cXHTMLElement;
+cHTMLInputElement.prototype	= new cXHTMLElement("#element-input");
 
 // Accessibility
 cHTMLInputElement.prototype.tabIndex	= 0;
+
+// Register Element
+ample.extend(cHTMLInputElement);

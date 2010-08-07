@@ -11,7 +11,7 @@ var cXULElement_listitem	= function() {
     // Collections
     this.cells  = new AMLNodeList;
 };
-cXULElement_listitem.prototype   = new cXULElement;
+cXULElement_listitem.prototype   = new cXULElement("listitem");
 cXULElement_listitem.prototype.$hoverable	= true;
 
 // Class Events Handlers
@@ -107,6 +107,6 @@ cXULElement_listitem.prototype.$getTagClose	= function() {
 			</tr>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("listitem", cXULElement_listitem);
+// Register Element
+ample.extend(cXULElement_listitem);
 

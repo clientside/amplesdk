@@ -45,13 +45,10 @@
 	// Range
 	$aFiles[]	= "runtime/classes/range/AMLRange.js";
 
-	// Extensions
-	// Animation
-	$aFiles[]	= "runtime/classes/animation/AMLElementAnimation.js";
-
 	// AML addons
-	$aFiles[]	= "runtime/classes/AMLNamespace.js";
+//	$aFiles[]	= "runtime/classes/AMLNamespace.js";
 //	$aFiles[]	= "runtime/classes/AMLSerializer.js";
+	$aFiles[]	= "runtime/classes/AMLQuery.js";
 
 	// XML APIs
 	$aFiles[]	= "runtime/classes/DOMParser.js";
@@ -64,9 +61,34 @@
 	$aFiles[]	= "runtime/classes/JSON.js";
 
 	// Runtime
+	$aFiles[]	= "runtime/utilities.js";
+	$aFiles[]	= "runtime/guard.js";
 	$aFiles[]	= "runtime/browser.js";
 	$aFiles[]	= "runtime/ample.js";
 
+	// AML
+	$aFiles[]	= "runtime/processors/aml/classes/cAMLAttr.js";
+	$aFiles[]	= "runtime/processors/aml/classes/cAMLElement.js";
+	$aFiles[]	= "runtime/processors/aml/attributes/draggable.js";
+	$aFiles[]	= "runtime/processors/aml/attributes/droppable.js";
+	$aFiles[]	= "runtime/processors/aml/attributes/resizable.js";
+	$aFiles[]	= "runtime/processors/aml/attributes/selectable.js";
+	$aFiles[]	= "runtime/processors/aml/attributes/resize-edges.js";
+	$aFiles[]	= "runtime/processors/aml/elements/data.js";
+	$aFiles[]	= "runtime/processors/aml/elements/handler.js";
+	$aFiles[]	= "runtime/processors/aml/elements/repeater.js";
+	$aFiles[]	= "runtime/processors/aml/elements/timer.js";
+
+	// SMIL 3.0
+	$aFiles[]	= "runtime/processors/smil/classes/cSMILElement.js";
+	$aFiles[]	= "runtime/processors/smil/elements/animate.js";
+	$aFiles[]	= "runtime/processors/smil/elements/animateColor.js";
+	$aFiles[]	= "runtime/processors/smil/elements/animateMotion.js";
+	$aFiles[]	= "runtime/processors/smil/elements/excl.js";
+	$aFiles[]	= "runtime/processors/smil/elements/par.js";
+	$aFiles[]	= "runtime/processors/smil/elements/seq.js";
+	$aFiles[]	= "runtime/processors/smil/elements/set.js";
+/*
 	// Processors
 //	$aFiles[]	= "runtime/processors/rex10/rex10.js";
 	// SMIL 3.0
@@ -76,10 +98,6 @@
 //	$aFiles[]	= "runtime/processors/smil30/classes/cAMLTimeEvent.js";
 	// XBL 2.0
 //	$aFiles[]	= "runtime/processors/xbl20/xbl20.js";
-	// XInclude 1.0
-	$aFiles[]	= "runtime/processors/xinclude10/xinclude10.js";
-	// XML Events 1.0
-	$aFiles[]	= "runtime/processors/xmlevents10/xmlevents10.js";
 	// XML Schema 1.1
 	$aFiles[]	= "runtime/processors/xmlschema11/classes/cAMLXSConstants.js";
 	$aFiles[]	= "runtime/processors/xmlschema11/classes/cAMLXSException.js";
@@ -98,6 +116,7 @@
 	$aFiles[]	= "runtime/processors/xmlschema11/xmlschema11-datatypes.js";
 	// XML Schema 1.1 (Built-in Data Types)
 	$aFiles[]	= "runtime/processors/xmlschema11/builtin/xmlschema11-builtin.js";
+*/
 /*
 	// XML Schema 1.1 (structure)
 	$aFiles[]	= "runtime/processors/xmlschema11/xmlschema11-structures.js";
@@ -116,15 +135,23 @@
 	// XML Schema 1.1 Instance
 	$aFiles[]	= "runtime/processors/xmlschema11-instance/xmlschema11-instance.js";
 */
-	// Modules
+	// Managers
 	$aFiles[]	= "runtime/managers/mAMLFocus.js";
 	$aFiles[]	= "runtime/managers/mAMLResize.js";
 	$aFiles[]	= "runtime/managers/mAMLDragAndDrop.js";
 	$aFiles[]	= "runtime/managers/mAMLSelection.js";
-	$aFiles[]	= "runtime/managers/mAMLUI.js";
 	$aFiles[]	= "runtime/managers/mAMLCapture.js";
 	$aFiles[]	= "runtime/managers/mAMLHistory.js";
 	$aFiles[]	= "runtime/managers/mAMLTouch.js";
+
+	// Modules
+	$aFiles[]	= "runtime/modules/collection.js";
+	$aFiles[]	= "runtime/modules/ajax.js";
+	$aFiles[]	= "runtime/modules/css.js";
+	$aFiles[]	= "runtime/modules/dom.js";
+	$aFiles[]	= "runtime/modules/effects.js";
+	$aFiles[]	= "runtime/modules/events.js";
+	$aFiles[]	= "runtime/modules/data.js";
 
 	//
 	$aFiles[]	= "runtime/export.js";

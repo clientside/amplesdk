@@ -1,0 +1,7 @@
+<!--
+	category: Ample SDK
+	name: Resource include: AUI language
+	toolTip: AUI language bundle (put it in the HEAD section)
+-->
+		<script type="text/javascript" src="lib/ample/languages/aui/aui.js"></script>
+		<link type="text/css" href="lib/ample/languages/aui/themes/default/style.css" rel="stylesheet"/>

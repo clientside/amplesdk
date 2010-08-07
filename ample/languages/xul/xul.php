@@ -1,6 +1,5 @@
 <?
     $aFiles		= array();
-    $aFiles[]	= "xul.js";
     $aFiles[]	= "classes/cXULElement.js";
 	$aFiles[]	= "classes/cXULController.js";
 

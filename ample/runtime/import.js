@@ -17,6 +17,7 @@ var cString		= window.String,
 	cDate		= window.Date,
 	cFunction	= window.Function,
 	cMath		= window.Math,
+	cArguments	= function(){},
 // Error Objects
 	cError		= window.Error,
 	cSyntaxError= window.SyntaxError,
@@ -70,7 +71,7 @@ if (!!oUADocument.namespaces) {
 else
 if (!!window.controllers) {
 	bGecko		= true;
-	nVersion	= fParseFloat(oUANavigator.userAgent.match(/rv:([\d.]+)/)[1]);
+//	nVersion	= fParseFloat(oUANavigator.userAgent.match(/rv:([\d.]+)/)[1]);
 }
 else
 if (!!window.opera) {

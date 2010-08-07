@@ -8,7 +8,7 @@
  */
 
 var cXULElement_groupbox	= function(){};
-cXULElement_groupbox.prototype	= new cXULElement;
+cXULElement_groupbox.prototype	= new cXULElement("groupbox");
 //cXULElement_groupbox.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
 
 // Attributes Defaults
@@ -55,5 +55,5 @@ cXULElement_groupbox.prototype.$getTagClose	= function()
     return sHtml;
 };
 
-// Register Element with language
-oXULNamespace.setElement("groupbox", cXULElement_groupbox);
+// Register Element
+ample.extend(cXULElement_groupbox);

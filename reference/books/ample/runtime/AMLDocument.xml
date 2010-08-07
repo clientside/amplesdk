@@ -435,35 +435,6 @@
 					</locale>
 				</description>
 			</method>
-			<!-- Ample Methods -->
-			<method name="open" type="Void">
-				<description>
-					<locale>
-						Opens Ample SDK fragment. This method can only be called while page is loading.
-					</locale>
-				</description>
-			</method>
-			<method name="close" type="Void">
-				<description>
-					<locale>
-						Closes Ample SDK fragment. This method can only be called while page is loading.
-					</locale>
-				</description>
-			</method>
-			<method name="$instance" type="AMLElement">
-				<arguments>
-					<argument name="oElement" type="HTMLElement">
-						<description>
-							DOM HTML element
-						</description>
-					</argument>
-				</arguments>
-				<description>
-					<locale>
-						Finds corresponding to the HTML DOM element in the Ample SDK DOM.
-					</locale>
-				</description>
-			</method>
 		</methods>
 		<properties>
 			<property name="documentElement" type="AMLElement" readonly="true">
@@ -523,20 +494,6 @@
 				<description>
 					<locale>
 						Retrieves a reference to an element in the document that currently has focus.
-					</locale>
-				</description>
-			</property>
-			<property name="$model" type="XSModel" readonly="true">
-				<description>
-					<locale>
-						Retrieves a reference to the XML Schema model.
-					</locale>
-				</description>
-			</property>
-			<property name="$time" type="SMILTimeContainer" readonly="true">
-				<description>
-					<locale>
-						Retrieves a reference to the SMIL document time container.
 					</locale>
 				</description>
 			</property>

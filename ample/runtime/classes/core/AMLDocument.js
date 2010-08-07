@@ -31,13 +31,16 @@ cAMLDocument.prototype.xmlStandalone 	= null;
 cAMLDocument.prototype.xmlVersion 		= null;
 
 // Private Variables
-var nAMLDocument_index	= 0;
+var nAMLDocument_index	= 0,
+	//oAMLDocument_shadow	= {},
+	oAMLDocument_all	= {},
+	oAMLDocument_ids	= {};
 
 // Public Methods
 cAMLDocument.prototype.createAttribute	= function(sName)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["name",	cString]
 	]);
 
@@ -71,7 +74,7 @@ function fAMLDocument_createAttributeNS(oDocument, sNameSpaceURI, sQName)
 cAMLDocument.prototype.createAttributeNS	= function(sNameSpaceURI, sQName)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["namespaceURI",	cString, false, true],
 		["QName",			cString]
 	]);
@@ -93,7 +96,7 @@ function fAMLDocument_createTextNode(oDocument, sData)
 cAMLDocument.prototype.createTextNode	= function(sData)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["data",	cObject, true]
 	]);
 
@@ -119,7 +122,7 @@ function fAMLDocument_createCDATASection(oDocument, sData)
 cAMLDocument.prototype.createCDATASection	= function(sData)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["data",	cObject, true]
 	]);
 
@@ -149,7 +152,7 @@ function fAMLDocument_createComment(oDocument, sData)
 cAMLDocument.prototype.createComment	= function(sData)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["data",	cObject, true]
 	]);
 
@@ -169,7 +172,7 @@ cAMLDocument.prototype.createComment	= function(sData)
 cAMLDocument.prototype.createElement	= function(sName)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["name",	cString]
 	]);
 
@@ -182,8 +185,7 @@ function fAMLDocument_createElementNS(oDocument, sNameSpaceURI, sQName)
 	var aQName		= sQName.split(':'),
 		sLocalName	= aQName.pop(),
 		sPrefix		= aQName.pop() || null,
-		oNamespace	= oAML_namespaces[sNameSpaceURI],
-		cElement	= oNamespace ? oNamespace.elements[sLocalName] : null,
+		cElement	= oAMLImplementation_elements[sNameSpaceURI + '#' + sLocalName],
 		oElement	= new (cElement || cAMLElement),
 		sName;
 
@@ -218,7 +220,7 @@ function fAMLDocument_createElementNS(oDocument, sNameSpaceURI, sQName)
 cAMLDocument.prototype.createElementNS	= function(sNameSpaceURI, sQName)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["namespaceURI",	cString, false, true],
 		["QName",			cString]
 	]);
@@ -230,7 +232,7 @@ cAMLDocument.prototype.createElementNS	= function(sNameSpaceURI, sQName)
 cAMLDocument.prototype.createEntityReference	= function(sName)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["name",	cString]
 	]);
 
@@ -240,7 +242,7 @@ cAMLDocument.prototype.createEntityReference	= function(sName)
 cAMLDocument.prototype.createEvent     = function(sName)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["eventType",	cString]
 	]);
 
@@ -254,7 +256,7 @@ cAMLDocument.prototype.createEvent     = function(sName)
 cAMLDocument.prototype.canDispatch	= function(sNameSpaceURI, sType)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["namespaceURI",	cString, false, true],
 		["type",			cString]
 	]);
@@ -284,7 +286,7 @@ function fAMLDocument_createProcessingInstruction(oDocument, sTarget, sData)
 cAMLDocument.prototype.createProcessingInstruction	= function(sTarget, sData)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["target",	cString],
 		["data",	cString]
 	]);
@@ -296,17 +298,17 @@ cAMLDocument.prototype.createProcessingInstruction	= function(sTarget, sData)
 cAMLDocument.prototype.getElementById	= function(sId)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		['id',	cString]
 	]);
 
-    return oAML_ids[sId] || null;
+    return oAMLDocument_ids[sId] || null;
 };
 
 cAMLDocument.prototype.getElementsByTagName	= function(sTagName)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["name",	cString]
 	]);
 
@@ -316,7 +318,7 @@ cAMLDocument.prototype.getElementsByTagName	= function(sTagName)
 cAMLDocument.prototype.getElementsByTagNameNS	= function(sNameSpaceURI, sLocalName)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["namespaceURI",	cString, false, true],
 		["localName",		cString]
 	]);
@@ -324,16 +326,179 @@ cAMLDocument.prototype.getElementsByTagNameNS	= function(sNameSpaceURI, sLocalNa
 	return fAMLElement_getElementsByTagNameNS(this, sNameSpaceURI, sLocalName);
 };
 
+function fAMLDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse) {
+	switch (oElementDOM.nodeType) {
+		case cAMLNode.ELEMENT_NODE:
+			var sNameSpaceURI	= oElementDOM.namespaceURI || null,
+				sLocalName		= oElementDOM.localName || oElementDOM.baseName;
+			if (sNameSpaceURI == "http://www.w3.org/2001/XInclude") {
+				if (sLocalName == "include") {
+					var oRequest	= new cXMLHttpRequest,
+						oResponse,
+						sHref	= oElementDOM.getAttribute("href");
+					oRequest.open("GET", sHref, false);
+					oRequest.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+					oRequest.setRequestHeader("X-User-Agent", oAMLConfiguration_values["ample-user-agent"]);
+					oRequest.send(null);
+					if (oResponse = fBrowser_getResponseDocument(oRequest)) {
+						// set xml:base according to spec
+						if (!oResponse.documentElement.getAttribute("xml:base"))
+							oResponse.documentElement.setAttribute("xml:base", sHref);
+						fAMLDocument_importNode(oDocument, oResponse, bDeep, oNode, bCollapse);
+					}
+					else {
+						// lookup if there is fallback
+						oElementDOM	= oElementDOM.getElementsByTagName('*')[0];
+						if (oElementDOM && (oElementDOM.localName || oElementDOM.baseName).toLowerCase() == "fallback" && oElementDOM.namespaceURI == sNameSpaceURI && oElementDOM.firstChild)
+							fAMLDocument_importNode(oDocument, oElementDOM.getElementsByTagName('*')[0] || oElementDOM.childNodes[0], bDeep, oNode, bCollapse);
+					}
+				}
+//->Debug
+				else
+					fUtilities_warn(sAML_UNKNOWN_ELEMENT_NS_WRN, [oElementDOM.tagName, oElementDOM.namespaceURI]);
+//<-Debug
+			}
+			else {
+				// Create element (note: in IE, namespaceURI is empty string if not specified, hence "oElementDOM.namespaceURI || null")
+				var oElement	= fAMLDocument_createElementNS(oDocument, sNameSpaceURI, oElementDOM.nodeName),
+					oAttributes	= oElement.attributes,
+					aAttributes = oElementDOM.attributes,
+					oAttribute, sName, sValue;
+
+				for (var nIndex = 0, nLength = aAttributes.length; nIndex < nLength; nIndex++) {
+					// oAttribute used to cache object
+					oAttribute	= aAttributes[nIndex];
+					sName	= oAttribute.nodeName;
+					sValue	= oAttribute.nodeValue;
+
+					// Inline event handler
+					if (sName.indexOf('on') == 0)
+						oElement[sName]	= new cFunction(sNameSpaceURI == "http://www.w3.org/2000/svg" ? "evt" : "event", bCollapse ? fUtilities_decodeEntities(sValue) : sValue);
+					else
+						oAttributes[sName]	= bCollapse ? sValue : fUtilities_encodeEntities(sValue);
+				}
+
+				if (sNameSpaceURI == "http://www.w3.org/2001/xml-events") {
+					if (sLocalName == "listener") {
+						if (oNode)
+							fAMLEventTarget_addEventListener(oNode,
+								oElementDOM.getAttribute("event"),
+								cFunction("event",	(oElementDOM.getAttribute("propagate") == "stop" ? "event" + ".stopPropagation();" : '') +
+													(oElementDOM.getAttribute("defaultAction") == "cancel" ? "event" + ".preventDefault();" : '') +
+													(oElementDOM.getAttribute("handler") && oElementDOM.getAttribute("handler").indexOf("javascript" + ':') == 0 ? oElementDOM.getAttribute("handler").substr(cString("javascript" + ':').length) : '')
+											),
+								oElementDOM.getAttribute("phase") == "capture"
+							);
+					}
+//->Debug
+					else
+						fUtilities_warn(sAML_UNKNOWN_ELEMENT_NS_WRN, [oElementDOM.tagName, sNameSpaceURI]);
+//<-Debug
+				}
+				else {
+					// Copy default attributes values if not specified
+					var cElement	= oAMLImplementation_elements[sNameSpaceURI + '#' + sLocalName];
+					if (cElement) {
+						for (sName in cElement.attributes)
+							if (cElement.attributes.hasOwnProperty(sName) && !(sName in oAttributes))
+								oAttributes[sName]	= cElement.attributes[sName];
+					}
+//->Debug
+					else
+					if (!(sNameSpaceURI == "http://www.w3.org/1999/xhtml" && sLocalName == "script" && oAttributes["type"] == "application/ample+xml"))
+						fUtilities_warn(sAML_UNKNOWN_ELEMENT_NS_WRN, [oElementDOM.tagName, sNameSpaceURI]);
+//<-Debug
+				}
+
+				// and append it to parent (if there is one)
+				if (oNode)
+					fAMLNode_appendChild(oNode, oElement);
+
+				// Render Children
+				if (bDeep)
+					for (var nIndex = 0, nLength = oElementDOM.childNodes.length; nIndex < nLength; nIndex++)
+						fAMLDocument_importNode(oDocument, oElementDOM.childNodes[nIndex], bDeep, oElement, bCollapse);
+			}
+			break;
+
+		case cAMLNode.ENTITY_REFERENCE_NODE:
+			if (oNode.lastChild instanceof cAMLCharacterData)
+				fAMLCharacterData_appendData(oNode.lastChild, oElementDOM.text);
+			else
+				fAMLNode_appendChild(oNode, fAMLDocument_createTextNode(oDocument, oElementDOM.text));
+			break;
+
+		case cAMLNode.TEXT_NODE:
+			var sValue	= oElementDOM.nodeValue;
+			if (!bCollapse)
+				sValue	= fUtilities_encodeEntities(sValue);
+
+			if (sValue.trim() != '') {
+				if (oNode.lastChild instanceof cAMLCharacterData)
+					fAMLCharacterData_appendData(oNode.lastChild, sValue);
+				else
+					fAMLNode_appendChild(oNode, fAMLDocument_createTextNode(oDocument, sValue));
+			}
+			break;
+
+		case cAMLNode.CDATA_SECTION_NODE:
+			fAMLNode_appendChild(oNode, fAMLDocument_createCDATASection(oDocument, oElementDOM.nodeValue));
+			break;
+
+		case cAMLNode.COMMENT_NODE:
+//->Source
+/*
+			fAMLNode_appendChild(oElement, oElement.ownerDocument.createComment(oElementDOM.nodeValue));
+*/
+//<-Source
+			break;
+
+		case cAMLNode.PROCESSING_INSTRUCTION_NODE:
+			switch (oElementDOM.target)	{
+				case "xml":
+					break;
+
+				case "xml-stylesheet":
+					if (oElementDOM.nodeValue.match(/href=["']([^"']+)["']/)) {
+						var sHref	= cRegExp.$1;
+						if (oElementDOM.nodeValue.match(/type=["']([^"']+)["']/))
+							if (cRegExp.$1 == "text/css" || cRegExp.$1 == "text/ample+css") {
+								var sCSS	= fBrowser_loadStyleSheet(sHref);
+								if (sCSS)
+									oUADocument.getElementsByTagName("head")[0].appendChild(fBrowser_createStyleSheet(sCSS, sHref));
+							}
+					}
+					// no break is left intentionally
+				default:
+					fAMLNode_appendChild(oNode, fAMLDocument_createProcessingInstruction(oDocument, oElementDOM.nodeName, oElementDOM.nodeValue));
+			}
+			break;
+
+		case cAMLNode.DOCUMENT_NODE:
+			if (bDeep)
+				for (var nIndex = 0, nLength = oElementDOM.childNodes.length; nIndex < nLength; nIndex++)
+					fAMLDocument_importNode(oDocument, oElementDOM.childNodes[nIndex], bDeep, oNode, bCollapse);
+			break;
+
+		case cAMLNode.DOCUMENT_TYPE_NODE:
+			break;
+
+		default:
+			throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+	}
+	return oElement;
+};
+
 cAMLDocument.prototype.importNode	= function(oNode, bDeep)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["node",	cXMLNode],
 		["deep",	cBoolean]
 	]);
 
 	if (oNode.nodeType == cAMLNode.ELEMENT_NODE)
-		return fAML_import(oNode, bDeep);
+		return fAMLDocument_importNode(this, oNode, bDeep);
 	else
 		throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
@@ -383,3 +548,122 @@ cAMLDocument.prototype.createTreeWalker	= function(oNode, nWhatToShow, oFilter, 
 };
 */
 //<-Source
+
+
+function fAMLDocument_register(oDocument, oElement) {
+	//
+	if (oElement.nodeType == cAMLNode.ELEMENT_NODE && !oAMLDocument_all[oElement.uniqueID]) {
+		// Register Instance
+		oAMLDocument_all[oElement.uniqueID]	= oElement;
+
+		// Cache for shadow links
+//		oAMLDocument_shadow[oElement.uniqueID]	= {};
+
+		// Register "identified" Instance
+		var sId	= oElement.attributes.id;
+		if (sId) {
+//->Debug
+			if (oAMLDocument_ids[sId])
+				fUtilities_warn(sAML_NOT_UNIQUE_ID_WRN, [sId]);
+//<-Debug
+			oAMLDocument_ids[sId]	= oElement;
+		}
+
+		// Set style property
+		if (oAMLConfiguration_values["ample-use-style-property"]) {
+			var oElementDOM	= oElement.$getContainer();
+			if (oElementDOM)
+				oElement.style	= oElementDOM.style;
+		}
+
+		// Fire Mutation event on Element
+		var oEvent = new cAMLMutationEvent;
+		oEvent.initMutationEvent("DOMNodeInsertedIntoDocument", false, false, null, null, null, null, null);
+		fAMLNode_dispatchEvent(oElement, oEvent);
+
+		// Global attributes module
+		for (var sName in oElement.attributes) {
+			if (oElement.attributes.hasOwnProperty(sName)) {
+				var aQName		= sName.split(':'),
+					sLocalName	= aQName.pop(),
+					sPrefix		= aQName.pop() || null,
+					sNameSpaceURI;
+
+				if (sName != "xmlns" && sPrefix && sPrefix != "xmlns" && (sNameSpaceURI = fAMLNode_lookupNamespaceURI(oElement, sPrefix))) {
+					var cAttribute	= oAMLImplementation_attributes[sNameSpaceURI + '#' + sLocalName];
+					if (cAttribute)	{
+						// oAttribute used to create fake object
+						var oAttribute	= new cAttribute;
+						oAttribute.ownerDocument= oDocument;
+						oAttribute.ownerElement	= oElement;
+						oAttribute.name			=
+						oAttribute.nodeName		= sName;
+						oAttribute.value		=
+						oAttribute.nodeValue	= oElement.attributes[sName];
+						oAttribute.localName	= sLocalName;
+						oAttribute.prefix		= sPrefix;
+						oAttribute.namespaceURI	= sNameSpaceURI;
+
+						// Fire Mutation event (pseudo)
+						oEvent = new cAMLMutationEvent;
+						oEvent.initMutationEvent("DOMNodeInsertedIntoDocument", false, false, null, null, null, null, null);
+						oEvent.target	=
+						oEvent.currentTarget	= oAttribute;
+						oEvent.eventPhase		= cAMLEvent.AT_TARGET;
+						fAMLNode_handleEvent(oAttribute, oEvent);
+					}
+//->Debug
+					else
+						fUtilities_warn(sAML_UNKNOWN_ATTRIBUTE_NS_WRN, [sLocalName, sNameSpaceURI]);
+//<-Debug
+				}
+			}
+		}
+
+		var nIndex,
+			oNode;
+
+		// Process anonymous children
+		for (nIndex = 0; oNode = oElement.$childNodesAnonymous[nIndex]; nIndex++)
+			fAMLDocument_register(oDocument, oNode);
+
+		// Process children
+		for (nIndex = 0; oNode = oElement.childNodes[nIndex]; nIndex++)
+			fAMLDocument_register(oDocument, oNode);
+	}
+};
+
+function fAMLDocument_unregister(oDocument, oElement) {
+	//
+	if (oElement.nodeType == cAMLNode.ELEMENT_NODE && oAMLDocument_all[oElement.uniqueID]) {
+		// Fire Mutation event
+		var oEvent = new cAMLMutationEvent;
+		oEvent.initMutationEvent("DOMNodeRemovedFromDocument", false, false, null, null, null, null, null);
+		fAMLNode_dispatchEvent(oElement, oEvent);
+
+		// Unset style property
+		if (oAMLConfiguration_values["ample-use-style-property"])
+			delete oElement.style;
+
+		// Unregister Instance
+		delete oAMLDocument_all[oElement.uniqueID];
+
+		// Cache for shadow links
+//		delete oAMLDocument_shadow[oElement.uniqueID];
+
+		// Unregister "identified" Instance
+		if (oElement.attributes.id)
+			delete oAMLDocument_ids[oElement.attributes.id];
+
+		var nIndex,
+			oNode;
+
+		// Process children
+		for (nIndex = 0; oNode = oElement.childNodes[nIndex]; nIndex++)
+			fAMLDocument_unregister(oDocument, oNode);
+
+		// Process anonymous children
+		for (nIndex = 0; oNode = oElement.$childNodesAnonymous[nIndex]; nIndex++)
+			fAMLDocument_unregister(oDocument, oNode);
+	}
+};

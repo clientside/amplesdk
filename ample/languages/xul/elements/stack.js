@@ -8,7 +8,7 @@
  */
 
 var cXULElement_stack	= function(){};
-cXULElement_stack.prototype  = new cXULElement;
+cXULElement_stack.prototype  = new cXULElement("stack");
 
 // Public Methods
 
@@ -41,5 +41,5 @@ cXULElement_stack.prototype.$getTagClose	= function() {
     return '</div>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("stack", cXULElement_stack);
+// Register Element
+ample.extend(cXULElement_stack);

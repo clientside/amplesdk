@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<article>
+	<title>Abstract UI Markup Language (AUI 1.0)</title>
+	<abstract>
+		<locale>
+			The AUI language contains most commonly used UI components not covered by any other
+			User Interface markup language specification.
+		</locale>
+		<locale xml:lang="ru">
+			Язык AUI состоит из наиболее часто используемых компонентов пользовательского интерфейса, которые не определены в других языках.
+		</locale>
+	</abstract>
+	<content>
+		<section>
+			<title>
+				<locale>
+					Namespace URI
+				</locale>
+				<locale xml:lang="ru">
+					Пространство имен
+				</locale>
+			</title>
+			<content>
+				<locale>
+					AUI 1.0 defines a namespaces associated with the URI <b>http://www.amplesdk.com/ns/aui</b>.
+				</locale>
+				<locale xml:lang="ru">
+					Пространство имен AUI 1.0 определяется URI <uri>http://www.amplesdk.com/ns/aui</uri>.
+				</locale>
+			</content>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Ample SDK implementation details
+				</locale>
+				<locale xml:lang="ru">
+					Реализация в Ample SDK
+				</locale>
+			</title>
+			<content>
+				<locale>
+					This language is being developed by <a href="http://www.clientside.fi/">Clientside OY</a> company.
+				</locale>
+				<locale xml:lang="ru">
+					Этот язык разрабатывается и поддерживается компанией <a href="http://www.clientside.fi/">Clientside OY</a>.
+				</locale>
+			</content>
+		</section>
+	</content>
+</article>

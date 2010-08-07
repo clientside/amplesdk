@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_del	= function(){};
-cXHTMLElement_del.prototype	= new cXHTMLElement;
+cXHTMLElement_del.prototype	= new cXHTMLElement("del");
 
 // Class Events Handlers
 cXHTMLElement_del.handlers	= {
@@ -18,5 +18,5 @@ cXHTMLElement_del.handlers	= {
 	}
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("del", cXHTMLElement_del);
+// Register Element
+ample.extend(cXHTMLElement_del);

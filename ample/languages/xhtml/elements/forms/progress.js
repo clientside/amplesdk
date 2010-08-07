@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_progress	= function(){};
-cXHTMLElement_progress.prototype	= new cXHTMLElement;
+cXHTMLElement_progress.prototype	= new cXHTMLElement("progress");
 
 // Class Events Handlers
 cXHTMLElement_progress.handlers	= {
@@ -18,5 +18,5 @@ cXHTMLElement_progress.handlers	= {
 	}
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("progress", cXHTMLElement_progress);
+// Register Element
+ample.extend(cXHTMLElement_progress);

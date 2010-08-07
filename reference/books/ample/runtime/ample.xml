@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="ample">
+	<abstract>
+		<locale>
+			jQuery-like API to Ample SDK. Can be called in any of the following flavours.
+			<ul>
+				<li><link type="object">AMLQuery</link> <link type="object">ample</link>(String <em>selector</em>[, <link type="object">AMLNode</link> <em>context</em>[, Function <em>NSResolver</em>]])</li>
+				<li><link type="object">AMLQuery</link> <link type="object">ample</link>(String <em>xml</em>)</li>
+				<li><link type="object">AMLQuery</link> <link type="object">ample</link>(<link type="object">AMLQuery</link> <em>collection</em>)</li>
+				<li><link type="object">AMLQuery</link> <link type="object">ample</link>(<link type="object">AMLElement</link> <em>element</em>)</li>
+			</ul>
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<properties>
+			<property name="$model" type="XSModel" readonly="true">
+				<description>
+					<locale>
+						Retrieves a reference to the XML Schema model.
+					</locale>
+				</description>
+			</property>
+			<property name="$time" type="SMILTimeContainer" readonly="true">
+				<description>
+					<locale>
+						Retrieves a reference to the SMIL document time container.
+					</locale>
+				</description>
+			</property>
+			<property name="document" type="AMLDocument" readonly="true">
+				<description>
+					<locale>
+						Retrieves a reference to the Ample SDK document.
+					</locale>
+				</description>
+			</property>
+			<property name="namespaces" type="Object">
+				<description>
+					<locale>
+						Retrieves a reference to a hash object of namespaces collected from the root element of the hosting document.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<methods>
+			<!-- Guard -->
+			<method name="guard" type="Void">
+				<arguments>
+					<argument name="arguments" type="Arguments">
+						<description>
+							<locale>
+								arguments object.
+							</locale>
+						</description>
+					</argument>
+					<argument name="parameters" type="Array">
+						<description>
+							<locale>
+								array of parameter definitions.
+								Each parameter definition is an array in the following format: {String} name, {Function} type[, {Boolean} optional, {Boolean} allownull]
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Helps validating API in custom extensions.
+					</locale>
+				</description>
+			</method>
+			<!-- Ajax -->
+			<method name="ajax" type="XMLHttpRequest">
+				<arguments>
+					<argument name="settings" type="Object">
+						<description>
+							<locale>
+								Properties bag.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Executes an XMLHttpRequest.
+					</locale>
+				</description>
+			</method>
+			<!-- Config -->
+			<method name="config" type="Variant">
+				<arguments>
+					<argument name="name" type="String">
+						<description>
+							<locale>
+								Parameter name
+							</locale>
+						</description>
+					</argument>
+					<argument name="value" type="Variant" required="false">
+						<description>
+							<locale>
+								Parameter value
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Sets or retrieves a parameter. List of parameters:
+						<ul>
+							<li><b>version</b> - Ample SDK version number</li>
+							<li><b>user-agent</b> - Ample SDK user agent string</li>
+							<li><b>user-locale</b> - User locale</li>
+							<li><b>enable-transitions</b> - enable/disable transitions globally</li>
+							<li><b>use-style-property</b> - enable/disable style property on elements</li>
+							<li><b>module-history-fix</b> - fix initial value of the location.hash property in Internet Explorer (used in <link type="object">mHistory</link>)</li>
+						</ul>
+					</locale>
+				</description>
+			</method>
+			<method name="ready" type="Void">
+				<arguments>
+					<argument name="handler" type="Function">
+						<description>
+							<locale>
+								Handler function.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Registers a handler to be executed when page has been completely loaded.
+					</locale>
+				</description>
+			</method>
+			<method name="extend" type="Void">
+				<arguments>
+					<argument name="source" type="Object">
+						<description>
+							<locale>
+								Extension object to extend.
+							</locale>
+						</description>
+					</argument>
+					<argument name="target" type="Object" required="false">
+						<description>
+							<locale>
+								Target object for extension. If ommited, <link type="object">ample</link> object itself is in use.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Provides extensibility point.
+					</locale>
+				</description>
+			</method>
+			<!--  -->
+			<method name="open" type="Void">
+				<description>
+					<locale>
+						Opens Ample SDK fragment. This method can only be called while page is loading.
+					</locale>
+				</description>
+			</method>
+			<method name="close" type="Void">
+				<description>
+					<locale>
+						Closes Ample SDK fragment. This method can only be called while page is loading.
+					</locale>
+				</description>
+			</method>
+			<method name="$instance" type="AMLElement">
+				<arguments>
+					<argument name="oElement" type="HTMLElement">
+						<description>
+							DOM HTML element
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Finds corresponding to the HTML DOM element in the Ample SDK DOM.
+					</locale>
+				</description>
+			</method>
+			<!-- Events -->
+			<method name="bind" type="Void">
+				<arguments>
+					<argument name="type" type="String">
+						<description>
+							<locale>
+								Event name
+							</locale>
+						</description>
+					</argument>
+					<argument name="handler" type="Function">
+						<description>
+							<locale>
+								Handler function
+							</locale>
+						</description>
+					</argument>
+					<argument name="capture" type="Boolean" required="false">
+						<description>
+							<locale>
+								If true, the handler will be executed during capture phase only
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Registers a handler with document
+					</locale>
+				</description>
+			</method>
+			<method name="unbind" type="Void">
+				<arguments>
+					<argument name="type" type="String">
+						<description>
+							<locale>
+								Event name
+							</locale>
+						</description>
+					</argument>
+					<argument name="handler" type="Function">
+						<description>
+							<locale>
+								Handler function
+							</locale>
+						</description>
+					</argument>
+					<argument name="capture" type="Boolean" required="false">
+						<description>
+							<locale>
+								If true, the handler will be executed during capture phase only
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Unregisters a handler from document
+					</locale>
+				</description>
+			</method>
+			<method name="trigger" type="Void">
+				<arguments>
+					<argument name="type" type="String">
+						<description>
+							<locale>
+								Event name
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Triggers an event on document
+					</locale>
+				</description>
+			</method>
+		</methods>
+	</members>
+</object>

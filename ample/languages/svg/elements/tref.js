@@ -8,7 +8,7 @@
  */
 
 var cSVGElement_tref	= function(){};
-cSVGElement_tref.prototype	= new cSVGElement;
+cSVGElement_tref.prototype	= new cSVGElement("tref");
 
 if (cSVGElement.useVML) {
 
@@ -40,7 +40,7 @@ if (cSVGElement.useVML) {
 					var oRef	= that.ownerDocument.getElementById(sHref.substr(1));
 					if (oRef instanceof cSVGElement_text && oRef.firstChild instanceof AMLCharacterData)
 						that.$getContainer().getElementsByTagName("textpath")[0].string	= oRef.firstChild.data.replace(/^\s+/, '').replace(/\s+$/, '').replace(/&gt;/g, '>').replace(/&lt;/g, '<').replace(/&amp;/g, '&');
-				});
+				}, 0);
 			}
 			// Apply transform
 			cSVGElement.applyTransform(this);
@@ -79,5 +79,5 @@ if (cSVGElement.useVML) {
 	};
 };
 
-//Register Element with language
-oSVGNamespace.setElement("tref", cSVGElement_tref);
+// Register Element
+ample.extend(cSVGElement_tref);

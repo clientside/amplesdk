@@ -14,7 +14,7 @@ var cXULElement_wizard	= function() {
     // Collections
     this.wizardPages= new AMLNodeList;
 };
-cXULElement_wizard.prototype = new cXULWindowElement;
+cXULElement_wizard.prototype = new cXULWindowElement("wizard");
 
 // Public Properties
 cXULElement_wizard.prototype.currentPage	= null;
@@ -279,5 +279,5 @@ cXULElement_wizard.prototype.$getTagClose  = function() {
 	    	</div>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("wizard", cXULElement_wizard);
+// Register Element
+ample.extend(cXULElement_wizard);

@@ -26,7 +26,7 @@ cAMLMouseEvent.prototype.initMouseEvent = function(sType, bCanBubble, bCancelabl
 {
 /*
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["type",		cString],
 		["canBubble",	cBoolean],
 		["cancelable",	cBoolean]

@@ -29,7 +29,7 @@ cXULElement_datepicker_pane.months	= [
 ];
 
 // component prototype
-cXULElement_datepicker_pane.prototype	= new cXULPopupElement;
+cXULElement_datepicker_pane.prototype	= new cXULPopupElement("datepicker-pane");
 
 // Pubic properties (read-only)
 cXULElement_datepicker_pane.prototype.current= null;	// this is set by constructor
@@ -384,5 +384,5 @@ cXULElement_datepicker_pane.prototype.$getTagClose	= function() {
 	return '';
 };
 
-// Register component with the language
-oXULNamespace.setElement("datepicker-pane", cXULElement_datepicker_pane);
+// Register Element
+ample.extend(cXULElement_datepicker_pane);

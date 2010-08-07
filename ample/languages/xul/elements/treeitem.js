@@ -8,7 +8,7 @@
  */
 
 var cXULElement_treeitem	= function(){};
-cXULElement_treeitem.prototype   = new cXULElement;
+cXULElement_treeitem.prototype   = new cXULElement("treeitem");
 
 // Public Properties
 cXULElement_treeitem.prototype.row		= null; // Reference to XULElement_treerow
@@ -116,5 +116,5 @@ cXULElement_treeitem.prototype.$getContainer	= function(sName) {
 	return sName == "gateway" ? this.parentNode.$getContainer("gateway") : this.row ? this.row.$getContainer(sName) : null;
 };
 
-// Register Element with language
-oXULNamespace.setElement("treeitem", cXULElement_treeitem);
+// Register Element
+ample.extend(cXULElement_treeitem);

@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_textarea	= function(){};
-cXHTMLElement_textarea.prototype	= new cXHTMLElement;
+cXHTMLElement_textarea.prototype	= new cXHTMLElement("textarea");
 cXHTMLElement_textarea.prototype.tabIndex	= 0;
 
 // Public Properties
@@ -60,5 +60,5 @@ cXHTMLElement_textarea.prototype.$getTagOpen	= function() {
     return sHtml + '>';
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("textarea", cXHTMLElement_textarea);
+// Register Element
+ample.extend(cXHTMLElement_textarea);

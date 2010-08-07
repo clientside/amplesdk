@@ -1,6 +1,5 @@
 <?
     $aFiles		= array();
-    $aFiles[]	= "xforms11.js";
     $aFiles[]	= "classes/cXFORMS11Element.js";
 
 	// elements

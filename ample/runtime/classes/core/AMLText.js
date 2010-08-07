@@ -21,7 +21,7 @@ cAMLText.prototype.wholeText	= null;
 cAMLText.prototype.splitText	= function(nOffset)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["offset",	cNumber]
 	]);
 
@@ -95,7 +95,7 @@ cAMLText.prototype.replaceData	= function(nOffset, nLength, sData)
 // Level 3
 cAMLText.prototype.replaceWholeText	= function(sContent) {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["content",	cString]
 	]);
 

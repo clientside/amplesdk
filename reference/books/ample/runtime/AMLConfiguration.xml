@@ -113,7 +113,7 @@
 				</description>
 			</method>
 			<!-- Ample methods -->
-			<method name="setNamespace" type="Void">
+			<!--method name="setNamespace" type="Void">
 				<arguments>
 					<argument name="sNameSpaceURI" type="String" required="true">
 						<description>
@@ -166,7 +166,7 @@
             Возвращает реализацию Namespace.
           </locale>
 				</description>
-			</method>
+			</method-->
 		</methods>
 	</members>
 	<remarks>

@@ -8,7 +8,7 @@
  */
 
 var cChartElement_bubble	= function(){};
-cChartElement_bubble.prototype	= new cChartElement;
+cChartElement_bubble.prototype	= new cChartElement("bubble");
 
 cChartElement_bubble.handlers	= {
 	'DOMNodeInsertedIntoDocument':	function() {
@@ -159,7 +159,7 @@ else {
 		// IE8 performance bug
 		setTimeout(function(){
 			oCanvas.style.display	= "";
-		});
+		}, 0);
 	};
 
 	cChartElement_bubble.onresize	= function(oEvent) {
@@ -217,5 +217,5 @@ else {
 	};
 }
 
-// Register Element with language
-oChartNamespace.setElement("bubble", cChartElement_bubble);
+// Register Element
+ample.extend(cChartElement_bubble);

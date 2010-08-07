@@ -31,7 +31,7 @@ function fAMLRange_setStart(oRange, oNode, nOffset) {
 
 cAMLRange.prototype.setStart	= function(oNode, nOffset) {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["node",	cAMLNode],
 		["offset",	cNumber]
 	]);
@@ -46,7 +46,7 @@ function fAMLRange_setEnd(oRange, oNode, nOffset) {
 
 cAMLRange.prototype.setEnd		= function(oNode, nOffset) {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["node",	cAMLNode],
 		["offset",	cNumber]
 	]);
@@ -56,7 +56,7 @@ cAMLRange.prototype.setEnd		= function(oNode, nOffset) {
 
 cAMLRange.prototype.setStartBefore	= function(oNode) {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["node",	cAMLNode]
 	]);
 
@@ -65,7 +65,7 @@ cAMLRange.prototype.setStartBefore	= function(oNode) {
 
 cAMLRange.prototype.setStartAfter	= function(oNode) {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["node",	cAMLNode]
 	]);
 
@@ -74,7 +74,7 @@ cAMLRange.prototype.setStartAfter	= function(oNode) {
 
 cAMLRange.prototype.setEndBefore	= function(oNode) {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["node",	cAMLNode]
 	]);
 
@@ -83,7 +83,7 @@ cAMLRange.prototype.setEndBefore	= function(oNode) {
 
 cAMLRange.prototype.setEndAfter		= function(oNode) {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["node",	cAMLNode]
 	]);
 
@@ -92,7 +92,7 @@ cAMLRange.prototype.setEndAfter		= function(oNode) {
 
 cAMLRange.prototype.collapse	= function(bStart) {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["toStart",	cBoolean]
 	]);
 
@@ -101,7 +101,7 @@ cAMLRange.prototype.collapse	= function(bStart) {
 
 cAMLRange.prototype.selectNode	= function(oNode) {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["node",	cAMLNode]
 	]);
 
@@ -110,7 +110,7 @@ cAMLRange.prototype.selectNode	= function(oNode) {
 
 cAMLRange.prototype.selectNodeContents	= function(oNode) {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["node",	cAMLNode]
 	]);
 
@@ -120,7 +120,7 @@ cAMLRange.prototype.selectNodeContents	= function(oNode) {
 //
 cAMLRange.prototype.compareBoundaryPoints	= function(nHow, oRange) {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["how",			cNumber],
 		["sourceRange",	cAMLRange]
 	]);
@@ -142,7 +142,7 @@ cAMLRange.prototype.cloneContents	= function() {
 
 cAMLRange.prototype.insertNode		= function(oNode) {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["node",	cAMLNode]
 	]);
 
@@ -151,7 +151,7 @@ cAMLRange.prototype.insertNode		= function(oNode) {
 
 cAMLRange.prototype.surroundContents= function(oParent) {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["parent",	cAMLNode]
 	]);
 

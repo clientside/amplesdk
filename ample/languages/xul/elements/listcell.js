@@ -8,7 +8,7 @@
  */
 
 var cXULElement_listcell	= function(){};
-cXULElement_listcell.prototype	= new cXULElement;
+cXULElement_listcell.prototype	= new cXULElement("listcell");
 
 // Public Methods
 
@@ -59,5 +59,5 @@ cXULElement_listcell.prototype.$getTagClose	= function()
     return '</div></div></td>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("listcell", cXULElement_listcell);
+// Register Element
+ample.extend(cXULElement_listcell);

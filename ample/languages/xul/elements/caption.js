@@ -8,7 +8,7 @@
  */
 
 var cXULElement_caption	= function(){};
-cXULElement_caption.prototype	= new cXULElement;
+cXULElement_caption.prototype	= new cXULElement("caption");
 cXULElement_caption.prototype.viewType   = cXULElement.VIEW_TYPE_VIRTUAL;
 
 // Class Events Handlers
@@ -44,5 +44,5 @@ cXULElement_caption.handlers	= {
 	}
 };
 
-// Register Element with language
-oXULNamespace.setElement("caption", cXULElement_caption);
+// Register Element
+ample.extend(cXULElement_caption);

@@ -7,4 +7,16 @@
  *
  */
 
+var cXHTMLElement_ruby	= function(){};
+cXHTMLElement_ruby.prototype	= new cXHTMLElement("ruby");
 
+// Class Events Handlers
+cXHTMLElement_ruby.handlers	= {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this)
+			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
+	}
+};
+
+// Register Element
+ample.extend(cXHTMLElement_ruby);

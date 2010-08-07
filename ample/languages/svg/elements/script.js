@@ -8,7 +8,7 @@
  */
 
 var cSVGElement_script	= function(){};
-cSVGElement_script.prototype	= new cSVGElement;
+cSVGElement_script.prototype	= new cSVGElement("script");
 
 if (cSVGElement.useVML) {
 	// Implementation for IE
@@ -30,5 +30,5 @@ cSVGElement_script.handlers	= {
 	}
 };
 
-// Register Element with language
-oSVGNamespace.setElement("script", cSVGElement_script);
+// Register Element
+ample.extend(cSVGElement_script);

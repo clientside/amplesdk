@@ -8,7 +8,7 @@
  */
 
 var cXULElement_treebody	= function(){};
-cXULElement_treebody.prototype   = new cXULElement;
+cXULElement_treebody.prototype   = new cXULElement("treebody");
 
 // Public Properties
 cXULElement_treebody.prototype.children	= null;
@@ -87,5 +87,5 @@ cXULElement_treebody.prototype.$getTagClose	= function() {
     return aHtml.join('');
 };
 
-// Register Element with language
-oXULNamespace.setElement("treebody", cXULElement_treebody);
+// Register Element
+ample.extend(cXULElement_treebody);

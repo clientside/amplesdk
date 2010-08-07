@@ -28,7 +28,7 @@ var oXULReflowManager	= (function () {
 	};
 
 	// Add handlers
-	ample.addEventListener("DOMNodeInsertedIntoDocument", function(oEvent) {
+	ample.bind("DOMNodeInsertedIntoDocument", function(oEvent) {
 		// Add to the stack for reflow
 		if (oEvent.target instanceof cXULElement && oEvent.target.viewType == cXULElement.VIEW_TYPE_BOXED)
 			fSchedule(oEvent.target);

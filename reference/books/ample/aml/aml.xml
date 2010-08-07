@@ -1,14 +1,10 @@
 <?xml version="1.0"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
 <article>
-	<title>Abstract [UI] Markup Language (AML 1.0)</title>
+	<title>Abstract XML Markup Language (AML 1.0)</title>
 	<abstract>
 		<locale>
-			The AML language contains most commonly used UI components not covered by any other
-			User Interface markup language specification.
-		</locale>
-		<locale xml:lang="ru">
-			Язык AML состоит из наиболее часто используемых компонентов пользовательского интерфейса, которые не определены в других языках.
+			The AML language contains common functional elements and attributes.
 		</locale>
 	</abstract>
 	<content>

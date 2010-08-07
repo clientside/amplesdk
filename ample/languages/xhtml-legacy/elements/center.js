@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_center	= function(){};
-cXHTMLElement_center.prototype	= new cXHTMLElement;
+cXHTMLElement_center.prototype	= new cXHTMLElement("center");
 
-// Register Element with language
-oXHTMLNamespace.setElement("center", cXHTMLElement_center);
+// Register Element
+ample.extend(cXHTMLElement_center);

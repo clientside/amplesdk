@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_button	= function(){};
-cXHTMLElement_button.prototype	= new cXHTMLElement;
+cXHTMLElement_button.prototype	= new cXHTMLElement("button");
 cXHTMLElement_button.prototype.tabIndex		= 0;
 
 cXHTMLElement_button.prototype.$validate	= function() {
@@ -32,5 +32,5 @@ cXHTMLElement_button.handlers	= {
 	}
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("button", cXHTMLElement_button);
+// Register Element
+ample.extend(cXHTMLElement_button);

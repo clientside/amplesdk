@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="AMLQuery">
+	<abstract>
+		<locale>
+			Holds a collection of elements returned from <link type="object">ample</link>() function call.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<properties>
+			<property name="length" type="Number">
+				<description>
+					<locale>
+						Holds the length of the collection returned.
+					</locale>
+				</description>
+			</property>
+			<property name="selector" type="String">
+				<description>
+					<locale>
+						Holds the CSS selector query used.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<methods>
+			<!-- Collection -->
+			<method name="get" type="AMLElement">
+				<arguments>
+					<argument name="index" type="Number">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="eq" type="AMLElement">
+				<arguments>
+					<argument name="index" type="Number">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="first" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="last" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="slice" type="AMLQuery">
+				<arguments>
+					<argument name="first" type="Number">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+					<argument name="last" type="Number" required="false">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="each" type="AMLQuery">
+				<arguments>
+					<argument name="callback" type="Function">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+					<argument name="arguments" type="Object" required="false">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+
+			<!-- Effects -->
+			<method name="animate" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+
+			<!-- Css -->
+			<method name="css" type="Variant">
+				<arguments>
+					<argument name="name" type="String">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+					<argument name="value" type="String" required="false">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+
+			<!-- Events -->
+			<method name="bind" type="AMLQuery">
+				<arguments>
+					<argument name="type" type="String">
+						<description>
+							<locale>
+								Event name
+							</locale>
+						</description>
+					</argument>
+					<argument name="handler" type="Function">
+						<description>
+							<locale>
+								Handler function
+							</locale>
+						</description>
+					</argument>
+					<argument name="capture" type="Boolean" required="false">
+						<description>
+							<locale>
+								If true, the handler will be executed during capture phase only
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Registers a handler with every element in set
+					</locale>
+				</description>
+			</method>
+			<method name="unbind" type="AMLQuery">
+				<arguments>
+					<argument name="type" type="String">
+						<description>
+							<locale>
+								Event name
+							</locale>
+						</description>
+					</argument>
+					<argument name="handler" type="Function">
+						<description>
+							<locale>
+								Handler function
+							</locale>
+						</description>
+					</argument>
+					<argument name="capture" type="Boolean" required="false">
+						<description>
+							<locale>
+								If true, the handler will be executed during capture phase only
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Unregisters a handler from every element in set
+					</locale>
+				</description>
+			</method>
+			<method name="trigger" type="AMLQuery">
+				<arguments>
+					<argument name="type" type="String">
+						<description>
+							<locale>
+								Event name
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Triggers an event on every element in set
+					</locale>
+				</description>
+			</method>
+
+			<!-- DOM -->
+			<method name="attr" type="Variant">
+				<arguments>
+					<argument name="name" type="String">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+					<argument name="value" type="String" required="false">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="text" type="Variant">
+				<arguments>
+					<argument name="value" type="String" required="false">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="appendTo" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="prependTo" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="insertBefore" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="insertAfter" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="replaceAll" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="append" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="prepend" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="before" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="after" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="remove" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="empty" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="replaceWith" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="clone" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<!-- Data -->
+			<method name="data" type="Variant">
+				<arguments>
+					<argument name="name" type="String">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+					<argument name="value" type="Object" required="false">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<!-- Ajax -->
+			<method name="load" type="AMLQuery">
+				<arguments>
+					<argument name="url" type="String">
+						<description>
+							<locale>
+								A string containing the URL to which the request is sent.
+							</locale>
+						</description>
+					</argument>
+					<argument name="data" type="Object" required="false">
+						<description>
+							<locale>
+								Data to be sent with request.
+							</locale>
+						</description>
+					</argument>
+					<argument name="complete" type="Function" required="false">
+						<description>
+							<locale>
+								Function to be executed on request completion.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Loads data from the server and apends it to the first element in colection.
+					</locale>
+				</description>
+			</method>
+		</methods>
+	</members>
+</object>

@@ -8,7 +8,7 @@
  */
 
 var cXULElement_broadcaster	= function(){};
-cXULElement_broadcaster.prototype    = new cXULElement;
+cXULElement_broadcaster.prototype    = new cXULElement("broadcaster");
 cXULElement_broadcaster.prototype.viewType   = cXULElement.VIEW_TYPE_VIRTUAL;
 
 // Class Handlers
@@ -32,5 +32,5 @@ cXULElement_broadcaster.handlers	= {
 	}
 };
 
-// Register Element with language
-oXULNamespace.setElement("broadcaster", cXULElement_broadcaster);
+// Register Element
+ample.extend(cXULElement_broadcaster);

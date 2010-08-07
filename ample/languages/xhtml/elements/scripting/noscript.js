@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_noscript	= function(){};
-cXHTMLElement_noscript.prototype	= new cXHTMLElement;
+cXHTMLElement_noscript.prototype	= new cXHTMLElement("noscript");
 
 // Class Events Handlers
 cXHTMLElement_noscript.handlers	= {
@@ -18,5 +18,5 @@ cXHTMLElement_noscript.handlers	= {
 	}
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("noscript", cXHTMLElement_noscript);
+// Register Element
+ample.extend(cXHTMLElement_noscript);

@@ -18,35 +18,35 @@
 		<script>
 			var sXulNS	= "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
 			function addRadioVertical() {
-				var oElement	= ample.getElementById("radiogroup_v").appendChild(ample.createElementNS(sXulNS, "xul:radio"));
+				var oElement	= ample.document.getElementById("radiogroup_v").appendChild(ample.document.createElementNS(sXulNS, "xul:radio"));
 				oElement.setAttribute("label", "new item");
 			}
 			function removeRadioVertical() {
-				var oElement	= ample.getElementById("radiogroup_v");
+				var oElement	= ample.document.getElementById("radiogroup_v");
 				oElement.removeChild(oElement.firstChild);
 			}
 			function addRadioHorizontal() {
-				var oElement	= ample.getElementById("radiogroup_h").appendChild(ample.createElementNS(sXulNS, "xul:radio"));
+				var oElement	= ample.document.getElementById("radiogroup_h").appendChild(ample.document.createElementNS(sXulNS, "xul:radio"));
 				oElement.setAttribute("label", "new item");
 			}
 			function removeRadioHorizontal() {
-				var oElement	= ample.getElementById("radiogroup_h");
+				var oElement	= ample.document.getElementById("radiogroup_h");
 				oElement.removeChild(oElement.firstChild);
 			}
 			function addBoxVertical() {
-				var oElement	= ample.getElementById("vbox").appendChild(ample.createElementNS(sXulNS, "xul:label"));
+				var oElement	= ample.document.getElementById("vbox").appendChild(ample.document.createElementNS(sXulNS, "xul:label"));
 				oElement.setAttribute("value", "new item");
 			}
 			function removeBoxVertical() {
-				var oElement	= ample.getElementById("vbox");
+				var oElement	= ample.document.getElementById("vbox");
 				oElement.removeChild(oElement.firstChild);
 			}
 			function addBoxHorizontal() {
-				var oElement	= ample.getElementById("hbox").appendChild(ample.createElementNS(sXulNS, "xul:label"));
+				var oElement	= ample.document.getElementById("hbox").appendChild(ample.document.createElementNS(sXulNS, "xul:label"));
 				oElement.setAttribute("value", "new item");
 			}
 			function removeBoxHorizontal() {
-				var oElement	= ample.getElementById("hbox");
+				var oElement	= ample.document.getElementById("hbox");
 				oElement.removeChild(oElement.firstChild);
 			}
 		</script>

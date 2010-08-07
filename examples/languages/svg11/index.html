@@ -60,6 +60,9 @@
 									<option value="transformations.xml">transformations.xml (shapes)</option>
 									<option value="transformations-groups.xml">transformations.xml (groups)</option>
 								</optgroup>
+								<optgroup label="animation">
+									<option value="path_morphing.xml">path_morphing.xml</option>
+								</optgroup>
 								<optgroup label="TODO">
 									<option value="keycut.xml">keycut.xml</option>
 									<option value="babybottle.xml">babybottle.xml</option>
@@ -89,13 +92,13 @@
 					</tr>
 					<tr>
 						<td>viewBox</td>
-						<td><input type="text" id="viewBox" size="17" onchange="ample.getElementById('container').firstChild.setAttribute('viewBox', this.value)"/></td>
+						<td><input type="text" id="viewBox" size="17" onchange="ample.document.getElementById('container').firstChild.setAttribute('viewBox', this.value)"/></td>
 					</tr>
 					<tr>
 						<td>dimensions</td>
-						<td><input type="text" id="width" size="5" onchange="ample.getElementById('container').firstChild.setAttribute('width', this.value)"/>
+						<td><input type="text" id="width" size="5" onchange="ample.document.getElementById('container').firstChild.setAttribute('width', this.value)"/>
 						x
-						<input type="text" id="height" size="5" onchange="ample.getElementById('container').firstChild.setAttribute('height', this.value)"/></td>
+						<input type="text" id="height" size="5" onchange="ample.document.getElementById('container').firstChild.setAttribute('height', this.value)"/></td>
 					</tr>
 				</tbody>
 			</table>
@@ -111,12 +114,12 @@
 				if (document.location.hash.replace(/^#/, '') != sValue)
 					document.location.hash	= sValue;
 				// load SVG document
-				ample.getElementById('container').$load(sValue);
+				ample.document.getElementById('container').$load(sValue);
 			}
 			function onExampleLoad() {
 				document.getElementById('container_time').innerHTML = 'Rendered in ' + (new Date - time) + ' ms.'
 				//
-				var oElement	= ample.getElementById('container').firstChild;
+				var oElement	= ample.document.getElementById('container').firstChild;
 				if (oElement) {
 					document.getElementById("viewBox").value= oElement.getAttribute("viewBox");
 					document.getElementById("height").value	= oElement.getAttribute("height");
@@ -128,9 +131,9 @@
 				time = new Date();
 			}
 			// App start
-			ample.addEventListener("load", function(oEvent) {
+			ample.document.addEventListener("load", function(oEvent) {
 				//
-				var oContainer	= ample.getElementById('container');
+				var oContainer	= ample.document.getElementById('container');
 				oContainer.addEventListener("load", onExampleLoad, false);
 				oContainer.addEventListener("unload", onExampleUnload, false);
 

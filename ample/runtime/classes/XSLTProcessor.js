@@ -14,7 +14,7 @@ if (!cXSLTProcessor) {
 	};
 	cXSLTProcessor.prototype.importStylesheet	= function(oNode) {
 		// Validate arguments
-		fAML_validate(arguments, [
+		fGuard(arguments, [
 			["stylesheet",	cXMLNode]
 		]);
 
@@ -40,7 +40,7 @@ if (!cXSLTProcessor) {
 	};
 	cXSLTProcessor.prototype.getParameter		= function(sNameSpaceURI, sLocalName) {
 		// Validate arguments
-		fAML_validate(arguments, [
+		fGuard(arguments, [
 			["namespaceURI",	cString, false, true],
 			["localName",		cString]
 		]);
@@ -54,7 +54,7 @@ if (!cXSLTProcessor) {
 	};
 	cXSLTProcessor.prototype.removeParameter	= function(sNameSpaceURI, sLocalName) {
 		// Validate arguments
-		fAML_validate(arguments, [
+		fGuard(arguments, [
 			["namespaceURI",	cString, false, true],
 			["localName",		cString]
 		]);
@@ -71,7 +71,7 @@ if (!cXSLTProcessor) {
 	};
 	cXSLTProcessor.prototype.setParameter		= function(sNameSpaceURI, sLocalName, sValue) {
 		// Validate arguments
-		fAML_validate(arguments, [
+		fGuard(arguments, [
 			["namespaceURI",	cString, false, true],
 			["localName",		cString],
 			["value",			cObject]
@@ -95,7 +95,7 @@ if (!cXSLTProcessor) {
 	};
 	cXSLTProcessor.prototype.transformToDocument	= function(oNode) {
 		// Validate arguments
-		fAML_validate(arguments, [
+		fGuard(arguments, [
 			["source",	cXMLNode]
 		]);
 
@@ -115,7 +115,7 @@ if (!cXSLTProcessor) {
 	};
 	cXSLTProcessor.prototype.transformToFragment	= function(oNode, oDocument) {
 		// Validate arguments
-		fAML_validate(arguments, [
+		fGuard(arguments, [
 			["source",	cXMLNode],
 			["output",	cXMLDocument]
 		]);

@@ -8,10 +8,10 @@
  */
 
 var cXULElement_broadcasterset	= function(){};
-cXULElement_broadcasterset.prototype	= new cXULElement;
+cXULElement_broadcasterset.prototype	= new cXULElement("broadcasterset");
 cXULElement_broadcasterset.prototype.viewType	= cXULElement.VIEW_TYPE_VIRTUAL;
 
 // Public Methods
 
-// Register Element with language
-oXULNamespace.setElement("broadcasterset", cXULElement_broadcasterset);
+// Register Element
+ample.extend(cXULElement_broadcasterset);

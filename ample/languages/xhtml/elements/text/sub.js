@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_sub	= function(){};
-cXHTMLElement_sub.prototype	= new cXHTMLElement;
+cXHTMLElement_sub.prototype	= new cXHTMLElement("sub");
 
 // Class Events Handlers
 cXHTMLElement_sub.handlers	= {
@@ -18,5 +18,5 @@ cXHTMLElement_sub.handlers	= {
 	}
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("sub", cXHTMLElement_sub);
+// Register Element
+ample.extend(cXHTMLElement_sub);

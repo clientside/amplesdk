@@ -8,7 +8,7 @@
  */
 
 var cXULElement_page	= function(){};
-cXULElement_page.prototype	= new cXULElement;
+cXULElement_page.prototype	= new cXULElement("page");
 cXULElement_page.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
 
 // Attributes Defaults
@@ -36,5 +36,5 @@ cXULElement_page.prototype.$getTagClose	= function() {
     return '</div>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("page", cXULElement_page);
+// Register Element
+ample.extend(cXULElement_page);

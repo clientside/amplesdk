@@ -16,7 +16,7 @@ cAMLCustomEvent.prototype.detail	= null;
 cAMLCustomEvent.prototype.initCustomEvent	= function(sType, bCanBubble, bCancelable, oDetail)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["type",		cString],
 		["canBubble",	cBoolean],
 		["cancelable",	cBoolean],

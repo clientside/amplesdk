@@ -65,7 +65,7 @@ function fAMLDragAndDrop_onMouseDown(oEvent)
 		    // Simulate initial mousemove event
 			fSetTimeout(function() {
 				fAMLDragAndDrop_onMouseMove.call(oEvent.currentTarget, oEvent);
-			});
+			}, 0);
 
 			return;
 		}
@@ -93,6 +93,9 @@ function fAMLDragAndDrop_onMouseUp(oEvent)
 			    fAMLNode_dispatchEvent(oAMLDragAndDrop_dropTarget, oEventDrop);
 			}
 
+			// Remove :drop pseudo-class
+			fAMLElement_setPseudoClass(oAMLDragAndDrop_dropTarget, "drop", false);
+
 			// fire ondragleave event
 			var oEventDragLeave	= new cAMLDragEvent;
 		    oEventDragLeave.initDragEvent("dragleave", true, true, window, null, oAMLDragAndDrop_dataTransfer);
@@ -104,35 +107,67 @@ function fAMLDragAndDrop_onMouseUp(oEvent)
 	    // Clear array of drag target
 		aAMLDragAndDrop_dropTargets.length	= 0;
 
+		// Remove :drag pseudo-class
+		fAMLElement_setPseudoClass(oAMLDragAndDrop_dragSource, "drag", false);
+
 		// fire ondragend event
 		var oEventDragEnd	= new cAMLDragEvent;
 	    oEventDragEnd.initDragEvent("dragend", true, true, window, null, oAMLDragAndDrop_dataTransfer);
 	    oEventDragEnd.$pseudoTarget	= oEvent.$pseudoTarget;
 	    fAMLNode_dispatchEvent(oAMLDragAndDrop_dragSource, oEventDragEnd);
 
+	    var bDefaultPrevented	= oEvent.defaultPrevented || oEvent.button/* || oEventDragEnd.defaultPrevented*/,
+	    	bPlay	= oAMLConfiguration_values["ample-enable-animations"] &&(bDefaultPrevented || oAMLDragAndDrop_dataTransfer.dropEffect == "move" || oAMLDragAndDrop_dataTransfer.dropEffect == "copy");
+	    if (bPlay) {
+		    var sLeft	= oElementDOM.style.left,
+		    	sTop	= oElementDOM.style.top;
+		    // Commit
+		    oElementDOM.style.left	= nAMLDragAndDrop_clientLeft;
+		    oElementDOM.style.top	= nAMLDragAndDrop_clientTop;
+	    	var oRect1	= fAMLElement_getBoundingClientRect(oAMLDragAndDrop_dragSource);
+	    	// Rollback
+		    oElementDOM.style.left	= sLeft;
+		    oElementDOM.style.top	= sTop;
+	    }
+
 	    // Execute default action
-	    var bDefaultPrevented	= oEvent.defaultPrevented || oEvent.button/* || oEventDragEnd.defaultPrevented*/;
 	    if (!bDefaultPrevented && oAMLDragAndDrop_dropTarget && oAMLDragAndDrop_dropTarget != oAMLDragAndDrop_dragSource.parentNode) {
-		    if (oAMLDragAndDrop_dataTransfer.dropEffect == "copy") {
+		    if (oAMLDragAndDrop_dataTransfer.dropEffect == "copy")
 	    		oAMLDragAndDrop_dropTarget.appendChild(oAMLDragAndDrop_dragSource.cloneNode(true));	// TODO: remove @id attribute values
-		    }
 		    else
-		    if (oAMLDragAndDrop_dataTransfer.dropEffect == "move") {
+		    if (oAMLDragAndDrop_dataTransfer.dropEffect == "move")
 	    		oAMLDragAndDrop_dropTarget.appendChild(oAMLDragAndDrop_dragSource);
-		    }
 	    }
 
 		if (bDefaultPrevented || oAMLDragAndDrop_dataTransfer.dropEffect == "move" || oAMLDragAndDrop_dataTransfer.dropEffect == "copy")
 		{
-			var oStyle		= oElementDOM.style;
+			var oStyle		= oElementDOM.style,
+				fRestore	= function() {
+					oStyle.left		= nAMLDragAndDrop_clientLeft;
+					oStyle.top		= nAMLDragAndDrop_clientTop;
+				};
 
 		    // Restore element position
-			oStyle.left		= nAMLDragAndDrop_clientLeft;
-			oStyle.top		= nAMLDragAndDrop_clientTop;
+			if (bPlay) {
+				// Commit
+			    oElementDOM.style.left	= nAMLDragAndDrop_clientLeft;
+			    oElementDOM.style.top	= nAMLDragAndDrop_clientTop;
+				var oRect2	= fAMLElement_getBoundingClientRect(oAMLDragAndDrop_dragSource);
+				// Rollback
+			    oElementDOM.style.left	=(fParseInt(sLeft) + oRect1.left - oRect2.left)+ 'px';
+			    oElementDOM.style.top	=(fParseInt(sTop) + oRect1.top - oRect2.top)+ 'px';
+				//
+				var oProperties	= {};
+				oProperties["left"]		= nAMLResize_clientLeft || "auto";
+				oProperties["top"]		= nAMLResize_clientTop || "auto";
+				fAMLElementAnimation_play(oAMLDragAndDrop_dragSource, oProperties, 300, 3, fRestore);
+			}
+			else
+				fRestore();
 		}
 
 		// End session
-		fAML_toggleSelect(true);
+		fBrowser_toggleSelect(true);
 		if (bTrident)
 			oElementDOM.releaseCapture();
 
@@ -185,8 +220,11 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
 			return;
 		}
 
+		// Add :drag pseudo-class
+		fAMLElement_setPseudoClass(oAMLDragAndDrop_dragSource, "drag", true);
+
 		// set capture and prevent selection
-		fAML_toggleSelect(false);
+		fBrowser_toggleSelect(false);
 		if (bTrident)
 			oElementDOM.setCapture();
 		fAMLCapture_setCapture(oAMLDragAndDrop_dragSource, true);
@@ -195,7 +233,7 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
 		oAMLDragAndDrop_image.style.display	= '';
 
 		// fill in array with drag targets
-		var aElements	= fAMLElement_getElementsByTagName(oAML_modalNode || this.documentElement, '*');
+		var aElements	= fAMLElement_getElementsByTagName(oBrowser_modalNode || this.documentElement, '*');
 		for (var nIndex = 0, nLength = aElements.length; nIndex < nLength; nIndex++)
 			if (aElements[nIndex].$droppable)
 				aAMLDragAndDrop_dropTargets.push(aElements[nIndex]);
@@ -267,6 +305,8 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
 
 	// if there was a drop target and it is different from a new one
 	if (oAMLDragAndDrop_dropTarget && (nTarget < 0 || aAMLDragAndDrop_dropTargets[nTarget] != oAMLDragAndDrop_dropTarget)) {
+		// Remove :drop pseudo-class
+		fAMLElement_setPseudoClass(oAMLDragAndDrop_dropTarget, "drop", false);
 		// fire ondragleave event
 		var oEventDragLeave	= new cAMLDragEvent;
 	    oEventDragLeave.initDragEvent("dragleave", true, true, window, null, oAMLDragAndDrop_dataTransfer);
@@ -280,6 +320,9 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
 		if (aAMLDragAndDrop_dropTargets[nTarget] != oAMLDragAndDrop_dropTarget)
 		{
 			oAMLDragAndDrop_dropTarget	= aAMLDragAndDrop_dropTargets[nTarget];
+
+			// Add :drop pseudo-class
+			fAMLElement_setPseudoClass(oAMLDragAndDrop_dropTarget, "drop", true);
 
 			// fire ondragenter event
 			var oEventDragEnter	= new cAMLDragEvent;
@@ -390,7 +433,7 @@ cAMLDataTransfer.prototype.getData	= function(sFormat) {
 
 cAMLDataTransfer.prototype.setDragImage	= function(oImage, nLeft, nTop) {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["image",	cXMLElement],
 		["left",	cNumber,	true],
 		["top",		cNumber,	true]
@@ -403,7 +446,7 @@ cAMLDataTransfer.prototype.setDragImage	= function(oImage, nLeft, nTop) {
 
 cAMLDataTransfer.prototype.addElement		= function(oElement) {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["element",	cXMLElement]
 	]);
 
@@ -415,7 +458,7 @@ cAMLElement.prototype.$draggable	= false;
 cAMLElement.prototype.$droppable	= false;
 
 // Registering Event Handlers
-fAMLEventTarget_addEventListener(oAML_document, "mousedown",	fAMLDragAndDrop_onMouseDown,	false);
-fAMLEventTarget_addEventListener(oAML_document, "mousemove",	fAMLDragAndDrop_onMouseMove,	false);
-fAMLEventTarget_addEventListener(oAML_document, "mouseup",		fAMLDragAndDrop_onMouseUp,		false);
-fAMLEventTarget_addEventListener(oAML_document, "keydown",		fAMLDragAndDrop_onKeyDown,		false);
+fAMLEventTarget_addEventListener(oAmple_document, "mousedown",	fAMLDragAndDrop_onMouseDown,	false);
+fAMLEventTarget_addEventListener(oAmple_document, "mousemove",	fAMLDragAndDrop_onMouseMove,	false);
+fAMLEventTarget_addEventListener(oAmple_document, "mouseup",		fAMLDragAndDrop_onMouseUp,		false);
+fAMLEventTarget_addEventListener(oAmple_document, "keydown",		fAMLDragAndDrop_onKeyDown,		false);

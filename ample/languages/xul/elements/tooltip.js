@@ -8,7 +8,7 @@
  */
 
 var cXULElement_tooltip	= function(){};
-cXULElement_tooltip.prototype	= new cXULPopupElement;
+cXULElement_tooltip.prototype	= new cXULPopupElement("tooltip");
 cXULElement_tooltip.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
 
 // Class Events Handlers
@@ -43,5 +43,5 @@ cXULElement_tooltip.prototype.$getTagClose	= function() {
     return '</div>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("tooltip", cXULElement_tooltip);
+// Register Element
+ample.extend(cXULElement_tooltip);

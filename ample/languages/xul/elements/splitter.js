@@ -8,7 +8,7 @@
  */
 
 var cXULElement_splitter	= function(){};
-cXULElement_splitter.prototype   = new cXULElement;
+cXULElement_splitter.prototype   = new cXULElement("splitter");
 
 // Private properties
 cXULElement_splitter.prototype._clientX	= 0;
@@ -157,5 +157,5 @@ cXULElement_splitter.prototype.$getTagClose	= function() {
     return '</div>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("splitter", cXULElement_splitter);
+// Register Element
+ample.extend(cXULElement_splitter);

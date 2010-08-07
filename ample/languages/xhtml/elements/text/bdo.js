@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_bdo	= function(){};
-cXHTMLElement_bdo.prototype	= new cXHTMLElement;
+cXHTMLElement_bdo.prototype	= new cXHTMLElement("bdo");
 
 // Class Events Handlers
 cXHTMLElement_bdo.handlers	= {
@@ -18,5 +18,5 @@ cXHTMLElement_bdo.handlers	= {
 	}
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("bdo", cXHTMLElement_bdo);
+// Register Element
+ample.extend(cXHTMLElement_bdo);

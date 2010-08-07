@@ -8,7 +8,7 @@
  */
 
 var cXULElement_statusbarpanel	= function(){};
-cXULElement_statusbarpanel.prototype = new cXULElement;
+cXULElement_statusbarpanel.prototype = new cXULElement("statusbarpanel");
 
 // Attributes Defaults
 cXULElement_statusbarpanel.attributes	= {};
@@ -52,5 +52,5 @@ cXULElement_statusbarpanel.prototype.$getTagClose	= function() {
     return '</div>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("statusbarpanel", cXULElement_statusbarpanel);
+// Register Element
+ample.extend(cXULElement_statusbarpanel);

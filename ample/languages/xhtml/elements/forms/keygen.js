@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_keygen	= function(){};
-cXHTMLElement_keygen.prototype	= new cXHTMLElement;
+cXHTMLElement_keygen.prototype	= new cXHTMLElement("keygen");
 
 // Class Events Handlers
 cXHTMLElement_keygen.handlers	= {
@@ -18,5 +18,5 @@ cXHTMLElement_keygen.handlers	= {
 	}
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("keygen", cXHTMLElement_keygen);
+// Register Element
+ample.extend(cXHTMLElement_keygen);

@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_canvas	= function(){};
-cXHTMLElement_canvas.prototype	= new cXHTMLElement;
+cXHTMLElement_canvas.prototype	= new cXHTMLElement("canvas");
 
 // Class Events Handlers
 cXHTMLElement_canvas.handlers	= {
@@ -18,6 +18,6 @@ cXHTMLElement_canvas.handlers	= {
 	}
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("canvas", cXHTMLElement_canvas);
+// Register Element
+ample.extend(cXHTMLElement_canvas);
 

@@ -9,6 +9,7 @@
 
 var cXULElement_hbox	= function(){};
 cXULElement_hbox.prototype	= new cXULElement_box;
+cXULElement_hbox.prototype.localName	= "hbox";
 
 // Attributes Defaults
 cXULElement_hbox.attributes	= {};
@@ -26,5 +27,5 @@ cXULElement_hbox.handlers	= {
 	}
 };
 
-// Register Element with language
-oXULNamespace.setElement("hbox", cXULElement_hbox);
+// Register Element
+ample.extend(cXULElement_hbox);

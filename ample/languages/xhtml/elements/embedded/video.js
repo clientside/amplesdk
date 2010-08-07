@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_video	= function(){};
-cXHTMLElement_video.prototype	= new cXHTMLElement;
+cXHTMLElement_video.prototype	= new cXHTMLElement("video");
 
 // Class Events Handlers
 cXHTMLElement_video.handlers	= {
@@ -18,6 +18,6 @@ cXHTMLElement_video.handlers	= {
 	}
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("video", cXHTMLElement_video);
+// Register Element
+ample.extend(cXHTMLElement_video);
 

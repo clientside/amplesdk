@@ -11,25 +11,25 @@ var aAMLCapture_modals	= [];
 
 // Attaching to implementation
 cAMLDocument.prototype.releaseCapture	= function() {
-	if (oAML_captureNode)
-		fAMLCapture_releaseCapture(oAML_captureNode);
+	if (oBrowser_captureNode)
+		fAMLCapture_releaseCapture(oBrowser_captureNode);
 };
 
 function fAMLCapture_setCapture(oNode, bCapture) {
-	if (oAML_captureNode != oNode) {
+	if (oBrowser_captureNode != oNode) {
 		// Release capture from the previous element
-		var oElement	= oAML_captureNode;
+		var oElement	= oBrowser_captureNode;
 		if (oElement && oElement != oNode)
 			fAMLCapture_releaseCapture(oElement);
 
 		//
-		oAML_captureNode	= oNode;
+		oBrowser_captureNode	= oNode;
 	}
 };
 
 cAMLElement.prototype.setCapture	= function(bCapture) {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["useCapture",	cBoolean, true]
 	]);
 
@@ -41,14 +41,14 @@ cAMLElement.prototype.setCapture	= function(bCapture) {
 };
 
 function fAMLCapture_releaseCapture(oNode) {
-	if (oAML_captureNode == oNode) {
+	if (oBrowser_captureNode == oNode) {
 		// Notify element on capture lose
 		var oEvent	= new cAMLUIEvent;
 		oEvent.initUIEvent("losecapture", false, false, window, null);
 		fAMLNode_dispatchEvent(oNode, oEvent);
 
 		//
-		oAML_captureNode	= null;
+		oBrowser_captureNode	= null;
 	}
 };
 
@@ -64,7 +64,7 @@ cAMLElement.prototype.$setModal		= function() {
 	else {
 		aAMLCapture_modals.push(this);
 		// Set active element to the modal
-		oAML_modalNode	= oAML_document.activeElement	= this;
+		oBrowser_modalNode	= oAmple_document.activeElement	= this;
 	}
 };
 
@@ -75,6 +75,6 @@ cAMLElement.prototype.$releaseModal	= function() {
 	else {
 		aAMLCapture_modals.pop();
 		// Set active element to the previous modal or null
-		oAML_modalNode	= oAML_document.activeElement	= aAMLCapture_modals.length ? aAMLCapture_modals[aAMLCapture_modals.length - 1] : null;
+		oBrowser_modalNode	= oAmple_document.activeElement	= aAMLCapture_modals.length ? aAMLCapture_modals[aAMLCapture_modals.length - 1] : null;
 	}
 };

@@ -10,7 +10,7 @@
 var cXHTMLElement_form	= function() {
 	this.elements	= new AMLNodeList;
 };
-cXHTMLElement_form.prototype	= new cXHTMLElement;
+cXHTMLElement_form.prototype	= new cXHTMLElement("form");
 
 // Public Properties
 cXHTMLElement_form.prototype.elements	= null;
@@ -116,5 +116,5 @@ cXHTMLElement_form.prototype.$getTagOpen	= function() {
     return sHtml + '>';
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("form", cXHTMLElement_form);
+// Register Element
+ample.extend(cXHTMLElement_form);

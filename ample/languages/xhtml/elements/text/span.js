@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_span	= function(){};
-cXHTMLElement_span.prototype	= new cXHTMLElement;
+cXHTMLElement_span.prototype	= new cXHTMLElement("span");
 
 // Class Events Handlers
 cXHTMLElement_span.handlers	= {
@@ -18,5 +18,5 @@ cXHTMLElement_span.handlers	= {
 	}
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("span", cXHTMLElement_span);
+// Register Element
+ample.extend(cXHTMLElement_span);

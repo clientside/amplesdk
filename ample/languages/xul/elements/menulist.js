@@ -11,7 +11,7 @@ var cXULElement_menulist	= function() {
 	// Collections
 	this.items	  	= new AMLNodeList;
 };
-cXULElement_menulist.prototype   = new cXULInputElement;
+cXULElement_menulist.prototype   = new cXULInputElement("menulist");
 
 // Default Attributes
 cXULElement_menulist.attributes	= {
@@ -295,5 +295,5 @@ cXULElement_menulist.prototype.$getTagClose	= function() {
 			</div>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("menulist", cXULElement_menulist);
+// Register Element
+ample.extend(cXULElement_menulist);

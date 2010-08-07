@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_abbr	= function(){};
-cXHTMLElement_abbr.prototype	= new cXHTMLElement;
+cXHTMLElement_abbr.prototype	= new cXHTMLElement("abbr");
 
 // Class Events Handlers
 cXHTMLElement_abbr.handlers	= {
@@ -18,5 +18,5 @@ cXHTMLElement_abbr.handlers	= {
 	}
 };
 
-// Register Element with abbrinding
-oXHTMLNamespace.setElement("abbr", cXHTMLElement_abbr);
+// Register Element
+ample.extend(cXHTMLElement_abbr);

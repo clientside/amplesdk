@@ -16,7 +16,7 @@ var cXULElement_editor	= function() {
 };
 
 // component prototype
-cXULElement_editor.prototype	= new cXULInputElement;
+cXULElement_editor.prototype	= new cXULInputElement("editor");
 
 cXULElement_editor.prototype.contentDocument	= null;
 
@@ -55,7 +55,7 @@ cXULElement_editor.handlers	= {
 						cXULElement_editor.finalizeDocument(that);
 						setTimeout(function() {
 							cXULElement_editor.initializeDocument(that);
-						});
+						}, 0);
 					}
 					break;
 			}
@@ -75,8 +75,8 @@ cXULElement_editor.handlers	= {
 				oDOMElement.contentWindow.document.designMode	= "on";
 			setTimeout(function(){
 				cXULElement_editor.initializeDocument(that);
-			});
-		});
+			}, 0);
+		}, 0);
 	},
 	"DOMNodeRemovedFromDocument":	function() {
 		cXULElement_editor.finalizeDocument(this);
@@ -576,5 +576,5 @@ cXULElement_editor.prototype.$getTagClose	= function() {
 			</div>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("editor", cXULElement_editor);
+// Register Element
+ample.extend(cXULElement_editor);

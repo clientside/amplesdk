@@ -8,7 +8,7 @@
  */
 
 var cChartElement_doughnut	= function(){};
-cChartElement_doughnut.prototype	= new cChartElement;
+cChartElement_doughnut.prototype	= new cChartElement("doughnut");
 
 cChartElement_doughnut.handlers	= {
 	'DOMNodeInsertedIntoDocument':	function(oEvent) {
@@ -121,7 +121,7 @@ else {
 		// IE8 performance bug
 		setTimeout(function(){
 			oCanvas.style.display	= "";
-		});
+		}, 0);
 	};
 
 	cChartElement_doughnut.onresize	= function(oEvent) {
@@ -151,5 +151,5 @@ else {
 	};
 }
 
-// Register Element with language
-oChartNamespace.setElement("doughnut", cChartElement_doughnut);
+// Register Element
+ample.extend(cChartElement_doughnut);

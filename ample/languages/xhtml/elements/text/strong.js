@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_strong	= function(){};
-cXHTMLElement_strong.prototype	= new cXHTMLElement;
+cXHTMLElement_strong.prototype	= new cXHTMLElement("strong");
 
 // Class Events Handlers
 cXHTMLElement_strong.handlers	= {
@@ -18,5 +18,5 @@ cXHTMLElement_strong.handlers	= {
 	}
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("strong", cXHTMLElement_strong);
+// Register Element
+ample.extend(cXHTMLElement_strong);

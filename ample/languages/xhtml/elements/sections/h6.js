@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_h6	= function(){};
-cXHTMLElement_h6.prototype	= new cXHTMLElement;
+cXHTMLElement_h6.prototype	= new cXHTMLElement("h6");
 
 // Class Events Handlers
 cXHTMLElement_h6.handlers	= {
@@ -18,5 +18,5 @@ cXHTMLElement_h6.handlers	= {
 	}
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("h6", cXHTMLElement_h6);
+// Register Element
+ample.extend(cXHTMLElement_h6);

@@ -15,7 +15,7 @@ cAMLNodeList.prototype.length	= 0;
 cAMLNodeList.prototype.item		= function(nIndex)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["index",	cNumber]
 	]);
 

@@ -11,7 +11,7 @@ var cXULElement_radiogroup	= function() {
     // Collections
     this.items      = new AMLNodeList;
 };
-cXULElement_radiogroup.prototype	= new cXULInputElement;
+cXULElement_radiogroup.prototype	= new cXULInputElement("radiogroup");
 cXULElement_radiogroup.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
 
 // Public Properties
@@ -72,5 +72,5 @@ cXULElement_radiogroup.prototype.$getTagClose	= function() {
     return '</div>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("radiogroup", cXULElement_radiogroup);
+// Register Element
+ample.extend(cXULElement_radiogroup);

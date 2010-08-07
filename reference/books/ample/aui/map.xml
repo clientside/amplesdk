@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="aui:AUIElement" name="map">
+	<abstract>
+		<locale>
+			This element can only have <link type="element">marker</link> elements children.
+		</locale>
+	</abstract>
+	<remarks>
+		<remark>
+			<locale>
+				This element requires an external JS library to be loaded on the page.
+				The library could be downloaded from Google website <link href="http://www.google.com/apis/maps/">Google Maps API</link>.
+			</locale>
+		</remark>
+	</remarks>
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="longitude">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="latitude">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="altitude">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties>
+			<property name="object" type="GMap" readonly="true">
+				<description>
+					<locale>
+						Instance of GMap class used in the component.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<events />
+	</members>
+</element>

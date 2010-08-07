@@ -16,7 +16,7 @@ var cXHTMLElement_table	= function() {
 
 	this.rows	= new AMLNodeList;
 };
-cXHTMLElement_table.prototype	= new cXHTMLElement;
+cXHTMLElement_table.prototype	= new cXHTMLElement("table");
 
 // Public Properties
 cXHTMLElement_table.prototype.tHead	= null;
@@ -95,5 +95,5 @@ cXHTMLElement_table.handlers	= {
 	}
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("table", cXHTMLElement_table);
+// Register Element
+ample.extend(cXHTMLElement_table);

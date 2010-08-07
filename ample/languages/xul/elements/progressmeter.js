@@ -8,7 +8,7 @@
  */
 
 var cXULElement_progressmeter	= function(){};
-cXULElement_progressmeter.prototype  = new cXULElement;
+cXULElement_progressmeter.prototype  = new cXULElement("progressmeter");
 
 // Private Properties
 cXULElement_progressmeter.prototype._interval	= null;
@@ -93,5 +93,5 @@ cXULElement_progressmeter.prototype.$getTagOpen	= function() {
 			</div>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("progressmeter", cXULElement_progressmeter);
+// Register Element
+ample.extend(cXULElement_progressmeter);

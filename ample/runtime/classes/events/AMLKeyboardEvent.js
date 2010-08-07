@@ -28,7 +28,7 @@ cAMLKeyboardEvent.prototype.shiftKey = null;
 cAMLKeyboardEvent.prototype.initKeyboardEvent	= function(sType, bCanBubble, bCancelable, oView, sKeyIdentifier, nKeyLocation, sModifiersList) {
 /*
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["type",		cString],
 		["canBubble",	cBoolean],
 		["cancelable",	cBoolean]

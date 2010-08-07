@@ -7,8 +7,12 @@
  *
  */
 
-var cChartElement	= function(){};
+var cChartElement	= function(sLocalName) {
+	this.localName	= sLocalName;
+};
 cChartElement.prototype	= new AMLElement;
+cChartElement.prototype.namespaceURI	= "http://www.amplesdk.com/ns/chart";
+cChartElement.prototype.localName		= "#element";
 
 cChartElement.useVML	= navigator.userAgent.match(/MSIE ([\d.]+)/) && RegExp.$1 < 9;
 
@@ -597,5 +601,5 @@ if (cChartElement.useVML) {
 	};
 }
 
-// Register Element with language
-oChartNamespace.setElement("#element", cChartElement);
+// Register Element
+ample.extend(cChartElement);

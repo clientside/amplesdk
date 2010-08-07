@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_footer	= function(){};
-cXHTMLElement_footer.prototype	= new cXHTMLElement;
+cXHTMLElement_footer.prototype	= new cXHTMLElement("footer");
 
 // Class Events Handlers
 cXHTMLElement_footer.handlers	= {
@@ -18,5 +18,5 @@ cXHTMLElement_footer.handlers	= {
 	}
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("footer", cXHTMLElement_footer);
+// Register Element
+ample.extend(cXHTMLElement_footer);

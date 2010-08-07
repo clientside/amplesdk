@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_map	= function(){};
-cXHTMLElement_map.prototype	= new cXHTMLElement;
+cXHTMLElement_map.prototype	= new cXHTMLElement("map");
 
 // Class Events Handlers
 cXHTMLElement_map.handlers	= {
@@ -18,5 +18,5 @@ cXHTMLElement_map.handlers	= {
 	}
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("map", cXHTMLElement_map);
+// Register Element
+ample.extend(cXHTMLElement_map);

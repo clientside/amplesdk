@@ -8,7 +8,7 @@
  */
 
 var cXULElement_listheader	= function(){};
-cXULElement_listheader.prototype	= new cXULElement;
+cXULElement_listheader.prototype	= new cXULElement("listheader");
 cXULElement_listheader.prototype.$hoverable	= true;
 
 // Default attribute values
@@ -103,5 +103,5 @@ cXULElement_listheader.prototype.$getTagClose	= function() {
     		</td>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("listheader", cXULElement_listheader);
+// Register Element
+ample.extend(cXULElement_listheader);

@@ -84,7 +84,8 @@ fAMLExporter_export(cAMLTouch,				"AMLTouch");
 fAMLExporter_export(cAMLTouchList,			"AMLTouchList");
 
 // Ample objects
-fAMLExporter_export(cAMLNamespace,		"AMLNamespace");
+//fAMLExporter_export(cAMLNamespace,		"AMLNamespace");
+fAMLExporter_export(cAMLQuery,			"AMLQuery");
 //fAMLExporter_export(cAMLSerializer,	"AMLSerializer");
 //fAMLExporter_export(cAMLTreeWalker,	"AMLTreeWalker");
 //fAMLExporter_export(cAMLWindow,		"AMLWindow");
@@ -120,14 +121,11 @@ if (!window.XMLHttpRequest)
 if (!window.JSON)
 	fAMLExporter_export(oJSON,	"JSON");
 
-// Publish ample object here
-window.ample	= oAML_document;
-// Wrap 'Static Methods'
-fAMLExporter_wrapMember(oAML_document.close,		"close");
-fAMLExporter_wrapMember(oAML_document.open,			"open");
-fAMLExporter_wrapMember(oAML_document.$bookmark,	"$bookmark");
-fAMLExporter_wrapMember(oAML_document.$instance,	"$instance");
-fAMLExporter_wrapMember(oAML_document.$resolveUri,	"$resolveUri");
+// Special virtual type
+fAMLExporter_wrapMember(cArguments,	"Arguments");
+
+//
+fAMLExporter_export(oAmple,	"ample");
 
 // JavaScript 1.5
 if (!cArray.prototype.push)
@@ -148,7 +146,7 @@ if (!cArray.prototype.pop)
 if (!cArray.prototype.indexOf)
 	fAMLExporter_exportMember(cArray.prototype, function(oElement, nIndex) {
 		// Validate arguments
-		fAML_validate(arguments, [
+		fGuard(arguments, [
 			["element",	cObject, false, true],
 			["index",	cNumber, true, false]
 		]);
@@ -174,7 +172,7 @@ if (!cArray.prototype.indexOf)
 if (!cArray.prototype.lastIndexOf)
 	fAMLExporter_exportMember(cArray.prototype, function(oElement, nIndex) {
 		// Validate arguments
-		fAML_validate(arguments, [
+		fGuard(arguments, [
 			["element",	cObject, false, true],
 			["index",	cNumber, true, false]
 		]);
@@ -204,7 +202,7 @@ if (!cArray.prototype.lastIndexOf)
 if (!cArray.prototype.filter)
 	fAMLExporter_exportMember(cArray.prototype, function(fCallback, oReceiver) {
 		// Validate arguments
-		fAML_validate(arguments, [
+		fGuard(arguments, [
 			["callback",	cFunction],
 			["receiver",	cObject, true, true]
 		]);
@@ -219,7 +217,7 @@ if (!cArray.prototype.filter)
 if (!cArray.prototype.forEach)
 	fAMLExporter_exportMember(cArray.prototype, function(fCallback, oReceiver) {
 		// Validate arguments
-		fAML_validate(arguments, [
+		fGuard(arguments, [
 			["callback",	cFunction],
 			["receiver",	cObject, true, true]
 		]);
@@ -232,7 +230,7 @@ if (!cArray.prototype.forEach)
 if (!cArray.prototype.every)
 	fAMLExporter_exportMember(cArray.prototype, function(fCallback, oReceiver) {
 		// Validate arguments
-		fAML_validate(arguments, [
+		fGuard(arguments, [
 			["callback",	cFunction],
 			["receiver",	cObject, true, true]
 		]);
@@ -247,7 +245,7 @@ if (!cArray.prototype.every)
 if (!cArray.prototype.map)
 	fAMLExporter_exportMember(cArray.prototype, function(fCallback, oReceiver) {
 		// Validate arguments
-		fAML_validate(arguments, [
+		fGuard(arguments, [
 			["callback",	cFunction],
 			["receiver",	cObject, true, true]
 		]);
@@ -261,7 +259,7 @@ if (!cArray.prototype.map)
 if (!cArray.prototype.some)
 	fAMLExporter_exportMember(cArray.prototype, function(fCallback, oReceiver) {
 		// Validate arguments
-		fAML_validate(arguments, [
+		fGuard(arguments, [
 			["callback",	cFunction],
 			["receiver",	cObject, true, true]
 		]);
@@ -281,7 +279,7 @@ if (!cArray.prototype.some)
 if (!cArray.prototype.reduce)
 	fAMLExporter_exportMember(cArray.prototype, function(fCallback/*, initial*/) {
 		// Validate arguments
-		fAML_validate(arguments, [
+		fGuard(arguments, [
 			["callback",	cFunction]
 		]);
 
@@ -318,7 +316,7 @@ if (!cArray.prototype.reduce)
 if (!cArray.prototype.reduceRight)
 	fAMLExporter_exportMember(cArray.prototype, function(fCallback/*, initial*/) {
 		// Validate arguments
-		fAML_validate(arguments, [
+		fGuard(arguments, [
 			["callback",	cFunction]
 		]);
 

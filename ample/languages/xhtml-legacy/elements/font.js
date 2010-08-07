@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_font	= function(){};
-cXHTMLElement_font.prototype	= new cXHTMLElement;
+cXHTMLElement_font.prototype	= new cXHTMLElement("font");
 
-// Register Element with language
-oXHTMLNamespace.setElement("font", cXHTMLElement_font);
+// Register Element
+ample.extend(cXHTMLElement_font);

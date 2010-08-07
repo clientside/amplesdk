@@ -8,7 +8,7 @@
  */
 
 var cXULElement_textbox	= function(){};
-cXULElement_textbox.prototype	= new cXULInputElement;
+cXULElement_textbox.prototype	= new cXULInputElement("textbox");
 
 // Attributes Defaults
 cXULElement_textbox.attributes	= {
@@ -141,5 +141,5 @@ cXULElement_textbox.prototype.$getTagOpen	= function(oElement) {
 			</div>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("textbox", cXULElement_textbox);
+// Register Element
+ample.extend(cXULElement_textbox);

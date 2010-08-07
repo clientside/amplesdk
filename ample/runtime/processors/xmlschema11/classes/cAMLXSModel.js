@@ -39,7 +39,7 @@ cAMLXSModel.prototype.getAttributeDeclaration	= function(sNameSpaceURI, sLocalNa
 // @type	XSTypeDefinition
 cAMLXSModel.prototype.getTypeDefinition	= function(sNameSpaceURI, sLocalName) {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["namespaceURI",	cString],
 		["name",			cString]
 	]);

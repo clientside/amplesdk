@@ -8,7 +8,7 @@
  */
 
 var cXULElement_tab	= function(){};
-cXULElement_tab.prototype	= new cXULElement;
+cXULElement_tab.prototype	= new cXULElement("tab");
 cXULElement_tab.prototype.$hoverable	= true;
 
 // Events handlers
@@ -70,5 +70,5 @@ cXULElement_tab.prototype.$getTagClose	= function() {
     return sHtml;
 };
 
-// Register Element with language
-oXULNamespace.setElement("tab", cXULElement_tab);
+// Register Element
+ample.extend(cXULElement_tab);

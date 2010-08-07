@@ -8,7 +8,7 @@
  */
 
 var cChartElement_map	= function(){};
-cChartElement_map.prototype	= new cChartElement;
+cChartElement_map.prototype	= new cChartElement("map");
 
 cChartElement_map.handlers	= {
 	'DOMNodeInsertedIntoDocument':	function() {
@@ -338,7 +338,7 @@ else {
 		// IE8 performance bug
 		setTimeout(function(){
 			oCanvas.style.display	= "";
-		});
+		}, 0);
 	};
 
 	cChartElement_map.onresize	= function(oEvent) {
@@ -396,5 +396,5 @@ else {
 	};
 }
 
-// Register Element with language
-oChartNamespace.setElement("map", cChartElement_map);
+// Register Element
+ample.extend(cChartElement_map);

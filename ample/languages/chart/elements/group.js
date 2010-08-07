@@ -8,7 +8,7 @@
  */
 
 var cChartElement_group	= function(){};
-cChartElement_group.prototype	= new cChartElement;
+cChartElement_group.prototype	= new cChartElement("group");
 cChartElement_group.prototype.$hoverable	= true;
 
 cChartElement_group.handlers	= {
@@ -98,5 +98,5 @@ else {
 	};
 }
 
-// Register Element with language
-oChartNamespace.setElement("group", cChartElement_group);
+// Register Element
+ample.extend(cChartElement_group);

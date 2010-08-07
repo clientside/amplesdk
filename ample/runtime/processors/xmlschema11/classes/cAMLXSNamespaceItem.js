@@ -44,7 +44,7 @@ cAMLXSNamespaceItem.prototype.getAttributeDeclaration	= function(sName) {
 // @type	XSTypeDefinition
 cAMLXSNamespaceItem.prototype.getTypeDefinition	= function(sName) {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["name",		cString]
 	]);
 

@@ -8,11 +8,11 @@
  */
 
 var cSVGElement_symbol	= function(){};
-cSVGElement_symbol.prototype	= new cSVGElement;
+cSVGElement_symbol.prototype	= new cSVGElement("symbol");
 
 if (cSVGElement.useVML) {
 	// Implementation for IE
 };
 
-// Register Element with language
-oSVGNamespace.setElement("symbol", cSVGElement_symbol);
+// Register Element
+ample.extend(cSVGElement_symbol);

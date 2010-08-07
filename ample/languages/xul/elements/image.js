@@ -8,7 +8,7 @@
  */
 
 var cXULElement_image	= function(){};
-cXULElement_image.prototype  = new cXULElement;
+cXULElement_image.prototype  = new cXULElement("image");
 
 // Class Events Handlers
 cXULElement_image.handlers	= {
@@ -40,5 +40,5 @@ cXULElement_image.prototype.$getTagOpen	= function() {
     return '<img class="xul-image' +(this.attributes["class"] ? " " + this.attributes["class"] : "") + '"' +(this.attributes["width"] ? ' width="' + this.attributes["width"] + '"' : '')+(this.attributes["height"] ? ' height="' + this.attributes["height"] + '"' : '')+(this.attributes["src"] ? ' src="' + this.attributes["src"] + '"' :'')+ ' onload="ample.$instance(this)._onLoad(event)"/>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("image", cXULElement_image);
+// Register Element
+ample.extend(cXULElement_image);

@@ -8,7 +8,7 @@
  */
 
 var cXULElement_column	= function(){};
-cXULElement_column.prototype	= new cXULElement;
+cXULElement_column.prototype	= new cXULElement("column");
 
 // Class Event Handlers
 cXULElement_column.handlers	= {
@@ -29,5 +29,5 @@ cXULElement_column.prototype.$getTagClose	= function() {
     return '</th>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("column", cXULElement_column);
+// Register Element
+ample.extend(cXULElement_column);

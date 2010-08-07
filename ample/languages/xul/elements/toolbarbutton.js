@@ -8,7 +8,7 @@
  */
 
 var cXULElement_toolbarbutton	= function(){};
-cXULElement_toolbarbutton.prototype  = new cXULElement;
+cXULElement_toolbarbutton.prototype  = new cXULElement("toolbarbutton");
 
 cXULElement_toolbarbutton.prototype.$hoverable	= true;
 cXULElement_toolbarbutton.prototype.tabIndex	= 0;
@@ -154,5 +154,5 @@ cXULElement_toolbarbutton.prototype.$getTagClose	= function() {
 			</table>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("toolbarbutton", cXULElement_toolbarbutton);
+// Register Element
+ample.extend(cXULElement_toolbarbutton);

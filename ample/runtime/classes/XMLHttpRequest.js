@@ -25,7 +25,7 @@ if (!cXMLHttpRequest || (bTrident && nVersion == 7)) {
 	// Public Methods
 	cXMLHttpRequest.prototype.open	= function(sMethod, sUrl, bAsync, sUser, sPassword) {
 		// Validate arguments
-		fAML_validate(arguments, [
+		fGuard(arguments, [
 			["method",	cString],
 			["url",		cString],
 			["async",	cBoolean, false]
@@ -55,7 +55,7 @@ if (!cXMLHttpRequest || (bTrident && nVersion == 7)) {
 					oRequest.abort();
 				}
 			};
-			fAttachEvent(window, "unload", fOnUnload);
+			fBrowser_attachEvent(window, "unload", fOnUnload);
 		}
 /*
 		// Add method sniffer
@@ -102,7 +102,7 @@ if (!cXMLHttpRequest || (bTrident && nVersion == 7)) {
 
 				// BUGFIX: IE - memory leak in interrupted
 				if (/*bIE && */bAsync)
-					fDetachEvent(window, "unload", fOnUnload);
+					fBrowser_detachEvent(window, "unload", fOnUnload);
 			}
 
 			// BUGFIX: Some browsers (Internet Explorer, Gecko) fire OPEN readystate twice
@@ -187,12 +187,12 @@ if (!cXMLHttpRequest || (bTrident && nVersion == 7)) {
 			cXMLHttpRequest.onreadystatechange.apply(oRequest);
 */
 		if (oRequest['on' + "readystatechange"] instanceof cFunction)
-			oRequest['on' + "readystatechange"].call(this, oEventPseudo);
+			oRequest['on' + "readystatechange"]();
 	};
 
 	function fSynchronizeValues(oRequest) {
 		try {	oRequest.responseText	= oRequest._object.responseText;	} catch (e) {}
-		try {	oRequest.responseXML	= fAML_getResponseDocument(oRequest._object);	} catch (e) {}
+		try {	oRequest.responseXML	= fBrowser_getResponseDocument(oRequest._object);	} catch (e) {}
 		try {	oRequest.status			= oRequest._object.status;			} catch (e) {}
 		try {	oRequest.statusText		= oRequest._object.statusText;		} catch (e) {}
 	};

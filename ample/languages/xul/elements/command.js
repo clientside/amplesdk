@@ -8,7 +8,7 @@
  */
 
 var cXULElement_command	= function(){};
-cXULElement_command.prototype    = new cXULElement;
+cXULElement_command.prototype    = new cXULElement("command");
 cXULElement_command.prototype.viewType   = cXULElement.VIEW_TYPE_VIRTUAL;
 
 // Class Event Handlers
@@ -32,5 +32,5 @@ cXULElement_command.handlers	= {
 	}
 };
 
-// Register Element with language
-oXULNamespace.setElement("command", cXULElement_command);
+// Register Element
+ample.extend(cXULElement_command);

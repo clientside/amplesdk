@@ -8,7 +8,7 @@
  */
 
 var cChartElement_bar	= function(){};
-cChartElement_bar.prototype	= new cChartElement;
+cChartElement_bar.prototype	= new cChartElement("bar");
 
 cChartElement_bar.handlers	= {
 	'DOMNodeInsertedIntoDocument':	function() {
@@ -339,7 +339,7 @@ else {
 		// IE8 performance bug
 		setTimeout(function(){
 			oCanvas.style.display	= "";
-		});
+		}, 0);
 	};
 
 	cChartElement_bar.onresize	= function(oEvent) {
@@ -397,5 +397,5 @@ else {
 	};
 }
 
-// Register Element with language
-oChartNamespace.setElement("bar", cChartElement_bar);
+// Register Element
+ample.extend(cChartElement_bar);

@@ -19,7 +19,7 @@ var cSVGElement_path	= function(){
 //	this.animatedPathSegList			= new cSVGPathSegList;
 //	this.animatedNormalizedPathSegList	= new cSVGPathSegList;
 };
-cSVGElement_path.prototype	= new cSVGElement;
+cSVGElement_path.prototype	= new cSVGElement("path");
 
 //
 cSVGElement_path.prototype.pathSegList				= null;
@@ -451,5 +451,5 @@ else {
 	};
 };
 
-// Register Element with language
-oSVGNamespace.setElement("path", cSVGElement_path);
+// Register Element
+ample.extend(cSVGElement_path);

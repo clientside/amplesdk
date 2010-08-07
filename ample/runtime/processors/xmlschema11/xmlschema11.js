@@ -14,13 +14,13 @@ var oAMLXMLSchema11_implementation	= {},
 
 oAMLXMLSchema11_implementation.traverse	= function(oElementDOM, oNode) {
 	if ((oElementDOM.localName || oElementDOM.baseName) == "schema") {
-		var sNamespaceURI	= oElementDOM.getAttribute("targetNamespace");
-		if (sNamespaceURI) {
+		var sNameSpaceURI	= oElementDOM.getAttribute("targetNamespace");
+		if (sNameSpaceURI) {
 			// Create new namespace item
 			var oNamespaceItem	= new cAMLXSNamespaceItem;
-			oNamespaceItem.schemaNamespace	= sNamespaceURI;
+			oNamespaceItem.schemaNamespace	= sNameSpaceURI;
 			// Register new namespace item
-			oAMLXMLSchema11_model.namespaces.$add(sNamespaceURI);
+			oAMLXMLSchema11_model.namespaces.$add(sNameSpaceURI);
 			oAMLXMLSchema11_model.namespaceItems.$add(oNamespaceItem);
 
 			// traverse children
@@ -28,12 +28,12 @@ oAMLXMLSchema11_implementation.traverse	= function(oElementDOM, oNode) {
 		}
 //->Debug
 		else
-			fAML_warn(nAML_MISSING_ATTRIBUTE_WRN, ["targetNamespace", oElementDOM.tagName]);
+			fUtilities_warn(sAML_MISSING_ATTRIBUTE_WRN, ["targetNamespace", oElementDOM.tagName]);
 //<-Debug
 	}
 //->Debug
 	else
-		fAML_warn(nAML_UNKNOWN_ELEMENT_NS_WRN, [oElementDOM.tagName, oElementDOM.namespaceURI]);
+		fUtilities_warn(sAML_UNKNOWN_ELEMENT_NS_WRN, [oElementDOM.tagName, oElementDOM.namespaceURI]);
 //<-Debug
 };
 
@@ -45,7 +45,7 @@ function fAMLXMLSchema11_traverseChildren(oElementDOM, hProcessors, oParam) {
 				fProcessor(oElement, oParam);
 //->Debug
 			else
-				fAML_warn(nAML_UNKNOWN_ELEMENT_NS_WRN, [oElement.tagName, oElement.namespaceURI]);
+				fUtilities_warn(sAML_UNKNOWN_ELEMENT_NS_WRN, [oElement.tagName, oElement.namespaceURI]);
 //<-Debug
 };
 
@@ -66,7 +66,7 @@ cAMLXSTypeDefinition.prototype.$validate	= function(vValue) {
 	switch (this.typeCategory) {
 		case cAMLXSTypeDefinition.SIMPLE_TYPE:
 			// Validate arguments
-			fAML_validate(arguments, [
+			fGuard(arguments, [
 				["value",		cString]
 			]);
 
@@ -74,7 +74,7 @@ cAMLXSTypeDefinition.prototype.$validate	= function(vValue) {
 
 		case cAMLXSTypeDefinition.COMPLEX_TYPE:
 			// Validate arguments
-			fAML_validate(arguments, [
+			fGuard(arguments, [
 				["value",		cAMLNode]
 			]);
 
@@ -86,7 +86,7 @@ cAMLXSTypeDefinition.prototype.$validate	= function(vValue) {
 };
 
 // Publish
-oAML_document.$model	= oAMLXMLSchema11_model;
+oAmple.$model	= oAMLXMLSchema11_model;
 
 // register processor
-oAML_processors[sAMLXMLSchema11_namespaceURI]	= oAMLXMLSchema11_implementation;
+oAMLImplementation_processors[sAMLXMLSchema11_namespaceURI]	= oAMLXMLSchema11_implementation;

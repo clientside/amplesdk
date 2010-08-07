@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_object	= function(){};
-cXHTMLElement_object.prototype	= new cXHTMLElement;
+cXHTMLElement_object.prototype	= new cXHTMLElement("object");
 
 // Class Events Handlers
 cXHTMLElement_object.handlers	= {
@@ -33,5 +33,5 @@ cXHTMLElement_object.prototype.$getTag	= function() {
 		return this.$getTag.call(this);
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("object", cXHTMLElement_object);
+// Register Element
+ample.extend(cXHTMLElement_object);

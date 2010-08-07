@@ -35,39 +35,12 @@
 		</xsd:complexType>
 	</xsd:element>
 
-	<!-- Maps -->
-	<xsd:element name="map">
-		<xsd:complexType>
-			<xsd:sequence>
-				<xsd:element ref="aml:marker" />
-			</xsd:sequence>
-			<xsd:attribute name="longitude" type="xsd:float" />
-			<xsd:attribute name="latitude" type="xsd:float" />
-			<xsd:attribute name="altitude" type="xsd:integer" />
-		</xsd:complexType>
-	</xsd:element>
-
-	<xsd:element name="marker">
-		<xsd:complexType>
-			<xsd:attribute name="longitude" type="xsd:float" />
-			<xsd:attribute name="latitude" type="xsd:float" />
-			<xsd:attribute name="image" type="xsd:anyURI" />
-		</xsd:complexType>
-	</xsd:element>
-
 	<!--  -->
 	<xsd:element name="timer">
 		<xsd:complexType>
 			<xsd:attribute name="autostart" type="xsd:boolean" />
 			<xsd:attribute name="interval" type="xsd:integer" />
 			<xsd:attribute name="timeout" type="xsd:integer" />
-		</xsd:complexType>
-	</xsd:element>
-
-	<xsd:element name="sound">
-		<xsd:complexType>
-			<xsd:attribute name="autoplay" type="xsd:boolean" />
-			<xsd:attribute name="src" type="xsd:anyURI" />
 		</xsd:complexType>
 	</xsd:element>
 

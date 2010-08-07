@@ -4,7 +4,6 @@
 		<title>Example: AML Language</title>
 		<script type="text/javascript" src="../../../ample/runtime.js"></script>
 		<script type="text/javascript" src="../../../ample/languages/xhtml/xhtml.js"></script>
-		<script type="text/javascript" src="../../../ample/languages/aml/aml.js"></script>
 	</head>
 	<body>
 		<script type="application/ample+xml"
@@ -12,7 +11,7 @@
 			xmlns:am="http://www.amplesdk.com/ns/aml">
 			The text below should flash 5 times.
 			<am:timer id="interval" autostart="true"
-				interval="1500" oninterval="ample.getElementById('pulse').$play('color:#ffffff', 1000)"
+				interval="1500" oninterval="ample.query('#pulse').animate({color:'#ffffff'})"
 				timeout="7501" ontimeout="this.stop()" />
 			<xh:div id="pulse" style="color:#000000">
 				<am:handler event="effectend" type="application/javascript">

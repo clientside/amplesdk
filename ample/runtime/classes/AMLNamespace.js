@@ -15,7 +15,7 @@ cAMLNamespace.prototype.namespaceURI	= null;
 
 cAMLNamespace.prototype.setAttribute	= function(sName, cAttribute) {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["localName",	cString],
 		["attribute",	cFunction]
 	]);
@@ -23,7 +23,7 @@ cAMLNamespace.prototype.setAttribute	= function(sName, cAttribute) {
 	if (!(cAttribute.prototype instanceof cAMLAttr))
 		throw new cAMLException(cAMLException.TYPE_MISMATCH_ERR);
 
-	this.attributes[sName]	= cAttribute;
+	oAMLImplementation_attributes[this.namespaceURI + '#' + sName]	= cAttribute;
 
 	//
 	cAttribute.prototype.namespaceURI	= this.namespaceURI;
@@ -31,12 +31,12 @@ cAMLNamespace.prototype.setAttribute	= function(sName, cAttribute) {
 };
 
 cAMLNamespace.prototype.getAttribute	= function(sName) {
-	return this.attributes[sName] || null;
+	return oAMLImplementation_attributes[this.namespaceURI + '#' + sName] || null;
 };
 
 cAMLNamespace.prototype.setElement	= function(sName, cElement) {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["localName",	cString],
 		["element",		cFunction]
 	]);
@@ -44,7 +44,7 @@ cAMLNamespace.prototype.setElement	= function(sName, cElement) {
 	if (!(cElement.prototype instanceof cAMLElement))
 		throw new cAMLException(cAMLException.TYPE_MISMATCH_ERR);
 
-	this.elements[sName]	= cElement;
+	oAMLImplementation_elements[this.namespaceURI + '#' + sName]	= cElement;
 
 	//
 	cElement.prototype.namespaceURI	= this.namespaceURI;
@@ -52,5 +52,5 @@ cAMLNamespace.prototype.setElement	= function(sName, cElement) {
 };
 
 cAMLNamespace.prototype.getElement	= function(sName) {
-	return this.elements[sName] || null;
+	return oAMLImplementation_elements[this.namespaceURI + '#' + sName] || null;
 };

@@ -13,7 +13,7 @@ var cXULElement_datepicker	= function() {
 };
 
 // component prototype
-cXULElement_datepicker.prototype  = new cXULInputElement;
+cXULElement_datepicker.prototype  = new cXULInputElement("datepicker");
 
 //
 cXULElement_datepicker.prototype.popup	= true;
@@ -132,5 +132,5 @@ cXULElement_datepicker.prototype.$getTagOpen	= function() {
 			</div>';
 };
 
-// Register component with the language
-oXULNamespace.setElement("datepicker", cXULElement_datepicker);
+// Register Element
+ample.extend(cXULElement_datepicker);

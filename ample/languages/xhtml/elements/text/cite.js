@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_cite	= function(){};
-cXHTMLElement_cite.prototype	= new cXHTMLElement;
+cXHTMLElement_cite.prototype	= new cXHTMLElement("cite");
 
 // Class Events Handlers
 cXHTMLElement_cite.handlers	= {
@@ -18,5 +18,5 @@ cXHTMLElement_cite.handlers	= {
 	}
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("cite", cXHTMLElement_cite);
+// Register Element
+ample.extend(cXHTMLElement_cite);

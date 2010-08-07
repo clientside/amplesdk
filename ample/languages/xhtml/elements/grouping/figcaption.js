@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_figcaption	= function(){};
-cXHTMLElement_figcaption.prototype	= new cXHTMLElement;
+cXHTMLElement_figcaption.prototype	= new cXHTMLElement("figcaption");
 
 // Class Events Handlers
 cXHTMLElement_figcaption.handlers	= {
@@ -18,5 +18,5 @@ cXHTMLElement_figcaption.handlers	= {
 	}
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("figcaption", cXHTMLElement_figcaption);
+// Register Element
+ample.extend(cXHTMLElement_figcaption);

@@ -11,7 +11,7 @@ var cXULElement_tabs	= function() {
     // Collections
     this.items      = new AMLNodeList;
 };
-cXULElement_tabs.prototype   = new cXULElement;
+cXULElement_tabs.prototype   = new cXULElement("tabs");
 
 // Accessibility
 cXULElement_tabs.prototype.tabIndex	= 0;
@@ -124,5 +124,5 @@ cXULElement_tabs.prototype.$getTagClose	= function() {
 			</div>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("tabs", cXULElement_tabs);
+// Register Element
+ample.extend(cXULElement_tabs);

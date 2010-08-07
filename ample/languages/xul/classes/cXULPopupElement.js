@@ -7,8 +7,11 @@
  *
  */
 
-var cXULPopupElement	= function(){};
+var cXULPopupElement	= function() {
+	cXULElement.apply(this, arguments);
+};
 cXULPopupElement.prototype	= new cXULElement;
+cXULPopupElement.prototype.localName	= "#element-popup";
 
 // Constants
 cXULPopupElement.POPUP_TYPE_POPUP	= 0;
@@ -96,7 +99,7 @@ cXULPopupElement.prototype.showPopup	= function(oElement, nLeft, nTop, nType, oA
     }
 /*
 	if (this.popupType == cXULPopupElement.POPUP_TYPE_TOOLTIP)
-        this.ownerDocument.tooltipNode	= this;
+        ample.tooltipNode	= this;
     else
     {
         this.ownerDocument.popupNode	= this;
@@ -114,7 +117,7 @@ cXULPopupElement.prototype.showPopup	= function(oElement, nLeft, nTop, nType, oA
     else {
 	    // Play effect
 		this.$getContainer().style.opacity	= "0";
-		this.$play("opacity:1", 100, 1);
+		ample.query(this).animate({"opacity":"1"}, 100);
     }
 
 	this.setAttribute("hidden", "false");
@@ -130,7 +133,7 @@ cXULPopupElement.prototype.hidePopup	= function()
         return;
 /*
 	if (this.popupType == cXULPopupElement.POPUP_TYPE_TOOLTIP)
-    	this.ownerDocument.tooltipNode	= null;
+    	ample.tooltipNode	= null;
 	else
     {
     	this.ownerDocument.popupNode	= null;
@@ -172,3 +175,6 @@ cXULPopupElement.fireEventOnPopup	= function(oInstance, sName)
 
     return oInstance.dispatchEvent(oEvent);
 };
+
+// Register Element
+ample.extend(cXULPopupElement);

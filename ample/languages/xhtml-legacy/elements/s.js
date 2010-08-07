@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_s	= function(){};
-cXHTMLElement_s.prototype	= new cXHTMLElement;
+cXHTMLElement_s.prototype	= new cXHTMLElement("s");
 
-// Register Element with language
-oXHTMLNamespace.setElement("s", cXHTMLElement_s);
+// Register Element
+ample.extend(cXHTMLElement_s);

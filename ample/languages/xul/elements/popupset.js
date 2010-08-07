@@ -8,10 +8,10 @@
  */
 
 var cXULElement_popupset	= function(){};
-cXULElement_popupset.prototype	= new cXULElement;
+cXULElement_popupset.prototype	= new cXULElement("popupset");
 cXULElement_popupset.prototype.viewType	= cXULElement.VIEW_TYPE_VIRTUAL;
 
 // Public Methods
 
-// Register Element with language
-oXULNamespace.setElement("popupset", cXULElement_popupset);
+// Register Element
+ample.extend(cXULElement_popupset);

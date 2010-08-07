@@ -8,7 +8,7 @@
  */
 
 var cChartElement_funnel	= function(){};
-cChartElement_funnel.prototype	= new cChartElement;
+cChartElement_funnel.prototype	= new cChartElement("funnel");
 
 cChartElement_funnel.handlers	= {
 	'DOMNodeInsertedIntoDocument':	function(oEvent) {
@@ -115,7 +115,7 @@ else {
 		// IE8 performance bug
 		setTimeout(function(){
 			oCanvas.style.display	= "";
-		});
+		}, 0);
 	};
 
 	cChartElement_funnel.onresize	= function(oEvent) {
@@ -145,5 +145,5 @@ else {
 	};
 }
 
-// Register Element with language
-oChartNamespace.setElement("funnel", cChartElement_funnel);
+// Register Element
+ample.extend(cChartElement_funnel);

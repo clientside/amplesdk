@@ -19,39 +19,7 @@
 		<interface name="runtime:mSelection" />
 	</implements>
 	<members>
-		<constants>
-			<!-- Effects -->
-			<constant name="EFFECT_LINEAR" value="1">
-				<description>
-					<locale>
-						Value change is linear.
-					</locale>
-					<locale xml:lang="ru">
-						Значение изменяется линейно.
-					</locale>
-				</description>
-			</constant>
-			<constant name="EFFECT_ACCELERATE" value="2">
-				<description>
-					<locale>
-						Value change is accelerated.
-					</locale>
-					<locale xml:lang="ru">
-						Изменение значения ускоряется.
-					</locale>
-				</description>
-			</constant>
-			<constant name="EFFECT_DECELERATE" value="3">
-				<description>
-					<locale>
-						Value change is decelerated.
-					</locale>
-					<locale xml:lang="ru">
-						Изменение значения замедляется.
-					</locale>
-				</description>
-			</constant>
-		</constants>
+		<constants />
 		<attributes>
 			<attribute name="id" readonly="true">
 				<description>
@@ -595,98 +563,6 @@
 				<description>
 					<locale>
 						Causes the object to scroll into view, aligning it either at the top or bottom of the window.
-					</locale>
-				</description>
-			</method>
-			<!-- Content Loader -->
-			<method name="$load" type="Void">
-				<arguments>
-					<argument name="sUrl" type="String" required="true">
-						<description>
-							<locale>
-								URL
-							</locale>
-							<locale xml:lang="ru">
-								URL для загрузки.
-							</locale>
-						</description>
-					</argument>
-				</arguments>
-				<description>
-					<locale>
-						Loads element content from the remote resource specified by the sUrl argument
-					</locale>
-					<locale xml:lang="ru">
-						Загружает данные с удаленного ресурса, заданного аргументом.
-					</locale>
-				</description>
-			</method>
-			<method name="$abort" type="Void">
-				<description>
-					<locale>
-						Aborts load operation initated by the call of <link type="method">$load</link> method.
-					</locale>
-				</description>
-			</method>
-			<!-- Effects -->
-			<method name="$play" type="Number">
-				<arguments>
-					<argument name="sStyle" type="String" required="true">
-						<description>
-							<locale>
-								CSS declaration.
-							</locale>
-							<locale xml:lang="ru">
-								Декларация CSS.
-							</locale>
-						</description>
-					</argument>
-					<argument name="nDuration" type="Number" required="true">
-						<description>
-							<locale>
-								Effect duration in milliseconds
-							</locale>
-							<locale xml:lang="ru">
-								Длительность эффекта в миллисекундах.
-							</locale>
-						</description>
-					</argument>
-					<argument name="nType" type="Number" required="false">
-						<description>
-							<locale>
-								Type of timing.
-							</locale>
-						</description>
-					</argument>
-				</arguments>
-				<description>
-					<locale>
-						Starts playing effect and returns the process identifier.
-					</locale>
-					<locale xml:lang="ru">
-						Начинает воспроизведение эффекта и возвращает идентификатор процесса.
-					</locale>
-				</description>
-			</method>
-			<method name="$stop" type="Void">
-				<arguments>
-					<argument name="nEffect" type="String" required="true">
-						<description>
-							<locale>
-								Process identifier got from <link type="method">play</link> method call.
-							</locale>
-							<locale xml:lang="ru">
-								Идентификатор ресурса, возвращенный методом <link type="method">play</link>.
-							</locale>
-						</description>
-					</argument>
-				</arguments>
-				<description>
-					<locale>
-						Stops plying effect.
-					</locale>
-					<locale xml:lang="ru">
-						Останавливает воспроизведение эффекта.
 					</locale>
 				</description>
 			</method>

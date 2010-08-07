@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_acronym	= function(){};
-cXHTMLElement_acronym.prototype	= new cXHTMLElement;
+cXHTMLElement_acronym.prototype	= new cXHTMLElement("acronym");
 
 // Class Events Handlers
 cXHTMLElement_acronym.handlers	= {
@@ -18,5 +18,5 @@ cXHTMLElement_acronym.handlers	= {
 	}
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("acronym", cXHTMLElement_acronym);
+// Register Element
+ample.extend(cXHTMLElement_acronym);

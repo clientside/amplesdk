@@ -8,7 +8,7 @@
  */
 
 var cSVGElement_linearGradient	= function(){};
-cSVGElement_linearGradient.prototype	= new cSVGElement;
+cSVGElement_linearGradient.prototype	= new cSVGElement("linearGradient");
 
 if (cSVGElement.useVML) {
 	// Implementation for IE
@@ -32,5 +32,5 @@ if (cSVGElement.useVML) {
 	};
 };
 
-// Register Element with language
-oSVGNamespace.setElement("linearGradient", cSVGElement_linearGradient);
+// Register Element
+ample.extend(cSVGElement_linearGradient);

@@ -66,24 +66,25 @@ FBL.ns(function() { with (FBL) {
 				}
 
 				if (wWindow.ample) {
+					var oAmple	= wWindow.ample.document || wWindow.ample;
 					// Mutation Events
-					wWindow.ample.addEventListener("readystatechange", fUpdate, true);
-					wWindow.ample.addEventListener("DOMNodeInsertedIntoDocument", fUpdate, true);
-					wWindow.ample.addEventListener("DOMNodeRemovedFromDocument", fUpdate, true);
-					wWindow.ample.addEventListener("DOMNodeInserted", fUpdate, true);
-					wWindow.ample.addEventListener("DOMNodeRemoved", fUpdate, true);
-					wWindow.ample.addEventListener("DOMAttrModified", fUpdate, true);
+					oAmple.addEventListener("readystatechange", fUpdate, true);
+					oAmple.addEventListener("DOMNodeInsertedIntoDocument", fUpdate, true);
+					oAmple.addEventListener("DOMNodeRemovedFromDocument", fUpdate, true);
+					oAmple.addEventListener("DOMNodeInserted", fUpdate, true);
+					oAmple.addEventListener("DOMNodeRemoved", fUpdate, true);
+					oAmple.addEventListener("DOMAttrModified", fUpdate, true);
 					// UI Events
-					wWindow.ample.addEventListener("DOMActivate", fUpdate, true);
-					wWindow.ample.addEventListener("focus", fUpdate, true);
-					wWindow.ample.addEventListener("blur", fUpdate, true);
+					oAmple.addEventListener("DOMActivate", fUpdate, true);
+					oAmple.addEventListener("focus", fUpdate, true);
+					oAmple.addEventListener("blur", fUpdate, true);
 					//
-					wWindow.ample.addEventListener("unload", fUpdate, true);
-					wWindow.ample.addEventListener("load", fUpdate, true);
+					oAmple.addEventListener("unload", fUpdate, true);
+					oAmple.addEventListener("load", fUpdate, true);
 					//
-					wWindow.ample.addEventListener("hashchange", fUpdate, true);
+					oAmple.addEventListener("hashchange", fUpdate, true);
 
-					message	= "Running " +(wWindow.ample.domConfig ? wWindow.ample.domConfig.getParameter("ample-version") : 'unknown (old)');
+					message	= "Running " +(oAmple.domConfig ? oAmple.domConfig.getParameter("ample-version") : 'unknown (old)');
 				}
 
 				//

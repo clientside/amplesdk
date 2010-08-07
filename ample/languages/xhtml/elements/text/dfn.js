@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_dfn	= function(){};
-cXHTMLElement_dfn.prototype	= new cXHTMLElement;
+cXHTMLElement_dfn.prototype	= new cXHTMLElement("dfn");
 
 // Class Events Handlers
 cXHTMLElement_dfn.handlers	= {
@@ -18,5 +18,5 @@ cXHTMLElement_dfn.handlers	= {
 	}
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("dfn", cXHTMLElement_dfn);
+// Register Element
+ample.extend(cXHTMLElement_dfn);

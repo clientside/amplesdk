@@ -8,7 +8,7 @@
  */
 
 var cSVGElement_foreignObject	= function(){};
-cSVGElement_foreignObject.prototype	= new cSVGElement;
+cSVGElement_foreignObject.prototype	= new cSVGElement("foreignObject");
 
 if (cSVGElement.useVML) {
 	// Implementation for IE
@@ -60,5 +60,5 @@ if (cSVGElement.useVML) {
 	};
 };
 
-// Register Element with language
-oSVGNamespace.setElement("foreignObject", cSVGElement_foreignObject);
+// Register Element
+ample.extend(cSVGElement_foreignObject);

@@ -10,7 +10,7 @@
 var cXHTMLElement_thead	= function() {
 	this.rows	= new AMLNodeList;
 };
-cXHTMLElement_thead.prototype	= new cXHTMLElement;
+cXHTMLElement_thead.prototype	= new cXHTMLElement("thead");
 
 // Public Properties
 cXHTMLElement_thead.prototype.rows	= null;
@@ -43,5 +43,5 @@ cXHTMLElement_thead.handlers	= {
 	}
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("thead", cXHTMLElement_thead);
+// Register Element
+ample.extend(cXHTMLElement_thead);

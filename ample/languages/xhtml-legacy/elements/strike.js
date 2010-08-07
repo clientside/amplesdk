@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_strike	= function(){};
-cXHTMLElement_strike.prototype	= new cXHTMLElement;
+cXHTMLElement_strike.prototype	= new cXHTMLElement("strike");
 
-// Register Element with language
-oXHTMLNamespace.setElement("strike", cXHTMLElement_strike);
+// Register Element
+ample.extend(cXHTMLElement_strike);

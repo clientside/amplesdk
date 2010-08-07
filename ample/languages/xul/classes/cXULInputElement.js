@@ -7,8 +7,11 @@
  *
  */
 
-var cXULInputElement	= function(){};
+var cXULInputElement	= function() {
+	cXULElement.apply(this, arguments);
+};
 cXULInputElement.prototype	= new cXULElement;
+cXULInputElement.prototype.localName	= "#element-input";
 cXULInputElement.prototype.tabIndex	= 0;
 
 // Public Methods
@@ -53,3 +56,6 @@ cXULInputElement.dispatchChange	= function(oInstance) {
     oEvent.initEvent("change", true, false, window, null);
     oInstance.dispatchEvent(oEvent);
 };
+
+// Register Element
+ample.extend(cXULInputElement);

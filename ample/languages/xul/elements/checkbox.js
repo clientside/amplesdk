@@ -8,7 +8,7 @@
  */
 
 var cXULElement_checkbox	= function(){};
-cXULElement_checkbox.prototype	= new cXULInputElement;
+cXULElement_checkbox.prototype	= new cXULInputElement("checkbox");
 
 cXULElement_checkbox.prototype.$hoverable	= true;
 
@@ -64,5 +64,5 @@ cXULElement_checkbox.prototype.$getTagClose	= function() {
 	return '</div>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("checkbox", cXULElement_checkbox);
+// Register Element
+ample.extend(cXULElement_checkbox);

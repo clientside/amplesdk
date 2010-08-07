@@ -13,7 +13,7 @@ var cXULElement_tree	= function()
     this.items  = new AMLNodeList;
 	this.selectedItems	= new AMLNodeList;
 };
-cXULElement_tree.prototype	= new cXULSelectElement;
+cXULElement_tree.prototype	= new cXULSelectElement("tree");
 
 // Public Properties
 cXULElement_tree.prototype.head	= null;
@@ -186,5 +186,5 @@ cXULElement_tree.prototype.$getTagClose	= function() {
     		</div>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("tree", cXULElement_tree);
+// Register Element
+ample.extend(cXULElement_tree);

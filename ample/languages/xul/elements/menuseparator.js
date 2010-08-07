@@ -8,7 +8,7 @@
  */
 
 var cXULElement_menuseparator	= function(){};
-cXULElement_menuseparator.prototype  = new cXULElement;
+cXULElement_menuseparator.prototype  = new cXULElement("menuseparator");
 
 //Class Events Handlers
 cXULElement_menuseparator.handlers	= {
@@ -26,5 +26,5 @@ cXULElement_menuseparator.prototype.$getTagOpen	= function() {
     		</tr>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("menuseparator", cXULElement_menuseparator);
+// Register Element
+ample.extend(cXULElement_menuseparator);

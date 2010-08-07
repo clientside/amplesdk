@@ -25,7 +25,7 @@ cAMLMutationEvent.prototype.initMutationEvent	= function(sType, bCanBubble, bCan
 {
 /*
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["type",		cString],
 		["canBubble",	cBoolean],
 		["cancelable",	cBoolean]

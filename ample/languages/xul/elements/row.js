@@ -8,7 +8,7 @@
  */
 
 var cXULElement_row	= function(){};
-cXULElement_row.prototype	= new cXULElement;
+cXULElement_row.prototype	= new cXULElement("row");
 
 // Attributes Defaults
 cXULElement_row.attributes	= {};
@@ -36,5 +36,5 @@ cXULElement_row.prototype.$getTagClose	= function() {
     return '</tr>';
 };
 
-// Register Element with language
-oXULNamespace.setElement("row", cXULElement_row);
+// Register Element
+ample.extend(cXULElement_row);

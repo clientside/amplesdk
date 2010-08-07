@@ -8,7 +8,7 @@
  */
 
 var cSVGElement_clipPath	= function(){};
-cSVGElement_clipPath.prototype	= new cSVGElement;
+cSVGElement_clipPath.prototype	= new cSVGElement("clipPath");
 
 if (cSVGElement.useVML) {
 	// Implementation for IE
@@ -22,5 +22,5 @@ if (cSVGElement.useVML) {
 	};
 };
 
-// Register Element with language
-oSVGNamespace.setElement("clipPath", cSVGElement_clipPath);
+// Register Element
+ample.extend(cSVGElement_clipPath);

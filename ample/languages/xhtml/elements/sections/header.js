@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_header	= function(){};
-cXHTMLElement_header.prototype	= new cXHTMLElement;
+cXHTMLElement_header.prototype	= new cXHTMLElement("header");
 
 // Class Events Handlers
 cXHTMLElement_header.handlers	= {
@@ -18,5 +18,5 @@ cXHTMLElement_header.handlers	= {
 	}
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("header", cXHTMLElement_header);
+// Register Element
+ample.extend(cXHTMLElement_header);

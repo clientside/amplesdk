@@ -8,7 +8,7 @@
  */
 
 var cChartElement_chart	= function(){};
-cChartElement_chart.prototype	= new cChartElement;
+cChartElement_chart.prototype	= new cChartElement("chart");
 cChartElement_chart.prototype.from	= 0;
 cChartElement_chart.prototype.to	= 1;
 
@@ -275,5 +275,5 @@ cChartElement_chart.prototype.$getTagClose	= function() {
 			</div>';
 };
 
-// Register Element with language
-oChartNamespace.setElement("chart", cChartElement_chart);
+// Register Element
+ample.extend(cChartElement_chart);

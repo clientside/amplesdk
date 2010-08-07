@@ -8,11 +8,11 @@
  */
 
 var cSVGElement_pattern	= function(){};
-cSVGElement_pattern.prototype	= new cSVGElement;
+cSVGElement_pattern.prototype	= new cSVGElement("pattern");
 
 if (cSVGElement.useVML) {
 	// Implementation for IE
 };
 
-// Register Element with language
-oSVGNamespace.setElement("pattern", cSVGElement_pattern);
+// Register Element
+ample.extend(cSVGElement_pattern);

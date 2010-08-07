@@ -1,0 +1,18 @@
+/*
+ * Ample SDK - JavaScript GUI Framework
+ *
+ * Copyright (c) 2009 Sergey Ilinsky
+ * Dual licensed under the MIT and GPL licenses.
+ * See: http://www.amplesdk.com/about/licensing/
+ *
+ */
+
+var cAMLElement_prototype	= function(sLocalName) {
+	this.localName	= sLocalName;
+};
+cAMLElement_prototype.prototype	= new cAMLElement;
+cAMLElement_prototype.prototype.namespaceURI	= "http://www.amplesdk.com/ns/aml";
+cAMLElement_prototype.prototype.localName		= "#element";
+
+// Register Element
+fAmple_extend(cAMLElement_prototype);

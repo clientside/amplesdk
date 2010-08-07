@@ -33,7 +33,7 @@ function fAMLCharacterData_appendData(oNode, sData)
 cAMLCharacterData.prototype.appendData	= function(sData)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["data",	cString]
 	]);
 
@@ -59,7 +59,7 @@ function fAMLCharacterData_deleteData(oNode, nOffset, nLength)
 cAMLCharacterData.prototype.deleteData	= function(nOffset, nLength)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["offset",	cNumber],
 		["length",	cNumber]
 	]);
@@ -88,7 +88,7 @@ function fAMLCharacterData_insertData(oNode, nOffset, sData)
 cAMLCharacterData.prototype.insertData	= function(nOffset, sData)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["offset",	cNumber],
 		["data",	cString]
 	]);
@@ -117,7 +117,7 @@ function fAMLCharacterData_replaceData(oNode, nOffset, nLength, sData)
 cAMLCharacterData.prototype.replaceData	= function(nOffset, nLength, sData)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["offset",	cNumber],
 		["length",	cNumber],
 		["data",	cString]
@@ -137,7 +137,7 @@ function fAMLCharacterData_substringData(oNode, nOffset, nLength)
 cAMLCharacterData.prototype.substringData	= function(nOffset, nLength)
 {
 	// Validate arguments
-	fAML_validate(arguments, [
+	fGuard(arguments, [
 		["offset",	cNumber],
 		["length",	cNumber]
 	]);

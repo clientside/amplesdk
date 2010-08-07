@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_sup	= function(){};
-cXHTMLElement_sup.prototype	= new cXHTMLElement;
+cXHTMLElement_sup.prototype	= new cXHTMLElement("sup");
 
 // Class Events Handlers
 cXHTMLElement_sup.handlers	= {
@@ -18,5 +18,5 @@ cXHTMLElement_sup.handlers	= {
 	}
 };
 
-// Register Element with language
-oXHTMLNamespace.setElement("sup", cXHTMLElement_sup);
+// Register Element
+ample.extend(cXHTMLElement_sup);
