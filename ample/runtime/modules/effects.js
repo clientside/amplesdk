@@ -24,7 +24,7 @@ cAMLQuery.prototype.animate	= function(oProperties, vSpeed, sEasing, fCallback) 
 	]);
 
 	if (this.length)
-		fAMLElementAnimation_play(this[0], oProperties, vSpeed, sEasing, fCallback);
+		fAMLQuery_play(this[0], oProperties, vSpeed, sEasing, fCallback);
 
 	// Invoke implementation
 	return this;
@@ -38,7 +38,7 @@ cAMLQuery.prototype.stop	= function() {
 
 
 
-function fAMLElementAnimation_play(oElement, oProperties, vDuration, vType, fHandler, sPseudo)
+function fAMLQuery_play(oElement, oProperties, vDuration, vType, fHandler, sPseudo)
 {
 	// initialize effect
 	var oEffect	= {},
@@ -52,13 +52,13 @@ function fAMLElementAnimation_play(oElement, oProperties, vDuration, vType, fHan
 	oEffect._type		= vType || '';
 	oEffect._start		= new cDate;
 	oEffect._data		= {};
-	oEffect._interval	= fSetInterval(function(){fAMLElementAnimation_process(nEffect)}, 20);
+	oEffect._interval	= fSetInterval(function(){fAMLQuery_process(nEffect)}, 20);
 
 	// read end params from input
 	var sName;
 	for (var sKey in oProperties)
 		if (oProperties.hasOwnProperty(sKey))
-			oEffect._data[sName = fUtilities_toCssPropertyName(sKey)]	= [fUtilities_parseCssValue(fAMLElementAnimation_adjustStyleValue(oElementDOM, sName, fBrowser_getStyle(oElementDOM, sName, oStyle))), fUtilities_parseCssValue(fAMLElementAnimation_adjustStyleValue(oElementDOM, sName, '' + oProperties[sKey]))];
+			oEffect._data[sName = fUtilities_toCssPropertyName(sKey)]	= [fUtilities_parseCssValue(fAMLQuery_adjustStyleValue(oElementDOM, sName, fBrowser_getStyle(oElementDOM, sName, oStyle))), fUtilities_parseCssValue(fAMLQuery_adjustStyleValue(oElementDOM, sName, '' + oProperties[sKey]))];
 
 	// delete running effects on new effect properties for the same element
 	for (var nIndex = 0, oEffectOld; nIndex < aAMLElementAnimation_effects.length; nIndex++)
@@ -75,7 +75,7 @@ function fAMLElementAnimation_play(oElement, oProperties, vDuration, vType, fHan
 	return aAMLElementAnimation_effects.push(oEffect);
 };
 
-function fAMLElementAnimation_stop(nEffect)
+function fAMLQuery_stop(nEffect)
 {
 	var oEffect	= aAMLElementAnimation_effects[nEffect];
 	if (!oEffect)
@@ -103,10 +103,10 @@ function fAMLElementAnimation_stop(nEffect)
 	fAMLNode_dispatchEvent(oEffect._element, oEventEffectEnd);
 
 	// clear effect
-	fAMLElementAnimation_clear(nEffect);
+	fAMLQuery_clear(nEffect);
 };
 
-function fAMLElementAnimation_process(nEffect)
+function fAMLQuery_process(nEffect)
 {
 	var oEffect	= aAMLElementAnimation_effects[nEffect],
 		nDuration	= oEffect._duration;
@@ -114,11 +114,11 @@ function fAMLElementAnimation_process(nEffect)
 
 	// clear effect if node was removed
 	if (!oAMLDocument_all[oEffect._element.uniqueID])
-		return fAMLElementAnimation_clear(nEffect);
+		return fAMLQuery_clear(nEffect);
 
 	// stop effect if the time is up
 	if (oEffect._duration <= oEffect._timestamp - oEffect._start) {
-		fAMLElementAnimation_stop(nEffect);
+		fAMLQuery_stop(nEffect);
 		if (oEffect._callback)
 			oEffect._callback.call(oEffect._element);
 		return;
@@ -143,22 +143,22 @@ function fAMLElementAnimation_process(nEffect)
 
 				case "easein":
 				case "ease-in":
-					nRatio	= fAMLElementAnimation_cubicBezier(nRatioRaw, 0.42, 0, 1, 1, nDuration);
+					nRatio	= fAMLQuery_cubicBezier(nRatioRaw, 0.42, 0, 1, 1, nDuration);
 					break;
 
 				case "easeout":
 				case "ease-out":
-					nRatio	= fAMLElementAnimation_cubicBezier(nRatioRaw, 0, 0, 0.58, 1.0, nDuration);
+					nRatio	= fAMLQuery_cubicBezier(nRatioRaw, 0, 0, 0.58, 1.0, nDuration);
 					break;
 
 				case "easeinout":
 				case "ease-in-out":
-					nRatio	= fAMLElementAnimation_cubicBezier(nRatioRaw, 0.42, 0, 0.58, 1.0, nDuration);
+					nRatio	= fAMLQuery_cubicBezier(nRatioRaw, 0.42, 0, 0.58, 1.0, nDuration);
 					break;
 
 //				case "ease":
 				default:
-					nRatio	= fAMLElementAnimation_cubicBezier(nRatioRaw, 0.25, 0.1, 0.25, 1.0, nDuration);
+					nRatio	= fAMLQuery_cubicBezier(nRatioRaw, 0.25, 0.1, 0.25, 1.0, nDuration);
 					break;
 			}
 		}
@@ -183,7 +183,7 @@ function fAMLElementAnimation_process(nEffect)
 		}
 };
 
-function fAMLElementAnimation_clear(nEffect)
+function fAMLQuery_clear(nEffect)
 {
 	var oEffect	= aAMLElementAnimation_effects[nEffect];
 
@@ -195,7 +195,7 @@ function fAMLElementAnimation_clear(nEffect)
 };
 
 // Utilities
-function fAMLElementAnimation_adjustStyleValue(oElementDOM, sName, sValue) {
+function fAMLQuery_adjustStyleValue(oElementDOM, sName, sValue) {
 	if (sName == "opacity")
 		return sValue == '' ? '1' : sValue;
 	else
@@ -217,7 +217,7 @@ function fAMLElementAnimation_adjustStyleValue(oElementDOM, sName, sValue) {
 };
 
 // UnitBezier.h, WebCore_animation_AnimationBase.cpp
-function fAMLElementAnimation_cubicBezier(t, a, b, c, d, nDuration) {
+function fAMLQuery_cubicBezier(t, a, b, c, d, nDuration) {
 	var ax=0,bx=0,cx=0,ay=0,by=0,cy=0;
 	// `ax t^3 + bx t^2 + cx t' expanded using Horner's rule.
     function fSampleCurveX(t) {
