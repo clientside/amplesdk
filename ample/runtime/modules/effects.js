@@ -8,15 +8,24 @@
  */
 
 //
-cAMLQuery.prototype.animate	= function(oProperties, nSpeed, fEasing, fCallback) {
+cAMLQuery.prototype.animate	= function(oProperties, vSpeed, sEasing, fCallback) {
 	// Validate API call
 	fGuard(arguments, [
 		["properties",	cObject, true],
 		["speed",		cObject, true],
-		["easing",		cFunction, true],
+		["easing",		cString, true],
 		["callback",	cFunction, true]
 	]);
 
+	if (this.length)
+		fAMLElementAnimation_play(this[0], oProperties, vSpeed, sEasing, fCallback);
+
 	// Invoke implementation
+	return this;
+};
+
+cAMLQuery.prototype.stop	= function() {
+	// TODO
+
 	return this;
 };

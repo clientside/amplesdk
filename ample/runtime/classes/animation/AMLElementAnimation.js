@@ -7,14 +7,13 @@
  *
  */
 
-var nAMLElementAnimation_EFFECT_LINEAR		= 0,	// Constants
-	nAMLElementAnimation_EFFECT_EASE		= 1,
-	nAMLElementAnimation_EFFECT_EASE_IN		= 2,
-	nAMLElementAnimation_EFFECT_EASE_OUT	= 3,
-	nAMLElementAnimation_EFFECT_EASE_IN_OUT	= 4,
+var oAMLElementAnimation_durations	= {},
 	aAMLElementAnimation_effects	= [];			// Variables
 
-function fAMLElementAnimation_play(oElement, oProperties, nDuration, vType, fHandler, sPseudo)
+oAMLElementAnimation_durations["fast"]	= 300;
+oAMLElementAnimation_durations["slow"]	= 600;
+
+function fAMLElementAnimation_play(oElement, oProperties, vDuration, vType, fHandler, sPseudo)
 {
 	// initialize effect
 	var oEffect	= {},
@@ -23,9 +22,9 @@ function fAMLElementAnimation_play(oElement, oProperties, nDuration, vType, fHan
 		oStyle	= fBrowser_getComputedStyle(oElementDOM);
 	oEffect._element	= oElement;
 	oEffect._container	= oElementDOM;
-	oEffect._duration	= nDuration;
+	oEffect._duration	= oAMLElementAnimation_durations[vDuration || "fast"] || vDuration;
 	oEffect._callback	= fHandler;
-	oEffect._type		= vType;
+	oEffect._type		= vType || '';
 	oEffect._start		= new cDate;
 	oEffect._data		= {};
 	oEffect._interval	= fSetInterval(function(){fAMLElementAnimation_process(nEffect)}, 20);
@@ -34,7 +33,7 @@ function fAMLElementAnimation_play(oElement, oProperties, nDuration, vType, fHan
 	var sName;
 	for (var sKey in oProperties)
 		if (oProperties.hasOwnProperty(sKey))
-			oEffect._data[sName = fUtilities_toCssPropertyName(sKey)]	= [fUtilities_parseCssValue(fAMLElementAnimation_adjustStyleValue(oElementDOM, sName, fBrowser_getStyle(oElementDOM, sName, oStyle))), fUtilities_parseCssValue(fAMLElementAnimation_adjustStyleValue(oElementDOM, sName, oProperties[sKey]))];
+			oEffect._data[sName = fUtilities_toCssPropertyName(sKey)]	= [fUtilities_parseCssValue(fAMLElementAnimation_adjustStyleValue(oElementDOM, sName, fBrowser_getStyle(oElementDOM, sName, oStyle))), fUtilities_parseCssValue(fAMLElementAnimation_adjustStyleValue(oElementDOM, sName, '' + oProperties[sKey]))];
 
 	// delete running effects on new effect properties for the same element
 	for (var nIndex = 0, oEffectOld; nIndex < aAMLElementAnimation_effects.length; nIndex++)
@@ -108,27 +107,34 @@ function fAMLElementAnimation_process(nEffect)
 		if (oEffect._type instanceof cFunction)
 			nRatio	= oEffect._type(nRatioRaw);
 		else
-		{
-			switch (oEffect._type)
-			{
-				case nAMLElementAnimation_EFFECT_EASE:
-					nRatio	= fAMLElementAnimation_cubicBezier(nRatioRaw, 0.25, 0.1, 0.25, 1.0, nDuration);
+		if (oEffect._type.indexOf("cubic-bezier") == 0) {
+			// TODO
+		}
+		else {
+			switch (oEffect._type) {
+				case "linear":
+					nRatio	= nRatioRaw;
 					break;
 
-				case nAMLElementAnimation_EFFECT_EASE_IN:
+				case "easein":
+				case "ease-in":
 					nRatio	= fAMLElementAnimation_cubicBezier(nRatioRaw, 0.42, 0, 1, 1, nDuration);
 					break;
 
-				case nAMLElementAnimation_EFFECT_EASE_OUT:
+				case "easeout":
+				case "ease-out":
 					nRatio	= fAMLElementAnimation_cubicBezier(nRatioRaw, 0, 0, 0.58, 1.0, nDuration);
 					break;
 
-				case nAMLElementAnimation_EFFECT_EASE_IN_OUT:
+				case "easeinout":
+				case "ease-in-out":
 					nRatio	= fAMLElementAnimation_cubicBezier(nRatioRaw, 0.42, 0, 0.58, 1.0, nDuration);
 					break;
 
-				default:	// also linear
-					nRatio	= nRatioRaw;
+//				case "ease":
+				default:
+					nRatio	= fAMLElementAnimation_cubicBezier(nRatioRaw, 0.25, 0.1, 0.25, 1.0, nDuration);
+					break;
 			}
 		}
 	}
@@ -244,43 +250,4 @@ function fAMLElementAnimation_cubicBezier(t, a, b, c, d, nDuration) {
 	cx=3.0*a; bx=3.0*(c-a)-cx; ax=1.0-cx-bx; cy=3.0*b; by=3.0*(d-b)-cy; ay=1.0-cy-by;
 	// Convert from input time to parametric value in curve, then from that to output time.
 	return fSolve(t, fSolveEpsilon(nDuration));
-};
-
-
-// Attaching to implementation
-cAMLElement.EFFECT_LINEAR		= nAMLElementAnimation_EFFECT_LINEAR;
-cAMLElement.EFFECT_NORMAL		= nAMLElementAnimation_EFFECT_EASE;
-cAMLElement.EFFECT_ACCELERATE	= nAMLElementAnimation_EFFECT_EASE_IN;
-cAMLElement.EFFECT_DECELERATE	= nAMLElementAnimation_EFFECT_EASE_OUT;
-cAMLElement.EFFECT_SPRING		= nAMLElementAnimation_EFFECT_EASE_IN_OUT;
-
-cAMLElement.prototype.$play	= function(sParams, nDuration, vType, fHandler, sPseudo)
-{
-	// Validate arguments
-	fGuard(arguments, [
-		["params",		cString],
-		["duration",	cNumber],
-		["type",		cObject, true],
-		["handler",		cFunction, true, true],
-		["pseudoElement",	cString, true]
-	]);
-
-	var oProperties	= {},
-		aParams	= sParams.split(/\s*;\s*/),
-		aParam;
-	for (var nIndex = 0; nIndex < aParams.length; nIndex++)
-		if (aParam = aParams[nIndex].match(/([a-z\-]+)\s*\:\s*(.+)/i))
-			oProperties[aParam[1]]	= aParam[2];
-
-	return fAMLElementAnimation_play(this, oProperties, nDuration, vType, fHandler, sPseudo);
-};
-
-cAMLElement.prototype.$stop	= function(nEffect)
-{
-	// Validate arguments
-	fGuard(arguments, [
-		["effect",		cNumber]
-	]);
-
-	fAMLElementAnimation_stop(nEffect);
 };

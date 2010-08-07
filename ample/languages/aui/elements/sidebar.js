@@ -26,7 +26,7 @@ cAUIElement_sidebar.prototype.toggle	= function(bState)
 	oStyle.width	=(oPositionOld.right - oPositionOld.left) + "px";
 	oStyle.height	=(oPositionOld.bottom - oPositionOld.top) + "px";
 	// Play effect
-	this.$play("width:" + (oPositionNew.right - oPositionNew.left) + "px; height:" + (oPositionNew.bottom - oPositionNew.top) + "px;", 500, AMLElement.EFFECT_ACCELERATE);
+	ample.query(this).animate({"width": (oPositionNew.right - oPositionNew.left) + "px", "height": (oPositionNew.bottom - oPositionNew.top) + "px"}, 500);
 };
 
 // Class Event Handlers

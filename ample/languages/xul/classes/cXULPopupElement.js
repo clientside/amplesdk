@@ -117,7 +117,7 @@ cXULPopupElement.prototype.showPopup	= function(oElement, nLeft, nTop, nType, oA
     else {
 	    // Play effect
 		this.$getContainer().style.opacity	= "0";
-		this.$play("opacity:1", 100, 1);
+		ample.query(this).animate({"opacity":"1"}, 100);
     }
 
 	this.setAttribute("hidden", "false");
