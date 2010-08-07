@@ -7,6 +7,7 @@
 			<!--node title="JavaScript technologies" /-->
 			<node title="DOM Level 2/3" open="true">
 				<!--node title="DOM Level 2/3" xurl="ample/runtime/dom.xml"/-->
+				<node title="AMLQuery" url="ample/runtime/AMLQuery.xml"/>
 				<node title="DOM Core">
 					<node title="AMLAttr" url="ample/runtime/AMLAttr.xml"/>
 					<node title="AMLCDATASection" url="ample/runtime/AMLCDATASection.xml"/>
@@ -43,6 +44,9 @@
 					<node title="AMLTouchEvent" url="ample/runtime/AMLTouchEvent.xml"/>
 					<node title="AMLGestureEvent" url="ample/runtime/AMLGestureEvent.xml"/>
 				</node>
+				<node title="DOM Range">
+					<node title="AMLRange" xurl="ample/runtime/AMLRange.xml"/>
+				</node>
 				<node title="DOM Load/Save">
 					<node title="LSReader" xurl="ample/runtime/LSReader.xml"/>
 					<node title="LSWriter" xurl="ample/runtime/LSWriter.xml"/>
@@ -50,7 +54,6 @@
 					<node title="LSSerializer" xurl="ample/runtime/LSSerializer.xml"/>
 				</node>
 				<node title="DOM Helper Objects">
-					<node title="AMLQuery" url="ample/runtime/AMLQuery.xml"/>
 					<!--node title="AMLNamespace" url="ample/runtime/AMLNamespace.xml"/-->
 					<!--node title="AMLSerializer" url="ample/runtime/AMLSerializer.xml"/-->
 					<node title="AMLDataTransfer" url="ample/runtime/AMLDataTransfer.xml"/>

@@ -110,12 +110,13 @@
 					<locale>
 						Sets or retrieves a parameter. List of parameters:
 						<ul>
-							<li><b>version</b> - Ample SDK version number</li>
+							<li><b>version</b> - <em>Read-only</em>. Ample SDK version</li>
 							<li><b>user-agent</b> - Ample SDK user agent string</li>
 							<li><b>user-locale</b> - User locale</li>
-							<li><b>enable-transitions</b> - enable/disable transitions globally</li>
-							<li><b>use-style-property</b> - enable/disable style property on elements</li>
-							<li><b>module-history-fix</b> - fix initial value of the location.hash property in Internet Explorer (used in <link type="object">mHistory</link>)</li>
+							<li><b>enable-transitions</b> - Transitions</li>
+							<li><b>enable-animations</b> - Animations</li>
+							<li><b>use-style-property</b> - style property</li>
+							<li><b>module-history-fix</b> - fix IE hash problem</li>
 						</ul>
 					</locale>
 				</description>
@@ -141,7 +142,7 @@
 					<argument name="source" type="Object">
 						<description>
 							<locale>
-								Extension object to extend.
+								Source object to extend from.
 							</locale>
 						</description>
 					</argument>
