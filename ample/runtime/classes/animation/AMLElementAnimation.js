@@ -34,7 +34,7 @@ function fAMLElementAnimation_play(oElement, oProperties, nDuration, vType, fHan
 	var sName;
 	for (var sKey in oProperties)
 		if (oProperties.hasOwnProperty(sKey))
-			oEffect._data[sName = fUtilities_toCssPropertyName(sKey)]	= [fAMLSMIL30_parseValue(fAMLElementAnimation_adjustStyleValue(oElementDOM, sName, fBrowser_getStyle(oElementDOM, sName, oStyle))), fAMLSMIL30_parseValue(fAMLElementAnimation_adjustStyleValue(oElementDOM, sName, oProperties[sKey]))];
+			oEffect._data[sName = fUtilities_toCssPropertyName(sKey)]	= [fUtilities_parseCssValue(fAMLElementAnimation_adjustStyleValue(oElementDOM, sName, fBrowser_getStyle(oElementDOM, sName, oStyle))), fUtilities_parseCssValue(fAMLElementAnimation_adjustStyleValue(oElementDOM, sName, oProperties[sKey]))];
 
 	// delete running effects on new effect properties for the same element
 	for (var nIndex = 0, oEffectOld; nIndex < aAMLElementAnimation_effects.length; nIndex++)
@@ -140,7 +140,7 @@ function fAMLElementAnimation_process(nEffect)
 		if (oEffect._data.hasOwnProperty(sKey))
 		{
 			oData	= oEffect._data[sKey];
-			aValue	= fAMLSMIL30_animation_sumValues(oData[0], fAMLSMIL30_animation_multiplyValue(fAMLSMIL30_animation_subValues(oData[1], oData[0]), nRatio));
+			aValue	= fUtilities_sumCssValues(oData[0], fUtilities_mulCssValue(fUtilities_subCssValues(oData[1], oData[0]), nRatio));
 			// Color value
 			if (aValue[1] == '#')
 				aValue	= ['#', fUtilities_numberToHex(aValue[0][0] * 255) + fUtilities_numberToHex(aValue[0][1] * 255) + fUtilities_numberToHex(aValue[0][2] * 255)];

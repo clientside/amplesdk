@@ -32,7 +32,7 @@ function fAMLSMIL30_animation_progressAnimation(oElement, nProgress) {
 	if (oAnimation.calcMode == "discrete" || oAnimation.calcMode == "paced") {
 		if (oAnimation.calcMode == "paced")
 			for (var nIndex = 0; nIndex < nSegment; nIndex++)
-				oValue	= fAMLSMIL30_animation_sumValues(aValues[nIndex], oValue);
+				oValue	= fUtilities_sumCssValues(aValues[nIndex], oValue);
 	}
 	else {	// linear = default
 		var oFrom	= oAnimation.from ? oAnimation.from : oAnimation.original;
@@ -40,10 +40,10 @@ function fAMLSMIL30_animation_progressAnimation(oElement, nProgress) {
 			nSegment	= cMath.floor(nProgress * (aValues.length - 1));
 			oValue		= aValues[nSegment];
 			if (nSegment < nValues - 1)
-				oValue	= fAMLSMIL30_animation_sumValues(oValue, fAMLSMIL30_animation_multiplyValue(fAMLSMIL30_animation_subValues(aValues[nSegment + 1], oValue), (nProgress - nSegment / (nValues - 1)) * (nValues - 1)));
+				oValue	= fUtilities_sumCssValues(oValue, fUtilities_mulCssValue(fUtilities_subCssValues(aValues[nSegment + 1], oValue), (nProgress - nSegment / (nValues - 1)) * (nValues - 1)));
 		}
 		else
-			oValue	= fAMLSMIL30_animation_sumValues(oFrom, fAMLSMIL30_animation_multiplyValue(oAnimation.to ? fAMLSMIL30_animation_subValues(oAnimation.to, oFrom) : oAnimation.by, nProgress));
+			oValue	= fUtilities_sumCssValues(oFrom, fUtilities_mulCssValue(oAnimation.to ? fUtilities_subCssValues(oAnimation.to, oFrom) : oAnimation.by, nProgress));
 	}
 
 	fAMLSMIL30_animation_setAttributeValue(oAnimation, oValue);
@@ -58,7 +58,7 @@ function fAMLSMIL30_animation_endAnimation(oElement) {
 
 	// if element is to be frozen on it is a child of another time container that is still active
 	if (oAnimation.fill == "freeze" || (oAnimation.fill == "hold" && aAMLSMIL30_activeElements.indexOf(oElement.parentNode) >-1))
-		oValue	= oAnimation.values[oAnimation.values.length - 1] || oAnimation.to || fAMLSMIL30_animation_sumValues(oAnimation.original, oAnimation.by);
+		oValue	= oAnimation.values[oAnimation.values.length - 1] || oAnimation.to || fUtilities_sumCssValues(oAnimation.original, oAnimation.by);
 	else
 		oValue	= oAnimation.original;
 
@@ -73,18 +73,18 @@ function fAMLSMIL30_animation_getAttributeValue(oAnimation) {
 		var oElementDOM	= oAnimation.targetElement.$getContainer();
 		if (oAnimation.type == "animateMotion") {
 			var oStyle	= fBrowser_getComputedStyle(oElementDOM),
-				oValue1	= fAMLSMIL30_parseValue(oStyle["top"]),
-				oValue2	= fAMLSMIL30_parseValue(oStyle["left"]);
+				oValue1	= fUtilities_parseCssValue(oStyle["top"]),
+				oValue2	= fUtilities_parseCssValue(oStyle["left"]);
 			aValue	= [[oValue1[0], oValue2[0]], oValue1[1]];
 		}
 		else
-			aValue	= fAMLSMIL30_parseValue(fBrowser_getStyle(oElementDOM, fUtilities_toCssPropertyName(oAnimation.attributeName)));
+			aValue	= fUtilities_parseCssValue(fBrowser_getStyle(oElementDOM, fUtilities_toCssPropertyName(oAnimation.attributeName)));
 	}
 	else {	// "XML" = "auto"
 		if (oAnimation.type == "animateMotion")
 			throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 		else
-			aValue	= fAMLSMIL30_parseValue(oAnimation.targetElement.getAttribute(oAnimation.attributeName));
+			aValue	= fUtilities_parseCssValue(oAnimation.targetElement.getAttribute(oAnimation.attributeName));
 	}
 	return aValue;
 };
@@ -117,34 +117,4 @@ function fAMLSMIL30_animation_setAttributeValue(oAnimation, aValue) {
 		fUtilities_warn(sAML_ERROR_ANIMATING_ATTR_WRN, [oAnimation.attributeName, aValue]);
 //<-Debug
 	}
-};
-
-function fAMLSMIL30_animation_sumValues(oValue1, oValue2) {
-	if (oValue1[0] instanceof cArray) {
-		for (var nIndex = 0, aValue = []; nIndex < oValue1[0].length; nIndex++)
-			aValue.push(oValue1[0][nIndex] + oValue2[0][nIndex]);
-		return [aValue, oValue1[1], oValue1[2]];
-	}
-	else
-		return [oValue1[0] + oValue2[0], oValue1[1], oValue1[2]];
-};
-
-function fAMLSMIL30_animation_subValues(oValue1, oValue2) {
-	if (oValue1[0] instanceof cArray) {
-		for (var nIndex = 0, aValue = []; nIndex < oValue1[0].length; nIndex++)
-			aValue.push(oValue1[0][nIndex] - oValue2[0][nIndex]);
-		return [aValue, oValue1[1], oValue1[2]];
-	}
-	else
-		return [oValue1[0] - oValue2[0], oValue1[1], oValue1[2]];
-};
-
-function fAMLSMIL30_animation_multiplyValue(oValue, nTimes) {
-	if (oValue[0] instanceof cArray) {
-		for (var nIndex = 0, aValue = []; nIndex < oValue[0].length; nIndex++)
-			aValue.push(oValue[0][nIndex] * nTimes);
-		return [aValue, oValue[1], oValue[2]];
-	}
-	else
-		return [oValue[0] * nTimes, oValue[1], oValue[2]];
 };
