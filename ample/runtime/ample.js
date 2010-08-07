@@ -233,6 +233,10 @@ if (!oAmple.namespaces["xmlns"])
 	oAmple.namespaces["xmlns"]	= "http://www.w3.org/1999/xhtml";
 if (!oAmple.namespaces["xmlns:aml"])
 	oAmple.namespaces["xmlns:aml"]	= "http://www.amplesdk.com/ns/aml";
+if (!oAmple.namespaces["xmlns:ev"])
+	oAmple.namespaces["xmlns:ev"]	= "http://www.w3.org/2001/xml-events";
+if (!oAmple.namespaces["xmlns:xi"])
+	oAmple.namespaces["xmlns:xi"]	= "http://www.w3.org/2001/XInclude";
 //
 function fAmple_resolver(sPrefix) {
 	return oAmple.namespaces["xmlns" + (sPrefix ? ":" + sPrefix : '')] || null;
