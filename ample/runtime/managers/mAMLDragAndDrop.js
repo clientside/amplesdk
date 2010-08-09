@@ -359,8 +359,8 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
 	}
 
     if (oAMLDragAndDrop_image) {
-    	oAMLDragAndDrop_image.style.left	= oEvent.clientX + "px";
-    	oAMLDragAndDrop_image.style.top		= oEvent.clientY + "px";
+    	oAMLDragAndDrop_image.style.left	= oEvent.clientX + 'px';
+    	oAMLDragAndDrop_image.style.top		= oEvent.clientY + 'px';
     }
 
 	// Opera doesn't support userSelect, so manual clearing of ranges is used
@@ -440,8 +440,8 @@ cAMLDataTransfer.prototype.setDragImage	= function(oImage, nLeft, nTop) {
 	]);
 
 	oAMLDragAndDrop_image.appendChild(oImage);
-	oAMLDragAndDrop_image.style.marginLeft	= (nLeft || 0) + "px";
-	oAMLDragAndDrop_image.style.marginTop	= (nTop || 0) + "px";
+	oAMLDragAndDrop_image.style.marginLeft	= (nLeft || 0) + 'px';
+	oAMLDragAndDrop_image.style.marginTop	= (nTop || 0) + 'px';
 };
 
 cAMLDataTransfer.prototype.addElement		= function(oElement) {

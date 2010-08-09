@@ -77,11 +77,11 @@ function fBrowser_render(oNode) {
 				if (sHtml.match(/^<(\w*:)?(\w+)/)) {
 					var sTagName	= cRegExp.$2;
 					switch (sTagName) {
-						case "td":
-						case "th":
-							sHtml	= '<' + "tr" + '>' + sHtml + '</' + "tr" + '>';
+						case 'td':
+						case 'th':
+							sHtml	= '<tr>' + sHtml + '</tr>';
 							// no break is left intentionally
-						case "tr":
+						case 'tr':
 							sHtml	= '<' + "tbody" + '>' + sHtml + '</' + "tbody" + '>';
 							// no break is left intentionally
 						case "thead":

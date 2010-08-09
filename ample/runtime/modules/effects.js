@@ -200,7 +200,7 @@ function fAMLQuery_adjustStyleValue(oElementDOM, sName, sValue) {
 		return sValue == '' ? '1' : sValue;
 	else
 	if (sName == "backgroundPosition")
-		return(sValue == "0% 0%" || sValue == "none" || sValue == '')? "0px 0px" : sValue;
+		return(sValue == "0% 0%" || sValue == "none" || sValue == '')? '0px 0px' : sValue;
 	else
 	if (sName == "lineHeight") {
 		if (bTrident && nVersion < 9 && sValue == "normal")
@@ -212,7 +212,7 @@ function fAMLQuery_adjustStyleValue(oElementDOM, sName, sValue) {
 		return sValue == "medium" ? '3px' : sValue;
 	else
 	if (sName.match(/top|left|bottom|right/i))
-		return sValue == "auto" ? "0px" : sValue;
+		return sValue == "auto" ? '0px' : sValue;
 	return sValue;
 };
 

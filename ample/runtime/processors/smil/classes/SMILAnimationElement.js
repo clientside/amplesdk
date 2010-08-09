@@ -19,8 +19,8 @@ function fSMILAnimationElement_init(oElement) {
 	oElement.attributeType	= oElement.attributes["attributeType"];
 	// Simple Animation
 	oElement.from		= fAmple_animate_parseValue(oElement.attributes["from"]);
-	oElement.to			= fAmple_animate_parseValue(oElement.attributes["to"]);
-	oElement.by			= fAmple_animate_parseValue(oElement.attributes["by"]);
+	oElement.to			= fAmple_animate_parseValue(oElement.attributes['to']);
+	oElement.by			= fAmple_animate_parseValue(oElement.attributes['by']);
 	oElement.values		= fSMILElement_parseValues(oElement.attributes["values"]);
 	//
 	oElement.calcMode	= oElement.attributes["calcMode"];
