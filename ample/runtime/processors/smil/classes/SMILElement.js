@@ -59,7 +59,7 @@ function fSMILElement_onTimeline() {
 			fSMILTimeElement_endElement(oElement);
 		}
 		else
-		if (!(oElement instanceof cSMILElement_set)) {
+		if (oElement instanceof cSMILAnimationElement && !(oElement instanceof cSMILElement_set)) {
 			// Filtered simple time calculation
 			nTimeModifiedSimpleDuration	= nTimeSimpleDuration * (oElement.autoReverse ? 2 : 1);
 			// 1. Unfiltered simple time
