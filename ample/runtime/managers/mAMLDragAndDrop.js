@@ -160,7 +160,7 @@ function fAMLDragAndDrop_onMouseUp(oEvent)
 				var oProperties	= {};
 				oProperties["left"]		= nAMLResize_clientLeft || "auto";
 				oProperties["top"]		= nAMLResize_clientTop || "auto";
-				fAMLElementAnimation_play(oAMLDragAndDrop_dragSource, oProperties, 300, 3, fRestore);
+				fAMLQuery_play(oAMLDragAndDrop_dragSource, oProperties, 300, "ease", fRestore);
 			}
 			else
 				fRestore();

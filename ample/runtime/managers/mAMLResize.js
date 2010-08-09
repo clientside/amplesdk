@@ -304,7 +304,7 @@ function fAMLResize_onMouseUp(oEvent)
 				oProperties["width"]	= nAMLResize_clientWidth || "auto";
 				oProperties["height"]	= nAMLResize_clientHeight || "auto";
 				//
-				fAMLElementAnimation_play(oAMLResize_resizeNode, oProperties, 300, 3, fRestore);
+				fAMLQuery_play(oAMLResize_resizeNode, oProperties, 300, "ease", fRestore);
 			}
 			else
 				fRestore();

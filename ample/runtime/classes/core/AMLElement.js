@@ -1037,7 +1037,7 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 				}
 
 			if (bPlay) {
-				fAMLElementAnimation_play(oElement, oPropertiesAfter, 300, 3, function() {
+				fAMLQuery_play(oElement, oPropertiesAfter, 300, "ease", function() {
 					for (var nIndex = 0; nIndex < aPropertiesReset.length; nIndex++)
 						fBrowser_setStyle(oElementDOM, aPropertiesReset[nIndex], '');
 				});
