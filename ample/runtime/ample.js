@@ -26,10 +26,16 @@ function fAmple(vArgument1, vArgument2, vArgument3) {
 				//
 				var sNameSpaces	= ' ' + aNameSpaces.join(' ');
 					oDocument	= new cDOMParser().parseFromString(
-														'<!' + "DOCTYPE" + ' ' + "div" + '[' + aUtilities_entities + ']>' +
-														'<div' + sNameSpaces + '>' +
+														'<!' + "DOCTYPE" + ' ' + "script" + '[' + aUtilities_entities + ']>' +
+														'<' + "script" + ' ' + "type" + '="' + "application/ample+xml" + '"' + sNameSpaces + '>' +
+//->Debug
+														'\n' +
+//<-Debug
 														vArgument1 +
-														'</div>', "text/xml");
+//->Debug
+														'\n' +
+//<-Debug
+														'</' + "script" + '>', "text/xml");
 				if (!oDocument || ((oUADocument.namespaces && oDocument.parseError != 0) || !oDocument.documentElement || oDocument.getElementsByTagName("parsererror").length))
 					throw new cAMLException(cAMLException.SYNTAX_ERR, oAmple.caller);
 				else
