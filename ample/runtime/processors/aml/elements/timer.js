@@ -52,21 +52,20 @@ cAMLElement_timer_onTimeOut	= function(oElement) {
 };
 
 // Class Event Handlers
-cAMLElement_timer.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			switch (oEvent.attrName) {
+cAMLElement_timer.handlers	= {};
+cAMLElement_timer.handlers["DOMAttrModified"]	= function(oEvent) {
+	if (oEvent.target == this) {
+		switch (oEvent.attrName) {
 
-			}
 		}
-	},
-	"DOMNodeInsertedIntoDocument":	function(oEvent) {
-		if (this.attributes["autostart"] == "true")
-			this.start();
-	},
-	"DOMNodeRemovedFromDocument":	function(oEvent) {
-		this.stop();
 	}
+};
+cAMLElement_timer.handlers["DOMNodeInsertedIntoDocument"]	= function(oEvent) {
+	if (this.attributes["autostart"] == "true")
+		this.start();
+};
+cAMLElement_timer.handlers["DOMNodeRemovedFromDocument"]	= function(oEvent) {
+	this.stop();
 };
 
 // Register Element
