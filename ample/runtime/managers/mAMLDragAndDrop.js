@@ -150,16 +150,16 @@ function fAMLDragAndDrop_onMouseUp(oEvent)
 		    // Restore element position
 			if (bPlay) {
 				// Commit
-			    oElementDOM.style.left	= nAMLDragAndDrop_clientLeft;
-			    oElementDOM.style.top	= nAMLDragAndDrop_clientTop;
+				oStyle.left	= nAMLDragAndDrop_clientLeft;
+				oStyle.top	= nAMLDragAndDrop_clientTop;
 				var oRect2	= fAMLElement_getBoundingClientRect(oAMLDragAndDrop_dragSource);
 				// Rollback
-			    oElementDOM.style.left	=(fParseInt(sLeft) + oRect1.left - oRect2.left)+ 'px';
-			    oElementDOM.style.top	=(fParseInt(sTop) + oRect1.top - oRect2.top)+ 'px';
+				oStyle.left	=(fParseInt(sLeft) + oRect1.left - oRect2.left)+ 'px';
+				oStyle.top	=(fParseInt(sTop) + oRect1.top - oRect2.top)+ 'px';
 				//
 				var oProperties	= {};
-				oProperties["left"]		= nAMLResize_clientLeft || "auto";
-				oProperties["top"]		= nAMLResize_clientTop || "auto";
+				oProperties["left"]		= nAMLDragAndDrop_clientLeft || "auto";
+				oProperties["top"]		= nAMLDragAndDrop_clientTop || "auto";
 				fAMLQuery_play(oAMLDragAndDrop_dragSource, oProperties, 300, "ease", fRestore);
 			}
 			else
