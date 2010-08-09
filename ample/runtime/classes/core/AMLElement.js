@@ -39,7 +39,8 @@ function fAMLElement_appendChild(oParent, oNode)
 	if (oParent.nodeType == cAMLNode.ELEMENT_NODE)
 		if (oGateway =(oParent.$getContainer("gateway") || oParent.$getContainer()))
 			if (oElement = (oNode.$getContainer() || fBrowser_render(oNode)))
-		   		oGateway.appendChild(oElement);
+		   		oGateway.appendChild(oElement);
+
 	// Register Instance
 	if (oAMLDocument_all[oParent.uniqueID])
 		fAMLDocument_register(oParent.ownerDocument, oNode);
@@ -108,7 +109,8 @@ function fAMLElement_insertBefore(oParent, oNode, oBefore)
 	    				if (oElement = oBefore.$getContainer())
 	    					return oElement;
 	    			return null;
-	    		}());
+	    		}());
+
 	// Register Instance
 	if (oAMLDocument_all[oParent.uniqueID])
 		fAMLDocument_register(oParent.ownerDocument, oNode);
@@ -166,7 +168,8 @@ function fAMLElement_removeChild(oParent, oNode)
 					if (oChild.parentNode == oGateway)
 						return oChild;
 			}()))
-				oGateway.removeChild(oChild);
+				oGateway.removeChild(oChild);
+
 	// Call parent class method
 	fAMLNode_removeChild(oParent, oNode);
 
