@@ -143,7 +143,10 @@ DIGIT               ::= [0-9]
 */
 // Clock-value: /^(?:(\d+):)?([0-5]\d):([0-5]\d)(.\d+)?$/
 // Timecount-value: /^(\d+)(.\d+)?(h|min|s|ms)$/
-var hSMILElement_multipliers		= {'h': 3600, 'min': 60, 's': 1};
+var hSMILElement_multipliers		= {};
+hSMILElement_multipliers['h']	= 3600;
+hSMILElement_multipliers["min"]	= 60;
+hSMILElement_multipliers['s']	= 1;
 function fSMILTimeElement_parseDate(sValue) {
 	var oDate	= {},
 		bOffsetPositive	= true,
@@ -169,7 +172,7 @@ function fSMILTimeElement_parseDate(sValue) {
 		}
 
 		if (aValue = sValue.match(/^([+-])/)) {
-			bOffsetPositive	= aValue[1] == "+";
+			bOffsetPositive	= aValue[1] == '+';
 			// remove from the value
 			sValue	= sValue.replace(aValue[0], '');
 		}
@@ -181,7 +184,7 @@ function fSMILTimeElement_parseDate(sValue) {
 		else
 		// Timecount-value
 		if (aValue = sValue.match(/^(\d+)(.\d+)?(h|min|s|ms)$/))
-			oDate.offset	= (bOffsetPositive ? 1 :-1) * (aValue[1] * 1 + (aValue[2] ? aValue[2] * 1 : 0)) * (aValue[3] == "ms" ? 1 : 1000 * hSMILElement_multipliers[aValue[3]]);
+			oDate.offset	= (bOffsetPositive ? 1 :-1) * (aValue[1] * 1 + (aValue[2] ? aValue[2] * 1 : 0)) * (aValue[3] == 'ms' ? 1 : 1000 * hSMILElement_multipliers[aValue[3]]);
 		else
 			oDate.offset	= 0;
 	}
@@ -199,7 +202,7 @@ function fSMILTimeElement_parseDuration(sValue) {
 	else
 	// Timecount-value
 	if (aValue = sValue.match(/^(\d+)(.\d+)?(h|min|s|ms)$/))
-		return (aValue[1] * 1 + (aValue[2] ? aValue[2] * 1 : 0)) * (aValue[3] == "ms" ? 1 : 1000 * hSMILElement_multipliers[aValue[3]]);
+		return (aValue[1] * 1 + (aValue[2] ? aValue[2] * 1 : 0)) * (aValue[3] == 'ms' ? 1 : 1000 * hSMILElement_multipliers[aValue[3]]);
 	else
 		return nInfinity;
 };
