@@ -31,7 +31,11 @@ function fSMILAnimationElement_init(oElement) {
 	oElement.accumulate	= oElement.attributes["accumulate"];	// sum|none, "none" is default
 
 	if (!oElement.targetElement)
-		oElement.targetElement	= oElement.parentNode;
+		for (var oParent = oElement; oParent = oParent.parentNode;)
+			if (!(oParent instanceof cSMILElement)) {
+				oElement.targetElement	= oParent;
+				break;
+			}
 };
 
 //
