@@ -183,7 +183,6 @@
 	<target name="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES" unless="skip.ample.runtime.languages">
 		<antcall target="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES_AML" />
 		<antcall target="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES_SMIL" />
-		<antcall target="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES_XMLSCHEMA" />
 	</target>
 
 	<target name="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES_XBL" unless="skip.ample.runtime.languages.xbl">
@@ -232,54 +231,6 @@
 				par.js,
 				seq.js,
 				set.js"/>
-		</concat>
-	</target>
-
-	<target name="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES_XMLSCHEMA" unless="skip.ample.runtime.languages.xmlschema">
-		<concat destfile="${temp.runtime.dir}/runtime-languages.js" fixlastline="yes" append="yes">
-			<!-- XML Schema 1.1 (core) -->
-			<!-- Temporary disabled -->
-			<filelist dir="${source.runtime.dir}/processors/xmlschema11/classes/" files="
-				cAMLXSConstants.js,
-				cAMLXSException.js,
-				cAMLXSObject.js,
-				cAMLXSModel.js,
-				cAMLXSNamedMap.js,
-				cAMLXSNamespaceItem.js,
-				cAMLXSNamespaceItemList.js,
-				cAMLXSObjectList.js,
-				cAMLXSTypeDefinition.js"/>
-			<filelist dir="${source.runtime.dir}/processors/xmlschema11/" files="
-				xmlschema11.js"/>
-
-			<!-- XML Schema 1.1 (datatypes) -->
-			<filelist dir="${source.runtime.dir}/processors/xmlschema11/classes/datatypes/" files="
-				cAMLXSSimpleTypeDefinition.js,
-				cAMLXSMultiValueFacet.js,
-				cAMLXSFacet.js"/>
-			<filelist dir="${source.runtime.dir}/processors/xmlschema11/" files="
-				xmlschema11-datatypes.js"/>
-			<filelist dir="${source.runtime.dir}/processors/xmlschema11/builtin/" files="
-				xmlschema11-builtin.js"/>
-
-			<!-- XML Schema 1.1 (structure) -->
-			<!-- filelist dir="${source.runtime.dir}/processors/xmlschema11/" files="
-				xmlschema11-structures.js"/>
-			<filelist dir="${source.runtime.dir}/processors/xmlschema11-instance/" files="
-				xmlschema11-instance.js"/>
-			<filelist dir="${source.runtime.dir}/processors/xmlschema11/classes/structures/" files="
-				cAMLXSTerm.js,
-				cAMLXSAnnotation.js,
-				cAMLXSAttributeDeclaration.js,
-				cAMLXSAttributeGroupDefinition.js,
-				cAMLXSAttributeUse.js,
-				cAMLXSComplexTypeDefinition.js,
-				cAMLXSElementDeclaration.js,
-				cAMLXSModelGroup.js,
-				cAMLXSModelGroupDefinition.js,
-				cAMLXSNotationDeclaration.js,
-				cAMLXSParticle.js,
-				cAMLXSWildcard.js"/-->
 		</concat>
 	</target>
 
@@ -623,6 +574,35 @@
 		</copy>
 	</target>
 
+	<target name="BUILD_AMPLE_LANGUAGES_XMLSCHEMA" unless="skip.ample.languages.xmlschema">
+		<property name="source.xmlschema.dir" value="${source.languages.dir}/xmlschema/" />
+		<property name="target.xmlschema.dir" value="${target.languages.dir}/xmlschema/" />
+
+		<echo message="Merging into: ${temp.languages.dir}/xmlschema-raw.js" level="info"/>
+		<concat destfile="${temp.languages.dir}/xmlschema-raw.js" fixlastline="yes">
+			<fileset dir="${source.xmlschema.dir}/classes/">
+				<include name="*.js" />
+			</fileset>
+			<fileset dir="${source.xmlschema.dir}/elements/">
+				<include name="*.js" />
+			</fileset>
+		</concat>
+
+		<echo message="Wrapping into: ${temp.languages.dir}/xmlschema-raw-wrapped.js" level="info"/>
+		<exec executable="${executable.php}" failonerror="true">
+			<arg value="resources/compiler/js.php" />
+			<arg value="${temp.languages.dir}/xmlschema-raw.js" />
+			<arg value="${temp.languages.dir}/xmlschema-raw-wrapped.js" />
+			<arg value="--strip-Source" />
+		</exec>
+
+		<!-- package -->
+		<mkdir dir="${target.xmlschema.dir}" />
+		<concat destfile="${target.xmlschema.dir}/xmlschema.js" fixlastline="yes">
+			<fileset file="${copying.js}" />
+			<fileset file="${temp.languages.dir}/xmlschema-raw-wrapped.js" />
+		</concat>
+	</target>
 
 	<!-- Examples -->
 	<target name="BUILD_EXAMPLES" unless="skip.examples">
