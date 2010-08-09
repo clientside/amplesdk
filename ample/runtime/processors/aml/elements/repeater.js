@@ -32,7 +32,7 @@ cAMLElement_repeater.handlers["DOMAttrModified"]	= function(oEvent) {
 		}
 };
 cAMLElement_repeater.handlers["DOMNodeInsertedIntoDocument"]	= function(oEvent) {
-	var oElement	= this.ownerDocument.getElementById(this.attributes["data"]);
+	var oElement	= oAMLDocument_ids[this.attributes["data"]];
 	if (oElement) {
 		this.bind(oElement);
 		//

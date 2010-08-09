@@ -27,7 +27,7 @@ function fSMILTimeElement_beginElement(oElement) {
 	if (oElement instanceof cSMILAnimationElement) {
 		// If ID was specified for target element
 		if (typeof oElement.targetElement == "string")
-			oElement.targetElement	= oAmple_document.getElementById(oElement.targetElement.substr(1));
+			oElement.targetElement	= oAMLDocument_ids[oElement.targetElement.substr(1)];
 
 		// check if there is already animation running on that @targetElement/@attributeName
 		for (var nIndex = 0, oElementOld; oElementOld = aSMILElement_activeElements[nIndex]; nIndex++)
@@ -107,7 +107,7 @@ function fSMILTimeElement_init(oElement) {
 
 	// If event-based
 	if (oElement.begin.event) {
-		oTarget	= oElement.begin.element ? oAmple_document.getElementById(oElement.begin.element) : oElement.parentNode;
+		oTarget	= oElement.begin.element ? oAMLDocument_ids[oElement.begin.element] : oElement.parentNode;
 		//
 		fAMLEventTarget_addEventListener(oTarget, oElement.begin.event, function() {
 			oElement.begin.offset ? fSetTimeout(fBegin, oElement.begin.offset) : fBegin();
@@ -118,7 +118,7 @@ function fSMILTimeElement_init(oElement) {
 		oElement.begin.offset ? fSetTimeout(fBegin, oElement.begin.offset) : fBegin();
 
 	if (oElement.end.event) {
-		oTarget	= oElement.end.element ? oAmple_document.getElementById(oElement.begin.element) : oElement.parentNode;
+		oTarget	= oElement.end.element ? oAMLDocument_ids[oElement.end.element] : oElement.parentNode;
 		//
 		fAMLEventTarget_addEventListener(oTarget, oElement.end.event, function() {
 			oElement.end.offset ? fSetTimeout(fEnd, oElement.end.offset) : fEnd();
