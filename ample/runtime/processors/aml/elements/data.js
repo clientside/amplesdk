@@ -115,4 +115,3 @@ cAMLElement_data.handlers["DOMAttrModified"]	= function(oEvent) {
 
 // Register Element
 fAmple_extend(cAMLElement_data);
-
