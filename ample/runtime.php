@@ -66,6 +66,10 @@
 	$aFiles[]	= "runtime/browser.js";
 	$aFiles[]	= "runtime/ample.js";
 
+	// XML Events 1.0
+	$aFiles[]	= "runtime/processors/xmlevents/classes/XMLEventsElement.js";
+	$aFiles[]	= "runtime/processors/xmlevents/elements/listener.js";
+
 	// AML
 	$aFiles[]	= "runtime/processors/aml/classes/cAMLAttr.js";
 	$aFiles[]	= "runtime/processors/aml/classes/cAMLElement.js";

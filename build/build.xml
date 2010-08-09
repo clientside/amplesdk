@@ -183,6 +183,7 @@
 	<target name="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES" unless="skip.ample.runtime.languages">
 		<antcall target="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES_AML" />
 		<antcall target="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES_SMIL" />
+		<antcall target="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES_XMLEVENTS" />
 	</target>
 
 	<target name="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES_XBL" unless="skip.ample.runtime.languages.xbl">
@@ -231,6 +232,16 @@
 				par.js,
 				seq.js,
 				set.js"/>
+		</concat>
+	</target>
+
+	<target name="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES_XMLEVENTS" unless="skip.ample.runtime.languages.xmlevents">
+		<concat destfile="${temp.runtime.dir}/runtime-languages.js" fixlastline="yes" append="yes">
+			<!-- XML Events 1.0 -->
+			<filelist dir="${source.runtime.dir}/processors/xmlevents/classes/" files="
+				XMLEventsElement.js"/>
+			<filelist dir="${source.runtime.dir}/processors/xmlevents/elements/" files="
+				listener.js"/>
 		</concat>
 	</target>
 
