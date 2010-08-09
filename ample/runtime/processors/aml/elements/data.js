@@ -106,7 +106,7 @@ cAMLElement_data.handlers["DOMAttrModified"]	= function(oEvent) {
 				break;
 
 			case "type":
-				throw new AMLException(AMLException.NOT_SUPPORTED_ERR);
+				throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 		}
 	else
 	if (this.attributes["type"] == "application/xml")

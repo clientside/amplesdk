@@ -220,12 +220,18 @@
 	<target name="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES_SMIL" unless="skip.ample.runtime.languages.smil">
 		<concat destfile="${temp.runtime.dir}/runtime-languages.js" fixlastline="yes" append="yes">
 			<!-- SMIL 3.0 -->
-			<filelist dir="${source.runtime.dir}/processors/smil30/" files="
-				smil30.js,
-				smil30-timing.js,
-				smil30-animation.js"/>
-			<!--filelist dir="${source.runtime.dir}/processors/smil30/classes/" files="
-				cAMLTimeEvent.js"/-->
+			<filelist dir="${source.runtime.dir}/processors/smil/classes/" files="
+				SMILElement.js,
+				SMILTimeElement.js,
+				SMILAnimationElement.js"/>
+			<filelist dir="${source.runtime.dir}/processors/smil/elements/" files="
+				animate.js,
+				animateColor.js,
+				animateMotion.js,
+				excl.js,
+				par.js,
+				seq.js,
+				set.js"/>
 		</concat>
 	</target>
 

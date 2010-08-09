@@ -7,16 +7,16 @@
  *
  */
 
-var cAMLTimeEvent	= function() {
+var cSMILTimeEvent	= function() {
 
 };
 
-cAMLTimeEvent.prototype	= new cAMLEvent;
+cSMILTimeEvent.prototype	= new cAMLEvent;
 
-cAMLTimeEvent.prototype.view	= null;
-cAMLTimeEvent.prototype.detail	= null;
+cSMILTimeEvent.prototype.view	= null;
+cSMILTimeEvent.prototype.detail	= null;
 
-cAMLTimeEvent.prototype.initTimeEvent	= function(sType, oView, nDetail) {
+cSMILTimeEvent.prototype.initTimeEvent	= function(sType, oView, nDetail) {
 	this.initEvent(sType, false, false);
 	//
 	this.view	= oView;
