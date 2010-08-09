@@ -357,7 +357,7 @@ function fAML_parseStyleSheet(sCSS, sUri) {
 			sAfter	= '-$1$2$3';
 		// Rewrite text-overflow
 		sCSS	= sCSS
-					.replace(/(?:\s|;)(text-overflow\s*:\s*)(.+)(\n|;)/gi, sBefore + (bPresto ? "o" : bGecko ? "moz" : "webkit") + sAfter);
+					.replace(/(?:\s|;)(text-overflow\s*:\s*)(.+)(\n|;)/gi, sBefore + (bPresto ? 'o' : bGecko ? "moz" : "webkit") + sAfter);
 		//
 		if (!bPresto) {
 			// Rewrite box-shadow

@@ -18,7 +18,7 @@ function fAmple(vArgument1, vArgument2, vArgument3) {
 	var oQuery	= new cAMLQuery;
 	if (arguments.length > 0) {
 		if (typeof vArgument1 == "string" || vArgument1 instanceof cString) {
-			if (vArgument1.substr(0,1) == "<") {
+			if (vArgument1.substr(0,1) == '<') {
 				// XML string
 				var aNameSpaces	= [];
 				for (var sKey in oAmple.namespaces)
@@ -256,7 +256,7 @@ if (!oAmple.namespaces["xmlns:smil"])
 	oAmple.namespaces["xmlns:smil"]	= "http://www.w3.org/2008/SMIL30/";
 //
 function fAmple_resolver(sPrefix) {
-	return oAmple.namespaces["xmlns" + (sPrefix ? ":" + sPrefix : '')] || null;
+	return oAmple.namespaces["xmlns" + (sPrefix ? ':' + sPrefix : '')] || null;
 };
 
 //
