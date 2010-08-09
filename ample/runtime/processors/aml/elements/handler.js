@@ -26,9 +26,5 @@ cAMLElement_handler.handlers["DOMNodeInsertedIntoDocument"]	= function(oEvent) {
 	}
 };
 
-cAMLElement_handler.prototype.$getTag	= function() {
-	return '';
-};
-
 // Register Element
 fAmple_extend(cAMLElement_handler);

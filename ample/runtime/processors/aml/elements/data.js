@@ -112,9 +112,6 @@ cAMLElement_data.handlers["DOMAttrModified"]	= function(oEvent) {
 	if (this.attributes["type"] == "application/xml")
 		this.notify(oEvent.target);
 };
-cAMLElement_data.prototype.$getTag	= function() {
-	return '';
-};
 
 // Register Element
 fAmple_extend(cAMLElement_data);

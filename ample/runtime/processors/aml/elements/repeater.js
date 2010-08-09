@@ -133,10 +133,5 @@ cAMLElement_repeater_resolveValue	= function(sQuery, oData, fResolver) {
 	return oElement && oElement.firstChild ? oElement.firstChild.data : '';
 };
 
-//
-cAMLElement_repeater.prototype.$getTag	= function() {
-	return '';
-};
-
 // Register Element
 fAmple_extend(cAMLElement_repeater);
