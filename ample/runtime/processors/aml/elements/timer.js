@@ -16,19 +16,20 @@ cAMLElement_timer.prototype._timeout	= null;
 
 // Public Methods
 cAMLElement_timer.prototype.start	= function() {
-    var oElement	= this;
+    var oElement	= this,
+    	nValue;
 	// Set interval
-	var nInterval	= fParseInt(this.attributes["interval"]);
-	if (!fIsNaN(nInterval))
+	nValue	= fParseInt(this.attributes["interval"]);
+	if (!fIsNaN(nValue))
 		this._interval	= fSetInterval(function() {
 			cAMLElement_timer_onInterval(oElement);
-		}, nInterval);
+		}, nValue);
 	// Set timeout
-	var nTimeout	= fParseInt(this.attributes["timeout"]);
-	if (!fIsNaN(nTimeout))
+	nValue	= fParseInt(this.attributes["timeout"]);
+	if (!fIsNaN(nValue))
 		this._timeout	= fSetTimeout(function() {
 			cAMLElement_timer_onTimeOut(oElement);
-		}, nTimeout);
+		}, nValue);
 };
 
 cAMLElement_timer.prototype.stop		= function() {
