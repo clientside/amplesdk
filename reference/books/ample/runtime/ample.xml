@@ -16,20 +16,6 @@
 	<examples />
 	<members>
 		<properties>
-			<property name="$model" type="XSModel" readonly="true">
-				<description>
-					<locale>
-						Retrieves a reference to the XML Schema model.
-					</locale>
-				</description>
-			</property>
-			<property name="$time" type="SMILTimeContainer" readonly="true">
-				<description>
-					<locale>
-						Retrieves a reference to the SMIL document time container.
-					</locale>
-				</description>
-			</property>
 			<property name="document" type="AMLDocument" readonly="true">
 				<description>
 					<locale>
