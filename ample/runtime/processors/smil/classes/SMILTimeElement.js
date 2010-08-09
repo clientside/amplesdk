@@ -48,11 +48,11 @@ function fSMILTimeElement_beginElement(oElement) {
 	// Begin children Elements timeline
 	var aChildNodes	= oElement.childNodes;
 	if (aChildNodes.length) {
-		if (oElement instanceof cAMLElement_par)
+		if (oElement instanceof cSMILElement_par)
 			for (var nIndex = 0; nIndex < aChildNodes.length; nIndex++)
 				fSMILTimeElement_beginElement(aChildNodes[nIndex]);
 		else
-		if (oElement instanceof cAMLElement_seq)
+		if (oElement instanceof cSMILElement_seq)
 			fSMILTimeElement_beginElement(aChildNodes[0]);
 	}
 };
@@ -73,7 +73,7 @@ function fSMILTimeElement_endElement(oElement) {
 	// End children Elements timeline
 	var aChildNodes	= oElement.childNodes;
 	if (aChildNodes.length)
-		if (oElement instanceof cAMLElement_par || oElement instanceof cAMLElement_seq)
+		if (oElement instanceof cSMILElement_par || oElement instanceof cSMILElement_seq)
 			for (var nIndex = 0; nIndex < aChildNodes.length; nIndex++)
 				fSMILTimeElement_endElement(aChildNodes[nIndex]);
 
