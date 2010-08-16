@@ -55,7 +55,7 @@ function fSMILAnimationElement_progressAnimation(oElement, nProgress) {
 
 	//
 	var aValues		= oElement.values,
-		nValues		= aValues.length;
+		nValues		= aValues.length,
 		nSegment	= cMath.floor(nProgress * aValues.length),
 		oValue		= aValues[nSegment];
 	if (oElement.calcMode == "discrete" || oElement.calcMode == "paced") {

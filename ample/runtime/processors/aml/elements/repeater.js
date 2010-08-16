@@ -112,14 +112,14 @@ function cAMLElement_repeater_processNode(oElement, oData, fResolver) {
 			case cAMLNode.ELEMENT_NODE:
 				for (sName in oNode.attributes)
 					if (oNode.attributes.hasOwnProperty(sName) && oNode.attributes[sName].match(rAMLElement_repeater_regexp))
-						oNode.attributes[sName]	= oNode.attributes[sName].replace(cRegExp.$1, cAMLElement_repeater_resolveValue(cRegExp.$2, oData, fResolver));
+						oNode.attributes[sName]	= oNode.attributes[sName].replace(cRegExp.$1, fAMLElement_repeater_resolveValue(cRegExp.$2, oData, fResolver));
 				cAMLElement_repeater_processNode(oNode, oData, fResolver);
 				break;
 
 			case cAMLNode.TEXT_NODE:
 			case cAMLNode.CDATA_SECTION:
 				if (oNode.data.match(rAMLElement_repeater_regexp)) {
-					oNode.data	= oNode.data.replace(cRegExp.$1, cAMLElement_repeater_resolveValue(cRegExp.$2, oData, fResolver));
+					oNode.data	= oNode.data.replace(cRegExp.$1, fAMLElement_repeater_resolveValue(cRegExp.$2, oData, fResolver));
 					oNode.nodeValue	= oNode.data;
 					oNode.length= oNode.data.length;
 				}
@@ -128,7 +128,7 @@ function cAMLElement_repeater_processNode(oElement, oData, fResolver) {
 	return oElement;
 };
 
-cAMLElement_repeater_resolveValue	= function(sQuery, oData, fResolver) {
+function fAMLElement_repeater_resolveValue(sQuery, oData, fResolver) {
 	var oElement	= oData.querySelector(sQuery, fResolver);
 	return oElement && oElement.firstChild ? oElement.firstChild.data : '';
 };

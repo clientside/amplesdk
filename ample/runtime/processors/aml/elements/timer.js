@@ -22,13 +22,13 @@ cAMLElement_timer.prototype.start	= function() {
 	nValue	= fParseInt(this.attributes["interval"]);
 	if (!fIsNaN(nValue))
 		this._interval	= fSetInterval(function() {
-			cAMLElement_timer_onInterval(oElement);
+			fAMLElement_timer_onInterval(oElement);
 		}, nValue);
 	// Set timeout
 	nValue	= fParseInt(this.attributes["timeout"]);
 	if (!fIsNaN(nValue))
 		this._timeout	= fSetTimeout(function() {
-			cAMLElement_timer_onTimeOut(oElement);
+			fAMLElement_timer_onTimeout(oElement);
 		}, nValue);
 };
 
@@ -40,13 +40,13 @@ cAMLElement_timer.prototype.stop		= function() {
 };
 
 // Static Methods
-cAMLElement_timer_onInterval	= function(oElement) {
+function fAMLElement_timer_onInterval(oElement) {
 	var oEvent	= oElement.ownerDocument.createEvent("Events");
 	oEvent.initEvent("interval", false, false);
 	oElement.dispatchEvent(oEvent);
 };
 
-cAMLElement_timer_onTimeOut	= function(oElement) {
+function fAMLElement_timer_onTimeout(oElement) {
 	var oEvent	= oElement.ownerDocument.createEvent("Events");
 	oEvent.initEvent("timeout", false, false);
 	oElement.dispatchEvent(oEvent);
