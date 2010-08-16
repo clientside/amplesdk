@@ -32,7 +32,8 @@ cAMLElement_data.prototype.load	= function(sUrl, bAsync) {
 	var oRequest	= new cXMLHttpRequest;
 	var oElement	= this;
 	function fOnLoad() {
-		if (oRequest.responseXML && oRequest.responseXML.documentElement && oRequest.responseXML.documentElement.localName != "parsererror") {
+		var oDocument	= fBrowser_getResponseDocument(oRequest);
+		if (oDocument) {
 			// process response
 			oElement.appendChild(oElement.ownerDocument.importNode(oRequest.responseXML.documentElement, true));
 

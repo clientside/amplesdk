@@ -36,7 +36,7 @@ function fAmple(vArgument1, vArgument2, vArgument3) {
 														'\n' +
 //<-Debug
 														'</' + "script" + '>', "text/xml");
-				if (!oDocument || ((oUADocument.namespaces && oDocument.parseError != 0) || !oDocument.documentElement || oDocument.getElementsByTagName("parsererror").length))
+				if (!oDocument || ((bTrident && oDocument.parseError != 0) || !oDocument.documentElement || oDocument.getElementsByTagName("parsererror").length))
 					throw new cAMLException(cAMLException.SYNTAX_ERR, fAmple.caller);
 				else
 					for (var nIndex = 0, aElements = oDocument.documentElement.childNodes; nIndex < aElements.length; nIndex++)

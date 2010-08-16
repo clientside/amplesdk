@@ -709,9 +709,8 @@ function fBrowser_getResponseDocument(oRequest) {
 	if (bTrident && sText && oDocument && !oDocument.documentElement && oRequest.getResponseHeader("Content-Type").match(/[^\/]+\/[^\+]+\+xml/))
 		oDocument	= new cDOMParser().parseFromString(sText, "text/xml");
 	// Check if there is no error in document
-	if (oDocument)
-		if ((bTrident && oDocument.parseError != 0) || !oDocument.documentElement || (oDocument.documentElement && oDocument.documentElement.tagName == "parsererror"))
-			return null;
+	if (!oDocument || ((bTrident && oDocument.parseError != 0) || !oDocument.documentElement || oDocument.getElementsByTagName("parsererror").length))
+		return null;
 	return oDocument;
 };
 
