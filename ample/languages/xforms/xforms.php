@@ -1,6 +1,6 @@
 <?
     $aFiles		= array();
-    $aFiles[]	= "classes/cXFORMS11Element.js";
+    $aFiles[]	= "classes/cXFElement.js";
 
 	// elements
 	// 3.3 XForms Core Module
