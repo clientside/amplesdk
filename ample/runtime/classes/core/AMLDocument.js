@@ -331,6 +331,7 @@ function fAMLDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse
 		case cAMLNode.ELEMENT_NODE:
 			var sNameSpaceURI	= oElementDOM.namespaceURI || null,
 				sLocalName		= oElementDOM.localName || oElementDOM.baseName;
+			// XInclude 1.0
 			if (sNameSpaceURI == "http://www.w3.org/2001/XInclude") {
 				if (sLocalName == "include") {
 					var oRequest	= new cXMLHttpRequest,
@@ -355,9 +356,10 @@ function fAMLDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse
 				}
 //->Debug
 				else
-					fUtilities_warn(sAML_UNKNOWN_ELEMENT_NS_WRN, [oElementDOM.tagName, oElementDOM.namespaceURI]);
+					fUtilities_warn(sAML_UNKNOWN_ELEMENT_NS_WRN, [oElementDOM.nodeName, sNameSpaceURI]);
 //<-Debug
 			}
+			// Other namespaces
 			else {
 				// Create element (note: in IE, namespaceURI is empty string if not specified, hence "oElementDOM.namespaceURI || null")
 				var oElement	= fAMLDocument_createElementNS(oDocument, sNameSpaceURI, oElementDOM.nodeName),
@@ -388,7 +390,7 @@ function fAMLDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse
 //->Debug
 				else
 				if (!(sNameSpaceURI == "http://www.w3.org/1999/xhtml" && sLocalName == "script" && oAttributes["type"] == "application/ample+xml"))
-					fUtilities_warn(sAML_UNKNOWN_ELEMENT_NS_WRN, [oElementDOM.tagName, sNameSpaceURI]);
+					fUtilities_warn(sAML_UNKNOWN_ELEMENT_NS_WRN, [oElementDOM.nodeName, sNameSpaceURI]);
 //<-Debug
 
 				// and append it to parent (if there is one)
