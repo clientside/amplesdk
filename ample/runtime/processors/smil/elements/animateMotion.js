@@ -13,7 +13,6 @@ cSMILElement_animateMotion.prototype	= new cSMILAnimationElement("animateMotion"
 // Class Event Handlers
 cSMILElement_animateMotion.handlers	= {};
 cSMILElement_animateMotion.handlers["DOMNodeInsertedIntoDocument"]	= function(oEvent) {
-	fSMILTimeElement_init(this);
 	fSMILAnimationElement_init(this);
 };
 

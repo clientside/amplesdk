@@ -13,7 +13,6 @@ cSMILElement_animateColor.prototype	= new cSMILAnimationElement("animateColor");
 // Class Event Handlers
 cSMILElement_animateColor.handlers	= {};
 cSMILElement_animateColor.handlers["DOMNodeInsertedIntoDocument"]	= function(oEvent) {
-	fSMILTimeElement_init(this);
 	fSMILAnimationElement_init(this);
 };
 

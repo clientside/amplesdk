@@ -13,6 +13,9 @@ var cSMILAnimationElement	= function() {
 cSMILAnimationElement.prototype	= new cSMILTimeElement("#element-animation");
 
 function fSMILAnimationElement_init(oElement) {
+	// Call "parent" method
+	fSMILTimeElement_init(oElement);
+
 	// Target
 	oElement.targetElement	= oElement.attributes["targetElement"];
 	oElement.attributeName	= oElement.attributes["attributeName"];
