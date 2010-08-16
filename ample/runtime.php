@@ -97,12 +97,8 @@
 	$aFiles[]	= "runtime/processors/smil/elements/set.js";
 /*
 	// Processors
+	// REX 1.0
 //	$aFiles[]	= "runtime/processors/rex10/rex10.js";
-	// SMIL 3.0
-	$aFiles[]	= "runtime/processors/smil30/smil30.js";
-	$aFiles[]	= "runtime/processors/smil30/smil30-timing.js";
-	$aFiles[]	= "runtime/processors/smil30/smil30-animation.js";
-//	$aFiles[]	= "runtime/processors/smil30/classes/cAMLTimeEvent.js";
 	// XBL 2.0
 //	$aFiles[]	= "runtime/processors/xbl20/xbl20.js";
 	// XML Schema 1.1
