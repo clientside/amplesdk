@@ -223,7 +223,8 @@
 			<filelist dir="${source.runtime.dir}/processors/smil/classes/" files="
 				SMILElement.js,
 				SMILTimeElement.js,
-				SMILAnimationElement.js"/>
+				SMILAnimationElement.js,
+				SMILTimeEvent.js"/>
 			<filelist dir="${source.runtime.dir}/processors/smil/elements/" files="
 				animate.js,
 				animateColor.js,

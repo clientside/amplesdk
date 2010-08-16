@@ -20,5 +20,5 @@ cSMILTimeEvent.prototype.initTimeEvent	= function(sType, oView, nDetail) {
 	this.initEvent(sType, false, false);
 	//
 	this.view	= oView;
-	this.detail	= oDetail;
+	this.detail	= nDetail;
 };

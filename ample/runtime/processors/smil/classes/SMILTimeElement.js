@@ -55,6 +55,11 @@ function fSMILTimeElement_beginElement(oElement) {
 		if (oElement instanceof cSMILElement_seq)
 			fSMILTimeElement_beginElement(aChildNodes[0]);
 	}
+
+	// Dispatch end event
+	var oEvent	= new cSMILTimeEvent;
+	oEvent.initEvent("begin", window, null);
+	fAMLNode_dispatchEvent(oElement, oEvent);
 };
 
 function fSMILTimeElement_endElement(oElement) {
@@ -80,6 +85,11 @@ function fSMILTimeElement_endElement(oElement) {
 	// End Animation
 	if (oElement instanceof cSMILAnimationElement)
 		fSMILAnimationElement_endAnimation(oElement);
+
+	// Dispatch end event
+	var oEvent	= new cSMILTimeEvent;
+	oEvent.initEvent("end", window, null);
+	fAMLNode_dispatchEvent(oElement, oEvent);
 };
 
 function fSMILTimeElement_init(oElement) {
