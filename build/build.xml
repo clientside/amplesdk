@@ -189,16 +189,18 @@
 	<target name="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES_XBL" unless="skip.ample.runtime.languages.xbl">
 		<concat destfile="${temp.runtime.dir}/runtime-languages.js" fixlastline="yes" append="yes">
 			<!-- XBL 2.0 -->
-			<filelist dir="${source.runtime.dir}/processors/xbl20/" files="
-				xbl20.js"/>
+			<filelist dir="${source.runtime.dir}/processors/xbl/classes/" files="
+				XBLElement.js,
+				XBLImplementation.js,
+				XBLImplementationsList.js"/>
 		</concat>
 	</target>
 
 	<target name="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES_REX" unless="skip.ample.runtime.languages.rex">
 		<concat destfile="${temp.runtime.dir}/runtime-languages.js" fixlastline="yes" append="yes">
 			<!-- REX 1.0 -->
-			<filelist dir="${source.runtime.dir}/processors/rex10/" files="
-				rex10.js"/>
+			<filelist dir="${source.runtime.dir}/processors/rex/classes/" files="
+				REXElement.js"/>
 		</concat>
 	</target>
 
@@ -584,36 +586,6 @@
 				<include name="media/**"/>
 			</fileset>
 		</copy>
-	</target>
-
-	<target name="BUILD_AMPLE_LANGUAGES_XMLSCHEMA" unless="skip.ample.languages.xmlschema">
-		<property name="source.xmlschema.dir" value="${source.languages.dir}/xmlschema/" />
-		<property name="target.xmlschema.dir" value="${target.languages.dir}/xmlschema/" />
-
-		<echo message="Merging into: ${temp.languages.dir}/xmlschema-raw.js" level="info"/>
-		<concat destfile="${temp.languages.dir}/xmlschema-raw.js" fixlastline="yes">
-			<fileset dir="${source.xmlschema.dir}/classes/">
-				<include name="*.js" />
-			</fileset>
-			<fileset dir="${source.xmlschema.dir}/elements/">
-				<include name="*.js" />
-			</fileset>
-		</concat>
-
-		<echo message="Wrapping into: ${temp.languages.dir}/xmlschema-raw-wrapped.js" level="info"/>
-		<exec executable="${executable.php}" failonerror="true">
-			<arg value="resources/compiler/js.php" />
-			<arg value="${temp.languages.dir}/xmlschema-raw.js" />
-			<arg value="${temp.languages.dir}/xmlschema-raw-wrapped.js" />
-			<arg value="--strip-Source" />
-		</exec>
-
-		<!-- package -->
-		<mkdir dir="${target.xmlschema.dir}" />
-		<concat destfile="${target.xmlschema.dir}/xmlschema.js" fixlastline="yes">
-			<fileset file="${copying.js}" />
-			<fileset file="${temp.languages.dir}/xmlschema-raw-wrapped.js" />
-		</concat>
 	</target>
 
 	<!-- Examples -->
