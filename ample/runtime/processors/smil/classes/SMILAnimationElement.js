@@ -55,8 +55,8 @@ function fSMILAnimationElement_progressAnimation(oElement, nProgress) {
 
 	//
 	var aValues		= oElement.values,
-		nValues		= aValues.length,
-		nSegment	= cMath.floor(nProgress * aValues.length),
+		nLength		= aValues.length,
+		nSegment	= cMath.floor(nProgress * nLength),
 		oValue		= aValues[nSegment];
 	if (oElement.calcMode == "discrete" || oElement.calcMode == "paced") {
 		if (oElement.calcMode == "paced")
@@ -65,11 +65,11 @@ function fSMILAnimationElement_progressAnimation(oElement, nProgress) {
 	}
 	else {	// linear = default
 		var oFrom	= oElement.from ? oElement.from : oElement.original;
-		if (nValues) {
-			nSegment	= cMath.floor(nProgress * (aValues.length - 1));
+		if (nLength) {
+			nSegment	= cMath.floor(nProgress * (nLength - 1));
 			oValue		= aValues[nSegment];
-			if (nSegment < nValues - 1)
-				oValue	= fAmple_animate_sumValue(oValue, fAmple_animate_mulValue(fAmple_animate_subValue(aValues[nSegment + 1], oValue), (nProgress - nSegment / (nValues - 1)) * (nValues - 1)));
+			if (nSegment < nLength - 1)
+				oValue	= fAmple_animate_sumValue(oValue, fAmple_animate_mulValue(fAmple_animate_subValue(aValues[nSegment + 1], oValue), (nProgress - nSegment / (nLength - 1)) * (nLength - 1)));
 		}
 		else
 			oValue	= fAmple_animate_sumValue(oFrom, fAmple_animate_mulValue(oElement.to ? fAmple_animate_subValue(oElement.to, oFrom) : oElement.by, nProgress));
