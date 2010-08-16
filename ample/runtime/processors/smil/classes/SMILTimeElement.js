@@ -58,7 +58,7 @@ function fSMILTimeElement_beginElement(oElement) {
 
 	// Dispatch end event
 	var oEvent	= new cSMILTimeEvent;
-	oEvent.initEvent("begin", window, null);
+	oEvent.initTimeEvent("begin", window, null);
 	fAMLNode_dispatchEvent(oElement, oEvent);
 };
 
@@ -88,7 +88,7 @@ function fSMILTimeElement_endElement(oElement) {
 
 	// Dispatch end event
 	var oEvent	= new cSMILTimeEvent;
-	oEvent.initEvent("end", window, null);
+	oEvent.initTimeEvent("end", window, null);
 	fAMLNode_dispatchEvent(oElement, oEvent);
 };
 
