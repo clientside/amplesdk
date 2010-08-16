@@ -37,7 +37,7 @@ function fAmple(vArgument1, vArgument2, vArgument3) {
 //<-Debug
 														'</' + "script" + '>', "text/xml");
 				if (!oDocument || ((oUADocument.namespaces && oDocument.parseError != 0) || !oDocument.documentElement || oDocument.getElementsByTagName("parsererror").length))
-					throw new cAMLException(cAMLException.SYNTAX_ERR, oAmple.caller);
+					throw new cAMLException(cAMLException.SYNTAX_ERR, fAmple.caller);
 				else
 					for (var nIndex = 0, aElements = oDocument.documentElement.childNodes; nIndex < aElements.length; nIndex++)
 						if (aElements[nIndex].nodeType == cAMLNode.ELEMENT_NODE)
@@ -48,7 +48,7 @@ function fAmple(vArgument1, vArgument2, vArgument3) {
 				// Context
 				if (arguments.length > 1) {
 					if (!(vArgument2 instanceof cAMLNode))
-						throw new cAMLException(cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR, oAmple.caller
+						throw new cAMLException(cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR, fAmple.caller
 //->Debug
 							, ['2' + oGuard_endings[1], "context", "ample", "AMLNode"]
 //<-Debug
@@ -59,7 +59,7 @@ function fAmple(vArgument1, vArgument2, vArgument3) {
 				// Resolver
 				if (arguments.length > 2 && vArgument3 !== null) {
 					if (!(vArgument3 instanceof cFunction))
-						throw new cAMLException(cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR, oAmple.caller
+						throw new cAMLException(cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR, fAmple.caller
 //->Debug
 							, ['3' + oGuard_endings[2], "query", "ample", "Function"]
 //<-Debug
@@ -78,7 +78,7 @@ function fAmple(vArgument1, vArgument2, vArgument3) {
 				}
 				catch (oException) {
 					// Re-point caller property and re-throw error
-					oException.caller	= oAmple.caller;
+					oException.caller	= fAmple.caller;
 					throw oException;
 				}
 				for (var nIndex = 0; nIndex < aResult.length; nIndex++)
@@ -94,7 +94,7 @@ function fAmple(vArgument1, vArgument2, vArgument3) {
 				oQuery[oQuery.length++]	= this;
 			});
 		else
-			throw new cAMLException(cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR, oAmple.caller
+			throw new cAMLException(cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR, fAmple.caller
 //->Debug
 				, ['1' + oGuard_endings[0], "query", "ample", "String" + '", "' + "AMLQuery" + '" or "' + "AMLElement"]
 //<-Debug
