@@ -290,6 +290,7 @@
 		<antcall target="BUILD_AMPLE_LANGUAGES_XUL" />
 		<antcall target="BUILD_AMPLE_LANGUAGES_XHTML" />
 		<antcall target="BUILD_AMPLE_LANGUAGES_SVG" />
+		<antcall target="BUILD_AMPLE_LANGUAGES_XFORMS" />
 		<antcall target="BUILD_AMPLE_LANGUAGES_CHART" />
 		<antcall target="BUILD_AMPLE_LANGUAGES_MOBILE" />
 
@@ -530,6 +531,36 @@
 		<concat destfile="${target.svg.dir}/svg.js" fixlastline="yes">
 			<fileset file="${copying.js}" />
 			<fileset file="${temp.languages.dir}/svg-raw-wrapped.js" />
+		</concat>
+	</target>
+
+	<target name="BUILD_AMPLE_LANGUAGES_XFORMS" unless="skip.ample.languages.xforms">
+		<property name="source.xforms.dir" value="${source.languages.dir}/xforms/" />
+		<property name="target.xforms.dir" value="${target.languages.dir}/xforms/" />
+
+		<echo message="Merging into: ${temp.languages.dir}/xforms-raw.js" level="info"/>
+		<concat destfile="${temp.languages.dir}/xforms-raw.js" fixlastline="yes">
+			<fileset dir="${source.xforms.dir}/classes/">
+				<include name="*.js" />
+			</fileset>
+			<fileset dir="${source.xforms.dir}/elements/">
+				<include name="*.js" />
+			</fileset>
+		</concat>
+
+		<echo message="Wrapping into: ${temp.languages.dir}/xforms-raw-wrapped.js" level="info"/>
+		<exec executable="${executable.php}" failonerror="true">
+			<arg value="resources/compiler/js.php" />
+			<arg value="${temp.languages.dir}/xforms-raw.js" />
+			<arg value="${temp.languages.dir}/xforms-raw-wrapped.js" />
+			<arg value="--strip-Source" />
+		</exec>
+
+		<!-- package -->
+		<mkdir dir="${target.xforms.dir}" />
+		<concat destfile="${target.xforms.dir}/xforms.js" fixlastline="yes">
+			<fileset file="${copying.js}" />
+			<fileset file="${temp.languages.dir}/xforms-raw-wrapped.js" />
 		</concat>
 	</target>
 
