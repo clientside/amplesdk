@@ -59,6 +59,26 @@ cAMLQuery.prototype.text	= function(sValue) {
 	}
 };
 
+cAMLQuery.prototype.html	= function() {
+	// Validate API call
+	fGuard(arguments, [
+		["value",	cObject, true]
+	]);
+
+	if (arguments.length > 0) {
+		fAMLQuery_each(this, function() {
+
+		});
+	}
+	else
+	if (this.length) {
+		var aHtml	= [];
+		for (var oNode = this[0].firstChild; oNode; oNode = oNode.nextSibling)
+			aHtml.push(oNode.toXML());
+		return aHtml.join('');
+	}
+};
+
 // Structure
 //
 cAMLQuery.prototype.appendTo	= function(vArgument1) {
