@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Example: AML Templating</title>
+		<script type="text/javascript" src="../../../ample/runtime.js"></script>
+		<script type="text/javascript" src="../../../ample/languages/xhtml/xhtml.js"></script>
+	</head>
+	<body>
+
+<script type="application/ample+xml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:d="http://www.amplesdk.com/ns/data"
+    xmlns:a="http://www.amplesdk.com/ns/aml">
+
+    <a:data id="xml_inline" type="application/xml" xmlns="http://www.example.org/ns">
+        <entry>
+            <name>Sam</name>
+            <age>31</age>
+        </entry>
+        <entry>
+            <name>Ramon</name>
+            <age>22</age>
+        </entry>
+        <entry>
+            <name>Cindy</name>
+            <age>24</age>
+        </entry>
+        <entry>
+            <name>Remy</name>
+            <age>45</age>
+        </entry>
+    </a:data>
+
+    <table border="1">
+        <tbody>
+            <tr>
+                <td colspan="2">List of people</td>
+            </tr>
+            <a:repeater data="xml_inline" select="my|entry" xmlns:my="http://www.example.org/ns">
+                <tr>
+                    <td>{my|name}</td>
+                    <td>born {my|age} years ago...</td>
+                </tr>
+            </a:repeater>
+        </tbody>
+    </table>
+</script>
+
+	</body>
+</html>
