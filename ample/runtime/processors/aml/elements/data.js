@@ -35,7 +35,7 @@ cAMLElement_data.prototype.load	= function(sUrl, bAsync) {
 		var oDocument	= fBrowser_getResponseDocument(oRequest);
 		if (oDocument) {
 			// process response
-			fAMLElement_appendChild(oElement, fAMLDocument_importNode(oElement.ownerDocument, oRequest.responseXML.documentElement, true));
+			fAMLElement_appendChild(oElement, fAMLDocument_importNode(oElement.ownerDocument, oDocument.documentElement, true));
 
 			// Dispatch load event
 			var oEvent	= new cAMLEvent;
