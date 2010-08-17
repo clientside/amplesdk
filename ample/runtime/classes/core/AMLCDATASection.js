@@ -11,4 +11,4 @@ var cAMLCDATASection	= function(){};
 
 cAMLCDATASection.prototype	= new cAMLText;
 cAMLCDATASection.prototype.nodeType	= cAMLNode.CDATA_SECTION_NODE;
-cAMLCDATASection.prototype.nodeName	= "#cdata";
+cAMLCDATASection.prototype.nodeName	= "#cdata-section";
