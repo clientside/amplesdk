@@ -28,7 +28,7 @@ cAMLConfiguration.prototype.setParameter	= function(sName, vValue) {
 	fAMLConfiguration_setParameter(this, sName, vValue);
 };
 
-function fAMLConfiguration_getParameter(oConfiguration, sName, vValue) {
+function fAMLConfiguration_getParameter(oConfiguration, sName) {
 	return oAMLConfiguration_values.hasOwnProperty(sName) ? oAMLConfiguration_values[sName] : null;
 };
 
@@ -38,7 +38,7 @@ cAMLConfiguration.prototype.getParameter	= function(sName) {
 		["name",	cString]
 	]);
 
-	return fAMLConfiguration_getParameter(this, sName, vValue);
+	return fAMLConfiguration_getParameter(this, sName);
 };
 
 cAMLConfiguration.prototype.canSetParameter	= function(sName, vValue) {
