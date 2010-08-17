@@ -12,6 +12,12 @@ var cAMLConfiguration	= function() {
 };
 cAMLConfiguration.prototype.parameterNames	= null;
 
+function fAMLConfiguration_setParameter(oConfiguration, sName, vValue) {
+	if (!oConfiguration.parameterNames.contains(sName))
+		oConfiguration.parameterNames.$add(sName);
+	oAMLConfiguration_values[sName]	= vValue;
+};
+
 cAMLConfiguration.prototype.setParameter	= function(sName, vValue) {
 	// Validate arguments
 	fGuard(arguments, [
@@ -19,9 +25,11 @@ cAMLConfiguration.prototype.setParameter	= function(sName, vValue) {
 		["value",	cObject,	false, true]
 	]);
 
-	if (!this.parameterNames.contains(sName))
-		this.parameterNames.$add(sName);
-	oAMLConfiguration_values[sName]	= vValue;
+	fAMLConfiguration_setParameter(this, sName, vValue);
+};
+
+function fAMLConfiguration_getParameter(oConfiguration, sName, vValue) {
+	return oAMLConfiguration_values.hasOwnProperty(sName) ? oAMLConfiguration_values[sName] : null;
 };
 
 cAMLConfiguration.prototype.getParameter	= function(sName) {
@@ -30,7 +38,7 @@ cAMLConfiguration.prototype.getParameter	= function(sName) {
 		["name",	cString]
 	]);
 
-	return oAMLConfiguration_values.hasOwnProperty(sName) ? oAMLConfiguration_values[sName] : null;
+	return fAMLConfiguration_getParameter(this, sName, vValue);
 };
 
 cAMLConfiguration.prototype.canSetParameter	= function(sName, vValue) {

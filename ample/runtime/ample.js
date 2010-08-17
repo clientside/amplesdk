@@ -190,14 +190,14 @@ oAmple.config	= function(sName, oValue) {
 	var sPrefix	= "ample" + '-';
 	if (arguments.length > 1) {
 		if (sName != "version")
-			oAmple_document.domConfig.setParameter(sPrefix + sName, oValue);
+			fAMLConfiguration_setParameter(oAmple_document.domConfig, sPrefix + sName, oValue);
 //->Debug
 		else
 			fUtilities_warn(sAML_CONFIGURATION_READONLY_WRN, [sName]);
 //<-Debug
 	}
 	else
-		return oAmple_document.domConfig.getParameter(sPrefix + sName);
+		return fAMLConfiguration_getParameter(oAmple_document.domConfig, sPrefix + sName);
 };
 
 // Bind shortcut
