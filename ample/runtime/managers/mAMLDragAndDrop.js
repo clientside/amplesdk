@@ -116,7 +116,7 @@ function fAMLDragAndDrop_onMouseUp(oEvent)
 	    oEventDragEnd.$pseudoTarget	= oEvent.$pseudoTarget;
 	    fAMLNode_dispatchEvent(oAMLDragAndDrop_dragSource, oEventDragEnd);
 
-	    var bDefaultPrevented	= oEvent.defaultPrevented || oEvent.button/* || oEventDragEnd.defaultPrevented*/,
+	    var bDefaultPrevented	= oEvent.defaultPrevented || oEvent.button || oEventDragEnd.defaultPrevented,
 	    	bPlay	= oAMLConfiguration_values["ample-enable-animations"] &&(bDefaultPrevented || oAMLDragAndDrop_dataTransfer.dropEffect == "move" || oAMLDragAndDrop_dataTransfer.dropEffect == "copy");
 	    if (bPlay) {
 		    var sLeft	= oElementDOM.style.left,
