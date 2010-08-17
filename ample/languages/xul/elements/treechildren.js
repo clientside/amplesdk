@@ -49,7 +49,7 @@ cXULElement_treechildren.prototype._refresh	= function(aStack, nPrimaryCol) {
         }
 
         // Toc
-        if (oItem.getAttribute("container") == "true") {
+        if (oItem.attributes["container"] == "true") {
             // Step In
             if (oItem.children)
 	            this._refresh(aStack.concat(oItem.children), nPrimaryCol);
@@ -68,7 +68,7 @@ cXULElement_treechildren.handlers	= {
 				case "hidden":
 					for (var nIndex = 0; nIndex < this.items.length; nIndex++) {
 						this.items[nIndex].setAttribute("hidden", oEvent.newValue);
-						if (this.items[nIndex].children && this.items[nIndex].getAttribute("open") != "false")
+						if (this.items[nIndex].children && this.items[nIndex].attributes["open"] != "false")
 							this.items[nIndex].children.setAttribute("hidden", oEvent.newValue);
 					}
 					break;

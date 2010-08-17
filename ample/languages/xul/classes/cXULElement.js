@@ -99,7 +99,7 @@ cXULElement.prototype.doCommand		= function()
 
 cXULElement.prototype.$isAccessible	= function()
 {
-	return this.getAttribute("disabled") != "true";
+	return this.attributes["disabled"] != "true";
 };
 
 cXULElement.prototype.reflow   = function()
@@ -124,7 +124,7 @@ cXULElement.prototype.reflow   = function()
             if (oElement.namespaceURI == this.namespaceURI && oElement.viewType != cXULElement.VIEW_TYPE_VIRTUAL)
             {
                 nElements++;
-                if (oElement.hasAttribute("flex") && !isNaN(oElement.attributes["flex"]))
+                if ("flex" in oElement.attributes && !isNaN(oElement.attributes["flex"]))
                     nFlex  += oElement.attributes["flex"] * 1;
             }
         }
