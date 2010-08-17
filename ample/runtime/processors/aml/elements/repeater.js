@@ -82,19 +82,19 @@ cAMLElement_repeater.prototype.repeat	= function() {
 		aElements	= this.parentNode.childNodes;
 		for (nIndex = 0; oElement = aElements[nIndex]; nIndex++)
 			if (oElement.dataIndex)
-				oElement.parentNode.removeChild(oElement) && nIndex--;
+				fAMLElement_removeChild(oElement.parentNode, oElement) && nIndex--;
 
 		// Generate new content
 		var oContext	= this,
 			oContextCache	= {},
 			fResolver	= function (sPrefix) {
-				return sPrefix in oContextCache ? oContextCache[sPrefix] : oContextCache[sPrefix] = oContext.lookupNamespaceURI(sPrefix);
+				return sPrefix in oContextCache ? oContextCache[sPrefix] : oContextCache[sPrefix] = fAMLNode_lookupNamespaceURI(oContext, sPrefix);
 			};
-		aElements	= this.data.querySelectorAll(this.attributes["select"] || '', fResolver);
+		aElements	= fAMLSelector_query([this.data], this.attributes["select"] || '', fResolver);
 		for (nIndex = 0; nIndex < aElements.length; nIndex++)
-			this.parentNode.insertBefore(
+			fAMLElement_insertBefore(this.parentNode,
 				cAMLElement_repeater_processNode(
-					this.firstChild.cloneNode(true),
+					fAMLElement_cloneNode(this.firstChild, true),
 					aElements[nIndex],
 					fResolver),
 				this).dataIndex	= nIndex + 1;
@@ -129,7 +129,7 @@ function cAMLElement_repeater_processNode(oElement, oData, fResolver) {
 };
 
 function fAMLElement_repeater_resolveValue(sQuery, oData, fResolver) {
-	var oElement	= oData.querySelector(sQuery, fResolver);
+	var oElement	= fAMLSelector_query([oData], sQuery, fResolver, true)[0];
 	return oElement && oElement.firstChild ? oElement.firstChild.data : '';
 };
 

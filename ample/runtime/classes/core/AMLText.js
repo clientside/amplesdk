@@ -28,7 +28,7 @@ cAMLText.prototype.splitText	= function(nOffset)
 	if (nOffset <= this.length && nOffset >= 0)
 	{
 		var sData	= fAMLCharacterData_substringData(this, nOffset, this.length);
-		fAMLElement_insertBefore(this.parentNode, this.ownerDocument.createTextNode(sData), this);
+		fAMLElement_insertBefore(this.parentNode, fAMLDocument_createTextNode(this.ownerDocument, sData), this);
 
 		var sValueOld	= this.data;
 		this.data	= sData;
@@ -115,7 +115,7 @@ cAMLText.prototype.replaceWholeText	= function(sContent) {
 
 cAMLText.prototype.cloneNode	= function(bDeep)
 {
-	return this.ownerDocument.createTextNode(this.data);
+	return fAMLDocument_createTextNode(this.ownerDocument, this.data);
 };
 
 cAMLText.prototype.$getTag	= function()

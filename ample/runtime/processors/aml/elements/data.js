@@ -20,13 +20,13 @@ cAMLElement_data.prototype.load	= function(sUrl, bAsync) {
 	// Clean up content
 	if (this.firstChild) {
 		// Dispatch unload event
-		var oEvent	= this.ownerDocument.createEvent("Events");
+		var oEvent	= new cAMLEvent;
 		oEvent.initEvent("unload", false, false);
-		this.dispatchEvent(oEvent);
+		fAMLNode_dispatchEvent(this, oEvent);
 
 		// Clear document
 		while (this.firstChild)
-			this.removeChild(this.firstChild);
+			fAMLElement_removeChild(this, this.firstChild);
 	}
 
 	var oRequest	= new cXMLHttpRequest;
@@ -35,18 +35,18 @@ cAMLElement_data.prototype.load	= function(sUrl, bAsync) {
 		var oDocument	= fBrowser_getResponseDocument(oRequest);
 		if (oDocument) {
 			// process response
-			oElement.appendChild(oElement.ownerDocument.importNode(oRequest.responseXML.documentElement, true));
+			fAMLElement_appendChild(oElement, fAMLDocument_importNode(oElement.ownerDocument, oRequest.responseXML.documentElement, true));
 
 			// Dispatch load event
-			var oEvent	= oElement.ownerDocument.createEvent("Events");
+			var oEvent	= new cAMLEvent;
 			oEvent.initEvent("load", false, false);
-			oElement.dispatchEvent(oEvent);
+			fAMLNode_dispatchEvent(oElement, oEvent);
 		}
 		else {
 			// Dispatch error event
-			var oEvent	= oElement.ownerDocument.createEvent("Events");
+			var oEvent	= new cAMLEvent;
 			oEvent.initEvent("error", true, false);
-			oElement.dispatchEvent(oEvent);
+			fAMLNode_dispatchEvent(oElement, oEvent);
 		}
 	};
 

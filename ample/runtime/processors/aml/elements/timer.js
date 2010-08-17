@@ -41,15 +41,15 @@ cAMLElement_timer.prototype.stop		= function() {
 
 // Static Methods
 function fAMLElement_timer_onInterval(oElement) {
-	var oEvent	= oElement.ownerDocument.createEvent("Events");
+	var oEvent	= new cAMLEvent;
 	oEvent.initEvent("interval", false, false);
-	oElement.dispatchEvent(oEvent);
+	fAMLNode_dispatchEvent(oElement, oEvent);
 };
 
 function fAMLElement_timer_onTimeout(oElement) {
-	var oEvent	= oElement.ownerDocument.createEvent("Events");
+	var oEvent	= new cAMLEvent;
 	oEvent.initEvent("timeout", false, false);
-	oElement.dispatchEvent(oEvent);
+	fAMLNode_dispatchEvent(oElement, oEvent);
 };
 
 // Class Event Handlers

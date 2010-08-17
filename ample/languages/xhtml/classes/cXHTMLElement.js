@@ -18,7 +18,7 @@ cXHTMLElement.prototype.accessKey	= null;
 
 // Public methods
 cXHTMLElement.prototype.$isAccessible	= function() {
-	return !this.getAttribute("disabled");
+	return !this.attributes["disabled"];
 };
 
 // Static method
