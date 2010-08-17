@@ -273,33 +273,6 @@ cAMLElement.prototype.replaceChild	= function(oNode, oOld)
     return oOld;
 };
 
-function fAMLElement_cloneNode(oNode, bDeep)
-{
-	// Create Element
-	var oElement	= fAMLDocument_createElementNS(oNode.ownerDocument, oNode.namespaceURI, oNode.nodeName);
-
-	// Copy Attributes
-	for (var sName in oNode.attributes)
-		if (oNode.attributes.hasOwnProperty(sName))
-			oElement.attributes[sName]	= oNode.attributes[sName];
-
-	// Append Children
-	if (bDeep)
-		for (var nIndex = 0; nIndex < oNode.childNodes.length; nIndex++)
-			fAMLNode_appendChild(oElement, oNode.childNodes[nIndex].cloneNode(bDeep));
-	return oElement;
-};
-
-cAMLElement.prototype.cloneNode	= function(bDeep)
-{
-	// Validate arguments
-	fGuard(arguments, [
-		["deep",	cBoolean]
-	]);
-
-	return fAMLElement_cloneNode(this, bDeep);
-};
-
 function fAMLElement_hazAttribute(oElement, sName)
 {
 	return oElement.attributes.hasOwnProperty(sName);

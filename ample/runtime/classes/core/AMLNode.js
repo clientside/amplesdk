@@ -236,9 +236,47 @@ cAMLNode.prototype.replaceChild	= function(oNode, oOld)
     	throw new cAMLException(cAMLException.NOT_FOUND_ERR);
 };
 
+function fAMLNode_cloneNode(oNode, bDeep)
+{
+	var oClone;
+	switch (oNode.nodeType) {
+		case cAMLNode.ELEMENT_NODE:
+			// Create Element
+			oClone	= fAMLDocument_createElementNS(oNode.ownerDocument, oNode.namespaceURI, oNode.nodeName);
+
+			// Copy Attributes
+			for (var sName in oNode.attributes)
+				if (oNode.attributes.hasOwnProperty(sName))
+					oClone.attributes[sName]	= oNode.attributes[sName];
+
+			// Append Children
+			if (bDeep)
+				for (var nIndex = 0; nIndex < oNode.childNodes.length; nIndex++)
+					fAMLNode_appendChild(oClone, fAMLNode_cloneNode(oNode.childNodes[nIndex], bDeep));
+			break;
+
+		case cAMLNode.TEXT_NODE:
+			oClone	= fAMLDocument_createTextNode(oNode.ownerDocument, oNode.data);
+			break;
+
+		case cAMLNode.CDATA_SECTION_NODE:
+			oClone	= fAMLDocument_createCDATASection(oNode.ownerDocument, oNode.data);
+			break;
+
+		default:
+			throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+	}
+	return oClone;
+};
+
 cAMLNode.prototype.cloneNode	= function(bDeep)
 {
-	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+	// Validate arguments
+	fGuard(arguments, [
+		["deep",	cBoolean]
+	]);
+
+	return fAMLNode_cloneNode(this, bDeep);
 };
 
 // nsIDOM3Node

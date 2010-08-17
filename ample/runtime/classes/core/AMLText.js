@@ -112,12 +112,6 @@ cAMLText.prototype.replaceWholeText	= function(sContent) {
 	}
 };
 
-
-cAMLText.prototype.cloneNode	= function(bDeep)
-{
-	return fAMLDocument_createTextNode(this.ownerDocument, this.data);
-};
-
 cAMLText.prototype.$getTag	= function()
 {
 	return this.nodeValue;

@@ -94,7 +94,7 @@ cAMLElement_repeater.prototype.repeat	= function() {
 		for (nIndex = 0; nIndex < aElements.length; nIndex++)
 			fAMLElement_insertBefore(this.parentNode,
 				cAMLElement_repeater_processNode(
-					fAMLElement_cloneNode(this.firstChild, true),
+					fAMLNode_cloneNode(this.firstChild, true),
 					aElements[nIndex],
 					fResolver),
 				this).dataIndex	= nIndex + 1;

@@ -78,7 +78,7 @@ cAMLQuery.prototype.appendTo	= function(vArgument1) {
 		fAMLQuery_each(oQuery, function() {
 			var oParent	= this;
 			oSelf.each(function() {
-				fAMLElement_appendChild(oParent, fAMLElement_cloneNode(this, true));
+				fAMLElement_appendChild(oParent, fAMLNode_cloneNode(this, true));
 			});
 		});
 	}
@@ -103,7 +103,7 @@ cAMLQuery.prototype.prependTo	= function(vArgument1) {
 			var oParent	= this,
 				oBefore	= this.firstChild;
 			fAMLQuery_each(oSelf, function() {
-				fAMLElement_insertBefore(oParent, fAMLElement_cloneNode(this, true), oBefore);
+				fAMLElement_insertBefore(oParent, fAMLNode_cloneNode(this, true), oBefore);
 			});
 		});
 	}
@@ -128,7 +128,7 @@ cAMLQuery.prototype.insertBefore	= function(vArgument1) {
 			var oNode	= this,
 				oBefore	= this;
 			fAMLQuery_each(oSelf, function() {
-				fAMLElement_insertBefore(oNode.parentNode, fAMLElement_cloneNode(this, true), oBefore);
+				fAMLElement_insertBefore(oNode.parentNode, fAMLNode_cloneNode(this, true), oBefore);
 			});
 		});
 	}
@@ -153,7 +153,7 @@ cAMLQuery.prototype.insertAfter	= function(vArgument1) {
 			var oNode	= this,
 				oBefore	= this.nextSibling;
 			fAMLQuery_each(oSelf, function() {
-				fAMLElement_insertBefore(oNode.parentNode, fAMLElement_cloneNode(this, true), oBefore);
+				fAMLElement_insertBefore(oNode.parentNode, fAMLNode_cloneNode(this, true), oBefore);
 			});
 		});
 	}
@@ -178,7 +178,7 @@ cAMLQuery.prototype.replaceAll	= function(vArgument1) {
 			var oNode	= this,
 				oBefore	= this;
 			fAMLQuery_each(oSelf, function() {
-				fAMLElement_insertBefore(oNode.parentNode, fAMLElement_cloneNode(this, true), oBefore);
+				fAMLElement_insertBefore(oNode.parentNode, fAMLNode_cloneNode(this, true), oBefore);
 			});
 			fAMLElement_removeChild(this.parentNode, this);
 		});
@@ -203,7 +203,7 @@ cAMLQuery.prototype.append	= function(vArgument1) {
 		fAMLQuery_each(this, function() {
 			var oParent	= this;
 			fAMLQuery_each(oQuery, function() {
-				fAMLElement_appendChild(oParent, fAMLElement_cloneNode(this, true));
+				fAMLElement_appendChild(oParent, fAMLNode_cloneNode(this, true));
 			});
 		});
 	}
@@ -227,7 +227,7 @@ cAMLQuery.prototype.prepend	= function(vArgument1) {
 			var oParent	= this,
 				oBefore	= this.firstChild;
 			fAMLQuery_each(oQuery, function() {
-				fAMLElement_insertBefore(oParent, fAMLElement_cloneNode(this, true), oBefore);
+				fAMLElement_insertBefore(oParent, fAMLNode_cloneNode(this, true), oBefore);
 			});
 		});
 	}
@@ -251,7 +251,7 @@ cAMLQuery.prototype.before	= function(vArgument1) {
 			var oNode	= this,
 				oBefore	= this;
 			fAMLQuery_each(oQuery, function() {
-				fAMLElement_insertBefore(oNode.parentNode, fAMLElement_cloneNode(this, true), oBefore);
+				fAMLElement_insertBefore(oNode.parentNode, fAMLNode_cloneNode(this, true), oBefore);
 			});
 		});
 	}
@@ -275,7 +275,7 @@ cAMLQuery.prototype.after	= function(vArgument1) {
 			var oNode	= this,
 				oBefore	= this.nextSibling;
 			fAMLQuery_each(oQuery, function() {
-				fAMLElement_insertBefore(oNode.parentNode, fAMLElement_cloneNode(this, true), oBefore);
+				fAMLElement_insertBefore(oNode.parentNode, fAMLNode_cloneNode(this, true), oBefore);
 			});
 		});
 	}
@@ -318,7 +318,7 @@ cAMLQuery.prototype.replaceWith	= function(vArgument1) {
 			var oNode	= this,
 				oBefore	= this;
 			fAMLQuery_each(oQuery, function() {
-				fAMLElement_insertBefore(oNode.parentNode, fAMLElement_cloneNode(this, true), oBefore);
+				fAMLElement_insertBefore(oNode.parentNode, fAMLNode_cloneNode(this, true), oBefore);
 			});
 			fAMLElement_removeChild(this.parentNode, this);
 		});
@@ -331,7 +331,7 @@ cAMLQuery.prototype.clone	= function() {
 	// Invoke implementation
 	var oQuery	= fAmple();
 	fAMLQuery_each(this, function() {
-		oQuery[oQuery.length++]	= fAMLElement_cloneNode(this, true);
+		oQuery[oQuery.length++]	= fAMLNode_cloneNode(this, true);
 	});
 	return oQuery;
 };

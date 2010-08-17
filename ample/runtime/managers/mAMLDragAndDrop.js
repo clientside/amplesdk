@@ -133,7 +133,7 @@ function fAMLDragAndDrop_onMouseUp(oEvent)
 	    // Execute default action
 	    if (!bDefaultPrevented && oAMLDragAndDrop_dropTarget && oAMLDragAndDrop_dropTarget != oAMLDragAndDrop_dragSource.parentNode) {
 		    if (oAMLDragAndDrop_dataTransfer.dropEffect == "copy")
-		    	fAMLElement_appendChild(oAMLDragAndDrop_dropTarget, fAMLElement_cloneNode(oAMLDragAndDrop_dragSource, true));	// TODO: remove @id attribute values
+		    	fAMLElement_appendChild(oAMLDragAndDrop_dropTarget, fAMLNode_cloneNode(oAMLDragAndDrop_dragSource, true));	// TODO: remove @id attribute values
 		    else
 		    if (oAMLDragAndDrop_dataTransfer.dropEffect == "move")
 		    	fAMLElement_appendChild(oAMLDragAndDrop_dropTarget, oAMLDragAndDrop_dragSource);
