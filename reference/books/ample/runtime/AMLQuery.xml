@@ -3,7 +3,7 @@
 <object name="AMLQuery">
 	<abstract>
 		<locale>
-			Holds a collection of elements returned from <link type="object">ample</link>() function call.
+			Holds a collection of elements returned from <link type="object">ample</link>.<link type="method" href="runtime:ample">query</link>() function call.
 		</locale>
 	</abstract>
 	<remarks />
@@ -313,6 +313,13 @@
 				<description>
 					<locale>
 
+					</locale>
+				</description>
+			</method>
+			<method name="html" type="String">
+				<description>
+					<locale>
+						Returns inner content of the first element in set serialized to XML.
 					</locale>
 				</description>
 			</method>
