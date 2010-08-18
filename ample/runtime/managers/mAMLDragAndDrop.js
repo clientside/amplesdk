@@ -265,7 +265,7 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
 	    nAMLDragAndDrop_offsetTop	= oPosition.top - oPositionP.top;
 	}
 
-	var nTarget	=-1,
+	var oDropTarget	= null,
 		oPosition2,
 		nAreaSource	=(oPosition.right - oPosition.left) * (oPosition.bottom - oPosition.top),
 		nAreaSourceMax	= 0,
@@ -291,64 +291,39 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
 			// partial intersection
 			if (nIntersection > nIntersectionPartialMax) {
 				nIntersectionPartialMax	= nIntersection;
-				nTarget	= nIndex;
+				oDropTarget	= aAMLDragAndDrop_dropTargets[nIndex];
 			}
 		}
 		else {
 			// complete intersection
 			if (nAreaTarget < nAreaTargetMin) {
 				nAreaTargetMin	= nAreaTarget;
-				nTarget	= nIndex;
+				oDropTarget	= aAMLDragAndDrop_dropTargets[nIndex];
 			}
 		}
 	}
 
 	// if there was a drop target and it is different from a new one
-	if (oAMLDragAndDrop_dropTarget && (nTarget < 0 || aAMLDragAndDrop_dropTargets[nTarget] != oAMLDragAndDrop_dropTarget)) {
-		// Remove :drop pseudo-class
-		fAMLElement_setPseudoClass(oAMLDragAndDrop_dropTarget, "drop", false);
-		// fire ondragleave event
-		var oEventDragLeave	= new cAMLDragEvent;
-	    oEventDragLeave.initDragEvent("dragleave", true, true, window, null, oAMLDragAndDrop_dataTransfer);
-	    oEventDragLeave.relatedTarget	= oAMLDragAndDrop_dragSource;
-	    oEventDragLeave.$pseudoTarget	= oEvent.$pseudoTarget;
-	    fAMLNode_dispatchEvent(oAMLDragAndDrop_dropTarget, oEventDragLeave);
-	}
-
-	if (nTarget >-1)
+	if (oAMLDragAndDrop_dropTarget)
 	{
-		if (aAMLDragAndDrop_dropTargets[nTarget] != oAMLDragAndDrop_dropTarget)
+		if (oAMLDragAndDrop_dropTarget != oDropTarget)
 		{
-			oAMLDragAndDrop_dropTarget	= aAMLDragAndDrop_dropTargets[nTarget];
-
-			// Add :drop pseudo-class
-			fAMLElement_setPseudoClass(oAMLDragAndDrop_dropTarget, "drop", true);
-
-			// fire ondragenter event
-			var oEventDragEnter	= new cAMLDragEvent;
-		    oEventDragEnter.initDragEvent("dragenter", true, true, window, null, oAMLDragAndDrop_dataTransfer);
-		    oEventDragEnter.$pseudoTarget	= oEvent.$pseudoTarget;
-		    oEventDragEnter.relatedTarget	= oAMLDragAndDrop_dragSource;
-		    fAMLNode_dispatchEvent(oAMLDragAndDrop_dropTarget, oEventDragEnter);
+			// Remove :drop pseudo-class
+			fAMLElement_setPseudoClass(oAMLDragAndDrop_dropTarget, "drop", false);
+			// fire ondragleave event
+			var oEventDragLeave	= new cAMLDragEvent;
+		    oEventDragLeave.initDragEvent("dragleave", true, true, window, null, oAMLDragAndDrop_dataTransfer);
+		    oEventDragLeave.relatedTarget	= oAMLDragAndDrop_dragSource;
+		    oEventDragLeave.$pseudoTarget	= oEvent.$pseudoTarget;
+		    fAMLNode_dispatchEvent(oAMLDragAndDrop_dropTarget, oEventDragLeave);
 		}
-
-		// fire ondragover event
-		var oEventDragOver	= new cAMLDragEvent;
-	    oEventDragOver.initDragEvent("dragover", true, true, window, null, oAMLDragAndDrop_dataTransfer);
-	    oEventDragOver.$pseudoTarget	= oEvent.$pseudoTarget;
-	    oEventDragOver.relatedTarget	= oAMLDragAndDrop_dragSource;
-	    fAMLNode_dispatchEvent(oAMLDragAndDrop_dropTarget, oEventDragOver);
-	}
-	else
-	{
-		oAMLDragAndDrop_dropTarget	= null;
 	}
 
 	// fire ondrag event
 	var oEventDrag	= new cAMLDragEvent;
     oEventDrag.initDragEvent("drag", true, true, window, null, oAMLDragAndDrop_dataTransfer);
     oEventDrag.$pseudoTarget	= oEvent.$pseudoTarget;
-    oEventDrag.relatedTarget	= oAMLDragAndDrop_dropTarget;
+    oEventDrag.relatedTarget	= oDropTarget;
     fAMLNode_dispatchEvent(oAMLDragAndDrop_dragSource, oEventDrag);
 
     if (!oEventDrag.defaultPrevented)
@@ -362,6 +337,31 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
     	oAMLDragAndDrop_image.style.left	= oEvent.clientX + 'px';
     	oAMLDragAndDrop_image.style.top		= oEvent.clientY + 'px';
     }
+
+	//
+	if (oDropTarget)
+	{
+		if (oDropTarget != oAMLDragAndDrop_dropTarget)
+		{
+			// Add :drop pseudo-class
+			fAMLElement_setPseudoClass(oDropTarget, "drop", true);
+			// fire ondragenter event
+			var oEventDragEnter	= new cAMLDragEvent;
+		    oEventDragEnter.initDragEvent("dragenter", true, true, window, null, oAMLDragAndDrop_dataTransfer);
+		    oEventDragEnter.$pseudoTarget	= oEvent.$pseudoTarget;
+		    oEventDragEnter.relatedTarget	= oAMLDragAndDrop_dragSource;
+		    fAMLNode_dispatchEvent(oDropTarget, oEventDragEnter);
+		}
+
+		// fire ondragover event
+		var oEventDragOver	= new cAMLDragEvent;
+	    oEventDragOver.initDragEvent("dragover", true, true, window, null, oAMLDragAndDrop_dataTransfer);
+	    oEventDragOver.$pseudoTarget	= oEvent.$pseudoTarget;
+	    oEventDragOver.relatedTarget	= oAMLDragAndDrop_dragSource;
+	    fAMLNode_dispatchEvent(oDropTarget, oEventDragOver);
+	}
+
+	oAMLDragAndDrop_dropTarget	= oDropTarget;
 
 	// Opera doesn't support userSelect, so manual clearing of ranges is used
 	if (!bTrident)
