@@ -303,3 +303,38 @@ oAmple.$class	= function(oNode) {
 oAmple.$resolveUri	= function(sUri, sBaseUri) {
 	return fUtilities_resolveUri(sUri, sBaseUri);
 };
+
+
+// set standard parameters
+var oConfiguration	= oAmple_document.domConfig;
+fAMLConfiguration_setParameter(oConfiguration, "error-handler", null);
+fAMLConfiguration_setParameter(oConfiguration, "element-content-whitespace", false);	// in DOM-Core spec the default value is true
+fAMLConfiguration_setParameter(oConfiguration, "entities", false);	// in DOM-Core spec the default value is true
+fAMLConfiguration_setParameter(oConfiguration, "comments", false); 	// in DOM-Core spec the default value is true
+//set ample parameters
+fAMLConfiguration_setParameter(oConfiguration, "ample-use-style-property", true);	// -> ample-core-style
+fAMLConfiguration_setParameter(oConfiguration, "ample-module-history-fix", false);	// -> ample-history
+fAMLConfiguration_setParameter(oConfiguration, "ample-version", '@project.version@');
+fAMLConfiguration_setParameter(oConfiguration, "ample-user-locale", oUANavigator.language || oUANavigator.userLanguage || 'en-US');
+fAMLConfiguration_setParameter(oConfiguration, "ample-user-agent", '@project.userAgent@');
+fAMLConfiguration_setParameter(oConfiguration, "ample-enable-animations", true);
+fAMLConfiguration_setParameter(oConfiguration, "ample-enable-transitions", true);
+
+//->Debug
+// Enable debugging
+var oAML_errorHandler	= {};
+oAML_errorHandler.handleError	= function(oError) {
+	var oConsole	= window.console;
+	if (oError.severity == cAMLError.SEVERITY_WARNING) {
+		// Warning in console
+		if (oConsole)
+			oConsole.warn(oError.message);
+		return true;
+	}
+	// Error in console
+	if (oConsole)
+		oConsole.error(oError.message + '\n' + oError.relatedException.caller);
+	return false;
+};
+fAMLConfiguration_setParameter(oConfiguration, "error-handler", oAML_errorHandler);
+//<-Debug
