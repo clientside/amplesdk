@@ -183,7 +183,16 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="value" type="String" required="false">
+				</arguments>
+				<arguments>
+					<argument name="name" type="String">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+					<argument name="value" type="String">
 						<description>
 							<locale>
 
@@ -293,7 +302,16 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="value" type="String" required="false">
+				</arguments>
+				<arguments>
+					<argument name="name" type="String">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+					<argument name="value" type="String">
 						<description>
 							<locale>
 
@@ -308,8 +326,9 @@
 				</description>
 			</method>
 			<method name="text" type="Variant">
+				<arguments />
 				<arguments>
-					<argument name="value" type="String" required="false">
+					<argument name="value" type="String">
 						<description>
 							<locale>
 
@@ -323,7 +342,17 @@
 					</locale>
 				</description>
 			</method>
-			<method name="html" type="String">
+			<method name="html" type="Variant">
+				<arguments />
+				<arguments>
+					<argument name="html" type="String">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
 				<description>
 					<locale>
 						Returns inner content of the first element in set serialized to XML.
@@ -431,7 +460,16 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="value" type="Object" required="false">
+				</arguments>
+				<arguments>
+					<argument name="name" type="String">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+					<argument name="value" type="Object">
 						<description>
 							<locale>
 

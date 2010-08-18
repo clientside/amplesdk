@@ -136,7 +136,16 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="value" type="Variant" required="false">
+				</arguments>
+				<arguments>
+					<argument name="name" type="String">
+						<description>
+							<locale>
+								Parameter name
+							</locale>
+						</description>
+					</argument>
+					<argument name="value" type="Variant">
 						<description>
 							<locale>
 								Parameter value
