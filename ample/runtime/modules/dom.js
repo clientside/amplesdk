@@ -92,7 +92,7 @@ cAMLQuery.prototype.appendTo	= function(vArgument1) {
 		//
 		var oQuery	= vArgument1;
 		if (!(oQuery instanceof cAMLQuery))
-			oQuery	= fAmple(oQuery);
+			oQuery	= fQuery(oQuery);
 		//
 		var oSelf	= this;
 		fAMLQuery_each(oQuery, function() {
@@ -116,7 +116,7 @@ cAMLQuery.prototype.prependTo	= function(vArgument1) {
 		//
 		var oQuery	= vArgument1;
 		if (!(oQuery instanceof cAMLQuery))
-			oQuery	= fAmple(oQuery);
+			oQuery	= fQuery(oQuery);
 		//
 		var oSelf	= this;
 		fAMLQuery_each(oQuery, function() {
@@ -141,7 +141,7 @@ cAMLQuery.prototype.insertBefore	= function(vArgument1) {
 		//
 		var oQuery	= vArgument1;
 		if (!(oQuery instanceof cAMLQuery))
-			oQuery	= fAmple(oQuery);
+			oQuery	= fQuery(oQuery);
 		//
 		var oSelf	= this;
 		fAMLQuery_each(oQuery, function() {
@@ -166,7 +166,7 @@ cAMLQuery.prototype.insertAfter	= function(vArgument1) {
 		//
 		var oQuery	= vArgument1;
 		if (!(oQuery instanceof cAMLQuery))
-			oQuery	= fAmple(oQuery);
+			oQuery	= fQuery(oQuery);
 		//
 		var oSelf	= this;
 		fAMLQuery_each(oQuery, function() {
@@ -191,7 +191,7 @@ cAMLQuery.prototype.replaceAll	= function(vArgument1) {
 		//
 		var oQuery	= vArgument1;
 		if (!(oQuery instanceof cAMLQuery))
-			oQuery	= fAmple(oQuery);
+			oQuery	= fQuery(oQuery);
 		//
 		var oSelf	= this;
 		fAMLQuery_each(oQuery, function() {
@@ -218,7 +218,7 @@ cAMLQuery.prototype.append	= function(vArgument1) {
 		//
 		var oQuery	= vArgument1;
 		if (!(oQuery instanceof cAMLQuery))
-			oQuery	= fAmple(oQuery);
+			oQuery	= fQuery(oQuery);
 		//
 		fAMLQuery_each(this, function() {
 			var oParent	= this;
@@ -241,7 +241,7 @@ cAMLQuery.prototype.prepend	= function(vArgument1) {
 		//
 		var oQuery	= vArgument1;
 		if (!(oQuery instanceof cAMLQuery))
-			oQuery	= fAmple(oQuery);
+			oQuery	= fQuery(oQuery);
 		//
 		fAMLQuery_each(this, function() {
 			var oParent	= this,
@@ -265,7 +265,7 @@ cAMLQuery.prototype.before	= function(vArgument1) {
 		//
 		var oQuery	= vArgument1;
 		if (!(oQuery instanceof cAMLQuery))
-			oQuery	= fAmple(oQuery);
+			oQuery	= fQuery(oQuery);
 		//
 		fAMLQuery_each(this, function() {
 			var oNode	= this,
@@ -289,7 +289,7 @@ cAMLQuery.prototype.after	= function(vArgument1) {
 		//
 		var oQuery	= vArgument1;
 		if (!(oQuery instanceof cAMLQuery))
-			oQuery	= fAmple(oQuery);
+			oQuery	= fQuery(oQuery);
 		//
 		fAMLQuery_each(this, function() {
 			var oNode	= this,
@@ -332,7 +332,7 @@ cAMLQuery.prototype.replaceWith	= function(vArgument1) {
 		//
 		var oQuery	= vArgument1;
 		if (!(oQuery instanceof cAMLQuery))
-			oQuery	= fAmple(oQuery);
+			oQuery	= fQuery(oQuery);
 		//
 		fAMLQuery_each(this, function() {
 			var oNode	= this,
@@ -349,7 +349,7 @@ cAMLQuery.prototype.replaceWith	= function(vArgument1) {
 //
 cAMLQuery.prototype.clone	= function() {
 	// Invoke implementation
-	var oQuery	= fAmple();
+	var oQuery	= fQuery();
 	fAMLQuery_each(this, function() {
 		oQuery[oQuery.length++]	= fAMLNode_cloneNode(this, true);
 	});

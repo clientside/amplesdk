@@ -64,7 +64,7 @@ oAmple.post	= function(sUrl, /*data*/vArgument2, /*success*/vArgument3, /*type*/
 };
 
 // Content Loader
-function fAmple_load_clear(oElement)
+function fAMLQuery_load_clear(oElement)
 {
 	if (oElement._request)
 	    delete oElement._request;
@@ -74,12 +74,12 @@ function fAmple_load_clear(oElement)
 	}
 };
 
-function fAmple_load_abort(oElement)
+function fAMLQuery_load_abort(oElement)
 {
 	if (oElement._timeout || oElement._request) {
 		if (oElement._request)
 			oElement._request	= oElement._request.abort();
-		fAmple_load_clear(oElement);
+		fAMLQuery_load_clear(oElement);
 
 		// Dispatch abort event
 		var oEvent	= new cAMLEvent;
@@ -98,7 +98,7 @@ cAMLQuery.prototype.load	= function(sUrl, /*data*/vArgument2, /*success*/vArgume
 	if (this.length) {
 		var oElement	= this[0];
 		// If there is an operation running, abort it
-		fAmple_load_abort(oElement);
+		fAMLQuery_load_abort(oElement);
 
 		// Dispatch unload event
 		var oEvent	= new cAMLEvent;
@@ -119,7 +119,7 @@ cAMLQuery.prototype.load	= function(sUrl, /*data*/vArgument2, /*success*/vArgume
 			oSettings.data	= vArgument2 || null;
 			oSettings.complete	= function(oRequest) {
 				// Clear
-				fAmple_load_clear(oElement);
+				fAMLQuery_load_clear(oElement);
 
 			    var oDocument	= fBrowser_getResponseDocument(oRequest),
 					oEvent		= new cAMLEvent;
@@ -151,5 +151,5 @@ cAMLQuery.prototype.load	= function(sUrl, /*data*/vArgument2, /*success*/vArgume
 
 cAMLQuery.prototype.abort	= function() {
 	if (this.length)
-		fAmple_load_abort(this[0]);
+		fAMLQuery_load_abort(this[0]);
 };
