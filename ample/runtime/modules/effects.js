@@ -37,7 +37,53 @@ cAMLQuery.prototype.stop	= function() {
 	return this;
 };
 
+cAMLQuery.prototype.fadeIn	= function(vDuration, fCallback) {
+	fGuard(arguments, [
+		["duration",	cObject, true],
+		["callback",	cFunction, true]
+	]);
+	var oProperties	= {};
+	oProperties.opacity	= 1;
+	fAMLQuery_each(this, function() {
+		fBrowser_setStyle(this.$getContainer(), "display", "");
+		fAMLQuery_play(this, oProperties, vDuration, "ease", fCallback);
+	});
 
+	return this;
+};
+
+cAMLQuery.prototype.fadeOut	= function(vDuration, fCallback) {
+	fGuard(arguments, [
+		["duration",	cObject, true],
+		["callback",	cFunction, true]
+	]);
+	var oProperties	= {};
+	oProperties.opacity	= 0;
+	fAMLQuery_each(this, function() {
+		fAMLQuery_play(this, oProperties, vDuration, "ease", function() {
+			fBrowser_setStyle(this.$getContainer(), "display", "none");
+			if (fCallback)
+				fCallback.call(this);
+		});
+	});
+
+	return this;
+};
+
+cAMLQuery.prototype.fadeTo	= function(vDuration, nOpacity, fCallback) {
+	fGuard(arguments, [
+		["duration",	cObject],
+		["opacity",		cNumber],
+		["callback",	cFunction, true]
+	]);
+	var oProperties	= {};
+	oProperties.opacity	= nOpacity;
+	fAMLQuery_each(this, function() {
+		fAMLQuery_play(this, oProperties, vDuration, "ease", fCallback);
+	});
+
+	return this;
+};
 
 function fAMLQuery_play(oElement, oProperties, vDuration, vType, fHandler, sPseudo)
 {
