@@ -16,8 +16,8 @@ cXMLEventsElement_listener.handlers["DOMNodeInsertedIntoDocument"]	= function(oE
 	var sValue	= this.attributes["handler"] || '';
 	fAMLEventTarget_addEventListener(this.parentNode,
 		this.attributes["event"],
-		cFunction("event",	(this.attributes["propagate"] == "stop" ? "event" + ".stopPropagation();" : '') +
-							(this.attributes["defaultAction"] == "cancel" ? "event" + ".preventDefault();" : '') +
+		cFunction("event",	(this.attributes["propagate"] == "stop" ? "event" + '.' + "stopPropagation" + '();' : '') +
+							(this.attributes["defaultAction"] == "cancel" ? "event" + '.' + "preventDefault" + '();' : '') +
 							(sValue.indexOf("javascript" + ':') == 0 ? sValue.substr(cString("javascript" + ':').length) : '')
 					),
 		this.attributes["phase"] == "capture"
