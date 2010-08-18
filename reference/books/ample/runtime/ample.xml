@@ -192,6 +192,24 @@
 						</description>
 					</argument>
 				</arguments>
+				<arguments>
+					<argument name="element" type="Function">
+						<description>
+							<locale>
+								Element definition. Must have <link type="object">AMLElement</link> in its prototype chain.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<arguments>
+					<argument name="attribute" type="Function">
+						<description>
+							<locale>
+								Attribute definition. Must have <link type="object">AMLAttr</link> in its prototype chain.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
 				<description>
 					<locale>
 						Provides extensibility point.
