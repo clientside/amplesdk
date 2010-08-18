@@ -11,6 +11,7 @@ var oAMLElementAnimation_durations	= {},
 	aAMLElementAnimation_effects	= [];			// Variables
 
 oAMLElementAnimation_durations["fast"]	= 200;
+oAMLElementAnimation_durations["normal"]= 400;
 oAMLElementAnimation_durations["slow"]	= 600;
 
 //
@@ -47,7 +48,7 @@ function fAMLQuery_play(oElement, oProperties, vDuration, vType, fHandler, sPseu
 		oStyle	= fBrowser_getComputedStyle(oElementDOM);
 	oEffect._element	= oElement;
 	oEffect._container	= oElementDOM;
-	oEffect._duration	= oAMLElementAnimation_durations[vDuration || "fast"] || vDuration;
+	oEffect._duration	= oAMLElementAnimation_durations[vDuration || "normal"] || vDuration;
 	oEffect._callback	= fHandler;
 	oEffect._type		= vType || '';
 	oEffect._start		= new cDate;
