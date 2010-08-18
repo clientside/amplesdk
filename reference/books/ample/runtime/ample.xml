@@ -38,6 +38,52 @@
 			</property>
 		</properties>
 		<methods>
+			<!-- Query -->
+			<method name="query" type="AMLQuery">
+				<arguments>
+					<argument name="query" type="String">
+
+					</argument>
+					<argument name="context" required="false" type="String">
+
+					</argument>
+					<argument name="resolver" required="false" type="String">
+
+					</argument>
+				</arguments>
+				<arguments>
+					<argument name="xml" type="String">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<arguments>
+					<argument name="element" type="AMLElement">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<arguments>
+					<argument name="query" type="AMLQuery">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						jQuery-like API to Ample SDK document.
+					</locale>
+				</description>
+			</method>
 			<!-- Guard -->
 			<method name="guard" type="Void">
 				<arguments>
@@ -251,10 +297,17 @@
 							</locale>
 						</description>
 					</argument>
+					<argument name="detail" type="Variant" required="false">
+						<description>
+							<locale>
+								Event detail
+							</locale>
+						</description>
+					</argument>
 				</arguments>
 				<description>
 					<locale>
-						Triggers an event on document
+						Triggers an event on document.
 					</locale>
 				</description>
 			</method>

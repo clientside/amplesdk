@@ -268,10 +268,17 @@
 							</locale>
 						</description>
 					</argument>
+					<argument name="detail" type="Variant" required="false">
+						<description>
+							<locale>
+								Event detail
+							</locale>
+						</description>
+					</argument>
 				</arguments>
 				<description>
 					<locale>
-						Triggers an event on every element in set
+						Triggers an event on every element in set.
 					</locale>
 				</description>
 			</method>
