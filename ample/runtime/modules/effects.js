@@ -10,7 +10,7 @@
 var oAMLElementAnimation_durations	= {},
 	aAMLElementAnimation_effects	= [];			// Variables
 
-oAMLElementAnimation_durations["fast"]	= 300;
+oAMLElementAnimation_durations["fast"]	= 200;
 oAMLElementAnimation_durations["slow"]	= 600;
 
 //
