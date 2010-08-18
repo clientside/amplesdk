@@ -50,7 +50,7 @@ function fQuery(vArgument1, vArgument2, vArgument3) {
 					if (!(vArgument2 instanceof cAMLNode))
 						throw new cAMLException(cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR, fQuery.caller
 //->Debug
-							, ['2' + oGuard_endings[1], "context", "ample", "AMLNode"]
+							, ['2' + oGuard_endings[1], "context", "query", "AMLNode"]
 //<-Debug
 						);
 				}
@@ -61,7 +61,7 @@ function fQuery(vArgument1, vArgument2, vArgument3) {
 					if (!(vArgument3 instanceof cFunction))
 						throw new cAMLException(cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR, fQuery.caller
 //->Debug
-							, ['3' + oGuard_endings[2], "query", "ample", "Function"]
+							, ['3' + oGuard_endings[2], "query", "query", "Function"]
 //<-Debug
 						);
 				}
@@ -96,7 +96,7 @@ function fQuery(vArgument1, vArgument2, vArgument3) {
 		else
 			throw new cAMLException(cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR, fQuery.caller
 //->Debug
-				, ['1' + oGuard_endings[0], "query", "ample", "String" + '", "' + "AMLQuery" + '" or "' + "AMLElement"]
+				, ['1' + oGuard_endings[0], "query", "query", "String" + '", "' + "AMLQuery" + '" or "' + "AMLElement"]
 //<-Debug
 			);
 	}
