@@ -160,7 +160,7 @@ function fAMLDragAndDrop_onMouseUp(oEvent)
 				var oProperties	= {};
 				oProperties["left"]		= nAMLDragAndDrop_clientLeft || "auto";
 				oProperties["top"]		= nAMLDragAndDrop_clientTop || "auto";
-				fAMLQuery_play(oAMLDragAndDrop_dragSource, oProperties, 300, "ease", fRestore);
+				fAMLQuery_play(oAMLDragAndDrop_dragSource, oProperties, "fast", "ease", fRestore);
 			}
 			else
 				fRestore();
