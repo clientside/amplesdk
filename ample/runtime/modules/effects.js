@@ -15,17 +15,17 @@ oAMLElementAnimation_durations["normal"]= 400;
 oAMLElementAnimation_durations["slow"]	= 600;
 
 //
-cAMLQuery.prototype.animate	= function(oProperties, vSpeed, sEasing, fCallback) {
+cAMLQuery.prototype.animate	= function(oProperties, vDuration, sEasing, fCallback) {
 	// Validate API call
 	fGuard(arguments, [
 		["properties",	cObject, true],
-		["speed",		cObject, true],
+		["duration",	cObject, true],
 		["easing",		cString, true],
 		["callback",	cFunction, true]
 	]);
 
 	if (this.length)
-		fAMLQuery_play(this[0], oProperties, vSpeed, sEasing, fCallback, arguments[4]);
+		fAMLQuery_play(this[0], oProperties, vDuration, sEasing, fCallback, arguments[4]);
 
 	// Invoke implementation
 	return this;
@@ -61,7 +61,7 @@ cAMLQuery.prototype.fadeOut	= function(vDuration, fCallback) {
 	oProperties.opacity	= 0;
 	fAMLQuery_each(this, function() {
 		fAMLQuery_play(this, oProperties, vDuration, "ease", function() {
-			fBrowser_setStyle(this.$getContainer(), "display", "none");
+			this.$getContainer().style.display	= "none";
 			if (fCallback)
 				fCallback.call(this);
 		});
@@ -80,6 +80,69 @@ cAMLQuery.prototype.fadeTo	= function(vDuration, nOpacity, fCallback) {
 	oProperties.opacity	= nOpacity;
 	fAMLQuery_each(this, function() {
 		fAMLQuery_play(this, oProperties, vDuration, "ease", fCallback);
+	});
+
+	return this;
+};
+
+cAMLQuery.prototype.show	= function(vDuration, fCallback) {
+	fGuard(arguments, [
+   		["duration",	cObject, true],
+   		["callback",	cFunction, true]
+   	]);
+
+	fAMLQuery_each(this, function() {
+		var oElementDOM	= this.$getContainer(),
+			oStyle	= oElementDOM.style;
+		if (oStyle.display == "none") {
+			oStyle.display	= '';
+			if (vDuration) {
+				var oProperties	= {},
+					oComputedStyle	= fBrowser_getComputedStyle(oElementDOM);
+				oProperties.width	= fAMLQuery_adjustStyleValue(oElementDOM, "width", fBrowser_getStyle(oElementDOM, "width", oComputedStyle));
+				oProperties.height	= fAMLQuery_adjustStyleValue(oElementDOM, "height", fBrowser_getStyle(oElementDOM, "height", oComputedStyle));
+				oProperties.opacity	= '1';
+				oStyle.width	= '0px';
+				oStyle.height	= '0px';
+				fAMLQuery_play(this, oProperties, vDuration, "ease", function() {
+					oStyle.width	= '';
+					oStyle.height	= '';
+					if (fCallback)
+						fCallback.call(this);
+				});
+			}
+		}
+	});
+
+	return this;
+};
+
+cAMLQuery.prototype.hide	= function(vDuration, fCallback) {
+	fGuard(arguments, [
+   		["duration",	cObject, true],
+   		["callback",	cFunction, true]
+   	]);
+
+	fAMLQuery_each(this, function() {
+		var oElementDOM	= this.$getContainer(),
+			oStyle	= oElementDOM.style;
+		if (oStyle.display != "none") {
+			if (vDuration) {
+				var oProperties	= {};
+				oProperties.width	= '0px';
+				oProperties.height	= '0px';
+				oProperties.opacity	= '0';
+				fAMLQuery_play(this, oProperties, vDuration, "ease", function() {
+					oStyle.display	= "none";
+					oStyle.width	= '';
+					oStyle.height	= '';
+					if (fCallback)
+						fCallback.call(this);
+				});
+			}
+			else
+				oStyle.display	= "none";
+		}
 	});
 
 	return this;

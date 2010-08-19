@@ -248,6 +248,52 @@
 					</locale>
 				</description>
 			</method>
+			<method name="show" type="AMLQuery">
+				<arguments>
+					<argument name="duration" type="Variant" required="false">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+					<argument name="callback" type="Function" required="false">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="hide" type="AMLQuery">
+				<arguments>
+					<argument name="duration" type="Variant" required="false">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+					<argument name="callback" type="Function" required="false">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
 
 			<!-- Css -->
 			<method name="css" type="Variant">
