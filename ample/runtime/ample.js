@@ -111,6 +111,7 @@ fQuery.prototype	= cAMLQuery.prototype;
 var oAmple	= oAmple_document;
 oAmple.query	= fQuery;
 oAmple.namespaces	= {};
+oAmple.locale		= oAmple_locale;
 //->Source
 oAmple.elements		= oAMLImplementation_elements;
 oAmple.attributes	= oAMLImplementation_attributes;

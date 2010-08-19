@@ -157,9 +157,10 @@
 				XSLTProcessor.js"/>
 			<!-- Browser integration and runner -->
 			<filelist dir="${source.runtime.dir}/" files="
-				browser.js,
 				utilities.js,
 				guard.js,
+				browser.js,
+				locale.js,
 				ample.js"/>
 			<!-- UI Managers -->
 			<filelist dir="${source.runtime.dir}/managers/" files="

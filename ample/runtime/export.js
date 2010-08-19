@@ -126,6 +126,8 @@ fAMLExporter_wrapMember(cArguments,	"Arguments");
 
 //
 fAMLExporter_export(oAmple,	"ample");
+fAMLExporter_wrap(oAmple.namespaces,	"namespaces");
+fAMLExporter_wrap(oAmple.locale,		"locale");
 
 // JavaScript 1.5
 if (!cArray.prototype.push)
