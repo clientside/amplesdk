@@ -119,7 +119,10 @@ cAMLQuery.prototype.prependTo	= function(vArgument1) {
 			var oParent	= this,
 				oBefore	= this.firstChild;
 			fAMLQuery_each(oSelf, function() {
-				fAMLElement_insertBefore(oParent, fAMLNode_cloneNode(this, true), oBefore);
+				if (oBefore)
+					fAMLElement_insertBefore(oParent, fAMLNode_cloneNode(this, true), oBefore);
+				else
+					fAMLElement_appendChild(oParent, fAMLNode_cloneNode(this, true));
 			});
 		});
 	}
@@ -165,7 +168,10 @@ cAMLQuery.prototype.insertAfter	= function(vArgument1) {
 			var oNode	= this,
 				oBefore	= this.nextSibling;
 			fAMLQuery_each(oSelf, function() {
-				fAMLElement_insertBefore(oNode.parentNode, fAMLNode_cloneNode(this, true), oBefore);
+				if (oBefore)
+					fAMLElement_insertBefore(oNode.parentNode, fAMLNode_cloneNode(this, true), oBefore);
+				else
+					fAMLElement_appendChild(oNode.parentNode, fAMLNode_cloneNode(this, true));
 			});
 		});
 	}
@@ -233,7 +239,10 @@ cAMLQuery.prototype.prepend	= function(vArgument1) {
 			var oParent	= this,
 				oBefore	= this.firstChild;
 			fAMLQuery_each(oQuery, function() {
-				fAMLElement_insertBefore(oParent, fAMLNode_cloneNode(this, true), oBefore);
+				if (oBefore)
+					fAMLElement_insertBefore(oParent, fAMLNode_cloneNode(this, true), oBefore);
+				else
+					fAMLElement_appendChild(oParent, fAMLNode_cloneNode(this, true));
 			});
 		});
 	}
@@ -255,7 +264,11 @@ cAMLQuery.prototype.before	= function(vArgument1) {
 			var oNode	= this,
 				oBefore	= this;
 			fAMLQuery_each(oQuery, function() {
-				fAMLElement_insertBefore(oNode.parentNode, fAMLNode_cloneNode(this, true), oBefore);
+				if (oNode.parentNode)
+					fAMLElement_insertBefore(oNode.parentNode, fAMLNode_cloneNode(this, true), oBefore);
+				else {
+					// TODO: insert into self collection before
+				}
 			});
 		});
 	}
@@ -277,7 +290,15 @@ cAMLQuery.prototype.after	= function(vArgument1) {
 			var oNode	= this,
 				oBefore	= this.nextSibling;
 			fAMLQuery_each(oQuery, function() {
-				fAMLElement_insertBefore(oNode.parentNode, fAMLNode_cloneNode(this, true), oBefore);
+				if (oNode.parentNode) {
+					if (oBefore)
+						fAMLElement_insertBefore(oNode.parentNode, fAMLNode_cloneNode(this, true), oBefore);
+					else
+						fAMLElement_appendChild(oNode.parentNode, fAMLNode_cloneNode(this, true));
+				}
+				else {
+					// TODO: insert into self collection after
+				}
 			});
 		});
 	}
