@@ -95,49 +95,13 @@
 	$aFiles[]	= "runtime/processors/smil/elements/par.js";
 	$aFiles[]	= "runtime/processors/smil/elements/seq.js";
 	$aFiles[]	= "runtime/processors/smil/elements/set.js";
-/*
-	// Processors
+
 	// REX 1.0
-//	$aFiles[]	= "runtime/processors/rex10/rex10.js";
+//	$aFiles[]	= "runtime/processors/rex/rex.js";
+
 	// XBL 2.0
-//	$aFiles[]	= "runtime/processors/xbl20/xbl20.js";
-	// XML Schema 1.1
-	$aFiles[]	= "runtime/processors/xmlschema11/classes/cAMLXSConstants.js";
-	$aFiles[]	= "runtime/processors/xmlschema11/classes/cAMLXSException.js";
-	$aFiles[]	= "runtime/processors/xmlschema11/classes/cAMLXSObject.js";
-	$aFiles[]	= "runtime/processors/xmlschema11/classes/cAMLXSModel.js";
-	$aFiles[]	= "runtime/processors/xmlschema11/classes/cAMLXSNamedMap.js";
-	$aFiles[]	= "runtime/processors/xmlschema11/classes/cAMLXSNamespaceItem.js";
-	$aFiles[]	= "runtime/processors/xmlschema11/classes/cAMLXSNamespaceItemList.js";
-	$aFiles[]	= "runtime/processors/xmlschema11/classes/cAMLXSObjectList.js";
-	$aFiles[]	= "runtime/processors/xmlschema11/classes/cAMLXSTypeDefinition.js";
-	$aFiles[]	= "runtime/processors/xmlschema11/xmlschema11.js";
-	// XML Schema 1.1 (Data Types)
-	$aFiles[]	= "runtime/processors/xmlschema11/classes/datatypes/cAMLXSFacet.js";
-	$aFiles[]	= "runtime/processors/xmlschema11/classes/datatypes/cAMLXSMultiValueFacet.js";
-	$aFiles[]	= "runtime/processors/xmlschema11/classes/datatypes/cAMLXSSimpleTypeDefinition.js";
-	$aFiles[]	= "runtime/processors/xmlschema11/xmlschema11-datatypes.js";
-	// XML Schema 1.1 (Built-in Data Types)
-	$aFiles[]	= "runtime/processors/xmlschema11/builtin/xmlschema11-builtin.js";
-*/
-/*
-	// XML Schema 1.1 (structure)
-	$aFiles[]	= "runtime/processors/xmlschema11/xmlschema11-structures.js";
-	$aFiles[]	= "runtime/processors/xmlschema11/classes/structures/cAMLXSTerm.js";
-	$aFiles[]	= "runtime/processors/xmlschema11/classes/structures/cAMLXSAnnotation.js";
-	$aFiles[]	= "runtime/processors/xmlschema11/classes/structures/cAMLXSAttributeDeclaration.js";
-	$aFiles[]	= "runtime/processors/xmlschema11/classes/structures/cAMLXSAttributeGroupDefinition.js";
-	$aFiles[]	= "runtime/processors/xmlschema11/classes/structures/cAMLXSAttributeUse.js";
-	$aFiles[]	= "runtime/processors/xmlschema11/classes/structures/cAMLXSComplexTypeDefinition.js";
-	$aFiles[]	= "runtime/processors/xmlschema11/classes/structures/cAMLXSElementDeclaration.js";
-	$aFiles[]	= "runtime/processors/xmlschema11/classes/structures/cAMLXSModelGroup.js";
-	$aFiles[]	= "runtime/processors/xmlschema11/classes/structures/cAMLXSModelGroupDefinition.js";
-	$aFiles[]	= "runtime/processors/xmlschema11/classes/structures/cAMLXSNotationDeclaration.js";
-	$aFiles[]	= "runtime/processors/xmlschema11/classes/structures/cAMLXSParticle.js";
-	$aFiles[]	= "runtime/processors/xmlschema11/classes/structures/cAMLXSWildcard.js";
-	// XML Schema 1.1 Instance
-	$aFiles[]	= "runtime/processors/xmlschema11-instance/xmlschema11-instance.js";
-*/
+//	$aFiles[]	= "runtime/processors/xbl/xbl.js";
+
 	// Managers
 	$aFiles[]	= "runtime/managers/mAMLFocus.js";
 	$aFiles[]	= "runtime/managers/mAMLResize.js";
@@ -148,14 +112,15 @@
 	$aFiles[]	= "runtime/managers/mAMLTouch.js";
 
 	// Modules
-	$aFiles[]	= "runtime/modules/collection.js";
 	$aFiles[]	= "runtime/modules/ajax.js";
+	$aFiles[]	= "runtime/modules/attributes.js";
+	$aFiles[]	= "runtime/modules/collection.js";
 	$aFiles[]	= "runtime/modules/css.js";
-	$aFiles[]	= "runtime/modules/dom.js";
-	$aFiles[]	= "runtime/modules/effects.js";
-	$aFiles[]	= "runtime/modules/events.js";
 	$aFiles[]	= "runtime/modules/data.js";
 	$aFiles[]	= "runtime/modules/dimensions.js";
+	$aFiles[]	= "runtime/modules/effects.js";
+	$aFiles[]	= "runtime/modules/event.js";
+	$aFiles[]	= "runtime/modules/manipulation.js";
 	$aFiles[]	= "runtime/modules/offset.js";
 
 	//

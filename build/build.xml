@@ -172,11 +172,16 @@
 				mAMLTouch.js"/>
 			<!-- API Modules -->
 			<filelist dir="${source.runtime.dir}/modules/" files="
+				ajax.js,
+				attributes.js,
 				collection.js,
 				css.js,
-				dom.js,
+				data.js,
+				dimensions.js,
 				effects.js,
-				events.js"/>
+				event.js,
+				manipulation.js,
+				offset.js"/>
 		</concat>
 	</target>
 

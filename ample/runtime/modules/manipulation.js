@@ -7,29 +7,6 @@
  *
  */
 
-// Attributes (get/set)
-cAMLQuery.prototype.attr	= function(sName, sValue) {
-	// Validate API call
-	fGuard(arguments, [
-		["name",	cString],
-		["value",	cObject, true]
-	]);
-
-	// Invoke implementation
-	if (arguments.length > 1) {
-		var aQName		= sName.split(':'),
-			sNameSpaceURI	= null;
-		if (aQName.length > 1)
-			sNameSpaceURI	= oAmple.namespaces["xmlns" + ':' + aQName[0]] || null;
-		fAMLQuery_each(this, function() {
-			fAMLElement_setAttributeNS(this, sNameSpaceURI, sName, cString(sValue));
-		});
-		return this;
-	}
-	else
-	if (this.length)
-		return fAMLElement_getAttribute(this[0], sName);
-};
 
 // Text (get/set)
 cAMLQuery.prototype.text	= function(sValue) {
