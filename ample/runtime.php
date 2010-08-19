@@ -155,6 +155,8 @@
 	$aFiles[]	= "runtime/modules/effects.js";
 	$aFiles[]	= "runtime/modules/events.js";
 	$aFiles[]	= "runtime/modules/data.js";
+	$aFiles[]	= "runtime/modules/dimensions.js";
+	$aFiles[]	= "runtime/modules/offset.js";
 
 	//
 	$aFiles[]	= "runtime/export.js";
