@@ -874,15 +874,15 @@ function fAMLElement_getRegExp(sName, sContainer) {
 var aCSSAnimation	= [
 			"top", "left", "right", "bottom"
 			,"width", "height"
-			,"fontSize"/*, "fontWeight"*/, "lineHeight"
-			,"marginTop", "marginLeft", "marginRight", "marginBottom"
-			,"paddingTop", "paddingLeft", "paddingRight", "paddingBottom"
-			,"borderTopWidth", "borderLeftWidth", "borderRightWidth", "borderBottomWidth"
-			,"outlineWidth"
+//			,"fontSize"/*, "fontWeight"*/, "lineHeight"
+//			,"marginTop", "marginLeft", "marginRight", "marginBottom"
+//			,"paddingTop", "paddingLeft", "paddingRight", "paddingBottom"
+//			,"borderTopWidth", "borderLeftWidth", "borderRightWidth", "borderBottomWidth"
+//			,"outlineWidth"
 	],
 	aCSSTransition	= [
 			"opacity", "color"
-			,"backgroundColor", "backgroundPosition"
+//			,"backgroundColor", "backgroundPosition"
 			,"borderTopColor", "borderLeftColor", "borderRightColor", "borderBottomColor"
 			,"outlineColor"
 	];
