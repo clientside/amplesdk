@@ -15,13 +15,13 @@
 		<script type="text/javascript">
 			// Using element in markup
 			function testSVGElement_circle_markup() {
-				var	oElement	= ample.document.getElementById('circle');
+				var	oElement	= ample.getElementById('circle');
 				assertNotUndefined(oElement);
 			}
 
 			// Modifying attributes of an element instantiated from markup
 			function testSVGElement_circle_markup_attributes() {
-				var	oElement	= ample.document.getElementById('circle');
+				var	oElement	= ample.getElementById('circle');
 				var sCx	= '' + Math.round(200 * Math.random()),
 					sCy	= '' + Math.round(200 * Math.random()),
 					sR	= '' + Math.round(200 * Math.random());
@@ -37,8 +37,8 @@
 
 			// Creating element dynamically
 			function testSVGElement_circle_dynamic() {
-				var oRoot	= ample.document.getElementById('root');
-				var	oElement= ample.document.createElement('http://www.w3.org/2000/svg', 'circle');
+				var oRoot	= ample.getElementById('root');
+				var	oElement= ample.createElement('http://www.w3.org/2000/svg', 'circle');
 				oRoot.appendChild(oElement);
 
 				assertEquals(oElement.parentNode, oRoot);
@@ -46,8 +46,8 @@
 
 			// Modifying attributes of an element created dynamically
 			function testSVGElement_circle_dynamic_attributes() {
-				var oRoot	= ample.document.getElementById('root');
-				var	oElement	= ample.document.createElement('http://www.w3.org/2000/svg', 'circle');
+				var oRoot	= ample.getElementById('root');
+				var	oElement	= ample.createElement('http://www.w3.org/2000/svg', 'circle');
 
 				var sCx	= '' + Math.round(200 * Math.random()),
 					sCy	= '' + Math.round(200 * Math.random()),

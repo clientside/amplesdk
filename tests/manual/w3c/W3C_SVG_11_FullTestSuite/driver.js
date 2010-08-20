@@ -9,13 +9,13 @@ oRequest.send(null);
 eval(oRequest.responseText);
 
 // Load and and replace embed tag
-ample.document.addEventListener("load", function() {
+ample.addEventListener("load", function() {
 	var oElementOld	= document.getElementsByTagName("embed")[0],
 		sLocation	= oElementOld.getAttribute("src"),
 		sWidth		= oElementOld.getAttribute("width"),
 		sHeight		= oElementOld.getAttribute("height"),
 		oElementNew	= document.createElement("div"),
-		oElement	= ample.document.documentElement.appendChild(ample.document.createElement("fake"));
+		oElement	= ample.documentElement.appendChild(ample.createElement("fake"));
 	// Replace embed element with div
 	oElementOld.parentNode.replaceChild(oElementNew, oElementOld);
 	oElementNew.parentNode.setAttribute("align", "left");
@@ -35,7 +35,7 @@ ample.document.addEventListener("load", function() {
 			oDocument.documentElement.setAttribute("width", sWidth);
 			oDocument.documentElement.setAttribute("height", sHeight);
 			// Append SVG fragment to Ample SDK DOM
-			oElement.appendChild(ample.document.importNode(oDocument.documentElement, true));
+			oElement.appendChild(ample.importNode(oDocument.documentElement, true));
 		}
 	}
 	oRequest.send(null);

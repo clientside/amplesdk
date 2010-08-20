@@ -15,13 +15,13 @@
 		<script type="text/javascript">
 			// Using element in markup
 			function testSVGElement_rect_markup() {
-				var	oElement	= ample.document.getElementById('rect');
+				var	oElement	= ample.getElementById('rect');
 				assertNotUndefined(oElement);
 			}
 
 			// Modifying attributes of an element instantiated from markup
 			function testSVGElement_rect_markup_attributes() {
-				var	oElement	= ample.document.getElementById('rect');
+				var	oElement	= ample.getElementById('rect');
 				var sX	= '' + Math.round(200 * Math.random()),
 					sY	= '' + Math.round(200 * Math.random()),
 					sRx	= '' + Math.round(200 * Math.random()),
@@ -46,8 +46,8 @@
 
 			// Creating element dynamically
 			function testSVGElement_rect_dynamic() {
-				var oRoot	= ample.document.getElementById('root');
-				var	oElement= ample.document.createElement('http://www.w3.org/2000/svg', 'rect');
+				var oRoot	= ample.getElementById('root');
+				var	oElement= ample.createElement('http://www.w3.org/2000/svg', 'rect');
 				oRoot.appendChild(oElement);
 
 				assertEquals(oElement.parentNode, oRoot);
@@ -55,8 +55,8 @@
 
 			// Modifying attributes of an element created dynamically
 			function testSVGElement_rect_dynamic_attributes() {
-				var oRoot	= ample.document.getElementById('root');
-				var	oElement	= ample.document.createElement('http://www.w3.org/2000/svg', 'rect');
+				var oRoot	= ample.getElementById('root');
+				var	oElement	= ample.createElement('http://www.w3.org/2000/svg', 'rect');
 
 				var sX	= '' + Math.round(200 * Math.random()),
 					sY	= '' + Math.round(200 * Math.random()),

@@ -79,7 +79,7 @@ function suspendRedraw()
 {
   // asv doesn't implement suspendRedraw, so we wrap this in a try-block:
   try {
-    ample.document.getElementById("doc").suspendRedraw(0);
+    ample.getElementById("doc").suspendRedraw(0);
   }
   catch(e) {}
 }
@@ -88,7 +88,7 @@ function unsuspendRedraw()
 {
   // asv doesn't implement unsuspendRedraw, so we wrap this in a try-block:
   try {
-    ample.document.getElementById("doc").unsuspendRedraw(0);
+    ample.getElementById("doc").unsuspendRedraw(0);
   }
   catch(e) {}
 }
@@ -136,25 +136,25 @@ function Grid(cols, rows, color, bordercolor, x, y, width, height, node) {
   node.setAttribute("transform", "translate("+x+","+y+") scale("+
                                  (width/(cols+1))+","+(height/(rows+1))+") translate(0.5,0.5)");
 
-  this._border = ample.document.createElementNS(SVG_NS, "rect");
+  this._border = ample.createElementNS(SVG_NS, "rect");
   this._border.setAttribute("fill", bordercolor);
   this._border.setAttribute("width", cols+1);
   this._border.setAttribute("height", rows+1);
   this._border.setAttribute("x", "-0.5");
   this._border.setAttribute("y", "-0.5");
 
-  this._background = ample.document.createElementNS(SVG_NS, "rect");
+  this._background = ample.createElementNS(SVG_NS, "rect");
   this._background.setAttribute("fill", color);
   this._background.setAttribute("width", cols);
   this._background.setAttribute("height", rows);
 
-  this._rowArray = ample.document.createElementNS(SVG_NS, "g");
+  this._rowArray = ample.createElementNS(SVG_NS, "g");
   for (var r=0;r<rows;++r) {
-    var row_group = ample.document.createElementNS(SVG_NS, "g");
+    var row_group = ample.createElementNS(SVG_NS, "g");
     row_group.setAttribute("transform", "translate(0,"+r+")");
 
     for (var c=0;c<cols;++c) {
-      var cell = ample.document.createElementNS(SVG_NS, "rect");
+      var cell = ample.createElementNS(SVG_NS, "rect");
       cell.setAttribute("x", c);
       cell.setAttribute("rx", "0.25");	// Added
       cell.setAttribute("ry", "0.25");	// Added
@@ -252,21 +252,21 @@ alert("error: coord="+coord);
 // message class
 
 function Message(txt, position, style) {
-  this._node = ample.document.createElementNS(SVG_NS, "text");
+  this._node = ample.createElementNS(SVG_NS, "text");
   this._node.setAttribute("style", style);
   this._node.setAttribute("x", position[0]);
   this._node.setAttribute("y", position[1]);
-  this._node.appendChild(ample.document.createTextNode(txt));
+  this._node.appendChild(ample.createTextNode(txt));
 }
 
 Message.prototype = {
   show : function() {
     suspendRedraw();
-    ample.document.getElementById("doc").appendChild(this._node);
+    ample.getElementById("doc").appendChild(this._node);
     unsuspendRedraw();
   },
   hide : function() {
-    ample.document.getElementById("doc").removeChild(this._node);
+    ample.getElementById("doc").removeChild(this._node);
   }
 };
 
@@ -468,15 +468,15 @@ function keyHandler(event) {
 
 function init() {
   // page layout:
-  ample.document.getElementById("doc").setAttribute("viewBox", "0 0 "+(3*HPAD+(COLS+1)+5)+" "+(2*VPAD+(ROWS+1)));
+  ample.getElementById("doc").setAttribute("viewBox", "0 0 "+(3*HPAD+(COLS+1)+5)+" "+(2*VPAD+(ROWS+1)));
 
-  board = new Grid(COLS, ROWS, "black", "grey", HPAD, VPAD, COLS+1, ROWS+1, ample.document.getElementById("board"));
-  preview = new Grid(4,4, "black", "grey", 2*HPAD+COLS+1, VPAD, 5, 5, ample.document.getElementById("preview"));
+  board = new Grid(COLS, ROWS, "black", "grey", HPAD, VPAD, COLS+1, ROWS+1, ample.getElementById("board"));
+  preview = new Grid(4,4, "black", "grey", 2*HPAD+COLS+1, VPAD, 5, 5, ample.getElementById("preview"));
 
   startNewGame();
 
   // initialize event processing:
-  ample.document.getElementById("doc").addEventListener("keydown", keyHandler, false);
+  ample.getElementById("doc").addEventListener("keydown", keyHandler, false);
 }
 
 setTimeout(init);

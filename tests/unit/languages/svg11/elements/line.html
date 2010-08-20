@@ -15,13 +15,13 @@
 		<script type="text/javascript">
 			// Using element in markup
 			function testSVGElement_line_markup() {
-				var	oElement	= ample.document.getElementById('line');
+				var	oElement	= ample.getElementById('line');
 				assertNotUndefined(oElement);
 			}
 
 			// Modifying attributes of an element instantiated from markup
 			function testSVGElement_line_markup_attributes() {
-				var	oElement	= ample.document.getElementById('line');
+				var	oElement	= ample.getElementById('line');
 				var sX1	= '' + Math.round(200 * Math.random()),
 					sY1	= '' + Math.round(200 * Math.random()),
 					sX2	= '' + Math.round(200 * Math.random()),
@@ -40,8 +40,8 @@
 
 			// Creating element dynamically
 			function testSVGElement_line_dynamic() {
-				var oRoot	= ample.document.getElementById('root');
-				var	oElement= ample.document.createElement('http://www.w3.org/2000/svg', 'line');
+				var oRoot	= ample.getElementById('root');
+				var	oElement= ample.createElement('http://www.w3.org/2000/svg', 'line');
 				oRoot.appendChild(oElement);
 
 				assertEquals(oElement.parentNode, oRoot);
@@ -49,8 +49,8 @@
 
 			// Modifying attributes of an element created dynamically
 			function testSVGElement_line_dynamic_attributes() {
-				var oRoot	= ample.document.getElementById('root');
-				var	oElement	= ample.document.createElement('http://www.w3.org/2000/svg', 'line');
+				var oRoot	= ample.getElementById('root');
+				var	oElement	= ample.createElement('http://www.w3.org/2000/svg', 'line');
 
 				var sX1	= '' + Math.round(200 * Math.random()),
 					sY1	= '' + Math.round(200 * Math.random()),

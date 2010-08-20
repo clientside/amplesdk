@@ -10,13 +10,13 @@
 			xmlns="http://www.w3.org/1999/xhtml"
 			xmlns:aml="http://www.amplesdk.com/ns/aml">
 
-			<b onclick="ample.document.getElementById('target1').$load('content1.xml')" style="cursor:pointer">Load (content 1)</b>
+			<b onclick="ample.query('#target1').load('content1.xml')" style="cursor:pointer">Load (content 1)</b>
 			<div id="target1"/>
 
-			<b onclick="ample.document.getElementById('target2').$load('content2.xml')" style="cursor:pointer">Events for found resource (content 2)</b>
+			<b onclick="ample.query('#target2').load('content2.xml')" style="cursor:pointer">Events for found resource (content 2)</b>
 			<div id="target2" onload="alert('content 2 is loaded')" onunload="alert('content 2 is unloaded')" onerror="alert('error happend to content 2')"/>
 
-			<b onclick="ample.document.getElementById('target3').$load('content3.xml')" style="cursor:pointer">Events for not found resource (content 3)</b>
+			<b onclick="ample.query('#target3').load('content3.xml')" style="cursor:pointer">Events for not found resource (content 3)</b>
 			<div id="target3" onload="alert('content 3 is loaded')" onunload="alert('content 2 is unloaded')" onerror="alert('error happend to content 3')"/>
 
 		</script>

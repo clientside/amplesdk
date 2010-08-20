@@ -15,13 +15,13 @@
 		<script type="text/javascript">
 			// Using element in markup
 			function testSVGElement_line_markup() {
-				var	oElement	= ample.document.getElementById('polygon');
+				var	oElement	= ample.getElementById('polygon');
 				assertNotUndefined(oElement);
 			}
 
 			// Modifying attributes of an element instantiated from markup
 			function testSVGElement_line_markup_attributes() {
-				var	oElement	= ample.document.getElementById('polygon');
+				var	oElement	= ample.getElementById('polygon');
 				var sPoints	= '0,0 100,0, 50,100, 0,0';
 
 				oElement.setAttribute('points', sPoints);
@@ -31,8 +31,8 @@
 
 			// Creating element dynamically
 			function testSVGElement_line_dynamic() {
-				var oRoot	= ample.document.getElementById('root');
-				var	oElement= ample.document.createElement('http://www.w3.org/2000/svg', 'polygon');
+				var oRoot	= ample.getElementById('root');
+				var	oElement= ample.createElement('http://www.w3.org/2000/svg', 'polygon');
 				oRoot.appendChild(oElement);
 
 				assertEquals(oElement.parentNode, oRoot);
@@ -40,8 +40,8 @@
 
 			// Modifying attributes of an element created dynamically
 			function testSVGElement_line_dynamic_attributes() {
-				var oRoot	= ample.document.getElementById('root');
-				var	oElement	= ample.document.createElement('http://www.w3.org/2000/svg', 'polygon');
+				var oRoot	= ample.getElementById('root');
+				var	oElement	= ample.createElement('http://www.w3.org/2000/svg', 'polygon');
 
 				var sPoints	= '0,0 100,0, 50,100, 0,0';
 

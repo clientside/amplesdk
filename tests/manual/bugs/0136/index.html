@@ -53,64 +53,64 @@
 			var sXulNS	= "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
 			// Columns
 			function addColumn() {
-				var aElement= ample.document.document.querySelectorAll("xul|treecols"),
+				var aElement= ample.querySelectorAll("xul|treecols"),
 					oParent	= aElement[aElement.length - 1],
-					oChild	= ample.document.document.createElementNS(sXulNS, "xul:treecol");
+					oChild	= ample.createElementNS(sXulNS, "xul:treecol");
 				oParent.appendChild(oChild);
 				oChild.setAttribute("label", "Column " + oParent.childNodes.length);
 			}
 			function removeColumn() {
-				var aElement= ample.document.document.querySelectorAll("xul|treecols"),
+				var aElement= ample.querySelectorAll("xul|treecols"),
 					oParent	= aElement[aElement.length - 1];
 				oParent.removeChild(oParent.lastChild);
 			}
 			// Children
 			function addChildren() {
-				var aElement= ample.document.document.querySelectorAll("xul|treebody, xul|treeitem"),	// first body is used, then item if available
+				var aElement= ample.querySelectorAll("xul|treebody, xul|treeitem"),	// first body is used, then item if available
 					oParent	= aElement[aElement.length - 1],
-				oChild	= ample.document.document.createElementNS(sXulNS, "xul:treechildren");
+				oChild	= ample.createElementNS(sXulNS, "xul:treechildren");
 				oParent.appendChild(oChild);
 			}
 			function removeChildren() {
-				var aElement= ample.document.document.querySelectorAll("xul|treebody, xul|treeitem"),
+				var aElement= ample.querySelectorAll("xul|treebody, xul|treeitem"),
 					oParent	= aElement[aElement.length - 1];
 				oParent.removeChild(oParent.lastChild);
 			}
 			// Item
 			function addItem() {
-				var aElement= ample.document.document.querySelectorAll("xul|treechildren"),
+				var aElement= ample.querySelectorAll("xul|treechildren"),
 					oParent	= aElement[aElement.length - 1],
-					oChild	= ample.document.document.createElementNS(sXulNS, "xul:treeitem");
+					oChild	= ample.createElementNS(sXulNS, "xul:treeitem");
 				oParent.appendChild(oChild);
 //				oChild.setAttribute("container", "true");
 			}
 			function removeItem() {
-				var aElement= ample.document.document.querySelectorAll("xul|treechildren"),
+				var aElement= ample.querySelectorAll("xul|treechildren"),
 					oParent	= aElement[aElement.length - 1];
 				oParent.removeChild(oParent.lastChild);
 			}
 			// Row
 			function addRow() {
-				var aElement= ample.document.document.querySelectorAll("xul|treeitem"),
+				var aElement= ample.querySelectorAll("xul|treeitem"),
 					oParent	= aElement[aElement.length - 1],
-					oChild	= ample.document.document.createElementNS(sXulNS, "xul:treerow");
+					oChild	= ample.createElementNS(sXulNS, "xul:treerow");
 				oParent.appendChild(oChild);
 			}
 			function removeRow() {
-				var aElement= ample.document.document.querySelectorAll("xul|treeitem"),
+				var aElement= ample.querySelectorAll("xul|treeitem"),
 					oParent	= aElement[aElement.length - 1];
 				oParent.removeChild(oParent.lastChild);
 			}
 			// Cell
 			function addCell() {
-				var aElement= ample.document.document.querySelectorAll("xul|treerow"),
+				var aElement= ample.querySelectorAll("xul|treerow"),
 					oParent	= aElement[aElement.length - 1],
-					oChild	= ample.document.document.createElementNS(sXulNS, "xul:treecell");
+					oChild	= ample.createElementNS(sXulNS, "xul:treecell");
 				oParent.appendChild(oChild);
 				oChild.setAttribute("label", "cell " + oParent.childNodes.length);
 			}
 			function removeRow() {
-				var aElement= ample.document.document.querySelectorAll("xul|treerow"),
+				var aElement= ample.querySelectorAll("xul|treerow"),
 					oParent	= aElement[aElement.length - 1];
 				oParent.removeChild(oParent.lastChild);
 			}

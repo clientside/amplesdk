@@ -76,10 +76,10 @@
               img.src = images[k];
           }
 
-          ample.document.getElementById("canvas").addEventListener("mousemove", onMouseMove, false);
-          ample.document.getElementById("canvas").addEventListener("mouseup", onMouseUp, false);
-          ample.document.getElementById("background-rect").addEventListener("mousemove", onMouseMove, false);
-          ample.document.getElementById("background-rect").addEventListener("mouseup", onMouseUp, false);
+          ample.getElementById("canvas").addEventListener("mousemove", onMouseMove, false);
+          ample.getElementById("canvas").addEventListener("mouseup", onMouseUp, false);
+          ample.getElementById("background-rect").addEventListener("mousemove", onMouseMove, false);
+          ample.getElementById("background-rect").addEventListener("mouseup", onMouseUp, false);
       }
 
       // convenience function to set X, Y, width, and height attributes
@@ -93,7 +93,7 @@
       // create a new clickable rect [x,y,w,h] with the givenfill/stroke
       // with the given handler on mouse down
       function newClickableRect(id, x, y, w, h, fill, stroke, handler) {
-          var p = ample.document.createElementNS(SVG, "rect");
+          var p = ample.createElementNS(SVG, "rect");
           p.setAttribute("id", id);
           svgSetXYWH(p, x, y, w, h);
           p.setAttribute("rx", 30);
@@ -115,8 +115,8 @@
 
           var id = nextImageId++;
           var s = "image" + id;
-          var g = ample.document.createElementNS(SVG, "g");
-          ample.document.getElementById("canvas").appendChild(g);
+          var g = ample.createElementNS(SVG, "g");
+          ample.getElementById("canvas").appendChild(g);
 
           g.setAttribute("id", s);
           g.addEventListener("mouseover", onEnterImage, false);
@@ -126,7 +126,7 @@
           if (initOpacity != null)
         	  g.setAttribute("opacity", initOpacity);
 
-          var image = ample.document.createElementNS(SVG, "image");
+          var image = ample.createElementNS(SVG, "image");
           image.setAttribute("id", s+"-img");
           svgSetXYWH(image, -imgw/2, -imgh/2, imgw, imgh);
           image.setAttribute("preserveAspectRatio", "xMinYMin slice");
@@ -134,7 +134,7 @@
           image.setAttributeNS(XLINK, "xlink:href", url);
           g.appendChild(image);
 
-          var rect = ample.document.createElementNS(SVG, "rect");
+          var rect = ample.createElementNS(SVG, "rect");
           rect.setAttribute("id", s+"-border");
           svgSetXYWH(rect, -imgw/2, -imgh/2, imgw, imgh);
           rect.setAttribute("stroke", "black");
@@ -145,7 +145,7 @@
 
           g.appendChild(rect);
 
-          var g2 = ample.document.createElementNS(SVG, "g");
+          var g2 = ample.createElementNS(SVG, "g");
           g2.setAttribute("id", s+"-overlay");
           g2.setAttribute("class", "image-overlay");
           g2.setAttribute("style", "visibility: hidden");
@@ -180,17 +180,17 @@
       }
 
       function bringToFront(s) {
-          var el = ample.document.getElementById(s);
+          var el = ample.getElementById(s);
 
 //          el.parentNode.removeChild(el);
-          ample.document.getElementById("canvas").appendChild(el);
+          ample.getElementById("canvas").appendChild(el);
       }
 
       // take the transforms saved on the element and turn them into
       // svg transform syntax
       function setupTransform(s) {
-          var g = ample.document.getElementById(s);
-          var g2 = ample.document.getElementById(s + "-overlay");
+          var g = ample.getElementById(s);
+          var g2 = ample.getElementById(s + "-overlay");
 
           g.setAttribute("transform", "translate(" + g.vTranslate[0] + "," + g.vTranslate[1] + ") " +
                          "scale(" + g.vScale + "," + g.vScale + ") " +
@@ -206,7 +206,7 @@
           var e = baseName(ev);
           if (!e)
               return;
-          ample.document.getElementById(e + '-overlay').style.visibility = "visible";
+          ample.getElementById(e + '-overlay').style.visibility = "visible";
           ev.preventDefault();
       }
 
@@ -214,7 +214,7 @@
           var e = baseName(ev);
           if (!e)
               return;
-          ample.document.getElementById(e + '-overlay').style.visibility = "hidden";
+          ample.getElementById(e + '-overlay').style.visibility = "hidden";
           ev.preventDefault();
       }
 
@@ -228,7 +228,7 @@
               return;
 
           bringToFront(e);
-          var g = ample.document.getElementById(e);
+          var g = ample.getElementById(e);
 
           currentTransform = { what: what, el: e, corner: corner, g: g,
                                s: g.vScale, r: g.vRotate, t: g.vTranslate,
