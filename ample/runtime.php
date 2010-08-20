@@ -42,6 +42,9 @@
 	// Selectors API
 	$aFiles[]	= "runtime/classes/selectors/AMLNodeSelector.js";
 
+	// Animation
+	$aFiles[]	= "runtime/classes/animation/AMLNodeAnimation.js";
+
 	// Range
 	$aFiles[]	= "runtime/classes/range/AMLRange.js";
 
@@ -111,7 +114,7 @@
 	$aFiles[]	= "runtime/managers/mAMLCapture.js";
 	$aFiles[]	= "runtime/managers/mAMLHistory.js";
 	$aFiles[]	= "runtime/managers/mAMLTouch.js";
-
+/*
 	// Modules
 	$aFiles[]	= "runtime/modules/ajax.js";
 	$aFiles[]	= "runtime/modules/attributes.js";
@@ -123,7 +126,7 @@
 	$aFiles[]	= "runtime/modules/event.js";
 	$aFiles[]	= "runtime/modules/manipulation.js";
 	$aFiles[]	= "runtime/modules/offset.js";
-
+*/
 	//
 	$aFiles[]	= "runtime/export.js";
 

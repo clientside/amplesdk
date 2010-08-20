@@ -21,9 +21,9 @@ function fSMILAnimationElement_init(oElement) {
 	oElement.attributeName	= oElement.attributes["attributeName"];
 	oElement.attributeType	= oElement.attributes["attributeType"];
 	// Simple Animation
-	oElement.from		= fAMLQuery_animate_parseValue(oElement.attributes["from"]);
-	oElement.to			= fAMLQuery_animate_parseValue(oElement.attributes['to']);
-	oElement.by			= fAMLQuery_animate_parseValue(oElement.attributes['by']);
+	oElement.from		= fAMLNodeAnimation_parseValue(oElement.attributes["from"]);
+	oElement.to			= fAMLNodeAnimation_parseValue(oElement.attributes['to']);
+	oElement.by			= fAMLNodeAnimation_parseValue(oElement.attributes['by']);
 	oElement.values		= fSMILElement_parseValues(oElement.attributes["values"]);
 	//
 	oElement.calcMode	= oElement.attributes["calcMode"];
@@ -64,7 +64,7 @@ function fSMILAnimationElement_progressAnimation(oElement, nProgress) {
 	if (oElement.calcMode == "discrete" || oElement.calcMode == "paced") {
 		if (oElement.calcMode == "paced")
 			for (var nIndex = 0; nIndex < nSegment; nIndex++)
-				oValue	= fAMLQuery_animate_sumValue(aValues[nIndex], oValue);
+				oValue	= fAMLNodeAnimation_sumValue(aValues[nIndex], oValue);
 	}
 	else {	// linear = default
 		var oFrom	= oElement.from ? oElement.from : oElement.original;
@@ -72,10 +72,10 @@ function fSMILAnimationElement_progressAnimation(oElement, nProgress) {
 			nSegment	= cMath.floor(nProgress * (nLength - 1));
 			oValue		= aValues[nSegment];
 			if (nSegment < nLength - 1)
-				oValue	= fAMLQuery_animate_sumValue(oValue, fAMLQuery_animate_mulValue(fAMLQuery_animate_subValue(aValues[nSegment + 1], oValue), (nProgress - nSegment / (nLength - 1)) * (nLength - 1)));
+				oValue	= fAMLNodeAnimation_sumValue(oValue, fAMLNodeAnimation_mulValue(fAMLNodeAnimation_subValue(aValues[nSegment + 1], oValue), (nProgress - nSegment / (nLength - 1)) * (nLength - 1)));
 		}
 		else
-			oValue	= fAMLQuery_animate_sumValue(oFrom, fAMLQuery_animate_mulValue(oElement.to ? fAMLQuery_animate_subValue(oElement.to, oFrom) : oElement.by, nProgress));
+			oValue	= fAMLNodeAnimation_sumValue(oFrom, fAMLNodeAnimation_mulValue(oElement.to ? fAMLNodeAnimation_subValue(oElement.to, oFrom) : oElement.by, nProgress));
 	}
 
 	fSMILAnimationElement_setAttributeValue(oElement, oValue);
@@ -89,7 +89,7 @@ function fSMILAnimationElement_endAnimation(oElement) {
 
 	// if element is to be frozen on it is a child of another time container that is still active
 	if (oElement.fill == "freeze" || (oElement.fill == "hold" && aSMILElement_activeElements.indexOf(oElement.parentNode) >-1))
-		oValue	= oElement.values[oElement.values.length - 1] || oElement.to || fAMLQuery_animate_sumValue(oElement.original, oElement.by);
+		oValue	= oElement.values[oElement.values.length - 1] || oElement.to || fAMLNodeAnimation_sumValue(oElement.original, oElement.by);
 	else
 		oValue	= oElement.original;
 
@@ -104,18 +104,18 @@ function fSMILAnimationElement_getAttributeValue(oElement) {
 		var oElementDOM	= oElement.targetElement.$getContainer();
 		if (oElement instanceof cSMILElement_animateMotion) {
 			var oStyle	= fBrowser_getComputedStyle(oElementDOM),
-				oValue1	= fAMLQuery_animate_parseValue(oStyle["top"]),
-				oValue2	= fAMLQuery_animate_parseValue(oStyle["left"]);
+				oValue1	= fAMLNodeAnimation_parseValue(oStyle["top"]),
+				oValue2	= fAMLNodeAnimation_parseValue(oStyle["left"]);
 			aValue	= [[oValue1[0], oValue2[0]], oValue1[1]];
 		}
 		else
-			aValue	= fAMLQuery_animate_parseValue(fBrowser_getStyle(oElementDOM, fUtilities_toCssPropertyName(oElement.attributeName)));
+			aValue	= fAMLNodeAnimation_parseValue(fBrowser_getStyle(oElementDOM, fUtilities_toCssPropertyName(oElement.attributeName)));
 	}
 	else {	// "XML" = "auto"
 		if (oElement instanceof cSMILElement_animateMotion)
 			throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 		else
-			aValue	= fAMLQuery_animate_parseValue(oElement.targetElement.getAttribute(oElement.attributeName));
+			aValue	= fAMLNodeAnimation_parseValue(oElement.targetElement.getAttribute(oElement.attributeName));
 	}
 	return aValue;
 };
@@ -155,7 +155,7 @@ function fSMILElement_parseValues(sValue) {
 		return [];
 
 	for (var nIndex = 0, aValuesRaw	= sValue.split(';'), aValues = [], oValue; nIndex < aValuesRaw.length; nIndex++)
-		if (oValue = fAMLQuery_animate_parseValue(aValuesRaw[nIndex]))
+		if (oValue = fAMLNodeAnimation_parseValue(aValuesRaw[nIndex]))
 			aValues.push(oValue);
 	return aValues;
 };

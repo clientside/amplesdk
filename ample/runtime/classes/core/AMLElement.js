@@ -1013,7 +1013,7 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 				}
 
 			if (bPlay) {
-				fAMLQuery_play(oElement, oPropertiesAfter, "fast", "ease", function() {
+				fAMLNodeAnimation_play(oElement, oPropertiesAfter, "fast", "ease", function() {
 					for (var nIndex = 0; nIndex < aPropertiesReset.length; nIndex++)
 						fBrowser_setStyle(oElementDOM, aPropertiesReset[nIndex], '');
 				});

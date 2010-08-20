@@ -787,6 +787,27 @@ function fBrowser_setStyle(oElementDOM, sName, sValue) {
 	oStyle[sName]	= sValue;
 };
 
+function fBrowser_adjustStyleValue(oElementDOM, sName, sValue) {
+	if (sName == "opacity")
+		return sValue == '' ? '1' : sValue;
+	else
+	if (sName == "backgroundPosition")
+		return(sValue == "0% 0%" || sValue == "none" || sValue == '')? '0px 0px' : sValue;
+	else
+	if (sName == "lineHeight") {
+		if (bTrident && nVersion < 9 && sValue == "normal")
+			return fBrowser_getStyle(oElementDOM, "fontSize");
+		return sValue;
+	}
+	else
+	if (sName.match(/border(.+)Width/))
+		return sValue == "medium" ? '3px' : sValue;
+	else
+	if (sName.match(/top|left|bottom|right/i))
+		return sValue == "auto" ? '0px' : sValue;
+	return sValue;
+};
+
 //
 fBrowser_attachEvent(window, "load", function(oEvent) {
 	// change readystate to "loaded"
