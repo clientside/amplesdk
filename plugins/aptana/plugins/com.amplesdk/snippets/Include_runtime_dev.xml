@@ -1,6 +1,0 @@
-<!--
-	category: Ample SDK
-	name: Resource include: Runtime (dev)
-	toolTip: Runtime bundle (put it in the HEAD section)
--->
-		<script type="text/javascript" src="lib/ample/runtime-dev.js"></script>
