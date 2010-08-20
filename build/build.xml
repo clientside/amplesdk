@@ -356,7 +356,7 @@
 
 		<echo message="Copying default theme to: ${target.xhtml.dir}/themes/default/" level="info"/>
 		<mkdir dir="${target.xhtml.dir}/themes/default/" />
-		<copy tofile="${target.xhtml.dir}/themes/default/style-dev.css" file="${temp.languages.dir}/xhtml-raw.css" />
+		<copy tofile="${target.xhtml.dir}/themes/default/style-raw.css" file="${temp.languages.dir}/xhtml-raw.css" />
 		<copy tofile="${target.xhtml.dir}/themes/default/style.css" file="${temp.languages.dir}/xhtml.css" />
 		<copy todir="${target.xhtml.dir}/themes/default/">
 			<fileset dir="${source.xhtml.dir}/themes/default/">
@@ -411,7 +411,7 @@
 
 		<echo message="Copying default theme to: ${target.aui.dir}/themes/default/" level="info"/>
 		<mkdir dir="${target.aui.dir}/themes/default/" />
-		<copy tofile="${target.aui.dir}/themes/default/style-dev.css" file="${temp.languages.dir}/aui-raw.css" />
+		<copy tofile="${target.aui.dir}/themes/default/style-raw.css" file="${temp.languages.dir}/aui-raw.css" />
 		<copy tofile="${target.aui.dir}/themes/default/style.css" file="${temp.languages.dir}/aui.css" />
 		<copy todir="${target.aui.dir}/themes/default/">
 			<fileset dir="${source.aui.dir}/themes/default/">
@@ -472,7 +472,7 @@
 
 		<echo message="Copying default theme to: ${target.xul.dir}/themes/default/" level="info"/>
 		<mkdir dir="${target.xul.dir}/themes/default/" />
-		<copy tofile="${target.xul.dir}/themes/default/style-dev.css" file="${temp.languages.dir}/xul-raw.css" />
+		<copy tofile="${target.xul.dir}/themes/default/style-raw.css" file="${temp.languages.dir}/xul-raw.css" />
 		<copy tofile="${target.xul.dir}/themes/default/style.css" file="${temp.languages.dir}/xul.css" />
 		<copy todir="${target.xul.dir}/themes/default/">
 			<fileset dir="${source.xul.dir}/themes/default/">
@@ -648,7 +648,7 @@
 		</concat>
 		<echo message="Copying default theme to: ${target.chart.dir}/themes/default/" level="info"/>
 		<mkdir dir="${target.chart.dir}/themes/default/" />
-		<copy tofile="${target.chart.dir}/themes/default/style-dev.css" file="${temp.languages.dir}/chart-raw.css" />
+		<copy tofile="${target.chart.dir}/themes/default/style-raw.css" file="${temp.languages.dir}/chart-raw.css" />
 		<copy tofile="${target.chart.dir}/themes/default/style.css" file="${temp.languages.dir}/chart.css" />
 		<copy todir="${target.chart.dir}/themes/default/">
 			<fileset dir="${source.chart.dir}/themes/default/">
