@@ -7,8 +7,8 @@
    Ample SDK is a standard-based cross-browser JavaScript GUI Framework
    for building client-side Rich Internet Applications. It employs XML
    technologies (such as XUL, SVG or HTML5) for UI layout, CSS for UI style
-   and JavaScript/DOM for application logic. It equalizes browsers and brings
-   technologies support to those missing any.
+   and JavaScript with DOM3 or jQuery-like APIs for application logic.
+   It equalizes browsers and brings technologies support to those missing any.
 
  Getting Started:
    The easiest way to get started is looking into examples folder and running
