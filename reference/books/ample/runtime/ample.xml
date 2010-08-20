@@ -22,6 +22,13 @@
 	<examples />
 	<members>
 		<properties>
+			<property name="locale" type="Object" readonly="true">
+				<description>
+					<locale>
+						Reserved for the future implementation.
+					</locale>
+				</description>
+			</property>
 			<property name="document" type="AMLDocument" readonly="true">
 				<description>
 					<locale>
@@ -29,7 +36,7 @@
 					</locale>
 				</description>
 			</property>
-			<property name="namespaces" type="Object">
+			<property name="namespaces" type="Object" readonly="true">
 				<description>
 					<locale>
 						Retrieves a reference to a hash object of namespaces collected from the root element of the hosting document.
