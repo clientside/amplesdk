@@ -41,7 +41,7 @@ cXHTMLElement_a.handlers	= {
 		var oTarget;
 		if (this.getAttribute("target").match(/#(.+)$/) && (oTarget = this.ownerDocument.getElementById(window.RegExp.$1)))	{
 			// Load content into target
-			oTarget.$load(this.getAttribute("href").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&'));
+			ample.query(oTarget).load(this.getAttribute("href").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&'));
 
 			// Prevent following link
 			oEvent.preventDefault();

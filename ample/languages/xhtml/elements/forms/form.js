@@ -45,11 +45,15 @@ cXHTMLElement_form.prototype.submit	= function() {
 					aValue.push(sName + '=' + vValue);
 			}
 		}
+		function fComplete(oRequest) {
+			// TODO: Check if works
+			ample(oTarget).html(oRequest.responseText);
+		};
 		vValue	= window.encodeURI(aValue.join('&'));
 		if (this.getAttribute("method").toLowerCase() == "post")
-			oTarget.$load(sAction, "POST", {'Content-Type': 'application/x-www-form-urlencoded'}, vValue);
+			ample.ajax({"type": "POST", "url": sAction, "headers": {'Content-Type': 'application/x-www-form-urlencoded'}, "data": vValue, "complete": fComplete});
 		else
-			oTarget.$load(sAction.replace(/\?.+/, '') + '?' + vValue, this.getAttribute("method"));
+			ample.ajax({"type": "GET", "url": sAction.replace(/\?.+/, '') + '?' + vValue, "complete": fComplete});
 	}
 	else
 		this.$getContainer().submit();
