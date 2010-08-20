@@ -114,11 +114,10 @@
 	$aFiles[]	= "runtime/managers/mAMLCapture.js";
 	$aFiles[]	= "runtime/managers/mAMLHistory.js";
 	$aFiles[]	= "runtime/managers/mAMLTouch.js";
-/*
+
 	// Modules
 	$aFiles[]	= "runtime/modules/ajax.js";
 	$aFiles[]	= "runtime/modules/attributes.js";
-	$aFiles[]	= "runtime/modules/collection.js";
 	$aFiles[]	= "runtime/modules/css.js";
 	$aFiles[]	= "runtime/modules/data.js";
 	$aFiles[]	= "runtime/modules/dimensions.js";
@@ -126,7 +125,7 @@
 	$aFiles[]	= "runtime/modules/event.js";
 	$aFiles[]	= "runtime/modules/manipulation.js";
 	$aFiles[]	= "runtime/modules/offset.js";
-*/
+
 	//
 	$aFiles[]	= "runtime/export.js";
 

@@ -177,7 +177,6 @@
 			<filelist dir="${source.runtime.dir}/modules/" files="
 				ajax.js,
 				attributes.js,
-				collection.js,
 				css.js,
 				data.js,
 				dimensions.js,
