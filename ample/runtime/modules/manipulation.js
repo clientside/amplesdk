@@ -75,9 +75,9 @@ cAMLQuery.prototype.appendTo	= function(vArgument1) {
 		fAMLQuery_each(vArgument1, function(nIndex) {
 			var oParent	= this;
 			oSelf.each(function() {
-				var oChild	= nIndex ? fAMLNode_cloneNode(this, true) : this;
-				fAMLElement_appendChild(oParent, oChild);
-				oQuery[oQuery.length++] = oChild;
+				var oNode	= nIndex ? fAMLNode_cloneNode(this, true) : this;
+				fAMLElement_appendChild(oParent, oNode);
+				oQuery[oQuery.length++] = oNode;
 			});
 		});
 	}
@@ -102,12 +102,12 @@ cAMLQuery.prototype.prependTo	= function(vArgument1) {
 			var oParent	= this,
 				oBefore	= this.firstChild;
 			fAMLQuery_each(oSelf, function() {
-				var oChild	= nIndex ? fAMLNode_cloneNode(this, true) : this;
+				var oNode	= nIndex ? fAMLNode_cloneNode(this, true) : this;
 				if (oBefore)
-					fAMLElement_insertBefore(oParent, oChild, oBefore);
+					fAMLElement_insertBefore(oParent, oNode, oBefore);
 				else
-					fAMLElement_appendChild(oParent, oChild);
-				oQuery[oQuery.length++] = oChild;
+					fAMLElement_appendChild(oParent, oNode);
+				oQuery[oQuery.length++] = oNode;
 			});
 		});
 	}
@@ -129,12 +129,12 @@ cAMLQuery.prototype.insertBefore	= function(vArgument1) {
 		//
 		var oSelf	= this;
 		fAMLQuery_each(vArgument1, function(nIndex) {
-			var oNode	= this,
+			var oParent	= this.parentNode,
 				oBefore	= this;
 			fAMLQuery_each(oSelf, function() {
-				var oChild	= nIndex ? fAMLNode_cloneNode(this, true) : this;
-				fAMLElement_insertBefore(oNode.parentNode, oChild, oBefore);
-				oQuery[oQuery.length++] = oChild;
+				var oNode	= nIndex ? fAMLNode_cloneNode(this, true) : this;
+				fAMLElement_insertBefore(oParent, oNode, oBefore);
+				oQuery[oQuery.length++] = oNode;
 			});
 		});
 	}
@@ -156,15 +156,15 @@ cAMLQuery.prototype.insertAfter	= function(vArgument1) {
 		//
 		var oSelf	= this;
 		fAMLQuery_each(vArgument1, function(nIndex) {
-			var oNode	= this,
+			var oParent	= this.parentNode,
 				oBefore	= this.nextSibling;
 			fAMLQuery_each(oSelf, function() {
-				var oChild	= nIndex ? fAMLNode_cloneNode(this, true) : this;
+				var oNode	= nIndex ? fAMLNode_cloneNode(this, true) : this;
 				if (oBefore)
-					fAMLElement_insertBefore(oNode.parentNode, oChild, oBefore);
+					fAMLElement_insertBefore(oParent, oNode, oBefore);
 				else
-					fAMLElement_appendChild(oNode.parentNode, oChild);
-				oQuery[oQuery.length++] = oChild;
+					fAMLElement_appendChild(oParent, oNode);
+				oQuery[oQuery.length++] = oNode;
 			});
 		});
 	}
@@ -186,12 +186,12 @@ cAMLQuery.prototype.replaceAll	= function(vArgument1) {
 		//
 		var oSelf	= this;
 		fAMLQuery_each(vArgument1, function(nIndex) {
-			var oNode	= this,
+			var oParent	= this.parentNode,
 				oBefore	= this;
 			fAMLQuery_each(oSelf, function() {
-				var oChild	= nIndex ? fAMLNode_cloneNode(this, true) : this;
-				fAMLElement_insertBefore(oNode.parentNode, oChild, oBefore);
-				oQuery[oQuery.length++] = oChild;
+				var oNode	= nIndex ? fAMLNode_cloneNode(this, true) : this;
+				fAMLElement_insertBefore(oParent, oNode, oBefore);
+				oQuery[oQuery.length++] = oNode;
 			});
 			fAMLElement_removeChild(this.parentNode, this);
 		});
@@ -216,9 +216,9 @@ cAMLQuery.prototype.append	= function(vArgument1) {
 		fAMLQuery_each(this, function(nIndex) {
 			var oParent	= this;
 			fAMLQuery_each(vArgument1, function() {
-				var oChild	= nIndex ? fAMLNode_cloneNode(this, true) : this;
-				fAMLElement_appendChild(oParent, oChild);
-				oQuery[oQuery.length++]	= oChild;
+				var oNode	= nIndex ? fAMLNode_cloneNode(this, true) : this;
+				fAMLElement_appendChild(oParent, oNode);
+				oQuery[oQuery.length++]	= oNode;
 			});
 		});
 	}
@@ -242,12 +242,12 @@ cAMLQuery.prototype.prepend	= function(vArgument1) {
 			var oParent	= this,
 				oBefore	= this.firstChild;
 			fAMLQuery_each(vArgument1, function() {
-				var oChild	= nIndex ? fAMLNode_cloneNode(this, true) : this;
+				var oNode	= nIndex ? fAMLNode_cloneNode(this, true) : this;
 				if (oBefore)
-					fAMLElement_insertBefore(oParent, oChild, oBefore);
+					fAMLElement_insertBefore(oParent, oNode, oBefore);
 				else
-					fAMLElement_appendChild(oParent, oChild);
-				oQuery[oQuery.length++]	= oChild;
+					fAMLElement_appendChild(oParent, oNode);
+				oQuery[oQuery.length++]	= oNode;
 			});
 		});
 	}
@@ -268,16 +268,16 @@ cAMLQuery.prototype.before	= function(vArgument1) {
 			vArgument1	= fQuery(vArgument1);
 		//
 		fAMLQuery_each(this, function(nIndex) {
-			var oNode	= this,
+			var oParent	= this.parentNode,
 				oBefore	= this;
 			fAMLQuery_each(vArgument1, function() {
-				var oChild	= nIndex ? fAMLNode_cloneNode(this, true) : this;
-				if (oNode.parentNode)
-					fAMLElement_insertBefore(oNode.parentNode, oChild, oBefore);
+				var oNode	= nIndex ? fAMLNode_cloneNode(this, true) : this;
+				if (oParent)
+					fAMLElement_insertBefore(oParent, oNode, oBefore);
 				else {
 					// TODO: insert into self collection before
 				}
-				oQuery[oQuery.length++]	= oChild;
+				oQuery[oQuery.length++]	= oNode;
 			});
 		});
 	}
@@ -298,20 +298,20 @@ cAMLQuery.prototype.after	= function(vArgument1) {
 			vArgument1	= fQuery(vArgument1);
 		//
 		fAMLQuery_each(this, function(nIndex) {
-			var oNode	= this,
+			var oParent	= this.parentNode,
 				oBefore	= this.nextSibling;
 			fAMLQuery_each(vArgument1, function() {
-				var oChild	= nIndex ? fAMLNode_cloneNode(this, true) : this;
-				if (oNode.parentNode) {
+				var oNode	= nIndex ? fAMLNode_cloneNode(this, true) : this;
+				if (oParent) {
 					if (oBefore)
-						fAMLElement_insertBefore(oNode.parentNode, oChild, oBefore);
+						fAMLElement_insertBefore(oParent, oNode, oBefore);
 					else
-						fAMLElement_appendChild(oNode.parentNode, oChild);
+						fAMLElement_appendChild(oParent, oNode);
 				}
 				else {
 					// TODO: insert into self collection after
 				}
-				oQuery[oQuery.length++]	= oChild;
+				oQuery[oQuery.length++]	= oNode;
 			});
 		});
 	}
@@ -333,10 +333,10 @@ cAMLQuery.prototype.replaceWith	= function(vArgument1) {
 			vArgument1	= fQuery(vArgument1);
 		//
 		fAMLQuery_each(this, function(nIndex) {
-			var oNode	= this,
+			var oParent	= this.parentNode,
 				oBefore	= this;
 			fAMLQuery_each(vArgument1, function() {
-				fAMLElement_insertBefore(oNode.parentNode, nIndex ? fAMLNode_cloneNode(this, true) : this, oBefore);
+				fAMLElement_insertBefore(oParent, nIndex ? fAMLNode_cloneNode(this, true) : this, oBefore);
 			});
 			oQuery[oQuery.length++]	= fAMLElement_removeChild(this.parentNode, this);
 		});
