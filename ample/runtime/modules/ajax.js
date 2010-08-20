@@ -22,7 +22,7 @@ oAmple.ajax	= function(oSettings) {
 			if (oSettings.complete)
 				oSettings.complete(oRequest, oRequest.textStatus);
 		}
-	}
+	};
 	oRequest.send("data" in oSettings ? oSettings.data : null);
 
 	// Invoke implementation
