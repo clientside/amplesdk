@@ -44,7 +44,6 @@ var cString		= window.String,
 	fSetInterval	= window.setInterval,
 	fClearInterval	= window.clearInterval,
 //	misc
-	nNaN		= window.NaN,
 	fParseInt	= window.parseInt,
 	fParseFloat	= window.parseFloat,
 	fIsNaN		= window.isNaN,
@@ -54,6 +53,7 @@ var cString		= window.String,
 	oUALocation	= window.location,
 	oUADocument	= window.document,
 // constants
+	nNaN		= window.NaN,
 	nInfinity	= window.Infinity;
 
 // Browser detection code
