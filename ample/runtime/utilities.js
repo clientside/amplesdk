@@ -417,12 +417,3 @@ function fUtilities_stringToHash(sValue, sPrefix) {
 		hValue[(aValue = aValues[nIndex].split(':'))[0]]	=(sPrefix || '') + aValue[1];
 	return hValue;
 };
-
-function fUtilities_numberToHex(nValue, nLength/* =2 */) {
-	var sValue	= cMath.abs(cMath.floor(nValue)).toString(16);
-	if (!nLength)
-		nLength	= 2;
-	if (sValue.length < nLength)
-		sValue	= cArray(nLength + 1 - sValue.length).join('0') + sValue;
-	return sValue;
-};

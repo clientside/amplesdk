@@ -112,7 +112,7 @@ function fBrowser_render(oNode) {
 
 // User selection
 function fBrowser_getKeyboardEventIdentifier(oEvent) {
-	return oBrowser_keyIdentifiers[oEvent.keyCode] || ('U+' + fUtilities_numberToHex(oEvent.keyCode, 4).toUpperCase());
+	return oBrowser_keyIdentifiers[oEvent.keyCode] || 'U+' + ("0000" + oEvent.keyCode.toString(16).toUpperCase()).slice(-4);
 };
 
 function fBrowser_getKeyboardEventModifiersList(oEvent) {

@@ -65,7 +65,7 @@ function fAMLNodeAnimation_stop(nEffect)
 			aValue	= oData[1];
 			// Color value
 			if (aValue && aValue[1] == '#')
-				aValue	= ['#', fUtilities_numberToHex(aValue[0][0] * 255) + fUtilities_numberToHex(aValue[0][1] * 255) + fUtilities_numberToHex(aValue[0][2] * 255)];
+				aValue	= fAMLNodeAnimation_toHex(aValue[0]);
 			else
 			if (sKey == "backgroundPosition")
 				aValue	= [aValue[0][0], aValue[1], ' ', aValue[0][1], aValue[1]];
@@ -149,7 +149,7 @@ function fAMLNodeAnimation_process(nEffect)
 			aValue	= fAMLNodeAnimation_sumValue(oData[0], fAMLNodeAnimation_mulValue(fAMLNodeAnimation_subValue(oData[1], oData[0]), nRatio));
 			// Color value
 			if (aValue[1] == '#')
-				aValue	= ['#', fUtilities_numberToHex(aValue[0][0] * 255) + fUtilities_numberToHex(aValue[0][1] * 255) + fUtilities_numberToHex(aValue[0][2] * 255)];
+				aValue	= fAMLNodeAnimation_toHex(aValue[0]);
 			else
 			if (sKey == "backgroundPosition")
 				aValue	= [aValue[0][0], aValue[1], ' ', aValue[0][1], aValue[1]];
@@ -231,6 +231,10 @@ function fAMLNodeAnimation_parseValue(sValue) {
 	}
 	//
 	return [sValue, '', ''];
+};
+
+function fAMLNodeAnimation_toHex(aValue) {
+	return ['#', ('000000' + (aValue[2] * 255 | (aValue[1] * 255 << 8) | (aValue[0] * 255 << 16)).toString(16)).slice(-6)];
 };
 
 function fAMLNodeAnimation_sumValue(oValue1, oValue2) {

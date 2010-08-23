@@ -124,7 +124,7 @@ function fSMILAnimationElement_setAttributeValue(oElement, aValue) {
 	try {
 		// Color value
 		if (aValue && aValue[1] == '#')
-			aValue	= ['#', fUtilities_numberToHex(aValue[0][0] * 255) + fUtilities_numberToHex(aValue[0][1] * 255) + fUtilities_numberToHex(aValue[0][2] * 255)];
+			aValue	= fAMLNodeAnimation_toHex(aValue[0]);
 
 		if (oElement.attributeType == "CSS") {
 			var oElementDOM	= oElement.targetElement.$getContainer();
