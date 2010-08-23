@@ -304,7 +304,7 @@ function fAMLResize_onMouseUp(oEvent)
 				oProperties["width"]	= sAMLResize_clientWidth || "auto";
 				oProperties["height"]	= sAMLResize_clientHeight || "auto";
 				//
-				fAMLNodeAnimation_play(oAMLResize_resizeNode, oProperties, "fast", "ease", fRestore);
+				fAMLNodeAnimation_play(oAMLResize_resizeNode, oProperties, "normal", "ease", fRestore);
 			}
 			else
 				fRestore();
