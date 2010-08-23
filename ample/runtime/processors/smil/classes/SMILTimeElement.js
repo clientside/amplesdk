@@ -124,7 +124,6 @@ function fSMILTimeElement_init(oElement) {
 		});
 	}
 	else
-	if (oElement.begin.offset)
 		oElement.begin.offset ? fSetTimeout(fBegin, oElement.begin.offset) : fBegin();
 
 	if (oElement.end.event) {
@@ -170,7 +169,7 @@ function fSMILTimeElement_parseDate(sValue) {
 	// Event and/or Offset
 	else {
 		// Event
-		if (aValue = sValue.match(/^(?:(\w+)\.)?(\w+)/)) {
+		if (aValue = sValue.match(/^(?:(\w+)\.)?([a-z]\w+)/)) {
 			oDate.element	= aValue[1];
 			oDate.event		= aValue[2];
 			// remove from the value
