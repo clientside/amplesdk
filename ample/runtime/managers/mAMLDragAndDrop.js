@@ -20,8 +20,8 @@ var nAMLDragAndDrop_STATE_RELEASED	= 0,	// Constants
 
 	nAMLDragAndDrop_mouseX,					// Variables
 	nAMLDragAndDrop_mouseY,
-	nAMLDragAndDrop_clientLeft,
-	nAMLDragAndDrop_clientTop,
+	sAMLDragAndDrop_clientLeft,
+	sAMLDragAndDrop_clientTop,
 	nAMLDragAndDrop_offsetLeft,
 	nAMLDragAndDrop_offsetTop;
 
@@ -122,8 +122,8 @@ function fAMLDragAndDrop_onMouseUp(oEvent)
 		    var sLeft	= oElementDOM.style.left,
 		    	sTop	= oElementDOM.style.top;
 		    // Commit
-		    oElementDOM.style.left	= nAMLDragAndDrop_clientLeft;
-		    oElementDOM.style.top	= nAMLDragAndDrop_clientTop;
+		    oElementDOM.style.left	= sAMLDragAndDrop_clientLeft;
+		    oElementDOM.style.top	= sAMLDragAndDrop_clientTop;
 	    	var oRect1	= fAMLElement_getBoundingClientRect(oAMLDragAndDrop_dragSource);
 	    	// Rollback
 		    oElementDOM.style.left	= sLeft;
@@ -143,23 +143,23 @@ function fAMLDragAndDrop_onMouseUp(oEvent)
 		{
 			var oStyle		= oElementDOM.style,
 				fRestore	= function() {
-					oStyle.left		= nAMLDragAndDrop_clientLeft;
-					oStyle.top		= nAMLDragAndDrop_clientTop;
+					oStyle.left		= sAMLDragAndDrop_clientLeft;
+					oStyle.top		= sAMLDragAndDrop_clientTop;
 				};
 
 		    // Restore element position
 			if (bPlay) {
 				// Commit
-				oStyle.left	= nAMLDragAndDrop_clientLeft;
-				oStyle.top	= nAMLDragAndDrop_clientTop;
+				oStyle.left	= sAMLDragAndDrop_clientLeft;
+				oStyle.top	= sAMLDragAndDrop_clientTop;
 				var oRect2	= fAMLElement_getBoundingClientRect(oAMLDragAndDrop_dragSource);
 				// Rollback
 				oStyle.left	=(fParseInt(sLeft) + oRect1.left - oRect2.left)+ 'px';
 				oStyle.top	=(fParseInt(sTop) + oRect1.top - oRect2.top)+ 'px';
 				//
 				var oProperties	= {};
-				oProperties["left"]		= nAMLDragAndDrop_clientLeft || "auto";
-				oProperties["top"]		= nAMLDragAndDrop_clientTop || "auto";
+				oProperties["left"]		= sAMLDragAndDrop_clientLeft || "auto";
+				oProperties["top"]		= sAMLDragAndDrop_clientTop || "auto";
 				fAMLNodeAnimation_play(oAMLDragAndDrop_dragSource, oProperties, "fast", "ease", fRestore);
 			}
 			else
@@ -246,8 +246,8 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
 	    nAMLDragAndDrop_mouseY	= oEvent.clientY;
 
 		// Save current position
-		nAMLDragAndDrop_clientLeft		= oStyle.left;
-		nAMLDragAndDrop_clientTop		= oStyle.top;
+		sAMLDragAndDrop_clientLeft		= oStyle.left;
+		sAMLDragAndDrop_clientTop		= oStyle.top;
 
 		// move drag source position to (0, 0)
 		oStyle.left	= '0';
@@ -257,8 +257,8 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
 		var oPositionP	= fAMLElement_getBoundingClientRect(oAMLDragAndDrop_dragSource);
 
 		// restore drag source position
-		oStyle.left	= nAMLDragAndDrop_clientLeft;
-		oStyle.top	= nAMLDragAndDrop_clientTop;
+		oStyle.left	= sAMLDragAndDrop_clientLeft;
+		oStyle.top	= sAMLDragAndDrop_clientTop;
 
 		// calculate offset position
 	    nAMLDragAndDrop_offsetLeft	= oPosition.left - oPositionP.left;

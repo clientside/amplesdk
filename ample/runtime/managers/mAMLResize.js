@@ -28,10 +28,10 @@ var nAMLResize_STATE_RELEASED	= 0,	// Constants
 
 	nAMLResize_mouseX,
 	nAMLResize_mouseY,
-	nAMLResize_clientLeft,
-	nAMLResize_clientTop,
-	nAMLResize_clientHeight,
-	nAMLResize_clientWidth,
+	sAMLResize_clientLeft,
+	sAMLResize_clientTop,
+	sAMLResize_clientHeight,
+	sAMLResize_clientWidth,
 	nAMLResize_offsetLeft,
 	nAMLResize_offsetTop,
 	nAMLResize_offsetHeight,
@@ -185,10 +185,10 @@ function fAMLResize_onMouseMove(oEvent)
 			oAMLResize_resizeNode.$getContainer().setCapture();
 
 		// Save current position
-		nAMLResize_clientWidth		= oStyle.width;
-		nAMLResize_clientHeight		= oStyle.height;
-		nAMLResize_clientLeft		= oStyle.left;
-		nAMLResize_clientTop		= oStyle.top;
+		sAMLResize_clientWidth		= oStyle.width;
+		sAMLResize_clientHeight		= oStyle.height;
+		sAMLResize_clientLeft		= oStyle.left;
+		sAMLResize_clientTop		= oStyle.top;
 
 		var oComputedStyle	= fBrowser_getComputedStyle(oElementDOM),
 			bBackCompat		= oUADocument.compatMode == "BackCompat";
@@ -201,8 +201,8 @@ function fAMLResize_onMouseMove(oEvent)
 		var oPositionP	= fAMLElement_getBoundingClientRect(oAMLResize_resizeNode);
 
 		// restore resizable position
-		oStyle.left	= nAMLResize_clientLeft;
-		oStyle.top	= nAMLResize_clientTop;
+		oStyle.left	= sAMLResize_clientLeft;
+		oStyle.top	= sAMLResize_clientTop;
 
 	    //
     	nAMLResize_resizeState	= nAMLResize_STATE_RESIZED;
@@ -290,19 +290,19 @@ function fAMLResize_onMouseUp(oEvent)
 		{
 			var oStyle		= oAMLResize_resizeNode.$getContainer().style,
 				fRestore	= function() {
-				    oStyle.width	= nAMLResize_clientWidth;
-				    oStyle.height	= nAMLResize_clientHeight;
-					oStyle.left		= nAMLResize_clientLeft;
-					oStyle.top		= nAMLResize_clientTop;
+				    oStyle.width	= sAMLResize_clientWidth;
+				    oStyle.height	= sAMLResize_clientHeight;
+					oStyle.left		= sAMLResize_clientLeft;
+					oStyle.top		= sAMLResize_clientTop;
 				};
 
 		    // Restore element position
 			if (oAMLConfiguration_values["ample-enable-animations"]) {
 				var oProperties	= {};
-				oProperties["left"]		= nAMLResize_clientLeft || "auto";
-				oProperties["top"]		= nAMLResize_clientTop || "auto";
-				oProperties["width"]	= nAMLResize_clientWidth || "auto";
-				oProperties["height"]	= nAMLResize_clientHeight || "auto";
+				oProperties["left"]		= sAMLResize_clientLeft || "auto";
+				oProperties["top"]		= sAMLResize_clientTop || "auto";
+				oProperties["width"]	= sAMLResize_clientWidth || "auto";
+				oProperties["height"]	= sAMLResize_clientHeight || "auto";
 				//
 				fAMLNodeAnimation_play(oAMLResize_resizeNode, oProperties, "fast", "ease", fRestore);
 			}
