@@ -38,6 +38,7 @@
 		$oCompiler->addOmmitArray(array(
 			"http://www.amplesdk.com/ns/aml",
 			"http://www.w3.org/1999/XSL/Transform",
+			"http://www.w3.org/1999/xlink",
 			"http://www.w3.org/1999/xhtml",
 			"http://www.w3.org/2000/svg",
 			"http://www.w3.org/2000/xmlns/",

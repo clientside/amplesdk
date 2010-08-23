@@ -262,6 +262,8 @@ if (!oAmple.namespaces["xmlns:xi"])
 	oAmple.namespaces["xmlns:xi"]	= "http://www.w3.org/2001/XInclude";
 if (!oAmple.namespaces["xmlns:smil"])
 	oAmple.namespaces["xmlns:smil"]	= "http://www.w3.org/2008/SMIL30/";
+if (!oAmple.namespaces["xmlns:xlink"])
+	oAmple.namespaces["xmlns:xlink"]= "http://www.w3.org/1999/xlink";
 //
 function fAmple_resolver(sPrefix) {
 	return oAmple.namespaces["xmlns" + (sPrefix ? ':' + sPrefix : '')] || null;
