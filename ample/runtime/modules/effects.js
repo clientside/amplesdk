@@ -17,8 +17,9 @@ cAMLQuery.prototype.animate	= function(oProperties, vDuration, sEasing, fCallbac
 		["callback",	cFunction, true]
 	]);
 
-	if (this.length)
-		fAMLNodeAnimation_play(this[0], oProperties, vDuration, sEasing, fCallback, arguments[4]);
+	fAMLQuery_each(this, function() {
+		fAMLNodeAnimation_play(this, oProperties, vDuration, sEasing, fCallback, arguments[4]);
+	});
 
 	// Invoke implementation
 	return this;
