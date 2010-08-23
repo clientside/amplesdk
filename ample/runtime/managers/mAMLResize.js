@@ -94,14 +94,14 @@ function fAMLResize_onMouseMove(oEvent)
 			if (oElement.$resizable)
 			{
 				var oElementDOM	= oElement.$getContainer(),
-					oPosition	= fAMLElement_getBoundingClientRect(oElement),
 					oComputedStyle	= fBrowser_getComputedStyle(oElementDOM),
+					oRect	= fAMLElement_getBoundingClientRect(oElement),
 					nResize		= nAMLResize_EDGE_NONE,
 					nResizeEdges= oElement.$resizeEdges || 15,
 					sCursor		= '';
 
-				var nOffsetLeft	= nAMLResize_mouseX - oPosition.left/* + oPosition.scrollLeft*/,
-					nOffsetTop	= nAMLResize_mouseY - oPosition.top/* + oPosition.scrollTop*/;
+				var nOffsetLeft	= nAMLResize_mouseX - oRect.left/* + oRect.scrollLeft*/,
+					nOffsetTop	= nAMLResize_mouseY - oRect.top/* + oRect.scrollTop*/;
 
 				// Vertical
 				if (fAMLResize_inScope(nOffsetTop, fAMLResize_getStyleValueNumeric(oComputedStyle, "borderTopWidth")))
@@ -110,7 +110,7 @@ function fAMLResize_onMouseMove(oEvent)
 					sCursor+= 'n';
 				}
 				else
-				if (fAMLResize_inScope(nOffsetTop - oPosition.bottom + oPosition.top, fAMLResize_getStyleValueNumeric(oComputedStyle, "borderBottomWidth")))
+				if (fAMLResize_inScope(nOffsetTop - oRect.bottom + oRect.top, fAMLResize_getStyleValueNumeric(oComputedStyle, "borderBottomWidth")))
 				{
 					nResize|= nResizeEdges & nAMLResize_EDGE_BOTTOM;
 					sCursor+= 's';
@@ -123,7 +123,7 @@ function fAMLResize_onMouseMove(oEvent)
 					sCursor+= 'w';
 				}
 				else
-				if (fAMLResize_inScope(nOffsetLeft - oPosition.right + oPosition.left, fAMLResize_getStyleValueNumeric(oComputedStyle, "borderRightWidth")))
+				if (fAMLResize_inScope(nOffsetLeft - oRect.right + oRect.left, fAMLResize_getStyleValueNumeric(oComputedStyle, "borderRightWidth")))
 				{
 					nResize|= nResizeEdges & nAMLResize_EDGE_RIGHT;
 					sCursor+= 'e';
@@ -158,7 +158,7 @@ function fAMLResize_onMouseMove(oEvent)
    	oEvent.stopPropagation();
 
 	var oElementDOM	= oAMLResize_resizeNode.$getContainer(),
-		oPosition	= fAMLElement_getBoundingClientRect(oAMLResize_resizeNode),
+		oRect	= fAMLElement_getBoundingClientRect(oAMLResize_resizeNode),
 		oStyle		= oElementDOM.style;
 
 	// Turn mode to interactive
@@ -198,7 +198,7 @@ function fAMLResize_onMouseMove(oEvent)
 		oStyle.top	= '0';
 
 		// get resizable position at (0, 0)
-		var oPositionP	= fAMLElement_getBoundingClientRect(oAMLResize_resizeNode);
+		var oRect0	= fAMLElement_getBoundingClientRect(oAMLResize_resizeNode);
 
 		// restore resizable position
 		oStyle.left	= sAMLResize_clientLeft;
@@ -207,10 +207,10 @@ function fAMLResize_onMouseMove(oEvent)
 	    //
     	nAMLResize_resizeState	= nAMLResize_STATE_RESIZED;
 
-	    nAMLResize_offsetWidth		=(oPosition.right - oPosition.left)	-(bBackCompat ? 0 : (fAMLResize_getStyleValueNumeric(oComputedStyle, "borderLeftWidth") + fAMLResize_getStyleValueNumeric(oComputedStyle, "borderRightWidth")) + fAMLResize_getStyleValueNumeric(oComputedStyle, "paddingLeft") + fAMLResize_getStyleValueNumeric(oComputedStyle, "paddingRight"));
-	    nAMLResize_offsetHeight		=(oPosition.bottom - oPosition.top)	-(bBackCompat ? 0 : (fAMLResize_getStyleValueNumeric(oComputedStyle, "borderTopWidth") + fAMLResize_getStyleValueNumeric(oComputedStyle, "borderBottomWidth")) + fAMLResize_getStyleValueNumeric(oComputedStyle, "paddingTop") + fAMLResize_getStyleValueNumeric(oComputedStyle, "paddingBottom"));
-	    nAMLResize_offsetLeft		= oPosition.left	- oPositionP.left;
-	    nAMLResize_offsetTop		= oPosition.top		- oPositionP.top;
+	    nAMLResize_offsetWidth		=(oRect.right - oRect.left)	-(bBackCompat ? 0 : (fAMLResize_getStyleValueNumeric(oComputedStyle, "borderLeftWidth") + fAMLResize_getStyleValueNumeric(oComputedStyle, "borderRightWidth")) + fAMLResize_getStyleValueNumeric(oComputedStyle, "paddingLeft") + fAMLResize_getStyleValueNumeric(oComputedStyle, "paddingRight"));
+	    nAMLResize_offsetHeight		=(oRect.bottom - oRect.top)	-(bBackCompat ? 0 : (fAMLResize_getStyleValueNumeric(oComputedStyle, "borderTopWidth") + fAMLResize_getStyleValueNumeric(oComputedStyle, "borderBottomWidth")) + fAMLResize_getStyleValueNumeric(oComputedStyle, "paddingTop") + fAMLResize_getStyleValueNumeric(oComputedStyle, "paddingBottom"));
+	    nAMLResize_offsetLeft		= oRect.left	- oRect0.left;
+	    nAMLResize_offsetTop		= oRect.top		- oRect0.top;
 
 		// Retrieve min/max allowed height/width
 		nAMLResize_widthMin		= fParseInt(oComputedStyle[fUtilities_toCssPropertyName("min-width")] || oComputedStyle["min-width"]) || 0;
