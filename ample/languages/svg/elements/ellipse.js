@@ -8,7 +8,7 @@
  */
 
 var cSVGElement_ellipse	= function(){};
-cSVGElement_ellipse.prototype	= new cSVGElement("eclipse");
+cSVGElement_ellipse.prototype	= new cSVGElement("ellipse");
 
 if (cSVGElement.useVML) {
 	// Implementation for IE
