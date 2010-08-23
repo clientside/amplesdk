@@ -77,7 +77,8 @@ function fAMLDragAndDrop_onMouseUp(oEvent)
 	if (nAMLDragAndDrop_dragState == nAMLDragAndDrop_STATE_RELEASED)
 		return;
 
-	var oElementDOM	= oAMLDragAndDrop_dragSource.$getContainer();
+	var oElementDOM	= oAMLDragAndDrop_dragSource.$getContainer(),
+		oRect0	= fAMLElement_getBoundingClientRect(oAMLDragAndDrop_dragSource);
 
 	if (nAMLDragAndDrop_dragState == nAMLDragAndDrop_STATE_DRAGGED)
 	{
@@ -119,8 +120,9 @@ function fAMLDragAndDrop_onMouseUp(oEvent)
 	    var bDefaultPrevented	= oEvent.defaultPrevented || oEvent.button || oEventDragEnd.defaultPrevented,
 	    	bPlay	= oAMLConfiguration_values["ample-enable-animations"] &&(bDefaultPrevented || oAMLDragAndDrop_dataTransfer.dropEffect == "move" || oAMLDragAndDrop_dataTransfer.dropEffect == "copy");
 	    if (bPlay) {
-		    var sLeft	= oElementDOM.style.left,
-		    	sTop	= oElementDOM.style.top;
+	    	var oRect	= fAMLElement_getBoundingClientRect(oAMLDragAndDrop_dragSource),
+	    		sLeft	=(oRect0.left - oRect.left + fParseInt(oElementDOM.style.left)) + 'px',
+		    	sTop	=(oRect0.top - oRect.top + fParseInt(oElementDOM.style.top)) + 'px';
 		    // Commit
 		    oElementDOM.style.left	= sAMLDragAndDrop_clientLeft;
 		    oElementDOM.style.top	= sAMLDragAndDrop_clientTop;
@@ -194,8 +196,8 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
    	oEvent.stopPropagation();
 
 	var oElementDOM	= oAMLDragAndDrop_dragSource.$getContainer(),
-		oPosition	= fAMLElement_getBoundingClientRect(oAMLDragAndDrop_dragSource),
-		oStyle		= oElementDOM.style;
+		oRect	= fAMLElement_getBoundingClientRect(oAMLDragAndDrop_dragSource),
+		oStyle	= oElementDOM.style;
 
 	// Turn mode to interactive
     if (nAMLDragAndDrop_dragState == nAMLDragAndDrop_STATE_CAPTURED)
@@ -255,20 +257,20 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
 		oStyle.top	= '0';
 
 		// get drag source position at (0, 0)
-		var oPositionP	= fAMLElement_getBoundingClientRect(oAMLDragAndDrop_dragSource);
+		var oRect0	= fAMLElement_getBoundingClientRect(oAMLDragAndDrop_dragSource);
 
 		// restore drag source position
 		oStyle.left	= sAMLDragAndDrop_clientLeft;
 		oStyle.top	= sAMLDragAndDrop_clientTop;
 
 		// calculate offset position
-	    nAMLDragAndDrop_offsetLeft	= oPosition.left - oPositionP.left;
-	    nAMLDragAndDrop_offsetTop	= oPosition.top - oPositionP.top;
+	    nAMLDragAndDrop_offsetLeft	= oRect.left - oRect0.left;
+	    nAMLDragAndDrop_offsetTop	= oRect.top - oRect0.top;
 	}
 
 	var oDropTarget	= null,
-		oPosition2,
-		nAreaSource	=(oPosition.right - oPosition.left) * (oPosition.bottom - oPosition.top),
+		oRect2,
+		nAreaSource	=(oRect.right - oRect.left) * (oRect.bottom - oRect.top),
 		nAreaSourceMax	= 0,
 		nAreaTarget,
 		nAreaTargetMin	= Infinity,
@@ -285,9 +287,9 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
 		if (fAMLNode_compareDocumentPosition(aAMLDragAndDrop_dropTargets[nIndex], oAMLDragAndDrop_dragSource) & cAMLNode.DOCUMENT_POSITION_CONTAINS)
 			continue;
 
-		oPosition2	= fAMLElement_getBoundingClientRect(aAMLDragAndDrop_dropTargets[nIndex]);
-		nAreaTarget =(oPosition2.right - oPosition2.left) * (oPosition2.bottom - oPosition2.top);
-		nIntersection = fAMLDragAndDrop_intersectRectangle(oPosition, oPosition2);
+		oRect2	= fAMLElement_getBoundingClientRect(aAMLDragAndDrop_dropTargets[nIndex]);
+		nAreaTarget =(oRect2.right - oRect2.left) * (oRect2.bottom - oRect2.top);
+		nIntersection = fAMLDragAndDrop_intersectRectangle(oRect, oRect2);
 		if (nIntersection < nAreaSource) {
 			// partial intersection
 			if (nIntersection > nIntersectionPartialMax) {
@@ -376,9 +378,9 @@ function fAMLDragAndDrop_onKeyDown(oEvent) {
 	}
 };
 
-function fAMLDragAndDrop_intersectRectangle(oPosition1, oPosition2)
+function fAMLDragAndDrop_intersectRectangle(oRect1, oRect2)
 {
-    return fAMLDragAndDrop_intersectSegment(oPosition1.left, oPosition1.right - oPosition1.left, oPosition2.left, oPosition2.right - oPosition2.left) * fAMLDragAndDrop_intersectSegment(oPosition1.top, oPosition1.bottom - oPosition1.top, oPosition2.top, oPosition2.bottom - oPosition2.top);
+    return fAMLDragAndDrop_intersectSegment(oRect1.left, oRect1.right - oRect1.left, oRect2.left, oRect2.right - oRect2.left) * fAMLDragAndDrop_intersectSegment(oRect1.top, oRect1.bottom - oRect1.top, oRect2.top, oRect2.bottom - oRect2.top);
 };
 
 function fAMLDragAndDrop_intersectSegment(x, y, a, b)
