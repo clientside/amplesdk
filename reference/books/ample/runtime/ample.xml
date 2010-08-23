@@ -43,6 +43,19 @@
 					</locale>
 				</description>
 			</property>
+			<!--  -->
+			<property name="readyState" type="String" readonly="true">
+				<description>
+					<locale>
+						Retrieves a value that indicates the current state of the object. Possible values:
+						"uninitialized" - Object is not initialized with data,
+						"loading" - Object is loading its data,
+						"loaded" - Object has finished loading its data,
+						"interactive" - User can interact with the object even though it is not fully loaded,
+						"complete" - Object is completely initialized.
+					</locale>
+				</description>
+			</property>
 		</properties>
 		<methods>
 			<!-- Query -->
@@ -346,5 +359,14 @@
 				</description>
 			</method>
 		</methods>
+		<events>
+			<event name="readystatechange" group="Event" cancelable="false" bubble="false">
+				<description>
+					<locale>
+						Fires when the state of the object has changed. You can use the <link type="property">readyState</link> property to query the current state of the element when the <link type="event">readystatechange</link> event fires.
+					</locale>
+				</description>
+			</event>
+		</events>
 	</members>
 </object>
