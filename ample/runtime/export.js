@@ -123,11 +123,13 @@ if (!window.JSON)
 
 // Special virtual type
 fAMLExporter_wrapMember(cArguments,	"Arguments");
+//
+fAMLExporter_wrap(oAmple.namespaces,	"namespaces");
+fAMLExporter_wrap(oAmple.locale,		"locale");
+fAMLExporter_wrap(fAmple_resolver,		"resolver");
 
 //
 fAMLExporter_export(oAmple,	"ample");
-fAMLExporter_wrap(oAmple.namespaces,	"namespaces");
-fAMLExporter_wrap(oAmple.locale,		"locale");
 
 // JavaScript 1.5
 if (!cArray.prototype.push)

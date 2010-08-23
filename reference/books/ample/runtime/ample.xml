@@ -54,7 +54,7 @@
 					<argument name="context" required="false" type="String">
 
 					</argument>
-					<argument name="resolver" required="false" type="String">
+					<argument name="resolver" required="false" type="Function">
 
 					</argument>
 				</arguments>

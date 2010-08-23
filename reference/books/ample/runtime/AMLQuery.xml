@@ -10,24 +10,31 @@
 	<examples />
 	<members>
 		<properties>
-			<property name="context" type="AMLNode">
-				<description>
-					<locale>
-						Holds the context of the selection query executed.
-					</locale>
-				</description>
-			</property>
-			<property name="length" type="Number">
+			<property name="length" type="Number" readonly="true">
 				<description>
 					<locale>
 						Holds the length of the collection returned.
 					</locale>
 				</description>
 			</property>
-			<property name="selector" type="String">
+			<property name="selector" type="String" readonly="true">
 				<description>
 					<locale>
 						Holds the CSS selector used in selection query.
+					</locale>
+				</description>
+			</property>
+			<property name="context" type="AMLNode" readonly="true">
+				<description>
+					<locale>
+						Holds the context of the selection query executed.
+					</locale>
+				</description>
+			</property>
+			<property name="resolver" type="Function" readonly="true">
+				<description>
+					<locale>
+						Holds the namespace resolver function using in selection query.
 					</locale>
 				</description>
 			</property>

@@ -61,7 +61,7 @@ function fQuery(vArgument1, vArgument2, vArgument3) {
 					if (!(vArgument3 instanceof cFunction))
 						throw new cAMLException(cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR, fQuery.caller
 //->Debug
-							, ['3' + oGuard_endings[2], "query", "query", "Function"]
+							, ['3' + oGuard_endings[2], "resolver", "query", "Function"]
 //<-Debug
 						);
 				}
@@ -69,8 +69,9 @@ function fQuery(vArgument1, vArgument2, vArgument3) {
 					vArgument3	= fAmple_resolver;
 				//
 				oQuery.length	= 0;
-				oQuery.context	= vArgument2;
 				oQuery.selector	= vArgument1;
+				oQuery.context	= vArgument2;
+				oQuery.resolver	= vArgument3;
 				// Invoke implementation
 				var aResult;
 				try {

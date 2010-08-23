@@ -9,9 +9,10 @@
 
 // Query function
 var cAMLQuery	= function(){};
-cAMLQuery.prototype.context		= null;
 cAMLQuery.prototype.length		= 0;
 cAMLQuery.prototype.selector	= '';
+cAMLQuery.prototype.context		= null;
+cAMLQuery.prototype.resolver	= null;
 
 cAMLQuery.prototype.get	= function(nIndex) {
 	// Validate API call
