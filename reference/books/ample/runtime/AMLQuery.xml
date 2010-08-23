@@ -643,7 +643,7 @@
 					</locale>
 				</description>
 			</method>
-			<method name="abort">
+			<method name="abort" type="AMLQuery">
 				<description>
 					<locale>
 						Aborts loading operation.

@@ -156,4 +156,5 @@ cAMLQuery.prototype.load	= function(sUrl, /*data*/vArgument2, /*success*/vArgume
 cAMLQuery.prototype.abort	= function() {
 	if (this.length)
 		fAMLQuery_load_abort(this[0]);
+	return this;
 };
