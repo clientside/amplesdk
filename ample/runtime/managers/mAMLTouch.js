@@ -20,13 +20,13 @@ function fAMLTouch_onTouchStart(oEvent) {
 		oAMLTouch_scrollElement	= null;
 		nAMLTouch_clientY	= oEvent.touches[0].clientY;
 		//
-		for (var oElement = oEvent.target.$getContainer(), oStyle, sOverflow; oElement && oElement.nodeType == 1; oElement = oElement.parentNode) {
-			oStyle	= fBrowser_getComputedStyle(oElement);
+		for (var oElement = oEvent.target.$getContainer(), oComputedStyle, sOverflow; oElement && oElement.nodeType == 1; oElement = oElement.parentNode) {
+			oComputedStyle	= fBrowser_getComputedStyle(oElement);
 			bAMLTouch_scrollLeft	=
-			bAMLTouch_scrollTop		= (sOverflow = oStyle.overflow) == "auto" || sOverflow == "scroll";
-			if ((sOverflow = oStyle.overflowX) == "auto" || sOverflow == "scroll")
+			bAMLTouch_scrollTop		= (sOverflow = oComputedStyle.overflow) == "auto" || sOverflow == "scroll";
+			if ((sOverflow = oComputedStyle.overflowX) == "auto" || sOverflow == "scroll")
 				bAMLTouch_scrollLeft	= true;
-			if ((sOverflow = oStyle.overflowY) == "auto" || sOverflow == "scroll")
+			if ((sOverflow = oComputedStyle.overflowY) == "auto" || sOverflow == "scroll")
 				bAMLTouch_scrollTop		= true;
 
 			if (bAMLTouch_scrollLeft || bAMLTouch_scrollTop) {

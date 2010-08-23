@@ -103,9 +103,9 @@ function fSMILAnimationElement_getAttributeValue(oElement) {
 	if (oElement.attributeType == "CSS") {
 		var oElementDOM	= oElement.targetElement.$getContainer();
 		if (oElement instanceof cSMILElement_animateMotion) {
-			var oStyle	= fBrowser_getComputedStyle(oElementDOM),
-				oValue1	= fAMLNodeAnimation_parseValue(oStyle["top"]),
-				oValue2	= fAMLNodeAnimation_parseValue(oStyle["left"]);
+			var oComputedStyle	= fBrowser_getComputedStyle(oElementDOM),
+				oValue1	= fAMLNodeAnimation_parseValue(oComputedStyle.top),
+				oValue2	= fAMLNodeAnimation_parseValue(oComputedStyle.left);
 			aValue	= [[oValue1[0], oValue2[0]], oValue1[1]];
 		}
 		else

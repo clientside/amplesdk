@@ -19,7 +19,7 @@ function fAMLNodeAnimation_play(oElement, oProperties, vDuration, vType, fHandle
 	var oEffect	= {},
 		nEffect	= aAMLNodeAnimation_effects.length,
 		oElementDOM	= oElement.$getContainer(sPseudo),
-		oStyle	= fBrowser_getComputedStyle(oElementDOM);
+		oComputedStyle	= fBrowser_getComputedStyle(oElementDOM);
 	oEffect._element	= oElement;
 	oEffect._container	= oElementDOM;
 	oEffect._duration	= oAMLNodeAnimation_durations[vDuration || "normal"] || vDuration;
@@ -33,7 +33,7 @@ function fAMLNodeAnimation_play(oElement, oProperties, vDuration, vType, fHandle
 	var sName;
 	for (var sKey in oProperties)
 		if (oProperties.hasOwnProperty(sKey))
-			oEffect._data[sName = fUtilities_toCssPropertyName(sKey)]	= [fAMLNodeAnimation_parseValue(fBrowser_adjustStyleValue(oElementDOM, sName, fBrowser_getStyle(oElementDOM, sName, oStyle))), fAMLNodeAnimation_parseValue(fBrowser_adjustStyleValue(oElementDOM, sName, '' + oProperties[sKey]))];
+			oEffect._data[sName = fUtilities_toCssPropertyName(sKey)]	= [fAMLNodeAnimation_parseValue(fBrowser_adjustStyleValue(oElementDOM, sName, fBrowser_getStyle(oElementDOM, sName, oComputedStyle))), fAMLNodeAnimation_parseValue(fBrowser_adjustStyleValue(oElementDOM, sName, '' + oProperties[sKey]))];
 
 	// delete running effects on new effect properties for the same element
 	for (var nIndex = 0, oEffectOld; nIndex < aAMLNodeAnimation_effects.length; nIndex++)

@@ -904,15 +904,15 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 	if (oElementDOM) {
 		// Animation + Transition effects
 		if (bTransition || bAnimation) {
-			var oStyle	= fBrowser_getComputedStyle(oElementDOM),
+			var oComputedStyle	= fBrowser_getComputedStyle(oElementDOM),
 				oBefore	= {},
 				nIndex, nLength, sKey;
 			if (bTransition)
 				for (nIndex = 0, nLength = aCSSTransition.length; nIndex < nLength; nIndex++)
-					oBefore[sKey = aCSSTransition[nIndex]]	= fBrowser_getStyle(oElementDOM, sKey, oStyle);
+					oBefore[sKey = aCSSTransition[nIndex]]	= fBrowser_getStyle(oElementDOM, sKey, oComputedStyle);
 			if (bAnimation)
 				for (nIndex = 0, nLength = aCSSAnimation.length; nIndex < nLength; nIndex++)
-					oBefore[sKey = aCSSAnimation[nIndex]]	= fBrowser_getStyle(oElementDOM, sKey, oStyle);
+					oBefore[sKey = aCSSAnimation[nIndex]]	= fBrowser_getStyle(oElementDOM, sKey, oComputedStyle);
 		}
 
 		var sOldName= bTrident && nVersion < 8 ? oElementDOM.className : oElementDOM.getAttribute("class") || '',
@@ -980,7 +980,7 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 		}
 		// Animation + Transition effects
 		if (bTransition || bAnimation) {
-			var oOwnStyle	= oElementDOM.style,
+			var oStyle	= oElementDOM.style,
 				oPropertiesAfter	= {},
 				aPropertiesReset	= [],
 				bPlay	= false,
@@ -988,9 +988,9 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 			if (bTransition)
 				for (nIndex = 0, nLength = aCSSTransition.length; nIndex < nLength; nIndex++) {
 					sKey = aCSSTransition[nIndex];
-					sValue	= fBrowser_getStyle(oElementDOM, sKey, oStyle);
+					sValue	= fBrowser_getStyle(oElementDOM, sKey, oComputedStyle);
 					if (oBefore[sKey] != sValue) {
-						if (!oOwnStyle[sValue])
+						if (!oStyle[sValue])
 							aPropertiesReset.push(sKey);
 						fBrowser_setStyle(oElementDOM, sKey, oBefore[sKey]);
 						oPropertiesAfter[sKey]	= sValue;
@@ -1001,9 +1001,9 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 			if (bAnimation)
 				for (nIndex = 0, nLength = aCSSAnimation.length; nIndex < nLength; nIndex++) {
 					sKey = aCSSAnimation[nIndex];
-					sValue	= fBrowser_getStyle(oElementDOM, sKey, oStyle);
+					sValue	= fBrowser_getStyle(oElementDOM, sKey, oComputedStyle);
 					if (oBefore[sKey] != sValue) {
-						if (!oOwnStyle[sValue])
+						if (!oStyle[sValue])
 							aPropertiesReset.push(sKey);
 						fBrowser_setStyle(oElementDOM, sKey, oBefore[sKey]);
 						oPropertiesAfter[sKey]	= sValue;
