@@ -176,6 +176,12 @@ function fAMLResize_onMouseMove(oEvent)
 			return;
 		}
 
+		// Save current position
+		sAMLResize_clientWidth		= oStyle.width;
+		sAMLResize_clientHeight		= oStyle.height;
+		sAMLResize_clientLeft		= oStyle.left;
+		sAMLResize_clientTop		= oStyle.top;
+
 		// Add :resize pseudo-class
 		fAMLElement_setPseudoClass(oAMLResize_resizeNode, "resize", true);
 
@@ -183,12 +189,6 @@ function fAMLResize_onMouseMove(oEvent)
 		fBrowser_toggleSelect(false);
 		if (bTrident)
 			oAMLResize_resizeNode.$getContainer().setCapture();
-
-		// Save current position
-		sAMLResize_clientWidth		= oStyle.width;
-		sAMLResize_clientHeight		= oStyle.height;
-		sAMLResize_clientLeft		= oStyle.left;
-		sAMLResize_clientTop		= oStyle.top;
 
 		var oComputedStyle	= fBrowser_getComputedStyle(oElementDOM),
 			bBackCompat		= oUADocument.compatMode == "BackCompat";

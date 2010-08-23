@@ -220,6 +220,10 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
 			return;
 		}
 
+		// Save current position
+		sAMLDragAndDrop_clientLeft		= oStyle.left;
+		sAMLDragAndDrop_clientTop		= oStyle.top;
+
 		// Add :drag pseudo-class
 		fAMLElement_setPseudoClass(oAMLDragAndDrop_dragSource, "drag", true);
 
@@ -244,10 +248,6 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
 		// Init session
 	    nAMLDragAndDrop_mouseX	= oEvent.clientX;
 	    nAMLDragAndDrop_mouseY	= oEvent.clientY;
-
-		// Save current position
-		sAMLDragAndDrop_clientLeft		= oStyle.left;
-		sAMLDragAndDrop_clientTop		= oStyle.top;
 
 		// move drag source position to (0, 0)
 		oStyle.left	= '0';
