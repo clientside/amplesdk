@@ -482,7 +482,7 @@ cAMLNodeSelector.prototype.querySelector	= function(sCSS, fResolver)
 	// Validate arguments
 	fGuard(arguments, [
 		["query",		cString],
-		["NSResolver",	cFunction, true]
+		["resolver",	cFunction, true]
 	]);
 
 	var aNodeList	= fAMLSelector_query([this], sCSS, fResolver, true);
@@ -496,7 +496,7 @@ cAMLNodeSelector.prototype.querySelectorAll	= function(sCSS, fResolver)
 	// Validate arguments
 	fGuard(arguments, [
 		["query",		cString],
-		["NSResolver",	cFunction, true]
+		["resolver",	cFunction, true]
 	]);
 
 	return fAMLSelector_query([this], sCSS, fResolver);
