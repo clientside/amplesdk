@@ -207,7 +207,6 @@ cAMLQuery.prototype.append	= function(vArgument1) {
 	]);
 
 	// Invoke implementation
-	var oQuery	= new cAMLQuery;
 	if (this.length) {
 		//
 		if (!(vArgument1 instanceof cAMLQuery))
@@ -218,11 +217,10 @@ cAMLQuery.prototype.append	= function(vArgument1) {
 			fAMLQuery_each(vArgument1, function() {
 				var oNode	= nIndex ? fAMLNode_cloneNode(this, true) : this;
 				fAMLElement_appendChild(oParent, oNode);
-				oQuery[oQuery.length++]	= oNode;
 			});
 		});
 	}
-	return oQuery;
+	return this;
 };
 
 cAMLQuery.prototype.prepend	= function(vArgument1) {
@@ -232,7 +230,6 @@ cAMLQuery.prototype.prepend	= function(vArgument1) {
 	]);
 
 	// Invoke implementation
-	var oQuery	= new cAMLQuery;
 	if (this.length) {
 		//
 		if (!(vArgument1 instanceof cAMLQuery))
@@ -247,11 +244,10 @@ cAMLQuery.prototype.prepend	= function(vArgument1) {
 					fAMLElement_insertBefore(oParent, oNode, oBefore);
 				else
 					fAMLElement_appendChild(oParent, oNode);
-				oQuery[oQuery.length++]	= oNode;
 			});
 		});
 	}
-	return oQuery;
+	return this;
 };
 
 cAMLQuery.prototype.before	= function(vArgument1) {
@@ -261,7 +257,6 @@ cAMLQuery.prototype.before	= function(vArgument1) {
 	]);
 
 	// Invoke implementation
-	var oQuery	= new cAMLQuery;
 	if (this.length) {
 		//
 		if (!(vArgument1 instanceof cAMLQuery))
@@ -277,11 +272,10 @@ cAMLQuery.prototype.before	= function(vArgument1) {
 				else {
 					// TODO: insert into self collection before
 				}
-				oQuery[oQuery.length++]	= oNode;
 			});
 		});
 	}
-	return oQuery;
+	return this;
 };
 
 cAMLQuery.prototype.after	= function(vArgument1) {
@@ -291,7 +285,6 @@ cAMLQuery.prototype.after	= function(vArgument1) {
 	]);
 
 	// Invoke implementation
-	var oQuery	= new cAMLQuery;
 	if (this.length) {
 		//
 		if (!(vArgument1 instanceof cAMLQuery))
@@ -311,11 +304,10 @@ cAMLQuery.prototype.after	= function(vArgument1) {
 				else {
 					// TODO: insert into self collection after
 				}
-				oQuery[oQuery.length++]	= oNode;
 			});
 		});
 	}
-	return oQuery;
+	return this;
 };
 
 //
@@ -326,7 +318,6 @@ cAMLQuery.prototype.replaceWith	= function(vArgument1) {
 	]);
 
 	// Invoke implementation
-	var oQuery	= new cAMLQuery;
 	if (this.length) {
 		//
 		if (!(vArgument1 instanceof cAMLQuery))
@@ -338,10 +329,10 @@ cAMLQuery.prototype.replaceWith	= function(vArgument1) {
 			fAMLQuery_each(vArgument1, function() {
 				fAMLElement_insertBefore(oParent, nIndex ? fAMLNode_cloneNode(this, true) : this, oBefore);
 			});
-			oQuery[oQuery.length++]	= fAMLElement_removeChild(this.parentNode, this);
+			fAMLElement_removeChild(this.parentNode, this);
 		});
 	}
-	return oQuery;
+	return this;
 };
 
 //
