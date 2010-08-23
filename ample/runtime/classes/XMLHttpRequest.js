@@ -9,7 +9,7 @@
 
 if (!cXMLHttpRequest || (bTrident && nVersion == 7)) {
     cXMLHttpRequest = function() {
-		this._object	= /*oXMLHttpRequest && !bIE7 ? new oXMLHttpRequest : */new fActiveXObject("Microsoft.XMLHTTP");
+		this._object	= /*oXMLHttpRequest && !bIE7 ? new oXMLHttpRequest : */new cActiveXObject("Microsoft.XMLHTTP");
     };
 
 	// Public Properties

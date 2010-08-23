@@ -18,7 +18,7 @@ if (!cDOMParser)
 			["contentType",	cString]
 		]);
 
-		var oDocument   = new fActiveXObject("Microsoft.XMLDOM");
+		var oDocument   = new cActiveXObject("Microsoft.XMLDOM");
 		oDocument.async				= false;
 		oDocument.validateOnParse	= false;
 //		oDocument.preserveWhiteSpace= false;

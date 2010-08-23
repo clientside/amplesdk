@@ -23,7 +23,7 @@ var cString		= window.String,
 	cSyntaxError= window.SyntaxError,
 	cTypeError	= window.TypeError,
 //	Microsoft APIs
-	fActiveXObject	= window.ActiveXObject,
+	cActiveXObject	= window.ActiveXObject,
 //	XML APIs
 	cXMLHttpRequest	= window.XMLHttpRequest,
 	cDOMParser		= window.DOMParser,
