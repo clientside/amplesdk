@@ -22,7 +22,7 @@ function fAMLNodeAnimation_play(oElement, oProperties, vDuration, vType, fHandle
 		oComputedStyle	= fBrowser_getComputedStyle(oElementDOM);
 	oEffect._element	= oElement;
 	oEffect._container	= oElementDOM;
-	oEffect._duration	= oAMLNodeAnimation_durations[vDuration || "normal"] || vDuration;
+	oEffect._duration	= fIsNaN(vDuration) ? oAMLNodeAnimation_durations[vDuration] || oAMLNodeAnimation_durations["normal"] : vDuration;
 	oEffect._callback	= fHandler;
 	oEffect._type		= vType || '';
 	oEffect._start		= new cDate;
