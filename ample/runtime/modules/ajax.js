@@ -17,6 +17,10 @@ oAmple.ajax	= function(oSettings) {
 	oRequest.open(oSettings.type || "GET", oSettings.url || '', "async" in oSettings ? oSettings.async : true);
 	oRequest.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 	oRequest.setRequestHeader("X-User-Agent", oAMLConfiguration_values["ample-user-agent"]);
+	var oHeaders	= oSettings.headers;
+	if (oHeaders)
+		for (var sKey in oHeaders)
+			oRequest.setRequestHeader(sKey, oHeaders[sKey]);
 	oRequest.onreadystatechange	= function() {
 		if (oRequest.readyState == 4) {
 			if (oSettings.complete)
