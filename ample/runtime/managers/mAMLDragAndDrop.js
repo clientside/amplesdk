@@ -423,14 +423,30 @@ cAMLDataTransfer.prototype.effectAllowed	= "uninitialized";	// copy|move|link|co
 cAMLDataTransfer.prototype.types			= null;
 
 cAMLDataTransfer.prototype.clearData	= function(sFormat) {
+	// Validate arguments
+	fGuard(arguments, [
+		["format",	cString]
+	]);
+
 	delete this.types[sFormat];
 };
 
 cAMLDataTransfer.prototype.setData	= function(sFormat, vData) {
+	// Validate arguments
+	fGuard(arguments, [
+		["format",	cString],
+		["data",	cString]
+	]);
+
 	this.types[sFormat]	= vData;
 };
 
 cAMLDataTransfer.prototype.getData	= function(sFormat) {
+	// Validate arguments
+	fGuard(arguments, [
+		["format",	cString]
+	]);
+
 	return this.types[sFormat] || null;
 };
 
