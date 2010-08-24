@@ -74,6 +74,10 @@
 	$aFiles[]	= "runtime/processors/xmlevents/classes/XMLEventsElement.js";
 	$aFiles[]	= "runtime/processors/xmlevents/elements/listener.js";
 
+	// XLink
+	$aFiles[]	= "runtime/processors/xlink/classes/XLAttr.js";
+	$aFiles[]	= "runtime/processors/xlink/attributes/href.js";
+
 	// AML
 	$aFiles[]	= "runtime/processors/aml/classes/cAMLAttr.js";
 	$aFiles[]	= "runtime/processors/aml/classes/cAMLElement.js";
