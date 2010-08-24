@@ -46,7 +46,7 @@ function fSMILAnimationElement_beginAnimation(oElement) {
 //	console.log("begin animation", oElement);
 
 	//
-	oElement.original	= fSMILAnimationElement_getAttributeValue(oElement);
+	oElement.original	= fSMILAnimationElement_getAttributeValue(oElement) || ['', '', ''];
 
 	// Apply initial value immediately if 'set' animation
 	if (oElement instanceof cSMILElement_set)
