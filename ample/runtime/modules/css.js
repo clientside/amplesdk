@@ -15,6 +15,7 @@ cAMLQuery.prototype.css	= function(sName, sValue) {
 	]);
 
 	// Invoke implementation
+	sName	= fUtilities_toCssPropertyName(sName);
 	if (arguments.length > 1) {
 		fAMLQuery_each(this, function() {
 			var oElementDOM	= this.$getContainer();
