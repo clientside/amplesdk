@@ -13,53 +13,18 @@ cXHTMLElement_input.prototype.tabIndex	= 0;
 
 // Public Properties
 cXHTMLElement_input.prototype.form	= null;
+cXHTMLElement_input.prototype.value	= "";
+cXHTMLElement_input.prototype.checked	= false;
+
+cXHTMLElement_input.prototype.selectionStart	= null;
+cXHTMLElement_input.prototype.selectionEnd		= null;
+
+cXHTMLElement_input.prototype.list	= null;
+cXHTMLElement_input.prototype.selectedOption	= null;
+
 
 cXHTMLElement_input.prototype.$isAccessible	= function() {
 	return cXHTMLElement.prototype.$isAccessible.call(this) && this.attributes["type"] != "hidden";
-};
-
-cXHTMLElement_input.prototype.$getValue	= function() {
-	var vValue	= this.$getContainer().value;
-	switch (this.attributes["type"]) {
-		case "radio":
-		case "checkbox":
-			return this.$getContainer().checked ? vValue : null;
-		default:
-			return vValue;
-	}
-};
-
-cXHTMLElement_input.prototype.$validate	= function() {
-	var sValue		= this.$getContainer().value,
-		bValid		= true,
-		sRequired	= this.getAttributeNS("http://www.amplesdk.com/ns/aml", "required"),
-		sDataType	= this.getAttributeNS("http://www.amplesdk.com/ns/aml", "type");
-
-	if (sDataType) {
-		if (sValue == '') {
-			if (sRequired == "true")
-				bValid	= false;
-		}
-		else
-		if (sDataType) {
-			var aQName	= sDataType.split(':'),
-				sNameSpaceURI	= this.lookupNamespaceURI(aQName[0]),
-				sLocalName		= aQName[1],
-				oDataType		= ample.$model.getTypeDefinition(sNameSpaceURI, sLocalName);
-
-			if (oDataType)
-				bValid	= oDataType.$validate(sValue);
-		}
-		// set pseudo-classes
-	    this.$setPseudoClass("valid", bValid);
-	    this.$setPseudoClass("invalid", !bValid);
-
-	    // Fire Event
-	    var oEvent2 = this.ownerDocument.createEvent("CustomEvents");
-	    oEvent2.initCustomEvent("validate", true, false, bValid);
-	    this.dispatchEvent(oEvent2);
-	}
-	return bValid;
 };
 
 // Public methods
@@ -67,19 +32,16 @@ cXHTMLElement_input.prototype.select	= function() {
 	this.$getContainer().select();
 };
 
-// Events Handlers
-cXHTMLElement_input.prototype._onChange	= function(oEvent) {
-/*
-	if (this.attributes["value"] == "checkbox")
-		this.attributes["value"]	= this.$getContainer().value;
-	else
-		this.attributes["value"]	= this.$getContainer().value;
-*/
-    // Fire Event
-    var oEvent2 = this.ownerDocument.createEvent("UIEvents");
-    oEvent2.initUIEvent("change", true, false, window, null);
+cXHTMLElement_input.prototype.setSelectionRange	= function() {
 
-    this.dispatchEvent(oEvent2);
+};
+
+cXHTMLElement_input.prototype.stepUp	= function() {
+
+};
+
+cXHTMLElement_input.prototype.stepDown	= function() {
+
 };
 
 // Class Events Handlers
@@ -112,17 +74,129 @@ cXHTMLElement_input.handlers	= {
 
 // Element Render: open
 cXHTMLElement_input.prototype.$getTagOpen		= function() {
-    var sHtml   = '<' + this.localName + ' onchange="ample.$instance(this)._onChange(event)"';
-    for (var sName in this.attributes)
-    	if (this.attributes.hasOwnProperty(sName) && sName != "class" && sName != "id" && sName.indexOf(':') ==-1)
-			sHtml  += ' ' + sName + '="' + this.getAttribute(sName).replace(/"/g, '\"') + '"';
-	sHtml	+= ' class="' + (this.prefix ? this.prefix + '-' : '') + this.localName + ("class" in this.attributes ? ' ' + this.attributes["class"] : '') + '"';
-    return sHtml + '/>';
+	var aHtml	= ['<span class="' + (this.prefix ? this.prefix + '-' : '') + this.localName + ("class" in this.attributes ? ' ' + this.attributes["class"] : '') + '">'];
+	switch (this.attributes["type"]) {
+		// Hidden
+		// .value
+		case "hidden":	// n/a
+			break;
+
+		// E-mail
+		// @autocomplete, @list, @maxlength, @multiple, @pattern, @placeholder, @readonly, @required, @size
+		// .value, .list, .selectedOption, .selectionStart, .selectionEnd
+		// select(), setSelectionRange()
+		// oninput, onchange
+		case "email":	// A text field
+			break;
+
+		// Password
+		// @autocomplete, @maxlength, @pattern, @placeholder, @readonly, @required, @size
+		// .value, .selectionStart, .selectionEnd
+		// select(), setSelectionRange()
+		// oninput, onchange
+		case "password":// Text field that obscures data entry
+			break;
+
+		// Date and Time,  Date,  Month,  Week,  Time | Local Date and Time,  Number
+		// @autocomplete, @list, @max, @min, @readonly, @required, @step
+		// .value, .valueAsDate (not Local Date and Time, Number) .valueAsNumber, .list, .selectedOption
+		// .stepDown(), .stepUp()
+		// oninput, onchange
+		case "datetime":// A date and time control
+			break;
+
+		case "date":	// A date control
+			break;
+
+		case "month":	// A month control
+			break;
+
+		case "week":	// A week control
+			break;
+
+		case "time":	// A time control
+			break;
+
+		case "datetime-local":	// A date and time control
+			break;
+
+		case "number":	// A text field or spinner control
+			break;
+
+		// Range
+		// @autocomplete, @list, @max, @min, @step
+		// .value, .valueAsNumber, .list, .selectedOption
+		// .stepDown(), .stepUp()
+		// onchange, oninput
+		case "range":	// A slider control or similar
+			break;
+
+		// Color
+		// @autocomplete, @list
+		// .value, .list, .selectedOption
+		// oninput, onchange
+		case "color":	// A color well
+			break;
+
+		// Checkbox,  Radio Button
+		// @checked, @required
+		// .checked, @value (default/on)
+		// onchange
+		case "checkbox":// A checkbox
+			break;
+
+		// File Upload
+		// @accept, @multiple, @required
+		// .files, .value
+		// onchange
+		case "file":	// A label and a button
+			break;
+
+		// Submit Button, Image Button
+		// @formaction, @formenctype, @formmethod, @formnovalidate, @formtarget
+		// .value (default)
+		// image: @alt, @src, @height, @width
+		case "submit":	// A button
+			break;
+
+		case "image":	// Either a clickable image, or a button
+			break;
+
+		// Reset Button,  Button
+		// @value (default)
+		case "reset":	// A button
+			break;
+
+		case "button":	// A button
+			break;
+
+		// Text,  Search,  URL,  Telephone
+		// @autocomplete, @list, @maxlength, @pattern, @placeholder, @readonly, @required, @size
+		// .value, .list, .selectedOption, .selectionStart, .selectionEnd
+		// select(), setSelectionRange()
+		// oninput, onchange
+		case "search":	// Search field
+			break;
+
+		case "tel":		// A text field
+			break;
+
+		case "url":		// A text field
+			break;
+
+//		case "text":	// Text field
+		default:
+			break;
+	}
+	aHtml.push('<input type="text" class="input--value"/>');
+    return aHtml.join('');
 };
 
 // Element Render: close (cancel double tag)
 cXHTMLElement_input.prototype.$getTagClose	= function() {
-	return '';
+	var aHtml	= [];
+	aHtml.push('</span>');
+	return aHtml.join('');
 };
 
 // Register Element
