@@ -15,6 +15,16 @@ cXHTMLElement_script.handlers	= {
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this)
 			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
+	},
+	"DOMNodeInsertedIntoDocument":	function(oEvent) {
+		if (this.attributes["src"])
+			this.$getContainer().src  = this.attributes["src"];
+		else
+		if (this.firstChild) {
+			var oElement	= document.body.appendChild(document.createElement("script"));
+			oElement.type	= "text/javascript";
+			oElement.text	= this.firstChild.nodeValue;
+		}
 	}
 };
 
