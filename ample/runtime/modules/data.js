@@ -28,6 +28,16 @@ cAMLQuery.prototype.data	= function(sName, oValue) {
 	}
 	else
 	if (this.length) {
-		return this[0].uniqueID in oAMLQuery_cache ? oAMLQuery_cache[this[0].uniqueID] : null;
+		return this[0].uniqueID in oAMLQuery_cache ? oAMLQuery_cache[this[0].uniqueID] : {};
 	}
+};
+
+oAmple.data	= function(oElement) {
+	// Validate API call
+	fGuard(arguments, [
+		["element",	cAMLElement]
+	]);
+
+	// Invoke implementation
+	return oElement.uniqueID in oAMLQuery_cache ? oAMLQuery_cache[oElement.uniqueID] : {};
 };
