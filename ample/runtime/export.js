@@ -125,7 +125,6 @@ if (!window.JSON)
 fAMLExporter_wrapMember(cArguments,	"Arguments");
 //
 fAMLExporter_wrap(oAmple.namespaces,	"namespaces");
-fAMLExporter_wrap(oAmple.locale,		"locale");
 fAMLExporter_wrap(fAmple_resolver,		"resolver");
 
 //

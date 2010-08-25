@@ -29,13 +29,6 @@
 					</locale>
 				</description>
 			</property>
-			<property name="locale" type="Object" readonly="true">
-				<description>
-					<locale>
-						Reserved for the future implementation.
-					</locale>
-				</description>
-			</property>
 			<!--  -->
 			<property name="readyState" type="String" readonly="true">
 				<description>
