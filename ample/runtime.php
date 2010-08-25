@@ -67,7 +67,6 @@
 	$aFiles[]	= "runtime/utilities.js";
 	$aFiles[]	= "runtime/guard.js";
 	$aFiles[]	= "runtime/browser.js";
-	$aFiles[]	= "runtime/locale.js";
 	$aFiles[]	= "runtime/ample.js";
 
 	// XML Events 1.0
