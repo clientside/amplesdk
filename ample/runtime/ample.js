@@ -134,10 +134,10 @@ function fAmple_extend(oSource, oTarget) {
 	}
 	else {
 		if (!oTarget)
-			oTarget	= oAmple.prototype;
+			oTarget	= fQuery.prototype;
 		for (var sName in oSource) {
 //->Debug
-			if (oTarget == oAmple.prototype && oTarget.hasOwnProperty(sName))
+			if (oTarget == fQuery.prototype && oTarget.hasOwnProperty(sName))
 				fUtilities_warn(sAML_REWRITING_LOADED_PLUGIN_WRN, [sName]);
 //<-Debug
 			if (oSource.hasOwnProperty(sName))
