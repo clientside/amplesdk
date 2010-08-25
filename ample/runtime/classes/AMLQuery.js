@@ -83,4 +83,6 @@ cAMLQuery.prototype.each	= function(fCallback, aArguments) {
 
 	// Invoke implementation
 	fAMLQuery_each(this, fCallback, aArguments);
+
+	return this;
 };
