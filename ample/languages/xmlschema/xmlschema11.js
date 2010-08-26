@@ -12,6 +12,9 @@ var oAMLXMLSchema11_implementation	= {},
 	oAMLXMLSchema11_model			= new cAMLXSModel,
 	oAMLXMLSchema11_processors		= {};
 
+//sAML_MISSING_ATTRIBUTE_WRN		= 'Required attribute "%0" is missing from "%1" element. Element processing skipped',
+//sAML_UNKNOWN_SIMPLE_TYPE_WRN	= 'Simple type definition "%0" not found',
+
 oAMLXMLSchema11_implementation.traverse	= function(oElementDOM, oNode) {
 	if ((oElementDOM.localName || oElementDOM.baseName) == "schema") {
 		var sNameSpaceURI	= oElementDOM.getAttribute("targetNamespace");
