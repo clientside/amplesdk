@@ -862,6 +862,6 @@ copyElement("http://www.w3.org/2000/svg#set", "http://www.w3.org/2008/SMIL30/#se
 copyElement("http://www.w3.org/2000/svg#animate", "http://www.w3.org/2008/SMIL30/#animate");
 copyElement("http://www.w3.org/2000/svg#animateColor", "http://www.w3.org/2008/SMIL30/#animateColor");
 copyElement("http://www.w3.org/2000/svg#animateMotion", "http://www.w3.org/2008/SMIL30/#animateMotion");
-copyElement("http://www.w3.org/2000/svg#animateTransform", "http://www.w3.org/2008/SMIL30/#animate");
+copyElement("http://www.w3.org/2000/svg#animateTransform", "http://www.w3.org/2008/SMIL30/#animateTransform");
 // Register Element
 ample.extend(cSVGElement);

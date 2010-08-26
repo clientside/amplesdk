@@ -116,6 +116,8 @@ function fSMILAnimationElement_getAttributeValue(oElement) {
 			throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 		else
 			aValue	= fAMLNodeAnimation_parseValue(oElement.targetElement.getAttribute(oElement.attributeName));
+		if (oElement instanceof cSMILElement_animateTransform)
+			aValue[2]	= '';
 	}
 	return aValue;
 };
@@ -139,6 +141,9 @@ function fSMILAnimationElement_setAttributeValue(oElement, aValue) {
 		else {	// "XML" = "auto"
 			if (oElement instanceof cSMILElement_animateMotion)
 				throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+			else
+			if (oElement instanceof cSMILElement_animateTransform)
+				oElement.targetElement.setAttribute(oElement.attributeName, oElement.attributes.type + '(' + aValue[0] + ')');
 			else
 				oElement.targetElement.setAttribute(oElement.attributeName, aValue[2] ? aValue[2] + '(' + aValue[0] + ')' : aValue.join(''));
 		}

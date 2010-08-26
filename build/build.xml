@@ -238,6 +238,7 @@
 				animate.js,
 				animateColor.js,
 				animateMotion.js,
+				animateTransform.js,
 				excl.js,
 				par.js,
 				seq.js,

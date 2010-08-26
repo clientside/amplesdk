@@ -98,6 +98,7 @@
 	$aFiles[]	= "runtime/processors/smil/elements/animate.js";
 	$aFiles[]	= "runtime/processors/smil/elements/animateColor.js";
 	$aFiles[]	= "runtime/processors/smil/elements/animateMotion.js";
+	$aFiles[]	= "runtime/processors/smil/elements/animateTransform.js";
 	$aFiles[]	= "runtime/processors/smil/elements/excl.js";
 	$aFiles[]	= "runtime/processors/smil/elements/par.js";
 	$aFiles[]	= "runtime/processors/smil/elements/seq.js";
