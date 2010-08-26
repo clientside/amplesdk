@@ -20,7 +20,7 @@ cAMLQuery.prototype.attr	= function(sName, sValue) {
 		var aQName		= sName.split(':'),
 			sNameSpaceURI	= null;
 		if (aQName.length > 1)
-			sNameSpaceURI	= oAmple.namespaces["xmlns" + ':' + aQName[0]] || null;
+			sNameSpaceURI	=(this.resolver || fAmple_resolver)(aQName[0]) || null;
 		fAMLQuery_each(this, function() {
 			fAMLElement_setAttributeNS(this, sNameSpaceURI, sName, cString(sValue));
 		});
