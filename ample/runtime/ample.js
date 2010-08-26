@@ -201,48 +201,6 @@ oAmple.config	= function(sName, oValue) {
 		return fAMLConfiguration_getParameter(oAmple_document.domConfig, sPrefix + sName);
 };
 
-// Bind shortcut
-oAmple.bind	= function(sType, fHandler, bCapture) {
-	// Validate API call
-	fGuard(arguments, [
-		["type",	cString],
-		["handler",	cFunction],
-		["capture",	cBoolean,	true]
-	]);
-
-	// Invoke implementation
-	fAMLEventTarget_addEventListener(oAmple_document, sType, fHandler, bCapture || false);
-};
-
-// Unbind shortcut
-oAmple.unbind	= function(sType, fHandler, bCapture) {
-	// Validate API call
-	fGuard(arguments, [
-		["type",	cString],
-		["handler",	cFunction],
-		["capture",	cBoolean,	true]
-	]);
-
-	// Invoke implementation
-	fAMLEventTarget_removeEventListener(oAmple_document, sType, fHandler, bCapture || false);
-};
-
-oAmple.trigger	= function(sType, oDetail) {
-	// Validate API call
-	fGuard(arguments, [
-		["type",	cString],
-		["detail",	oDetail, true, true]
-	]);
-
-	// Invoke implementation
-	if (arguments.length < 2)
-		oDetail	= null;
-
-	var oEvent	= new cAMLCustomEvent;
-	oEvent.initCustomEvent(sType, true, true, oDetail);
-	fAMLNode_dispatchEvent(oAmple_document);
-};
-
 // Lookup namespaces
 if (bTrident)
 	for (var nIndex = 0, aAttributes = oUADocument.namespaces, oAttribute, nLength = aAttributes.length; nIndex < nLength; nIndex++)
