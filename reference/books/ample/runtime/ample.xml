@@ -262,6 +262,7 @@
 					</locale>
 				</description>
 			</method>
+			<!--  -->
 			<method name="$instance" type="AMLElement">
 				<arguments>
 					<argument name="oElement" type="HTMLElement">
@@ -273,6 +274,34 @@
 				<description>
 					<locale>
 						Finds corresponding to the HTML DOM element in the Ample SDK DOM.
+					</locale>
+				</description>
+			</method>
+			<method name="$element" type="Function">
+				<arguments>
+					<argument name="uri" type="String">
+						<description>
+							Element class uri (namespace#name).
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Returns element constructor.
+					</locale>
+				</description>
+			</method>
+			<method name="$attribute" type="Function">
+				<arguments>
+					<argument name="uri" type="String">
+						<description>
+							Attribute class uri (namespace#name).
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Returns attribute constructor.
 					</locale>
 				</description>
 			</method>

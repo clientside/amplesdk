@@ -112,10 +112,6 @@ fQuery.prototype	= cAMLQuery.prototype;
 var oAmple	= oAmple_document;
 oAmple.query	= fQuery;
 oAmple.namespaces	= {};
-//->Source
-oAmple.elements		= oAMLImplementation_elements;
-oAmple.attributes	= oAMLImplementation_attributes;
-//<-Source
 
 function fAmple_extend(oSource, oTarget) {
 	if (oSource instanceof cFunction) {
@@ -208,10 +204,10 @@ oAmple.include	= function(sSrc) {
 		["src",	cString]
 	]);
 
-	var sValue	= sAmple_include;
-	sAmple_include	= fUtilities_resolveUri(sSrc, sValue);
-
 	// Invoke implementation
+	var sValue	= sAmple_include;
+	// Save current location
+	sAmple_include	= fUtilities_resolveUri(sSrc, sValue);
 	var oXMLHttpRequest	= new cXMLHttpRequest;
 	oXMLHttpRequest.open("GET", sAmple_include, false);
 	oXMLHttpRequest.send();
@@ -219,7 +215,7 @@ oAmple.include	= function(sSrc) {
 	oScript.type= "text/javascript";
 	oScript.text= oXMLHttpRequest.responseText;
 	oScript.parentNode.removeChild(oScript);
-	//
+	// Restore base location
 	sAmple_include	= sValue;
 };
 
@@ -277,6 +273,27 @@ oAmple.$instance	= function(oNode) {
             return oElement;
     return null;
 };
+
+oAmple.$element		= function(sUri) {
+	// Validate API call
+	fGuard(arguments, [
+		["uri",	cString]
+	]);
+
+	// Invoke implementation
+	return oAMLImplementation_elements[sUri] || null;
+};
+
+oAmple.$attribute	= function(sUri) {
+	// Validate API call
+	fGuard(arguments, [
+		["uri",	cString]
+	]);
+
+	// Invoke implementation
+	return oAMLImplementation_attributes[sUri] || null;
+};
+
 /*
 oAmple.$class	= function(oNode) {
 	var oElement	= oAmple.$instance(oNode);
