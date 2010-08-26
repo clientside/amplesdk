@@ -109,7 +109,7 @@ function fSMILAnimationElement_getAttributeValue(oElement) {
 			aValue	= [[oValue1[0], oValue2[0]], oValue1[1]];
 		}
 		else
-			aValue	= fAMLNodeAnimation_parseValue(fBrowser_getStyle(oElementDOM, fUtilities_toCssPropertyName(oElement.attributeName)));
+			aValue	= fAMLNodeAnimation_parseValue(oElement.targetElement.$getStyle(oElement.attributeName));
 	}
 	else {	// "XML" = "auto"
 		if (oElement instanceof cSMILElement_animateMotion)
@@ -134,7 +134,7 @@ function fSMILAnimationElement_setAttributeValue(oElement, aValue) {
 				oStyle.left	= aValue[0][1] +(aValue[1] || 'px');	// default to "px"
 			}
 			else
-				fBrowser_setStyle(oElementDOM, fUtilities_toCssPropertyName(oElement.attributeName), aValue.join(''));
+				oElement.targetElement.$setStyle(oElement.attributeName, aValue.join(''));
 		}
 		else {	// "XML" = "auto"
 			if (oElement instanceof cSMILElement_animateMotion)

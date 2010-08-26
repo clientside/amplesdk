@@ -18,15 +18,12 @@ cAMLQuery.prototype.css	= function(sName, sValue) {
 	sName	= fUtilities_toCssPropertyName(sName);
 	if (arguments.length > 1) {
 		fAMLQuery_each(this, function() {
-			var oElementDOM	= this.$getContainer();
-			if (oElementDOM)
-				fBrowser_setStyle(oElementDOM, sName, sValue);
+			this.$setStyle(sName, sValue);
 		});
 		return this;
 	}
 	else
 	if (this.length) {
-		var oElementDOM	= this[0].$getContainer();
-		return oElementDOM ? fBrowser_getStyle(oElementDOM, sName) : '';
+		return this.$getStyleComputed(sName);
 	}
 };
