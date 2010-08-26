@@ -15,14 +15,6 @@ cXHTMLElement_form.prototype	= new cXHTMLElement("form");
 // Public Properties
 cXHTMLElement_form.prototype.elements	= null;
 
-cXHTMLElement_form.prototype.$validate	= function() {
-	for (var nIndex = 0; nIndex < this.elements.length; nIndex++) {
-		if (!this.elements[nIndex].$validate())
-			return false;
-	}
-	return true;
-}
-
 // Public Methods
 cXHTMLElement_form.prototype.submit	= function() {
 	// Handle @target="#target"

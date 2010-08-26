@@ -18,10 +18,6 @@ cXHTMLElement_textarea.prototype.$getValue	= function(sValue) {
 	return this.$getContainer().value;
 };
 
-cXHTMLElement_textarea.prototype.$validate	= function() {
-	return true;
-};
-
 // Public methods
 cXHTMLElement_textarea.prototype.select	= function() {
 	this.$getContainer().select();

@@ -26,7 +26,7 @@
 				</xs:simpleType>
 			</xs:schema>
 
-			<form action="/" target="#target" onsubmit="if (!this.$validate()) alert('Some fields are invalid!'); else alert('All data is correct'); event.preventDefault()">
+			<form action="/" target="#target">
 				xs:integer: <input type="text" aml:type="xs:integer" onvalidate="" /> (not required)<br />
 				xs:boolean: <input type="text" aml:type="xs:boolean" aml:required="true" onvalidate="" /> (required)<br />
 				xs:NCName <input type="text" aml:type="xs:NCName" aml:required="true" onvalidate="" /> (required)<br />

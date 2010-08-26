@@ -46,17 +46,10 @@ cXHTMLElement_input.prototype.stepDown	= function() {
 
 // Class Events Handlers
 cXHTMLElement_input.handlers	= {
-	"keyup":	function() {
-		var that	= this;
-		setTimeout(function() {
-			that.$validate();
-		}, 0);
-	},
 	"focus":	function(oEvent) {
 		this.$getContainer().focus();
 	},
 	"blur":		function(oEvent) {
-		this.$validate();
 		this.$getContainer().blur();
 	},
 	"DOMNodeInsertedIntoDocument":	function() {
@@ -64,7 +57,6 @@ cXHTMLElement_input.handlers	= {
 			this.tabIndex	= this.getAttribute("tabIndex") * 1;
 		if (this.hasAttribute("accessKey"))
 			this.accessKey	= this.getAttribute("accessKey");
-		this.$validate();
 	},
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this)

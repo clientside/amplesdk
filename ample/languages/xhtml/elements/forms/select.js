@@ -33,10 +33,6 @@ cXHTMLElement_select.prototype.$getValue	= function() {
 		return this.$getContainer().value;
 };
 
-cXHTMLElement_select.prototype.$validate	= function() {
-	return true;
-};
-
 // Public Methods
 cXHTMLElement_select.prototype.add		= function(oElement, nIndex) {
 	return this.appendChild(oElement);
