@@ -446,7 +446,7 @@ cAMLElement.prototype.setAttributeNS	= function(sNameSpaceURI, sQName, sValue)
 	// Validate arguments
 	fGuard(arguments, [
 		["namespaceURI",	cString, false, true],
-		["qualifiedName",	cString],
+		["name",			cString],
 		["value",			cObject]
 	]);
 

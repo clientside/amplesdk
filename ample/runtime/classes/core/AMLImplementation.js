@@ -58,7 +58,7 @@ cAMLImplementation.prototype.createDocument	= function(sNameSpaceURI, sQName, oD
 	// Validate arguments
 	fGuard(arguments, [
 		["namespaceURI",	cString, false, true],
-		["qualifiedName",	cString, false, true],
+		["name",			cString, false, true],
 		["doctype",			cObject, false, true]
 	]);
 

@@ -76,7 +76,7 @@ cAMLDocument.prototype.createAttributeNS	= function(sNameSpaceURI, sQName)
 	// Validate arguments
 	fGuard(arguments, [
 		["namespaceURI",	cString, false, true],
-		["QName",			cString]
+		["name",			cString]
 	]);
 
 	return fAMLDocument_createAttributeNS(this, sNameSpaceURI, sQName);
@@ -222,7 +222,7 @@ cAMLDocument.prototype.createElementNS	= function(sNameSpaceURI, sQName)
 	// Validate arguments
 	fGuard(arguments, [
 		["namespaceURI",	cString, false, true],
-		["QName",			cString]
+		["name",			cString]
 	]);
 
 	// Invoke actual implementation
