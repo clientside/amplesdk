@@ -366,30 +366,38 @@ if (cSVGElement.useVML) {
 
 				// quadratic Bézier curveto (x1 y1 x y)+
 				case "Q":	// Using Cubic Bezier in IE
-					aPath.push("c" + [iCurrentX, iCurrentY].map(Math.round) + "," + aParameters.map(Math.round) + " ");
-					iCurrentX	= aParameters[nParameters - 2];
-					iCurrentY	= aParameters[nParameters - 1];
-					aQuadratic	= [aParameters[nParameters - 4], aParameters[nParameters - 3]];
+					for (var j = 0; j < nParameters; j+=4) {
+						aPath.push("c" + [iCurrentX, iCurrentY].map(Math.round) + "," + aParameters.slice(j, j + 4).map(Math.round) + " ");
+						aQuadratic	= [aParameters[j], aParameters[j + 1]];
+						iCurrentX	= aParameters[j + 2];
+						iCurrentY	= aParameters[j + 3];
+					}
 					break;
 
 				case "q":	// Using Cubic Bezier in IE
-					aPath.push("v0,0" + "," + aParameters.map(Math.round) + " ");
-					iCurrentX	+= aParameters[nParameters - 2];
-					iCurrentY	+= aParameters[nParameters - 1];
-					aQuadratic	= [aParameters[nParameters - 4], aParameters[nParameters - 3]];
+					for (var j = 0; j < nParameters; j+=4) {
+						aPath.push("v0,0" + "," + aParameters.slice(j, j + 4).map(Math.round) + " ");
+						aQuadratic	= [aParameters[j], aParameters[j + 1]];
+						iCurrentX	+= aParameters[j + 2];
+						iCurrentY	+= aParameters[j + 3];
+					}
 					break;
 
 				// Shorthand/smooth quadratic Bézier curveto (x y)+
 				case "T":	// Using Cubic Bezier in IE
-					aPath.push("c" + [iCurrentX, iCurrentY].map(Math.round) + "," + [iCurrentX + (aQuadratic ? iCurrentX - aQuadratic[0] : 0), iCurrentY + (aQuadratic ? iCurrentY - aQuadratic[1] : 0)].map(Math.round) + "," + aParameters.map(Math.round) + " ");
-					iCurrentX	= aParameters[nParameters - 2];
-					iCurrentY	= aParameters[nParameters - 1];
+					for (var j = 0; j < nParameters; j+=2) {
+						aPath.push("c" + [iCurrentX, iCurrentY].map(Math.round) + "," + [iCurrentX + (aQuadratic ? iCurrentX - aQuadratic[0] : 0), iCurrentY + (aQuadratic ? iCurrentY - aQuadratic[1] : 0)].map(Math.round) + "," + aParameters.slice(j, j +2).map(Math.round) + " ");
+						iCurrentX	= aParameters[j + 2];
+						iCurrentY	= aParameters[j + 3];
+					}
 					break;
 
 				case "t":	// Using Cubic Bezier in IE
-					aPath.push("v0,0" + "," + [(aQuadratic ? aParameters[nParameters - 2] - aQuadratic[0] : 0), (aQuadratic ? aParameters[nParameters - 1] - aQuadratic[1] : 0)].map(Math.round) + "," + aParameters.map(Math.round) + " ");
-					iCurrentX	+= aParameters[nParameters - 2];
-					iCurrentY	+= aParameters[nParameters - 1];
+					for (var j = 0; j < nParameters; j+=2) {
+						aPath.push("v0,0" + "," + [(aQuadratic ? aParameters[j] - aQuadratic[0] : 0), (aQuadratic ? aParameters[j + 1] - aQuadratic[1] : 0)].map(Math.round) + "," + aParameters.slice(j, j +2).map(Math.round) + " ");
+						iCurrentX	+= aParameters[j];
+						iCurrentY	+= aParameters[j + 1];
+					}
 					break;
 
 				// elliptical arc (rx ry x-axis-rotation large-arc-flag sweep-flag x y)+
