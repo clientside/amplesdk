@@ -115,7 +115,7 @@ function fSMILAnimationElement_getAttributeValue(oElement) {
 		if (oElement instanceof cSMILElement_animateMotion)
 			throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 		else
-			aValue	= fAMLNodeAnimation_parseValue(oElement.targetElement.getAttribute(oElement.attributeName));
+			aValue	= fAMLNodeAnimation_parseValue(oElement.targetElement.getAttribute(oElement.attributeName)) || ['', '', ''];
 		if (oElement instanceof cSMILElement_animateTransform)
 			aValue[2]	= '';
 	}
@@ -143,7 +143,7 @@ function fSMILAnimationElement_setAttributeValue(oElement, aValue) {
 				throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 			else
 			if (oElement instanceof cSMILElement_animateTransform)
-				oElement.targetElement.setAttribute(oElement.attributeName, oElement.attributes.type + '(' + aValue[0] + ')');
+				oElement.targetElement.setAttribute(oElement.attributeName, aValue[0] ? oElement.attributes.type + '(' + aValue[0] + ')' : '');
 			else
 				oElement.targetElement.setAttribute(oElement.attributeName, aValue[2] ? aValue[2] + '(' + aValue[0] + ')' : aValue.join(''));
 		}
