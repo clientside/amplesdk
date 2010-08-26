@@ -283,7 +283,7 @@ oAmple.$class	= function(oNode) {
 	return oElement ? oAMLImplementation_elements[oElement.namespaceURI + '#' + oElement.localName] || cAMLElement : null;
 };
 */
-oAmple.$resolveUri	= function(sUri, sBaseUri) {
+oAmple.resolveUri	= function(sUri, sBaseUri) {
 	return fUtilities_resolveUri(sUri, sBaseUri);
 };
 
