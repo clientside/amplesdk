@@ -14,7 +14,7 @@ cSMILAnimationElement.prototype	= new cSMILTimeElement("#element-animation");
 
 function fSMILAnimationElement_init(oElement) {
 	// Target
-	oElement.targetElement	= oElement.attributes["targetElement"];
+	oElement.targetElement	= oElement.attributes["targetElement"] || oElement.attributes["xlink:href"];
 	oElement.attributeName	= oElement.attributes["attributeName"];
 	oElement.attributeType	= oElement.attributes["attributeType"];
 	// Simple Animation
