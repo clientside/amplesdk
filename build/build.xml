@@ -171,7 +171,6 @@
 				mAMLDragAndDrop.js,
 				mAMLSelection.js,
 				mAMLCapture.js,
-				mAMLHistory.js,
 				mAMLTouch.js"/>
 			<!-- API Modules -->
 			<filelist dir="${source.runtime.dir}/modules/" files="
@@ -182,6 +181,7 @@
 				dimensions.js,
 				effects.js,
 				event.js,
+				history.js,
 				manipulation.js,
 				offset.js"/>
 		</concat>

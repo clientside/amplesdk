@@ -115,7 +115,6 @@
 	$aFiles[]	= "runtime/managers/mAMLDragAndDrop.js";
 	$aFiles[]	= "runtime/managers/mAMLSelection.js";
 	$aFiles[]	= "runtime/managers/mAMLCapture.js";
-	$aFiles[]	= "runtime/managers/mAMLHistory.js";
 	$aFiles[]	= "runtime/managers/mAMLTouch.js";
 
 	// Modules
@@ -126,6 +125,7 @@
 	$aFiles[]	= "runtime/modules/dimensions.js";
 	$aFiles[]	= "runtime/modules/effects.js";
 	$aFiles[]	= "runtime/modules/event.js";
+	$aFiles[]	= "runtime/modules/history.js";
 	$aFiles[]	= "runtime/modules/manipulation.js";
 	$aFiles[]	= "runtime/modules/offset.js";
 

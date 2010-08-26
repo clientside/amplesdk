@@ -360,12 +360,45 @@
 					</locale>
 				</description>
 			</method>
+			<!-- History -->
+			<method name="bookmark" type="Void">
+				<arguments>
+					<argument name="sHash" type="String" required="true">
+						<description>
+							<locale>
+								Hash value.
+							</locale>
+							<locale xml:lang="ru">
+								Значение метки.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Adds a page with specifyed marker (as hash) into the browser history. The <link type="event">hashchange</link> event is not fired at this point.
+					</locale>
+					<locale xml:lang="ru">
+						Добавляет страницу с указанной меткой (которая является хэшем) в историю навигации браузера.
+					</locale>
+				</description>
+			</method>
 		</methods>
 		<events>
 			<event name="readystatechange" group="Event" cancelable="false" bubble="false">
 				<description>
 					<locale>
 						Fires when the state of the object has changed. You can use the <link type="property">readyState</link> property to query the current state of the element when the <link type="event">readystatechange</link> event fires.
+					</locale>
+				</description>
+			</event>
+			<event name="hashchange" group="HashChangeEvent" cancelable="false" bubbles="false">
+				<description>
+					<locale>
+						Fires on the document when user navigates browser history. Please note this event is not fired when <link type="method">bookmark</link> method is called.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается на объекте <link type="object">AMLDocument</link>, когда пользователь перемещается по истории навигации браузера.
 					</locale>
 				</description>
 			</event>
