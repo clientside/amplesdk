@@ -11,9 +11,7 @@
 	</abstract>
 	<remarks />
 	<examples/>
-	<implements>
-		<interface name="runtime:mHistory" />
-	</implements>
+	<implements />
 	<members>
 		<methods>
 			<method name="createElement" type="AMLElement">

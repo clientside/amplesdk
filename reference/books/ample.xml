@@ -64,7 +64,6 @@
 				<node title="AMLCapture" url="ample/runtime/mCapture.xml"/>
 				<node title="AMLDragAndDrop" url="ample/runtime/mDragAndDrop.xml"/>
 				<node title="AMLFocus" url="ample/runtime/mFocus.xml"/>
-				<node title="AMLHistory" url="ample/runtime/mHistory.xml"/>
 				<node title="AMLResize" url="ample/runtime/mResize.xml"/>
 				<node title="AMLSelection" url="ample/runtime/mSelection.xml"/>
 			</node>

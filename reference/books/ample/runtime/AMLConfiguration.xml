@@ -176,7 +176,7 @@
 				<ul>
 					<li><b>error-handler</b> - if an error is encountered in the document, the implementation will call back the ErrorHandler registered using this parameter</li>
 					<li><b>ample-use-style-property</b> - enable/disable style property on elements</li>
-					<li><b>ample-module-history-fix</b> - fix initial value of the location.hash property in Internet Explorer (used in <link type="object">mHistory</link>)</li>
+					<li><b>ample-module-history-fix</b> - fix initial value of the location.hash property in Internet Explorer</li>
 					<li><b>ample-version</b> - Ample SDK version identifier</li>
 					<li><b>ample-user-agent</b> - Ample SDK user agent string</li>
 					<li><b>ample-user-locale</b> - User locale</li>
@@ -187,7 +187,7 @@
 				<ul>
 					<li><b>error-handler</b> - позволяет зарегистрировать обработчик ошибок, который будет вызываться в случае, если приозойдет ошибка</li>
 					<li><b>ample-use-style-property</b> - включить/отключить поддержку доступа к стилям через свойство style</li>
-					<li><b>ample-module-history-fix</b> - починить начальное значение свойства location.hash в Internet Explorer (модуль <link type="object">mHistory</link>)</li>
+					<li><b>ample-module-history-fix</b> - починить начальное значение свойства location.hash в Internet Explorer</li>
 					<li><b>ample-version</b> - версия Ample SDK</li>
 					<li><b>ample-user-agent</b> - Ample SDK user agent string</li>
 					<li><b>ample-user-locale</b> - User locale</li>
