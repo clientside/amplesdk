@@ -7,7 +7,7 @@
  *
  */
 
-var sAMLExporter_space	= new cArray(4).join(' ');
+var sAMLExporter_space	= new cArray(5).join(' ');
 function fAMLExporter_toStringFunction(sName) {
 	return cFunction('return "' + "function" + ' ' + sName + '()' + ' ' + '{\\n' + sAMLExporter_space + '[' + "ample" + ' ' + "code" + ']\\n}"');
 };
@@ -123,9 +123,10 @@ if (!window.JSON)
 
 // Special virtual type
 fAMLExporter_wrapMember(cArguments,	"Arguments");
-//
+// Tweaks and tricks
 fAMLExporter_wrap(oAmple.namespaces,	"namespaces");
 fAMLExporter_wrap(fAmple_resolver,		"resolver");
+fAMLExporter_wrap(oAmple.documentElement.$getContainer,		"$getContainer");
 
 //
 fAMLExporter_export(oAmple,	"ample");
