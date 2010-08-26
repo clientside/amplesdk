@@ -231,6 +231,7 @@ if (cSVGElement.useVML) {
 
 	cSVGElement_path.convert	= function(sValue) {
 		var aCommands	= sValue.match(/[mlhvcsqtaz][^mlhvcsqtaz]*/ig),
+			nCommands	= aCommands.length,
 			iStartX		= 0,
 			iStartY		= 0,
 			iCurrentX	= 0,
@@ -243,14 +244,15 @@ if (cSVGElement.useVML) {
 		if (!aCommands)
 			return '';
 
-		for (var i = 0, aCommand, sCommand; i < aCommands.length; i++) {
+		for (var i = 0, aCommand, sCommand, aParameters, nParameters; i < nCommands; i++) {
 			sCommand	= aCommands[i].substr(0, 1);
 			aParameters	= aCommands[i].substr(1).
 								replace(/(\d)-/g, '$1,-').
 								replace(/^\s+|\s+$/g, '').
 								split(/[,\s]/).map(function(nValue) {
 									return nValue * 1;
-								});
+								}),
+			nParameters	= aParameters.length;
 
 			switch (sCommand) {
 				// moveto (x y)+
@@ -262,15 +264,17 @@ if (cSVGElement.useVML) {
 					aPath.push("m" + aParameters.slice(0, 2).map(Math.round) + " ");
 
 					// If there are more that 2 parameters, draw line out of the rest of parameters
-					if (aParameters.length == 2)
+					if (nParameters == 2)
 						break;
-					else
+					else {
 						aParameters	= aParameters.slice(2);
+						nParameters-= 2;
+					}
 
 				// lineto (x y)+
 				case "L":
-					iCurrentX	= aParameters[aParameters.length - 2];
-					iCurrentY	= aParameters[aParameters.length - 1];
+					iCurrentX	= aParameters[nParameters - 2];
+					iCurrentY	= aParameters[nParameters - 1];
 					aPath.push("l" + aParameters.map(Math.round) + " ");
 					break;
 
@@ -279,17 +283,18 @@ if (cSVGElement.useVML) {
 					iCurrentY	+= aParameters[1];
 					iStartX		= iCurrentX;
 					iStartY		= iCurrentY;
-
 					aPath.push("t" + aParameters.slice(0, 2).map(Math.round) + " ");
 
 					// If there are more that 2 parameters, draw line out of the rest of parameters
-					if (aParameters.length == 2)
+					if (nParameters == 2)
 						break;
-					else
+					else {
 						aParameters	= aParameters.slice(2);
+						nParameters-= 2;
+					}
 
 				case "l":
-					for (var j = 0; j < aParameters.length; j+= 2) {
+					for (var j = 0; j < nParameters; j+= 2) {
 						iCurrentX	+= aParameters[j];
 						iCurrentY	+= aParameters[j + 1];
 					}
@@ -298,80 +303,94 @@ if (cSVGElement.useVML) {
 
 				// horizontal lineto x+
 				case "H":
-					iCurrentX	= aParameters[0];
-					aPath.push("l" + [iCurrentX, iCurrentY].map(Math.round) + " ");
+					for (var j = 0; j < nParameters; j+=1) {
+						aPath.push("l" + [aParameters[j], iCurrentY].map(Math.round) + " ");
+					}
+					iCurrentX	= aParameters[nParameters - 1];
 					break;
 
 				case "h":
-					iCurrentX	+= aParameters[0];
-					aPath.push("r" + [aParameters[0], 0].map(Math.round) + " ");
+					for (var j = 0; j < nParameters; j+=1) {
+						aPath.push("r" + [aParameters[j], 0].map(Math.round) + " ");
+						iCurrentX	+= aParameters[j];
+					}
 					break;
 
 				// vertical lineto y+
 				case "V":
-					iCurrentY	= aParameters[0];
-					aPath.push("l" + [iCurrentX, iCurrentY].map(Math.round) + " ");
+					for (var j = 0; j < nParameters; j+=1) {
+						aPath.push("l" + [iCurrentX, aParameters[j]].map(Math.round) + " ");
+					}
+					iCurrentY	= aParameters[nParameters - 1];
 					break;
 
 				case "v":
-					iCurrentY	+= aParameters[0];
-					aPath.push("r" + [0, aParameters[0]].map(Math.round) + " ");
+					for (var j = 0; j < nParameters; j+=1) {
+						aPath.push("r" + [0, aParameters[j]].map(Math.round) + " ");
+						iCurrentY	+= aParameters[j];
+					}
 					break;
 
 				// curveto (x1 y1 x2 y2 x y)+
 				case "C":
 					aPath.push("c" + aParameters.map(Math.round) + " ");
-					iCurrentX	= aParameters[aParameters.length - 2];
-					iCurrentY	= aParameters[aParameters.length - 1];
-					aCubic	= [aParameters[aParameters.length - 4], aParameters[aParameters.length - 3]];
+					iCurrentX	= aParameters[nParameters - 2];
+					iCurrentY	= aParameters[nParameters - 1];
+					aCubic	= [aParameters[nParameters - 4], aParameters[nParameters - 3]];
 					break;
 
 				case "c":
 					aPath.push("v" + aParameters.map(Math.round) + " ");
-					iCurrentX	+= aParameters[aParameters.length - 2];
-					iCurrentY	+= aParameters[aParameters.length - 1];
-					aCubic	= [aParameters[aParameters.length - 4], aParameters[aParameters.length - 3]];
+					iCurrentX	+= aParameters[nParameters - 2];
+					iCurrentY	+= aParameters[nParameters - 1];
+					aCubic	= [aParameters[nParameters - 4], aParameters[nParameters - 3]];
 					break;
 
 				// shorthand/smooth curveto (x2 y2 x y)+
 				case "S":
-					aPath.push("c" + [iCurrentX + (aCubic ? iCurrentX - aCubic[0] : 0), iCurrentY + (aCubic ? iCurrentY - aCubic[1] : 0)].map(Math.round) + "," + aParameters.map(Math.round) + " ");
-					iCurrentX	= aParameters[aParameters.length - 2];
-					iCurrentY	= aParameters[aParameters.length - 1];
+					for (var j = 0; j < nParameters; j+=4) {
+						aPath.push("c" + [iCurrentX + (aCubic ? iCurrentX - aCubic[0] : 0), iCurrentY + (aCubic ? iCurrentY - aCubic[1] : 0)].map(Math.round) + "," + aParameters.slice(j, j + 4).map(Math.round) + " ");
+						aCubic	= [aParameters[j], aParameters[j + 1]];
+						iCurrentX	= aParameters[j + 2];
+						iCurrentY	= aParameters[j + 3];
+					}
 					break;
 
 				case "s":
-					aPath.push("v" + [(aCubic ? aParameters[2] - aCubic[0] : 0), (aCubic ? aParameters[3] - aCubic[1] : 0)].map(Math.round) + "," + aParameters.map(Math.round) + " ");
-					iCurrentX	+= aParameters[2];
-					iCurrentY	+= aParameters[3];
+					for (var j = 0; j < nParameters; j+=4) {
+						aPath.push("v" + [(aCubic ? aParameters[j + 2] - aCubic[0] : 0), (aCubic ? aParameters[j + 3] - aCubic[1] : 0)].map(Math.round) + "," + aParameters.slice(j, j + 4).map(Math.round) + " ");
+						aCubic	= [aParameters[j], aParameters[j + 1]];
+						iCurrentX	+= aParameters[j + 2];
+						iCurrentY	+= aParameters[j + 3];
+					}
 					break;
 
 				// quadratic Bézier curveto (x1 y1 x y)+
 				case "Q":	// Using Cubic Bezier in IE
 					aPath.push("c" + [iCurrentX, iCurrentY].map(Math.round) + "," + aParameters.map(Math.round) + " ");
-					iCurrentX	= aParameters[aParameters.length - 2];
-					iCurrentY	= aParameters[aParameters.length - 1];
-					aQuadratic	= [aParameters[aParameters.length - 4], aParameters[aParameters.length - 3]];
+					iCurrentX	= aParameters[nParameters - 2];
+					iCurrentY	= aParameters[nParameters - 1];
+					aQuadratic	= [aParameters[nParameters - 4], aParameters[nParameters - 3]];
 					break;
 
 				case "q":	// Using Cubic Bezier in IE
 					aPath.push("v0,0" + "," + aParameters.map(Math.round) + " ");
-					iCurrentX	+= aParameters[aParameters.length - 2];
-					iCurrentY	+= aParameters[aParameters.length - 1];
-					aQuadratic	= [aParameters[aParameters.length - 4], aParameters[aParameters.length - 3]];
+					iCurrentX	+= aParameters[nParameters - 2];
+					iCurrentY	+= aParameters[nParameters - 1];
+					aQuadratic	= [aParameters[nParameters - 4], aParameters[nParameters - 3]];
 					break;
 
 				// Shorthand/smooth quadratic Bézier curveto (x y)+
 				case "T":	// Using Cubic Bezier in IE
 					aPath.push("c" + [iCurrentX, iCurrentY].map(Math.round) + "," + [iCurrentX + (aQuadratic ? iCurrentX - aQuadratic[0] : 0), iCurrentY + (aQuadratic ? iCurrentY - aQuadratic[1] : 0)].map(Math.round) + "," + aParameters.map(Math.round) + " ");
-					iCurrentX	= aParameters[aParameters.length - 2];
-					iCurrentY	= aParameters[aParameters.length - 1];
+					iCurrentX	= aParameters[nParameters - 2];
+					iCurrentY	= aParameters[nParameters - 1];
 					break;
 
 				case "t":	// Using Cubic Bezier in IE
-					aPath.push("v0,0" + "," + [(aQuadratic ? aParameters[aParameters.length - 2] - aQuadratic[0] : 0), (aQuadratic ? aParameters[aParameters.length - 1] - aQuadratic[1] : 0)].map(Math.round) + "," + aParameters.map(Math.round) + " ");
-					iCurrentX	+= aParameters[aParameters.length - 2];
-					iCurrentY	+= aParameters[aParameters.length - 1];
+					aPath.push("v0,0" + "," + [(aQuadratic ? aParameters[nParameters - 2] - aQuadratic[0] : 0), (aQuadratic ? aParameters[nParameters - 1] - aQuadratic[1] : 0)].map(Math.round) + "," + aParameters.map(Math.round) + " ");
+					iCurrentX	+= aParameters[nParameters - 2];
+					iCurrentY	+= aParameters[nParameters - 1];
 					break;
 
 				// elliptical arc (rx ry x-axis-rotation large-arc-flag sweep-flag x y)+
