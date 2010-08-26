@@ -383,6 +383,30 @@
 					</locale>
 				</description>
 			</method>
+			<!-- Utilities -->
+			<method name="resolveUri" type="String">
+				<arguments>
+					<argument name="uri" type="String" required="true">
+						<description>
+							<locale>
+								Uri value to resolve.
+							</locale>
+						</description>
+					</argument>
+					<argument name="baseUri" type="String" required="true">
+						<description>
+							<locale>
+								Base uri value to resolve against.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Resolves uri against base uri.
+					</locale>
+				</description>
+			</method>
 		</methods>
 		<events>
 			<event name="readystatechange" group="Event" cancelable="false" bubble="false">
