@@ -24,7 +24,7 @@ function fQuery(vArgument1, vArgument2, vArgument3) {
 				for (var sKey in oAmple.namespaces)
 					aNameSpaces.push(sKey + '="' + oAmple.namespaces[sKey] + '"');
 				//
-				var sNameSpaces	= ' ' + aNameSpaces.join(' ');
+				var sNameSpaces	= ' ' + aNameSpaces.join(' '),
 					oDocument	= new cDOMParser().parseFromString(
 														'<!' + "DOCTYPE" + ' ' + "script" + '[' + aUtilities_entities + ']>' +
 														'<' + "script" + ' ' + "type" + '="' + "application/ample+xml" + '"' + sNameSpaces + '>' +
