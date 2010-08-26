@@ -231,6 +231,22 @@
 					</locale>
 				</description>
 			</method>
+			<method name="include" type="Void">
+				<arguments>
+					<argument name="src" type="String">
+						<description>
+							<locale>
+								Location of a file.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Loads JavaScript file. Calls to <link type="object">ample</link>.<link type="method">include</link>() from within the loaded file will properly resolve relative file locations.
+					</locale>
+				</description>
+			</method>
 			<!--  -->
 			<method name="open" type="Void">
 				<description>

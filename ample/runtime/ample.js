@@ -201,6 +201,28 @@ oAmple.config	= function(sName, oValue) {
 		return fAMLConfiguration_getParameter(oAmple_document.domConfig, sPrefix + sName);
 };
 
+var sAmple_include	= document.location.href;
+oAmple.include	= function(sSrc) {
+	// Validate API call
+	fGuard(arguments, [
+		["src",	cString]
+	]);
+
+	var sValue	= sAmple_include;
+	sAmple_include	= fUtilities_resolveUri(sSrc, sValue);
+
+	// Invoke implementation
+	var oXMLHttpRequest	= new cXMLHttpRequest;
+	oXMLHttpRequest.open("GET", sAmple_include, false);
+	oXMLHttpRequest.send();
+	var oScript	= oUADocument.getElementsByTagName("head")[0].appendChild(oUADocument.createElement("script"));
+	oScript.type= "text/javascript";
+	oScript.text= oXMLHttpRequest.responseText;
+	oScript.parentNode.removeChild(oScript);
+	//
+	sAmple_include	= sValue;
+};
+
 // Lookup namespaces
 if (bTrident)
 	for (var nIndex = 0, aAttributes = oUADocument.namespaces, oAttribute, nLength = aAttributes.length; nIndex < nLength; nIndex++)
