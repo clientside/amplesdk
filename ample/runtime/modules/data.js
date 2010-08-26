@@ -9,35 +9,53 @@
 
 var oAMLQuery_cache	= {};
 
+function fAMLQuery_data(oQuery, sName, oValue) {
+	if (typeof oValue != "undefined") {
+		fAMLQuery_each(oQuery, function() {
+			var oCache	= oAMLQuery_cache[this.uniqueID];
+			if (!oCache)
+				oCache	= oAMLQuery_cache[this.uniqueID] = {};
+			if (oValue == null)
+				delete oCache[sName];
+			else
+				oCache[sName]	= oValue;
+		});
+		return oQuery;
+	}
+	else
+	if (oQuery.length) {
+		var oElement= oQuery[0],
+			oCache	= oAMLQuery_cache[oElement.uniqueID];
+		if (!oCache)
+			oCache	= oAMLQuery_cache[oElement.uniqueID] = {};
+		if (typeof sName != "undefined")
+			return oCache[sName];
+		else
+			return oCache;
+	}
+};
+
 cAMLQuery.prototype.data	= function(sName, oValue) {
 	// Validate API call
 	fGuard(arguments, [
-		["name",	cString],
+		["name",	cString, true],
 		["value",	cObject, true, true]
 	]);
 
 	// Invoke implementation
-	if (arguments.length > 1) {
-		fAMLQuery_each(this, function() {
-			if (oValue == null)
-				delete oAMLQuery_cache[this.uniqueID];
-			else
-				oAMLQuery_cache[this.uniqueID]	= oValue;
-		});
-		return this;
-	}
-	else
-	if (this.length) {
-		return this[0].uniqueID in oAMLQuery_cache ? oAMLQuery_cache[this[0].uniqueID] : {};
-	}
+	return fAMLQuery_data(this, sName, oValue);
 };
 
-oAmple.data	= function(oElement) {
+oAmple.data	= function(oElement, sName, oValue) {
 	// Validate API call
 	fGuard(arguments, [
-		["element",	cAMLElement]
+		["element",	cAMLElement],
+		["name",	cString, true],
+		["value",	cObject, true, true]
 	]);
 
 	// Invoke implementation
-	return oElement.uniqueID in oAMLQuery_cache ? oAMLQuery_cache[oElement.uniqueID] : {};
+	var oQuery	= new cAMLQuery;
+	oQuery[oQuery.length++]	= oElement;
+	return fAMLQuery_data(oQuery, sName, oValue);
 };
