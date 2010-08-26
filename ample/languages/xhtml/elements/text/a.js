@@ -34,7 +34,7 @@ cXHTMLElement_a.handlers	= {
 			var sHref= this.$getContainer().href,
 				aUrl = sHref.match(/^([^#]*)#(.*)/);
 			if (aUrl && window.location.href.match(/^([^#]*)#/) && aUrl[1] == window.RegExp.$1)
-				this.ownerDocument.$bookmark(aUrl[2]);
+				ample.bookmark(aUrl[2]);
 		}
 
 		// Handle @target="#target"
