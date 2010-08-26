@@ -231,7 +231,6 @@ if (cSVGElement.useVML) {
 
 	cSVGElement_path.convert	= function(sValue) {
 		var aCommands	= sValue.match(/[mlhvcsqtaz][^mlhvcsqtaz]*/ig),
-			nCommands	= aCommands.length,
 			iStartX		= 0,
 			iStartY		= 0,
 			iCurrentX	= 0,
@@ -244,7 +243,7 @@ if (cSVGElement.useVML) {
 		if (!aCommands)
 			return '';
 
-		for (var i = 0, aCommand, sCommand, aParameters, nParameters; i < nCommands; i++) {
+		for (var i = 0, aCommand, sCommand, aParameters, nParameters, nCommands = aCommands.length; i < nCommands; i++) {
 			sCommand	= aCommands[i].substr(0, 1);
 			aParameters	= aCommands[i].substr(1).
 								replace(/(\d)-/g, '$1,-').
