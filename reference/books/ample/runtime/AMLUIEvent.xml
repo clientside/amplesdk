@@ -111,10 +111,10 @@
 			<locale>Events of that type:</locale>
 			<locale xml:lang="ru">События этого типа:</locale>
 			<ul>
-				<li><link type="event" href="runtime:mFocus">focus</link></li>
-				<li><link type="event" href="runtime:mFocus">blur</link></li>
-				<li><link type="event" href="runtime:mFocus">DOMFocusIn</link></li>
-				<li><link type="event" href="runtime:mFocus">DOMFocusOut</link></li>
+				<li><link type="event" href="runtime:AMLElement">focus</link></li>
+				<li><link type="event" href="runtime:AMLElement">blur</link></li>
+				<li><link type="event" href="runtime:AMLElement">DOMFocusIn</link></li>
+				<li><link type="event" href="runtime:AMLElement">DOMFocusOut</link></li>
 				<li><link type="event" href="runtime:AMLElement">DOMActivate</link></li>
 				<li><link type="event" href="runtime:AMLDocument">resize</link></li>
 				<li><link type="event" href="runtime:AMLDocument">scroll</link></li>

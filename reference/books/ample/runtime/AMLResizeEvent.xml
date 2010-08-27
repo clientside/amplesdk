@@ -98,9 +98,9 @@
 			<locale>Events of that type:</locale>
       <locale xml:lang="ru">События этого типа:</locale>
       <ul>
-        <li><link type="event" href="runtime:mResize">resize</link></li>
-        <li><link type="event" href="runtime:mResize">resizestart</link></li>
-        <li><link type="event" href="runtime:mResize">resizeend</link></li>
+        <li><link type="event" href="runtime:AMLElement">resize</link></li>
+        <li><link type="event" href="runtime:AMLElement">resizestart</link></li>
+        <li><link type="event" href="runtime:AMLElement">resizeend</link></li>
       </ul>
 		</remark>
 	</remarks>

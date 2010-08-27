@@ -11,13 +11,6 @@
 	</abstract>
 	<remarks />
 	<examples />
-	<implements>
-		<interface name="runtime:mCapture" />
-		<interface name="runtime:mDragAndDrop" />
-		<interface name="runtime:mFocus" />
-		<interface name="runtime:mResize" />
-		<interface name="runtime:mSelection" />
-	</implements>
 	<members>
 		<constants />
 		<attributes>
@@ -97,6 +90,143 @@
 					</locale>
 					<locale xml:lang="ru">
 						Указывает, будут ли пробелы представлены в объектной модели фрагмента документа.
+					</locale>
+				</description>
+			</attribute>
+			<!-- Drag And Drop -->
+			<attribute name="aml:draggable" readonly="false" default="false">
+				<values>
+					<value name="true">
+						<description>
+							<locale>
+								Element can be dragged.
+							</locale>
+							<locale xml:lang="ru">
+								Элемент может перетаскиваться.
+							</locale>
+						</description>
+					</value>
+					<value name="false">
+						<description>
+							<locale>
+								Element can not be dragged.
+							</locale>
+							<locale xml:lang="ru">
+								Элемент не может перетаскиваться.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale>
+						Specifies wether element can be dragged by user.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает, может ли пользователь перетаскивать элемент или нет.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="aml:droppable" readonly="false" default="false">
+				<values>
+					<value name="true">
+						<description>
+							<locale>
+								Element can be used as drop target.
+							</locale>
+							<locale xml:lang="ru">
+								Элемент является местом оставления перетаскиваемого объекта.
+							</locale>
+						</description>
+					</value>
+					<value name="false">
+						<description>
+							<locale>
+								Element can not be used as drop target.
+							</locale>
+							<locale xml:lang="ru">
+								Элемент не является местом оставления перетаскиваемого объекта.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale>
+						Specifies wether element can be used as drop target.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает, является ли элемент местом оставления перетаскиваемого объекта.
+					</locale>
+				</description>
+			</attribute>
+			<!-- Resize -->
+			<attribute name="aml:resizable" readonly="false" default="false">
+				<values>
+					<value name="true">
+						<description>
+							<locale>
+								Elements boundaries can be modified.
+							</locale>
+							<locale xml:lang="ru">
+								Размеры элемента могут быть изменены пользователем.
+							</locale>
+						</description>
+					</value>
+					<value name="false">
+						<description>
+							<locale>
+								Elements boundaries can not be modified.
+							</locale>
+							<locale xml:lang="ru">
+								Размеры элемента не изменяемы.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale>
+						Specifies whether element boundaries can be modified by user.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает, может ли пользователь изменять размеры элемента.
+					</locale>
+				</description>
+			</attribute>
+
+			<attribute name="aml:resize-edges" readonly="false" default="false">
+				<description>
+					<locale>
+						Specifies what edges can be resized. The attribute value is a space separated list of "top", "right", "bottom" and "left" tokens.
+					</locale>
+				</description>
+			</attribute>
+			<!-- Selection -->
+			<attribute name="aml:selectable" readonly="false" default="inherit">
+				<values>
+					<value name="true">
+						<description>
+							<locale>
+								Text selection is enabled on element
+							</locale>
+						</description>
+					</value>
+					<value name="false">
+						<description>
+							<locale>
+								Text selection is disabled on element
+							</locale>
+						</description>
+					</value>
+					<value name="inherit">
+						<description>
+							<locale>
+								Text selection behavior is inherited from its parent container.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale>
+						Enables/disables text selection on element.
 					</locale>
 				</description>
 			</attribute>
@@ -566,6 +696,83 @@
 					</locale>
 				</description>
 			</method>
+			<!-- Capture -->
+			<method name="setCapture" type="Void">
+				<arguments>
+					<argument name="bContainerCapture" type="Boolean" required="false">
+						<description>
+							<locale>
+								A Boolean that specifies capture mode.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Sets the mouse capture to the object that belongs to the current document.
+					</locale>
+				</description>
+			</method>
+			<method name="releaseCapture" type="Void">
+				<description>
+					<locale>
+						Removes mouse capture from the object in the current document.
+					</locale>
+				</description>
+			</method>
+			<method name="$setModal" type="Void">
+				<description>
+					<locale>
+						Sets element in a modal state if it is not yet modal, otherwise throws exception.
+						UI Events originated outside this element get supressed,
+						except for one <link type="event">capture</link> that is fired upon a click outside modal area.
+						If there was an element set in modal state before, it will pushed to the stack of modals.
+					</locale>
+				</description>
+			</method>
+			<method name="$releaseModal" type="Void">
+				<description>
+					<locale>
+						Brings element to a normal (non-modal) state if it was set to modal before, otherwise throws exception.
+						In case there was another element set in modal mode before the one being released,
+						it will regain modal state.
+					</locale>
+				</description>
+			</method>
+			<!-- Focus -->
+			<method name="focus" type="Void">
+				<arguments />
+				<description>
+					<locale>
+						Moves focus to the element.
+					</locale>
+					<locale xml:lang="ru">
+						Перемещает фокус на элемент.
+					</locale>
+				</description>
+			</method>
+			<method name="blur" type="Void">
+				<arguments />
+				<description>
+					<locale>
+						Removes focus from the element.
+					</locale>
+					<locale xml:lang="ru">
+						Убирает фокус с элемента.
+					</locale>
+				</description>
+			</method>
+			<method name="$isAccessible" type="Boolean">
+				<arguments />
+				<description>
+					<locale>
+						Indicates wether element can be focused.
+					</locale>
+					<locale xml:lang="ru">
+						Возвращаемое значение указывает, доступен ли элемент.
+					</locale>
+				</description>
+			</method>
 		</methods>
 		<properties>
 			<property name="tagName" type="String" readonly="true">
@@ -596,42 +803,62 @@
 					</locale>
 				</description>
 			</property>
+			<!-- Drag And Drop -->
+			<property name="$draggable" type="Boolean">
+				<description>
+					<locale>
+						If true, element is draggable.
+					</locale>
+					<locale xml:lang="ru">
+						Если true, элемент может перетаскиваться.
+					</locale>
+				</description>
+			</property>
+			<property name="$droppable" type="Boolean">
+				<description>
+					<locale>
+						If true, element is a valid drag target.
+					</locale>
+					<locale xml:lang="ru">
+						Если true, элемент может являться местом оставления перетаскиваемого объекта.
+					</locale>
+				</description>
+			</property>
+			<!-- Focus -->
+			<property name="tabIndex" type="Number">
+				<description>
+					<locale>
+						Sets value used to specify
+						control position in tab sequence. When value is set to 0,
+						control will be accessed in the document order, when -1,
+						control will not be accessible at all.
+					</locale>
+					<locale xml:lang="ru">
+						Позволяет прочитать/выставить значение, указывающее на позицию элемента в последовательности перехода фокуса. Когда значение выставлено в 0, элемент получит фокус согласно его расположению в иерархии внутри документа; когда значение выставлено в -1, элемент не получит фокус.
+					</locale>
+				</description>
+			</property>
+			<!-- Resize -->
+			<property name="$resizable" type="Boolean">
+				<description>
+					<locale>
+						Keeps a flag indicating whether element size can be modified.
+					</locale>
+					<locale xml:lang="ru">
+						Если true, размеры элемента могут быть изменены.
+					</locale>
+				</description>
+			</property>
+			<!-- Selection -->
+			<property name="$selectable" type="Boolean">
+				<description>
+					<locale>
+						Keeps a flag indicating whether element's text content can be selected.
+					</locale>
+				</description>
+			</property>
 		</properties>
 		<events>
-			<!-- event name="focus" group="UIEvent" cancelable="false" bubbles="false">
-				<description>
-					<locale>
-						An event target receives focus.
-					</locale>
-					<locale xml:lang="ru">
-						Элемент получает фокус.
-					</locale>
-				</description>
-			</event>
-			<event name="blur" group="UIEvent" cancelable="false" bubbles="false">
-				<description>
-					<locale>
-						An event target loses focus.
-					</locale>
-					<locale xml:lang="ru">
-						Элемент теряет фокус.
-					</locale>
-				</description>
-			</event>
-			<event name="DOMFocusIn" group="UIEvent" cancelable="false" bubbles="true">
-				<description>
-					<locale xml:lang="ru">
-						Элемент получает фокус.
-					</locale>
-				</description>
-			</event>
-			<event name="DOMFocusOut" group="UIEvent" cancelable="false" bubbles="true">
-				<description>
-					<locale xml:lang="ru">
-						Элемент теряет фокус.
-					</locale>
-				</description>
-			</event-->
 			<event name="DOMActivate" group="UIEvent" cancelable="true" bubbles="true">
 				<description>
 					<locale>
@@ -908,6 +1135,208 @@
 					</locale>
 				</description>
 			</event>
+			<!-- Capture -->
+			<event name="losecapture" group="UIEvent" cancelable="false" bubbles="false">
+				<description>
+					<locale>
+						Fires when the object is losing the mouse capture.
+					</locale>
+				</description>
+			</event>
+			<event name="capture" group="UIEvent" cancelable="false" bubbles="true">
+				<description>
+					<locale>
+						Fires when user clicks outside either an element set as modal or to receive capture.
+					</locale>
+				</description>
+			</event>
+			<!-- Drag And Drop -->
+			<event name="dragstart" group="DragEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						Fires on the source object when the user starts to drag an object.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается на объекте, когда пользователь начинает его перетаскивать.
+					</locale>
+				</description>
+			</event>
+			<event name="dragend" group="DragEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						Fires on the source object when the user releases the mouse at the close of a drag operation.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается на объекте, когда пользователь отпускает кнопку мыши, заканчивая его перетаскивание.
+					</locale>
+				</description>
+			</event>
+			<event name="dragenter" group="DragEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						Fires on the target element when the user drags the object to a valid drop target.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается на объекте - валидном месте оставления, когда указатель мыши входит в пределы границ  во время перетаскивания другого объекта.
+					</locale>
+				</description>
+			</event>
+			<event name="dragover" group="DragEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</event>
+			<event name="dragleave" group="DragEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						Fires on the target object when the user moves the mouse out of a valid drop target during a drag operation.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается на объекте - валидном месте оставления, когда указатель мыши выходит за пределы границ  во время перетаскивания другого объекта.
+					</locale>
+				</description>
+			</event>
+			<event name="drag" group="DragEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						Fires on the source object continuously during a drag operation.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается на объекте непрерывно, пока его перетаскивает пользователь.
+					</locale>
+				</description>
+			</event>
+			<event name="drop" group="DragEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						Fires on the target object when the mouse button is released during a drag-and-drop operation.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается на объекте - валидном месте оставления, когда кнопка мыши отпускается во время операции перетаскивания.
+					</locale>
+				</description>
+			</event>
+			<!-- Focus -->
+			<event name="focus" group="UIEvent" cancelable="false" bubbles="false">
+				<description>
+					<locale>
+						Fires when element receives focus.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается, когда элемент получает фокус.
+					</locale>
+				</description>
+			</event>
+			<event name="blur" group="UIEvent" cancelable="false" bubbles="false">
+				<description>
+					<locale>
+						Fires when element looses focus.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается, когда элемент теряет фокус.
+					</locale>
+				</description>
+			</event>
+			<event name="DOMFocusIn" group="UIEvent" cancelable="false" bubbles="true">
+				<description>
+					<locale>
+						An object receives focus.
+						The focus is given to the element before the dispatch of this event type.
+						This event type is dispatched after the event type focus.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается, когда элемент получает фокус.
+					</locale>
+				</description>
+			</event>
+			<event name="DOMFocusOut" group="UIEvent" cancelable="false" bubbles="true">
+				<description>
+					<locale>
+						An object loses focus.
+						The focus is taken from the element before the dispatch of this event type.
+						This event type is dispatched after the event type blur.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается, когда элемент теряет фокус.
+					</locale>
+				</description>
+			</event>
+			<!-- Resize -->
+			<event name="resizestart" group="ResizeEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						Fires when user starts resizing an object.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается на объекте, когда пользователь начинает операцию над ним.
+						Свойство <link type="property">edge</link> содержит значение of the edge
+					</locale>
+				</description>
+			</event>
+			<event name="resizeend" group="ResizeEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						Fires when user ends resizing an object.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается на объекте, когда пользователь отпускает кнопку мыши, заканчивая операцию над ним.
+						Свойство <link type="property">edge</link> содержит значение of the edge
+					</locale>
+				</description>
+			</event>
+			<event name="resize" group="ResizeEvent" cancelable="true" bubbles="true">
+				<description>
+					<locale>
+						Fires continuously while user is resizing object.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается на объекте непрерывно, пока его размеры изменяются пользователем.
+						Свойство <link type="property">edge</link> содержит значение of the edge
+					</locale>
+				</description>
+			</event>
 		</events>
+		<pseudoclasses>
+			<pseudoclass name="hover">
+				<description>
+					<locale>
+						Applied to the element while mouse is over
+					</locale>
+				</description>
+			</pseudoclass>
+			<!-- Drag And Drop -->
+			<pseudoclass name="drag">
+				<description>
+					<locale>
+						Applied to the drag source during operation
+					</locale>
+				</description>
+			</pseudoclass>
+			<pseudoclass name="drop">
+				<description>
+					<locale>
+						Applied to the drop target when it is allowed
+					</locale>
+				</description>
+			</pseudoclass>
+			<!-- Focus -->
+			<pseudoclass name="focus">
+				<description>
+					<locale>
+						Applied to the element when it has focus
+					</locale>
+				</description>
+			</pseudoclass>
+			<!--  Resize -->
+			<pseudoclass name="resize">
+				<description>
+					<locale>
+						Applied to the resized element during operation
+					</locale>
+				</description>
+			</pseudoclass>
+		</pseudoclasses>
 	</members>
 </class>

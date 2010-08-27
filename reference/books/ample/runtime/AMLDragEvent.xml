@@ -104,13 +104,13 @@
 			<locale>Events of that type:</locale>
 			<locale xml:lang="ru">События этого типа:</locale>
 			<ul>
-				<li><link type="event" href="runtime:mDragAndDrop">drag</link></li>
-				<li><link type="event" href="runtime:mDragAndDrop">dragend</link></li>
-				<li><link type="event" href="runtime:mDragAndDrop">dragenter</link></li>
-				<li><link type="event" href="runtime:mDragAndDrop">dragleave</link></li>
-				<li><link type="event" href="runtime:mDragAndDrop">dragover</link></li>
-				<li><link type="event" href="runtime:mDragAndDrop">dragstart</link></li>
-				<li><link type="event" href="runtime:mDragAndDrop">drop</link></li>
+				<li><link type="event" href="runtime:AMLElement">drag</link></li>
+				<li><link type="event" href="runtime:AMLElement">dragend</link></li>
+				<li><link type="event" href="runtime:AMLElement">dragenter</link></li>
+				<li><link type="event" href="runtime:AMLElement">dragleave</link></li>
+				<li><link type="event" href="runtime:AMLElement">dragover</link></li>
+				<li><link type="event" href="runtime:AMLElement">dragstart</link></li>
+				<li><link type="event" href="runtime:AMLElement">drop</link></li>
 			</ul>
 		</remark>
 	</remarks>

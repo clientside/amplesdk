@@ -354,7 +354,7 @@
 	<xsl:template match="attribute">
 		<tr>
 			<!-- Set class if member is inherited -->
-			<xsl:if test="not(local-name(/*[1]) = 'object') and not(local-name(/*[1]) = 'element')">
+			<xsl:if test="not(local-name(/*[1]) = 'object') and not(local-name(/*[1]) = 'class') and not(local-name(/*[1]) = 'element')">
 				<xsl:attribute name="class"><xsl:text>member-inherited</xsl:text></xsl:attribute>
 			</xsl:if>
 			<xsl:attribute name="id">attribute-<xsl:value-of select="@name" /></xsl:attribute>
@@ -371,7 +371,7 @@
 					</xsl:otherwise>
 				</xsl:choose>
 				<!-- Flag if member is inherited -->
-				<xsl:if test="not(local-name(/*[1]) = 'object') and not(local-name(/*[1]) = 'element')">
+				<xsl:if test="not(local-name(/*[1]) = 'object') and not(local-name(/*[1]) = 'class') and not(local-name(/*[1]) = 'element')">
 					<xsl:text> *</xsl:text>
 				</xsl:if>
 			</td>
@@ -444,7 +444,7 @@
 	<xsl:template match="property">
 		<tr>
 			<!-- Set class if member is inherited -->
-			<xsl:if test="not(local-name(/*[1]) = 'object') and not(local-name(/*[1]) = 'element')">
+			<xsl:if test="not(local-name(/*[1]) = 'object') and not(local-name(/*[1]) = 'class') and not(local-name(/*[1]) = 'element')">
 				<xsl:attribute name="class"><xsl:text>member-inherited</xsl:text></xsl:attribute>
 			</xsl:if>
 			<xsl:attribute name="id">property-<xsl:value-of select="@name" /></xsl:attribute>
@@ -461,7 +461,7 @@
 					</xsl:otherwise>
 				</xsl:choose>
 				<!-- Flag if member is inherited -->
-				<xsl:if test="not(local-name(/*[1]) = 'object') and not(local-name(/*[1]) = 'element')">
+				<xsl:if test="not(local-name(/*[1]) = 'object') and not(local-name(/*[1]) = 'class') and not(local-name(/*[1]) = 'element')">
 					<xsl:text> *</xsl:text>
 				</xsl:if>
 			</td>
@@ -573,7 +573,7 @@
 	<xsl:template match="method">
 		<tr>
 			<!-- Set class if member is inherited -->
-			<xsl:if test="not(local-name(/*[1]) = 'object') and not(local-name(/*[1]) = 'element')">
+			<xsl:if test="not(local-name(/*[1]) = 'object') and not(local-name(/*[1]) = 'class') and not(local-name(/*[1]) = 'element')">
 				<xsl:attribute name="class"><xsl:text>member-inherited</xsl:text></xsl:attribute>
 			</xsl:if>
 			<xsl:attribute name="id">method-<xsl:value-of select="@name" /></xsl:attribute>
@@ -583,7 +583,7 @@
 					<xsl:value-of select="@name" />
 				</a>
 				<!-- Flag if member is inherited -->
-				<xsl:if test="not(local-name(/*[1]) = 'object') and not(local-name(/*[1]) = 'element')">
+				<xsl:if test="not(local-name(/*[1]) = 'object') and not(local-name(/*[1]) = 'class') and not(local-name(/*[1]) = 'element')">
 					<xsl:text> *</xsl:text>
 				</xsl:if>
 			</td>
@@ -697,14 +697,14 @@
 	<xsl:template match="event">
 		<tr>
 			<!-- Set class if member is inherited -->
-			<xsl:if test="not(local-name(/*[1]) = 'object') and not(local-name(/*[1]) = 'element')">
+			<xsl:if test="not(local-name(/*[1]) = 'object') and not(local-name(/*[1]) = 'class') and not(local-name(/*[1]) = 'element')">
 				<xsl:attribute name="class"><xsl:text>member-inherited</xsl:text></xsl:attribute>
 			</xsl:if>
 			<xsl:attribute name="id">event-<xsl:value-of select="@name" /></xsl:attribute>
 			<td nowrap="yes">
 				<xsl:value-of select="@name" />
 				<!-- Flag if member is inherited -->
-				<xsl:if test="not(local-name(/*[1]) = 'object') and not(local-name(/*[1]) = 'element')">
+				<xsl:if test="not(local-name(/*[1]) = 'object') and not(local-name(/*[1]) = 'class') and not(local-name(/*[1]) = 'element')">
 					<xsl:text> *</xsl:text>
 				</xsl:if>
 			</td>
@@ -750,14 +750,14 @@
 	<xsl:template match="pseudoclass">
 		<tr>
 			<!-- Set class if member is inherited -->
-			<xsl:if test="not(local-name(/*[1]) = 'object') and not(local-name(/*[1]) = 'element')">
+			<xsl:if test="not(local-name(/*[1]) = 'object') and not(local-name(/*[1]) = 'class') and not(local-name(/*[1]) = 'element')">
 				<xsl:attribute name="class"><xsl:text>member-inherited</xsl:text></xsl:attribute>
 			</xsl:if>
 			<xsl:attribute name="id">pseudoclass-<xsl:value-of select="@name" /></xsl:attribute>
 			<td nowrap="yes">
 				<xsl:value-of select="@name" />
 				<!-- Flag if member is inherited -->
-				<xsl:if test="not(local-name(/*[1]) = 'object') and not(local-name(/*[1]) = 'element')">
+				<xsl:if test="not(local-name(/*[1]) = 'object') and not(local-name(/*[1]) = 'class') and not(local-name(/*[1]) = 'element')">
 					<xsl:text> *</xsl:text>
 				</xsl:if>
 			</td>

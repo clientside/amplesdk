@@ -61,13 +61,6 @@
 					<!-- node title="AMLTreeWalker" url="ample/runtime/dom/AMLTreeWalker.xml"/-->
 				</node>
 			</node>
-			<node title="UI managers">
-				<node title="AMLCapture" url="ample/runtime/mCapture.xml"/>
-				<node title="AMLDragAndDrop" url="ample/runtime/mDragAndDrop.xml"/>
-				<node title="AMLFocus" url="ample/runtime/mFocus.xml"/>
-				<node title="AMLResize" url="ample/runtime/mResize.xml"/>
-				<node title="AMLSelection" url="ample/runtime/mSelection.xml"/>
-			</node>
 			<node title="JS objects">
 				<node title="JSON" url="ample/runtime/JSON.xml"/>
 			</node>
