@@ -475,14 +475,6 @@
 					</locale>
 				</description>
 			</property>
-			<!--  Ample properties -->
-			<property name="activeElement" type="AMLElement" readonly="true">
-				<description>
-					<locale>
-						Retrieves a reference to an element in the document that currently has focus.
-					</locale>
-				</description>
-			</property>
 		</properties>
 		<events>
 			<event name="load" group="Event" cancelable="false" bubbles="false">

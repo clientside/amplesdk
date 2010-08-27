@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<object name="ample" extends="runtime:AMLDocument">
+<object name="ample" xextends="runtime:AMLDocument">
 	<abstract>
 		<locale>
 			Represents the document created out of all Ample SDK fragments found on the page.
@@ -20,8 +20,18 @@
 	</abstract>
 	<remarks />
 	<examples />
+	<implements>
+		<interface name="runtime:AMLDocument" />
+	</implements>
 	<members>
 		<properties>
+			<property name="activeElement" type="AMLElement" readonly="true">
+				<description>
+					<locale>
+						Retrieves a reference to an element in the document that currently has focus.
+					</locale>
+				</description>
+			</property>
 			<property name="namespaces" type="Object" readonly="true">
 				<description>
 					<locale>

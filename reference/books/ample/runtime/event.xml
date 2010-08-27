@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="event" xextends="runtime:AMLEvent">
+	<abstract>
+		<locale>
+			Represents the state of an event.
+			Depending on the nature of occurance <link type="object">event</link> object may have different specialized interface,
+			any however extending on <link type="object">AMLEvent</link>.
+		</locale>
+	</abstract>
+	<remarks>
+		<remark>
+			<locale>
+				The <link type="object">event</link> object is available only during an event—that is, you can use it in event handlers but not in other code.
+				<b>Note:</b> in SVG content you should use <b>evt</b> object instead.
+			</locale>
+		</remark>
+	</remarks>
+	<examples/>
+	<implements>
+		<interface name="runtime:AMLEvent" />
+	</implements>
+	<members />
+</object>
