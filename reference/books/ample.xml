@@ -229,6 +229,7 @@
 				<node title="stop" url="ample/svg11/stop.xml"/>
 				<node title="style" url="ample/svg11/style.xml"/>
 				<node title="svg" url="ample/svg11/svg.xml"/>
+				<node title="switch" xurl="ample/svg11/switch.xml"/>
 				<node title="text" url="ample/svg11/text.xml"/>
 				<node title="textPath" url="ample/svg11/textPath.xml"/>
 				<node title="title" url="ample/svg11/title.xml"/>
