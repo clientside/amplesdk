@@ -520,8 +520,10 @@
 
 		<h3>Editor</h3>
 		<script>ample.open()</script>
-		<xul:editor><![CDATA[Text <i>in italic</i> and <b>in bold</b> put in CDATA]]></xul:editor>
+		<xul:editor id="editor"><![CDATA[Text <i>in italic</i> and <b>in bold</b> put in CDATA]]></xul:editor>
 		<xul:editor disabled="true"><![CDATA[Text <i>in italic</i> and <b>in bold</b> put in CDATA]]></xul:editor>
+		<br />
+		<xul:checkbox onchange="ample.getElementById('editor').setAttribute('disabled', this.getAttribute('checked'))" label="disable"/>
 		<script>ample.close()</script>
 
 		<h3>Groupbox + Grid</h3>
