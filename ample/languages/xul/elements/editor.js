@@ -67,16 +67,19 @@ cXULElement_editor.handlers	= {
 	"DOMNodeInsertedIntoDocument":	function() {
 		var oDOMElement	= this.$getContainer("frame"),
 			bGecko	= navigator.userAgent.match(/Gecko\/([\d\.]+)/),
+			bEnabled	= this.$isAccessible(),
 			that	= this;
-		if (!bGecko && that.$isAccessible())
-			oDOMElement.contentWindow.document.designMode	= "on";
-		setTimeout(function(){
-			if (bGecko && that.$isAccessible())
+		if (bEnabled) {
+			if (!bGecko)
 				oDOMElement.contentWindow.document.designMode	= "on";
 			setTimeout(function(){
-				cXULElement_editor.initializeDocument(that);
-			}, 0);
-		}, 0);
+				if (bGecko)
+					oDOMElement.contentWindow.document.designMode	= "on";
+				setTimeout(function(){
+					cXULElement_editor.initializeDocument(that);
+				}, 0);
+			}, 200);
+		}
 	},
 	"DOMNodeRemovedFromDocument":	function() {
 		cXULElement_editor.finalizeDocument(this);
