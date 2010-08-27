@@ -379,6 +379,9 @@ if (cSVGElement.useVML) {
 			case "font-style":
 				oElementDOM.getElementsByTagName("textpath")[0].style.fontStyle		= sValue;
 				break;
+			case "visibility":
+				oElementDOM.style.visibility	= sValue;
+				break;
 		}
 	};
 

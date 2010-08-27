@@ -62,6 +62,7 @@
     $aFiles[]	= "elements/script.js";
 	$aFiles[]	= "elements/title.js";
 	$aFiles[]	= "elements/desc.js";
+	$aFiles[]	= "elements/switch.js";
 	$aFiles[]	= "elements/use.js";
 	$aFiles[]	= "elements/marker.js";
 	$aFiles[]	= "elements/clipPath.js";
