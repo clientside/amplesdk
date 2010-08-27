@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<object name="ample" extends="runtime:AMLDocument">
+<object name="ample" xextends="runtime:AMLDocument">
 	<abstract>
 		<locale>
 			Represents the document created out of all Ample SDK fragments found on the page.
+			In addition to the members listed in the table it also has all members of <link type="class">AMLDocument</link> object.
 		</locale>
 	</abstract>
 	<abstract>

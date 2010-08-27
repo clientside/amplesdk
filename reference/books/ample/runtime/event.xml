@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<object name="event">
+<object name="event" xextends="runtime:AMLEvent">
 	<abstract>
 		<locale>
 			Represents the state of an event.
 			Depending on the nature of occurance <link type="object">event</link> object may have different specialized interface,
-			any however extending on <link type="class">AMLEvent</link>.
+			every however extending on <link type="class">AMLEvent</link>.
 		</locale>
 	</abstract>
 	<remarks>
