@@ -16,9 +16,26 @@
 			</locale>
 		</remark>
 	</remarks>
-	<examples/>
 	<implements>
 		<interface name="runtime:AMLEvent" />
 	</implements>
 	<members />
+	<examples>
+		<example>
+			<locale>
+				The code below illustrates usage of inline event handler.
+			</locale>
+			<locale xml:lang="ru">
+				Этот код иллюстрирует пример использования объекта AMLEvent.
+			</locale>
+			<code type="text/xml"><![CDATA[<div onclick="alert(event.currentTarget.tagName)">click me</div>
+			]]></code>
+			<locale>
+				When user clicks the div, he will be alerted with 'div' message.
+			</locale>
+			<locale xml:lang="ru">
+				По событию "click", выведется сообщение 'div'.
+			</locale>
+		</example>
+	</examples>
 </object>
