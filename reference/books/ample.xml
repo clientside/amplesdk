@@ -4,7 +4,7 @@
 	<node title="Runtime" open="true">
 		<node title="JavaScript technologies" open="true">
 			<node title="ample" url="ample/runtime/ample.xml"/>
-			<!--node title="event" url="ample/runtime/event.xml"/-->
+			<node title="event" url="ample/runtime/event.xml"/>
 			<!--node title="JavaScript technologies" /-->
 			<node title="DOM Level 2/3" open="true">
 				<!--node title="DOM Level 2/3" xurl="ample/runtime/dom.xml"/-->

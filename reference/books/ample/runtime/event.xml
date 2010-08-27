@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<object name="event" xextends="runtime:AMLEvent">
+<object name="event">
 	<abstract>
 		<locale>
 			Represents the state of an event.
@@ -16,9 +16,7 @@
 			</locale>
 		</remark>
 	</remarks>
-	<implements>
-		<interface name="runtime:AMLEvent" />
-	</implements>
+	<implements />
 	<members />
 	<examples>
 		<example>
