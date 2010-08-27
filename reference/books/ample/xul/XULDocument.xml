@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<object name="XULDocument" extends="runtime:AMLDocument">
+<class name="XULDocument" extends="runtime:AMLDocument">
 	<abstract>
 		<locale>
 			Represent XUL Document Object
@@ -118,4 +118,4 @@
 			 -->
 		</properties>
 	</members>
-</object>
+</class>

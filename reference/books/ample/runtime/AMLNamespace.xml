@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<object name="AMLNamespace">
+<class name="AMLNamespace">
 	<abstract>
     <locale>
       Base class for mark-up language implementation.
@@ -178,4 +178,4 @@ oMyNamespace.setElement("combobox", cMyComboBoxComponent);
 			]]></code>
 		</example>
 	</examples>
-</object>
+</class>

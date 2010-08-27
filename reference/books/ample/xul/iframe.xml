@@ -40,7 +40,7 @@
 						This read-only property contains the document object in the element.
 					</locale>
 					<locale xml:lang="ru">
-						Ссылка на объект <b>AMLDocument</b> элемента <link type="object">iframe</link>.
+						Ссылка на объект <b>AMLDocument</b> элемента <link type="class">iframe</link>.
 					</locale>
 				</description>
 			</property>
@@ -50,7 +50,7 @@
 						This read-only property contains the window object in the element.
 					</locale>
 					<locale xml:lang="ru">
-						Ссылка на объект <link type="object">window</link> элемента <link type="element">iframe</link>.
+						Ссылка на объект <link type="class">window</link> элемента <link type="element">iframe</link>.
 					</locale>
 				</description>
 			</property>

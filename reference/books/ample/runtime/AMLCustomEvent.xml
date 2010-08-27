@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<object name="AMLCustomEvent" extends="runtime:AMLEvent">
+<class name="AMLCustomEvent" extends="runtime:AMLEvent">
 	<abstract>
 		<locale>
 			The CustomEvent interface is the recommended interface for application-specific event types.
@@ -57,10 +57,10 @@
 				</arguments>
 				<description>
 					<locale>
-						Initializes attributes of a <link type="object">CustomEvent</link> object.
+						Initializes attributes of a <link type="class">CustomEvent</link> object.
 					</locale>
 					<locale xml:lang="ru">
-						Этот метод используется для инициализации значения объекта <link type="object">AMLCustomEvent</link>.
+						Этот метод используется для инициализации значения объекта <link type="class">AMLCustomEvent</link>.
 					</locale>
 				</description>
 			</method>
@@ -86,4 +86,4 @@
 		</remark>
 	</remarks>
 	<examples />
-</object>
+</class>

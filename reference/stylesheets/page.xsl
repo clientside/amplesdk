@@ -21,6 +21,7 @@
 			<xsl:otherwise>
 				<xsl:choose>
 					<xsl:when test="local-name(*) = 'object'"><xsl:value-of select="$strings/title_object" /></xsl:when>
+					<xsl:when test="local-name(*) = 'class'"><xsl:value-of select="$strings/title_class" /></xsl:when>
 					<xsl:when test="local-name(*) = 'element'"><xsl:value-of select="$strings/title_element" /></xsl:when>
 					<xsl:when test="local-name(*) = 'interface'"><xsl:value-of select="$strings/title_interface" /></xsl:when>
 				</xsl:choose>
@@ -53,7 +54,7 @@
 		</html>
 	</xsl:template>
 
-	<xsl:template match="object|element|interface">
+	<xsl:template match="object|class|element|interface">
 		<xsl:apply-templates select="warning"/>
 		<xsl:apply-templates select="abstract"/>
 		<xsl:apply-templates select="@extends"/>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<object name="AMLCapture">
+<class name="AMLCapture">
 	<abstract>
 		<locale>
 			Implements UI capturing functionality by forwarding UI events.
@@ -73,4 +73,4 @@
 			</event>
 		</events>
 	</members>
-</object>
+</class>

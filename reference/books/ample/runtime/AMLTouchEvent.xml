@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<object name="AMLTouchEvent" extends="runtime:AMLUIEvent">
+<class name="AMLTouchEvent" extends="runtime:AMLUIEvent">
 	<abstract>
 		<locale>
-			The <link type="object">AMLTouchEvent</link> class encapsulates information about a touch event.
-			The system continually sends <link type="object">AMLTouchEvent</link> objects to an application as fingers touch and move across a surface.
+			The <link type="class">AMLTouchEvent</link> class encapsulates information about a touch event.
+			The system continually sends <link type="class">AMLTouchEvent</link> objects to an application as fingers touch and move across a surface.
 			A touch event provides a snapshot of all touches during a multi-touch sequence, most importantly the touches that are new or have changed for a particular target.
 			A multi-touch sequence begins when a finger first touches the surface.
 			Other fingers may subsequently touch the surface, and all fingers may move across the surface.
@@ -111,21 +111,21 @@
 					<argument name="oTouches" type="AMLTouchList" required="true">
 						<description>
 							<locale>
-								A collection of <link type="object">AMLTouch</link> objects representing all touches associated with this event.
+								A collection of <link type="class">AMLTouch</link> objects representing all touches associated with this event.
 							</locale>
 						</description>
 					</argument>
 					<argument name="oTargetTouches" type="AMLTouchList" required="true">
 						<description>
 							<locale>
-								A collection of <link type="object">AMLTouch</link> objects representing all touches associated with this target.
+								A collection of <link type="class">AMLTouch</link> objects representing all touches associated with this target.
 							</locale>
 						</description>
 					</argument>
 					<argument name="oChangedTouches" type="AMLTouchList" required="true">
 						<description>
 							<locale>
-								A collection of <link type="object">AMLTouch</link> objects representing all touches that changed in this event.
+								A collection of <link type="class">AMLTouch</link> objects representing all touches that changed in this event.
 							</locale>
 						</description>
 					</argument>
@@ -146,7 +146,7 @@
 				</arguments>
 				<description>
 					<locale>
-						Initializes attributes of a <link type="object">AMLTouchEvent</link> object.
+						Initializes attributes of a <link type="class">AMLTouchEvent</link> object.
 					</locale>
 				</description>
 			</method>
@@ -211,21 +211,21 @@
 			<property name="touches" type="AMLTouchList" readonly="true">
 				<description>
 					<locale>
-						A collection of <link type="object">AMLTouch</link> objects representing all touches associated with this event.
+						A collection of <link type="class">AMLTouch</link> objects representing all touches associated with this event.
 					</locale>
 				</description>
 			</property>
 			<property name="targetTouches" type="AMLTouchList" readonly="true">
 				<description>
 					<locale>
-						A collection of <link type="object">AMLTouch</link> objects representing all touches associated with this target.
+						A collection of <link type="class">AMLTouch</link> objects representing all touches associated with this target.
 					</locale>
 				</description>
 			</property>
 			<property name="changedTouches" type="AMLTouchList" readonly="true">
 				<description>
 					<locale>
-						A collection of <link type="object">AMLTouch</link> objects representing all touches that changed in this event.
+						A collection of <link type="class">AMLTouch</link> objects representing all touches that changed in this event.
 					</locale>
 				</description>
 			</property>
@@ -262,4 +262,4 @@
 		</remark>
 	</remarks>
 	<examples />
-</object>
+</class>

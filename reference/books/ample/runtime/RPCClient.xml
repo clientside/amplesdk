@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<object name="RPCClient">
+<class name="RPCClient">
 	<abstract>
 		<locale>
 			Object that provides RPC client functionality.
@@ -132,4 +132,4 @@ oClient.call("mymethod", {"myparam":"myvalue"}, function(oResult) {
 		]]></code>
 		</example>
 	</examples>
-</object>
+</class>

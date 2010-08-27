@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<object name="AMLCharacterData" extends="runtime:AMLNode">
+<class name="AMLCharacterData" extends="runtime:AMLNode">
 	<abstract>
 		<locale>
 			Represents an entity reference in the tree.
@@ -14,4 +14,4 @@
 	<remarks />
 	<examples/>
 	<members />
-</object>
+</class>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<object extends="runtime:AMLElement" name="AUIElement">
+<class extends="runtime:AMLElement" name="AUIElement">
 	<implements />
 	<abstract>
 		<locale>
@@ -27,4 +27,4 @@
 		<properties />
 		<events />
 	</members>
-</object>
+</class>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<object name="AMLText" extends="runtime:AMLCharacterData">
+<class name="AMLText" extends="runtime:AMLCharacterData">
 	<abstract>
 		<locale>
 			Represents the textual content of element or attribute.
@@ -37,4 +37,4 @@
 			</method>
 		</methods>
 	</members>
-</object>
+</class>

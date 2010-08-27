@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<object name="AMLTextEvent" extends="runtime:AMLEvent">
+<class name="AMLTextEvent" extends="runtime:AMLEvent">
 	<abstract>
 		<locale>
 			The TextEvent interface provides specific contextual information associated with Text Events.
@@ -52,7 +52,7 @@
 				</arguments>
 				<description>
 					<locale>
-						Initializes attributes of a <link type="object">AMLTextEvent</link> object.
+						Initializes attributes of a <link type="class">AMLTextEvent</link> object.
 					</locale>
 					<locale xml:lang="ru">
 						Метод initTextEvent используется для инициализации значения объекта TextEvent.
@@ -95,4 +95,4 @@
 		</remark>
 	</remarks>
 	<examples />
-</object>
+</class>

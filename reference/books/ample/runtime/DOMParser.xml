@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<object name="DOMParser">
+<class name="DOMParser">
 	<abstract>
 		<locale>
 			Parses XML string into DOM structure.
@@ -59,4 +59,4 @@
 			</method>
 		</methods>
 	</members>
-</object>
+</class>

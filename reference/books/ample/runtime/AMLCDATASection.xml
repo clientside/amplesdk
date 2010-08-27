@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<object name="AMLCDATASection" extends="runtime:AMLText">
+<class name="AMLCDATASection" extends="runtime:AMLText">
 	<abstract>
 		<locale>
 			Represents a CDATA Section.
@@ -12,4 +12,4 @@
 	<remarks />
 	<examples />
 	<members />
-</object>
+</class>

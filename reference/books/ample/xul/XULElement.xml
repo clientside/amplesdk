@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<object name="XULElement" extends="runtime:AMLElement">
+<class name="XULElement" extends="runtime:AMLElement">
 	<abstract>
 		<locale>
 			Represent XUL Element Object.
@@ -359,4 +359,4 @@
 		<properties />
 		<events />
 	</members>
-</object>
+</class>

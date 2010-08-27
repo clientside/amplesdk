@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<object name="AMLMouseWheelEvent" extends="runtime:AMLMouseEvent">
+<class name="AMLMouseWheelEvent" extends="runtime:AMLMouseEvent">
 	<abstract>
 		<locale>
 			The MouseWheelEvent interface provides specific contextual information associated with mouse wheel events.
@@ -47,7 +47,7 @@
 				</arguments>
 				<description>
 					<locale>
-						Initializes attributes of a <link type="object">AMLMouseWheelEvent</link> object.
+						Initializes attributes of a <link type="class">AMLMouseWheelEvent</link> object.
 					</locale>
 					<locale xml:lang="ru">
 						Метод initMouseWheelEvent используется для инициализации значения объекта MouseEvent.
@@ -76,4 +76,4 @@
 		</remark>
 	</remarks>
 	<examples />
-</object>
+</class>

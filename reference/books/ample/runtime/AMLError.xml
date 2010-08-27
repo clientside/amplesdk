@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<object name="AMLError">
+<class name="AMLError">
 	<abstract>
 		<locale>
 			AMLError is an interface that describes an error.
@@ -79,4 +79,4 @@
 		</constants>
 	</members>
 	<examples />
-</object>
+</class>

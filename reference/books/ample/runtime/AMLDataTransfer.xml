@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<object name="AMLDataTransfer">
+<class name="AMLDataTransfer">
 	<abstract>
 		<locale>
 			DataTransfer objects can conceptually contain various kinds of data.
@@ -146,4 +146,4 @@
 			]]></code>
 		</example>
 	</examples>
-</object>
+</class>

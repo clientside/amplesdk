@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<object name="AMLTouch">
+<class name="AMLTouch">
 	<abstract>
 		<locale>
-			The <link type="object">AMLTouch</link> class represents a single touch on the surface.
+			The <link type="class">AMLTouch</link> class represents a single touch on the surface.
 			A touch is the presence or movement of a finger that is part of a unique multi-touch sequence.
 		</locale>
 	</abstract>
@@ -69,4 +69,4 @@
 		</properties>
 		<methods />
 	</members>
-</object>
+</class>

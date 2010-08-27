@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<object name="AMLImplementation">
+<class name="AMLImplementation">
 	<abstract>
 		<locale>
 			Represents an implementation object.
@@ -48,10 +48,10 @@
 				</arguments>
 				<description>
 					<locale>
-						Creates a <link type="object">AMLDocument</link> object of the specified type with its document element.
+						Creates a <link type="class">AMLDocument</link> object of the specified type with its document element.
 					</locale>
 					<locale xml:lang="ru">
-						Создает объект <link type="object">AMLDocument</link> указанного типа.
+						Создает объект <link type="class">AMLDocument</link> указанного типа.
 					</locale>
 				</description>
 			</method>
@@ -126,4 +126,4 @@
 		</methods>
 	</members>
 	<examples />
-</object>
+</class>

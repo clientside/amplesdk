@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<object name="AMLHashChangeEvent" extends="runtime:AMLEvent">
+<class name="AMLHashChangeEvent" extends="runtime:AMLEvent">
 	<abstract>
 		<locale>
 			The HashChangeEvent interface provides specific contextual information associated with Hash Change events.
@@ -91,4 +91,4 @@
 		</remark>
 	</remarks>
 	<examples />
-</object>
+</class>

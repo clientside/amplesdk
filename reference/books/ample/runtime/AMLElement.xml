@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<object name="AMLElement" extends="runtime:AMLNode">
+<class name="AMLElement" extends="runtime:AMLNode">
 	<abstract>
 		<locale>
 			Represents an element.
@@ -245,10 +245,10 @@
 				</arguments>
 				<description>
 					<locale>
-						Retrieves a <link type="object">AMLNodeList</link> collection of <link type="object">AMLElement</link> objects based on the specified element name.
+						Retrieves a <link type="class">AMLNodeList</link> collection of <link type="class">AMLElement</link> objects based on the specified element name.
 					</locale>
 					<locale xml:lang="ru">
-						Возвращает коллекцию <link type="object">AMLNodeList</link> объектов <link type="object">AMLElement</link> по заданному имени в порядке следования их в документе.
+						Возвращает коллекцию <link type="class">AMLNodeList</link> объектов <link type="class">AMLElement</link> по заданному имени в порядке следования их в документе.
 					</locale>
 				</description>
 			</method>
@@ -277,10 +277,10 @@
 				</arguments>
 				<description>
 					<locale>
-						Retrieves a <link type="object">AMLNodeList</link> collection of <link type="object">AMLElement</link> objects based on the specified element name from the given namespace.
+						Retrieves a <link type="class">AMLNodeList</link> collection of <link type="class">AMLElement</link> objects based on the specified element name from the given namespace.
 					</locale>
 					<locale xml:lang="ru">
-						Возвращает коллекцию <link type="object">AMLNodeList</link> объектов <link type="object">AMLElement</link> по заданным имени и пространству имен в порядке следования их в документе.
+						Возвращает коллекцию <link type="class">AMLNodeList</link> объектов <link type="class">AMLElement</link> по заданным имени и пространству имен в порядке следования их в документе.
 					</locale>
 				</description>
 			</method>
@@ -302,7 +302,7 @@
 						Returns a value that indicates whether the object has specified attribute.
 					</locale>
 					<locale xml:lang="ru">
-						Возвращаемое значение указывает, имеет ли объект <link type="object">AMLElement</link> заданный атрибут или нет.
+						Возвращаемое значение указывает, имеет ли объект <link type="class">AMLElement</link> заданный атрибут или нет.
 					</locale>
 				</description>
 			</method>
@@ -334,7 +334,7 @@
 						Returns a value that indicates whether the object has specified attribute from the given namespace.
 					</locale>
 					<locale xml:lang="ru">
-						Возвращаемое значение указывает, имеет ли объект <link type="object">AMLElement</link> заданный атрибут из заданного пространства имен или нет.
+						Возвращаемое значение указывает, имеет ли объект <link type="class">AMLElement</link> заданный атрибут из заданного пространства имен или нет.
 					</locale>
 				</description>
 			</method>
@@ -412,10 +412,10 @@
 				</arguments>
 				<description>
 					<locale>
-						Returns <link type="object">AMLElement</link> that matches CSS query.
+						Returns <link type="class">AMLElement</link> that matches CSS query.
 					</locale>
 					<locale xml:lang="ru">
-						Возвращает объект <link type="object">AMLElement</link> по заданному CSS запросу.
+						Возвращает объект <link type="class">AMLElement</link> по заданному CSS запросу.
 					</locale>
 				</description>
 			</method>
@@ -438,10 +438,10 @@
 				</arguments>
 				<description>
 					<locale>
-						Returns <link type="object">AMLNodeList</link> of <link type="object">AMLElement</link> that match CSS query.
+						Returns <link type="class">AMLNodeList</link> of <link type="class">AMLElement</link> that match CSS query.
 					</locale>
 					<locale xml:lang="ru">
-						Возвращает коллекцию <link type="object">AMLNodeList</link> из объектов <link type="object">AMLElement</link> по заданному запросу в порядке, в котором элементы следуют в документе.
+						Возвращает коллекцию <link type="class">AMLNodeList</link> из объектов <link type="class">AMLElement</link> по заданному запросу в порядке, в котором элементы следуют в документе.
 					</locale>
 				</description>
 			</method>
@@ -574,7 +574,7 @@
 						Retrieves the tag name of the object.
 					</locale>
 					<locale xml:lang="ru">
-						Возвращает имя тега для объекта <link type="object">AMLElement</link>.
+						Возвращает имя тега для объекта <link type="class">AMLElement</link>.
 					</locale>
 				</description>
 			</property>
@@ -794,7 +794,7 @@
 						Occurs after Attr.value has been modified and after an Attr node has been added to or removed from an Element.
 					</locale>
 					<locale xml:lang="ru">
-						Загорается, если значение объекта <link type="object">AMLAttr</link> элемента было изменено или этот объект было добавлен/удален из элемента.
+						Загорается, если значение объекта <link type="class">AMLAttr</link> элемента было изменено или этот объект было добавлен/удален из элемента.
 					</locale>
 				</description>
 			</event>
@@ -910,4 +910,4 @@
 			</event>
 		</events>
 	</members>
-</object>
+</class>

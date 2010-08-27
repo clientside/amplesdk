@@ -2,6 +2,7 @@
 <strings>
 	<title_element>Элемент</title_element>
 	<title_object>Объект</title_object>
+	<title_class>Класс</title_class>
 	<title_interface>Интерфейс</title_interface>
 	<title_extends>Расширяет</title_extends>
 

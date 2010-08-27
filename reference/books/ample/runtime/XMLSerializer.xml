@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<object name="XMLSerialier">
+<class name="XMLSerialier">
 	<abstract>
 		<locale>
 			Implements capabilities of serialization DOM structure to XML string.
@@ -37,4 +37,4 @@
 			</method>
 		</methods>
 	</members>
-</object>
+</class>

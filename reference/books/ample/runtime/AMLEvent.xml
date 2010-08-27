@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<object name="AMLEvent">
+<class name="AMLEvent">
 	<abstract>
 		<locale>
 			The Event interface is used to provide contextual information about an event to the handler processing the event
@@ -50,7 +50,7 @@
 						The initEvent method is used to initialize the value of an Event created through the DocumentEvent interface.
 					</locale>
 					<locale xml:lang="ru">
-						Этот метод используется для инициализации значения объекта <link type="object">AMLEvent</link>, созданного через интерфейс DocumentEvent.
+						Этот метод используется для инициализации значения объекта <link type="class">AMLEvent</link>, созданного через интерфейс DocumentEvent.
 					</locale>
 				</description>
 			</method>
@@ -244,4 +244,4 @@
 			</locale>
 		</example>
 	</examples>
-</object>
+</class>

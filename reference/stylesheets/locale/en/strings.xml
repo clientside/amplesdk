@@ -2,6 +2,7 @@
 <strings>
 	<title_element>Element</title_element>
 	<title_object>Object</title_object>
+	<title_class>Class</title_class>
 	<title_interface>Interface</title_interface>
 	<title_extends>Extends</title_extends>
 

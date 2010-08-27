@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<object name="AMLNodeList">
+<class name="AMLNodeList">
 	<abstract>
 		<locale>
 			The NodeList interface provides the abstraction of an ordered collection of nodes.
@@ -49,4 +49,4 @@
 			</property>
 		</properties>
 	</members>
-</object>
+</class>

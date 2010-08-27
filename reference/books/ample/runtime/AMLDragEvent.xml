@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<object name="AMLDragEvent" extends="runtime:AMLUIEvent">
+<class name="AMLDragEvent" extends="runtime:AMLUIEvent">
 	<abstract>
 		<locale>
 			The AMLDragEvent interface provides specific contextual information associated with Drag Events.
@@ -77,7 +77,7 @@
 				</arguments>
 				<description>
 					<locale>
-						Initializes attributes of a <link type="object">AMLDragEvent</link> object.
+						Initializes attributes of a <link type="class">AMLDragEvent</link> object.
 					</locale>
 					<locale xml:lang="ru">
 						Метод initDragEvent используется для инициализации значения объекта DragEvent.
@@ -89,10 +89,10 @@
 			<property name="dataTransfer" type="AMLDataTransfer">
 				<description>
 					<locale>
-						Keeps a reference to <link type="object">AMLDataTransfer</link> object, associated with this object.
+						Keeps a reference to <link type="class">AMLDataTransfer</link> object, associated with this object.
 					</locale>
 					<locale xml:lang="ru">
-						Содержит <link type="object">AMLDataTransfer</link> object, ассоциированииое с данным событием.
+						Содержит <link type="class">AMLDataTransfer</link> object, ассоциированииое с данным событием.
 					</locale>
 				</description>
 			</property>
@@ -115,4 +115,4 @@
 		</remark>
 	</remarks>
 	<examples />
-</object>
+</class>

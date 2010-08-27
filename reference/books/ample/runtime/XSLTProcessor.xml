@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<object name="XSLTProcessor">
+<class name="XSLTProcessor">
 	<abstract>
 		<locale>
 			Implements XSL-T transformations.
@@ -16,10 +16,10 @@
 			<method name="clearParameters" type="Void">
 				<description>
 					<locale>
-						Removes all set parameters from this <link type="object">XSLTProcessor</link>
+						Removes all set parameters from this <link type="class">XSLTProcessor</link>
 					</locale>
 					<locale xml:lang="ru">
-						Удаляет все параметры объекта <link type="object">XSLTProcessor</link>
+						Удаляет все параметры объекта <link type="class">XSLTProcessor</link>
 					</locale>
 				</description>
 			</method>
@@ -90,20 +90,20 @@
 				</arguments>
 				<description>
 					<locale>
-						Sets a parameter to be used in subsequent transformations with this <link type="object">XSLTProcessor</link>.
+						Sets a parameter to be used in subsequent transformations with this <link type="class">XSLTProcessor</link>.
 					</locale>
 					<locale xml:lang="ru">
-						Выставляет параметр объекта <link type="object">XSLTProcessor</link> для использования несколькими преобразованиями
+						Выставляет параметр объекта <link type="class">XSLTProcessor</link> для использования несколькими преобразованиями
 					</locale>
 				</description>
 			</method>
 			<!--method name="clearParameters" type="Void">
 				<description>
 					<locale>
-						Removes all set parameters from this <link type="object">XSLTProcessor</link>
+						Removes all set parameters from this <link type="class">XSLTProcessor</link>
 					</locale>
 					<locale>
-						Удаляет все выставленные параметры объекта <link type="object">XSLTProcessor</link>
+						Удаляет все выставленные параметры объекта <link type="class">XSLTProcessor</link>
 					</locale>
 				</description>
 			</method-->
@@ -142,10 +142,10 @@
 			<method name="reset" type="Void">
 				<description>
 					<locale>
-						Remove all parameters and stylesheets from this <link type="object">XSLTProcessor</link>
+						Remove all parameters and stylesheets from this <link type="class">XSLTProcessor</link>
 					</locale>
 					<locale xml:lang="ru">
-						Удалет все параметры и файлы преобразований из объекта <link type="object">XSLTProcessor</link>
+						Удалет все параметры и файлы преобразований из объекта <link type="class">XSLTProcessor</link>
 					</locale>
 				</description>
 			</method>
@@ -164,10 +164,10 @@
 				</arguments>
 				<description>
 					<locale>
-						Imports the stylesheet into this <link type="object">XSLTProcessor</link> for transformations.
+						Imports the stylesheet into this <link type="class">XSLTProcessor</link> for transformations.
 					</locale>
 					<locale xml:lang="ru">
-						Импортирует преобразование в объект <link type="object">XSLTProcessor</link> для трансформации.
+						Импортирует преобразование в объект <link type="class">XSLTProcessor</link> для трансформации.
 					</locale>
 				</description>
 			</method>
@@ -227,4 +227,4 @@
 			</method>
 		</methods>
 	</members>
-</object>
+</class>

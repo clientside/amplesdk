@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<object name="AMLAttr" extends="runtime:AMLNode">
+<class name="AMLAttr" extends="runtime:AMLNode">
 	<abstract>
 		<locale>
 			Represents an attribute object.
@@ -11,10 +11,10 @@
 	</abstract>
 	<warning>
 	    <locale>
-	      The <link type="object">AMLAttr</link> class is only used in order to define global language attributes.
+	      The <link type="class">AMLAttr</link> class is only used in order to define global language attributes.
 	    </locale>
 	    <locale xml:lang="ru">
-	      Класс <link type="object">AMLAttr</link> используется только для объявления глобальных атрибутов языка.
+	      Класс <link type="class">AMLAttr</link> используется только для объявления глобальных атрибутов языка.
 	    </locale>
 	</warning>
 	<examples/>
@@ -62,4 +62,4 @@
 			</property>
 		</properties>
 	</members>
-</object>
+</class>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<object name="AMLNode">
+<class name="AMLNode">
 	<abstract>
 		<locale>
 			The AMLNode object is the primary datatype for the entire Ample Document Object Model.
@@ -230,7 +230,7 @@
 						Puts all Text nodes in the full depth of the sub-tree underneath this Node, including attribute nodes, into a "normal" form
 					</locale>
 					<locale xml:lang="ru">
-						Приводит все текстовые узлы, являющиеся потомками, включая <link type="object">AMLAttr</link>, к "нормальной" форме.
+						Приводит все текстовые узлы, являющиеся потомками, включая <link type="class">AMLAttr</link>, к "нормальной" форме.
 					</locale>
 				</description>
 			</method>
@@ -253,7 +253,7 @@
 						This method allows the dispatch of events into the implementation's event model. Return value indicates whether any of the listeners which handled the event called preventDefault method on Event object.
 					</locale>
 					<locale xml:lang="ru">
-						Этот метод позволяет отправить событие в реализацию модели событий. Возвращаемое значение указывает, вызвал ли один из обработчиков события метод preventDefault объекта <link type="object">AMLEvent</link>.
+						Этот метод позволяет отправить событие в реализацию модели событий. Возвращаемое значение указывает, вызвал ли один из обработчиков события метод preventDefault объекта <link type="class">AMLEvent</link>.
 					</locale>
 				</description>
 			</method>
@@ -524,20 +524,20 @@
 			<property name="ownerDocument" type="AMLDocument" readonly="true">
 				<description>
 					<locale>
-						Retrieves the <link type="object">AMLDocument</link> object associated with the node.
+						Retrieves the <link type="class">AMLDocument</link> object associated with the node.
 					</locale>
 					<locale xml:lang="ru">
-						Объект <link type="object">AMLDocument</link>, в контексте которого находится узел.
+						Объект <link type="class">AMLDocument</link>, в контексте которого находится узел.
 					</locale>
 				</description>
 			</property>
 			<property name="attributes" type="AMLNamedNodeMap" readonly="true">
 				<description>
 					<locale>
-						A collection containing the attributes of this node (if it is an <link type="object">AMLElement</link>) or null otherwise.
+						A collection containing the attributes of this node (if it is an <link type="class">AMLElement</link>) or null otherwise.
 					</locale>
 					<locale xml:lang="ru">
-						Колекция атрибутов узла, если это <link type="object">AMLElement</link> и null в противном случае.
+						Колекция атрибутов узла, если это <link type="class">AMLElement</link> и null в противном случае.
 					</locale>
 				</description>
 			</property>
@@ -547,7 +547,7 @@
 						A NodeList that contains all direct children of this node.
 					</locale>
 					<locale xml:lang="ru">
-						Объект <link type="object">AMLNodeList</link>, содержаший все дочерние элементы.
+						Объект <link type="class">AMLNodeList</link>, содержаший все дочерние элементы.
 					</locale>
 				</description>
 			</property>
@@ -556,50 +556,50 @@
 			<constant name="ELEMENT_NODE" value="1">
 				<description>
 					<locale>
-						The node is an <link type="object">AMLElement</link>.
+						The node is an <link type="class">AMLElement</link>.
 					</locale>
 					<locale xml:lang="ru">
-						Узел является <link type="object">AMLElement</link>.
+						Узел является <link type="class">AMLElement</link>.
 					</locale>
 				</description>
 			</constant>
 			<constant name="ATTRIBUTE_NODE" value="2">
 				<description>
 					<locale>
-						The node is an <link type="object">AMLAttr</link>.
+						The node is an <link type="class">AMLAttr</link>.
 					</locale>
 					<locale xml:lang="ru">
-						Узел является <link type="object">AMLAttr</link>.
+						Узел является <link type="class">AMLAttr</link>.
 					</locale>
 				</description>
 			</constant>
 			<constant name="TEXT_NODE" value="3">
 				<description>
 					<locale>
-						The node is a <link type="object">AMLText</link> node.
+						The node is a <link type="class">AMLText</link> node.
 					</locale>
 					<locale xml:lang="ru">
-						Узел является <link type="object">AMLText</link>.
+						Узел является <link type="class">AMLText</link>.
 					</locale>
 				</description>
 			</constant>
 			<constant name="CDATA_SECTION_NODE" value="4">
 				<description>
 					<locale>
-						The node is a <link type="object">AMLCDATASection</link>.
+						The node is a <link type="class">AMLCDATASection</link>.
 					</locale>
 					<locale xml:lang="ru">
-						Узел является <link type="object">AMLCDATASection</link>.
+						Узел является <link type="class">AMLCDATASection</link>.
 					</locale>
 				</description>
 			</constant>
 			<constant name="ENTITY_REFERENCE_NODE" value="5">
 				<description>
 					<locale>
-						The node is an <link type="object">AMLEntityReference</link>.
+						The node is an <link type="class">AMLEntityReference</link>.
 					</locale>
 					<locale xml:lang="ru">
-						Узел является <link type="object">AMLEntityReference</link>.
+						Узел является <link type="class">AMLEntityReference</link>.
 					</locale>
 				</description>
 			</constant>
@@ -616,30 +616,30 @@
 			<constant name="PROCESSING_INSTRUCTION_NODE" value="7">
 				<description>
 					<locale>
-						The node is a <link type="object">AMLProcessingInstruction</link>.
+						The node is a <link type="class">AMLProcessingInstruction</link>.
 					</locale>
 					<locale xml:lang="ru">
-						Узел является <link type="object">AMLProcessingInstruction</link>.
+						Узел является <link type="class">AMLProcessingInstruction</link>.
 					</locale>
 				</description>
 			</constant>
 			<constant name="COMMENT_NODE" value="8">
 				<description>
 					<locale>
-						The node is a <link type="object">AMLComment</link>.
+						The node is a <link type="class">AMLComment</link>.
 					</locale>
 					<locale xml:lang="ru">
-						Узел является <link type="object">AMLComment</link>.
+						Узел является <link type="class">AMLComment</link>.
 					</locale>
 				</description>
 			</constant>
 			<constant name="DOCUMENT_NODE" value="9">
 				<description>
 					<locale>
-						The node is a <link type="object">AMLDocument</link>.
+						The node is a <link type="class">AMLDocument</link>.
 					</locale>
 					<locale xml:lang="ru">
-						Узел является <link type="object">AMLDocument</link>.
+						Узел является <link type="class">AMLDocument</link>.
 					</locale>
 				</description>
 			</constant>
@@ -656,10 +656,10 @@
 			<constant name="DOCUMENT_FRAGMENT_NODE" value="11">
 				<description>
 					<locale>
-						The node is a <link type="object">AMLDocumentFragment</link>.
+						The node is a <link type="class">AMLDocumentFragment</link>.
 					</locale>
 					<locale xml:lang="ru">
-						Узел является <link type="object">AMLDocumentFragment</link>.
+						Узел является <link type="class">AMLDocumentFragment</link>.
 					</locale>
 				</description>
 			</constant>
@@ -695,7 +695,7 @@
 						A node has been added as a child of another node or, in case of Attr nodes, has been added to an Element.
 					</locale>
 					<locale xml:lang="ru">
-						Был добавлен узел в структуру или объект <link type="object">AMLAttr</link> был добавлен к элементу.
+						Был добавлен узел в структуру или объект <link type="class">AMLAttr</link> был добавлен к элементу.
 					</locale>
 				</description>
 			</event>
@@ -705,10 +705,10 @@
 						A node is being removed from its parent node or, in case of Attr nodes, removed from its ownerElement.
 					</locale>
 					<locale xml:lang="ru">
-						Был удален узел из структуры или объект <link type="object">AMLAttr</link> был удален из элемента.
+						Был удален узел из структуры или объект <link type="class">AMLAttr</link> был удален из элемента.
 					</locale>
 				</description>
 			</event>
 		</events>
 	</members>
-</object>
+</class>

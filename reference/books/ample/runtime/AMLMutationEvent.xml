@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<object name="AMLMutationEvent" extends="runtime:AMLEvent">
+<class name="AMLMutationEvent" extends="runtime:AMLEvent">
 	<abstract>
 		<locale>
 			The MutationEvent interface provides specific contextual information associated with Mutation events.
@@ -47,10 +47,10 @@
 				</arguments>
 				<description>
 					<locale>
-						The initMutationEvent method is used to initialize the value of a <link type="object">AMLMutationEvent</link> object.
+						The initMutationEvent method is used to initialize the value of a <link type="class">AMLMutationEvent</link> object.
 					</locale>
 					<locale xml:lang="ru">
-						Метод initMutationEvent используется для инициализации значения объекта <link type="object">AMLMutationEvent</link>.
+						Метод initMutationEvent используется для инициализации значения объекта <link type="class">AMLMutationEvent</link>.
 					</locale>
 				</description>
 			</method>
@@ -61,30 +61,30 @@
 					<value name="MODIFICATION">
 						<description>
 							<locale>
-								The <link type="object">AMLAttr</link> was modified in place.
+								The <link type="class">AMLAttr</link> was modified in place.
 							</locale>
 							<locale xml:lang="ru">
-								Произошло изменение объекта <link type="object">AMLAttr</link>.
+								Произошло изменение объекта <link type="class">AMLAttr</link>.
 							</locale>
 						</description>
 					</value>
 					<value name="ADDITION">
 						<description>
 							<locale>
-								The <link type="object">AMLAttr</link> was just added.
+								The <link type="class">AMLAttr</link> was just added.
 							</locale>
 							<locale xml:lang="ru">
-								Произошло добавление объекта <link type="object">AMLAttr</link>.
+								Произошло добавление объекта <link type="class">AMLAttr</link>.
 							</locale>
 						</description>
 					</value>
 					<value name="REMOVAL">
 						<description>
 							<locale>
-								The <link type="object">AMLAttr</link> was just removed.
+								The <link type="class">AMLAttr</link> was just removed.
 							</locale>
 							<locale xml:lang="ru">
-								Произошло удаление объекта <link type="object">AMLAttr</link>.
+								Произошло удаление объекта <link type="class">AMLAttr</link>.
 							</locale>
 						</description>
 					</value>
@@ -104,7 +104,7 @@
 						Indicates the name of the changed Attr node in a DOMAttrModified event.
 					</locale>
 					<locale xml:lang="ru">
-						Указывает на имя узла <link type="object">AMLAttr</link>, в котором возникло событие <link type="event">DOMAttrModified</link>.
+						Указывает на имя узла <link type="class">AMLAttr</link>, в котором возникло событие <link type="event">DOMAttrModified</link>.
 					</locale>
 				</description>
 			</property>
@@ -134,7 +134,7 @@
 						Used to identify a secondary node related to a mutation event. For example, if a mutation event is dispatched to a node indicating that its parent has changed, the relatedNode is the changed parent. If an event is instead dispatched to a subtree indicating a node was changed within it, the relatedNode is the changed node. In the case of the DOMAttrModified event it indicates the Attr node which was modified, added, or removed.
 					</locale>
 					<locale xml:lang="ru">
-						Используется для связанного с событием <link type="object">AMLMutationEvent</link> вторичного узла <link type="element">AMLNode</link>. Например, если событие <link type="object">AMLMutationEvent</link> отсылается узлу для оповещения о изменении его родителя, значением этого свойства будет родительский узел. Если, наоборот, событие отсылается вверх по дереву для оповещения об изменении узла, значением этого свойства будет измененный узел. В случае события <link type="event">DOMAttrModified</link> это свойство указывает на <link type="element">AMLAttr</link>, который был изменен, добавен или удален.
+						Используется для связанного с событием <link type="class">AMLMutationEvent</link> вторичного узла <link type="element">AMLNode</link>. Например, если событие <link type="class">AMLMutationEvent</link> отсылается узлу для оповещения о изменении его родителя, значением этого свойства будет родительский узел. Если, наоборот, событие отсылается вверх по дереву для оповещения об изменении узла, значением этого свойства будет измененный узел. В случае события <link type="event">DOMAttrModified</link> это свойство указывает на <link type="element">AMLAttr</link>, который был изменен, добавен или удален.
 					</locale>
 				</description>
 			</property>
@@ -144,30 +144,30 @@
 			<constant name="MODIFICATION" value="1">
 				<description>
 					<locale>
-						The <link type="object">AMLAttr</link> was modified in place.
+						The <link type="class">AMLAttr</link> was modified in place.
 					</locale>
 					<locale xml:lang="ru">
-						Произошло изменение объекта <link type="object">AMLAttr</link>.
+						Произошло изменение объекта <link type="class">AMLAttr</link>.
 					</locale>
 				</description>
 			</constant>
 			<constant name="ADDITION" value="2">
 				<description>
 					<locale>
-						The <link type="object">AMLAttr</link> was just added.
+						The <link type="class">AMLAttr</link> was just added.
 					</locale>
 					<locale xml:lang="ru">
-						Произошло добавление объекта <link type="object">AMLAttr</link>.
+						Произошло добавление объекта <link type="class">AMLAttr</link>.
 					</locale>
 				</description>
 			</constant>
 			<constant name="REMOVAL" value="3">
 				<description>
 					<locale>
-						The <link type="object">AMLAttr</link> was just removed.
+						The <link type="class">AMLAttr</link> was just removed.
 					</locale>
 					<locale xml:lang="ru">
-						Произошло удаление объекта <link type="object">AMLAttr</link>.
+						Произошло удаление объекта <link type="class">AMLAttr</link>.
 					</locale>
 				</description>
 			</constant>
@@ -188,4 +188,4 @@
 		</remark>
 	</remarks>
 	<examples />
-</object>
+</class>

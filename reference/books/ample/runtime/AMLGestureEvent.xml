@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<object name="AMLGestureEvent" extends="runtime:AMLUIEvent">
+<class name="AMLGestureEvent" extends="runtime:AMLUIEvent">
 	<abstract>
 		<locale>
-			The <link type="object">AMLGestureEvent</link> class encapsulates information about a multi-touch gesture.
-			<link type="object">AMLGestureEvent</link> objects are high-level events that encapsulate the low-level <link type="object">AMLTouchEvent</link> objects.
-			Both <link type="object">AMLGestureEvent</link>  and <link type="object">AMLTouchEvent</link> events are sent during a multi-touch sequence.
+			The <link type="class">AMLGestureEvent</link> class encapsulates information about a multi-touch gesture.
+			<link type="class">AMLGestureEvent</link> objects are high-level events that encapsulate the low-level <link type="class">AMLTouchEvent</link> objects.
+			Both <link type="class">AMLGestureEvent</link>  and <link type="class">AMLTouchEvent</link> events are sent during a multi-touch sequence.
 			Gesture events contain scaling and rotation information allowing gestures to be combined, if supported by the platform.
 			If not supported, one gesture ends before another starts.
-			Listen for <link type="object">AMLGestureEvent</link>  events if you want to respond to gestures only, not process the low-level <link type="object">AMLTouchEvent</link> objects.
+			Listen for <link type="class">AMLGestureEvent</link>  events if you want to respond to gestures only, not process the low-level <link type="class">AMLTouchEvent</link> objects.
 		</locale>
 	</abstract>
 	<examples/>
@@ -131,7 +131,7 @@
 				</arguments>
 				<description>
 					<locale>
-						Initializes attributes of a <link type="object">AMLGestureEvent</link> object.
+						Initializes attributes of a <link type="class">AMLGestureEvent</link> object.
 					</locale>
 				</description>
 			</method>
@@ -232,4 +232,4 @@
 		</remark>
 	</remarks>
 	<examples />
-</object>
+</class>

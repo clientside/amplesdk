@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<object name="AMLDocument" extends="runtime:AMLNode">
+<class name="AMLDocument" extends="runtime:AMLNode">
 	<abstract>
 		<locale>
 			Represents the document in a given browser window.
@@ -74,7 +74,7 @@
 						Creates an empty DocumentFragment object.
 					</locale>
 					<locale xml:lang="ru">
-						Создает объект <link type="object">DocumentFragment</link>.
+						Создает объект <link type="class">DocumentFragment</link>.
 					</locale>
 				</description>
 			</method>
@@ -93,7 +93,7 @@
 						Creates a Text node given the specified string.
 					</locale>
 					<locale xml:lang="ru">
-						Создает объект <link type="object">AMLText</link> по заданной строке.
+						Создает объект <link type="class">AMLText</link> по заданной строке.
 					</locale>
 				</description>
 			</method>
@@ -115,7 +115,7 @@
 						Creates a Comment node given the specified string.
 					</locale>
 					<locale xml:lang="ru">
-						Создает  узел <link type="object">AMLComment</link> по заданной строке.
+						Создает  узел <link type="class">AMLComment</link> по заданной строке.
 					</locale>
 				</description>
 			</method>
@@ -134,10 +134,10 @@
 				</arguments>
 				<description>
 					<locale>
-						Creates a <link type="object">AMLCDATASection</link> node whose value is the specified string.
+						Creates a <link type="class">AMLCDATASection</link> node whose value is the specified string.
 					</locale>
 					<locale xml:lang="ru">
-						Создает узел <link type="object">AMLCDATASection</link>, значением которого будет заданная строка.
+						Создает узел <link type="class">AMLCDATASection</link>, значением которого будет заданная строка.
 					</locale>
 				</description>
 			</method>
@@ -169,7 +169,7 @@
 						Creates a ProcessingInstruction node given the specified name and data strings.
 					</locale>
 					<locale xml:lang="ru">
-						Создает объект <link type="object">AMLProcessingInstruction</link> по заданным имени и данным.
+						Создает объект <link type="class">AMLProcessingInstruction</link> по заданным имени и данным.
 					</locale>
 				</description>
 			</method>
@@ -191,7 +191,7 @@
 						Creates an Attr of the given name.
 					</locale>
 					<locale xml:lang="ru">
-						Создает объект <link type="object">AMLAttr</link> по заданному имени.
+						Создает объект <link type="class">AMLAttr</link> по заданному имени.
 					</locale>
 				</description>
 			</method>
@@ -223,7 +223,7 @@
 						Creates an attribute of the given qualified name and namespace URI.
 					</locale>
 					<locale xml:lang="ru">
-						Создает объект <link type="object">AMLAttr</link> по заданным имени и пространству имен.
+						Создает объект <link type="class">AMLAttr</link> по заданным имени и пространству имен.
 					</locale>
 				</description>
 			</method>
@@ -235,7 +235,7 @@
 								The name of the entity to reference.
 							</locale>
 							<locale xml:lang="ru">
-								Имя создаваемого <link type="object">AMLEntityReference</link>.
+								Имя создаваемого <link type="class">AMLEntityReference</link>.
 							</locale>
 						</description>
 					</argument>
@@ -245,7 +245,7 @@
 						Creates an EntityReference object.
 					</locale>
 					<locale xml:lang="ru">
-						Создает объект <link type="object">AMLEntityReference</link>.
+						Создает объект <link type="class">AMLEntityReference</link>.
 					</locale>
 				</description>
 			</method>
@@ -267,7 +267,7 @@
 						Returns the Element that has an ID attribute with the given value.
 					</locale>
 					<locale xml:lang="ru">
-						Возвращает ссылку на <link type="object">AMLElement</link>, у которого атрибут ID соответствует заданному.
+						Возвращает ссылку на <link type="class">AMLElement</link>, у которого атрибут ID соответствует заданному.
 					</locale>
 				</description>
 			</method>
@@ -286,10 +286,10 @@
 				</arguments>
 				<description>
 					<locale>
-						Returns a <link type="object">AMLNodeList</link> of all the <link type="object">AMLElement</link>s in document order with a given tag name and are contained in the document.
+						Returns a <link type="class">AMLNodeList</link> of all the <link type="class">AMLElement</link>s in document order with a given tag name and are contained in the document.
 					</locale>
 					<locale xml:lang="ru">
-						Возвращает коллекцию <link type="object">AMLNodeList</link> из объектов <link type="object">AMLElement</link> по заданному имени в порядке, в котором элементы следуют в документе.
+						Возвращает коллекцию <link type="class">AMLNodeList</link> из объектов <link type="class">AMLElement</link> по заданному имени в порядке, в котором элементы следуют в документе.
 					</locale>
 				</description>
 			</method>
@@ -318,10 +318,10 @@
 				</arguments>
 				<description>
 					<locale>
-						Returns a <link type="object">AMLNodeList</link> of all the <link type="object">AMLElement</link>s with a given local name and namespace URI in document order.
+						Returns a <link type="class">AMLNodeList</link> of all the <link type="class">AMLElement</link>s with a given local name and namespace URI in document order.
 					</locale>
 					<locale xml:lang="ru">
-						Возвращает коллекцию <link type="object">AMLNodeList</link> из всех объектов <link type="object">AMLElement</link> по заданным имени и пространству имен в порядке, в котором элементы следуют в документе.
+						Возвращает коллекцию <link type="class">AMLNodeList</link> из всех объектов <link type="class">AMLElement</link> по заданным имени и пространству имен в порядке, в котором элементы следуют в документе.
 					</locale>
 				</description>
 			</method>
@@ -373,10 +373,10 @@
 				</arguments>
 				<description>
 					<locale>
-						Creates an instance of the <link type="object">AMLEvent</link>.
+						Creates an instance of the <link type="class">AMLEvent</link>.
 					</locale>
 					<locale xml:lang="ru">
-						Создает экземпляр объекта <link type="object">AMLEvent</link>.
+						Создает экземпляр объекта <link type="class">AMLEvent</link>.
 					</locale>
 				</description>
 			</method>
@@ -400,10 +400,10 @@
 				</arguments>
 				<description>
 					<locale>
-						Returns <link type="object">AMLElement</link> that matches CSS query.
+						Returns <link type="class">AMLElement</link> that matches CSS query.
 					</locale>
 					<locale xml:lang="ru">
-						Возвращает объект <link type="object">AMLElement</link> по заданному CSS запросу.
+						Возвращает объект <link type="class">AMLElement</link> по заданному CSS запросу.
 					</locale>
 				</description>
 			</method>
@@ -426,10 +426,10 @@
 				</arguments>
 				<description>
 					<locale>
-						Returns <link type="object">AMLNodeList</link> of <link type="object">AMLElement</link> that match CSS query.
+						Returns <link type="class">AMLNodeList</link> of <link type="class">AMLElement</link> that match CSS query.
 					</locale>
 					<locale xml:lang="ru">
-						Возвращает коллекцию <link type="object">AMLNodeList</link> из объектов <link type="object">AMLElement</link> по заданному запросу в порядке, в котором элементы следуют в документе.
+						Возвращает коллекцию <link type="class">AMLNodeList</link> из объектов <link type="class">AMLElement</link> по заданному запросу в порядке, в котором элементы следуют в документе.
 					</locale>
 				</description>
 			</method>
@@ -451,17 +451,17 @@
 						The DOMImplementation object that handles this document.
 					</locale>
 					<locale xml:lang="ru">
-						Объект <link type="object">AMLImplementation</link> для документа.
+						Объект <link type="class">AMLImplementation</link> для документа.
 					</locale>
 				</description>
 			</property>
 			<property name="domConfig" type="AMLConfiguration" readonly="true">
 				<description>
 					<locale>
-						The <link type="object">AMLConfiguration</link> associated with this document.
+						The <link type="class">AMLConfiguration</link> associated with this document.
 					</locale>
 					<locale xml:lang="ru">
-						Объект <link type="object">AMLConfiguration</link> для документа.
+						Объект <link type="class">AMLConfiguration</link> для документа.
 					</locale>
 				</description>
 			</property>
@@ -539,4 +539,4 @@
 			</event>
 		</events>
 	</members>
-</object>
+</class>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<object extends="chart:ChartElement" name="ChartCanvasElement">
+<class extends="chart:ChartElement" name="ChartCanvasElement">
 	<implements />
 	<abstract>
 		<locale>
@@ -37,4 +37,4 @@
 		<properties/>
 		<events/>
 	</members>
-</object>
+</class>

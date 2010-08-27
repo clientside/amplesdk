@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<object name="AMLException">
+<class name="AMLException">
 	<abstract>
 		<locale>
 			DOM operations only raise exceptions in "exceptional" circumstances, i.e., when an operation is impossible to perform (either for logical reasons, because data is lost, or because the implementation has become unstable).
@@ -263,4 +263,4 @@
 			</constant>
 		</constants>
 	</members>
-</object>
+</class>

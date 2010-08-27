@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<object name="AMLUIEvent" extends="runtime:AMLEvent">
+<class name="AMLUIEvent" extends="runtime:AMLEvent">
 	<abstract>
 		<locale>
 			The UIEvent interface provides specific contextual information associated with User Interface events.
@@ -122,4 +122,4 @@
 		</remark>
 	</remarks>
 	<examples />
-</object>
+</class>
