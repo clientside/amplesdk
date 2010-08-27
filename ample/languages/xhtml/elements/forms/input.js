@@ -47,10 +47,10 @@ cXHTMLElement_input.prototype.stepDown	= function() {
 // Class Events Handlers
 cXHTMLElement_input.handlers	= {
 	"focus":	function(oEvent) {
-		this.$getContainer().focus();
+		this.$getContainer("value").focus();
 	},
 	"blur":		function(oEvent) {
-		this.$getContainer().blur();
+		this.$getContainer("value").blur();
 	},
 	"DOMNodeInsertedIntoDocument":	function() {
 		if (!isNaN(this.getAttribute("tabIndex")))
