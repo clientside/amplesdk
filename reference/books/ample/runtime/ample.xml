@@ -400,7 +400,8 @@
 				</description>
 			</method>
 			<!-- History -->
-			<method name="bookmark" type="Void">
+			<method name="bookmark" type="Variant">
+				<arguments />
 				<arguments>
 					<argument name="sHash" type="String" required="true">
 						<description>
@@ -412,10 +413,17 @@
 							</locale>
 						</description>
 					</argument>
+					<argument name="sTitle" type="String" required="false">
+						<description>
+							<locale>
+								Title value.
+							</locale>
+						</description>
+					</argument>
 				</arguments>
 				<description>
 					<locale>
-						Adds a page with specifyed marker (as hash) into the browser history. The <link type="event">hashchange</link> event is not fired at this point.
+						Manages browser history entries. When no arguments passed it returns the current hash value, otherwise adds a page with specifyed hash into the browser history. The <link type="event">hashchange</link> event is not fired at this point.
 					</locale>
 					<locale xml:lang="ru">
 						Добавляет страницу с указанной меткой (которая является хэшем) в историю навигации браузера.

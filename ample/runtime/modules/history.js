@@ -13,7 +13,7 @@ var sAMLQuery_history_prev	= null,		// Properties
 	oAMLQuery_history_window	= null;
 
 // Private Functions
-function fAMLQuery_history_bookmark(sHash) {
+function fAMLQuery_history_bookmark(sHash, sTitle) {
 	// Check if we do not submit the same page for second time
 	if (sAMLQuery_history_prev == sHash)
 		return;
@@ -101,13 +101,17 @@ cAMLHashChangeEvent.prototype.initHashChangeEvent	= function(sType, bCanBubble, 
 };
 
 // Attaching to implementation
-oAmple.bookmark	= function(sHash) {
+oAmple.bookmark	= function(sHash, sTitle) {
 	// Validate arguments
 	fGuard(arguments, [
-		["hash",		cString]
+		["hash",	cString, true],
+		["title",	cString, true]
 	]);
 
-	fAMLQuery_history_bookmark(sHash);
+	if (arguments.length)
+		fAMLQuery_history_bookmark(sHash, sTitle);
+	else
+		return sAMLQuery_history_prev;
 };
 
 // Registering Event Handlers
