@@ -3,7 +3,7 @@
 <class name="AMLQuery">
 	<abstract>
 		<locale>
-			Holds a collection of elements returned from <link type="class">ample</link>.<link type="method" href="runtime:ample">query</link>() function call.
+			Holds a collection of elements returned from <link type="object">ample</link>.<link type="method" href="runtime:ample">query</link>() function call.
 		</locale>
 	</abstract>
 	<remarks />

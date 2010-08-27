@@ -8,13 +8,13 @@
 	</abstract>
 	<abstract>
 		<locale>
-			If you are coming from the jQuery universe, you will most likely enjoy using <link type="class">ample</link>.<link type="method">query</link> function,
+			If you are coming from the jQuery universe, you will most likely enjoy using <link type="object">ample</link>.<link type="method">query</link> function,
 			which is the jQuery-like API to Ample SDK. The function is overloaded and it can be called in any of the following flavours:
 			<ul>
-				<li><link type="class">AMLQuery</link> <link type="class">ample</link>.query(String <em>selector</em>[, <link type="class">AMLNode</link> <em>context</em>[, Function <em>resolver</em>]])</li>
-				<li><link type="class">AMLQuery</link> <link type="class">ample</link>.query(String <em>xml</em>)</li>
-				<li><link type="class">AMLQuery</link> <link type="class">ample</link>.query(<link type="class">AMLQuery</link> <em>collection</em>)</li>
-				<li><link type="class">AMLQuery</link> <link type="class">ample</link>.query(<link type="class">AMLElement</link> <em>element</em>)</li>
+				<li><link type="class">AMLQuery</link> <link type="object">ample</link>.query(String <em>selector</em>[, <link type="class">AMLNode</link> <em>context</em>[, Function <em>resolver</em>]])</li>
+				<li><link type="class">AMLQuery</link> <link type="object">ample</link>.query(String <em>xml</em>)</li>
+				<li><link type="class">AMLQuery</link> <link type="object">ample</link>.query(<link type="class">AMLQuery</link> <em>collection</em>)</li>
+				<li><link type="class">AMLQuery</link> <link type="object">ample</link>.query(<link type="class">AMLElement</link> <em>element</em>)</li>
 			</ul>
 		</locale>
 	</abstract>
@@ -212,7 +212,7 @@
 					<argument name="target" type="Object" required="false">
 						<description>
 							<locale>
-								Target object for extension. If ommited, <link type="class">ample</link> object itself is in use.
+								Target object for extension. If ommited, <link type="object">ample</link> object itself is in use.
 							</locale>
 						</description>
 					</argument>
@@ -253,7 +253,7 @@
 				</arguments>
 				<description>
 					<locale>
-						Loads JavaScript file. Calls to <link type="class">ample</link>.<link type="method">include</link>() from within the loaded file will properly resolve relative file locations.
+						Loads JavaScript file. Calls to <link type="object">ample</link>.<link type="method">include</link>() from within the loaded file will properly resolve relative file locations.
 					</locale>
 				</description>
 			</method>
