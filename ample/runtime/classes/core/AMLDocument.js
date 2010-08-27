@@ -13,9 +13,6 @@ cAMLDocument.prototype  = new cAMLNode;
 cAMLDocument.prototype.nodeType	= cAMLNode.DOCUMENT_NODE;
 cAMLDocument.prototype.nodeName	= "#document";
 
-// Public Properties and Collections
-cAMLDocument.prototype.activeElement	= null;
-
 // nsIDOMDocument interface
 cAMLDocument.prototype.documentElement	= null;
 cAMLDocument.prototype.doctype			= null;

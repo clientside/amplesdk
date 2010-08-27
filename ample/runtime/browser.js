@@ -171,7 +171,7 @@ function fBrowser_onMouseWheel(oEvent) {
 
 // Key Events
 function fBrowser_onKeyDown(oEvent) {
-	var oTarget		= oAmple_document.activeElement || oAmple_document.documentElement,	// FF bugfix
+	var oTarget		= oAmple.activeElement || oAmple_document.documentElement,	// FF bugfix
 		oPseudo		= fBrowser_getUIEventPseudo(oEvent),
 		oEventKeyDown	= new cAMLKeyboardEvent;
 
@@ -206,7 +206,7 @@ function fBrowser_onKeyPress(oEvent)
 	if (oEvent.ctrlKey || oEvent.altKey || oEvent.keyCode in oBrowser_keyIdentifiers)
 		return;
 
-	var oTarget		= oAmple_document.activeElement || oAmple_document.documentElement,	// FF bugfix
+	var oTarget		= oAmple.activeElement || oAmple_document.documentElement,	// FF bugfix
 		oPseudo		= fBrowser_getUIEventPseudo(oEvent),
 		oEventKeyPress	= new cAMLKeyboardEvent,
 		oEventTextInput	= new cAMLTextEvent;
@@ -237,7 +237,7 @@ function fBrowser_onKeyPress(oEvent)
 };
 
 function fBrowser_onKeyUp(oEvent) {
-	var oTarget		= oAmple_document.activeElement || oAmple_document.documentElement,
+	var oTarget		= oAmple.activeElement || oAmple_document.documentElement,
 		oPseudo		= fBrowser_getUIEventPseudo(oEvent),
 		oEventKeyUp	= new cAMLKeyboardEvent;
 
@@ -613,7 +613,7 @@ function fBrowser_onMouseDown(oEvent) {
 	// do not dispatch event if outside modal
 	if (!oBrowser_modalNode || fBrowser_isDescendant(oTarget, oBrowser_modalNode)) {
 		// Moved here from #mouseup handler. Not sure yet if it is right though
-		oAmple_document.activeElement	= oTarget;
+		oAmple.activeElement	= oTarget;
 		//
 		fAMLNode_dispatchEvent(oTarget, oEventMouseDown);
 	}
@@ -907,7 +907,7 @@ fBrowser_attachEvent(window, "unload", function(oEvent) {
 
 function fAML_changeReadyState(sValue) {
 	//
-	oAmple_document.readyState	= sValue;
+	oAmple.readyState	= sValue;
 
 	// Dispatch
 	var oReadyStateChangeEvent	= new cAMLEvent;

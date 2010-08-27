@@ -10,7 +10,6 @@
 // Create Ample SDK document object
 var oAmple_document		= fAMLImplementation_createDocument(new cAMLImplementation, "http://www.w3.org/1999/xhtml", "body", null);
 oAmple_document.documentElement.$getContainer	= function(sName) {return sName && sName != "gateway" ? null : oUADocument.body};
-oAmple_document.readyState	= "loading";
 
 //
 function fQuery(vArgument1, vArgument2, vArgument3) {
@@ -112,6 +111,8 @@ fQuery.prototype	= cAMLQuery.prototype;
 var oAmple	= oAmple_document;
 oAmple.query	= fQuery;
 oAmple.namespaces	= {};
+oAmple.activeElement= null;
+oAmple.readyState	= "loading";
 
 function fAmple_extend(oSource, oTarget) {
 	if (oSource instanceof cFunction) {
@@ -246,7 +247,7 @@ function fAmple_resolver(sPrefix) {
 
 //
 oAmple.open	= function() {
-	if (oAmple_document.readyState == "loading") {
+	if (oAmple.readyState == "loading") {
 		var aElements	= oUADocument.getElementsByTagName("script"),
 			oElement	= aElements[aElements.length - 1];
 		oElement.parentNode.removeChild(oElement);
@@ -259,7 +260,7 @@ oAmple.open	= function() {
 };
 
 oAmple.close	= function() {
-	if (oAmple_document.readyState == "loading")
+	if (oAmple.readyState == "loading")
 		oUADocument.write('</' + "script" + '>');
 //->Debug
 	else

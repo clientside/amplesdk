@@ -64,7 +64,7 @@ cAMLElement.prototype.$setModal		= function() {
 	else {
 		aAMLCapture_modals.push(this);
 		// Set active element to the modal
-		oBrowser_modalNode	= oAmple_document.activeElement	= this;
+		oBrowser_modalNode	= oAmple.activeElement	= this;
 	}
 };
 
@@ -75,6 +75,6 @@ cAMLElement.prototype.$releaseModal	= function() {
 	else {
 		aAMLCapture_modals.pop();
 		// Set active element to the previous modal or null
-		oBrowser_modalNode	= oAmple_document.activeElement	= aAMLCapture_modals.length ? aAMLCapture_modals[aAMLCapture_modals.length - 1] : null;
+		oBrowser_modalNode	= oAmple.activeElement	= aAMLCapture_modals.length ? aAMLCapture_modals[aAMLCapture_modals.length - 1] : null;
 	}
 };
