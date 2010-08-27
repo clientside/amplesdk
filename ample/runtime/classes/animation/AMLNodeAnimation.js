@@ -216,7 +216,7 @@ function fAMLNodeAnimation_parseValue(sValue) {
 		}
 	}
 	// +-ValueUnit
-	if (aValue = sValue.match(/^([+-]?\d*.?\d+)(em|ex|px|in|cm|mm|pt|pc|%)?$/))
+	if (aValue = sValue.match(/^([+-]?\d*\.?\d+)(em|ex|px|in|cm|mm|pt|pc|%)?$/))
 		return [cNumber(aValue[1]), aValue[2] || '', ''];
 	// List of values
 	if (sValue.indexOf(' ') > 0 &&(aValue = sValue.split(' '))) {
