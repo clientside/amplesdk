@@ -15,7 +15,7 @@
 	</svg:g>
 
 	<svg:g transform="translate(10,10)">
-		<smil:animate begin="click" from="translate(0,0)" to="tranlate(200,200)" dur="2s" attributeName="transform"/>
+		<smil:animate begin="click" from="translate(0,0)" to="translate(200,200)" dur="2s" attributeName="transform"/>
 	 	<svg:rect x="200" y="0" width="90" height="90" fill="#c0c0c0"/>
 	</svg:g>
 
@@ -46,7 +46,7 @@
 	</svg:rect>
 
  	<svg:rect transform="translate(10,10)" x="200" y="200" width="90" height="90" fill="#c0c0c0">
-		<smil:animate begin="click" from="translate(0,0)" to="tranlate(200,200)" dur="2s" attributeName="transform"/>
+		<smil:animate begin="click" from="translate(0,0)" to="translate(200,200)" dur="2s" attributeName="transform"/>
 	</svg:rect>
 
 	<svg:rect transform="skewX(5)" x="300" y="200" width="90" height="90" fill="#c0c0c0">
