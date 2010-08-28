@@ -12,9 +12,7 @@ cSMILElement_excl.prototype	= new cSMILTimeElement("excl");
 
 // Class Event Handlers
 cSMILElement_excl.handlers	= {};
-cSMILElement_excl.handlers["DOMNodeInsertedIntoDocument"]	= function(oEvent) {
-	fSMILTimeElement_init(this);
-};
+cSMILElement_excl.handlers["DOMNodeInsertedIntoDocument"]	= fSMILTimeElement_init;
 
 // Register Element
 fAmple_extend(cSMILElement_excl);

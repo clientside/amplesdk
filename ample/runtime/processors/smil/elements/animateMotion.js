@@ -12,9 +12,7 @@ cSMILElement_animateMotion.prototype	= new cSMILAnimationElement("animateMotion"
 
 // Class Event Handlers
 cSMILElement_animateMotion.handlers	= {};
-cSMILElement_animateMotion.handlers["DOMNodeInsertedIntoDocument"]	= function(oEvent) {
-	fSMILAnimationElement_init(this);
-};
+cSMILElement_animateMotion.handlers["DOMNodeInsertedIntoDocument"]	= fSMILAnimationElement_init;
 
 // Register Element
 fAmple_extend(cSMILElement_animateMotion);

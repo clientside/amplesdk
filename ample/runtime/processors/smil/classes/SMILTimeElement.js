@@ -92,7 +92,8 @@ function fSMILTimeElement_endElement(oElement) {
 	fAMLNode_dispatchEvent(oElement, oEvent);
 };
 
-function fSMILTimeElement_init(oElement) {
+function fSMILTimeElement_init(oEvent) {
+	var oElement	= oEvent.currentTarget;
 	// Timing and Synchronization
 	oElement.begin			= fSMILTimeElement_parseDate(oElement.attributes["begin"]);
 	oElement.end			= fSMILTimeElement_parseDate(oElement.attributes["end"]);

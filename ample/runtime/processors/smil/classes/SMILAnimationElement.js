@@ -12,7 +12,8 @@ var cSMILAnimationElement	= function() {
 };
 cSMILAnimationElement.prototype	= new cSMILTimeElement("#element-animation");
 
-function fSMILAnimationElement_init(oElement) {
+function fSMILAnimationElement_init(oEvent) {
+	var oElement	= oEvent.currentTarget;
 	// Target
 	oElement.targetElement	= oElement.attributes["targetElement"] || oElement.attributes["xlink:href"];
 	oElement.attributeName	= oElement.attributes["attributeName"];
@@ -38,7 +39,7 @@ function fSMILAnimationElement_init(oElement) {
 			}
 
 	// Call "parent" method
-	fSMILTimeElement_init(oElement);
+	fSMILTimeElement_init(oEvent);
 };
 
 //

@@ -12,9 +12,7 @@ cSMILElement_animateColor.prototype	= new cSMILAnimationElement("animateColor");
 
 // Class Event Handlers
 cSMILElement_animateColor.handlers	= {};
-cSMILElement_animateColor.handlers["DOMNodeInsertedIntoDocument"]	= function(oEvent) {
-	fSMILAnimationElement_init(this);
-};
+cSMILElement_animateColor.handlers["DOMNodeInsertedIntoDocument"]	= fSMILAnimationElement_init;
 
 // Register Element
 fAmple_extend(cSMILElement_animateColor);

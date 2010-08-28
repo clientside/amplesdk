@@ -12,9 +12,7 @@ cSMILElement_par.prototype	= new cSMILTimeElement("par");
 
 // Class Event Handlers
 cSMILElement_par.handlers	= {};
-cSMILElement_par.handlers["DOMNodeInsertedIntoDocument"]	= function(oEvent) {
-	fSMILTimeElement_init(this);
-};
+cSMILElement_par.handlers["DOMNodeInsertedIntoDocument"]	= fSMILTimeElement_init;
 
 // Register Element
 fAmple_extend(cSMILElement_par);
