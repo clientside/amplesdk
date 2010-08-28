@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element name="polygon" extends="svg:SVGShapeElement">
+	<abstract>
+		<locale>
+			The 'polygon' element defines a closed shape consisting of a set of connected straight line segments.
+		</locale>
+	</abstract>
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="points">
+				<description>
+					<locale>
+						The points that make up the polygon.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+	</members>
+</element>

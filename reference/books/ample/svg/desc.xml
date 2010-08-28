@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element name="desc" extends="svg:SVGElement">
+	<abstract>
+		<locale>
+			The 'desc' element is used to provide contextual information.
+		</locale>
+	</abstract>
+	<examples />
+	<members>
+		<attributes />
+	</members>
+</element>

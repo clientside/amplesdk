@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element name="linearGradient" extends="svg:SVGElement">
+	<abstract>
+		<locale>
+			The 'linearGradient' element is used to define linear gradients.
+		</locale>
+	</abstract>
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="x1">
+				<description>
+					<locale>
+						Defines a gradient vector for the linear gradient. If the attribute is not specified, the effect is as if a value of "0%" were specified.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="y1">
+				<description>
+					<locale>
+						Defines a gradient vector for the linear gradient. If the attribute is not specified, the effect is as if a value of "0%" were specified.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="x2">
+				<description>
+					<locale>
+						Defines a gradient vector for the linear gradient. If the attribute is not specified, the effect is as if a value of "100%" were specified.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="y2">
+				<description>
+					<locale>
+						Defines a gradient vector for the linear gradient. If the attribute is not specified, the effect is as if a value of "0%" were specified.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="xlink:href">
+				<description>
+					<locale>
+						A URI reference to a different 'linearGradient' or 'radialGradient' element within the current SVG document fragment.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+	</members>
+</element>

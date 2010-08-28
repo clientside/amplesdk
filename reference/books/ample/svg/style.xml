@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element name="style" extends="svg:SVGElement">
+	<abstract>
+		<locale>
+			The 'style' element allows style sheets to be embedded directly within SVG content.
+		</locale>
+	</abstract>
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="type">
+				<description>
+					<locale>
+						This attribute specifies the style sheet language of the element's contents.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="media">
+				<description>
+					<locale>
+						This attribute specifies the intended destination medium for style information.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+	</members>
+</element>
