@@ -219,7 +219,7 @@ function fAMLNodeAnimation_parseValue(sValue) {
 	if (aValue = sValue.match(/^([+-]?\d*\.?\d+)(em|ex|px|in|cm|mm|pt|pc|%)?$/))
 		return [cNumber(aValue[1]), aValue[2] || '', ''];
 	// List of values
-	if ((aValue = sValue.split(/\s*,\s*/)) && aValue.length > 1) {
+	if ((aValue = sValue.split(/\s*,\s*|\s+/)) && aValue.length > 1) {
 		for (var nIndex = 0, oValue, oValueOut = [[], '', '']; nIndex < aValue.length; nIndex++) {
 			if (oValue = fAMLNodeAnimation_parseValue(aValue[nIndex])) {
 				oValueOut[0].push(oValue[0]);
