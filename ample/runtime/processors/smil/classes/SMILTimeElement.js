@@ -70,7 +70,7 @@ cSMILTimeElement.prototype.endElement	= function() {
 
 //
 function fSMILTimeElement_beginElement(oElement) {
-//	console.info("begin element", oElement);
+//	console.info("begin element", oElement.tagName, oElement);
 	if (oElement instanceof cSMILAnimationElement) {
 		// If ID was specified for target element
 		if (typeof oElement.targetElement == "string")
@@ -94,13 +94,18 @@ function fSMILTimeElement_beginElement(oElement) {
 
 	// Begin children Elements timeline
 	var aChildNodes	= oElement.childNodes;
-	if (aChildNodes.length) {
-		if (oElement instanceof cSMILElement_par)
-			for (var nIndex = 0; nIndex < aChildNodes.length; nIndex++)
+	if (oElement instanceof cSMILElement_par) {
+		for (var nIndex = 0; nIndex < aChildNodes.length; nIndex++)
+			if (aChildNodes[nIndex] instanceof cSMILTimeElement)
 				fSMILTimeElement_beginElement(aChildNodes[nIndex]);
-		else
-		if (oElement instanceof cSMILElement_seq)
-			fSMILTimeElement_beginElement(aChildNodes[0]);
+	}
+	else
+	if (oElement instanceof cSMILElement_seq) {
+		for (var nIndex = 0; nIndex < aChildNodes.length; nIndex++)
+			if (aChildNodes[nIndex] instanceof cSMILTimeElement) {
+				fSMILTimeElement_beginElement(aChildNodes[nIndex]);
+				break;
+			}
 	}
 
 	// Dispatch end event
@@ -110,7 +115,7 @@ function fSMILTimeElement_beginElement(oElement) {
 };
 
 function fSMILTimeElement_endElement(oElement) {
-//	console.info("end element", oElement);
+//	console.info("end element", oElement.tagName, oElement);
 
 	// Remove element from timeline
 	for (var nIndex = 0, oElementOld, bFound = false; oElementOld = aSMILElement_activeElements[nIndex]; nIndex++)
@@ -124,9 +129,9 @@ function fSMILTimeElement_endElement(oElement) {
 
 	// End children Elements timeline
 	var aChildNodes	= oElement.childNodes;
-	if (aChildNodes.length)
-		if (oElement instanceof cSMILElement_par || oElement instanceof cSMILElement_seq)
-			for (var nIndex = 0; nIndex < aChildNodes.length; nIndex++)
+	if (oElement instanceof cSMILElement_par || oElement instanceof cSMILElement_seq)
+		for (var nIndex = 0; nIndex < aChildNodes.length; nIndex++)
+			if (aChildNodes[nIndex] instanceof cSMILTimeElement)
 				fSMILTimeElement_endElement(aChildNodes[nIndex]);
 
 	// End Animation

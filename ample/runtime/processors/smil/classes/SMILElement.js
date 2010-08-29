@@ -51,12 +51,16 @@ function fSMILElement_onTimeline() {
 		nTimeFilteredActiveTime		= oElement.speed > 0 ? nTimeUnfilteredActiveTime * oElement.speed : nTimeActiveDuration - nTimeUnfilteredActiveTime * cMath.abs(oElement.speed);
 
 		if ((oElement.end.offset && nTimeUnfilteredActiveTime >= oElement.end.offset) || (nTimeUnfilteredActiveTime >= nTimeActiveDuration * (oElement.autoReverse ? 2 : 1) / oElement.speed)) {
-			if (oElement instanceof cSMILElement_seq) {
-				for (var nChild = 0, aChildNodes = oElement.parentNode.childNodes; nChild < aChildNodes.length; nChild++)
-					if (aChildNodes[nChild] == oElement && aChildNodes[nChild+1])
-						fSMILTimeElement_beginElement(aChildNodes[nChild+1]);
-			}
+			//
 			fSMILTimeElement_endElement(oElement);
+			//
+			if (oElement.parentNode instanceof cSMILElement_seq) {
+				for (var aChildNodes = oElement.parentNode.childNodes, nChild = aChildNodes.$indexOf(oElement); nChild < aChildNodes.length; nChild++)
+					if (aChildNodes[nChild+1] instanceof cSMILTimeElement) {
+						fSMILTimeElement_beginElement(aChildNodes[nChild+1]);
+						break;
+					}
+			}
 		}
 		else
 		if (oElement instanceof cSMILAnimationElement && !(oElement instanceof cSMILElement_set)) {
