@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element name="SMILAnimationElement" extends="smil:SMILTimingElement">
+	<abstract>
+		<locale>
+			The base class for all animation elements.
+		</locale>
+	</abstract>
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="attributeName">
+				<description>
+					<locale>
+						Specifies the name of the target attribute.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="attributeType">
+				<values>
+					<value name="CSS">
+						<description>
+							<locale>
+								This specifies that the value of attributeName is the name of a CSS property, as defined for the host document.
+							</locale>
+						</description>
+					</value>
+					<value name="XML">
+						<description>
+							<locale>
+								This specifies that the value of "attributeName" is the name of an XML attribute defined in the default XML namespace for the target element.
+							</locale>
+						</description>
+					</value>
+					<value name="auto">
+						<description>
+							<locale>
+								The implementation should match the attributeName to an attribute for the target element.
+								This is the default.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale>
+						Specifies the namespace in which the target attribute and its associated values are defined.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="targetElement">
+				<description>
+					<locale>
+						This attribute specifies the target element to be animated.
+					</locale>
+				</description>
+			</attribute>
+
+			<!-- Fill -->
+			<attribute name="fill">
+				<values>
+					<value name="remove">
+						<description>
+							<locale>
+								Specifies that the element will not extend past the end of the last instance of the simple duration.
+							</locale>
+						</description>
+					</value>
+					<value name="freeze">
+						<description>
+							<locale>
+								Specifies that the element will extend past the end of the last instance of the simple duration by "freezing" the element state at that point.
+							</locale>
+						</description>
+					</value>
+					<value name="hold">
+						<description>
+							<locale>
+								Setting this to "hold" has the same effect as setting to "freeze", except that the element is always frozen to extend to the end of the simple duration of the parent time container of the element (independent of the type of time container).
+							</locale>
+						</description>
+					</value>
+					<!-- value name="transition">
+						<description>
+							<locale>
+								Setting this to "transition" has the same effect as setting to "freeze", except that the element is removed at the end of the transition.
+							</locale>
+						</description>
+					</value>
+					<value name="auto">
+						<description>
+							<locale>
+								The fill behavior for this element depends on whether the element specifies any of the attributes that define the simple or active duration.
+							</locale>
+						</description>
+					</value>
+					<value name="default">
+						<description>
+							<locale>
+								The fill behavior for the element is determined by the value of the fillDefault  attribute.
+								This is the default value.
+							</locale>
+						</description>
+					</value-->
+				</values>
+				<description>
+					<locale>
+						The fill attribute allows an author to specify that an element should be extended beyond the active duration by freezing the final state of the element.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+	</members>
+</element>

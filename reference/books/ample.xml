@@ -127,6 +127,10 @@
 			<node title="SMIL 3.0">
 				<node title="Overview" url="ample/smil/index.xml"/>
 				<node title="XML Schema" xurl="ample/smil/smil30-ample.xsd" />
+				<node title="Objects">
+					<node title="SMILTimingElement" url="ample/smil/SMILTimingElement.xml"/>
+					<node title="SMILAnimationElement" url="ample/smil/SMILAnimationElement.xml"/>
+				</node>
 				<node title="Elements">
 					<node title="animate" url="ample/smil/animate.xml" />
 					<node title="animateMotion" url="ample/smil/animateMotion.xml" />
