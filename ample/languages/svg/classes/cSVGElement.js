@@ -21,7 +21,7 @@ if (cSVGElement.useVML) {
 	document.namespaces.add("svg2vml", "urn:schemas-microsoft-com:vml", "#default#VML");
 
 	cSVGElement.prototype.$getStyle	= function(sName) {
-		cSVGElement.getStyleOwn(this, sName);
+		return cSVGElement.getStyleOwn(this, sName);
 	};
 
 	cSVGElement.prototype.$setStyle	= function(sName, sValue) {
@@ -29,7 +29,7 @@ if (cSVGElement.useVML) {
 	};
 
 	cSVGElement.prototype.$getStyleComputed	= function(sName) {
-		cSVGElement.getStyle(this, sName);
+		return cSVGElement.getStyle(this, sName);
 	};
 
 	cSVGElement.prototype.getBBox	= function() {
