@@ -140,8 +140,8 @@
 			<h4>Parallel</h4>
 			<div class="animateable" style="left: 0px; top: 0px">
 				<smil:par begin="click" dur="1s">
-					<smil:animate from="50px" to="200px" attributeName="left" attributeType="CSS" />
-					<smil:animate from="50px" to="200px" attributeName="top" attributeType="CSS" />
+					<smil:animate from="50px" to="200px" attributeName="left" attributeType="CSS" dur="1s" />
+					<smil:animate from="50px" to="200px" attributeName="top" attributeType="CSS" dur="1s" />
 				</smil:par>
 				smil:par / 2 * animate @from/@to
 			</div>
@@ -149,11 +149,17 @@
 			<h4>Sequential</h4>
 			<div class="animateable" style="left: 0px; top: 0px">
 				<smil:seq begin="click" dur="1s">
-					<smil:animate from="50px" to="200px" attributeName="left" attributeType="CSS" />
-					<smil:animate from="50px" to="200px" attributeName="top" attributeType="CSS" />
+					<smil:animate from="50px" to="200px" attributeName="left" attributeType="CSS" dur="0.5s"/>
+					<smil:animate from="50px" to="200px" attributeName="top" attributeType="CSS" dur="0.5s"/>
 				</smil:seq>
 				smil:seq / 2 * animate @from/@to
 			</div>
+
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
 		</script>
  	</body>
 </html>
