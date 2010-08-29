@@ -112,7 +112,7 @@ function fSMILAnimationElement_getAttributeValue(oElement) {
 			}
 		}
 		else
-			aValue	= fAMLNodeAnimation_parseValue(oElement.targetElement.$getStyle(oElement.attributeName));
+			aValue	= fAMLNodeAnimation_parseValue(oElement.targetElement.$getStyleComputed(oElement.attributeName));
 	}
 	else {	// "XML" = "auto"
 		if (oElement instanceof cSMILElement_animateMotion)
