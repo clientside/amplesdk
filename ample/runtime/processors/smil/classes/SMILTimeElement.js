@@ -27,6 +27,9 @@ function fSMILTimeElement_init(oEvent) {
 	oElement.decelerate		= fSMILTimeElement_parseFloat(oElement.attributes["decelerate"], 0);
 	oElement.speed			= fSMILTimeElement_parseFloat(oElement.attributes["speed"], 1);
 
+	if (oElement.parentNode instanceof cSMILTimeElement)
+		return;
+
 	//
 	var oTarget,
 		fBegin	= function() {
