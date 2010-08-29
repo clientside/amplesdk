@@ -12,6 +12,50 @@ var cSMILTimeElement	= function() {
 };
 cSMILTimeElement.prototype	= new cSMILElement("#element-time");
 
+function fSMILTimeElement_init(oEvent) {
+	var oElement	= oEvent.currentTarget;
+	// Timing and Synchronization
+	oElement.begin			= fSMILTimeElement_parseDate(oElement.attributes["begin"]);
+	oElement.end			= fSMILTimeElement_parseDate(oElement.attributes["end"]);
+	oElement.dur			= fSMILTimeElement_parseDuration(oElement.attributes["dur"]);
+	// Repetition
+	oElement.repeatCount	= fSMILTimeElement_parseFloat(oElement.attributes["repeatCount"], 1);
+	oElement.repeatDur		= fSMILTimeElement_parseDuration(oElement.attributes["repeatDur"]);
+	// Time Manipulations
+	oElement.autoReverse	= oElement.attributes["autoReverse"] == "true";
+	oElement.accelerate		= fSMILTimeElement_parseFloat(oElement.attributes["accelerate"], 0);
+	oElement.decelerate		= fSMILTimeElement_parseFloat(oElement.attributes["decelerate"], 0);
+	oElement.speed			= fSMILTimeElement_parseFloat(oElement.attributes["speed"], 1);
+
+	//
+	var oTarget,
+		fBegin	= function() {
+			fSMILTimeElement_beginElement(oElement);
+		},
+		fEnd	= function() {
+			fSMILTimeElement_endElement(oElement);
+		};
+
+	// If event-based
+	if (oElement.begin.event) {
+		oTarget	= oElement.begin.element ? oAMLDocument_ids[oElement.begin.element] : oElement.parentNode;
+		//
+		fAMLEventTarget_addEventListener(oTarget, oElement.begin.event, function() {
+			oElement.begin.offset ? fSetTimeout(fBegin, oElement.begin.offset) : fBegin();
+		});
+	}
+	else
+		oElement.begin.offset ? fSetTimeout(fBegin, oElement.begin.offset) : fBegin();
+
+	if (oElement.end.event) {
+		oTarget	= oElement.end.element ? oAMLDocument_ids[oElement.end.element] : oElement.parentNode;
+		//
+		fAMLEventTarget_addEventListener(oTarget, oElement.end.event, function() {
+			oElement.end.offset ? fSetTimeout(fEnd, oElement.end.offset) : fEnd();
+		});
+	}
+};
+
 // Public Methods
 cSMILTimeElement.prototype.beginElement	= function() {
 	fSMILTimeElement_beginElement(this);
@@ -90,50 +134,6 @@ function fSMILTimeElement_endElement(oElement) {
 	var oEvent	= new cSMILTimeEvent;
 	oEvent.initTimeEvent("end", window, null);
 	fAMLNode_dispatchEvent(oElement, oEvent);
-};
-
-function fSMILTimeElement_init(oEvent) {
-	var oElement	= oEvent.currentTarget;
-	// Timing and Synchronization
-	oElement.begin			= fSMILTimeElement_parseDate(oElement.attributes["begin"]);
-	oElement.end			= fSMILTimeElement_parseDate(oElement.attributes["end"]);
-	oElement.dur			= fSMILTimeElement_parseDuration(oElement.attributes["dur"]);
-	// Repetition
-	oElement.repeatCount	= fSMILTimeElement_parseFloat(oElement.attributes["repeatCount"], 1);
-	oElement.repeatDur		= fSMILTimeElement_parseDuration(oElement.attributes["repeatDur"]);
-	// Time Manipulations
-	oElement.autoReverse	= oElement.attributes["autoReverse"] == "true";
-	oElement.accelerate		= fSMILTimeElement_parseFloat(oElement.attributes["accelerate"], 0);
-	oElement.decelerate		= fSMILTimeElement_parseFloat(oElement.attributes["decelerate"], 0);
-	oElement.speed			= fSMILTimeElement_parseFloat(oElement.attributes["speed"], 1);
-
-	//
-	var oTarget,
-		fBegin	= function() {
-			fSMILTimeElement_beginElement(oElement);
-		},
-		fEnd	= function() {
-			fSMILTimeElement_endElement(oElement);
-		};
-
-	// If event-based
-	if (oElement.begin.event) {
-		oTarget	= oElement.begin.element ? oAMLDocument_ids[oElement.begin.element] : oElement.parentNode;
-		//
-		fAMLEventTarget_addEventListener(oTarget, oElement.begin.event, function() {
-			oElement.begin.offset ? fSetTimeout(fBegin, oElement.begin.offset) : fBegin();
-		});
-	}
-	else
-		oElement.begin.offset ? fSetTimeout(fBegin, oElement.begin.offset) : fBegin();
-
-	if (oElement.end.event) {
-		oTarget	= oElement.end.element ? oAMLDocument_ids[oElement.end.element] : oElement.parentNode;
-		//
-		fAMLEventTarget_addEventListener(oTarget, oElement.end.event, function() {
-			oElement.end.offset ? fSetTimeout(fEnd, oElement.end.offset) : fEnd();
-		});
-	}
 };
 
 //Utilities
