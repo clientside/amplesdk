@@ -102,12 +102,14 @@ function fSMILAnimationElement_endAnimation(oElement) {
 function fSMILAnimationElement_getAttributeValue(oElement) {
 	var aValue	= null;
 	if (oElement.attributeType == "CSS") {
-		var oElementDOM	= oElement.targetElement.$getContainer();
 		if (oElement instanceof cSMILElement_animateMotion) {
-			var oComputedStyle	= fBrowser_getComputedStyle(oElementDOM),
-				oValue1	= fAMLNodeAnimation_parseValue(oComputedStyle.top),
-				oValue2	= fAMLNodeAnimation_parseValue(oComputedStyle.left);
-			aValue	= [[oValue1[0], oValue2[0]], oValue1[1]];
+			var oElementDOM	= oElement.targetElement.$getContainer();
+			if (oElementDOM) {
+				var oComputedStyle	= fBrowser_getComputedStyle(oElementDOM),
+					oValue1	= fAMLNodeAnimation_parseValue(oComputedStyle.top),
+					oValue2	= fAMLNodeAnimation_parseValue(oComputedStyle.left);
+				aValue	= [[oValue1[0], oValue2[0]], oValue1[1]];
+			}
 		}
 		else
 			aValue	= fAMLNodeAnimation_parseValue(oElement.targetElement.$getStyle(oElement.attributeName));
@@ -130,11 +132,13 @@ function fSMILAnimationElement_setAttributeValue(oElement, aValue) {
 			aValue	= fAMLNodeAnimation_toHex(aValue[0]);
 
 		if (oElement.attributeType == "CSS") {
-			var oElementDOM	= oElement.targetElement.$getContainer();
 			if (oElement instanceof cSMILElement_animateMotion) {
-				var oStyle		= oElementDOM.style;
-				oStyle.top	= aValue[0][0] +(aValue[1] || 'px');	// default to "px"
-				oStyle.left	= aValue[0][1] +(aValue[1] || 'px');	// default to "px"
+				var oElementDOM	= oElement.targetElement.$getContainer();
+				if (oElementDOM) {
+					var oStyle		= oElementDOM.style;
+					oStyle.top	= aValue[0][0] +(aValue[1] || 'px');	// default to "px"
+					oStyle.left	= aValue[0][1] +(aValue[1] || 'px');	// default to "px"
+				}
 			}
 			else
 				oElement.targetElement.$setStyle(oElement.attributeName, aValue.join(''));
