@@ -102,17 +102,24 @@
 			</attribute>
 		</attributes>
 		<events>
-			<event name="begin" group="SMILTimeEvent">
+			<event name="begin" type="SMILTimeEvent" cancelable="false" bubbles="false">
 				<description>
 					<locale>
-
+						This event is raised when the element local timeline begins to play. It will be raised each time the element begins the active duration.
 					</locale>
 				</description>
 			</event>
-			<event name="end" group="SMILTimeEvent">
+			<event name="end" type="SMILTimeEvent" cancelable="false" bubbles="false">
 				<description>
 					<locale>
-
+						This event is raised at the active end of the element. Note that this event is not raised at the simple end of each repeat.
+					</locale>
+				</description>
+			</event>
+			<event name="repeat" type="SMILTimeEvent" cancelable="false" bubbles="false">
+				<description>
+					<locale>
+						This event is raised when the element local timeline repeats. It will be raised each time the element repeats, after the first iteration.
 					</locale>
 				</description>
 			</event>

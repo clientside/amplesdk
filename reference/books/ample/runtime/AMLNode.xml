@@ -675,21 +675,21 @@
 			</constant>
 		</constants>
 		<events>
-			<event name="DOMNodeInsertedIntoDocument" group="MutationEvent" cancelable="false" bubbles="false">
+			<event name="DOMNodeInsertedIntoDocument" type="MutationEvent" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						A node has been inserted into a document.
 					</locale>
 				</description>
 			</event>
-			<event name="DOMNodeRemovedFromDocument" group="MutationEvent" cancelable="false" bubbles="false">
+			<event name="DOMNodeRemovedFromDocument" type="MutationEvent" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						A node is being removed from a document.
 					</locale>
 				</description>
 			</event>
-			<event name="DOMNodeInserted" group="MutationEvent" cancelable="false" bubbles="true">
+			<event name="DOMNodeInserted" type="MutationEvent" cancelable="false" bubbles="true">
 				<description>
 					<locale>
 						A node has been added as a child of another node or, in case of Attr nodes, has been added to an Element.
@@ -699,7 +699,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="DOMNodeRemoved" group="MutationEvent" cancelable="false" bubbles="true">
+			<event name="DOMNodeRemoved" type="MutationEvent" cancelable="false" bubbles="true">
 				<description>
 					<locale>
 						A node is being removed from its parent node or, in case of Attr nodes, removed from its ownerElement.

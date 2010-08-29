@@ -167,7 +167,7 @@
 			</property>
 		</properties>
 		<events>
-			<event name="DOMCharacterDataModified" group="MutationEvent" cancelable="false" bubbles="true">
+			<event name="DOMCharacterDataModified" type="MutationEvent" cancelable="false" bubbles="true">
 				<description>
 					<locale>
 						Occurs after <b>data</b> property have been modified, but the node itself has not been inserted or deleted.

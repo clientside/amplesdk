@@ -72,14 +72,14 @@
 		</methods>
 		<properties />
 		<events>
-			<event name="interval" group="Event" cancelable="false" bubbles="false">
+			<event name="interval" type="Event" cancelable="false" bubbles="false">
 				<description>
 					<locale xml:lang="ru">
 						Загорается с периодичностью интервала.
 					</locale>
 				</description>
 			</event>
-			<event name="timeout" group="Event" cancelable="false" bubbles="false">
+			<event name="timeout" type="Event" cancelable="false" bubbles="false">
 				<description>
 					<locale xml:lang="ru">
 						Загорается, по истечении времени ожидания.

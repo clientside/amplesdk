@@ -53,7 +53,7 @@
 			</property>
 		</properties>
 		<events>
-			<event name="select" group="Event" cancelable="false" bubbles="false">
+			<event name="select" type="Event" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						Fires when selected child element changes.

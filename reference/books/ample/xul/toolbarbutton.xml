@@ -107,7 +107,7 @@
 		<properties />
 		<events>
 <!--
-			<event name="command" group="Event" cancelable="false" bubbles="true">
+			<event name="command" type="Event" cancelable="false" bubbles="true">
 				<description>
 				</description>
 			</event>

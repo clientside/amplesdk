@@ -174,7 +174,7 @@
 			</property>
 		</properties>
 		<events>
-			<event name="select" group="Event" cancelable="false" bubbles="true">
+			<event name="select" type="Event" cancelable="false" bubbles="true">
 				<description>
 					<locale>
 						This event is sent to the tabs element when this <link type="element">tab</link> is changed.
@@ -185,7 +185,7 @@
 				</description>
 			</event>
 <!--
-			<event name="beforeselect" group="Event" cancelable="true" bubbles="true">
+			<event name="beforeselect" type="Event" cancelable="true" bubbles="true">
 				<description>
 					 This event is sent to the <link type="element">tabs</link> element when the <link type="element">tab</link> is about to change. Return false if you want to prevent tab change.
 				</description>

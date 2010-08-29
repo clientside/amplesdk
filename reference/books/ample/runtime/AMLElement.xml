@@ -859,14 +859,14 @@
 			</property>
 		</properties>
 		<events>
-			<event name="DOMActivate" group="UIEvent" cancelable="true" bubbles="true">
+			<event name="DOMActivate" type="UIEvent" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						An activation behavior requested from element.
 					</locale>
 				</description>
 			</event>
-			<event name="click" group="MouseEvent" cancelable="true" bubbles="true">
+			<event name="click" type="MouseEvent" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						A pointing device button is clicked over an element.
@@ -876,7 +876,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="dblclick" group="MouseEvent" cancelable="true" bubbles="true">
+			<event name="dblclick" type="MouseEvent" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						Fires when the user double-clicks the object.
@@ -886,7 +886,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="contextmenu" group="MouseEvent" cancelable="true" bubbles="true">
+			<event name="contextmenu" type="MouseEvent" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						<b>* legacy.</b> Fires when the user clicks the right mouse button in the client area, opening the context menu.
@@ -897,7 +897,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="mouseup" group="MouseEvent" cancelable="true" bubbles="true">
+			<event name="mouseup" type="MouseEvent" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						A pointing device button is released over an element.
@@ -907,7 +907,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="mousedown" group="MouseEvent" cancelable="true" bubbles="true">
+			<event name="mousedown" type="MouseEvent" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						A pointing device button is pressed over an element.
@@ -917,7 +917,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="mouseover" group="MouseEvent" cancelable="true" bubbles="true">
+			<event name="mouseover" type="MouseEvent" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						A pointing device is moved onto an element.
@@ -927,7 +927,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="mouseout" group="MouseEvent" cancelable="true" bubbles="true">
+			<event name="mouseout" type="MouseEvent" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						A pointing device is moved away from an element.
@@ -937,7 +937,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="mousemove" group="MouseEvent" cancelable="true" bubbles="true">
+			<event name="mousemove" type="MouseEvent" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						A pointing device is moved while it is over an element.
@@ -947,7 +947,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="mouseenter" group="MouseEvent" cancelable="false" bubbles="false">
+			<event name="mouseenter" type="MouseEvent" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						Fires when the user moves the mouse pointer into the object.
@@ -957,7 +957,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="mouseleave" group="MouseEvent" cancelable="false" bubbles="false">
+			<event name="mouseleave" type="MouseEvent" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						Fires when the user moves the mouse pointer outside the boundaries of the object.
@@ -967,7 +967,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="mousewheel" group="MouseWheelEvent" cancelable="true" bubbles="true">
+			<event name="mousewheel" type="MouseWheelEvent" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						Fires when the user wheels the mouse within the boundaries of the object.
@@ -977,7 +977,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="keyup" group="KeyboardEvent" cancelable="true" bubbles="true">
+			<event name="keyup" type="KeyboardEvent" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						A key is released.
@@ -987,7 +987,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="keydown" group="KeyboardEvent" cancelable="true" bubbles="true">
+			<event name="keydown" type="KeyboardEvent" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						A key is pressed down.
@@ -997,7 +997,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="keypress" group="KeyboardEvent" cancelable="true" bubbles="true">
+			<event name="keypress" type="KeyboardEvent" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						<b>* legacy.</b> Fires when the user presses key on the keyboard.
@@ -1008,14 +1008,14 @@
 					</locale>
 				</description>
 			</event>
-			<event name="textInput" group="TextEvent" cancelable="true" bubbles="true">
+			<event name="textInput" type="TextEvent" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						User typed in a character.
 					</locale>
 				</description>
 			</event>
-			<event name="DOMAttrModified" group="MutationEvent" cancelable="false" bubbles="true">
+			<event name="DOMAttrModified" type="MutationEvent" cancelable="false" bubbles="true">
 				<description>
 					<locale>
 						Occurs after Attr.value has been modified and after an Attr node has been added to or removed from an Element.
@@ -1026,14 +1026,14 @@
 				</description>
 			</event>
 			<!-- Content Loader -->
-			<event name="abort" group="Event" cancelable="false" bubbles="false">
+			<event name="abort" type="Event" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						Fires when the loading of a resource has been aborted.
 					</locale>
 				</description>
 			</event>
-			<event name="load" group="Event" cancelable="false" bubbles="false">
+			<event name="load" type="Event" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						Fires after the DOM implementation finishes loading the resource.
@@ -1043,7 +1043,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="unload" group="Event" cancelable="false" bubbles="false">
+			<event name="unload" type="Event" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						Fires before the DOM Implementation removes from the environment the resource.
@@ -1053,7 +1053,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="error" group="Event" cancelable="false" bubbles="false">
+			<event name="error" type="Event" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						Fires when a resource failed to load.
@@ -1064,7 +1064,7 @@
 				</description>
 			</event>
 			<!-- Effects -->
-			<event name="effectstart" group="Event" cancelable="false" bubbles="false">
+			<event name="effectstart" type="Event" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						Fires when effect is started.
@@ -1074,7 +1074,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="effectend" group="Event" cancelable="false" bubbles="false">
+			<event name="effectend" type="Event" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						Fires when effect is ended.
@@ -1085,28 +1085,28 @@
 				</description>
 			</event>
 			<!-- Touch Events -->
-			<event name="touchstart" group="TouchEvent" cancelable="true" bubbles="true">
+			<event name="touchstart" type="TouchEvent" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						Sent when a finger for a given event touches the surface.
 					</locale>
 				</description>
 			</event>
-			<event name="touchmove" group="TouchEvent" cancelable="true" bubbles="true">
+			<event name="touchmove" type="TouchEvent" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						Sent when a given event moves on the surface.
 					</locale>
 				</description>
 			</event>
-			<event name="touchend" group="TouchEvent" cancelable="true" bubbles="true">
+			<event name="touchend" type="TouchEvent" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						Sent when a given event lifts from the surface.
 					</locale>
 				</description>
 			</event>
-			<event name="touchcancel" group="TouchEvent" cancelable="true" bubbles="true">
+			<event name="touchcancel" type="TouchEvent" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						Sent when the system cancels tracking for the touch.
@@ -1114,21 +1114,21 @@
 				</description>
 			</event>
 			<!-- Gesture Events -->
-			<event name="gesturestart" group="GestureEvent" cancelable="true" bubbles="true">
+			<event name="gesturestart" type="GestureEvent" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						Sent when two or more fingers touch the surface.
 					</locale>
 				</description>
 			</event>
-			<event name="gesturechange" group="GestureEvent" cancelable="true" bubbles="true">
+			<event name="gesturechange" type="GestureEvent" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						Sent when fingers are moved during a gesture.
 					</locale>
 				</description>
 			</event>
-			<event name="gestureend" group="GestureEvent" cancelable="true" bubbles="true">
+			<event name="gestureend" type="GestureEvent" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						Sent when the gesture ends (when there are 1 or 0 fingers touching the surface).
@@ -1136,14 +1136,14 @@
 				</description>
 			</event>
 			<!-- Capture -->
-			<event name="losecapture" group="UIEvent" cancelable="false" bubbles="false">
+			<event name="losecapture" type="UIEvent" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						Fires when the object is losing the mouse capture.
 					</locale>
 				</description>
 			</event>
-			<event name="capture" group="UIEvent" cancelable="false" bubbles="true">
+			<event name="capture" type="UIEvent" cancelable="false" bubbles="true">
 				<description>
 					<locale>
 						Fires when user clicks outside either an element set as modal or to receive capture.
@@ -1151,7 +1151,7 @@
 				</description>
 			</event>
 			<!-- Drag And Drop -->
-			<event name="dragstart" group="DragEvent" cancelable="true" bubbles="true">
+			<event name="dragstart" type="DragEvent" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						Fires on the source object when the user starts to drag an object.
@@ -1161,7 +1161,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="dragend" group="DragEvent" cancelable="true" bubbles="true">
+			<event name="dragend" type="DragEvent" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						Fires on the source object when the user releases the mouse at the close of a drag operation.
@@ -1171,7 +1171,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="dragenter" group="DragEvent" cancelable="true" bubbles="true">
+			<event name="dragenter" type="DragEvent" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						Fires on the target element when the user drags the object to a valid drop target.
@@ -1181,14 +1181,14 @@
 					</locale>
 				</description>
 			</event>
-			<event name="dragover" group="DragEvent" cancelable="true" bubbles="true">
+			<event name="dragover" type="DragEvent" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 
 					</locale>
 				</description>
 			</event>
-			<event name="dragleave" group="DragEvent" cancelable="true" bubbles="true">
+			<event name="dragleave" type="DragEvent" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						Fires on the target object when the user moves the mouse out of a valid drop target during a drag operation.
@@ -1198,7 +1198,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="drag" group="DragEvent" cancelable="true" bubbles="true">
+			<event name="drag" type="DragEvent" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						Fires on the source object continuously during a drag operation.
@@ -1208,7 +1208,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="drop" group="DragEvent" cancelable="true" bubbles="true">
+			<event name="drop" type="DragEvent" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						Fires on the target object when the mouse button is released during a drag-and-drop operation.
@@ -1219,7 +1219,7 @@
 				</description>
 			</event>
 			<!-- Focus -->
-			<event name="focus" group="UIEvent" cancelable="false" bubbles="false">
+			<event name="focus" type="UIEvent" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						Fires when element receives focus.
@@ -1229,7 +1229,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="blur" group="UIEvent" cancelable="false" bubbles="false">
+			<event name="blur" type="UIEvent" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						Fires when element looses focus.
@@ -1239,7 +1239,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="DOMFocusIn" group="UIEvent" cancelable="false" bubbles="true">
+			<event name="DOMFocusIn" type="UIEvent" cancelable="false" bubbles="true">
 				<description>
 					<locale>
 						An object receives focus.
@@ -1251,7 +1251,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="DOMFocusOut" group="UIEvent" cancelable="false" bubbles="true">
+			<event name="DOMFocusOut" type="UIEvent" cancelable="false" bubbles="true">
 				<description>
 					<locale>
 						An object loses focus.
@@ -1264,7 +1264,7 @@
 				</description>
 			</event>
 			<!-- Resize -->
-			<event name="resizestart" group="ResizeEvent" cancelable="true" bubbles="true">
+			<event name="resizestart" type="ResizeEvent" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						Fires when user starts resizing an object.
@@ -1275,7 +1275,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="resizeend" group="ResizeEvent" cancelable="true" bubbles="true">
+			<event name="resizeend" type="ResizeEvent" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						Fires when user ends resizing an object.
@@ -1286,7 +1286,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="resize" group="ResizeEvent" cancelable="true" bubbles="true">
+			<event name="resize" type="ResizeEvent" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						Fires continuously while user is resizing object.

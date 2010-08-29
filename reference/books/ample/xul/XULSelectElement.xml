@@ -247,7 +247,7 @@
 			</attribute>
 		</attributes>
 		<events>
-			<event name="select" group="Event" cancelable="false" bubbles="true">
+			<event name="select" type="Event" cancelable="false" bubbles="true">
 				<description>
 					<locale>
 						Fires when selection changes.

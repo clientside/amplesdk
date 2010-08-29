@@ -455,14 +455,14 @@
 			</method>
 		</methods>
 		<events>
-			<event name="readystatechange" group="Event" cancelable="false" bubble="false">
+			<event name="readystatechange" type="Event" cancelable="false" bubble="false">
 				<description>
 					<locale>
 						Fires when the state of the object has changed. You can use the <link type="property">readyState</link> property to query the current state of the element when the <link type="event">readystatechange</link> event fires.
 					</locale>
 				</description>
 			</event>
-			<event name="hashchange" group="HashChangeEvent" cancelable="false" bubbles="false">
+			<event name="hashchange" type="HashChangeEvent" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						Fires on the document when user navigates browser history. Please note this event is not fired when <link type="method">bookmark</link> method is called.

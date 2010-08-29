@@ -69,7 +69,7 @@
 		</methods>
 		<properties />
 		<events>
-			<event name="load" group="Event" cancelable="false" bubbles="false">
+			<event name="load" type="Event" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						Fires when data is loaded.
@@ -79,7 +79,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="unload" group="Event" cancelable="false" bubbles="false">
+			<event name="unload" type="Event" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						Fires when data is unloaded.
@@ -89,7 +89,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="error" group="Event" cancelable="false" bubbles="true">
+			<event name="error" type="Event" cancelable="false" bubbles="true">
 				<description>
 					<locale>
 						Fires when an error occured during data retrieval.

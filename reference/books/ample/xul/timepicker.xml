@@ -51,7 +51,7 @@
 		<methods />
 		<properties />
 		<events>
-			<event name="change" group="Event" cancelable="false" bubbles="true">
+			<event name="change" type="Event" cancelable="false" bubbles="true">
 				<description>
 					<locale>
 						Fires when user selects a new date.

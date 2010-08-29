@@ -723,7 +723,7 @@
 				</xsl:choose>
 			</td>
 			<td nowrap="yes">
-				<a href="../runtime/AML{@group}.xml"><xsl:value-of select="@group" /></a>
+				<a href="../runtime/AML{@type}.xml"><xsl:value-of select="@type" /></a>
 			</td>
 			<td><xsl:apply-templates select="description"/></td>
 		</tr>

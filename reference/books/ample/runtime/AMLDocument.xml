@@ -477,7 +477,7 @@
 			</property>
 		</properties>
 		<events>
-			<event name="load" group="Event" cancelable="false" bubbles="false">
+			<event name="load" type="Event" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						Fires immediately after the engine loads the object.
@@ -487,7 +487,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="unload" group="Event" cancelable="false" bubbles="false">
+			<event name="unload" type="Event" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						Fires immediately before the object is unloaded.
@@ -497,7 +497,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="abort" group="Event" cancelable="false" bubbles="true">
+			<event name="abort" type="Event" cancelable="false" bubbles="true">
 				<description>
 					<locale>
 						The loading of the document, or a resource linked from it, is stopped before being entirely loaded.
@@ -507,7 +507,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="error" group="Event" cancelable="false" bubbles="true">
+			<event name="error" type="Event" cancelable="false" bubbles="true">
 				<description>
 					<locale>
 						A resource failed to load, or has been loaded but cannot be interpreted according to its semantics such as an invalid image, a script execution error, or non-well-formed XML.
@@ -517,7 +517,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="resize" group="UIEvent" cancelable="false" bubbles="true">
+			<event name="resize" type="UIEvent" cancelable="false" bubbles="true">
 				<description>
 					<locale>
 						A document view has been resized.
@@ -527,7 +527,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="scroll" group="UIEvent" cancelable="false" bubbles="true">
+			<event name="scroll" type="UIEvent" cancelable="false" bubbles="true">
 				<description>
 					<locale>
 						A document view has been scrolled.

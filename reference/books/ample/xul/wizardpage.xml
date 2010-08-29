@@ -65,7 +65,7 @@
 		<methods />
 		<properties />
 		<events>
-			<event name="pageadvanced" group="Event" cancelable="true" bubbles="false">
+			<event name="pageadvanced" type="Event" cancelable="true" bubbles="false">
 				<description>
 					<locale>
 						Called when the user presses the Next button while on the current page.
@@ -78,7 +78,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="pagehide" group="Event" cancelable="true" bubbles="false">
+			<event name="pagehide" type="Event" cancelable="true" bubbles="false">
 				<description>
 					<locale>
 						Called when the page is hidden, such as when moving to another page.
@@ -92,7 +92,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="pagerewound" group="Event" cancelable="true" bubbles="false">
+			<event name="pagerewound" type="Event" cancelable="true" bubbles="false">
 				<description>
 					<locale>
 						Called when the user presses the Back button while on the current page.
@@ -105,7 +105,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="pageshow" group="Event" cancelable="false" bubbles="false">
+			<event name="pageshow" type="Event" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						Called when the page is shown.

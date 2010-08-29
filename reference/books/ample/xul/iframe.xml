@@ -57,14 +57,14 @@
 		</properties>
 		<events>
 <!--
-			<event name="load" group="Event" cancelable="false" bubbles="false">
+			<event name="load" type="Event" cancelable="false" bubbles="false">
 				<description>
 					<locale xml:lang="ru">
 						Fires immediately after the document is loaded.
 					</locale>
 				</description>
 			</event>
-			<event name="unload" group="Event" cancelable="false" bubbles="false">
+			<event name="unload" type="Event" cancelable="false" bubbles="false">
 				<description>
 					<locale xml:lang="ru">
 						Fires immediately before the document is unloaded.
