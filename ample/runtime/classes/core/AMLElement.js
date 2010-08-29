@@ -1046,7 +1046,7 @@ cAMLElement.prototype.$setPseudoClass	= function(sName, bState, sContainer)
 
 cAMLElement.prototype.$getStyle	= function(sName) {
 	var oElementDOM	= this.$getContainer();
-	fBrowser_getStyle(oElementDOM, fUtilities_toCssPropertyName(sName), oElementDOM.style);
+	return fBrowser_getStyle(oElementDOM, fUtilities_toCssPropertyName(sName), oElementDOM.style);
 };
 
 cAMLElement.prototype.$setStyle	= function(sName, sValue) {
