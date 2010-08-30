@@ -81,7 +81,7 @@ cXHTMLElement_input.html524	= {
 // Element Render: open
 cXHTMLElement_input.prototype.$getTagOpen		= function() {
 	var sPrefix	= this.prefix ? this.prefix + '-' : '',
-		aHtml	= ['<span class="' + sPrefix + this.localName + ("class" in this.attributes ? ' ' + this.attributes["class"] : '') + (this.attributes["required"] ? ' ' + sPrefix + this.localName + '_required' : '')+ '">'];
+		aHtml	= ['<div class="' + sPrefix + this.localName + ("class" in this.attributes ? ' ' + this.attributes["class"] : '') + (this.attributes["required"] ? ' ' + sPrefix + this.localName + '_required' : '')+ '">'];
 	switch (this.attributes["type"]) {
 		// Hidden
 		// .value
@@ -196,14 +196,14 @@ cXHTMLElement_input.prototype.$getTagOpen		= function() {
 		default:
 			break;
 	}
-	aHtml.push('<input type="' +(cXHTMLElement_input.html524[this.attributes.type] || "text")+ '" class="input--value input-type-' + this.attributes["type"]+ '"/>');
+	aHtml.push('<input type="' +(cXHTMLElement_input.html524[this.attributes.type] || "text")+ '" class="input--value input-type-' + this.attributes["type"]+ '" style="border: none;outline:none"/>');
     return aHtml.join('');
 };
 
 // Element Render: close (cancel double tag)
 cXHTMLElement_input.prototype.$getTagClose	= function() {
 	var aHtml	= [];
-	aHtml.push('</span>');
+	aHtml.push('</div>');
 	return aHtml.join('');
 };
 

@@ -2,6 +2,16 @@ datalist {
 	display: none;
 }
 
+input {
+	display: inline-block;
+	border: solid 1px silver;
+}
+
+input[type=checkbox],
+input[type=radio] {
+	border: none;
+}
+
 input[type=hidden] {
 	display: none;
 }
