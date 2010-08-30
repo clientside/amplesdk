@@ -251,7 +251,7 @@
 			<node title="Overview" url="ample/xhtml/index.xml" />
 		</node>
 		<node title="SVG 1.1">
-			<node title="Overview" url="ample/svg/svg.xml"/>
+			<node title="Overview" url="ample/svg/index.xml"/>
 			<node title="XML Schema" xurl="ample/svg/svg11-ample.xsd"/>
 			<node title="Objects">
 				<node title="SVGElement" url="ample/svg/SVGElement.xml"/>

@@ -37,12 +37,18 @@
 			</title>
 			<content>
 				<locale>
-					At the present moment SVG 1.1 in Ample SDK is in the development. Following modules are already available for testing:
+					Following modules are supported:
 					<ul>
 						<li><a href="http://www.w3.org/TR/SVG/struct.html">5. Document Structure</a></li>
+						<li><a href="http://www.w3.org/TR/SVG/styling.html">6. Styling</a></li>
 						<li><a href="http://www.w3.org/TR/SVG/paths.html">8. Paths</a></li>
 						<li><a href="http://www.w3.org/TR/SVG/shapes.html">9. Basic Shapes</a></li>
 						<li><a href="http://www.w3.org/TR/SVG/text.html">10. Text</a></li>
+						<li><a href="http://www.w3.org/TR/SVG/painting.html">11. Painting: Filling, Stroking and Marker Symbols</a></li>
+						<li><a href="http://www.w3.org/TR/SVG/pservers.html">13. Gradients and Patterns</a> (Partial implementation)</li>
+						<li><a href="http://www.w3.org/TR/SVG/script.html">18. Scripting</a></li>
+						<li><a href="http://www.w3.org/TR/SVG/animate.html">19. Animation</a></li>
+						<li><a href="http://www.w3.org/TR/SVG/extend.html">23. Extensibility</a></li>
 					</ul>
 				</locale>
 				<locale xml:lang="ru">
