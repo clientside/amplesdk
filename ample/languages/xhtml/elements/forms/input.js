@@ -57,11 +57,25 @@ cXHTMLElement_input.handlers	= {
 			this.tabIndex	= this.getAttribute("tabIndex") * 1;
 		if (this.hasAttribute("accessKey"))
 			this.accessKey	= this.getAttribute("accessKey");
+		if (this.attributes["autofocus"])
+			this.focus();
 	},
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this)
 			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
 	}
+};
+
+cXHTMLElement_input.html524	= {
+	"hidden":	"hidden",
+	"password":	"password",
+	"checkbox":	"checkbox",
+	"radio":	"radio",
+	"file":		"file",
+	"submit":	"submit",
+	"image":	"image",
+	"reset":	"reset",
+	"button":	"button"
 };
 
 // Element Render: open
@@ -135,6 +149,7 @@ cXHTMLElement_input.prototype.$getTagOpen		= function() {
 		// .checked, @value (default/on)
 		// onchange
 		case "checkbox":// A checkbox
+		case "radio":	// A radio button
 			break;
 
 		// File Upload
@@ -180,7 +195,7 @@ cXHTMLElement_input.prototype.$getTagOpen		= function() {
 		default:
 			break;
 	}
-	aHtml.push('<input type="text" class="input--value"/>');
+	aHtml.push('<input type="' +(cXHTMLElement_input.html524[this.attributes.type] || "text")+ '" class="input--value input-type-' + this.attributes["type"]+ '"/>');
     return aHtml.join('');
 };
 

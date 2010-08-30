@@ -1,0 +1,7 @@
+datalist {
+	display: none;
+}
+
+input[type=hidden] {
+	display: none;
+}
