@@ -68,6 +68,41 @@ cSMILTimeElement.prototype.endElement	= function() {
 	fSMILTimeElement_endElement(this);
 };
 
+cSMILTimeElement.prototype.beginElementAt	= function(nOffset) {
+	// Validate arguments
+	fGuard(arguments, [
+		["offset",	cNumber]
+	]);
+
+	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+};
+
+cSMILTimeElement.prototype.endElementAt		= function(nOffset) {
+	// Validate arguments
+	fGuard(arguments, [
+		["offset",	cNumber]
+	]);
+
+	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+};
+
+cSMILTimeElement.prototype.seekElement	= function(nSeekTo) {
+	// Validate arguments
+	fGuard(arguments, [
+		["seekTo",	cNumber]
+	]);
+
+	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+};
+
+cSMILTimeElement.prototype.pauseElement	= function() {
+	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+};
+
+cSMILTimeElement.prototype.resumeElement= function() {
+	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+};
+
 //
 function fSMILTimeElement_beginElement(oElement) {
 //	console.info("begin element", oElement.tagName, oElement);

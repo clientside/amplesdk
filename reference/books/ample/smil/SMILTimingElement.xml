@@ -171,6 +171,36 @@
 					</locale>
 				</description>
 			</method>
+			<method name="pauseElement" type="Void">
+				<description>
+					<locale>
+						Pauses element.
+					</locale>
+				</description>
+			</method>
+			<method name="resumeElement" type="Void">
+				<description>
+					<locale>
+						Resumes element.
+					</locale>
+				</description>
+			</method>
+			<method name="seekElement" type="Void">
+				<arguments>
+					<argument name="seekTo">
+						<description>
+							<locale>
+								seekTo value.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Resumes element.
+					</locale>
+				</description>
+			</method>
 		</methods>
 	</members>
 </element>
