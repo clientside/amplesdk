@@ -145,7 +145,7 @@
 				<node title="Overview" url="ample/xmlschema/index.xml"/>
 				<node title="XML Schema" xurl="ample/xmlschema/xmlschema11-datatypes-ample.xsd"/>
 				<node title="Elements">
-					<node title="Simple Types">
+					<node title="Datatypes">
 						<node title="simpleType" url="ample/xmlschema/simpleType.xml" />
 						<!--  -->
 						<node title="union" url="ample/xmlschema/union.xml" />
@@ -171,7 +171,7 @@
 						<!--  -->
 						<node title="explicitTimezone" xurl="ample/xmlschema/explicitTimezone.xml" />
 					</node>
-					<node title="Complex Types">
+					<node title="Structures">
 						<node title="complexType" xurl="ample/xmlschema/complexType.xml" />
 						<!--  -->
 						<node title="override" xurl="ample/xmlschema/override.xml" />
