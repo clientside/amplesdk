@@ -80,7 +80,8 @@ cXHTMLElement_input.html524	= {
 
 // Element Render: open
 cXHTMLElement_input.prototype.$getTagOpen		= function() {
-	var aHtml	= ['<span class="' + (this.prefix ? this.prefix + '-' : '') + this.localName + ("class" in this.attributes ? ' ' + this.attributes["class"] : '') + '">'];
+	var sPrefix	= this.prefix ? this.prefix + '-' : '',
+		aHtml	= ['<span class="' + sPrefix + this.localName + ("class" in this.attributes ? ' ' + this.attributes["class"] : '') + (this.attributes["required"] ? ' ' + sPrefix + this.localName + '_required' : '')+ '">'];
 	switch (this.attributes["type"]) {
 		// Hidden
 		// .value
