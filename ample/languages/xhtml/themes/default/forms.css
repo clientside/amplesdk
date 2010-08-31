@@ -51,6 +51,7 @@ input::value {
 	padding: 0;
 	margin:	0;
 	vertical-align:top;
+	width: 100%;
 }
 
 input[type=range]::value {

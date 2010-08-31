@@ -209,7 +209,7 @@ cXHTMLElement_input.prototype.$getTagOpen		= function() {
 		default:
 			break;
 	}
-	aHtml.push(		'<input type="' +(cXHTMLElement_input.html524[this.attributes.type] || "text")+ '" class="' + sClassName + '--value ' + sClassNameType + '--value" ' + (this.attributes.name ? 'name="' + this.attributes.name + '"' : '')+ ' style="width:100%"/>');
+	aHtml.push(		'<input type="' +(cXHTMLElement_input.html524[this.attributes.type] || "text")+ '" class="' + sClassName + '--value ' + sClassNameType + '--value" ' + (this.attributes.name ? 'name="' + this.attributes.name + '"' : '')+ '/>');
     return aHtml.join('');
 };
 
