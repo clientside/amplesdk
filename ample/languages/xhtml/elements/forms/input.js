@@ -48,9 +48,11 @@ cXHTMLElement_input.prototype.stepDown	= function() {
 cXHTMLElement_input.handlers	= {
 	"focus":	function(oEvent) {
 		this.$getContainer("value").focus();
+		this.$getContainer("placeholder").style.display	= "none";
 	},
 	"blur":		function(oEvent) {
 		this.$getContainer("value").blur();
+		this.$getContainer("placeholder").style.display	= this.attributes.value ? "none" : "";
 	},
 	"DOMNodeInsertedIntoDocument":	function() {
 		if (!isNaN(this.getAttribute("tabIndex")))
@@ -80,8 +82,19 @@ cXHTMLElement_input.html524	= {
 
 // Element Render: open
 cXHTMLElement_input.prototype.$getTagOpen		= function() {
-	var sPrefix	= this.prefix ? this.prefix + '-' : '',
-		aHtml	= ['<span class="' + sPrefix + this.localName + ("class" in this.attributes ? ' ' + this.attributes["class"] : '') + (this.attributes["required"] ? ' ' + sPrefix + this.localName + '_required' : '')+ '">'];
+	var sClassName	=(this.prefix ? this.prefix + '-' : '') + this.localName,
+		sClassNameType	= sClassName + '-type-' +(this.attributes["type"] || "text"),
+		aHtml	= [];
+	aHtml.push('<span class="' +
+						sClassName + ' ' + sClassNameType +
+						("class" in this.attributes ? ' ' + this.attributes["class"] : '')+
+						(this.attributes["required"] ? ' ' +sClassName + '_required' : '')+
+				'" ' +(this.attributes.style ? ' style="' + this.attributes.style + '"' : '')+ '>');
+	aHtml.push(	'<div style="position:absolute;margin-top:-3px;white-space:nowrap;' + (this.getAttribute("value") == '' ? '' : 'display:none')+ '" class="' + sClassName + '--placeholder">' + this.getAttribute("placeholder") + '</div>');
+	aHtml.push(	'<div class="' + sClassName + '--field ' + sClassNameType + '--field" style="position:relative">');
+	aHtml.push(		'<span class="' + sClassName + '--before ' + sClassNameType + '--before" style="float:left"></span>');
+	aHtml.push(		'<span class="' + sClassName + '--after ' + sClassNameType + '--after" style="float:right"></span>');
+	aHtml.push(		'<span class="' + sClassName + '--button ' + sClassNameType + '--button" style="right:0;"></span>');
 	switch (this.attributes["type"]) {
 		// Hidden
 		// .value
@@ -196,13 +209,16 @@ cXHTMLElement_input.prototype.$getTagOpen		= function() {
 		default:
 			break;
 	}
-	aHtml.push('<input type="' +(cXHTMLElement_input.html524[this.attributes.type] || "text")+ '" class="input--value input-type-' +(this.attributes["type"] || "text")+ '" />');
+	aHtml.push(		'<input type="' +(cXHTMLElement_input.html524[this.attributes.type] || "text")+ '" class="' + sClassName + '--value ' + sClassNameType + '--value" ' + (this.attributes.name ? 'name="' + this.attributes.name + '"' : '')+ ' style="width:100%"/>');
     return aHtml.join('');
 };
 
 // Element Render: close (cancel double tag)
 cXHTMLElement_input.prototype.$getTagClose	= function() {
-	var aHtml	= [];
+	var sClassName	=(this.prefix ? this.prefix + '-' : '') + this.localName,
+		aHtml	= [];
+	aHtml.push(	'</div>');
+	aHtml.push(	'<div class="' + sClassName + '--dropdown" style="position:absolute;display:none"></div>');
 	aHtml.push('</span>');
 	return aHtml.join('');
 };

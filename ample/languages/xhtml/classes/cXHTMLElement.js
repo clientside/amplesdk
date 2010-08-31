@@ -50,7 +50,9 @@ cXHTMLElement.html524	= {
 	"header":	"div",
 	"nav":		"div",
 	//
-	"datalist":	"div"
+	"datalist":	"div",
+	"option":	"div",
+	"output":	"span"
 };
 
 // Default Element Render: open

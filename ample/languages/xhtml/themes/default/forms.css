@@ -3,22 +3,103 @@ datalist {
 }
 
 input {
-	display: inline-block;
 	border: solid 1px silver;
-	background-color: silver;
+	padding: 1px 0px;
+	width: 200px;
+	display: inline-block;
+}
+input[type=hidden] {
+	display: none;
 }
 
 input[type=checkbox],
 input[type=radio] {
 	border: none;
+	width: 18px;
 }
 
-input[type=hidden] {
-	display: none;
+input[type=button],
+input[type=image],
+input[type=reset],
+input[type=submit] {
+	width:	60px;
+}
+
+input[type=range] {
+	width:	200px;
+}
+
+input[type=number] {
+	width: 60px;
+}
+
+/* pseudo-states */
+input:focus {
+	outline: solid 1px green;
+}
+
+/* pseudo-elements */
+input::field {
+	line-height: 1em;
 }
 
 input::value {
 	border: none;
 	outline:none;
 	background-color: transparent;
+	color: inherit;
+	padding: 0;
+	margin:	0;
+	vertical-align:top;
+}
+
+input[type=range]::value {
+	display: none;
+}
+
+input::placeholder {
+	color: silver;
+	font-style: italic;
+}
+
+input[type=radio]::button,
+input[type=checkbox]::button,
+input[type=date]::button,
+input[type=time]::button,
+input[type=datetime]::button,
+input[type=datetime-local]::button,
+input[type=number]::button,
+input[type=color]::button,
+input[type=search]::button {
+	position:absolute;
+	background-color: red;
+	width: 16px;
+	height: 16px;
+	margin: 0 1px;
+}
+
+input[type=date]::field,
+input[type=time]::field,
+input[type=datetime]::field,
+input[type=datetime-local]::field,
+input[type=number]::field,
+input[type=color]::field,
+input[type=search]::field {
+	padding-right:18px;
+}
+
+/* */
+input[type=range]::before,
+input[type=range]::after {
+	vertical-align:top;
+	width:2px;
+	height: 1em;
+}
+
+input::before {
+	background-color: green;
+}
+
+input::after {
+	background-color: blue;
 }
