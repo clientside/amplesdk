@@ -7,6 +7,7 @@ input {
 	padding: 1px 0px;
 	width: 200px;
 	display: inline-block;
+	outline-color: white;
 }
 input[type=hidden] {
 	display: none;
@@ -35,7 +36,7 @@ input[type=number] {
 
 /* pseudo-states */
 input:focus {
-	outline: solid 1px green;
+	outline: solid 1px blue;
 }
 
 /* pseudo-elements */
