@@ -65,6 +65,7 @@
 		<mkdir dir="${target.ample.dir}" />
 
 		<antcall target="BUILD_AMPLE_RUNTIME" />
+		<antcall target="BUILD_AMPLE_PLUGINS" />
 		<antcall target="BUILD_AMPLE_LANGUAGES" />
 	</target>
 
@@ -666,6 +667,44 @@
 				<include name="media/**"/>
 			</fileset>
 		</copy>
+	</target>
+
+	<target name="BUILD_AMPLE_PLUGINS" unless="skip.ample.plugins">
+		<property name="source.ample.plugins.dir" value="${source.dir}/ample/plugins/" />
+		<property name="target.ample.plugins.dir" value="${target.dir}/ample/plugins/" />
+		<property name="temp.ample.plugins.dir" value="${temp.dir}/plugins/" />
+
+		<mkdir dir="${temp.ample.plugins.dir}" />
+		<mkdir dir="${target.ample.plugins.dir}" />
+
+		<antcall target="BUILD_AMPLE_PLUGINS_COOKIE" />
+		<antcall target="BUILD_AMPLE_PLUGINS_FORM" />
+		<antcall target="BUILD_AMPLE_PLUGINS_GLOB" />
+		<antcall target="BUILD_AMPLE_PLUGINS_STORAGE" />
+		<antcall target="BUILD_AMPLE_PLUGINS_TMPL" />
+
+		<!-- clean up temp dir -->
+		<delete dir="${temp.ample.plugins.dir}" />
+	</target>
+
+	<target name="BUILD_AMPLE_PLUGINS_COOKIE" unless="skip.ample.plugins.cookie">
+
+	</target>
+
+	<target name="BUILD_AMPLE_PLUGINS_FORM" unless="skip.ample.plugins.form">
+
+	</target>
+
+	<target name="BUILD_AMPLE_PLUGINS_GLOB" unless="skip.ample.plugins.glob">
+
+	</target>
+
+	<target name="BUILD_AMPLE_PLUGINS_STORAGE" unless="skip.ample.plugins.storage">
+
+	</target>
+
+	<target name="BUILD_AMPLE_PLUGINS_TMPL" unless="skip.ample.plugins.tmpl">
+
 	</target>
 
 	<!-- Examples -->

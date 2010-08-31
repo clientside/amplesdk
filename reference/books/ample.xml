@@ -245,6 +245,13 @@
 			</node>
 		</node>
 	</node>
+	<node title="Plugins" open="true">
+		<node title="Cookie" xhref="ample/plugins/cookie.xml"/>
+		<node title="Form" xhref="ample/plugins/form.xml"/>
+		<node title="Globalization" xhref="ample/plugins/glob.xml"/>
+		<node title="Storage" xhref="ample/plugins/storage.xml"/>
+		<node title="Templating" xhref="ample/plugins/tmpl.xml"/>
+	</node>
 	<node title="UI languages" open="true">
 		<!--node title="UI languages" /-->
 		<node title="HTML 5">
