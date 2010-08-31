@@ -31,10 +31,10 @@
 					</locale>
 				</description>
 			</property>
-			<property name="namespaces" type="Object" readonly="true">
+			<property name="prefixes" type="Object" readonly="true">
 				<description>
 					<locale>
-						Retrieves a reference to a hash object of namespaces collected from the root element of the hosting document.
+						Retrieves a reference to a hash object of namespace prefixes collected from the root element of the hosting document.
 					</locale>
 				</description>
 			</property>

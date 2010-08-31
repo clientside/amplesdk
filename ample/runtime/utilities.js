@@ -126,10 +126,12 @@ function fAML_processScripts() {
     	bReferenced;
 
 	function fHashToString(hHash) {
-		var aAttributes	= [], sAttribute;
-		for (sAttribute in oAmple.namespaces)
-			if (!(sAttribute in hHash) && oAmple.namespaces.hasOwnProperty(sAttribute))
-				hHash[sAttribute]	= oAmple.namespaces[sAttribute];
+		var aAttributes	= [], sAttribute, sPrefix;
+		for (sAttribute in oAmple.prefixes) {
+			sPrefix = "xmlns" + (sAttribute == '' ? '' : ':' + sAttribute);
+			if (!(sPrefix in hHash) && oAmple.prefixes.hasOwnProperty(sAttribute) && sAttribute != "toString")
+				hHash[sPrefix]	= oAmple.prefixes[sAttribute];
+		}
 		for (sAttribute in hHash)
 			if (hHash.hasOwnProperty(sAttribute))
 				aAttributes.push(' ' + sAttribute + '="' + hHash[sAttribute] + '"');

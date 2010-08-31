@@ -20,8 +20,9 @@ function fQuery(vArgument1, vArgument2, vArgument3) {
 			if (vArgument1.substr(0,1) == '<') {
 				// XML string
 				var aNameSpaces	= [];
-				for (var sKey in oAmple.namespaces)
-					aNameSpaces.push(sKey + '="' + oAmple.namespaces[sKey] + '"');
+				for (var sKey in oAmple.prefixes)
+					if (oAmple.prefixes.hasOwnProperty(sKey) && sKey != "toString")
+						aNameSpaces.push("xmlns" + (sKey == '' ? '' : ':') + sKey + '="' + oAmple.prefixes[sKey] + '"');
 				//
 				var sNameSpaces	= ' ' + aNameSpaces.join(' '),
 					oDocument	= new cDOMParser().parseFromString(
@@ -110,7 +111,7 @@ fQuery.prototype	= cAMLQuery.prototype;
 // Create Ample object
 var oAmple	= oAmple_document;
 oAmple.query	= fQuery;
-oAmple.namespaces	= {};
+oAmple.prefixes	= {};
 oAmple.activeElement= null;
 oAmple.readyState	= "loading";
 
@@ -221,28 +222,29 @@ oAmple.include	= function(sSrc) {
 };
 
 // Lookup namespaces
+var oPrefixes	= oAmple.prefixes;
 if (bTrident)
 	for (var nIndex = 0, aAttributes = oUADocument.namespaces, oAttribute, nLength = aAttributes.length; nIndex < nLength; nIndex++)
-		oAmple.namespaces["xmlns" + ':' + (oAttribute = aAttributes[nIndex]).name]	= oAttribute.urn;
+		oPrefixes[(oAttribute = aAttributes[nIndex]).name]	= oAttribute.urn;
 else
 	for (var nIndex = 0, aAttributes = oUADocument.documentElement.attributes, oAttribute; oAttribute = aAttributes[nIndex]; nIndex++)
-		if (oAttribute.nodeName.match(/^xmlns($|:)/))
-			oAmple.namespaces[oAttribute.nodeName]	= oAttribute.nodeValue;
-if (!oAmple.namespaces["xmlns"])
-	oAmple.namespaces["xmlns"]	= "http://www.w3.org/1999/xhtml";
-if (!oAmple.namespaces["xmlns:aml"])
-	oAmple.namespaces["xmlns:aml"]	= "http://www.amplesdk.com/ns/aml";
-if (!oAmple.namespaces["xmlns:ev"])
-	oAmple.namespaces["xmlns:ev"]	= "http://www.w3.org/2001/xml-events";
-if (!oAmple.namespaces["xmlns:xi"])
-	oAmple.namespaces["xmlns:xi"]	= "http://www.w3.org/2001/XInclude";
-if (!oAmple.namespaces["xmlns:smil"])
-	oAmple.namespaces["xmlns:smil"]	= "http://www.w3.org/2008/SMIL30/";
-if (!oAmple.namespaces["xmlns:xlink"])
-	oAmple.namespaces["xmlns:xlink"]= "http://www.w3.org/1999/xlink";
+		if (oAttribute.nodeName.match(/^xmlns($|:)(.*)/))
+			oPrefixes[cRegExp.$2]	= oAttribute.nodeValue;
+if (!oPrefixes[''])
+	oPrefixes['']	= "http://www.w3.org/1999/xhtml";
+if (!oPrefixes["aml"])
+	oPrefixes["aml"]	= "http://www.amplesdk.com/ns/aml";
+if (!oPrefixes["ev"])
+	oPrefixes["ev"]	= "http://www.w3.org/2001/xml-events";
+if (!oPrefixes["xi"])
+	oPrefixes["xi"]	= "http://www.w3.org/2001/XInclude";
+if (!oPrefixes["smil"])
+	oPrefixes["smil"]	= "http://www.w3.org/2008/SMIL30/";
+if (!oPrefixes["xlink"])
+	oPrefixes["xlink"]= "http://www.w3.org/1999/xlink";
 //
 function fAmple_resolver(sPrefix) {
-	return oAmple.namespaces["xmlns" + (sPrefix ? ':' + sPrefix : '')] || null;
+	return oAmple.prefixes[sPrefix] || null;
 };
 
 //

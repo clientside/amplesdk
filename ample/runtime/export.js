@@ -124,8 +124,8 @@ if (!window.JSON)
 // Special virtual type
 fAMLExporter_wrapMember(cArguments,	"Arguments");
 // Tweaks and tricks
-fAMLExporter_wrap(oAmple.namespaces,	"namespaces");
-fAMLExporter_wrap(fAmple_resolver,		"resolver");
+fAMLExporter_wrap(oAmple.prefixes,	"prefixes");
+fAMLExporter_wrap(fAmple_resolver,	"resolver");
 fAMLExporter_wrap(oAmple.documentElement.$getContainer,		"$getContainer");
 
 //
