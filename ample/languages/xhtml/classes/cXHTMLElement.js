@@ -43,13 +43,15 @@ cXHTMLElement.mapAttribute	= function(oElement, sName, sValue) {
 };
 
 cXHTMLElement.html524	= {
-		"article":	"div",
-		"aside":	"div",
-		"section":	"div",
-		"footer":	"div",
-		"header":	"div",
-		"nav":		"div"
-	};
+	"article":	"div",
+	"aside":	"div",
+	"section":	"div",
+	"footer":	"div",
+	"header":	"div",
+	"nav":		"div",
+	//
+	"datalist":	"div"
+};
 
 // Default Element Render: open
 cXHTMLElement.prototype.$getTagOpen	= function() {
