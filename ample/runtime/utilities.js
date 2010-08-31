@@ -389,8 +389,8 @@ function fAML_parseStyleSheet(sCSS, sUri) {
 			aCSS.push(aRule[1]
 //						.replace(/([\s>+~,])(?:([\w]+)\|)?([\w]+)/g, '$1.$2-$3')		// Element
 						.replace(/\|/g, '-')							// Namespace
-						.replace(/([\s>+~,]|not\()([\w])/g, '$1.$2')	// Element
-						.replace(/\[([\w]+)=?([\w]+)?\]/g, '-$1-$2')	// Attribute
+						.replace(/([\s>+~,]|not\()([\w-])/g, '$1.$2')	// Element
+						.replace(/\[([\w-]+)=?([\w-]+)?\]/g, '-$1-$2')	// Attribute
 						.replace(/::/g, '--')							// Pseudo-element
 						.replace(/:nth-child\((\d+)\)/g, '_nth-child-$1')	// Pseudo-class nth-child
 						.replace(/:(?!last-child|first-child|not)/g, '_')	// Pseudo-class
