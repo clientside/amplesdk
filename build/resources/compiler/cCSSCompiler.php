@@ -105,8 +105,8 @@
 
 					$sCSSSelector	= $aRules[1][$nIndex];
 					$sCSSSelector	= preg_replace("/\|/", '-', $sCSSSelector);								// Namespace
-					$sCSSSelector	= preg_replace("/(^|[\s>+~,}]|not\()([\w])/", '$1.$2', $sCSSSelector);	// Element
-					$sCSSSelector	= preg_replace("/\[([\w]+)=?([\w]+)?\]/", '-$1-$2', $sCSSSelector);		// Attribute
+					$sCSSSelector	= preg_replace("/(^|[\s>+~,}]|not\()([\w-])/", '$1.$2', $sCSSSelector);	// Element
+					$sCSSSelector	= preg_replace("/\[([\w-]+)=?([\w-]+)?\]/", '-$1-$2', $sCSSSelector);	// Attribute
 					$sCSSSelector	= preg_replace("/::/", '--', $sCSSSelector);							// Pseudo-element
 					$sCSSSelector	= preg_replace("/:nth-child\((\d+)\)/", '_nth-child-$1', $sCSSSelector);// Pseudo-class nth-child
 					$sCSSSelector	= preg_replace("/:(?!last-child|first-child|not)/", '_', $sCSSSelector);// Pseudo-class
