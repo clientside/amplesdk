@@ -326,7 +326,29 @@ cAMLDocument.prototype.getElementsByTagNameNS	= function(sNameSpaceURI, sLocalNa
 function fAMLDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse) {
 	switch (oElementDOM.nodeType) {
 		case cAMLNode.ELEMENT_NODE:
-			var sNameSpaceURI	= oElementDOM.namespaceURI || null,
+			var sNameSpaceURI	= oElementDOM.namespaceURI || (bTrident
+					?(function (oNode/*, sPrefix*/) {
+						// Lookup entity reference node
+						while (oNode = oNode.parentNode)
+							if (oNode.nodeType == cAMLNode.ENTITY_REFERENCE_NODE)
+								break;
+						// Lookup default namespace URI (IE doesn't allow prefixed elements in entity references)
+						if (oNode && oNode.parentNode)
+							return oNode.parentNode.namespaceURI;
+/*
+						// Lookup namespace URI used in element
+						for (; oNode && oNode.nodeType != cAMLNode.DOCUMENT_NODE; oNode = oNode.parentNode)
+							if (oNode.prefix == sPrefix)
+								return oNode.namespaceURI;
+							else
+							if (oNode.nodeType == cAMLNode.ELEMENT_NODE)
+								for (var nIndex = 0, nLength = oNode.attributes.length, sAttribute; nIndex < nLength; nIndex++)
+									if ((sAttribute = oNode.attributes[nIndex].nodeName) && sAttribute.indexOf("xmlns" + ':') == 0 && sAttribute.substr(6) == sPrefix)
+										return oNode.attributes[nIndex].value;
+*/
+						return null;
+					})(oElementDOM/*, oElementDOM.prefix*/)
+					: null),
 				sLocalName		= oElementDOM.localName || oElementDOM.baseName;
 			// XInclude 1.0
 			if (sNameSpaceURI == "http://www.w3.org/2001/XInclude") {
@@ -402,10 +424,9 @@ function fAMLDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse
 			break;
 
 		case cAMLNode.ENTITY_REFERENCE_NODE:
-			if (oNode.lastChild instanceof cAMLCharacterData)
-				fAMLCharacterData_appendData(oNode.lastChild, oElementDOM.text);
-			else
-				fAMLNode_appendChild(oNode, fAMLDocument_createTextNode(oDocument, oElementDOM.text));
+			// This is normally  executed only in IE
+			for (var nIndex = 0, nLength = oElementDOM.childNodes.length; nIndex < nLength; nIndex++)
+				fAMLDocument_importNode(oDocument, oElementDOM.childNodes[nIndex], bDeep, oNode, bCollapse);
 			break;
 
 		case cAMLNode.TEXT_NODE:
