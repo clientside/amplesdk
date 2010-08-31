@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!DOCTYPE html
+[
+<!ENTITY hr "<div><hr /></div>">
+<!ENTITY text "some text">
+]>
+<div xmlns="http://www.w3.org/1999/xhtml" xmlns:x="http://www.w3.org/1999/xhtml">
+	<div>include &amp; before</div>
+	<div>before &hr; after</div>
+	<div>before &text; after</div>
+	<div>include &amp; after</div>
+</div>
