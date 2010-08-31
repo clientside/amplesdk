@@ -5,6 +5,7 @@ datalist {
 input {
 	display: inline-block;
 	border: solid 1px silver;
+	background-color: silver;
 }
 
 input[type=checkbox],
@@ -14,4 +15,10 @@ input[type=radio] {
 
 input[type=hidden] {
 	display: none;
+}
+
+input::value {
+	border: none;
+	outline:none;
+	background-color: transparent;
 }
