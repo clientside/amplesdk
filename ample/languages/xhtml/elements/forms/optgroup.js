@@ -18,5 +18,22 @@ cXHTMLElement_optgroup.handlers	= {
 	}
 };
 
+cXHTMLElement_optgroup.prototype.$getTagOpen	= function() {
+    var sClassName	= (this.prefix ? this.prefix + '-' : '') + this.localName,
+    	aHtml   =['<li'];
+    for (var sName in this.attributes)
+    	if (this.attributes.hasOwnProperty(sName) && sName != "class" && sName != "id" && sName.indexOf(':') ==-1)
+    		aHtml.push(' ' + sName + '="' + this.attributes[sName].replace(/"/g, '\"') + '"');
+    aHtml.push(' class="' + sClassName + ("class" in this.attributes ? ' ' + this.attributes["class"] : '') + '">');
+    aHtml.push(		'<div class="' + sClassName + '--input">' +(this.attributes.label || '')+ '</div>');
+    aHtml.push(		'<ul class="' + sClassName + '--gateway">');
+    return aHtml.join('');
+};
+
+cXHTMLElement_optgroup.prototype.$getTagClose	= function() {
+	return 		'</ul>\
+			</li>';
+};
+
 // Register Element
 ample.extend(cXHTMLElement_optgroup);

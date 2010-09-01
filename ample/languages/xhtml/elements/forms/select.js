@@ -75,12 +75,24 @@ cXHTMLElement_select.handlers	= {
 
 // Renderers
 cXHTMLElement_select.prototype.$getTagOpen	= function() {
-    var sHtml   = '<' + this.localName + ' onchange="ample.$instance(this)._onChange(event)"';
+    var sClassName	= (this.prefix ? this.prefix + '-' : '') + this.localName,
+    	aHtml   = ['<span'];
     for (var sName in this.attributes)
     	if (this.attributes.hasOwnProperty(sName) && sName != "class" && sName != "id" && sName.indexOf(':') ==-1)
-			sHtml  += ' ' + sName + '="' + this.getAttribute(sName).replace(/"/g, '\"') + '"';
-	sHtml	+= ' class="' + (this.prefix ? this.prefix + '-' : '') + this.localName + ("class" in this.attributes ? ' ' + this.attributes["class"] : '') + '"';
-    return sHtml + '>';
+    		aHtml.push(' ' + sName + '="' + this.attributes[sName].replace(/"/g, '\"') + '"');
+    aHtml.push(' class="' + sClassName + ("class" in this.attributes ? ' ' + this.attributes["class"] : '') + '">');
+	aHtml.push(	'<div style="position:absolute;margin-top:-2px;white-space:nowrap" class="' + sClassName + '--placeholder">' +(this.getAttribute("placeholder") || '')+ '</div>');
+	aHtml.push(	'<div class="' + sClassName + '--field" style="position:relative">');
+	aHtml.push(		'<span class="' + sClassName + '--button" style="right:0;"></span>');
+	aHtml.push(		'<div class="' + sClassName + '--value"></div>');
+	aHtml.push(	'</div>');
+    aHtml.push(	'<ul class="' + sClassName + '--popup ' + sClassName + '--gateway" style="position:absolute">');
+    return aHtml.join('');
+};
+
+cXHTMLElement_select.prototype.$getTagClose	= function() {
+	return 		'</ul>\
+			</span>';
 };
 
 // Register Element

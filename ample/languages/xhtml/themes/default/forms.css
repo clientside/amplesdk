@@ -2,13 +2,23 @@ datalist {
 	display: none;
 }
 
-input {
+input,
+textarea,
+select {
 	border: solid 1px silver;
 	padding: 1px 0px;
+	margin:	0;
 	width: 200px;
 	display: inline-block;
+	height: 16px;
 	outline-color: white;
 }
+
+textarea,
+select[multiple] {
+	height: 100px;
+}
+
 input[type=hidden] {
 	display: none;
 }
@@ -31,21 +41,42 @@ input[type=range] {
 	width:	200px;
 }
 
+input[type=datetime],
+input[type=datetime-local] {
+	width:	140px;
+}
+
+input[type=date] {
+	width:	90px;
+}
+
+input[type=time] {
+	width:	70px;
+}
+
+input[type=month] {
+	width:	40px;
+}
+
+input[type=week] {
+	width:	40px;
+}
+
 input[type=number] {
 	width: 60px;
 }
 
 /* pseudo-states */
-input:focus {
+input:focus,
+textarea:focus,
+select:focus {
 	outline: solid 1px blue;
 }
 
 /* pseudo-elements */
-input::field {
-	line-height: 1em;
-}
-
-input::value {
+input::value,
+textarea::value,
+select::value {
 	border: none;
 	outline:none;
 	background-color: transparent;
@@ -81,11 +112,14 @@ input[type=date]::button,
 input[type=time]::button,
 input[type=datetime]::button,
 input[type=datetime-local]::button,
+input[type=week]::button,
+input[type=month]::button,
 input[type=number]::button,
 input[type=color]::button,
 input[type=range]::button,
 input[type=file]::button,
-input[type=search]::button {
+input[type=search]::button,
+select::button {
 	position:absolute;
 	background-color: red;
 	width: 16px;
@@ -99,7 +133,8 @@ input[type=datetime]::field,
 input[type=datetime-local]::field,
 input[type=number]::field,
 input[type=color]::field,
-input[type=search]::field {
+input[type=search]::field,
+select::field {
 	padding-right:18px;
 }
 
@@ -108,7 +143,7 @@ input[type=range]::before,
 input[type=range]::after {
 	vertical-align:top;
 	width:2px;
-	height: 1em;
+	height: 16px;
 }
 
 input::before {

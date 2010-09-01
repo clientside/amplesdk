@@ -5,12 +5,13 @@
 		<script type="text/javascript" src="../../../ample/runtime.js"></script>
 		<script type="text/javascript" src="../../../ample/languages/xhtml/xhtml.js"></script>
 		<link type="text/css" href="../../../ample/languages/xhtml/themes/default/style.css" rel="stylesheet"/>
-<style type="text/ample+css">
+<style>
 html {
 	font-family:Verdana;
-	font-size:0.95em;
+	font-size:0.85em;
 }
-
+</style>
+<style type="text/ample+css">
 
 h1 {
 	color:#5999DE;
@@ -35,7 +36,7 @@ label {
 	padding: 0;
 	text-align: right;
 }
-input, textarea {
+input, textarea, select {
 	margin-left:10px;
 }
 .entry-button {
@@ -59,6 +60,11 @@ input:required {
         <label for="form-1">Name (required) </label>
         <input id="form-1"  name= "haha" type="text" autofocus="autofocus" required="required"/>
         &lt;- autofocus here </div>
+    <!-- entry end -->
+    <div class="entry">
+        <label for="form-0">Password (req)</label>
+        <input id="form-0"  name= "pass" type="password" required="required"/>
+    </div>
     <!-- entry end -->
     <div class="entry">
         <label for="form-2">Title</label>
@@ -86,8 +92,8 @@ input:required {
     </div>
     <!-- entry end -->
     <div class="entry">
-        <label for="form-51">Email</label>
-        <input id="form-51"  name="url" type="url" />
+        <label for="form-51">Search ?</label>
+        <input id="form-51"  name="search" type="search" />
     </div>
     <!-- entry end -->
     <div class="entry">
@@ -97,7 +103,23 @@ input:required {
     <!-- entry end -->
     <div class="entry">
         <label for="form-7">Datetime of Birth</label>
-        <input id="form-7"  name="dob" type="datetime" />
+        <input id="form-7"  name="dob" type="datetime" value="1990-12-05T12:33:44"/>
+    </div>
+    <!-- entry end -->
+    <div class="entry">
+        <label for="form-70">Datetime of Birth 1</label>
+        <input id="form-70"  name="dob" type="datetime-local" value="1990-12-05T12:33:44"/>
+    </div>
+    <!-- entry end -->
+    <div class="entry">
+        <label for="form-71">Datetime of Birth 2</label>
+        <input id="form-71"  name="dob_date" type="date" value="1990-12-05"/>
+        <input id="form-72"  name="dob_time" type="time" value="12:33:44"/>
+    </div>
+    <div class="entry">
+        <label for="form-91">Datetime of Birth 3</label>
+        <input id="form-91"  name="dob_month" type="month" value="12"/>
+        <input id="form-92"  name="dob_week" type="week" value="45"/>
     </div>
     <!-- entry end -->
     <div class="entry">
@@ -134,6 +156,25 @@ input:required {
     <div class="entry">
     	<label for="form-14">Picture</label>
     	<input id="form-14" type="file" />
+    </div>
+    <!-- entry end -->
+    <div class="entry">
+    	<label for="form-15">Select</label>
+    	<select id="form-15">
+    		<option>Value 0</option>
+			<optgroup label="Value 1">
+				<option>Value 1.0</option>
+				<option>Value 1.2</option>
+				<option>Value 1.2</option>
+			</optgroup>
+			<option>Value 2</option>
+			<option>Value 3</option>
+    	</select>
+    </div>
+    <!-- entry end -->
+    <div class="entry">
+    	<label for="form-16">About me</label>
+    	<textarea id="form-16"></textarea>
     </div>
     <!-- entry end -->
     <div class="entry-button">

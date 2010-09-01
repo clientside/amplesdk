@@ -108,7 +108,7 @@ cXHTMLElement_input.prototype.$getTagOpen		= function() {
 						(this.attributes["required"] ? ' ' +sClassName + '_required' : '')+
 						(this.attributes["disabled"] ? ' ' + sClassName + '_disabled' : '')+
 				'" ' +(this.attributes.style ? ' style="' + this.attributes.style + '"' : '')+ '>');
-	aHtml.push(	'<div style="position:absolute;margin-top:-3px;white-space:nowrap;' + (this.getAttribute("value") == '' ? '' : 'display:none')+ '" class="' + sClassName + '--placeholder">' + this.getAttribute("placeholder") + '</div>');
+	aHtml.push(	'<div style="position:absolute;margin-top:-2px;white-space:nowrap;' + (this.getAttribute("value") == '' ? '' : 'display:none')+ '" class="' + sClassName + '--placeholder">' +(this.getAttribute("placeholder") || '')+ '</div>');
 	aHtml.push(	'<div class="' + sClassName + '--field ' + sClassNameType + '--field" style="position:relative">');
 	aHtml.push(		'<span class="' + sClassName + '--before ' + sClassNameType + '--before" style="float:left"></span>');
 	aHtml.push(		'<span class="' + sClassName + '--after ' + sClassNameType + '--after" style="float:right"></span>');
@@ -243,7 +243,7 @@ cXHTMLElement_input.prototype.$getTagClose	= function() {
 	var sClassName	=(this.prefix ? this.prefix + '-' : '') + this.localName,
 		aHtml	= [];
 	aHtml.push(	'</div>');
-	aHtml.push(	'<div class="' + sClassName + '--dropdown" style="position:absolute;display:none"></div>');
+	aHtml.push(	'<div class="' + sClassName + '--popup" style="position:absolute;display:none"></div>');
 	aHtml.push('</span>');
 	return aHtml.join('');
 };

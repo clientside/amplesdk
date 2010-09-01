@@ -9,6 +9,7 @@
 
 var cXHTMLElement_option	= function(){};
 cXHTMLElement_option.prototype	= new cXHTMLElement("option");
+cXHTMLElement_option.prototype.$selectable	= false;
 
 // Class Events Handlers
 cXHTMLElement_option.handlers	= {
