@@ -47,14 +47,30 @@ cXHTMLElement_input.prototype.stepDown	= function() {
 // Class Events Handlers
 cXHTMLElement_input.handlers	= {
 	"focus":	function(oEvent) {
-		this.$getContainer("value").focus();
+		try {this.$getContainer("value").focus();}catch(e){}
 		this.$getContainer("placeholder").style.display	= "none";
 	},
 	"blur":		function(oEvent) {
-		this.$getContainer("value").blur();
+		try {this.$getContainer("value").blur();}catch(e){}
 		this.$getContainer("placeholder").style.display	= this.attributes.value ? "none" : "";
 	},
-	"DOMNodeInsertedIntoDocument":	function() {
+	"click":	function(oEvent) {
+		if (oEvent.target == this && oEvent.$pseudoTarget == this.$getContainer("button"))
+			switch (this.attributes["type"]) {
+				case "file":
+					this.$activate();
+					break
+			}
+	},
+	"DOMActivate":	function(oEvent) {
+		if (oEvent.target == this)
+			switch (this.attributes["type"]) {
+				case "file":
+					this.$getContainer("value").click();
+					break;
+			}
+	},
+	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		if (!isNaN(this.getAttribute("tabIndex")))
 			this.tabIndex	= this.getAttribute("tabIndex") * 1;
 		if (this.hasAttribute("accessKey"))
@@ -89,6 +105,7 @@ cXHTMLElement_input.prototype.$getTagOpen		= function() {
 						sClassName + ' ' + sClassNameType +
 						("class" in this.attributes ? ' ' + this.attributes["class"] : '')+
 						(this.attributes["required"] ? ' ' +sClassName + '_required' : '')+
+						(this.attributes["disabled"] ? ' ' + sClassName + '_disabled' : '')+
 				'" ' +(this.attributes.style ? ' style="' + this.attributes.style + '"' : '')+ '>');
 	aHtml.push(	'<div style="position:absolute;margin-top:-3px;white-space:nowrap;' + (this.getAttribute("value") == '' ? '' : 'display:none')+ '" class="' + sClassName + '--placeholder">' + this.getAttribute("placeholder") + '</div>');
 	aHtml.push(	'<div class="' + sClassName + '--field ' + sClassNameType + '--field" style="position:relative">');
@@ -209,7 +226,14 @@ cXHTMLElement_input.prototype.$getTagOpen		= function() {
 		default:
 			break;
 	}
-	aHtml.push(		'<input type="' +(cXHTMLElement_input.html524[this.attributes.type] || "text")+ '" class="' + sClassName + '--value ' + sClassNameType + '--value" ' + (this.attributes.name ? 'name="' + this.attributes.name + '"' : '')+ '/>');
+	aHtml.push(		'<input class="' + sClassName + '--value ' + sClassNameType + '--value" \
+						type="' +(cXHTMLElement_input.html524[this.attributes.type] || "text")+ '" \
+						' + (this.attributes["readonly"] ? 'readonly="true"' : '') + ' \
+						' + (this.attributes["disabled"] ? 'disabled="true"' : '') + ' \
+						' + (this.attributes["maxlength"] ? 'maxlength="' + this.attributes["maxlength"] + '"' : '') + ' \
+						' + (this.attributes["value"] ? 'value="' + this.attributes["value"] + '"' : '') + ' \
+						' + (this.attributes.name ? 'name="' + this.attributes.name + '"' : '')+ ' \
+					/>');
     return aHtml.join('');
 };
 

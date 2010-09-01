@@ -13,6 +13,7 @@ input[type=hidden] {
 	display: none;
 }
 
+input[type=file],
 input[type=checkbox],
 input[type=radio] {
 	border: none;
@@ -59,6 +60,16 @@ input[type=range]::value {
 	display: none;
 }
 
+input[type=file]::field {
+	overflow: hidden;
+}
+
+input[type=file]::value {
+	opacity: 0;
+	width: 16px;
+	height: 1em;
+}
+
 input::placeholder {
 	color: silver;
 	font-style: italic;
@@ -72,6 +83,8 @@ input[type=datetime]::button,
 input[type=datetime-local]::button,
 input[type=number]::button,
 input[type=color]::button,
+input[type=range]::button,
+input[type=file]::button,
 input[type=search]::button {
 	position:absolute;
 	background-color: red;
