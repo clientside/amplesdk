@@ -47,11 +47,12 @@ cXHTMLElement_input.prototype.stepDown	= function() {
 // Class Events Handlers
 cXHTMLElement_input.handlers	= {
 	"focus":	function(oEvent) {
-		try {this.$getContainer("value").focus();}catch(e){}
+		var that	= this;
+		setTimeout(function(){try {that.$getContainer("value").focus();that.$getContainer("field").scrollLeft=0;}catch(e){}},0);
 		this.$getContainer("placeholder").style.display	= "none";
 	},
 	"blur":		function(oEvent) {
-		try {this.$getContainer("value").blur();}catch(e){}
+//		try {this.$getContainer("value").blur();}catch(e){}
 		this.$getContainer("placeholder").style.display	= this.attributes.value ? "none" : "";
 	},
 	"click":	function(oEvent) {
