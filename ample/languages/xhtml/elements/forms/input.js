@@ -102,10 +102,9 @@ cXHTMLElement_input.prototype.$getTagOpen		= function() {
 	var sClassName	=(this.prefix ? this.prefix + '-' : '') + this.localName,
 		sClassNameType	= sClassName + '-type-' +(this.attributes["type"] || "text"),
 		aHtml	= [];
-	aHtml.push('<span class="' +
-						sClassName + ' ' + sClassNameType +
+	aHtml.push('<span class="' + sClassName + ' ' + sClassNameType +
 						("class" in this.attributes ? ' ' + this.attributes["class"] : '')+
-						(this.attributes["required"] ? ' ' +sClassName + '_required' : '')+
+						(this.attributes["required"] ? ' ' + sClassName + '_required' : '')+
 						(this.attributes["disabled"] ? ' ' + sClassName + '_disabled' : '')+
 				'" ' +(this.attributes.style ? ' style="' + this.attributes.style + '"' : '')+ '>');
 	aHtml.push(	'<div style="position:absolute;margin-top:-2px;white-space:nowrap;' + (this.getAttribute("value") == '' ? '' : 'display:none')+ '" class="' + sClassName + '--placeholder">' +(this.getAttribute("placeholder") || '')+ '</div>');
@@ -235,6 +234,8 @@ cXHTMLElement_input.prototype.$getTagOpen		= function() {
 						' + (this.attributes["value"] ? 'value="' + this.attributes["value"] + '"' : '') + ' \
 						' + (this.attributes.name ? 'name="' + this.attributes.name + '"' : '')+ ' \
 					/>');
+	aHtml.push(	'</div>');
+	aHtml.push(	'<div class="' + sClassName + '--popup" style="position:absolute;display:none">');
     return aHtml.join('');
 };
 
@@ -243,7 +244,6 @@ cXHTMLElement_input.prototype.$getTagClose	= function() {
 	var sClassName	=(this.prefix ? this.prefix + '-' : '') + this.localName,
 		aHtml	= [];
 	aHtml.push(	'</div>');
-	aHtml.push(	'<div class="' + sClassName + '--popup" style="position:absolute;display:none"></div>');
 	aHtml.push('</span>');
 	return aHtml.join('');
 };

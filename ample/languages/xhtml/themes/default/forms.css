@@ -19,6 +19,15 @@ select[multiple] {
 	height: 100px;
 }
 
+select[multiple] {
+	overflow: auto;
+	overflow-x: hidden;
+}
+
+select[multiple]::field {
+	display: none;
+}
+
 input[type=hidden] {
 	display: none;
 }
@@ -152,4 +161,31 @@ input::before {
 
 input::after {
 	background-color: blue;
+}
+
+/* */
+select::value {
+	cursor: default;
+}
+
+input::popup,
+select::popup {
+	border: solid 1px silver;
+	background-color: pink;
+	width: inherit;
+}
+
+optgroup::gateway {
+	padding-left: 20px;
+}
+
+option,
+optgroup::value {
+	background-color: lightblue;
+}
+
+option:hover,
+optgroup::value:hover {
+	background-color: white;
+	color: black;
 }

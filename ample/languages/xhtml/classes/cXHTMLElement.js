@@ -51,7 +51,7 @@ cXHTMLElement.html524	= {
 	"nav":		"div",
 	//
 	"datalist":	"div",
-	"option":	"li",
+	"option":	"div",
 	"output":	"span"
 };
 
