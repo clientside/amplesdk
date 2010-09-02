@@ -23,6 +23,7 @@ cAMLElement.prototype.style	= null;
 cAMLElement.prototype.$hoverable	= false;
 
 //
+cAMLElement.prototype.contentFragment	= null;
 cAMLElement.prototype.$childNodesAnonymous	= null;
 
 // Private Variables

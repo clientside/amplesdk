@@ -796,6 +796,13 @@
 				</description>
 			</property>
 			<!-- Ample SDK -->
+			<property name="contentFragment" type="AMLFragmentNode" readonly="false">
+				<description>
+					<locale>
+						A reference to the anonymous subtree. The subtree should be created in constructor.
+					</locale>
+				</description>
+			</property>
 			<property name="$childNodesAnonymous" type="AMLNodeList" readonly="true">
 				<description>
 					<locale>

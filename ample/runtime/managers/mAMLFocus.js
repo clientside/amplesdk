@@ -66,24 +66,29 @@ function fAMLFocus_blur(oElement) {
 
 /* Focus Group */
 function fAMLFocus_getFocusGroupNext(oElement, nTabIndex) {
-	for (var oParent = oElement, oFocusGroup/*, aChildren*/; oParent; oParent = oParent.parentNode)
-		if (oParent == oElement && oParent.firstChild && (oFocusGroup = fAMLFocus_getFocusGroupNextChild(oParent.firstChild, nTabIndex)))
-			return oFocusGroup;
-		else
-//		if ((aChildren = oParent.$childNodesAnonymous) && aChildren.length &&(oFocusGroup = fAMLFocus_getFocusGroupNextChild(aChildren[0], nTabIndex, true)))
-//			return oFocusGroup;
-//		else
+	for (var oParent = oElement, oFocusGroup/*, aChildren*/; oParent; oParent = oParent.parentNode) {
+		if (oParent == oElement) {
+			if (oParent.firstChild && (oFocusGroup = fAMLFocus_getFocusGroupNextChild(oParent.firstChild, nTabIndex)))
+				return oFocusGroup;
+			if (oParent.contentFragment && (oFocusGroup = fAMLFocus_getFocusGroupNextChild(oParent.contentFragment.firstChild, nTabIndex)))
+				return oFocusGroup;
+//			if ((aChildren = oParent.$childNodesAnonymous) && aChildren.length &&(oFocusGroup = fAMLFocus_getFocusGroupNextChild(aChildren[0], nTabIndex, true)))
+//				return oFocusGroup;
+		}
 		if (oParent == oBrowser_modalNode)
 			break;
-		else
 		if (oParent.nextSibling && (oFocusGroup = fAMLFocus_getFocusGroupNextChild(oParent.nextSibling, nTabIndex)))
 			return oFocusGroup;
+	}
 };
 
 function fAMLFocus_getFocusGroupNextChild(oElement, nTabIndex, bDeep) {
 	for (var oSibling = oElement, oFocusGroup/*, aChildren*/; oSibling; oSibling = oSibling.nextSibling) {
 		if (fAMLFocus_isTabStop(oSibling, nTabIndex, bDeep))
 			return oSibling;
+		else
+		if (oSibling.contentFragment && (oFocusGroup = fAMLFocus_getFocusGroupNextChild(oSibling.contentFragment.firstChild, nTabIndex)))
+			return oFocusGroup;
 		else
 		if (oSibling.firstChild && (oFocusGroup = fAMLFocus_getFocusGroupNextChild(oSibling.firstChild, nTabIndex)))
 			return oFocusGroup;
@@ -95,18 +100,16 @@ function fAMLFocus_getFocusGroupNextChild(oElement, nTabIndex, bDeep) {
 };
 
 function fAMLFocus_getFocusGroupPrevious(oElement, nTabIndex) {
-	for (var oParent = oElement, oFocusGroup/*, aChildren*/; oParent; oParent = oParent.parentNode)
+	for (var oParent = oElement, oFocusGroup/*, aChildren*/; oParent; oParent = oParent.parentNode) {
 		if (oParent != oElement && fAMLFocus_isTabStop(oParent, nTabIndex))
 			return oParent;
-		else
 //		if ((aChildren = oParent.$childNodesAnonymous) && aChildren.length &&(oFocusGroup = fAMLFocus_getFocusGroupPreviousChild(aChildren[aChildren.length - 1], nTabIndex, true)))
 //			return oFocusGroup;
-//		else
 		if (oParent == oBrowser_modalNode)
 			break;
-		else
 		if (oParent.previousSibling && (oFocusGroup = fAMLFocus_getFocusGroupPreviousChild(oParent.previousSibling, nTabIndex)))
 			return oFocusGroup;
+	}
 };
 
 function fAMLFocus_getFocusGroupPreviousChild(oElement, nTabIndex, bDeep) {
@@ -115,6 +118,9 @@ function fAMLFocus_getFocusGroupPreviousChild(oElement, nTabIndex, bDeep) {
 //		if ((aChildren = oSibling.$childNodesAnonymous) && aChildren.length &&(oFocusGroup = fAMLFocus_getFocusGroupPreviousChild(aChildren[aChildren.length-1], nTabIndex, true)))
 //			return oFocusGroup;
 //		else
+		if (oSibling.contentFragment &&(oFocusGroup = fAMLFocus_getFocusGroupPreviousChild(oSibling.contentFragment.lastChild, nTabIndex)))
+			return oFocusGroup;
+		else
 		if (oSibling.lastChild && (oFocusGroup = fAMLFocus_getFocusGroupPreviousChild(oSibling.lastChild, nTabIndex)))
 			return oFocusGroup;
 		else
