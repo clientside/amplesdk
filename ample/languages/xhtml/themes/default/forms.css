@@ -182,6 +182,7 @@ optgroup::gateway {
 option,
 optgroup::value {
 	background-color: lightblue;
+	cursor: default;
 }
 
 option:hover,

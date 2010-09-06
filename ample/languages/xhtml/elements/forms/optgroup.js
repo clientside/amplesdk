@@ -12,11 +12,13 @@ cXHTMLElement_optgroup.prototype	= new cXHTMLElement("optgroup");
 
 // Class Events Handlers
 cXHTMLElement_optgroup.handlers	= {
-	"mouseenter":	function(oEvent) {
-		this.$setPseudoClass("hover", true, "value");
+	"mouseover":	function(oEvent) {
+		if (oEvent.target == this)
+			this.$setPseudoClass("hover", true, "value");
 	},
-	"mouseleave":	function(oEvent) {
-		this.$setPseudoClass("hover", false, "value");
+	"mouseout":	function(oEvent) {
+		if (oEvent.target == this)
+			this.$setPseudoClass("hover", false, "value");
 	},
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this)
