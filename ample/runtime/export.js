@@ -110,7 +110,7 @@ if (!window.XMLSerializer)
 	fAMLExporter_export(cXMLSerializer,	"XMLSerializer");
 if (!window.XSLTProcessor)
 	fAMLExporter_export(cXSLTProcessor,	"XSLTProcessor");
-if (!window.XMLHttpRequest)
+if (bTrident)
 	fAMLExporter_export(cXMLHttpRequest,"XMLHttpRequest");
 //fAMLExporter_export(cRPCClient,	"RPCClient");
 //

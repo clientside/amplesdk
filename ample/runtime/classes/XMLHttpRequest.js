@@ -7,9 +7,11 @@
  *
  */
 
-if (!cXMLHttpRequest || (bTrident && nVersion == 7)) {
+if (bTrident) {
+	var oXMLHttpRequest	= cXMLHttpRequest;
+	//
     cXMLHttpRequest = function() {
-		this._object	= /*oXMLHttpRequest && !bIE7 ? new oXMLHttpRequest : */new cActiveXObject("Microsoft.XMLHTTP");
+		this._object	= oXMLHttpRequest && !(bTrident && nVersion == 7) ? new oXMLHttpRequest : new cActiveXObject("Microsoft.XMLHTTP");
     };
 
 	// Public Properties
