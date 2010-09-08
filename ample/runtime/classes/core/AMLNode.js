@@ -122,6 +122,9 @@ cAMLNode.prototype.appendChild	= function(oNode)
 
 function fAMLNode_insertBefore(oParent, oNode, oBefore)
 {
+	// Save index
+	var nIndex	= oParent.childNodes.$indexOf(oBefore);
+
 	// Remove element from previous location
 	if (oNode.parentNode) {
 		// Fire Mutation event
@@ -147,7 +150,7 @@ function fAMLNode_insertBefore(oParent, oNode, oBefore)
 	oNode.nextSibling	= oBefore;
 	oBefore.previousSibling	= oNode;
 
-	oParent.childNodes.$add(oNode, oParent.childNodes.$indexOf(oBefore));
+	oParent.childNodes.$add(oNode, nIndex);
 
 	// Fire Mutation event
     var oEvent = new cAMLMutationEvent;
