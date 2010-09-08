@@ -80,8 +80,18 @@ cXHTMLElement_input.handlers	= {
 			this.focus();
 	},
 	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
+		if (oEvent.target == this) {
+			switch (oEvent.attrName) {
+				case "type":
+					// Re-render content
+					var oElementDOM	= this.$getContainer(),
+						oFactory	= document.createElement("div");
+					oFactory.innerHTML	= this.$getTag();
+					oElementDOM.parentNode.replaceChild(oFactory.firstChild, oElementDOM);
+					break;
+			}
 			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
+		}
 	}
 };
 
