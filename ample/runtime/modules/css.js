@@ -24,6 +24,6 @@ cAMLQuery.prototype.css	= function(sName, sValue) {
 	}
 	else
 	if (this.length) {
-		return this.$getStyleComputed(sName);
+		return this[0].$getStyleComputed(sName);
 	}
 };
