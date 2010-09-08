@@ -56,7 +56,7 @@ xul|tree:disabled xul|treecol::resizer {
 
 xul|listhead,
 xul|treecols {
-	line-height:	18px;
+	line-height:	20px;
 }
 
 xul|listitem:hover,
@@ -89,13 +89,14 @@ xul|listheader::label,
 xul|treecol::label {
 	white-space:	nowrap;
 	text-overflow: ellipsis;
+	line-height: 1em;
 }
 
 xul|listcell::box,
 xul|treecell::box,
 xul|listheader::box,
 xul|treecol::box {
-	height: 1.15em; /* works fine when font-size is given somewhere */
+/*	height: 1.15em;*/ /* works fine when font-size is given somewhere */
 }
 
 xul|listheader::command,
