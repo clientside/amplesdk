@@ -83,10 +83,11 @@ function fAMLNode_appendChild(oParent, oNode)
 	// Set DOM properties
     oNode.parentNode	= oParent;
 
-    if (oParent.lastChild)
+    var oLast	= oParent.lastChild;
+    if (oLast)
     {
-        oNode.previousSibling	= oParent.lastChild;
-        oParent.lastChild.nextSibling	= oNode;
+        oNode.previousSibling	= oLast;
+        oLast.nextSibling	= oNode;
     }
     else
     	oParent.firstChild	= oNode;
@@ -139,10 +140,11 @@ function fAMLNode_insertBefore(oParent, oNode, oBefore)
 	// Set DOM properties
     oNode.parentNode	= oParent;
 
-	if (oBefore.previousSibling)
+    var oPrevious	= oBefore.previousSibling;
+	if (oPrevious)
 	{
-		oNode.previousSibling	= oBefore.previousSibling;
-		oBefore.previousSibling.nextSibling	= oNode;
+		oNode.previousSibling	= oPrevious;
+		oPrevious.nextSibling	= oNode;
 	}
 	else
 		oParent.firstChild	= oNode;
@@ -188,15 +190,18 @@ cAMLNode.prototype.insertBefore	= function(oNode, oBefore)
 
 function fAMLNode_removeChild(oParent, oNode)
 {
-	if (oNode.nextSibling)
-		oNode.nextSibling.previousSibling	= oNode.previousSibling;
-	else
-		oParent.lastChild	= oNode.previousSibling;
+	var oNext		= oNode.nextSibling,
+		oPrevious	= oNode.previousSibling;
 
-	if (oNode.previousSibling)
-		oNode.previousSibling.nextSibling	= oNode.nextSibling;
+	if (oNext)
+		oNext.previousSibling	= oPrevious;
 	else
-		oParent.firstChild	= oNode.nextSibling;
+		oParent.lastChild	= oPrevious;
+
+	if (oPrevious)
+		oPrevious.nextSibling	= oNext;
+	else
+		oParent.firstChild	= oNext;
 
 	// Reset DOM properties
     oNode.parentNode  		= null;
