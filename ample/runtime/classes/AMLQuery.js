@@ -14,16 +14,48 @@ cAMLQuery.prototype.selector	= '';
 cAMLQuery.prototype.context		= null;
 cAMLQuery.prototype.resolver	= null;
 
+// DOM Element Methods
 cAMLQuery.prototype.get	= function(nIndex) {
 	// Validate API call
 	fGuard(arguments, [
-		["index",	cNumber]
+		["index",	cNumber, true]
 	]);
 
 	// Invoke implementation
-	return this[nIndex];
+	if (arguments.length)
+		return this[nIndex];
+	else
+		return fAMLQuery_toArray(this);
 };
 
+cAMLQuery.prototype.index	= function() {
+	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+};
+
+cAMLQuery.prototype.size	= function() {
+	// Validate API call
+
+	// Invoke implementation
+	return this.length;
+};
+
+function fAMLQuery_toArray(oQuery) {
+	var aQuery	= [];
+	fAMLQuery_each(oQuery, function() {
+		aQuery[aQuery.length]	= this;
+	});
+
+	return aQuery;
+};
+
+cAMLQuery.prototype.toArray	= function() {
+	// Validate API call
+
+	// Invoke implementation
+	return fAMLQuery_toArray(this);
+};
+
+// Filtering
 cAMLQuery.prototype.eq	= function(nIndex) {
 	// Validate API call
 	fGuard(arguments, [
@@ -39,6 +71,10 @@ cAMLQuery.prototype.eq	= function(nIndex) {
 	return oQuery;
 };
 
+cAMLQuery.prototype.filter	= function() {
+	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+};
+
 cAMLQuery.prototype.first	= function() {
 	var oQuery	= new cAMLQuery;
 	if (this.length)
@@ -46,11 +82,27 @@ cAMLQuery.prototype.first	= function() {
 	return oQuery;
 };
 
+cAMLQuery.prototype.has	= function() {
+	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+};
+
+cAMLQuery.prototype.is	= function() {
+	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+};
+
 cAMLQuery.prototype.last	= function() {
 	var oQuery	= new cAMLQuery;
 	if (this.length)
 		oQuery[oAmple.length++]	= this[this.length - 1];
 	return oQuery;
+};
+
+cAMLQuery.prototype.map	= function(fCallback) {
+	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+};
+
+cAMLQuery.prototype.not	= function() {
+	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
 
 cAMLQuery.prototype.slice	= function(nFirst, nLast) {
@@ -69,6 +121,7 @@ cAMLQuery.prototype.slice	= function(nFirst, nLast) {
 	return oQuery;
 };
 
+// Collection Manipulation
 function fAMLQuery_each(oQuery, fCallback, aArguments) {
 	for (var nIndex = 0; nIndex < oQuery.length; nIndex++)
 		fCallback.apply(oQuery[nIndex], aArguments || [nIndex, oQuery[nIndex]]);

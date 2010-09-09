@@ -40,8 +40,8 @@
 			</property>
 		</properties>
 		<methods>
-			<!-- Collection -->
-			<method name="get" type="AMLElement">
+			<!-- DOM Element Methods -->
+			<method name="get" type="Variant">
 				<arguments>
 					<argument name="index" type="Number">
 						<description>
@@ -57,6 +57,37 @@
 					</locale>
 				</description>
 			</method>
+			<method name="index" type="AMLElement">
+				<arguments>
+					<argument name="index" type="Number">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="size" type="Number">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="toArray" type="Array">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<!-- Filtering -->
 			<method name="eq" type="AMLElement">
 				<arguments>
 					<argument name="index" type="Number">
@@ -73,6 +104,13 @@
 					</locale>
 				</description>
 			</method>
+			<method name="filter" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
 			<method name="first" type="AMLQuery">
 				<description>
 					<locale>
@@ -80,7 +118,44 @@
 					</locale>
 				</description>
 			</method>
+			<method name="has" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="is" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
 			<method name="last" type="AMLQuery">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="map" type="AMLQuery">
+				<arguments>
+					<argument name="callback" type="Function">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="not" type="AMLQuery">
 				<description>
 					<locale>
 
