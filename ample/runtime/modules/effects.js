@@ -32,6 +32,7 @@ cAMLQuery.prototype.stop	= function() {
 	return this;
 };
 
+// Pre-defined animations
 cAMLQuery.prototype.fadeIn	= function(vDuration, fCallback) {
 	fGuard(arguments, [
 		["duration",	cObject, true],
@@ -97,11 +98,18 @@ cAMLQuery.prototype.show	= function(vDuration, fCallback) {
 				oProperties.width	= fBrowser_adjustStyleValue(oElementDOM, "width", fBrowser_getStyle(oElementDOM, "width", oComputedStyle));
 				oProperties.height	= fBrowser_adjustStyleValue(oElementDOM, "height", fBrowser_getStyle(oElementDOM, "height", oComputedStyle));
 				oProperties.opacity	= '1';
+				//
 				oStyle.width	= '0px';
 				oStyle.height	= '0px';
+				oStyle.overflow	= "hidden";
+				fBrowser_setStyle(oElementDOM, "opacity", '0');
 				fAMLNodeAnimation_play(this, oProperties, vDuration, "ease", function() {
+					// Restore values
 					oStyle.width	= '';
 					oStyle.height	= '';
+					oStyle.overflow	= '';
+					fBrowser_setStyle(oElementDOM, "opacity", '');
+					// Call callback
 					if (fCallback)
 						fCallback.call(this);
 				});
@@ -127,16 +135,88 @@ cAMLQuery.prototype.hide	= function(vDuration, fCallback) {
 				oProperties.width	= '0px';
 				oProperties.height	= '0px';
 				oProperties.opacity	= '0';
+				//
+				oStyle.overflow	= "hidden";
+				fBrowser_setStyle(oElementDOM, "opacity", '1');
 				fAMLNodeAnimation_play(this, oProperties, vDuration, "ease", function() {
 					oStyle.display	= "none";
+					// Restore values
 					oStyle.width	= '';
 					oStyle.height	= '';
+					oStyle.overflow	= '';
+					fBrowser_setStyle(oElementDOM, "opacity", '');
+					// Call callback
 					if (fCallback)
 						fCallback.call(this);
 				});
 			}
 			else
 				oStyle.display	= "none";
+		}
+	});
+
+	return this;
+};
+
+cAMLQuery.prototype.slideDown	= function(vDuration, fCallback) {
+	fGuard(arguments, [
+		["duration",	cObject, true],
+		["callback",	cFunction, true]
+	]);
+	fAMLQuery_each(this, function() {
+		var oElementDOM	= this.$getContainer(),
+			oStyle	= oElementDOM.style;
+		if (oStyle.display == "none") {
+			oStyle.display	= '';
+			var oProperties	= {},
+				oComputedStyle	= fBrowser_getComputedStyle(oElementDOM);
+			oProperties.height	= fBrowser_adjustStyleValue(oElementDOM, "height", fBrowser_getStyle(oElementDOM, "height", oComputedStyle));
+			oProperties.opacity	= '1';
+			//
+			oStyle.height	= '0px';
+			oStyle.overflow	= "hidden";
+			fBrowser_setStyle(oElementDOM, "opacity", '0');
+			fAMLNodeAnimation_play(this, oProperties, vDuration || "normal", "ease", function() {
+				// Restore values
+				oStyle.height	= '';
+				oStyle.overflow	= '';
+				fBrowser_setStyle(oElementDOM, "opacity", '');
+				// Call callback
+				if (fCallback)
+					fCallback.call(this);
+			});
+		}
+	});
+
+	return this;
+};
+
+cAMLQuery.prototype.slideUp		= function(vDuration, fCallback) {
+	fGuard(arguments, [
+		["duration",	cObject, true],
+		["callback",	cFunction, true]
+	]);
+
+	fAMLQuery_each(this, function() {
+		var oElementDOM	= this.$getContainer(),
+			oStyle	= oElementDOM.style;
+		if (oStyle.display != "none") {
+			var oProperties	= {};
+			oProperties.height	= '0px';
+			oProperties.opacity	= '0';
+			//
+			oStyle.overflow	= "hidden";
+			fBrowser_setStyle(oElementDOM, "opacity", '1');
+			fAMLNodeAnimation_play(this, oProperties, vDuration || "normal", "ease", function() {
+				oStyle.display	= "none";
+				// Restore values
+				oStyle.height	= '';
+				oStyle.overflow	= '';
+				fBrowser_setStyle(oElementDOM, "opacity", '');
+				// Call callback
+				if (fCallback)
+					fCallback.call(this);
+			});
 		}
 	});
 
