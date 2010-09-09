@@ -57,7 +57,7 @@
 					<!-- node title="AMLTreeWalker" url="ample/runtime/dom/AMLTreeWalker.xml"/-->
 				</node>
 			</node>
-			<node title="Touch UI">
+			<node title="Touch UI" open="true">
 				<node title="Touch Core">
 					<node title="AMLTouch" url="ample/runtime/AMLTouch.xml"/>
 					<node title="AMLTouchList" url="ample/runtime/AMLTouchList.xml"/>
