@@ -211,7 +211,7 @@
 					<argument name="target" type="Object" required="false">
 						<description>
 							<locale>
-								Target object for extension. If ommited, <link type="object">ample</link> object itself is in use.
+								Target object for extension. If ommited, <link type="object">AMLQuery</link> object prototype is in use.
 							</locale>
 						</description>
 					</argument>
