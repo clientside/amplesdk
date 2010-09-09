@@ -270,6 +270,7 @@ oAmple.close	= function() {
 //<-Debug
 };
 
+//
 oAmple.$instance	= function(oNode) {
     for (var oElement, sId; oNode; oNode = oNode.parentNode)
         if ((sId = oNode.id) && (oElement = (oAMLDocument_ids[sId] || oAMLDocument_all[sId])))
@@ -277,6 +278,7 @@ oAmple.$instance	= function(oNode) {
     return null;
 };
 
+//
 oAmple.$element		= function(sUri) {
 	// Validate API call
 	fGuard(arguments, [
@@ -296,13 +298,24 @@ oAmple.$attribute	= function(sUri) {
 	// Invoke implementation
 	return oAMLImplementation_attributes[sUri] || null;
 };
-
 /*
 oAmple.$class	= function(oNode) {
 	var oElement	= oAmple.$instance(oNode);
 	return oElement ? oAMLImplementation_elements[oElement.namespaceURI + '#' + oElement.localName] || cAMLElement : null;
 };
 */
+//
+oAmple.param	= function(vValue) {
+	// Validate API call
+	fGuard(arguments, [
+		["value",	cObject]
+	]);
+
+	// Invoke implementation
+	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+};
+
+//
 oAmple.resolveUri	= function(sUri, sBaseUri) {
 	return fUtilities_resolveUri(sUri, sBaseUri);
 };

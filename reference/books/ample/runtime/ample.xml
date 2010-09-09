@@ -183,6 +183,22 @@
 					</locale>
 				</description>
 			</method>
+			<method name="param" type="String">
+				<arguments>
+					<argument name="value" type="Variant">
+						<description>
+							<locale>
+								An array or object to serialize.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Creates a serialized representation of an array or object, suitable for use in a URL query string or Ajax request.
+					</locale>
+				</description>
+			</method>
 			<method name="ready" type="Void">
 				<arguments>
 					<argument name="handler" type="Function">
