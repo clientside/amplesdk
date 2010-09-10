@@ -12,6 +12,7 @@ var oXULLocaleManager	=(function(){
 	var oLocales	= {},
 		oLanguages	= {
 			"en":	"us",
+			"fr":	"fr",
 			"it":	"it"
 		};
 
