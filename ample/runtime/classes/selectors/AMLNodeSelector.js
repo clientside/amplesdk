@@ -410,6 +410,15 @@ oAMLSelector_pseudoClasses["indeterminate"] = function(oElement) {
 	return oElement.indeterminate;
 };
 
+// jQuery Visibility Filter
+oAMLSelector_pseudoClasses["hidden"] = function(oElement) {
+	return !fAMLFocus_isVisible(oElement);
+};
+
+oAMLSelector_pseudoClasses["visible"] = function(oElement) {
+	return fAMLFocus_isVisible(oElement);
+};
+
 // -----------------------------------------------------------------------
 //  attribute selector tests
 // -----------------------------------------------------------------------
