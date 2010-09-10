@@ -59,7 +59,7 @@
 					<argument name="query" type="String">
 
 					</argument>
-					<argument name="context" required="false" type="String">
+					<argument name="context" required="false" type="AMLNode">
 
 					</argument>
 					<argument name="resolver" required="false" type="Function">
