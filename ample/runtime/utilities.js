@@ -17,7 +17,7 @@ var sAML_NOT_WELLFORMED_WRN			= 'Not well-formed XML',
 	sAML_INVALID_ATTRIBUTE_WRN		= 'Attribute "%0" value "%1" is invalid. Element processing skipped',
 	sAML_ERROR_ANIMATING_ATTR_WRN	= 'Error animating "%0" atttribute with "%1" value',
 	sAML_DOCUMENT_INVALID_STATE_WRN	= 'Document invalid state',
-	sAML_REWRITING_LOADED_PLUGIN_WRN= 'Re-writing plugin "%0" which is already loaded',
+	sAML_REWRITING_MEMBER_WRN		= 'Re-writing member "%0"',
 	sAML_CONFIGURATION_READONLY_WRN	= 'Configuration parameter "%0" is readonly. Value has not been set';
 
 function fUtilities_warn(sWarning, aArguments) {
