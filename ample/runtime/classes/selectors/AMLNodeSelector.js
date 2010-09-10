@@ -292,9 +292,9 @@ oAMLSelector_pseudoClasses["first-child"] = function(oElement) {
 
 oAMLSelector_pseudoClasses["lang"] = function(oElement, sCode) {
     var rValue = new cRegExp('^' + sCode, 'i');
-    while (oElement && oElement.parentNode != oElement.ownerDocument && !fAMLElement_getAttribute(oElement, "lang"))
+    while (oElement && oElement.parentNode != oElement.ownerDocument && !fAMLElement_getAttribute(oElement, "xml:lang") && !fAMLElement_getAttribute(oElement, "lang"))
     	oElement = oElement.parentNode;
-    return oElement && rValue.test(fAMLElement_getAttribute(oElement, "lang"));
+    return oElement && rValue.test(fAMLElement_getAttribute(oElement, "xml:lang") || fAMLElement_getAttribute(oElement, "lang"));
 };
 
 // -----------------------------------------------------------------------
