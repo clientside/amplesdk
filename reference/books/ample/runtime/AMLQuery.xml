@@ -185,6 +185,29 @@
 					</locale>
 				</description>
 			</method>
+			<method name="splice" type="AMLQuery">
+				<arguments>
+					<argument name="first" type="Number">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+					<argument name="length" type="Number" required="false">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
 			<method name="each" type="AMLQuery">
 				<arguments>
 					<argument name="callback" type="Function">

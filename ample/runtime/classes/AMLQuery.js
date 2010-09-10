@@ -121,6 +121,23 @@ cAMLQuery.prototype.slice	= function(nFirst, nLast) {
 	return oQuery;
 };
 
+// Enables printing AMLQuery objects in JavaScript consoles (See https://bugs.webkit.org/show_bug.cgi?id=30974 for details)
+cAMLQuery.prototype.splice	= function(nFirst, nLength/*vValue1, vValue2,..vValueN*/) {
+	// Validate API call
+	fGuard(arguments, [
+		["first",	cNumber],
+		["length",	cNumber, true]
+	]);
+
+	// Invoke implementation
+	var oQuery	= new cAMLQuery;
+	// TODO: negative values, optional length
+	if (nFirst >-1 && nFirst + nLength < this.length)
+		for (var nIndex = nFirst; nIndex < nFirst + nLength; nIndex++)
+			oQuery[oQuery.length++]	= this[nIndex];
+	return oQuery;
+};
+
 // Collection Manipulation
 function fAMLQuery_each(oQuery, fCallback, aArguments) {
 	for (var nIndex = 0; nIndex < oQuery.length; nIndex++)
