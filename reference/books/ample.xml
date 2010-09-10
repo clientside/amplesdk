@@ -76,24 +76,8 @@
 				<node title="XSLTProcessor" url="ample/runtime/XSLTProcessor.xml"/>
 			</node>
 			<node title="I/O Objects">
-				<node title="RPCClient" url="ample/runtime/RPCClient.xml"/>
+				<node title="RPCClient" xurl="ample/runtime/RPCClient.xml"/>
 				<node title="XMLHttpRequest" url="ample/runtime/XMLHttpRequest.xml"/>
-				<node title="SOAP">
-					<node title="SoapRequest" xurl="ample/runtime/SoapRequest.xml"/>
-					<node title="SoapEnvelope" xurl="ample/runtime/SoapEnvelope.xml"/>
-				</node>
-				<node title="XMPP">
-					<node title="XmppConnection" xurl="ample/runtime/XmppConnection.xml"/>
-					<node title="XmppPacket" xurl="ample/runtime/XmppPacket.xml"/>
-					<node title="XmppIQ" xurl="ample/runtime/XmppIQ.xml"/>
-					<node title="XmppMessage" xurl="ample/runtime/XmppMessage.xml"/>
-					<node title="XmppPresence" xurl="ample/runtime/XmppPresence.xml"/>
-					<node title="XmppRoster" xurl="ample/runtime/XmppRoster.xml"/>
-					<node title="XmppRosterEntry" xurl="ample/runtime/XmppRosterEntry.xml"/>
-					<node title="XmppRosterGroup" xurl="ample/runtime/XmppRosterGroup.xml"/>
-					<node title="XmppChat" xurl="ample/runtime/XmppClient.xml"/>
-					<node title="XmppGroupChat" xurl="ample/runtime/XmppGroupClient.xml"/>
-				</node>
 			</node>
 		</node>
 
@@ -246,11 +230,43 @@
 		</node>
 	</node>
 	<node title="Plugins" open="true">
-		<node title="Cookie" xhref="ample/plugins/cookie.xml"/>
-		<node title="Form" xhref="ample/plugins/form.xml"/>
-		<node title="Globalization" xhref="ample/plugins/glob.xml"/>
-		<node title="Storage" xhref="ample/plugins/storage.xml"/>
-		<node title="Templating" xhref="ample/plugins/tmpl.xml"/>
+		<node title="Cookie">
+			<node title="Cookie" xhref="ample/plugins/cookie.xml" />
+		</node>
+		<node title="Form">
+			<node title="Form" xhref="ample/plugins/form.xml"/>
+		</node>
+		<node title="Globalization">
+			<node title="Globalization" xhref="ample/plugins/glob.xml"/>
+		</node>
+		<node title="Storage">
+			<node title="Storage" xhref="ample/plugins/storage.xml"/>
+		</node>
+		<node title="Templating">
+			<node title="Templating" xhref="ample/plugins/tmpl.xml"/>
+		</node>
+		<node title="SOAP">
+			<node title="SOAP" xhref="ample/plugins/soap.xml"/>
+			<node title="Objects">
+				<node title="SoapRequest" xurl="ample/runtime/SoapRequest.xml"/>
+				<node title="SoapEnvelope" xurl="ample/runtime/SoapEnvelope.xml"/>
+			</node>
+		</node>
+		<node title="XMPP">
+			<node title="XMPP" xhref="ample/plugins/xmpp.xml"/>
+			<node title="Objects">
+				<node title="XmppConnection" xurl="ample/runtime/XmppConnection.xml"/>
+				<node title="XmppPacket" xurl="ample/runtime/XmppPacket.xml"/>
+				<node title="XmppIQ" xurl="ample/runtime/XmppIQ.xml"/>
+				<node title="XmppMessage" xurl="ample/runtime/XmppMessage.xml"/>
+				<node title="XmppPresence" xurl="ample/runtime/XmppPresence.xml"/>
+				<node title="XmppRoster" xurl="ample/runtime/XmppRoster.xml"/>
+				<node title="XmppRosterEntry" xurl="ample/runtime/XmppRosterEntry.xml"/>
+				<node title="XmppRosterGroup" xurl="ample/runtime/XmppRosterGroup.xml"/>
+				<node title="XmppChat" xurl="ample/runtime/XmppClient.xml"/>
+				<node title="XmppGroupChat" xurl="ample/runtime/XmppGroupClient.xml"/>
+			</node>
+		</node>
 	</node>
 	<node title="UI languages" open="true">
 		<!--node title="UI languages" /-->
