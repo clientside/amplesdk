@@ -390,20 +390,20 @@ oAMLSelector_pseudoClasses["nth-last-child"] = function(oElement, sArguments) {
 };
 
 oAMLSelector_pseudoClasses["target"] = function(oElement) {
-	return oElement.id == oUALocation.hash.slice(1);
+	return fAMLElement_hazAttribute(oElement, 'id') && fAMLElement_getAttribute(oElement, 'id') == oUALocation.hash.slice(1);
 };
 
 // UI element states
 oAMLSelector_pseudoClasses["checked"] = function(oElement) {
-	return oElement.checked;
+	return fAMLElement_hazAttribute(oElement, "checked") && fAMLElement_getAttribute(oElement, "checked") == "true";
 };
 
 oAMLSelector_pseudoClasses["enabled"] = function(oElement) {
-	return oElement.disabled === false;
+	return !fAMLElement_hazAttribute(oElement, "disabled") || fAMLElement_getAttribute(oElement, "disabled") != "true";
 };
 
 oAMLSelector_pseudoClasses["disabled"] = function(oElement) {
-	return oElement.disabled;
+	return fAMLElement_hazAttribute(oElement, "disabled") && fAMLElement_getAttribute(oElement, "disabled") == "true";
 };
 
 oAMLSelector_pseudoClasses["indeterminate"] = function(oElement) {
