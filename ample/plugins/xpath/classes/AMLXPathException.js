@@ -7,12 +7,12 @@
  *
  */
 
-function AMLXPathException() {
-
+function cAMLXPathException(nCode) {
+	this.code	= nCode;
 };
 
-AMLXPathException.prototype.code	= null;
+cAMLXPathException.prototype.code	= null;
 
 // Constants
-AMLXPathException.INVALID_EXPRESSION_ERR	= 51;
-AMLXPathException.TYPE_ERR					= 52;
+cAMLXPathException.INVALID_EXPRESSION_ERR	= 51;
+cAMLXPathException.TYPE_ERR					= 52;

@@ -7,14 +7,14 @@
  *
  */
 
-function AMLXPathNamespace() {
+function cAMLXPathNamespace() {
 
 };
 
-AMLXPathNamespace.prototype	= new AMLNode;
+cAMLXPathNamespace.prototype	= new AMLNode;
 
 // Constants
-AMLXPathNamespace.XPATH_NAMESPACE_NODE	= 13;
+cAMLXPathNamespace.XPATH_NAMESPACE_NODE	= 13;
 
 //
-AMLXPathNamespace.ownerElement	= null;
+cAMLXPathNamespace.ownerElement	= null;

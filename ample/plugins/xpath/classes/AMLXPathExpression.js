@@ -7,17 +7,21 @@
  *
  */
 
-function AMLXPathExpression() {
-
+function cAMLXPathExpression(sExpression, oResolver) {
+	this.$expression	= sExpression;
+	this.$resolver		= oResolver;
 };
 
-AMLXPathExpression.prototype.evaluate	= function(oNode, nType, oResult) {
+cAMLXPathExpression.prototype.evaluate	= function(oNode, nType, oResult) {
 	// validate API
 	fGuard(arguments, [
 		["context",		AMLNode],
-		["type",		Number],
-		["result",		Object, false, true]
+		["type",		Number,	true,	true],
+		["result",		Object, true,	true]
 	]);
 
+	var oResult	= new cAMLXPathResult;
+
 	// Invoke implementation
+	return oResult;
 };

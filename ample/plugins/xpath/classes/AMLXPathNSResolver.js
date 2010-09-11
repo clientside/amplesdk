@@ -7,15 +7,16 @@
  *
  */
 
-function AMLXPathNSResolver() {
-
+function cAMLXPathNSResolver(oNode) {
+	this.$node	= oNode;
 };
 
-AMLXPathNSResolver.prototype.lookupNamespaceURI	= function(sPrefix) {
+cAMLXPathNSResolver.prototype.lookupNamespaceURI	= function(sPrefix) {
 	// validate API
 	fGuard(arguments, [
 		["expression",	String]
 	]);
 
 	// Invoke implementation
+	return this.$node.lookupNamespaceURI(sPrefix);
 };

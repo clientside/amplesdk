@@ -7,41 +7,42 @@
  *
  */
 
-function AMLXPathEvaluator() {
+function cAMLXPathEvaluator() {
 
 };
 
-AMLXPathEvaluator.prototype.createExpression	= function(sExpression, oResolver) {
+cAMLXPathEvaluator.prototype.createExpression	= function(sExpression, oResolver) {
 	// validate API
 	fGuard(arguments, [
-		["expression",	AMLNode],
-		["resolver",	AMLXPathResolver,	false,	true]
+		["expression",	String],
+		["resolver",	cAMLXPathResolver,	true,	true]
 	]);
 
 	// Invoke implementation
-	return fAMLXPathEvaluator_createExpression(this, sExpression, oResolver);
+	return new cAMLXPathExpression(sExpression, oResolver);
 };
 
-AMLXPathEvaluator.prototype.createNSResolver	= function(oNode) {
+cAMLXPathEvaluator.prototype.createNSResolver	= function(oNode) {
 	// validate API
 	fGuard(arguments, [
 		["node",	AMLNode]
 	]);
 
 	// Invoke implementation
-	return fAMLXPathEvaluator_createNSResolver(this, oNode);
+	return new cAMLXPathResolver(oNode);
 };
 
-AMLXPathEvaluator.prototype.evaluate	= function(sExpression, oNode, oResolver, nType, oResult) {
+cAMLXPathEvaluator.prototype.evaluate	= function(sExpression, oNode, oResolver, nType, oResult) {
 	// validate API
 	fGuard(arguments, [
 		["expression",	String],
 		["context",		AMLNode],
-		["resolver",	AMLXPathResolver,	false,	true],
-		["type",		Number],
-		["result",		Object, false, true]
+		["resolver",	cAMLXPathResolver,	true,	true],
+		["type",		Number,				true,	true],
+		["result",		cAMLXPathResult,	true,	true]
 	]);
 
 	// Invoke implementation
-	return fAMLXPathEvaluator_evaluate(this, sExpression, oNode, oResolver, nType, oResult);
+	var oExpression	= new cAMLXPathExpression(sExpression, oResolver);
+	return oExpression.evaluate(oNode, nType, oResult);
 };
