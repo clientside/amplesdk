@@ -471,6 +471,13 @@
 			</method>
 		</methods>
 		<events>
+			<event name="config" type="Event" cancelable="false" bubble="false">
+				<description>
+					<locale>
+						Fires after the config value changes.
+					</locale>
+				</description>
+			</event>
 			<event name="readystatechange" type="Event" cancelable="false" bubble="false">
 				<description>
 					<locale>

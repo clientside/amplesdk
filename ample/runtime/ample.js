@@ -186,17 +186,25 @@ oAmple.config	= function(sName, oValue) {
 	]);
 
 	// Invoke implementation
-	var sPrefix	= "ample" + '-';
+	var sPrefix	= "ample" + '-',
+		oOldValue	= fAMLConfiguration_getParameter(oAmple_document.domConfig, sPrefix + sName);
 	if (arguments.length > 1) {
-		if (sName != "version")
+		if (sName != "version") {
 			fAMLConfiguration_setParameter(oAmple_document.domConfig, sPrefix + sName, oValue);
+			// Dispatch change event
+			if (oOldValue != oValue) {
+				var oEvent	= new cAMLEvent;
+				oEvent.initEvent("config", false, false);
+				fAMLNode_dispatchEvent(oAmple_document, oEvent);
+			}
+		}
 //->Debug
 		else
 			fUtilities_warn(sAML_CONFIGURATION_READONLY_WRN, [sName]);
 //<-Debug
 	}
 	else
-		return fAMLConfiguration_getParameter(oAmple_document.domConfig, sPrefix + sName);
+		return oOldValue;
 };
 
 var sAmple_include	= document.location.href;
