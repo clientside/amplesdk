@@ -69,6 +69,9 @@
 	$aFiles[]	= "elements/metadata.js";
 	$aFiles[]	= "elements/symbol.js";
 
+	// core SMIL mapping
+	$aFiles[]	= "svg-smil.js";
+
     $sOutput	= "";
     for ($nIndex = 0; $nIndex < count($aFiles); $nIndex++)
         $sOutput	.= join('', file($aFiles[$nIndex])) . "\n";

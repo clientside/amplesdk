@@ -536,6 +536,7 @@
 			<fileset dir="${source.svg.dir}/elements/">
 				<include name="*.js" />
 			</fileset>
+			<fileset file="${source.svg.dir}/svg-smil.js" />
 		</concat>
 
 		<echo message="Wrapping into: ${temp.languages.dir}/svg-raw-wrapped.js" level="info"/>
