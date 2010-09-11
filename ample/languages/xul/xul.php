@@ -18,6 +18,7 @@
 
 	// locales
 	$aFiles[]	= "locale/en-us.js";
+	$aFiles[]	= "locale/fr-fr.js";
 	$aFiles[]	= "locale/it-it.js";
 
     // elements
