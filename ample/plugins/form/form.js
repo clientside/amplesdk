@@ -83,4 +83,4 @@ ample.extend({
 	serializeArray:	function() {
 
 	}
-});
+}, AMLQuery.prototype);
