@@ -682,7 +682,6 @@
 		<antcall target="BUILD_AMPLE_PLUGINS_FORM" />
 		<antcall target="BUILD_AMPLE_PLUGINS_GLOB" />
 		<antcall target="BUILD_AMPLE_PLUGINS_STORE" />
-		<antcall target="BUILD_AMPLE_PLUGINS_TMPL" />
 		<antcall target="BUILD_AMPLE_PLUGINS_XPATH" />
 
 		<!-- clean up temp dir -->
@@ -702,10 +701,6 @@
 	</target>
 
 	<target name="BUILD_AMPLE_PLUGINS_STORE" unless="skip.ample.plugins.store">
-
-	</target>
-
-	<target name="BUILD_AMPLE_PLUGINS_TMPL" unless="skip.ample.plugins.tmpl">
 
 	</target>
 
