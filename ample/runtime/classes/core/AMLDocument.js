@@ -261,13 +261,18 @@ cAMLDocument.prototype.canDispatch	= function(sNameSpaceURI, sType)
 	return true;
 };
 
-cAMLDocument.prototype.createDocumentFragment	= function()
+function fAMLDocument_createDocumentFragment(oDocument)
 {
 	var oNode	= new cAMLDocumentFragment;
-	oNode.ownerDocument	= this;
+	oNode.ownerDocument	= oDocument;
     oNode.childNodes	= new cAMLNodeList;
 
 	return oNode;
+};
+
+cAMLDocument.prototype.createDocumentFragment	= function()
+{
+	return fAMLDocument_createDocumentFragment(this);
 };
 
 function fAMLDocument_createProcessingInstruction(oDocument, sTarget, sData)
