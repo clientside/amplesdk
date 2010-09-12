@@ -239,11 +239,19 @@
 		<node title="Globalization">
 			<node title="Globalization" xhref="ample/plugins/glob.xml"/>
 		</node>
-		<node title="Storage">
-			<node title="Storage" xhref="ample/plugins/storage.xml"/>
+		<node title="Store">
+			<node title="Store" xhref="ample/plugins/store.xml"/>
 		</node>
-		<node title="Templating">
-			<node title="Templating" xhref="ample/plugins/tmpl.xml"/>
+		<node title="XPath">
+			<node title="Objects">
+				<node title="AMLXPathEvaluator" xhref="ample/plugins/AMLXPathEvaluator.xml"/>
+				<node title="AMLXPathException" xhref="ample/plugins/AMLXPathException.xml"/>
+				<node title="AMLXPathExpression" xhref="ample/plugins/AMLXPathExpression.xml"/>
+				<node title="AMLXPathNamespace" xhref="ample/plugins/AMLXPathNamespace.xml"/>
+				<node title="AMLXPathNSResolver" xhref="ample/plugins/AMLXPathNSResolver.xml"/>
+				<node title="AMLXPathResult" xhref="ample/plugins/AMLXPathResult.xml"/>
+			</node>
+			<node title="XPath" xhref="ample/plugins/xpath.xml"/>
 		</node>
 		<node title="SOAP">
 			<node title="SOAP" xhref="ample/plugins/soap.xml"/>
