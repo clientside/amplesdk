@@ -8,16 +8,47 @@
  */
 
 var cXULElement_wizard	= function() {
-    // Private Collections
-    this.buttons	= {};   // Buttons
-
     // Collections
+    this.buttons	= {};
     this.wizardPages= new AMLNodeList;
+    //
+    var that	= this;
+    this.contentFragment	= ample.createDocumentFragment();
+	// Back
+    this.buttons.back	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "xul:button"));
+    this.buttons.back.addEventListener("DOMActivate", function(oEvent) {
+		that.rewind();
+	}, false);
+    this.buttons.back.setAttribute("label", oXULLocaleManager.getText("dialog.button.previous"));
+    this.buttons.back.setAttribute("class", "back");
+	// Next
+	this.buttons.next	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "xul:button"));
+	this.buttons.next.addEventListener("DOMActivate", function(oEvent) {
+		that.advance();
+	}, false);
+	this.buttons.next.setAttribute("label", oXULLocaleManager.getText("dialog.button.next"));
+	this.buttons.next.setAttribute("class", "next");
+	// Finish
+	this.buttons.finish	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "xul:button"));
+	this.buttons.finish.addEventListener("DOMActivate", function(oEvent) {
+        that.finish();
+	}, false);
+	this.buttons.finish.setAttribute("label", oXULLocaleManager.getText("dialog.button.finish"));
+	this.buttons.finish.setAttribute("class", "finish");
+	// Cancel
+	this.buttons.cancel	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "xul:button"));
+	this.buttons.cancel.addEventListener("DOMActivate", function(oEvent) {
+		that.cancel();
+	}, false);
+	this.buttons.cancel.setAttribute("label", oXULLocaleManager.getText("dialog.button.cancel"));
+	this.buttons.cancel.setAttribute("class", "cancel");
 };
 cXULElement_wizard.prototype = new cXULWindowElement("wizard");
 
 // Public Properties
 cXULElement_wizard.prototype.currentPage	= null;
+cXULElement_wizard.prototype.wizardPages	= null;
+cXULElement_wizard.prototype.buttons		= null;
 
 // Attributes Defaults
 cXULElement_wizard.attributes	= {};
@@ -125,56 +156,6 @@ cXULElement_wizard.handlers	= {
 				default:
 					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
 			}
-		}
-	},
-	"DOMNodeInserted":	function(oEvent) {
-		if (oEvent.target == this) {
-			var oElement,
-				that	= this;
-			// Back
-			oElement	= this.$appendChildAnonymous(this.ownerDocument.createElementNS(this.namespaceURI, "xul:button"));
-			oElement.addEventListener("DOMActivate", function(oEvent) {
-				that.rewind();
-			}, false);
-			oElement.setAttribute("label", oXULLocaleManager.getText("dialog.button.previous"));
-			oElement.setAttribute("class", "back");
-			this.buttons["back"]	= oElement;
-			// Next
-			oElement	= this.$appendChildAnonymous(this.ownerDocument.createElementNS(this.namespaceURI, "xul:button"));
-			oElement.addEventListener("DOMActivate", function(oEvent) {
-				that.advance();
-			}, false);
-			oElement.setAttribute("label", oXULLocaleManager.getText("dialog.button.next"));
-			oElement.setAttribute("class", "next");
-			this.buttons["next"]	= oElement;
-			// Finish
-			oElement	= this.$appendChildAnonymous(this.ownerDocument.createElementNS(this.namespaceURI, "xul:button"));
-			oElement.addEventListener("DOMActivate", function(oEvent) {
-		        that.finish();
-			}, false);
-			oElement.setAttribute("label", oXULLocaleManager.getText("dialog.button.finish"));
-			oElement.setAttribute("class", "finish");
-			this.buttons["finish"]	= oElement;
-			// Cancel
-			oElement	= this.$appendChildAnonymous(this.ownerDocument.createElementNS(this.namespaceURI, "xul:button"));
-			oElement.addEventListener("DOMActivate", function(oEvent) {
-				that.cancel();
-			}, false);
-			oElement.setAttribute("label", oXULLocaleManager.getText("dialog.button.cancel"));
-			oElement.setAttribute("class", "cancel");
-			this.buttons["cancel"]	= oElement;
-		}
-	},
-	"DOMNodeRemoved":	function(oEvent) {
-		if (oEvent.target == this) {
-			this.$removeChildAnonymous(this.buttons["back"]);
-			this.buttons["back"]	= null;
-			this.$removeChildAnonymous(this.buttons["next"]);
-			this.buttons["next"]	= null;
-			this.$removeChildAnonymous(this.buttons["finish"]);
-			this.buttons["finish"]	= null;
-			this.$removeChildAnonymous(this.buttons["cancel"]);
-			this.buttons["cancel"]	= null;
 		}
 	},
 	"dragstart":	function(oEvent) {

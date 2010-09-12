@@ -8,10 +8,38 @@
  */
 
 var cXULElement_dialog	= function(){
-	this.buttons	= {};
+    // Collections
+    this.buttons	= {};
+    //
+    var that	= this;
+    this.contentFragment	= ample.createDocumentFragment();
+	// Accept
+    this.buttons.accept	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "xul:button"));
+    this.buttons.accept.addEventListener("DOMActivate", function(oEvent) {
+		that.acceptDialog();
+	}, false);
+    this.buttons.accept.setAttribute("label", oXULLocaleManager.getText("dialog.button.accept"));
+    this.buttons.accept.setAttribute("class", "accept");
+	// Cancel
+	this.buttons.cancel	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "xul:button"));
+	this.buttons.cancel.addEventListener("DOMActivate", function(oEvent) {
+		that.cancelDialog();
+	}, false);
+	this.buttons.cancel.setAttribute("label", oXULLocaleManager.getText("dialog.button.cancel"));
+	this.buttons.cancel.setAttribute("class", "cancel");
+	// Help
+	this.buttons.help	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "xul:button"));
+	this.buttons.help.addEventListener("DOMActivate", function(oEvent) {
+        var oEvent2    = that.ownerDocument.createEvent("Events");
+        oEvent2.initEvent("dialoghelp", false, true);
+        that.dispatchEvent(oEvent2);
+	}, false);
+	this.buttons.help.setAttribute("label", oXULLocaleManager.getText("dialog.button.help"));
+	this.buttons.help.setAttribute("class", "help");
 };
 cXULElement_dialog.prototype	= new cXULWindowElement("dialog");
 cXULElement_dialog.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
+cXULElement_dialog.prototype.buttons	= null;
 
 // Attributes Defaults
 cXULElement_dialog.attributes	= {};
@@ -75,53 +103,13 @@ cXULElement_dialog.handlers	= {
 			}
 		}
 	},
-	"DOMNodeInserted":	function(oEvent) {
-		if (oEvent.target == this) {
-			var oElement,
-				that	= this;
-			// Accept
-			oElement	= this.$appendChildAnonymous(this.ownerDocument.createElementNS(this.namespaceURI, "xul:button"));
-			oElement.addEventListener("DOMActivate", function(oEvent) {
-				that.acceptDialog();
-			}, false);
-			oElement.setAttribute("label", oXULLocaleManager.getText("dialog.button.accept"));
-			oElement.setAttribute("class", "accept");
-			if (this.attributes["buttons"].indexOf("accept") ==-1)
-				oElement.setAttribute("hidden", "true");
-			this.buttons["accept"]	= oElement;
-			// Cancel
-			oElement	= this.$appendChildAnonymous(this.ownerDocument.createElementNS(this.namespaceURI, "xul:button"));
-			oElement.addEventListener("DOMActivate", function(oEvent) {
-				that.cancelDialog();
-			}, false);
-			oElement.setAttribute("label", oXULLocaleManager.getText("dialog.button.cancel"));
-			oElement.setAttribute("class", "cancel");
-			if (this.attributes["buttons"].indexOf("cancel") ==-1)
-				oElement.setAttribute("hidden", "true");
-			this.buttons["cancel"]	= oElement;
-			// Help
-			oElement	= this.$appendChildAnonymous(this.ownerDocument.createElementNS(this.namespaceURI, "xul:button"));
-			oElement.addEventListener("DOMActivate", function(oEvent) {
-		        var oEvent2    = that.ownerDocument.createEvent("Events");
-		        oEvent2.initEvent("dialoghelp", false, true);
-		        that.dispatchEvent(oEvent2);
-			}, false);
-			oElement.setAttribute("label", oXULLocaleManager.getText("dialog.button.help"));
-			oElement.setAttribute("class", "help");
-			if (this.attributes["buttons"].indexOf("help") ==-1)
-				oElement.setAttribute("hidden", "true");
-			this.buttons["help"]	= oElement;
-		}
-	},
-	"DOMNodeRemoved":	function(oEvent) {
-		if (oEvent.target == this) {
-			this.$removeChildAnonymous(this.buttons["accept"]);
-			this.buttons["accept"]	= null;
-			this.$removeChildAnonymous(this.buttons["cancel"]);
-			this.buttons["cancel"]	= null;
-			this.$removeChildAnonymous(this.buttons["help"]);
-			this.buttons["help"]	= null;
-		}
+	"DOMNodeInsertedIntoDocument":	function(oEvent) {
+		if (this.attributes["buttons"].indexOf("accept") ==-1)
+			this.buttons.accept.setAttribute("hidden", "true");
+		if (this.attributes["buttons"].indexOf("cancel") ==-1)
+			this.buttons.cancel.setAttribute("hidden", "true");
+		if (this.attributes["buttons"].indexOf("help") ==-1)
+			this.buttons.help.setAttribute("hidden", "true");
 	},
 	"dragstart":	function(oEvent) {
 		if (oEvent.target == this && oEvent.$pseudoTarget != this.$getContainer("title"))

@@ -11,6 +11,34 @@
 var cXULElement_datepicker_pane	= function() {
 	var oDate	= new Date();
 	this.current	= new Date(oDate.getFullYear(), oDate.getMonth(), oDate.getDate());
+    //
+    var that	= this;
+    this.contentFragment	= ample.createDocumentFragment();
+	// Month select
+	this._elementMonth	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "xul:menulist"));
+	this._elementMonth.appendChild(ample.createElementNS(this.namespaceURI, "xul:menupopup"));
+	this._elementMonth.tabIndex	=-1;
+	this._elementMonth.addEventListener("change", function(oEvent) {
+		that.doSelectMonth(this.items[this.selectedIndex].getAttribute("value"));
+		// Stop propagation
+		oEvent.stopPropagation();
+	}, false);
+	// months names
+    for (var nIndex = 0, oElement; nIndex < 12; nIndex++) {
+    	oElement = this._elementMonth.firstChild.appendChild(ample.createElementNS(this.namespaceURI, "xul:menuitem"));
+    	oElement.setAttribute("value", nIndex);
+    	oElement.setAttribute("label", cXULElement_datepicker_pane.months[nIndex]);
+    }
+	// Year spinner
+	this._elementYear	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "xul:textbox"));
+	this._elementYear.setAttribute("type", "number");
+	this._elementYear.tabIndex	=-1;
+	this._elementYear.setAttribute("max", Infinity);
+	this._elementYear.addEventListener("change", function(oEvent) {
+		that.doSelectYear(this.getAttribute("value"));
+		// Stop propagation
+		oEvent.stopPropagation();
+	}, false);
 };
 
 cXULElement_datepicker_pane.months	= [
@@ -30,6 +58,9 @@ cXULElement_datepicker_pane.months	= [
 
 // component prototype
 cXULElement_datepicker_pane.prototype	= new cXULPopupElement("datepicker-pane");
+
+cXULElement_datepicker_pane.attributes	= {};
+cXULElement_datepicker_pane.attributes.hidden	= "true";
 
 // Pubic properties (read-only)
 cXULElement_datepicker_pane.prototype.current= null;	// this is set by constructor
@@ -174,53 +205,16 @@ cXULElement_datepicker_pane.handlers	= {
 					break;
 			}
 	},
-	"DOMNodeInserted":	function(oEvent) {
-		if (oEvent.target == this) {
-			var that	= this;
-			//
-			var sValue	= this.getAttribute("value");
-			if (sValue) {
-				this.value	= cXULElement_datepicker_pane.parseDateFromString(sValue);
-				this.current= cXULElement_datepicker_pane.parseDateFromString(sValue);
-			}
-			// Month select
-			this._elementMonth	= this.$appendChildAnonymous(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menulist"));
-			this._elementMonth.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menupopup"));
-			this._elementMonth.tabIndex	=-1;
-			this._elementMonth.setAttribute("value", cXULElement_datepicker_pane.months[this.current.getMonth()]);
-			this._elementMonth.addEventListener("change", function(oEvent) {
-				that.doSelectMonth(this.items[this.selectedIndex].getAttribute("value"));
-				// Stop propagation
-				oEvent.stopPropagation();
-			}, false);
-			// months names
-		    for (var nIndex = 0, oElement; nIndex < 12; nIndex++) {
-		    	oElement = this._elementMonth.firstChild.appendChild(this.ownerDocument.createElementNS(this.namespaceURI, "xul:menuitem"));
-		    	oElement.setAttribute("value", nIndex);
-		    	oElement.setAttribute("label", cXULElement_datepicker_pane.months[nIndex]);
-		    }
-			// Year spinner
-			this._elementYear	= this.$appendChildAnonymous(this.ownerDocument.createElementNS(this.namespaceURI, "xul:textbox"));
-			this._elementYear.setAttribute("type", "number");
-			this._elementYear.tabIndex	=-1;
-			this._elementYear.setAttribute("value", this.current.getFullYear());
-			this._elementYear.setAttribute("max", Infinity);
-			this._elementYear.addEventListener("change", function(oEvent) {
-				that.doSelectYear(this.getAttribute("value"));
-				// Stop propagation
-				oEvent.stopPropagation();
-			}, false);
-		}
-	},
-	"DOMNodeRemoved":	function(oEvent) {
-		if (oEvent.target == this) {
-			this.$removeChildAnonymous(this._elementMonth);
-			this._elementMonth	= null;
-			this.$removeChildAnonymous(this._elementYear);
-			this._elementYear	= null;
-		}
-	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
+		//
+		var sValue	= this.getAttribute("value");
+		if (sValue) {
+			this.value	= cXULElement_datepicker_pane.parseDateFromString(sValue);
+			this.current= cXULElement_datepicker_pane.parseDateFromString(sValue);
+		}
+		this._elementMonth.setAttribute("value", cXULElement_datepicker_pane.months[this.current.getMonth()]);
+		this._elementYear.setAttribute("value", this.current.getFullYear());
+		//
 		this.refresh();
 	}
 };

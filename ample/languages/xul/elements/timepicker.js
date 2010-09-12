@@ -7,7 +7,50 @@
  *
  */
 
-var cXULElement_timepicker	= function(){};
+var cXULElement_timepicker	= function() {
+	//
+	this.contentFragment	= ample.createDocumentFragment();
+	this.spinButtons		= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "xul:spinbuttons"));
+	//
+	var that	= this;
+	this.spinButtons.addEventListener("spin", function(oEvent) {
+		var aTime	= that.attributes["value"].split(":"),
+			aRange	= cXULInputElement.getSelectionRange(that);
+		var sComponent	= cXULElement_timepicker.getEditComponent(that),
+			nComponent;
+		switch (sComponent) {
+			case 'h':
+				nComponent	= aTime[0] * 1 + (oEvent.detail ? 1 :-1);
+				if (nComponent > 23)
+					nComponent	= 0;
+				else
+				if (nComponent < 0)
+					nComponent	= 23;
+				aTime[0]	= (nComponent.toString().length < 2 ? '0' : '') + nComponent;
+				break;
+			case 'm':
+				nComponent	= aTime[1] * 1 + (oEvent.detail ? 1 :-1);
+				if (nComponent > 59)
+					nComponent	= 0;
+				else
+				if (nComponent < 0)
+					nComponent	= 59;
+				aTime[1]	= (nComponent.toString().length < 2 ? '0' : '') + nComponent;
+				break;
+			case 's':
+			default:
+				nComponent	= aTime[2] * 1 + (oEvent.detail ? 1 :-1);
+				if (nComponent > 59)
+					nComponent	= 0;
+				else
+				if (nComponent < 0)
+					nComponent	= 59;
+				aTime[2]	= (nComponent.toString().length < 2 ? '0' : '') + nComponent;
+		}
+		that.setAttribute("value", aTime.join(':'));
+		cXULElement_timepicker.setEditComponent(that, sComponent);
+	}, false);
+};
 cXULElement_timepicker.prototype	= new cXULInputElement("timepicker");
 
 // Default attributes
@@ -75,6 +118,9 @@ cXULElement_timepicker.handlers	= {
 		if (oEvent.$pseudoTarget == this.$getContainer("input"))
 			cXULElement_timepicker.setEditComponent(this, cXULElement_timepicker.getEditComponent(this));
 	},
+	"DOMNodeInsertedIntoDocument":	function(oEvent) {
+		this.spinButtons.setAttribute("disabled", this.$isAccessible() ? "false" : "true");
+	},
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this) {
 			switch (oEvent.attrName) {
@@ -90,57 +136,6 @@ cXULElement_timepicker.handlers	= {
 				default:
 					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
 			}
-		}
-	},
-	"DOMNodeInserted":	function(oEvent) {
-		if (oEvent.target == this) {
-			var that	= this;
-			this.spinButtons	= this.ownerDocument.createElementNS(this.namespaceURI, "xul:spinbuttons");
-			this.spinButtons.setAttribute("disabled", this.$isAccessible() ? "false" : "true");
-			this.spinButtons.addEventListener("spin", function(oEvent) {
-				var aTime	= that.attributes["value"].split(":"),
-					aRange	= cXULInputElement.getSelectionRange(that);
-				var sComponent	= cXULElement_timepicker.getEditComponent(that),
-					nComponent;
-				switch (sComponent) {
-					case 'h':
-						nComponent	= aTime[0] * 1 + (oEvent.detail ? 1 :-1);
-						if (nComponent > 23)
-							nComponent	= 0;
-						else
-						if (nComponent < 0)
-							nComponent	= 23;
-						aTime[0]	= (nComponent.toString().length < 2 ? '0' : '') + nComponent;
-						break;
-					case 'm':
-						nComponent	= aTime[1] * 1 + (oEvent.detail ? 1 :-1);
-						if (nComponent > 59)
-							nComponent	= 0;
-						else
-						if (nComponent < 0)
-							nComponent	= 59;
-						aTime[1]	= (nComponent.toString().length < 2 ? '0' : '') + nComponent;
-						break;
-					case 's':
-					default:
-						nComponent	= aTime[2] * 1 + (oEvent.detail ? 1 :-1);
-						if (nComponent > 59)
-							nComponent	= 0;
-						else
-						if (nComponent < 0)
-							nComponent	= 59;
-						aTime[2]	= (nComponent.toString().length < 2 ? '0' : '') + nComponent;
-				}
-				that.setAttribute("value", aTime.join(':'));
-				cXULElement_timepicker.setEditComponent(that, sComponent);
-			}, false);
-			this.$appendChildAnonymous(this.spinButtons);
-		}
-	},
-	"DOMNodeRemoved":	function(oEvent) {
-		if (oEvent.target == this) {
-			this.$removeChildAnonymous(this.spinButtons);
-			this.spinButtons	= null;
 		}
 	}
 };
