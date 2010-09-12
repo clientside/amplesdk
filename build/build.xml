@@ -681,7 +681,7 @@
 		<antcall target="BUILD_AMPLE_PLUGINS_COOKIE" />
 		<antcall target="BUILD_AMPLE_PLUGINS_FORM" />
 		<antcall target="BUILD_AMPLE_PLUGINS_GLOB" />
-		<antcall target="BUILD_AMPLE_PLUGINS_STORAGE" />
+		<antcall target="BUILD_AMPLE_PLUGINS_STORE" />
 		<antcall target="BUILD_AMPLE_PLUGINS_TMPL" />
 		<antcall target="BUILD_AMPLE_PLUGINS_XPATH" />
 
@@ -701,7 +701,7 @@
 
 	</target>
 
-	<target name="BUILD_AMPLE_PLUGINS_STORAGE" unless="skip.ample.plugins.storage">
+	<target name="BUILD_AMPLE_PLUGINS_STORE" unless="skip.ample.plugins.store">
 
 	</target>
 
