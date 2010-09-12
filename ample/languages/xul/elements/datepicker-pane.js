@@ -59,9 +59,6 @@ cXULElement_datepicker_pane.months	= [
 // component prototype
 cXULElement_datepicker_pane.prototype	= new cXULPopupElement("datepicker-pane");
 
-cXULElement_datepicker_pane.attributes	= {};
-cXULElement_datepicker_pane.attributes.hidden	= "true";
-
 // Pubic properties (read-only)
 cXULElement_datepicker_pane.prototype.current= null;	// this is set by constructor
 cXULElement_datepicker_pane.prototype.value	= null;

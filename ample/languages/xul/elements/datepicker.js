@@ -12,6 +12,7 @@ var cXULElement_datepicker	= function() {
 	//
 	this.contentFragment	= ample.createDocumentFragment();
 	this.popup		= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "xul:datepicker-pane"));
+	this.popup.setAttribute("hidden", "true");
 	//
 	var that	= this;
 	this.popup.addEventListener("change", function(oEvent) {

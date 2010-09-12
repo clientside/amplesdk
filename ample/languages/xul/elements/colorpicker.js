@@ -11,6 +11,7 @@ var cXULElement_colorpicker	= function(){
 	//
 	this.contentFragment	= ample.createDocumentFragment();
 	this.popup		= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "xul:colorpicker-pane"));
+	this.popup.setAttribute("hidden", "true");
 	//
 	var that	= this;
 	this.popup.addEventListener("accept", function(oEvent) {

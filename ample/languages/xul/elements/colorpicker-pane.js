@@ -16,7 +16,6 @@ var cXULElement_colorpicker_pane  = function() {
 cXULElement_colorpicker_pane.prototype	= new cXULPopupElement("colorpicker-pane");
 
 cXULElement_colorpicker_pane.attributes	= {};
-cXULElement_colorpicker_pane.attributes.hidden	= "true";
 cXULElement_colorpicker_pane.attributes.value	= "#FF0000";
 
 // Public  Method
