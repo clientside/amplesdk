@@ -121,6 +121,7 @@ function fAML_processScripts() {
 		oElementNew,
 		oAttribute,
 		sAttribute,
+		sPrefix,
     	aAttributes,
     	oAttributes,
     	bReferenced;
@@ -205,6 +206,14 @@ function fAML_processScripts() {
 		    if (oDocument && oDocument.documentElement && !oParserError) {
 		    	// import XML DOM into Ample DOM
 		    	oElement	= fAMLDocument_importNode(oAmple_document, oDocument.documentElement, true, null, true);
+		    	// Remove prefixes declarations (already available from root)
+		    	if (!bReferenced) {
+		    		for (sAttribute in oAmple.prefixes) {
+			    		sPrefix = "xmlns" + (sAttribute == '' ? '' : ':' + sAttribute);
+		    			if (sPrefix in oAttributes)
+		    				delete oElement.attributes[sPrefix];
+		    		}
+		    	}
 		    	// render Ample DOM
 		    	if (bTrident) {
 		    		oElementNew	= oUADocument.createElement("div");

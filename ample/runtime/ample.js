@@ -250,6 +250,12 @@ if (!oPrefixes["smil"])
 	oPrefixes["smil"]	= "http://www.w3.org/2008/SMIL30/";
 if (!oPrefixes["xlink"])
 	oPrefixes["xlink"]= "http://www.w3.org/1999/xlink";
+
+// Add known prefixes to ample.documentElement
+for (var sKey in oPrefixes)
+	if (oPrefixes.hasOwnProperty(sKey) && sKey != '')
+		oAmple_document.documentElement.attributes["xmlns" + ':' + sKey]	= oPrefixes[sKey];
+
 //
 function fAmple_resolver(sPrefix) {
 	return oAmple.prefixes[sPrefix] || null;
