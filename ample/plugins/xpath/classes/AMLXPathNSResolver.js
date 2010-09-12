@@ -13,7 +13,7 @@ function cAMLXPathNSResolver(oNode) {
 
 cAMLXPathNSResolver.prototype.lookupNamespaceURI	= function(sPrefix) {
 	// validate API
-	fGuard(arguments, [
+	ample.guard(arguments, [
 		["expression",	String]
 	]);
 

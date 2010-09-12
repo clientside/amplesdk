@@ -6,6 +6,14 @@
  * See: http://www.amplesdk.com/about/licensing/
  *
  */
+//->Source
+ample.include("classes/AMLXPathEvaluator.js");
+ample.include("classes/AMLXPathException.js");
+ample.include("classes/AMLXPathExpression.js");
+ample.include("classes/AMLXPathNamespace.js");
+ample.include("classes/AMLXPathNSResolver.js");
+ample.include("classes/AMLXPathResult.js");
+//<-Source
 /* FIXME: Uncomment when API gets available
 // Publish objects to window
 window.AMLXPathEvaluator	= ample.sign(cAMLXPathEvaluator);
@@ -15,5 +23,5 @@ window.AMLXPathNamespace	= ample.sign(cAMLXPathNamespace);
 window.AMLXPathNSResolver	= ample.sign(cAMLXPathNSResolver);
 window.AMLXPathResult		= ample.sign(cAMLXPathResult);
 */
-// Extend Ample SDK
+// Extend ample
 ample.extend(cAMLXPathEvaluator.prototype,	AMLDocument.prototype);

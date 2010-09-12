@@ -14,7 +14,7 @@ function cAMLXPathExpression(sExpression, oResolver) {
 
 cAMLXPathExpression.prototype.evaluate	= function(oNode, nType, oResult) {
 	// validate API
-	fGuard(arguments, [
+	ample.guard(arguments, [
 		["context",		AMLNode],
 		["type",		Number,	true,	true],
 		["result",		Object, true,	true]

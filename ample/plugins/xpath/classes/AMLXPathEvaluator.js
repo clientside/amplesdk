@@ -13,9 +13,9 @@ function cAMLXPathEvaluator() {
 
 cAMLXPathEvaluator.prototype.createExpression	= function(sExpression, oResolver) {
 	// validate API
-	fGuard(arguments, [
+	ample.guard(arguments, [
 		["expression",	String],
-		["resolver",	cAMLXPathResolver,	true,	true]
+		["resolver",	cAMLXPathNSResolver,	true,	true]
 	]);
 
 	// Invoke implementation
@@ -24,20 +24,20 @@ cAMLXPathEvaluator.prototype.createExpression	= function(sExpression, oResolver)
 
 cAMLXPathEvaluator.prototype.createNSResolver	= function(oNode) {
 	// validate API
-	fGuard(arguments, [
+	ample.guard(arguments, [
 		["node",	AMLNode]
 	]);
 
 	// Invoke implementation
-	return new cAMLXPathResolver(oNode);
+	return new cAMLXPathNSResolver(oNode);
 };
 
 cAMLXPathEvaluator.prototype.evaluate	= function(sExpression, oNode, oResolver, nType, oResult) {
 	// validate API
-	fGuard(arguments, [
+	ample.guard(arguments, [
 		["expression",	String],
 		["context",		AMLNode],
-		["resolver",	cAMLXPathResolver,	true,	true],
+		["resolver",	cAMLXPathNSResolver,true,	true],
 		["type",		Number,				true,	true],
 		["result",		cAMLXPathResult,	true,	true]
 	]);

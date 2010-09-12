@@ -38,7 +38,7 @@ cAMLXPathResult.prototype.iterateNext	= function() {
 
 cAMLXPathResult.prototype.snapshotItem	= function(nIndex) {
 	// validate API
-	fGuard(arguments, [
+	ample.guard(arguments, [
 		["index",	Number]
 	]);
 
