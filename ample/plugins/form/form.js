@@ -7,11 +7,12 @@
  *
  */
 
+// Extend AMLQuery
 ample.extend({
 	//
 	val:	function(vValue) {
 		// validate API
-		ample.guard([
+		ample.guard(arguments, [
 			["value", Object, true]
 		]);
 
@@ -21,7 +22,7 @@ ample.extend({
 	//
 	blur:	function(fHandler) {
 		// validate API
-		ample.guard([
+		ample.guard(arguments, [
 			["handler", Function, true]
 		]);
 
@@ -30,7 +31,7 @@ ample.extend({
 
 	focus:	function(fHandler) {
 		// validate API
-		ample.guard([
+		ample.guard(arguments, [
 			["handler", Function, true]
 		]);
 
@@ -40,7 +41,7 @@ ample.extend({
 	//
 	change:	function(fHandler) {
 		// validate API
-		ample.guard([
+		ample.guard(arguments, [
 			["handler", Function, true]
 		]);
 
@@ -49,7 +50,7 @@ ample.extend({
 
 	select:	function(fHandler) {
 		// validate API
-		ample.guard([
+		ample.guard(arguments, [
 			["handler", Function, true]
 		]);
 
@@ -59,7 +60,7 @@ ample.extend({
 	//
 	submit:	function(fHandler) {
 		// validate API
-		ample.guard([
+		ample.guard(arguments, [
 			["handler", Function, true]
 		]);
 
@@ -68,7 +69,7 @@ ample.extend({
 
 	reset:	function(fHandler) {
 		// validate API
-		ample.guard([
+		ample.guard(arguments, [
 			["handler", Function, true]
 		]);
 

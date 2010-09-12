@@ -7,3 +7,21 @@
  *
  */
 
+function fAmple_cookie(oAmple, sName, vValue) {
+
+};
+
+// Publish
+ample.extend({
+	//
+	cookie:	function(sName, vValue) {
+		// Validate API call
+		ample.guard(arguments, [
+			["name",	cString],
+			["value",	cObject, true, true]
+		]);
+
+		// Invoke implementation
+		return fAmple_cookie(this, sName, vValue);
+	}
+});
