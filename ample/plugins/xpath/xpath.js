@@ -14,14 +14,12 @@ ample.include("classes/AMLXPathNamespace.js");
 ample.include("classes/AMLXPathNSResolver.js");
 ample.include("classes/AMLXPathResult.js");
 //<-Source
-/* FIXME: Uncomment when API gets available
 // Publish objects to window
-window.AMLXPathEvaluator	= ample.sign(cAMLXPathEvaluator);
-window.AMLXPathException	= ample.sign(cAMLXPathException);
-window.AMLXPathExpression	= ample.sign(cAMLXPathExpression);
-window.AMLXPathNamespace	= ample.sign(cAMLXPathNamespace);
-window.AMLXPathNSResolver	= ample.sign(cAMLXPathNSResolver);
-window.AMLXPathResult		= ample.sign(cAMLXPathResult);
-*/
+ample.publish(cAMLXPathEvaluator,	"AMLXPathEvaluator");
+ample.publish(cAMLXPathException,	"AMLXPathException");
+ample.publish(cAMLXPathExpression,	"AMLXPathExpression");
+ample.publish(cAMLXPathNamespace,	"AMLXPathNamespace");
+ample.publish(cAMLXPathNSResolver,	"AMLXPathNSResolver");
+ample.publish(cAMLXPathResult,		"AMLXPathResult");
 // Extend ample
 ample.extend(cAMLXPathEvaluator.prototype,	AMLDocument.prototype);

@@ -253,6 +253,38 @@
 				<description>
 					<locale>
 						Provides extensibility point.
+						The source object members get signed automatically.
+					</locale>
+				</description>
+			</method>
+			<method name="publish" type="Void">
+				<arguments>
+					<argument name="source" type="Object">
+						<description>
+							<locale>
+								Object to be published.
+							</locale>
+						</description>
+					</argument>
+					<argument name="name" type="String">
+						<description>
+							<locale>
+								Name of object.
+							</locale>
+						</description>
+					</argument>
+					<argument name="target" type="Object" required="false">
+						<description>
+							<locale>
+								Target for export.
+								If not specified, window is in use.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Signs and published source object as member of target.
 					</locale>
 				</description>
 			</method>

@@ -1326,7 +1326,7 @@ function formatDate(value, format, culture) {
 }
 
 // EXPORTS
-ample.locale	= Globalization;
+ample.extend({locale: Globalization});
 
 })();
 

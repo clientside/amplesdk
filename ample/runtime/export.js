@@ -22,29 +22,25 @@ function fAMLExporter_toStringMember(vObject, fToString) {
 		vObject.toString.toString	= fAMLExporter_toString;
 	}
 };
-function fAMLExporter_wrap(vObject, sName) {
+function fAMLExporter_sign(vObject, sName) {
 	fAMLExporter_toStringMember(vObject, (vObject instanceof cFunction ? fAMLExporter_toStringFunction : fAMLExporter_toStringObject)(sName));
-	for (sName in vObject)
-		if (vObject.hasOwnProperty(sName) && vObject[sName] instanceof cFunction)
-			fAMLExporter_wrapMember(vObject[sName], sName);
+	fAMLExporter_signMembers(vObject);
 };
-function fAMLExporter_wrapMember(fFunction, sName) {
-	fAMLExporter_toStringMember(fFunction, fAMLExporter_toStringFunction(sName));
+function fAMLExporter_signMembers(oObject) {
+	// Sign only own members
+	for (var sName in oObject)
+		if (oObject.hasOwnProperty(sName) && oObject[sName] instanceof cFunction)
+			fAMLExporter_toStringMember(oObject[sName], fAMLExporter_toStringFunction(sName));
 };
-function fAMLExporter_exportMember(oObject, fFunction, sName) {
-	fAMLExporter_wrapMember(fFunction, sName);
 
-	// publish to object
-	oObject[sName]	= fFunction;
-};
-function fAMLExporter_export(cObject, sName) {
+function fAMLExporter_export(cObject, sName, oObject) {
 	// Class
-	fAMLExporter_wrap(cObject, sName);
-	if (cObject.prototype)	// Required in IE
-		fAMLExporter_wrap(cObject.prototype, sName);
+	fAMLExporter_sign(cObject, sName);
+	if (cObject.prototype)
+		fAMLExporter_sign(cObject.prototype, sName);
 
-	// Publish to window
-	window[sName]	= cObject;
+	// Publish
+	(oObject || window)[sName]	= cObject;
 };
 
 // publish classes to window
@@ -122,33 +118,32 @@ if (!window.JSON)
 	fAMLExporter_export(oJSON,	"JSON");
 
 // Special virtual type
-fAMLExporter_wrapMember(cArguments,	"Arguments");
+fAMLExporter_sign(cArguments,	"Arguments");
 // Tweaks and tricks
-fAMLExporter_wrap(oAmple.prefixes,	"prefixes");
-fAMLExporter_wrap(fAmple_resolver,	"resolver");
-fAMLExporter_wrap(oAmple.documentElement.$getContainer,		"$getContainer");
-
+fAMLExporter_sign(oAmple.prefixes,	"prefixes");
+fAMLExporter_sign(fAmple_resolver,	"resolver");
+fAMLExporter_sign(oAmple_document.documentElement.$getContainer,		"$getContainer");
 //
 fAMLExporter_export(oAmple,	"ample");
 
 // JavaScript 1.5
 if (!cArray.prototype.push)
-	fAMLExporter_exportMember(cArray.prototype, function(vValue) {
+	fAMLExporter_export(function(vValue) {
 		this[this.length]   = vValue;
 		return this.length;
-	}, "push");
+	}, "push", cArray.prototype);
 
 if (!cArray.prototype.pop)
-	fAMLExporter_exportMember(cArray.prototype, function() {
+	fAMLExporter_export(function() {
 		var vValue  = this[this.length-1];
 		this.length--;
 		return vValue;
-	}, "pop");
+	}, "pop", cArray.prototype);
 
 // JavaScript 1.6
 //
 if (!cArray.prototype.indexOf)
-	fAMLExporter_exportMember(cArray.prototype, function(oElement, nIndex) {
+	fAMLExporter_export(function(oElement, nIndex) {
 		// Validate arguments
 		fGuard(arguments, [
 			["element",	cObject, false, true],
@@ -171,10 +166,10 @@ if (!cArray.prototype.indexOf)
 				if (vValue === oElement)
 					return nIndex;
 		return -1;
-	}, "indexOf");
+	}, "indexOf", cArray.prototype);
 
 if (!cArray.prototype.lastIndexOf)
-	fAMLExporter_exportMember(cArray.prototype, function(oElement, nIndex) {
+	fAMLExporter_export(function(oElement, nIndex) {
 		// Validate arguments
 		fGuard(arguments, [
 			["element",	cObject, false, true],
@@ -200,11 +195,11 @@ if (!cArray.prototype.lastIndexOf)
 				if (vValue === oElement)
 					return nIndex;
 		return -1;
-	}, "lastIndexOf");
+	}, "lastIndexOf", cArray.prototype);
 
 //
 if (!cArray.prototype.filter)
-	fAMLExporter_exportMember(cArray.prototype, function(fCallback, oReceiver) {
+	fAMLExporter_export(function(fCallback, oReceiver) {
 		// Validate arguments
 		fGuard(arguments, [
 			["callback",	cFunction],
@@ -216,10 +211,10 @@ if (!cArray.prototype.filter)
 				if (fCallback.call(oReceiver, vValue, nIndex, this))
 					aResult.push(vValue);
 		return aResult;
-	}, "filter");
+	}, "filter", cArray.prototype);
 
 if (!cArray.prototype.forEach)
-	fAMLExporter_exportMember(cArray.prototype, function(fCallback, oReceiver) {
+	fAMLExporter_export(function(fCallback, oReceiver) {
 		// Validate arguments
 		fGuard(arguments, [
 			["callback",	cFunction],
@@ -229,10 +224,10 @@ if (!cArray.prototype.forEach)
 		for (var nIndex = 0, nLength = this.length, vValue; nIndex < nLength; nIndex++)
 			if (!(typeof(vValue = this[nIndex]) == "undefined") || nIndex in this)
 				fCallback.call(oReceiver, vValue, nIndex, this);
-	}, "forEach");
+	}, "forEach", cArray.prototype);
 
 if (!cArray.prototype.every)
-	fAMLExporter_exportMember(cArray.prototype, function(fCallback, oReceiver) {
+	fAMLExporter_export(function(fCallback, oReceiver) {
 		// Validate arguments
 		fGuard(arguments, [
 			["callback",	cFunction],
@@ -244,10 +239,10 @@ if (!cArray.prototype.every)
 				if (!fCallback.call(oReceiver, vValue, nIndex, this))
 					return false;
 		return true;
-	}, "every");
+	}, "every", cArray.prototype);
 
 if (!cArray.prototype.map)
-	fAMLExporter_exportMember(cArray.prototype, function(fCallback, oReceiver) {
+	fAMLExporter_export(function(fCallback, oReceiver) {
 		// Validate arguments
 		fGuard(arguments, [
 			["callback",	cFunction],
@@ -258,10 +253,10 @@ if (!cArray.prototype.map)
 			if (!(typeof(vValue = this[nIndex]) == "undefined") || nIndex in this)
 				aResult[nIndex] = fCallback.call(oReceiver, vValue, nIndex, this);
 		return aResult;
-	}, "map");
+	}, "map", cArray.prototype);
 
 if (!cArray.prototype.some)
-	fAMLExporter_exportMember(cArray.prototype, function(fCallback, oReceiver) {
+	fAMLExporter_export(function(fCallback, oReceiver) {
 		// Validate arguments
 		fGuard(arguments, [
 			["callback",	cFunction],
@@ -273,7 +268,7 @@ if (!cArray.prototype.some)
 				if (fCallback.call(oReceiver, vValue, nIndex, this))
 					return true;
 		return false;
-	}, "some");
+	}, "some", cArray.prototype);
 
 // JavaScript 1.7
 // generators, iterators, array comprehensions, let expressions, and destructuring assignment
@@ -281,7 +276,7 @@ if (!cArray.prototype.some)
 // JavaScript 1.8
 // Expression closures, Generator expressions
 if (!cArray.prototype.reduce)
-	fAMLExporter_exportMember(cArray.prototype, function(fCallback/*, initial*/) {
+	fAMLExporter_export(function(fCallback/*, initial*/) {
 		// Validate arguments
 		fGuard(arguments, [
 			["callback",	cFunction]
@@ -315,10 +310,10 @@ if (!cArray.prototype.reduce)
 				aValue = fCallback.call(null, aValue, this[nIndex], nIndex, this);
 
 		return aValue;
-	}, "reduce");
+	}, "reduce", cArray.prototype);
 
 if (!cArray.prototype.reduceRight)
-	fAMLExporter_exportMember(cArray.prototype, function(fCallback/*, initial*/) {
+	fAMLExporter_export(function(fCallback/*, initial*/) {
 		// Validate arguments
 		fGuard(arguments, [
 			["callback",	cFunction]
@@ -351,24 +346,24 @@ if (!cArray.prototype.reduceRight)
 				aValue = fCallback.call(null, aValue, this[nIndex], nIndex, this);
 
 		return aValue;
-	}, "reduceRight");
+	}, "reduceRight", cArray.prototype);
 
 // JavaScript 1.8.1
 // Object.getPrototypeOf(), Native JSON, String methods
 if (!cString.prototype.trim)
-	fAMLExporter_exportMember(cString.prototype, function() {
+	fAMLExporter_export(function() {
 		return this.replace(/^\s+|\s+$/g, '');
-	}, "trim");
+	}, "trim", cString.prototype);
 
 if (!cString.prototype.trimLeft)
-	fAMLExporter_exportMember(cString.prototype, function(fCallback, oReceiver) {
+	fAMLExporter_export(function(fCallback, oReceiver) {
 		return this.replace(/^\s+/, '');
-	}, "trimLeft");
+	}, "trimLeft", cString.prototype);
 
 if (!cString.prototype.trimRight)
-	fAMLExporter_exportMember(cString.prototype, function(fCallback, oReceiver) {
+	fAMLExporter_export(function(fCallback, oReceiver) {
 		return this.replace(/\s+$/, '');
-	}, "trimRight");
+	}, "trimRight", cString.prototype);
 
 // JSON
 function fJSON_doublizeInteger(n) {
@@ -377,26 +372,26 @@ function fJSON_doublizeInteger(n) {
 };
 
 if (!cDate.prototype.toJSON)
-	fAMLExporter_exportMember(cDate.prototype, function(sKey) {
+	fAMLExporter_export(function(sKey) {
 		return this.getUTCFullYear()	+ '-' +
 			fJSON_doublizeInteger(this.getUTCMonth() + 1)	+ '-' +
 			fJSON_doublizeInteger(this.getUTCDate())		+ 'T' +
 			fJSON_doublizeInteger(this.getUTCHours())		+ ':' +
 			fJSON_doublizeInteger(this.getUTCMinutes())		+ ':' +
 			fJSON_doublizeInteger(this.getUTCSeconds())		+ 'Z';
-	}, "toJSON");
+	}, "toJSON", cDate.prototype);
 
 if (!cString.prototype.toJSON)
-	fAMLExporter_exportMember(cString.prototype, function(sKey) {
+	fAMLExporter_export(function(sKey) {
 		return this.valueOf();
-	}, "toJSON");
+	}, "toJSON", cString.prototype);
 
 if (!cNumber.prototype.toJSON)
-	fAMLExporter_exportMember(cNumber.prototype, function(sKey) {
+	fAMLExporter_export(function(sKey) {
 		return this.valueOf();
-	}, "toJSON");
+	}, "toJSON", cNumber.prototype);
 
 if (!cBoolean.prototype.toJSON)
-	fAMLExporter_exportMember(cBoolean.prototype, function(sKey) {
+	fAMLExporter_export(function(sKey) {
 		return this.valueOf();
-	}, "toJSON");
+	}, "toJSON", cBoolean.prototype);

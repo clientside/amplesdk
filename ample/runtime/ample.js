@@ -133,14 +133,15 @@ function fAmple_extend(oSource, oTarget) {
 	else {
 		if (!oTarget)
 			oTarget	= oAmple;
-		for (var sName in oSource) {
+		for (var sName in oSource)
+			if (sName != "toString") {
 //->Debug
-			if (oTarget.hasOwnProperty(sName))
-				fUtilities_warn(sAML_REWRITING_MEMBER_WRN, [sName]);
+				if (oTarget.hasOwnProperty(sName))
+					fUtilities_warn(sAML_REWRITING_MEMBER_WRN, [sName]);
 //<-Debug
-			if (oSource.hasOwnProperty(sName))
-				oTarget[sName]	= oSource[sName];
-		}
+				if (oSource.hasOwnProperty(sName))
+					oTarget[sName]	= oSource[sName];
+			}
 	}
 };
 
@@ -151,6 +152,9 @@ oAmple.extend	= function(oSource, oTarget) {
 		["source",	cObject],
 		["target",	cObject, true]
 	]);
+
+	// Sign
+	fAMLExporter_sign(oSource);
 
 	// Invoke implementation
 	fAmple_extend(oSource, oTarget);
@@ -176,6 +180,18 @@ oAmple.guard	= function(aArguments, aParameters) {
 
 	// Invoke implementation
 	fGuard(aArguments, aParameters);
+};
+
+oAmple.publish	= function(oSource, sName, oTarget) {
+	// Validate API call
+	fGuard(arguments, [
+		["source",	cObject],
+		["name",	cString],
+		["target",	cObject,	true]
+	]);
+
+	// Invoke implementation
+	fAMLExporter_export(oSource, sName, oTarget);
 };
 
 oAmple.config	= function(sName, oValue) {
