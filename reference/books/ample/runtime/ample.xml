@@ -284,7 +284,7 @@
 				</arguments>
 				<description>
 					<locale>
-						Signs and published source object as member of target.
+						Signs and publishes source object as member of target.
 					</locale>
 				</description>
 			</method>
