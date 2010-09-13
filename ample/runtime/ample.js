@@ -182,15 +182,15 @@ oAmple.config	= function(sName, oValue) {
 	// Validate API call
 	fGuard(arguments, [
 		["name",	cString],
-		["value",	cObject, true]
+		["value",	cObject, true,	true]
 	]);
 
 	// Invoke implementation
-	var sPrefix	= "ample" + '-',
-		oOldValue	= fAMLConfiguration_getParameter(oAmple_document.domConfig, sPrefix + sName);
+	var sParameter	= "ample" + '-' + sName,
+		oOldValue	= fAMLConfiguration_getParameter(oAmple_document.domConfig, sParameter);
 	if (arguments.length > 1) {
 		if (sName != "version") {
-			fAMLConfiguration_setParameter(oAmple_document.domConfig, sPrefix + sName, oValue);
+			fAMLConfiguration_setParameter(oAmple_document.domConfig, sParameter, oValue);
 			// Dispatch change event
 			if (oOldValue != oValue) {
 				var oEvent	= new cAMLCustomEvent;
