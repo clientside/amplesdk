@@ -237,7 +237,7 @@
 			<!-- DOM Level 2 -->
 			<method name="dispatchEvent" type="Boolean">
 				<arguments>
-					<argument name="oEvent" type="AMLEvent" required="true">
+					<argument name="oEvent" type="Event" required="true">
 						<description>
 							<locale>
 								The event to be dispatched.

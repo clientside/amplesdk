@@ -358,7 +358,7 @@
 				</description>
 			</method>
 			<!-- DOM Level 3 -->
-			<method name="createEvent" type="AMLEvent">
+			<method name="createEvent" type="Event">
 				<arguments>
 					<argument name="sEventType" type="String" required="true">
 						<description>
