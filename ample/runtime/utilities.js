@@ -210,7 +210,7 @@ function fAML_processScripts() {
 		    	if (!bReferenced) {
 		    		for (sAttribute in oAmple.prefixes) {
 			    		sPrefix = "xmlns" + (sAttribute == '' ? '' : ':' + sAttribute);
-		    			if (sPrefix in oAttributes)
+		    			if (sPrefix in oAttributes && oAttributes[sPrefix] == oAmple.prefixes[sAttribute])
 		    				delete oElement.attributes[sPrefix];
 		    		}
 		    	}
