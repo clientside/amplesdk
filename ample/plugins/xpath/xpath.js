@@ -13,6 +13,9 @@ ample.include("classes/AMLXPathExpression.js");
 ample.include("classes/AMLXPathNamespace.js");
 ample.include("classes/AMLXPathNSResolver.js");
 ample.include("classes/AMLXPathResult.js");
+//
+ample.include("parser/parser.js");
+ample.include("evaluator/evaluator.js");
 //<-Source
 // Publish objects to window
 ample.publish(cAMLXPathEvaluator,	"AMLXPathEvaluator");
