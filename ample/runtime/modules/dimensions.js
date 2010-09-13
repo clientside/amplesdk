@@ -48,7 +48,7 @@ cAMLQuery.prototype.height	= function(sValue) {
 	}
 };
 
-cAMLQuery.prototype.innerWidth	= function(sValue) {
+cAMLQuery.prototype.innerWidth	= function() {
 	// Validate API call
 	fGuard(arguments, [
 		["value",	cObject, true]
@@ -57,7 +57,7 @@ cAMLQuery.prototype.innerWidth	= function(sValue) {
 	return this;
 };
 
-cAMLQuery.prototype.innerHeight	= function(sValue) {
+cAMLQuery.prototype.innerHeight	= function() {
 	// Validate API call
 	fGuard(arguments, [
 		["value",	cObject, true]
@@ -66,7 +66,7 @@ cAMLQuery.prototype.innerHeight	= function(sValue) {
 	return this;
 };
 
-cAMLQuery.prototype.outerWidth	= function(sValue) {
+cAMLQuery.prototype.outerWidth	= function() {
 	// Validate API call
 	fGuard(arguments, [
 		["value",	cObject, true]
@@ -75,7 +75,7 @@ cAMLQuery.prototype.outerWidth	= function(sValue) {
 	return this;
 };
 
-cAMLQuery.prototype.outerHeight	= function(sValue) {
+cAMLQuery.prototype.outerHeight	= function() {
 	// Validate API call
 	fGuard(arguments, [
 		["value",	cObject, true]
