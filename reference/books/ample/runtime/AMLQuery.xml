@@ -936,5 +936,56 @@
 				</description>
 			</method>
 		</methods>
+		<events>
+			<!-- Global Ajax Event Handlers -->
+			<!--
+			<event name="ajaxComplete" type="CustomEvent" cancelable="false" bubble="false">
+				<description>
+					<locale>
+						Ajax requests completed.
+						Property <link type="property" href="runtime:AMLCustomEvent">detail</link> holds the reference to the instance of <link type="object">XMLHttpRequest</link> object.
+					</locale>
+				</description>
+			</event>
+			<event name="ajaxError" type="CustomEvent" cancelable="false" bubble="false">
+				<description>
+					<locale>
+						Ajax request completed with an error.
+						Property <link type="property" href="runtime:AMLCustomEvent">detail</link> holds the reference to the instance of <link type="object">XMLHttpRequest</link> object.
+					</locale>
+				</description>
+			</event>
+			<event name="ajaxSend" type="CustomEvent" cancelable="false" bubble="false">
+				<description>
+					<locale>
+						Ajax request is about to be sent.
+						Property <link type="property" href="runtime:AMLCustomEvent">detail</link> holds the reference to the instance of <link type="object">XMLHttpRequest</link> object.
+					</locale>
+				</description>
+			</event>
+			<event name="ajaxStart" type="CustomEvent" cancelable="false" bubble="false">
+				<description>
+					<locale>
+						First Ajax request in queue has been started.
+					</locale>
+				</description>
+			</event>
+			<event name="ajaxStop" type="CustomEvent" cancelable="false" bubble="false">
+				<description>
+					<locale>
+						All Ajax requests in the queue have been completed.
+					</locale>
+				</description>
+			</event>
+			<event name="ajaxSuccess" type="CustomEvent" cancelable="false" bubble="false">
+				<description>
+					<locale>
+						Ajax request completed successfully.
+						Property <link type="property" href="runtime:AMLCustomEvent">detail</link> holds the reference to the instance of <link type="object">XMLHttpRequest</link> object.
+					</locale>
+				</description>
+			</event>
+			-->
+		</events>
 	</members>
 </class>
