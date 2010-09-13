@@ -471,10 +471,10 @@
 			</method>
 		</methods>
 		<events>
-			<event name="config" type="Event" cancelable="false" bubble="false">
+			<event name="config" type="CustomEvent" cancelable="false" bubble="false">
 				<description>
 					<locale>
-						Fires after the config value changes.
+						Fires after the config value changes. The detail property keeps the name of the parameter name changed.
 					</locale>
 				</description>
 			</event>

@@ -193,8 +193,8 @@ oAmple.config	= function(sName, oValue) {
 			fAMLConfiguration_setParameter(oAmple_document.domConfig, sPrefix + sName, oValue);
 			// Dispatch change event
 			if (oOldValue != oValue) {
-				var oEvent	= new cAMLEvent;
-				oEvent.initEvent("config", false, false);
+				var oEvent	= new cAMLCustomEvent;
+				oEvent.initCustomEvent("config", false, false, sName);
 				fAMLNode_dispatchEvent(oAmple_document, oEvent);
 			}
 		}
