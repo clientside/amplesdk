@@ -565,7 +565,7 @@
 				</description>
 			</method>
 
-			<!-- DOM -->
+			<!-- Attributes -->
 			<method name="attr" type="Variant">
 				<arguments>
 					<argument name="name" type="String">
@@ -598,6 +598,8 @@
 					</locale>
 				</description>
 			</method>
+
+			<!-- Manimulation -->
 			<method name="text" type="Variant">
 				<arguments />
 				<arguments>
@@ -791,6 +793,145 @@
 				<description>
 					<locale>
 						Aborts loading operation.
+					</locale>
+				</description>
+			</method>
+			<!-- Dimensions -->
+			<method name="width" type="Variant">
+				<arguments />
+				<arguments>
+					<argument name="value" type="Object">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="height" type="Variant">
+				<arguments />
+				<arguments>
+					<argument name="value" type="Object">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="innerWidth" type="Number">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="innerHeight" type="Number">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="outerWidth" type="Number">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="outerHeight" type="Number">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<!-- Offset -->
+			<method name="offset" type="Variant">
+				<arguments />
+				<arguments>
+					<argument name="coordinates" type="Object">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="position" type="Variant">
+				<arguments />
+				<arguments>
+					<argument name="coordinates" type="Object">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="offsetParent" type="AMLElement">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="scrollLeft" type="Variant">
+				<arguments />
+				<arguments>
+					<argument name="value" type="Number">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="scrollTop" type="Variant">
+				<arguments />
+				<arguments>
+					<argument name="value" type="Number">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+
 					</locale>
 				</description>
 			</method>
