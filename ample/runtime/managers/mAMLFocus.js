@@ -101,10 +101,14 @@ function fAMLFocus_getFocusGroupNextChild(oElement, nTabIndex, bDeep) {
 
 function fAMLFocus_getFocusGroupPrevious(oElement, nTabIndex) {
 	for (var oParent = oElement, oFocusGroup/*, aChildren*/; oParent; oParent = oParent.parentNode) {
-		if (oParent != oElement && fAMLFocus_isTabStop(oParent, nTabIndex))
-			return oParent;
-//		if ((aChildren = oParent.$childNodesAnonymous) && aChildren.length &&(oFocusGroup = fAMLFocus_getFocusGroupPreviousChild(aChildren[aChildren.length - 1], nTabIndex, true)))
-//			return oFocusGroup;
+		if (oParent != oElement) {
+			if (fAMLFocus_isTabStop(oParent, nTabIndex))
+				return oParent;
+//			if (oParent.contentFragment &&(oFocusGroup = fAMLFocus_getFocusGroupPreviousChild(oParent.contentFragment.lastChild, nTabIndex)))
+//				return oFocusGroup;
+//			if ((aChildren = oParent.$childNodesAnonymous) && aChildren.length &&(oFocusGroup = fAMLFocus_getFocusGroupPreviousChild(aChildren[aChildren.length - 1], nTabIndex, true)))
+//				return oFocusGroup;
+		}
 		if (oParent == oBrowser_modalNode)
 			break;
 		if (oParent.previousSibling && (oFocusGroup = fAMLFocus_getFocusGroupPreviousChild(oParent.previousSibling, nTabIndex)))
