@@ -138,6 +138,9 @@
     // Other
     $aFiles[]		= "elements/other/dialog.js";		// HTML5
 
+	// core SMIL mapping
+	$aFiles[]	= "xhtml-smil.js";
+
     $sOutput	= "";
     for ($nIndex = 0; $nIndex < count($aFiles); $nIndex++)
         $sOutput	.= join('', file($aFiles[$nIndex])) . "\n";

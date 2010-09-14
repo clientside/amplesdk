@@ -25,7 +25,6 @@ function copyElements(sSourceNS, sTargetNS, aElements) {
 };
 
 // Map SMIL
-copyElements("http://www.w3.org/2008/SMIL30/", "http://www.w3.org/2000/svg",
-	["set", "animate", "animateColor", "animateMotion", "animateTransform", "par", "seq", "excl"]
+copyElements("http://www.w3.org/2008/SMIL30/", "http://www.w3.org/1999/xhtml",
+	["set", "animate", "animateColor", "animateMotion", "par", "seq", "excl"]
 );
-
