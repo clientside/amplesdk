@@ -301,11 +301,15 @@ oAmple.close	= function() {
 };
 
 //
-oAmple.$instance	= function(oNode) {
+function fAmple_instance(oDocument, oNode) {
     for (var oElement, sId; oNode; oNode = oNode.parentNode)
         if ((sId = oNode.id) && (oElement = (oAMLDocument_ids[sId] || oAMLDocument_all[sId])))
             return oElement;
     return null;
+};
+
+oAmple.$instance	= function(oNode) {
+	return fAmple_instance(oAmple_document, oNode);
 };
 
 //
@@ -330,7 +334,7 @@ oAmple.$attribute	= function(sUri) {
 };
 /*
 oAmple.$class	= function(oNode) {
-	var oElement	= oAmple.$instance(oNode);
+	var oElement	= fAmple_instance(oAmple_document, oNode);
 	return oElement ? oAMLImplementation_elements[oElement.namespaceURI + '#' + oElement.localName] || cAMLElement : null;
 };
 */

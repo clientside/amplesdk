@@ -35,7 +35,7 @@ function fBrowser_detachEvent(oNode, sEvent, fHandler) {
 
 // Finds AMLElement by event target
 function fBrowser_getEventTarget(oEvent) {
-    return oAmple.$instance(oEvent.srcElement || oEvent.target) || oAmple_document.documentElement;
+    return fAmple_instance(oAmple_document, oEvent.srcElement || oEvent.target) || oAmple_document.documentElement;
 };
 
 function fBrowser_getUIEventPseudo(oEvent) {
