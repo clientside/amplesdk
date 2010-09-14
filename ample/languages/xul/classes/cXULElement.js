@@ -132,7 +132,7 @@ cXULElement.prototype.reflow   = function()
         // Refresh flexible elements
         if (nElements)
         {
-            var oElementDOM	=(this instanceof cXULElement_box || this instanceof cXULElement_grid || this instanceof cXULElement_row) ? this.$getContainer() : this.$getContainer("xul-container"),
+            var oElementDOM	= this instanceof cXULElement_box ? this.$getContainer("xul-gateway") : (this instanceof cXULElement_grid || this instanceof cXULElement_row) ? this.$getContainer() : this.$getContainer("xul-container"),
             	oCell;
 
             if (this instanceof cXULElement_row)
