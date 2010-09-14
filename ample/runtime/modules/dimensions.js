@@ -23,8 +23,13 @@ cAMLQuery.prototype.width	= function(sValue) {
 	}
 	else
 	if (this.length) {
-		var oRect	= fAMLElement_getBoundingClientRect(this[0]);
-		return oRect.right - oRect.left;
+		var oRect	= fAMLElement_getBoundingClientRect(this[0]),
+			oElementDOM	= this[0].$getContainer(),
+		nPaddingLeft	= fParseInt(fBrowser_getStyle(oElementDOM, "paddingLeft")) || 0,
+		nPaddingRight	= fParseInt(fBrowser_getStyle(oElementDOM, "paddingRight")) || 0,
+		nBorderLeft		= fParseInt(fBrowser_getStyle(oElementDOM, "borderLeftWidth")) || 0,
+		nBorderRight	= fParseInt(fBrowser_getStyle(oElementDOM, "borderRightWidth")) || 0;
+		return (oRect.right - oRect.left) - (nPaddingLeft + nPaddingRight) - (nBorderLeft + nBorderRight);
 	}
 };
 
@@ -43,8 +48,13 @@ cAMLQuery.prototype.height	= function(sValue) {
 	}
 	else
 	if (this.length) {
-		var oRect	= fAMLElement_getBoundingClientRect(this[0]);
-		return oRect.bottom - oRect.top;
+		var oRect	= fAMLElement_getBoundingClientRect(this[0]),
+			oElementDOM	= this[0].$getContainer(),
+			nPaddingTop		= fParseInt(fBrowser_getStyle(oElementDOM, "paddingTop")),
+			nPaddingBottom	= fParseInt(fBrowser_getStyle(oElementDOM, "paddingBottom")),
+			nBorderTop		= fParseInt(fBrowser_getStyle(oElementDOM, "borderTopWidth")),
+			nBorderBottom	= fParseInt(fBrowser_getStyle(oElementDOM, "borderBottomWidth"));
+		return (oRect.bottom - oRect.top) - (nPaddingTop + nPaddingBottom) - (nBorderTop + nBorderBottom);
 	}
 };
 
@@ -52,10 +62,9 @@ cAMLQuery.prototype.innerWidth	= function() {
 	if (this.length) {
 		var oRect	= fAMLElement_getBoundingClientRect(this[0]),
 			oElementDOM	= this[0].$getContainer(),
-			nPaddingLeft	= fParseInt(fBrowser_getStyle(oElementDOM, "paddingLeft")),
-			nPaddingRight	= fParseInt(fBrowser_getStyle(oElementDOM, "paddingRight"));
-		return (oRect.right - oRect.left) +
-				(fIsNaN(nPaddingLeft) ? 0 : nPaddingLeft) +	(fIsNaN(nPaddingRight) ? 0 : nPaddingRight);
+			nBorderLeft		= fParseInt(fBrowser_getStyle(oElementDOM, "borderLeftWidth")) || 0,
+			nBorderRight	= fParseInt(fBrowser_getStyle(oElementDOM, "borderRightWidth")) || 0;
+		return (oRect.right - oRect.left) - (nBorderLeft + nBorderRight);
 	}
 	return 0;
 };
@@ -64,10 +73,9 @@ cAMLQuery.prototype.innerHeight	= function() {
 	if (this.length) {
 		var oRect	= fAMLElement_getBoundingClientRect(this[0]),
 			oElementDOM	= this[0].$getContainer(),
-			nPaddingTop		= fParseInt(fBrowser_getStyle(oElementDOM, "paddingTop")),
-			nPaddingBottom	= fParseInt(fBrowser_getStyle(oElementDOM, "paddingBottom"));
-		return (oRect.bottom - oRect.top) +
-				(fIsNaN(nPaddingTop) ? 0 : nPaddingTop) + (fIsNaN(nPaddingBottom) ? 0 : nPaddingBottom);
+			nBorderTop		= fParseInt(fBrowser_getStyle(oElementDOM, "borderTopWidth")) || 0,
+			nBorderBottom	= fParseInt(fBrowser_getStyle(oElementDOM, "borderBottomWidth")) || 0;
+		return (oRect.bottom - oRect.top) - (nBorderTop + nBorderBottom);
 	}
 	return 0;
 };
@@ -76,16 +84,9 @@ cAMLQuery.prototype.outerWidth	= function(bMargin) {
 	if (this.length) {
 		var oRect	= fAMLElement_getBoundingClientRect(this[0]),
 			oElementDOM	= this[0].$getContainer(),
-			nPaddingLeft	= fParseInt(fBrowser_getStyle(oElementDOM, "paddingLeft")),
-			nPaddingRight	= fParseInt(fBrowser_getStyle(oElementDOM, "paddingRight")),
-			nMarginLeft		= fParseInt(fBrowser_getStyle(oElementDOM, "marginLeft")),
-			nMarginRight	= fParseInt(fBrowser_getStyle(oElementDOM, "marginRight")),
-			nBorderLeft		= fParseInt(fBrowser_getStyle(oElementDOM, "borderLeftWidth")),
-			nBorderRight	= fParseInt(fBrowser_getStyle(oElementDOM, "borderRightWidth"));
-		return (oRect.right - oRect.left) +
-				(fIsNaN(nPaddingLeft) ? 0 : nPaddingLeft) + (fIsNaN(nPaddingRight) ? 0 : nPaddingRight) +
-				(fIsNaN(nBorderLeft) ? 0 : nBorderLeft) + (fIsNaN(nBorderRight) ? 0 : nBorderRight) +
-				(bMargin ? ((fIsNaN(nMarginLeft) ? 0 : nMarginLeft) + (fIsNaN(nMarginRight) ? 0 : nMarginRight)) : 0);
+			nMarginLeft		= fParseInt(fBrowser_getStyle(oElementDOM, "marginLeft")) || 0,
+			nMarginRight	= fParseInt(fBrowser_getStyle(oElementDOM, "marginRight")) || 0;
+		return (oRect.right - oRect.left) + (bMargin ? nMarginLeft + nMarginRight : 0);
 	}
 	return 0;
 };
@@ -94,16 +95,9 @@ cAMLQuery.prototype.outerHeight	= function(bMargin) {
 	if (this.length) {
 		var oRect	= fAMLElement_getBoundingClientRect(this[0]),
 			oElementDOM	= this[0].$getContainer(),
-			nPaddingTop		= fParseInt(fBrowser_getStyle(oElementDOM, "paddingTop")),
-			nPaddingBottom	= fParseInt(fBrowser_getStyle(oElementDOM, "paddingBottom")),
 			nMarginTop		= fParseInt(fBrowser_getStyle(oElementDOM, "marginTop")),
-			nMarginBottom	= fParseInt(fBrowser_getStyle(oElementDOM, "marginBottom")),
-			nBorderTop		= fParseInt(fBrowser_getStyle(oElementDOM, "borderTopWidth")),
-			nBorderBottom	= fParseInt(fBrowser_getStyle(oElementDOM, "borderBottomWidth"));
-		return (oRect.bottom - oRect.top) +
-				(fIsNaN(nPaddingTop) ? 0 : nPaddingTop) + (fIsNaN(nPaddingBottom) ? 0 : nPaddingBottom) +
-				(fIsNaN(nBorderTop) ? 0 : nBorderTop) + (fIsNaN(nBorderBottom) ? 0 : nBorderBottom) +
-				(bMargin ? ((fIsNaN(nMarginTop) ? 0 : nMarginTop) + (fIsNaN(nMarginBottom) ? 0 : nMarginBottom)) : 0);
+			nMarginBottom	= fParseInt(fBrowser_getStyle(oElementDOM, "marginBottom"));
+		return (oRect.bottom - oRect.top) + (bMargin ? nMarginTop + nMarginBottom : 0);
 	}
 	return 0;
 };
