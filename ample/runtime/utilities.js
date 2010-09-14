@@ -96,7 +96,7 @@ function fUtilities_resolveUri(sUri, sBaseUri)
 };
 
 function fUtilities_encodeEntities(sValue) {
-	return sValue.replace(/&(?![a-z]+;)/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+	return sValue.replace(/&(?![a-z]+;)/gi, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 };
 
 function fUtilities_decodeEntities(sValue) {
