@@ -105,7 +105,7 @@ cXULElement.prototype.$isAccessible	= function()
 cXULElement.prototype.reflow   = function()
 {
 	// return if we are not a box
-	if (this.viewType != cXULElement.VIEW_TYPE_BOXED)
+	if (!(this.viewType == cXULElement.VIEW_TYPE_BOXED || this instanceof cXULElement_row))
 		return;
 
 	//
@@ -121,7 +121,7 @@ cXULElement.prototype.reflow   = function()
         for (var nIndex = 0; nIndex < nLength; nIndex++)
         {
 			oElement	= this.childNodes[nIndex];
-            if (oElement.namespaceURI == this.namespaceURI && oElement.viewType != cXULElement.VIEW_TYPE_VIRTUAL)
+            if (oElement.viewType != cXULElement.VIEW_TYPE_VIRTUAL)
             {
                 nElements++;
                 if ("flex" in oElement.attributes && !isNaN(oElement.attributes["flex"]))
@@ -132,8 +132,11 @@ cXULElement.prototype.reflow   = function()
         // Refresh flexible elements
         if (nElements)
         {
-            var oElementDOM	=(this instanceof cXULElement_box || this instanceof cXULElement_grid) ? this.$getContainer() : this.$getContainer("xul-container"),
+            var oElementDOM	=(this instanceof cXULElement_box || this instanceof cXULElement_grid || this instanceof cXULElement_row) ? this.$getContainer() : this.$getContainer("xul-container"),
             	oCell;
+
+            if (this instanceof cXULElement_row)
+            	oElementDOM	= oElementDOM.parentNode.parentNode;
 
             for (var nIndex = 0; nIndex < nLength; nIndex++)
             {
@@ -147,8 +150,10 @@ cXULElement.prototype.reflow   = function()
                     {
                         // set heights
                     	oCell	= oElementDOM.tBodies[0].rows[nIndex - nVirtual].cells[0];
-                        if (!isNaN(oElement.attributes["flex"]))
+                        if (!isNaN(oElement.attributes["flex"])) {
                         	oCell.setAttribute("height", oElement.attributes["flex"] * 100 / nFlex + "%");
+                        	oElement.$getContainer().style.height	= "100%";
+                        }
                         else
                         if (oElement.attributes["height"])
                         	oCell.setAttribute("height", oElement.attributes["height"]);
@@ -197,29 +202,33 @@ cXULElement.prototype.$getTag		= function()
 {
 	var aHtml	= [];
 
-	if (this.parentNode && (this.parentNode.viewType == cXULElement.VIEW_TYPE_BOXED || this.parentNode instanceof cXULElement_row))
-		aHtml[aHtml.length]	= cXULElement.getBoxOpenChild(this);
-
 	// Output Element Header
-	if (this.viewType != cXULElement.VIEW_TYPE_VIRTUAL) {
+	if (this.viewType != cXULElement.VIEW_TYPE_VIRTUAL)
 		aHtml[aHtml.length]	= this.$getTagOpen().replace(/^(\s*<[\w:]+)/, '$1 id="' +(this.attributes.id || this.uniqueID)+ '"');
-		// Output Box Header
-		if (this.viewType == cXULElement.VIEW_TYPE_BOXED || this instanceof cXULElement_grid)
-			aHtml[aHtml.length]	= cXULElement.getBoxOpen(this);
-	}
 
-	for (var nIndex = 0; nIndex < this.childNodes.length; nIndex++)
+	// Output Box Container Header
+	if (this.viewType == cXULElement.VIEW_TYPE_BOXED || this instanceof cXULElement_grid)
+		aHtml[aHtml.length]	= cXULElement.getBoxOpen(this);
+
+	for (var nIndex = 0; nIndex < this.childNodes.length; nIndex++) {
+		// Output Box Child Header
+		if (this.viewType == cXULElement.VIEW_TYPE_BOXED || this instanceof cXULElement_row)
+			aHtml[aHtml.length]	= cXULElement.getBoxOpenChild(this.childNodes[nIndex]);
+
 		aHtml[aHtml.length]	= this.childNodes[nIndex].$getTag();
 
-	// Output Element Footer
-	if (this.viewType != cXULElement.VIEW_TYPE_VIRTUAL) {
-		// Output Box Footer
-		if (this.viewType == cXULElement.VIEW_TYPE_BOXED || this instanceof cXULElement_grid)
-			aHtml[aHtml.length]	= cXULElement.getBoxClose(this);
-		aHtml[aHtml.length]	= this.$getTagClose();
+		// Output Box Child Footer
+		if (this.viewType == cXULElement.VIEW_TYPE_BOXED || this instanceof cXULElement_row)
+			aHtml[aHtml.length]	= cXULElement.getBoxCloseChild(this.childNodes[nIndex]);
 	}
-	if (this.parentNode && (this.parentNode.viewType == cXULElement.VIEW_TYPE_BOXED || this.parentNode instanceof cXULElement_row))
-		aHtml[aHtml.length]	= cXULElement.getBoxCloseChild(this);
+
+	// Output Box Container Footer
+	if (this.viewType == cXULElement.VIEW_TYPE_BOXED || this instanceof cXULElement_grid)
+		aHtml[aHtml.length]	= cXULElement.getBoxClose(this);
+
+	// Output Element Footer
+	if (this.viewType != cXULElement.VIEW_TYPE_VIRTUAL)
+		aHtml[aHtml.length]	= this.$getTagClose();
 
 	return aHtml.join("");
 };
@@ -293,17 +302,17 @@ cXULElement.getBoxOpenChild = function(oElement)
 	    var sHtml2  = "top";
 	    if (oElement.attributes["orient"] == "vertical")
 	    {
-	        if (oElement.attributes["pack"])
-	            sHtml2  = oElement.attributes["pack"]  == "start" ? "top"  : oElement.attributes["pack"]  == "end" ? "bottom" : "center";
-	        if (oElement.attributes["align"])
-	            sHtml1  = oElement.attributes["align"] == "start" ? "left" : oElement.attributes["align"] == "end" ? "right"  : "center";
+	        if (oElement.parentNode.attributes["pack"])
+	            sHtml2  = oElement.parentNode.attributes["pack"]  == "start" ? "top"  : oElement.parentNode.attributes["pack"]  == "end" ? "bottom" : "center";
+	        if (oElement.parentNode.attributes["align"])
+	            sHtml1  = oElement.parentNode.attributes["align"] == "start" ? "left" : oElement.parentNode.attributes["align"] == "end" ? "right"  : "center";
 	    }
 	    else
 	    {
-	        if (oElement.attributes["align"])
-	            sHtml2  = oElement.attributes["align"] == "start" ? "top"  : oElement.attributes["align"] == "end" ? "bottom" : "center";
-	        if (oElement.attributes["pack"])
-	            sHtml1  = oElement.attributes["pack"]  == "start" ? "left" : oElement.attributes["pack"]  == "end" ? "right"  : "center";
+	        if (oElement.parentNode.attributes["align"])
+	            sHtml2  = oElement.parentNode.attributes["align"] == "start" ? "top"  : oElement.parentNode.attributes["align"] == "end" ? "bottom" : "center";
+	        if (oElement.parentNode.attributes["pack"])
+	            sHtml1  = oElement.parentNode.attributes["pack"]  == "start" ? "left" : oElement.parentNode.attributes["pack"]  == "end" ? "right"  : "center";
 	    }
 		aHtml[aHtml.length]	= ' valign="' + sHtml2 + '" align="' + sHtml1 + '"';
 

@@ -24,5 +24,13 @@ cXULElement_box.handlers	= {
 	}
 };
 
+cXULElement_box.prototype.$getTagOpen	= function() {
+	return '<div class="xul-' + (this.attributes.orient == "vertical" ? 'h' : 'v')+ 'box' +(this.attributes["class"] ? " " + this.attributes["class"] : "") + '">';
+};
+
+cXULElement_box.prototype.$getTagClose	= function() {
+	return '</div>';
+};
+
 // Register Element
 ample.extend(cXULElement_box);
