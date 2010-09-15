@@ -159,6 +159,9 @@ cXULElement.prototype.reflow   = function()
                         else
                         if (oElement.attributes["height"])
                         	oCell.setAttribute("height", oElement.attributes["height"]);
+                        // Stretch if needed
+                        if (this.attributes["align"] == "stretch")
+                        	oElement.$getContainer().style.width	= "100%";
                     }
                     else
                     {
@@ -169,6 +172,9 @@ cXULElement.prototype.reflow   = function()
                         else
                         if (oElement.attributes["width"])
                         	oCell.setAttribute("width", oElement.attributes["width"]);
+                        // Stretch if needed
+                        if (this.attributes["align"] == "stretch")
+                        	oElement.$getContainer().style.height	= "100%";
                     }
                 }
             }
