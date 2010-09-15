@@ -14,6 +14,7 @@ cXHTMLElement_form.prototype	= new cXHTMLElement("form");
 
 // Public Properties
 cXHTMLElement_form.prototype.elements	= null;
+cXHTMLElement_form.prototype.length		= 0;
 
 // Public Methods
 cXHTMLElement_form.prototype.submit	= function() {
@@ -53,6 +54,19 @@ cXHTMLElement_form.prototype.submit	= function() {
 
 cXHTMLElement_form.prototype.reset	= function() {
 	this.$getContainer().reset();
+};
+
+// Validation
+cXHTMLElement_form.prototype.checkValidity	= function() {
+
+};
+
+cXHTMLElement_form.prototype.dispatchFormInput	= function() {
+
+};
+
+cXHTMLElement_form.prototype.dispatchFormChange	= function() {
+
 };
 
 /* Event handlers */

@@ -7,14 +7,28 @@
  *
  */
 
-var cHTMLInputElement	= function() {
+var cXHTMLInputElement	= function() {
 	cXHTMLElement.apply(this, arguments);
 };
 
-cHTMLInputElement.prototype	= new cXHTMLElement("#element-input");
+cXHTMLInputElement.prototype	= new cXHTMLElement("#element-input");
 
 // Accessibility
-cHTMLInputElement.prototype.tabIndex	= 0;
+cXHTMLInputElement.prototype.tabIndex	= 0;
+
+//
+cXHTMLInputElement.prototype.form	= null;
+
+// Validation
+cXHTMLInputElement.prototype.validity		= null;
+cXHTMLInputElement.prototype.willValidate	= true;
+cXHTMLInputElement.prototype.checkValidity	= function() {
+
+};
+cXHTMLInputElement.prototype.validationMessage	= "";
+cXHTMLInputElement.prototype.setCustomValidty	= function(sMessage) {
+
+};
 
 // Register Element
-ample.extend(cHTMLInputElement);
+ample.extend(cXHTMLInputElement);

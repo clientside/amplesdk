@@ -14,11 +14,9 @@ var cXHTMLElement_select	= function() {
     this.options.add	= function (oElement, nIndex) {oSelf.add(oElement, nIndex)};
     this.options.remove	= function (nIndex) {oSelf.remove(nIndex)};
 };
-cXHTMLElement_select.prototype	= new cXHTMLElement("select");
-cXHTMLElement_select.prototype.tabIndex		= 0;
+cXHTMLElement_select.prototype	= new cXHTMLInputElement("select");
 
 // Public Properties
-cXHTMLElement_select.prototype.form		= null;
 cXHTMLElement_select.prototype.options	= null;
 
 // Public Methods

@@ -4,6 +4,7 @@
     // classes
     $aFiles[]	= "classes/cXHTMLElement.js";
     $aFiles[]	= "classes/cXHTMLInputElement.js";
+    $aFiles[]	= "classes/cXHTMLValidityState.js";
 
 	// managers
     $aFiles[]	= "managers/oXHTMLAccessKeyManager.js";
@@ -140,6 +141,9 @@
 
 	// core SMIL mapping
 	$aFiles[]	= "xhtml-smil.js";
+
+	// XHTML CSS Selectors
+//	$aFiles[]	= "selectors/oXHTMLPseudoClassSelector.js";
 
     $sOutput	= "";
     for ($nIndex = 0; $nIndex < count($aFiles); $nIndex++)

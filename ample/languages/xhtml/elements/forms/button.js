@@ -8,11 +8,7 @@
  */
 
 var cXHTMLElement_button	= function(){};
-cXHTMLElement_button.prototype	= new cXHTMLElement("button");
-cXHTMLElement_button.prototype.tabIndex		= 0;
-
-// Public Properties
-cXHTMLElement_button.prototype.form	= null;
+cXHTMLElement_button.prototype	= new cXHTMLInputElement("button");
 
 // Class Events Handlers
 cXHTMLElement_button.handlers	= {

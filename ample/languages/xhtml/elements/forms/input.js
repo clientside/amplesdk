@@ -8,11 +8,9 @@
  */
 
 var cXHTMLElement_input	= function(){};
-cXHTMLElement_input.prototype	= new cXHTMLElement("input");
-cXHTMLElement_input.prototype.tabIndex	= 0;
+cXHTMLElement_input.prototype	= new cXHTMLInputElement("input");
 
 // Public Properties
-cXHTMLElement_input.prototype.form	= null;
 cXHTMLElement_input.prototype.value	= "";
 cXHTMLElement_input.prototype.checked	= false;
 

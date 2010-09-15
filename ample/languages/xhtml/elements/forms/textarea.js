@@ -8,11 +8,7 @@
  */
 
 var cXHTMLElement_textarea	= function(){};
-cXHTMLElement_textarea.prototype	= new cXHTMLElement("textarea");
-cXHTMLElement_textarea.prototype.tabIndex	= 0;
-
-// Public Properties
-cXHTMLElement_textarea.prototype.form		= null;
+cXHTMLElement_textarea.prototype	= new cXHTMLInputElement("textarea");
 
 cXHTMLElement_textarea.prototype.$getValue	= function(sValue) {
 	return this.$getContainer().value;
