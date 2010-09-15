@@ -9,9 +9,11 @@
 
 var cXULElement_row	= function(){};
 cXULElement_row.prototype	= new cXULElement("row");
+cXULElement_row.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
 
 // Attributes Defaults
 cXULElement_row.attributes	= {};
+//cXULElement_row.attributes.flex	= "1";
 cXULElement_row.attributes.orient	= "horizontal";
 
 // Class event handlers

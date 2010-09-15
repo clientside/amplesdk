@@ -105,7 +105,7 @@ cXULElement.prototype.$isAccessible	= function()
 cXULElement.prototype.reflow   = function()
 {
 	// return if we are not a box
-	if (!(this.viewType == cXULElement.VIEW_TYPE_BOXED || this instanceof cXULElement_row || this instanceof cXULElement_rows))
+	if (!(this.viewType == cXULElement.VIEW_TYPE_BOXED))
 		return;
 
 	//
@@ -209,23 +209,23 @@ cXULElement.prototype.$getTag		= function()
 		aHtml[aHtml.length]	= this.$getTagOpen().replace(/^(\s*<[\w:]+)/, '$1 id="' +(this.attributes.id || this.uniqueID)+ '"');
 
 	// Output Box Container Header
-	if (this.viewType == cXULElement.VIEW_TYPE_BOXED || this instanceof cXULElement_rows)
+	if (this.viewType == cXULElement.VIEW_TYPE_BOXED &&!(this instanceof cXULElement_row))
 		aHtml[aHtml.length]	= cXULElement.getBoxOpen(this);
 
 	for (var nIndex = 0; nIndex < this.childNodes.length; nIndex++) {
 		// Output Box Child Header
-		if (this.viewType == cXULElement.VIEW_TYPE_BOXED || this instanceof cXULElement_row)
+		if (this.viewType == cXULElement.VIEW_TYPE_BOXED &&!(this instanceof cXULElement_rows) || this instanceof cXULElement_row)
 			aHtml[aHtml.length]	= cXULElement.getBoxOpenChild(this.childNodes[nIndex]);
 
 		aHtml[aHtml.length]	= this.childNodes[nIndex].$getTag();
 
 		// Output Box Child Footer
-		if (this.viewType == cXULElement.VIEW_TYPE_BOXED || this instanceof cXULElement_row)
+		if (this.viewType == cXULElement.VIEW_TYPE_BOXED &&!(this instanceof cXULElement_rows) || this instanceof cXULElement_row)
 			aHtml[aHtml.length]	= cXULElement.getBoxCloseChild(this.childNodes[nIndex]);
 	}
 
 	// Output Box Container Footer
-	if (this.viewType == cXULElement.VIEW_TYPE_BOXED || this instanceof cXULElement_rows)
+	if (this.viewType == cXULElement.VIEW_TYPE_BOXED &&!(this instanceof cXULElement_row))
 		aHtml[aHtml.length]	= cXULElement.getBoxClose(this);
 
 	// Output Element Footer
