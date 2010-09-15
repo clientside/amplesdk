@@ -246,9 +246,9 @@ cXULElement.getBoxOpen	= function(oElement)
     if (oElement.attributes["orient"] == "vertical")
     {
         // Set width
-//        if (oElement.attributes["width"] && oElement.localName != "window" && oElement.localName != "dialog")
-//			aHtml[aHtml.length]	= ' width="' + oElement.attributes["width"] + '"';
-//        else
+        if (oElement.attributes["width"] && oElement.localName != "window" && oElement.localName != "dialog")
+			aHtml[aHtml.length]	= ' width="' + oElement.attributes["width"] + '"';
+        else
         if (!oElement.attributes["align"] || oElement.attributes["align"] == "stretch")
 			aHtml[aHtml.length]	= ' width="100%"';
 
@@ -259,9 +259,9 @@ cXULElement.getBoxOpen	= function(oElement)
     else
     {
         // Set height
-//        if (oElement.attributes["height"] && oElement.localName != "window" && oElement.localName != "dialog")
-//			aHtml[aHtml.length]	= ' height="' + oElement.attributes["height"] + '"';
-//        else
+        if (oElement.attributes["height"] && oElement.localName != "window" && oElement.localName != "dialog")
+			aHtml[aHtml.length]	= ' height="' + oElement.attributes["height"] + '"';
+        else
         if (!oElement.attributes["align"] || oElement.attributes["align"] == "stretch")
 			aHtml[aHtml.length]	= ' height="100%"';
 
@@ -276,10 +276,13 @@ cXULElement.getBoxOpen	= function(oElement)
     	aHtml[aHtml.length]	= ' class="xul-box---box-container xul-' + oElement.localName + '--box-container"';
 	aHtml[aHtml.length]	= '><tbody';
 
-    if (oElement.attributes["orient"] == "vertical")
-    	aHtml[aHtml.length]	= ' class="xul-' + oElement.localName + '--gateway">';
-    else
-		aHtml[aHtml.length]	= '><tr class="xul-' + oElement.localName + '--gateway">';
+    if (oElement.attributes["orient"] != "vertical")
+    	aHtml[aHtml.length]	= '><tr';
+
+    if (oElement instanceof cXULElement_grid)
+    	aHtml.push(' id="' + (oElement.firstChild.attributes.id || oElement.firstChild.uniqueID) + '"');
+
+    aHtml[aHtml.length]	= ' class="xul-' + oElement.localName + '--gateway">';
 
     return aHtml.join('');
 };
@@ -311,6 +314,7 @@ cXULElement.getBoxOpenChild = function(oElement)
 	        if (oElement.viewType == cXULElement.VIEW_TYPE_VIRTUAL)
 				aHtml[aHtml.length]	= 'position:absolute;width:0;top:0;left:0;z-index:1;';
 		    else
+		    if (!(oElement.parentNode instanceof cXULElement_row))
 		    	aHtml[aHtml.length]	= 'height:100%;';
 	        aHtml[aHtml.length]	= '"';
 	    }

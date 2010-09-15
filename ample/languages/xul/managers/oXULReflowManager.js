@@ -30,7 +30,7 @@ var oXULReflowManager	= (function () {
 	// Add handlers
 	ample.bind("DOMNodeInsertedIntoDocument", function(oEvent) {
 		// Add to the stack for reflow
-		if (oEvent.target instanceof cXULElement &&(oEvent.target.viewType == cXULElement.VIEW_TYPE_BOXED || oEvent.target instanceof cXULElement_row))
+		if (oEvent.target instanceof cXULElement &&(oEvent.target.viewType == cXULElement.VIEW_TYPE_BOXED || oEvent.target instanceof cXULElement_row || oEvent.target instanceof cXULElement_rows))
 			fSchedule(oEvent.target);
 	}, true);
 
