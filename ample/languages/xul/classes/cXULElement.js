@@ -250,7 +250,7 @@ cXULElement.getBoxOpen	= function(oElement)
 			aHtml[aHtml.length]	= ' width="100%"';
 
         // Set height
-        if (oElement.attributes["height"])
+        if (!oElement.attributes["align"] && oElement.attributes["height"])
 			aHtml[aHtml.length]	= ' height="' + oElement.attributes["height"] + '"';
     }
     else
@@ -263,7 +263,7 @@ cXULElement.getBoxOpen	= function(oElement)
 			aHtml[aHtml.length]	= ' height="100%"';
 
         // Set width
-        if (oElement.attributes["width"])
+        if (!oElement.attributes["align"] && oElement.attributes["width"])
 			aHtml[aHtml.length]	= ' width="' + oElement.attributes["width"] + '"';
     }
 
