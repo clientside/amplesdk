@@ -27,7 +27,7 @@ cXULElement_box.handlers	= {
 cXULElement_box.prototype.$getTagOpen	= function() {
 	var sWidth	= this.attributes.width,
 		sHeight	= this.attributes.height;
-	return '<div class="xul-' + (this.attributes.orient == "vertical" ? 'h' : 'v')+ 'box' +(this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="' +
+	return '<div class="xul-' + this.localName +(this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="' +
 		(sWidth ? 'width:' + (isNaN(parseInt(sWidth)) ? sWidth : sWidth + 'px;') : '')+
 		(sHeight ? 'height:' + (isNaN(parseInt(sHeight)) ? sHeight : sHeight + 'px;') : '')+
 	'">';

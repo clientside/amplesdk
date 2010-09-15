@@ -268,9 +268,9 @@ cXULElement.getBoxOpen	= function(oElement)
     }
 
     if (oElement instanceof cXULElement_rows)
-    	aHtml[aHtml.length]	= ' class="xul-box---box-container xul-' + oElement.localName + '" id="' + (oElement.attributes.id || oElement.uniqueID) + '"';
+    	aHtml[aHtml.length]	= ' class="xul-' + oElement.localName + '" id="' + (oElement.attributes.id || oElement.uniqueID) + '"';
     else
-    	aHtml[aHtml.length]	= ' class="xul-box---box-container xul-' + oElement.localName + '--box-container"';
+    	aHtml[aHtml.length]	= ' class="xul-box---box-container"';
 	aHtml[aHtml.length]	= '><tbody';
 
     if (oElement.attributes["orient"] != "vertical")
@@ -333,7 +333,7 @@ cXULElement.getBoxOpenChild = function(oElement)
 		aHtml[aHtml.length]	= ' valign="' + sHtml2 + '" align="' + sHtml1 + '"';
 	}
 
-	aHtml[aHtml.length]	= ' class="xul-box---box-child xul-' + oElement.parentNode.localName + '--box-child';
+	aHtml[aHtml.length]	= ' class="xul-box---box-child';
     // Debug Grid
 	if (oElement.parentNode.attributes["debug"] == "true")
 		aHtml[aHtml.length]	= ' xul-box-debug-true xul-' + (oElement.parentNode.attributes["orient"] != "vertical" ? "h" : "v") + 'box-debug-true';
