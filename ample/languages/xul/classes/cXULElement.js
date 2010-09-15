@@ -105,7 +105,7 @@ cXULElement.prototype.$isAccessible	= function()
 cXULElement.prototype.reflow   = function()
 {
 	// return if we are not a box
-	if (!(this.viewType == cXULElement.VIEW_TYPE_BOXED || this instanceof cXULElement_row))
+	if (!(this.viewType == cXULElement.VIEW_TYPE_BOXED || this instanceof cXULElement_row || this instanceof cXULElement_rows))
 		return;
 
 	//
@@ -132,11 +132,14 @@ cXULElement.prototype.reflow   = function()
         // Refresh flexible elements
         if (nElements)
         {
-            var oElementDOM	=(this instanceof cXULElement_grid || this instanceof cXULElement_row) ? this.$getContainer() : this.$getContainer("box-container"),
+            var oElementDOM	=(this instanceof cXULElement_grid || this instanceof cXULElement_row || this instanceof cXULElement_rows) ? this.$getContainer() : this.$getContainer("box-container"),
             	oCell;
 
             if (this instanceof cXULElement_row)
             	oElementDOM	= oElementDOM.parentNode.parentNode;
+            else
+            if (this instanceof cXULElement_rows)
+            	oElementDOM	= oElementDOM.parentNode;
 
             for (var nIndex = 0; nIndex < nLength; nIndex++)
             {
@@ -150,9 +153,11 @@ cXULElement.prototype.reflow   = function()
                     {
                         // set heights
                     	oCell	= oElementDOM.tBodies[0].rows[nIndex - nVirtual].cells[0];
-                        if (!isNaN(oElement.attributes["flex"])) {
+                        if ("flex" in oElement.attributes && !isNaN(oElement.attributes["flex"])) {
                         	oCell.setAttribute("height", oElement.attributes["flex"] * 100 / nFlex + "%");
-                        	oElement.$getContainer().style.height	= "100%";
+                        	//
+                        	if (oElement.attributes["align"] == "stretch" || !this.attributes["flex"])
+                        		oElement.$getContainer().style.height	= "100%";
                         }
                         else
                         if (oElement.attributes["height"])
@@ -162,7 +167,7 @@ cXULElement.prototype.reflow   = function()
                     {
                         // set widths
                     	oCell	= oElementDOM.tBodies[0].rows[0].cells[nIndex - nVirtual];
-                        if (!isNaN(oElement.attributes["flex"]))
+                        if ("flex" in oElement.attributes && !isNaN(oElement.attributes["flex"]))
                         	oCell.setAttribute("width", oElement.attributes["flex"] * 100 / nFlex + "%");
                         else
                         if (oElement.attributes["width"])
@@ -179,7 +184,7 @@ cXULElement.prototype.reflow   = function()
 
 cXULElement.prototype.getBoxObject	= function()
 {
-	return this.$getContainer("xul-box");
+	return this.$getContainer("box-child");
 };
 
 cXULElement.prototype.setBoxObjectParam	= function(sName, sValue)
@@ -241,9 +246,9 @@ cXULElement.getBoxOpen	= function(oElement)
     if (oElement.attributes["orient"] == "vertical")
     {
         // Set width
-        if (oElement.attributes["width"] && oElement.localName != "window" && oElement.localName != "dialog")
-			aHtml[aHtml.length]	= ' width="' + oElement.attributes["width"] + '"';
-        else
+//        if (oElement.attributes["width"] && oElement.localName != "window" && oElement.localName != "dialog")
+//			aHtml[aHtml.length]	= ' width="' + oElement.attributes["width"] + '"';
+//        else
         if (!oElement.attributes["align"] || oElement.attributes["align"] == "stretch")
 			aHtml[aHtml.length]	= ' width="100%"';
 
@@ -254,9 +259,9 @@ cXULElement.getBoxOpen	= function(oElement)
     else
     {
         // Set height
-        if (oElement.attributes["height"] && oElement.localName != "window" && oElement.localName != "dialog")
-			aHtml[aHtml.length]	= ' height="' + oElement.attributes["height"] + '"';
-        else
+//        if (oElement.attributes["height"] && oElement.localName != "window" && oElement.localName != "dialog")
+//			aHtml[aHtml.length]	= ' height="' + oElement.attributes["height"] + '"';
+//        else
         if (!oElement.attributes["align"] || oElement.attributes["align"] == "stretch")
 			aHtml[aHtml.length]	= ' height="100%"';
 
@@ -264,10 +269,11 @@ cXULElement.getBoxOpen	= function(oElement)
         if (oElement.attributes["width"])
 			aHtml[aHtml.length]	= ' width="' + oElement.attributes["width"] + '"';
     }
+
     if (oElement instanceof cXULElement_grid)
-    	aHtml[aHtml.length]	= ' class="xul-' + oElement.localName + '" id="' + (oElement.attributes.id || oElement.uniqueID) + '"';
+    	aHtml[aHtml.length]	= ' class="xul-box---box-container xul-' + oElement.localName + '" id="' + (oElement.attributes.id || oElement.uniqueID) + '"';
     else
-    	aHtml[aHtml.length]	= ' class="--box-container"';
+    	aHtml[aHtml.length]	= ' class="xul-box---box-container xul-' + oElement.localName + '--box-container"';
 	aHtml[aHtml.length]	= '><tbody';
 
     if (oElement.attributes["orient"] == "vertical")
@@ -297,25 +303,6 @@ cXULElement.getBoxOpenChild = function(oElement)
 
 	if (oElement.nodeType == AMLNode.ELEMENT_NODE)
 	{
-	    // Aligning
-	    var sHtml1  = "left";
-	    var sHtml2  = "top";
-	    if (oElement.attributes["orient"] == "vertical")
-	    {
-	        if (oElement.parentNode.attributes["pack"])
-	            sHtml2  = oElement.parentNode.attributes["pack"]  == "start" ? "top"  : oElement.parentNode.attributes["pack"]  == "end" ? "bottom" : "center";
-	        if (oElement.parentNode.attributes["align"])
-	            sHtml1  = oElement.parentNode.attributes["align"] == "start" ? "left" : oElement.parentNode.attributes["align"] == "end" ? "right"  : "center";
-	    }
-	    else
-	    {
-	        if (oElement.parentNode.attributes["align"])
-	            sHtml2  = oElement.parentNode.attributes["align"] == "start" ? "top"  : oElement.parentNode.attributes["align"] == "end" ? "bottom" : "center";
-	        if (oElement.parentNode.attributes["pack"])
-	            sHtml1  = oElement.parentNode.attributes["pack"]  == "start" ? "left" : oElement.parentNode.attributes["pack"]  == "end" ? "right"  : "center";
-	    }
-		aHtml[aHtml.length]	= ' valign="' + sHtml2 + '" align="' + sHtml1 + '"';
-
 	    if (oElement.parentNode.attributes["orient"] != "vertical")
 	    {
 			aHtml[aHtml.length]	= ' style="';
@@ -327,9 +314,28 @@ cXULElement.getBoxOpenChild = function(oElement)
 		    	aHtml[aHtml.length]	= 'height:100%;';
 	        aHtml[aHtml.length]	= '"';
 	    }
+
+	    // Aligning
+	    var sHtml1  = "left";
+	    var sHtml2  = "top";
+	    if (oElement.attributes["orient"] == "vertical")
+	    {
+	        if (oElement.attributes["pack"])
+	            sHtml2  = oElement.attributes["pack"]  == "start" ? "top"  : oElement.attributes["pack"]  == "end" ? "bottom" : "center";
+	        if (oElement.attributes["align"])
+	            sHtml1  = oElement.attributes["align"] == "start" ? "left" : oElement.attributes["align"] == "end" ? "right"  : "center";
+	    }
+	    else
+	    {
+	        if (oElement.attributes["align"])
+	            sHtml2  = oElement.attributes["align"] == "start" ? "top"  : oElement.attributes["align"] == "end" ? "bottom" : "center";
+	        if (oElement.attributes["pack"])
+	            sHtml1  = oElement.attributes["pack"]  == "start" ? "left" : oElement.attributes["pack"]  == "end" ? "right"  : "center";
+	    }
+		aHtml[aHtml.length]	= ' valign="' + sHtml2 + '" align="' + sHtml1 + '"';
 	}
 
-	aHtml[aHtml.length]	= ' class="--xul-box';
+	aHtml[aHtml.length]	= ' class="xul-box---box-child xul-' + oElement.parentNode.localName + '--box-child';
     // Debug Grid
 	if (oElement.parentNode.attributes["debug"] == "true")
 		aHtml[aHtml.length]	= ' xul-box-debug-true xul-' + (oElement.parentNode.attributes["orient"] != "vertical" ? "h" : "v") + 'box-debug-true';

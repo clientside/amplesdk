@@ -4,17 +4,6 @@ xul|box[debug=true] {
 	border-style:	dashed;
 }
 
-xul|box[debug=true] xul|box {
-	border: dotted 1px gray;
-}
-/*
-xul|box[debug=true] xul|vbox {
-	border: dotted 1px red;
-}
-xul|box[debug=true] xul|hbox {
-	border: dotted 1px blue;
-}
-*/
 xul|vbox[debug=true] {
 	border-color:	red;
 	border-left-width:	2px;
@@ -27,6 +16,15 @@ xul|hbox[debug=true] {
 	border-top-width:	2px;
 	border-top-style:	solid;
 	background-color:	#eef;
+}
+
+xul|vbox[debug=true] xul|box::-box-container,
+xul|hbox[debug=true] xul|box::-box-container {
+	outline: solid 1px green;
+}
+xul|vbox[debug=true] xul|box::-box-child,
+xul|hbox[debug=true] xul|box::-box-child {
+	outline: dotted 1px gray;
 }
 
 xul|box {
