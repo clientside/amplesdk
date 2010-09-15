@@ -243,10 +243,10 @@ cXULElement.$getTag		= function(oElement)
 /* Note! This is a serious hack - it allows XUL to properly render children from other languages */
 var xAMLElement_getTag	= AMLElement.prototype.$getTag;
 AMLElement.prototype.$getTag	= function() {
-	if (this.nodeType != 1)
-		return xAMLElement_getTag.call(this);
-	else
+	if (this.parentNode instanceof cXULElement || this instanceof cXULElement)
 		return cXULElement.$getTag(this);
+	else
+		return xAMLElement_getTag.call(this);
 };
 
 // Static methods
