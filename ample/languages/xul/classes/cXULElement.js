@@ -132,7 +132,7 @@ cXULElement.prototype.reflow   = function()
         // Refresh flexible elements
         if (nElements)
         {
-            var oElementDOM	= this instanceof cXULElement_box ? this.$getContainer("xul-gateway") : (this instanceof cXULElement_grid || this instanceof cXULElement_row) ? this.$getContainer() : this.$getContainer("xul-container"),
+            var oElementDOM	=(this instanceof cXULElement_grid || this instanceof cXULElement_row) ? this.$getContainer() : this.$getContainer("box-container"),
             	oCell;
 
             if (this instanceof cXULElement_row)
@@ -264,16 +264,16 @@ cXULElement.getBoxOpen	= function(oElement)
         if (oElement.attributes["width"])
 			aHtml[aHtml.length]	= ' width="' + oElement.attributes["width"] + '"';
     }
-    if (oElement instanceof cXULElement_box || oElement instanceof cXULElement_grid)
+    if (oElement instanceof cXULElement_grid)
     	aHtml[aHtml.length]	= ' class="xul-' + oElement.localName + '" id="' + (oElement.attributes.id || oElement.uniqueID) + '"';
     else
-    	aHtml[aHtml.length]	= ' class="--xul-container"';
+    	aHtml[aHtml.length]	= ' class="--box-container"';
 	aHtml[aHtml.length]	= '><tbody';
 
     if (oElement.attributes["orient"] == "vertical")
-    	aHtml[aHtml.length]	= ' class="xul-box--gateway">';
+    	aHtml[aHtml.length]	= ' class="xul-' + oElement.localName + '--gateway">';
     else
-		aHtml[aHtml.length]	= '><tr class="xul-box--gateway">';
+		aHtml[aHtml.length]	= '><tr class="xul-' + oElement.localName + '--gateway">';
 
     return aHtml.join('');
 };
