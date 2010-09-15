@@ -206,47 +206,50 @@ cXULElement.prototype.getBoxObjectParam	= function(sName)
 		return this.getBoxObject()[sName];
 };
 
-cXULElement.$getTag		= function(oElement)
+cXULElement.prototype.$getTag		= function()
 {
-	var aHtml	= [];
+	var aHtml	= [],
+		bBoxContainer	= this instanceof cXULElement && this.viewType == cXULElement.VIEW_TYPE_BOXED &&!(this instanceof cXULElement_row),
+		bBoxChild		= this.parentNode.viewType == cXULElement.VIEW_TYPE_BOXED &&!(this.parentNode instanceof cXULElement_rows) || this.parentNode instanceof cXULElement_row;
 
 	// Output Box Child Header
-	if (oElement.parentNode.viewType == cXULElement.VIEW_TYPE_BOXED &&!(oElement.parentNode instanceof cXULElement_rows) || oElement.parentNode instanceof cXULElement_row)
-		aHtml[aHtml.length]	= cXULElement.getBoxOpenChild(oElement);
+	if (bBoxChild)
+		aHtml[aHtml.length]	= cXULElement.getBoxOpenChild(this);
 
 	// Output Element Header
-	if (oElement.viewType != cXULElement.VIEW_TYPE_VIRTUAL)
-		aHtml[aHtml.length]	= oElement.$getTagOpen().replace(/^(\s*<[\w:]+)/, '$1 id="' +(oElement.attributes.id || oElement.uniqueID)+ '"');
+	if (this.viewType != cXULElement.VIEW_TYPE_VIRTUAL) {
+		aHtml[aHtml.length]	= this.$getTagOpen().replace(/^(\s*<[\w:]+)/, '$1 id="' +(this.attributes.id || this.uniqueID)+ '"');
+		// Output Box Container Header
+		if (bBoxContainer)
+			aHtml[aHtml.length]	= cXULElement.getBoxOpen(this);
+	}
 
-	// Output Box Container Header
-	if (oElement.viewType == cXULElement.VIEW_TYPE_BOXED &&!(oElement instanceof cXULElement_row))
-		aHtml[aHtml.length]	= cXULElement.getBoxOpen(oElement);
-
-	for (var nIndex = 0; nIndex < oElement.childNodes.length; nIndex++)
-		aHtml[aHtml.length]	= oElement.childNodes[nIndex].$getTag();
+	for (var nIndex = 0; nIndex < this.childNodes.length; nIndex++)
+		aHtml[aHtml.length]	= this.childNodes[nIndex].$getTag();
 
 	// Output Box Container Footer
-	if (oElement.viewType == cXULElement.VIEW_TYPE_BOXED &&!(oElement instanceof cXULElement_row))
-		aHtml[aHtml.length]	= cXULElement.getBoxClose(oElement);
+	if (bBoxContainer)
+		aHtml[aHtml.length]	= cXULElement.getBoxClose(this);
 
 	// Output Element Footer
-	if (oElement.viewType != cXULElement.VIEW_TYPE_VIRTUAL)
-		aHtml[aHtml.length]	= oElement.$getTagClose();
+	if (this.viewType != cXULElement.VIEW_TYPE_VIRTUAL) {
+		aHtml[aHtml.length]	= this.$getTagClose();
 
-	// Output Box Child Footer
-	if (oElement.parentNode.viewType == cXULElement.VIEW_TYPE_BOXED &&!(oElement.parentNode instanceof cXULElement_rows) || oElement.parentNode instanceof cXULElement_row)
-		aHtml[aHtml.length]	= cXULElement.getBoxCloseChild(oElement);
+		// Output Box Child Footer
+		if (bBoxChild)
+			aHtml[aHtml.length]	= cXULElement.getBoxCloseChild(this);
+	}
 
 	return aHtml.join("");
 };
 
-/* Note! This is a serious hack - it allows XUL to properly render children from other languages */
-var xAMLElement_getTag	= AMLElement.prototype.$getTag;
+/* Hack. This enables using non-XUL elements as children of XUL elements */
+var fAMLElement_prototype_$getTag	= AMLElement.prototype.$getTag;
 AMLElement.prototype.$getTag	= function() {
-	if (this.parentNode instanceof cXULElement || this instanceof cXULElement)
-		return cXULElement.$getTag(this);
+	if (this.parentNode instanceof cXULElement)
+		return cXULElement.prototype.$getTag.call(this);
 	else
-		return xAMLElement_getTag.call(this);
+		return fAMLElement_prototype_$getTag.call(this);
 };
 
 // Static methods
