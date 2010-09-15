@@ -21,7 +21,7 @@ cXULElement_caption.handlers	= {
 
 			switch (oEvent.attrName) {
 				case "label":
-			        this.parentNode.$getContainer("caption").innerHTML =(oElement.attributes["image"] ? '<img src="' + oElement.attributes["image"] + '" align="absmiddle" /> ' : '')+ (oEvent.newValue || '');
+			        this.parentNode.$getContainer("caption").innerHTML =(this.attributes["image"] ? '<img src="' + this.attributes["image"] + '" align="absmiddle" /> ' : '')+ (oEvent.newValue || '');
 					break;
 
 				case "image":
