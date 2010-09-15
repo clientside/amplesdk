@@ -583,6 +583,7 @@
 					</locale>
 				</description>
 			</method>
+			<!-- Deprecated
 			<method name="$appendChildAnonymous" type="AMLElement">
 				<arguments>
 					<argument name="oNode" type="AMLNode" required="true">
@@ -615,6 +616,7 @@
 					</locale>
 				</description>
 			</method>
+			-->
 			<method name="$getContainer" type="HTMLElement">
 				<arguments>
 					<argument name="sPseudoElement" type="String" required="false">
@@ -627,7 +629,21 @@
 				</arguments>
 				<description>
 					<locale>
-						Returns a pointer to a (pseudo-) element in the shadow content.
+						<b>UI element definition API.</b> Returns a pointer to a (pseudo-) element in the shadow content.
+					</locale>
+				</description>
+			</method>
+			<method name="$getTagOpen" type="String">
+				<description>
+					<locale>
+						<b>UI element definition API.</b> Provide your function to return shadow content to be inserted before element children.
+					</locale>
+				</description>
+			</method>
+			<method name="$getTagClose" type="String">
+				<description>
+					<locale>
+						<b>UI element definition API.</b> Provide your function to return shadow content to be inserted after element children.
 					</locale>
 				</description>
 			</method>
@@ -663,7 +679,7 @@
 				</arguments>
 				<description>
 					<locale>
-						Applies the pseudo class to an element.
+						<b>UI element definition API.</b> Applies the pseudo class to an element.
 					</locale>
 					<locale xml:lang="ru">
 						Позволяет управлять псевдоклассами элемента.
@@ -766,7 +782,7 @@
 				<arguments />
 				<description>
 					<locale>
-						Indicates wether element can be focused.
+						<b>UI element definition API.</b> Indicates wether element can be focused.
 					</locale>
 					<locale xml:lang="ru">
 						Возвращаемое значение указывает, доступен ли элемент.
@@ -799,10 +815,13 @@
 			<property name="contentFragment" type="AMLFragmentNode" readonly="false">
 				<description>
 					<locale>
-						A reference to the anonymous subtree. The subtree should be created in constructor.
+						<b>UI element definition API.</b>
+						A reference to the anonymous subtree.
+						The subtree should be created in element constructor.
 					</locale>
 				</description>
 			</property>
+			<!-- deprecated
 			<property name="$childNodesAnonymous" type="AMLNodeList" readonly="true">
 				<description>
 					<locale>
@@ -810,6 +829,7 @@
 					</locale>
 				</description>
 			</property>
+			 -->
 			<!-- Drag And Drop -->
 			<property name="$draggable" type="Boolean">
 				<description>
