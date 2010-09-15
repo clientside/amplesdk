@@ -13,10 +13,6 @@ var cXULElement_grid	= function() {
 };
 cXULElement_grid.prototype	= new cXULElement("grid");
 
-// Attributes Defaults
-cXULElement_grid.attributes	= {};
-cXULElement_grid.attributes.orient	= "vertical";
-
 // Class Events Handlers
 cXULElement_grid.handlers	= {
 	"DOMAttrModified":	function(oEvent) {
@@ -24,6 +20,19 @@ cXULElement_grid.handlers	= {
 			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
 		}
 	}
+};
+
+cXULElement_grid.prototype.$getTagOpen	= function() {
+	var sWidth	= this.attributes.width,
+		sHeight	= this.attributes.height;
+	return '<div class="xul-grid' +(this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="' +
+		(sWidth ? 'width:' + (isNaN(parseInt(sWidth)) ? sWidth : sWidth + 'px;') : '')+
+		(sHeight ? 'height:' + (isNaN(parseInt(sHeight)) ? sHeight : sHeight + 'px;') : '')+
+	'">';
+};
+
+cXULElement_grid.prototype.$getTagClose	= function() {
+	return '</div>';
 };
 
 // Register Element

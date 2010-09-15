@@ -132,14 +132,11 @@ cXULElement.prototype.reflow   = function()
         // Refresh flexible elements
         if (nElements)
         {
-            var oElementDOM	=(this instanceof cXULElement_grid || this instanceof cXULElement_row || this instanceof cXULElement_rows) ? this.$getContainer() : this.$getContainer("box-container"),
+            var oElementDOM	=(this instanceof cXULElement_row || this instanceof cXULElement_rows) ? this.$getContainer() : this.$getContainer("box-container"),
             	oCell;
 
             if (this instanceof cXULElement_row)
             	oElementDOM	= oElementDOM.parentNode.parentNode;
-            else
-            if (this instanceof cXULElement_rows)
-            	oElementDOM	= oElementDOM.parentNode;
 
             for (var nIndex = 0; nIndex < nLength; nIndex++)
             {
@@ -212,7 +209,7 @@ cXULElement.prototype.$getTag		= function()
 		aHtml[aHtml.length]	= this.$getTagOpen().replace(/^(\s*<[\w:]+)/, '$1 id="' +(this.attributes.id || this.uniqueID)+ '"');
 
 	// Output Box Container Header
-	if (this.viewType == cXULElement.VIEW_TYPE_BOXED || this instanceof cXULElement_grid)
+	if (this.viewType == cXULElement.VIEW_TYPE_BOXED || this instanceof cXULElement_rows)
 		aHtml[aHtml.length]	= cXULElement.getBoxOpen(this);
 
 	for (var nIndex = 0; nIndex < this.childNodes.length; nIndex++) {
@@ -228,7 +225,7 @@ cXULElement.prototype.$getTag		= function()
 	}
 
 	// Output Box Container Footer
-	if (this.viewType == cXULElement.VIEW_TYPE_BOXED || this instanceof cXULElement_grid)
+	if (this.viewType == cXULElement.VIEW_TYPE_BOXED || this instanceof cXULElement_rows)
 		aHtml[aHtml.length]	= cXULElement.getBoxClose(this);
 
 	// Output Element Footer
@@ -270,7 +267,7 @@ cXULElement.getBoxOpen	= function(oElement)
 			aHtml[aHtml.length]	= ' width="' + oElement.attributes["width"] + '"';
     }
 
-    if (oElement instanceof cXULElement_grid)
+    if (oElement instanceof cXULElement_rows)
     	aHtml[aHtml.length]	= ' class="xul-box---box-container xul-' + oElement.localName + '" id="' + (oElement.attributes.id || oElement.uniqueID) + '"';
     else
     	aHtml[aHtml.length]	= ' class="xul-box---box-container xul-' + oElement.localName + '--box-container"';
@@ -278,9 +275,6 @@ cXULElement.getBoxOpen	= function(oElement)
 
     if (oElement.attributes["orient"] != "vertical")
     	aHtml[aHtml.length]	= '><tr';
-
-    if (oElement instanceof cXULElement_grid)
-    	aHtml.push(' id="' + (oElement.firstChild.attributes.id || oElement.firstChild.uniqueID) + '"');
 
     aHtml[aHtml.length]	= ' class="xul-' + oElement.localName + '--gateway">';
 
