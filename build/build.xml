@@ -49,7 +49,7 @@
 
 		<copy file="${source.dir}/CONTRIBUTORS" tofile="${target.dir}/CONTRIBUTORS" />
 		<copy file="${source.dir}/COPYING" tofile="${target.dir}/COPYING" />
-		<copy file="${source.dir}/README" tofile="${target.dir}/README" />
+		<copy file="resources/README" tofile="${target.dir}/README" />
 
 		<!-- Zip finally -->
 		<zip destfile="${target.zip}">
