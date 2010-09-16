@@ -29,7 +29,7 @@ var oXULCommandDispatcher	= (function () {
 				}
 			}
 		}
-	});
+	}, true);
 
 	// Public Object
 	return {
