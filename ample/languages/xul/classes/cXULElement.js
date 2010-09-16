@@ -121,7 +121,7 @@ cXULElement.prototype.reflow   = function()
         for (var nIndex = 0; nIndex < nLength; nIndex++)
         {
 			oElement	= this.childNodes[nIndex];
-            if (oElement.viewType != cXULElement.VIEW_TYPE_VIRTUAL)
+            if (oElement.nodeType == AMLNode.ELEMENT_NODE && oElement.viewType != cXULElement.VIEW_TYPE_VIRTUAL)
             {
                 nElements++;
                 if ("flex" in oElement.attributes && !isNaN(oElement.attributes["flex"]))
