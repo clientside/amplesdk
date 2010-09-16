@@ -1,0 +1,39 @@
+ ------------------------------------
+ Ample SDK - JavaScript GUI Framework
+ http://www.amplesdk.com
+ ------------------------------------
+
+ About:
+   Ample SDK is a standard-based cross-browser JavaScript GUI Framework
+   for building client-side Rich Internet Applications. It employs XML
+   technologies (such as XUL, SVG or HTML5) for UI layout, CSS for UI style
+   and JavaScript with DOM3 or jQuery-like APIs for application logic.
+   It equalizes browsers and brings technologies support to those missing any.
+
+ Running Options:
+   There are 2 options to run Ample SDK source - either to build project with Ant and use
+   the build version or setup your development environment so that it compiles on the fly.
+
+   You may find first option interesting if you are planning to use Ample SDK
+   and the second option in case you are planning to develop Ample SDK itself.
+
+   1. Building with Ant (PHP required)
+
+      The build script is located in "build/build.xml". Before running the script
+      adjust path to your PHP executable and build destination in "build/build.local.properties"
+
+   2. Running with Apache (mod_rewrite, .htaccess support and PHP required)
+
+      There is a simple mechanism implemented that involves Apache's mod_rewrite to redirect
+      requests for files to respectful PHP scripts that concatenate source folders contents
+      into single files on the fly.
+      If you are using different web-server or/and different server-side language,
+      you may want to look into the "ample/.htaccess" file and "ample/runtime.php" PHP script
+      and implement similar gluing mechanisms for the platform of your choice.
+
+ Pre-built distributives:
+   The latest stable build is available on Ample SDK website: www.amplesdk.com/download/
+
+ Questions?
+   If you have any questions, please feel free to ask them on the Ample SDK mailing list,
+   which can be found here: http://groups.google.com/group/amplesdk
