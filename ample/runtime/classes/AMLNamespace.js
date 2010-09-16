@@ -7,7 +7,7 @@
  *
  */
 
-function cAMLNamespace(){
+var cAMLNamespace	= function() {
 	this.attributes	= {};
 	this.elements	= {};
 };

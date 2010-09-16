@@ -455,7 +455,7 @@ function fAMLSelector_nthChild(oElement, sArguments, bTraverse) {
 	return nCount % nMultiplier == nStep;
 };
 
-function cAMLNodeSelector() {};
+var cAMLNodeSelector	= function(){};
 
 cAMLNodeSelector.pseudoClass	= {};
 

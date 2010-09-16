@@ -7,7 +7,7 @@
  *
  */
 
-function cAMLElement_repeater(){};
+var cAMLElement_repeater	= function(){};
 cAMLElement_repeater.prototype	= new cAMLElement_prototype("repeater");
 
 // Public properties

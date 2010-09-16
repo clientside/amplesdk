@@ -7,7 +7,7 @@
  *
  */
 
-function cAMLEvent(){};
+var cAMLEvent	= function(){};
 
 cAMLEvent.CAPTURING_PHASE	= 1;
 cAMLEvent.AT_TARGET			= 2;

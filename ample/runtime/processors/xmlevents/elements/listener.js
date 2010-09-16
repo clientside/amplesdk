@@ -7,7 +7,7 @@
  *
  */
 
-function cXMLEventsElement_listener() {};
+var cXMLEventsElement_listener	= function(){};
 cXMLEventsElement_listener.prototype	= new cXMLEventsElement("listener");
 
 // Class Event Handlers

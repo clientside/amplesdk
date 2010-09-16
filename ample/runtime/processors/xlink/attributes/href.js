@@ -7,7 +7,7 @@
  *
  */
 
-function cXLAttr_href(){};
+var cXLAttr_href	= function(){};
 cXLAttr_href.prototype	= new cXLAttr("href");
 
 // Register Attribute

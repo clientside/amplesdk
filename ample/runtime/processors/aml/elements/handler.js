@@ -7,7 +7,7 @@
  *
  */
 
-function cAMLElement_handler(){};
+var cAMLElement_handler	= function(){};
 cAMLElement_handler.prototype	= new cAMLElement_prototype("handler");
 
 // Class Event Handlers

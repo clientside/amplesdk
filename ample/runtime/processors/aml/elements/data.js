@@ -7,7 +7,7 @@
  *
  */
 
-function cAMLElement_data() {
+var cAMLElement_data	= function() {
 	this.customers	= new cAMLNodeList;
 };
 cAMLElement_data.prototype	= new cAMLElement_prototype("data");

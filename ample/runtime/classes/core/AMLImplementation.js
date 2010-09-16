@@ -7,7 +7,7 @@
  *
  */
 
-function cAMLImplementation(){};
+var cAMLImplementation	= function(){};
 
 var oAMLImplementation_elements		= {},
 	oAMLImplementation_attributes	= {};

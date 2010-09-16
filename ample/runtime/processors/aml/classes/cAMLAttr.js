@@ -7,7 +7,7 @@
  *
  */
 
-function cAMLAttr_prototype(sLocalName) {
+var cAMLAttr_prototype	= function(sLocalName) {
 	this.localName	= sLocalName;
 };
 

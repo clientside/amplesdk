@@ -7,7 +7,7 @@
  *
  */
 
-function cAMLException(nException) {
+var cAMLException	= function(nException) {
 	this.code	= nException;
 
 	var sMessage	= "Ample" + ' ' + "exception" + ': ' + nException;

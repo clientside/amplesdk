@@ -7,9 +7,7 @@
  *
  */
 
-function cAMLStringList() {
-
-};
+var cAMLStringList	= function(){};
 
 cAMLStringList.prototype.length	= 0;
 

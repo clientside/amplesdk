@@ -7,7 +7,7 @@
  *
  */
 
-function cSMILElement_animateColor(){};
+var cSMILElement_animateColor	= function(){};
 cSMILElement_animateColor.prototype	= new cSMILAnimationElement("animateColor");
 
 // Class Event Handlers

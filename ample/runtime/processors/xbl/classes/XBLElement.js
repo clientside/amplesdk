@@ -7,7 +7,7 @@
  *
  */
 
-function cXBLElement(sLocalName) {
+var cXBLElement	= function(sLocalName) {
 	this.localName	= sLocalName;
 };
 cXBLElement.prototype	= new cAMLElement;

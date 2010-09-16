@@ -7,7 +7,7 @@
  *
  */
 
-function cAMLTouch(){};
+var cAMLTouch	= function(){};
 
 //
 cAMLTouch.prototype.clientX	= null;

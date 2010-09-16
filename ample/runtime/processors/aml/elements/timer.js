@@ -7,7 +7,7 @@
  *
  */
 
-function cAMLElement_timer(){};
+var cAMLElement_timer	= function(){};
 cAMLElement_timer.prototype	= new cAMLElement_prototype("timer");
 
 // Private Properties

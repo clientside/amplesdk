@@ -7,7 +7,7 @@
  *
  */
 
-function cAMLEntityReference(){};
+var cAMLEntityReference	= function(){};
 
 cAMLEntityReference.prototype	= new cAMLNode;
 cAMLEntityReference.prototype.nodeType	= cAMLNode.ENTITY_REFERENCE_NODE;

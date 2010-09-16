@@ -7,7 +7,7 @@
  *
  */
 
-function cSMILAnimationElement() {
+var cSMILAnimationElement	= function() {
 	cSMILTimeElement.apply(this, arguments);
 };
 cSMILAnimationElement.prototype	= new cSMILTimeElement("#element-animation");

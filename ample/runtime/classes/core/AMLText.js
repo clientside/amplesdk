@@ -7,7 +7,7 @@
  *
  */
 
-function cAMLText(){};
+var cAMLText	= function(){};
 
 cAMLText.prototype	= new cAMLCharacterData;
 cAMLText.prototype.nodeType	= cAMLNode.TEXT_NODE;

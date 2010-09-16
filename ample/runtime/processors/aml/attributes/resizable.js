@@ -7,7 +7,7 @@
  *
  */
 
-function cAMLAttr_resizable(){};
+var cAMLAttr_resizable	= function(){};
 cAMLAttr_resizable.prototype	= new cAMLAttr_prototype("resizable");
 
 // Class Events Handlers

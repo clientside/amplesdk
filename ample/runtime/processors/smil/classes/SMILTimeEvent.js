@@ -7,9 +7,7 @@
  *
  */
 
-function cSMILTimeEvent() {
-
-};
+var cSMILTimeEvent	= function(){};
 
 cSMILTimeEvent.prototype	= new cAMLEvent;
 

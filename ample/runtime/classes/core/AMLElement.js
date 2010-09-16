@@ -7,7 +7,7 @@
  *
  */
 
-function cAMLElement(){};
+var cAMLElement	= function(){};
 
 cAMLElement.prototype	= new cAMLNode;
 cAMLElement.prototype.nodeType	= cAMLNode.ELEMENT_NODE;

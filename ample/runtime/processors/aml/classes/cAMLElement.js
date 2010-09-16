@@ -7,7 +7,7 @@
  *
  */
 
-function cAMLElement_prototype(sLocalName) {
+var cAMLElement_prototype	= function(sLocalName) {
 	this.localName	= sLocalName;
 };
 cAMLElement_prototype.prototype	= new cAMLElement;

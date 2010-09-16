@@ -7,7 +7,7 @@
  *
  */
 
-function cAMLNodeList(){};
+var cAMLNodeList	= function(){};
 
 // nsIDOMNodeList
 cAMLNodeList.prototype.length	= 0;

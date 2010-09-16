@@ -7,7 +7,7 @@
  *
  */
 
-function cAMLAttr_resize_edges(){};
+var cAMLAttr_resize_edges	= function(){};
 cAMLAttr_resize_edges.prototype	= new cAMLAttr_prototype("resize-edges");
 
 // Class Events Handlers

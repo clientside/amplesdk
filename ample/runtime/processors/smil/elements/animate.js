@@ -7,7 +7,7 @@
  *
  */
 
-function cSMILElement_animate(){};
+var cSMILElement_animate	= function(){};
 cSMILElement_animate.prototype	= new cSMILAnimationElement("animate");
 
 // Class Event Handlers

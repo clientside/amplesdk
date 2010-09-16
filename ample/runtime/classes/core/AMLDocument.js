@@ -7,7 +7,7 @@
  *
  */
 
-function cAMLDocument(){};
+var cAMLDocument	= function(){};
 
 cAMLDocument.prototype  = new cAMLNode;
 cAMLDocument.prototype.nodeType	= cAMLNode.DOCUMENT_NODE;

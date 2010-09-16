@@ -7,7 +7,7 @@
  *
  */
 
-function cAMLMutationEvent(){};
+var cAMLMutationEvent	= function(){};
 cAMLMutationEvent.prototype	= new cAMLEvent;
 
 // nsIDOMMutationEvent

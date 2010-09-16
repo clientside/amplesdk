@@ -7,7 +7,7 @@
  *
  */
 //->Source
-function cAMLRange(){};
+var cAMLRange	= function(){};
 
 // Constants
 cAMLRange.START_TO_START	= 0;

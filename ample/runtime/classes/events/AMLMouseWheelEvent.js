@@ -7,7 +7,7 @@
  *
  */
 
-function cAMLMouseWheelEvent(){};
+var cAMLMouseWheelEvent	= function(){};
 cAMLMouseWheelEvent.prototype	= new cAMLMouseEvent;
 
 // nsIAMLMouseWheelEvent

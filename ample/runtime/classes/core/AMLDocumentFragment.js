@@ -7,7 +7,7 @@
  *
  */
 
-function cAMLDocumentFragment(){};
+var cAMLDocumentFragment	= function(){};
 
 cAMLDocumentFragment.prototype	= new cAMLNode;
 cAMLDocumentFragment.prototype.nodeType	= cAMLNode.DOCUMENT_FRAGMENT_NODE;
