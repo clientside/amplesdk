@@ -32,6 +32,9 @@ var oXULReflowManager	= (function () {
 		// Add to the stack for reflow
 		if (oEvent.target instanceof cXULElement && oEvent.target.viewType == cXULElement.VIEW_TYPE_BOXED)
 			fSchedule(oEvent.target);
+		else
+		if (oEvent.target.parentNode instanceof cXULElement && oEvent.target.parentNode.viewType == cXULElement.VIEW_TYPE_BOXED)
+			fSchedule(oEvent.target.parentNode);
 	}, true);
 
 	// Public Object
