@@ -17,21 +17,6 @@
 
 	$aFiles[]	= "elements/panelset.js";
 	$aFiles[]	= "elements/panel.js";
-/*
- 	// grid
-	$aFiles[]	= "elements/grid.js";
-	$aFiles[]	= "elements/gridHead.js";
-	$aFiles[]	= "elements/gridHeadCell.js";
-	$aFiles[]	= "elements/gridBody.js";
-	// Body of grid
-	$aFiles[]	= "elements/gridGroup.js";
-	$aFiles[]	= "elements/gridRow.js";
-	$aFiles[]	= "elements/gridCell.js";
-	// Editor
-	$aFiles[]	= "elements/gridEdit.js";
-	$aFiles[]	= "elements/gridEditRow.js";
-	$aFiles[]	= "elements/gridEditCell.js";
-*/
 
     $sOutput	= "";
     for ($nIndex = 0; $nIndex < count($aFiles); $nIndex++)
