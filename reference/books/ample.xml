@@ -105,7 +105,6 @@
 					<node title="data" url="ample/aml/data.xml"/>
 					<node title="handler" url="ample/aml/handler.xml"/>
 					<node title="repeater" url="ample/aml/repeater.xml"/>
-					<node title="timer" url="ample/aml/timer.xml"/>
 				</node>
 			</node>
 			<node title="SMIL 3.0">

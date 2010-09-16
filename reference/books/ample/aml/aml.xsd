@@ -35,15 +35,6 @@
 		</xsd:complexType>
 	</xsd:element>
 
-	<!--  -->
-	<xsd:element name="timer">
-		<xsd:complexType>
-			<xsd:attribute name="autostart" type="xsd:boolean" />
-			<xsd:attribute name="interval" type="xsd:integer" />
-			<xsd:attribute name="timeout" type="xsd:integer" />
-		</xsd:complexType>
-	</xsd:element>
-
 	<!-- Handlers Module -->
 	<xsd:element name="handler">
 		<xsd:complexType>

@@ -88,7 +88,6 @@
 	$aFiles[]	= "runtime/processors/aml/elements/data.js";
 	$aFiles[]	= "runtime/processors/aml/elements/handler.js";
 	$aFiles[]	= "runtime/processors/aml/elements/repeater.js";
-	$aFiles[]	= "runtime/processors/aml/elements/timer.js";
 
 	// SMIL 3.0
 	$aFiles[]	= "runtime/processors/smil/classes/SMILElement.js";
