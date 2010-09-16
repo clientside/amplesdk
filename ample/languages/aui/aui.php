@@ -4,7 +4,6 @@
 
     // elements
     $aFiles[]	= "elements/sound.js";
-    $aFiles[]	= "elements/timer.js";
 	$aFiles[]	= "elements/xhtml.js";
 
 	$aFiles[]	= "elements/pager.js";
