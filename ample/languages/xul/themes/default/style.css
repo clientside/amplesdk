@@ -1,0 +1,20 @@
+/*
+ * Source-only loader (fallback for missing Apache+mod_rewrite+PHP installation)
+ *
+ */
+
+@import url("markup.css");
+@import url("input.css");
+@import url("interaction.css");
+@import url("menu.css");
+@import url("tabbox.css");
+@import url("toolbox.css");
+@import url("treelist.css");
+@import url("windowed.css");
+@import url("editor.css");
+
+@import url("datepicker-pane.css");
+@import url("colorpicker-pane.css");
+@import url("tooltip-pane.css");
+/* css3 goodies */
+@import url("css3.css");

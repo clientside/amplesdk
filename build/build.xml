@@ -357,6 +357,7 @@
 		<concat destfile="${temp.languages.dir}/xhtml-raw.css" fixlastline="yes">
 			<fileset dir="${source.xhtml.dir}/themes/default/">
 				<include name="*.css"/>
+				<exclude name="style.css"/>
 			</fileset>
 		</concat>
 
@@ -405,6 +406,7 @@
 		<concat destfile="${temp.languages.dir}/aui-raw.css" fixlastline="yes">
 			<fileset dir="${source.aui.dir}/themes/default/">
 				<include name="*.css"/>
+				<exclude name="style.css"/>
 			</fileset>
 		</concat>
 
@@ -466,6 +468,7 @@
 		<concat destfile="${temp.languages.dir}/xul-raw.css" fixlastline="yes">
 			<fileset dir="${source.xul.dir}/themes/default/">
 				<include name="*.css"/>
+				<exclude name="style.css"/>
 			</fileset>
 		</concat>
 
@@ -623,7 +626,6 @@
 
 		<echo message="Merging into: ${temp.languages.dir}/chart-raw.js" level="info"/>
 		<concat destfile="${temp.languages.dir}/chart-raw.js" fixlastline="yes">
-			<fileset file="${source.chart.dir}/chart.js" />
 			<fileset dir="${source.chart.dir}/classes/">
 				<include name="*.js" />
 			</fileset>
@@ -644,6 +646,7 @@
 		<concat destfile="${temp.languages.dir}/chart-raw.css" fixlastline="yes">
 			<fileset dir="${source.chart.dir}/themes/default/">
 				<include name="*.css"/>
+				<exclude name="style.css"/>
 			</fileset>
 		</concat>
 
