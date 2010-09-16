@@ -92,6 +92,56 @@ function fAMLQuery_load_abort(oElement)
 	}
 };
 
+function fAMLQuery_load_start(oElement, sUrl, /*data*/vArgument2, /*success*/vArgument3) {
+	// If there is an operation running, abort it
+	fAMLQuery_load_abort(oElement);
+
+	// Dispatch unload event
+	var oEvent	= new cAMLEvent;
+	oEvent.initEvent("unload", false, false);
+	fAMLNode_dispatchEvent(oElement, oEvent);
+
+	// Remove nodes
+	while (oElement.lastChild)
+		fAMLElement_removeChild(oElement, oElement.lastChild);
+
+	// Do timeout before loading
+	oElement._request	= null;
+	oElement._timeout	= fSetTimeout(function() {
+		// Create request
+		var oSettings	= {};
+		oSettings.type	= "GET";
+		oSettings.url	= sUrl;
+		oSettings.data	= vArgument2 || null;
+		oSettings.complete	= function(oRequest) {
+			// Clear
+			fAMLQuery_load_clear(oElement);
+
+		    var oDocument	= fBrowser_getResponseDocument(oRequest),
+				oEvent		= new cAMLEvent;
+		    if (oDocument) {
+				// Render Content
+		    	fAMLElement_appendChild(oElement, fAMLDocument_importNode(oElement.ownerDocument, oDocument.documentElement, true));
+				// Initialize event
+				oEvent.initEvent("load", false, false);
+		    }
+		    else {
+//->Debug
+				fUtilities_warn(sAML_NOT_WELLFORMED_WRN);
+//<-Debug
+				// Initialize event
+				oEvent.initEvent("error", false, false);
+		    }
+			// Dispatch event
+			fAMLNode_dispatchEvent(oElement, oEvent);
+		};
+
+		// Save in order to be able to cancel
+		oElement._request	= oAmple.ajax(oSettings);
+		oElement._timeout	= null;
+	}, 1);
+};
+
 cAMLQuery.prototype.load	= function(sUrl, /*data*/vArgument2, /*success*/vArgument3) {
 	// Validate API call
 	fGuard(arguments, [
@@ -99,56 +149,8 @@ cAMLQuery.prototype.load	= function(sUrl, /*data*/vArgument2, /*success*/vArgume
 	]);
 
 	// Invoke Implementation
-	if (this.length) {
-		var oElement	= this[0];
-		// If there is an operation running, abort it
-		fAMLQuery_load_abort(oElement);
-
-		// Dispatch unload event
-		var oEvent	= new cAMLEvent;
-		oEvent.initEvent("unload", false, false);
-		fAMLNode_dispatchEvent(oElement, oEvent);
-
-		// Remove nodes
-		while (oElement.lastChild)
-			fAMLElement_removeChild(oElement, oElement.lastChild);
-
-		// Do timeout before loading
-		oElement._request	= null;
-		oElement._timeout	= fSetTimeout(function() {
-			// Create request
-			var oSettings	= {};
-			oSettings.type	= "GET";
-			oSettings.url	= sUrl;
-			oSettings.data	= vArgument2 || null;
-			oSettings.complete	= function(oRequest) {
-				// Clear
-				fAMLQuery_load_clear(oElement);
-
-			    var oDocument	= fBrowser_getResponseDocument(oRequest),
-					oEvent		= new cAMLEvent;
-			    if (oDocument) {
-					// Render Content
-			    	fAMLElement_appendChild(oElement, fAMLDocument_importNode(oElement.ownerDocument, oDocument.documentElement, true));
-					// Initialize event
-					oEvent.initEvent("load", false, false);
-			    }
-			    else {
-//->Debug
-					fUtilities_warn(sAML_NOT_WELLFORMED_WRN);
-//<-Debug
-					// Initialize event
-					oEvent.initEvent("error", false, false);
-			    }
-				// Dispatch event
-				fAMLNode_dispatchEvent(oElement, oEvent);
-			};
-
-			// Save in order to be able to cancel
-			oElement._request	= oAmple.ajax(oSettings);
-			oElement._timeout	= null;
-		}, 1);
-	}
+	if (this.length)
+		fAMLQuery_load_start(this[0], sUrl, vArgument2, vArgument3);
 
 	return this;
 };
