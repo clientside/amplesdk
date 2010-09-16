@@ -7,7 +7,9 @@
  *
  */
 
-var cXHTMLElement_button	= function(){};
+var cXHTMLElement_button	= function(){
+   	this.validity	= new cXHTMLValidityState;
+};
 cXHTMLElement_button.prototype	= new cXHTMLInputElement("button");
 
 // Class Events Handlers

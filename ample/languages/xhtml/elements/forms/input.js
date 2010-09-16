@@ -7,7 +7,9 @@
  *
  */
 
-var cXHTMLElement_input	= function(){};
+var cXHTMLElement_input	= function(){
+	this.validity	= new cXHTMLValidityState;
+};
 cXHTMLElement_input.prototype	= new cXHTMLInputElement("input");
 
 // Public Properties

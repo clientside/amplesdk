@@ -7,7 +7,9 @@
  *
  */
 
-var cXHTMLElement_textarea	= function(){};
+var cXHTMLElement_textarea	= function(){
+	this.validity	= new cXHTMLValidityState;
+};
 cXHTMLElement_textarea.prototype	= new cXHTMLInputElement("textarea");
 
 cXHTMLElement_textarea.prototype.$getValue	= function(sValue) {

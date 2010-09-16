@@ -8,6 +8,8 @@
  */
 
 var cXHTMLElement_select	= function() {
+   	this.validity	= new cXHTMLValidityState;
+	//
     this.options	= new AMLNodeList;
 
     var oSelf	= this;

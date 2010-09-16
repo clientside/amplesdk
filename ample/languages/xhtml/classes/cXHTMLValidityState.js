@@ -19,4 +19,4 @@ cXHTMLValidityState.prototype.rangeUnderflow	= false;
 cXHTMLValidityState.prototype.rangeOverflow	= false;
 cXHTMLValidityState.prototype.stepMismatch	= false;
 cXHTMLValidityState.prototype.customError	= false;
-cXHTMLValidityState.prototype.valid			= false;
+cXHTMLValidityState.prototype.valid			= true;
