@@ -24,13 +24,13 @@
 
 	//
 	include("../../../../../build/resources/compiler/cCSSCompiler.php");
-
+/*
 	$oCSSCompiler	= new cCSSCompiler;
 	$oCSSCompiler->readFromString($sOutput);
 	$oCSSCompiler->stripComments();
 	$oCSSCompiler->stripSpaces();
 	$oCSSCompiler->obfuscate();
 	$sOutput	= $oCSSCompiler->getOutput();
-
+*/
 	echo $sOutput;
 ?>

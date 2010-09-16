@@ -722,6 +722,11 @@
 				<include name="managers/**" />
 			</fileset>
 		</copy>
+		<replace dir="${target.dir}/examples/">
+			<include name="**/*.html"/>
+			<replacetoken><![CDATA[<link type="text/ample+css"]]></replacetoken>
+			<replacevalue><![CDATA[<link type="text/css"]]></replacevalue>
+		</replace>
 	</target>
 
 	<!-- Reference -->
