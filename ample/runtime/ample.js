@@ -133,6 +133,8 @@ function fAmple_extend(oSource, oTarget) {
 	else {
 		if (!oTarget)
 			oTarget	= oAmple;
+
+		//
 		for (var sName in oSource)
 			if (sName != "toString") {
 //->Debug
@@ -153,10 +155,10 @@ oAmple.extend	= function(oSource, oTarget) {
 		["target",	cObject, true]
 	]);
 
-	// Sign
-	fAMLExporter_sign(oSource);
-
 	// Invoke implementation
+	// Sign
+	fAMLExporter_signMembers(oSource, "plugin");
+	// Extend
 	fAmple_extend(oSource, oTarget);
 };
 
@@ -191,7 +193,7 @@ oAmple.publish	= function(oSource, sName, oTarget) {
 	]);
 
 	// Invoke implementation
-	fAMLExporter_export(oSource, sName, oTarget);
+	fAMLExporter_export(oSource, sName, oTarget, "plugin");
 };
 
 oAmple.config	= function(sName, oValue) {

@@ -7,8 +7,8 @@
  *
  */
 
-function fAMLExporter_toStringFunction(sName) {
-	return cFunction('return "' + "function" + ' ' + sName + '()' + ' ' + '{' + ' ' + '[' + "ample" + ' ' + "code" + ']' + ' ' + '}"');
+function fAMLExporter_toStringFunction(sName, sOrigin) {
+	return cFunction('return "' + "function" + ' ' + sName + '()' + ' ' + '{' + ' ' + '[' + (sOrigin || "ample") + ' ' + "code" + ']' + ' ' + '}"');
 };
 function fAMLExporter_toStringObject(sName) {
 	return cFunction('return "[' + "object" + ' ' + sName + ']"');
@@ -21,22 +21,22 @@ function fAMLExporter_toStringMember(vObject, fToString) {
 		vObject.toString.toString	= fAMLExporter_toString;
 	}
 };
-function fAMLExporter_sign(vObject, sName) {
-	fAMLExporter_toStringMember(vObject, (vObject instanceof cFunction ? fAMLExporter_toStringFunction : fAMLExporter_toStringObject)(sName));
-	fAMLExporter_signMembers(vObject);
+function fAMLExporter_sign(vObject, sName, sOrigin) {
+	fAMLExporter_toStringMember(vObject, (vObject instanceof cFunction ? fAMLExporter_toStringFunction : fAMLExporter_toStringObject)(sName, sOrigin));
+	fAMLExporter_signMembers(vObject, sOrigin);
+	if (vObject.prototype)
+		fAMLExporter_sign(vObject.prototype, sName, sOrigin);
 };
-function fAMLExporter_signMembers(oObject) {
+function fAMLExporter_signMembers(oObject, sOrigin) {
 	// Sign only own members
 	for (var sName in oObject)
 		if (oObject.hasOwnProperty(sName) && oObject[sName] instanceof cFunction)
-			fAMLExporter_toStringMember(oObject[sName], fAMLExporter_toStringFunction(sName));
+			fAMLExporter_toStringMember(oObject[sName], fAMLExporter_toStringFunction(sName, sOrigin));
 };
 
-function fAMLExporter_export(cObject, sName, oObject) {
+function fAMLExporter_export(cObject, sName, oObject, sOrigin) {
 	// Class
-	fAMLExporter_sign(cObject, sName);
-	if (cObject.prototype)
-		fAMLExporter_sign(cObject.prototype, sName);
+	fAMLExporter_sign(cObject, sName, sOrigin);
 
 	// Publish
 	(oObject || window)[sName]	= cObject;
