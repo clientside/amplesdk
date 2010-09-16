@@ -1,4 +1,4 @@
-<?
+<?php
 	class cCSSCompiler
 	{
 		var $output		= "";

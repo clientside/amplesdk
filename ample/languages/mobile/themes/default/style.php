@@ -1,4 +1,4 @@
-<?
+<?php
 	$aFiles		= array();
 
     $sOutput	= "@namespace m \"http://www.amplesdk.com/ns/mobile\";\n";

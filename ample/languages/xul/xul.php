@@ -1,4 +1,4 @@
-<?
+<?php
     $aFiles		= array();
     $aFiles[]	= "classes/cXULElement.js";
 	$aFiles[]	= "classes/cXULController.js";

@@ -1,4 +1,4 @@
-<?
+<?php
 	class cJSCompiler
 	{
 		var $output		= "";

@@ -1,4 +1,4 @@
-<?
+<?php
 	$aFiles		= array();
     $aFiles[]	= "markup.css";
     $aFiles[]	= "input.css";

@@ -1,4 +1,4 @@
-<?
+<?php
     $aFiles		= array();
     $aFiles[]	= "classes/cSVGElement.js";
 

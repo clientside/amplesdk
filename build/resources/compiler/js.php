@@ -1,4 +1,4 @@
-<?
+<?php
 	header("Content-type: text/plain");
 
 	include("cJSCompiler.php");
