@@ -42,63 +42,8 @@
 				</description>
 			</attribute>
 		</attributes>
-		<methods>
-			<method name="load" type="Void">
-				<arguments>
-					<argument name="sUrl" type="String">
-						<description>
-							<locale>
-								Data location.
-							</locale>
-						</description>
-					</argument>
-					<argument name="bAsync" type="Boolean" required="false">
-						<description>
-							<locale>
-								Data retrieval mode.
-							</locale>
-						</description>
-					</argument>
-				</arguments>
-				<description>
-					<locale>
-						Loads data from the specified url.
-					</locale>
-				</description>
-			</method>
-		</methods>
+		<methods />
 		<properties />
-		<events>
-			<event name="load" type="Event" cancelable="false" bubbles="false">
-				<description>
-					<locale>
-						Fires when data is loaded.
-					</locale>
-					<locale xml:lang="ru">
-						Загорается сразу же после загрузки данных ядром.
-					</locale>
-				</description>
-			</event>
-			<event name="unload" type="Event" cancelable="false" bubbles="false">
-				<description>
-					<locale>
-						Fires when data is unloaded.
-					</locale>
-					<locale xml:lang="ru">
-						Загорается непосредственно перед выгрузкой.
-					</locale>
-				</description>
-			</event>
-			<event name="error" type="Event" cancelable="false" bubbles="true">
-				<description>
-					<locale>
-						Fires when an error occured during data retrieval.
-					</locale>
-					<locale xml:lang="ru">
-						Загорается, когда в процессе загрузки ресурса возникает ошибка.
-					</locale>
-				</description>
-			</event>
-		</events>
+		<events />
 	</members>
 </element>
