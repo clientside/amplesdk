@@ -11,29 +11,30 @@
    and JavaScript with DOM3 or jQuery-like APIs for application logic.
    It equalizes browsers and brings technologies support to those missing any.
 
- Running Options:
+ Running on source:
  ===============
-   There are 2 options to run Ample SDK source - either to build project with Ant and use
-   the build version or setup your development environment so that it compiles on the fly.
+   There are 2 options to run Ample SDK from source. First (slow) involves an HTTP web-server,
+   the other (fast) requires the Apache web-server with mod_rewrite, PHP and .htaccess support.
+   Note! It is not possible to run Ample SDK source version from the file system.
 
-   You may find first option interesting if you are planning to use Ample SDK
-   and the second option in case you are planning to develop Ample SDK itself.
+   1. Running with any HTTP web server
+      In this scenario server returns source-only "loader" files which make additional
+      requests for all other files referenced from it that make up certain library.
 
-   1. Building with Ant (PHP required)
-      The build script is located in "build/build.xml". Before running the script
-      adjust path to your PHP executable and build destination in "build/build.local.properties"
+   2. Running with Apache HTTP web server with mod_rewrite, .htaccess support and PHP
+      In this scenario server redirects the requests to respectful PHP scripts that
+      concatenate source folders contents into single files on the fly. This is faster
+      compared to the first option.
 
-   2. Running with Apache (mod_rewrite, .htaccess support and PHP required)
-      There is a simple mechanism implemented that involves Apache's mod_rewrite to redirect
-      requests for files to respectful PHP scripts that concatenate source folders contents
-      into single files on the fly.
-      If you are using different web-server or/and different server-side language,
-      you may want to look into the "ample/.htaccess" file and "ample/runtime.php" PHP script
-      and implement similar gluing mechanisms for the platform of your choice.
+ Building with Ant:
+ ===============
+   The build script is located in "build/build.xml". Before running the script, verify and
+   adjust path to your PHP executable and build destination in "build/build.local.properties"
+   By default it will build to the "amplesdk-builds" directory next to the "amplesdk" project.
 
  Pre-built distributives:
  ===============
-   The latest stable build is available on Ample SDK website: www.amplesdk.com/download/
+   The latest stable build is available on Ample SDK website: http://www.amplesdk.com/download/
 
  Questions?
  ===============
