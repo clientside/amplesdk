@@ -7,9 +7,8 @@
  *
  */
 
-var sAMLExporter_space	= new cArray(5).join(' ');
 function fAMLExporter_toStringFunction(sName) {
-	return cFunction('return "' + "function" + ' ' + sName + '()' + ' ' + '{\\n' + sAMLExporter_space + '[' + "ample" + ' ' + "code" + ']\\n}"');
+	return cFunction('return "' + "function" + ' ' + sName + '()' + ' ' + '{' + ' ' + '[' + "ample" + ' ' + "code" + ']' + ' ' + '}"');
 };
 function fAMLExporter_toStringObject(sName) {
 	return cFunction('return "[' + "object" + ' ' + sName + ']"');
