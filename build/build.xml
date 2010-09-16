@@ -334,6 +334,7 @@
 				<include name="*/*.js" />
 			</fileset>
 			<fileset file="${source.xhtml.dir}/xhtml-smil.js" />
+			<fileset file="${source.xhtml.dir}/xhtml-selectors.js" />
 		</concat>
 
 		<echo message="Wrapping into: ${temp.languages.dir}/xhtml-raw-wrapped.js" level="info"/>

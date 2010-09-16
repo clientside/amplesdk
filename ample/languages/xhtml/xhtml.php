@@ -143,7 +143,7 @@
 	$aFiles[]	= "xhtml-smil.js";
 
 	// XHTML CSS Selectors
-//	$aFiles[]	= "selectors/oXHTMLPseudoClassSelector.js";
+	$aFiles[]	= "xhtml-selectors.js";
 
     $sOutput	= "";
     for ($nIndex = 0; $nIndex < count($aFiles); $nIndex++)

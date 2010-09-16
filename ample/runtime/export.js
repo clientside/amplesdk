@@ -121,6 +121,7 @@ if (!window.JSON)
 fAMLExporter_sign(cArguments,	"Arguments");
 // Tweaks and tricks
 fAMLExporter_sign(oAmple.prefixes,	"prefixes");
+fAMLExporter_sign(cAMLNodeSelector.pseudoClass, "pseudoClass");
 fAMLExporter_sign(fAmple_resolver,	"resolver");
 fAMLExporter_sign(oAmple_document.documentElement.$getContainer,		"$getContainer");
 //
