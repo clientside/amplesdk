@@ -210,7 +210,7 @@ cXULElement.prototype.$getTag		= function()
 {
 	var aHtml	= [],
 		bBoxContainer	= this instanceof cXULElement && this.viewType == cXULElement.VIEW_TYPE_BOXED &&!(this instanceof cXULElement_row),
-		bBoxChild		= this.parentNode.viewType == cXULElement.VIEW_TYPE_BOXED &&!(this.parentNode instanceof cXULElement_rows) || this.parentNode instanceof cXULElement_row;
+		bBoxChild		= this.parentNode && this.parentNode.viewType == cXULElement.VIEW_TYPE_BOXED &&!(this.parentNode instanceof cXULElement_rows) || this.parentNode instanceof cXULElement_row;
 
 	// Output Box Child Header
 	if (bBoxChild)
@@ -228,17 +228,17 @@ cXULElement.prototype.$getTag		= function()
 		aHtml[aHtml.length]	= this.childNodes[nIndex].$getTag();
 
 	// Output Box Container Footer
-	if (bBoxContainer)
-		aHtml[aHtml.length]	= cXULElement.getBoxClose(this);
-
-	// Output Element Footer
 	if (this.viewType != cXULElement.VIEW_TYPE_VIRTUAL) {
-		aHtml[aHtml.length]	= this.$getTagClose();
+		if (bBoxContainer)
+			aHtml[aHtml.length]	= cXULElement.getBoxClose(this);
 
-		// Output Box Child Footer
-		if (bBoxChild)
-			aHtml[aHtml.length]	= cXULElement.getBoxCloseChild(this);
+		// Output Element Footer
+		aHtml[aHtml.length]	= this.$getTagClose();
 	}
+
+	// Output Box Child Footer
+	if (bBoxChild)
+		aHtml[aHtml.length]	= cXULElement.getBoxCloseChild(this);
 
 	return aHtml.join("");
 };
