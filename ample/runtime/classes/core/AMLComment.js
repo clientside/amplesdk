@@ -7,7 +7,7 @@
  *
  */
 
-var cAMLComment	= function(){};
+function cAMLComment(){};
 
 cAMLComment.prototype	= new cAMLCharacterData;
 cAMLComment.prototype.nodeType	= cAMLNode.COMMENT_NODE;

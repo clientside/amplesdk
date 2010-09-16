@@ -347,7 +347,7 @@ function fAMLResize_inScope(nValue, nBorder) {
 };
 
 // Event interfaces
-var cAMLResizeEvent	= function(){};
+function cAMLResizeEvent(){};
 cAMLResizeEvent.prototype	= new cAMLUIEvent;
 
 cAMLResizeEvent.prototype.edge	= null;

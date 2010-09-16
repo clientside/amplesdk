@@ -7,7 +7,7 @@
  *
  */
 
-var cSMILElement_excl	= function(){};
+function cSMILElement_excl(){};
 cSMILElement_excl.prototype	= new cSMILTimeElement("excl");
 
 // Class Event Handlers

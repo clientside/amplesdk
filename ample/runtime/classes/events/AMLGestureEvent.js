@@ -7,7 +7,7 @@
  *
  */
 
-var cAMLGestureEvent	= function(){};
+function cAMLGestureEvent(){};
 cAMLGestureEvent.prototype	= new cAMLUIEvent;
 
 //

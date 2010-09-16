@@ -7,7 +7,7 @@
  *
  */
 
-var cAMLTextEvent	= function(){};
+function cAMLTextEvent(){};
 cAMLTextEvent.prototype	= new cAMLEvent;
 
 // nsIDOMTextEvent

@@ -7,7 +7,7 @@
  *
  */
 
-var cAMLCDATASection	= function(){};
+function cAMLCDATASection(){};
 
 cAMLCDATASection.prototype	= new cAMLText;
 cAMLCDATASection.prototype.nodeType	= cAMLNode.CDATA_SECTION_NODE;

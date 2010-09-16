@@ -7,7 +7,7 @@
  *
  */
 
-var cSMILElement_par	= function(){};
+function cSMILElement_par(){};
 cSMILElement_par.prototype	= new cSMILTimeElement("par");
 
 // Class Event Handlers

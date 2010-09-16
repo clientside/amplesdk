@@ -7,7 +7,7 @@
  *
  */
 
-var cAMLConfiguration	= function() {
+function cAMLConfiguration() {
 	this.parameterNames	= new cAMLStringList;
 };
 cAMLConfiguration.prototype.parameterNames	= null;

@@ -481,7 +481,7 @@ function fAMLSelector_nthChild(oElement, sArguments, bTraverse) {
 	return nCount % nMultiplier == nStep;
 };
 
-var cAMLNodeSelector	= function() {};
+function cAMLNodeSelector() {};
 
 // Attaching to implementation
 cAMLElement.prototype.querySelector			=

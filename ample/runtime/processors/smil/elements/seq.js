@@ -7,7 +7,7 @@
  *
  */
 
-var cSMILElement_seq	= function(){};
+function cSMILElement_seq(){};
 cSMILElement_seq.prototype	= new cSMILTimeElement("seq");
 
 // Class Event Handlers

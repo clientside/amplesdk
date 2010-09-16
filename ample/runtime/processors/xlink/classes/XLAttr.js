@@ -7,7 +7,7 @@
  *
  */
 
-var cXLAttr	= function(sLocalName) {
+function cXLAttr(sLocalName) {
 	this.localName	= sLocalName;
 };
 

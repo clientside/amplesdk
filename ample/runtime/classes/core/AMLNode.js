@@ -7,7 +7,7 @@
  *
  */
 
-var cAMLNode	= function(){};
+function cAMLNode(){};
 
 // nsIDOMNode
 

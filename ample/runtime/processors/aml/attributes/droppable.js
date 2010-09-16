@@ -7,7 +7,7 @@
  *
  */
 
-var cAMLAttr_droppable	= function(){};
+function cAMLAttr_droppable(){};
 cAMLAttr_droppable.prototype	= new cAMLAttr_prototype("droppable");
 
 // Class Events Handlers

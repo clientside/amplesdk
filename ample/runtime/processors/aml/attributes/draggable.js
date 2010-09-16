@@ -7,7 +7,7 @@
  *
  */
 
-var cAMLAttr_draggable	= function(){};
+function cAMLAttr_draggable(){};
 cAMLAttr_draggable.prototype	= new cAMLAttr_prototype("draggable");
 
 // Class Events Handlers

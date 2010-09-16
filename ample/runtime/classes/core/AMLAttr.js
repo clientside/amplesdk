@@ -7,7 +7,7 @@
  *
  */
 
-var cAMLAttr	= function(){};
+function cAMLAttr(){};
 
 cAMLAttr.prototype	= new cAMLNode;
 cAMLAttr.prototype.nodeType	= cAMLNode.ATTRIBUTE_NODE;

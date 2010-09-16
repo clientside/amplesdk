@@ -7,7 +7,7 @@
  *
  */
 
-var cAMLKeyboardEvent	= function(){};
+function cAMLKeyboardEvent(){};
 cAMLKeyboardEvent.prototype	= new cAMLUIEvent;
 
 // Constants

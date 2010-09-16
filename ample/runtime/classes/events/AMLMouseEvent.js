@@ -7,7 +7,7 @@
  *
  */
 
-var cAMLMouseEvent	= function(){};
+function cAMLMouseEvent(){};
 cAMLMouseEvent.prototype	= new cAMLUIEvent;
 
 // nsIDOMMouseEvent

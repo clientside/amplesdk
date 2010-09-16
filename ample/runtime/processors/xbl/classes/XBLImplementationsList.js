@@ -8,7 +8,7 @@
  */
 
 // XBLImplementationsList
-var cXBLImplementationsList	= function(){};
+function cXBLImplementationsList(){};
 cXBLImplementationsList.prototype.length	= 0;
 cXBLImplementationsList.prototype.item	= function(nIndex) {
 	// Validate arguments

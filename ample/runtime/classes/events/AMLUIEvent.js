@@ -7,7 +7,7 @@
  *
  */
 
-var cAMLUIEvent	= function(){};
+function cAMLUIEvent(){};
 cAMLUIEvent.prototype	= new cAMLEvent;
 
 // nsIDOMUIEvent

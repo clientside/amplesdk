@@ -7,7 +7,7 @@
  *
  */
 
-var cREXElement	= function(sLocalName) {
+function cREXElement(sLocalName) {
 	this.localName	= sLocalName;
 };
 cREXElement.prototype	= new cAMLElement;

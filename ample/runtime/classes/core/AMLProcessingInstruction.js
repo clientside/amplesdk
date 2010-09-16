@@ -7,7 +7,7 @@
  *
  */
 
-var cAMLProcessingInstruction	= function(){};
+function cAMLProcessingInstruction(){};
 
 cAMLProcessingInstruction.prototype	= new cAMLNode;
 cAMLProcessingInstruction.prototype.nodeType	= cAMLNode.PROCESSING_INSTRUCTION_NODE;

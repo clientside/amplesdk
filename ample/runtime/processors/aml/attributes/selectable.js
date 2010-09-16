@@ -7,7 +7,7 @@
  *
  */
 
-var cAMLAttr_selectable	= function(){};
+function cAMLAttr_selectable(){};
 cAMLAttr_selectable.prototype	= new cAMLAttr_prototype("selectable");
 
 // Class Events Handlers

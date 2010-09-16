@@ -7,7 +7,7 @@
  *
  */
 
-var cAMLCustomEvent	= function(){};
+function cAMLCustomEvent(){};
 cAMLCustomEvent.prototype	= new cAMLEvent;
 
 // nsIDOMCustomEvent

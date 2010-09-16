@@ -7,7 +7,7 @@
  *
  */
 
-var cAMLTouchList	= function(){};
+function cAMLTouchList(){};
 
 //
 cAMLTouchList.prototype.length	= 0;

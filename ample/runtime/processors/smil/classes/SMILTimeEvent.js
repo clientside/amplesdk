@@ -7,7 +7,7 @@
  *
  */
 
-var cSMILTimeEvent	= function() {
+function cSMILTimeEvent() {
 
 };
 

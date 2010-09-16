@@ -7,7 +7,7 @@
  *
  */
 
-var cAMLCharacterData	= function(){};
+function cAMLCharacterData(){};
 
 cAMLCharacterData.prototype	= new cAMLNode;
 

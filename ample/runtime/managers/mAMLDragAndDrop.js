@@ -389,7 +389,7 @@ function fAMLDragAndDrop_intersectSegment(x, y, a, b)
 };
 
 // Event interfaces
-var cAMLDragEvent	= function(){};
+function cAMLDragEvent(){};
 cAMLDragEvent.prototype	= new cAMLUIEvent;
 
 // nsIDOMDragEvent
@@ -415,7 +415,7 @@ cAMLDragEvent.prototype.getModifierState	= function(sModifier)
 };
 
 //
-var cAMLDataTransfer	= function() {
+function cAMLDataTransfer() {
 	this.types	= new cAMLStringList;
 };
 cAMLDataTransfer.prototype.dropEffect		= "none";			// copy|move|link|position|none (dragenter|dragover)

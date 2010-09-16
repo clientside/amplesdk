@@ -8,7 +8,7 @@
  */
 
 // XBLImplementation
-var cXBLImplementation	= function(){};
+function cXBLImplementation(){};
 
 cXBLImplementation.prototype.xblBindingAttached	= function(){};
 cXBLImplementation.prototype.xblEnteredDocument	= function(){};

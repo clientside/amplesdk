@@ -7,7 +7,7 @@
  *
  */
 
-var cAMLError	= function(sMessage, nSeverity, oException) {
+function cAMLError(sMessage, nSeverity, oException) {
 	this.message	= sMessage;
 	this.severity	= nSeverity;
 	this.relatedException	= oException;

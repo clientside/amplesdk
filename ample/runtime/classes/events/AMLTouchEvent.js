@@ -7,7 +7,7 @@
  *
  */
 
-var cAMLTouchEvent	= function(){};
+function cAMLTouchEvent(){};
 cAMLTouchEvent.prototype	= new cAMLUIEvent;
 
 //
