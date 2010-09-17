@@ -9,7 +9,7 @@
 
 // Create Ample SDK document object
 var oAmple_document		= fAMLImplementation_createDocument(new cAMLImplementation, "http://www.w3.org/1999/xhtml", "body", null);
-oAmple_document.documentElement.$getContainer	= function(sName) {return sName && sName != "gateway" ? null : oUADocument.body};
+oAmple_document.documentElement.$getContainer	= function(sName) {return sName == "gateway" ? oUADocument.body : sName ? null : oUADocument.documentElement};
 
 //
 function fQuery(vArgument1, vArgument2, vArgument3) {
