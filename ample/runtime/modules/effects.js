@@ -222,3 +222,6 @@ cAMLQuery.prototype.slideUp		= function(vDuration, fCallback) {
 
 	return this;
 };
+
+// Extend ample object
+oAmple.easing	= oAMLNodeAnimation_easing;

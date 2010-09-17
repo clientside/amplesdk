@@ -8,6 +8,7 @@
  */
 
 var aAMLNodeAnimation_effects	= [],
+	oAMLNodeAnimation_easing	= {},
 	oAMLNodeAnimation_durations	= {};			// Variables
 oAMLNodeAnimation_durations["fast"]		= 200;
 oAMLNodeAnimation_durations["normal"]	= 400;
@@ -327,5 +328,5 @@ function fAMLNodeAnimation_cubicBezier(t, a, b, c, d, nDuration) {
 	return fSolve(t, fSolveEpsilon(nDuration));
 };
 
-//
+// Extend AMLElement
 cAMLElement.prototype.$animations	= null;

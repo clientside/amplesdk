@@ -38,6 +38,13 @@
 					</locale>
 				</description>
 			</property>
+			<property name="easing" type="Object" readonly="true">
+				<description>
+					<locale>
+						Retrieves a reference to a hash object of easing functions.
+					</locale>
+				</description>
+			</property>
 			<!--  -->
 			<property name="readyState" type="String" readonly="true">
 				<description>
