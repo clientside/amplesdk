@@ -883,7 +883,8 @@ var aCSSAnimation	= [
 	],
 	aCSSTransition	= [
 			"opacity", "color"
-//			,"backgroundColor", "backgroundPosition"
+			,"backgroundColor"
+//			,"backgroundPosition"
 			,"borderTopColor", "borderLeftColor", "borderRightColor", "borderBottomColor"
 			,"outlineColor"
 	];
