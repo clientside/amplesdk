@@ -11,7 +11,7 @@
 cAMLQuery.prototype.animate	= function(oProperties, vDuration, sEasing, fCallback) {
 	// Validate API call
 	fGuard(arguments, [
-		["properties",	cObject, true],
+		["properties",	cObject],
 		["duration",	cObject, true],
 		["easing",		cString, true],
 		["callback",	cFunction, true]
