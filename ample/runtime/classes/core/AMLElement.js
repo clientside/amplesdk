@@ -24,7 +24,9 @@ cAMLElement.prototype.$hoverable	= false;
 
 //
 cAMLElement.prototype.contentFragment	= null;
+//->Source
 cAMLElement.prototype.$childNodesAnonymous	= null;
+//<-Source
 
 // Private Variables
 var nAMLElement_prefix	= 0;
@@ -66,7 +68,7 @@ cAMLElement.prototype.appendChild	= function(oNode)
 	//
 	return oNode;
 };
-
+//->Source
 cAMLElement.prototype.$appendChildAnonymous	= function(oNode)
 {
 	// Set parent
@@ -94,7 +96,7 @@ cAMLElement.prototype.$appendChildAnonymous	= function(oNode)
 
 	return oNode;
 };
-
+//<-Source
 function fAMLElement_insertBefore(oParent, oNode, oBefore)
 {
 	// Call parent class method
@@ -190,7 +192,7 @@ cAMLElement.prototype.removeChild	= function(oNode)
     else
         throw new cAMLException(cAMLException.NOT_FOUND_ERR);
 };
-
+//->Source
 cAMLElement.prototype.$removeChildAnonymous	= function(oNode)
 {
 	// Fire Mutation event
@@ -218,7 +220,7 @@ cAMLElement.prototype.$removeChildAnonymous	= function(oNode)
 
 	return oNode;
 };
-
+//<-Source
 function fAMLElement_replaceChild(oParent, oNode, oOld)
 {
 	// Call parent class method
