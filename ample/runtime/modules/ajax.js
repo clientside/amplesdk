@@ -7,12 +7,7 @@
  *
  */
 
-oAmple.ajax	= function(oSettings) {
-	// Validate API call
-	fGuard(arguments, [
-		["settings",	cObject]
-	]);
-
+function fAMLQuery_ajax(oSettings) {
 	var oRequest	= new cXMLHttpRequest;
 	oRequest.open(oSettings.type || "GET", oSettings.url || '', "async" in oSettings ? oSettings.async : true);
 	oRequest.setRequestHeader("X-Requested-With", "XMLHttpRequest");
@@ -33,135 +28,76 @@ oAmple.ajax	= function(oSettings) {
 	return oRequest;
 };
 
-oAmple.get	= function(sUrl, /*data*/vArgument2, /*success*/vArgument3, /*type*/vArgument4) {
+// ample extensions
+oAmple.ajax	= function(oSettings) {
 	// Validate API call
 	fGuard(arguments, [
-		["url",	cString]
+		["settings",	cObject]
+	]);
+
+	// Invoke implementation
+	return fAMLQuery_ajax(oSettings);
+};
+
+oAmple.get	= function(sUrl, vData, fCallback, sType) {
+	// Validate API call
+	fGuard(arguments, [
+		["url",		cString],
+		["data",	cObject,	true,	null],
+		["success",	cFunction,	true],
+		["dataType",cString,	true]
 	]);
 
 	// Invoke implementation
 	var oSettings	= {};
 	oSettings.url	= sUrl;
 	oSettings.type	= "GET";
-	oSettings.data		= vArgument2;
-	oSettings.success	= vArgument3;
-	oSettings.dataType	= vArgument4;
+	oSettings.data		= vData;
+	oSettings.success	= fCallback;
+	oSettings.dataType	= sType;
 
-	return oAmple.ajax(oSettings);
+	return fAMLQuery_ajax(oSettings);
 };
 
-oAmple.post	= function(sUrl, /*data*/vArgument2, /*success*/vArgument3, /*type*/vArgument4) {
+oAmple.post	= function(sUrl, vData, fCallback, sType) {
 	// Validate API call
 	fGuard(arguments, [
-		["url",	cString]
+   		["url",		cString],
+		["data",	cObject,	true,	null],
+		["success",	cFunction,	true],
+		["dataType",cString,	true]
 	]);
 
 	// Invoke implementation
 	var oSettings	= {};
 	oSettings.url	= sUrl;
 	oSettings.type	= "POST";
-	oSettings.data		= vArgument2;
-	oSettings.success	= vArgument3;
-	oSettings.dataType	= vArgument4;
+	oSettings.data		= vData;
+	oSettings.success	= fCallback;
+	oSettings.dataType	= sType;
 
-	return oAmple.ajax(oSettings);
+	return fAMLQuery_ajax(oSettings);
 };
 
-// Content Loader
-function fAMLQuery_load_clear(oElement)
-{
-	if (oElement._request)
-	    delete oElement._request;
-	if (oElement._timeout) {
-		fClearTimeout(oElement._timeout);
-		delete oElement._timeout;
-	}
-	// Remove "load" pseudo-class
-	fAMLElement_setPseudoClass(oElement, "load", false);
-};
-
-function fAMLQuery_load_abort(oElement)
-{
-	if (oElement._timeout || oElement._request) {
-		if (oElement._request)
-			oElement._request	= oElement._request.abort();
-		fAMLQuery_load_clear(oElement);
-
-		// Dispatch abort event
-		var oEvent	= new cAMLEvent;
-		oEvent.initEvent("abort", false, false);
-		fAMLNode_dispatchEvent(oElement, oEvent);
-	}
-};
-
-function fAMLQuery_load_start(oElement, sUrl, /*data*/vArgument2, /*success*/vArgument3) {
-	// If there is an operation running, abort it
-	fAMLQuery_load_abort(oElement);
-
-	// Dispatch unload event
-	var oEvent	= new cAMLEvent;
-	oEvent.initEvent("unload", false, false);
-	fAMLNode_dispatchEvent(oElement, oEvent);
-
-	// Remove nodes
-	while (oElement.lastChild)
-		fAMLElement_removeChild(oElement, oElement.lastChild);
-
-	// Set "load" pseudo-class
-	fAMLElement_setPseudoClass(oElement, "load", true);
-
-	// Do timeout before loading
-	oElement._request	= null;
-	oElement._timeout	= fSetTimeout(function() {
-		// Create request
-		var oSettings	= {};
-		oSettings.type	= "GET";
-		oSettings.url	= sUrl;
-		oSettings.data	= vArgument2 || null;
-		oSettings.complete	= function(oRequest) {
-			// Clear
-			fAMLQuery_load_clear(oElement);
-
-		    var oDocument	= fBrowser_getResponseDocument(oRequest),
-				oEvent		= new cAMLEvent;
-		    if (oDocument) {
-				// Render Content
-		    	fAMLElement_appendChild(oElement, fAMLDocument_importNode(oElement.ownerDocument, oDocument.documentElement, true));
-				// Initialize event
-				oEvent.initEvent("load", false, false);
-		    }
-		    else {
-//->Debug
-				fUtilities_warn(sAML_NOT_WELLFORMED_WRN);
-//<-Debug
-				// Initialize event
-				oEvent.initEvent("error", false, false);
-		    }
-			// Dispatch event
-			fAMLNode_dispatchEvent(oElement, oEvent);
-		};
-
-		// Save in order to be able to cancel
-		oElement._request	= oAmple.ajax(oSettings);
-		oElement._timeout	= null;
-	}, 1);
-};
-
-cAMLQuery.prototype.load	= function(sUrl, /*data*/vArgument2, /*success*/vArgument3) {
+// AMLQuery extensions
+cAMLQuery.prototype.load	= function(sUrl, vData, fCallback) {
 	// Validate API call
 	fGuard(arguments, [
-		["url",	cString]
+		["url",		cString],
+		["data",	cObject,	true,	null],
+		["success",	cFunction,	true]
 	]);
 
 	// Invoke Implementation
 	if (this.length)
-		fAMLQuery_load_start(this[0], sUrl, vArgument2, vArgument3);
+		fAMLNodeLoader_load(this[0], sUrl, vData, fCallback);
 
 	return this;
 };
 
 cAMLQuery.prototype.abort	= function() {
 	if (this.length)
-		fAMLQuery_load_abort(this[0]);
+		fAMLNodeLoader_abort(this[0]);
+
 	return this;
 };

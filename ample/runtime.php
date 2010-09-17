@@ -44,6 +44,7 @@
 
 	// Animation
 	$aFiles[]	= "runtime/classes/misc/AMLNodeAnimation.js";
+	$aFiles[]	= "runtime/classes/misc/AMLNodeLoader.js";
 
 	// Range
 	$aFiles[]	= "runtime/classes/range/AMLRange.js";

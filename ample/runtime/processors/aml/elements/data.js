@@ -33,7 +33,7 @@ cAMLElement_data.prototype.notify	= function() {
 cAMLElement_data.handlers	= {};
 cAMLElement_data.handlers["DOMNodeInsertedIntoDocument"]	= function(oEvent) {
 	if (this.attributes["src"])
-		fAMLQuery_load_start(this, this.attributes["src"]);
+		fAMLNodeLoader_load(this, this.attributes["src"]);
 };
 cAMLElement_data.handlers["DOMNodeRemovedFromDocument"]	= function(oEvent) {
 	// TODO: unregister customers
@@ -57,7 +57,7 @@ cAMLElement_data.handlers["DOMAttrModified"]	= function(oEvent) {
 	if (oEvent.target == this)
 		switch (oEvent.newValue) {
 			case "src":
-				fAMLQuery_load_start(this, oEvent.newValue);
+				fAMLNodeLoader_load(this, oEvent.newValue);
 				break;
 
 			case "type":

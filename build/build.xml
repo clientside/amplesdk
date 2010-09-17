@@ -147,7 +147,8 @@
 			<filelist dir="${source.runtime.dir}/classes/selectors/" files="
 				AMLNodeSelector.js"/>
 			<filelist dir="${source.runtime.dir}/classes/misc/" files="
-				AMLNodeAnimation.js"/>
+				AMLNodeAnimation.js,
+				AMLNodeLoader.js"/>
 			<filelist dir="${source.runtime.dir}/classes/range/" files="
 				AMLRange.js"/>
 			<!-- JS API Objects -->
