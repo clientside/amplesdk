@@ -326,3 +326,6 @@ function fAMLNodeAnimation_cubicBezier(t, a, b, c, d, nDuration) {
 	// Convert from input time to parametric value in curve, then from that to output time.
 	return fSolve(t, fSolveEpsilon(nDuration));
 };
+
+//
+cAMLElement.prototype.$animations	= null;

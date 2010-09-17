@@ -44,7 +44,7 @@
 	// Selectors API
 	files.push("runtime/classes/selectors/AMLNodeSelector.js");
 	// Animation
-	files.push("runtime/classes/animation/AMLNodeAnimation.js");
+	files.push("runtime/classes/misc/AMLNodeAnimation.js");
 	// Range
 	files.push("runtime/classes/range/AMLRange.js");
 	// AML addons

@@ -43,7 +43,7 @@
 	$aFiles[]	= "runtime/classes/selectors/AMLNodeSelector.js";
 
 	// Animation
-	$aFiles[]	= "runtime/classes/animation/AMLNodeAnimation.js";
+	$aFiles[]	= "runtime/classes/misc/AMLNodeAnimation.js";
 
 	// Range
 	$aFiles[]	= "runtime/classes/range/AMLRange.js";
