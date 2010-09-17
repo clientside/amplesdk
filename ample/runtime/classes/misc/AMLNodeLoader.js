@@ -34,7 +34,7 @@ function fAMLNodeLoader_abort(oElement)
 	}
 };
 
-function fAMLNodeLoader_load(oElement, sUrl, /*data*/vArgument2, /*success*/vArgument3) {
+function fAMLNodeLoader_load(oElement, sUrl, vData, fCallback) {
 	// If there is an operation running, abort it
 	fAMLNodeLoader_abort(oElement);
 
@@ -57,7 +57,7 @@ function fAMLNodeLoader_load(oElement, sUrl, /*data*/vArgument2, /*success*/vArg
 		var oSettings	= {};
 		oSettings.type	= "GET";
 		oSettings.url	= sUrl;
-		oSettings.data	= vArgument2 || null;
+		oSettings.data	= vData || null;
 		oSettings.complete	= function(oRequest) {
 			// Clear
 			fAMLNodeLoader_clear(oElement);
