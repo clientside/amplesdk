@@ -76,6 +76,8 @@ function fAMLQuery_load_clear(oElement)
 		fClearTimeout(oElement._timeout);
 		delete oElement._timeout;
 	}
+	// Remove "load" pseudo-class
+	fAMLElement_setPseudoClass(oElement, "load", false);
 };
 
 function fAMLQuery_load_abort(oElement)
@@ -104,6 +106,9 @@ function fAMLQuery_load_start(oElement, sUrl, /*data*/vArgument2, /*success*/vAr
 	// Remove nodes
 	while (oElement.lastChild)
 		fAMLElement_removeChild(oElement, oElement.lastChild);
+
+	// Set "load" pseudo-class
+	fAMLElement_setPseudoClass(oElement, "load", true);
 
 	// Do timeout before loading
 	oElement._request	= null;

@@ -1360,7 +1360,15 @@
 			<pseudoclass name="resize">
 				<description>
 					<locale>
-						Applied to the resized element during operation
+						Applied to the element being resized
+					</locale>
+				</description>
+			</pseudoclass>
+			<!-- Ajax -->
+			<pseudoclass name="load">
+				<description>
+					<locale>
+						Applied to the element being loaded
 					</locale>
 				</description>
 			</pseudoclass>

@@ -488,27 +488,36 @@ cAMLNodeSelector.prototype.querySelectorAll	= function(sCSS, fResolver)
 };
 
 // UI element states
-cAMLNodeSelector.pseudoClass["checked"] = function(oElement) {
+cAMLNodeSelector.pseudoClass["checked"]	= function(oElement) {
 	return fAMLElement_hazAttribute(oElement, "checked") && fAMLElement_getAttribute(oElement, "checked") == "true";
 };
 
-cAMLNodeSelector.pseudoClass["enabled"] = function(oElement) {
+cAMLNodeSelector.pseudoClass["enabled"]	= function(oElement) {
 	return !fAMLElement_hazAttribute(oElement, "disabled") || fAMLElement_getAttribute(oElement, "disabled") != "true";
 };
 
-cAMLNodeSelector.pseudoClass["disabled"] = function(oElement) {
+cAMLNodeSelector.pseudoClass["disabled"]	= function(oElement) {
 	return fAMLElement_hazAttribute(oElement, "disabled") && fAMLElement_getAttribute(oElement, "disabled") == "true";
 };
 
-cAMLNodeSelector.pseudoClass["indeterminate"] = function(oElement) {
+cAMLNodeSelector.pseudoClass["indeterminate"]	= function(oElement) {
 	return oElement.indeterminate;
 };
 
 // jQuery Visibility Filter
-cAMLNodeSelector.pseudoClass["hidden"] = function(oElement) {
+cAMLNodeSelector.pseudoClass["hidden"]	= function(oElement) {
 	return !fAMLFocus_isVisible(oElement);
 };
 
-cAMLNodeSelector.pseudoClass["visible"] = function(oElement) {
+cAMLNodeSelector.pseudoClass["visible"]	= function(oElement) {
 	return fAMLFocus_isVisible(oElement);
+};
+
+// Other Selector
+cAMLNodeSelector.pseudoClass["animated"]= function(oElement) {
+	return oElement.$animations && oElement.$animations.length;
+};
+
+cAMLNodeSelector.pseudoClass["load"]	= function(oElement) {
+	return oElement.$requests && oElement.$requests.length;
 };
