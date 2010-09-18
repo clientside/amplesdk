@@ -508,6 +508,54 @@
 					</locale>
 				</description>
 			</method>
+			<!-- Data -->
+			<method name="data" type="Variant">
+				<arguments>
+					<argument name="element" type="AMLElement">
+						<description>
+							<locale>
+								The DOM element.
+							</locale>
+						</description>
+					</argument>
+					<argument name="name" type="String">
+						<description>
+							<locale>
+								A string key name.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<arguments>
+					<argument name="element" type="AMLElement">
+						<description>
+							<locale>
+								The DOM element.
+							</locale>
+						</description>
+					</argument>
+					<argument name="name" type="String">
+						<description>
+							<locale>
+								A string key name.
+							</locale>
+						</description>
+					</argument>
+					<argument name="value" type="Variant">
+						<description>
+							<locale>
+								The data value.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Gets value at named data store for the specified element
+						or sets arbitrary data associated with thespecified element.
+					</locale>
+				</description>
+			</method>
 		</methods>
 		<events>
 			<event name="config" type="CustomEvent" cancelable="false" bubbles="false">
