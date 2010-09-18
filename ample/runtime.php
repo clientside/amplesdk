@@ -129,6 +129,7 @@
 	$aFiles[]	= "runtime/modules/history.js";
 	$aFiles[]	= "runtime/modules/manipulation.js";
 	$aFiles[]	= "runtime/modules/offset.js";
+	$aFiles[]	= "runtime/modules/traversing.js";
 
 	//
 	$aFiles[]	= "runtime/export.js";

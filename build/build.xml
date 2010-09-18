@@ -184,7 +184,8 @@
 				event.js,
 				history.js,
 				manipulation.js,
-				offset.js"/>
+				offset.js,
+				traversing.js"/>
 		</concat>
 	</target>
 
