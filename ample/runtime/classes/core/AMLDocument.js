@@ -629,11 +629,7 @@ function fAMLDocument_register(oDocument, oElement) {
 
 		var nIndex,
 			oNode;
-//->Source
-		// Process anonymous children
-		for (nIndex = 0; oNode = oElement.$childNodesAnonymous[nIndex]; nIndex++)
-			fAMLDocument_register(oDocument, oNode);
-//<-Source
+
 		// Process anonymous content
 		if (oElement.contentFragment)
 			for (nIndex = 0; oNode = oElement.contentFragment.childNodes[nIndex]; nIndex++) {
@@ -676,11 +672,7 @@ function fAMLDocument_unregister(oDocument, oElement) {
 		// Process children
 		for (nIndex = 0; oNode = oElement.childNodes[nIndex]; nIndex++)
 			fAMLDocument_unregister(oDocument, oNode);
-//->Source
-		// Process anonymous children
-		for (nIndex = 0; oNode = oElement.$childNodesAnonymous[nIndex]; nIndex++)
-			fAMLDocument_unregister(oDocument, oNode);
-//<-Source
+
 		// Process anonymous content
 		if (oElement.contentFragment)
 			for (nIndex = 0; oNode = oElement.contentFragment.childNodes[nIndex]; nIndex++) {

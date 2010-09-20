@@ -24,9 +24,6 @@ cAMLElement.prototype.$hoverable	= false;
 
 //
 cAMLElement.prototype.contentFragment	= null;
-//->Source
-cAMLElement.prototype.$childNodesAnonymous	= null;
-//<-Source
 
 // Private Variables
 var nAMLElement_prefix	= 0;
@@ -68,35 +65,7 @@ cAMLElement.prototype.appendChild	= function(oNode)
 	//
 	return oNode;
 };
-//->Source
-cAMLElement.prototype.$appendChildAnonymous	= function(oNode)
-{
-	// Set parent
-    oNode.parentNode	= this;
 
-    // Pseudo DOM
-    var nLength	= this.$childNodesAnonymous.length;
-    if (nLength)
-    {
-        oNode.previousSibling	= this.$childNodesAnonymous[nLength - 1];
-        oNode.previousSibling.nextSibling	= oNode;
-    }
-
-    // Add to collection of anonymous child nodes
-    this.$childNodesAnonymous.$add(oNode);
-
-	// Fire Mutation event
-    var oEvent = new cAMLMutationEvent;
-    oEvent.initMutationEvent("DOMNodeInserted", true, false, this, null, null, null, null);
-    fAMLNode_dispatchEvent(oNode, oEvent);
-
-	// Register Instance
-	if (oAMLDocument_all[this.uniqueID])
-		fAMLDocument_register(this.ownerDocument, oNode);
-
-	return oNode;
-};
-//<-Source
 function fAMLElement_insertBefore(oParent, oNode, oBefore)
 {
 	// Call parent class method
@@ -192,35 +161,7 @@ cAMLElement.prototype.removeChild	= function(oNode)
     else
         throw new cAMLException(cAMLException.NOT_FOUND_ERR);
 };
-//->Source
-cAMLElement.prototype.$removeChildAnonymous	= function(oNode)
-{
-	// Fire Mutation event
-    var oEvent = new cAMLMutationEvent;
-    oEvent.initMutationEvent("DOMNodeRemoved", true, false, this, null, null, null, null);
-    fAMLNode_dispatchEvent(oNode, oEvent);
 
-	if (oNode.nextSibling)
-		oNode.nextSibling.previousSibling	= oNode.previousSibling;
-
-	if (oNode.previousSibling)
-		oNode.previousSibling.nextSibling	= oNode.nextSibling;
-
-	// Reset DOM properties
-    oNode.parentNode  		= null;
-	oNode.previousSibling	= null;
-	oNode.nextSibling		= null;
-
-    // Add to collection of anonymous child nodes
-    this.$childNodesAnonymous.$remove(oNode);
-
-	// Register Instance
-	if (oAMLDocument_all[this.uniqueID])
-		fAMLDocument_unregister(this.ownerDocument, oNode);
-
-	return oNode;
-};
-//<-Source
 function fAMLElement_replaceChild(oParent, oNode, oOld)
 {
 	// Call parent class method
