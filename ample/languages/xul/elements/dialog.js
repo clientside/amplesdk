@@ -103,14 +103,7 @@ cXULElement_dialog.handlers	= {
 			}
 		}
 	},
-	"DOMNodeInsertedIntoDocument":	function(oEvent) {
-		if (this.attributes["buttons"].indexOf("accept") ==-1)
-			this.buttons.accept.setAttribute("hidden", "true");
-		if (this.attributes["buttons"].indexOf("cancel") ==-1)
-			this.buttons.cancel.setAttribute("hidden", "true");
-		if (this.attributes["buttons"].indexOf("help") ==-1)
-			this.buttons.help.setAttribute("hidden", "true");
-	},
+
 	"dragstart":	function(oEvent) {
 		if (oEvent.target == this && oEvent.$pseudoTarget != this.$getContainer("title"))
 			oEvent.preventDefault();
@@ -151,6 +144,13 @@ cXULElement_dialog.prototype.$getTagOpen	= function()
 // Element Render: close
 cXULElement_dialog.prototype.$getTagClose	= function()
 {
+	if (this.attributes["buttons"].indexOf("accept") ==-1)
+		this.buttons.accept.attributes["hidden"]= "true";
+	if (this.attributes["buttons"].indexOf("cancel") ==-1)
+		this.buttons.cancel.attributes["hidden"]= "true";
+	if (this.attributes["buttons"].indexOf("help") ==-1)
+		this.buttons.help.attributes["hidden"]	= "true";
+
 	return '		</div>\
 					<div class="xul-dialog--footer">\
 						<table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%" align="' +(this.attributes["buttonalign"] == "start" ? "left" : this.attributes["buttonalign"] == "center" ? "center" : "right")+ '">\
