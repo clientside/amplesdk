@@ -583,11 +583,6 @@ function fAMLDocument_register(oDocument, oElement) {
 				oElement.style	= oElementDOM.style;
 		}
 
-		// Fire Mutation event on Element
-		var oEvent = new cAMLMutationEvent;
-		oEvent.initMutationEvent("DOMNodeInsertedIntoDocument", false, false, null, null, null, null, null);
-		fAMLNode_dispatchEvent(oElement, oEvent);
-
 		// Global attributes module
 		for (var sName in oElement.attributes) {
 			if (oElement.attributes.hasOwnProperty(sName)) {
@@ -633,10 +628,16 @@ function fAMLDocument_register(oDocument, oElement) {
 		// Process anonymous content
 		if (oElement.contentFragment)
 			for (nIndex = 0; oNode = oElement.contentFragment.childNodes[nIndex]; nIndex++) {
-				fAMLDocument_register(oDocument, oNode);
 				// Tweak DOM
 				oNode.parentNode	= oElement;
+				//
+				fAMLDocument_register(oDocument, oNode);
 			}
+
+		// Fire Mutation event on Element
+		var oEvent = new cAMLMutationEvent;
+		oEvent.initMutationEvent("DOMNodeInsertedIntoDocument", false, false, null, null, null, null, null);
+		fAMLNode_dispatchEvent(oElement, oEvent);
 
 		// Process children
 		for (nIndex = 0; oNode = oElement.childNodes[nIndex]; nIndex++)
@@ -677,7 +678,7 @@ function fAMLDocument_unregister(oDocument, oElement) {
 		if (oElement.contentFragment)
 			for (nIndex = 0; oNode = oElement.contentFragment.childNodes[nIndex]; nIndex++) {
 				fAMLDocument_unregister(oDocument, oNode);
-				// Untweak DOM
+				// Un-tweak DOM
 				oNode.parentNode	= oElement.contentFragment;
 			}
 	}
