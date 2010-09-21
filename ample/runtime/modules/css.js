@@ -23,7 +23,7 @@ cAMLQuery.prototype.css	= function(sName, sValue) {
 		return this;
 	}
 	else
-	if (this.length) {
+	if (this.length)
 		return this[0].$getStyleComputed(sName);
-	}
+	return null;
 };
