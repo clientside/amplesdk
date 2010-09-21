@@ -89,7 +89,7 @@ xul|listheader::label,
 xul|treecol::label {
 	white-space:	nowrap;
 	text-overflow: ellipsis;
-	line-height: 1em;
+	line-height: 18px;
 }
 
 xul|listcell::box,
