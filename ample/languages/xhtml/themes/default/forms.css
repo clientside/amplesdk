@@ -179,6 +179,10 @@ optgroup::gateway {
 	padding-left: 20px;
 }
 
+optgroup::value {
+	font-style: italic;
+}
+
 option,
 optgroup::value {
 	background-color: lightblue;
@@ -189,4 +193,14 @@ option:hover,
 optgroup::value:hover {
 	background-color: white;
 	color: black;
+}
+
+select:focus option:selected {
+	background-color: blue;
+	color: white;
+}
+
+option:selected {
+	background-color: gray;
+	color: white;
 }
