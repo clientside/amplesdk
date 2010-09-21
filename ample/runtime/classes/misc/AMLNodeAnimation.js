@@ -214,6 +214,14 @@ function fAMLNodeAnimation_parseValue(sValue) {
 			if (aValue = sParameters.match(/^(\d+)%,\s*(\d+)%,\s*(\d+)%$/))
 				return [[aValue[1] / 100, aValue[2] / 100, aValue[3] / 100], '#', ''];
 		}
+		else
+		if (aValue[1] == "rgba") {
+			if (aValue = sParameters.match(/^(\d+),\s*(\d+),\s*(\d+),\s*(\d+)$/))
+				return [[aValue[4] == 0 ? 1 : aValue[1] / 255, aValue[4] == 0 ? 1 : aValue[2] / 255, aValue[4] == 0 ? 1 : aValue[3] / 255], '#', ''];
+			else
+			if (aValue = sParameters.match(/^(\d+)%,\s*(\d+)%,\s*(\d+)%,\s*(\d+)%$/))
+				return [[aValue[4] == 0 ? 1 : aValue[1] / 100, aValue[4] == 0 ? 1 : aValue[2] / 100, aValue[4] == 0 ? 1 : aValue[3] / 100], '#', ''];
+		}
 		else {
 			if (aValue = sParameters.split(/\s*,\s*/g)) {
 				for (var nIndex = 0, oValue, oValueOut = [[], '', '']; nIndex < aValue.length; nIndex++)
