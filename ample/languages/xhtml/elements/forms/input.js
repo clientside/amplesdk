@@ -54,11 +54,24 @@ cXHTMLElement_input.handlers	= {
 	"blur":		function(oEvent) {
 //		try {this.$getContainer("value").blur();}catch(e){}
 		this.$getContainer("placeholder").style.display	= this.attributes.value ? "none" : "";
+		// Hide popup
+		switch (this.attributes["type"]) {
+			case "date":
+			case "color":
+			case "datetime":
+			case "datetime-local":
+				cXHTMLElement_input.toggle(this, false);
+				break;
+		}
 	},
 	"click":	function(oEvent) {
 		if (oEvent.target == this && oEvent.$pseudoTarget == this.$getContainer("button"))
 			switch (this.attributes["type"]) {
 				case "file":
+				case "date":
+				case "color":
+				case "datetime":
+				case "datetime-local":
 					this.$activate();
 					break
 			}
@@ -68,6 +81,13 @@ cXHTMLElement_input.handlers	= {
 			switch (this.attributes["type"]) {
 				case "file":
 					this.$getContainer("value").click();
+					break;
+
+				case "color":
+				case "date":
+				case "datetime":
+				case "datetime-local":
+					cXHTMLElement_input.toggle(this);
 					break;
 			}
 	},
@@ -92,6 +112,24 @@ cXHTMLElement_input.handlers	= {
 			}
 			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
 		}
+	}
+};
+
+// Static Members
+cXHTMLElement_input.toggle	= function(oInstance, bForce) {
+	switch (oInstance.attributes.type) {
+		case "date":
+
+			break;
+
+		case "color":
+
+			break;
+
+		case "datetime":
+		case "datetime-local":
+
+			break;
 	}
 };
 

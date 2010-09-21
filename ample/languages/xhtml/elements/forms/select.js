@@ -37,7 +37,14 @@ cXHTMLElement_select.handlers	= {
 		this.$getContainer("value").focus();
 	},
 	"blur":		function(oEvent) {
+		// Hide popup if open
+		if (!this.attributes.multiple)
+			cXHTMLElement_select.toggle(this, false);
 		this.$getContainer("value").blur();
+	},
+	"mousedown":function(oEvent) {
+		if (oEvent.target == this && oEvent.$pseudoTarget == this.$getContainer("button"))
+			cXHTMLElement_select.toggle(this);
 	},
 	"keydown":	function(oEvent) {
 		if (oEvent.keyIdentifier == "Up") {
@@ -100,22 +107,31 @@ cXHTMLElement_select.handlers	= {
 	}
 };
 
+// Static Members
+cXHTMLElement_select.toggle	= function(oInstance, bForce) {
+	var oPopup	= oInstance.$getContainer("popup");
+	if ((arguments.length > 1 && bForce == true) || !(arguments.length > 1 || oPopup.style.display != "none"))
+		oPopup.style.display	= "";
+	else
+		oPopup.style.display	= "none";
+};
+
 // Renderers
 cXHTMLElement_select.prototype.$getTagOpen	= function() {
     var sClassName	= (this.prefix ? this.prefix + '-' : '') + this.localName,
-    	bMultiple	= !!this.attributes.multiple,
-    	sClassNameMultiple	= bMultiple ? sClassName + '-multiple-' : '';
-    return '<span class="' + sClassName + ' ' + sClassNameMultiple +
+    	bMultiple	= !this.attributes.multiple,
+    	bPopupMode	= !bMultiple;
+    return '<span class="' + sClassName + ' ' + (bMultiple ? sClassName + '-multiple-' : '') +
 					("class" in this.attributes ? ' ' + this.attributes["class"] : '')+
 					(this.attributes["required"] ? ' ' + sClassName + '_required' : '')+
 					(this.attributes["disabled"] ? ' ' + sClassName + '_disabled' : '')+
     		'">\
 				<div style="position:absolute;margin-top:-2px;white-space:nowrap" class="' + sClassName + '--placeholder">' +(this.getAttribute("placeholder") || '')+ '</div>\
-   				<div class="' + sClassName + '--field ' + sClassNameMultiple + '--field" style="position:relative">\
+   				<div class="' + sClassName + '--field" style="position:relative;' + (bPopupMode ? 'display:none' : '') + '">\
     				<span class="' + sClassName + '--button" style="right:0;"></span>\
     				<input class="' + sClassName + '--value" type="text" />\
    				</div>\
-   				<div class="' + sClassName + '--popup" style="' +(bMultiple ? '' : 'position:absolute;display:none;')+ '">\
+   				<div class="' + sClassName + '--popup" style="' +(bPopupMode ? '' : 'position:absolute;display:none;')+ '">\
     				<div class="' + sClassName + '--gateway">';
 };
 

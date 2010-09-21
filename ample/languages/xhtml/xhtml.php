@@ -139,6 +139,11 @@
     // Other
     $aFiles[]		= "elements/other/dialog.js";		// HTML5
 
+	// Helper elements
+	$aFiles[]		= "elements/colorpicker.js";
+	$aFiles[]		= "elements/datepicker.js";
+	$aFiles[]		= "elements/spinbuttons.js";
+
 	// core SMIL mapping
 	$aFiles[]	= "xhtml-smil.js";
 

@@ -132,6 +132,10 @@
 	files.push("elements/interactive/summary.js");	// HTML5
 	// Other
 	files.push("elements/other/dialog.js");		// HTML5
+	// Helper elements
+	files.push("elements/colorpicker.js");
+	files.push("elements/datepicker.js");
+	files.push("elements/spinbuttons.js");
 
 	// SMIL mapping
 	files.push("xhtml-smil.js");

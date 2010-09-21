@@ -10,22 +10,21 @@ select {
 	margin:	0;
 	width: 200px;
 	display: inline-block;
-	height: 16px;
 	outline-color: white;
 }
 
+input {
+	height: 16px;
+}
+
 textarea,
-select[multiple] {
+select::popup {
 	height: 100px;
 }
 
-select[multiple] {
+select::popup {
 	overflow: auto;
 	overflow-x: hidden;
-}
-
-select[multiple]::field {
-	display: none;
 }
 
 input[type=hidden] {
@@ -189,8 +188,7 @@ optgroup::value {
 	cursor: default;
 }
 
-option:hover,
-optgroup::value:hover {
+option:hover {
 	background-color: white;
 	color: black;
 }
