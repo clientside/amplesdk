@@ -1,6 +1,9 @@
 <?php
 	$aFiles		= array();
     $aFiles[]	= "forms.css";
+    //
+    $aFiles[]	= "colorpicker.css";
+    $aFiles[]	= "datepicker.css";
 
 	$sOutput	= "";
     for ($nIndex = 0; $nIndex < count($aFiles); $nIndex++)
