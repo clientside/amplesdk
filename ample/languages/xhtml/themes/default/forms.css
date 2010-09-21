@@ -1,3 +1,4 @@
+/* */
 datalist {
 	display: none;
 }
@@ -58,6 +59,10 @@ input[type=date] {
 	width:	90px;
 }
 
+input[type=color] {
+	width: 70px;
+}
+
 input[type=time] {
 	width:	70px;
 }
@@ -78,6 +83,7 @@ input[type=number] {
 input:focus,
 textarea:focus,
 select:focus {
+	background-color: lightyellow;
 	outline: solid 1px blue;
 }
 
@@ -129,11 +135,83 @@ input[type=file]::button,
 input[type=search]::button,
 select::button {
 	position:absolute;
-	background-color: red;
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
 	width: 16px;
 	height: 16px;
 	margin: 0 1px;
 }
+
+input[type=search]::button {
+	background-image: url(media/search.png);
+}
+
+select::button,
+input[type=date]::button,
+input[type=datetime]::button,
+input[type=datetime-local]::button,
+input[type=color]::button {
+	background-image: url(media/select.gif);
+}
+
+select:hover select::button,
+input:hover input[type=date]::button,
+input:hover input[type=datetime]::button,
+input:hover input[type=datetime-local]::button,
+input:hover input[type=color]::button {
+	background-position: 0px -15px;
+}
+
+select:active select::button,
+input:active input[type=date]::button,
+input:active input[type=datetime]::button,
+input:active input[type=datetime-local]::button,
+input:active input[type=color]::button {
+	background-position: 0px -30px;
+}
+
+select:disabled select::button,
+input:disabled input[type=date]::button,
+input:disabled input[type=datetime]::button,
+input:disabled input[type=datetime-local]::button,
+input:disabled input[type=color]::button {
+	background-position: 0px -45px;
+}
+
+input[type=checkbox]::button,
+input[type=radio]::button {
+	background-image: url(media/controls.gif);
+}
+
+input[type=checkbox]::button {
+	background-position: 0 -32px;
+}
+
+/*
+xul|checkbox:hover xul|checkbox::input {
+	background-position: -16px -32px;
+}
+
+xul|checkbox:disabled xul|checkbox::input {
+	background-position: -32px -32px;
+}
+
+xul|checkbox:checked xul|checkbox::input {
+	background-position: 0px -48px;
+}
+
+xul|checkbox:hover:checked xul|checkbox::input {
+	background-position: -16px -48px;
+}
+
+xul|checkbox:disabled:checked xul|checkbox::input {
+	background-position: -32px -48px;
+}
+*/
+input[type=radio]::button {
+	background-position: 0 0;
+}
+
 
 input[type=date]::field,
 input[type=time]::field,
@@ -201,4 +279,54 @@ select:focus option:selected {
 option:selected {
 	background-color: gray;
 	color: white;
+}
+
+/* spinbuttons */
+spinbuttons {
+	width: 16px;
+}
+
+spinbuttons::button-up,
+spinbuttons::button-down {
+	position:absolute;
+	right: 0;
+	height: 8px;
+	width: 16px;
+	background-image: url(media/spinbuttons.gif);
+	background-repeat: no-repeat;
+	font-size: 1px;
+	line-height: 8px;
+}
+
+spinbuttons::button-up {
+	background-position: 0px 0px;
+}
+
+spinbuttons::button-up:hover {
+	background-position: 0px -8px;
+}
+
+spinbuttons::button-up:active {
+	background-position: 0px -16px;
+}
+
+spinbuttons:disabled spinbuttons::button-up {
+	background-position: 0px -24px;
+}
+
+spinbuttons::button-down {
+	top: 8px;
+	background-position: -16px 0px;
+}
+
+spinbuttons::button-down:hover {
+	background-position: -16px -8px;
+}
+
+spinbuttons::button-down:active {
+	background-position: -16px -16px;
+}
+
+spinbuttons:disabled spinbuttons::button-down {
+	background-position: -16px -24px;
 }

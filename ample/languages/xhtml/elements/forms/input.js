@@ -9,6 +9,14 @@
 
 var cXHTMLElement_input	= function(){
 	this.validity	= new cXHTMLValidityState;
+	// Shadow Tree
+	this.contentFragment	= ample.createDocumentFragment();
+	var that	= this;
+	this._spinButtons	= ample.createElement("spinbuttons");
+	this._spinButtons.addEventListener("spin", function(oEvent) {
+		oEvent.detail ? that.stepUp() : that.stepDown();
+	});
+	this.contentFragment.appendChild(this._spinButtons);
 };
 cXHTMLElement_input.prototype	= new cXHTMLInputElement("input");
 
@@ -76,6 +84,12 @@ cXHTMLElement_input.handlers	= {
 					break
 			}
 	},
+	"keydown":	function(oEvent) {
+		// Handle spin buttons
+	},
+	"keydown":	function(oEvent) {
+		// Handle spin buttons
+	},
 	"DOMActivate":	function(oEvent) {
 		if (oEvent.target == this)
 			switch (this.attributes["type"]) {
@@ -117,18 +131,36 @@ cXHTMLElement_input.handlers	= {
 
 // Static Members
 cXHTMLElement_input.toggle	= function(oInstance, bForce) {
+	// Toggle popup
+	var oPopup	= oInstance.$getContainer("popup");
+	if ((arguments.length > 1 && bForce == true) || !(arguments.length > 1 || oPopup.style.display != "none")) {
+		oInstance.$setPseudoClass("active", true);
+		oPopup.style.display	= "";
+	}
+	else {
+		oInstance.$setPseudoClass("active", false);
+		oPopup.style.display	= "none";
+	}
+
 	switch (oInstance.attributes.type) {
 		case "date":
-
+		case "datetime":
+		case "datetime-local":
+			if (!cXHTMLElement_input.datepicker) {
+				var oElement	= oInstance.contentFragment.appendChild(ample.createElement("datepicker"));
+				oElement.parentNode	= oInstance;
+				oPopup.innerHTML	= oElement.$getTag();
+				cXHTMLElement_input.datepicker	= oElement;
+			}
 			break;
 
 		case "color":
-
-			break;
-
-		case "datetime":
-		case "datetime-local":
-
+			if (!cXHTMLElement_input.colorpicker) {
+				var oElement	= oInstance.contentFragment.appendChild(ample.createElement("colorpicker"));
+				oElement.parentNode	= oInstance;
+				oPopup.innerHTML	= oElement.$getTag();
+				cXHTMLElement_input.colorpicker	= oElement;
+			}
 			break;
 	}
 };
@@ -152,14 +184,19 @@ cXHTMLElement_input.prototype.$getTagOpen		= function() {
 		aHtml	= [];
 	aHtml.push('<span class="' + sClassName + ' ' + sClassNameType +
 						("class" in this.attributes ? ' ' + this.attributes["class"] : '')+
-						(this.attributes["required"] ? ' ' + sClassName + '_required' : '')+
-						(this.attributes["disabled"] ? ' ' + sClassName + '_disabled' : '')+
+						' ' + sClassName + '_' + (this.attributes["required"] ? 'required' : 'optional')+ ' '+
+						' ' + sClassName + '_' + (this.attributes["disabled"] ? 'disabled' : 'enabled')+ ' '+
+						' ' + sClassName + '_' + (this.attributes["readonly"] ? 'read-only' : 'read-write')+ ' '+
+						' ' + sClassName + '_' + (cXHTMLInputElement.isValid(this) ? 'valid' : 'invalid')+ ' '+
 				'" ' +(this.attributes.style ? ' style="' + this.attributes.style + '"' : '')+ '>');
 	aHtml.push(	'<div style="position:absolute;margin-top:-2px;white-space:nowrap;' + (this.getAttribute("value") == '' ? '' : 'display:none')+ '" class="' + sClassName + '--placeholder">' +(this.getAttribute("placeholder") || '')+ '</div>');
 	aHtml.push(	'<div class="' + sClassName + '--field ' + sClassNameType + '--field" style="position:relative">');
 	aHtml.push(		'<span class="' + sClassName + '--before ' + sClassNameType + '--before" style="float:left"></span>');
 	aHtml.push(		'<span class="' + sClassName + '--after ' + sClassNameType + '--after" style="float:right"></span>');
-	aHtml.push(		'<span class="' + sClassName + '--button ' + sClassNameType + '--button" style="right:0;"></span>');
+	aHtml.push(		'<span class="' + sClassName + '--button ' + sClassNameType + '--button" style="right:0;">');
+	if (this.attributes["type"] == "number" || this.attributes["type"] == "time")
+		aHtml.push(this._spinButtons.$getTag());
+	aHtml.push('</span>');
 	switch (this.attributes["type"]) {
 		// Hidden
 		// .value

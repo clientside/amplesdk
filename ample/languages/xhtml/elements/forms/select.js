@@ -85,7 +85,7 @@ cXHTMLElement_select.handlers	= {
 			oEvent.preventDefault();
 		}
 	},
-	"click":	function(oEvent) {
+	"mousedown":	function(oEvent) {
 		if (oEvent.target instanceof cXHTMLElement_option && this.options[this.selectedIndex] != oEvent.target) {
 			if (this.selectedIndex >-1)
 				this.options[this.selectedIndex].removeAttribute("selected");
@@ -110,10 +110,14 @@ cXHTMLElement_select.handlers	= {
 // Static Members
 cXHTMLElement_select.toggle	= function(oInstance, bForce) {
 	var oPopup	= oInstance.$getContainer("popup");
-	if ((arguments.length > 1 && bForce == true) || !(arguments.length > 1 || oPopup.style.display != "none"))
+	if ((arguments.length > 1 && bForce == true) || !(arguments.length > 1 || oPopup.style.display != "none")) {
+		oInstance.$setPseudoClass("active", true);
 		oPopup.style.display	= "";
-	else
+	}
+	else {
+		oInstance.$setPseudoClass("active", false);
 		oPopup.style.display	= "none";
+	}
 };
 
 // Renderers

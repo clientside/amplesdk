@@ -16,7 +16,7 @@ cXHTMLElement_option.prototype.$hoverable	= true;
 cXHTMLElement_option.ensureRowIsVisible	= function(oInstance) {
 	for (var oElement = oInstance; oElement = oElement.parentNode;)
 		if (oElement instanceof cXHTMLElement_select) {
-			var oScroll	= oElement.$getContainer(),
+			var oScroll	= oElement.$getContainer("popup"),
 				oInput	= oInstance.$getContainer(),
 				nDiffTop	= oInput.offsetTop - oScroll.offsetTop,
 				nDiffHeight	= oInput.offsetHeight - oScroll.offsetHeight;

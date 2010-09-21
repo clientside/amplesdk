@@ -1,0 +1,62 @@
+colorpicker {
+	cursor:	default;
+	vertical-align: top;
+	display:inline-block;
+	margin: 1px;
+}
+
+colorpicker::palette {
+	width:  256px;
+	height: 256px;
+	background-image: url(media/colorpicker/huesaturation.jpg);
+}
+
+colorpicker::palette-shader {
+	width:  256px;
+	height: 256px;
+	background-color: #000000;
+}
+
+colorpicker::palette-pointer {
+	width:	19px;
+	height: 19px;
+	background-image: url(media/colorpicker/huesaturation_pointer.gif);
+}
+
+colorpicker::brightness {
+	width:	19px;
+}
+
+colorpicker::brightness-shader {
+	width:	19px;
+	height:	256px;
+	background-image: url(media/colorpicker/brightness_shader.png);
+}
+
+colorpicker::brightness-pointer {
+	width:	37px;
+	height: 9px;
+	line-height: 9px;
+	background-image: url(media/colorpicker/brightness_pointer.gif);
+}
+
+colorpicker::palette,
+colorpicker::brightness,
+colorpicker::color,
+colorpicker::value {
+	border: 1px inset #000000;
+}
+
+colorpicker::color {
+	height: 50px;
+}
+
+colorpicker::value {
+	width:	80px;
+}
+
+/* buttons */
+colorpicker::button-accept,
+colorpicker::button-cancel {
+	width:	80px;
+}

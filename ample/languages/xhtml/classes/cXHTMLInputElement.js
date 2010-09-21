@@ -12,6 +12,7 @@ var cXHTMLInputElement	= function() {
 };
 
 cXHTMLInputElement.prototype	= new cXHTMLElement("#element-input");
+cXHTMLInputElement.prototype.$hoverable	= true;
 
 // Accessibility
 cXHTMLInputElement.prototype.tabIndex	= 0;
@@ -28,6 +29,11 @@ cXHTMLInputElement.prototype.checkValidity	= function() {
 cXHTMLInputElement.prototype.validationMessage	= "";
 cXHTMLInputElement.prototype.setCustomValidty	= function(sMessage) {
 
+};
+
+// Static Members
+cXHTMLInputElement.isValid	= function(oInstance) {
+	return true;
 };
 
 // Register Element
