@@ -722,9 +722,10 @@
 				<include name="helloworld.html" />
 				<include name="index.html" />
 				<include name="applications/**" />
-				<include name="extenders/**" />
 				<include name="languages/**" />
 				<include name="managers/**" />
+				<include name="modules/**" />
+				<include name="plugins/**" />
 			</fileset>
 		</copy>
 		<replace dir="${target.dir}/examples/">
