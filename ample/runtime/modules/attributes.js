@@ -22,7 +22,7 @@ cAMLQuery.prototype.attr	= function(sQName, sValue) {
 			sPrefix		= aQName.pop() || null,
 			sNameSpaceURI	= null;
 		if (sPrefix != null)
-			sNameSpaceURI	=(this.resolver || fAmple_resolver)(sPrefix) || null;
+			sNameSpaceURI	= this.resolver ? this.resolver(sPrefix) : oAmple.prefixes[sPrefix] || null;
 		fAMLQuery_each(this, function() {
 			sValue == null ? fAMLElement_removeAttributeNS(this, sNameSpaceURI, sLocalName) : fAMLElement_setAttributeNS(this, sNameSpaceURI, sQName, cString(sValue));
 		});

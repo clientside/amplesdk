@@ -65,13 +65,12 @@ function fQuery(vArgument1, vArgument2, vArgument3) {
 //<-Debug
 						);
 				}
-				else
-					vArgument3	= fAmple_resolver;
+
 				//
 				oQuery.length	= 0;
 				oQuery.selector	= vArgument1;
 				oQuery.context	= vArgument2;
-				oQuery.resolver	= vArgument3;
+				oQuery.resolver	= vArgument3 || null;
 				// Invoke implementation
 				var aResult;
 				try {
@@ -273,11 +272,6 @@ if (!oPrefixes["xlink"])
 for (var sKey in oPrefixes)
 	if (oPrefixes.hasOwnProperty(sKey) && sKey != '')
 		oAmple_document.documentElement.attributes["xmlns" + ':' + sKey]	= oPrefixes[sKey];
-
-//
-function fAmple_resolver(sPrefix) {
-	return oAmple.prefixes[sPrefix] || null;
-};
 
 //
 oAmple.open	= function() {
