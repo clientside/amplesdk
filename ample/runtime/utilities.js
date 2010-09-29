@@ -18,6 +18,7 @@ var sAML_NOT_WELLFORMED_WRN			= 'Not well-formed XML',
 	sAML_ERROR_ANIMATING_ATTR_WRN	= 'Error animating "%0" atttribute with "%1" value',
 	sAML_DOCUMENT_INVALID_STATE_WRN	= 'Document invalid state',
 	sAML_REWRITING_MEMBER_WRN		= 'Re-writing member "%0"',
+	sAML_QUERYING_PSEUDOELEMENT_WRN	= 'Querying for pseudo-elements is not supported',
 	sAML_CONFIGURATION_READONLY_WRN	= 'Configuration parameter "%0" is readonly. Value has not been set';
 
 function fUtilities_warn(sWarning, aArguments) {

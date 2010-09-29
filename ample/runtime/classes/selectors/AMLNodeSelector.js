@@ -43,7 +43,14 @@ function fAMLSelector_query(aFrom, sQuery, fResolver, bMatchOne)
 	                sArguments = sArguments.slice(0, -1);
 	            }
 	            // process a token/filter pair use cached results if possible
-	            aFrom = fAMLSelector_select(aFrom, sToken, sFilter, sArguments, fResolver);
+	            if (sToken != '::')
+	            	aFrom	= fAMLSelector_select(aFrom, sToken, sFilter, sArguments, fResolver);
+				else {
+					aFrom	= [];
+//->Debug
+					fUtilities_warn(sAML_QUERYING_PSEUDOELEMENT_WRN);
+//<-Debug
+				}
 	        }
 	        // Setting _cssIndex enables selection uniqueness
 	        for (nIndex = 0; nIndex < aFrom.length; nIndex++) {
@@ -217,13 +224,14 @@ function fAMLSelector_pseudoClass(oElement, sClass) {
 	return false;
 };
 
-// pseudo-class selector
+// pseudo-element selector
+/*
 oAMLSelector_elementSelectors['::'] = function(aReturn, aFrom, sPseudoElement) {
     for (var nIndex = 0, oElement, oElementDOM; oElement = aFrom[nIndex]; nIndex++)
     	if (oElementDOM = oElement.$getContainer(sPseudoElement))
     		aReturn.push(oElementDOM);
 };
-
+*/
 // pseudo-class selectors
 oAMLSelector_pseudoClasses["link"]	= function(oElement) {
 	return false;
