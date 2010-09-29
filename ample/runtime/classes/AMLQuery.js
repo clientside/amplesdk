@@ -93,7 +93,7 @@ cAMLQuery.prototype.is	= function() {
 cAMLQuery.prototype.last	= function() {
 	var oQuery	= new cAMLQuery;
 	if (this.length)
-		oQuery[oAmple.length++]	= this[this.length - 1];
+		oQuery[oQuery.length++]	= this[this.length - 1];
 	return oQuery;
 };
 
