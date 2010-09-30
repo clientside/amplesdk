@@ -89,15 +89,17 @@ cAMLQuery.prototype.load	= function(sUrl, vData, fCallback) {
 	]);
 
 	// Invoke Implementation
-	if (this.length)
-		fAMLNodeLoader_load(this[0], sUrl, vData, fCallback);
+	fAMLQuery_each(this, function() {
+		fAMLNodeLoader_load(this, sUrl, vData, fCallback);
+	});
 
 	return this;
 };
 
 cAMLQuery.prototype.abort	= function() {
-	if (this.length)
-		fAMLNodeLoader_abort(this[0]);
+	fAMLQuery_each(this, function() {
+		fAMLNodeLoader_abort(this);
+	});
 
 	return this;
 };
