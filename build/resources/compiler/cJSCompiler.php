@@ -158,12 +158,12 @@
 
 			// find .properties
 			preg_match_all('/\.(\$?[a-z][a-z0-9_]{2,})/i', $sDataTemp, $aTempProperties);
-
+/*
 	        $this->aStrings	= array_unique(array_merge($this->aStrings, $aTempValues[1], $aTempProperties[1]));
 	        sort($this->aStrings);
 	        reset($this->aStrings);
-
-//	        $this->aStrings	= $this->_normalizeArray(array_merge($this->aStrings, $aTempValues[1], $aTempProperties[1]));
+*/
+	        $this->aStrings	= $this->_normalizeArray(array_merge($this->aStrings, $aTempValues[1], $aTempProperties[1]));
 
 			// Debug
 			if ($this->debug)
@@ -178,16 +178,16 @@
 
 			// Properties
 			for ($nIndex = count($this->aStrings)-1; $nIndex >= 0; $nIndex--) {
-
-				$sData	= str_replace(	'.' . $this->aStrings[$nIndex],			"[_[" . $nIndex . ']]',	$sData);
 /*
+				$sData	= str_replace(	'.' . $this->aStrings[$nIndex],			"[_[" . $nIndex . ']]',	$sData);
+*/
 				$sData	= preg_replace(	'/\.' .
 											str_replace(
 												array('/', '.', '$'),
 												array('\/', '\.', '\$'),
 												$this->aStrings[$nIndex]
 											 ). '([^\w])/',	"[_[" . $nIndex . ']]$1',	$sData);
-*/
+
 				// Debug
 				if ($this->debug)
 	        		echo $this->aStrings[$nIndex] . " [" . count(array_intersect(array_merge($aTempValues[1], $aTempProperties[1]), array($this->aStrings[$nIndex]))). "]\n";
@@ -303,6 +303,7 @@
 					$aValuesTemp[$aTemp[$nIndex]]	= 1;
 			}
 			arsort($aValuesTemp);
+//			print_r($aValuesTemp);
 			$aValues = array_keys($aValuesTemp);
 			return $aValues;
 		}
