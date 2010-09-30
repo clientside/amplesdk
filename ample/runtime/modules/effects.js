@@ -27,7 +27,9 @@ cAMLQuery.prototype.animate	= function(oProperties, vDuration, sEasing, fCallbac
 };
 
 cAMLQuery.prototype.stop	= function() {
-	// TODO
+	fAMLQuery_each(this, function() {
+		fAMLNodeAnimation_stop(this);
+	});
 
 	return this;
 };
