@@ -9,22 +9,24 @@
 
 function fAMLQuery_ajax(oSettings) {
 	var oRequest	= new cXMLHttpRequest;
-	oRequest.open(oSettings.type || "GET", oSettings.url || '', "async" in oSettings ? oSettings.async : true);
+	oRequest.open(oSettings.type || "GET", oSettings.url || '.', "async" in oSettings ? oSettings.async : true);
+	// Add headers
 	oRequest.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 	oRequest.setRequestHeader("X-User-Agent", oAMLConfiguration_values["ample-user-agent"]);
 	var oHeaders	= oSettings.headers;
 	if (oHeaders)
 		for (var sKey in oHeaders)
 			oRequest.setRequestHeader(sKey, oHeaders[sKey]);
+	// Register readystatechange handler
 	oRequest.onreadystatechange	= function() {
 		if (oRequest.readyState == 4) {
 			if (oSettings.complete)
 				oSettings.complete(oRequest, oRequest.textStatus);
 		}
 	};
+	// Send data
 	oRequest.send("data" in oSettings ? oSettings.data : null);
 
-	// Invoke implementation
 	return oRequest;
 };
 
@@ -97,6 +99,7 @@ cAMLQuery.prototype.load	= function(sUrl, vData, fCallback) {
 };
 
 cAMLQuery.prototype.abort	= function() {
+	// Invoke Implementation
 	fAMLQuery_each(this, function() {
 		fAMLNodeLoader_abort(this);
 	});
