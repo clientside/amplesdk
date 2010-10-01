@@ -49,7 +49,7 @@ cAMLQuery.prototype.offsetParent	= function() {
 	var oQuery	= new cAMLQuery;
 	if (this.length) {
 		var oElementDOM	= fAMLElement_getBoundingClientRect(this[0]);
-		oQuery[oQuery.length++]	= fAmple_instance(oAmple_document, oElementDOM.offsetParent) || oAmple_document.documentElement;
+		oQuery[oQuery.length++]	= fAmple_instance(oAmple_document, oElementDOM.offsetParent) || oAmple_root;
 	}
 	return oQuery;
 };

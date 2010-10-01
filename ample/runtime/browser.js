@@ -35,7 +35,7 @@ function fBrowser_detachEvent(oNode, sEvent, fHandler) {
 
 // Finds AMLElement by event target
 function fBrowser_getEventTarget(oEvent) {
-    return fAmple_instance(oAmple_document, oEvent.srcElement || oEvent.target) || oAmple_document.documentElement;
+    return fAmple_instance(oAmple_document, oEvent.srcElement || oEvent.target) || oAmple_root;
 };
 
 function fBrowser_getUIEventPseudo(oEvent) {
@@ -172,7 +172,7 @@ function fBrowser_onMouseWheel(oEvent) {
 
 // Key Events
 function fBrowser_onKeyDown(oEvent) {
-	var oTarget		= oAmple.activeElement || oAmple_document.documentElement,	// FF bugfix
+	var oTarget		= oAmple.activeElement || oAmple_root,	// FF bugfix
 		oPseudo		= fBrowser_getUIEventPseudo(oEvent),
 		oEventKeyDown	= new cAMLKeyboardEvent;
 
@@ -207,7 +207,7 @@ function fBrowser_onKeyPress(oEvent)
 	if (oEvent.ctrlKey || oEvent.altKey || oEvent.keyCode in hBrowser_keyIdentifiers)
 		return;
 
-	var oTarget		= oAmple.activeElement || oAmple_document.documentElement,	// FF bugfix
+	var oTarget		= oAmple.activeElement || oAmple_root,	// FF bugfix
 		oPseudo		= fBrowser_getUIEventPseudo(oEvent),
 		oEventKeyPress	= new cAMLKeyboardEvent,
 		oEventTextInput	= new cAMLTextEvent;
@@ -238,7 +238,7 @@ function fBrowser_onKeyPress(oEvent)
 };
 
 function fBrowser_onKeyUp(oEvent) {
-	var oTarget		= oAmple.activeElement || oAmple_document.documentElement,
+	var oTarget		= oAmple.activeElement || oAmple_root,
 		oPseudo		= fBrowser_getUIEventPseudo(oEvent),
 		oEventKeyUp	= new cAMLKeyboardEvent;
 
@@ -940,7 +940,7 @@ function fAML_initialize() {
 
 	// Set documentElement style pointer object
     if (oAMLConfiguration_values["ample-use-style-property"])
-    	oAmple_document.documentElement.style	= oUADocument.body.style;
+    	oAmple_root.style	= oUADocument.body.style;
 
 	// IE background images cache fix
 	try {
@@ -967,7 +967,7 @@ function fAML_initialize() {
 };
 
 function fAML_finalize() {
-	var aElements = oAmple_document.documentElement.childNodes,
+	var aElements = oAmple_root.childNodes,
 		oEventUnload;
 	for (var nIndex = 0; nIndex < aElements.length; nIndex++) {
 	    // fire unload event on fragments
@@ -982,5 +982,5 @@ function fAML_finalize() {
     fAMLNode_dispatchEvent(oAmple_document, oEventUnload);
 
 	// free memory
-    fAMLDocument_unregister(oAmple_document, oAmple_document.documentElement);
+    fAMLDocument_unregister(oAmple_document, oAmple_root);
 };

@@ -122,7 +122,7 @@ fAMLExporter_sign(cArguments,	"Arguments");
 fAMLExporter_sign(oAmple.prefixes,	"prefixes");
 fAMLExporter_sign(oAmple.easing,	"easing");
 fAMLExporter_sign(cAMLNodeSelector.pseudoClass, "pseudoClass");
-fAMLExporter_sign(oAmple_document.documentElement.$getContainer,		"$getContainer");
+fAMLExporter_sign(oAmple_root.$getContainer,		"$getContainer");
 //
 fAMLExporter_export(oAmple,	"ample");
 

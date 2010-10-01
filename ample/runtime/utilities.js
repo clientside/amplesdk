@@ -208,7 +208,7 @@ function fAML_processScripts() {
 		    	// Set xml:base for referenced documents
 		    	if (bReferenced)
 		    		if (!oDocument.documentElement.getAttribute("xml:base"))
-		    			oDocument.documentElement.setAttribute("xml:base", fUtilities_resolveUri(oElementDOM.src, fAMLNode_getBaseURI(oAmple_document.documentElement)));
+		    			oDocument.documentElement.setAttribute("xml:base", fUtilities_resolveUri(oElementDOM.src, fAMLNode_getBaseURI(oAmple_root)));
 
 		    	// import XML DOM into Ample DOM
 		    	oElement	= fAMLDocument_importNode(oAmple_document, oDocument.documentElement, true, null, true);
@@ -261,7 +261,7 @@ function fAML_processScripts() {
 		    	}
 
 				//
-		    	fAMLNode_appendChild(oAmple_document.documentElement, oElement);
+		    	fAMLNode_appendChild(oAmple_root, oElement);
 
 				// Register tree
 				fAMLDocument_register(oAmple_document, oElement);

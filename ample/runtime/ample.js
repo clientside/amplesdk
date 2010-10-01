@@ -8,9 +8,10 @@
  */
 
 // Create Ample SDK document object
-var oAmple_document		= fAMLImplementation_createDocument(new cAMLImplementation, "http://www.w3.org/1999/xhtml", "body", null);
-oAmple_document.documentElement.$getContainer	= function(sName) {return sName == "gateway" ? oUADocument.body : sName ? null : oUADocument.documentElement};
-oAmple_document.documentElement.attributes["xml:base"]	= fUtilities_resolveUri('.', oUALocation.href);
+var oAmple_document	= fAMLImplementation_createDocument(new cAMLImplementation, "http://www.w3.org/1999/xhtml", "body", null),
+	oAmple_root		= oAmple_document.documentElement;
+oAmple_root.$getContainer	= function(sName) {return sName == "gateway" ? oUADocument.body : sName ? null : oUADocument.documentElement};
+oAmple_root.attributes["xml:base"]	= fUtilities_resolveUri('.', oUALocation.href);
 
 //
 function fQuery(vArgument1, vArgument2, vArgument3) {
@@ -272,7 +273,7 @@ if (!oPrefixes["xlink"])
 // Add known prefixes to ample.documentElement
 for (var sKey in oPrefixes)
 	if (oPrefixes.hasOwnProperty(sKey) && sKey != '')
-		oAmple_document.documentElement.attributes["xmlns" + ':' + sKey]	= oPrefixes[sKey];
+		oAmple_root.attributes["xmlns" + ':' + sKey]	= oPrefixes[sKey];
 
 //
 oAmple.open	= function() {

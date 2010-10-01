@@ -47,7 +47,7 @@ function fAMLFocus_blur(oElement) {
 			oAMLFocus_focusGroup	= null;
 
 			// Unset document active element
-			oAmple.activeElement	= oBrowser_modalNode || oAmple_document.documentElement;
+			oAmple.activeElement	= oBrowser_modalNode || oAmple_root;
 
 			// Remove :focus pseudo-class
 			fAMLElement_setPseudoClass(oElement, "focus", false);
