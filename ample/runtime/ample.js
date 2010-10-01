@@ -10,7 +10,7 @@
 // Create Ample SDK document object
 var oAmple_document		= fAMLImplementation_createDocument(new cAMLImplementation, "http://www.w3.org/1999/xhtml", "body", null);
 oAmple_document.documentElement.$getContainer	= function(sName) {return sName == "gateway" ? oUADocument.body : sName ? null : oUADocument.documentElement};
-oAmple_document.documentElement.attributes["xml:base"]	= fUtilities_resolveUri('.', document.location.href);
+oAmple_document.documentElement.attributes["xml:base"]	= fUtilities_resolveUri('.', oUALocation.href);
 
 //
 function fQuery(vArgument1, vArgument2, vArgument3) {
@@ -225,7 +225,7 @@ oAmple.config	= function(sName, oValue) {
 		return oOldValue;
 };
 
-var sAmple_include	= document.location.href;
+var sAmple_include	= oUALocation.href;
 oAmple.include	= function(sSrc) {
 	// Validate API call
 	fGuard(arguments, [
