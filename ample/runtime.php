@@ -166,16 +166,22 @@
 		$oJSCompiler->obfuscatePrivates();
 		$oJSCompiler->obfuscate();
 
-		echo	$oJSCompiler->getOutput();
+		echo	"" .
+//				"var d = new Date;" .
+				$oJSCompiler->getOutput() .
+//				";alert(new Date - d)" .
+				"";
 	}
 	else {
 		// Add function names
 		$sOutput = preg_replace("/([a-z0-9\$_]+)(\.)" . "(prototype)?(\.)?" . "([a-z0-9\$_]+)" . "[ \t]*=[ \t]*function[ \t]*\(/i", "$1$2$3$4$5=function $1_$3_$5(", $sOutput);
 
 		echo 	"" .
+//				"var d = new Date;" .
 				"(function(){" .
 					$sOutput .
-				"})();".
+				"})()".
+//				";alert(new Date - d)" .
 				"";
 	}
 ?>
