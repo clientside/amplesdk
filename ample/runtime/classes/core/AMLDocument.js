@@ -375,8 +375,16 @@ function fAMLDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse
 					else {
 						// lookup if there is fallback
 						oElementDOM	= oElementDOM.getElementsByTagName('*')[0];
-						if (oElementDOM && (oElementDOM.localName || oElementDOM.baseName).toLowerCase() == "fallback" && oElementDOM.namespaceURI == sNameSpaceURI && oElementDOM.firstChild)
-							fAMLDocument_importNode(oDocument, oElementDOM.getElementsByTagName('*')[0] || oElementDOM.childNodes[0], bDeep, oNode, bCollapse);
+						if (oElementDOM) {
+							if ((oElementDOM.localName || oElementDOM.baseName).toLowerCase() == "fallback" && oElementDOM.namespaceURI == sNameSpaceURI) {
+								if (oElementDOM.firstChild)
+									fAMLDocument_importNode(oDocument, oElementDOM.getElementsByTagName('*')[0] || oElementDOM.childNodes[0], bDeep, oNode, bCollapse);
+							}
+//->Debug
+							else
+								fUtilities_warn(sAML_UNKNOWN_ELEMENT_NS_WRN, [oElementDOM.nodeName, oElementDOM.namespaceURI]);
+//<-Debug
+						}
 					}
 				}
 //->Debug
