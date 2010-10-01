@@ -1,5 +1,5 @@
 xul|editor {
-	padding-bottom: 52px;
+	padding-bottom: 47px;
 }
 xul|editor::toolbar {
 /*	line-height: 1px;	Fixes toolbar size in Gecko */

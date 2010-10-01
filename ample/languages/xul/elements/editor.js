@@ -323,7 +323,7 @@ cXULElement_editor.initializeDocument	= function(oInstance) {
 		oDOMDocument	= oDOMElement.contentWindow.document;
 
 	// Create Stylesheet
-	var sStyle	= '0<style type="text/css">p{margin:0}body{background-color:transparent}</style>',	// IE needs transparency
+	var sStyle	= '0<style type="text/css">p{margin:0}html,body{margin:0;padding:0}body{padding-left:2px;height:100%;background-color:transparent}</style>',	// IE needs transparency
 		oFactory= oDOMDocument.createElement("div");
 	oFactory.innerHTML	= sStyle;
 	oDOMDocument.getElementsByTagName("head")[0].appendChild(oFactory.childNodes[1]);
