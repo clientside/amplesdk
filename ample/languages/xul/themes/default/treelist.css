@@ -10,6 +10,8 @@ xul|tree {
 xul|listbox:focus,
 xul|tree:focus {
 	border-color: #7F9DB9;
+	border-width: 2px;
+	margin: 0;
 }
 
 xul|listbox:disabled,
