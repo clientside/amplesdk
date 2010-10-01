@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<xul:vbox
+	xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:xi="http://www.w3.org/2001/XInclude">
+	<!-- Toolbar -->
+	<xul:toolbar>
+		<xul:toolbarbutton label="Send" />
+		<xul:toolbarbutton label="Save Now" />
+		<xul:toolbarbutton label="Discard" />
+	</xul:toolbar>
+	<!-- From/To/Subject -->
+	<xul:grid>
+		<xul:rows>
+			<xul:row>
+				<xul:label value="From:" />
+				<xul:menulist>
+					<xul:menupopup />
+				</xul:menulist>
+			</xul:row>
+			<xul:row>
+				<xul:label value="To:" />
+				<xul:textbox />
+			</xul:row>
+			<xul:row>
+				<xul:label value="Subject:" />
+				<xul:textbox />
+			</xul:row>
+		</xul:rows>
+	</xul:grid>
+	<!-- Editor -->
+	<xul:editor />
+</xul:vbox>

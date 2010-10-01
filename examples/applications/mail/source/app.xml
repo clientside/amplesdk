@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<xul:page
+	xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:xi="http://www.w3.org/2001/XInclude">
+	<xul:hbox flex="1" width="100%">
+		<xul:vbox width="200">
+			<xul:toolbar>
+				<xul:toolbarbutton label="Compose Mail" />
+			</xul:toolbar>
+			<xul:tree>
+				<xul:treecols>
+					<xul:treecol label="Folders" />
+				</xul:treecols>
+				<xul:treebody>
+					<xul:treechildren id="folders-system">
+						<xul:treeitem>
+							<xul:treerow>
+								<xul:treecell label="Inbox" />
+							</xul:treerow>
+						</xul:treeitem>
+						<xul:treeitem>
+							<xul:treerow>
+								<xul:treecell label="Starred" />
+							</xul:treerow>
+						</xul:treeitem>
+						<xul:treeitem>
+							<xul:treerow>
+								<xul:treecell label="Drafts" />
+							</xul:treerow>
+						</xul:treeitem>
+						<xul:treeitem>
+							<xul:treerow>
+								<xul:treecell label="Spam" />
+							</xul:treerow>
+						</xul:treeitem>
+					</xul:treechildren>
+					<xul:treechildren id="folders-custom" />
+				</xul:treebody>
+			</xul:tree>
+		</xul:vbox>
+		<xul:splitter />
+		<xul:deck>
+			<xi:include href="modules/messages.xml" />
+			<xi:include href="modules/message.xml" />
+			<xi:include href="modules/contacts.xml" />
+			<xi:include href="modules/settings.xml" />
+		</xul:deck>
+	</xul:hbox>
+</xul:page>

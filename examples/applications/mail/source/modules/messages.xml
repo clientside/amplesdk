@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<xul:vbox
+	xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:xi="http://www.w3.org/2001/XInclude">
+	<xul:toolbar>
+		<xul:toolbarbutton label="Archieve" />
+		<xul:toolbarbutton label="Report spam" />
+		<xul:toolbarbutton label="Delete" />
+		<xul:toolbarbutton label="Mark as read" />
+		<xul:toolbarseparator />
+		<xul:toolbarbutton label="Move to" type="menu">
+			<xul:menupopup>
+				<xul:textbox type="search" />
+				<xul:menuseparator />
+				<xul:menuitem label="Manage labels" />
+			</xul:menupopup>
+		</xul:toolbarbutton>
+		<xul:toolbarbutton label="Labels" type="menu">
+			<xul:menupopup>
+				<xul:textbox type="search" />
+				<xul:menuseparator />
+				<xul:menuitem label="Manage labels" />
+			</xul:menupopup>
+		</xul:toolbarbutton>
+		<xul:toolbarseparator />
+		<xul:toolbarbutton label="More actions" type="menu">
+			<xul:menupopup>
+				<xul:menuitem label="Mark as unread" />
+				<xul:menuitem label="Add to tasks" />
+				<xul:menuitem label="Add star" />
+				<xul:menuitem label="Filter messages like this" />
+			</xul:menupopup>
+		</xul:toolbarbutton>
+	</xul:toolbar>
+	<xul:listbox>
+		<xul:listhead>
+			<xul:listheader width="200" label="From"/>
+			<xul:listheader label="Subject"/>
+			<xul:listheader width="100" label="Attachements"/>
+			<xul:listheader width="100" label="Date"/>
+		</xul:listhead>
+		<xul:listbody />
+	</xul:listbox>
+</xul:vbox>
