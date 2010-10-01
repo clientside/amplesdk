@@ -362,6 +362,9 @@ function fAMLDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse
 					var oRequest	= new cXMLHttpRequest,
 						oResponse,
 						sHref	= oElementDOM.getAttribute("href");
+					//
+					sHref	= fUtilities_resolveUri(sHref, fAMLNode_getBaseURI(oNode));
+					//
 					oRequest.open("GET", sHref, false);
 					oRequest.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 					oRequest.setRequestHeader("X-User-Agent", oAMLConfiguration_values["ample-user-agent"]);
