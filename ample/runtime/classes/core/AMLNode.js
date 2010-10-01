@@ -56,6 +56,14 @@ cAMLNode.DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC	= 32;
 // Private Properties
 cAMLNode.prototype.$listeners	= null;
 
+function fAMLNode_getBaseURI(oNode) {
+	var sBaseUri	= '';
+	for (var oParent = oNode, sUri; oParent; oParent = oParent.parentNode)
+		if (oParent.nodeType == cAMLNode.ELEMENT_NODE && (sUri = oParent.attributes["xml:base"]))
+			sBaseUri	= fUtilities_resolveUri(sUri, sBaseUri);
+	return sBaseUri;
+};
+
 function fAMLNode_getTextContent(oNode) {
 	for (var nIndex = 0, aText = [], oChild; oChild = oNode.childNodes[nIndex]; nIndex++)
 		if (oChild.nodeType == cAMLNode.TEXT_NODE || oChild.nodeType == cAMLNode.CDATA_SECTION_NODE)
