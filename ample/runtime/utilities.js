@@ -205,6 +205,11 @@ function fAML_processScripts() {
 
 			oParserError	= oDocument ? oDocument.getElementsByTagName("parsererror")[0] : null;
 		    if (oDocument && oDocument.documentElement && !oParserError) {
+		    	// Set xml:base for referenced documents
+		    	if (bReferenced)
+		    		if (!oDocument.documentElement.getAttribute("xml:base"))
+		    			oDocument.documentElement.setAttribute("xml:base", fUtilities_resolveUri(oElementDOM.src, fAMLNode_getBaseURI(oAmple_document.documentElement)));
+
 		    	// import XML DOM into Ample DOM
 		    	oElement	= fAMLDocument_importNode(oAmple_document, oDocument.documentElement, true, null, true);
 		    	// Remove prefixes declarations (already available from root)
