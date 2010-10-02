@@ -28,8 +28,8 @@ function fQuery(vArgument1, vArgument2, vArgument3) {
 				//
 				var sNameSpaces	= ' ' + aNameSpaces.join(' '),
 					oDocument	= new cDOMParser().parseFromString(
-														'<!' + "DOCTYPE" + ' ' + "script" + '[' + aUtilities_entities + ']>' +
-														'<' + "script" + ' ' + "type" + '="' + "application/ample+xml" + '"' + sNameSpaces + '>' +
+														'<!' + "DOCTYPE" + ' ' + "div" + '[' + aUtilities_entities + ']>' +
+														'<' + "div" + ' ' + "type" + '="' + "application/ample+xml" + '"' + sNameSpaces + '>' +
 //->Debug
 														'\n' +
 //<-Debug
@@ -37,7 +37,7 @@ function fQuery(vArgument1, vArgument2, vArgument3) {
 //->Debug
 														'\n' +
 //<-Debug
-														'</' + "script" + '>', "text/xml");
+														'</' + "div" + '>', "text/xml");
 				if (!oDocument || ((bTrident && oDocument.parseError != 0) || !oDocument.documentElement || oDocument.getElementsByTagName("parsererror").length))
 					throw new cAMLException(cAMLException.SYNTAX_ERR, fQuery.caller);
 				else

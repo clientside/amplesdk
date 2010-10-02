@@ -425,7 +425,7 @@ function fAMLDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse
 				}
 //->Debug
 				else
-				if (!(sNameSpaceURI == "http://www.w3.org/1999/xhtml" && sLocalName == "script" && oAttributes["type"] == "application/ample+xml"))
+				if (!(sNameSpaceURI == "http://www.w3.org/1999/xhtml" && sLocalName == "div" && oAttributes["type"] == "application/ample+xml"))
 					fUtilities_warn(sAML_UNKNOWN_ELEMENT_NS_WRN, [oElementDOM.nodeName, sNameSpaceURI]);
 //<-Debug
 

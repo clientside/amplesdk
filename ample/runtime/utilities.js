@@ -188,11 +188,11 @@ function fAML_processScripts() {
 			else {
 				// Create fragment
 			    oDocument   = new cDOMParser().parseFromString(//		"<?" + "xml" + ' ' + 'version="1.0"' + "?>" +
-																		'<!' + "DOCTYPE" + ' ' + "script" + '[' + aUtilities_entities + ']>' +
+																		'<!' + "DOCTYPE" + ' ' + "div" + '[' + aUtilities_entities + ']>' +
 //->Debug
 																		'\n' +
 //<-Debug
-			    														'<' + "script" + ' ' + "type" + '="' + "application/ample+xml" + '"' + fHashToString(oAttributes).replace(/&/g, '&amp;') + '>' +
+			    														'<' + "div" + ' ' + "type" + '="' + "application/ample+xml" + '"' + fHashToString(oAttributes).replace(/&/g, '&amp;') + '>' +
 //->Debug
 			    														'\n' +
 //<-Debug
@@ -200,7 +200,7 @@ function fAML_processScripts() {
 //->Debug
 			    														'\n' +
 //<-Debug
-			    														'</' + "script" + '>', "text/xml");
+			    														'</' + "div" + '>', "text/xml");
 			}
 
 			oParserError	= oDocument ? oDocument.getElementsByTagName("parsererror")[0] : null;
@@ -219,6 +219,10 @@ function fAML_processScripts() {
 		    			if (sPrefix in oAttributes && oAttributes[sPrefix] == oAmple.prefixes[sAttribute])
 		    				delete oElement.attributes[sPrefix];
 		    		}
+		    		// Change root element name to script
+		    		oElement.nodeName	=
+		    		oElement.localName	=
+		    		oElement.nodeName	= "script";
 		    	}
 		    	// render Ample DOM
 		    	if (bTrident) {
