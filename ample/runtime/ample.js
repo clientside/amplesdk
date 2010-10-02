@@ -275,7 +275,7 @@ for (var sKey in oPrefixes)
 		oAmple_root.attributes["xmlns" + ':' + sKey]	= oPrefixes[sKey];
 
 // Set xml:base
-oAmple_root.attributes["xml:base"]	= fUtilities_resolveUri('.', oUALocation.href);
+oAmple_root.attributes["xml:base"]	= fUtilities_resolveUri('.', sAmple_include);
 
 //
 oAmple.open	= function() {
