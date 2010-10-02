@@ -483,7 +483,7 @@ function fAMLDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse
 							if (cRegExp.$1 == "text/css" || cRegExp.$1 == "text/ample+css") {
 								var sCSS	= fBrowser_loadStyleSheet(sHref);
 								if (sCSS)
-									oUADocument.getElementsByTagName("head")[0].appendChild(fBrowser_createStyleSheet(sCSS, sHref));
+									oBrowser_head.appendChild(fBrowser_createStyleSheet(sCSS, sHref));
 							}
 					}
 					// no break is left intentionally

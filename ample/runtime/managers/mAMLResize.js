@@ -136,7 +136,7 @@ function fAMLResize_onMouseMove(oEvent)
 					nAMLResize_resizeEdge	= nResize;
 
 					// set cursor
-					oUADocument.documentElement.style.cursor	= sCursor + '-' + "resize";
+					oBrowser_root.style.cursor	= sCursor + '-' + "resize";
 
 					return;
 				}
@@ -149,7 +149,7 @@ function fAMLResize_onMouseMove(oEvent)
 			nAMLResize_resizeEdge	= nAMLResize_EDGE_NONE;
 
 			// reset cursor
-			oUADocument.documentElement.style.cursor	= '';
+			oBrowser_root.style.cursor	= '';
 		}
 		return;
 	}

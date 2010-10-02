@@ -148,7 +148,7 @@ function fAML_processScripts() {
 	};
 
 	// Process script tags
-    aElements = oUADocument.body.getElementsByTagName("script");
+    aElements = oBrowser_body.getElementsByTagName("script");
     for (var nIndex = 0, nSkip = 0; aElements.length > nSkip; nIndex++) {
     	// Current Script
 	    oElementDOM	= aElements[nSkip];

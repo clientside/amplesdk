@@ -207,7 +207,7 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
 
 		// Initialize drag image container
 		if (!oAMLDragAndDrop_image) {
-			oAMLDragAndDrop_image	= oUADocument.body.appendChild(oUADocument.createElement("div"));
+			oAMLDragAndDrop_image	= oBrowser_body.appendChild(oUADocument.createElement("div"));
 			oAMLDragAndDrop_image.style.cssText	= 'z-index:1000;position:absolute;display:none';
 		}
 

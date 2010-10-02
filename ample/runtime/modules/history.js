@@ -67,7 +67,7 @@ function fAMLQuery_history_onLoad(oEvent) {
 		if (bTrident) {
 			var oElement	= oUADocument.createElement("iframe");
 			oElement.style.display	= "none";
-			oUADocument.body.appendChild(oElement);
+			oBrowser_body.appendChild(oElement);
 			oAMLQuery_history_window	= oElement.contentWindow;
 			if (oAMLConfiguration_values["ample-module-history-fix"])
 				fAMLQuery_history_bookmark(sHash);

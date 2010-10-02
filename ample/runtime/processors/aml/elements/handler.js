@@ -20,7 +20,7 @@ cAMLElement_handler.handlers["DOMNodeInsertedIntoDocument"]	= function(oEvent) {
 			var oElement	= oUIDocument.createElement("script");
 			oElement.type	= "text/javascript";
 			oElement.text	= this.firstChild.nodeValue;
-			oUIDocument.getElementsByTagName("head")[0].appendChild(oElement);
+			oBrowser_head.appendChild(oElement);
 			oElement.parentNode.removeChild(oElement);
 		}
 	}

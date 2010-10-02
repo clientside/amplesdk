@@ -10,7 +10,7 @@
 // Create Ample SDK document object
 var oAmple_document	= fAMLImplementation_createDocument(new cAMLImplementation, "http://www.w3.org/1999/xhtml", "body", null),
 	oAmple_root		= oAmple_document.documentElement;
-oAmple_root.$getContainer	= function(sName) {return sName == "gateway" ? oUADocument.body : sName ? null : oUADocument.documentElement};
+oAmple_root.$getContainer	= function(sName) {return sName == "gateway" ? oBrowser_body : sName ? null : oBrowser_root};
 oAmple_root.attributes["xml:base"]	= fUtilities_resolveUri('.', oUALocation.href);
 
 //
@@ -240,7 +240,7 @@ oAmple.include	= function(sSrc) {
 	var oXMLHttpRequest	= new cXMLHttpRequest;
 	oXMLHttpRequest.open("GET", sAmple_include, false);
 	oXMLHttpRequest.send();
-	var oScript	= oUADocument.getElementsByTagName("head")[0].appendChild(oUADocument.createElement("script"));
+	var oScript	= oBrowser_head.appendChild(oUADocument.createElement("script"));
 	oScript.type= "text/javascript";
 	oScript.text= oXMLHttpRequest.responseText;
 	oScript.parentNode.removeChild(oScript);
@@ -254,7 +254,7 @@ if (bTrident)
 	for (var nIndex = 0, aAttributes = oUADocument.namespaces, oAttribute, nLength = aAttributes.length; nIndex < nLength; nIndex++)
 		oPrefixes[(oAttribute = aAttributes[nIndex]).name]	= oAttribute.urn;
 else
-	for (var nIndex = 0, aAttributes = oUADocument.documentElement.attributes, oAttribute; oAttribute = aAttributes[nIndex]; nIndex++)
+	for (var nIndex = 0, aAttributes = oBrowser_root.attributes, oAttribute; oAttribute = aAttributes[nIndex]; nIndex++)
 		if (oAttribute.nodeName.match(/^xmlns($|:)(.*)/))
 			oPrefixes[cRegExp.$2]	= oAttribute.nodeValue;
 if (!oPrefixes[''])
