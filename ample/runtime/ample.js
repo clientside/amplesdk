@@ -11,7 +11,6 @@
 var oAmple_document	= fAMLImplementation_createDocument(new cAMLImplementation, "http://www.w3.org/1999/xhtml", "body", null),
 	oAmple_root		= oAmple_document.documentElement;
 oAmple_root.$getContainer	= function(sName) {return sName == "gateway" ? oBrowser_body : sName ? null : oBrowser_root};
-oAmple_root.attributes["xml:base"]	= fUtilities_resolveUri('.', oUALocation.href);
 
 //
 function fQuery(vArgument1, vArgument2, vArgument3) {
@@ -275,6 +274,9 @@ for (var sKey in oPrefixes)
 	if (oPrefixes.hasOwnProperty(sKey) && sKey != '')
 		oAmple_root.attributes["xmlns" + ':' + sKey]	= oPrefixes[sKey];
 
+// Set xml:base
+oAmple_root.attributes["xml:base"]	= fUtilities_resolveUri('.', oUALocation.href);
+
 //
 oAmple.open	= function() {
 	if (oAmple.readyState == "loading") {
@@ -351,7 +353,6 @@ oAmple.param	= function(vValue) {
 oAmple.resolveUri	= function(sUri, sBaseUri) {
 	return fUtilities_resolveUri(sUri, sBaseUri);
 };
-
 
 // set standard parameters
 var oConfiguration	= oAmple_document.domConfig;
