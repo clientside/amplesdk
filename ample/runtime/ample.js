@@ -236,12 +236,12 @@ oAmple.include	= function(sSrc) {
 	var sValue	= sAmple_include;
 	// Save current location
 	sAmple_include	= fUtilities_resolveUri(sSrc, sValue);
-	var oXMLHttpRequest	= new cXMLHttpRequest;
-	oXMLHttpRequest.open("GET", sAmple_include, false);
-	oXMLHttpRequest.send();
+	var oRequest	= new cXMLHttpRequest;
+	oRequest.open("GET", sAmple_include, false);
+	oRequest.send();
 	var oScript	= oBrowser_head.appendChild(oUADocument.createElement("script"));
 	oScript.type= "text/javascript";
-	oScript.text= oXMLHttpRequest.responseText;
+	oScript.text= oRequest.responseText;
 	oScript.parentNode.removeChild(oScript);
 	// Restore base location
 	sAmple_include	= sValue;
