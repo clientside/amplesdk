@@ -52,7 +52,7 @@ input[type=range] {
 
 input[type=datetime],
 input[type=datetime-local] {
-	width:	140px;
+	width:	130px;
 }
 
 input[type=date] {
@@ -64,15 +64,15 @@ input[type=color] {
 }
 
 input[type=time] {
-	width:	70px;
+	width:	54px;
 }
 
 input[type=month] {
-	width:	40px;
+	width:	70px;
 }
 
 input[type=week] {
-	width:	40px;
+	width:	80px;
 }
 
 input[type=number] {
@@ -150,7 +150,13 @@ select::button,
 input[type=date]::button,
 input[type=datetime]::button,
 input[type=datetime-local]::button,
+input[type=week]::button,
+input[type=month]::button,
 input[type=color]::button {
+	background-image: url(media/select.gif);
+}
+
+input[type=range]::button {
 	background-image: url(media/select.gif);
 }
 
@@ -158,6 +164,8 @@ select:hover select::button,
 input:hover input[type=date]::button,
 input:hover input[type=datetime]::button,
 input:hover input[type=datetime-local]::button,
+input:hover input[type=week]::button,
+input:hover input[type=month]::button,
 input:hover input[type=color]::button {
 	background-position: 0px -15px;
 }
@@ -166,6 +174,8 @@ select:active select::button,
 input:active input[type=date]::button,
 input:active input[type=datetime]::button,
 input:active input[type=datetime-local]::button,
+input:active input[type=month]::button,
+input:active input[type=week]::button,
 input:active input[type=color]::button {
 	background-position: 0px -30px;
 }
@@ -174,6 +184,8 @@ select:disabled select::button,
 input:disabled input[type=date]::button,
 input:disabled input[type=datetime]::button,
 input:disabled input[type=datetime-local]::button,
+input:disabled input[type=month]::button,
+input:disabled input[type=week]::button,
 input:disabled input[type=color]::button {
 	background-position: 0px -45px;
 }
