@@ -189,7 +189,7 @@ cXHTMLElement_input.prototype.$getTagOpen		= function() {
 						' ' + sClassName + '_' + (this.attributes["readonly"] ? 'read-only' : 'read-write')+ ' '+
 						' ' + sClassName + '_' + (cXHTMLInputElement.isValid(this) ? 'valid' : 'invalid')+ ' '+
 				'" ' +(this.attributes.style ? ' style="' + this.attributes.style + '"' : '')+ '>');
-	aHtml.push(	'<div style="position:absolute;margin-top:-2px;white-space:nowrap;' + (this.getAttribute("value") == '' ? '' : 'display:none')+ '" class="' + sClassName + '--placeholder">' +(this.getAttribute("placeholder") || '')+ '</div>');
+	aHtml.push(	'<div style="position:absolute;white-space:nowrap;' + (this.getAttribute("value") == '' ? '' : 'display:none')+ '" class="' + sClassName + '--placeholder">' +(this.getAttribute("placeholder") || '')+ '</div>');
 	aHtml.push(	'<div class="' + sClassName + '--field ' + sClassNameType + '--field" style="position:relative">');
 	aHtml.push(		'<span class="' + sClassName + '--before ' + sClassNameType + '--before" style="float:left"></span>');
 	aHtml.push(		'<span class="' + sClassName + '--after ' + sClassNameType + '--after" style="float:right"></span>');
