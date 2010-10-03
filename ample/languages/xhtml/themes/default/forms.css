@@ -8,10 +8,10 @@ textarea,
 select {
 	border: solid 1px silver;
 	padding: 1px 0px;
-	margin:	0;
+	margin:	1px;
 	width: 200px;
 	display: inline-block;
-	outline-color: white;
+	border-radius: 2px;
 }
 
 input {
@@ -84,7 +84,9 @@ input:focus,
 textarea:focus,
 select:focus {
 	background-color: lightyellow;
-	outline: solid 1px blue;
+	margin: 0;
+	border-color: lightblue;
+	border-width: 2px;
 }
 
 /* pseudo-elements */
@@ -229,6 +231,8 @@ input[type=date]::field,
 input[type=time]::field,
 input[type=datetime]::field,
 input[type=datetime-local]::field,
+input[type=week]::field,
+input[type=month]::field,
 input[type=number]::field,
 input[type=color]::field,
 input[type=search]::field,
