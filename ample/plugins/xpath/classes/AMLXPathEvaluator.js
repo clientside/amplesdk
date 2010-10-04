@@ -44,5 +44,5 @@ cAMLXPathEvaluator.prototype.evaluate	= function(sExpression, oNode, oResolver, 
 
 	// Invoke implementation
 	var oExpression	= new cAMLXPathExpression(sExpression, oResolver);
-	return oExpression.evaluate(oNode, nType, oResult);
+	return oExpression.evaluate(oNode, nType || cAMLXPathResult.ANY_TYPE, oResult);
 };
