@@ -36,5 +36,34 @@ cXHTMLInputElement.isValid	= function(oInstance) {
 	return true;
 };
 
+cXHTMLInputElement.register	= function(oInstance) {
+	// Add to the form collection
+	for (var oNode = oInstance; oNode = oNode.parentNode;)
+		if (oNode instanceof cXHTMLElement_form) {
+			oInstance.form	= oNode;
+			oNode.elements.$add(oInstance);
+			if (oInstance.hasAttribute("name"))
+				oNode.elements[oInstance.getAttribute("name")]	= this;
+			break;
+		}
+	//
+	if (!isNaN(oInstance.getAttribute("tabIndex")))
+		oInstance.tabIndex	= oInstance.getAttribute("tabIndex") * 1;
+	if (oInstance.hasAttribute("accessKey"))
+		oInstance.accessKey	= oInstance.getAttribute("accessKey");
+	if (oInstance.attributes["autofocus"])
+		oInstance.focus();
+};
+
+cXHTMLInputElement.unregister	= function(oInstance) {
+	// Remove from the collection
+	if (oInstance.form) {
+		oInstance.form.elements.$remove(oInstance);
+		if (oInstance.hasAttribute("name"))
+			delete oInstance.form.elements[oInstance.getAttribute("name")];
+		oInstance.form	= null;
+	}
+};
+
 // Register Element
 ample.extend(cXHTMLInputElement);

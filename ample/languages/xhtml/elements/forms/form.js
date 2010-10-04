@@ -88,28 +88,6 @@ cXHTMLElement_form.prototype._onReset	= function() {
 
 // Default actions implementations
 cXHTMLElement_form.handlers	= {
-	"DOMNodeInserted":	function(oEvent) {
-		if (oEvent.target instanceof cXHTMLElement_input ||
-			oEvent.target instanceof cXHTMLElement_select ||
-			oEvent.target instanceof cXHTMLElement_textarea ||
-			oEvent.target instanceof cXHTMLElement_button) {
-				oEvent.target.form	= this;
-				this.elements.$add(oEvent.target);
-//				if (oEvent.target.hasAttribute("name"))
-//					this.elements[oEvent.target.getAttribute("name")]	= oEvent.target;
-			}
-	},
-	"DOMNodeRemoved":	function(oEvent) {
-		if (oEvent.target instanceof cXHTMLElement_input ||
-			oEvent.target instanceof cXHTMLElement_select ||
-			oEvent.target instanceof cXHTMLElement_textarea ||
-			oEvent.target instanceof cXHTMLElement_button) {
-				oEvent.target.form	= null;
-				this.elements.$remove(oEvent.target);
-//				if (oEvent.target.hasAttribute("name"))
-//					delete this.elements[oEvent.target.getAttribute("name")];
-		}
-	},
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this)
 			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);

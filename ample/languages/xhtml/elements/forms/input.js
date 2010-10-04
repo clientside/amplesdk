@@ -73,25 +73,45 @@ cXHTMLElement_input.handlers	= {
 		}
 	},
 	"click":	function(oEvent) {
-		if (oEvent.target == this && oEvent.$pseudoTarget == this.$getContainer("button"))
-			switch (this.attributes["type"]) {
-				case "file":
-				case "date":
-				case "color":
-				case "datetime":
-				case "datetime-local":
-					this.$activate();
-					break
+		if (oEvent.target == this) {
+			if (oEvent.$pseudoTarget == this.$getContainer("button")) {
+				switch (this.attributes["type"]) {
+					case "file":
+					case "date":
+					case "color":
+					case "datetime":
+					case "datetime-local":
+						this.$activate();
+						break;
+				}
 			}
+			else {
+				switch (this.attributes["type"]) {
+					case "radio":
+					case "checkbox":
+						this.$activate();
+						break;
+				}
+			}
+		}
 	},
 	"keydown":	function(oEvent) {
 		// Handle spin buttons
+		if (oEvent.target == this) {
+			if (oEvent.keyIdentifier == "U+0020") {	// Space
+				switch (this.attributes["type"]) {
+					case "checkbox":
+//						this.$activate();
+						break;
+				}
+			}
+		}
 	},
-	"keydown":	function(oEvent) {
+	"keyup":	function(oEvent) {
 		// Handle spin buttons
 	},
 	"DOMActivate":	function(oEvent) {
-		if (oEvent.target == this)
+		if (oEvent.target == this) {
 			switch (this.attributes["type"]) {
 				case "file":
 					this.$getContainer("value").click();
@@ -103,15 +123,20 @@ cXHTMLElement_input.handlers	= {
 				case "datetime-local":
 					cXHTMLElement_input.toggle(this);
 					break;
+
+				case "checkbox":
+					this.setAttribute("checked", this.getAttribute("checked") == "true" ? "false" : "true");
+					break;
 			}
+		}
 	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
-		if (!isNaN(this.getAttribute("tabIndex")))
-			this.tabIndex	= this.getAttribute("tabIndex") * 1;
-		if (this.hasAttribute("accessKey"))
-			this.accessKey	= this.getAttribute("accessKey");
-		if (this.attributes["autofocus"])
-			this.focus();
+		//
+		cXHTMLInputElement.register(this);
+	},
+	"DOMNodeRemovedFromDocument":	function(oEvent) {
+		//
+		cXHTMLInputElement.unregister(this);
 	},
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this) {
@@ -123,6 +148,9 @@ cXHTMLElement_input.handlers	= {
 					oFactory.innerHTML	= this.$getTag();
 					oElementDOM.parentNode.replaceChild(oFactory.firstChild, oElementDOM);
 					break;
+
+				case "checked":
+					this.$setPseudoClass("checked", oEvent.newValue != null && oEvent.newValue != "false");
 			}
 			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
 		}

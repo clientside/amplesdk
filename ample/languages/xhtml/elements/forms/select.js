@@ -101,6 +101,14 @@ cXHTMLElement_select.handlers	= {
 		if (oEvent.target instanceof cXHTMLElement_option)
 			this.options.$remove(oEvent.target);
 	},
+	"DOMNodeInsertedIntoDocument":	function(oEvent) {
+		//
+		cXHTMLInputElement.register(this);
+	},
+	"DOMNodeRemovedFromDocument":	function(oEvent) {
+		//
+		cXHTMLInputElement.unregister(this);
+	},
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this)
 			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
