@@ -8,63 +8,63 @@
     $aFiles[]	= "elements/instance.js";
 	$aFiles[]	= "elements/instanceData.js";
 	$aFiles[]	= "elements/bind.js";
-	$aFiles[]	= "elements/submission.js";
+//	$aFiles[]	= "elements/submission.js";	// Defined in "11 XForms Submission Module"
 	// 3.4 XForms Extension Module
 	$aFiles[]	= "elements/extension.js";
 	// 8 Core Form Controls
 	// 8.1 Core Form Controls Module
-	$aFiles[]	= "elements/input.js";
-	$aFiles[]	= "elements/secret.js";
-	$aFiles[]	= "elements/textarea.js";
-	$aFiles[]	= "elements/output.js";
-	$aFiles[]	= "elements/upload.js";
-	$aFiles[]	= "elements/range.js";
-	$aFiles[]	= "elements/trigger.js";
-	$aFiles[]	= "elements/submit.js";
-	$aFiles[]	= "elements/select.js";
-	$aFiles[]	= "elements/select1.js";
+	$aFiles[]	= "elements/controls/input.js";
+	$aFiles[]	= "elements/controls/secret.js";
+	$aFiles[]	= "elements/controls/textarea.js";
+	$aFiles[]	= "elements/controls/output.js";
+	$aFiles[]	= "elements/controls/upload.js";
+	$aFiles[]	= "elements/controls/range.js";
+	$aFiles[]	= "elements/controls/trigger.js";
+	$aFiles[]	= "elements/controls/submit.js";
+	$aFiles[]	= "elements/controls/select.js";
+	$aFiles[]	= "elements/controls/select1.js";
 	// 8.2 Common support elements
-	$aFiles[]	= "elements/label.js";
-	$aFiles[]	= "elements/help.js";
-	$aFiles[]	= "elements/hint.js";
-	$aFiles[]	= "elements/alert.js";
+	$aFiles[]	= "elements/controls/label.js";
+	$aFiles[]	= "elements/controls/help.js";
+	$aFiles[]	= "elements/controls/hint.js";
+	$aFiles[]	= "elements/controls/alert.js";
 	// 8.3 Common markup for selection controls
-	$aFiles[]	= "elements/choices.js";
-	$aFiles[]	= "elements/item.js";
-	$aFiles[]	= "elements/value.js";
+	$aFiles[]	= "elements/controls/choices.js";
+	$aFiles[]	= "elements/controls/item.js";
+	$aFiles[]	= "elements/controls/value.js";
 	// 9 Container Form Controls
 	// 9.1 XForms Group Module
-	$aFiles[]	= "elements/group.js";
+	$aFiles[]	= "elements/container/group.js";
 	// 9.2 XForms Switch Module
-	$aFiles[]	= "elements/switch.js";
-	$aFiles[]	= "elements/case.js";
+	$aFiles[]	= "elements/container/switch.js";
+	$aFiles[]	= "elements/container/case.js";
 	// 9.3 XForms Repeat Module
-	$aFiles[]	= "elements/repeat.js";
-//	$aFiles[]	= "elements/setindex.js";	// Defined in "10 XForms Actions"
-	$aFiles[]	= "elements/itemset.js";
-	$aFiles[]	= "elements/copy.js";
+	$aFiles[]	= "elements/container/repeat.js";
+//	$aFiles[]	= "elements/container/setindex.js";	// Defined in "10 XForms Actions"
+	$aFiles[]	= "elements/container/itemset.js";
+	$aFiles[]	= "elements/container/copy.js";
 	// 10 XForms Actions
-	$aFiles[]	= "elements/action.js";
-	$aFiles[]	= "elements/setvalue.js";
-	$aFiles[]	= "elements/insert.js";
-	$aFiles[]	= "elements/delete.js";
-	$aFiles[]	= "elements/setindex.js";
-	$aFiles[]	= "elements/toggle.js";
-	$aFiles[]	= "elements/setfocus.js";
-	$aFiles[]	= "elements/dispatch.js";
-	$aFiles[]	= "elements/rebuild.js";
-	$aFiles[]	= "elements/recalculate.js";
-	$aFiles[]	= "elements/revalidate.js";
-	$aFiles[]	= "elements/refresh.js";
-	$aFiles[]	= "elements/reset.js";
-	$aFiles[]	= "elements/load.js";
-	$aFiles[]	= "elements/send.js";
-	$aFiles[]	= "elements/message.js";
+	$aFiles[]	= "elements/actions/action.js";
+	$aFiles[]	= "elements/actions/setvalue.js";
+	$aFiles[]	= "elements/actions/insert.js";
+	$aFiles[]	= "elements/actions/delete.js";
+	$aFiles[]	= "elements/actions/setindex.js";
+	$aFiles[]	= "elements/actions/toggle.js";
+	$aFiles[]	= "elements/actions/setfocus.js";
+	$aFiles[]	= "elements/actions/dispatch.js";
+	$aFiles[]	= "elements/actions/rebuild.js";
+	$aFiles[]	= "elements/actions/recalculate.js";
+	$aFiles[]	= "elements/actions/revalidate.js";
+	$aFiles[]	= "elements/actions/refresh.js";
+	$aFiles[]	= "elements/actions/reset.js";
+	$aFiles[]	= "elements/actions/load.js";
+	$aFiles[]	= "elements/actions/send.js";
+	$aFiles[]	= "elements/actions/message.js";
 	// 11 XForms Submission Module
-//	$aFiles[]	= "elements/submission.js";	// Defined in "11 XForms Submission Module"
-	$aFiles[]	= "elements/method.js";
-	$aFiles[]	= "elements/header.js";
-	$aFiles[]	= "elements/resource.js";
+	$aFiles[]	= "elements/submission/submission.js";
+	$aFiles[]	= "elements/submission/method.js";
+	$aFiles[]	= "elements/submission/header.js";
+	$aFiles[]	= "elements/submission/resource.js";
 
     $sOutput	= "";
     for ($nIndex = 0; $nIndex < count($aFiles); $nIndex++)

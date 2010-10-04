@@ -15,63 +15,63 @@
 	files.push("elements/instance.js");
 	files.push("elements/instanceData.js");
 	files.push("elements/bind.js");
-	files.push("elements/submission.js");
+//	files.push("elements/submission.js");	// Defined in "11 XForms Submission Module"
 	// 3.4 XForms Extension Module
 	files.push("elements/extension.js");
 	// 8 Core Form Controls
 	// 8.1 Core Form Controls Module
-	files.push("elements/input.js");
-	files.push("elements/secret.js");
-	files.push("elements/textarea.js");
-	files.push("elements/output.js");
-	files.push("elements/upload.js");
-	files.push("elements/range.js");
-	files.push("elements/trigger.js");
-	files.push("elements/submit.js");
-	files.push("elements/select.js");
-	files.push("elements/select1.js");
+	files.push("elements/controls/input.js");
+	files.push("elements/controls/secret.js");
+	files.push("elements/controls/textarea.js");
+	files.push("elements/controls/output.js");
+	files.push("elements/controls/upload.js");
+	files.push("elements/controls/range.js");
+	files.push("elements/controls/trigger.js");
+	files.push("elements/controls/submit.js");
+	files.push("elements/controls/select.js");
+	files.push("elements/controls/select1.js");
 	// 8.2 Common support elements
-	files.push("elements/label.js");
-	files.push("elements/help.js");
-	files.push("elements/hint.js");
-	files.push("elements/alert.js");
+	files.push("elements/controls/label.js");
+	files.push("elements/controls/help.js");
+	files.push("elements/controls/hint.js");
+	files.push("elements/controls/alert.js");
 	// 8.3 Common markup for selection controls
-	files.push("elements/choices.js");
-	files.push("elements/item.js");
-	files.push("elements/value.js");
+	files.push("elements/controls/choices.js");
+	files.push("elements/controls/item.js");
+	files.push("elements/controls/value.js");
 	// 9 Container Form Controls
 	// 9.1 XForms Group Module
-	files.push("elements/group.js");
+	files.push("elements/container/group.js");
 	// 9.2 XForms Switch Module
-	files.push("elements/switch.js");
-	files.push("elements/case.js");
+	files.push("elements/container/switch.js");
+	files.push("elements/container/case.js");
 	// 9.3 XForms Repeat Module
-	files.push("elements/repeat.js");
-//	files.push("elements/setindex.js");	// Defined in "10 XForms Actions"
-	files.push("elements/itemset.js");
-	files.push("elements/copy.js");
+	files.push("elements/container/repeat.js");
+//	files.push("elements/container/setindex.js");	// Defined in "10 XForms Actions"
+	files.push("elements/container/itemset.js");
+	files.push("elements/container/copy.js");
 	// 10 XForms Actions
-	files.push("elements/action.js");
-	files.push("elements/setvalue.js");
-	files.push("elements/insert.js");
-	files.push("elements/delete.js");
-	files.push("elements/setindex.js");
-	files.push("elements/toggle.js");
-	files.push("elements/setfocus.js");
-	files.push("elements/dispatch.js");
-	files.push("elements/rebuild.js");
-	files.push("elements/recalculate.js");
-	files.push("elements/revalidate.js");
-	files.push("elements/refresh.js");
-	files.push("elements/reset.js");
-	files.push("elements/load.js");
-	files.push("elements/send.js");
-	files.push("elements/message.js");
+	files.push("elements/actions/action.js");
+	files.push("elements/actions/setvalue.js");
+	files.push("elements/actions/insert.js");
+	files.push("elements/actions/delete.js");
+	files.push("elements/actions/setindex.js");
+	files.push("elements/actions/toggle.js");
+	files.push("elements/actions/setfocus.js");
+	files.push("elements/actions/dispatch.js");
+	files.push("elements/actions/rebuild.js");
+	files.push("elements/actions/recalculate.js");
+	files.push("elements/actions/revalidate.js");
+	files.push("elements/actions/refresh.js");
+	files.push("elements/actions/reset.js");
+	files.push("elements/actions/load.js");
+	files.push("elements/actions/send.js");
+	files.push("elements/actions/message.js");
 	// 11 XForms Submission Module
-//	files.push("elements/submission.js");	// Defined in "11 XForms Submission Module"
-	files.push("elements/method.js");
-	files.push("elements/header.js");
-	files.push("elements/resource.js");
+	files.push("elements/submission/submission.js");
+	files.push("elements/submission/method.js");
+	files.push("elements/submission/header.js");
+	files.push("elements/submission/resource.js");
 
 	// load files
 	var source = [],
