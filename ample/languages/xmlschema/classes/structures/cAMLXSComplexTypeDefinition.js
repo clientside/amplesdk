@@ -7,29 +7,29 @@
  *
  */
 
-var cAMLXSComplexTypeDefinition	= function() {
+var cXSComplexTypeDefinition	= function() {
 
 };
 
-cAMLXSComplexTypeDefinition.prototype	= new cAMLXSTypeDefinition;
+cXSComplexTypeDefinition.prototype	= new cXSTypeDefinition;
 
 // Constants
-cAMLXSComplexTypeDefinition.CONTENTTYPE_EMPTY	= 0;
-cAMLXSComplexTypeDefinition.CONTENTTYPE_SIMPLE	= 1;
-cAMLXSComplexTypeDefinition.CONTENTTYPE_ELEMENT	= 2;
-cAMLXSComplexTypeDefinition.CONTENTTYPE_MIXED	= 3;
+cXSComplexTypeDefinition.CONTENTTYPE_EMPTY	= 0;
+cXSComplexTypeDefinition.CONTENTTYPE_SIMPLE	= 1;
+cXSComplexTypeDefinition.CONTENTTYPE_ELEMENT	= 2;
+cXSComplexTypeDefinition.CONTENTTYPE_MIXED	= 3;
 
-cAMLXSComplexTypeDefinition.prototype.derivationMethod	= null;	// Number
-cAMLXSComplexTypeDefinition.prototype.abstract			= null;	// Boolean
-cAMLXSComplexTypeDefinition.prototype.attributeUses		= null;	// XSObjectList
-cAMLXSComplexTypeDefinition.prototype.attributeWildcard	= null;	// XSWildcard
-cAMLXSComplexTypeDefinition.prototype.contentType		= null;	// Number
-cAMLXSComplexTypeDefinition.prototype.simpleType		= null;	// XSSimpleTypeDefinition
-cAMLXSComplexTypeDefinition.prototype.particle			= null;	// XSParticle
-cAMLXSComplexTypeDefinition.prototype.prohibitedSubstitutions	= null;	// Number
-cAMLXSComplexTypeDefinition.prototype.annotations		= null;	// XSObjectList
+cXSComplexTypeDefinition.prototype.derivationMethod	= null;	// Number
+cXSComplexTypeDefinition.prototype.abstract			= null;	// Boolean
+cXSComplexTypeDefinition.prototype.attributeUses		= null;	// XSObjectList
+cXSComplexTypeDefinition.prototype.attributeWildcard	= null;	// XSWildcard
+cXSComplexTypeDefinition.prototype.contentType		= null;	// Number
+cXSComplexTypeDefinition.prototype.simpleType		= null;	// XSSimpleTypeDefinition
+cXSComplexTypeDefinition.prototype.particle			= null;	// XSParticle
+cXSComplexTypeDefinition.prototype.prohibitedSubstitutions	= null;	// Number
+cXSComplexTypeDefinition.prototype.annotations		= null;	// XSObjectList
 
 /* @type	Boolean */
-cAMLXSComplexTypeDefinition.prototype.isProhibitedSubstitution	= function(nRestriction) {
+cXSComplexTypeDefinition.prototype.isProhibitedSubstitution	= function(nRestriction) {
 
 };

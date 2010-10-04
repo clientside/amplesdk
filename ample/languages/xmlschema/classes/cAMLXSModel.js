@@ -7,37 +7,37 @@
  *
  */
 
-var cAMLXSModel	= function() {
+var cXSModel	= function() {
 	this.namespaces		= new cAMLStringList;
-	this.namespaceItems	= new cAMLXSNamespaceItemList;
+	this.namespaceItems	= new cXSNamespaceItemList;
 };
 
-cAMLXSModel.prototype.namespaces		= null;	// StringList
-cAMLXSModel.prototype.namespaceItems	= null;	// XSNamespaceItemList
-cAMLXSModel.prototype.annotations		= null;	// XSObjectList
+cXSModel.prototype.namespaces		= null;	// StringList
+cXSModel.prototype.namespaceItems	= null;	// XSNamespaceItemList
+cXSModel.prototype.annotations		= null;	// XSObjectList
 
 // @type	XSNamedMap
-cAMLXSModel.prototype.getComponents	= function(nObjectType) {
+cXSModel.prototype.getComponents	= function(nObjectType) {
 	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
 
 // @type	XSNamedMap
-cAMLXSModel.prototype.getComponentsByNamespace	= function(nObjectType, sNameSpaceURI) {
+cXSModel.prototype.getComponentsByNamespace	= function(nObjectType, sNameSpaceURI) {
 	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
 
 // @type	XSElementDeclaration
-cAMLXSModel.prototype.getElementDeclaration	= function(sNameSpaceURI, sLocalName) {
+cXSModel.prototype.getElementDeclaration	= function(sNameSpaceURI, sLocalName) {
 	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
 
 // @type	XSAttributeDeclaration
-cAMLXSModel.prototype.getAttributeDeclaration	= function(sNameSpaceURI, sLocalName) {
+cXSModel.prototype.getAttributeDeclaration	= function(sNameSpaceURI, sLocalName) {
 	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
 
 // @type	XSTypeDefinition
-cAMLXSModel.prototype.getTypeDefinition	= function(sNameSpaceURI, sLocalName) {
+cXSModel.prototype.getTypeDefinition	= function(sNameSpaceURI, sLocalName) {
 	// Validate arguments
 	fGuard(arguments, [
 		["namespaceURI",	cString],
@@ -51,17 +51,17 @@ cAMLXSModel.prototype.getTypeDefinition	= function(sNameSpaceURI, sLocalName) {
 };
 
 // @type	XSAttributeGroupDefinition
-cAMLXSModel.prototype.getAttributeGroup	= function(sNameSpaceURI, sLocalName) {
+cXSModel.prototype.getAttributeGroup	= function(sNameSpaceURI, sLocalName) {
 	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
 
 // @type	XSModelGroupDefinition
-cAMLXSModel.prototype.getModelGroupDefinition	= function(sNameSpaceURI, sLocalName) {
+cXSModel.prototype.getModelGroupDefinition	= function(sNameSpaceURI, sLocalName) {
 	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
 
 // @type	XSNotationDeclaration
-cAMLXSModel.prototype.getNotationDeclaration	= function(sNameSpaceURI, sLocalName) {
+cXSModel.prototype.getNotationDeclaration	= function(sNameSpaceURI, sLocalName) {
 	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
 

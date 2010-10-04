@@ -7,21 +7,21 @@
  *
  */
 
-var cAMLXSWildcard	= function() {
+var cXSWildcard	= function() {
 
 };
 
-cAMLXSWildcard.prototype	= new cAMLXSTerm;
+cXSWildcard.prototype	= new cXSTerm;
 
-cAMLXSWildcard.NSCONSTRAINT_ANY		= 1;
-cAMLXSWildcard.NSCONSTRAINT_NOT		= 2;
-cAMLXSWildcard.NSCONSTRAINT_LIST	= 3;
+cXSWildcard.NSCONSTRAINT_ANY		= 1;
+cXSWildcard.NSCONSTRAINT_NOT		= 2;
+cXSWildcard.NSCONSTRAINT_LIST	= 3;
 
-cAMLXSWildcard.PC_STRICT	= 1;
-cAMLXSWildcard.PC_SKIP		= 2;
-cAMLXSWildcard.PC_LAX		= 3;
+cXSWildcard.PC_STRICT	= 1;
+cXSWildcard.PC_SKIP		= 2;
+cXSWildcard.PC_LAX		= 3;
 
-cAMLXSWildcard.prototype.constraintType		= null;	// Number
-cAMLXSWildcard.prototype.nsConstraintList	= null;	// StringList
-cAMLXSWildcard.prototype.processContents	= null;	// Number
-cAMLXSWildcard.prototype.annotation			= null;	// XSAnnotation
+cXSWildcard.prototype.constraintType		= null;	// Number
+cXSWildcard.prototype.nsConstraintList	= null;	// StringList
+cXSWildcard.prototype.processContents	= null;	// Number
+cXSWildcard.prototype.annotation			= null;	// XSAnnotation

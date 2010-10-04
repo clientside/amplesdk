@@ -7,13 +7,13 @@
  *
  */
 
-var cAMLXSImplementation	= function() {
+var cXSImplementation	= function() {
 
 };
 
-cAMLXSImplementation.prototype.recognizedVersions	= null;	// StringList
+cXSImplementation.prototype.recognizedVersions	= null;	// StringList
 
 /* @type	XSLoader */
-cAMLXSImplementation.prototype.createXSLoader	= function(oVersions) {
+cXSImplementation.prototype.createXSLoader	= function(oVersions) {
 
 };

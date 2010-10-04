@@ -7,8 +7,8 @@
  *
  */
 
-var cAMLXSTerm	= function() {
+var cXSTerm	= function() {
 
 };
 
-cAMLXSTerm.prototype	= new cAMLXSObject;
+cXSTerm.prototype	= new cXSObject;

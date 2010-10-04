@@ -7,12 +7,12 @@
  *
  */
 
-var cAMLXSAttributeGroupDefinition	= function() {
+var cXSAttributeGroupDefinition	= function() {
 
 };
 
-cAMLXSAttributeGroupDefinition.prototype	= new cAMLXSObject;
+cXSAttributeGroupDefinition.prototype	= new cXSObject;
 
-cAMLXSAttributeGroupDefinition.prototype.attributeUses		= null;	// XSObjectList
-cAMLXSAttributeGroupDefinition.prototype.attributeWildcard	= null;	// XSWildcard
-cAMLXSAttributeGroupDefinition.prototype.annotation			= null;	// XSAnnotation
+cXSAttributeGroupDefinition.prototype.attributeUses		= null;	// XSObjectList
+cXSAttributeGroupDefinition.prototype.attributeWildcard	= null;	// XSWildcard
+cXSAttributeGroupDefinition.prototype.annotation			= null;	// XSAnnotation

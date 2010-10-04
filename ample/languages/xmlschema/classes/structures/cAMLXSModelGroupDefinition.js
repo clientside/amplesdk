@@ -7,11 +7,11 @@
  *
  */
 
-var cAMLXSModelGroupDefinition	= function() {
+var cXSModelGroupDefinition	= function() {
 
 };
 
-cAMLXSModelGroupDefinition.prototype	= new cAMLXSObject;
+cXSModelGroupDefinition.prototype	= new cXSObject;
 
-cAMLXSModelGroupDefinition.prototype.modelGroup	= null;	// XSModelGroup
-cAMLXSModelGroupDefinition.prototype.annotation	= null;	// XSAnnotation
+cXSModelGroupDefinition.prototype.modelGroup	= null;	// XSModelGroup
+cXSModelGroupDefinition.prototype.annotation	= null;	// XSAnnotation

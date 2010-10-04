@@ -7,13 +7,13 @@
  *
  */
 
-var cAMLXSParticle	= function() {
+var cXSParticle	= function() {
 
 };
 
-cAMLXSParticle.prototype	= new cAMLXSObject;
+cXSParticle.prototype	= new cXSObject;
 
-cAMLXSParticle.prototype.minOccurs	= null;	// Number
-cAMLXSParticle.prototype.maxOccurs	= null;	// Number
-cAMLXSParticle.prototype.maxOccursUnbounded	= null;	// Boolean
-cAMLXSParticle.prototype.term	= null;		// XSTerm
+cXSParticle.prototype.minOccurs	= null;	// Number
+cXSParticle.prototype.maxOccurs	= null;	// Number
+cXSParticle.prototype.maxOccursUnbounded	= null;	// Boolean
+cXSParticle.prototype.term	= null;		// XSTerm

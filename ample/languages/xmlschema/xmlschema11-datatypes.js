@@ -9,7 +9,7 @@
 
 function fAMLXMLSchema11_simpleType_validate(oType, sValue) {
 	switch (oType.variety) {
-		case cAMLXSSimpleTypeDefinition.VARIETY_ATOMIC:
+		case cXSSimpleTypeDefinition.VARIETY_ATOMIC:
 			// 1: Validate lexical space
 //			sValue = fAMLXMLSchema11_simpleType_getValue(oType, sValue);
 			if (oType.builtInKind in oAMLXMLSchema11_primitives && !oAMLXMLSchema11_primitives[oType.builtInKind].test(sValue))
@@ -17,9 +17,9 @@ function fAMLXMLSchema11_simpleType_validate(oType, sValue) {
 
 			// Additional analyzis required for some types
 			switch (oType.builtInKind) {
-				case cAMLXSConstants.DATETIME_DT:
-				case cAMLXSConstants.DATE_DT:
-				case cAMLXSConstants.GMONTHDAY_DT:
+				case cXSConstants.DATETIME_DT:
+				case cXSConstants.DATE_DT:
+				case cXSConstants.GMONTHDAY_DT:
 					var aValue	= sValue.match(/^(-|-?\d{4,})-(\d\d)-(\d\d)/),
 						nYear	= aValue[1] != '-' ? cNumber(aValue[1]) : 0,
 						nMonth	= cNumber(aValue[2]),
@@ -28,79 +28,79 @@ function fAMLXMLSchema11_simpleType_validate(oType, sValue) {
 						if (nDay > [31,28,31,30,31,30,31,31,30,31,30,31][nMonth - 1])
 							return false;
 
-				case cAMLXSConstants.DURATION_DT:
+				case cXSConstants.DURATION_DT:
 					if (sValue.charAt(sValue.length - 1) == 'T')
 						return false;
 					if (sValue.length <= 2)
 						return false;
 
-				case cAMLXSConstants.QNAME_DT:
+				case cXSConstants.QNAME_DT:
 					// TODO:
 			}
 
 			// 2: (a) Validate Facets
 			for (var nFacet = 0, oFacet; oFacet = oType.facets[nFacet]; nFacet++) {
 				switch (oFacet.facetKind) {
-//					case cAMLXSSimpleTypeDefinition.FACET_NONE:
+//					case cXSSimpleTypeDefinition.FACET_NONE:
 //						break;
 
-					case cAMLXSSimpleTypeDefinition.FACET_LENGTH:
+					case cXSSimpleTypeDefinition.FACET_LENGTH:
 						var nLength	= fAMLXMLSchema11_simpleType_getLength(oType, sValue);
 						if (nLength === false || nLength != cNumber(oFacet.lexicalFacetValue))
 							return false;
 						break;
 
-					case cAMLXSSimpleTypeDefinition.FACET_MINLENGTH:
+					case cXSSimpleTypeDefinition.FACET_MINLENGTH:
 						var nLength	= fAMLXMLSchema11_simpleType_getLength(oType, sValue);
 						if (nLength === false || nLength < cNumber(oFacet.lexicalFacetValue))
 							return false;
 						break;
 
-					case cAMLXSSimpleTypeDefinition.FACET_MAXLENGTH:
+					case cXSSimpleTypeDefinition.FACET_MAXLENGTH:
 						var nLength	= fAMLXMLSchema11_simpleType_getLength(oType, sValue);
 						if (nLength === false || nLength > cNumber(oFacet.lexicalFacetValue))
 							return false;
 						break;
 
-					case cAMLXSSimpleTypeDefinition.FACET_WHITESPACE:
+					case cXSSimpleTypeDefinition.FACET_WHITESPACE:
 						// TODO:
 						break;
 
-					case cAMLXSSimpleTypeDefinition.FACET_MAXINCLUSIVE:
+					case cXSSimpleTypeDefinition.FACET_MAXINCLUSIVE:
 						if (fAMLXMLSchema11_simpleType_getValue(oType, sValue) > fAMLXMLSchema11_simpleType_getValue(oType, oFacet.lexicalFacetValue))
 							return false;
 						break;
 
-					case cAMLXSSimpleTypeDefinition.FACET_MAXEXCLUSIVE:
+					case cXSSimpleTypeDefinition.FACET_MAXEXCLUSIVE:
 						if (fAMLXMLSchema11_simpleType_getValue(oType, sValue) >= fAMLXMLSchema11_simpleType_getValue(oType, oFacet.lexicalFacetValue))
 							return false;
 						break;
 
-					case cAMLXSSimpleTypeDefinition.FACET_MINEXCLUSIVE:
+					case cXSSimpleTypeDefinition.FACET_MINEXCLUSIVE:
 						if (fAMLXMLSchema11_simpleType_getValue(oType, sValue) <= fAMLXMLSchema11_simpleType_getValue(oType, oFacet.lexicalFacetValue))
 							return false;
 						break;
 
-					case cAMLXSSimpleTypeDefinition.FACET_MININCLUSIVE:
+					case cXSSimpleTypeDefinition.FACET_MININCLUSIVE:
 						if (fAMLXMLSchema11_simpleType_getValue(oType, sValue) < fAMLXMLSchema11_simpleType_getValue(oType, oFacet.lexicalFacetValue))
 							return false;
 						break;
 
-					case cAMLXSSimpleTypeDefinition.FACET_TOTALDIGITS:
+					case cXSSimpleTypeDefinition.FACET_TOTALDIGITS:
 						if (cNumber(sValue).toString().replace(/[^\d]/g, '').length > cNumber(oFacet.lexicalFacetValue))
 							return false;
 						break;
 
-					case cAMLXSSimpleTypeDefinition.FACET_FRACTIONDIGITS:
+					case cXSSimpleTypeDefinition.FACET_FRACTIONDIGITS:
 						if (cNumber(sValue).toString().match(/\.(\d+)/) && cRegExp.$1.length > cNumber(oFacet.lexicalFacetValue))
 							return false;
 						break;
 
-					case cAMLXSSimpleTypeDefinition.FACET_MINSCALE:
+					case cXSSimpleTypeDefinition.FACET_MINSCALE:
 						// TODO:
 						break;
 
-					case cAMLXSSimpleTypeDefinition.FACET_MAXSCALE:
+					case cXSSimpleTypeDefinition.FACET_MAXSCALE:
 						// TODO:
 						break;
 				}
@@ -109,13 +109,13 @@ function fAMLXMLSchema11_simpleType_validate(oType, sValue) {
 			// 2: (b) Validate multi value facets
 			for (var nFacet = 0, oFacet; oFacet = oType.multiValueFacets[nFacet]; nFacet++) {
 				switch (oFacet.facetKind) {
-					case cAMLXSSimpleTypeDefinition.FACET_PATTERN:
+					case cXSSimpleTypeDefinition.FACET_PATTERN:
 						for (var nIndex = 0; nIndex < oFacet.lexicalFacetValues.length; nIndex++)
 							if (!(new cRegExp('^' + fAMLXMLSchema11_schemaRegExpToJSRegExp(oFacet.lexicalFacetValues[nIndex]) + '$')).test(sValue))
 								return false;
 						break;
 
-					case cAMLXSSimpleTypeDefinition.FACET_ENUMERATION:
+					case cXSSimpleTypeDefinition.FACET_ENUMERATION:
 						for (var nIndex = 0, bFound = false; nIndex < oFacet.lexicalFacetValues.length && !bFound; nIndex++)
 							if (oFacet.lexicalFacetValues[nIndex] == sValue)
 								bFound	= true;
@@ -123,7 +123,7 @@ function fAMLXMLSchema11_simpleType_validate(oType, sValue) {
 							return false;
 						break;
 
-					case cAMLXSSimpleTypeDefinition.FACET_ASSERTION:
+					case cXSSimpleTypeDefinition.FACET_ASSERTION:
 						// TODO:
 						break;
 				}
@@ -134,7 +134,7 @@ function fAMLXMLSchema11_simpleType_validate(oType, sValue) {
 				return fAMLXMLSchema11_simpleType_validate(oType.baseType, sValue);
 			return true;
 
-		case cAMLXSSimpleTypeDefinition.VARIETY_LIST:
+		case cXSSimpleTypeDefinition.VARIETY_LIST:
 			// Validate every value from the list against itemType
 			if (sValue)
 				for (var nIndex = 0, aValue = fAMLXMLSchema11_simpleType_getWhiteSpace(oType, sValue).split(' '); nIndex < aValue.length; nIndex++)
@@ -142,7 +142,7 @@ function fAMLXMLSchema11_simpleType_validate(oType, sValue) {
 						return false;
 			return true;
 
-		case cAMLXSSimpleTypeDefinition.VARIETY_UNION:
+		case cXSSimpleTypeDefinition.VARIETY_UNION:
 			// Validate value against member types untill successfull
 			for (var nIndex = 0; nIndex < oType.memberTypes.length; nIndex++)
 				if (fAMLXMLSchema11_simpleType_validate(oType.memberTypes[nIndex], sValue))
@@ -156,21 +156,21 @@ function fAMLXMLSchema11_simpleType_validate(oType, sValue) {
 
 function fAMLXMLSchema11_simpleType_getValue(oType, sValue) {
 //	sValue = fAMLXMLSchema11_simpleType_getWhiteSpace(oType, sValue);
-	if (oType.variety == cAMLXSSimpleTypeDefinition.VARIETY_ATOMIC) {
+	if (oType.variety == cXSSimpleTypeDefinition.VARIETY_ATOMIC) {
 		switch (fAMLXMLSchema11_simpleType_getPrimitiveType(oType).builtInKind) {
-			case cAMLXSConstants.BOOLEAN_DT:
+			case cXSConstants.BOOLEAN_DT:
 				return sValue == "true" || sValue == '1';
 
-			case cAMLXSConstants.FLOAT_DT:
-			case cAMLXSConstants.DOUBLE_DT:
+			case cXSConstants.FLOAT_DT:
+			case cXSConstants.DOUBLE_DT:
 				return sValue == "INF" ? nInfinity : sValue == '-' + "INF" ? -nInfinity : sValue == "NaN" ? nNaN : fParseFloat(sValue);
 
-			case cAMLXSConstants.DECIMAL_DT:
-// TODO:			case cAMLXSConstants.PRECISIONDECIMAL_DT:
+			case cXSConstants.DECIMAL_DT:
+// TODO:			case cXSConstants.PRECISIONDECIMAL_DT:
 				return cNumber(sValue);
 
-			case cAMLXSConstants.DURATION_DT:
-				var aDate	= oAMLXMLSchema11_primitives[cAMLXSConstants.DURATION_DT].exec(sValue),
+			case cXSConstants.DURATION_DT:
+				var aDate	= oAMLXMLSchema11_primitives[cXSConstants.DURATION_DT].exec(sValue),
 					nMonths = fParseInt(aDate[2], 10) * 12 + fParseInt(aDate[3], 10),
 					nSeconds = ((fParseInt(aDate[4], 10) * 24 + fParseInt(aDate[5], 10)) * 60 + fParseInt(aDate[6], 10)) * 60 + fParseFloat(aDate[7]);
 				return cString(aDate[1] == '-' ? [-nMonths, -nSeconds] : [nMonths, nSeconds]);
@@ -178,13 +178,13 @@ function fAMLXMLSchema11_simpleType_getValue(oType, sValue) {
 			// DATETIME/TIME/DATE
 			// GYEAR/GYEARMONTH/GMONTH/GMONTHDAY/GDAY
 
-			case cAMLXSConstants.HEXBINARY_DT:
+			case cXSConstants.HEXBINARY_DT:
 				return sValue.toUpperCase();
 
-			case cAMLXSConstants.BASE64BINARY_DT:
+			case cXSConstants.BASE64BINARY_DT:
 				return sValue.replace(/[^a-zA-Z0-9+\/]/g, '');
 
-			case cAMLXSConstants.QNAME_DT:
+			case cXSConstants.QNAME_DT:
 				// TODO:
 		}
 	}
@@ -193,11 +193,11 @@ function fAMLXMLSchema11_simpleType_getValue(oType, sValue) {
 
 function fAMLXMLSchema11_simpleType_getWhiteSpace(oType, sValue) {
 	var sWhiteSpace	= null;
-	if (oType.variety == cAMLXSSimpleTypeDefinition.VARIETY_ATOMIC) {
+	if (oType.variety == cXSSimpleTypeDefinition.VARIETY_ATOMIC) {
 		// find whiteSpace facet specified
 		for (var oBaseType = oType, bFound = false; oBaseType && sWhiteSpace == null; oBaseType = oBaseType.baseType)
 			for (var nIndex = 0, oFacet; oFacet = oBaseType.facets[nIndex] && sWhiteSpace == null; nIndex++)
-				if (oFacet.facetKind == cAMLXSSimpleTypeDefinition.FACET_WHITESPACE)
+				if (oFacet.facetKind == cXSSimpleTypeDefinition.FACET_WHITESPACE)
 					sWhiteSpace	= oFacet.lexicalFacetValue;
 	} else
 		sWhiteSpace = "collapse";
@@ -217,20 +217,20 @@ function fAMLXMLSchema11_simpleType_getWhiteSpace(oType, sValue) {
 
 function fAMLXMLSchema11_simpleType_getLength(oType, sValue) {
 	switch (oType.variety) {
-		case cAMLXSSimpleTypeDefinition.VARIETY_ATOMIC:
+		case cXSSimpleTypeDefinition.VARIETY_ATOMIC:
 			switch (fAMLXMLSchema11_simpleType_getPrimitiveType(oType).builtInKind) {
-				case cAMLXSConstants.STRING_DT:
-				case cAMLXSConstants.ANYURI_DT:
+				case cXSConstants.STRING_DT:
+				case cXSConstants.ANYURI_DT:
 					return fAMLXMLSchema11_simpleType_getWhiteSpace(oType, sValue).length;
 
-				case cAMLXSConstants.HEXBINARY_DT:
+				case cXSConstants.HEXBINARY_DT:
 					return fAMLXMLSchema11_simpleType_getWhiteSpace(oType, sValue).length / 2;
 
-				case cAMLXSConstants.BASE64BINARY_DT:
+				case cXSConstants.BASE64BINARY_DT:
 					return cMath.floor(fAMLXMLSchema11_simpleType_getWhiteSpace(oType, sValue).replace(/[^a-zA-Z0-9+\/]/g,'').length * 3 / 4);
 
-				case cAMLXSConstants.QNAME_DT:
-				case cAMLXSConstants.NOTATION_DT:
+				case cXSConstants.QNAME_DT:
+				case cXSConstants.NOTATION_DT:
 					return true;
 
 				default:
@@ -238,7 +238,7 @@ function fAMLXMLSchema11_simpleType_getLength(oType, sValue) {
 			}
 			break;
 
-		case cAMLXSSimpleTypeDefinition.VARIETY_LIST:
+		case cXSSimpleTypeDefinition.VARIETY_LIST:
 			var sLexicalValue	= fAMLXMLSchema11_simpleType_getWhiteSpace(oType, sValue);
 			return sLexicalValue == '' ? 0 : sLexicalValue.split(' ').length;
 	}
@@ -252,22 +252,22 @@ function fAMLXMLSchema11_simpleType_getPrimitiveType(oType) {
 };
 
 var oAMLXMLSchema_facets	= {};
-//oAMLXMLSchema_facets["none"]			= cAMLXSSimpleTypeDefinition.FACET_NONE;
-oAMLXMLSchema_facets["length"]			= cAMLXSSimpleTypeDefinition.FACET_LENGTH;
-oAMLXMLSchema_facets["minLength"]		= cAMLXSSimpleTypeDefinition.FACET_MINLENGTH;
-oAMLXMLSchema_facets["maxLength"]		= cAMLXSSimpleTypeDefinition.FACET_MAXLENGTH;
-oAMLXMLSchema_facets["pattern"]			= cAMLXSSimpleTypeDefinition.FACET_PATTERN;
-oAMLXMLSchema_facets["whiteSpace"]		= cAMLXSSimpleTypeDefinition.FACET_WHITESPACE;
-oAMLXMLSchema_facets["maxInclusive"]	= cAMLXSSimpleTypeDefinition.FACET_MAXINCLUSIVE;
-oAMLXMLSchema_facets["maxExclusive"]	= cAMLXSSimpleTypeDefinition.FACET_MAXEXCLUSIVE;
-oAMLXMLSchema_facets["minExclusive"]	= cAMLXSSimpleTypeDefinition.FACET_MINEXCLUSIVE;
-oAMLXMLSchema_facets["minInclusive"]	= cAMLXSSimpleTypeDefinition.FACET_MININCLUSIVE;
-oAMLXMLSchema_facets["totalDigits"]		= cAMLXSSimpleTypeDefinition.FACET_TOTALDIGITS;
-oAMLXMLSchema_facets["fractionDigits"]	= cAMLXSSimpleTypeDefinition.FACET_FRACTIONDIGITS;
-oAMLXMLSchema_facets["enumeration"]		= cAMLXSSimpleTypeDefinition.FACET_ENUMERATION;
-oAMLXMLSchema_facets["assertion"]		= cAMLXSSimpleTypeDefinition.FACET_ASSERTION;
-oAMLXMLSchema_facets["minScale"]		= cAMLXSSimpleTypeDefinition.FACET_MINSCALE;
-oAMLXMLSchema_facets["maxScale"]		= cAMLXSSimpleTypeDefinition.FACET_MAXSCALE;
+//oAMLXMLSchema_facets["none"]			= cXSSimpleTypeDefinition.FACET_NONE;
+oAMLXMLSchema_facets["length"]			= cXSSimpleTypeDefinition.FACET_LENGTH;
+oAMLXMLSchema_facets["minLength"]		= cXSSimpleTypeDefinition.FACET_MINLENGTH;
+oAMLXMLSchema_facets["maxLength"]		= cXSSimpleTypeDefinition.FACET_MAXLENGTH;
+oAMLXMLSchema_facets["pattern"]			= cXSSimpleTypeDefinition.FACET_PATTERN;
+oAMLXMLSchema_facets["whiteSpace"]		= cXSSimpleTypeDefinition.FACET_WHITESPACE;
+oAMLXMLSchema_facets["maxInclusive"]	= cXSSimpleTypeDefinition.FACET_MAXINCLUSIVE;
+oAMLXMLSchema_facets["maxExclusive"]	= cXSSimpleTypeDefinition.FACET_MAXEXCLUSIVE;
+oAMLXMLSchema_facets["minExclusive"]	= cXSSimpleTypeDefinition.FACET_MINEXCLUSIVE;
+oAMLXMLSchema_facets["minInclusive"]	= cXSSimpleTypeDefinition.FACET_MININCLUSIVE;
+oAMLXMLSchema_facets["totalDigits"]		= cXSSimpleTypeDefinition.FACET_TOTALDIGITS;
+oAMLXMLSchema_facets["fractionDigits"]	= cXSSimpleTypeDefinition.FACET_FRACTIONDIGITS;
+oAMLXMLSchema_facets["enumeration"]		= cXSSimpleTypeDefinition.FACET_ENUMERATION;
+oAMLXMLSchema_facets["assertion"]		= cXSSimpleTypeDefinition.FACET_ASSERTION;
+oAMLXMLSchema_facets["minScale"]		= cXSSimpleTypeDefinition.FACET_MINSCALE;
+oAMLXMLSchema_facets["maxScale"]		= cXSSimpleTypeDefinition.FACET_MAXSCALE;
 
 /*
 	sBla	= (0[1-9]|1[0-2])
@@ -280,21 +280,21 @@ var sYear	= ([1-9]\d\d\d+|0\d\d\d)-sBla
 */
 
 var oAMLXMLSchema11_primitives	= {};
-oAMLXMLSchema11_primitives[cAMLXSConstants.BOOLEAN_DT]		= /^(true|false|1|0)$/;
-oAMLXMLSchema11_primitives[cAMLXSConstants.DECIMAL_DT]		= /^[+\-]?((\d+(\.\d*)?)|(\.\d+))$/;
-oAMLXMLSchema11_primitives[cAMLXSConstants.DOUBLE_DT]		=
-oAMLXMLSchema11_primitives[cAMLXSConstants.FLOAT_DT]		= /^([+\-]?((\d+(\.\d*)?)|(\.\d+))([eE][+\-]?\d+)?|-?INF|NaN)$/;
-oAMLXMLSchema11_primitives[cAMLXSConstants.DURATION_DT]		= /^(-)?P(?:([0-9]+)Y)?(?:([0-9]+)M)?(?:([0-9]+)D)?(?:T(?:([0-9]+)H)?(?:([0-9]+)M)?(?:((?:(?:[0-9]+(?:.[0-9]*)?)|(?:.[0-9]+)))S)?)?$/;
-oAMLXMLSchema11_primitives[cAMLXSConstants.DATETIME_DT] 	= /^-?([1-9]\d\d\d+|0\d\d\d)-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])T(([01]\d|2[0-3]):[0-5]\d:[0-5]\d(\.\d+)?|24:00:00(\.0+)?)(Z|[+\-](0\d|1[0-4]):[0-5]\d)?$/;
-oAMLXMLSchema11_primitives[cAMLXSConstants.DATE_DT]			= /^-?([1-9]\d\d\d+|0\d\d\d)-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])(Z|[+\-](0\d|1[0-4]):[0-5]\d)?$/;
-oAMLXMLSchema11_primitives[cAMLXSConstants.TIME_DT]			= /^(([01]\d|2[0-3]):[0-5]\d:[0-5]\d(\.\d+)?|24:00:00(\.0+)?)(Z|[+\-](0\d|1[0-4]):[0-5]\d)?$/;
-oAMLXMLSchema11_primitives[cAMLXSConstants.GYEARMONTH_DT]	= /^-?([1-9]\d\d\d+|0\d\d\d)-(0[1-9]|1[0-2])(Z|[+\-](0\d|1[0-4]):[0-5]\d)?$/;
-oAMLXMLSchema11_primitives[cAMLXSConstants.GYEAR_DT]		= /^-?([1-9]\d\d\d+|0\d\d\d)(Z|[+\-](0\d|1[0-4]):[0-5]\d)?$/;
-oAMLXMLSchema11_primitives[cAMLXSConstants.GMONTHDAY_DT]	= /^--(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])(Z|[+\-](0\d|1[0-4]):[0-5]\d)?$/;
-oAMLXMLSchema11_primitives[cAMLXSConstants.GDAY_DT]			= /^---(0[1-9]|[12]\d|3[01])(Z|[+\-](0\d|1[0-4]):[0-5]\d)?$/;
-oAMLXMLSchema11_primitives[cAMLXSConstants.GMONTH_DT]		= /^--(0[1-9]|1[0-2])(Z|[+\-](0\d|1[0-4]):[0-5]\d)?$/;
-oAMLXMLSchema11_primitives[cAMLXSConstants.HEXBINARY_DT]	= /^([0-9a-fA-F]{2})*$/;
-oAMLXMLSchema11_primitives[cAMLXSConstants.BASE64BINARY_DT]	= /^((([A-Za-z0-9+\/]\s*){4})*(([A-Za-z0-9+\/]\s*){3}[A-Za-z0-9+\/]|([A-Za-z0-9+\/]\s*){2}[AEIMQUYcgkosw048]\s*=|[A-Za-z0-9+\/]\s*[AQgw]\s*=\s*=))?$/;
+oAMLXMLSchema11_primitives[cXSConstants.BOOLEAN_DT]		= /^(true|false|1|0)$/;
+oAMLXMLSchema11_primitives[cXSConstants.DECIMAL_DT]		= /^[+\-]?((\d+(\.\d*)?)|(\.\d+))$/;
+oAMLXMLSchema11_primitives[cXSConstants.DOUBLE_DT]		=
+oAMLXMLSchema11_primitives[cXSConstants.FLOAT_DT]		= /^([+\-]?((\d+(\.\d*)?)|(\.\d+))([eE][+\-]?\d+)?|-?INF|NaN)$/;
+oAMLXMLSchema11_primitives[cXSConstants.DURATION_DT]		= /^(-)?P(?:([0-9]+)Y)?(?:([0-9]+)M)?(?:([0-9]+)D)?(?:T(?:([0-9]+)H)?(?:([0-9]+)M)?(?:((?:(?:[0-9]+(?:.[0-9]*)?)|(?:.[0-9]+)))S)?)?$/;
+oAMLXMLSchema11_primitives[cXSConstants.DATETIME_DT] 	= /^-?([1-9]\d\d\d+|0\d\d\d)-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])T(([01]\d|2[0-3]):[0-5]\d:[0-5]\d(\.\d+)?|24:00:00(\.0+)?)(Z|[+\-](0\d|1[0-4]):[0-5]\d)?$/;
+oAMLXMLSchema11_primitives[cXSConstants.DATE_DT]			= /^-?([1-9]\d\d\d+|0\d\d\d)-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])(Z|[+\-](0\d|1[0-4]):[0-5]\d)?$/;
+oAMLXMLSchema11_primitives[cXSConstants.TIME_DT]			= /^(([01]\d|2[0-3]):[0-5]\d:[0-5]\d(\.\d+)?|24:00:00(\.0+)?)(Z|[+\-](0\d|1[0-4]):[0-5]\d)?$/;
+oAMLXMLSchema11_primitives[cXSConstants.GYEARMONTH_DT]	= /^-?([1-9]\d\d\d+|0\d\d\d)-(0[1-9]|1[0-2])(Z|[+\-](0\d|1[0-4]):[0-5]\d)?$/;
+oAMLXMLSchema11_primitives[cXSConstants.GYEAR_DT]		= /^-?([1-9]\d\d\d+|0\d\d\d)(Z|[+\-](0\d|1[0-4]):[0-5]\d)?$/;
+oAMLXMLSchema11_primitives[cXSConstants.GMONTHDAY_DT]	= /^--(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])(Z|[+\-](0\d|1[0-4]):[0-5]\d)?$/;
+oAMLXMLSchema11_primitives[cXSConstants.GDAY_DT]			= /^---(0[1-9]|[12]\d|3[01])(Z|[+\-](0\d|1[0-4]):[0-5]\d)?$/;
+oAMLXMLSchema11_primitives[cXSConstants.GMONTH_DT]		= /^--(0[1-9]|1[0-2])(Z|[+\-](0\d|1[0-4]):[0-5]\d)?$/;
+oAMLXMLSchema11_primitives[cXSConstants.HEXBINARY_DT]	= /^([0-9a-fA-F]{2})*$/;
+oAMLXMLSchema11_primitives[cXSConstants.BASE64BINARY_DT]	= /^((([A-Za-z0-9+\/]\s*){4})*(([A-Za-z0-9+\/]\s*){3}[A-Za-z0-9+\/]|([A-Za-z0-9+\/]\s*){2}[AEIMQUYcgkosw048]\s*=|[A-Za-z0-9+\/]\s*[AQgw]\s*=\s*=))?$/;
 
 // Converts XML Schema RegExp syntaxis to JavaScipt one
 function fAMLXMLSchema11_schemaRegExpToJSRegExp(sValue) {
@@ -316,17 +316,17 @@ function fAMLXMLSchema11_schemaRegExpToJSRegExp(sValue) {
 oAMLXMLSchema11_processors["schema"]["simpleType"]	= function(oElementDOM, oNamespace) {
 	var sName	= oElementDOM.getAttribute("name");
 	if (sName) {
-		var oType	= new cAMLXSSimpleTypeDefinition;
+		var oType	= new cXSSimpleTypeDefinition;
 		// XSObject
-//		oType.type		= cAMLXSConstants.TYPE_DEFINITION;
+//		oType.type		= cXSConstants.TYPE_DEFINITION;
 		oType.name		= sName;
 		oType.namespace	= oNamespace.schemaNamespace;
 		oType.namespaceItem	= oNamespace;
 		// XSTypeDefinition interface
-		oType.typeCategory	= cAMLXSTypeDefinition.SIMPLE_TYPE;
+		oType.typeCategory	= cXSTypeDefinition.SIMPLE_TYPE;
 		oType.anonymous		= false;
 		// XSSimpleTypeDefinition interface
-		oType.variety		= cAMLXSSimpleTypeDefinition.VARIETY_ABSENT;
+		oType.variety		= cXSSimpleTypeDefinition.VARIETY_ABSENT;
 
 		// Register type
 		oNamespace.$types[sName]	= oType;
@@ -354,7 +354,7 @@ oAMLXMLSchema11_processors["simpleType"]["list"]	= function(oElementDOM, oType) 
 			fUtilities_warn(sAML_UNKNOWN_SIMPLE_TYPE_WRN, [sItemType]);
 //<-Debug
 	}
-	oType.variety	= cAMLXSSimpleTypeDefinition.VARIETY_LIST;
+	oType.variety	= cXSSimpleTypeDefinition.VARIETY_LIST;
 	// traverse children
 	fAMLXMLSchema11_traverseChildren(oElementDOM, oAMLXMLSchema11_processors["list"], oType);
 };
@@ -374,7 +374,7 @@ oAMLXMLSchema11_processors["simpleType"]["union"]	= function(oElementDOM, oType)
 //<-Debug
 		}
 	}
-	oType.variety	= cAMLXSSimpleTypeDefinition.VARIETY_UNION;
+	oType.variety	= cXSSimpleTypeDefinition.VARIETY_UNION;
 	// traverse children
 	fAMLXMLSchema11_traverseChildren(oElementDOM, oAMLXMLSchema11_processors["union"], oType);
 };
@@ -395,7 +395,7 @@ oAMLXMLSchema11_processors["simpleType"]["restriction"]	= function(oElementDOM, 
 		else
 			fUtilities_warn(sAML_UNKNOWN_SIMPLE_TYPE_WRN, [sBase]);
 //<-Debug
-		oType.variety		= cAMLXSSimpleTypeDefinition.VARIETY_ATOMIC;
+		oType.variety		= cXSSimpleTypeDefinition.VARIETY_ATOMIC;
 	}
 //->Debug
 	else
@@ -404,17 +404,17 @@ oAMLXMLSchema11_processors["simpleType"]["restriction"]	= function(oElementDOM, 
 };
 oAMLXMLSchema11_processors["list"]	= {};
 oAMLXMLSchema11_processors["list"]["simpleType"]	= function(oElementDOM, oType) {
-	var oItemType	= new cAMLXSSimpleTypeDefinition;
+	var oItemType	= new cXSSimpleTypeDefinition;
 	// XSObject
-//	oItemType.type		= cAMLXSConstants.TYPE_DEFINITION;
+//	oItemType.type		= cXSConstants.TYPE_DEFINITION;
 //	oItemType.name		= null;	// no neeed to set
 //	oItemType.namespace	= null;	// no neeed to set
 //	oItemType.namespaceItem	= oType.namespaceItem;
 	// XSTypeDefinition interface
-	oItemType.typeCategory	= cAMLXSTypeDefinition.SIMPLE_TYPE;
+	oItemType.typeCategory	= cXSTypeDefinition.SIMPLE_TYPE;
 	oItemType.anonymous		= true;
 	// XSSimpleTypeDefinition interface
-	oItemType.variety		= cAMLXSSimpleTypeDefinition.VARIETY_ATOMIC;
+	oItemType.variety		= cXSSimpleTypeDefinition.VARIETY_ATOMIC;
 
 	// TODO: Check if there is itemType specified in attribute
 	oType.itemType	= oItemType;
@@ -425,17 +425,17 @@ oAMLXMLSchema11_processors["list"]["simpleType"]	= function(oElementDOM, oType) 
 
 oAMLXMLSchema11_processors["union"]	= {};
 oAMLXMLSchema11_processors["union"]["simpleType"]	= function(oElementDOM, oType) {
-	var oMemberType	= new cAMLXSSimpleTypeDefinition;
-//	oMemberType.type		= cAMLXSConstants.TYPE_DEFINITION;
+	var oMemberType	= new cXSSimpleTypeDefinition;
+//	oMemberType.type		= cXSConstants.TYPE_DEFINITION;
 //	oMemberType.name		= null;	// no neeed to set
 //	oMemberType.namespace	= null;	// no neeed to set
 //	oMemberType.namespaceItem	= oType.namespaceItem;
 	// XSTypeDefinition interface
-	oMemberType.typeCategory	= cAMLXSTypeDefinition.SIMPLE_TYPE;
+	oMemberType.typeCategory	= cXSTypeDefinition.SIMPLE_TYPE;
 	oMemberType.anonymous		= true;
 //	oMemberType.baseType		=
 	// XSSimpleTypeDefinition interface
-	oMemberType.variety		= cAMLXSSimpleTypeDefinition.VARIETY_ATOMIC;
+	oMemberType.variety		= cXSSimpleTypeDefinition.VARIETY_ATOMIC;
 
 	// TODO: Check if there is memberTypes specified in attribute
 	oType.memberTypes.$add(oMemberType);
@@ -461,7 +461,7 @@ oAMLXMLSchema11_processors["restriction"]["minScale"]	=
 oAMLXMLSchema11_processors["restriction"]["maxScale"]	= function(oElementDOM, oType) {
 	var sValue	= oElementDOM.getAttribute("value");
 	if (sValue) {
-		var oFacet	= new cAMLXSFacet;
+		var oFacet	= new cXSFacet;
 		// XSFacet
 		oFacet.lexicalFacetValue	= sValue;
 		oFacet.fixed	= oElementDOM.getAttribute("fixed") == "true";
@@ -489,7 +489,7 @@ oAMLXMLSchema11_processors["restriction"]["enumeration"]	= function(oElementDOM,
 
 		// if facet not defined, create one
 		if (!oFacet) {
-			oFacet	= new cAMLXSMultiValueFacet;
+			oFacet	= new cXSMultiValueFacet;
 			// XSMultiValueFacet
 			oFacet.fixed	= oElementDOM.getAttribute("fixed") == "true";
 			oFacet.facetKind= nFacet;

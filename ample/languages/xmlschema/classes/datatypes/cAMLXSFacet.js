@@ -7,13 +7,13 @@
  *
  */
 
-var cAMLXSFacet	= function() {
+var cXSFacet	= function() {
 
 };
 
-cAMLXSFacet.prototype	= new cAMLXSObject;
+cXSFacet.prototype	= new cXSObject;
 
-cAMLXSFacet.prototype.facetKind			= null;	// Number
-cAMLXSFacet.prototype.lexicalFacetValue	= null; // String
-cAMLXSFacet.prototype.fixed				= null; // Boolean
-cAMLXSFacet.prototype.annotation		= null; // XSAnnotation
+cXSFacet.prototype.facetKind			= null;	// Number
+cXSFacet.prototype.lexicalFacetValue	= null; // String
+cXSFacet.prototype.fixed				= null; // Boolean
+cXSFacet.prototype.annotation		= null; // XSAnnotation

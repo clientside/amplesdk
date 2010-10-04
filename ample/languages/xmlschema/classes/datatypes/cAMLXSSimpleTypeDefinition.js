@@ -7,100 +7,100 @@
  *
  */
 
-var cAMLXSSimpleTypeDefinition	= function() {
-	this.memberTypes		= new cAMLXSObjectList;
+var cXSSimpleTypeDefinition	= function() {
+	this.memberTypes		= new cXSObjectList;
 	this.lexicalEnumeration	= new cAMLStringList;
 	this.lexicalPattern		= new cAMLStringList;
-	this.facets				= new cAMLXSObjectList;
-	this.multiValueFacets	= new cAMLXSObjectList;
+	this.facets				= new cXSObjectList;
+	this.multiValueFacets	= new cXSObjectList;
 };
 
-cAMLXSSimpleTypeDefinition.prototype	= new cAMLXSTypeDefinition;
+cXSSimpleTypeDefinition.prototype	= new cXSTypeDefinition;
 
 // Constants
-cAMLXSSimpleTypeDefinition.VARIETY_ABSENT	= 0;
-cAMLXSSimpleTypeDefinition.VARIETY_ATOMIC	= 1;
-cAMLXSSimpleTypeDefinition.VARIETY_LIST		= 2;
-cAMLXSSimpleTypeDefinition.VARIETY_UNION	= 3;
+cXSSimpleTypeDefinition.VARIETY_ABSENT	= 0;
+cXSSimpleTypeDefinition.VARIETY_ATOMIC	= 1;
+cXSSimpleTypeDefinition.VARIETY_LIST		= 2;
+cXSSimpleTypeDefinition.VARIETY_UNION	= 3;
 
 // XML Schema 1.0
-cAMLXSSimpleTypeDefinition.FACET_NONE		= 0;
-cAMLXSSimpleTypeDefinition.FACET_LENGTH		= 1;
-cAMLXSSimpleTypeDefinition.FACET_MINLENGTH	= 2;
-cAMLXSSimpleTypeDefinition.FACET_MAXLENGTH	= 4;
-cAMLXSSimpleTypeDefinition.FACET_PATTERN	= 8;
-cAMLXSSimpleTypeDefinition.FACET_WHITESPACE	= 16;
-cAMLXSSimpleTypeDefinition.FACET_MAXINCLUSIVE	= 32;
-cAMLXSSimpleTypeDefinition.FACET_MAXEXCLUSIVE	= 64;
-cAMLXSSimpleTypeDefinition.FACET_MINEXCLUSIVE	= 128;
-cAMLXSSimpleTypeDefinition.FACET_MININCLUSIVE	= 256;
-cAMLXSSimpleTypeDefinition.FACET_TOTALDIGITS	= 512;
-cAMLXSSimpleTypeDefinition.FACET_FRACTIONDIGITS	= 1024;
-cAMLXSSimpleTypeDefinition.FACET_ENUMERATION	= 2048;
+cXSSimpleTypeDefinition.FACET_NONE		= 0;
+cXSSimpleTypeDefinition.FACET_LENGTH		= 1;
+cXSSimpleTypeDefinition.FACET_MINLENGTH	= 2;
+cXSSimpleTypeDefinition.FACET_MAXLENGTH	= 4;
+cXSSimpleTypeDefinition.FACET_PATTERN	= 8;
+cXSSimpleTypeDefinition.FACET_WHITESPACE	= 16;
+cXSSimpleTypeDefinition.FACET_MAXINCLUSIVE	= 32;
+cXSSimpleTypeDefinition.FACET_MAXEXCLUSIVE	= 64;
+cXSSimpleTypeDefinition.FACET_MINEXCLUSIVE	= 128;
+cXSSimpleTypeDefinition.FACET_MININCLUSIVE	= 256;
+cXSSimpleTypeDefinition.FACET_TOTALDIGITS	= 512;
+cXSSimpleTypeDefinition.FACET_FRACTIONDIGITS	= 1024;
+cXSSimpleTypeDefinition.FACET_ENUMERATION	= 2048;
 // XML Schema 1.1
-cAMLXSSimpleTypeDefinition.FACET_ASSERTION		= 4096;
-cAMLXSSimpleTypeDefinition.FACET_MINSCALE		= 8192;
-cAMLXSSimpleTypeDefinition.FACET_MAXSCALE		= 16384;
+cXSSimpleTypeDefinition.FACET_ASSERTION		= 4096;
+cXSSimpleTypeDefinition.FACET_MINSCALE		= 8192;
+cXSSimpleTypeDefinition.FACET_MAXSCALE		= 16384;
 
 //->Source
-cAMLXSSimpleTypeDefinition.FACET_NONE		= "none";
-cAMLXSSimpleTypeDefinition.FACET_LENGTH		= "length";
-cAMLXSSimpleTypeDefinition.FACET_MINLENGTH	= "minLength";
-cAMLXSSimpleTypeDefinition.FACET_MAXLENGTH	= "maxLength";
-cAMLXSSimpleTypeDefinition.FACET_PATTERN	= "pattern";
-cAMLXSSimpleTypeDefinition.FACET_WHITESPACE	= "whiteSpace";
-cAMLXSSimpleTypeDefinition.FACET_MAXINCLUSIVE	= "maxInclusive";
-cAMLXSSimpleTypeDefinition.FACET_MAXEXCLUSIVE	= "maxExclusive";
-cAMLXSSimpleTypeDefinition.FACET_MINEXCLUSIVE	= "minExclusive";
-cAMLXSSimpleTypeDefinition.FACET_MININCLUSIVE	= "minInclulsive";
-cAMLXSSimpleTypeDefinition.FACET_TOTALDIGITS	= "totalDigits";
-cAMLXSSimpleTypeDefinition.FACET_FRACTIONDIGITS	= "fractionDigits";
-cAMLXSSimpleTypeDefinition.FACET_ENUMERATION	= "enumeration";
+cXSSimpleTypeDefinition.FACET_NONE		= "none";
+cXSSimpleTypeDefinition.FACET_LENGTH		= "length";
+cXSSimpleTypeDefinition.FACET_MINLENGTH	= "minLength";
+cXSSimpleTypeDefinition.FACET_MAXLENGTH	= "maxLength";
+cXSSimpleTypeDefinition.FACET_PATTERN	= "pattern";
+cXSSimpleTypeDefinition.FACET_WHITESPACE	= "whiteSpace";
+cXSSimpleTypeDefinition.FACET_MAXINCLUSIVE	= "maxInclusive";
+cXSSimpleTypeDefinition.FACET_MAXEXCLUSIVE	= "maxExclusive";
+cXSSimpleTypeDefinition.FACET_MINEXCLUSIVE	= "minExclusive";
+cXSSimpleTypeDefinition.FACET_MININCLUSIVE	= "minInclulsive";
+cXSSimpleTypeDefinition.FACET_TOTALDIGITS	= "totalDigits";
+cXSSimpleTypeDefinition.FACET_FRACTIONDIGITS	= "fractionDigits";
+cXSSimpleTypeDefinition.FACET_ENUMERATION	= "enumeration";
 // XML Schema 1.1
-cAMLXSSimpleTypeDefinition.FACET_ASSERTION		= "assertion";
-cAMLXSSimpleTypeDefinition.FACET_MINSCALE		= "minScale";
-cAMLXSSimpleTypeDefinition.FACET_MAXSCALE		= "maxScale";
+cXSSimpleTypeDefinition.FACET_ASSERTION		= "assertion";
+cXSSimpleTypeDefinition.FACET_MINSCALE		= "minScale";
+cXSSimpleTypeDefinition.FACET_MAXSCALE		= "maxScale";
 //<-Source
 
-cAMLXSSimpleTypeDefinition.ORDERED_FALSE	= 0;
-cAMLXSSimpleTypeDefinition.ORDERED_PARTIAL	= 1;
-cAMLXSSimpleTypeDefinition.ORDERED_TOTAL	= 2;
+cXSSimpleTypeDefinition.ORDERED_FALSE	= 0;
+cXSSimpleTypeDefinition.ORDERED_PARTIAL	= 1;
+cXSSimpleTypeDefinition.ORDERED_TOTAL	= 2;
 
 // XML Schema 1.1
-cAMLXSSimpleTypeDefinition.CARDINALITY_FINITE				= 0;
-cAMLXSSimpleTypeDefinition.CARDINALITY_COUNTABLY_INFINITE	= 1;
+cXSSimpleTypeDefinition.CARDINALITY_FINITE				= 0;
+cXSSimpleTypeDefinition.CARDINALITY_COUNTABLY_INFINITE	= 1;
 
-cAMLXSSimpleTypeDefinition.prototype.variety			= null;	// Number
-cAMLXSSimpleTypeDefinition.prototype.primitiveType		= null;	// XSSimpleTypeDefinition
-cAMLXSSimpleTypeDefinition.prototype.builtInKind		= null;	// Number
-cAMLXSSimpleTypeDefinition.prototype.itemType			= null;	// XSSimpleTypeDefinition
-cAMLXSSimpleTypeDefinition.prototype.memberTypes		= null;	// XSObjectList
-cAMLXSSimpleTypeDefinition.prototype.definedFacets		= null;	// Number
-cAMLXSSimpleTypeDefinition.prototype.fixedFacets		= null;	// Number
-cAMLXSSimpleTypeDefinition.prototype.lexicalEnumeration	= null;	// StringList
-cAMLXSSimpleTypeDefinition.prototype.lexicalPattern		= null;	// StringList
-cAMLXSSimpleTypeDefinition.prototype.ordered			= null;	// Number
-cAMLXSSimpleTypeDefinition.prototype.finite				= null;	// Boolean
-cAMLXSSimpleTypeDefinition.prototype.bounded			= null;	// Boolean
-cAMLXSSimpleTypeDefinition.prototype.numeric			= null;	// Boolean
-cAMLXSSimpleTypeDefinition.prototype.facets				= null;	// XSObjectList
-cAMLXSSimpleTypeDefinition.prototype.multiValueFacets	= null;	// XSObjectList
-cAMLXSSimpleTypeDefinition.prototype.annotations		= null;	// XSObjectList
+cXSSimpleTypeDefinition.prototype.variety			= null;	// Number
+cXSSimpleTypeDefinition.prototype.primitiveType		= null;	// XSSimpleTypeDefinition
+cXSSimpleTypeDefinition.prototype.builtInKind		= null;	// Number
+cXSSimpleTypeDefinition.prototype.itemType			= null;	// XSSimpleTypeDefinition
+cXSSimpleTypeDefinition.prototype.memberTypes		= null;	// XSObjectList
+cXSSimpleTypeDefinition.prototype.definedFacets		= null;	// Number
+cXSSimpleTypeDefinition.prototype.fixedFacets		= null;	// Number
+cXSSimpleTypeDefinition.prototype.lexicalEnumeration	= null;	// StringList
+cXSSimpleTypeDefinition.prototype.lexicalPattern		= null;	// StringList
+cXSSimpleTypeDefinition.prototype.ordered			= null;	// Number
+cXSSimpleTypeDefinition.prototype.finite				= null;	// Boolean
+cXSSimpleTypeDefinition.prototype.bounded			= null;	// Boolean
+cXSSimpleTypeDefinition.prototype.numeric			= null;	// Boolean
+cXSSimpleTypeDefinition.prototype.facets				= null;	// XSObjectList
+cXSSimpleTypeDefinition.prototype.multiValueFacets	= null;	// XSObjectList
+cXSSimpleTypeDefinition.prototype.annotations		= null;	// XSObjectList
 // XML Schema 1.1
-cAMLXSSimpleTypeDefinition.prototype.cardinality		= null;	// Number
+cXSSimpleTypeDefinition.prototype.cardinality		= null;	// Number
 
 
 /* @type	Boolean */
-cAMLXSSimpleTypeDefinition.prototype.isDefinedFacet	= function(nFacetName) {
+cXSSimpleTypeDefinition.prototype.isDefinedFacet	= function(nFacetName) {
 
 };
 
 /* @type	Boolean */
-cAMLXSSimpleTypeDefinition.prototype.isFixedFacet	= function(nFacetName) {
+cXSSimpleTypeDefinition.prototype.isFixedFacet	= function(nFacetName) {
 
 };
 
 /* @type	String */
-cAMLXSSimpleTypeDefinition.prototype.getLexicalFacetValue	= function(nFacetName) {
+cXSSimpleTypeDefinition.prototype.getLexicalFacetValue	= function(nFacetName) {
 
 };

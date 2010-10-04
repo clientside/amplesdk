@@ -7,16 +7,16 @@
  *
  */
 
-var cAMLXSModelGroup	= function() {
+var cXSModelGroup	= function() {
 
 };
 
-cAMLXSModelGroup.prototype	= new cAMLXSTerm;
+cXSModelGroup.prototype	= new cXSTerm;
 
-cAMLXSModelGroup.COMPOSITOR_SEQUENCE	= 1;
-cAMLXSModelGroup.COMPOSITOR_CHOICE		= 2;
-cAMLXSModelGroup.COMPOSITOR_ALL			= 3;
+cXSModelGroup.COMPOSITOR_SEQUENCE	= 1;
+cXSModelGroup.COMPOSITOR_CHOICE		= 2;
+cXSModelGroup.COMPOSITOR_ALL			= 3;
 
-cAMLXSModelGroup.prototype.compositor	= null;	// Number
-cAMLXSModelGroup.prototype.particles	= null;	// XSObjectList
-cAMLXSModelGroup.prototype.annotation	= null;	// XSAnnotation
+cXSModelGroup.prototype.compositor	= null;	// Number
+cXSModelGroup.prototype.particles	= null;	// XSObjectList
+cXSModelGroup.prototype.annotation	= null;	// XSAnnotation

@@ -7,31 +7,31 @@
  *
  */
 
-var cAMLXSTypeDefinition	= function() {
+var cXSTypeDefinition	= function() {
 
 };
 
-cAMLXSTypeDefinition.prototype	= new cAMLXSObject;
+cXSTypeDefinition.prototype	= new cXSObject;
 
-cAMLXSTypeDefinition.COMPLEX_TYPE	= 15;
-cAMLXSTypeDefinition.SIMPLE_TYPE	= 16;
+cXSTypeDefinition.COMPLEX_TYPE	= 15;
+cXSTypeDefinition.SIMPLE_TYPE	= 16;
 
-cAMLXSTypeDefinition.prototype.typeCategory	= null;	// Number
-cAMLXSTypeDefinition.prototype.baseType		= null;	// XSTypeDefinition
-cAMLXSTypeDefinition.prototype["final"]		= null;	// Number
-cAMLXSTypeDefinition.prototype.anonymous	= null;	// Boolean
-
-// @type	Boolean
-cAMLXSTypeDefinition.prototype.isFinal	= function(nRestriction) {
-
-};
+cXSTypeDefinition.prototype.typeCategory	= null;	// Number
+cXSTypeDefinition.prototype.baseType		= null;	// XSTypeDefinition
+cXSTypeDefinition.prototype["final"]		= null;	// Number
+cXSTypeDefinition.prototype.anonymous	= null;	// Boolean
 
 // @type	Boolean
-cAMLXSTypeDefinition.prototype.derivedFromType	= function(/* XSTypeDefinition */ oAncestorType, /* Number*/ nDerivationMethod) {
+cXSTypeDefinition.prototype.isFinal	= function(nRestriction) {
 
 };
 
 // @type	Boolean
-cAMLXSTypeDefinition.prototype.derivedFrom	= function(/* String */ sNameSpaceURI, /* String */ sLocalName, /* Number */ nDerivationName) {
+cXSTypeDefinition.prototype.derivedFromType	= function(/* XSTypeDefinition */ oAncestorType, /* Number*/ nDerivationMethod) {
+
+};
+
+// @type	Boolean
+cXSTypeDefinition.prototype.derivedFrom	= function(/* String */ sNameSpaceURI, /* String */ sLocalName, /* Number */ nDerivationName) {
 
 };

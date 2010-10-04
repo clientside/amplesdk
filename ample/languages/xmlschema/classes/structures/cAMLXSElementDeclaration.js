@@ -7,34 +7,34 @@
  *
  */
 
-var cAMLXSElementDeclaration	= function() {
+var cXSElementDeclaration	= function() {
 
 };
 
-cAMLXSElementDeclaration.prototype	= new cAMLXSTerm;
+cXSElementDeclaration.prototype	= new cXSTerm;
 
-cAMLXSElementDeclaration.prototype.typeDefinition			= null;	// XSTypeDefinition
-cAMLXSElementDeclaration.prototype.scope					= null;	// Number
-cAMLXSElementDeclaration.prototype.enclosingCTDefinition	= null;	// XSComplexTypeDefinition
-cAMLXSElementDeclaration.prototype.constraintType			= null;	// Number
-cAMLXSElementDeclaration.prototype.constraintValue			= null;	// String
-cAMLXSElementDeclaration.prototype.actualVC					= null;	// Object
-cAMLXSElementDeclaration.prototype.actualVCType				= null;	// Number
-cAMLXSElementDeclaration.prototype.itemValueTypes			= null;	// ShortList
-cAMLXSElementDeclaration.prototype.nillable					= null;	// Boolean
-cAMLXSElementDeclaration.prototype.identityConstraints		= null;	// XSNamedMap
-cAMLXSElementDeclaration.prototype.substitutionGroupAffiliation	= null;	// XSElementDeclaration
-cAMLXSElementDeclaration.prototype.substitutionGroupExclusions	= null;	// Number
-cAMLXSElementDeclaration.prototype.disallowedSubstitutions	= null;	// Number
-cAMLXSElementDeclaration.prototype.abstract					= null;	// Boolean
-cAMLXSElementDeclaration.prototype.annotation				= null;	// XSAnnotation
+cXSElementDeclaration.prototype.typeDefinition			= null;	// XSTypeDefinition
+cXSElementDeclaration.prototype.scope					= null;	// Number
+cXSElementDeclaration.prototype.enclosingCTDefinition	= null;	// XSComplexTypeDefinition
+cXSElementDeclaration.prototype.constraintType			= null;	// Number
+cXSElementDeclaration.prototype.constraintValue			= null;	// String
+cXSElementDeclaration.prototype.actualVC					= null;	// Object
+cXSElementDeclaration.prototype.actualVCType				= null;	// Number
+cXSElementDeclaration.prototype.itemValueTypes			= null;	// ShortList
+cXSElementDeclaration.prototype.nillable					= null;	// Boolean
+cXSElementDeclaration.prototype.identityConstraints		= null;	// XSNamedMap
+cXSElementDeclaration.prototype.substitutionGroupAffiliation	= null;	// XSElementDeclaration
+cXSElementDeclaration.prototype.substitutionGroupExclusions	= null;	// Number
+cXSElementDeclaration.prototype.disallowedSubstitutions	= null;	// Number
+cXSElementDeclaration.prototype.abstract					= null;	// Boolean
+cXSElementDeclaration.prototype.annotation				= null;	// XSAnnotation
 
 /* @type	Boolean */
-cAMLXSElementDeclaration.prototype.isSubstitutionGroupExclusion	= function(nExclusion) {
+cXSElementDeclaration.prototype.isSubstitutionGroupExclusion	= function(nExclusion) {
 
 };
 
 /* @type	Boolean */
-cAMLXSElementDeclaration.prototype.isDisallowedSubstitution	= function(nDisallowed) {
+cXSElementDeclaration.prototype.isDisallowedSubstitution	= function(nDisallowed) {
 
 };

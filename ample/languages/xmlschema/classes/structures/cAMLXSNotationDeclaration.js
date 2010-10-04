@@ -7,12 +7,12 @@
  *
  */
 
-var cAMLXSNotationDeclaration	= function() {
+var cXSNotationDeclaration	= function() {
 
 };
 
-cAMLXSNotationDeclaration.prototype	= new cAMLXSObject;
+cXSNotationDeclaration.prototype	= new cXSObject;
 
-cAMLXSNotationDeclaration.prototype.systemId	= null;	// String
-cAMLXSNotationDeclaration.prototype.publicId	= null;	// String
-cAMLXSNotationDeclaration.prototype.annotation	= null;	// XSAnnotation
+cXSNotationDeclaration.prototype.systemId	= null;	// String
+cXSNotationDeclaration.prototype.publicId	= null;	// String
+cXSNotationDeclaration.prototype.annotation	= null;	// XSAnnotation

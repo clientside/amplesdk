@@ -7,13 +7,13 @@
  *
  */
 
-var cAMLXSObjectList	= function() {
+var cXSObjectList	= function() {
 
 };
 // This object can also be dereferenced using square bracket notation (e.g. obj[1]).
-cAMLXSObjectList.prototype.length	= 0;
+cXSObjectList.prototype.length	= 0;
 
-cAMLXSObjectList.prototype.item	= function(nIndex) {
+cXSObjectList.prototype.item	= function(nIndex) {
 	// Validate arguments
 	fGuard(arguments, [
 		["node",	cNumber]
@@ -22,6 +22,6 @@ cAMLXSObjectList.prototype.item	= function(nIndex) {
 	return nIndex < this.length ? this[nIndex] : null;
 };
 
-cAMLXSObjectList.prototype.$add	= function(oValue) {
+cXSObjectList.prototype.$add	= function(oValue) {
 	this[this.length++]	= oValue;
 };

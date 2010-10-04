@@ -7,16 +7,16 @@
  *
  */
 
-var cAMLXSAttributeUse	= function() {
+var cXSAttributeUse	= function() {
 
 };
 
-cAMLXSAttributeUse.prototype	= new cAMLXSObject;
+cXSAttributeUse.prototype	= new cXSObject;
 
-cAMLXSAttributeUse.prototype.required			= null;	// Boolean
-cAMLXSAttributeUse.prototype.attrDeclaration	= null;	// XSAttributeDeclaration
-cAMLXSAttributeUse.prototype.constraintType		= null;	// Number
-cAMLXSAttributeUse.prototype.constraintValue	= null;	// String
-cAMLXSAttributeUse.prototype.actualVC			= null;	// Object
-cAMLXSAttributeUse.prototype.actualVCType		= null;	// Number
-cAMLXSAttributeUse.prototype.itemValueTypes		= null;	// ShortList
+cXSAttributeUse.prototype.required			= null;	// Boolean
+cXSAttributeUse.prototype.attrDeclaration	= null;	// XSAttributeDeclaration
+cXSAttributeUse.prototype.constraintType		= null;	// Number
+cXSAttributeUse.prototype.constraintValue	= null;	// String
+cXSAttributeUse.prototype.actualVC			= null;	// Object
+cXSAttributeUse.prototype.actualVCType		= null;	// Number
+cXSAttributeUse.prototype.itemValueTypes		= null;	// ShortList

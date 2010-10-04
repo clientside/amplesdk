@@ -7,7 +7,7 @@
  *
  */
 
-var cAMLXSNamespaceItem	= function() {
+var cXSNamespaceItem	= function() {
 	this.$elements			= {};
 	this.$attributes		= {};
 	this.$attributeGroups	= {};
@@ -15,34 +15,34 @@ var cAMLXSNamespaceItem	= function() {
 	this.$types				= {};
 };
 
-cAMLXSNamespaceItem.prototype.schemaNamespace	= null;	// String
-cAMLXSNamespaceItem.prototype.annotations		= null;	// XSObjectList
-cAMLXSNamespaceItem.prototype.documentLocations	= null; // StringList
+cXSNamespaceItem.prototype.schemaNamespace	= null;	// String
+cXSNamespaceItem.prototype.annotations		= null;	// XSObjectList
+cXSNamespaceItem.prototype.documentLocations	= null; // StringList
 
 // Private
-cAMLXSNamespaceItem.prototype.$elements			= null;
-cAMLXSNamespaceItem.prototype.$attributes		= null;
-cAMLXSNamespaceItem.prototype.$attributeGroups	= null;
-cAMLXSNamespaceItem.prototype.$modelGroups		= null;
-cAMLXSNamespaceItem.prototype.$types			= null;
+cXSNamespaceItem.prototype.$elements			= null;
+cXSNamespaceItem.prototype.$attributes		= null;
+cXSNamespaceItem.prototype.$attributeGroups	= null;
+cXSNamespaceItem.prototype.$modelGroups		= null;
+cXSNamespaceItem.prototype.$types			= null;
 
 // @type	XSNamedMap
-cAMLXSNamespaceItem.prototype.getComponents	= function(nObjectType) {
+cXSNamespaceItem.prototype.getComponents	= function(nObjectType) {
 	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
 
 // @type	XSElementDeclaration
-cAMLXSNamespaceItem.prototype.getElementDeclaration	= function(sName) {
+cXSNamespaceItem.prototype.getElementDeclaration	= function(sName) {
 	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
 
 // @type	XSAttributeDeclaration
-cAMLXSNamespaceItem.prototype.getAttributeDeclaration	= function(sName) {
+cXSNamespaceItem.prototype.getAttributeDeclaration	= function(sName) {
 	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
 
 // @type	XSTypeDefinition
-cAMLXSNamespaceItem.prototype.getTypeDefinition	= function(sName) {
+cXSNamespaceItem.prototype.getTypeDefinition	= function(sName) {
 	// Validate arguments
 	fGuard(arguments, [
 		["name",		cString]
@@ -52,17 +52,17 @@ cAMLXSNamespaceItem.prototype.getTypeDefinition	= function(sName) {
 };
 
 // @type	XSAttributeGroupDefinition
-cAMLXSNamespaceItem.prototype.getAttributeGroup	= function(sName) {
+cXSNamespaceItem.prototype.getAttributeGroup	= function(sName) {
 	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
 
 // @type	XSModelGroupDefinition
-cAMLXSNamespaceItem.prototype.getModelGroupDefinition	= function(sName) {
+cXSNamespaceItem.prototype.getModelGroupDefinition	= function(sName) {
 	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
 
 // @type	XSNotationDeclaration
-cAMLXSNamespaceItem.prototype.getNotationDeclaration	= function(sName) {
+cXSNamespaceItem.prototype.getNotationDeclaration	= function(sName) {
 	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
 

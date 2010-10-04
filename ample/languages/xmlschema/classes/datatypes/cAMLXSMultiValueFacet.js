@@ -7,12 +7,12 @@
  *
  */
 
-var cAMLXSMultiValueFacet	= function() {
+var cXSMultiValueFacet	= function() {
 	this.lexicalFacetValues	= new cAMLStringList;
 };
 
-cAMLXSMultiValueFacet.prototype	= new cAMLXSObject;
+cXSMultiValueFacet.prototype	= new cXSObject;
 
-cAMLXSMultiValueFacet.prototype.facetKind			= null;	// Number
-cAMLXSMultiValueFacet.prototype.lexicalFacetValues	= null; // StringList
-cAMLXSMultiValueFacet.prototype.annotations			= null; // XSObjectList
+cXSMultiValueFacet.prototype.facetKind			= null;	// Number
+cXSMultiValueFacet.prototype.lexicalFacetValues	= null; // StringList
+cXSMultiValueFacet.prototype.annotations			= null; // XSObjectList

@@ -7,11 +7,11 @@
  *
  */
 
-var cAMLXSException	= function() {
+var cXSException	= function() {
 
 };
 
-cAMLXSException.prototype.code	= null;
+cXSException.prototype.code	= null;
 
-cAMLXSException.NOT_SUPPORTED_ERR	= 1;
-cAMLXSException.INDEX_SIZE_ERR		= 2;
+cXSException.NOT_SUPPORTED_ERR	= 1;
+cXSException.INDEX_SIZE_ERR		= 2;

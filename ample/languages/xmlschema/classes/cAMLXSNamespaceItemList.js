@@ -7,13 +7,13 @@
  *
  */
 
-var cAMLXSNamespaceItemList	= function() {
+var cXSNamespaceItemList	= function() {
 
 };
 
-cAMLXSNamespaceItemList.prototype.length	= 0;
+cXSNamespaceItemList.prototype.length	= 0;
 
-cAMLXSNamespaceItemList.prototype.item	= function(nIndex) {
+cXSNamespaceItemList.prototype.item	= function(nIndex) {
 	// Validate arguments
 	fGuard(arguments, [
 		["index",	cNumber]
@@ -22,6 +22,6 @@ cAMLXSNamespaceItemList.prototype.item	= function(nIndex) {
 	return nIndex < this.length ? this[nIndex] : null;
 };
 
-cAMLXSNamespaceItemList.prototype.$add	= function(oValue) {
+cXSNamespaceItemList.prototype.$add	= function(oValue) {
 	this[this.length++]	= oValue;
 };

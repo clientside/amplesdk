@@ -7,16 +7,16 @@
  *
  */
 
-var cAMLXSNamedMap	= function() {
+var cXSNamedMap	= function() {
 
 };
 
-cAMLXSNamedMap.prototype.length	= 0;
+cXSNamedMap.prototype.length	= 0;
 
-cAMLXSNamedMap.prototype.item	= function(nIndex) {
+cXSNamedMap.prototype.item	= function(nIndex) {
 
 };
 
-cAMLXSNamedMap.prototype.itemByName	= function(sNameSpaceURI, sLocalName) {
+cXSNamedMap.prototype.itemByName	= function(sNameSpaceURI, sLocalName) {
 
 };

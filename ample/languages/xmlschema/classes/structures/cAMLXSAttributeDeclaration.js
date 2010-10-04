@@ -7,18 +7,18 @@
  *
  */
 
-var cAMLXSAttributeDeclaration	= function() {
+var cXSAttributeDeclaration	= function() {
 
 };
 
-cAMLXSAttributeDeclaration.prototype	= new cAMLXSObject;
+cXSAttributeDeclaration.prototype	= new cXSObject;
 
-cAMLXSAttributeDeclaration.prototype.typeDefinition			= null;	// XSSimpleTypeDefinition
-cAMLXSAttributeDeclaration.prototype.scope					= null;	// Number
-cAMLXSAttributeDeclaration.prototype.enclosingCTDefinition	= null;	// XSComplexTypeDefinition
-cAMLXSAttributeDeclaration.prototype.constraintType			= null;	// Number
-cAMLXSAttributeDeclaration.prototype.constraintValue		= null;	// String
-cAMLXSAttributeDeclaration.prototype.actualVC				= null;	// Object
-cAMLXSAttributeDeclaration.prototype.actualVCType			= null;	// Number
-cAMLXSAttributeDeclaration.prototype.itemValueTypes			= null;	// ShortList
-cAMLXSAttributeDeclaration.prototype.annotation				= null;	// XSAnnotation
+cXSAttributeDeclaration.prototype.typeDefinition			= null;	// XSSimpleTypeDefinition
+cXSAttributeDeclaration.prototype.scope					= null;	// Number
+cXSAttributeDeclaration.prototype.enclosingCTDefinition	= null;	// XSComplexTypeDefinition
+cXSAttributeDeclaration.prototype.constraintType			= null;	// Number
+cXSAttributeDeclaration.prototype.constraintValue		= null;	// String
+cXSAttributeDeclaration.prototype.actualVC				= null;	// Object
+cXSAttributeDeclaration.prototype.actualVCType			= null;	// Number
+cXSAttributeDeclaration.prototype.itemValueTypes			= null;	// ShortList
+cXSAttributeDeclaration.prototype.annotation				= null;	// XSAnnotation

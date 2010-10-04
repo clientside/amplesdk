@@ -7,11 +7,11 @@
  *
  */
 
-var cAMLXSObject	= function() {
+var cXSObject	= function() {
 
 };
 
-cAMLXSObject.prototype.type	= null;	// Number
-cAMLXSObject.prototype.name	= null;	// String
-cAMLXSObject.prototype.namespace		= null;	// String
-cAMLXSObject.prototype.namespaceItem	= null;	// XSNamespaceItem
+cXSObject.prototype.type	= null;	// Number
+cXSObject.prototype.name	= null;	// String
+cXSObject.prototype.namespace		= null;	// String
+cXSObject.prototype.namespaceItem	= null;	// XSNamespaceItem

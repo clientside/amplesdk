@@ -7,19 +7,19 @@
  *
  */
 
-var cAMLXSAnnotation	= function() {
+var cXSAnnotation	= function() {
 
 };
 
-cAMLXSAnnotation.prototype	= new cAMLXSObject;
+cXSAnnotation.prototype	= new cXSObject;
 
-cAMLXSAnnotation.W3C_DOM_ELEMENT	= 1;
-cAMLXSAnnotation.SAX_CONTENTHANDLER	= 2;
-cAMLXSAnnotation.W3C_DOM_DOCUMENT	= 3;
+cXSAnnotation.W3C_DOM_ELEMENT	= 1;
+cXSAnnotation.SAX_CONTENTHANDLER	= 2;
+cXSAnnotation.W3C_DOM_DOCUMENT	= 3;
 
-cAMLXSAnnotation.prototype.annotationString	= null;	// String
+cXSAnnotation.prototype.annotationString	= null;	// String
 
 /* @type	Boolean */
-cAMLXSAnnotation.prototype.annotationString	= function(oTarget, nTargetType) {
+cXSAnnotation.prototype.annotationString	= function(oTarget, nTargetType) {
 
 };

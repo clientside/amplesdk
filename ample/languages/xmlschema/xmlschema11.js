@@ -9,7 +9,7 @@
 
 var oAMLXMLSchema11_implementation	= {},
 	sAMLXMLSchema11_namespaceURI	= "http://www.w3.org/2001/XMLSchema",
-	oAMLXMLSchema11_model			= new cAMLXSModel,
+	oAMLXMLSchema11_model			= new cXSModel,
 	oAMLXMLSchema11_processors		= {};
 
 //sAML_MISSING_ATTRIBUTE_WRN		= 'Required attribute "%0" is missing from "%1" element. Element processing skipped',
@@ -20,7 +20,7 @@ oAMLXMLSchema11_implementation.traverse	= function(oElementDOM, oNode) {
 		var sNameSpaceURI	= oElementDOM.getAttribute("targetNamespace");
 		if (sNameSpaceURI) {
 			// Create new namespace item
-			var oNamespaceItem	= new cAMLXSNamespaceItem;
+			var oNamespaceItem	= new cXSNamespaceItem;
 			oNamespaceItem.schemaNamespace	= sNameSpaceURI;
 			// Register new namespace item
 			oAMLXMLSchema11_model.namespaces.$add(sNameSpaceURI);
@@ -65,9 +65,9 @@ function fAMLXMLSchema11_lookupNamespaceURI(oNode, sPrefix) {
 	return null;
 };
 
-cAMLXSTypeDefinition.prototype.$validate	= function(vValue) {
+cXSTypeDefinition.prototype.$validate	= function(vValue) {
 	switch (this.typeCategory) {
-		case cAMLXSTypeDefinition.SIMPLE_TYPE:
+		case cXSTypeDefinition.SIMPLE_TYPE:
 			// Validate arguments
 			fGuard(arguments, [
 				["value",		cString]
@@ -75,7 +75,7 @@ cAMLXSTypeDefinition.prototype.$validate	= function(vValue) {
 
 			return fAMLXMLSchema11_simpleType_validate(this, vValue);
 
-		case cAMLXSTypeDefinition.COMPLEX_TYPE:
+		case cXSTypeDefinition.COMPLEX_TYPE:
 			// Validate arguments
 			fGuard(arguments, [
 				["value",		cAMLNode]

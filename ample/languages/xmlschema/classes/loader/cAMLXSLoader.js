@@ -7,28 +7,28 @@
  *
  */
 
-var cAMLXSLoader	= function() {
+var cXSLoader	= function() {
 
 };
 
-cAMLXSLoader.prototype.config	= null;	// DOMConfiguration
+cXSLoader.prototype.config	= null;	// DOMConfiguration
 
 /* @return	XSModel */
-cAMLXSLoader.prototype.loadURIList		= function(/* StringList */ oUriList) {
-
-};
-
-/* @return	XSModel */
-cAMLXSLoader.prototype.loadInputList	= function(/* LSInputList */ oInputList) {
+cXSLoader.prototype.loadURIList		= function(/* StringList */ oUriList) {
 
 };
 
 /* @return	XSModel */
-cAMLXSLoader.prototype.loadURI	= function(/* String */ sUri) {
+cXSLoader.prototype.loadInputList	= function(/* LSInputList */ oInputList) {
 
 };
 
 /* @return	XSModel */
-cAMLXSLoader.prototype.load		= function(/* LSInput */ oInput) {
+cXSLoader.prototype.loadURI	= function(/* String */ sUri) {
+
+};
+
+/* @return	XSModel */
+cXSLoader.prototype.load		= function(/* LSInput */ oInput) {
 
 };
