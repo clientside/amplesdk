@@ -31,6 +31,22 @@ cXHTMLElement_option.ensureRowIsVisible	= function(oInstance) {
 
 // Class Events Handlers
 cXHTMLElement_option.handlers	= {
+	"DOMNodeInsertedIntoDocument":	function(oEvent) {
+		// Add to the options collection
+		for (var oNode = this; oNode = oNode.parentNode;)
+			if (oNode instanceof cXHTMLElement_select)
+				break;
+		if (oNode)
+			oNode.options.$add(this);
+	},
+	"DOMNodeRemovedFromDocument":	function(oEvent) {
+		// Remove from the options collection
+		for (var oNode = this; oNode = oNode.parentNode;)
+			if (oNode instanceof cXHTMLElement_select)
+				break;
+		if (oNode)
+			oNode.options.$remove(this);
+	},
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this)
 			switch (oEvent.attrName) {

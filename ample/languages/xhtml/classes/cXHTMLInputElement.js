@@ -39,13 +39,14 @@ cXHTMLInputElement.isValid	= function(oInstance) {
 cXHTMLInputElement.register	= function(oInstance) {
 	// Add to the form collection
 	for (var oNode = oInstance; oNode = oNode.parentNode;)
-		if (oNode instanceof cXHTMLElement_form) {
-			oInstance.form	= oNode;
-			oNode.elements.$add(oInstance);
-			if (oInstance.hasAttribute("name"))
-				oNode.elements[oInstance.getAttribute("name")]	= this;
+		if (oNode instanceof cXHTMLElement_form)
 			break;
-		}
+	if (oNode) {
+		oInstance.form	= oNode;
+		oNode.elements.$add(oInstance);
+		if (oInstance.hasAttribute("name"))
+			oNode.elements[oInstance.getAttribute("name")]	= this;
+	}
 	//
 	if (!isNaN(oInstance.getAttribute("tabIndex")))
 		oInstance.tabIndex	= oInstance.getAttribute("tabIndex") * 1;

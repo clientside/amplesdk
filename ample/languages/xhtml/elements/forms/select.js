@@ -93,14 +93,6 @@ cXHTMLElement_select.handlers	= {
 			cXHTMLElement_option.ensureRowIsVisible(this.options[this.selectedIndex]);
 		}
 	},
-	"DOMNodeInserted":	function(oEvent) {
-		if (oEvent.target instanceof cXHTMLElement_option)
-			this.options.$add(oEvent.target);
-	},
-	"DOMNodeRemoved":	function(oEvent) {
-		if (oEvent.target instanceof cXHTMLElement_option)
-			this.options.$remove(oEvent.target);
-	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		//
 		cXHTMLInputElement.register(this);
