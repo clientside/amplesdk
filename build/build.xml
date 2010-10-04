@@ -715,7 +715,39 @@
 	</target>
 
 	<target name="BUILD_AMPLE_PLUGINS_XPATH" unless="skip.ample.plugins.xpath">
+		<property name="source.xpath.dir" value="${source.ample.plugins.dir}/xpath/" />
+		<property name="target.xpath.dir" value="${target.ample.plugins.dir}/xpath/" />
 
+		<echo message="Merging into: ${temp.ample.plugins.dir}/xpath-raw.js" level="info"/>
+		<concat destfile="${temp.ample.plugins.dir}/xpath-raw.js" fixlastline="yes">
+			<fileset dir="${source.xpath.dir}/classes/">
+				<include name="*.js" />
+			</fileset>
+			<fileset dir="${source.xpath.dir}/evaluator/">
+				<include name="*.js" />
+			</fileset>
+			<fileset dir="${source.xpath.dir}/parser/">
+				<include name="*.js" />
+			</fileset>
+			<fileset dir="${source.xpath.dir}/">
+				<include name="xpath.js" />
+			</fileset>
+		</concat>
+
+		<echo message="Wrapping into: ${temp.ample.plugins.dir}/xpath-raw-wrapped.js" level="info"/>
+		<exec executable="${executable.php}" failonerror="true">
+			<arg value="resources/compiler/js.php" />
+			<arg value="${temp.ample.plugins.dir}/xpath-raw.js" />
+			<arg value="${temp.ample.plugins.dir}/xpath-raw-wrapped.js" />
+			<arg value="--strip-Source" />
+		</exec>
+
+		<!-- package -->
+		<mkdir dir="${target.xpath.dir}" />
+		<concat destfile="${target.xpath.dir}/xpath.js" fixlastline="yes">
+			<fileset file="${copying.js}" />
+			<fileset file="${temp.ample.plugins.dir}/xpath-raw-wrapped.js" />
+		</concat>
 	</target>
 
 	<!-- Examples -->
