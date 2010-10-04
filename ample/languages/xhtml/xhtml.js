@@ -137,10 +137,9 @@
 	files.push("elements/datepicker.js");
 	files.push("elements/spinbuttons.js");
 
-	// SMIL mapping
-	files.push("xhtml-smil.js");
-	// CSS Selectors
-	files.push("xhtml-selectors.js");
+	// integrations
+	files.push("integrations/smil.js");
+	files.push("integrations/selectors.js");
 
 	// load files
 	var source = [],

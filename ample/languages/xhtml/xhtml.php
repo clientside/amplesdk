@@ -144,11 +144,9 @@
 	$aFiles[]		= "elements/datepicker.js";
 	$aFiles[]		= "elements/spinbuttons.js";
 
-	// core SMIL mapping
-	$aFiles[]	= "xhtml-smil.js";
-
-	// XHTML CSS Selectors
-	$aFiles[]	= "xhtml-selectors.js";
+	// integrations
+	$aFiles[]	= "integrations/smil.js";
+	$aFiles[]	= "integrations/selectors.js";
 
     $sOutput	= "";
     for ($nIndex = 0; $nIndex < count($aFiles); $nIndex++)

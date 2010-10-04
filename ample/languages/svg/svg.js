@@ -74,8 +74,8 @@
 	files.push("elements/metadata.js");
 	files.push("elements/symbol.js");
 
-	// SMIL mapping
-	files.push("svg-smil.js");
+	// integrations
+	files.push("integrations/smil.js");
 
 	// load files
 	var source = [],
