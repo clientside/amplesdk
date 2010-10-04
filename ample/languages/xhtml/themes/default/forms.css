@@ -210,29 +210,48 @@ input[type=checkbox]::button {
 	background-position: 0 -32px;
 }
 
-/*
-xul|checkbox:hover xul|checkbox::input {
+input:hover input[type=checkbox]::button {
 	background-position: -16px -32px;
 }
 
-xul|checkbox:disabled xul|checkbox::input {
+input:disabled input[type=checkbox]::button {
 	background-position: -32px -32px;
 }
 
-xul|checkbox:checked xul|checkbox::input {
+input:checked input[type=checkbox]::button {
 	background-position: 0px -48px;
 }
 
-xul|checkbox:hover:checked xul|checkbox::input {
+input:hover:checked input[type=checkbox]::button {
 	background-position: -16px -48px;
 }
 
-xul|checkbox:disabled:checked xul|checkbox::input {
+input:disabled:checked input[type=checkbox]::button {
 	background-position: -32px -48px;
 }
-*/
+
 input[type=radio]::button {
 	background-position: 0 0;
+}
+
+input:hover input[type=radio]::button {
+	background-position: -16px 0;
+}
+
+input:disabled input[type=radio]::button {
+	background-position: -32px 0;
+}
+
+input:checked input[type=radio]::button {
+	background-position: 0px -16px;
+}
+
+input:hover:checked input[type=radio]::button {
+	background-position: -16px -16px;
+}
+
+input:disabled:checked input[type=radio]::button {
+	background-position: -32px -16px;
 }
 
 
