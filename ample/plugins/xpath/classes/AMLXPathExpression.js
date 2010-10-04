@@ -8,8 +8,7 @@
  */
 
 function cAMLXPathExpression(sExpression, oResolver) {
-	this.$expression	= sExpression;
-	this.$resolver		= oResolver;
+	this.$expression	= fAMLXPathExpression_parse(this, sExpression, oResolver);
 };
 
 cAMLXPathExpression.prototype.evaluate	= function(oNode, nType, oResult) {
@@ -20,8 +19,6 @@ cAMLXPathExpression.prototype.evaluate	= function(oNode, nType, oResult) {
 		["result",		Object, true,	true]
 	]);
 
-	var oResult	= new cAMLXPathResult;
-
 	// Invoke implementation
-	return oResult;
+	return fAMLXPathExpression_evaluate(this, oNode, nType, oResult);
 };
