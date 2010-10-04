@@ -33,11 +33,17 @@ cXHTMLElement_option.ensureRowIsVisible	= function(oInstance) {
 cXHTMLElement_option.handlers	= {
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		// Add to the options collection
-		for (var oNode = this; oNode = oNode.parentNode;)
+		for (var oNode = this, nDepth = 0; oNode = oNode.parentNode;)
 			if (oNode instanceof cXHTMLElement_select)
 				break;
-		if (oNode)
+			else
+				nDepth++;
+		if (oNode) {
 			oNode.options.$add(this);
+			//
+			if (this.parentNode != oNode)
+				this.$getContainer("gap").style.width	= nDepth + "em";
+		}
 	},
 	"DOMNodeRemovedFromDocument":	function(oEvent) {
 		// Remove from the options collection
@@ -58,6 +64,21 @@ cXHTMLElement_option.handlers	= {
 					cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
 			}
 	}
+};
+
+cXHTMLElement_option.prototype.$getTagOpen	= function() {
+    var sClassName	= (this.prefix ? this.prefix + '-' : '') + this.localName;
+	return '<div class="' +	sClassName +
+				("class" in this.attributes ? ' ' + this.attributes["class"] : '')+
+				(this.attributes["disabled"] ? ' ' + sClassName + '_disabled' : '')+
+			'">\
+				<div class="' + sClassName + '--gap" style="height:1em;float:left"></div>\
+				<div class="' + sClassName + '--gateway">' +(this.attributes.label || '');
+};
+
+cXHTMLElement_option.prototype.$getTagClose	= function() {
+	return 		'</div>\
+			</div>';
 };
 
 // Register Element

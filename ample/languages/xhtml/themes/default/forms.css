@@ -292,12 +292,7 @@ select::value {
 input::popup,
 select::popup {
 	border: solid 1px silver;
-	background-color: pink;
 	width: inherit;
-}
-
-optgroup::gateway {
-	padding-left: 20px;
 }
 
 optgroup::value {
@@ -306,12 +301,11 @@ optgroup::value {
 
 option,
 optgroup::value {
-	background-color: lightblue;
 	cursor: default;
 }
 
 option:hover {
-	background-color: white;
+	background-color: lightblue;
 	color: black;
 }
 
