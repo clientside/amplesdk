@@ -6,7 +6,7 @@
 -->
 <project name="Project Build Script - Ample SDK" default="BUILD" basedir=".">
 	<!-- Local properties -->
-	<property file="build.local.properties" />
+	<property file="build.properties" />
 
 	<!-- System properties -->
 	<tstamp>
