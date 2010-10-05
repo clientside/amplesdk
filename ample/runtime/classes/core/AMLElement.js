@@ -991,17 +991,18 @@ cAMLElement.prototype.$setPseudoClass	= function(sName, bState, sContainer)
 
 cAMLElement.prototype.$getStyle	= function(sName) {
 	var oElementDOM	= this.$getContainer();
-	return fBrowser_getStyle(oElementDOM, fUtilities_toCssPropertyName(sName), oElementDOM.style);
+	return oElementDOM ? fBrowser_getStyle(oElementDOM, fUtilities_toCssPropertyName(sName), oElementDOM.style) : '';
 };
 
 cAMLElement.prototype.$setStyle	= function(sName, sValue) {
 	var oElementDOM	= this.$getContainer();
-	fBrowser_setStyle(oElementDOM, fUtilities_toCssPropertyName(sName), sValue);
+	if (oElementDOM)
+		fBrowser_setStyle(oElementDOM, fUtilities_toCssPropertyName(sName), sValue);
 };
 
 cAMLElement.prototype.$getStyleComputed	= function(sName) {
 	var oElementDOM	= this.$getContainer();
-	return fBrowser_getStyle(oElementDOM, fUtilities_toCssPropertyName(sName));
+	return oElementDOM ? fBrowser_getStyle(oElementDOM, fUtilities_toCssPropertyName(sName)) : '';
 };
 
 cAMLElement.prototype.scrollIntoView	= function(bTop) {

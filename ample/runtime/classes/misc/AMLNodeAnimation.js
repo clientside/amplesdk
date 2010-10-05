@@ -16,10 +16,12 @@ oAMLNodeAnimation_durations["slow"]		= 600;
 
 function fAMLNodeAnimation_play(oElement, oProperties, vDuration, vType, fHandler, sPseudo)
 {
+	var oElementDOM	= oElement.$getContainer(sPseudo);
+	if (!oElementDOM)
+		return;
 	// initialize effect
 	var oEffect	= {},
 		nEffect	= aAMLNodeAnimation_effects.length,
-		oElementDOM	= oElement.$getContainer(sPseudo),
 		oComputedStyle	= fBrowser_getComputedStyle(oElementDOM);
 	oEffect._element	= oElement;
 	oEffect._container	= oElementDOM;
