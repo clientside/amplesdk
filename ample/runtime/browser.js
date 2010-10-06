@@ -756,8 +756,14 @@ function fBrowser_getStyle(oElementDOM, sName, oStyle) {
 			return sValue;
 		}
 	}
+	if (sName == "margin" || sName == "padding")
+		return oStyle[sName + "Left"];
+	if (sName == "borderWidth")
+		return oStyle["borderLeftWidth"];
+	if (sName == "borderColor")
+		return oStyle["borderLeftColor"];
 	//
-	return oStyle[sName == "borderColor" ? "borderBottomColor" : sName];
+	return oStyle[sName];
 };
 
 function fBrowser_setStyle(oElementDOM, sName, sValue) {
@@ -794,21 +800,17 @@ function fBrowser_setStyle(oElementDOM, sName, sValue) {
 function fBrowser_adjustStyleValue(oElementDOM, sName, sValue) {
 	if (sName == "opacity")
 		return sValue == '' ? '1' : sValue;
-	else
 	if (sName == "backgroundPosition")
 		return(sValue == "0% 0%" || sValue == "none" || sValue == '')? '0px 0px' : sValue;
-	else
 	if (sName == "lineHeight") {
 		if (bTrident && nVersion < 9 && sValue == "normal")
 			return fBrowser_getStyle(oElementDOM, "fontSize");
 		return sValue;
 	}
-	else
 	if (sName.match(/border(.+)Width/))
 		return sValue == "medium" ? '3px' : sValue;
-	else
-	if (sName.match(/top|left|bottom|right/i))
-		return sValue == "auto" ? '0px' : sValue;
+	if (sName.match(/padding|margin|top|left/) || sName.match(/\w(top|left|bottom|right)/i))
+		return sValue == "auto" || sValue == '' ? '0' : sValue;
 	return sValue;
 };
 
