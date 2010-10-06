@@ -222,7 +222,7 @@ function fAML_processScripts() {
 		    		// Change root element name to script
 		    		oElement.nodeName	=
 		    		oElement.localName	=
-		    		oElement.nodeName	= "script";
+		    		oElement.tagName	= "script";
 		    	}
 		    	// render Ample DOM
 		    	if (bTrident) {
