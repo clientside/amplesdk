@@ -240,7 +240,7 @@
 
 			if (true) {
 				$aKeyWords	= array();
-				$aKeyWords	= array_merge($aKeyWords, array(/*"in", */"break", "case", "catch", "continue", "default", "delete", "else", "for", "function", /*"if", */"instanceof", "new", "return", "throw", "typeof", "switch", "try", "var", "while", "with"));
+				$aKeyWords	= array_merge($aKeyWords, array("in", "break", "case", "catch", "continue", "default", "delete", "else", "for", "function", "if", "instanceof", "new", "return", "throw", "typeof", "switch", "try", "var", "while", "with"));
 				$aKeyWords	= array_merge($aKeyWords, array("false", "null", "true"));
 				$aKeyWords	= array_merge($aKeyWords, array("arguments", "this", "window"));
 				$aKeyWords	= array_merge($aKeyWords, array("[_[", "]]", "[$]"));
