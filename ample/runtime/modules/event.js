@@ -41,7 +41,7 @@ var aAMLQuery_protectedEvents	= [
 	// Other
 	,"hashchange"
 	,"readystatechange"
-	,"config"
+	,"configchange"
 ];
 
 cAMLQuery.prototype.trigger	= function(sType, oDetail) {

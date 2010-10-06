@@ -212,7 +212,7 @@ oAmple.config	= function(sName, oValue) {
 			// Dispatch change event
 			if (oOldValue != oValue) {
 				var oEvent	= new cAMLCustomEvent;
-				oEvent.initCustomEvent("config", false, false, sName);
+				oEvent.initCustomEvent("configchange", false, false, sName);
 				fAMLNode_dispatchEvent(oAmple_document, oEvent);
 			}
 		}

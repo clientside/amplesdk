@@ -558,7 +558,7 @@
 			</method>
 		</methods>
 		<events>
-			<event name="config" type="CustomEvent" cancelable="false" bubbles="false">
+			<event name="configchange" type="CustomEvent" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						Fires after the config value changes. The <link type="property" href="runtime:AMLCustomEvent">detail</link> property keeps the name of the parameter name changed.
