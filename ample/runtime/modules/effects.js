@@ -113,8 +113,8 @@ cAMLQuery.prototype.show	= function(vDuration, fCallback) {
 				oProperties.height	= fBrowser_adjustStyleValue(oElementDOM, "height", fBrowser_getStyle(oElementDOM, "height", oComputedStyle));
 				oProperties.opacity	= '1';
 				//
-				oStyle.width	= '0px';
-				oStyle.height	= '0px';
+				oStyle.width	= 0;
+				oStyle.height	= 0;
 				oStyle.overflow	= "hidden";
 				fBrowser_setStyle(oElementDOM, "opacity", '0');
 				fAMLNodeAnimation_play(this, oProperties, vDuration, "ease", function() {
@@ -192,7 +192,7 @@ cAMLQuery.prototype.slideDown	= function(vDuration, fCallback) {
 			oProperties.height	= fBrowser_adjustStyleValue(oElementDOM, "height", fBrowser_getStyle(oElementDOM, "height", oComputedStyle));
 			oProperties.opacity	= '1';
 			//
-			oStyle.height	= '0px';
+			oStyle.height	= 0;
 			oStyle.overflow	= "hidden";
 			fBrowser_setStyle(oElementDOM, "opacity", '0');
 			fAMLNodeAnimation_play(this, oProperties, vDuration || "normal", "ease", function() {

@@ -253,8 +253,8 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
 	    nAMLDragAndDrop_mouseY	= oEvent.clientY;
 
 		// move drag source position to (0, 0)
-		oStyle.left	= '0';
-		oStyle.top	= '0';
+		oStyle.left	= 0;
+		oStyle.top	= 0;
 
 		// get drag source position at (0, 0)
 		var oRect0	= fAMLElement_getBoundingClientRect(oAMLDragAndDrop_dragSource);

@@ -194,8 +194,8 @@ function fAMLResize_onMouseMove(oEvent)
 			bBackCompat		= oUADocument.compatMode == "BackCompat";
 
 		// move resizable position to (0, 0)
-		oStyle.left	= '0';
-		oStyle.top	= '0';
+		oStyle.left	= 0;
+		oStyle.top	= 0;
 
 		// get resizable position at (0, 0)
 		var oRect0	= fAMLElement_getBoundingClientRect(oAMLResize_resizeNode);
