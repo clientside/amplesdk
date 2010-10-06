@@ -7,7 +7,6 @@
  *
  */
 
-
 cAMLQuery.prototype.attr	= function(sQName, sValue) {
 	// Validate API call
 	fGuard(arguments, [
