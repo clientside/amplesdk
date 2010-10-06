@@ -67,7 +67,7 @@ cAMLElement_repeater.prototype.refresh	= function() {
 
 	// schedule refresh
 	var self	= this;
-	this._timeout	= setTimeout(function() {
+	this._timeout	= fSetTimeout(function() {
 		// execute refresh
 		self._timeout	= null;
 		self.repeat();
