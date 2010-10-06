@@ -51,6 +51,7 @@ cAMLException.AML_NOT_INITIALIZED_ERR		=-6;
 cAMLException.AML_MODAL_SET_MODAL_ERR		=-7;
 cAMLException.AML_MODAL_RELEASE_MODAL_ERR	=-8;
 cAMLException.AML_MEMBER_MISSING_ERR		=-9;
+cAMLException.AML_TRIGGER_CORE_EVENT_ERR	=-10;
 
 //
 cAMLException.prototype.code	= null;
@@ -95,4 +96,5 @@ oAMLException_messages[cAMLException.AML_NOT_INITIALIZED_ERR]		= 'Object "%0" ha
 oAMLException_messages[cAMLException.AML_MODAL_SET_MODAL_ERR]		= 'Element is already modal';
 oAMLException_messages[cAMLException.AML_MODAL_RELEASE_MODAL_ERR]	= 'Element can not be released';
 oAMLException_messages[cAMLException.AML_MEMBER_MISSING_ERR]		= 'Object does not have a method named "%0"';
+oAMLException_messages[cAMLException.AML_TRIGGER_CORE_EVENT_ERR]	= 'Triggering core event "%0" is not allowed';
 //<-Debug

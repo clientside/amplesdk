@@ -243,21 +243,28 @@
 			<constant name="AML_MODAL_SET_MODAL_ERR" value="-7">
 				<description>
 					<locale>
-						Object has not been initialized.
+						Element is already modal.
 					</locale>
 				</description>
 			</constant>
 			<constant name="AML_MODAL_RELEASE_MODAL_ERR" value="-8">
 				<description>
 					<locale>
-						Object has not been initialized.
+						Element can not be released.
 					</locale>
 				</description>
 			</constant>
 			<constant name="AML_MEMBER_MISSING_ERR" value="-9">
 				<description>
 					<locale>
-						Object has not been initialized.
+						Object does not have a method.
+					</locale>
+				</description>
+			</constant>
+			<constant name="AML_TRIGGER_CORE_EVENT_ERR" value="-10">
+				<description>
+					<locale>
+						Triggering core event is not allowed.
 					</locale>
 				</description>
 			</constant>

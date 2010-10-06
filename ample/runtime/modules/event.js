@@ -8,12 +8,52 @@
  */
 
 // Events
+var aAMLQuery_protectedEvents	= [
+	// UIEvent
+	,"focus", "blur"
+	,"DOMFocusIn", "DOMFocusOut", "DOMActivate"
+	,"capture", "losecapture"
+	//
+	,"resize", "scroll"
+	// KeyboardEvent
+	,"keydown", "keyup"
+	// MouseEvent
+	,"mousedown", "mouseup", "click"
+	,"mousewheel", "mousemove"
+	,"mouseover", "mouseout"
+	,"mouseenter", "mousewheel"
+	,"touchstart", "touchmove", "touchend", "touchcancel"
+	,"gesturestart", "gesturechange", "gestureend"
+	// TextEvent
+	,"textInput"
+	// Legacy events
+	,"contextmenu", "dblclick", "keypress"
+	// MutationEvent
+	,"DOMNodeInserted", "DOMNodeRemoved", "DOMNodeInsertedIntoDocument", "DOMNodeRemovedFromDocument"
+	,"DOMAttrModified"
+	,"DOMCharacterDataModified"
+	// DragAndDropEvent
+	,"drag", "drop", "dragstart", "dragend", "dragover", "dragenter", "dragleave"
+	// ResizeEvent
+	,"resizestart", "resize", "resizeend"
+	// EffectEvent
+	,"effectstart", "effectend"
+	// Other
+	,"hashchange"
+	,"readystatechange"
+	,"config"
+];
+
 cAMLQuery.prototype.trigger	= function(sType, oDetail) {
 	// Validate API call
 	fGuard(arguments, [
 		["type",	cString],
 		["detail",	oDetail, true, true]
 	]);
+
+	// Check if event triggering allowed
+	if (aAMLQuery_protectedEvents.indexOf(sType) !=-1)
+		throw new cAMLException(cAMLException.AML_TRIGGER_CORE_EVENT_ERR, null, [sType]);
 
 	// Invoke implementation
 	if (arguments.length < 2)
@@ -88,11 +128,15 @@ oAmple.trigger	= function(sType, oDetail) {
 		["detail",	oDetail, true, true]
 	]);
 
+	// Check if event triggering allowed
+	if (aAMLQuery_protectedEvents.indexOf(sType) !=-1)
+		throw new cAMLException(cAMLException.AML_TRIGGER_CORE_EVENT_ERR, null, [sType]);
+
 	// Invoke implementation
 	if (arguments.length < 2)
 		oDetail	= null;
 
 	var oEvent	= new cAMLCustomEvent;
 	oEvent.initCustomEvent(sType, true, true, oDetail);
-	fAMLNode_dispatchEvent(oAmple_document);
+	fAMLNode_dispatchEvent(oAmple_document, oEvent);
 };
