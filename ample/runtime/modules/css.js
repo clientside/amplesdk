@@ -11,12 +11,14 @@ cAMLQuery.prototype.css	= function(sName, sValue) {
 	// Validate API call
 	fGuard(arguments, [
 		["name",	cString],
-		["value",	cString, true]
+		["value",	cObject,	true,	true]
 	]);
 
 	// Invoke implementation
-	sName	= fUtilities_toCssPropertyName(sName);
 	if (arguments.length > 1) {
+		sValue	= sValue == null ? '' : cString(sValue);
+		if (sValue.match(/^[\.\d]+$/))
+			sValue	= sValue + 'px';
 		fAMLQuery_each(this, function() {
 			this.$setStyle(sName, sValue);
 		});
