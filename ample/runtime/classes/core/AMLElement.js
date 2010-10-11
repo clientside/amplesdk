@@ -926,8 +926,8 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 		// Animation + Transition effects
 		if (bTransition || bAnimation) {
 			var oStyle	= oElementDOM.style,
-				oPropertiesAfter	= {},
-				aPropertiesReset	= [],
+				oProperties	= {},
+				aProperties	= [],
 				bPlay	= false,
 				nIndex, nLength, sKey, sValue;
 			if (bTransition)
@@ -936,9 +936,9 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 					sValue	= fBrowser_getStyle(oElementDOM, sKey, oComputedStyle);
 					if (oBefore[sKey] != sValue) {
 						if (!oStyle[sValue])
-							aPropertiesReset.push(sKey);
+							aProperties.push(sKey);
 						fBrowser_setStyle(oElementDOM, sKey, oBefore[sKey]);
-						oPropertiesAfter[sKey]	= sValue;
+						oProperties[sKey]	= sValue;
 						if (!bPlay)
 							bPlay	= true;
 					}
@@ -949,18 +949,18 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 					sValue	= fBrowser_getStyle(oElementDOM, sKey, oComputedStyle);
 					if (oBefore[sKey] != sValue) {
 						if (!oStyle[sValue])
-							aPropertiesReset.push(sKey);
+							aProperties.push(sKey);
 						fBrowser_setStyle(oElementDOM, sKey, oBefore[sKey]);
-						oPropertiesAfter[sKey]	= sValue;
+						oProperties[sKey]	= sValue;
 						if (!bPlay)
 							bPlay	= true;
 					}
 				}
 
 			if (bPlay) {
-				fAMLNodeAnimation_play(oElement, oPropertiesAfter, "fast", "ease", function() {
-					for (var nIndex = 0; nIndex < aPropertiesReset.length; nIndex++)
-						fBrowser_setStyle(oElementDOM, aPropertiesReset[nIndex], '');
+				fAMLNodeAnimation_play(oElement, oProperties, "fast", "ease", function() {
+					for (var nIndex = 0; nIndex < aProperties.length; nIndex++)
+						fBrowser_setStyle(oElementDOM, aProperties[nIndex], '');
 				});
 			}
 		}
