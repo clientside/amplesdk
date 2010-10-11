@@ -69,7 +69,7 @@ cAMLQuery.prototype.bind	= function(sType, fHandler, bCapture) {
 	// Validate API call
 	fGuard(arguments, [
 		["type",	cString],
-		["handler",	cFunction],
+		["handler",	cObject],
 		["capture",	cBoolean,	true]
 	]);
 
@@ -84,7 +84,7 @@ cAMLQuery.prototype.unbind	= function(sType, fHandler, bCaprure) {
 	// Validate API call
 	fGuard(arguments, [
 		["type",	cString],
-		["handler",	cFunction],
+		["handler",	cObject],
 		["capture",	cBoolean,	true]
 	]);
 
@@ -101,7 +101,7 @@ oAmple.bind	= function(sType, fHandler, bCapture) {
 	// Validate API call
 	fGuard(arguments, [
 		["type",	cString],
-		["handler",	cFunction],
+		["handler",	cObject],
 		["capture",	cBoolean,	true]
 	]);
 
@@ -113,7 +113,7 @@ oAmple.unbind	= function(sType, fHandler, bCapture) {
 	// Validate API call
 	fGuard(arguments, [
 		["type",	cString],
-		["handler",	cFunction],
+		["handler",	cObject],
 		["capture",	cBoolean,	true]
 	]);
 
