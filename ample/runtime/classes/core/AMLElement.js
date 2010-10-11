@@ -245,7 +245,7 @@ cAMLElement.prototype.hasAttributeNS	= function(sNameSpaceURI, sLocalName)
 {
 	// Validate arguments
 	fGuard(arguments, [
-		["namespaceURI",	cString, false, true]
+		["namespaceURI",	cString, false, true],
 		["localName",		cString]
 	]);
 
