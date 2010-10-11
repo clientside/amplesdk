@@ -48,7 +48,7 @@ cAMLQuery.prototype.trigger	= function(sType, oDetail) {
 	// Validate API call
 	fGuard(arguments, [
 		["type",	cString],
-		["detail",	oDetail, true, true]
+		["detail",	cObject, true, true]
 	]);
 
 	// Check if event triggering allowed
@@ -69,7 +69,7 @@ cAMLQuery.prototype.bind	= function(sType, fHandler, bCapture) {
 	// Validate API call
 	fGuard(arguments, [
 		["type",	cString],
-		["handler",	cFunction],
+		["handler",	cObject],
 		["capture",	cBoolean,	true]
 	]);
 
@@ -84,7 +84,7 @@ cAMLQuery.prototype.unbind	= function(sType, fHandler, bCaprure) {
 	// Validate API call
 	fGuard(arguments, [
 		["type",	cString],
-		["handler",	cFunction],
+		["handler",	cObject],
 		["capture",	cBoolean,	true]
 	]);
 
@@ -101,7 +101,7 @@ oAmple.bind	= function(sType, fHandler, bCapture) {
 	// Validate API call
 	fGuard(arguments, [
 		["type",	cString],
-		["handler",	cFunction],
+		["handler",	cObject],
 		["capture",	cBoolean,	true]
 	]);
 
@@ -113,7 +113,7 @@ oAmple.unbind	= function(sType, fHandler, bCapture) {
 	// Validate API call
 	fGuard(arguments, [
 		["type",	cString],
-		["handler",	cFunction],
+		["handler",	cObject],
 		["capture",	cBoolean,	true]
 	]);
 
@@ -125,7 +125,7 @@ oAmple.trigger	= function(sType, oDetail) {
 	// Validate API call
 	fGuard(arguments, [
 		["type",	cString],
-		["detail",	oDetail, true, true]
+		["detail",	cObject, true, true]
 	]);
 
 	// Check if event triggering allowed
