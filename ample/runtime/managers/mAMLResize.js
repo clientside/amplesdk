@@ -96,9 +96,9 @@ function fAMLResize_onMouseMove(oEvent)
 				var oElementDOM	= oElement.$getContainer(),
 					oComputedStyle	= fBrowser_getComputedStyle(oElementDOM),
 					oRect	= fAMLElement_getBoundingClientRect(oElement),
-					nResize		= nAMLResize_EDGE_NONE,
-					nResizeEdges= oElement.$resizeEdges || 15,
-					sCursor		= '';
+					nEdge	= nAMLResize_EDGE_NONE,
+					nEdges	= oElement.$resizeEdges || 15,
+					sCursor	= '';
 
 				var nOffsetLeft	= nAMLResize_mouseX - oRect.left/* + oRect.scrollLeft*/,
 					nOffsetTop	= nAMLResize_mouseY - oRect.top/* + oRect.scrollTop*/;
@@ -106,34 +106,34 @@ function fAMLResize_onMouseMove(oEvent)
 				// Vertical
 				if (fAMLResize_inScope(nOffsetTop, fAMLResize_getStyleValueNumeric(oComputedStyle, "borderTopWidth")))
 				{
-					nResize|= nResizeEdges & nAMLResize_EDGE_TOP;
-					sCursor+= 'n';
+					nEdge	|= nEdges & nAMLResize_EDGE_TOP;
+					sCursor	+= 'n';
 				}
 				else
 				if (fAMLResize_inScope(nOffsetTop - oRect.bottom + oRect.top, fAMLResize_getStyleValueNumeric(oComputedStyle, "borderBottomWidth")))
 				{
-					nResize|= nResizeEdges & nAMLResize_EDGE_BOTTOM;
-					sCursor+= 's';
+					nEdge	|= nEdges & nAMLResize_EDGE_BOTTOM;
+					sCursor	+= 's';
 				}
 
 				// Horizontal
 				if (fAMLResize_inScope(nOffsetLeft, fAMLResize_getStyleValueNumeric(oComputedStyle, "borderLeftWidth")))
 				{
-					nResize|= nResizeEdges & nAMLResize_EDGE_LEFT;
-					sCursor+= 'w';
+					nEdge	|= nEdges & nAMLResize_EDGE_LEFT;
+					sCursor	+= 'w';
 				}
 				else
 				if (fAMLResize_inScope(nOffsetLeft - oRect.right + oRect.left, fAMLResize_getStyleValueNumeric(oComputedStyle, "borderRightWidth")))
 				{
-					nResize|= nResizeEdges & nAMLResize_EDGE_RIGHT;
-					sCursor+= 'e';
+					nEdge	|= nEdges & nAMLResize_EDGE_RIGHT;
+					sCursor	+= 'e';
 				}
 
 				//
-				if (nResize != nAMLResize_EDGE_NONE)
+				if (nEdge != nAMLResize_EDGE_NONE)
 				{
 					oAMLResize_resizeNode	= oElement;
-					nAMLResize_resizeEdge	= nResize;
+					nAMLResize_resizeEdge	= nEdge;
 
 					// set cursor
 					oBrowser_root.style.cursor	= sCursor + '-' + "resize";
