@@ -48,7 +48,7 @@ cAMLQuery.prototype.trigger	= function(sType, oDetail) {
 	// Validate API call
 	fGuard(arguments, [
 		["type",	cString],
-		["detail",	oDetail, true, true]
+		["detail",	cObject, true, true]
 	]);
 
 	// Check if event triggering allowed
@@ -125,7 +125,7 @@ oAmple.trigger	= function(sType, oDetail) {
 	// Validate API call
 	fGuard(arguments, [
 		["type",	cString],
-		["detail",	oDetail, true, true]
+		["detail",	cObject, true, true]
 	]);
 
 	// Check if event triggering allowed
