@@ -154,7 +154,7 @@
 				$sDataTemp	= str_replace($this->aStrings, array_fill(0, count($this->aStrings), ""), $sDataTemp);
 
 			// find "values"
-			preg_match_all('/\"([a-z0-9_\-+\#\:\/\.]{2,})\"/i', $sDataTemp, $aTempValues);
+			preg_match_all('/\"([a-z0-9_\-+\#\:\;\/\.]{2,})\"/i', $sDataTemp, $aTempValues);
 
 			// find .properties
 			preg_match_all('/\.(\$?[a-z][a-z0-9_]{2,})/i', $sDataTemp, $aTempProperties);
