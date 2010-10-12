@@ -8,20 +8,20 @@
  */
 
 var aAMLNodeAnimation_effects	= [],
+	nAMLNodeAnimation_timeout	= 0,
+	nAMLNodeAnimation_counter	= 0,
 	oAMLNodeAnimation_easing	= {},
 	oAMLNodeAnimation_durations	= {};			// Variables
 oAMLNodeAnimation_durations["fast"]		= 200;
 oAMLNodeAnimation_durations["normal"]	= 400;
 oAMLNodeAnimation_durations["slow"]		= 600;
 
-function fAMLNodeAnimation_play(oElement, oProperties, vDuration, vType, fHandler, sPseudo)
-{
+function fAMLNodeAnimation_play(oElement, oProperties, vDuration, vType, fHandler, sPseudo) {
 	var oElementDOM	= oElement.$getContainer(sPseudo);
 	if (!oElementDOM)
 		return;
 	// initialize effect
 	var oEffect	= {},
-		nEffect	= aAMLNodeAnimation_effects.length,
 		oComputedStyle	= fBrowser_getComputedStyle(oElementDOM);
 	oEffect._element	= oElement;
 	oEffect._container	= oElementDOM;
@@ -30,7 +30,7 @@ function fAMLNodeAnimation_play(oElement, oProperties, vDuration, vType, fHandle
 	oEffect._type		= vType || '';
 	oEffect._start		= new cDate;
 	oEffect._data		= {};
-	oEffect._interval	= fSetInterval(function(){fAMLNodeAnimation_process(nEffect)}, 20);
+	oEffect._identifier	= nAMLNodeAnimation_counter++;
 
 	// read end params from input
 	var sName;
@@ -43,8 +43,8 @@ function fAMLNodeAnimation_play(oElement, oProperties, vDuration, vType, fHandle
 		}
 
 	// delete running effects on new effect properties for the same element
-	for (var nIndex = 0, oEffectOld; nIndex < aAMLNodeAnimation_effects.length; nIndex++)
-		if ((oEffectOld = aAMLNodeAnimation_effects[nIndex]) && oEffectOld._container == oElementDOM)
+	for (var nIndex = 0, oEffectOld; oEffectOld = aAMLNodeAnimation_effects[nIndex]; nIndex++)
+		if (oEffectOld._container == oElementDOM)
 			for (var sKey in oEffectOld._data)
 				if (oEffectOld._data.hasOwnProperty(sKey) && oEffect._data[sKey])
 					delete oEffectOld._data[sKey];
@@ -53,13 +53,21 @@ function fAMLNodeAnimation_play(oElement, oProperties, vDuration, vType, fHandle
 	oEventEffectStart.initEvent("effectstart", false, false);
 	fAMLNode_dispatchEvent(oElement, oEventEffectStart);
 
+	if (!nAMLNodeAnimation_timeout)
+		nAMLNodeAnimation_timeout	= fSetTimeout(nAMLNodeAnimation_onTimeout, 20);
+
+	aAMLNodeAnimation_effects.push(oEffect);
+
 	// return effect resource identificator
-	return aAMLNodeAnimation_effects.push(oEffect);
+	return oEffect._identifier;
 };
 
-function fAMLNodeAnimation_stop(nEffect)
-{
-	var oEffect	= aAMLNodeAnimation_effects[nEffect];
+function fAMLNodeAnimation_stop(nEffect) {
+	// Find effect
+	for (var nIndex = 0, oEffect; oEffect = aAMLNodeAnimation_effects[nIndex]; nIndex++)
+		if (oEffect._identifier == nEffect)
+			break;
+
 	if (!oEffect)
 		return;
 
@@ -88,31 +96,39 @@ function fAMLNodeAnimation_stop(nEffect)
 	fAMLNode_dispatchEvent(oEffect._element, oEventEffectEnd);
 
 	// clear effect
-	fAMLNodeAnimation_clear(nEffect);
+	fAMLNodeAnimation_remove(nEffect);
 };
 
-function fAMLNodeAnimation_process(nEffect)
-{
-	var oEffect	= aAMLNodeAnimation_effects[nEffect],
-		nDuration	= oEffect._duration;
-		oEffect._timestamp	= new cDate;
-
-	// clear effect if node was removed
-	if (!oAMLDocument_all[oEffect._element.uniqueID])
-		return fAMLNodeAnimation_clear(nEffect);
-
-	// stop effect if the time is up
-	if (oEffect._duration <= oEffect._timestamp - oEffect._start) {
-		fAMLNodeAnimation_stop(nEffect);
-		if (oEffect._callback)
-			oEffect._callback.call(oEffect._element);
-		return;
+function nAMLNodeAnimation_onTimeout() {
+	for (var nIndex = 0, oEffect, nTimestamp = new cDate; oEffect = aAMLNodeAnimation_effects[nIndex]; nIndex++) {
+		// clear effect if node was removed
+		if (!oAMLDocument_all[oEffect._element.uniqueID]) {
+			fAMLNodeAnimation_remove(oEffect._identifier);
+			nIndex--;
+		}
+		else {
+			// stop effect if the time is up
+			if (oEffect._duration <= nTimestamp - oEffect._start) {
+				fAMLNodeAnimation_stop(oEffect._identifier);
+				nIndex--;
+				if (oEffect._callback)
+					oEffect._callback.call(oEffect._element);
+			}
+			else {
+				oEffect._timestamp	= nTimestamp;
+				fAMLNodeAnimation_process(oEffect);
+			}
+		}
 	}
+	//
+	nAMLNodeAnimation_timeout	= aAMLNodeAnimation_effects.length ? fSetTimeout(nAMLNodeAnimation_onTimeout, 20) : 0;
+};
 
+function fAMLNodeAnimation_process(oEffect) {
 	// calculate current ratio
-	var nRatio	= 0;
-	if (oEffect._duration)
-	{
+	var nDuration	= oEffect._duration,
+		nRatio	= 0;
+	if (nDuration) {
 		var nRatioRaw	=(oEffect._timestamp - oEffect._start) / nDuration;
 		if (oEffect._type instanceof cFunction)
 			nRatio	= oEffect._type(nRatioRaw);
@@ -171,15 +187,17 @@ function fAMLNodeAnimation_process(nEffect)
 		}
 };
 
-function fAMLNodeAnimation_clear(nEffect)
-{
-	var oEffect	= aAMLNodeAnimation_effects[nEffect];
-
-	// clear interval
-	fClearInterval(oEffect._interval);
-
+function fAMLNodeAnimation_remove(nEffect) {
 	// delete effect
-	aAMLNodeAnimation_effects[nEffect]	= null;
+	for (var nIndex = 0, oEffect, bFound = false; oEffect = aAMLNodeAnimation_effects[nIndex]; nIndex++)
+		if (bFound)
+			aAMLNodeAnimation_effects[nIndex-1]	= oEffect;
+		else
+		if (oEffect._identifier == nEffect)
+			bFound	= true;
+
+	if (bFound)
+		aAMLNodeAnimation_effects.length--;
 };
 
 // Utilities
