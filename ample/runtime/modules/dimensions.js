@@ -96,10 +96,8 @@ cAMLQuery.prototype.outerWidth	= function(bMargin) {
 	if (this.length) {
 		var oElementDOM	= this[0].$getContainer();
 		if (oElementDOM) {
-			var oRect	= fAMLElement_getBoundingClientRect(this[0]),
-				nMarginLeft		= fParseInt(fBrowser_getStyle(oElementDOM, "marginLeft")) || 0,
-				nMarginRight	= fParseInt(fBrowser_getStyle(oElementDOM, "marginRight")) || 0;
-			return (oRect.right - oRect.left) + (bMargin ? nMarginLeft + nMarginRight : 0);
+			var oRect	= fAMLElement_getBoundingClientRect(this[0]);
+			return (oRect.right - oRect.left) + (bMargin ? (fParseInt(fBrowser_getStyle(oElementDOM, "marginLeft")) || 0) + (fParseInt(fBrowser_getStyle(oElementDOM, "marginRight")) || 0) : 0);
 		}
 	}
 	return 0;
@@ -109,10 +107,8 @@ cAMLQuery.prototype.outerHeight	= function(bMargin) {
 	if (this.length) {
 		var oElementDOM	= this[0].$getContainer();
 		if (oElementDOM) {
-			var oRect	= fAMLElement_getBoundingClientRect(this[0]),
-				nMarginTop		= fParseInt(fBrowser_getStyle(oElementDOM, "marginTop")) || 0,
-				nMarginBottom	= fParseInt(fBrowser_getStyle(oElementDOM, "marginBottom")) || 0;
-			return (oRect.bottom - oRect.top) + (bMargin ? nMarginTop + nMarginBottom : 0);
+			var oRect	= fAMLElement_getBoundingClientRect(this[0]);
+			return (oRect.bottom - oRect.top) + (bMargin ? (fParseInt(fBrowser_getStyle(oElementDOM, "marginTop")) || 0) + (fParseInt(fBrowser_getStyle(oElementDOM, "marginBottom")) || 0) : 0);
 		}
 	}
 	return 0;
