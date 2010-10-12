@@ -809,6 +809,14 @@ function fBrowser_adjustStyleValue(oElementDOM, sName, sValue) {
 	}
 	if (sName.match(/border(.+)Width/))
 		return sValue == "medium" ? '3px' : sValue;
+	if (sValue.match(/([\d]*\.?[\d]+)%/)) {
+		var oStyle	= oElementDOM.style,
+			sOldValue	= oStyle[sName];
+		oStyle[sName]	= sValue;
+		sValue	= fBrowser_getStyle(oElementDOM, sName);
+		oStyle[sName]	= sOldValue;
+		return sValue;
+	}
 	if (sName.match(/padding|margin|top|left/) || sName.match(/\w(top|left|bottom|right)/i))
 		return sValue == "auto" || sValue == '' ? '0px' : sValue;
 	return sValue;
