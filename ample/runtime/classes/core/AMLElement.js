@@ -847,6 +847,12 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 //console.log("before: ", oElementDOM.className);
 //<-Source
 	if (oElementDOM) {
+/*
+		if (oElement.$transition) {
+			fAMLNodeAnimation_clear(oElement.$transition);
+			delete oElement.$transition;
+		}
+*/
 		// Animation + Transition effects
 		if (bTransition || bAnimation) {
 			var oComputedStyle	= fBrowser_getComputedStyle(oElementDOM),
@@ -958,10 +964,17 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 				}
 
 			if (bPlay) {
+//				oElement.$transition	=
 				fAMLNodeAnimation_play(oElement, oProperties, "fast", "ease", function() {
 					for (var nIndex = 0; nIndex < aProperties.length; nIndex++)
 						fBrowser_setStyle(oElementDOM, aProperties[nIndex], '');
 				});
+/*
+				fAMLEventTarget_addEventListener(oElement, "effectend", function() {
+					fAMLEventTarget_removeEventListener(oElement, "effectend", arguments.callee);
+					delete oElement.$transition;
+				});
+*/
 			}
 		}
 
