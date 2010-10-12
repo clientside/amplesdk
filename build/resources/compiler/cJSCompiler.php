@@ -292,6 +292,20 @@
 	        $this->output	= $sData;
 		}
 
+		function obfuscate2()
+		{
+			$output	= $this->output;
+
+			// Restore prototype to proper reference
+			$output	= str_replace("[$]", "[_[0]]", $output);
+
+			$sData	= 	"(function($,_){"
+						. str_replace("window", "$", $output)
+						. "})(window,'" . join(" ", $this->aStrings) . "'.split(' '))";
+
+			$this->output	= $sData;
+		}
+
 		function _normalizeArray($aTemp)
 		{
 			$aValuesTemp	= array();
