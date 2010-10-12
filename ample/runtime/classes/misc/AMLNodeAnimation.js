@@ -44,7 +44,7 @@ function fAMLNodeAnimation_play(oElement, oProperties, vDuration, vType, fHandle
 
 	// delete running effects on new effect properties for the same element
 	for (var nIndex = 0, oEffectOld; nIndex < aAMLNodeAnimation_effects.length; nIndex++)
-		if ((oEffectOld = aAMLNodeAnimation_effects[nIndex]) && oEffectOld._element == oElement)
+		if ((oEffectOld = aAMLNodeAnimation_effects[nIndex]) && oEffectOld._container == oElementDOM)
 			for (var sKey in oEffectOld._data)
 				if (oEffectOld._data.hasOwnProperty(sKey) && oEffect._data[sKey])
 					delete oEffectOld._data[sKey];
