@@ -49,5 +49,6 @@ ample.publish(cAMLXPathExpression,	"AMLXPathExpression");
 ample.publish(cAMLXPathNamespace,	"AMLXPathNamespace");
 ample.publish(cAMLXPathNSResolver,	"AMLXPathNSResolver");
 ample.publish(cAMLXPathResult,		"AMLXPathResult");
-// Extend ample
+
+// Extend ample object
 ample.extend(cAMLXPathEvaluator.prototype,	AMLDocument.prototype);

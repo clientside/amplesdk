@@ -7,11 +7,12 @@
  *
  */
 
+// Private members
 function fAmple_cookie(oAmple, sName, vValue) {
 
 };
 
-// Publish
+// Extend ample object
 ample.extend({
 	//
 	cookie:	function(sName, vValue) {

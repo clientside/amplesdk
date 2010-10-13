@@ -7,35 +7,34 @@
  *
  */
 
-(function() {
-	function fAmple_transform(oXml, oXsl) {
+// Private members
+function fAmple_transform(oXml, oXsl) {
 
-	};
+};
 
-	// Extend ample object
-	ample.extend({
-		xslt:	function(vXml, vXsl, fCallback) {
-			// validate API
-			ample.guard(arguments, [
-				["xml", 	Object],
-				["xsl", 	Object],
-				["callback",Function,	true]
-			]);
+// Extend ample object
+ample.extend({
+	xslt:	function(vXml, vXsl, fCallback) {
+		// validate API
+		ample.guard(arguments, [
+			["xml", 	Object],
+			["xsl", 	Object],
+			["callback",Function,	true]
+		]);
 
-			// Invoke Implementation
-		}
-	});
+		// Invoke Implementation
+	}
+});
 
-	// Extend collection object
-	ample.extend({
-		xslt:	function(vXml, vXsl) {
-			// validate API
-			ample.guard(arguments, [
-				["xml", 	Object],
-				["xsl", 	Object]
-			]);
+// Extend collection object
+ample.extend({
+	xslt:	function(vXml, vXsl) {
+		// validate API
+		ample.guard(arguments, [
+			["xml", 	Object],
+			["xsl", 	Object]
+		]);
 
-			// Invoke Implementation
-		}
-	}, AMLQuery.prototype);
-})();
+		// Invoke Implementation
+	}
+}, AMLQuery.prototype);

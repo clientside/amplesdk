@@ -7,11 +7,12 @@
  *
  */
 
+// Private members
 function fAmple_store(oNode, sName, vValue) {
 
 };
 
-// Extend ample
+// Extend ample object
 ample.extend({
 	//
 	"store":	function(sName, vValue) {
