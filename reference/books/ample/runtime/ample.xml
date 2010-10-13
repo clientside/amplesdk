@@ -144,7 +144,67 @@
 				</arguments>
 				<description>
 					<locale>
-						Executes an XMLHttpRequest.
+						Performs an asynchronous HTTP (Ajax) request.
+					</locale>
+				</description>
+			</method>
+			<method name="get" type="XMLHttpRequest">
+				<arguments>
+					<argument name="url" type="String">
+						<description>
+							<locale>
+								A string containing the URL to which the request is sent.
+							</locale>
+						</description>
+					</argument>
+					<argument name="data" type="Variant" required="false">
+						<description>
+							<locale>
+								A map or string that is sent to the server with the request.
+							</locale>
+						</description>
+					</argument>
+					<argument name="callback" type="Function" required="false">
+						<description>
+							<locale>
+								A callback function that is executed if the request succeeds.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Loads data from the server using a HTTP GET request.
+					</locale>
+				</description>
+			</method>
+			<method name="post" type="XMLHttpRequest">
+				<arguments>
+					<argument name="url" type="String">
+						<description>
+							<locale>
+								A string containing the URL to which the request is sent.
+							</locale>
+						</description>
+					</argument>
+					<argument name="data" type="Variant" required="false">
+						<description>
+							<locale>
+								A map or string that is sent to the server with the request.
+							</locale>
+						</description>
+					</argument>
+					<argument name="callback" type="Function" required="false">
+						<description>
+							<locale>
+								A callback function that is executed if the request succeeds.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Loads data from the server using a HTTP POST request.
 					</locale>
 				</description>
 			</method>
