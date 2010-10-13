@@ -8,7 +8,7 @@
  */
 
 // Private members
-function fAmple_transform(oXml, oXsl) {
+function fAmple_transform(oXml, oXsl, fCallback, aParameters) {
 
 };
 
@@ -17,12 +17,17 @@ ample.extend({
 	xslt:	function(vXml, vXsl, fCallback) {
 		// validate API
 		ample.guard(arguments, [
-			["xml", 	Object],
-			["xsl", 	Object],
-			["callback",Function,	true]
+			["xml", 		Object],
+			["xsl", 		Object],
+			["callback",	Function,	true],
+			["parameters",	Array,		true,	true]
 		]);
 
 		// Invoke Implementation
+		var oXSLTProcessor	= new XSLTProcessor;
+
+		//
+		return oXSLTProcessor;
 	}
 });
 
@@ -31,10 +36,16 @@ ample.extend({
 	xslt:	function(vXml, vXsl) {
 		// validate API
 		ample.guard(arguments, [
-			["xml", 	Object],
-			["xsl", 	Object]
+			["xml", 		Object],
+			["xsl", 		Object],
+			["callback",	Function,	true],
+			["parameters",	Array,		true,	true]
 		]);
 
 		// Invoke Implementation
+		var oXSLTProcessor	= new XSLTProcessor;
+
+		//
+		return this;
 	}
 }, AMLQuery.prototype);
