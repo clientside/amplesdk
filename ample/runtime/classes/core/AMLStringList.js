@@ -20,16 +20,20 @@ cAMLStringList.prototype.item		= function(nIndex) {
 	return nIndex < this.length ? this[nIndex] : null;
 };
 
+function cAMLStringList_prototype_contains(oStringList, sValue) {
+	for (var nIndex = 0; nIndex < this.length; nIndex++)
+		if (this[nIndex] == sValue)
+			return true;
+	return false;
+};
+
 cAMLStringList.prototype.contains	= function(sValue) {
 	// Validate arguments
 	fGuard(arguments, [
 		["value",	cString]
 	]);
 
-	for (var nIndex = 0; nIndex < this.length; nIndex++)
-		if (this[nIndex] == sValue)
-			return true;
-	return false;
+	return cAMLStringList_prototype_contains(this, sValue);
 };
 
 cAMLStringList.prototype.$add	= function(sValue) {
