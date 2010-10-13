@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<data>
+	<entry id="1">
+		<key>key 1</key>
+		<value> value 1</value>
+	</entry>
+	<entry id="2">
+		<key>key 2</key>
+		<value> value 2</value>
+	</entry>
+	<entry id="3">
+		<key>key 3</key>
+		<value> value 3</value>
+	</entry>
+	<entry id="4">
+		<key>key 4</key>
+		<value> value 4</value>
+	</entry>
+	<entry id="5">
+		<key>key 5</key>
+		<value> value 5</value>
+	</entry>
+</data>
