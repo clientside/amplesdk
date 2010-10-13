@@ -20,8 +20,20 @@ function fAMLQuery_ajax(oSettings) {
 	// Register readystatechange handler
 	oRequest.onreadystatechange	= function() {
 		if (oRequest.readyState == 4) {
+			var nStatus	= oRequest.status;
+			// Success
+			if (nStatus >= 200 && nStatus <= 300 || nStatus == 304 || nStatus == 1223) {
+				if (oSettings.success)
+					oSettings.success(oRequest.responseXML || oRequest.responseText, "success", oRequest);
+			}
+			// Error
+			else {
+				if (oSettings.error)
+					oSettings.error(oRequest, "error");
+			}
+			// Complete
 			if (oSettings.complete)
-				oSettings.complete(oRequest, oRequest.textStatus);
+				oSettings.complete(oRequest, "success");
 		}
 	};
 	// Send data
