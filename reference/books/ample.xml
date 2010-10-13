@@ -252,6 +252,9 @@
 			</node>
 			<node title="XPath" xhref="ample/plugins/xpath.xml"/>
 		</node>
+		<node title="XSLT">
+			<node title="XSLT" xhref="ample/plugins/xslt.xml"/>
+		</node>
 		<node title="SOAP">
 			<node title="SOAP" xhref="ample/plugins/soap.xml"/>
 			<node title="Objects">

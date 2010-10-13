@@ -693,6 +693,7 @@
 		<antcall target="BUILD_AMPLE_PLUGINS_GLOB" />
 		<antcall target="BUILD_AMPLE_PLUGINS_STORE" />
 		<antcall target="BUILD_AMPLE_PLUGINS_XPATH" />
+		<antcall target="BUILD_AMPLE_PLUGINS_XSLT" />
 
 		<!-- clean up temp dir -->
 		<delete dir="${temp.ample.plugins.dir}" />
@@ -748,6 +749,10 @@
 			<fileset file="${copying.js}" />
 			<fileset file="${temp.ample.plugins.dir}/xpath-raw-wrapped.js" />
 		</concat>
+	</target>
+
+	<target name="BUILD_AMPLE_PLUGINS_XSLT" unless="skip.ample.plugins.xslt">
+
 	</target>
 
 	<!-- Examples -->
