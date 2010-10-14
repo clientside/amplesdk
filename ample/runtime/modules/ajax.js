@@ -57,7 +57,7 @@ oAmple.get	= function(sUrl, vData, fCallback, sType) {
 	// Validate API call
 	fGuard(arguments, [
 		["url",		cString],
-		["data",	cObject,	true,	null],
+		["data",	cObject,	true,	true],
 		["success",	cFunction,	true],
 		["dataType",cString,	true]
 	]);
@@ -77,7 +77,7 @@ oAmple.post	= function(sUrl, vData, fCallback, sType) {
 	// Validate API call
 	fGuard(arguments, [
    		["url",		cString],
-		["data",	cObject,	true,	null],
+		["data",	cObject,	true,	true],
 		["success",	cFunction,	true],
 		["dataType",cString,	true]
 	]);
@@ -98,7 +98,7 @@ cAMLQuery.prototype.load	= function(sUrl, vData, fCallback) {
 	// Validate API call
 	fGuard(arguments, [
 		["url",		cString],
-		["data",	cObject,	true,	null],
+		["data",	cObject,	true,	true],
 		["success",	cFunction,	true]
 	]);
 
