@@ -92,7 +92,7 @@ cXULElement_treecols.prototype.$getTagOpen	= function() {
 				<td class="xul-treecols--container">\
 					<div class="xul-treecol" style="float:right;width:16px"><div class="xul-treecols--settings"><br /></div></div>\
 					<div class="xul-treecols--area" style="height:20px;overflow:hidden;position:relative;">\
-						<table cellpadding="0" cellspacing="0" border="0" width="100%" class="xul-treecols" style="position:absolute">\
+						<table cellpadding="0" cellspacing="0" border="0" class="xul-treecols" style="position:absolute">\
 							<tbody>\
 								<tr class="xul-treecols--gateway" style="height:1em;vertical-align:top">' +
     								(this.parentNode.attributes["type"] == "checkbox" || this.parentNode.attributes["type"] == "radio"
@@ -111,8 +111,7 @@ cXULElement_treecols.prototype.$getTagOpen	= function() {
 
 // Element Render: close
 cXULElement_treecols.prototype.$getTagClose	= function() {
-	return 							'<td class="xul-treecol" width="100%"><br /></td>\
-								</tr>\
+	return 						'</tr>\
 							</tbody>\
 						</table>\
 					</div>\

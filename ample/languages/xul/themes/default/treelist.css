@@ -27,6 +27,8 @@ xul|treecols::settings {
 	background: url(media/listhead_settings.gif) 0 0;
 }
 
+xul|listhead::area,
+xul|treecols::area,
 xul|listheader,
 xul|treecol {
 	background: url(media/listheader.gif) repeat-x 0 0;

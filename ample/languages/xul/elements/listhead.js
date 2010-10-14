@@ -95,7 +95,7 @@ cXULElement_listhead.prototype.$getTagOpen	= function() {
 				<td class="xul-listhead--container">\
 					<div class="xul-listheader" style="float:right;width:16px"><div class="xul-listhead--settings"><br /></div></div>\
 					<div class="xul-listhead--area" style="height:20px;overflow:hidden;position:relative;">\
-						<table cellpadding="0" cellspacing="0" border="0" width="100%" style="position:absolute;" class="xul-listhead">\
+						<table cellpadding="0" cellspacing="0" border="0" style="position:absolute;" class="xul-listhead">\
 							<tbody>\
 								<tr class="xul-listhead--gateway" style="height:1em;vertical-align:top">' +
     								(this.parentNode.attributes["type"] == "checkbox" || this.parentNode.attributes["type"] == "radio"
@@ -114,8 +114,7 @@ cXULElement_listhead.prototype.$getTagOpen	= function() {
 
 // Element Render: close
 cXULElement_listhead.prototype.$getTagClose	= function() {
-	return 							'<td class="xul-listheader" width="100%"><br /></td>\
-								</tr>\
+	return 						'</tr>\
 							</tbody>\
 						</table>\
 					</div>\

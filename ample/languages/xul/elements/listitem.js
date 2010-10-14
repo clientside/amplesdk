@@ -103,8 +103,7 @@ cXULElement_listitem.prototype.$getTagOpen	= function() {
 
 // Element Render: close
 cXULElement_listitem.prototype.$getTagClose	= function() {
-	return 		'<td class="xul-listcell" width="100%"></td>\
-			</tr>';
+	return '</tr>';
 };
 
 // Register Element

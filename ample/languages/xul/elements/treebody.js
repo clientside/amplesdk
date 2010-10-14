@@ -58,7 +58,7 @@ cXULElement_treebody.prototype.$getTagOpen	= function() {
 				<td style="height:100%">\
 					<div class="xul-treebody--area" style="height:100%;width:100%;overflow:scroll;position:relative;" onscroll="return ample.$instance(this)._onScroll(event)">\
 						' + (bOldTrident ? '<div style="position:absolute;border-left:solid 18px white;margin-left:-18px;">' : '')+'\
-						<table cellpadding="0" cellspacing="0" border="0" width="100%" class="xul-treebody' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"' + (!bOldTrident ? ' style="position:absolute"' : '')+ '>\
+						<table cellpadding="0" cellspacing="0" border="0" class="xul-treebody' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"' + (!bOldTrident ? ' style="position:absolute"' : '')+ '>\
 							<tbody class="xul-treebody--gateway">';
 };
 
@@ -73,7 +73,6 @@ cXULElement_treebody.prototype.$getTagClose	= function() {
         	aHtml.push('<td width="20"><div style="width:20px"></div></td>');
         for (var nIndex = 0, aItems = this.parentNode.head.items, oItem; oItem = aItems[nIndex]; nIndex++)
         	aHtml.push('<td style="padding-top:0px;padding-bottom:0px;height:1px;' + (oItem.attributes["hidden"] == "true" ? 'display:none' : '') + '" class="xul-treecell"><div style="height:1px;' + (oItem.attributes["width"] ? 'width:' + oItem.attributes["width"] + 'px;' : '') + '"></div><div style="height:1px;' + (oItem.attributes["minwidth"] ? 'width:' + oItem.attributes["minwidth"] + 'px' : '') + '"></div></td>');
-        aHtml.push('<td></td>');
         aHtml.push('</tr>');
         aHtml.push('</tfoot>');
     }
