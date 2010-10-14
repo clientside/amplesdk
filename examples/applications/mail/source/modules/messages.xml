@@ -32,7 +32,7 @@
 			</xul:menupopup>
 		</xul:toolbarbutton>
 	</xul:toolbar>
-	<xul:listbox>
+	<xul:listbox flex="1">
 		<xul:listhead>
 			<xul:listheader width="200" label="From"/>
 			<xul:listheader label="Subject"/>

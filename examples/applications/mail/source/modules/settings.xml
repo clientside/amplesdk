@@ -2,5 +2,26 @@
 <xul:vbox
 	xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	xmlns:xi="http://www.w3.org/2001/XInclude">
-
+	<xul:tabbox>
+		<xul:tabs>
+			<xul:tab label="General" />
+			<xul:tab label="Labels" />
+			<xul:tab label="Accounts" />
+			<xul:tab label="Filters" />
+		</xul:tabs>
+		<xul:tabpanels>
+			<xul:tabpanel>
+General
+			</xul:tabpanel>
+			<xul:tabpanel>
+Labels
+			</xul:tabpanel>
+			<xul:tabpanel>
+Accounts
+			</xul:tabpanel>
+			<xul:tabpanel>
+Filters
+			</xul:tabpanel>
+		</xul:tabpanels>
+	</xul:tabbox>
 </xul:vbox>

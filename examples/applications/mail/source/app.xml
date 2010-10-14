@@ -2,12 +2,31 @@
 <xul:page
 	xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	xmlns:xi="http://www.w3.org/2001/XInclude">
+	<!-- Main commands -->
+	<xul:commandset>
+		<xul:command id="cmd_navigate_contacts" oncommand="alert('cmd_navigate_contacts')"/>
+		<xul:command id="cmd_navigate_message" oncommand="alert('cmd_navigate_message')"/>
+		<xul:command id="cmd_navigate_messages" oncommand="alert('cmd_navigate_messages')"/>
+		<xul:command id="cmd_navigate_settings" oncommand="alert('cmd_navigate_settings')"/>
+	</xul:commandset>
+	<!-- Main broadcasters -->
+	<xul:broadcasterset>
+		<xul:broadcaster id="brd_message_selection_one" disabled="true" />
+		<xul:broadcaster id="brd_message_selection_many" disabled="true" />
+	</xul:broadcasterset>
+	<!--  -->
+	<!-- Toolbar -->
+	<xul:toolbar>
+		<xul:toolbarbutton label="Settings" command="cmd_navigate_settings"/>
+		<xul:toolbarbutton label="Contacts" command="cmd_navigate_contacts"/>
+	</xul:toolbar>
+	<!--  -->
 	<xul:hbox flex="1" width="100%">
 		<xul:vbox width="200">
 			<xul:toolbar>
-				<xul:toolbarbutton label="Compose Mail" />
+				<xul:toolbarbutton label="Compose Mail" command="cmd_navigate_message"/>
 			</xul:toolbar>
-			<xul:tree>
+			<xul:tree flex="1">
 				<xul:treecols>
 					<xul:treecol label="Folders" />
 				</xul:treecols>

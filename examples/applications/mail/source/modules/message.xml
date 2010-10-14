@@ -13,7 +13,7 @@
 		<xul:rows>
 			<xul:row>
 				<xul:label value="From:" />
-				<xul:menulist>
+				<xul:menulist editable="true">
 					<xul:menupopup />
 				</xul:menulist>
 			</xul:row>
@@ -28,5 +28,5 @@
 		</xul:rows>
 	</xul:grid>
 	<!-- Editor -->
-	<xul:editor />
+	<xul:editor flex="1"/>
 </xul:vbox>
