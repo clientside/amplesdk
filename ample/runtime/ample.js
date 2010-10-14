@@ -25,10 +25,9 @@ function fQuery(vArgument1, vArgument2, vArgument3) {
 					if (oAmple.prefixes.hasOwnProperty(sKey) && sKey != "toString")
 						aNameSpaces.push("xmlns" + (sKey == '' ? '' : ':') + sKey + '="' + oAmple.prefixes[sKey] + '"');
 				//
-				var sNameSpaces	= ' ' + aNameSpaces.join(' '),
-					oDocument	= new cDOMParser().parseFromString(
+				var oDocument	= new cDOMParser().parseFromString(
 														'<!' + "DOCTYPE" + ' ' + "div" + '[' + aUtilities_entities + ']>' +
-														'<' + "div" + ' ' + "type" + '="' + "application/ample+xml" + '"' + sNameSpaces + '>' +
+														'<' + "div" + ' ' + "type" + '="' + "application/ample+xml" + '"' + ' ' + aNameSpaces.join(' ') + '>' +
 //->Debug
 														'\n' +
 //<-Debug
