@@ -20,7 +20,40 @@ cXULElement.prototype	= new AMLElement;
 cXULElement.prototype.namespaceURI	= "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
 cXULElement.prototype.localName		= "#element";
 cXULElement.prototype.viewType		= cXULElement.VIEW_TYPE_NORMAL;
+/*
+cXULElement.prototype.$getStyle	= function(sName) {
+	switch (sName) {
+		case "flex":
+		case "orient":
+		case "align":
+		case "pack":
+		case "width":
+		case "height":
+			break;
+		default:
+			return AMLElement.prototype.$getStyle(sName);
+	}
+};
 
+cXULElement.prototype.$setStyle	= function(sName, sValue) {
+	switch (sName) {
+		case "flex":
+			break;
+		case "orient":
+			break;
+		case "align":
+			break;
+		case "pack":
+			break;
+		case "width":
+			break;
+		case "height":
+			break;
+		default:
+			return AMLElement.prototype.$setStyle(sName, sValue);
+	}
+};
+*/
 // Private Methods
 cXULElement.prototype.$mapAttribute	= function(sName, sValue)
 {
