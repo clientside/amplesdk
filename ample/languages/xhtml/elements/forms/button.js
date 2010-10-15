@@ -31,6 +31,10 @@ cXHTMLElement_button.handlers	= {
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this)
 			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
+	},
+	"click":	function(oEvent) {
+		if (oEvent.button == 0)
+			this.$activate();
 	}
 };
 
