@@ -8,6 +8,9 @@
  */
 
 // Extend AMLQuery
+
+var sAmple_formsXHTMLNS	= "http://www.w3.org/1999/xhtml";
+
 ample.extend({
 	//
 	val:	function(vValue) {
@@ -17,6 +20,17 @@ ample.extend({
 		]);
 
 		// Invoke Implementation
+		if (argument.length) {
+			this.each(function() {
+				if (this.namespaceURI == sAmple_formsXHTMLNS &&(this.localName == "input" || this.localName == "textarea" || this.localName == "select" || this.localName == "button"))
+					this.setAttribute("value", vValue);
+			});
+			//
+			return this;
+		}
+		else
+		if (this.length)
+			return this[0].getAttribute("value");
 	},
 
 	//
@@ -27,6 +41,16 @@ ample.extend({
 		]);
 
 		// Invoke Implementation
+		if (fHandler)
+			this.each(function() {
+				if (this.namespaceURI == sAmple_formsXHTMLNS &&(this.localName == "input" || this.localName == "textarea" || this.localName == "select" || this.localName == "button"))
+					ample.query(this).bind("blur", fHandler);
+			});
+		else
+		if (this.length)
+			this[0].blur();
+		//
+		return this;
 	},
 
 	focus:	function(fHandler) {
@@ -36,6 +60,16 @@ ample.extend({
 		]);
 
 		// Invoke Implementation
+		if (fHandler)
+			this.each(function() {
+				if (this.namespaceURI == sAmple_formsXHTMLNS &&(this.localName == "input" || this.localName == "textarea" || this.localName == "select" || this.localName == "button"))
+					ample.query(this).bind("focus", fHandler);
+			});
+		else
+		if (this.length)
+			this[0].focus();
+		//
+		return this;
 	},
 
 	//
@@ -46,6 +80,15 @@ ample.extend({
 		]);
 
 		// Invoke Implementation
+		if (fHandler)
+			this.each(function() {
+				if (this.namespaceURI == sAmple_formsXHTMLNS &&(this.localName == "input" || this.localName == "textarea" || this.localName == "select"))
+					ample.query(this).bind("change", fHandler);
+			});
+		else
+			throw new AMLException(AMLException.NOT_SUPPORTED_ERR);
+		//
+		return this;
 	},
 
 	select:	function(fHandler) {
@@ -55,6 +98,16 @@ ample.extend({
 		]);
 
 		// Invoke Implementation
+		if (fHandler)
+			this.each(function() {
+				if (this.namespaceURI == sAmple_formsXHTMLNS &&(this.localName == "input" || this.localName == "textarea"))
+					ample.query(this).bind("select", fHandler);
+			});
+		else
+		if (this.length)
+			this[0].select();
+		//
+		return this;
 	},
 
 	//
@@ -65,6 +118,16 @@ ample.extend({
 		]);
 
 		// Invoke Implementation
+		if (fHandler)
+			this.each(function() {
+				if (this.namespaceURI == sAmple_formsXHTMLNS && this.localName == "form")
+					ample.query(this).bind("submit", fHandler);
+			});
+		else
+		if (this.length)
+			this[0].submit();
+		//
+		return this;
 	},
 
 	reset:	function(fHandler) {
@@ -74,6 +137,16 @@ ample.extend({
 		]);
 
 		// Invoke Implementation
+		if (fHandler)
+			this.each(function() {
+				if (this.namespaceURI == sAmple_formsXHTMLNS && this.localName == "form")
+					ample.query(this).bind("reset", fHandler);
+			});
+		else
+		if (this.length)
+			this[0].reset();
+		//
+		return this;
 	},
 
 	//
