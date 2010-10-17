@@ -70,7 +70,8 @@ cXULElement.prototype.$mapAttribute	= function(sName, sValue)
 	                oElementDOM.parentNode.parentNode.style.display    =(sValue == "true" ? "none" : "");
 
 	            // Update flexible parameters
-	            oXULReflowManager.reflow(this.parentNode);
+	            if (this.parentNode && this.parentNode.viewType == cXULElement.VIEW_TYPE_BOXED)
+	            	oXULReflowManager.schedule(this.parentNode);
 	        }
 	        // hide the container
 	        oElementDOM.style.display   =(sValue == "true" ? "none" : "");
@@ -85,7 +86,7 @@ cXULElement.prototype.$mapAttribute	= function(sName, sValue)
 		case "flex":
 	        this.attributes[sName]	= sValue;
 	        if (this.parentNode && this.parentNode.viewType == cXULElement.VIEW_TYPE_BOXED)
-	            oXULReflowManager.reflow(this.parentNode);
+	        	oXULReflowManager.schedule(this.parentNode);
 			break;
 
 		case "pack":
@@ -200,8 +201,12 @@ cXULElement.prototype.reflow   = function()
                     {
                         // set widths
                     	oCell	= oElementDOM.tBodies[0].rows[0].cells[nIndex - nVirtual];
-                        if ("flex" in oElement.attributes && !isNaN(oElement.attributes["flex"]))
+                        if ("flex" in oElement.attributes && !isNaN(oElement.attributes["flex"])) {
                         	oCell.setAttribute("width", oElement.attributes["flex"] * 100 / nFlex + "%");
+                        	//
+                        	if (oElement.attributes["align"] == "stretch" || !this.attributes["flex"])
+                        		oElement.$getContainer().style.width	= "100%";
+                        }
                         else
                         if (oElement.attributes["width"])
                         	oCell.setAttribute("width", oElement.attributes["width"]);
