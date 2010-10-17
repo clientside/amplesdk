@@ -16,8 +16,8 @@ var oXULReflowManager	= (function () {
 	// Private Functions
 	function fOnTimeout() {
 		nTimeout	= null;
-		for (var oElement; oElement = aReflowStack.pop();)
-			oElement.reflow();
+		while (aReflowStack.length)
+			aReflowStack.pop().reflow();
 	};
 
 	function fSchedule(oElement) {
