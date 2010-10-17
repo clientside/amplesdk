@@ -166,15 +166,25 @@ cXULElement.prototype.reflow   = function()
         // Refresh flexible elements
         if (nElements)
         {
-            var oElementDOM	=(this instanceof cXULElement_row || this instanceof cXULElement_rows) ? this.$getContainer() : this.$getContainer("box-container"),
+            var oElementBox	=(this instanceof cXULElement_row || this instanceof cXULElement_rows) ? this.$getContainer() : this.$getContainer("box-container"),
+            	sMeasure	= this.attributes["orient"] == "vertical" ? "height" : "width",
+            	oElementDOM,
             	oCell;
 
             if (this instanceof cXULElement_row)
-            	oElementDOM	= oElementDOM.parentNode.parentNode;
+            	oElementBox	= oElementBox.parentNode.parentNode;
 
+            //
+            if (nFlex) {
+            	oElementBox.setAttribute(sMeasure, "100%");
+                this.$getContainer().style[sMeasure]	= this.attributes[sMeasure] ? (isNaN(this.attributes[sMeasure]) ? this.attributes[sMeasure] : this.attributes[sMeasure] + "px") : "100%";
+            }
+
+            //
             for (var nIndex = 0; nIndex < nLength; nIndex++)
             {
             	oElement	= this.childNodes[nIndex];
+            	oElementDOM	= oElement.$getContainer();
             	if (oElement.nodeType != AMLNode.ELEMENT_NODE)
             		nVirtual++;
             	else
@@ -183,42 +193,39 @@ cXULElement.prototype.reflow   = function()
                     if (this.attributes["orient"] == "vertical")
                     {
                         // set heights
-                    	oCell	= oElementDOM.tBodies[0].rows[nIndex - nVirtual].cells[0];
+                    	oCell	= oElementBox.tBodies[0].rows[nIndex - nVirtual].cells[0];
                         if ("flex" in oElement.attributes && !isNaN(oElement.attributes["flex"])) {
                         	oCell.setAttribute("height", oElement.attributes["flex"] * 100 / nFlex + "%");
                         	//
-                        	if (oElement.attributes["align"] == "stretch" || !this.attributes["flex"])
-                        		oElement.$getContainer().style.height	= "100%";
+//                        	if (oElement.attributes["align"] == "stretch" || !this.attributes["flex"])
+                        	oElementDOM.style.height	= "100%";
                         }
                         else
                         if (oElement.attributes["height"])
                         	oCell.setAttribute("height", oElement.attributes["height"]);
                         // Stretch if needed
                         if (this.attributes["align"] == "stretch")
-                        	oElement.$getContainer().style.width	= "100%";
+                        	oElementDOM.style.width	= "100%";
                     }
                     else
                     {
                         // set widths
-                    	oCell	= oElementDOM.tBodies[0].rows[0].cells[nIndex - nVirtual];
+                    	oCell	= oElementBox.tBodies[0].rows[0].cells[nIndex - nVirtual];
                         if ("flex" in oElement.attributes && !isNaN(oElement.attributes["flex"])) {
                         	oCell.setAttribute("width", oElement.attributes["flex"] * 100 / nFlex + "%");
                         	//
-                        	if (oElement.attributes["align"] == "stretch" || !this.attributes["flex"])
-                        		oElement.$getContainer().style.width	= "100%";
+//                        	if (oElement.attributes["align"] == "stretch" || !this.attributes["flex"])
+                        	oElementDOM.style.width	= "100%";
                         }
                         else
                         if (oElement.attributes["width"])
                         	oCell.setAttribute("width", oElement.attributes["width"]);
                         // Stretch if needed
                         if (this.attributes["align"] == "stretch")
-                        	oElement.$getContainer().style.height	= "100%";
+                        	oElementDOM.style.height	= "100%";
                     }
                 }
             }
-            //
-            if (nFlex)
-                oElementDOM.setAttribute(this.attributes["orient"] == "vertical" ? "height" : "width", "100%");
         }
     }
 };
