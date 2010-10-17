@@ -184,6 +184,7 @@
 				event.js,
 				history.js,
 				manipulation.js,
+				modal.js,
 				offset.js,
 				traversing.js"/>
 		</concat>

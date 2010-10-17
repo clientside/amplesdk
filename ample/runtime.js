@@ -116,6 +116,7 @@
 	files.push("runtime/modules/event.js");
 	files.push("runtime/modules/history.js");
 	files.push("runtime/modules/manipulation.js");
+	files.push("runtime/modules/modal.js");
 	files.push("runtime/modules/offset.js");
 	files.push("runtime/modules/traversing.js");
 	//

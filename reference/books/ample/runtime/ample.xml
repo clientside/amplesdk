@@ -616,6 +616,24 @@
 					</locale>
 				</description>
 			</method>
+			<!-- Modal -->
+			<method name="modal" type="Void">
+				<arguments>
+					<argument name="element" type="AMLElement" required="true">
+						<description>
+							<locale>
+								Element to be set as modal or null to reset.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Sets element in a modal state when element reference provided,
+						Unsets modal state from the modal element if null passed.
+					</locale>
+				</description>
+			</method>
 		</methods>
 		<events>
 			<event name="configchange" type="CustomEvent" cancelable="false" bubbles="false">
