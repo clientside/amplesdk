@@ -28,7 +28,7 @@
 			</xul:toolbar>
 			<xul:tree flex="1">
 				<xul:treecols>
-					<xul:treecol label="Folders" />
+					<xul:treecol label="Folders" width="200"/>
 				</xul:treecols>
 				<xul:treebody>
 					<xul:treechildren id="folders-system">
@@ -58,8 +58,48 @@
 			</xul:tree>
 		</xul:vbox>
 		<xul:splitter />
-		<xul:deck>
-			<xi:include href="modules/messages.xml" />
+		<xul:deck flex="1">
+			<xul:vbox flex="1">
+				<xul:toolbar>
+					<xul:toolbarbutton label="Archieve" />
+					<xul:toolbarbutton label="Report spam" />
+					<xul:toolbarbutton label="Delete" />
+					<xul:toolbarbutton label="Mark as read" />
+					<xul:toolbarseparator />
+					<xul:toolbarbutton label="Move to" type="menu">
+						<xul:menupopup>
+							<xul:textbox type="search" />
+							<xul:menuseparator />
+							<xul:menuitem label="Manage labels" />
+						</xul:menupopup>
+					</xul:toolbarbutton>
+					<xul:toolbarbutton label="Labels" type="menu">
+						<xul:menupopup>
+							<xul:textbox type="search" />
+							<xul:menuseparator />
+							<xul:menuitem label="Manage labels" />
+						</xul:menupopup>
+					</xul:toolbarbutton>
+					<xul:toolbarseparator />
+					<xul:toolbarbutton label="More actions" type="menu">
+						<xul:menupopup>
+							<xul:menuitem label="Mark as unread" />
+							<xul:menuitem label="Add to tasks" />
+							<xul:menuitem label="Add star" />
+							<xul:menuitem label="Filter messages like this" />
+						</xul:menupopup>
+					</xul:toolbarbutton>
+				</xul:toolbar>
+				<xul:listbox flex="1" type="checkbox">
+					<xul:listhead>
+						<xul:listheader minwidth="100" width="200" label="From"/>
+						<xul:listheader minwidth="300" width="300" label="Subject"/>
+						<xul:listheader minwidth="50" width="100" label="Attachements"/>
+						<xul:listheader minwidth="50" width="100" label="Date"/>
+					</xul:listhead>
+					<xul:listbody />
+				</xul:listbox>
+			</xul:vbox>
 			<xi:include href="modules/message.xml" />
 			<xi:include href="modules/contacts.xml" />
 			<xi:include href="modules/settings.xml" />
