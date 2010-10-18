@@ -7,8 +7,6 @@
  *
  */
 
-var aAMLCapture_modals	= [];
-
 // Attaching to implementation
 cAMLDocument.prototype.releaseCapture	= function() {
 	if (oBrowser_captureNode)
