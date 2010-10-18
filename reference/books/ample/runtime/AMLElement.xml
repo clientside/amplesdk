@@ -702,25 +702,6 @@
 					</locale>
 				</description>
 			</method>
-			<method name="$setModal" type="Void">
-				<description>
-					<locale>
-						Sets element in a modal state if it is not yet modal, otherwise throws exception.
-						UI Events originated outside this element get supressed,
-						except for one <link type="event">capture</link> that is fired upon a click outside modal area.
-						If there was an element set in modal state before, it will pushed to the stack of modals.
-					</locale>
-				</description>
-			</method>
-			<method name="$releaseModal" type="Void">
-				<description>
-					<locale>
-						Brings element to a normal (non-modal) state if it was set to modal before, otherwise throws exception.
-						In case there was another element set in modal mode before the one being released,
-						it will regain modal state.
-					</locale>
-				</description>
-			</method>
 			<!-- Focus -->
 			<method name="focus" type="Void">
 				<arguments />
@@ -1130,7 +1111,15 @@
 			<event name="capture" type="UIEvent" cancelable="false" bubbles="true">
 				<description>
 					<locale>
-						Fires when user clicks outside either an element set as modal or to receive capture.
+						Fires when user clicks outside element set to receive capture.
+					</locale>
+				</description>
+			</event>
+			<!-- Modal -->
+			<event name="modal" type="UIEvent" cancelable="false" bubbles="true">
+				<description>
+					<locale>
+						Fires when user clicks outside element set as modal.
 					</locale>
 				</description>
 			</event>

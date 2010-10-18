@@ -600,7 +600,6 @@ function fBrowser_onMouseDown(oEvent) {
 		oPseudo		= fBrowser_getUIEventPseudo(oEvent),
 		nButton		= fBrowser_getUIEventButton(oEvent),
 		bCapture	= false,
-		bModal		= false,
 		oEventMouseDown = new cAMLMouseEvent;
 
 	// change target if some element is set to receive capture
@@ -622,15 +621,21 @@ function fBrowser_onMouseDown(oEvent) {
 		fAMLNode_dispatchEvent(oTarget, oEventMouseDown);
 	}
 	else {
-		bModal	= true;
+		// Notify element on capture
+		var oModalEvent	= new cAMLUIEvent;
+		oModalEvent.initUIEvent("modal", true, false, window, null);
+		oModalEvent.$pseudoTarget	= oPseudo;
+		fAMLNode_dispatchEvent(oBrowser_modalNode, oModalEvent);
+		//
+		oEventMouseDown.preventDefault();
 	}
 
-	if (bCapture || bModal) {
-		// Notify element on capture
+	if (bCapture) {
+		// Notify element on modal
 		var oCaptureEvent	= new cAMLUIEvent;
 		oCaptureEvent.initUIEvent("capture", true, false, window, null);
 		oCaptureEvent.$pseudoTarget	= oPseudo;
-		fAMLNode_dispatchEvent(bModal ? oBrowser_modalNode : oTarget, oCaptureEvent);
+		fAMLNode_dispatchEvent(oTarget, oCaptureEvent);
 		//
 		oEventMouseDown.preventDefault();
 	}
