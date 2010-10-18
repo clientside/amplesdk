@@ -632,7 +632,7 @@
 						Sets element in a modal state when element reference provided,
 						Unsets modal state from the modal element if null passed.
 						UI Events originated outside this element get supressed,
-						except for one <link type="event" href="runtime:AMLElement">capture</link> that is fired upon a click outside modal area.
+						except for one <link type="event" href="runtime:AMLElement">modal</link> that is fired upon a click outside modal area.
 					</locale>
 				</description>
 			</method>
