@@ -15,7 +15,7 @@ cAMLConfiguration.prototype.parameterNames	= null;
 var oAMLConfiguration_values	= {};
 
 function fAMLConfiguration_setParameter(oConfiguration, sName, vValue) {
-	if (!cAMLStringList_prototype_contains(oConfiguration, sName))
+	if (!fAMLStringList_contains(oConfiguration, sName))
 		oConfiguration.parameterNames.$add(sName);
 	oAMLConfiguration_values[sName]	= vValue;
 };

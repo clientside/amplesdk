@@ -20,9 +20,9 @@ cAMLStringList.prototype.item		= function(nIndex) {
 	return nIndex < this.length ? this[nIndex] : null;
 };
 
-function cAMLStringList_prototype_contains(oStringList, sValue) {
-	for (var nIndex = 0; nIndex < this.length; nIndex++)
-		if (this[nIndex] == sValue)
+function fAMLStringList_contains(oStringList, sValue) {
+	for (var nIndex = 0; nIndex < oStringList.length; nIndex++)
+		if (oStringList[nIndex] == sValue)
 			return true;
 	return false;
 };
@@ -33,7 +33,7 @@ cAMLStringList.prototype.contains	= function(sValue) {
 		["value",	cString]
 	]);
 
-	return cAMLStringList_prototype_contains(this, sValue);
+	return fAMLStringList_contains(this, sValue);
 };
 
 cAMLStringList.prototype.$add	= function(sValue) {
