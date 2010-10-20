@@ -16,10 +16,15 @@ cXULElement_checkbox.prototype.$hoverable	= true;
 
 // Class Events handlers
 cXULElement_checkbox.handlers	= {
+	"keydown":	function(oEvent) {
+		if (oEvent.keyIdentifier == "U+0020") {
+			this.$activate();
+			cXULInputElement.dispatchChange(this);
+		}
+	},
 	"click":	function(oEvent) {
 		if (oEvent.button == 0) {
-			this.setAttribute("checked", this.getAttribute("checked") == "true" ? "false" : "true");
-		    // Fire Event
+			this.$activate();
 			cXULInputElement.dispatchChange(this);
 		}
 	},
@@ -47,6 +52,9 @@ cXULElement_checkbox.handlers	= {
 					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
 			}
 		}
+	},
+	"DOMActivate":	function(oEvent) {
+		this.setAttribute("checked", this.getAttribute("checked") == "true" ? "false" : "true");
 	}
 };
 
