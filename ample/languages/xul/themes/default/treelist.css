@@ -60,7 +60,7 @@ xul|tree:disabled xul|treecol::resizer {
 
 xul|listhead,
 xul|treecols {
-	line-height:	20px;
+	height:	20px;
 }
 
 xul|listitem:hover,
@@ -83,6 +83,7 @@ xul|listcell,
 xul|listheader,
 xul|treecell,
 xul|treecol {
+	line-height:1.15em;
 	padding-left: 1px;
 	padding-right: 1px;
 }
@@ -93,7 +94,6 @@ xul|listheader::label,
 xul|treecol::label {
 	white-space:	nowrap;
 	text-overflow: ellipsis;
-	line-height: 18px;
 }
 
 xul|listcell::box,
