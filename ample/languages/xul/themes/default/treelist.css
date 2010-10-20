@@ -128,7 +128,7 @@ xul|tree::resizer {
 xul|treecell::toc,
 xul|treecell-line {
 	width: 18px;
-	height: 18px;
+	height: 1.15em;
 }
 
 xul|treecell::toc {
