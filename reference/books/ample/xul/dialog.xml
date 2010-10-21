@@ -138,7 +138,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="dialogaccept" type="Event" cancelable="true" bubbles="false">
+			<event name="dialogaccept" type="Event" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						Called when the accept button is pressed, or when the <link type="method">acceptDialog</link> method is called.
@@ -149,7 +149,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="dialogcancel" type="Event" cancelable="true" bubbles="false">
+			<event name="dialogcancel" type="Event" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						Called when the "cancel" button is pressed or when the <link type="method">cancelDialog</link> method is called.
@@ -160,7 +160,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="dialogdisclosure" type="Event" cancelable="false" bubbles="false">
+			<event name="dialogdisclosure" type="Event" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						Called when the "disclosure" button is pressed.
@@ -170,7 +170,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="dialoghelp" type="Event" cancelable="false" bubbles="false">
+			<event name="dialoghelp" type="Event" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						Called when the "help" button is pressed.

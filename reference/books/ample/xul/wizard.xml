@@ -195,7 +195,7 @@
 			</property>
 		</properties>
 		<events>
-			<event name="wizardback" type="Event" cancelable="true" bubbles="false">
+			<event name="wizardback" type="Event" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						Called when the user presses the Back button.
@@ -208,7 +208,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="wizardcancel" type="Event" cancelable="true" bubbles="false">
+			<event name="wizardcancel" type="Event" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						Called when the user presses the Cancel button.
@@ -221,7 +221,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="wizardfinish" type="Event" cancelable="true" bubbles="false">
+			<event name="wizardfinish" type="Event" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						Called when the user presses the Finish button, which would appear in place of the Next button on the last page of the wizard.
@@ -234,7 +234,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="wizardnext" type="Event" cancelable="true" bubbles="false">
+			<event name="wizardnext" type="Event" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						This should be set to code which is called when the user presses the Next button.
