@@ -701,19 +701,114 @@
 	</target>
 
 	<target name="BUILD_AMPLE_PLUGINS_COOKIE" unless="skip.ample.plugins.cookie">
+		<property name="source.cookie.dir" value="${source.ample.plugins.dir}/cookie/" />
+		<property name="target.cookie.dir" value="${target.ample.plugins.dir}/cookie/" />
 
+		<echo message="Merging into: ${temp.ample.plugins.dir}/cookie-raw.js" level="info"/>
+		<concat destfile="${temp.ample.plugins.dir}/cookie-raw.js" fixlastline="yes">
+			<fileset dir="${source.cookie.dir}/">
+				<include name="cookie.js" />
+			</fileset>
+		</concat>
+
+		<echo message="Wrapping into: ${temp.ample.plugins.dir}/cookie-raw-wrapped.js" level="info"/>
+		<exec executable="${executable.php}" failonerror="true">
+			<arg value="resources/compiler/js.php" />
+			<arg value="${temp.ample.plugins.dir}/cookie-raw.js" />
+			<arg value="${temp.ample.plugins.dir}/cookie-raw-wrapped.js" />
+			<arg value="--strip-Source" />
+		</exec>
+
+		<!-- package -->
+		<mkdir dir="${target.cookie.dir}" />
+		<concat destfile="${target.cookie.dir}/cookie.js" fixlastline="yes">
+			<fileset file="${copying.js}" />
+			<fileset file="${temp.ample.plugins.dir}/cookie-raw-wrapped.js" />
+		</concat>
 	</target>
 
 	<target name="BUILD_AMPLE_PLUGINS_FORM" unless="skip.ample.plugins.form">
+		<property name="source.form.dir" value="${source.ample.plugins.dir}/form/" />
+		<property name="target.form.dir" value="${target.ample.plugins.dir}/form/" />
 
+		<echo message="Merging into: ${temp.ample.plugins.dir}/form-raw.js" level="info"/>
+		<concat destfile="${temp.ample.plugins.dir}/form-raw.js" fixlastline="yes">
+			<fileset dir="${source.form.dir}/">
+				<include name="form.js" />
+			</fileset>
+		</concat>
+
+		<echo message="Wrapping into: ${temp.ample.plugins.dir}/form-raw-wrapped.js" level="info"/>
+		<exec executable="${executable.php}" failonerror="true">
+			<arg value="resources/compiler/js.php" />
+			<arg value="${temp.ample.plugins.dir}/form-raw.js" />
+			<arg value="${temp.ample.plugins.dir}/form-raw-wrapped.js" />
+			<arg value="--strip-Source" />
+		</exec>
+
+		<!-- package -->
+		<mkdir dir="${target.form.dir}" />
+		<concat destfile="${target.form.dir}/form.js" fixlastline="yes">
+			<fileset file="${copying.js}" />
+			<fileset file="${temp.ample.plugins.dir}/form-raw-wrapped.js" />
+		</concat>
 	</target>
 
 	<target name="BUILD_AMPLE_PLUGINS_GLOB" unless="skip.ample.plugins.glob">
+		<property name="source.glob.dir" value="${source.ample.plugins.dir}/glob/" />
+		<property name="target.glob.dir" value="${target.ample.plugins.dir}/glob/" />
 
+		<echo message="Merging into: ${temp.ample.plugins.dir}/glob-raw.js" level="info"/>
+		<concat destfile="${temp.ample.plugins.dir}/glob-raw.js" fixlastline="yes">
+			<fileset dir="${source.glob.dir}/">
+				<include name="glob.js" />
+			</fileset>
+		</concat>
+
+		<echo message="Wrapping into: ${temp.ample.plugins.dir}/glob-raw-wrapped.js" level="info"/>
+		<exec executable="${executable.php}" failonerror="true">
+			<arg value="resources/compiler/js.php" />
+			<arg value="${temp.ample.plugins.dir}/glob-raw.js" />
+			<arg value="${temp.ample.plugins.dir}/glob-raw-wrapped.js" />
+			<arg value="--strip-Source" />
+		</exec>
+
+		<!-- package -->
+		<mkdir dir="${target.glob.dir}" />
+		<concat destfile="${target.glob.dir}/glob.js" fixlastline="yes">
+			<fileset file="${copying.js}" />
+			<fileset file="${temp.ample.plugins.dir}/glob-raw-wrapped.js" />
+		</concat>
+		<copy todir="${target.glob.dir}/globinfo/">
+			<fileset dir="${source.glob.dir}/globinfo/" />
+		</copy>
 	</target>
 
 	<target name="BUILD_AMPLE_PLUGINS_STORE" unless="skip.ample.plugins.store">
+		<property name="source.store.dir" value="${source.ample.plugins.dir}/store/" />
+		<property name="target.store.dir" value="${target.ample.plugins.dir}/store/" />
 
+		<echo message="Merging into: ${temp.ample.plugins.dir}/store-raw.js" level="info"/>
+		<concat destfile="${temp.ample.plugins.dir}/store-raw.js" fixlastline="yes">
+			<fileset dir="${source.store.dir}/">
+				<include name="store.js" />
+			</fileset>
+		</concat>
+
+		<echo message="Wrapping into: ${temp.ample.plugins.dir}/store-raw-wrapped.js" level="info"/>
+		<exec executable="${executable.php}" failonerror="true">
+			<arg value="resources/compiler/js.php" />
+			<arg value="${temp.ample.plugins.dir}/store-raw.js" />
+			<arg value="${temp.ample.plugins.dir}/store-raw-wrapped.js" />
+			<arg value="--strip-Source" />
+		</exec>
+
+		<!-- package -->
+		<mkdir dir="${target.store.dir}" />
+		<concat destfile="${target.store.dir}/store.js" fixlastline="yes">
+			<fileset file="${copying.js}" />
+			<fileset file="${temp.ample.plugins.dir}/store-raw-wrapped.js" />
+		</concat>
 	</target>
 
 	<target name="BUILD_AMPLE_PLUGINS_XPATH" unless="skip.ample.plugins.xpath">
@@ -753,7 +848,30 @@
 	</target>
 
 	<target name="BUILD_AMPLE_PLUGINS_XSLT" unless="skip.ample.plugins.xslt">
+		<property name="source.xslt.dir" value="${source.ample.plugins.dir}/xslt/" />
+		<property name="target.xslt.dir" value="${target.ample.plugins.dir}/xslt/" />
 
+		<echo message="Merging into: ${temp.ample.plugins.dir}/xslt-raw.js" level="info"/>
+		<concat destfile="${temp.ample.plugins.dir}/xslt-raw.js" fixlastline="yes">
+			<fileset dir="${source.xslt.dir}/">
+				<include name="xslt.js" />
+			</fileset>
+		</concat>
+
+		<echo message="Wrapping into: ${temp.ample.plugins.dir}/xslt-raw-wrapped.js" level="info"/>
+		<exec executable="${executable.php}" failonerror="true">
+			<arg value="resources/compiler/js.php" />
+			<arg value="${temp.ample.plugins.dir}/xslt-raw.js" />
+			<arg value="${temp.ample.plugins.dir}/xslt-raw-wrapped.js" />
+			<arg value="--strip-Source" />
+		</exec>
+
+		<!-- package -->
+		<mkdir dir="${target.xslt.dir}" />
+		<concat destfile="${target.xslt.dir}/xslt.js" fixlastline="yes">
+			<fileset file="${copying.js}" />
+			<fileset file="${temp.ample.plugins.dir}/xslt-raw-wrapped.js" />
+		</concat>
 	</target>
 
 	<!-- Examples -->
