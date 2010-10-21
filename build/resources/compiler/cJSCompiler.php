@@ -297,11 +297,11 @@
 			$output	= $this->output;
 
 			// Restore prototype to proper reference
-			$output	= str_replace("[$]", "[_[0]]", $output);
+//			$output	= str_replace("[$]", "[_[0]]", $output);
 
-			$sData	= 	"(function($,_){"
-						. str_replace("window", "$", $output)
-						. "})(window,'" . join(" ", $this->aStrings) . "'.split(' '))";
+			$sData	= 	"(function($,_,_\$){"
+						. str_replace("window", "_\$", $output)
+						. "})('prototype','" . join(" ", $this->aStrings) . "'.split(' '),window)";
 
 			$this->output	= $sData;
 		}
