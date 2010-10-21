@@ -11,7 +11,6 @@
  * Globalization
  * http://github.com/nje/jquery-glob
  */
-(function(){
 
 var Globalization = {},
     localized = { en: {} };
@@ -1327,5 +1326,3 @@ function formatDate(value, format, culture) {
 
 // Extend ample object
 ample.extend({locale: Globalization});
-
-})();
