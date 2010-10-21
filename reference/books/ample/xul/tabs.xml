@@ -174,7 +174,7 @@
 			</property>
 		</properties>
 		<events>
-			<event name="select" type="Event" cancelable="false" bubbles="true">
+			<event name="select" type="Event" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						This event is sent to the tabs element when this <link type="element">tab</link> is changed.

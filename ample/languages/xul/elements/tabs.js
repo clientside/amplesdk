@@ -57,7 +57,7 @@ cXULElement_tabs.prototype.goTo      = function(nIndex) {
 
         // send onselect event
         var oEvent  = this.ownerDocument.createEvent("Events");
-        oEvent.initEvent("select", false, true);
+        oEvent.initEvent("select", true, true);
         this.dispatchEvent(oEvent);
     }
 };

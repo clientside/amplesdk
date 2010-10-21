@@ -223,7 +223,7 @@ cXULSelectElement.fireEventOnSelect	= function(oInstance)
     }
 
     var oEvent  = oInstance.ownerDocument.createEvent("Events");
-    oEvent.initEvent("select", false, true);
+    oEvent.initEvent("select", true, true);
     oInstance.dispatchEvent(oEvent);
 
     oInstance.doCommand();
