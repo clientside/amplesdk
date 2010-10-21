@@ -222,13 +222,6 @@ cXULSelectElement.fireEventOnSelect	= function(oInstance)
         	oInstance.head.$getContainer("command").checked    = oInstance.selectedItems.length != 0;
     }
 
-	if (oInstance.selectedItems.length)
-	{
-	    var oEvent  = oInstance.ownerDocument.createEvent("Events");
-	    oEvent.initEvent("select", false, true);
-	    oInstance.selectedItems[0].dispatchEvent(oEvent);
-	}
-
     var oEvent  = oInstance.ownerDocument.createEvent("Events");
     oEvent.initEvent("select", false, true);
     oInstance.dispatchEvent(oEvent);
