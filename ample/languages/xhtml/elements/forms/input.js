@@ -149,6 +149,10 @@ cXHTMLElement_input.handlers	= {
 					oElementDOM.parentNode.replaceChild(oFactory.firstChild, oElementDOM);
 					break;
 
+				case "placeholder":
+					this.$getContainer("placeholder").innerHTML	= oEvent.newValue || '';
+					break;
+
 				case "checked":
 					this.$setPseudoClass("checked", oEvent.newValue != null && oEvent.newValue != "false");
 			}
