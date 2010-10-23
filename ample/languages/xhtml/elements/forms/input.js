@@ -30,6 +30,9 @@ cXHTMLElement_input.prototype.selectionEnd		= null;
 cXHTMLElement_input.prototype.list	= null;
 cXHTMLElement_input.prototype.selectedOption	= null;
 
+//
+cXHTMLElement_input.prototype.valueAsNumber	= NaN;
+cXHTMLElement_input.prototype.valueAsDate	= null;
 
 cXHTMLElement_input.prototype.$isAccessible	= function() {
 	return cXHTMLElement.prototype.$isAccessible.call(this) && this.attributes["type"] != "hidden";
@@ -45,11 +48,41 @@ cXHTMLElement_input.prototype.setSelectionRange	= function() {
 };
 
 cXHTMLElement_input.prototype.stepUp	= function() {
+	var nValue	= parseFloat(this.attributes["value"]),
+		nStep	= parseFloat(this.attributes["step"]) || 1,
+		nMin	= parseFloat(this.attributes["min"]),
+		nMax	= parseFloat(this.attributes["max"]);
 
+	if (isNaN(nValue))
+		nValue	= nMax;
+	else
+	if (nValue + nStep > nMax)
+		nValue	= nMax;
+	else
+		nValue	+= nStep;
+
+	this.value	= '' + nValue;
+	this.valueAsNumber	= nValue;
+	this.setAttribute("value", nValue);
 };
 
 cXHTMLElement_input.prototype.stepDown	= function() {
+	var nValue	= parseFloat(this.attributes["value"]),
+		nStep	= parseFloat(this.attributes["step"]) || 1,
+		nMin	= parseFloat(this.attributes["min"]),
+		nMax	= parseFloat(this.attributes["max"]);
 
+	if (isNaN(nValue))
+		nValue	= nMin;
+	else
+	if (nValue - nStep < nMin)
+		nValue	= nMin;
+	else
+		nValue	-= nStep;
+
+	this.value	= '' + nValue;
+	this.valueAsNumber	= nValue;
+	this.setAttribute("value", nValue);
 };
 
 // Class Events Handlers
@@ -98,12 +131,24 @@ cXHTMLElement_input.handlers	= {
 	"keydown":	function(oEvent) {
 		// Handle spin buttons
 		if (oEvent.target == this) {
-			if (oEvent.keyIdentifier == "U+0020") {	// Space
-				switch (this.attributes["type"]) {
-					case "checkbox":
+			var sKey	= oEvent.keyIdentifier;
+			switch (this.attributes["type"]) {
+				case "number":
+					if (sKey == "Up")
+						this.stepUp();
+					else
+					if (sKey == "Down")
+						this.stepDown();
+					break;
+
+				case "radio":
+					break;
+
+				case "checkbox":
+					if (sKey == "U+0020") 	// Space
+						// TODO: Use keydown instead of click
 //						this.$activate();
 						break;
-				}
 			}
 		}
 	},
@@ -155,6 +200,14 @@ cXHTMLElement_input.handlers	= {
 
 				case "checked":
 					this.$setPseudoClass("checked", oEvent.newValue != null && oEvent.newValue != "false");
+					break
+
+				case "value":
+					switch (this.attributes["type"]) {
+						default:
+							this.$getContainer("value").value	= oEvent.newValue || '';
+					}
+					break;
 			}
 			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
 		}
