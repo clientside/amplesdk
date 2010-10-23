@@ -11,7 +11,7 @@ var cXMLEventsElement	= function(sLocalName) {
 	this.localName	= sLocalName;
 };
 cXMLEventsElement.prototype	= new cAMLElement;
-cXMLEventsElement.prototype.namespaceURI	= "http://www.w3.org/2001/xml-events";
+cXMLEventsElement.prototype.namespaceURI	= sNS_XEVENTS;
 cXMLEventsElement.prototype.localName		= "#element";
 
 //

@@ -11,7 +11,7 @@ var cAMLElement_prototype	= function(sLocalName) {
 	this.localName	= sLocalName;
 };
 cAMLElement_prototype.prototype	= new cAMLElement;
-cAMLElement_prototype.prototype.namespaceURI	= "http://www.amplesdk.com/ns/aml";
+cAMLElement_prototype.prototype.namespaceURI	= sNS_AML;
 cAMLElement_prototype.prototype.localName		= "#element";
 
 //

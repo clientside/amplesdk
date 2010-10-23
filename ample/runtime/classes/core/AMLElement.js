@@ -339,7 +339,7 @@ function fAMLElement_setAttributeNS(oElement, sNameSpaceURI, sQName, sValue)
 		}
 
 		// Global attributes module
-		if (!(sQName == "xmlns" || sNameSpaceURI == "http://www.w3.org/2000/xmlns/" || sNameSpaceURI == "http://www.w3.org/XML/1998/namespace"))
+		if (!(sQName == "xmlns" || sNameSpaceURI == sNS_XMLNS || sNameSpaceURI == sNS_XML))
 		{
 			var cAttribute	= oAMLImplementation_attributes[sNameSpaceURI + '#' + sLocalName],
 				oAttribute,
@@ -522,7 +522,7 @@ function fAMLElement_removeAttributeNS(oElement, sNameSpaceURI, sLocalName)
 			return;
 
 		// Global attributes module
-		if (sQName in oElement.attributes && !(sLocalName == "xmlns" || sNameSpaceURI == "http://www.w3.org/2000/xmlns/" || sNameSpaceURI == "http://www.w3.org/XML/1998/namespace"))
+		if (sQName in oElement.attributes && !(sLocalName == "xmlns" || sNameSpaceURI == sNS_XMLNS || sNameSpaceURI == sNS_XML))
 		{
 			var cAttribute	= oAMLImplementation_attributes[sNameSpaceURI + '#' + sLocalName],
 				sValue		= oElement.attributes[sQName],

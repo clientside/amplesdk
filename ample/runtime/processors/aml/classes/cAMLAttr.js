@@ -12,7 +12,7 @@ var cAMLAttr_prototype	= function(sLocalName) {
 };
 
 cAMLAttr_prototype.prototype	= new cAMLAttr;
-cAMLAttr_prototype.prototype.namespaceURI	= "http://www.amplesdk.com/ns/aml";
+cAMLAttr_prototype.prototype.namespaceURI	= sNS_AML;
 cAMLAttr_prototype.prototype.localName		= "#attribute";
 
 // Register Attribute

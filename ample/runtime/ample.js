@@ -8,7 +8,7 @@
  */
 
 // Create Ample SDK document object
-var oAmple_document	= fAMLImplementation_createDocument(new cAMLImplementation, "http://www.w3.org/1999/xhtml", "body", null),
+var oAmple_document	= fAMLImplementation_createDocument(new cAMLImplementation, sNS_XHTML, "body", null),
 	oAmple_root		= oAmple_document.documentElement;
 oAmple_root.$getContainer	= function(sName) {return sName == "gateway" ? oBrowser_body : sName ? null : oBrowser_root};
 
@@ -257,17 +257,17 @@ else
 		if (oAttribute.nodeName.match(/^xmlns($|:)(.*)/))
 			oPrefixes[cRegExp.$2]	= oAttribute.nodeValue;
 if (!oPrefixes[''])
-	oPrefixes['']	= "http://www.w3.org/1999/xhtml";
+	oPrefixes['']		= sNS_XHTML;
 if (!oPrefixes["aml"])
-	oPrefixes["aml"]	= "http://www.amplesdk.com/ns/aml";
+	oPrefixes["aml"]	= sNS_AML;
 if (!oPrefixes["ev"])
-	oPrefixes["ev"]	= "http://www.w3.org/2001/xml-events";
+	oPrefixes["ev"]		= sNS_XEVENTS;
 if (!oPrefixes["xi"])
-	oPrefixes["xi"]	= "http://www.w3.org/2001/XInclude";
+	oPrefixes["xi"]		= sNS_XINCLUDE;
 if (!oPrefixes["smil"])
-	oPrefixes["smil"]	= "http://www.w3.org/2008/SMIL30/";
+	oPrefixes["smil"]	= sNS_SMIL;
 if (!oPrefixes["xlink"])
-	oPrefixes["xlink"]= "http://www.w3.org/1999/xlink";
+	oPrefixes["xlink"]	= sNS_XLINK;
 
 // Add known prefixes to ample.documentElement
 for (var sKey in oPrefixes)

@@ -54,7 +54,19 @@ var cString		= window.String,
 	oUADocument	= window.document,
 // constants
 	nNaN		= window.NaN,
-	nInfinity	= window.Infinity;
+	nInfinity	= window.Infinity,
+// namespaces
+	sNS_SVG		= "http://www.w3.org/2000/svg",
+	sNS_AML		= "http://www.amplesdk.com/ns/aml",
+	sNS_XUL		= "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul",
+	sNS_XHTML	= "http://www.w3.org/1999/xhtml",
+	sNS_XLINK	= "http://www.w3.org/1999/xlink",
+	sNS_SMIL	= "http://www.w3.org/2008/SMIL30/",
+	sNS_XEVENTS	= "http://www.w3.org/2001/xml-events",
+	sNS_XSLT	= "http://www.w3.org/1999/XSL/Transform",
+	sNS_XML		= "http://www.w3.org/XML/1998/namespace",
+	sNS_XMLNS	= "http://www.w3.org/2000/xmlns/",
+	sNS_XINCLUDE= "http://www.w3.org/2001/XInclude";
 
 // Browser detection code
 var bTrident	= false,

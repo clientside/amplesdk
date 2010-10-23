@@ -11,7 +11,7 @@ var cSMILElement	= function(sLocalName) {
 	this.localName	= sLocalName;
 };
 cSMILElement.prototype	= new cAMLElement;
-cSMILElement.prototype.namespaceURI	= "http://www.w3.org/2008/SMIL30/";
+cSMILElement.prototype.namespaceURI	= sNS_SMIL;
 cSMILElement.prototype.localName	= "#element";
 
 var aSMILElement_activeElements	= [],

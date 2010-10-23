@@ -12,7 +12,7 @@ var cXLAttr	= function(sLocalName) {
 };
 
 cXLAttr.prototype	= new cAMLAttr;
-cXLAttr.prototype.namespaceURI	= "http://www.w3.org/1999/xlink";
+cXLAttr.prototype.namespaceURI	= sNS_XLINK;
 cXLAttr.prototype.localName		= "#attribute";
 
 // Register Attribute

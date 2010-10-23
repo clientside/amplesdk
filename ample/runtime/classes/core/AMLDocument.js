@@ -357,7 +357,7 @@ function fAMLDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse
 					: null),
 				sLocalName		= oElementDOM.localName || oElementDOM.baseName;
 			// XInclude 1.0
-			if (sNameSpaceURI == "http://www.w3.org/2001/XInclude") {
+			if (sNameSpaceURI == sNS_XINCLUDE) {
 				if (sLocalName == "include") {
 					var oRequest	= new cXMLHttpRequest,
 						oResponse,
@@ -411,7 +411,7 @@ function fAMLDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse
 
 					// Inline event handler
 					if (sName.indexOf('on') == 0)
-						oElement[sName]	= new cFunction(sNameSpaceURI == "http://www.w3.org/2000/svg" ? "evt" : "event", bCollapse ? fUtilities_decodeEntities(sValue) : sValue);
+						oElement[sName]	= new cFunction(sNameSpaceURI == sNS_SVG ? "evt" : "event", bCollapse ? fUtilities_decodeEntities(sValue) : sValue);
 					else
 						oAttributes[sName]	= bCollapse ? sValue : fUtilities_encodeEntities(sValue);
 				}
@@ -425,7 +425,7 @@ function fAMLDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse
 				}
 //->Debug
 				else
-				if (!(sNameSpaceURI == "http://www.w3.org/1999/xhtml" && sLocalName == "div" && oAttributes["type"] == "application/ample+xml"))
+				if (!(sNameSpaceURI == sNS_XHTML && sLocalName == "div" && oAttributes["type"] == "application/ample+xml"))
 					fUtilities_warn(sAML_UNKNOWN_ELEMENT_NS_WRN, [oElementDOM.nodeName, sNameSpaceURI]);
 //<-Debug
 
