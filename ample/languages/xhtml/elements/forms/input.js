@@ -15,6 +15,8 @@ var cXHTMLElement_input	= function(){
 	this._spinButtons	= ample.createElement("spinbuttons");
 	this._spinButtons.addEventListener("spin", function(oEvent) {
 		oEvent.detail ? that.stepUp() : that.stepDown();
+		// Dispatch input event
+		cXHTMLElement_input.dispatchInputEvent(that);
 	});
 	this.contentFragment.appendChild(this._spinButtons);
 };
@@ -134,11 +136,15 @@ cXHTMLElement_input.handlers	= {
 			var sKey	= oEvent.keyIdentifier;
 			switch (this.attributes["type"]) {
 				case "number":
-					if (sKey == "Up")
+					if (sKey == "Up") {
 						this.stepUp();
+						cXHTMLElement_input.dispatchInputEvent(this);
+					}
 					else
-					if (sKey == "Down")
+					if (sKey == "Down") {
 						this.stepDown();
+						cXHTMLElement_input.dispatchInputEvent(this);
+					}
 					break;
 
 				case "radio":
@@ -248,6 +254,12 @@ cXHTMLElement_input.toggle	= function(oInstance, bForce) {
 			}
 			break;
 	}
+};
+
+cXHTMLElement_input.dispatchInputEvent	= function(oInstance) {
+	var oEvent	= oInstance.ownerDocument.createEvent("Events");
+	oEvent.initEvent("input", false, false);
+	oInstance.dispatchEvent(oEvent);
 };
 
 cXHTMLElement_input.html524	= {
