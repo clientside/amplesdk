@@ -732,7 +732,7 @@ function fParseExact(sValue, sFormat, oCulture) {
         // convert date formats into regular expressions with groupings.
         // use the regexp to determine the input format and extract the date fields.
         oParseInfo = fCalendar_getParseRegExp(oCalendar, sFormat),
-        aMatch = new RegExp(oParseInfo.regExp).exec(sValue);
+        aMatch = new cRegExp(oParseInfo.regExp).exec(sValue);
     if (aMatch === null) {
         return null;
     }
@@ -747,11 +747,11 @@ function fParseExact(sValue, sFormat, oCulture) {
         if ( oMatchGroup ) {
             var sCurrent = groups[ j ],
                 nCLength = sCurrent.length,
-                matchInt = fParseInt( oMatchGroup, 10 );
+                nMatchInt = fParseInt( oMatchGroup, 10 );
             switch ( sCurrent ) {
                 case 'dd': case 'd':
                     // Day of month.
-                    nDay = matchInt;
+                    nDay = nMatchInt;
                     // check that date is generally in valid range, also checking overflow below.
                     if ( fNumber_outOfRange( nDay, 1, 31 ) ) return null;
                     break;
@@ -762,33 +762,33 @@ function fParseExact(sValue, sFormat, oCulture) {
                     break;
                 case 'M': case 'MM':
                     // Month.
-                    nMonth = matchInt - 1;
+                    nMonth = nMatchInt - 1;
                     if ( fNumber_outOfRange( nMonth, 0, 11 ) ) return null;
                     break;
                 case 'y': case 'yy':
                 case 'yyyy':
-                    nYear = nCLength < 4 ? fCalendar_expandYear( oCalendar, matchInt ) : matchInt;
+                    nYear = nCLength < 4 ? fCalendar_expandYear( oCalendar, nMatchInt ) : nMatchInt;
                     if ( fNumber_outOfRange( nYear, 0, 9999 ) ) return null;
                     break;
                 case 'h': case 'hh':
                     // Hours (12-hour clock).
-                    nHour = matchInt;
+                    nHour = nMatchInt;
                     if ( nHour === 12 ) nHour = 0;
                     if ( fNumber_outOfRange( nHour, 0, 11 ) ) return null;
                     break;
                 case 'H': case 'HH':
                     // Hours (24-hour clock).
-                    nHour = matchInt;
+                    nHour = nMatchInt;
                     if ( fNumber_outOfRange( nHour, 0, 23 ) ) return null;
                     break;
                 case 'm': case 'mm':
                     // Minutes.
-                    nMin = matchInt;
+                    nMin = nMatchInt;
                     if ( fNumber_outOfRange( nMin, 0, 59 ) ) return null;
                     break;
                 case 's': case 'ss':
                     // Seconds.
-                    nSec = matchInt;
+                    nSec = nMatchInt;
                     if ( fNumber_outOfRange( nSec, 0, 59 ) ) return null;
                     break;
                 case 'tt': case 't':
@@ -804,7 +804,7 @@ function fParseExact(sValue, sFormat, oCulture) {
                     // Centiseconds.
                 case 'fff':
                     // Milliseconds.
-                    nMSec = matchInt * cMath.pow( 10, 3-nCLength );
+                    nMSec = nMatchInt * cMath.pow( 10, 3-nCLength );
                     if ( fNumber_outOfRange( nMSec, 0, 999 ) ) return null;
                     break;
                 case 'ddd':
@@ -826,7 +826,7 @@ function fParseExact(sValue, sFormat, oCulture) {
                     break;
                 case 'z': case 'zz':
                     // Time zone offset in +/- hours.
-                    nHourOffset = matchInt;
+                    nHourOffset = nMatchInt;
                     if ( fNumber_outOfRange( nHourOffset, -12, 13 ) ) return null;
                     nTZMinOffset = nHourOffset * 60;
                     break;
