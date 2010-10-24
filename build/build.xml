@@ -65,6 +65,7 @@
 		<mkdir dir="${target.ample.dir}" />
 
 		<antcall target="BUILD_AMPLE_RUNTIME" />
+		<antcall target="BUILD_AMPLE_CULTURES" />
 		<antcall target="BUILD_AMPLE_PLUGINS" />
 		<antcall target="BUILD_AMPLE_LANGUAGES" />
 	</target>
@@ -681,6 +682,17 @@
 		</copy>
 	</target>
 
+	<target name="BUILD_AMPLE_CULTURES" unless="skip.ample.cultures">
+		<property name="source.cultures.dir" value="${source.dir}/ample/cultures/" />
+		<property name="target.cultures.dir" value="${target.dir}/ample/cultures/" />
+
+		<mkdir dir="${target.cultures.dir}" />
+
+		<copy todir="${target.cultures.dir}/">
+			<fileset dir="${source.cultures.dir}/" />
+		</copy>
+	</target>
+
 	<target name="BUILD_AMPLE_PLUGINS" unless="skip.ample.plugins">
 		<property name="source.ample.plugins.dir" value="${source.dir}/ample/plugins/" />
 		<property name="target.ample.plugins.dir" value="${target.dir}/ample/plugins/" />
@@ -691,7 +703,6 @@
 
 		<antcall target="BUILD_AMPLE_PLUGINS_COOKIE" />
 		<antcall target="BUILD_AMPLE_PLUGINS_FORM" />
-		<antcall target="BUILD_AMPLE_PLUGINS_GLOB" />
 		<antcall target="BUILD_AMPLE_PLUGINS_STORE" />
 		<antcall target="BUILD_AMPLE_PLUGINS_XPATH" />
 		<antcall target="BUILD_AMPLE_PLUGINS_XSLT" />
@@ -752,36 +763,6 @@
 			<fileset file="${copying.js}" />
 			<fileset file="${temp.ample.plugins.dir}/form-raw-wrapped.js" />
 		</concat>
-	</target>
-
-	<target name="BUILD_AMPLE_PLUGINS_GLOB" unless="skip.ample.plugins.glob">
-		<property name="source.glob.dir" value="${source.ample.plugins.dir}/glob/" />
-		<property name="target.glob.dir" value="${target.ample.plugins.dir}/glob/" />
-
-		<echo message="Merging into: ${temp.ample.plugins.dir}/glob-raw.js" level="info"/>
-		<concat destfile="${temp.ample.plugins.dir}/glob-raw.js" fixlastline="yes">
-			<fileset dir="${source.glob.dir}/">
-				<include name="glob.js" />
-			</fileset>
-		</concat>
-
-		<echo message="Wrapping into: ${temp.ample.plugins.dir}/glob-raw-wrapped.js" level="info"/>
-		<exec executable="${executable.php}" failonerror="true">
-			<arg value="resources/compiler/js.php" />
-			<arg value="${temp.ample.plugins.dir}/glob-raw.js" />
-			<arg value="${temp.ample.plugins.dir}/glob-raw-wrapped.js" />
-			<arg value="--strip-Source" />
-		</exec>
-
-		<!-- package -->
-		<mkdir dir="${target.glob.dir}" />
-		<concat destfile="${target.glob.dir}/glob.js" fixlastline="yes">
-			<fileset file="${copying.js}" />
-			<fileset file="${temp.ample.plugins.dir}/glob-raw-wrapped.js" />
-		</concat>
-		<copy todir="${target.glob.dir}/globinfo/">
-			<fileset dir="${source.glob.dir}/globinfo/" />
-		</copy>
 	</target>
 
 	<target name="BUILD_AMPLE_PLUGINS_STORE" unless="skip.ample.plugins.store">

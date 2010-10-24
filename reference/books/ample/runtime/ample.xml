@@ -45,6 +45,14 @@
 					</locale>
 				</description>
 			</property>
+			<!-- Locale -->
+			<property name="locale" type="AMLLocale" readonly="true">
+				<description>
+					<locale>
+						Retrieves a reference to localization API.
+					</locale>
+				</description>
+			</property>
 			<!--  -->
 			<property name="readyState" type="String" readonly="true">
 				<description>

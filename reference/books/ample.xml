@@ -54,6 +54,7 @@
 					<!--node title="AMLNamespace" url="ample/runtime/AMLNamespace.xml"/-->
 					<!--node title="AMLSerializer" url="ample/runtime/AMLSerializer.xml"/-->
 					<node title="AMLDataTransfer" url="ample/runtime/AMLDataTransfer.xml"/>
+					<node title="AMLLocale" url="ample/runtime/AMLLocale.xml"/>
 					<!-- node title="AMLTreeWalker" url="ample/runtime/dom/AMLTreeWalker.xml"/-->
 				</node>
 			</node>
@@ -234,9 +235,6 @@
 		</node>
 		<node title="Form">
 			<node title="Form" xhref="ample/plugins/form.xml"/>
-		</node>
-		<node title="Globalization">
-			<node title="Globalization" xhref="ample/plugins/glob.xml"/>
 		</node>
 		<node title="Store">
 			<node title="Store" xhref="ample/plugins/store.xml"/>
