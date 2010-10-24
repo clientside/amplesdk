@@ -127,6 +127,7 @@
 	$aFiles[]	= "runtime/modules/effects.js";
 	$aFiles[]	= "runtime/modules/event.js";
 	$aFiles[]	= "runtime/modules/history.js";
+	$aFiles[]	= "runtime/modules/locale.js";
 	$aFiles[]	= "runtime/modules/manipulation.js";
 	$aFiles[]	= "runtime/modules/modal.js";
 	$aFiles[]	= "runtime/modules/offset.js";
