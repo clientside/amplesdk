@@ -2,6 +2,6 @@
 RewriteEngine on
 
 ##
-RewriteCond %{REQUEST_URI} !plugins
+RewriteCond %{REQUEST_URI} runtime|languages
 RewriteRule ^(.*).js $1.php
 RewriteRule ^(.*).css $1.php
