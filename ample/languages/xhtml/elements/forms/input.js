@@ -130,11 +130,43 @@ cXHTMLElement_input.handlers	= {
 			}
 		}
 	},
+	"mousedown":	function(oEvent) {
+		if (oEvent.target == this) {
+			switch (this.attributes["type"]) {
+				case "range":
+					if (oEvent.$pseudoTarget == this.$getContainer("button")) {
+						this.setCapture(true);
+					}
+					break;
+			}
+		}
+	},
+	"mouseup":	function(oEvent) {
+		if (oEvent.target == this) {
+			switch (this.attributes["type"]) {
+				case "range":
+					this.releaseCapture();
+					break;
+			}
+		}
+	},
 	"keydown":	function(oEvent) {
 		// Handle spin buttons
 		if (oEvent.target == this) {
 			var sKey	= oEvent.keyIdentifier;
 			switch (this.attributes["type"]) {
+				case "range":
+					if (sKey == "Right") {
+						this.stepUp();
+						cXHTMLElement_input.dispatchInputEvent(this);
+					}
+					else
+					if (sKey == "Left") {
+						this.stepDown();
+						cXHTMLElement_input.dispatchInputEvent(this);
+					}
+					break;
+
 				case "number":
 					if (sKey == "Up") {
 						this.stepUp();
@@ -210,6 +242,10 @@ cXHTMLElement_input.handlers	= {
 
 				case "value":
 					switch (this.attributes["type"]) {
+						case "range":
+							this.$getContainer("button").style.left	= cXHTMLElement_input.getRangeOffset(this, oEvent.newValue || '');
+							break;
+
 						default:
 							this.$getContainer("value").value	= oEvent.newValue || '';
 					}
@@ -256,6 +292,12 @@ cXHTMLElement_input.toggle	= function(oInstance, bForce) {
 	}
 };
 
+cXHTMLElement_input.getRangeOffset	= function(oInstance, nValue) {
+	var nMax	= oInstance.attributes.max || 100,
+		nMin	= oInstance.attributes.min || 0;
+	return 100 * (Math.max(nMin, Math.min(nMax, nValue)) - nMin) / (nMax - nMin) + '%';
+};
+
 cXHTMLElement_input.dispatchInputEvent	= function(oInstance) {
 	var oEvent	= oInstance.ownerDocument.createEvent("Events");
 	oEvent.initEvent("input", false, false);
@@ -290,7 +332,7 @@ cXHTMLElement_input.prototype.$getTagOpen		= function() {
 	aHtml.push(	'<div class="' + sClassName + '--field ' + sClassNameType + '--field" style="position:relative">');
 	aHtml.push(		'<span class="' + sClassName + '--before ' + sClassNameType + '--before" style="float:left"></span>');
 	aHtml.push(		'<span class="' + sClassName + '--after ' + sClassNameType + '--after" style="float:right"></span>');
-	aHtml.push(		'<span class="' + sClassName + '--button ' + sClassNameType + '--button" style="right:0;">');
+	aHtml.push(		'<span class="' + sClassName + '--button ' + sClassNameType + '--button" style="' +(this.attributes["type"] == "range" ? "left:" + cXHTMLElement_input.getRangeOffset(this, this.attributes.value) : "right:0")+ '">');
 	if (this.attributes["type"] == "number" || this.attributes["type"] == "time")
 		aHtml.push(this._spinButtons.$getTag());
 	aHtml.push('</span>');
