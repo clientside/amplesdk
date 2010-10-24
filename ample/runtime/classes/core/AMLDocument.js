@@ -332,8 +332,14 @@ cAMLDocument.prototype.getElementsByTagNameNS	= function(sNameSpaceURI, sLocalNa
 function fAMLDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse) {
 	switch (oElementDOM.nodeType) {
 		case cAMLNode.ELEMENT_NODE:
-			var sNameSpaceURI	= oElementDOM.namespaceURI || (bTrident
-					?(function (oNode/*, sPrefix*/) {
+			var sNameSpaceURI	= oElementDOM.namespaceURI,
+				sLocalName		= oElementDOM.localName || oElementDOM.baseName;
+			// Bugfix FF4 (remote XUL)
+			if (bGecko && sNameSpaceURI == sNS_XUL + '#')
+				sNameSpaceURI	= sNS_XUL;
+			if (bTrident)
+				sNameSpaceURI	=
+					(function (oNode/*, sPrefix*/) {
 						// Lookup entity reference node
 						while (oNode = oNode.parentNode)
 							if (oNode.nodeType == cAMLNode.ENTITY_REFERENCE_NODE)
@@ -353,9 +359,7 @@ function fAMLDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse
 										return oNode.attributes[nIndex].value;
 */
 						return null;
-					})(oElementDOM/*, oElementDOM.prefix*/)
-					: null),
-				sLocalName		= oElementDOM.localName || oElementDOM.baseName;
+					})(oElementDOM/*, oElementDOM.prefix*/);
 			// XInclude 1.0
 			if (sNameSpaceURI == sNS_XINCLUDE) {
 				if (sLocalName == "include") {

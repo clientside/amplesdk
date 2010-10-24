@@ -149,7 +149,7 @@ function fAML_processScripts() {
 
 	// Process script tags
     aElements = oBrowser_body.getElementsByTagName("script");
-    for (var nIndex = 0, nSkip = 0; aElements.length > nSkip; nIndex++) {
+    for (var nIndex = 0, nSkip = 0, sText; aElements.length > nSkip; nIndex++) {
     	// Current Script
 	    oElementDOM	= aElements[nSkip];
 
@@ -186,8 +186,7 @@ function fAML_processScripts() {
 				bReferenced	= true;
 			}
 			else {
-				// Create fragment
-			    oDocument   = new cDOMParser().parseFromString(//		"<?" + "xml" + ' ' + 'version="1.0"' + "?>" +
+				sText	=										//		"<?" + "xml" + ' ' + 'version="1.0"' + "?>" +
 																		'<!' + "DOCTYPE" + ' ' + "div" + '[' + aUtilities_entities + ']>' +
 //->Debug
 																		'\n' +
@@ -200,7 +199,12 @@ function fAML_processScripts() {
 //->Debug
 			    														'\n' +
 //<-Debug
-			    														'</' + "div" + '>', "text/xml");
+			    														'</' + "div" + '>';
+				// Bugfix FF4 (remote XUL)
+				if (bGecko)
+					sText	= sText.replace(new cRegExp(sNS_XUL, 'g'), sNS_XUL + '#');
+				// Create fragment
+			    oDocument   = new cDOMParser().parseFromString(sText, "text/xml");
 			}
 
 			oParserError	= oDocument ? oDocument.getElementsByTagName("parsererror")[0] : null;

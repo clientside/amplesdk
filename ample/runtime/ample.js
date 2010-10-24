@@ -20,13 +20,17 @@ function fQuery(vArgument1, vArgument2, vArgument3) {
 		if (typeof vArgument1 == "string" || vArgument1 instanceof cString) {
 			if (vArgument1.substr(0,1) == '<') {
 				// XML string
-				var aNameSpaces	= [];
+				var aNameSpaces	= [],
+					sText;
 				for (var sKey in oAmple.prefixes)
 					if (oAmple.prefixes.hasOwnProperty(sKey) && sKey != "toString")
 						aNameSpaces.push("xmlns" + (sKey == '' ? '' : ':') + sKey + '="' + oAmple.prefixes[sKey] + '"');
 				//
-				var oDocument	= new cDOMParser().parseFromString(
+				sText	=						//		"<?" + "xml" + ' ' + 'version="1.0"' + "?>" +
 														'<!' + "DOCTYPE" + ' ' + "div" + '[' + aUtilities_entities + ']>' +
+//->Debug
+														'\n' +
+//<-Debug
 														'<' + "div" + ' ' + "type" + '="' + "application/ample+xml" + '"' + ' ' + aNameSpaces.join(' ') + '>' +
 //->Debug
 														'\n' +
@@ -35,7 +39,12 @@ function fQuery(vArgument1, vArgument2, vArgument3) {
 //->Debug
 														'\n' +
 //<-Debug
-														'</' + "div" + '>', "text/xml");
+														'</' + "div" + '>';
+				// Bugfix FF4 (remote XUL)
+				if (bGecko)
+					sText	= sText.replace(new cRegExp(sNS_XUL, 'g'), sNS_XUL + '#');
+				//
+				var oDocument	= new cDOMParser().parseFromString(sText, "text/xml");
 				if (!oDocument || ((bTrident && oDocument.parseError != 0) || !oDocument.documentElement || oDocument.getElementsByTagName("parsererror").length))
 					throw new cAMLException(cAMLException.SYNTAX_ERR, fQuery.caller);
 				else

@@ -715,8 +715,17 @@ function fBrowser_getResponseDocument(oRequest) {
 	var oDocument	= oRequest.responseXML,
 		sText		= oRequest.responseText;
 	// Try parsing responseText
-	if (bTrident && sText && oDocument && !oDocument.documentElement && oRequest.getResponseHeader("Content-Type").match(/[^\/]+\/[^\+]+\+xml/))
-		oDocument	= new cDOMParser().parseFromString(sText, "text/xml");
+	if (sText) {
+		if (bTrident) {
+			if (oDocument && !oDocument.documentElement && oRequest.getResponseHeader("Content-Type").match(/[^\/]+\/[^\+]+\+xml/))
+				oDocument	= new cDOMParser().parseFromString(sText, "text/xml");
+		}
+		// Bugfix FF4 (remote XUL)
+		if (bGecko) {
+			sText	= sText.replace(new cRegExp(sNS_XUL, 'g'), sNS_XUL + '#');
+			oDocument	= new cDOMParser().parseFromString(sText, "text/xml");
+		}
+	}
 	// Check if there is no error in document
 	if (!oDocument || ((bTrident && oDocument.parseError != 0) || !oDocument.documentElement || oDocument.getElementsByTagName("parsererror").length))
 		return null;
