@@ -1270,18 +1270,29 @@ var aElements	= oUADocument.getElementsByTagName("script"),
 
 fAMLEventTarget_addEventListener(oAmple_document, "configchange",	function(oEvent) {
 	if (oEvent.detail == "locale") {
-		var oSettings	= {},
-			sCulture	= fAMLConfiguration_getParameter(oAmple_document.domConfig, "ample-locale");
-		oSettings.url	= fUtilities_resolveUri("cultures" + '/' + sCulture + ".js", sAMLQuery_baseURI);
-		oSettings.success	= function(sScript) {
-			// Execute locale code
-			new cFunction(sScript)();
+		var sCulture	= fAMLConfiguration_getParameter(oAmple_document.domConfig, "ample-locale");
+		function fChangeCulture(oCulture) {
 			// Set prefer culture
-			oGlobalization.culture	= oCultures[sCulture];
+			oGlobalization.culture	= oCulture;
 			// Dispatch localechange event
 			fAMLQuery_trigger(oAmple_document, "localechange", sCulture);
 		};
-		//
-		fAMLQuery_ajax(oSettings);
+		var oCulture	= oCultures[sCulture];
+		if (oCulture)
+			fSetTimeout(function() {
+				fChangeCulture(oCulture);
+			}, 0);
+		else {
+			var oSettings	= {};
+			oSettings.url	= fUtilities_resolveUri("cultures" + '/' + sCulture + ".js", sAMLQuery_baseURI);
+			oSettings.success	= function(sScript) {
+				// Execute locale code
+				new cFunction(sScript)();
+				//
+				fChangeCulture(oCultures[sCulture]);
+			};
+			//
+			fAMLQuery_ajax(oSettings);
+		}
 	}
 }, false);
