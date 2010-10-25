@@ -248,6 +248,7 @@
 						Sets or retrieves a parameter. List of parameters:
 						<ul>
 							<li><b>version</b> - <em>Read-only</em>. Ample SDK version</li>
+							<li><b>locale</b> - Ample SDK culture</li>
 							<li><b>user-agent</b> - Ample SDK user agent string</li>
 							<li><b>user-locale</b> - User locale</li>
 							<li><b>enable-transitions</b> - Transitions</li>
