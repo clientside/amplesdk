@@ -13,8 +13,8 @@
  */
 
 var oGlobalization = {},
-	oCultures	= oGlobalization.cultures = {},
-    oLocales	= {};
+	oCultures	= oGlobalization.cultures	= {},
+    oLocales	= oGlobalization.locales	= {};
 
 oGlobalization.extend = function(bDeep) {
     var oTarget = arguments[1] || {};
