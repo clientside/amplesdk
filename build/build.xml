@@ -184,6 +184,7 @@
 				effects.js,
 				event.js,
 				history.js,
+				locale.js,
 				manipulation.js,
 				modal.js,
 				offset.js,
