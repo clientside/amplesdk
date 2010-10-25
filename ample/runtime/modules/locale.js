@@ -1130,7 +1130,7 @@ oNumberFormat.percent	= {};
             // [negativePattern, positivePattern]
             //     negativePattern: one of "-n %|-n%|-%n|%-n|%n-|n-%|n%-|-% n|n %-|% n-|% -n|n- %"
             //     positivePattern: one of "n %|n%|%n|% n"
-oPercentFormat.pattern	= ['-n %','n %'];
+oPercentFormat.pattern	= ['-n ' + '%','n ' + '%'];
             // number of decimal places normally shown
 oPercentFormat.decimals	= 2;
             // array of numbers indicating the size of each number group.
