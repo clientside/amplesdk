@@ -337,7 +337,7 @@ function fAMLDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse
 			// Bugfix FF4 (remote XUL)
 			if (bGecko && sNameSpaceURI == sNS_XUL + '#')
 				sNameSpaceURI	= sNS_XUL;
-			if (bTrident)
+			if (bTrident && !sNameSpaceURI)
 				sNameSpaceURI	=
 					(function (oNode/*, sPrefix*/) {
 						// Lookup entity reference node
