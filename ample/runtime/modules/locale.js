@@ -432,7 +432,7 @@ function fFormatNumber(sValue, sFormat, oCulture) {
             nNumber = fNumber_expandNumber( nNumber * (sCurrent === "P" ? 100 : 1), nPrecision, oFormatInfo );
             break;
         default:
-            throw "Bad number format specifier: " + sCurrent;
+        	throw new cAMLException(cAMLException.AML_LOCALE_BAD_NUMBER_FORMAT, null, [sCurrent]);
     }
 
     var rPatternParts = /n|\$|-|%/g,
@@ -615,7 +615,7 @@ function fCalendar_expandFormat(oCalendar, sFormat) {
     if ( nLen === 1 ) {
         sPattern = oPatterns[ sFormat ];
         if ( !sPattern ) {
-            throw "Invalid date format string '" + sFormat + "'.";
+        	throw new cAMLException(cAMLException.AML_LOCALE_BAD_DATE_FORMAT, null, [sFormat]);
         }
         sFormat = sPattern;
     }
@@ -700,7 +700,7 @@ function fCalendar_getParseRegExp(oCalendar, sFormat) {
             	sAdd = "(\\" + oCalendar["/"] + ")";
                 break;
             default:
-                throw "Invalid date format pattern '" + m + "'.";
+            	throw new cAMLException(cAMLException.AML_LOCALE_BAD_DATE_FORMAT, null, [m]);
                 break;
         }
         if ( sAdd ) {
@@ -1103,7 +1103,7 @@ function fFormatDate(dValue, sFormat, oCulture) {
         	aRet.push( oCalendar["/"] );
             break;
         default:
-            throw "Invalid date format pattern '" + sCurrent + "'.";
+        	throw new cAMLException(cAMLException.AML_LOCALE_BAD_DATE_FORMAT, null, [sCurrent]);
             break;
         }
     }

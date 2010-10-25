@@ -52,6 +52,8 @@ cAMLException.AML_MODAL_SET_MODAL_ERR		=-7;
 cAMLException.AML_MODAL_RELEASE_MODAL_ERR	=-8;
 cAMLException.AML_MEMBER_MISSING_ERR		=-9;
 cAMLException.AML_TRIGGER_CORE_EVENT_ERR	=-10;
+cAMLException.AML_LOCALE_BAD_NUMBER_FORMAT	=-20;
+cAMLException.AML_LOCALE_BAD_DATE_FORMAT	=-21;
 
 //
 cAMLException.prototype.code	= null;
@@ -97,4 +99,6 @@ oAMLException_messages[cAMLException.AML_MODAL_SET_MODAL_ERR]		= 'Element is alr
 oAMLException_messages[cAMLException.AML_MODAL_RELEASE_MODAL_ERR]	= 'Element can not be released';
 oAMLException_messages[cAMLException.AML_MEMBER_MISSING_ERR]		= 'Object does not have a method named "%0"';
 oAMLException_messages[cAMLException.AML_TRIGGER_CORE_EVENT_ERR]	= 'Triggering core event "%0" is not allowed';
+oAMLException_messages[cAMLException.AML_LOCALE_BAD_NUMBER_FORMAT]	= 'Bad number format string: "%0"';
+oAMLException_messages[cAMLException.AML_LOCALE_BAD_DATE_FORMAT]	= 'Invalid date format string: "%0"';
 //<-Debug
