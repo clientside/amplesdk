@@ -21,19 +21,19 @@ oGlobalization.extend = function( bDeep ) {
     for ( var i = 2, l = arguments.length; i < l; i++ ) {
         var oSource = arguments[ i ];
         if ( oSource ) {
-            for ( var sField in oSource ) {
-                var oSourceVal = oSource[ sField ];
+            for ( var sKey in oSource ) {
+                var oSourceVal = oSource[ sKey ];
                 if ( typeof oSourceVal !== "undefined" ) {
                     if ( bDeep && (fGuard_instanceOf( oSourceVal, cObject ) || fGuard_instanceOf( oSourceVal, cArray )) ) {
-                        var oTargetVal = oTarget[ sField ];
+                        var oTargetVal = oTarget[ sKey ];
                         // extend onto the existing value, or create a new one
                         oTargetVal = oTargetVal && (fGuard_instanceOf( oTargetVal, cObject ) || fGuard_instanceOf( oTargetVal, cArray ))
                             ? oTargetVal
                             : (fGuard_instanceOf( oSourceVal, cArray ) ? [] : {});
-                        oTarget[ sField ] = this.extend( true, oTargetVal, oSourceVal );
+                        oTarget[ sKey ] = this.extend( true, oTargetVal, oSourceVal );
                     }
                     else {
-                        oTarget[ sField ] = oSourceVal;
+                        oTarget[ sKey ] = oSourceVal;
                     }
                 }
             }
@@ -45,14 +45,13 @@ oGlobalization.extend = function( bDeep ) {
 oGlobalization.findClosestCulture = function(vName) {
     var aMatch;
     if ( !vName ) {
-        return this.culture || this.cultures["default"];
+        return this.culture || oCultures["default"];
     }
     if ( fGuard_instanceOf( vName, cString ) ) {
         vName = vName.split( ',' );
     }
     if ( fGuard_instanceOf( vName, cArray ) ) {
         var sLang,
-            oCultures = this.cultures,
             aList = vName,
             i, l = aList.length,
             aPrioritized = [];
@@ -115,14 +114,14 @@ oGlobalization.findClosestCulture = function(vName) {
 };
 
 oGlobalization.preferCulture = function(vName) {
-    this.culture = this.findClosestCulture( vName ) || this.cultures["default"];
+    this.culture = this.findClosestCulture( vName ) || oCultures["default"];
 };
 
 oGlobalization.localize = function(sKey, oCulture, sValue) {
     if (typeof oCulture === "string") {
     	var sCulture = sCulture || "default";
-        if (this.cultures[ sCulture ])
-        	oCulture = this.cultures[ sCulture ];
+        if (oCultures[ sCulture ])
+        	oCulture = oCultures[ sCulture ];
         else {
         	oCulture	= {};
         	oCulture.name	= sCulture;
@@ -1138,18 +1137,15 @@ function fFormatDate(dValue, sFormat, oCulture) {
 // it if it does not exist.
 // Globalization.cultures.foo = Globalization.extend(true, Globalization.extend(true, {}, Globalization.cultures['default'], fooCulture), Globalization.cultures.foo)
 
-oLocales['en']	= {};
-oLocales["default"] = oLocales.en;
-
-var en = oCultures["default"] = oCultures.en = oGlobalization.extend(true, {
+var oDefaultCulture = {};
     // A unique name for the culture in the form <language code>-<country/region code>
-    name: 'en',
+oDefaultCulture.name	= 'en';
     // the name of the culture in the english language
-    englishName: "English",
+oDefaultCulture.englishName	= 'English';
     // the name of the culture in its own language
-    nativeName: "English",
+oDefaultCulture.nativeName	= 'English';
     // whether the culture uses right-to-left text
-    isRTL: false,
+oDefaultCulture.isRTL	= false;
     // 'language' is used for so-called "specific" cultures.
     // For example, the culture "es-CL" means "Spanish, in Chili".
     // It represents the Spanish-speaking culture as it is in Chili,
@@ -1167,63 +1163,66 @@ var en = oCultures["default"] = oCultures.en = oGlobalization.extend(true, {
     // This field should be used to navigate from a specific culture to it's
     // more general, neutral culture. If a culture is already as general as it
     // can get, the language may refer to itself.
-    language: 'en',
+oDefaultCulture.language	= 'en';
     // numberFormat defines general number formatting rules, like the digits in
     // each grouping, the group separator, and how negative numbers are displayed.
-    numberFormat: {
+
+var oNumberFormat	=
+oDefaultCulture.numberFormat	= {};
         // [negativePattern]
         // Note, numberFormat.pattern has no 'positivePattern' unlike percent and currency,
         // but is still defined as an array for consistency with them.
         //  negativePattern: one of "(n)|-n|- n|n-|n -"
-        pattern: ['-n'],
+oNumberFormat.pattern	= ['-n'];
         // number of decimal places normally shown
-        decimals: 2,
+oNumberFormat.decimals	= 2;
         // string that separates number groups, as in 1,000,000
-        ',': ',',
+oNumberFormat[',']	= ',';
         // string that separates a number from the fractional portion, as in 1.99
-        '.': '.',
+oNumberFormat['.']	= '.';
         // array of numbers indicating the size of each number group.
         // TODO: more detailed description and example
-        groupSizes: [3],
+oNumberFormat.groupSizes	= [3];
         // symbol used for positive numbers
-        '+': '+',
+oNumberFormat['+']	= '+';
         // symbol used for negative numbers
-        '-': '-',
-        percent: {
+oNumberFormat['-']	= '-';
+
+var oPercentFormat	=
+oNumberFormat.percent	= {};
             // [negativePattern, positivePattern]
             //     negativePattern: one of "-n %|-n%|-%n|%-n|%n-|n-%|n%-|-% n|n %-|% n-|% -n|n- %"
             //     positivePattern: one of "n %|n%|%n|% n"
-            pattern: ['-n %','n %'],
+oPercentFormat.pattern	= ['-n %','n %'];
             // number of decimal places normally shown
-            decimals: 2,
+oPercentFormat.decimals	= 2;
             // array of numbers indicating the size of each number group.
             // TODO: more detailed description and example
-            groupSizes: [3],
+oPercentFormat.groupSizes	= [3];
             // string that separates number groups, as in 1,000,000
-            ',': ',',
+oPercentFormat[',']	= ',';
             // string that separates a number from the fractional portion, as in 1.99
-            '.': '.',
+oPercentFormat['.']	= '.';
             // symbol used to represent a percentage
-            symbol: '%'
-        },
-        currency: {
+oPercentFormat.symbol	= '%';
+
+var oCurrencyFormat	=
+oNumberFormat.currency	= {};
             // [negativePattern, positivePattern]
             //     negativePattern: one of "($n)|-$n|$-n|$n-|(n$)|-n$|n-$|n$-|-n $|-$ n|n $-|$ n-|$ -n|n- $|($ n)|(n $)"
             //     positivePattern: one of "$n|n$|$ n|n $"
-            pattern: ['($n)','$n'],
+oCurrencyFormat.pattern	= ['($n)','$n'];
             // number of decimal places normally shown
-            decimals: 2,
+oCurrencyFormat.decimals	= 2;
             // array of numbers indicating the size of each number group.
             // TODO: more detailed description and example
-            groupSizes: [3],
+oCurrencyFormat.groupSizes	= [3];
             // string that separates number groups, as in 1,000,000
-            ',': ',',
+oCurrencyFormat[',']	= ',';
             // string that separates a number from the fractional portion, as in 1.99
-            '.': '.',
+oCurrencyFormat['.']	= '.';
             // symbol used to represent currency
-            symbol: '$'
-        }
-    },
+oCurrencyFormat.symbol	= '$';
     // calendars defines all the possible calendars used by this culture.
     // There should be at least one defined with name 'standard', and is the default
     // calendar used by the culture.
@@ -1231,72 +1230,77 @@ var en = oCultures["default"] = oCultures.en = oGlobalization.extend(true, {
     // the calendar's eras, a standard set of the date formats,
     // translations for day and month names, and if the calendar is not based on the Gregorian
     // calendar, conversion functions to and from the Gregorian calendar.
-    calendars: {
-        standard: {
+oDefaultCulture.calendars	= {};
+
+var oCalendarFormat	=
+oDefaultCulture.calendar =
+oDefaultCulture.calendars.standard	= {};
             // name that identifies the type of calendar this is
-            name: 'Gregorian_USEnglish',
+oCalendarFormat.name	= 'Gregorian_USEnglish';
             // separator of parts of a date (e.g. '/' in 11/05/1955)
-            '/': '/',
+oCalendarFormat['/']	= '/';
             // separator of parts of a time (e.g. ':' in 05:44 PM)
-            ':': ':',
+oCalendarFormat[':']	= ':';
             // the first day of the week (0 = Sunday, 1 = Monday, etc)
-            firstDay: 0,
-            days: {
-                // full day names
-                names: ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
+oCalendarFormat.firstDay= 0;
+oCalendarFormat.days	= {};
+           // full day names
+oCalendarFormat.days.names		= 'Sunday;Monday;Tuesday;Wednesday;Thursday;Friday;Saturday'.split(';');
                 // abbreviated day names
-                namesAbbr: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+oCalendarFormat.days.namesAbbr	= 'Sun;Mon;Tue;Wed;Thu;Fri;Sat'.split(';');
                 // shortest day names
-                namesShort: ['Su','Mo','Tu','We','Th','Fr','Sa']
-            },
-            months: {
+oCalendarFormat.days.namesShort	= 'Su;Mo;Tu;We;Th;Fr;Sa'.split(';');
+
+oCalendarFormat.months	= {};
                 // full month names (13 months for lunar calendards -- 13th month should be "" if not lunar)
-                names: ['January','February','March','April','May','June','July','August','September','October','November','December',''],
+oCalendarFormat.months.names	= 'January;February;March;April;May;June;July;August;September;October;November;December;'.split(';');
                 // abbreviated month names
-                namesAbbr: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','']
-            },
+oCalendarFormat.months.namesAbbr= 'Jan;Feb;Mar;Apr;May;Jun;Jul;Aug;Sep;Oct;Nov;Dec;'.split(';');
             // AM and PM designators in one of these forms:
             // The usual view, and the upper and lower case versions
             //      [standard,lowercase,uppercase]
             // The culture does not use AM or PM (likely all standard date formats use 24 hour time)
             //      null
-            AM: ['AM', 'am', 'AM'],
-            PM: ['PM', 'pm', 'PM'],
-            eras: [
+oCalendarFormat.AM	= 'AM;am;AM'.split(';');
+oCalendarFormat.PM	= 'PM;pm;PM'.split(';');
                 // eras in reverse chronological order.
                 // name: the name of the era in this culture (e.g. A.D., C.E.)
                 // start: when the era starts in ticks (gregorian, gmt), null if it is the earliest supported era.
                 // offset: offset in years from gregorian calendar
-                { 'name': 'A.D.', 'start': null, 'offset': 0 }
-            ],
+var oCalendarEra	= {};
+oCalendarEra.name	= 'A.D.';
+oCalendarEra.start	= null;
+oCalendarEra.offset	= 0;
+oCalendarFormat.eras= [oCalendarEra];
             // when a two digit year is given, it will never be parsed as a four digit
             // year greater than this year (in the appropriate era for the culture)
             // Set it as a full year (e.g. 2029) or use an offset format starting from
             // the current year: "+19" would correspond to 2029 if the current year 2010.
-            twoDigitYearMax: 2029,
+oCalendarFormat.twoDigitYearMax	= 2029;
             // set of predefined date and time patterns used by the culture
             // these represent the format someone in this culture would expect
             // to see given the portions of the date that are shown.
-            patterns: {
+var oCalendarPatterns =
+oCalendarFormat.patterns	= {};
                 // short date pattern
-                d: 'M/d/yyyy',
+oCalendarPatterns['d']	= 'M/d/yyyy';
                 // long date pattern
-                D: 'dddd, MMMM dd, yyyy',
+oCalendarPatterns['D']	= 'dddd, MMMM dd, yyyy';
                 // short time pattern
-                t: 'h:mm tt',
+oCalendarPatterns['t']	= 'h:mm tt';
                 // long time pattern
-                T: 'h:mm:ss tt',
+oCalendarPatterns['T']	= 'h:mm:ss tt';
                 // long date, short time pattern
-                f: 'dddd, MMMM dd, yyyy h:mm tt',
+oCalendarPatterns['f']	= 'dddd, MMMM dd, yyyy h:mm tt';
                 // long date, long time pattern
-                F: 'dddd, MMMM dd, yyyy h:mm:ss tt',
+oCalendarPatterns['F']	= 'dddd, MMMM dd, yyyy h:mm:ss tt';
                 // month/day pattern
-                M: 'MMMM dd',
+oCalendarPatterns['M']	= 'MMMM dd';
                 // month/year pattern
-                Y: 'yyyy MMMM',
+oCalendarPatterns['Y']	= 'yyyy MMMM';
                 // S is a sortable format that does not vary by culture
-                S: 'yyyy\u0027-\u0027MM\u0027-\u0027dd\u0027T\u0027HH\u0027:\u0027mm\u0027:\u0027ss'
-            }
+oCalendarPatterns['S']	= 'yyyy\u0027-\u0027MM\u0027-\u0027dd\u0027T\u0027HH\u0027:\u0027mm\u0027:\u0027ss';
+
             // optional fields for each calendar:
             /*
             monthsGenitive:
@@ -1314,11 +1318,12 @@ var en = oCultures["default"] = oCultures.en = oGlobalization.extend(true, {
                         Given the non-gregorian year, month, and day, return a new Date() object
                         set to the corresponding date in the gregorian calendar.
             */
-        }
-    }
-}, oCultures.en);
-en.calendar = en.calendar || en.calendars.standard;
 
+oLocales['en']	=
+oLocales["default"] = {};
+
+oCultures['en'] =
+oCultures["default"] = oDefaultCulture;
 
 // Extend ample object
 oAmple.locale	= oGlobalization;
