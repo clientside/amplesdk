@@ -1043,12 +1043,12 @@ function fFormatDate(dValue, sFormat, oCulture) {
                 if (oCalendar.eras)
                 	aReturn.push(oCalendar.eras[fDate_getEra(dValue, aEras)].name);
                 break;
-        case '/':
-        	aReturn.push(oCalendar['/']);
-            break;
-        default:
-        	throw new cAMLException(cAMLException.AML_LOCALE_BAD_DATE_FORMAT, null, [sCurrent]);
-            break;
+	        case '/':
+	        	aReturn.push(oCalendar['/']);
+	            break;
+	        default:
+	        	throw new cAMLException(cAMLException.AML_LOCALE_BAD_DATE_FORMAT, null, [sCurrent]);
+	            break;
         }
     }
     return aReturn.join('');
