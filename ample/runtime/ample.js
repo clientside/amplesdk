@@ -373,6 +373,7 @@ fAMLConfiguration_setParameter(oConfiguration, "comments", false); 	// in DOM-Co
 fAMLConfiguration_setParameter(oConfiguration, "ample-use-style-property", true);	// -> ample-core-style
 fAMLConfiguration_setParameter(oConfiguration, "ample-module-history-fix", false);	// -> ample-history
 fAMLConfiguration_setParameter(oConfiguration, "ample-version", '@project.version@');
+fAMLConfiguration_setParameter(oConfiguration, "ample-locale", "en");
 fAMLConfiguration_setParameter(oConfiguration, "ample-user-locale", oUANavigator.language || oUANavigator.userLanguage || 'en-US');
 fAMLConfiguration_setParameter(oConfiguration, "ample-user-agent", '@project.userAgent@');
 fAMLConfiguration_setParameter(oConfiguration, "ample-enable-animations", true);

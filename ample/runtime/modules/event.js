@@ -42,6 +42,7 @@ var aAMLQuery_protectedEvents	= [
 	,"hashchange"
 	,"readystatechange"
 	,"configchange"
+	,"localechange"
 ];
 
 cAMLQuery.prototype.trigger	= function(sType, oDetail) {
@@ -59,9 +60,7 @@ cAMLQuery.prototype.trigger	= function(sType, oDetail) {
 	if (arguments.length < 2)
 		oDetail	= null;
 	fAMLQuery_each(this, function() {
-		var oEvent	= new cAMLCustomEvent;
-		oEvent.initCustomEvent(sType, true, true, oDetail);
-		fAMLNode_dispatchEvent(this, oEvent);
+		fAMLQuery_trigger(this, sType, oDetail);
 	});
 };
 
@@ -121,6 +120,12 @@ oAmple.unbind	= function(sType, fHandler, bCapture) {
 	fAMLEventTarget_removeEventListener(oAmple_document, sType, fHandler, bCapture || false);
 };
 
+function fAMLQuery_trigger(oNode, sType, oDetail) {
+	var oEvent	= new cAMLCustomEvent;
+	oEvent.initCustomEvent(sType, true, true, oDetail);
+	fAMLNode_dispatchEvent(oNode, oEvent);
+};
+
 oAmple.trigger	= function(sType, oDetail) {
 	// Validate API call
 	fGuard(arguments, [
@@ -136,7 +141,5 @@ oAmple.trigger	= function(sType, oDetail) {
 	if (arguments.length < 2)
 		oDetail	= null;
 
-	var oEvent	= new cAMLCustomEvent;
-	oEvent.initCustomEvent(sType, true, true, oDetail);
-	fAMLNode_dispatchEvent(oAmple_document, oEvent);
+	fAMLQuery_trigger(oAmple_document, sType, oDetail);
 };

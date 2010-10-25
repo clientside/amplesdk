@@ -121,6 +121,7 @@ fAMLExporter_sign(cArguments,	"Arguments");
 // Tweaks and tricks
 fAMLExporter_sign(oAmple.prefixes,	"prefixes");
 fAMLExporter_sign(oAmple.easing,	"easing");
+fAMLExporter_sign(oAmple.locale,	"locale");
 fAMLExporter_sign(cAMLNodeSelector.pseudoClass, "pseudoClass");
 fAMLExporter_sign(oAmple_root.$getContainer,		"$getContainer");
 //

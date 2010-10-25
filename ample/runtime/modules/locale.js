@@ -24,13 +24,13 @@ oGlobalization.extend = function(bDeep) {
             for (var sKey in oSource) {
                 var oSourceVal = oSource[sKey];
                 if (typeof oSourceVal !== "undefined") {
-                    if (bDeep && (fGuard_instanceOf(oSourceVal, cObject) || fGuard_instanceOf(oSourceVal, cArray))) {
+                    if (bDeep && (typeof oSourceVal == "object" || fGuard_instanceOf(oSourceVal, cArray))) {
                         var oTargetVal = oTarget[sKey];
                         // extend onto the existing value, or create a new one
-                        oTargetVal = oTargetVal && (fGuard_instanceOf(oTargetVal, cObject) || fGuard_instanceOf(oTargetVal, cArray))
+                        oTargetVal = oTargetVal && (typeof oTargetVal == "object" || fGuard_instanceOf(oTargetVal, cArray))
                             ? oTargetVal
                             : (fGuard_instanceOf(oSourceVal, cArray) ? [] : {});
-                        oTarget[sKey] = this.extend(true, oTargetVal, oSourceVal);
+                        oTarget[sKey] = oGlobalization.extend(true, oTargetVal, oSourceVal);
                     }
                     else
                         oTarget[sKey] = oSourceVal;
@@ -104,11 +104,11 @@ oGlobalization.findClosestCulture = function(vName) {
         return vName;
     return aMatch || null;
 };
-
+/*
 oGlobalization.preferCulture = function(vName) {
     this.culture = this.findClosestCulture(vName) || oCultures["default"];
 };
-
+*/
 oGlobalization.localize = function(sKey, oCulture, sValue) {
     if (typeof oCulture === "string") {
     	var sCulture = sCulture || "default";
@@ -1263,3 +1263,25 @@ oCultures["default"] = oDefaultCulture;
 
 // Extend ample object
 oAmple.locale	= oGlobalization;
+
+// Find Ample SDK location
+var aElements	= oUADocument.getElementsByTagName("script"),
+	sAMLQuery_baseURI	= aElements[aElements.length - 1].src;
+
+fAMLEventTarget_addEventListener(oAmple_document, "configchange",	function(oEvent) {
+	if (oEvent.detail == "locale") {
+		var oSettings	= {},
+			sCulture	= fAMLConfiguration_getParameter(oAmple_document.domConfig, "ample-locale");
+		oSettings.url	= fUtilities_resolveUri("cultures" + '/' + sCulture + ".js", sAMLQuery_baseURI);
+		oSettings.success	= function(sScript) {
+			// Execute locale code
+			new cFunction(sScript)();
+			// Set prefer culture
+			oGlobalization.culture	= oCultures[sCulture];
+			// Dispatch localechange event
+			fAMLQuery_trigger(oAmple_document, "localechange", sCulture);
+		};
+		//
+		fAMLQuery_ajax(oSettings);
+	}
+}, false);
