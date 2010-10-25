@@ -622,10 +622,10 @@ function fCalendar_getParseRegExp(oCalendar, sFormat) {
         }
 
         // add a regex group for the token.
-        var sGroup = aMatch[0],
-            nLength = sGroup.length,
+        var sGroupToken = aMatch[0],
+            nLength = sGroupToken.length,
             sAdd;
-        switch (sGroup) {
+        switch (sGroupToken) {
             case 'dddd': case 'ddd':
             case 'MMMM': case 'MMM':
             case 'gg': case 'g':
@@ -659,12 +659,11 @@ function fCalendar_getParseRegExp(oCalendar, sFormat) {
             	sAdd = '(\\' + oCalendar['/'] + ')';
                 break;
             default:
-            	throw new cAMLException(cAMLException.AML_LOCALE_BAD_DATE_FORMAT, null, [sGroup]);
+            	throw new cAMLException(cAMLException.AML_LOCALE_BAD_DATE_FORMAT, null, [sGroupToken]);
                 break;
         }
-        if (sAdd) {
+        if (sAdd)
             aRegExp.push(sAdd);
-        }
         aGroups.push(aMatch[0]);
     }
     fAppendPreOrPostMatch(rExpFormat.slice(nIndex), aRegExp);
@@ -1182,17 +1181,17 @@ oCalendarFormat[':']	= ':';
 oCalendarFormat.firstDay= 0;
 oCalendarFormat.days	= {};
            // full day names
-oCalendarFormat.days.names		= 'Sunday;Monday;Tuesday;Wednesday;Thursday;Friday;Saturday'.split(';');
+oCalendarFormat.days.names		= "Sunday;Monday;Tuesday;Wednesday;Thursday;Friday;Saturday".split(';');
                 // abbreviated day names
-oCalendarFormat.days.namesAbbr	= 'Sun;Mon;Tue;Wed;Thu;Fri;Sat'.split(';');
+oCalendarFormat.days.namesAbbr	= "Sun;Mon;Tue;Wed;Thu;Fri;Sat".split(';');
                 // shortest day names
-oCalendarFormat.days.namesShort	= 'Su;Mo;Tu;We;Th;Fr;Sa'.split(';');
+oCalendarFormat.days.namesShort	= "Su;Mo;Tu;We;Th;Fr;Sa".split(';');
 
 oCalendarFormat.months	= {};
                 // full month names (13 months for lunar calendards -- 13th month should be "" if not lunar)
-oCalendarFormat.months.names	= 'January;February;March;April;May;June;July;August;September;October;November;December;'.split(';');
+oCalendarFormat.months.names	= "January;February;March;April;May;June;July;August;September;October;November;December;".split(';');
                 // abbreviated month names
-oCalendarFormat.months.namesAbbr= 'Jan;Feb;Mar;Apr;May;Jun;Jul;Aug;Sep;Oct;Nov;Dec;'.split(';');
+oCalendarFormat.months.namesAbbr= "Jan;Feb;Mar;Apr;May;Jun;Jul;Aug;Sep;Oct;Nov;Dec;".split(';');
             // AM and PM designators in one of these forms:
             // The usual view, and the upper and lower case versions
             //      [standard,lowercase,uppercase]
