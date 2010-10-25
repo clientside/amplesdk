@@ -111,7 +111,7 @@ oGlobalization.preferCulture = function(vName) {
 */
 oGlobalization.localize = function(sKey, oCulture, sValue) {
     if (typeof oCulture == "string") {
-    	var sCulture = sCulture || "default";
+    	var sCulture = oCulture || "default";
         if (oCultures[sCulture])
         	oCulture = oCultures[sCulture];
         else {
