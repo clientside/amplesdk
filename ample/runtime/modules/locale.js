@@ -14,8 +14,7 @@
 
 var oGlobalization = {},
 	oCultures	= oGlobalization.cultures = {},
-    oLocales	= { en: {} };
-oLocales["default"] = oLocales.en;
+    oLocales	= {};
 
 oGlobalization.extend = function( bDeep ) {
     var oTarget = arguments[ 1 ] || {};
@@ -59,14 +58,14 @@ oGlobalization.findClosestCulture = function(vName) {
             aPrioritized = [];
         for ( i = 0; i < l; i++ ) {
             vName = fString_trim( aList[ i ] );
-            var nPriority, aParts = vName.split( ';' );
+            var nPriority, aParts = vName.split( ';' ), oPriority;
             sLang = fString_trim( aParts[ 0 ] );
             if ( aParts.length === 1 ) {
                 nPriority = 1;
             }
             else {
                 vName = fString_trim( aParts[ 1 ] );
-                if ( vName.indexOf("q=") === 0 ) {
+                if ( vName.indexOf('q=') === 0 ) {
                     vName = vName.substr( 2 );
                     nPriority = fParseFloat( vName, 10 );
                     nPriority = fIsNaN( nPriority ) ? 0 : nPriority;
@@ -75,7 +74,10 @@ oGlobalization.findClosestCulture = function(vName) {
                     nPriority = 1;
                 }
             }
-            aPrioritized.push( { lang: sLang, pri: nPriority } );
+            oPriority	= {};
+            oPriority.lang	= sLang;
+            oPriority.pri	= nPriority;
+            aPrioritized.push( oPriority );
         }
         aPrioritized.sort(function(a, b) {
             return a.pri < b.pri ? 1 : -1;
@@ -92,7 +94,7 @@ oGlobalization.findClosestCulture = function(vName) {
             sLang = aPrioritized[ i ].lang;
             // for each entry try its neutral language
             do {
-                var nIndex = sLang.lastIndexOf( "-" );
+                var nIndex = sLang.lastIndexOf( '-' );
                 if ( nIndex === -1 ) {
                     break;
                 }
@@ -118,8 +120,13 @@ oGlobalization.preferCulture = function(vName) {
 
 oGlobalization.localize = function(sKey, oCulture, sValue) {
     if (typeof oCulture === "string") {
-        oCulture = oCulture || "default";
-        oCulture = this.cultures[ oCulture ] || { name: oCulture };
+    	var sCulture = sCulture || "default";
+        if (this.cultures[ sCulture ])
+        	oCulture = this.cultures[ sCulture ];
+        else {
+        	oCulture	= {};
+        	oCulture.name	= sCulture;
+        }
     }
     var oLocal = oLocales[ oCulture.name ];
     if ( arguments.length === 3 ) {
@@ -180,12 +187,12 @@ oGlobalization.parseFloat = function(vValue, nRadix, oCulture) {
             sSign = aSignInfo[0],
             sNum = aSignInfo[1];
         // determine sign and number
-        if ( sSign === "" && oNumberFormat.pattern[0] !== "-n" ) {
-            aSignInfo = fParseNegativePattern( vValue, oNumberFormat, "-n" );
+        if ( sSign === '' && oNumberFormat.pattern[0] !== '-n' ) {
+            aSignInfo = fParseNegativePattern( vValue, oNumberFormat, '-n' );
             sSign = aSignInfo[0];
             sNum = aSignInfo[1];
         }
-        sSign = sSign || "+";
+        sSign = sSign || '+';
         // determine exponent and number
         var nExponent,
             sIntAndFraction,
@@ -213,9 +220,9 @@ oGlobalization.parseFloat = function(vValue, nRadix, oCulture) {
             sFraction = sIntAndFraction.substr( nDecimalPos + sDecSep.length );
         }
         // handle groups (e.g. 1,000,000)
-        var sGroupSep = oNumberFormat[","];
+        var sGroupSep = oNumberFormat[','];
         sInteger = sInteger.split(sGroupSep).join('');
-        var sAltGroupSep = sGroupSep.replace(/\u00A0/g, " ");
+        var sAltGroupSep = sGroupSep.replace(/\u00A0/g, ' ');
         if ( sGroupSep !== sAltGroupSep ) {
             sInteger = sInteger.split(sAltGroupSep).join('');
         }
@@ -226,8 +233,8 @@ oGlobalization.parseFloat = function(vValue, nRadix, oCulture) {
         }
         if ( nExponent !== null ) {
             // exponent itself may have a number patternd
-            var aExpSignInfo = fParseNegativePattern( nExponent, oNumberFormat, "-n" );
-            p += 'e' + (aExpSignInfo[0] || "+") + aExpSignInfo[1];
+            var aExpSignInfo = fParseNegativePattern( nExponent, oNumberFormat, '-n' );
+            p += 'e' + (aExpSignInfo[0] || '+') + aExpSignInfo[1];
         }
         if ( rParseFloat.test( p ) ) {
         	nRet = fParseFloat( p );
@@ -284,7 +291,7 @@ function fString_endsWith(sValue, sPattern) {
 };
 
 function fString_trim(sValue) {
-    return (sValue+"").replace( rTrim, "" );
+    return (sValue + '').replace( rTrim, '' );
 };
 
 function fString_zeroPad(sValue, nCount, bLeft) {
@@ -307,14 +314,14 @@ function fNumber_expandNumber(nNumber, nPrecision, oFormatInfo) {
     }
     nNumber = nRounded;
 
-    var sNumberString = nNumber+"",
-        sRight = "",
+    var sNumberString = nNumber + '',
+        sRight = '',
         aSplit = sNumberString.split(/e/i),
         nExponent = aSplit.length > 1 ? fParseInt( aSplit[ 1 ], 10 ) : 0;
     sNumberString = aSplit[ 0 ];
-    aSplit = sNumberString.split( "." );
+    aSplit = sNumberString.split( '.' );
     sNumberString = aSplit[ 0 ];
-    sRight = aSplit.length > 1 ? aSplit[ 1 ] : "";
+    sRight = aSplit.length > 1 ? aSplit[ 1 ] : '';
 
     var l;
     if ( nExponent > 0 ) {
@@ -334,18 +341,18 @@ function fNumber_expandNumber(nNumber, nPrecision, oFormatInfo) {
             ((sRight.length > nPrecision) ? sRight.slice( 0, nPrecision ) : fString_zeroPad( sRight, nPrecision ));
     }
     else {
-        sRight = "";
+        sRight = '';
     }
 
     var nStringIndex = sNumberString.length - 1,
-        sSep = oFormatInfo[","],
-        sRet = "";
+        sSep = oFormatInfo[','],
+        sRet = '';
 
     while ( nStringIndex >= 0 ) {
         if ( nCurSize === 0 || nCurSize > nStringIndex ) {
             return sNumberString.slice( 0, nStringIndex + 1 ) + ( sRet.length ? ( sSep + sRet + sRight ) : sRight );
         }
-        sRet = sNumberString.slice( nStringIndex - nCurSize + 1, nStringIndex + 1 ) + ( sRet.length ? ( sSep + sRet ) : "" );
+        sRet = sNumberString.slice( nStringIndex - nCurSize + 1, nStringIndex + 1 ) + ( sRet.length ? ( sSep + sRet ) : '' );
 
         nStringIndex -= nCurSize;
 
@@ -359,15 +366,15 @@ function fNumber_expandNumber(nNumber, nPrecision, oFormatInfo) {
 
 
 function fParseNegativePattern(sValue, oNumberFormat, sNegativePattern) {
-    var sNeg = oNumberFormat["-"],
-        sPos = oNumberFormat["+"],
+    var sNeg = oNumberFormat['-'],
+        sPos = oNumberFormat['+'],
         aRet;
     switch (sNegativePattern) {
-        case "n -":
+        case 'n -':
             sNeg = ' ' + sNeg;
             sPos = ' ' + sPos;
             // fall through
-        case "n-":
+        case 'n-':
             if ( fString_endsWith( sValue, sNeg ) ) {
             	aRet = [ '-', sValue.substr( 0, sValue.length - sNeg.length ) ];
             }
@@ -375,11 +382,11 @@ function fParseNegativePattern(sValue, oNumberFormat, sNegativePattern) {
             	aRet = [ '+', sValue.substr( 0, sValue.length - sPos.length ) ];
             }
             break;
-        case "- n":
+        case '- n':
             sNeg += ' ';
             sPos += ' ';
             // fall through
-        case "-n":
+        case '-n':
             if ( fString_startsWith( sValue, sNeg ) ) {
             	aRet = [ '-', sValue.substr( sNeg.length ) ];
             }
@@ -387,7 +394,7 @@ function fParseNegativePattern(sValue, oNumberFormat, sNegativePattern) {
             	aRet = [ '+', sValue.substr( sPos.length ) ];
             }
             break;
-        case "(n)":
+        case '(n)':
             if ( fString_startsWith( sValue, '(' ) && fString_endsWith( sValue, ')' ) ) {
             	aRet = [ '-', sValue.substr( 1, sValue.length - 2 ) ];
             }
@@ -400,7 +407,7 @@ function fFormatNumber(sValue, sFormat, oCulture) {
     if ( !sFormat || sFormat === 'i' ) {
         return oCulture.name.length ? sValue.toLocaleString() : sValue.toString();
     }
-    sFormat = sFormat || "D";
+    sFormat = sFormat || 'D';
 
     var oNumberFormat = oCulture.numberFormat,
         nNumber = cMath.abs(sValue),
@@ -412,31 +419,31 @@ function fFormatNumber(sValue, sFormat, oCulture) {
         oFormatInfo;
 
     switch (sCurrent) {
-        case "D":
+        case 'D':
             sPattern = 'n';
             if (nPrecision !== -1) {
-                nNumber = fString_zeroPad( ""+nNumber, nPrecision, true );
+                nNumber = fString_zeroPad( '' + nNumber, nPrecision, true );
             }
             if (sValue < 0) nNumber = -nNumber;
             break;
-        case "N":
+        case 'N':
             oFormatInfo = oNumberFormat;
             // fall through
-        case "C":
+        case 'C':
             oFormatInfo = oFormatInfo || oNumberFormat.currency;
             // fall through
-        case "P":
+        case 'P':
             oFormatInfo = oFormatInfo || oNumberFormat.percent;
-            sPattern = sValue < 0 ? oFormatInfo.pattern[0] : (oFormatInfo.nNumber[1] || "n");
+            sPattern = sValue < 0 ? oFormatInfo.pattern[0] : (oFormatInfo.nNumber[1] || 'n');
             if (nPrecision === -1) nPrecision = oFormatInfo.decimals;
-            nNumber = fNumber_expandNumber( nNumber * (sCurrent === "P" ? 100 : 1), nPrecision, oFormatInfo );
+            nNumber = fNumber_expandNumber( nNumber * (sCurrent === 'P' ? 100 : 1), nPrecision, oFormatInfo );
             break;
         default:
         	throw new cAMLException(cAMLException.AML_LOCALE_BAD_NUMBER_FORMAT, null, [sCurrent]);
     }
 
     var rPatternParts = /n|\$|-|%/g,
-        sRet = "";
+        sRet = '';
     for (;;) {
         var nIndex = rPatternParts.lastIndex,
             aParts = rPatternParts.exec(sPattern);
@@ -448,19 +455,19 @@ function fFormatNumber(sValue, sFormat, oCulture) {
         }
 
         switch (aParts[0]) {
-            case "n":
+            case 'n':
                 sRet += nNumber;
                 break;
-            case "$":
+            case '$':
                 sRet += oNumberFormat.currency.symbol;
                 break;
-            case "-":
+            case '-':
                 // don't make 0 negative
                 if ( /[1-9]/.test( nNumber ) ) {
-                    sRet += oNumberFormat["-"];
+                    sRet += oNumberFormat['-'];
                 }
                 break;
-            case "%":
+            case '%':
                 sRet += oNumberFormat.percent.symbol;
                 break;
         }
@@ -593,7 +600,7 @@ function fAppendPreOrPostMatch(aPreMatch, aStrings) {
                 break;
             case '\\':
                 if ( bEscaped ) {
-                	aStrings.push( "\\" );
+                	aStrings.push( '\\' );
                 }
                 bEscaped = !bEscaped;
                 break;
@@ -608,7 +615,7 @@ function fAppendPreOrPostMatch(aPreMatch, aStrings) {
 
 function fCalendar_expandFormat(oCalendar, sFormat) {
     // expands unspecified or single character date formats into the full pattern.
-	sFormat = sFormat || "F";
+	sFormat = sFormat || 'F';
     var sPattern,
         oPatterns = oCalendar.patterns,
         nLen = sFormat.length;
@@ -619,7 +626,7 @@ function fCalendar_expandFormat(oCalendar, sFormat) {
         }
         sFormat = sPattern;
     }
-    else if ( nLen === 2  && sFormat.charAt(0) === "%" ) {
+    else if ( nLen === 2  && sFormat.charAt(0) === '%' ) {
         // %X escape format -- intended as a custom format string that is only one character, not a built-in format.
     	sFormat = sFormat.charAt( 1 );
     }
@@ -643,7 +650,7 @@ function fCalendar_getParseRegExp(oCalendar, sFormat) {
 
     // expand single digit formats, then escape regular expression characters.
     var rExpFormat = fCalendar_expandFormat( oCalendar, sFormat ).replace( /([\^\$\.\*\+\?\|\[\]\(\)\{\}])/g, "\\\\$1" ),
-        aRegExp = ["^"],
+        aRegExp = ['^'],
         aGroups = [],
         nIndex = 0,
         nQuoteCount = 0,
@@ -670,16 +677,16 @@ function fCalendar_getParseRegExp(oCalendar, sFormat) {
             case 'dddd': case 'ddd':
             case 'MMMM': case 'MMM':
             case 'gg': case 'g':
-            	sAdd = "(\\D+)";
+            	sAdd = '(\\D+)';
                 break;
             case 'tt': case 't':
-            	sAdd = "(\\D*)";
+            	sAdd = '(\\D*)';
                 break;
             case 'yyyy':
             case 'fff':
             case 'ff':
             case 'f':
-            	sAdd = "(\\d{" + nLength + "})";
+            	sAdd = '(\\d{' + nLength + '})';
                 break;
             case 'dd': case 'd':
             case 'MM': case 'M':
@@ -688,16 +695,16 @@ function fCalendar_getParseRegExp(oCalendar, sFormat) {
             case 'hh': case 'h':
             case 'mm': case 'm':
             case 'ss': case 's':
-            	sAdd = "(\\d\\d?)";
+            	sAdd = '(\\d\\d?)';
                 break;
             case 'zzz':
-            	sAdd = "([+-]?\\d\\d?:\\d{2})";
+            	sAdd = '([+-]?\\d\\d?:\\d{2})';
                 break;
             case 'zz': case 'z':
-            	sAdd = "([+-]?\\d\\d?)";
+            	sAdd = '([+-]?\\d\\d?)';
                 break;
             case '/':
-            	sAdd = "(\\" + oCalendar["/"] + ")";
+            	sAdd = '(\\' + oCalendar['/'] + ')';
                 break;
             default:
             	throw new cAMLException(cAMLException.AML_LOCALE_BAD_DATE_FORMAT, null, [m]);
@@ -709,14 +716,16 @@ function fCalendar_getParseRegExp(oCalendar, sFormat) {
         aGroups.push( aMatch[ 0 ] );
     }
     fAppendPreOrPostMatch( rExpFormat.slice( nIndex ), aRegExp );
-    aRegExp.push( "$" );
+    aRegExp.push( '$' );
 
     // allow whitespace to differ when matching formats.
-    var sRegexpStr = aRegExp.join( '' ).replace( /\s+/g, "\\s+" ),
-        parseRegExp = {'regExp': sRegexpStr, 'groups': aGroups};
+    var sRegexpStr = aRegExp.join( '' ).replace( /\s+/g, '\\s+' ),
+        oParseRegExp = {};
+    oParseRegExp.regExp	= sRegexpStr;
+    oParseRegExp.groups	= aGroups;
 
     // cache the regex for this format.
-    return rE[ sFormat ] = parseRegExp;
+    return rE[ sFormat ] = oParseRegExp;
 };
 
 function fGetTokenRegExp() {
@@ -922,7 +931,7 @@ function fFormatDate(dValue, sFormat, oCulture) {
     }
 
     var oEras = oCalendar.eras,
-        bSortable = sFormat === "s";
+        bSortable = sFormat === 's';
     sFormat = fCalendar_expandFormat( oCalendar, sFormat );
 
     // Start with an empty string
@@ -996,40 +1005,40 @@ function fFormatDate(dValue, sFormat, oCulture) {
             nCLength = sCurrent.length;
 
         switch ( sCurrent ) {
-            case "ddd":
+            case 'ddd':
                 //Day of the week, as a three-letter abbreviation
-            case "dddd":
+            case 'dddd':
                 // Day of the week, using the full name
                 var aNames = (nCLength === 3) ? oCalendar.days.namesAbbr : oCalendar.days.names;
                 aRet.push( aNames[ dValue.getDay() ] );
                 break;
-            case "d":
+            case 'd':
                 // Day of month, without leading zero for single-digit days
-            case "dd":
+            case 'dd':
                 // Day of month, with leading zero for single-digit days
                 bFoundDay = true;
                 aRet.push( fPadZeros( fGetPart( dValue, 2 ), nCLength ) );
                 break;
-            case "MMM":
+            case 'MMM':
                 // Month, as a three-letter abbreviation
-            case "MMMM":
+            case 'MMMM':
                 // Month, using the full name
                 var nPart = fGetPart( dValue, 1 );
                 aRet.push( (oCalendar.monthsGenitive && fHasDay())
                     ? oCalendar.monthsGenitive[ nCLength === 3 ? "namesAbbr" : "names" ][ nPart ]
                     : oCalendar.months[ nCLength === 3 ? "namesAbbr" : "names" ][ nPart ] );
                 break;
-            case "M":
+            case 'M':
                 // Month, as digits, with no leading zero for single-digit months
-            case "MM":
+            case 'MM':
                 // Month, as digits, with leading zero for single-digit months
             	aRet.push( fPadZeros( fGetPart( dValue, 1 ) + 1, nCLength ) );
                 break;
-            case "y":
+            case 'y':
                 // Year, as two digits, but with no leading zero for years less than 10
-            case "yy":
+            case 'yy':
                 // Year, as two digits, with leading zero for years less than 10
-            case "yyyy":
+            case 'yyyy':
                 // Year represented by four full digits
                 nPart = aConverted ? aConverted[ 0 ] : fCalendar_getEraYear( dValue, oCalendar, fDate_getEra( dValue, oEras ), bSortable );
                 if ( nCLength < 4 ) {
@@ -1037,70 +1046,70 @@ function fFormatDate(dValue, sFormat, oCulture) {
                 }
                 aRet.push( fPadZeros( nPart, nCLength ) );
                 break;
-            case "h":
+            case 'h':
                 // Hours with no leading zero for single-digit hours, using 12-hour clock
-            case "hh":
+            case 'hh':
                 // Hours with leading zero for single-digit hours, using 12-hour clock
                 nHour = dValue.getHours() % 12;
                 if ( nHour === 0 ) nHour = 12;
                 aRet.push( fPadZeros( nHour, nCLength ) );
                 break;
-            case "H":
+            case 'H':
                 // Hours with no leading zero for single-digit hours, using 24-hour clock
-            case "HH":
+            case 'HH':
                 // Hours with leading zero for single-digit hours, using 24-hour clock
             	aRet.push( fPadZeros( dValue.getHours(), nCLength ) );
                 break;
-            case "m":
+            case 'm':
                 // Minutes with no leading zero  for single-digit minutes
-            case "mm":
+            case 'mm':
                 // Minutes with leading zero  for single-digit minutes
             	aRet.push( fPadZeros( dValue.getMinutes(), nCLength ) );
                 break;
-            case "s":
+            case 's':
                 // Seconds with no leading zero for single-digit seconds
-            case "ss":
+            case 'ss':
                 // Seconds with leading zero for single-digit seconds
             	aRet.push( fPadZeros(dValue.getSeconds(), nCLength ) );
                 break;
-            case "t":
+            case 't':
                 // One character am/pm indicator ("a" or "p")
-            case "tt":
+            case 'tt':
                 // Multicharacter am/pm indicator
-                nPart = dValue.getHours() < 12 ? (oCalendar.AM ? oCalendar.AM[0] : " ") : (oCalendar.PM ? oCalendar.PM[0] : " ");
+                nPart = dValue.getHours() < 12 ? (oCalendar.AM ? oCalendar.AM[0] : ' ') : (oCalendar.PM ? oCalendar.PM[0] : ' ');
                 aRet.push( nCLength === 1 ? nPart.charAt( 0 ) : nPart );
                 break;
-            case "f":
+            case 'f':
                 // Deciseconds
-            case "ff":
+            case 'ff':
                 // Centiseconds
-            case "fff":
+            case 'fff':
                 // Milliseconds
             	aRet.push( fPadZeros( dValue.getMilliseconds(), 3 ).substr( 0, nCLength ) );
                 break;
-            case "z":
+            case 'z':
                 // Time zone offset, no leading zero
-            case "zz":
+            case 'zz':
                 // Time zone offset with leading zero
                 nHour = dValue.getTimezoneOffset() / 60;
                 aRet.push( (nHour <= 0 ? '+' : '-') + fPadZeros( cMath.floor( cMath.abs( nHour ) ), nCLength ) );
                 break;
-            case "zzz":
+            case 'zzz':
                 // Time zone offset with leading zero
                 nHour = dValue.getTimezoneOffset() / 60;
                 aRet.push( (nHour <= 0 ? '+' : '-') + fPadZeros( cMath.floor( cMath.abs( nHour ) ), 2 ) +
                     // Hard coded ":" separator, rather than using oCalendar.TimeSeparator
                     // Repeated here for consistency, plus ":" was already assumed in date parsing.
-                    ":" + fPadZeros( cMath.abs( dValue.getTimezoneOffset() % 60 ), 2 ) );
+                    ':' + fPadZeros( cMath.abs( dValue.getTimezoneOffset() % 60 ), 2 ) );
                 break;
-            case "g":
-            case "gg":
+            case 'g':
+            case 'gg':
                 if ( oCalendar.eras ) {
                 	aRet.push( oCalendar.eras[ fDate_getEra(dValue, oEras) ].name );
                 }
                 break;
-        case "/":
-        	aRet.push( oCalendar["/"] );
+        case '/':
+        	aRet.push( oCalendar['/'] );
             break;
         default:
         	throw new cAMLException(cAMLException.AML_LOCALE_BAD_DATE_FORMAT, null, [sCurrent]);
@@ -1129,9 +1138,12 @@ function fFormatDate(dValue, sFormat, oCulture) {
 // it if it does not exist.
 // Globalization.cultures.foo = Globalization.extend(true, Globalization.extend(true, {}, Globalization.cultures['default'], fooCulture), Globalization.cultures.foo)
 
+oLocales['en']	= {};
+oLocales["default"] = oLocales.en;
+
 var en = oCultures["default"] = oCultures.en = oGlobalization.extend(true, {
     // A unique name for the culture in the form <language code>-<country/region code>
-    name: "en",
+    name: 'en',
     // the name of the culture in the english language
     englishName: "English",
     // the name of the culture in its own language
@@ -1155,7 +1167,7 @@ var en = oCultures["default"] = oCultures.en = oGlobalization.extend(true, {
     // This field should be used to navigate from a specific culture to it's
     // more general, neutral culture. If a culture is already as general as it
     // can get, the language may refer to itself.
-    language: "en",
+    language: 'en',
     // numberFormat defines general number formatting rules, like the digits in
     // each grouping, the group separator, and how negative numbers are displayed.
     numberFormat: {
@@ -1163,53 +1175,53 @@ var en = oCultures["default"] = oCultures.en = oGlobalization.extend(true, {
         // Note, numberFormat.pattern has no 'positivePattern' unlike percent and currency,
         // but is still defined as an array for consistency with them.
         //  negativePattern: one of "(n)|-n|- n|n-|n -"
-        pattern: ["-n"],
+        pattern: ['-n'],
         // number of decimal places normally shown
         decimals: 2,
         // string that separates number groups, as in 1,000,000
-        ',': ",",
+        ',': ',',
         // string that separates a number from the fractional portion, as in 1.99
-        '.': ".",
+        '.': '.',
         // array of numbers indicating the size of each number group.
         // TODO: more detailed description and example
         groupSizes: [3],
         // symbol used for positive numbers
-        '+': "+",
+        '+': '+',
         // symbol used for negative numbers
-        '-': "-",
+        '-': '-',
         percent: {
             // [negativePattern, positivePattern]
             //     negativePattern: one of "-n %|-n%|-%n|%-n|%n-|n-%|n%-|-% n|n %-|% n-|% -n|n- %"
             //     positivePattern: one of "n %|n%|%n|% n"
-            pattern: ["-n %","n %"],
+            pattern: ['-n %','n %'],
             // number of decimal places normally shown
             decimals: 2,
             // array of numbers indicating the size of each number group.
             // TODO: more detailed description and example
             groupSizes: [3],
             // string that separates number groups, as in 1,000,000
-            ',': ",",
+            ',': ',',
             // string that separates a number from the fractional portion, as in 1.99
-            '.': ".",
+            '.': '.',
             // symbol used to represent a percentage
-            symbol: "%"
+            symbol: '%'
         },
         currency: {
             // [negativePattern, positivePattern]
             //     negativePattern: one of "($n)|-$n|$-n|$n-|(n$)|-n$|n-$|n$-|-n $|-$ n|n $-|$ n-|$ -n|n- $|($ n)|(n $)"
             //     positivePattern: one of "$n|n$|$ n|n $"
-            pattern: ["($n)","$n"],
+            pattern: ['($n)','$n'],
             // number of decimal places normally shown
             decimals: 2,
             // array of numbers indicating the size of each number group.
             // TODO: more detailed description and example
             groupSizes: [3],
             // string that separates number groups, as in 1,000,000
-            ',': ",",
+            ',': ',',
             // string that separates a number from the fractional portion, as in 1.99
-            '.': ".",
+            '.': '.',
             // symbol used to represent currency
-            symbol: "$"
+            symbol: '$'
         }
     },
     // calendars defines all the possible calendars used by this culture.
@@ -1222,40 +1234,40 @@ var en = oCultures["default"] = oCultures.en = oGlobalization.extend(true, {
     calendars: {
         standard: {
             // name that identifies the type of calendar this is
-            name: "Gregorian_USEnglish",
+            name: 'Gregorian_USEnglish',
             // separator of parts of a date (e.g. '/' in 11/05/1955)
-            '/': "/",
+            '/': '/',
             // separator of parts of a time (e.g. ':' in 05:44 PM)
-            ':': ":",
+            ':': ':',
             // the first day of the week (0 = Sunday, 1 = Monday, etc)
             firstDay: 0,
             days: {
                 // full day names
-                names: ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+                names: ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
                 // abbreviated day names
-                namesAbbr: ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],
+                namesAbbr: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
                 // shortest day names
-                namesShort: ["Su","Mo","Tu","We","Th","Fr","Sa"]
+                namesShort: ['Su','Mo','Tu','We','Th','Fr','Sa']
             },
             months: {
                 // full month names (13 months for lunar calendards -- 13th month should be "" if not lunar)
-                names: ["January","February","March","April","May","June","July","August","September","October","November","December",""],
+                names: ['January','February','March','April','May','June','July','August','September','October','November','December',''],
                 // abbreviated month names
-                namesAbbr: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",""]
+                namesAbbr: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','']
             },
             // AM and PM designators in one of these forms:
             // The usual view, and the upper and lower case versions
             //      [standard,lowercase,uppercase]
             // The culture does not use AM or PM (likely all standard date formats use 24 hour time)
             //      null
-            AM: ["AM", "am", "AM"],
-            PM: ["PM", "pm", "PM"],
+            AM: ['AM', 'am', 'AM'],
+            PM: ['PM', 'pm', 'PM'],
             eras: [
                 // eras in reverse chronological order.
                 // name: the name of the era in this culture (e.g. A.D., C.E.)
                 // start: when the era starts in ticks (gregorian, gmt), null if it is the earliest supported era.
                 // offset: offset in years from gregorian calendar
-                { "name": "A.D.", "start": null, "offset": 0 }
+                { 'name': 'A.D.', 'start': null, 'offset': 0 }
             ],
             // when a two digit year is given, it will never be parsed as a four digit
             // year greater than this year (in the appropriate era for the culture)
@@ -1267,23 +1279,23 @@ var en = oCultures["default"] = oCultures.en = oGlobalization.extend(true, {
             // to see given the portions of the date that are shown.
             patterns: {
                 // short date pattern
-                d: "M/d/yyyy",
+                d: 'M/d/yyyy',
                 // long date pattern
-                D: "dddd, MMMM dd, yyyy",
+                D: 'dddd, MMMM dd, yyyy',
                 // short time pattern
-                t: "h:mm tt",
+                t: 'h:mm tt',
                 // long time pattern
-                T: "h:mm:ss tt",
+                T: 'h:mm:ss tt',
                 // long date, short time pattern
-                f: "dddd, MMMM dd, yyyy h:mm tt",
+                f: 'dddd, MMMM dd, yyyy h:mm tt',
                 // long date, long time pattern
-                F: "dddd, MMMM dd, yyyy h:mm:ss tt",
+                F: 'dddd, MMMM dd, yyyy h:mm:ss tt',
                 // month/day pattern
-                M: "MMMM dd",
+                M: 'MMMM dd',
                 // month/year pattern
-                Y: "yyyy MMMM",
+                Y: 'yyyy MMMM',
                 // S is a sortable format that does not vary by culture
-                S: "yyyy\u0027-\u0027MM\u0027-\u0027dd\u0027T\u0027HH\u0027:\u0027mm\u0027:\u0027ss"
+                S: 'yyyy\u0027-\u0027MM\u0027-\u0027dd\u0027T\u0027HH\u0027:\u0027mm\u0027:\u0027ss'
             }
             // optional fields for each calendar:
             /*
