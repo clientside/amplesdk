@@ -23,7 +23,7 @@ oGlobalization.extend = function(bDeep) {
         if (oSource) {
             for (var sKey in oSource) {
                 var oSourceVal = oSource[sKey];
-                if (typeof oSourceVal !== "undefined") {
+                if (typeof oSourceVal != "undefined") {
                     if (bDeep && (typeof oSourceVal == "object" || fGuard_instanceOf(oSourceVal, cArray))) {
                         var oTargetVal = oTarget[sKey];
                         // extend onto the existing value, or create a new one
@@ -100,7 +100,7 @@ oGlobalization.findClosestCulture = function(vName) {
         }
     }
     else
-    if (typeof vName === 'object')
+    if (typeof vName == 'object')
         return vName;
     return aMatch || null;
 };
@@ -110,7 +110,7 @@ oGlobalization.preferCulture = function(vName) {
 };
 */
 oGlobalization.localize = function(sKey, oCulture, sValue) {
-    if (typeof oCulture === "string") {
+    if (typeof oCulture == "string") {
     	var sCulture = sCulture || "default";
         if (oCultures[sCulture])
         	oCulture = oCultures[sCulture];
@@ -128,20 +128,20 @@ oGlobalization.localize = function(sKey, oCulture, sValue) {
     else {
         if (oLocal)
         	sValue = oLocal[sKey];
-        if (typeof value === "undefined") {
+        if (typeof sValue == "undefined") {
             var aLanguage = oLocales[oCulture.language];
             if (aLanguage)
             	sValue = aLanguage[sKey];
-            if (typeof value === "undefined")
+            if (typeof sValue == "undefined")
             	sValue = oLocales["default"][sKey];
         }
     }
-    return typeof value === "undefined" ? null : sValue;
+    return typeof sValue == "undefined" ? null : sValue;
 };
 
 oGlobalization.format = function(vValue, sFormat, oCulture) {
     oCulture = this.findClosestCulture(oCulture);
-    if (typeof value === "number")
+    if (typeof vValue == "number")
     	vValue = fFormatNumber(vValue, sFormat, oCulture);
     else
     if (vValue instanceof cDate)
@@ -230,7 +230,7 @@ oGlobalization.parseDate = function(vValue, aFormats, oCulture) {
 
     var dDate, sKey, oPatterns;
     if (aFormats) {
-        if (typeof aFormats === "string")
+        if (typeof aFormats == "string")
             aFormats = [aFormats];
         if (aFormats.length) {
             for (var nIndex = 0, nLength = aFormats.length; nIndex < nLength; nIndex++) {
@@ -404,7 +404,7 @@ function fFormatNumber(sValue, sFormat, oCulture) {
             // fall through
         case 'P':
             oFormatInfo = oFormatInfo || oNumberFormat.percent;
-            sPattern = sValue < 0 ? oFormatInfo.pattern[0] : (oFormatInfo.nNumber[1] || 'n');
+            sPattern = sValue < 0 ? oFormatInfo.pattern[0] : (oFormatInfo.pattern[1] || 'n');
             if (nPrecision === -1) nPrecision = oFormatInfo.decimals;
             nNumber = fNumber_expandNumber(nNumber * (sCurrent === 'P' ? 100 : 1), nPrecision, oFormatInfo);
             break;
@@ -456,7 +456,7 @@ function fCalendar_expandYear(oCalendar, nYear) {
         nEra = fDate_getEra(dNow);
     if (nYear < 100) {
         var vTwoDigitYearMax = oCalendar.twoDigitYearMax;
-        vTwoDigitYearMax = typeof vTwoDigitYearMax === "string" ? new cDate().getFullYear() % 100 + fParseInt(vTwoDigitYearMax, 10) : vTwoDigitYearMax;
+        vTwoDigitYearMax = typeof vTwoDigitYearMax == "string" ? new cDate().getFullYear() % 100 + fParseInt(vTwoDigitYearMax, 10) : vTwoDigitYearMax;
         var nYearCurr = fCalendar_getEraYear(dNow, oCalendar, nEra);
         nYear += nYearCurr - (nYearCurr % 100);
         if (nYear > vTwoDigitYearMax)
@@ -1221,15 +1221,15 @@ oCalendarFormat.patterns	= {};
                 // short date pattern
 oCalendarPatterns['d']	= 'M/d/yyyy';
                 // long date pattern
-oCalendarPatterns['D']	= 'dddd, MMMM dd, yyyy';
+oCalendarPatterns['D']	= 'dddd,' + ' MMMM dd,' + ' yyyy';
                 // short time pattern
 oCalendarPatterns['t']	= 'h:mm tt';
                 // long time pattern
 oCalendarPatterns['T']	= 'h:mm:ss tt';
                 // long date, short time pattern
-oCalendarPatterns['f']	= 'dddd, MMMM dd, yyyy h:mm tt';
+oCalendarPatterns['f']	= oCalendarPatterns['D'] + ' ' + oCalendarPatterns['t'];
                 // long date, long time pattern
-oCalendarPatterns['F']	= 'dddd, MMMM dd, yyyy h:mm:ss tt';
+oCalendarPatterns['F']	= oCalendarPatterns['D'] + ' ' + oCalendarPatterns['T'];
                 // month/day pattern
 oCalendarPatterns['M']	= 'MMMM dd';
                 // month/year pattern
