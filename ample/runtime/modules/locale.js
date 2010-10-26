@@ -170,26 +170,26 @@ oGlobalization.parseFloat = function(vValue, nRadix, oCulture) {
     else {
         var aSignInfo = fParseNegativePattern(vValue, oNumberFormat, oNumberFormat.pattern[0]),
             sSign = aSignInfo[0],
-            sNum = aSignInfo[1];
+            sNumber = aSignInfo[1];
         // determine sign and number
         if (sSign === '' && oNumberFormat.pattern[0] !== '-n') {
             aSignInfo = fParseNegativePattern(vValue, oNumberFormat, '-n');
             sSign = aSignInfo[0];
-            sNum = aSignInfo[1];
+            sNumber = aSignInfo[1];
         }
         sSign = sSign || '+';
         // determine exponent and number
         var nExponent,
             sIntAndFraction,
-            nExponentPos = sNum.indexOf('e');
-        if (nExponentPos < 0) nExponentPos = sNum.indexOf('E');
+            nExponentPos = sNumber.indexOf('e');
+        if (nExponentPos < 0) nExponentPos = sNumber.indexOf('E');
         if (nExponentPos < 0) {
-            sIntAndFraction = sNum;
+            sIntAndFraction = sNumber;
             nExponent = null;
         }
         else {
-            sIntAndFraction = sNum.substr(0, nExponentPos);
-            nExponent = sNum.substr(nExponentPos + 1);
+            sIntAndFraction = sNumber.substr(0, nExponentPos);
+            nExponent = sNumber.substr(nExponentPos + 1);
         }
         // determine decimal position
         var sInteger,
@@ -291,26 +291,26 @@ function fNumber_expandNumber(nNumber, nPrecision, oFormatInfo) {
         nRounded = nNumber;
     nNumber = nRounded;
 
-    var sNumberString = nNumber + '',
+    var sNumber = nNumber + '',
         sRight = '',
-        aSplit = sNumberString.split(/e/i),
+        aSplit = sNumber.split(/e/i),
         nExponent = aSplit.length > 1 ? fParseInt(aSplit[1], 10) : 0;
-    sNumberString = aSplit[0];
-    aSplit = sNumberString.split('.');
-    sNumberString = aSplit[0];
+    sNumber = aSplit[0];
+    aSplit = sNumber.split('.');
+    sNumber = aSplit[0];
     sRight = aSplit.length > 1 ? aSplit[1] : '';
 
     if (nExponent > 0) {
         sRight = fString_zeroPad(sRight, nExponent, false);
-        sNumberString += sRight.slice(0, nExponent);
+        sNumber += sRight.slice(0, nExponent);
         sRight = sRight.substr(nExponent);
     }
     else
     if (nExponent < 0) {
         nExponent = -nExponent;
-        sNumberString = fString_zeroPad(sNumberString, nExponent + 1);
-        sRight = sNumberString.slice(-nExponent, sNumberString.length) + sRight;
-        sNumberString = sNumberString.slice(0, -nExponent);
+        sNumber = fString_zeroPad(sNumber, nExponent + 1);
+        sRight = sNumber.slice(-nExponent, sNumber.length) + sRight;
+        sNumber = sNumber.slice(0, -nExponent);
     }
 
     if (nPrecision > 0)
@@ -319,14 +319,14 @@ function fNumber_expandNumber(nNumber, nPrecision, oFormatInfo) {
     else
         sRight = '';
 
-    var nStringIndex = sNumberString.length - 1,
+    var nStringIndex = sNumber.length - 1,
         sSep = oFormatInfo[','],
         sReturn = '';
 
     while (nStringIndex >= 0) {
         if (nCurSize === 0 || nCurSize > nStringIndex)
-            return sNumberString.slice(0, nStringIndex + 1) + (sReturn.length ? (sSep + sReturn + sRight) : sRight);
-        sReturn = sNumberString.slice(nStringIndex - nCurSize + 1, nStringIndex + 1) + (sReturn.length ? (sSep + sReturn) : '');
+            return sNumber.slice(0, nStringIndex + 1) + (sReturn.length ? (sSep + sReturn + sRight) : sRight);
+        sReturn = sNumber.slice(nStringIndex - nCurSize + 1, nStringIndex + 1) + (sReturn.length ? (sSep + sReturn) : '');
 
         nStringIndex -= nCurSize;
 
@@ -335,7 +335,7 @@ function fNumber_expandNumber(nNumber, nPrecision, oFormatInfo) {
             nCurGroupIndex++;
         }
     }
-    return sNumberString.slice(0, nStringIndex + 1) + sSep + sReturn + sRight;
+    return sNumber.slice(0, nStringIndex + 1) + sSep + sReturn + sRight;
 };
 
 
