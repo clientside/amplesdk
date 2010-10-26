@@ -143,7 +143,7 @@ cXULElement_tree.handlers	= {
 					break;
 
 				case "disabled":
-					this.$setPseudoClass("disabled", true);
+					this.$setPseudoClass("disabled", oEvent.newValue == "true");
 					break;
 
 				default:

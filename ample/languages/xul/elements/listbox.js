@@ -75,7 +75,7 @@ cXULElement_listbox.handlers	= {
 		if (oEvent.target == this) {
 			switch (oEvent.attrName) {
 				case "disabled":
-					this.$setPseudoClass("disabled", true);
+					this.$setPseudoClass("disabled", oEvent.newValue == "true");
 					break;
 
 				case "seltype":
