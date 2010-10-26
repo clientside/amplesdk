@@ -58,6 +58,9 @@ cXULSelectElement.prototype.clearSelection	= function()
 
 cXULSelectElement.prototype.selectItem	= function(oElement)
 {
+	if (this.selectedItems.length == 1 && this.selectedItems[0] == oElement)
+		return;
+
     // Fire event onbeforeselect
     if (!cXULSelectElement.fireEventOnBeforeSelect(this))
         return;
