@@ -233,8 +233,8 @@
 		<node title="Cookie">
 			<node title="Cookie" xhref="ample/plugins/cookie.xml" />
 		</node>
-		<node title="Form">
-			<node title="Form" xhref="ample/plugins/form.xml"/>
+		<node title="Forms">
+			<node title="Form" xhref="ample/plugins/forms.xml"/>
 		</node>
 		<node title="Store">
 			<node title="Store" xhref="ample/plugins/store.xml"/>
