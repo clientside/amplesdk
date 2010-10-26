@@ -3,5 +3,6 @@ RewriteEngine on
 
 ##
 RewriteCond %{REQUEST_URI} runtime|languages
+RewriteCond %{REQUEST_URI} !locales
 RewriteRule ^(.*).js $1.php
 RewriteRule ^(.*).css $1.php
