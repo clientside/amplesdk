@@ -76,7 +76,7 @@ oGlobalization.findClosestCulture = function(vName) {
         aPrioritized.sort(function(a, b) {
             return a.pri < b.pri ? 1 : -1;
         });
-        for (nIndex = 0; nIndex < nIndex; nIndex++) {
+        for (nIndex = 0; nIndex < nLength; nIndex++) {
             sLang = aPrioritized[nIndex].lang;
             aMatch = oCultures[sLang];
             // exact match?
