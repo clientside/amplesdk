@@ -48,14 +48,14 @@ oGlobalization.findClosestCulture = function(vName) {
     if (fGuard_instanceOf(vName, cString))
         vName = vName.split(',');
     if (fGuard_instanceOf(vName, cArray)) {
-        var sLang,
+        var sLanguage,
             aList = vName,
             nIndex, nLength = aList.length,
             aPrioritized = [];
         for (nIndex = 0; nIndex < nLength; nIndex++) {
             vName = fString_trim(aList[nIndex]);
             var nPriority, aParts = vName.split(';'), oPriority;
-            sLang = fString_trim(aParts[0]);
+            sLanguage = fString_trim(aParts[0]);
             if (aParts.length === 1)
                 nPriority = 1;
             else {
@@ -69,30 +69,30 @@ oGlobalization.findClosestCulture = function(vName) {
                     nPriority = 1;
             }
             oPriority	= {};
-            oPriority.lang	= sLang;
-            oPriority.pri	= nPriority;
+            oPriority.language	= sLanguage;
+            oPriority.priority	= nPriority;
             aPrioritized.push(oPriority);
         }
         aPrioritized.sort(function(a, b) {
-            return a.pri < b.pri ? 1 : -1;
+            return a.priority < b.priority ? 1 : -1;
         });
         for (nIndex = 0; nIndex < nLength; nIndex++) {
-            sLang = aPrioritized[nIndex].lang;
-            aMatch = oCultures[sLang];
+        	sLanguage = aPrioritized[nIndex].language;
+            aMatch = oCultures[sLanguage];
             // exact match?
             if (aMatch)
                 return aMatch;
         }
         for (nIndex = 0; nIndex < nLength; nIndex++) {
-            sLang = aPrioritized[nIndex].lang;
+        	sLanguage = aPrioritized[nIndex].language;
             // for each entry try its neutral language
             do {
-                var nLastIndex = sLang.lastIndexOf('-');
+                var nLastIndex = sLanguage.lastIndexOf('-');
                 if (nLastIndex === -1)
                     break;
                 // strip off the last part. e.g. en-US => en
-                sLang = sLang.substr(0, nLastIndex);
-                aMatch = oCultures[sLang];
+                sLanguage = sLanguage.substr(0, nLastIndex);
+                aMatch = oCultures[sLanguage];
                 if (aMatch)
                     return aMatch;
             }
