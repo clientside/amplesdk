@@ -14,8 +14,12 @@ function fAMLQuery_ajax(oSettings) {
 	oRequest.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 	oRequest.setRequestHeader("X-User-Agent", oAMLConfiguration_values["ample-user-agent"]);
 	var oHeaders	= oSettings.headers;
-	if (oHeaders)
-		for (var sKey in oHeaders)
+	if (!oHeaders)
+		oHeaders	= {};
+	if (cString(oSettings.type).toUpperCase() == "POST" && !oHeaders["Content-Type"])
+		oHeaders["Content-Type"]	= "application/x-www-form-urlencoded";
+	for (var sKey in oHeaders)
+		if (oHeaders.hasOwnProperty(sKey))
 			oRequest.setRequestHeader(sKey, oHeaders[sKey]);
 	// Register readystatechange handler
 	oRequest.onreadystatechange	= function() {
