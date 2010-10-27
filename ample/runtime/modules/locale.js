@@ -110,15 +110,8 @@ oGlobalization.preferCulture = function(vName) {
 };
 */
 oGlobalization.localize = function(sKey, oCulture, sValue) {
-    if (typeof oCulture == "string") {
-    	var sCulture = oCulture || "default";
-        if (oCultures[sCulture])
-        	oCulture = oCultures[sCulture];
-        else {
-        	oCulture	= {};
-        	oCulture.name	= sCulture;
-        }
-    }
+	oCulture = this.findClosestCulture(oCulture);
+
     var oLocal = oLocales[oCulture.name];
     if (arguments.length === 3) {
         if (!oLocal)
@@ -136,7 +129,7 @@ oGlobalization.localize = function(sKey, oCulture, sValue) {
             	sValue = oLocales["default"][sKey];
         }
     }
-    return typeof sValue == "undefined" ? null : sValue;
+    return typeof sValue == "undefined" ? '' : sValue;
 };
 
 oGlobalization.format = function(vValue, sFormat, oCulture) {
