@@ -245,36 +245,36 @@ cXULElement_editor.handlers	= {
 cXULElement_editor.commands	= [
 	// command, display name, title
 	[
-	 	["undo",	"Undo",		oXULLocaleManager.getText("editor.button.undo")],
-	 	["redo",	"Redo",		oXULLocaleManager.getText("editor.button.redo")]
+	 	["undo",	"Undo",		ample.locale.localize("editor.button.undo")],
+	 	["redo",	"Redo",		ample.locale.localize("editor.button.redo")]
 	],
 	[
-		["justifyleft", 	"Left",		oXULLocaleManager.getText("editor.button.justifyleft")],
-		["justifycenter",	"Center",	oXULLocaleManager.getText("editor.button.justifycenter")],
-		["justifyright",	"Right",	oXULLocaleManager.getText("editor.button.justifyright")],
-		["justifyfull",		"None",		oXULLocaleManager.getText("editor.button.justifyfull")]
+		["justifyleft", 	"Left",		ample.locale.localize("editor.button.justifyleft")],
+		["justifycenter",	"Center",	ample.locale.localize("editor.button.justifycenter")],
+		["justifyright",	"Right",	ample.locale.localize("editor.button.justifyright")],
+		["justifyfull",		"None",		ample.locale.localize("editor.button.justifyfull")]
 	],
 	[
-	 	["outdent",		"Outdent",	oXULLocaleManager.getText("editor.button.outdent")],
-	 	["indent",		"Indent",	oXULLocaleManager.getText("editor.button.indent")]
+	 	["outdent",		"Outdent",	ample.locale.localize("editor.button.outdent")],
+	 	["indent",		"Indent",	ample.locale.localize("editor.button.indent")]
 	],
 	[
-		["insertunorderedlist",		"Unordered",	oXULLocaleManager.getText("editor.button.insertunorderedlist")],
-		["insertorderedlist",		"Ordered",		oXULLocaleManager.getText("editor.button.insertorderedlist")]
+		["insertunorderedlist",		"Unordered",	ample.locale.localize("editor.button.insertunorderedlist")],
+		["insertorderedlist",		"Ordered",		ample.locale.localize("editor.button.insertorderedlist")]
 	],
 	[
-	 	["createlink",	"Link",		oXULLocaleManager.getText("editor.button.createlink")],
-	 	["unlink",		"Unlink",	oXULLocaleManager.getText("editor.button.unlink")]
+	 	["createlink",	"Link",		ample.locale.localize("editor.button.createlink")],
+	 	["unlink",		"Unlink",	ample.locale.localize("editor.button.unlink")]
 	],
 	[
-		["bold",			"Bold",				oXULLocaleManager.getText("editor.button.bold")],
-		["italic",			"Emphasis",			oXULLocaleManager.getText("editor.button.italic")],
-		["underline",		"Underline",		oXULLocaleManager.getText("editor.button.underline")],
-		["strikethrough",	"Strikethrough",	oXULLocaleManager.getText("editor.button.strikethrough")]
+		["bold",			"Bold",				ample.locale.localize("editor.button.bold")],
+		["italic",			"Emphasis",			ample.locale.localize("editor.button.italic")],
+		["underline",		"Underline",		ample.locale.localize("editor.button.underline")],
+		["strikethrough",	"Strikethrough",	ample.locale.localize("editor.button.strikethrough")]
 	],
 	[
-		["subscript",		"Subscript",		oXULLocaleManager.getText("editor.button.subscript")],
-		["superscript",		"Superscript",		oXULLocaleManager.getText("editor.button.superscript")]
+		["subscript",		"Subscript",		ample.locale.localize("editor.button.subscript")],
+		["superscript",		"Superscript",		ample.locale.localize("editor.button.superscript")]
 	]
 	/*	// TODO
 	[

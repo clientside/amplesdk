@@ -1,8 +1,0 @@
- ------------------------------------
- Ample SDK - JavaScript GUI Framework
- http://www.amplesdk.com
- ------------------------------------
-
- This directory contains XUL localization files.
- If you want to contribute new localization, please create a copy of en-us.js
- with your new locale name (keep file name lowercase) and translate the text.

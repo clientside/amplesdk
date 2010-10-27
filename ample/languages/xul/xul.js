@@ -19,12 +19,11 @@
 	files.push("managers/oXULPopupManager.js");
 	files.push("managers/oXULReflowManager.js");
 	files.push("managers/oXULWindowManager.js");
-	files.push("managers/oXULLocaleManager.js");
 
 	// Locales
-	files.push("locale/en-us.js");
-	files.push("locale/fr-fr.js");
-	files.push("locale/it-it.js");
+	files.push("locales/en.js");
+	files.push("locales/fr.js");
+	files.push("locales/it.js");
 
 	// Elements
 	// windowing
