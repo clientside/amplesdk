@@ -13,7 +13,6 @@ var cXULElement_menubar	= function()
     this.items  = new AMLNodeList;
 };
 cXULElement_menubar.prototype	= new cXULElement("menubar");
-cXULElement_menubar.prototype.tabIndex		= 0;
 cXULElement_menubar.prototype.$selectable	= false;
 
 // Public Properties
