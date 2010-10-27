@@ -27,7 +27,7 @@ var cXULElement_datepicker_pane	= function() {
     for (var nIndex = 0, oElement; nIndex < 12; nIndex++) {
     	oElement = this._elementMonth.firstChild.appendChild(ample.createElementNS(this.namespaceURI, "xul:menuitem"));
     	oElement.setAttribute("value", nIndex);
-    	oElement.setAttribute("label", cXULElement_datepicker_pane.months[nIndex]);
+    	oElement.setAttribute("label", ample.locale.culture.calendar.months.names[nIndex]);
     }
 	// Year spinner
 	this._elementYear	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "xul:textbox"));
@@ -40,21 +40,6 @@ var cXULElement_datepicker_pane	= function() {
 		oEvent.stopPropagation();
 	}, false);
 };
-
-cXULElement_datepicker_pane.months	= [
-	ample.locale.localize("datepicker.month.january"),
-	ample.locale.localize("datepicker.month.february"),
-	ample.locale.localize("datepicker.month.march"),
-	ample.locale.localize("datepicker.month.april"),
-	ample.locale.localize("datepicker.month.may"),
-	ample.locale.localize("datepicker.month.june"),
-	ample.locale.localize("datepicker.month.july"),
-	ample.locale.localize("datepicker.month.august"),
-	ample.locale.localize("datepicker.month.september"),
-	ample.locale.localize("datepicker.month.october"),
-	ample.locale.localize("datepicker.month.november"),
-	ample.locale.localize("datepicker.month.december")
-];
 
 // component prototype
 cXULElement_datepicker_pane.prototype	= new cXULPopupElement("datepicker-pane");
@@ -144,7 +129,7 @@ cXULElement_datepicker_pane.handlers	= {
 			if (oEvent.$pseudoTarget == this.$getContainer("month-previous")) {
 				var nYear	= this.current.getFullYear();
 				this.doSelectMonth(this.current.getMonth() - 1);
-				this._elementMonth.setAttribute("value", cXULElement_datepicker_pane.months[this.current.getMonth()]);
+				this._elementMonth.setAttribute("value", ample.locale.culture.calendar.months.names[this.current.getMonth()]);
 				if (this.current.getFullYear() != nYear)
 					this._elementYear.setAttribute("value", this.current.getFullYear());
 			}
@@ -152,7 +137,7 @@ cXULElement_datepicker_pane.handlers	= {
 			if (oEvent.$pseudoTarget == this.$getContainer("month-next")) {
 				var nYear	= this.current.getFullYear();
 				this.doSelectMonth(this.current.getMonth() + 1);
-				this._elementMonth.setAttribute("value", cXULElement_datepicker_pane.months[this.current.getMonth()]);
+				this._elementMonth.setAttribute("value", ample.locale.culture.calendar.months.names[this.current.getMonth()]);
 				if (this.current.getFullYear() != nYear)
 					this._elementYear.setAttribute("value", this.current.getFullYear());
 			}
@@ -209,7 +194,7 @@ cXULElement_datepicker_pane.handlers	= {
 			this.value	= cXULElement_datepicker_pane.parseDateFromString(sValue);
 			this.current= cXULElement_datepicker_pane.parseDateFromString(sValue);
 		}
-		this._elementMonth.setAttribute("value", cXULElement_datepicker_pane.months[this.current.getMonth()]);
+		this._elementMonth.setAttribute("value", ample.locale.culture.calendar.months.names[this.current.getMonth()]);
 		this._elementYear.setAttribute("value", this.current.getFullYear());
 		//
 		this.refresh();
@@ -280,13 +265,13 @@ cXULElement_datepicker_pane.$getTagDays	= function(oInstance, oDate) {
 					<thead class="xul-datepicker-pane--header">\
 						<tr>\
 							 <td>&nbsp;</td>\
-							 <td class="xul-datepicker-pane-head-day">' + ample.locale.localize("datepicker.day.monday").substr(0,1) + '</td>\
-							 <td class="xul-datepicker-pane-head-day">' + ample.locale.localize("datepicker.day.tuesday").substr(0,1) + '</td>\
-							 <td class="xul-datepicker-pane-head-day">' + ample.locale.localize("datepicker.day.wednesday").substr(0,1) + '</td>\
-							 <td class="xul-datepicker-pane-head-day">' + ample.locale.localize("datepicker.day.thursday").substr(0,1) + '</td>\
-							 <td class="xul-datepicker-pane-head-day">' + ample.locale.localize("datepicker.day.friday").substr(0,1) + '</td>\
-							 <td class="xul-datepicker-pane-head-day">' + ample.locale.localize("datepicker.day.saturday").substr(0,1) + '</td>\
-							 <td class="xul-datepicker-pane-head-day">' + ample.locale.localize("datepicker.day.sunday").substr(0,1) + '</td>\
+							 <td class="xul-datepicker-pane-head-day">' + ample.locale.culture.calendar.days.namesShort[1] + '</td>\
+							 <td class="xul-datepicker-pane-head-day">' + ample.locale.culture.calendar.days.namesShort[2] + '</td>\
+							 <td class="xul-datepicker-pane-head-day">' + ample.locale.culture.calendar.days.namesShort[3] + '</td>\
+							 <td class="xul-datepicker-pane-head-day">' + ample.locale.culture.calendar.days.namesShort[4] + '</td>\
+							 <td class="xul-datepicker-pane-head-day">' + ample.locale.culture.calendar.days.namesShort[5] + '</td>\
+							 <td class="xul-datepicker-pane-head-day">' + ample.locale.culture.calendar.days.namesShort[6] + '</td>\
+							 <td class="xul-datepicker-pane-head-day">' + ample.locale.culture.calendar.days.namesShort[0] + '</td>\
 						</tr>\
 					</thead>\
 					<tbody>\
