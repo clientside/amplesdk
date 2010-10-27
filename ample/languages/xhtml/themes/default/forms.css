@@ -6,6 +6,7 @@ datalist {
 input,
 textarea,
 select {
+	background-color: white;
 	border: solid 1px silver;
 	padding: 1px 0px;
 	margin:	1px;
@@ -18,14 +19,8 @@ input {
 	height: 16px;
 }
 
-textarea,
-select::popup {
+textarea {
 	height: 100px;
-}
-
-select::popup {
-	overflow: auto;
-	overflow-x: hidden;
 }
 
 input[type=hidden] {
@@ -286,14 +281,26 @@ input::after {
 }
 
 /* */
+select::popup {
+	height: 100px;
+	overflow: auto;
+	overflow-x: hidden;
+}
+
 select::value {
 	cursor: default;
 }
 
 input::popup,
 select::popup {
+	background-color: white;
 	border: solid 1px silver;
 	width: inherit;
+}
+
+select[multiple]::popup {
+	padding: 0;
+	border: none;
 }
 
 optgroup::value {

@@ -85,12 +85,20 @@ cXHTMLElement_select.handlers	= {
 			oEvent.preventDefault();
 		}
 	},
+	"click":	function(oEvent) {
+		if (oEvent.target == this) {
+			if (oEvent.$pseudoTarget == this.$getContainer("button"))
+				cXHTMLElement_select.toggle(this);
+		}
+	},
 	"mousedown":	function(oEvent) {
-		if (oEvent.target instanceof cXHTMLElement_option && this.options[this.selectedIndex] != oEvent.target) {
-			if (this.selectedIndex >-1)
-				this.options[this.selectedIndex].removeAttribute("selected");
-			this.options[this.selectedIndex = this.options.$indexOf(oEvent.target)].setAttribute("selected", "true");
-			cXHTMLElement_option.ensureRowIsVisible(this.options[this.selectedIndex]);
+		if (oEvent.target instanceof cXHTMLElement_option) {
+			if (this.options[this.selectedIndex] != oEvent.target) {
+				if (this.selectedIndex >-1)
+					this.options[this.selectedIndex].removeAttribute("selected");
+				this.options[this.selectedIndex = this.options.$indexOf(oEvent.target)].setAttribute("selected", "true");
+				cXHTMLElement_option.ensureRowIsVisible(this.options[this.selectedIndex]);
+			}
 		}
 	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
@@ -123,8 +131,8 @@ cXHTMLElement_select.toggle	= function(oInstance, bForce) {
 // Renderers
 cXHTMLElement_select.prototype.$getTagOpen	= function() {
     var sClassName	= (this.prefix ? this.prefix + '-' : '') + this.localName,
-    	bMultiple	= !this.attributes.multiple,
-    	bPopupMode	= !bMultiple;
+    	bMultiple	= "multiple" in this.attributes || this.attributes.multiple == "true",
+    	bPopupMode	= bMultiple;
     return '<span class="' + sClassName + ' ' + (bMultiple ? sClassName + '-multiple-' : '') +
 					("class" in this.attributes ? ' ' + this.attributes["class"] : '')+
 					(this.attributes["required"] ? ' ' + sClassName + '_required' : '')+
@@ -135,7 +143,7 @@ cXHTMLElement_select.prototype.$getTagOpen	= function() {
     				<span class="' + sClassName + '--button" style="right:0;"></span>\
     				<input class="' + sClassName + '--value" type="text" />\
    				</div>\
-   				<div class="' + sClassName + '--popup" style="' +(bPopupMode ? '' : 'position:absolute;display:none;')+ '">\
+   				<div class="' + sClassName + '--popup' + (bMultiple ? ' ' + sClassName + '-multiple---popup' : '') +'" style="' +(bPopupMode ? '' : 'position:absolute;display:none;')+ '">\
     				<div class="' + sClassName + '--gateway">';
 };
 
