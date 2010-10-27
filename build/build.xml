@@ -703,7 +703,7 @@
 		<mkdir dir="${target.ample.plugins.dir}" />
 
 		<antcall target="BUILD_AMPLE_PLUGINS_COOKIE" />
-		<antcall target="BUILD_AMPLE_PLUGINS_FORM" />
+		<antcall target="BUILD_AMPLE_PLUGINS_FORMS" />
 		<antcall target="BUILD_AMPLE_PLUGINS_STORE" />
 		<antcall target="BUILD_AMPLE_PLUGINS_XPATH" />
 		<antcall target="BUILD_AMPLE_PLUGINS_XSLT" />
@@ -739,30 +739,30 @@
 		</concat>
 	</target>
 
-	<target name="BUILD_AMPLE_PLUGINS_FORM" unless="skip.ample.plugins.form">
-		<property name="source.form.dir" value="${source.ample.plugins.dir}/form/" />
-		<property name="target.form.dir" value="${target.ample.plugins.dir}/form/" />
+	<target name="BUILD_AMPLE_PLUGINS_FORMS" unless="skip.ample.plugins.forms">
+		<property name="source.forms.dir" value="${source.ample.plugins.dir}/forms/" />
+		<property name="target.forms.dir" value="${target.ample.plugins.dir}/forms/" />
 
-		<echo message="Merging into: ${temp.ample.plugins.dir}/form-raw.js" level="info"/>
-		<concat destfile="${temp.ample.plugins.dir}/form-raw.js" fixlastline="yes">
-			<fileset dir="${source.form.dir}/">
-				<include name="form.js" />
+		<echo message="Merging into: ${temp.ample.plugins.dir}/forms-raw.js" level="info"/>
+		<concat destfile="${temp.ample.plugins.dir}/forms-raw.js" fixlastline="yes">
+			<fileset dir="${source.forms.dir}/">
+				<include name="forms.js" />
 			</fileset>
 		</concat>
 
-		<echo message="Wrapping into: ${temp.ample.plugins.dir}/form-raw-wrapped.js" level="info"/>
+		<echo message="Wrapping into: ${temp.ample.plugins.dir}/forms-raw-wrapped.js" level="info"/>
 		<exec executable="${executable.php}" failonerror="true">
 			<arg value="resources/compiler/js.php" />
-			<arg value="${temp.ample.plugins.dir}/form-raw.js" />
-			<arg value="${temp.ample.plugins.dir}/form-raw-wrapped.js" />
+			<arg value="${temp.ample.plugins.dir}/forms-raw.js" />
+			<arg value="${temp.ample.plugins.dir}/forms-raw-wrapped.js" />
 			<arg value="--strip-Source" />
 		</exec>
 
 		<!-- package -->
-		<mkdir dir="${target.form.dir}" />
-		<concat destfile="${target.form.dir}/form.js" fixlastline="yes">
+		<mkdir dir="${target.forms.dir}" />
+		<concat destfile="${target.forms.dir}/forms.js" fixlastline="yes">
 			<fileset file="${copying.js}" />
-			<fileset file="${temp.ample.plugins.dir}/form-raw-wrapped.js" />
+			<fileset file="${temp.ample.plugins.dir}/forms-raw-wrapped.js" />
 		</concat>
 	</target>
 
