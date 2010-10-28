@@ -765,7 +765,10 @@ function fBrowser_getStyle(oElementDOM, sName, oStyle) {
 			var sValue	= oStyle[sName];
 			if (sValue == "auto") {
 				var oClientRect	= oElementDOM.getBoundingClientRect();
-				return cString(sName == "width" ? oClientRect["right"] - oClientRect["left"] : oClientRect["bottom"] - oClientRect["top"]);
+				return cString(sName == "width"
+						? oClientRect["right"] - oClientRect["left"] +(fParseInt(oStyle.marginLeft) || 0)+(fParseInt(oStyle.marginRight) || 0)
+						: oClientRect["bottom"] - oClientRect["top"] +(fParseInt(oStyle.marginTop) || 0)+(fParseInt(oStyle.marginBottom) || 0)
+				);
 			}
 			return sValue;
 		}
