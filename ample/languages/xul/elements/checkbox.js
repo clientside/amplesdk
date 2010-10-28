@@ -63,7 +63,7 @@ cXULElement_checkbox.prototype.$getTagOpen		= function() {
 	var bChecked	= this.attributes["checked"] == "true",
 		bDisabled	= !this.$isAccessible();
 	return '<div class="xul-checkbox' + (bDisabled ? " xul-checkbox_disabled" : "") + (bChecked ? " xul-checkbox_checked" : "") + (bChecked && bDisabled ? " xul-checkbox_checked_disabled xul-checkbox_disabled_checked" : "") + '">\
-				<div class="xul-checkbox--input"></div>\
+				<div class="xul-checkbox--input"><br /></div>\
 				<div class="xul-checkbox--label">' +(this.attributes["label"] || '')+ '</div>';
 };
 

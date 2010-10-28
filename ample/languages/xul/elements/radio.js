@@ -106,7 +106,7 @@ cXULElement_radio.prototype.$getTagOpen		= function() {
 	var bSelected	= this.attributes["selected"] == "true",
 		bDisabled	= !this.$isAccessible();
 	return '<div class="xul-radio' + (bDisabled ? " xul-radio_disabled" : "") + (bSelected ? " xul-radio_selected" : "") + (bSelected && bDisabled ? " xul-radio_selected_disabled xul-radio_disabled_selected" : "") + '">\
-				<div class="xul-radio--input"></div>\
+				<div class="xul-radio--input"><br /></div>\
 				<div class="xul-radio--label">' +(this.attributes["label"] || '')+ '</div>';
 };
 
