@@ -234,7 +234,6 @@ xul|checkbox::input {
 	margin: 2px;
 	background-image: url(media/controls.gif);
 	background-repeat: no-repeat;
-	bordeR: solid 1px red;
 }
 
 xul|checkbox::input {
