@@ -110,7 +110,7 @@ cXULElement_toolbarbutton.handlers	= {
 	"DOMActivate":	function(oEvent) {
 		if (oEvent.target == this)
 			this.doCommand();
-	},
+	}
 };
 
 // Element Render: open
