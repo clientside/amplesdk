@@ -301,6 +301,22 @@
 					</locale>
 				</description>
 			</method>
+			<method name="delay" type="AMLQuery">
+				<arguments>
+					<argument name="duration" type="Variant">
+						<description>
+							<locale>
+								A string or number determining how long the delay will run.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Sets a timer to delay execution of subsequent animations.
+					</locale>
+				</description>
+			</method>
 			<method name="fadeIn" type="AMLQuery">
 				<arguments>
 					<argument name="duration" type="Variant" required="false">

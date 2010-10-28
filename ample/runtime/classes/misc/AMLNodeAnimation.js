@@ -54,7 +54,7 @@ function fAMLNodeAnimation_play(oElement, oProperties, vDuration, vType, fHandle
 	fAMLNode_dispatchEvent(oElement, oEventEffectStart);
 
 	if (!nAMLNodeAnimation_timeout)
-		nAMLNodeAnimation_timeout	= fSetTimeout(nAMLNodeAnimation_onTimeout, 20);
+		nAMLNodeAnimation_timeout	= fSetTimeout(fAMLNodeAnimation_onTimeout, 20);
 
 	aAMLNodeAnimation_effects.push(oEffect);
 
@@ -99,7 +99,11 @@ function fAMLNodeAnimation_stop(nEffect) {
 	fAMLNodeAnimation_remove(nEffect);
 };
 
-function nAMLNodeAnimation_onTimeout() {
+function fAMLNodeAnimation_delay(oElement, vDuration) {
+	// TODO
+};
+
+function fAMLNodeAnimation_onTimeout() {
 	for (var nIndex = 0, oEffect, nTimestamp = new cDate; oEffect = aAMLNodeAnimation_effects[nIndex]; nIndex++) {
 		// clear effect if node was removed
 		if (!oAMLDocument_all[oEffect._element.uniqueID]) {
@@ -108,7 +112,7 @@ function nAMLNodeAnimation_onTimeout() {
 		}
 		else {
 			// stop effect if the time is up
-			if (oEffect._duration <= nTimestamp - oEffect._start) {
+			if (nTimestamp - oEffect._start >= oEffect._duration) {
 				fAMLNodeAnimation_stop(oEffect._identifier);
 				nIndex--;
 				if (oEffect._callback)
@@ -121,7 +125,7 @@ function nAMLNodeAnimation_onTimeout() {
 		}
 	}
 	//
-	nAMLNodeAnimation_timeout	= aAMLNodeAnimation_effects.length ? fSetTimeout(nAMLNodeAnimation_onTimeout, 20) : 0;
+	nAMLNodeAnimation_timeout	= aAMLNodeAnimation_effects.length ? fSetTimeout(fAMLNodeAnimation_onTimeout, 20) : 0;
 };
 
 function fAMLNodeAnimation_process(oEffect) {

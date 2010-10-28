@@ -35,6 +35,21 @@ cAMLQuery.prototype.stop	= function() {
 	return this;
 };
 
+cAMLQuery.prototype.delay	= function(vDuration) {
+	// Validate API call
+	fGuard(arguments, [
+		["duration",	cObject]
+	]);
+
+	// Invoke implementation
+	fAMLQuery_each(this, function() {
+		fAMLNodeAnimation_delay(this, vDuration);
+	});
+
+	return this;
+};
+
+
 // Pre-defined animations
 cAMLQuery.prototype.fadeIn	= function(vDuration, fCallback) {
 	// Validate API call
