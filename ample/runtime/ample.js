@@ -113,8 +113,6 @@ function fQuery(vArgument1, vArgument2, vArgument3) {
 	// Invoke implementation
 	return oQuery;
 };
-// Magic
-fQuery.prototype	= cAMLQuery.prototype;
 
 // Create Ample object
 var oAmple	= oAmple_document;
