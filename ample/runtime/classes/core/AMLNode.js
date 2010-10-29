@@ -655,9 +655,9 @@ function fAMLNode_routeEvent(oEvent)
 
 	// Populate stack targets (...document-fragment, document, #document)
 	for (var oNode = oTarget; oNode; oNode = oNode.parentNode) {
-		aTargets[nLength++]	= oNode;
 		if (bUIEvent && oNode.nodeType == cAMLNode.ELEMENT_NODE && !oNode.$isAccessible())
 			nDisabled	= nLength;
+		aTargets[nLength++]	= oNode;
 	}
 
 	// Propagate event
@@ -687,7 +687,7 @@ function fAMLNode_routeEvent(oEvent)
 				oEvent.eventPhase	= cAMLEvent.BUBBLING_PHASE;
 				// Do not handle bubbling between target and disabled element
 				if (nDisabled >-1)
-					nCurrent	= nDisabled - 1;
+					nCurrent	= nDisabled;
 				// No break left intentionally
 			case cAMLEvent.BUBBLING_PHASE:
 				if (++nCurrent < nLength)
