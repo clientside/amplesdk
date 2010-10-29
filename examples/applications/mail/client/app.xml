@@ -115,6 +115,7 @@
 					</xul:listhead>
 					<xul:listbody id="messages"/>
 				</xul:listbox>
+				<xul:splitter />
 				<xul:grid>
 					<xul:rows>
 						<xul:row>
