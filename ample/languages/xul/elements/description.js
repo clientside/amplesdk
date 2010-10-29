@@ -28,7 +28,10 @@ cXULElement_description.handlers	= {
 
 // Element Render: open
 cXULElement_description.prototype.$getTagOpen		= function() {
-    return '<div class="xul-description' +(this.attributes["class"] ? " " + this.attributes["class"] : '')+ '" style="width:100%;height:100%;">' + (this.attributes["value"] || "");
+    return '<div class="xul-description' +(this.attributes["class"] ? " " + this.attributes["class"] : '')+ '" style="' +
+    			'width:100%;height:100%;'+
+    			(this.attributes["style"] ? this.attributes["style"] : '') +
+    			'">' + (this.attributes["value"] || "");
 };
 
 // Element Render: close
