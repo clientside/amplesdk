@@ -602,8 +602,14 @@ function fAMLNode_handleEvent(oNode, oEvent) {
 
 	// Notify listeners
     if (oNode.$listeners && oNode.$listeners[oEvent.type]) {
+    	// Handle special case: capture-phase listeners on target
+    	if (oEvent.eventPhase == cAMLEvent.AT_TARGET)
+    		for (var nIndex = 0, aListeners = oNode.$listeners[oEvent.type]; nIndex < aListeners.length && !oEvent._stoppedImmediately; nIndex++)
+    			if (aListeners[nIndex][1] == true)
+    				fAMLNode_executeHandler(oNode, aListeners[nIndex][0], oEvent);
+    	//
     	for (var nIndex = 0, aListeners = oNode.$listeners[oEvent.type]; nIndex < aListeners.length && !oEvent._stoppedImmediately; nIndex++)
-    		if (oEvent.eventPhase == cAMLEvent.AT_TARGET || aListeners[nIndex][1] == (oEvent.eventPhase == cAMLEvent.CAPTURING_PHASE))
+    		if (aListeners[nIndex][1] == (oEvent.eventPhase == cAMLEvent.CAPTURING_PHASE))
     			fAMLNode_executeHandler(oNode, aListeners[nIndex][0], oEvent);
     }
 
