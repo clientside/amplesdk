@@ -11,8 +11,7 @@
 	</xul:commandset>
 	<!-- Main broadcasters -->
 	<xul:broadcasterset>
-		<xul:broadcaster id="brd_message_selection_one" disabled="true" />
-		<xul:broadcaster id="brd_message_selection_many" disabled="true" />
+		<xul:broadcaster id="brd_message_selected" disabled="true" />
 	</xul:broadcasterset>
 	<!--  -->
 	<!-- Toolbar -->
@@ -28,7 +27,7 @@
 			</xul:toolbar>
 			<xul:tree flex="1">
 				<xul:treecols>
-					<xul:treecol label="Folders" width="200"/>
+					<xul:treecol label="Folders" width="180" primary="true"/>
 				</xul:treecols>
 				<xul:treebody>
 					<xul:treechildren id="folders-system">
@@ -44,6 +43,16 @@
 						</xul:treeitem>
 						<xul:treeitem>
 							<xul:treerow>
+								<xul:treecell label="All Mail" />
+							</xul:treerow>
+						</xul:treeitem>
+						<xul:treeitem>
+							<xul:treerow>
+								<xul:treecell label="Sent Mail" />
+							</xul:treerow>
+						</xul:treeitem>
+						<xul:treeitem>
+							<xul:treerow>
 								<xul:treecell label="Drafts" />
 							</xul:treerow>
 						</xul:treeitem>
@@ -53,7 +62,14 @@
 							</xul:treerow>
 						</xul:treeitem>
 					</xul:treechildren>
-					<xul:treechildren id="folders-custom" />
+					<xul:treechildren>
+						<xul:treeitem>
+							<xul:treerow>
+								<xul:treecell label="My Folders" />
+							</xul:treerow>
+							<xul:treechildren id="folders-custom" />
+						</xul:treeitem>
+					</xul:treechildren>
 				</xul:treebody>
 			</xul:tree>
 		</xul:vbox>
@@ -61,20 +77,20 @@
 		<xul:deck flex="1">
 			<xul:vbox flex="1">
 				<xul:toolbar>
-					<xul:toolbarbutton label="Archieve" />
-					<xul:toolbarbutton label="Report spam" />
-					<xul:toolbarbutton label="Delete" />
-					<xul:toolbarbutton label="Mark as read" />
+					<xul:toolbarbutton label="Archieve" observes="brd_message_selected"/>
+					<xul:toolbarbutton label="Report spam" observes="brd_message_selected" />
+					<xul:toolbarbutton label="Delete" observes="brd_message_selected" />
+					<xul:toolbarbutton label="Mark as read" observes="brd_message_selected" />
 					<xul:toolbarseparator />
 					<xul:toolbarbutton label="Move to" type="menu">
-						<xul:menupopup>
+						<xul:menupopup id="pop_moveto">
 							<xul:textbox type="search" />
 							<xul:menuseparator />
 							<xul:menuitem label="Manage labels" />
 						</xul:menupopup>
 					</xul:toolbarbutton>
 					<xul:toolbarbutton label="Labels" type="menu">
-						<xul:menupopup>
+						<xul:menupopup id="pop_labels">
 							<xul:textbox type="search" />
 							<xul:menuseparator />
 							<xul:menuitem label="Manage labels" />
@@ -83,21 +99,23 @@
 					<xul:toolbarseparator />
 					<xul:toolbarbutton label="More actions" type="menu">
 						<xul:menupopup>
-							<xul:menuitem label="Mark as unread" />
-							<xul:menuitem label="Add to tasks" />
-							<xul:menuitem label="Add star" />
-							<xul:menuitem label="Filter messages like this" />
+							<xul:menuitem label="Mark as unread" observes="brd_message_selected" />
+							<xul:menuitem label="Add to tasks" observes="brd_message_selected" />
+							<xul:menuitem label="Add star" observes="brd_message_selected" />
+							<xul:menuitem label="Remove star" observes="brd_message_selected" />
+							<xul:menuitem label="Filter messages like this" observes="brd_message_selected" />
 						</xul:menupopup>
 					</xul:toolbarbutton>
 				</xul:toolbar>
-				<xul:listbox flex="1" type="checkbox">
+				<xul:listbox flex="1" type="checkbox" onselect="ample.query('#brd_message_selected').attr('disabled', this.selectedItems.length ? 'false' : 'true');">
 					<xul:listhead>
 						<xul:listheader minwidth="100" width="200" label="From"/>
 						<xul:listheader minwidth="300" width="300" label="Subject"/>
+						<xul:listheader minwidth="50" width="100" label="Labels"/>
 						<xul:listheader minwidth="50" width="100" label="Attachements"/>
 						<xul:listheader minwidth="50" width="100" label="Date"/>
 					</xul:listhead>
-					<xul:listbody />
+					<xul:listbody id="messages"/>
 				</xul:listbox>
 			</xul:vbox>
 			<xi:include href="modules/message.xml" />
