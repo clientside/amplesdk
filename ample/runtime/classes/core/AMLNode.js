@@ -577,13 +577,13 @@ cAMLNode.prototype.removeEventListener	= function(sEventType, fHandler, bUseCapt
 
 function fAMLNode_executeHandler(oNode, fHandler, oEvent) {
 	try {
-		if (typeof fHandler == "object") {
-			if (typeof fHandler.handleEvent == "function")
-				fHandler	= fHandler.handleEvent;
-			else
-				throw new cAMLException(cAMLException.AML_MEMBER_MISSING_ERR, null, ["handleEvent"]);
-		}
-		fHandler.call(oNode, oEvent);
+		if (typeof fHandler == "function")
+			fHandler.call(oNode, oEvent);
+		else
+		if (typeof fHandler.handleEvent == "function")
+			fHandler.handleEvent.call(fHandler, oEvent);
+		else
+			throw new cAMLException(cAMLException.AML_MEMBER_MISSING_ERR, null, ["handleEvent"]);
 	}
 	catch (oException) {
 		if (oException instanceof cAMLException) {
@@ -596,38 +596,31 @@ function fAMLNode_executeHandler(oNode, fHandler, oEvent) {
 };
 
 function fAMLNode_handleEvent(oNode, oEvent) {
+	var sEventType	= oEvent.type;
+
 	// Process inline handler
-    if (oEvent.eventPhase != cAMLEvent.CAPTURING_PHASE && oNode['on' + oEvent.type])
-    	fAMLNode_executeHandler(oNode, oNode['on' + oEvent.type], oEvent);
+    if (oEvent.eventPhase != cAMLEvent.CAPTURING_PHASE && oNode['on' + sEventType])
+    	fAMLNode_executeHandler(oNode, oNode['on' + sEventType], oEvent);
 
 	// Notify listeners
-    if (oNode.$listeners && oNode.$listeners[oEvent.type]) {
+    if (oNode.$listeners && oNode.$listeners[sEventType]) {
     	// Handle special case: capture-phase listeners on target
     	if (oEvent.eventPhase == cAMLEvent.AT_TARGET)
-    		for (var nIndex = 0, aListeners = oNode.$listeners[oEvent.type]; nIndex < aListeners.length && !oEvent._stoppedImmediately; nIndex++)
+    		for (var nIndex = 0, aListeners = oNode.$listeners[sEventType]; nIndex < aListeners.length && !oEvent._stoppedImmediately; nIndex++)
     			if (aListeners[nIndex][1] == true)
     				fAMLNode_executeHandler(oNode, aListeners[nIndex][0], oEvent);
     	//
-    	for (var nIndex = 0, aListeners = oNode.$listeners[oEvent.type]; nIndex < aListeners.length && !oEvent._stoppedImmediately; nIndex++)
+    	for (var nIndex = 0, aListeners = oNode.$listeners[sEventType]; nIndex < aListeners.length && !oEvent._stoppedImmediately; nIndex++)
     		if (aListeners[nIndex][1] == (oEvent.eventPhase == cAMLEvent.CAPTURING_PHASE))
     			fAMLNode_executeHandler(oNode, aListeners[nIndex][0], oEvent);
     }
 
-	var cElement,
-		cAttribute;
-
 	// Event default actions implementation
 	if (oEvent.eventPhase != cAMLEvent.CAPTURING_PHASE && !oEvent.defaultPrevented) {
-		if (oNode.nodeType == 1) {
-			if (cElement = oAMLImplementation_elements[oNode.namespaceURI + '#' + oNode.localName])
-				if (cElement.handlers && cElement.handlers[oEvent.type])
-					cElement.handlers[oEvent.type].call(oNode, oEvent);
-		}
-		else
-		if (oNode.nodeType == 2) {
-			if (cAttribute = oAMLImplementation_attributes[oNode.namespaceURI + '#' + oNode.localName])
-				if (cAttribute.handlers && cAttribute.handlers[oEvent.type])
-					cAttribute.handlers[oEvent.type].call(oNode, oEvent);
+		if (oNode.nodeType == 1 || oNode.nodeType == 2) {
+			var cNode	=(oNode.nodeType == 1 ? oAMLImplementation_elements : oAMLImplementation_attributes)[oNode.namespaceURI + '#' + oNode.localName];
+			if (cNode && cNode.handlers && cNode.handlers[sEventType])
+				cNode.handlers[sEventType].call(oNode, oEvent);
 		}
 	}
 };
