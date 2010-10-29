@@ -650,14 +650,14 @@ function fAMLNode_routeEvent(oEvent)
 		nLength		= 0,
 		nCurrent	= 0,
 		bUIEvent	= oEvent instanceof cAMLUIEvent,
-		bDisabled	= false,
+		nDisabled	=-1,
 		oTarget		= oEvent.target;
 
 	// Populate stack targets (...document-fragment, document, #document)
 	for (var oNode = oTarget; oNode; oNode = oNode.parentNode) {
 		aTargets[nLength++]	= oNode;
-		if (!bDisabled && bUIEvent && oNode.nodeType == cAMLNode.ELEMENT_NODE && !oNode.$isAccessible())
-			bDisabled	= true;
+		if (bUIEvent && oNode.nodeType == cAMLNode.ELEMENT_NODE && !oNode.$isAccessible())
+			nDisabled	= nLength;
 	}
 
 	// Propagate event
@@ -671,10 +671,9 @@ function fAMLNode_routeEvent(oEvent)
 					oEvent.currentTarget	= oTarget;
 					// Special case: handling capture-phase events on target
 					fAMLNode_handleCaptureOnTargetEvent(oTarget, oEvent);
-
-					// Do not propagate either target or bubbling for disabled elements
-					if (bDisabled)
-						return;
+					// Do not handle target if there is disabled element
+					if (nDisabled >-1)
+						continue;
 				}
 				break;
 
@@ -686,6 +685,9 @@ function fAMLNode_routeEvent(oEvent)
 				if (nCurrent < 0)
 					return;
 				oEvent.eventPhase	= cAMLEvent.BUBBLING_PHASE;
+				// Do not handle bubbling between target and disabled element
+				if (nDisabled >-1)
+					nCurrent	= nDisabled - 1;
 				// No break left intentionally
 			case cAMLEvent.BUBBLING_PHASE:
 				if (++nCurrent < nLength)
