@@ -1,11 +1,17 @@
+xul|page,
 xul|dialog,
 xul|wizard,
 xul|window {
-	position:	absolute;
+	background-color: #ECE9D8;/*Window*/
+	position: absolute;
+}
+
+xul|dialog,
+xul|wizard,
+xul|window {
 	width: 400px;
 	height:300px;
 	min-width:	150px;
-	background-color: #ECE9D8;/*Window*/
 	border: 1px #7F9DB9 solid;
 	padding-top:	22px;
 }
@@ -31,6 +37,7 @@ xul|window::head {
 	background-color:	#0033CC;
 }
 
+xul|page,
 xul|dialog::gateway,
 xul|window::gateway,
 xul|wizard::gateway {

@@ -28,7 +28,10 @@ cXULElement_page.handlers	= {
 
 // Element Renders
 cXULElement_page.prototype.$getTagOpen	= function() {
-    return '<div class="xul-page' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="width:100%;height:100%;overflow:hidden;position:absolute;">';
+    return '<div class="xul-page' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="' +
+    			(this.attributes["width"] ? 'width:' +(isNaN(this.attributes["width"]) ? this.attributes["width"] : this.attributes["width"] + "px") : '')+ ';' +
+    			(this.attributes["height"] ? 'height:' +(isNaN(this.attributes["height"]) ? this.attributes["height"] : this.attributes["height"] + "px") : '')+ ';' +
+    			(this.attributes["style"] ? this.attributes["style"] : '') + '">';
 };
 
 // Element Render: close
