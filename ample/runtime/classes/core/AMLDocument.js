@@ -193,9 +193,7 @@ function fAMLDocument_createElementNS(oDocument, sNameSpaceURI, sQName)
     oElement.nodeName		= sQName;
     oElement.tagName		= sQName;
     oElement.childNodes		= new cAMLNodeList;
-//->Source
-    oElement.$childNodesAnonymous	= new cAMLNodeList;
-//<-Source
+
 	// System properties
     oElement.uniqueID	= 'ele_' + nAMLDocument_index++;
 
