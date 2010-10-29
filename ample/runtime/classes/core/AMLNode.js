@@ -525,19 +525,19 @@ cAMLNode.prototype.lookupNamespaceURI	= function(sPrefix)
 */
 
 // nsIDOMEventTarget
-function fAMLEventTarget_addEventListener(oNode, sEventType, fListener, bUseCapture)
+function fAMLEventTarget_addEventListener(oNode, sEventType, fHandler, bUseCapture)
 {
 	if (!oNode.$listeners)
 		oNode.$listeners	= {};
 	if (!oNode.$listeners[sEventType])
 		oNode.$listeners[sEventType]	= [];
 	for (var nIndex = 0, aListeners = oNode.$listeners[sEventType], bCapture = bUseCapture == true; nIndex < aListeners.length; nIndex++)
-		if (aListeners[nIndex][0] == fListener && aListeners[nIndex][1] == bCapture)
+		if (aListeners[nIndex][0] == fHandler && aListeners[nIndex][1] == bCapture)
 			return;
-	oNode.$listeners[sEventType].push([fListener, bUseCapture == true]);
+	oNode.$listeners[sEventType].push([fHandler, bCapture]);
 };
 
-cAMLNode.prototype.addEventListener		= function(sEventType, fListener, bUseCapture)
+cAMLNode.prototype.addEventListener		= function(sEventType, fHandler, bUseCapture)
 {
 	// Validate arguments
 	fGuard(arguments, [
@@ -546,14 +546,14 @@ cAMLNode.prototype.addEventListener		= function(sEventType, fListener, bUseCaptu
 		["useCapture",	cBoolean,	true]
 	]);
 
-	fAMLEventTarget_addEventListener(this, sEventType, fListener, bUseCapture);
+	fAMLEventTarget_addEventListener(this, sEventType, fHandler, bUseCapture);
 };
 
-function fAMLEventTarget_removeEventListener(oNode, sEventType, fListener, bUseCapture)
+function fAMLEventTarget_removeEventListener(oNode, sEventType, fHandler, bUseCapture)
 {
 	if (oNode.$listeners && oNode.$listeners[sEventType])
 		for (var nIndex = 0, aListeners = oNode.$listeners[sEventType], bCapture = bUseCapture == true; nIndex < aListeners.length; nIndex++)
-			if (aListeners[nIndex][0] == fListener && aListeners[nIndex][1] == bCapture)
+			if (aListeners[nIndex][0] == fHandler && aListeners[nIndex][1] == bCapture)
 			{
 				oNode.$listeners[sEventType]	= aListeners.slice(0, nIndex).concat(aListeners.slice(nIndex + 1));
 				if (!oNode.$listeners[sEventType].length)
@@ -562,7 +562,7 @@ function fAMLEventTarget_removeEventListener(oNode, sEventType, fListener, bUseC
 			}
 };
 
-cAMLNode.prototype.removeEventListener	= function(sEventType, fListener, bUseCapture)
+cAMLNode.prototype.removeEventListener	= function(sEventType, fHandler, bUseCapture)
 {
 	// Validate arguments
 	fGuard(arguments, [
@@ -572,11 +572,17 @@ cAMLNode.prototype.removeEventListener	= function(sEventType, fListener, bUseCap
 	]);
 
 	// Invoke actual implementation
-	fAMLEventTarget_removeEventListener(this, sEventType, fListener, bUseCapture);
+	fAMLEventTarget_removeEventListener(this, sEventType, fHandler, bUseCapture);
 };
 
 function fAMLNode_executeHandler(oNode, fHandler, oEvent) {
 	try {
+		if (typeof fHandler == "object") {
+			if (typeof fHandler.handleEvent == "function")
+				fHandler	= fHandler.handleEvent;
+			else
+				throw new cAMLException(cAMLException.AML_MEMBER_MISSING_ERR, null, ["handleEvent"]);
+		}
 		fHandler.call(oNode, oEvent);
 	}
 	catch (oException) {
@@ -595,17 +601,11 @@ function fAMLNode_handleEvent(oNode, oEvent) {
     	fAMLNode_executeHandler(oNode, oNode['on' + oEvent.type], oEvent);
 
 	// Notify listeners
-    if (oNode.$listeners && oNode.$listeners[oEvent.type])
-    	for (var nIndex = 0, aListeners = oNode.$listeners[oEvent.type], fListener; nIndex < aListeners.length && !oEvent._stoppedImmediately; nIndex++)
-    		if (oEvent.eventPhase == cAMLEvent.AT_TARGET || aListeners[nIndex][1] == (oEvent.eventPhase == cAMLEvent.CAPTURING_PHASE)) {
-    			if (typeof(fListener = aListeners[nIndex][0]) == "function")
-    				fAMLNode_executeHandler(oNode, aListeners[nIndex][0], oEvent);
-    			else
-    			if (typeof fListener.handleEvent == "function")
-    				fAMLNode_executeHandler(fListener, fListener.handleEvent, oEvent);
-    			else
-    				throw new cAMLException(cAMLException.AML_MEMBER_MISSING_ERR, null, ["handleEvent"]);
-    		}
+    if (oNode.$listeners && oNode.$listeners[oEvent.type]) {
+    	for (var nIndex = 0, aListeners = oNode.$listeners[oEvent.type]; nIndex < aListeners.length && !oEvent._stoppedImmediately; nIndex++)
+    		if (oEvent.eventPhase == cAMLEvent.AT_TARGET || aListeners[nIndex][1] == (oEvent.eventPhase == cAMLEvent.CAPTURING_PHASE))
+    			fAMLNode_executeHandler(oNode, aListeners[nIndex][0], oEvent);
+    }
 
 	var cElement,
 		cAttribute;
