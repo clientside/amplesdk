@@ -734,6 +734,11 @@ cAMLElement.prototype.getBoundingClientRect	= function(sPseudo)
 {
 	return fAMLElement_getBoundingClientRect(this, sPseudo || null);
 };
+
+cAMLElement.prototype.$isAccessible	= function() {
+	return true;
+};
+
 /*
 cAMLElement.prototype.$getContainer	= function(sName)
 {

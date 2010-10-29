@@ -244,10 +244,6 @@ cAMLElement.prototype.blur	= function() {
 	fAMLFocus_blur(this);
 };
 
-cAMLElement.prototype.$isAccessible	= function() {
-	return true;
-};
-
 // Registering Event Handlers
 fAMLEventTarget_addEventListener(oAmple_document,	"mousedown",	fAMLFocus_onMouseDown,	false);
 fAMLEventTarget_addEventListener(oAmple_document,	"keydown",		fAMLFocus_onKeyDown,	false);
