@@ -48,12 +48,12 @@
 						</xul:treeitem>
 						<xul:treeitem>
 							<xul:treerow>
-								<xul:treecell label="Sent Mail" />
+								<xul:treecell label="Drafts" />
 							</xul:treerow>
 						</xul:treeitem>
 						<xul:treeitem>
 							<xul:treerow>
-								<xul:treecell label="Drafts" />
+								<xul:treecell label="Sent Mail" />
 							</xul:treerow>
 						</xul:treeitem>
 						<xul:treeitem>
@@ -61,9 +61,7 @@
 								<xul:treecell label="Spam" />
 							</xul:treerow>
 						</xul:treeitem>
-					</xul:treechildren>
-					<xul:treechildren>
-						<xul:treeitem>
+						<xul:treeitem container="true">
 							<xul:treerow>
 								<xul:treecell label="My Folders" />
 							</xul:treerow>
@@ -107,7 +105,7 @@
 						</xul:menupopup>
 					</xul:toolbarbutton>
 				</xul:toolbar>
-				<xul:listbox flex="1" type="checkbox" onselect="ample.query('#brd_message_selected').attr('disabled', this.selectedItems.length ? 'false' : 'true');">
+				<xul:listbox height="200" type="checkbox" onselect="ample.query('#brd_message_selected').attr('disabled', this.selectedItems.length ? 'false' : 'true');">
 					<xul:listhead>
 						<xul:listheader minwidth="100" width="200" label="From"/>
 						<xul:listheader minwidth="300" width="300" label="Subject"/>
@@ -117,6 +115,19 @@
 					</xul:listhead>
 					<xul:listbody id="messages"/>
 				</xul:listbox>
+				<xul:grid>
+					<xul:rows>
+						<xul:row>
+							<xul:label value="From:" />
+							<xul:label />
+						</xul:row>
+						<xul:row>
+							<xul:label value="Header:" />
+							<xul:label />
+						</xul:row>
+					</xul:rows>
+				</xul:grid>
+				<xul:description style="background-color: white" flex="1"/>
 			</xul:vbox>
 			<xi:include href="modules/message.xml" />
 			<xi:include href="modules/contacts.xml" />
