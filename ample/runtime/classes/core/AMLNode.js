@@ -603,17 +603,10 @@ function fAMLNode_handleEvent(oNode, oEvent) {
     	fAMLNode_executeHandler(oNode, oNode['on' + sEventType], oEvent);
 
 	// Notify listeners
-    if (oNode.$listeners && oNode.$listeners[sEventType]) {
-    	// Handle special case: capture-phase listeners on target
-    	if (oEvent.eventPhase == cAMLEvent.AT_TARGET)
-    		for (var nIndex = 0, aListeners = oNode.$listeners[sEventType]; nIndex < aListeners.length && !oEvent._stoppedImmediately; nIndex++)
-    			if (aListeners[nIndex][1] == true)
-    				fAMLNode_executeHandler(oNode, aListeners[nIndex][0], oEvent);
-    	//
+    if (oNode.$listeners && oNode.$listeners[sEventType])
     	for (var nIndex = 0, aListeners = oNode.$listeners[sEventType]; nIndex < aListeners.length && !oEvent._stoppedImmediately; nIndex++)
     		if (aListeners[nIndex][1] == (oEvent.eventPhase == cAMLEvent.CAPTURING_PHASE))
     			fAMLNode_executeHandler(oNode, aListeners[nIndex][0], oEvent);
-    }
 
 	// Event default actions implementation
 	if (oEvent.eventPhase != cAMLEvent.CAPTURING_PHASE && !oEvent.defaultPrevented)
@@ -622,6 +615,14 @@ function fAMLNode_handleEvent(oNode, oEvent) {
 			if (cNode && cNode.handlers && cNode.handlers[sEventType])
 				cNode.handlers[sEventType].call(oNode, oEvent);
 		}
+};
+
+function fAMLNode_handleCaptureOnTargetEvent(oNode, oEvent) {
+	var sEventType	= oEvent.type;
+    if (oNode.$listeners && oNode.$listeners[sEventType])
+   		for (var nIndex = 0, aListeners = oNode.$listeners[sEventType]; nIndex < aListeners.length && !oEvent._stoppedImmediately; nIndex++)
+   			if (aListeners[nIndex][1] == true)
+   				fAMLNode_executeHandler(oNode, aListeners[nIndex][0], oEvent);
 };
 
 cAMLNode.prototype.hasAttributes	= function()
@@ -647,14 +648,17 @@ function fAMLNode_routeEvent(oEvent)
 {
 	var aTargets	= [],
 		nLength		= 0,
-		nCurrent	= 0;
-	// Populate stack targets (...document-fragment, document, #document)
-	for (var oNode = oEvent.target; oNode; oNode = oNode.parentNode)
-		aTargets[nLength++]	= oNode;
+		nCurrent	= 0,
+		bUIEvent	= oEvent instanceof cAMLUIEvent,
+		bDisabled	= false,
+		oTarget		= oEvent.target;
 
-//->Source
-//console.info(oEvent.type, oEvent.target);
-//<-Source
+	// Populate stack targets (...document-fragment, document, #document)
+	for (var oNode = oTarget; oNode; oNode = oNode.parentNode) {
+		aTargets[nLength++]	= oNode;
+		if (!bDisabled && bUIEvent && oNode.nodeType == cAMLNode.ELEMENT_NODE && !oNode.$isAccessible())
+			bDisabled	= true;
+	}
 
 	// Propagate event
 	while (!oEvent._stopped) {
@@ -663,12 +667,14 @@ function fAMLNode_routeEvent(oEvent)
 				if (--nCurrent > 0)
 					oEvent.currentTarget	= aTargets[nCurrent];
 				else {
-					// Do not propagate either target or bubbling for disabled elements
-					if (oEvent instanceof cAMLUIEvent && oEvent.target.nodeType == cAMLNode.ELEMENT_NODE && !oEvent.target.$isAccessible())
-						return;
-
 					oEvent.eventPhase		= cAMLEvent.AT_TARGET;
-					oEvent.currentTarget	= oEvent.target;
+					oEvent.currentTarget	= oTarget;
+					// Special case: handling capture-phase events on target
+					fAMLNode_handleCaptureOnTargetEvent(oTarget, oEvent);
+
+					// Do not propagate either target or bubbling for disabled elements
+					if (bDisabled)
+						return;
 				}
 				break;
 
@@ -696,13 +702,11 @@ function fAMLNode_routeEvent(oEvent)
 					oEvent.currentTarget= aTargets[nCurrent];
 				}
 				else {
-					// Do not propagate either target or bubbling for disabled elements
-					if (oEvent instanceof cAMLUIEvent && oEvent.target.nodeType == cAMLNode.ELEMENT_NODE && !oEvent.target.$isAccessible())
-						return;
-
 					nCurrent	= 0;
 					oEvent.eventPhase	= cAMLEvent.AT_TARGET;
-					oEvent.currentTarget= oEvent.target;
+					oEvent.currentTarget= oTarget;
+					// Special case: handling capture-phase events on target
+					fAMLNode_handleCaptureOnTargetEvent(oTarget, oEvent);
 				}
 		}
 
