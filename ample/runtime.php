@@ -8,6 +8,7 @@
 	$aFiles[]	= "runtime/classes/events/AMLEvent.js";
 	$aFiles[]	= "runtime/classes/events/AMLCustomEvent.js";
 	$aFiles[]	= "runtime/classes/events/AMLUIEvent.js";
+	$aFiles[]	= "runtime/classes/events/AMLFocusEvent.js";
 	$aFiles[]	= "runtime/classes/events/AMLMutationEvent.js";
 	$aFiles[]	= "runtime/classes/events/AMLMouseEvent.js";
 	$aFiles[]	= "runtime/classes/events/AMLMouseWheelEvent.js";

@@ -28,12 +28,12 @@ function fAMLFocus_focus(oElement) {
 			// Add :focus pseudo-class
 			fAMLElement_setPseudoClass(oElement, "focus", true);
 
-			var oEvent	= new cAMLUIEvent;
-			oEvent.initUIEvent("focus", false, false, window, null);
+			var oEvent	= new cAMLFocusEvent;
+			oEvent.initFocusEvent("focus", false, false, window, null, null);
 			fAMLNode_dispatchEvent(oElement, oEvent);
 
-			var oEvent	= new cAMLUIEvent;
-			oEvent.initUIEvent("DOMFocusIn", true, false, window, null);
+			var oEvent	= new cAMLFocusEvent;
+			oEvent.initFocusEvent("DOMFocusIn", true, false, window, null, null);
 			fAMLNode_dispatchEvent(oElement, oEvent);
 		}
 	}
@@ -53,12 +53,12 @@ function fAMLFocus_blur(oElement) {
 			fAMLElement_setPseudoClass(oElement, "focus", false);
 
 			// If element has not been removed from DOM
-			var oEvent	= new cAMLUIEvent;
-			oEvent.initUIEvent("blur", false, false, window, null);
+			var oEvent	= new cAMLFocusEvent;
+			oEvent.initFocusEvent("blur", false, false, window, null, null);
 			fAMLNode_dispatchEvent(oElement, oEvent);
 
-			var oEvent	= new cAMLUIEvent;
-			oEvent.initUIEvent("DOMFocusOut", true, false, window, null);
+			var oEvent	= new cAMLFocusEvent;
+			oEvent.initFocusEvent("DOMFocusOut", true, false, window, null, null);
 			fAMLNode_dispatchEvent(oElement, oEvent);
 		}
 	}

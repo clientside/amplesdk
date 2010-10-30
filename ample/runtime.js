@@ -12,6 +12,7 @@
 	files.push("runtime/classes/events/AMLEvent.js");
 	files.push("runtime/classes/events/AMLCustomEvent.js");
 	files.push("runtime/classes/events/AMLUIEvent.js");
+	files.push("runtime/classes/events/AMLFocusEvent.js");
 	files.push("runtime/classes/events/AMLMutationEvent.js");
 	files.push("runtime/classes/events/AMLMouseEvent.js");
 	files.push("runtime/classes/events/AMLMouseWheelEvent.js");

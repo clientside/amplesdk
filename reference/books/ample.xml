@@ -32,6 +32,7 @@
 					<node title="AMLEvent" url="ample/runtime/AMLEvent.xml"/>
 					<node title="AMLCustomEvent" url="ample/runtime/AMLCustomEvent.xml"/>
 					<node title="AMLUIEvent" url="ample/runtime/AMLUIEvent.xml"/>
+					<node title="AMLFocusEvent" url="ample/runtime/AMLFocusEvent.xml"/>
 					<node title="AMLMouseEvent" url="ample/runtime/AMLMouseEvent.xml"/>
 					<node title="AMLMouseWheelEvent" url="ample/runtime/AMLMouseWheelEvent.xml"/>
 					<node title="AMLKeyboardEvent" url="ample/runtime/AMLKeyboardEvent.xml"/>
