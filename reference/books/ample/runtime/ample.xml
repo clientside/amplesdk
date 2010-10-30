@@ -145,7 +145,20 @@
 					<argument name="settings" type="Object">
 						<description>
 							<locale>
-								Properties bag.
+								Properties bag. List of properties supported:
+								<ul>
+									<li><b>type</b> - The type of request to make ("POST" or "GET"), default is "GET".</li>
+									<li><b>url</b> - A string containing the URL to which the request is sent.</li>
+									<li><b>async</b> - By default, all requests are sent asynchronous.</li>
+									<li><b>data</b> - Data to be sent to the server.</li>
+									<li><b>timeout</b> - A timeout (in milliseconds) for the request. </li>
+									<li><b>success</b> - A function to be called if the request succeeds.</li>
+									<li><b>error</b> - A function to be called if the request fails.</li>
+									<li><b>complete</b> - A function to be called when the request finishes</li>
+									<li><b>username</b> - A username to be used in response to an HTTP access authentication request.</li>
+									<li><b>password</b> - A password to be used in response to an HTTP access authentication request.</li>
+									<li><b>headers</b> - Headers bag</li>
+								</ul>
 							</locale>
 						</description>
 					</argument>
