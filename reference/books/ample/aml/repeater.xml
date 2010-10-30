@@ -32,7 +32,7 @@
 		<methods><!--
 			<method name="bind">
 				<arguments>
-					<argument name="sId">
+					<argument name="id">
 						<description>
 							<locale>
 
@@ -48,7 +48,7 @@
 			</method>
 			<method name="update">
 				<arguments>
-					<argument name="sSelect">
+					<argument name="query">
 						<description>
 							<locale>
 

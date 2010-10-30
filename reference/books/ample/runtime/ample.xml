@@ -398,7 +398,7 @@
 			<!--  -->
 			<method name="$instance" type="AMLElement">
 				<arguments>
-					<argument name="oElement" type="HTMLElement">
+					<argument name="node" type="HTMLElement">
 						<description>
 							DOM HTML element
 						</description>
@@ -526,7 +526,7 @@
 			<method name="bookmark" type="Variant">
 				<arguments />
 				<arguments>
-					<argument name="sHash" type="String" required="true">
+					<argument name="hash" type="String" required="true">
 						<description>
 							<locale>
 								Hash value.
@@ -536,7 +536,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="sTitle" type="String" required="false">
+					<argument name="title" type="String" required="false">
 						<description>
 							<locale>
 								Title value.

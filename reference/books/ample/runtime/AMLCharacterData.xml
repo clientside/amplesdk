@@ -15,7 +15,7 @@
 		<methods>
 			<method name="appendData" type="Void">
 				<arguments>
-					<argument name="sValue" type="String" required="true">
+					<argument name="value" type="String" required="true">
 						<description>
 							<locale>
 								The DOMString to append.
@@ -34,14 +34,14 @@
 			</method>
 			<method name="deleteData" type="Void">
 				<arguments>
-					<argument name="nOffset" type="Number" required="true">
+					<argument name="offset" type="Number" required="true">
 						<description>
 							<locale>
 								The offset from which to start removing.
 							</locale>
 						</description>
 					</argument>
-					<argument name="nCount" type="Number" required="true">
+					<argument name="count" type="Number" required="true">
 						<description>
 							<locale>
 								The number of 16-bit units to delete.
@@ -60,14 +60,14 @@
 			</method>
 			<method name="insertData" type="Void">
 				<arguments>
-					<argument name="nOffset" type="Number" required="true">
+					<argument name="offset" type="Number" required="true">
 						<description>
 							<locale>
 								The character offset at which to insert.
 							</locale>
 						</description>
 					</argument>
-					<argument name="sValue" type="String" required="true">
+					<argument name="value" type="String" required="true">
 						<description>
 							<locale>
 								The DOMString to insert.
@@ -86,21 +86,21 @@
 			</method>
 			<method name="replaceData" type="Void">
 				<arguments>
-					<argument name="nOffset" type="Number" required="true">
+					<argument name="offset" type="Number" required="true">
 						<description>
 							<locale>
 								The offset from which to start replacing.
 							</locale>
 						</description>
 					</argument>
-					<argument name="nCount" type="Number" required="true">
+					<argument name="count" type="Number" required="true">
 						<description>
 							<locale>
 								The number of 16-bit units to replace.
 							</locale>
 						</description>
 					</argument>
-					<argument name="sValue" type="String" required="true">
+					<argument name="value" type="String" required="true">
 						<description>
 							<locale>
 								The DOMString with which the range must be replaced.
@@ -119,14 +119,14 @@
 			</method>
 			<method name="substringData" type="String">
 				<arguments>
-					<argument name="nOffset" type="Number" required="true">
+					<argument name="offset" type="Number" required="true">
 						<description>
 							<locale>
 								Start offset of substring to extract.
 							</locale>
 						</description>
 					</argument>
-					<argument name="nCount" type="Number" required="true">
+					<argument name="count" type="Number" required="true">
 						<description>
 							<locale>
 								The number of 16-bit units to extract.

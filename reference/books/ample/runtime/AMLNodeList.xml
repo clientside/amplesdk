@@ -15,7 +15,7 @@
 		<methods>
 			<method name="item" type="AMLNode">
 				<arguments>
-					<argument name="nIndex" type="Number" required="true">
+					<argument name="index" type="Number" required="true">
 						<description>
 							<locale>
 								Index into the collection.

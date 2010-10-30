@@ -16,7 +16,7 @@
 		<methods>
 			<method name="createElement" type="AMLElement">
 				<arguments>
-					<argument name="sTagName" type="String" required="true">
+					<argument name="name" type="String" required="true">
 						<description>
 							<locale>
 								The name of the element type to instantiate
@@ -38,7 +38,7 @@
 			</method>
 			<method name="createElementNS" type="AMLElement">
 				<arguments>
-					<argument name="sNameSpaceURI" type="String" required="true">
+					<argument name="namespaceURI" type="String" required="true">
 						<description>
 							<locale>
 								Namespace of the element to be created.
@@ -48,7 +48,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="sQualifiedName" type="String" required="true">
+					<argument name="QName" type="String" required="true">
 						<description>
 							<locale>
 								Element's qualified name to be created.
@@ -80,7 +80,7 @@
 			</method>
 			<method name="createTextNode" type="AMLText">
 				<arguments>
-					<argument name="sData" type="String">
+					<argument name="data" type="String">
 						<description>
 							<locale>
 								The data for the node.
@@ -99,7 +99,7 @@
 			</method>
 			<method name="createComment" type="AMLComment">
 				<arguments>
-					<argument name="sData" type="String">
+					<argument name="data" type="String">
 						<description>
 							<locale>
 								The data for the node.
@@ -121,7 +121,7 @@
 			</method>
 			<method name="createCDATASection" type="AMLCDATASection">
 				<arguments>
-					<argument name="sData" type="String">
+					<argument name="data" type="String">
 						<description>
 							<locale>
 								The data for the node.
@@ -143,7 +143,7 @@
 			</method>
 			<method name="createProcessingInstruction" type="AMLProcessingInstruction">
 				<arguments>
-					<argument name="sTarget" type="String">
+					<argument name="target" type="String">
 						<description>
 							<locale>
 								The target part of the processing instruction.
@@ -153,7 +153,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="sData" type="String">
+					<argument name="data" type="String">
 						<description>
 							<locale>
 								The data for the node.
@@ -175,7 +175,7 @@
 			</method>
 			<method name="createAttribute" type="AMLAttr">
 				<arguments>
-					<argument name="sName" type="String">
+					<argument name="name" type="String">
 						<description>
 							<locale>
 								The name of the attribute.
@@ -197,7 +197,7 @@
 			</method>
 			<method name="createAttributeNS" type="AMLAttr">
 				<arguments>
-					<argument name="sNameSpaceURI" type="String" required="true">
+					<argument name="namespaceURI" type="String" required="true">
 						<description>
 							<locale>
 								Namespace of the attribute to be created.
@@ -207,7 +207,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="sQualifiedName" type="String" required="true">
+					<argument name="QName" type="String" required="true">
 						<description>
 							<locale>
 								Attr's qualified name to be created.
@@ -229,7 +229,7 @@
 			</method>
 			<method name="createEntityReference" type="AMLEntityReference">
 				<arguments>
-					<argument name="sName" type="String" required="true">
+					<argument name="name" type="String" required="true">
 						<description>
 							<locale>
 								The name of the entity to reference.
@@ -251,7 +251,7 @@
 			</method>
 			<method name="getElementById" type="AMLElement">
 				<arguments>
-					<argument name="sId" type="String" required="true">
+					<argument name="id" type="String" required="true">
 						<description>
 							<locale>
 								Element identifier
@@ -273,7 +273,7 @@
 			</method>
 			<method name="getElementsByTagName" type="AMLNodeList">
 				<arguments>
-					<argument name="sTagName" type="String" required="true">
+					<argument name="name" type="String" required="true">
 						<description>
 							<locale>
 								Element tag name.
@@ -295,7 +295,7 @@
 			</method>
 			<method name="getElementsByTagNameNS" type="AMLNodeList">
 				<arguments>
-					<argument name="sNameSpaceURI" type="String" required="true">
+					<argument name="namespaceURI" type="String" required="true">
 						<description>
 							<locale>
 								Namespace URI.
@@ -305,7 +305,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="sLocalName" type="String" required="true">
+					<argument name="localName" type="String" required="true">
 						<description>
 							<locale>
 								Local name.
@@ -327,7 +327,7 @@
 			</method>
 			<method name="importNode" type="AMLNode">
 				<arguments>
-					<argument name="oNode" type="AMLNode" required="true">
+					<argument name="node" type="AMLNode" required="true">
 						<description>
 							<locale>
 								The node to import.
@@ -337,7 +337,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="bDeep" type="Boolean" required="true">
+					<argument name="deep" type="Boolean" required="true">
 						<description>
 							<locale>
 								If true, recursively import the subtree under the specified node; if false, import only the node itself
@@ -360,7 +360,7 @@
 			<!-- DOM Level 3 -->
 			<method name="createEvent" type="Event">
 				<arguments>
-					<argument name="sEventType" type="String" required="true">
+					<argument name="type" type="String" required="true">
 						<description>
 							<locale>
 								Type of event.
@@ -383,14 +383,14 @@
 			<!-- DOM-Selectors -->
 			<method name="querySelector" type="AMLElement">
 				<arguments>
-					<argument name="sQuery" type="String" required="true">
+					<argument name="selector" type="String" required="true">
 						<description>
 							<locale>
 								CSS query.
 							</locale>
 						</description>
 					</argument>
-					<argument name="fResolver" type="Function" required="false">
+					<argument name="NSResolver" type="Function" required="false">
 						<description>
 							<locale>
 								Resolver function used to resolve namespace prefixes used in query.
@@ -409,14 +409,14 @@
 			</method>
 			<method name="querySelectorAll" type="AMLNodeList">
 				<arguments>
-					<argument name="sQuery" type="String" required="true">
+					<argument name="selector" type="String" required="true">
 						<description>
 							<locale>
 								CSS query.
 							</locale>
 						</description>
 					</argument>
-					<argument name="fResolver" type="Function" required="false">
+					<argument name="NSResolver" type="Function" required="false">
 						<description>
 							<locale>
 								Resolver function used to resolve namespace prefixes used in query.

@@ -16,7 +16,7 @@
 		<methods>
 			<method name="appendChild" type="AMLNode">
 				<arguments>
-					<argument name="oElement" type="AMLNode" required="true">
+					<argument name="node" type="AMLNode" required="true">
 						<description>
 							<locale>
 								The node to add.
@@ -38,7 +38,7 @@
 			</method>
 			<method name="insertBefore" type="AMLNode">
 				<arguments>
-					<argument name="oElement" type="AMLNode" required="true">
+					<argument name="node" type="AMLNode" required="true">
 						<description>
 							<locale>
 								The node to insert.
@@ -48,7 +48,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="oBefore" type="AMLNode" required="true">
+					<argument name="before" type="AMLNode" required="true">
 						<description>
 							<locale>
 								The reference node, i.e., the node before which the new node must be inserted.
@@ -70,7 +70,7 @@
 			</method>
 			<method name="removeChild" type="AMLNode">
 				<arguments>
-					<argument name="oChild" type="AMLNode" required="true">
+					<argument name="child" type="AMLNode" required="true">
 						<description>
 							<locale>
 								The node being removed.
@@ -92,14 +92,14 @@
 			</method>
 			<method name="replaceChild" type="AMLNode">
 				<arguments>
-					<argument name="oNew" type="AMLNode" required="true">
+					<argument name="new" type="AMLNode" required="true">
 						<description>
 							<locale>
 								The new node to put in the child list.
 							</locale>
 						</description>
 					</argument>
-					<argument name="oChild" type="AMLNode" required="true">
+					<argument name="child" type="AMLNode" required="true">
 						<description>
 							<locale>
 								The node being replaced in the list.
@@ -138,7 +138,7 @@
 			</method>
 			<method name="cloneNode" type="AMLNode">
 				<arguments>
-					<argument name="bDeep" type="Boolean" required="true">
+					<argument name="deep" type="Boolean" required="true">
 						<description>
 							<locale>
 								Indicates wether the childnodes are also to be cloned.
@@ -160,7 +160,7 @@
 			</method>
 			<method name="lookupPrefix" type="String">
 				<arguments>
-					<argument name="sNameSpaceURI" type="String" required="true">
+					<argument name="namespaceURI" type="String" required="true">
 						<description>
 							<locale>
 								The namespace URI to look for.
@@ -182,7 +182,7 @@
 			</method>
 			<method name="lookupNamespaceURI" type="String">
 				<arguments>
-					<argument name="sPrefix" type="String" required="true">
+					<argument name="prefix" type="String" required="true">
 						<description>
 							<locale>
 								The prefix to look for. If this parameter is null, the method will return the default namespace URI if any.
@@ -204,7 +204,7 @@
 			</method>
 			<method name="isDefaultNamespace" type="String">
 				<arguments>
-					<argument name="sNameSpaceURI" type="String" required="true">
+					<argument name="namespaceURI" type="String" required="true">
 						<description>
 							<locale>
 								The namespace URI to look for.
@@ -237,7 +237,7 @@
 			<!-- DOM Level 2 -->
 			<method name="dispatchEvent" type="Boolean">
 				<arguments>
-					<argument name="oEvent" type="Event" required="true">
+					<argument name="event" type="Event" required="true">
 						<description>
 							<locale>
 								The event to be dispatched.
@@ -259,7 +259,7 @@
 			</method>
 			<method name="addEventListener" type="Void">
 				<arguments>
-					<argument name="sType" type="String" required="true">
+					<argument name="type" type="String" required="true">
 						<description>
 							<locale>
 								Specifies the Event.type associated with the event for which the user is registering.
@@ -269,7 +269,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="fListener" type="Function" required="true">
+					<argument name="listener" type="Function" required="true">
 						<description>
 							<locale>
 								Function to be called when the event occurs.
@@ -279,7 +279,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="bUseCapture" type="Boolean" required="true">
+					<argument name="useCapture" type="Boolean" required="true">
 						<description>
 							<locale>
 								If true, user wishes to add the event listener for the capture phase only, if false - for target and bubbling phases.
@@ -301,7 +301,7 @@
 			</method>
 			<method name="removeEventListener" type="Void">
 				<arguments>
-					<argument name="sType" type="String" required="true">
+					<argument name="type" type="String" required="true">
 						<description>
 							<locale>
 								Specifies the Event.type for which the user registered the event listener.
@@ -311,7 +311,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="fListener" type="Function" required="true">
+					<argument name="listener" type="Function" required="true">
 						<description>
 							<locale>
 								Listener to be removed.
@@ -321,7 +321,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="bUseCapture" type="Boolean" required="true">
+					<argument name="useCapture" type="Boolean" required="true">
 						<description>
 							<locale>
 								Specifies whether the EventListener being removed was registered for the capture phase or not.
@@ -344,7 +344,7 @@
 			<!-- DOM Level 3 -->
 			<method name="canDispatch" type="Void">
 				<arguments>
-					<argument name="sNameSpaceURI" type="String" required="true">
+					<argument name="namespaceURI" type="String" required="true">
 						<description>
 							<locale>
 								NamespaceURI of the event to be tested.
@@ -354,7 +354,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="sType" type="String" required="true">
+					<argument name="type" type="String" required="true">
 						<description>
 							<locale>
 								Event type.
@@ -376,7 +376,7 @@
 			</method>
 			<method name="compareDocumentPosition" type="Number">
 				<arguments>
-					<argument name="oNode" type="AMLNode">
+					<argument name="node" type="AMLNode">
 						<description>
 							<locale>
 								The node to compare against the reference node.

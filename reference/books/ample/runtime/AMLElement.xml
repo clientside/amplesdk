@@ -234,7 +234,7 @@
 		<methods>
 			<method name="getAttribute" type="String">
 				<arguments>
-					<argument name="sName" type="String" required="true">
+					<argument name="name" type="String" required="true">
 						<description>
 							<locale>
 								Attribute name
@@ -256,7 +256,7 @@
 			</method>
 			<method name="getAttributeNS" type="String">
 				<arguments>
-					<argument name="sNameSpaceURI" type="String" required="true">
+					<argument name="namespaceURI" type="String" required="true">
 						<description>
 							<locale>
 								Namespace URI
@@ -266,7 +266,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="sLocalName" type="String" required="true">
+					<argument name="localName" type="String" required="true">
 						<description>
 							<locale>
 								Attribute name
@@ -288,7 +288,7 @@
 			</method>
 			<method name="setAttribute" type="Void">
 				<arguments>
-					<argument name="sName" type="String" required="true">
+					<argument name="name" type="String" required="true">
 						<description>
 							<locale>
 								Attribute name
@@ -298,7 +298,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="sValue" type="String" required="true">
+					<argument name="value" type="String" required="true">
 						<description>
 							<locale>
 								Attribute value
@@ -320,7 +320,7 @@
 			</method>
 			<method name="setAttributeNS" type="Void">
 				<arguments>
-					<argument name="sNameSpaceURI" type="String" required="true">
+					<argument name="namespaceURI" type="String" required="true">
 						<description>
 							<locale>
 								Namespace URI
@@ -330,7 +330,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="sName" type="String" required="true">
+					<argument name="name" type="String" required="true">
 						<description>
 							<locale>
 								Attribute name
@@ -340,7 +340,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="sValue" type="String" required="true">
+					<argument name="value" type="String" required="true">
 						<description>
 							<locale>
 								Attribute value
@@ -362,7 +362,7 @@
 			</method>
 			<method name="getElementsByTagName" type="AMLNodeList">
 				<arguments>
-					<argument name="sName" type="String" required="true">
+					<argument name="name" type="String" required="true">
 						<description>
 							<locale>
 								Element name.
@@ -384,7 +384,7 @@
 			</method>
 			<method name="getElementsByTagNameNS" type="AMLNodeList">
 				<arguments>
-					<argument name="sNameSpaceURI" type="String" required="true">
+					<argument name="namespaceURI" type="String" required="true">
 						<description>
 							<locale>
 								Namespace URI.
@@ -394,7 +394,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="sLocalName" type="String" required="true">
+					<argument name="localName" type="String" required="true">
 						<description>
 							<locale>
 								Element name.
@@ -416,7 +416,7 @@
 			</method>
 			<method name="hasAttribute" type="Boolean">
 				<arguments>
-					<argument name="sName" type="String" required="true">
+					<argument name="name" type="String" required="true">
 						<description>
 							<locale>
 								Attribute name.
@@ -438,7 +438,7 @@
 			</method>
 			<method name="hasAttributeNS" type="Boolean">
 				<arguments>
-					<argument name="sNameSpaceURI" type="String" required="true">
+					<argument name="namespaceURI" type="String" required="true">
 						<description>
 							<locale>
 								Namespace URI.
@@ -448,7 +448,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="sLocalName" type="String" required="true">
+					<argument name="localName" type="String" required="true">
 						<description>
 							<locale>
 								Attribute name.
@@ -470,7 +470,7 @@
 			</method>
 			<method name="removeAttribute" type="Void">
 				<arguments>
-					<argument name="sName" type="String" required="true">
+					<argument name="name" type="String" required="true">
 						<description>
 							<locale>
 								Attribute name.
@@ -492,7 +492,7 @@
 			</method>
 			<method name="removeAttributeNS" type="Void">
 				<arguments>
-					<argument name="sNameSpaceURI" type="String" required="true">
+					<argument name="namespaceURI" type="String" required="true">
 						<description>
 							<locale>
 								Namespace URI.
@@ -502,7 +502,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="sName" type="String" required="true">
+					<argument name="name" type="String" required="true">
 						<description>
 							<locale>
 								Attribute name.
@@ -525,14 +525,14 @@
 			<!-- DOM-Selectors -->
 			<method name="querySelector" type="AMLElement">
 				<arguments>
-					<argument name="sQuery" type="String" required="true">
+					<argument name="selector" type="String" required="true">
 						<description>
 							<locale>
 								CSS query.
 							</locale>
 						</description>
 					</argument>
-					<argument name="fResolver" type="Function" required="false">
+					<argument name="NSResolver" type="Function" required="false">
 						<description>
 							<locale>
 								Resolver function used to resolve namespace prefixes used in query.
@@ -551,14 +551,14 @@
 			</method>
 			<method name="querySelectorAll" type="AMLNodeList">
 				<arguments>
-					<argument name="sQuery" type="String" required="true">
+					<argument name="selector" type="String" required="true">
 						<description>
 							<locale>
 								CSS query.
 							</locale>
 						</description>
 					</argument>
-					<argument name="fResolver" type="Function" required="false">
+					<argument name="NSResolver" type="Function" required="false">
 						<description>
 							<locale>
 								Resolver function used to resolve namespace prefixes used in query.
@@ -585,7 +585,7 @@
 			</method>
 			<method name="$getContainer" type="HTMLElement">
 				<arguments>
-					<argument name="sPseudoElement" type="String" required="false">
+					<argument name="pseudoElement" type="String" required="false">
 						<description>
 							<locale>
 								Name of pseudo-element.
@@ -615,7 +615,7 @@
 			</method>
 			<method name="$setPseudoClass" type="Void">
 				<arguments>
-					<argument name="sName" type="String" required="true">
+					<argument name="name" type="String" required="true">
 						<description>
 							<locale>
 								Name of CSS pseudoclass
@@ -625,7 +625,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="bState" type="Boolean" required="true">
+					<argument name="state" type="Boolean" required="true">
 						<description>
 							<locale>
 								Flag indicating wether pseudoclass should be set or reset.
@@ -635,7 +635,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="sPseudoElement" type="String" required="false">
+					<argument name="pseudoElement" type="String" required="false">
 						<description>
 							<locale>
 								Name of pseudo-element.
@@ -681,7 +681,7 @@
 			<!-- Capture -->
 			<method name="setCapture" type="Void">
 				<arguments>
-					<argument name="bContainerCapture" type="Boolean" required="false">
+					<argument name="containerCapture" type="Boolean" required="false">
 						<description>
 							<locale>
 								A Boolean that specifies capture mode.

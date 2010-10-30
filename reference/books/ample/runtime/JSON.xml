@@ -16,21 +16,21 @@
 		<methods>
 			<method name="stringify" type="String">
 				<arguments>
-					<argument name="vValue" type="Variant">
+					<argument name="value" type="Variant">
 						<description>
 							<locale>
 								Value to stringify.
 							</locale>
 						</description>
 					</argument>
-					<argument name="fReplacer" type="Function" required="false">
+					<argument name="replacer" type="Function" required="false">
 						<description>
 							<locale>
 								The replacer can be a function that can replace values, or an array of strings that will select the keys.
 							</locale>
 						</description>
 					</argument>
-					<argument name="vSpace" type="Variant" required="false">
+					<argument name="space" type="Variant" required="false">
 						<description>
 							<locale>
 								Use of the space parameter can produce text that is more easily readable.
@@ -46,14 +46,14 @@
 			</method>
 			<method name="parse" type="Variant">
 				<arguments>
-					<argument name="sText" type="String">
+					<argument name="json" type="String">
 						<description>
 							<locale>
 								JSON text to parse.
 							</locale>
 						</description>
 					</argument>
-					<argument name="fReviver" type="String" required="false">
+					<argument name="reviver" type="String" required="false">
 						<description>
 							<locale>
 								Each name/value pair will be passed to a reviver function for possible transformation.

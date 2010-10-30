@@ -15,7 +15,7 @@
 		<methods>
 			<method name="createDocument" type="AMLDocument">
 				<arguments>
-					<argument name="sNameSpaceURI" type="String" required="true">
+					<argument name="namespaceURI" type="String" required="true">
 						<description>
 							<locale>
 								The namespace URI of the document element to create or null.
@@ -25,7 +25,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="sQualifiedName" type="String" required="true">
+					<argument name="QName" type="String" required="true">
 						<description>
 							<locale>
 								The qualified name of the document element to be created or null.
@@ -35,7 +35,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="oDocumentType" type="AMLDocumentType" required="true">
+					<argument name="documentType" type="AMLDocumentType" required="true">
 						<description>
 							<locale>
 								The type of document to be created or null.
@@ -57,7 +57,7 @@
 			</method>
 			<method name="createDocumentType" type="AMLDocumentType">
 				<arguments>
-					<argument name="sQualifiedName" type="String" required="true">
+					<argument name="QName" type="String" required="true">
 						<description>
 							<locale>
 								The qualified name of the document type to be created.
@@ -67,14 +67,14 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="sPublicId" type="String" required="true">
+					<argument name="publicId" type="String" required="true">
 						<description>
 							<locale>
 								The external subset public identifier.
 							</locale>
 						</description>
 					</argument>
-					<argument name="sSystemId" type="String" required="true">
+					<argument name="systemId" type="String" required="true">
 						<description>
 							<locale>
 								The external subset system identifier.
@@ -93,7 +93,7 @@
 			</method>
 			<method name="hasFeature" type="Boolean">
 				<arguments>
-					<argument name="sFeature" type="String" required="true">
+					<argument name="feature" type="String" required="true">
 						<description>
 							<locale>
 								The name of the feature requested.
@@ -103,7 +103,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="sVersion" type="String" required="true">
+					<argument name="version" type="String" required="true">
 						<description>
 							<locale>
 								The version number of the feature to test.

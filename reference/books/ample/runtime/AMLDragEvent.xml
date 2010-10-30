@@ -14,7 +14,7 @@
 		<methods>
 			<method name="initDragEvent" type="Void">
 				<arguments>
-					<argument name="sEventType" type="String" required="true">
+					<argument name="type" type="String" required="true">
 						<description>
 							<locale>
 								Type of the event.
@@ -24,7 +24,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="bCanBubble" type="Boolean" required="true">
+					<argument name="canBubble" type="Boolean" required="true">
 						<description>
 							<locale xml:lang="ru">
 								Указывает, может ли событие распространяться в фазе "bubbling".
@@ -34,7 +34,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="bCancelable" type="Boolean" required="true">
+					<argument name="cancelable" type="Boolean" required="true">
 						<description>
 							<locale>
 								Specifies whether or not the event's default action can be prevented.
@@ -44,7 +44,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="oView" type="Object" required="true">
+					<argument name="view" type="Object" required="true">
 						<description>
 							<locale>
 								Specifies view. This value may be null.
@@ -54,7 +54,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="nDetail" type="Number" required="true">
+					<argument name="detail" type="Number" required="true">
 						<description>
 							<locale>
 								Specifies detail.
@@ -64,7 +64,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="oDataTransfer" type="AMLDataTransfer" required="true">
+					<argument name="dataTransfer" type="AMLDataTransfer" required="true">
 						<description>
 							<locale>
 								References DataTransfer object associated with the event.

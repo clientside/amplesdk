@@ -11,7 +11,7 @@
 		<methods>
 			<method name="initHashChangeEvent" type="Void">
 				<arguments>
-					<argument name="sEventType" type="String" required="true">
+					<argument name="type" type="String" required="true">
 						<description>
 							<locale>
 								Specifies the event type.
@@ -21,7 +21,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="bCanBubble" type="Boolean" required="true">
+					<argument name="canBubble" type="Boolean" required="true">
 						<description>
 							<locale>
 								Specifies whether or not the event can bubble.
@@ -31,7 +31,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="bCancelable" type="Boolean" required="true">
+					<argument name="cancelable" type="Boolean" required="true">
 						<description>
 							<locale>
 								Specifies whether or not the event's default action can be prevented.
@@ -41,14 +41,14 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="sOldUrl" type="String" required="true">
+					<argument name="oldUrl" type="String" required="true">
 						<description>
 							<locale>
 								Previous location href value.
 							</locale>
 						</description>
 					</argument>
-					<argument name="sNewUrl" type="String" required="true">
+					<argument name="newUrl" type="String" required="true">
 						<description>
 							<locale>
 								New location href value.

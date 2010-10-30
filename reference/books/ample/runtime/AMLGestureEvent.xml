@@ -16,112 +16,112 @@
 		<methods>
 			<method name="initGestureEvent" type="Void">
 				<arguments>
-					<argument name="sEventType" type="String" required="true">
+					<argument name="type" type="String" required="true">
 						<description>
 							<locale>
 								The type of event that occurred.
 							</locale>
 						</description>
 					</argument>
-					<argument name="bCanBubble" type="Boolean" required="true">
+					<argument name="canBubble" type="Boolean" required="true">
 						<description>
 							<locale>
 								Indicates whether an event can bubble. If true, the event can bubble; otherwise, it cannot.
 							</locale>
 						</description>
 					</argument>
-					<argument name="bCancelable" type="Boolean" required="true">
+					<argument name="cancelable" type="Boolean" required="true">
 						<description>
 							<locale>
 								Indicates whether an event can have its default action prevented. If true, the default action can be prevented; otherwise, it cannot.
 							</locale>
 						</description>
 					</argument>
-					<argument name="oView" type="Object" required="true">
+					<argument name="view" type="Object" required="true">
 						<description>
 							<locale>
 								The view (DOM window) in which the event occurred.
 							</locale>
 						</description>
 					</argument>
-					<argument name="nDetail" type="Number" required="true">
+					<argument name="detail" type="Number" required="true">
 						<description>
 							<locale>
 								Specifies some detail information about the event depending on the type of event.
 							</locale>
 						</description>
 					</argument>
-					<argument name="nScreenX" type="Number" required="true">
+					<argument name="screenX" type="Number" required="true">
 						<description>
 							<locale>
 								The x-coordinate of the event’s location in screen coordinates.
 							</locale>
 						</description>
 					</argument>
-					<argument name="nScreenY" type="Number" required="true">
+					<argument name="screenY" type="Number" required="true">
 						<description>
 							<locale>
 								The y-coordinate of the event’s location in screen coordinates.
 							</locale>
 						</description>
 					</argument>
-					<argument name="nClientX" type="Number" required="true">
+					<argument name="clientX" type="Number" required="true">
 						<description>
 							<locale>
 								The x-coordinate of the event’s location relative to the window’s viewport.
 							</locale>
 						</description>
 					</argument>
-					<argument name="nClientY" type="Number" required="true">
+					<argument name="clientY" type="Number" required="true">
 						<description>
 							<locale>
 								The y-coordinate of the event’s location relative to the window’s viewport.
 							</locale>
 						</description>
 					</argument>
-					<argument name="bCtrlKey" type="Boolean" required="true">
+					<argument name="ctrlKey" type="Boolean" required="true">
 						<description>
 							<locale>
 								If true, the control key is pressed; otherwise, it is not.
 							</locale>
 						</description>
 					</argument>
-					<argument name="bAltKey" type="Boolean" required="true">
+					<argument name="altKey" type="Boolean" required="true">
 						<description>
 							<locale>
 								If true, the alt key is pressed; otherwise, it is not.
 							</locale>
 						</description>
 					</argument>
-					<argument name="bShiftKey" type="Boolean" required="true">
+					<argument name="shiftKey" type="Boolean" required="true">
 						<description>
 							<locale>
 								If true, the shift key is pressed; otherwise, it is not.
 							</locale>
 						</description>
 					</argument>
-					<argument name="bMetaKey" type="Boolean" required="true">
+					<argument name="metaKey" type="Boolean" required="true">
 						<description>
 							<locale>
 								If true, the meta key is pressed; otherwise, it is not.
 							</locale>
 						</description>
 					</argument>
-					<argument name="oTarget" type="AMLElement" required="true">
+					<argument name="target" type="AMLElement" required="true">
 						<description>
 							<locale>
 								The target of this gesture.
 							</locale>
 						</description>
 					</argument>
-					<argument name="nScale" type="Number" required="true">
+					<argument name="scale" type="Number" required="true">
 						<description>
 							<locale>
 								The distance between two fingers since the start of an event as a multiplier of the initial distance. The initial value is 1.0. If less than 1.0, the gesture is pinch close (to zoom out). If greater than 1.0, the gesture is pinch open (to zoom in).
 							</locale>
 						</description>
 					</argument>
-					<argument name="nRotation" type="Number" required="true">
+					<argument name="rotation" type="Number" required="true">
 						<description>
 							<locale>
 								The delta rotation since the start of an event, in degrees, where clockwise is positive and counter-clockwise is negative. The initial value is 0.0.

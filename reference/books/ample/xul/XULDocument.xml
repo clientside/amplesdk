@@ -16,7 +16,7 @@
 			<!--
 			<method name="loadOverlay" type="Void">
 				<arguments>
-					<argument name="sUrl" type="String">
+					<argument name="url" type="String">
 						<description>
 							<locale xml:lang="ru">
 								URL ресурса для загрузки
@@ -32,18 +32,18 @@
 			</method>
 			<method name="addBroadcastListenerFor" type="Void">
 				<arguments>
-					<argument name="oBroadcaster" type="AMLElement">
+					<argument name="broadcaster" type="AMLElement">
 						<description>
 						</description>
 					</argument>
-					<argument name="oObserver" type="AMLElement">
+					<argument name="observer" type="AMLElement">
 						<description>
 							<locale xml:lang="ru">
 								Обсервер.
 							</locale>
 						</description>
 					</argument>
-					<argument name="sAttribute" type="String">
+					<argument name="attribute" type="String">
 						<description>
 							<locale xml:lang="ru">
 								Атрибут, для которого регистрируется обсервер.
@@ -59,18 +59,18 @@
 			</method>
 			<method name="removeBroadcastListenerFor" type="Void">
 				<arguments>
-					<argument name="oBroadcaster" type="AMLElement">
+					<argument name="broadcaster" type="AMLElement">
 						<description>
 						</description>
 					</argument>
-					<argument name="oObserver" type="AMLElement">
+					<argument name="observer" type="AMLElement">
 						<description>
 							<locale xml:lang="ru">
 								Обсервер.
 							</locale>
 						</description>
 					</argument>
-					<argument name="sAttribute" type="String">
+					<argument name="attribute" type="String">
 						<description>
 							<locale xml:lang="ru">
 								Атрибут, для которого был зарегистрирован обсервер.

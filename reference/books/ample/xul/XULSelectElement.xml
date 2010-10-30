@@ -37,7 +37,7 @@
 			</method>
 			<method name="selectItem" type="Void">
 				<arguments>
-					<argument name="oItem" type="AMLElement" required="true">
+					<argument name="item" type="AMLElement" required="true">
 						<description>
 							<locale>
 								Element to be selected.
@@ -61,7 +61,7 @@
 			</method>
 			<method name="toggleItemSelection" type="Void">
 				<arguments>
-					<argument name="oItem" type="AMLElement" required="true">
+					<argument name="item" type="AMLElement" required="true">
 						<description>
 							<locale>
 								Element whose selection state to be inverted.
@@ -87,7 +87,7 @@
 			</method>
 			<method name="addItemToSelection" type="Void">
 				<arguments>
-					<argument name="oItem" type="AMLElement" required="true">
+					<argument name="item" type="AMLElement" required="true">
 						<description>
 							<locale>
 								Item to be added.
@@ -109,7 +109,7 @@
 			</method>
 			<method name="removeItemFromSelection" type="Void">
 				<arguments>
-					<argument name="oItem" type="AMLElement" required="true">
+					<argument name="item" type="AMLElement" required="true">
 						<description>
 							<locale>
 								Element to be removed from selection.
@@ -131,7 +131,7 @@
 			</method>
 			<method name="selectItemRange" type="Void">
 				<arguments>
-					<argument name="oItemFirst" type="AMLElement" required="true">
+					<argument name="item" type="AMLElement" required="true">
 						<description>
 							<locale>
 								First element from range.
@@ -141,7 +141,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="oItemLast" type="AMLElement" required="true">
+					<argument name="itemTo" type="AMLElement" required="true">
 						<description>
 							<locale>
 								Last element from range.
@@ -169,7 +169,7 @@
 			</method>
 			<method name="scrollToIndex" type="Void">
 				<arguments>
-					<argument name="nIndex" type="Number" required="true">
+					<argument name="index" type="Number" required="true">
 						<description>
 							<locale>
 								Element index.

@@ -18,7 +18,7 @@
 		<methods>
 			<method name="advanceSelectedTab" type="Void">
 				<arguments>
-					<argument name="nDir" type="Number" required="false">
+					<argument name="dir" type="Number" required="false">
 						<description>
 							<locale>
 								Direction of tab advancement.
@@ -75,7 +75,7 @@
 			</method>
 			<method name="insertItemAt" type="AMLElement">
 				<arguments>
-					<argument name="nIndex" type="Number" required="true">
+					<argument name="index" type="Number" required="true">
 						<description>
 							<locale>
 								Tab position.
@@ -118,7 +118,7 @@
 			</method>
 			<method name="removeItemAt" type="AMLElement">
 				<arguments>
-					<argument name="nIndex" type="Number" required="true">
+					<argument name="index" type="Number" required="true">
 						<description>
 							<locale>
 								Tab position.

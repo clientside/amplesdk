@@ -28,7 +28,7 @@
 		<methods>
 			<method name="canSetParameter" type="Boolean">
 				<arguments>
-					<argument name="sName" type="String" required="true">
+					<argument name="name" type="String" required="true">
 						<description>
 							<locale>
 								Parameter name
@@ -38,7 +38,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="oValue" type="Object" required="true">
+					<argument name="value" type="Object" required="true">
 						<description>
 							<locale>
 								Parameter value
@@ -60,7 +60,7 @@
 			</method>
 			<method name="setParameter" type="Void">
 				<arguments>
-					<argument name="sName" type="String" required="true">
+					<argument name="name" type="String" required="true">
 						<description>
 							<locale>
 								Parameter name
@@ -70,7 +70,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="oValue" type="Object" required="true">
+					<argument name="value" type="Object" required="true">
 						<description>
 							<locale>
 								Parameter value
@@ -92,7 +92,7 @@
 			</method>
 			<method name="getParameter" type="Object">
 				<arguments>
-					<argument name="sName" type="String" required="true">
+					<argument name="name" type="String" required="true">
 						<description>
 							<locale>
 								Parameter name
@@ -112,61 +112,6 @@
 					</locale>
 				</description>
 			</method>
-			<!-- Ample methods -->
-			<!--method name="setNamespace" type="Void">
-				<arguments>
-					<argument name="sNameSpaceURI" type="String" required="true">
-						<description>
-							<locale>
-								Namespace URI.
-							</locale>
-              <locale xml:lang="ru">
-                URI пространства имен.
-              </locale>
-						</description>
-					</argument>
-					<argument name="oNamespace" type="AMLNamespace" required="true">
-						<description>
-							<locale>
-								Namespace implementation object.
-							</locale>
-              <locale xml:lang="ru">
-                Объект реализации.
-              </locale>
-						</description>
-					</argument>
-				</arguments>
-				<description>
-					<locale>
-						Registers namespace implementation with the environment.
-					</locale>
-          <locale xml:lang="ru">
-            Регистрирует реализацию Namespace.
-          </locale>
-				</description>
-			</method>
-			<method name="getNamespace" type="AMLNamespace">
-				<arguments>
-					<argument name="sNameSpaceURI" type="String" required="true">
-						<description>
-							<locale>
-								Namespace URI.
-							</locale>
-              <locale xml:lang="ru">
-                URI пространства имен.
-              </locale>
-						</description>
-					</argument>
-				</arguments>
-				<description>
-					<locale>
-						Retrieves namespace implementation.
-					</locale>
-          <locale xml:lang="ru">
-            Возвращает реализацию Namespace.
-          </locale>
-				</description>
-			</method-->
 		</methods>
 	</members>
 	<remarks>

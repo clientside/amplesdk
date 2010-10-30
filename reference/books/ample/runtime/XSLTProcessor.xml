@@ -25,7 +25,7 @@
 			</method>
 			<method name="getParameter" type="Variant">
 				<arguments>
-					<argument name="sNameSpaceURI" required="true" type="String">
+					<argument name="namespaceURI" required="true" type="String">
 						<description>
 							<locale>
 								The namespaceURI of the XSLT parameter
@@ -35,7 +35,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="sLocalName" required="true" type="String">
+					<argument name="localName" required="true" type="String">
 						<description>
 							<locale>
 								The local name of the XSLT parameter
@@ -57,7 +57,7 @@
 			</method>
 			<method name="setParameter" type="Void">
 				<arguments>
-					<argument name="sNameSpaceURI" required="true" type="String">
+					<argument name="namespaceURI" required="true" type="String">
 						<description>
 							<locale>
 								The namespaceURI of the XSLT parameter
@@ -67,7 +67,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="sLocalName" required="true" type="String">
+					<argument name="localName" required="true" type="String">
 						<description>
 							<locale>
 								The local name of the XSLT parameter
@@ -77,7 +77,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="vValue" required="true" type="Variant">
+					<argument name="value" required="true" type="Variant">
 						<description>
 							<locale>
 								The new value of the XSLT parameter
@@ -109,7 +109,7 @@
 			</method-->
 			<method name="removeParameter" type="Void">
 				<arguments>
-					<argument name="sNameSpaceURI" required="true" type="String">
+					<argument name="namespaceURI" required="true" type="String">
 						<description>
 							<locale>
 								The namespaceURI of the XSLT parameter
@@ -119,7 +119,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="sLocalName" required="true" type="String">
+					<argument name="localName" required="true" type="String">
 						<description>
 							<locale>
 								The local name of the XSLT parameter
@@ -151,7 +151,7 @@
 			</method>
 			<method name="importStylesheet" type="Void">
 				<arguments>
-					<argument name="oNode" required="true" type="Node">
+					<argument name="node" required="true" type="Node">
 						<description>
 							<locale>
 								The stylesheet node.
@@ -173,7 +173,7 @@
 			</method>
 			<method name="transformToDocument" type="Document">
 				<arguments>
-					<argument name="oNode" required="true" type="Node">
+					<argument name="node" required="true" type="Node">
 						<description>
 							<locale>
 								The node to be transformed.
@@ -195,7 +195,7 @@
 			</method>
 			<method name="transformToFragment" type="Fragment">
 				<arguments>
-					<argument name="oNode" required="true" type="Node">
+					<argument name="node" required="true" type="Node">
 						<description>
 							<locale>
 								The node to be transformed.
@@ -205,7 +205,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="oOutput" required="true" type="Document">
+					<argument name="output" required="true" type="Document">
 						<description>
 							<locale>
 								This document is used to generate the output.

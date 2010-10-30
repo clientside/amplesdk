@@ -14,7 +14,7 @@
 		<methods>
 			<method name="toggle" type="Void">
 				<arguments>
-					<argument name="bState" type="Boolean" default="false">
+					<argument name="state" type="Boolean" default="false">
 						<description>
 							<locale>
 

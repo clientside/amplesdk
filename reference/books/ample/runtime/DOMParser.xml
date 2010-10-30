@@ -27,7 +27,7 @@
 		<methods>
 			<method name="parseFromString" type="Document">
 				<arguments>
-					<argument name="sXml" required="true" type="String">
+					<argument name="xml" required="true" type="String">
 						<description>
 							<locale>
 								The UTF16 string to be parsed.
@@ -37,7 +37,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="sContentType" required="true" type="String">
+					<argument name="contentType" required="true" type="String">
 						<description>
 							<locale>
 								The content type of the string. Accepted "text/xml".

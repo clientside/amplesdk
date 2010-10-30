@@ -14,7 +14,7 @@
 		<methods>
 			<method name="initCustomEvent" type="Void">
 				<arguments>
-					<argument name="sEventType" type="String" required="true">
+					<argument name="type" type="String" required="true">
 						<description>
 							<locale>
 								Specifies the event type.
@@ -24,7 +24,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="bCanBubble" type="Boolean" required="true">
+					<argument name="canBubble" type="Boolean" required="true">
 						<description>
 							<locale>
 								Specifies whether or not the event can bubble.
@@ -34,7 +34,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="bCancelable" type="Boolean" required="true">
+					<argument name="cancelable" type="Boolean" required="true">
 						<description>
 							<locale>
 								Specifies whether or not the event's default action can be prevented.
@@ -44,7 +44,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="oDetail" type="Object" required="true">
+					<argument name="detail" type="Object" required="true">
 						<description>
 							<locale>
 								Specifies detail. This value may be null.

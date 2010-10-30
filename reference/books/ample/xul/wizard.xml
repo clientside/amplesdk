@@ -47,7 +47,7 @@
 		<methods>
 			<method name="advance" type="Void">
 				<arguments>
-					<argument name="sPageID" type="String" required="false">
+					<argument name="pageId" type="String" required="false">
 						<description>
 							<locale>
 								Page identifier.
@@ -102,7 +102,7 @@
 			</method>
 			<method name="goTo" type="Void">
 				<arguments>
-					<argument name="sPageID" type="String" required="true">
+					<argument name="pageId" type="String" required="true">
 						<description>
 							<locale>
 								Page identifier.
@@ -126,7 +126,7 @@
 			</method>
 			<method name="getPageById" type="AMLElement">
 				<arguments>
-					<argument name="sPageID" type="String" required="true">
+					<argument name="pageId" type="String" required="true">
 						<description>
 							<locale>
 								Page identifier.
@@ -148,7 +148,7 @@
 			</method>
 			<method name="getButton" type="AMLElement">
 				<arguments>
-					<argument name="sButtonType" type="String" required="true">
+					<argument name="type" type="String" required="true">
 						<description>
 							<locale>
 								Button type. Allowed values are: "back", "next", "finish" and "cancel".

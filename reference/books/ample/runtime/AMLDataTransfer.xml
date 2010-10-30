@@ -34,7 +34,7 @@
 		<methods>
 			<method name="clearData" type="Void">
 				<arguments>
-					<argument name="sFormat" type="String" required="true">
+					<argument name="format" type="String" required="true">
 						<description>
 							<locale>
 								Data format.
@@ -50,14 +50,14 @@
 			</method>
 			<method name="setData" type="Void">
 				<arguments>
-					<argument name="sFormat" type="String" required="true">
+					<argument name="format" type="String" required="true">
 						<description>
 							<locale>
 								Data format.
 							</locale>
 						</description>
 					</argument>
-					<argument name="sData" type="String" required="true">
+					<argument name="data" type="String" required="true">
 						<description>
 							<locale>
 								Data content.
@@ -73,7 +73,7 @@
 			</method>
 			<method name="getData" type="String">
 				<arguments>
-					<argument name="sFormat" type="String" required="true">
+					<argument name="format" type="String" required="true">
 						<description>
 							<locale>
 								Data format.
@@ -89,21 +89,21 @@
 			</method>
 			<method name="setDragImage" type="Void">
 				<arguments>
-					<argument name="oImage" type="AMLElement" required="true">
+					<argument name="image" type="AMLElement" required="true">
 						<description>
 							<locale>
 								Reference to an image element.
 							</locale>
 						</description>
 					</argument>
-					<argument name="nX" type="Number" required="true">
+					<argument name="x" type="Number" required="true">
 						<description>
 							<locale>
 								Left coordinate.
 							</locale>
 						</description>
 					</argument>
-					<argument name="nY" type="Number" required="true">
+					<argument name="y" type="Number" required="true">
 						<description>
 							<locale>
 								Top coordinate.
@@ -119,7 +119,7 @@
 			</method>
 			<method name="addElement" type="Void">
 				<arguments>
-					<argument name="oElement" type="AMLElement" required="true">
+					<argument name="node" type="AMLElement" required="true">
 						<description>
 							<locale>
 								Reference to an element.

@@ -77,7 +77,7 @@
 		<methods>
 			<method name="open" type="Void">
 				<arguments>
-					<argument name="sMethod" type="String" required="true">
+					<argument name="method" type="String" required="true">
 						<description>
 							<locale>
 								The HTTP method.
@@ -87,7 +87,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="sUrl" type="String" required="true">
+					<argument name="url" type="String" required="true">
 						<description>
 							<locale>
 								The URL to which to send the request.
@@ -97,7 +97,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="bAsync" type="Boolean">
+					<argument name="asynch" type="Boolean">
 						<description>
 							<locale>
 								Indicates wether request should be asynchronous.
@@ -119,7 +119,7 @@
 			</method>
 			<method name="send" type="Void">
 				<arguments>
-					<argument name="vData" required="true" type="Node">
+					<argument name="data" required="true" type="Node">
 						<description>
 							<locale>
 								Data to be sent to the server.
@@ -151,7 +151,7 @@
 			</method>
 			<method name="setRequestHeader" type="Void">
 				<arguments>
-					<argument name="sHeader" required="true" type="String">
+					<argument name="header" required="true" type="String">
 						<description>
 							<locale>
 								The name of the header to set in the request.
@@ -161,7 +161,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="sValue" required="true" type="String">
+					<argument name="value" required="true" type="String">
 						<description>
 							<locale>
 								The body of the header.
@@ -183,7 +183,7 @@
 			</method>
 			<method name="getResponseHeader" type="String">
 				<arguments>
-					<argument name="sHeader" required="true" type="String">
+					<argument name="header" required="true" type="String">
 						<description>
 							<locale>
 								The name of the header to retrieve.

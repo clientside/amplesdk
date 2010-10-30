@@ -15,7 +15,7 @@
 		<methods>
 			<method name="serializeToString" type="String">
 				<arguments>
-					<argument name="oNode" required="true" type="AMLNode">
+					<argument name="node" required="true" type="AMLNode">
 						<description>
 							<locale>
 								The root of the subtree to be serialized. This could be any node, including a Document.

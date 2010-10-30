@@ -21,12 +21,12 @@
 <!--
 			<method name="appendItem" type="AMLElement">
 				<arguments>
-					<argument name="sLabel" type="String" required="true">
+					<argument name="label" type="String" required="true">
 						<description>
 							Label to appear next to the button.
 						</description>
 					</argument>
-					<argument name="sValue" type="String" required="false">
+					<argument name="value" type="String" required="false">
 						<description>
 							 A data value associated with new item.
 						</description>
@@ -38,17 +38,17 @@
 			</method>
 			<method name="insertItemAt" type="AMLElement">
 				<arguments>
-					<argument name="nIndex" type="Number" required="true">
+					<argument name="index" type="Number" required="true">
 						<description>
 							Position index.
 						</description>
 					</argument>
-					<argument name="sLabel" type="String" required="true">
+					<argument name="label" type="String" required="true">
 						<description>
 							Label to appear next to the button.
 						</description>
 					</argument>
-					<argument name="sValue" type="String" required="false">
+					<argument name="value" type="String" required="false">
 						<description>
 							 A data value associated with new item.
 						</description>
@@ -60,7 +60,7 @@
 			</method>
 			<method name="removeItemAt" type="AMLElement">
 				<arguments>
-					<argument name="nIndex" type="Number" required="true">
+					<argument name="index" type="Number" required="true">
 						<description>
 							Position index.
 						</description>
