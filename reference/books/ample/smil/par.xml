@@ -3,7 +3,7 @@
 <element name="par" extends="smil:SMILTimingElement">
 	<abstract>
 		<locale>
-			The seq element enables parallel animations.
+			The par element enables parallel animations.
 		</locale>
 	</abstract>
 	<examples />
