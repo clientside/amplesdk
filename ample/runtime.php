@@ -51,7 +51,6 @@
 	$aFiles[]	= "runtime/classes/range/AMLRange.js";
 
 	// AML addons
-//	$aFiles[]	= "runtime/classes/AMLSerializer.js";
 	$aFiles[]	= "runtime/classes/AMLQuery.js";
 
 	// XML APIs

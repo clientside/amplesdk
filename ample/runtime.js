@@ -50,7 +50,6 @@
 	// Range
 	files.push("runtime/classes/range/AMLRange.js");
 	// AML addons
-//	files.push("runtime/classes/AMLSerializer.js");
 	files.push("runtime/classes/AMLQuery.js");
 	// XML APIs
 	files.push("runtime/classes/DOMParser.js");

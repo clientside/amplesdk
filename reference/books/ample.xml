@@ -52,7 +52,6 @@
 					<node title="LSSerializer" xurl="ample/runtime/LSSerializer.xml"/>
 				</node>
 				<node title="DOM Helper Objects">
-					<!--node title="AMLSerializer" url="ample/runtime/AMLSerializer.xml"/-->
 					<node title="AMLDataTransfer" url="ample/runtime/AMLDataTransfer.xml"/>
 					<node title="AMLLocale" url="ample/runtime/AMLLocale.xml"/>
 					<!-- node title="AMLTreeWalker" url="ample/runtime/dom/AMLTreeWalker.xml"/-->
