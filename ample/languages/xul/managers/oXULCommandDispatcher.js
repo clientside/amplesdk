@@ -8,15 +8,23 @@
  */
 
 cXULElement.prototype.doCommand		= function() {
-	var sCommand	= this.attributes.command;
-	if (sCommand) {
-		var oCommand = this.ownerDocument.getElementById(sCommand);
-		if (oCommand && oCommand instanceof cXULElement_command) {
-		    // Fire Event on command element
-		    var oEvent = this.ownerDocument.createEvent("CustomEvent");
-		    oEvent.initCustomEvent("command", true, true, null);
-		    oCommand.dispatchEvent(oEvent);
+	var oCommand;
+	if (this instanceof cXULElement_command)
+		oCommand	= this;
+	else {
+		var sCommand	= this.attributes.command;
+		if (sCommand) {
+			var oElement	= this.ownerDocument.getElementById(sCommand);
+			if (oElement && oElement instanceof cXULElement_command)
+				oCommand	= oElement;
 		}
+	}
+
+	if (oCommand) {
+	    // Fire Event on command element
+	    var oEvent = this.ownerDocument.createEvent("CustomEvent");
+	    oEvent.initCustomEvent("command", true, true, null);
+	    oCommand.dispatchEvent(oEvent);
 	}
 };
 
