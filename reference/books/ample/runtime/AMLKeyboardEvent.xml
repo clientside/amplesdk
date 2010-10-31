@@ -44,6 +44,34 @@
 							</locale>
 						</description>
 					</argument>
+					<argument name="view" type="Object" required="true">
+						<description>
+							<locale>
+								Specifies view. This value may be null.
+							</locale>
+						</description>
+					</argument>
+					<argument name="keyIdentifier" type="String" required="true">
+						<description>
+							<locale>
+								Specifies key identifier.
+							</locale>
+						</description>
+					</argument>
+					<argument name="keyLocaltion" type="Number" required="true">
+						<description>
+							<locale>
+								Specifies key location.
+							</locale>
+						</description>
+					</argument>
+					<argument name="modifiersList" type="String" required="true">
+						<description>
+							<locale>
+								Specifies list of modifiers.
+							</locale>
+						</description>
+					</argument>
 				</arguments>
 				<description>
 					<locale>
