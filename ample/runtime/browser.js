@@ -22,18 +22,18 @@ var oBrowser_factory	= oUADocument.createElement("span"),
 	bBrowser_userSelect	= true;
 
 // Events handling
-function fBrowser_attachEvent(oNode, sEvent, fHandler) {
+function fBrowser_attachEvent(oNode, sType, fHandler) {
 	if (bTrident)
-		oNode.attachEvent('on' + sEvent, fHandler);
+		oNode.attachEvent('on' + sType, fHandler);
 	else
-		oNode.addEventListener(sEvent, fHandler, false);
+		oNode.addEventListener(sType, fHandler, false);
 };
 
-function fBrowser_detachEvent(oNode, sEvent, fHandler) {
+function fBrowser_detachEvent(oNode, sType, fHandler) {
 	if (bTrident)
-		oNode.detachEvent('on' + sEvent, fHandler);
+		oNode.detachEvent('on' + sType, fHandler);
 	else
-		oNode.removeEventListener(sEvent, fHandler, false);
+		oNode.removeEventListener(sType, fHandler, false);
 };
 
 // Finds AMLElement by event target
