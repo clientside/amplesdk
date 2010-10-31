@@ -8,6 +8,8 @@ xul|menubar {
     background-color:	#F1F0E8;
 	border-bottom: solid 1px #D8D2BD;
 	border-top: solid 1px #FFF;
+	border-right: solid 1px #D8D2BD;
+	border-left: solid 1px #FFF;
 }
 
 xul|toolbarseparator {
