@@ -123,14 +123,6 @@ cXULElement.prototype.$mapAttribute	= function(sName, sValue)
 };
 
 // Public methods
-cXULElement.prototype.doCommand		= function()
-{
-    // Fire Event
-    var oEvent = this.ownerDocument.createEvent("Events");
-    oEvent.initEvent("command", true, true);
-	this.dispatchEvent(oEvent);
-};
-
 cXULElement.prototype.$isAccessible	= function()
 {
 	return this.attributes["disabled"] != "true";
