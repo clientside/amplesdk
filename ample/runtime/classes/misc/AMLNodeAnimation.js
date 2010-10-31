@@ -22,7 +22,8 @@ function fAMLNodeAnimation_play(oElement, oProperties, vDuration, vType, fHandle
 		return;
 	// initialize effect
 	var oEffect	= {},
-		oComputedStyle	= fBrowser_getComputedStyle(oElementDOM);
+		oComputedStyle	= fBrowser_getComputedStyle(oElementDOM),
+		sValue;
 	oEffect._element	= oElement;
 	oEffect._container	= oElementDOM;
 	oEffect._duration	= fIsNaN(vDuration) ? oAMLNodeAnimation_durations[vDuration] || oAMLNodeAnimation_durations["normal"] : vDuration;
@@ -36,10 +37,11 @@ function fAMLNodeAnimation_play(oElement, oProperties, vDuration, vType, fHandle
 	var sName;
 	for (var sKey in oProperties)
 		if (oProperties.hasOwnProperty(sKey)) {
+			sValue	= '' + oProperties[sKey];
 			if (sKey == "scrollTop" || sKey == "scrollLeft")
-				oEffect._data[sKey]	= [[oElementDOM[sKey]], [oProperties[sKey]]];
+				oEffect._data[sKey]	= [[oElementDOM[sKey]], [sValue]];
 			else
-				oEffect._data[sName = fUtilities_toCssPropertyName(sKey)]	= [fAMLNodeAnimation_parseValue(fBrowser_adjustStyleValue(oElementDOM, sName, fBrowser_getStyle(oElementDOM, sName, oComputedStyle))), fAMLNodeAnimation_parseValue(fBrowser_adjustStyleValue(oElementDOM, sName, '' + oProperties[sKey]))];
+				oEffect._data[sName = fUtilities_toCssPropertyName(sKey)]	= [fAMLNodeAnimation_parseValue(fBrowser_adjustStyleValue(oElementDOM, sName, fBrowser_getStyle(oElementDOM, sName, oComputedStyle))), fAMLNodeAnimation_parseValue(fBrowser_adjustStyleValue(oElementDOM, sName, sValue))];
 		}
 
 	// delete running effects on new effect properties for the same element
@@ -283,17 +285,17 @@ function fAMLNodeAnimation_sumValue(oValue1, oValue2) {
 	if (oValue1[0] instanceof cArray) {
 		for (var nIndex = 0, aValue = []; nIndex < oValue1[0].length; nIndex++)
 			aValue.push(oValue1[0][nIndex] + oValue2[0][nIndex]);
-		return [aValue, oValue1[1], oValue1[2]];
+		return [aValue, oValue2[1], oValue2[2]];
 	}
 	else
-		return [oValue1[0] + oValue2[0], oValue1[1], oValue1[2]];
+		return [oValue1[0] + oValue2[0], oValue2[1], oValue2[2]];
 };
 
 function fAMLNodeAnimation_subValue(oValue1, oValue2) {
 	if (oValue1[0] instanceof cArray) {
 		for (var nIndex = 0, aValue = []; nIndex < oValue1[0].length; nIndex++)
 			aValue.push(oValue1[0][nIndex] - oValue2[0][nIndex]);
-		return [aValue, oValue1[1], oValue1[2]];
+		return [aValue, oValue2[1], oValue2[2]];
 	}
 	else
 		return [oValue1[0] - oValue2[0], oValue1[1], oValue1[2]];
