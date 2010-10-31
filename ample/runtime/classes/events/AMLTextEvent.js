@@ -8,13 +8,13 @@
  */
 
 var cAMLTextEvent	= function(){};
-cAMLTextEvent.prototype	= new cAMLEvent;
+cAMLTextEvent.prototype	= new cAMLUIEvent;
 
 // nsIDOMTextEvent
-cAMLTextEvent.prototype.view	= null;
 cAMLTextEvent.prototype.data	= null;
+cAMLTextEvent.prototype.inputMethod	= null;
 
-cAMLTextEvent.prototype.initTextEvent	= function(sType, bCanBubble, bCancelable, oView, sData)
+cAMLTextEvent.prototype.initTextEvent	= function(sType, bCanBubble, bCancelable, oView, sData, nInputMethod)
 {
 /*
 	// Validate arguments
@@ -24,8 +24,8 @@ cAMLTextEvent.prototype.initTextEvent	= function(sType, bCanBubble, bCancelable,
 		["cancelable",	cBoolean]
 	]);
 */
-	this.initEvent(sType, bCanBubble, bCancelable);
+	this.initUIEvent(sType, bCanBubble, bCancelable, oView, null);
 
-	this.view	= oView;
 	this.data	= sData;
+	this.inputMethod	= nInputMethod;
 };
