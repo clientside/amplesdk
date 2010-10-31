@@ -137,7 +137,7 @@ if (cSVGElement.useVML) {
 		var oElementDOM	= oElement.$getContainer(),
 			aAspect	= cSVGElement.getAspectRatio(oElement);
 
-		if (oElement instanceof cSVGElement_image) {
+		if (oElement instanceof cSVGElement_image || oElement instanceof cSVGElement_foreignObject) {
 			// Different transformation for images
 			var oMatrix	= oElementDOM.filters.item('DXImageTransform.Microsoft.Matrix');
 			if (aMatrix[0][0] != 1 || aMatrix[1][1] != 1 || aMatrix[0][1] != 0 || aMatrix[1][0] != 0) {
@@ -563,7 +563,7 @@ if (cSVGElement.useVML) {
 				nValue	= nValue * 12;
 			case "pt":	// point (1 pt is the same as 1/72 inch)
 				nValue	= nValue / 72;	// in
-			case "in":	// 1 inch = 1.57828283 × 10-5 mi
+			case "in":	// 1 inch = 1.57828283 ï¿½ 10-5 mi
 				nValue	= nValue * 2.54;
 			case "cm":
 				nValue	= nValue * 10;
