@@ -44,6 +44,86 @@
 							</locale>
 						</description>
 					</argument>
+					<argument name="view" type="Object" required="true">
+						<description>
+							<locale>
+								Specifies view. This value may be null.
+							</locale>
+						</description>
+					</argument>
+					<argument name="detail" type="Number" required="true">
+						<description>
+							<locale>
+								Specifies detail.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает дополнительное значение, ассоциированииое с данным событием.
+							</locale>
+						</description>
+					</argument>
+					<argument name="screenX" type="Number" required="true">
+						<description>
+							<locale>
+								The horizontal coordinate at which the event occurred relative to the origin of the screen coordinate system.
+							</locale>
+						</description>
+					</argument>
+					<argument name="screenY" type="Number" required="true">
+						<description>
+							<locale>
+								The vertical coordinate at which the event occurred relative to the origin of the screen coordinate system.
+							</locale>
+						</description>
+					</argument>
+					<argument name="clientX" type="Number" required="true">
+						<description>
+							<locale>
+								The horizontal coordinate at which the event occurred relative to the viewport associated with the event.
+							</locale>
+						</description>
+					</argument>
+					<argument name="clientY" type="Number" required="true">
+						<description>
+							<locale>
+								The vertical coordinate at which the event occurred relative to the viewport associated with the event.
+							</locale>
+						</description>
+					</argument>
+					<argument name="ctrlKey" type="Boolean" required="true">
+						<description>
+							<locale>
+								Specifies if Control key was pressed.
+							</locale>
+						</description>
+					</argument>
+					<argument name="shiftKey" type="Boolean" required="true">
+						<description>
+							<locale>
+								Specifies if Shift key was pressed.
+							</locale>
+						</description>
+					</argument>
+					<argument name="metaKey" type="Boolean" required="true">
+						<description>
+							<locale>
+								Specifies if Meta key was pressed.
+							</locale>
+						</description>
+					</argument>
+					<argument name="button" type="Number" required="true">
+						<description>
+							<locale>
+								Indicates which pointer device button changed state.
+							</locale>
+						</description>
+					</argument>
+					<argument name="relatedTarget" type="AMLNode" required="true">
+						<description>
+							<locale>
+								Specifies MouseEvent.relatedTarget. This value may be null.
+							</locale>
+						</description>
+					</argument>
 				</arguments>
 				<description>
 					<locale>
