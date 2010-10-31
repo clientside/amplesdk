@@ -118,6 +118,7 @@
 				AMLEvent.js,
 				AMLCustomEvent.js,
 				AMLUIEvent.js,
+				AMLFocusEvent.js,
 				AMLKeyboardEvent.js,
 				AMLTextEvent.js,
 				AMLMouseEvent.js,
