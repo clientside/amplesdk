@@ -44,6 +44,41 @@
 							</locale>
 						</description>
 					</argument>
+					<argument name="relatedNode" type="AMLNode" required="true">
+						<description>
+							<locale>
+								Used to identify a secondary node related to a mutation event.
+							</locale>
+						</description>
+					</argument>
+					<argument name="prevValue" type="String" required="true">
+						<description>
+							<locale>
+								Indicates the previous value of the Attr node in DOMAttrModified events, and of the CharacterData node in DOMCharDataModified events.
+							</locale>
+						</description>
+					</argument>
+					<argument name="newValue" type="String" required="true">
+						<description>
+							<locale>
+								Indicates the new value of the Attr node in DOMAttrModified events, and of the CharacterData node in DOMCharDataModified events.
+							</locale>
+						</description>
+					</argument>
+					<argument name="attrName" type="String" required="true">
+						<description>
+							<locale>
+								Indicates the name of the changed Attr node in a DOMAttrModified event.
+							</locale>
+						</description>
+					</argument>
+					<argument name="attrChange" type="Number" required="true">
+						<description>
+							<locale>
+								Indicates the type of change which triggered the <link type="event">DOMAttrModified</link> event.
+							</locale>
+						</description>
+					</argument>
 				</arguments>
 				<description>
 					<locale>
