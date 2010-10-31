@@ -313,7 +313,8 @@ function fAMLNodeAnimation_mulValue(oValue, nTimes) {
 
 // UnitBezier.h, WebCore_animation_AnimationBase.cpp
 function fAMLNodeAnimation_cubicBezier(t, a, b, c, d, nDuration) {
-	var ax=0,bx=0,cx=0,ay=0,by=0,cy=0;
+	// Calculate the polynomial coefficients, implicit first and last control points are (0,0) and (1,1).
+	var cx=3.0*a; bx=3.0*(c-a)-cx; ax=1.0-cx-bx; cy=3.0*b; by=3.0*(d-b)-cy; ay=1.0-cy-by;
 	// `ax t^3 + bx t^2 + cx t' expanded using Horner's rule.
     function fSampleCurveX(t) {
     	return ((ax*t+bx)*t+cx)*t;
@@ -366,8 +367,6 @@ function fAMLNodeAnimation_cubicBezier(t, a, b, c, d, nDuration) {
         }
         return t2; // Failure.
     };
-	// Calculate the polynomial coefficients, implicit first and last control points are (0,0) and (1,1).
-	cx=3.0*a; bx=3.0*(c-a)-cx; ax=1.0-cx-bx; cy=3.0*b; by=3.0*(d-b)-cy; ay=1.0-cy-by;
 	// Convert from input time to parametric value in curve, then from that to output time.
 	return fSolve(t, fSolveEpsilon(nDuration));
 };
