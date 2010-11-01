@@ -410,6 +410,9 @@ function fAMLDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse
 					oAttribute	= aAttributes[nIndex];
 					sName	= oAttribute.nodeName;
 					sValue	= oAttribute.nodeValue;
+					// Bugfix FF4 (remote XUL)
+					if (bGecko && sValue == sNS_XUL + '#')
+						sValue	= sNS_XUL;
 
 					// Inline event handler
 					if (sName.indexOf('on') == 0)
