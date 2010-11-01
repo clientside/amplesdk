@@ -16,8 +16,8 @@ ample.ready(function() {
 	ample.get("server/labels.js", null, function(data) {
 		var labels	= JSON.parse(data);
 		for (var n = 0, l = labels.length; n < l; n++) {
-			ample.query("#pop_moveto").prepend('<xul:menuitem xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">' + labels[n].id + '</xul:menuitem>');
-			ample.query("#pop_labels").prepend('<xul:menuitem type="checkbox" xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">' + labels[n].id + '</xul:menuitem>');
+			ample.query("#pop_moveto_after").after('<xul:menuitem xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">' + labels[n].id + '</xul:menuitem>');
+			ample.query("#pop_labels_after").after('<xul:menuitem type="checkbox" xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">' + labels[n].id + '</xul:menuitem>');
 		}
 	});
 

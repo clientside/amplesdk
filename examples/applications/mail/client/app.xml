@@ -82,14 +82,20 @@
 					<xul:toolbarseparator />
 					<xul:toolbarbutton label="Move to" type="menu">
 						<xul:menupopup id="pop_moveto">
-							<xul:textbox type="search" />
+							<xul:menuitem>
+								<xul:textbox type="search" />
+							</xul:menuitem>
+							<xul:menuseparator id="pop_moveto_after"/>
 							<xul:menuseparator />
 							<xul:menuitem label="Manage labels" />
 						</xul:menupopup>
 					</xul:toolbarbutton>
 					<xul:toolbarbutton label="Labels" type="menu">
 						<xul:menupopup id="pop_labels">
-							<xul:textbox type="search" />
+							<xul:menuitem>
+								<xul:textbox type="search" />
+							</xul:menuitem>
+							<xul:menuseparator id="pop_labels_after"/>
 							<xul:menuseparator />
 							<xul:menuitem label="Manage labels" />
 						</xul:menupopup>
@@ -104,6 +110,10 @@
 							<xul:menuitem label="Filter messages like this" observes="brd_message_selected" />
 						</xul:menupopup>
 					</xul:toolbarbutton>
+					<xul:hbox flex="1" pack="end" align="center">
+						<xul:textbox type="search" placeholder="Type text to search..." />
+						<xul:spacer width="5" />
+					</xul:hbox>
 				</xul:toolbar>
 				<xul:listbox height="200" type="checkbox" onselect="ample.query('#brd_message_selected').attr('disabled', this.selectedItems.length ? 'false' : 'true');">
 					<xul:listhead>
