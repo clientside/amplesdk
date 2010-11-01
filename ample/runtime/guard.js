@@ -67,31 +67,29 @@ function fGuard(aArguments, aParameters) {
 };
 
 function fGuard_instanceOf(vValue, cType) {
-	// Primitive types
-	if (cType == cString)
-		return typeof vValue == "string" || vValue instanceof cType;
-	else
-	if (cType == cBoolean)
-		return typeof vValue == "boolean" || vValue instanceof cType;
-	else
-	if (cType == cNumber)
-		return(typeof vValue == "number" || vValue instanceof cType) &&!fIsNaN(vValue);
-	// Virtual types
-	else
-	if (cType == cXMLNode)
-		return vValue &&!fIsNaN(vValue.nodeType);
-	else
-	if (cType == cXMLElement)
-		return vValue && vValue.nodeType == 1;
-	else
-	if (cType == cXMLDocument)
-		return vValue && vValue.nodeType == 9;
-	// Special type Arguments (pseudo type for JavaScript arguments object)
-	else
-	if (cType == cArguments)
-		return typeof vValue == "object" && "callee" in vValue;
-	// Complex types
-	return cType == cObject ? true : vValue instanceof cType;
+	var sType	= typeof vValue;
+	switch (cType) {
+		// Primitive types
+		case cString:
+			return sType == "string" || vValue instanceof cType;
+		case cBoolean:
+			return sType == "boolean" || vValue instanceof cType;
+		case cNumber:
+			return(sType == "number" || vValue instanceof cType) &&!fIsNaN(vValue);
+		// Virtual types
+		case cXMLNode:
+			return vValue &&!fIsNaN(vValue.nodeType);
+		case cXMLElement:
+			return vValue && vValue.nodeType == 1;
+		case cXMLDocument:
+			return vValue && vValue.nodeType == 9;
+		// Special type Arguments (pseudo type for JavaScript arguments object)
+		case cArguments:
+			return sType == "object" && "callee" in vValue;
+		// Object and Complex types
+		default:
+			return cType == cObject ? true : vValue instanceof cType;
+	}
 };
 /*
 function fGuard_typeof(vValue) {
