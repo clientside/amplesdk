@@ -175,7 +175,7 @@ cXULElement_timepicker.setEditComponent	= function(oInstance, sComponent) {
 // Element Render: open
 cXULElement_timepicker.prototype.$getTagOpen		= function() {
     var aTime    = this.attributes["value"].split(":");
-    return '<div class="xul-timepicker' + (!this.$isAccessible() ? " xul-timepicker_disabled" : '') + '">\
+    return '<div class="xul-timepicker' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + (!this.$isAccessible() ? " xul-timepicker_disabled" : '') + '">\
 				<div class="xul-timepicker--field">\
    					' + this.spinButtons.$getTag() + '\
 					<input type="text" class="xul-timepicker--input" maxlength="8"' +(!this.$isAccessible() ? ' disabled="true"' : '')+ ' style="border:0px solid white;width:100%;" value="' + (aTime ? aTime[0] : "00") + ':' + (aTime ? aTime[1] : "00") + ':' + (aTime ? aTime[2] : "00") + '" />\

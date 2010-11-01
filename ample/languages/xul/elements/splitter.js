@@ -155,7 +155,7 @@ cXULElement_splitter._onDocumentMouseMove     = function(oEvent) {
 
 // Element Render: open
 cXULElement_splitter.prototype.$getTagOpen	= function() {
-    return '<div class="xul-splitter xul-splitter-' +(this.parentNode.attributes["orient"] == "vertical" ? "vertical" : "horizontal")+ '" style="line-height:1px"><div class="xul-splitter--image"></div>';
+    return '<div class="xul-splitter' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + ' xul-splitter-' +(this.parentNode.attributes["orient"] == "vertical" ? "vertical" : "horizontal")+ '" style="line-height:1px"><div class="xul-splitter--image"></div>';
 };
 
 // Element Render: close

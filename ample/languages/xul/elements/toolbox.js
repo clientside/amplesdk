@@ -25,7 +25,7 @@ cXULElement_toolbox.handlers	= {
 
 // Element Render: open
 cXULElement_toolbox.prototype.$getTagOpen		= function() {
-    return '<div class="xul-toolbox">';
+    return '<div class="xul-toolbox' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">';
 };
 
 // Element Render: close

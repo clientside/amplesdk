@@ -122,7 +122,7 @@ cXULElement_dialog.handlers	= {
 // Element Renders
 cXULElement_dialog.prototype.$getTagOpen	= function()
 {
-	return '<div class="xul-dialog'+(this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="' +
+	return '<div class="xul-dialog' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="' +
 				(this.attributes["width"] ? 'width:' + this.attributes["width"] + 'px;' : '') +
 				(this.attributes["height"] ? 'height:' + (this.attributes["height"] - 40) + 'px;' : '') +
 				(this.attributes["hidden"] == "true" ? 'display:none;' : '') +

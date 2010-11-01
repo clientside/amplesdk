@@ -54,7 +54,7 @@ cXULElement_arrowscrollbox.prototype._onButtonOut     = function(oEvent) {
 
 // Element Render: open
 cXULElement_arrowscrollbox.prototype.$getTagOpen	= function() {
-    var sHtml = '<table cellpadding="0" cellspacing="0" border="0" class="xul-arrowscrollbox">';
+    var sHtml = '<table cellpadding="0" cellspacing="0" border="0" class="xul-arrowscrollbox' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">';
     sHtml  += '<tbody>';
     sHtml  += '<tr>';
     if (this.attributes["orient"] == "vertical") {

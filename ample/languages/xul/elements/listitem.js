@@ -87,7 +87,7 @@ cXULElement_listitem.prototype._onCommandClick   = function(oEvent) {
 // Element Render: open
 cXULElement_listitem.prototype.$getTagOpen	= function() {
 	var oListBox	= this.parentNode.parentNode;
-	return '<tr class="xul-listitem' + (this.attributes["class"] ? " xul-listitem_" + this.attributes["class"] : "") + '" style="height:1.15em;vertical-align:top">' +
+	return '<tr class="xul-listitem' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="height:1.15em;vertical-align:top">' +
 				(this.attributes["label"] || (oListBox && (oListBox.attributes["type"] == "checkbox" || oListBox.attributes["type"] == "radio"))
 				? ('<td style="padding:0" onmousedown="event.cancelBubble=true;" class="xul-listcell">' +
 					(this.attributes["label"]

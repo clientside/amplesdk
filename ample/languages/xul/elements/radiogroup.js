@@ -64,7 +64,7 @@ cXULElement_radiogroup.handlers	= {
 
 // Element Render: open
 cXULElement_radiogroup.prototype.$getTagOpen	= function() {
-    return '<div class="xul-radiogroup' + (!this.$isAccessible() ? " xul-radiogroup_disabled" : "") + '">';
+    return '<div class="xul-radiogroup' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + (!this.$isAccessible() ? " xul-radiogroup_disabled" : "") + '">';
 };
 
 // Element Render: close

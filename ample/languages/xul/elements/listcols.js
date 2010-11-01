@@ -24,7 +24,7 @@ cXULElement_listcols.handlers	= {
 
 // Element Render: open
 cXULElement_listcols.prototype.$getTagOpen	= function() {
-    return '<table cellpadding="0" cellspacing="0" border="0" width="100%" class="xul-listcols">\
+    return '<table cellpadding="0" cellspacing="0" border="0" width="100%" class="xul-listcols' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">\
 				<tbody>\
 					<tr>';
 };

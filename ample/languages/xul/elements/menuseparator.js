@@ -22,7 +22,7 @@ cXULElement_menuseparator.handlers	= {
 // Element Render: open
 cXULElement_menuseparator.prototype.$getTagOpen	= function() {
     return '<tr>\
-    			<td colspan="4"><div class="xul-menuseparator"><br /></div></td>\
+    			<td colspan="4"><div class="xul-menuseparator' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"><br /></div></td>\
     		</tr>';
 };
 

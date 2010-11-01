@@ -76,7 +76,7 @@ cXULElement_menubar.handlers	= {
 // Element Render: open
 cXULElement_menubar.prototype.$getTagOpen		= function()
 {
-	return '<div class="xul-menubar">\
+	return '<div class="xul-menubar' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">\
     			<table cellpadding="0" cellspacing="0" border="0" width="100%">\
     				<tbody>\
     					<tr class="xul-menubar--gateway">';

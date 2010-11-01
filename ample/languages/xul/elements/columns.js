@@ -21,7 +21,7 @@ cXULElement_columns.handlers	= {
 
 // Element Render: open
 cXULElement_columns.prototype.$getTagOpen	= function() {
-    return '<thead class="xul-columns">';
+    return '<thead class="xul-columns' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">';
 };
 
 // Element Render: close

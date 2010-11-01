@@ -38,7 +38,7 @@ cXULElement_tabpanels.handlers	= {
 
 // Element Render: open
 cXULElement_tabpanels.prototype.$getTagOpen    = function() {
-	return '<div class="xul-tabpanels">\
+	return '<div class="xul-tabpanels' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">\
 				<table class="xul-tabpanels--table" cellpadding="0" cellspacing="0" border="0" width="100%" height="100%">\
 					<tbody>\
 						<tr>\

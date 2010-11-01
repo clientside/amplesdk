@@ -22,7 +22,7 @@ cXULElement_scrollbox.handlers	= {
 
 // Element Render: open
 cXULElement_scrollbox.prototype.$getTagOpen	= function() {
-    return '<div class="xul-scrollbox" style="overflow:hidden">';
+    return '<div class="xul-scrollbox' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="overflow:hidden">';
 };
 
 // Element Render: close

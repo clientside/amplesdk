@@ -30,7 +30,7 @@ cXULElement_statusbar.handlers	= {
 
 // Element Render: open
 cXULElement_statusbar.prototype.$getTagOpen	= function() {
-    return '<div class="xul-statusbar">';
+    return '<div class="xul-statusbar' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">';
 };
 
 // Element Render: close

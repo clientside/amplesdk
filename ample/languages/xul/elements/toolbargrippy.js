@@ -21,7 +21,7 @@ cXULElement_toolbargrippy.handlers	= {
 
 // Element Render: open
 cXULElement_toolbargrippy.prototype.$getTagOpen	= function() {
-    return (this.parentNode instanceof cXULElement_menubar ? "<td>" : "") + '<div class="xul-toolbargrippy"><br /></div>';
+    return (this.parentNode instanceof cXULElement_menubar ? "<td>" : "") + '<div class="xul-toolbargrippy' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"><br /></div>';
 };
 
 cXULElement_toolbargrippy.prototype.$getTagClose	= function() {

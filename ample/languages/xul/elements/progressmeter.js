@@ -82,7 +82,7 @@ cXULElement_progressmeter.handlers	= {
 
 // Element Render: open
 cXULElement_progressmeter.prototype.$getTagOpen	= function() {
-	return '<div class="xul-progressmeter" style="'+
+	return '<div class="xul-progressmeter' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="'+
 				'width:' + (this.attributes["width"] ? this.attributes["width"] : "100%") + ';' +
 				(this.attributes["hidden"] == "true" ? 'display:none;' : "") + '">\
 				<div class="xul-progressmeter--before" style="float:left"></div>\

@@ -50,7 +50,7 @@ cXULElement_button.handlers	= {
 // Element Render: open
 cXULElement_button.prototype.$getTagOpen	= function()
 {
-    var sHtml   = '<button class="xul-button' +(this.attributes["class"] ? " " + this.attributes["class"] : "") + '"';
+    var sHtml   = '<button class="xul-button' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"';
     if (!this.$isAccessible())
         sHtml  += ' disabled="true"';
     sHtml  += ' style="';

@@ -35,7 +35,7 @@ cXULElement_tooltip.handlers	= {
 
 // Element Render: open
 cXULElement_tooltip.prototype.$getTagOpen		= function() {
-    return '<div style="display:none;position:absolute;" class="xul-tooltip">';
+    return '<div style="display:none;position:absolute;" class="xul-tooltip' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">';
 };
 
 // Element Render: close

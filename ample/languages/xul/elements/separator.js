@@ -21,7 +21,7 @@ cXULElement_separator.handlers	= {
 
 // Element Render: open
 cXULElement_separator.prototype.$getTagOpen	= function() {
-	return '<div class="xul-separator" style="height:1.5em;width:1.5em;"><img height="1" width="1" /></div>';
+	return '<div class="xul-separator' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="height:1.5em;width:1.5em;"><img height="1" width="1" /></div>';
 };
 
 // Register Element

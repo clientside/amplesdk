@@ -42,7 +42,7 @@ cXULElement_listbody.prototype.$getTagOpen	= function() {
 				<td style="height:100%">\
 					<div class="xul-listbody--area" style="height:100%;overflow:scroll;position:relative;" onscroll="return ample.$instance(this)._onScroll(event)">\
 						' + (bOldTrident ? '<div style="position:absolute;border-left: solid 18px white;margin-left:-18px;">' : '')+'\
-						<table cellpadding="0" cellspacing="0" border="0" class="xul-listbody"' + (!bOldTrident ? ' style="position:absolute"' : '')+ '>\
+						<table cellpadding="0" cellspacing="0" border="0" class="xul-listbody' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"' + (!bOldTrident ? ' style="position:absolute"' : '')+ '>\
 							<tbody class="xul-listbody--gateway">';
 };
 

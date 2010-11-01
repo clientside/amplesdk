@@ -36,7 +36,7 @@ cXULElement_statusbarpanel.handlers	= {
 
 // Element Render: open
 cXULElement_statusbarpanel.prototype.$getTagOpen	= function() {
-    var sHtml   = '<div class="xul-statusbarpanel">';
+    var sHtml   = '<div class="xul-statusbarpanel' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">';
     if (this.attributes["image"])
         sHtml  += '<img src="' + this.attributes["image"] + '" align="absmiddle"/>';
     else

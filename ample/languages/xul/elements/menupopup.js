@@ -139,7 +139,7 @@ cXULElement_menupopup.handlers	= {
 
 // Element Render: open
 cXULElement_menupopup.prototype.$getTagOpen	= function() {
-	return '<div style="position:absolute;' + (this.attributes["hidden"] == "true" ? 'display:none;' : '') + '" class="xul-menupopup">\
+	return '<div class="xul-menupopup' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="position:absolute;' + (this.attributes["hidden"] == "true" ? 'display:none;' : '') + '">\
 				<div class="xul-menupopup--shadow-right" style="position:absolute;"></div>\
 				<div class="xul-menupopup--shadow-bottom" style="position:absolute;font-size:1px;"></div>\
 				<table cellpadding="0" cellspacing="0" border="0" cols="4">\

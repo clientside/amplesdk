@@ -21,7 +21,7 @@ cXULElement_toolbarseparator.handlers	= {
 
 // Element Render: open
 cXULElement_toolbarseparator.prototype.$getTagOpen	= function() {
-    return '<div class="xul-toolbarseparator"><br /></div>';
+    return '<div class="xul-toolbarseparator' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"><br /></div>';
 };
 
 // Register Element

@@ -111,7 +111,7 @@ cXULElement_textbox.prototype._onChange  = function(oEvent) {
 // Element Render: open
 cXULElement_textbox.prototype.$getTagOpen	= function(oElement) {
 	var bMultiline	= this.attributes["multiline"] == "true";
-    return	'<div class="xul-textbox' + (bMultiline ? ' xul-textbox-multiline-true' : '') + " xul-textbox-type-" + (this.attributes["type"] || '') + (!this.$isAccessible() ? " xul-textbox_disabled" : '')+ '" style="'+
+    return	'<div class="xul-textbox' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + (bMultiline ? ' xul-textbox-multiline-true' : '') + " xul-textbox-type-" + (this.attributes["type"] || '') + (!this.$isAccessible() ? " xul-textbox_disabled" : '')+ '" style="'+
 				(this.attributes["height"] ? 'height:' + this.attributes["height"] + ';' : '')+
 				(this.attributes["width"] ? 'width:' + this.attributes["width"] + ';' : '')+
 				(this.attributes["style"] ? this.attributes["style"] : '')+'">\

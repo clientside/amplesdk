@@ -108,7 +108,7 @@ cXULElement_tabs.handlers	= {
 
 // Element Render: open
 cXULElement_tabs.prototype.$getTagOpen	= function() {
-	return '<div class="xul-tabs">\
+	return '<div class="xul-tabs' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">\
     			<table class="xul-tabs--table" cellpadding="0" cellspacing="0" border="0">\
 					<tbody>\
 						<tr class="xul-tabs--gateway">\
