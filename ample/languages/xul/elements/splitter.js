@@ -19,7 +19,6 @@ cXULElement_splitter.prototype._offsetY	= 0;
 cXULElement_splitter.prototype.$hoverable	= true;
 cXULElement_splitter.prototype.$selectable	= false;
 
-cXULElement_splitter.captured	= false;
 cXULElement_splitter.offset	= 0;
 cXULElement_splitter.client	= 0;
 
@@ -32,7 +31,6 @@ cXULElement_splitter.handlers	= {
 
 		this.setCapture(true);
 		this.$setPseudoClass("active", true);
-		cXULElement_splitter.captured	= true;
 
 		//
 		if (this.parentNode.getAttribute("orient") == "vertical")
@@ -47,7 +45,15 @@ cXULElement_splitter.handlers	= {
 
 		this.releaseCapture();
 		this.$setPseudoClass("active", false);
-		cXULElement_splitter.captured	= false;
+/*
+		var bVertical	= this.parentNode.getAttribute("orient") == "vertical",
+			sAttribute	= bVertical ? "height" : "width",
+			nOffset		=(bVertical ? oEvent.clientY : oEvent.clientX) - cXULElement_splitter.offset;
+		this.previousSibling.getAttribute(sAttribute).match(/([0-9]+)(.*)/);
+		this.previousSibling.setAttribute(sAttribute, nOffset + RegExp.$2);
+		// Spawn reflow
+		oXULReflowManager.schedule(this.parentNode);
+*/
 	},
 	"mousemove":	function(oEvent) {
 		var oElement	= this.$getContainer("image");
