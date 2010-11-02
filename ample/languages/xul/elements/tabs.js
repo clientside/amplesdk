@@ -11,7 +11,8 @@ var cXULElement_tabs	= function() {
     // Collections
     this.items      = new AMLNodeList;
 };
-cXULElement_tabs.prototype   = new cXULElement("tabs");
+cXULElement_tabs.prototype	= new cXULElement("tabs");
+cXULElement_tabs.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
 
 // Accessibility
 cXULElement_tabs.prototype.tabIndex	= 0;
@@ -108,20 +109,12 @@ cXULElement_tabs.handlers	= {
 
 // Element Render: open
 cXULElement_tabs.prototype.$getTagOpen	= function() {
-	return '<div class="xul-tabs' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">\
-    			<table class="xul-tabs--table" cellpadding="0" cellspacing="0" border="0">\
-					<tbody>\
-						<tr class="xul-tabs--gateway">\
-							<td class="xul-tab-separator"><img width="1" height="1" /></td>';
+	return '<div class="xul-tabs' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">';
 };
 
 // Element Render: close
 cXULElement_tabs.prototype.$getTagClose	= function() {
-	return '				<td class="xul-tab-remainder"><img width="1" height="1" /></td>\
-						</tr>\
-					</tbody>\
-				</table>\
-			</div>';
+	return '</div>';
 };
 
 // Register Element

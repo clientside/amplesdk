@@ -52,22 +52,18 @@ cXULElement_tab.handlers	= {
 
 // Element Render: open
 cXULElement_tab.prototype.$getTagOpen	= function() {
-    var sHtml   = '<td class="xul-tab' + (!this.$isAccessible() ? " xul-tab_disabled" : "") +(this.attributes["class"] ? " " + this.attributes["class"] : "") + '">';
-    if (this.attributes["image"])
-        sHtml  += '<img src="' + this.attributes["image"] + '" border="0" align="absmiddle"/> ';
-    if (this.attributes["label"])
-        sHtml  += this.attributes["label"];
-
-    return sHtml;
+    return '<div class="xul-tab' + (!this.$isAccessible() ? " xul-tab_disabled" : "") +(this.attributes["class"] ? " " + this.attributes["class"] : "") + '">\
+    			<div class="xul-tab--before" style="float:left;height:100%"></div>\
+				<div class="xul-tab--after" style="float:right;height:100%"></div>\
+    			<div class="xul-tab--gateway">'+
+    				(this.attributes["image"] ? '<img src="' + this.attributes["image"] + '" border="0" align="absmiddle"/> ' : '')+
+    				(this.attributes["label"] ? this.attributes["label"] : '');
 };
 
 // Element Render: close
 cXULElement_tab.prototype.$getTagClose	= function() {
-    var sHtml   = '';
-    sHtml  += '</td>';
-    sHtml  += '<td class="xul-tab-separator"><img width="1" height="1" /></td>';
-
-    return sHtml;
+    return '	</div>\
+    		</div>';
 };
 
 // Register Element

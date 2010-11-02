@@ -8,14 +8,17 @@ xul|tabs {
 }
 
 xul|tab {
-	height:	20px;
-	padding-left:	5px;
-	padding-right:	10px;
-	padding-bottom:	1px;
-	vertical-align: bottom;
 	background: url(media/tab.gif) repeat-x 0px 0px;
+	height:	24px;
+	vertical-align: bottom;
 	white-space:	nowrap;
 	cursor:	default !important;
+}
+
+xul|tab::gateway {
+	padding-top:	2px;
+	padding-left:	5px;
+	padding-right:	5px;
 }
 
 xul|tabs:focus xul|tab:selected {
@@ -34,16 +37,12 @@ xul|tab:disabled {
 
 xul|tab:selected {
 	background-position: 0px -60px;
-	padding-bottom: 3px;
 }
 
-xul|tab-separator {
+xul|tab::before,
+xul|tab::after {
 	width: 1px;
 	background: url(media/tab_separator.gif) no-repeat top;
-}
-
-xul|tab-remainder {
-
 }
 
 xul|tabpanels {
