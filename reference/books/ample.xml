@@ -354,6 +354,7 @@
 				<node title="XULDocument" url="ample/xul/XULDocument.xml"/>
 				<node title="XULPopupElement" url="ample/xul/XULPopupElement.xml"/>
 				<node title="XULSelectElement" url="ample/xul/XULSelectElement.xml"/>
+				<node title="XULWindowElement" url="ample/xul/XULWindowElement.xml"/>
 				<node title="XULCommandDispatcher" xurl="ample/xul/XULCommandDispatcher.xml"/>
 				<node title="XULControllers" xurl="ample/xul/XULControllers.xml"/>
 			</node>

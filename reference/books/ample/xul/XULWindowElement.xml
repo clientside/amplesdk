@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<class name="XULWindowElement" extends="xul:XULElement">
+	<abstract>
+		<locale>
+			Represents base functionality for windowed elements.
+		</locale>
+	</abstract>
+	<examples/>
+	<members />
+</class>
