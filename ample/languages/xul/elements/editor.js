@@ -172,6 +172,7 @@ var cXULElement_editor	= function() {
 
 // component prototype
 cXULElement_editor.prototype	= new cXULInputElement("editor");
+cXULElement_editor.prototype.$selectable	= true;
 
 cXULElement_editor.prototype.contentDocument	= null;
 

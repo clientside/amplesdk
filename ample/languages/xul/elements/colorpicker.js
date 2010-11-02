@@ -31,6 +31,7 @@ var cXULElement_colorpicker	= function(){
 	}, false);
 };
 cXULElement_colorpicker.prototype	= new cXULInputElement("colorpicker");
+cXULElement_colorpicker.prototype.$selectable	= true;
 
 //
 cXULElement_colorpicker.prototype.popup	= null;

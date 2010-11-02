@@ -22,6 +22,7 @@ var cXULElement_textbox	= function(){
 	}, false);
 };
 cXULElement_textbox.prototype	= new cXULInputElement("textbox");
+cXULElement_textbox.prototype.$selectable	= true;
 
 // Attributes Defaults
 cXULElement_textbox.attributes	= {

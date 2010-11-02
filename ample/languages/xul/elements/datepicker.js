@@ -30,6 +30,7 @@ var cXULElement_datepicker	= function() {
 
 // component prototype
 cXULElement_datepicker.prototype  = new cXULInputElement("datepicker");
+cXULElement_datepicker.prototype.$selectable	= true;
 
 //
 cXULElement_datepicker.prototype.popup	= true;
