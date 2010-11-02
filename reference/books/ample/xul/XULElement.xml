@@ -230,7 +230,35 @@
 					</locale>
 				</description>
 			</attribute>
-			<attribute name="style" default="" readonly="false">
+			<attribute name="minwidth" readonly="false">
+				<description>
+					<locale>
+						The minimum width of the element.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="maxwidth" readonly="false">
+				<description>
+					<locale>
+						The maximum width of the element.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="minheight" readonly="false">
+				<description>
+					<locale>
+						The minimum width of the element.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="maxheight" readonly="false">
+				<description>
+					<locale>
+						The maximum width of the element.
+					</locale>
+				</description>
+			</attribute>
+			<!--attribute name="style" default="" readonly="false">
 				<description>
 					<locale>
 						CSS style rules to be applied to the element.
@@ -242,7 +270,7 @@
 						Синтаксис идентичен синтаксису атрибута <link type="attribute">style</link> у HTML-элемента.
 					</locale>
 				</description>
-			</attribute>
+			</attribute-->
 			<attribute name="context" default="" readonly="false">
 				<description>
 					<locale>
