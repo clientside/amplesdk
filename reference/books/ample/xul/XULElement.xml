@@ -247,14 +247,14 @@
 			<attribute name="minheight" readonly="false">
 				<description>
 					<locale>
-						The minimum width of the element.
+						The minimum height of the element.
 					</locale>
 				</description>
 			</attribute>
 			<attribute name="maxheight" readonly="false">
 				<description>
 					<locale>
-						The maximum width of the element.
+						The maximum height of the element.
 					</locale>
 				</description>
 			</attribute>
