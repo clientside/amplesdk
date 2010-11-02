@@ -13,8 +13,7 @@ cXULElement_treecol.prototype.$hoverable	= true;
 
 // Default attribute values
 cXULElement_treecol.attributes	= {
-	"width":	"100",
-	"minwidth":	"10",
+	"minwidth":	"16",
 	"sortDirection":	"natural"
 };
 

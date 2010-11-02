@@ -13,8 +13,7 @@ cXULElement_listheader.prototype.$hoverable	= true;
 
 // Default attribute values
 cXULElement_listheader.attributes	= {
-	"width":	"100",
-	"minwidth":	"10",
+	"minwidth":	"16",
 	"sortDirection":	"natural"
 };
 
