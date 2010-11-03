@@ -101,8 +101,7 @@ cXULElement.prototype.$mapAttribute	= function(sName, sValue)
 		case "height":
 	    	if (this.parentNode && this.parentNode.viewType == cXULElement.VIEW_TYPE_BOXED)
 	    		oElementDOM.parentNode[sName] = sValue;
-	    	else
-		        oElementDOM.style[sName]  = sValue;
+	        oElementDOM.style[sName]  = sValue ? isNaN(sValue) ? sValue : sValue + "px" : '';
 			break;
 
 		case "label":
