@@ -643,7 +643,7 @@ function fCalendar_getParseRegExp(oCalendar, sFormat) {
             	sAdd = '(\\d\\d?)';
                 break;
             case 'zzz':
-            	sAdd = '([+-]?\\d\\d?:\\d{2})';
+            	sAdd = '([+-]?\\d\\d?:?\\d{2})';
                 break;
             case 'zz': case 'z':
             	sAdd = '([+-]?\\d\\d?)';
@@ -1229,7 +1229,6 @@ oCalendarPatterns['M']	= 'MMMM dd';
 oCalendarPatterns['Y']	= 'yyyy MMMM';
                 // S is a sortable format that does not vary by culture
 oCalendarPatterns['S']	= 'yyyy\u0027-\u0027MM\u0027-\u0027dd\u0027T\u0027HH\u0027:\u0027mm\u0027:\u0027ss';
-
             // optional fields for each calendar:
             /*
             monthsGenitive:
