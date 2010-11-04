@@ -101,8 +101,7 @@ cXULElement.prototype.$mapAttribute	= function(sName, sValue)
 		case "height":
 	    	if (this.parentNode && this.parentNode.viewType == cXULElement.VIEW_TYPE_BOXED)
 	    		oElementDOM.parentNode[sName] = sValue;
-	    	else
-		        oElementDOM.style[sName]  = sValue;
+	        oElementDOM.style[sName]  = sValue ? isNaN(sValue) ? sValue : sValue + "px" : '';
 			break;
 
 		case "label":
@@ -297,9 +296,9 @@ cXULElement.getBoxOpen	= function(oElement)
     if (oElement.attributes["orient"] == "vertical")
     {
         // Set width
-        if (oElement.attributes["width"] && oElement.localName != "window" && oElement.localName != "dialog")
-			aHtml[aHtml.length]	= ' width="' + oElement.attributes["width"] + '"';
-        else
+//        if (oElement.attributes["width"] && oElement.localName != "window" && oElement.localName != "dialog")
+//			aHtml[aHtml.length]	= ' width="' + oElement.attributes["width"] + '"';
+//        else
         if (!oElement.attributes["align"] || oElement.attributes["align"] == "stretch")
 			aHtml[aHtml.length]	= ' width="100%"';
 
@@ -310,9 +309,9 @@ cXULElement.getBoxOpen	= function(oElement)
     else
     {
         // Set height
-        if (oElement.attributes["height"] && oElement.localName != "window" && oElement.localName != "dialog")
-			aHtml[aHtml.length]	= ' height="' + oElement.attributes["height"] + '"';
-        else
+//        if (oElement.attributes["height"] && oElement.localName != "window" && oElement.localName != "dialog")
+//			aHtml[aHtml.length]	= ' height="' + oElement.attributes["height"] + '"';
+//        else
         if (!oElement.attributes["align"] || oElement.attributes["align"] == "stretch")
 			aHtml[aHtml.length]	= ' height="100%"';
 
