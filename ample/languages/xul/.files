@@ -54,13 +54,13 @@ elements/columns.js
 elements/grid.js
 elements/row.js
 elements/rows.js
-	//
+
 elements/arrowscrollbox.js
 elements/button.js
 elements/panel.js
 elements/popupset.js
 elements/progressmeter.js
-//elements/scrollbox.js
+#elements/scrollbox.js
 elements/splitter.js
 elements/statusbar.js
 elements/statusbarpanel.js

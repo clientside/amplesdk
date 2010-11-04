@@ -2,7 +2,6 @@
 RewriteEngine on
 
 ##
-RewriteCond %{REQUEST_URI} runtime|languages
-RewriteCond %{REQUEST_URI} !locales
-RewriteRule ^(.*).js $1.php
+RewriteRule runtime.js source-runner.php?path=
+RewriteRule languages/([a-z]+)/([a-z]+).js source-runner.php?path=languages/$1/
 RewriteRule ^(.*).css $1.php

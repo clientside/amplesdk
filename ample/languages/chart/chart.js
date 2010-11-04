@@ -4,36 +4,27 @@
  */
 
 (function() {
-	var files	= [];
+	var source	= [],
+		scripts	= document.getElementsByTagName("script"),
+		path	= scripts[scripts.length-1].src.replace(/\/?[^\/]+$/, '/'),
+		cXMLHttpRequest	= window.XMLHttpRequest || function() {
+			return new ActiveXObject("Microsoft.XMLHTTP");
+		};
 
-	// Classes
-	files.push("classes/cChartElement.js");
-
-	// Elements
-	//
-	files.push("elements/bar.js");
-	files.push("elements/bubble.js");
-	files.push("elements/chart.js");
-	files.push("elements/funnel.js");
-	files.push("elements/line.js");
-	files.push("elements/map.js");
-	files.push("elements/doughnut.js");
-	files.push("elements/pie.js");
-	files.push("elements/radar.js");
-	files.push("elements/stream.js");
-	//
-	files.push("elements/item.js");
-	files.push("elements/group.js");
+	// get files list
+	var oRequest = new cXMLHttpRequest;
+	oRequest.open("GET", path + ".files", false);
+	oRequest.send(null);
+	var files	= oRequest.responseText.split(/\n/g);
 
 	// load files
-	var source = [],
-		scripts	= document.getElementsByTagName("script"),
-		base	= scripts[scripts.length-1].src.replace(/\/?[^\/]+$/, '');
-	for (var n = 0; n < files.length; n++) {
-		var oRequest = new (window.XMLHttpRequest ? XMLHttpRequest : ActiveXObject("Microsoft.XMLHTTP"));
-		oRequest.open("GET", base + '/' + files[n], false);
-		oRequest.send(null);
-		source[source.length]	= oRequest.responseText;
+	for (var n = 0, file; n < files.length; n++) {
+		if ((file = files[n].replace(/^\s+/, "").replace(/\s+$/, "")) != '' && file.substr(0, 1) != "#") {
+			var oRequest = new cXMLHttpRequest;
+			oRequest.open("GET", path + '/' + file, false);
+			oRequest.send(null);
+			source[source.length]	= oRequest.responseText;
+		}
 	}
 	var oScript	= document.getElementsByTagName("head")[0].appendChild(document.createElement("script"));
 	oScript.type	= "text/javascript";
