@@ -240,20 +240,7 @@
 					</locale>
 				</description>
 			</constant>
-			<constant name="AML_MODAL_SET_MODAL_ERR" value="-7">
-				<description>
-					<locale>
-						Element is already modal.
-					</locale>
-				</description>
-			</constant>
-			<constant name="AML_MODAL_RELEASE_MODAL_ERR" value="-8">
-				<description>
-					<locale>
-						Element can not be released.
-					</locale>
-				</description>
-			</constant>
+
 			<constant name="AML_MEMBER_MISSING_ERR" value="-9">
 				<description>
 					<locale>
