@@ -1,0 +1,17 @@
+# Classes
+classes/cChartElement.js");
+
+# Elements
+elements/bar.js");
+elements/bubble.js");
+elements/chart.js");
+elements/funnel.js");
+elements/line.js");
+elements/map.js");
+elements/doughnut.js");
+elements/pie.js");
+elements/radar.js");
+elements/stream.js");
+
+elements/item.js");
+elements/group.js");

@@ -1,0 +1,70 @@
+# Classes
+classes/cSVGElement.js
+classes/cSVGRect.js
+classes/cSVGPathSeg.js
+classes/cSVGPathSegList.js
+# segments
+classes/segments/cSVGPathSegArcAbs.js
+classes/segments/cSVGPathSegArcRel.js
+classes/segments/cSVGPathSegClosePath.js
+classes/segments/cSVGPathSegCurvetoCubicAbs.js
+classes/segments/cSVGPathSegCurvetoCubicRel.js
+classes/segments/cSVGPathSegCurvetoCubicSmoothAbs.js
+classes/segments/cSVGPathSegCurvetoCubicSmoothRel.js
+classes/segments/cSVGPathSegCurvetoQuadraticAbs.js
+classes/segments/cSVGPathSegCurvetoQuadraticRel.js
+classes/segments/cSVGPathSegCurvetoQuadraticSmoothAbs.js
+classes/segments/cSVGPathSegCurvetoQuadraticSmoothRel.js
+classes/segments/cSVGPathSegLinetoAbs.js
+classes/segments/cSVGPathSegLinetoRel.js
+classes/segments/cSVGPathSegLinetoHorizontalAbs.js
+classes/segments/cSVGPathSegLinetoHorizontalRel.js
+classes/segments/cSVGPathSegLinetoVerticalAbs.js
+classes/segments/cSVGPathSegLinetoVerticalRel.js
+classes/segments/cSVGPathSegMovetoAbs.js
+classes/segments/cSVGPathSegMovetoRel.js
+
+# Elements
+# structure
+elements/svg.js
+elements/g.js
+elements/defs.js
+elements/image.js
+# linking
+elements/a.js
+# path
+elements/path.js
+# basic shapes
+elements/rect.js
+elements/circle.js
+elements/ellipse.js
+elements/line.js
+elements/polyline.js
+elements/polygon.js
+# gradients and patterns
+elements/linearGradient.js
+elements/radialGradient.js
+elements/stop.js
+elements/pattern.js
+# text
+elements/text.js
+elements/tspan.js
+elements/tref.js
+elements/textPath.js
+# foreign object
+elements/foreignObject.js
+
+# uncertain
+elements/style.js
+elements/script.js
+elements/title.js
+elements/desc.js
+elements/switch.js
+elements/use.js
+elements/marker.js
+elements/clipPath.js
+elements/metadata.js
+elements/symbol.js
+
+# integrations
+integrations/smil.js

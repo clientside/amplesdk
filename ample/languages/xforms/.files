@@ -1,0 +1,66 @@
+# Classes
+classes/cXFElement.js
+
+# Elements
+# 3.3 XForms Core Module
+elements/model.js
+elements/instance.js
+elements/instanceData.js
+elements/bind.js
+#elements/submission.js
+# 3.4 XForms Extension Module
+elements/extension.js
+# 8 Core Form Controls
+# 8.1 Core Form Controls Module
+elements/controls/input.js
+elements/controls/secret.js
+elements/controls/textarea.js
+elements/controls/output.js
+elements/controls/upload.js
+elements/controls/range.js
+elements/controls/trigger.js
+elements/controls/submit.js
+elements/controls/select.js
+elements/controls/select1.js
+# 8.2 Common support elements
+elements/controls/label.js
+elements/controls/help.js
+elements/controls/hint.js
+elements/controls/alert.js
+# 8.3 Common markup for selection controls
+elements/controls/choices.js
+elements/controls/item.js
+elements/controls/value.js
+# 9 Container Form Controls
+# 9.1 XForms Group Module
+elements/container/group.js
+# 9.2 XForms Switch Module
+elements/container/switch.js
+elements/container/case.js
+# 9.3 XForms Repeat Module
+elements/container/repeat.js
+#elements/container/setindex.js
+elements/container/itemset.js
+elements/container/copy.js
+# 10 XForms Actions
+elements/actions/action.js
+elements/actions/setvalue.js
+elements/actions/insert.js
+elements/actions/delete.js
+elements/actions/setindex.js
+elements/actions/toggle.js
+elements/actions/setfocus.js
+elements/actions/dispatch.js
+elements/actions/rebuild.js
+elements/actions/recalculate.js
+elements/actions/revalidate.js
+elements/actions/refresh.js
+elements/actions/reset.js
+elements/actions/load.js
+elements/actions/send.js
+elements/actions/message.js
+# 11 XForms Submission Module
+elements/submission/submission.js
+elements/submission/method.js
+elements/submission/header.js
+elements/submission/resource.js

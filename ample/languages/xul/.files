@@ -1,0 +1,119 @@
+# Classes
+classes/cXULElement.js
+classes/cXULController.js
+classes/cXULInputElement.js
+classes/cXULSelectElement.js
+classes/cXULPopupElement.js
+classes/cXULWindowElement.js
+
+# Managers
+managers/oXULCommandDispatcher.js
+managers/oXULPopupManager.js
+managers/oXULReflowManager.js
+managers/oXULWindowManager.js
+
+# Locales
+locales/en.js
+locales/fr.js
+locales/it.js
+
+# Elements
+# windowing
+elements/dialog.js
+elements/dialogheader.js
+elements/page.js
+elements/window.js
+elements/wizard.js
+elements/wizardpage.js
+# resource
+elements/script.js
+# commands
+elements/broadcaster.js
+elements/broadcasterset.js
+elements/command.js
+elements/commandset.js
+elements/key.js
+elements/keyset.js
+# layout
+elements/box.js
+elements/caption.js
+elements/deck.js
+elements/description.js
+elements/hbox.js
+elements/image.js
+elements/iframe.js
+elements/groupbox.js
+elements/label.js
+elements/separator.js
+elements/spacer.js
+elements/stack.js
+elements/vbox.js
+# grid
+elements/column.js
+elements/columns.js
+elements/grid.js
+elements/row.js
+elements/rows.js
+	//
+elements/arrowscrollbox.js
+elements/button.js
+elements/panel.js
+elements/popupset.js
+elements/progressmeter.js
+//elements/scrollbox.js
+elements/splitter.js
+elements/statusbar.js
+elements/statusbarpanel.js
+elements/tooltip.js
+# menu
+elements/menu.js
+elements/menubar.js
+elements/menuitem.js
+elements/menupopup.js
+elements/menuseparator.js
+# tabbox
+elements/tabbox.js
+elements/tab.js
+elements/tabs.js
+elements/tabpanel.js
+elements/tabpanels.js
+# toolbar
+elements/toolbar.js
+elements/toolbarbutton.js
+elements/toolbarseparator.js
+elements/toolbargrippy.js
+elements/toolbox.js
+# listbox
+elements/listbox.js
+elements/listcol.js
+elements/listcols.js
+elements/listitem.js
+elements/listbody.js
+elements/listcell.js
+elements/listhead.js
+elements/listheader.js
+# treebox
+elements/tree.js
+elements/treebody.js
+elements/treechildren.js
+elements/treecell.js
+elements/treecol.js
+elements/treecols.js
+elements/treerow.js
+elements/treeitem.js
+# input
+elements/checkbox.js
+elements/colorpicker.js
+elements/datepicker.js
+elements/editor.js
+elements/menulist.js
+elements/radio.js
+elements/radiogroup.js
+elements/scale.js
+elements/spinbuttons.js
+elements/textbox.js
+elements/timepicker.js
+# panes
+elements/datepicker-pane.js
+elements/colorpicker-pane.js
+elements/tooltip-pane.js
