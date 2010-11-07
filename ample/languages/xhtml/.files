@@ -1,6 +1,7 @@
 # Classes
 classes/cXHTMLElement.js
 classes/cXHTMLInputElement.js
+classes/cXHTMLValidityState.js
 
 # Managers
 managers/oXHTMLAccessKeyManager.js
