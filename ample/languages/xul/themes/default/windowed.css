@@ -12,7 +12,7 @@ xul|window {
 	width: 400px;
 	height:300px;
 	min-width:	150px;
-	border: 1px #7F9DB9 solid;
+	border: 2px #7F9DB9 solid;
 	padding-top:	22px;
 }
 
@@ -34,7 +34,7 @@ xul|window::head {
 	height:	22px;
 	margin-top:	-22px;
 	cursor: default;
-	background-color:	#0033CC;
+	background-color:	#336699;
 }
 
 xul|page,
