@@ -65,17 +65,27 @@ cXULElement_splitter.handlers	= {
 			sMeasure	= bVertical ? "height" : "width",
 			nOffset		= oEvent[bVertical ? "clientY" : "clientX"] - cXULElement_splitter.client,
 			nValue,
+			nValue2,
 			nMin,
 			nMax;
 
-		// Check previous sibling
-		if (this.previousSibling &&(nValue = this.previousSibling.attributes[sMeasure] * 1))
-			if (!((nMin = this.previousSibling.attributes["min" + sMeasure]) && nMin > nValue + nOffset) && !((nMax = this.previousSibling.attributes["max" + sMeasure]) && nMax < nValue + nOffset))
-				this.previousSibling.setAttribute(sMeasure, nValue + nOffset);
+		if (this.previousSibling &&(nValue = this.previousSibling.attributes[sMeasure] * 1)) {
+			nValue2	= nValue + nOffset;
+			if (nMin = this.previousSibling.attributes["min" + sMeasure])
+				nValue2	= Math.max(nMin, nValue2);
+			if (nMax = this.previousSibling.attributes["max" + sMeasure])
+				nValue2	= Math.min(nMax, nValue2);
+			this.previousSibling.setAttribute(sMeasure, nValue2);
+		}
 		// check next sibling
-		if (this.nextSibling &&(nValue = this.nextSibling.attributes[sMeasure] * 1))
-			if (!((nMin = this.nextSibling.attributes["min" + sMeasure]) && nMin > nValue + nOffset) && !((nMax = this.nextSibling.attributes["max" + sMeasure]) && nMax < nValue + nOffset))
-				this.nextSibling.setAttribute(sMeasure, nValue + nOffset);
+		if (this.nextSibling &&(nValue = this.nextSibling.attributes[sMeasure] * 1)) {
+			nValue2	= nValue - nOffset;
+			if (nMin = this.nextSibling.attributes["min" + sMeasure])
+				nValue2	= Math.max(nMin, nValue2);
+			if (nMax = this.nextSibling.attributes["max" + sMeasure])
+				nValue2	= Math.min(nMax, nValue2);
+			this.nextSibling.setAttribute(sMeasure, nValue2);
+		}
 
 		// Spawn reflow
 		oXULReflowManager.schedule(this.parentNode);
@@ -97,7 +107,7 @@ cXULElement_splitter.handlers	= {
 			// check next sibling
 			if (this.nextSibling &&(nValue = this.nextSibling.attributes[sMeasure] * 1))
 				if (!((nMin = this.nextSibling.attributes["min" + sMeasure]) && nMin > nValue - nOffset) && !((nMax = this.nextSibling.attributes["max" + sMeasure]) && nMax < nValue - nOffset))
-					oElement.style[this.parentNode.getAttribute("orient") == "vertical" ? "top" : "left"]	=(cXULElement_splitter.offset + nOffset)+ "px";
+					oElement.style[this.parentNode.getAttribute("orient") == "vertical" ? "top" : "left"]	=(cXULElement_splitter.offset - nOffset)+ "px";
 		}
 	},
 	"DOMAttrModified":	function(oEvent) {
