@@ -133,17 +133,18 @@ function fAMLNodeAnimation_onTimeout() {
 function fAMLNodeAnimation_process(oEffect) {
 	// calculate current ratio
 	var nDuration	= oEffect._duration,
+		vType		= oEffect._type,
 		nRatio	= 0;
 	if (nDuration) {
 		var nRatioRaw	=(oEffect._timestamp - oEffect._start) / nDuration;
-		if (oEffect._type instanceof cFunction)
-			nRatio	= oEffect._type(nRatioRaw);
+		if (vType instanceof cFunction)
+			nRatio	= vType(nRatioRaw);
 		else
-		if (oEffect._type.indexOf("cubic-bezier") == 0) {
+		if (typeof vType == "string" && vType.indexOf("cubic-bezier") == 0) {
 			// TODO
 		}
 		else {
-			switch (oEffect._type) {
+			switch (vType) {
 				case "linear":
 					nRatio	= nRatioRaw;
 					break;
