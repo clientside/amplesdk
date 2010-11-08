@@ -314,7 +314,7 @@ function fAMLNodeAnimation_mulValue(oValue, nTimes) {
 // UnitBezier.h, WebCore_animation_AnimationBase.cpp
 function fAMLNodeAnimation_cubicBezier(t, a, b, c, d, nDuration) {
 	// Calculate the polynomial coefficients, implicit first and last control points are (0,0) and (1,1).
-	var cx=3.0*a; bx=3.0*(c-a)-cx; ax=1.0-cx-bx; cy=3.0*b; by=3.0*(d-b)-cy; ay=1.0-cy-by;
+	var cx=3*a, bx=3*(c-a)-cx, ax=1-cx-bx, cy=3*b, by=3*(d-b)-cy, ay=1-cy-by;
 	// `ax t^3 + bx t^2 + cx t' expanded using Horner's rule.
     function fSampleCurveX(t) {
     	return ((ax*t+bx)*t+cx)*t;
@@ -323,12 +323,12 @@ function fAMLNodeAnimation_cubicBezier(t, a, b, c, d, nDuration) {
     	return ((ay*t+by)*t+cy)*t;
     };
     function fSampleCurveDerivativeX(t) {
-    	return (3.0*ax*t+2.0*bx)*t+cx;
+    	return (3*ax*t+2*bx)*t+cx;
     };
 	// The epsilon value to pass given that the animation is going to run over |dur| seconds. The longer the
 	// animation, the more precision is needed in the timing function result to avoid ugly discontinuities.
 	function fSolveEpsilon(nDuration) {
-		return 1.0/(200.0*nDuration);
+		return 1/(200*nDuration);
 	};
     function fSolve(x,nEpsilon) {
     	return fSampleCurveY(fSolveCurveX(x,nEpsilon));
@@ -350,7 +350,7 @@ function fAMLNodeAnimation_cubicBezier(t, a, b, c, d, nDuration) {
         	t2=t2-x2/d2;
         }
         // Fall back to the bisection method for reliability.
-        t0=0.0; t1=1.0; t2=x;
+        t0=0; t1=1; t2=x;
         if(t2<t0)
         	return t0;
         if(t2>t1)
@@ -363,7 +363,7 @@ function fAMLNodeAnimation_cubicBezier(t, a, b, c, d, nDuration) {
         		t0=t2;
         	else
         		t1=t2;
-        	t2=(t1-t0)*.5+t0;
+        	t2=(t1-t0)/2+t0;
         }
         return t2; // Failure.
     };
