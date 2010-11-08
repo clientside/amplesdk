@@ -130,7 +130,7 @@ cXULElement_toolbarbutton.prototype.$getTagOpen	= function() {
 						<td width="3" rowspan="3" class="xul-toolbarbutton-right"><div style="width:3px"/></td>\
 					</tr>\
 					<tr>\
-						<td>\
+						<td nowrap="nowrap">\
 							<div class="xul-toolbarbutton--label">' +
 					(this.getAttribute("image")
 						? '<img src="' + this.getAttribute("image") + '" align="absmiddle"/>'
