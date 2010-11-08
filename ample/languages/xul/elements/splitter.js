@@ -73,7 +73,7 @@ cXULElement_splitter.handlers	= {
 			if (!((nMin = this.previousSibling.attributes["min" + sMeasure]) && nMin > nValue + nOffset) && !((nMax = this.previousSibling.attributes["max" + sMeasure]) && nMax < nValue + nOffset))
 				this.previousSibling.setAttribute(sMeasure, nValue + nOffset);
 		// check next sibling
-		if (this.nextSibling &&(nValue = this.nextSibling.attributes.width * 1))
+		if (this.nextSibling &&(nValue = this.nextSibling.attributes[sMeasure] * 1))
 			if (!((nMin = this.nextSibling.attributes["min" + sMeasure]) && nMin > nValue + nOffset) && !((nMax = this.nextSibling.attributes["max" + sMeasure]) && nMax < nValue + nOffset))
 				this.nextSibling.setAttribute(sMeasure, nValue + nOffset);
 
@@ -91,11 +91,11 @@ cXULElement_splitter.handlers	= {
 				nMax;
 
 			// Check previous sibling
-			if (this.previousSibling &&(nValue = this.previousSibling.attributes[sMeasure]))
-				if (!((nMin = this.previousSibling.attributes["min" + sMeasure]) && nMin > nValue - nOffset) && !((nMax = this.previousSibling.attributes["max" + sMeasure]) && nMax < nValue - nOffset))
+			if (this.previousSibling &&(nValue = this.previousSibling.attributes[sMeasure] * 1))
+				if (!((nMin = this.previousSibling.attributes["min" + sMeasure]) && nMin > nValue + nOffset) && !((nMax = this.previousSibling.attributes["max" + sMeasure]) && nMax < nValue + nOffset))
 					oElement.style[this.parentNode.getAttribute("orient") == "vertical" ? "top" : "left"]	=(cXULElement_splitter.offset + nOffset)+ "px";
 			// check next sibling
-			if (this.nextSibling &&(nValue = this.nextSibling.attributes.width))
+			if (this.nextSibling &&(nValue = this.nextSibling.attributes[sMeasure] * 1))
 				if (!((nMin = this.nextSibling.attributes["min" + sMeasure]) && nMin > nValue - nOffset) && !((nMax = this.nextSibling.attributes["max" + sMeasure]) && nMax < nValue - nOffset))
 					oElement.style[this.parentNode.getAttribute("orient") == "vertical" ? "top" : "left"]	=(cXULElement_splitter.offset + nOffset)+ "px";
 		}
