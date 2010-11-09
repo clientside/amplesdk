@@ -22,7 +22,7 @@
 	</xul:toolbar>
 	<!--  -->
 	<xul:hbox flex="1" width="100%">
-		<xul:vbox width="200" minwidth="100" maxwidth="300">
+		<xul:vbox width="220" minwidth="100" maxwidth="300">
 			<xul:toolbar>
 				<xul:toolbarbutton label="Compose Mail" command="cmd_navigate_message"/>
 			</xul:toolbar>
@@ -122,7 +122,7 @@
 						<xul:listheader minwidth="300" width="300" label="Subject"/>
 						<xul:listheader minwidth="50" width="100" label="Labels"/>
 						<xul:listheader minwidth="50" width="100" label="Attachements"/>
-						<xul:listheader minwidth="50" width="100" label="Date"/>
+						<xul:listheader minwidth="50" width="120" label="Date"/>
 					</xul:listhead>
 					<xul:listbody id="messages"/>
 				</xul:listbox>
