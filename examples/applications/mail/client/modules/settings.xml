@@ -2,6 +2,10 @@
 <xul:vbox
 	xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	xmlns:xi="http://www.w3.org/2001/XInclude">
+	<xul:toolbar>
+		<xul:toolbarbutton label="Save" />
+		<xul:toolbarbutton label="Discard" />
+	</xul:toolbar>
 	<xul:tabbox>
 		<xul:tabs>
 			<xul:tab label="General" />

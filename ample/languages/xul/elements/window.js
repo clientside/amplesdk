@@ -26,20 +26,12 @@ cXULElement_window.handlers	= {
 					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
 			}
 		}
-	},
-	"dragstart":	function(oEvent) {
-		if (oEvent.target == this && oEvent.$pseudoTarget != this.$getContainer("title"))
-			oEvent.preventDefault();
-//		this.$getContainer("body").style.visibility	= "hidden";
-//		this.$getContainer("foot").style.visibility	= "hidden";
-	}/*,
-	"dragend":		function(oEvent) {
-//		this.$getContainer("body").style.visibility	= "";
-//		this.$getContainer("foot").style.visibility	= "";
-	}*/
+	}
 };
-//cXULElement_window.handlers.resizestart	= cXULElement_handlers.dragstart;
-//cXULElement_window.handlers.resizedragend	= cXULElement_handlers.dragend;
+cXULElement_window.handlers.dragstart	= cXULWindowElement.interactionstart;
+cXULElement_window.handlers.dragend		= cXULWindowElement.interactionend;
+cXULElement_window.handlers.resizestart	= cXULWindowElement.interactionstart;
+cXULElement_window.handlers.resizeend	= cXULWindowElement.interactionend;
 
 // Element Renders
 cXULElement_window.prototype.$getTagOpen	= function() {

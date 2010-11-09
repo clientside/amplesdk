@@ -94,7 +94,7 @@ xul|splitter-horizontal xul|splitter::image {
 }
 
 xul|splitter:hover xul|splitter::image {
-	background-color: gray;
+	background-color: #D8D2BD;
 }
 
 xul|splitter:active xul|splitter::image {

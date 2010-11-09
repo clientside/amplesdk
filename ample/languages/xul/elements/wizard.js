@@ -157,20 +157,12 @@ cXULElement_wizard.handlers	= {
 					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
 			}
 		}
-	},
-	"dragstart":	function(oEvent) {
-		if (oEvent.target == this && oEvent.$pseudoTarget != this.$getContainer("title"))
-			oEvent.preventDefault();
-//		this.$getContainer("body").style.visibility	= "hidden";
-//		this.$getContainer("foot").style.visibility	= "hidden";
-	}/*,
-	"dragend":		function(oEvent) {
-		this.$getContainer("body").style.visibility	= "";
-		this.$getContainer("foot").style.visibility	= "";
-	}*/
+	}
 };
-//cXULElement_wizard.handlers.resizestart		= cXULElement_wizard.handlers.dragstart;
-//cXULElement_wizard.handlers.resizedragend	= cXULElement_wizard.handlers.dragend;
+cXULElement_wizard.handlers.dragstart	= cXULWindowElement.interactionstart;
+cXULElement_wizard.handlers.dragend		= cXULWindowElement.interactionend;
+cXULElement_wizard.handlers.resizestart	= cXULWindowElement.interactionstart;
+cXULElement_wizard.handlers.resizeend	= cXULWindowElement.interactionend;
 
 // Static methods
 cXULElement_wizard.goTo	= function(oElement, oPage) {

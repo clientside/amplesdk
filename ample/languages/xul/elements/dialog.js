@@ -102,22 +102,12 @@ cXULElement_dialog.handlers	= {
 					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
 			}
 		}
-	},
-
-	"dragstart":	function(oEvent) {
-		if (oEvent.target == this && oEvent.$pseudoTarget != this.$getContainer("title"))
-			oEvent.preventDefault();
-/*
-		this.$getContainer("body").style.visibility	= "hidden";
-		this.$getContainer("foot").style.visibility	= "hidden";*/
-	}/*,
-	"dragend":		function(oEvent) {
-		this.$getContainer("body").style.visibility	= "";
-		this.$getContainer("foot").style.visibility	= "";
-	}*/
+	}
 };
-//cXULElement_dialog.handlers.resizestart	= cXULElement_dialog.handlers.dragstart;
-//cXULElement_dialog.handlers.resizedragend	= cXULElement_dialog.handlers.dragend;
+cXULElement_dialog.handlers.dragstart	= cXULWindowElement.interactionstart;
+cXULElement_dialog.handlers.dragend		= cXULWindowElement.interactionend;
+cXULElement_dialog.handlers.resizestart	= cXULWindowElement.interactionstart;
+cXULElement_dialog.handlers.resizeend	= cXULWindowElement.interactionend;
 
 // Element Renders
 cXULElement_dialog.prototype.$getTagOpen	= function()

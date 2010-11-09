@@ -4,10 +4,10 @@
 	xmlns:xi="http://www.w3.org/2001/XInclude">
 	<!-- Main commands -->
 	<xul:commandset>
-		<xul:command id="cmd_navigate_contacts" oncommand="alert('cmd_navigate_contacts')"/>
-		<xul:command id="cmd_navigate_message" oncommand="alert('cmd_navigate_message')"/>
-		<xul:command id="cmd_navigate_messages" oncommand="alert('cmd_navigate_messages')"/>
-		<xul:command id="cmd_navigate_settings" oncommand="alert('cmd_navigate_settings')"/>
+		<xul:command id="cmd_navigate_messages" oncommand="ample.query('#workspace').attr('selectedIndex', 0)"/>
+		<xul:command id="cmd_navigate_message" oncommand="ample.query('#workspace').attr('selectedIndex', 1)"/>
+		<xul:command id="cmd_navigate_contacts" oncommand="ample.query('#workspace').attr('selectedIndex', 2)"/>
+		<xul:command id="cmd_navigate_settings" oncommand="ample.query('#workspace').attr('selectedIndex', 3)"/>
 	</xul:commandset>
 	<!-- Main broadcasters -->
 	<xul:broadcasterset>
@@ -18,10 +18,11 @@
 	<xul:toolbar>
 		<xul:toolbarbutton label="Settings" command="cmd_navigate_settings"/>
 		<xul:toolbarbutton label="Contacts" command="cmd_navigate_contacts"/>
+		<xul:toolbarbutton label="Messages" command="cmd_navigate_messages"/>
 	</xul:toolbar>
 	<!--  -->
 	<xul:hbox flex="1" width="100%">
-		<xul:vbox width="200">
+		<xul:vbox width="200" minwidth="100" maxwidth="300">
 			<xul:toolbar>
 				<xul:toolbarbutton label="Compose Mail" command="cmd_navigate_message"/>
 			</xul:toolbar>
@@ -72,7 +73,7 @@
 			</xul:tree>
 		</xul:vbox>
 		<xul:splitter />
-		<xul:deck flex="1">
+		<xul:deck id="workspace" flex="1">
 			<xul:vbox flex="1">
 				<xul:toolbar>
 					<xul:toolbarbutton label="Archieve" observes="brd_message_selected"/>
@@ -87,7 +88,7 @@
 							</xul:menuitem>
 							<xul:menuseparator id="pop_moveto_after"/>
 							<xul:menuseparator />
-							<xul:menuitem label="Manage labels" />
+							<xul:menuitem label="Manage labels..." />
 						</xul:menupopup>
 					</xul:toolbarbutton>
 					<xul:toolbarbutton label="Labels" type="menu">
@@ -97,7 +98,7 @@
 							</xul:menuitem>
 							<xul:menuseparator id="pop_labels_after"/>
 							<xul:menuseparator />
-							<xul:menuitem label="Manage labels" />
+							<xul:menuitem label="Manage labels..." />
 						</xul:menupopup>
 					</xul:toolbarbutton>
 					<xul:toolbarseparator />
@@ -107,7 +108,7 @@
 							<xul:menuitem label="Add to tasks" observes="brd_message_selected" />
 							<xul:menuitem label="Add star" observes="brd_message_selected" />
 							<xul:menuitem label="Remove star" observes="brd_message_selected" />
-							<xul:menuitem label="Filter messages like this" observes="brd_message_selected" />
+							<xul:menuitem label="Filter messages like this..." observes="brd_message_selected" />
 						</xul:menupopup>
 					</xul:toolbarbutton>
 					<xul:hbox flex="1" pack="end" align="center">
@@ -115,7 +116,7 @@
 						<xul:spacer width="5" />
 					</xul:hbox>
 				</xul:toolbar>
-				<xul:listbox height="200" type="checkbox" onselect="ample.query('#brd_message_selected').attr('disabled', this.selectedItems.length ? 'false' : 'true');">
+				<xul:listbox minheight="100" maxheight="300" height="200" type="checkbox" onselect="ample.query('#brd_message_selected').attr('disabled', this.selectedItems.length ? 'false' : 'true');">
 					<xul:listhead>
 						<xul:listheader minwidth="100" width="200" label="From"/>
 						<xul:listheader minwidth="300" width="300" label="Subject"/>

@@ -13,7 +13,7 @@ cAMLQuery.prototype.animate	= function(oProperties, vDuration, sEasing, fCallbac
 	fGuard(arguments, [
 		["properties",	cObject],
 		["duration",	cObject, true],
-		["easing",		cString, true],
+		["easing",		cObject, true],
 		["callback",	cFunction, true]
 	]);
 
