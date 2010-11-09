@@ -39,18 +39,14 @@ var cXULElement_dialog	= function(){
 	// Extra1
 	this.buttons.extra1	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "xul:button"));
 	this.buttons.extra1.addEventListener("DOMActivate", function(oEvent) {
-        var oEvent2    = that.ownerDocument.createEvent("Events");
-        oEvent2.initEvent("dialogextra1", true, true);
-        that.dispatchEvent(oEvent2);
+		that.extra1();
 	}, false);
 	this.buttons.extra1.setAttribute("label", "Extra1");
 	this.buttons.extra1.setAttribute("class", "extra1");
 	// Extra2
 	this.buttons.extra2	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "xul:button"));
 	this.buttons.extra2.addEventListener("DOMActivate", function(oEvent) {
-        var oEvent2    = that.ownerDocument.createEvent("Events");
-        oEvent2.initEvent("dialogextra2", true, true);
-        that.dispatchEvent(oEvent2);
+		that.extra2();
 	}, false);
 	this.buttons.extra2.setAttribute("label", "Extra2");
 	this.buttons.extra2.setAttribute("class", "extra2");
@@ -81,6 +77,20 @@ cXULElement_dialog.prototype.cancelDialog    = function()
     oEvent2.initEvent("dialogcancel", true, true);
     if (this.dispatchEvent(oEvent2))
         this.setAttribute("hidden", "true");
+};
+
+cXULElement_dialog.prototype.extra1    = function()
+{
+    var oEvent2  = this.ownerDocument.createEvent("Events");
+    oEvent2.initEvent("dialogextra1", true, true);
+    this.dispatchEvent(oEvent2);
+};
+
+cXULElement_dialog.prototype.extra2    = function()
+{
+    var oEvent2  = this.ownerDocument.createEvent("Events");
+    oEvent2.initEvent("dialogextra2", true, true);
+    this.dispatchEvent(oEvent2);
 };
 
 cXULElement_dialog.prototype.centerWindowOnScreen    = function()
