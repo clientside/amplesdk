@@ -8,8 +8,8 @@ xul|window {
 xul|dialog::head,
 xul|wizard::head,
 xul|window::head {
-	top-left-radius: 5px;
-	top-right-radius : 5px;
+	border-top-left-radius: 3px;
+	border-top-right-radius : 3px;
 }
 
 xul|datepicker-pane,
