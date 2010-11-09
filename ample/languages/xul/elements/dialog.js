@@ -36,6 +36,24 @@ var cXULElement_dialog	= function(){
 	}, false);
 	this.buttons.help.setAttribute("label", ample.locale.localize("dialog.button.help"));
 	this.buttons.help.setAttribute("class", "help");
+	// Extra1
+	this.buttons.extra1	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "xul:button"));
+	this.buttons.extra1.addEventListener("DOMActivate", function(oEvent) {
+        var oEvent2    = that.ownerDocument.createEvent("Events");
+        oEvent2.initEvent("dialogextra1", true, true);
+        that.dispatchEvent(oEvent2);
+	}, false);
+	this.buttons.extra1.setAttribute("label", "Extra1");
+	this.buttons.extra1.setAttribute("class", "extra1");
+	// Extra2
+	this.buttons.extra2	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "xul:button"));
+	this.buttons.extra2.addEventListener("DOMActivate", function(oEvent) {
+        var oEvent2    = that.ownerDocument.createEvent("Events");
+        oEvent2.initEvent("dialogextra2", true, true);
+        that.dispatchEvent(oEvent2);
+	}, false);
+	this.buttons.extra2.setAttribute("label", "Extra2");
+	this.buttons.extra2.setAttribute("class", "extra2");
 };
 cXULElement_dialog.prototype	= new cXULWindowElement("dialog");
 cXULElement_dialog.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
@@ -77,15 +95,18 @@ cXULElement_dialog.prototype.centerWindowOnScreen    = function()
 cXULElement_dialog.handlers	= {
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this) {
+			var sValue	= oEvent.newValue || '';
 			switch (oEvent.attrName) {
 				case "title":
-					this.$getContainer("title").innerHTML = oEvent.newValue || '';
+					this.$getContainer("title").innerHTML = sValue;
 					break;
 
 				case "buttons":
 					this.buttons["help"].setAttribute("hidden", !sValue || sValue.indexOf("help")    ==-1 ? "true" : "false");
 					this.buttons["cancel"].setAttribute("hidden", !sValue || sValue.indexOf("cancel")  ==-1 ? "true" : "false");
 					this.buttons["accept"].setAttribute("hidden", !sValue || sValue.indexOf("accept")  ==-1 ? "true" : "false");
+					this.buttons["extra1"].setAttribute("hidden", !sValue || sValue.indexOf("extra1")  ==-1 ? "true" : "false");
+					this.buttons["extra2"].setAttribute("hidden", !sValue || sValue.indexOf("extra2")  ==-1 ? "true" : "false");
 					break;
 
 				case "buttonalign":
@@ -97,6 +118,26 @@ cXULElement_dialog.handlers	= {
 			        else
 			            this.$getContainer("foot").align  = "right";
 			        break;
+
+				case "buttonlabelhelp":
+					this.buttons["help"].setAttribute("label", sValue);
+					break;
+
+				case "buttonlabelaccept":
+					this.buttons["accept"].setAttribute("label", sValue);
+					break;
+
+				case "buttonlabelcancel":
+					this.buttons["cancel"].setAttribute("label", sValue);
+					break;
+
+				case "buttonlabelextra1":
+					this.buttons["accept"].setAttribute("label", sValue);
+					break;
+
+				case "buttonlabelextra2":
+					this.buttons["extra2"].setAttribute("label", sValue);
+					break;
 
 				default:
 					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
@@ -136,10 +177,24 @@ cXULElement_dialog.prototype.$getTagClose	= function()
 {
 	if (this.attributes["buttons"].indexOf("accept") ==-1)
 		this.buttons.accept.attributes["hidden"]= "true";
+	if (this.attributes["buttonlabelaccept"])
+		this.buttons.accept.attributes["label"]	= this.attributes["buttonlabelaccept"];
 	if (this.attributes["buttons"].indexOf("cancel") ==-1)
 		this.buttons.cancel.attributes["hidden"]= "true";
+	if (this.attributes["buttonlabelcancel"])
+		this.buttons.cancel.attributes["label"]	= this.attributes["buttonlabelcancel"];
 	if (this.attributes["buttons"].indexOf("help") ==-1)
 		this.buttons.help.attributes["hidden"]	= "true";
+	if (this.attributes["buttonlabelhelp"])
+		this.buttons.help.attributes["label"]	= this.attributes["buttonlabelhelp"];
+	if (this.attributes["buttons"].indexOf("extra1") ==-1)
+		this.buttons.extra1.attributes["hidden"]= "true";
+	if (this.attributes["buttonlabelextra1"])
+		this.buttons.extra1.attributes["label"]	= this.attributes["buttonlabelextra1"];
+	if (this.attributes["buttons"].indexOf("extra2") ==-1)
+		this.buttons.extra2.attributes["hidden"]= "true";
+	if (this.attributes["buttonlabelextra2"])
+		this.buttons.extra2.attributes["label"]	= this.attributes["buttonlabelextra2"];
 
 	return '		</div>\
 					<div class="xul-dialog--footer">\
@@ -147,6 +202,8 @@ cXULElement_dialog.prototype.$getTagClose	= function()
 							<tbody>\
 								<tr>\
 									<td width="100%">' + this.buttons['help'].$getTag() + '</td>\
+									<td>' + this.buttons['extra1'].$getTag() + '</td>\
+									<td>' + this.buttons['extra2'].$getTag() + '</td>\
 									<td>' + this.buttons['accept'].$getTag() + '</td>\
 									<td>' + this.buttons['cancel'].$getTag() + '</td>\
 								</tr>\

@@ -50,6 +50,12 @@ xul|dialog::footer {
 	border-top:	solid 1px gray;
 }
 
+xul|dialog::footer xul|button.help {
+	margin-left: 5px;
+}
+
+xul|dialog::footer xul|button.extra1,
+xul|dialog::footer xul|button.extra2,
 xul|dialog::footer xul|button.accept,
 xul|dialog::footer xul|button.cancel,
 xul|dialog::footer xul|button.help,
