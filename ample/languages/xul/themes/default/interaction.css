@@ -61,8 +61,8 @@ xul|splitter::image {
 /*	background-color:	silver;
 	border-color: silver;
 	border-style: inset;
-	border-width: 0;*/
-	border-color: #D8D2BD;
+	border-width: 0;
+	border-color: #D8D2BD;*/
 }
 
 xul|splitter-vertical {
@@ -89,7 +89,7 @@ xul|splitter-horizontal {
 xul|splitter-horizontal xul|splitter::image {
 	width:	4px;
 	height: 100%;
-	border-width: 0 1px;
+/*	border-width: 0 1px;*/
 	background: transparent url(media/dimple.png) no-repeat scroll center center;
 }
 
