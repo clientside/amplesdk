@@ -175,12 +175,12 @@ cXULElement.prototype.reflow   = function()
             for (var nIndex = 0; nIndex < nLength; nIndex++)
             {
             	oElement	= this.childNodes[nIndex];
-            	oElementDOM	= oElement.$getContainer();
             	if (oElement.nodeType != AMLNode.ELEMENT_NODE)
             		nVirtual++;
             	else
                 if (oElement.viewType != cXULElement.VIEW_TYPE_VIRTUAL)
                 {
+                	oElementDOM	= oElement.$getContainer();
                     if (this.attributes["orient"] == "vertical")
                     {
                         // set heights
@@ -191,9 +191,9 @@ cXULElement.prototype.reflow   = function()
 //                        	if (oElement.attributes["align"] == "stretch" || !this.attributes["flex"])
                         	oElementDOM.style.height	= "100%";
                         }
-                        else
-                        if (oElement.attributes["height"])
-                        	oCell.setAttribute("height", oElement.attributes["height"]);
+//                        else
+//                        if (oElement.attributes["height"])
+//                        	oCell.setAttribute("height", oElement.attributes["height"]);
                         // Stretch if needed
                         if (this.attributes["align"] == "stretch")
                         	oElementDOM.style.width	= "100%";
@@ -208,9 +208,9 @@ cXULElement.prototype.reflow   = function()
 //                        	if (oElement.attributes["align"] == "stretch" || !this.attributes["flex"])
                         	oElementDOM.style.width	= "100%";
                         }
-                        else
-                        if (oElement.attributes["width"])
-                        	oCell.setAttribute("width", oElement.attributes["width"]);
+//                        else
+//                        if (oElement.attributes["width"])
+//                        	oCell.setAttribute("width", oElement.attributes["width"]);
                         // Stretch if needed
                         if (this.attributes["align"] == "stretch")
                         	oElementDOM.style.height	= "100%";
@@ -353,7 +353,7 @@ cXULElement.getBoxOpenChild = function(oElement)
 
 	if (oElement.nodeType == AMLNode.ELEMENT_NODE)
 	{
-	    if (oElement.parentNode.attributes["orient"] != "vertical")
+		if (oElement.parentNode.attributes["orient"] != "vertical")
 	    {
 			aHtml[aHtml.length]	= ' style="';
 	        if (oElement.attributes["hidden"] == "true")
@@ -362,9 +362,15 @@ cXULElement.getBoxOpenChild = function(oElement)
 				aHtml[aHtml.length]	= 'position:absolute;width:0;top:0;left:0;z-index:1;';
 		    else
 		    if (!(oElement.parentNode instanceof cXULElement_row))
-		    	aHtml[aHtml.length]	= 'height:100%;';
+		    	aHtml[aHtml.length]	= 'height:' + (oElement.attributes["height"] || '100%');
 	        aHtml[aHtml.length]	= '"';
+	        if (oElement.attributes.width)
+	        	aHtml[aHtml.length]	= ' width="' + oElement.attributes.width + '"';
 	    }
+		else {
+	        if (oElement.attributes.height)
+	        	aHtml[aHtml.length]	= ' height="' + oElement.attributes.height + '"';
+		}
 
 	    // Aligning
 	    var sHtml1  = "left";
