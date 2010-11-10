@@ -138,27 +138,35 @@ cXULElement.prototype.reflow   = function()
     if (nLength)
     {
     	var oElement;
-        var nFlex       = 0,
+        var nFlex		= 0,
+        	nAbsolute	= 0,
+        	nPercents	= 0,
+        	bVertical	= this.attributes["orient"] == "vertical",
+        	sMeasure	= bVertical ? "height" : "width",
+        	sMeasureAlt	= bVertical ? "width" : "height",
         	nElements   = 0,
            	nVirtual 	= 0;
 
         // Count the amount of elements and their cumulative flex
-        for (var nIndex = 0; nIndex < nLength; nIndex++)
-        {
+        for (var nIndex = 0; nIndex < nLength; nIndex++) {
 			oElement	= this.childNodes[nIndex];
-            if (oElement.nodeType == AMLNode.ELEMENT_NODE && oElement.viewType != cXULElement.VIEW_TYPE_VIRTUAL)
-            {
+            if (oElement.nodeType == AMLNode.ELEMENT_NODE && oElement.viewType != cXULElement.VIEW_TYPE_VIRTUAL) {
                 nElements++;
+                if ((sMeasure in oElement.attributes) && oElement.attributes[sMeasure].match(/([0-9\.]+)(%?)/)) {
+                	if (RegExp.$2 == "%")
+                		nPercents	+= RegExp.$1 * 1;
+                	else
+                		nAbsolute	+= RegExp.$1 * 1;
+                }
+                else
                 if ("flex" in oElement.attributes && !isNaN(oElement.attributes["flex"]))
                     nFlex  += oElement.attributes["flex"] * 1;
             }
         }
 
         // Refresh flexible elements
-        if (nElements)
-        {
+        if (nElements) {
             var oElementBox	=(this instanceof cXULElement_row || this instanceof cXULElement_rows) ? this.$getContainer() : this.$getContainer("box-container"),
-            	sMeasure	= this.attributes["orient"] == "vertical" ? "height" : "width",
             	oElementDOM,
             	oCell;
 
@@ -171,50 +179,29 @@ cXULElement.prototype.reflow   = function()
                 this.$getContainer().style[sMeasure]	= this.attributes[sMeasure] ? (isNaN(this.attributes[sMeasure]) ? this.attributes[sMeasure] : this.attributes[sMeasure] + "px") : "100%";
             }
 
-            //
-            for (var nIndex = 0; nIndex < nLength; nIndex++)
-            {
+            var oElementRect= this.getBoundingClientRect(),
+            	nSpaceAbsolute	= bVertical ? oElementRect.bottom - oElementRect.top : oElementRect.right - oElementRect.left,
+            	nSpacePercents	= nSpaceAbsolute * nPercents / 100,
+            	nSpaceFlex		= nSpaceAbsolute - nSpacePercents;
+
+            for (var nIndex = 0; nIndex < nLength; nIndex++) {
             	oElement	= this.childNodes[nIndex];
             	if (oElement.nodeType != AMLNode.ELEMENT_NODE)
             		nVirtual++;
             	else
-                if (oElement.viewType != cXULElement.VIEW_TYPE_VIRTUAL)
-                {
+                if (oElement.viewType != cXULElement.VIEW_TYPE_VIRTUAL) {
                 	oElementDOM	= oElement.$getContainer();
-                    if (this.attributes["orient"] == "vertical")
-                    {
-                        // set heights
-                    	oCell	= oElementBox.tBodies[0].rows[nIndex - nVirtual].cells[0];
-                        if ("flex" in oElement.attributes && !isNaN(oElement.attributes["flex"])) {
-                        	oCell.setAttribute("height", oElement.attributes["flex"] * 100 / nFlex + "%");
-                        	//
-//                        	if (oElement.attributes["align"] == "stretch" || !this.attributes["flex"])
-                        	oElementDOM.style.height	= "100%";
-                        }
-//                        else
-//                        if (oElement.attributes["height"])
-//                        	oCell.setAttribute("height", oElement.attributes["height"]);
-                        // Stretch if needed
-                        if (this.attributes["align"] == "stretch")
-                        	oElementDOM.style.width	= "100%";
+                	oCell	= oElementBox.tBodies[0].rows[bVertical ? nIndex - nVirtual : 0].cells[bVertical ? 0 : nIndex - nVirtual];
+//                	if ((sMeasure in oElement.attributes) && oElement.attributes[sMeasure].match(/([0-9\.]+)(%?)/))
+//                		oCell.setAttribute(sMeasure, RegExp.$2 == "%" ? nSpaceAbsolute * RegExp.$1 / 100 : RegExp.$1);
+//                	else
+                    if ("flex" in oElement.attributes && !isNaN(oElement.attributes["flex"])) {
+                    	oCell.setAttribute(sMeasure, oElement.attributes["flex"] * 100 / nFlex + "%");
+//                    	oCell.setAttribute(sMeasure, nSpaceFlex * oElement.attributes["flex"] / nFlex);
+                    	oElementDOM.style[sMeasure]	= "100%";
                     }
-                    else
-                    {
-                        // set widths
-                    	oCell	= oElementBox.tBodies[0].rows[0].cells[nIndex - nVirtual];
-                        if ("flex" in oElement.attributes && !isNaN(oElement.attributes["flex"])) {
-                        	oCell.setAttribute("width", oElement.attributes["flex"] * 100 / nFlex + "%");
-                        	//
-//                        	if (oElement.attributes["align"] == "stretch" || !this.attributes["flex"])
-                        	oElementDOM.style.width	= "100%";
-                        }
-//                        else
-//                        if (oElement.attributes["width"])
-//                        	oCell.setAttribute("width", oElement.attributes["width"]);
-                        // Stretch if needed
-                        if (this.attributes["align"] == "stretch")
-                        	oElementDOM.style.height	= "100%";
-                    }
+                    if (this.attributes["align"] == "stretch")
+                    	oElementDOM.style[sMeasureAlt]	= "100%";
                 }
             }
         }
