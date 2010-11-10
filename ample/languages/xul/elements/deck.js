@@ -18,6 +18,7 @@ cXULElement_deck.prototype.selectedPanel	= null;
 // Attributes Defaults
 cXULElement_deck.attributes	= {};
 cXULElement_deck.attributes.selectedIndex	= "-1";
+//cXULElement_deck.attributes.orient	= "vertical";
 
 // Class event handlers
 cXULElement_deck.handlers	= {
@@ -47,10 +48,10 @@ cXULElement_deck.handlers	= {
 			        this.$mapAttribute(oEvent.attrName, oEvent.newValue);
 			}
 		}
-	},
+	}/*,
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		oXULReflowManager.schedule(this);
-	}
+	}*/
 };
 
 cXULElement_deck.prototype.reflow	= function() {
