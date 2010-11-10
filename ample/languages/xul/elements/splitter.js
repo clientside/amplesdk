@@ -35,14 +35,18 @@ cXULElement_splitter.handlers	= {
 		cXULElement_splitter.active	= true;
 
 		//
-		var oRect	= this.getBoundingClientRect("image");
+		var oElementDOM	= this.$getContainer("image"),
+			oRectImage	= this.getBoundingClientRect("image"),
+			oRectParent	= this.parentNode.getBoundingClientRect();
 		if (this.parentNode.getAttribute("orient") == "vertical") {
-			cXULElement_splitter.offset	= oRect.top;
+			cXULElement_splitter.offset	= oRectImage.top;
 			cXULElement_splitter.client	= oEvent.clientY;
+			oElementDOM.style.width	=(oRectParent.right - oRectParent.left)+ "px";
 		}
 		else {
-			cXULElement_splitter.offset	= oRect.left;
+			cXULElement_splitter.offset	= oRectImage.left;
 			cXULElement_splitter.client	= oEvent.clientX;
+			oElementDOM.style.height	=(oRectParent.bottom - oRectParent.top)+ "px";
 		}
 	},
 	"mouseup":		function(oEvent) {
@@ -54,14 +58,8 @@ cXULElement_splitter.handlers	= {
 		this.$setPseudoClass("active", false);
 		cXULElement_splitter.active	= false;
 
-		// Reset position
-		var oElement	= this.$getContainer("image");
-		if (this.parentNode.getAttribute("orient") == "vertical")
-			oElement.style.top	= "";
-		else
-			oElement.style.left	= "";
-
-		var bVertical	= this.parentNode.getAttribute("orient") == "vertical",
+		var oElementDOM	= this.$getContainer("image"),
+			bVertical	= this.parentNode.getAttribute("orient") == "vertical",
 			sMeasure	= bVertical ? "height" : "width",
 			nOffset		= oEvent[bVertical ? "clientY" : "clientX"] - cXULElement_splitter.client,
 			nValue,
@@ -69,6 +67,17 @@ cXULElement_splitter.handlers	= {
 			nMin,
 			nMax;
 
+		// Reset position
+		if (this.parentNode.getAttribute("orient") == "vertical") {
+			oElementDOM.style.width	= "";
+			oElementDOM.style.top	= "";
+		}
+		else {
+			oElementDOM.style.height= "";
+			oElementDOM.style.left	= "";
+		}
+
+		// check previous sibling
 		if (this.previousSibling &&(nValue = this.previousSibling.attributes[sMeasure] * 1)) {
 			nValue2	= nValue + nOffset;
 			if (nMin = this.previousSibling.attributes["min" + sMeasure])
@@ -92,8 +101,8 @@ cXULElement_splitter.handlers	= {
 	},
 	"mousemove":	function(oEvent) {
 		if (cXULElement_splitter.active) {
-			var bVertical	= this.parentNode.getAttribute("orient") == "vertical",
-				oElement	= this.$getContainer("image"),
+			var oElementDOM	= this.$getContainer("image"),
+				bVertical	= this.parentNode.getAttribute("orient") == "vertical",
 				sMeasure	= bVertical ? "height" : "width",
 				nOffset		= oEvent[bVertical ? "clientY" : "clientX"] - cXULElement_splitter.client,
 				nValue,
@@ -103,11 +112,11 @@ cXULElement_splitter.handlers	= {
 			// Check previous sibling
 			if (this.previousSibling &&(nValue = this.previousSibling.attributes[sMeasure] * 1))
 				if (!((nMin = this.previousSibling.attributes["min" + sMeasure]) && nMin > nValue + nOffset) && !((nMax = this.previousSibling.attributes["max" + sMeasure]) && nMax < nValue + nOffset))
-					oElement.style[this.parentNode.getAttribute("orient") == "vertical" ? "top" : "left"]	=(cXULElement_splitter.offset + nOffset)+ "px";
+					oElementDOM.style[this.parentNode.getAttribute("orient") == "vertical" ? "top" : "left"]	=(cXULElement_splitter.offset + nOffset)+ "px";
 			// check next sibling
 			if (this.nextSibling &&(nValue = this.nextSibling.attributes[sMeasure] * 1))
 				if (!((nMin = this.nextSibling.attributes["min" + sMeasure]) && nMin > nValue - nOffset) && !((nMax = this.nextSibling.attributes["max" + sMeasure]) && nMax < nValue - nOffset))
-					oElement.style[this.parentNode.getAttribute("orient") == "vertical" ? "top" : "left"]	=(cXULElement_splitter.offset - nOffset)+ "px";
+					oElementDOM.style[this.parentNode.getAttribute("orient") == "vertical" ? "top" : "left"]	=(cXULElement_splitter.offset + nOffset)+ "px";
 		}
 	},
 	"DOMAttrModified":	function(oEvent) {
