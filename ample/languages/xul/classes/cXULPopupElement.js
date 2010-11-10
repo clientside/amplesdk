@@ -43,7 +43,7 @@ cXULPopupElement.prototype.showPopup	= function(oElement, nLeft, nTop, nType, oA
     		oPosition2	= {"top":0, "left":0, "bottom":0, "right":0};
     	// If within windows (which are positioned absolutely)
     	for (var oNode = this; oNode; oNode = oNode.parentNode)
-    		if (oNode instanceof cXULElement_window || oNode instanceof cXULElement_dialog || oNode instanceof cXULElement_wizard) {
+    		if (oNode instanceof cXULWindowElement) {
     			oPosition2	= oNode.getBoundingClientRect();
     			break;
     		}

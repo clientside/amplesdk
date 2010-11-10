@@ -16,7 +16,7 @@ var oXULWindowManager	= (function () {
 	ample.bind("mousedown",	function(oEvent) {
 		// manage windows stack
 		for (var oElement = oEvent.target, oStyle; oElement; oElement = oElement.parentNode)
-			if (oElement instanceof cXULElement_window || oElement instanceof cXULElement_dialog || oElement instanceof cXULElement_wizard)
+			if (oElement instanceof cXULWindowElement)
 				if ((oStyle = oElement.$getContainer().style) && (oStyle.zIndex < nWindowIndex))
 					oStyle.zIndex	= ++nWindowIndex;
 	}, true);
