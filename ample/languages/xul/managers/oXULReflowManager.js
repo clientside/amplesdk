@@ -35,8 +35,18 @@ var oXULReflowManager	= (function () {
 		else
 		if (oEvent.target.parentNode instanceof cXULElement && oEvent.target.parentNode.viewType == cXULElement.VIEW_TYPE_BOXED)
 			fSchedule(oEvent.target.parentNode);
+/*
+		if (oEvent.target instanceof cXULWindowElement || oEvent.target instanceof cXULElement_page)
+			fSchedule(oEvent.target);
+*/
 	}, true);
-
+/*
+	ample.bind("resize", function(oEvent) {
+		var aElements = this.querySelectorAll("xul|page, xul|dialog, xul|window, xul|wizard", function(){return cXULElement.prototype.namespaceURI});
+		for (var nIndex = 0, aElements; nIndex < aElements.length; nIndex++)
+			fSchedule(aElements[nIndex]);
+	});
+*/
 	// Public Object
 	return {
 		"schedule":	function(oElement) {

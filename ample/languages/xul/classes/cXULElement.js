@@ -129,13 +129,9 @@ cXULElement.prototype.$isAccessible	= function()
 
 cXULElement.prototype.reflow   = function()
 {
-	// return if we are not a box
-	if (!(this.viewType == cXULElement.VIEW_TYPE_BOXED))
-		return;
-
 	//
 	var nLength	= this.childNodes.length;
-    if (nLength)
+    if (nLength && this.viewType == cXULElement.VIEW_TYPE_BOXED)
     {
     	var oElement;
         var nFlex		= 0,
@@ -161,6 +157,10 @@ cXULElement.prototype.reflow   = function()
                 else
                 if ("flex" in oElement.attributes && !isNaN(oElement.attributes["flex"]))
                     nFlex  += oElement.attributes["flex"] * 1;
+                else {
+                	var oElementRect	= oElement.getBoundingClientRect();
+                	nAbsolute	+= bVertical ? oElementRect.bottom - oElementRect.top : oElementRect.right - oElementRect.left;
+                }
             }
         }
 
@@ -179,10 +179,10 @@ cXULElement.prototype.reflow   = function()
                 this.$getContainer().style[sMeasure]	= this.attributes[sMeasure] ? (isNaN(this.attributes[sMeasure]) ? this.attributes[sMeasure] : this.attributes[sMeasure] + "px") : "100%";
             }
 
-            var oElementRect= this.getBoundingClientRect(),
+            var oElementRect	= this.getBoundingClientRect(),
             	nSpaceAbsolute	= bVertical ? oElementRect.bottom - oElementRect.top : oElementRect.right - oElementRect.left,
             	nSpacePercents	= nSpaceAbsolute * nPercents / 100,
-            	nSpaceFlex		= nSpaceAbsolute - nSpacePercents;
+            	nSpaceFlex		= nSpaceAbsolute - nSpacePercents - nAbsolute;
 
             for (var nIndex = 0; nIndex < nLength; nIndex++) {
             	oElement	= this.childNodes[nIndex];
@@ -198,7 +198,7 @@ cXULElement.prototype.reflow   = function()
                     if ("flex" in oElement.attributes && !isNaN(oElement.attributes["flex"])) {
                     	oCell.setAttribute(sMeasure, oElement.attributes["flex"] * 100 / nFlex + "%");
 //                    	oCell.setAttribute(sMeasure, nSpaceFlex * oElement.attributes["flex"] / nFlex);
-                    	oElementDOM.style[sMeasure]	= "100%";
+                    	oElementDOM.style[sMeasure]	= "100%";	// Needed?
                     }
                     if (this.attributes["align"] == "stretch")
                     	oElementDOM.style[sMeasureAlt]	= "100%";
@@ -206,6 +206,12 @@ cXULElement.prototype.reflow   = function()
             }
         }
     }
+/*
+    // Resize children
+    for (var nIndex = 0, oElement; oElement = this.childNodes[nIndex]; nIndex++)
+    	if (oElement instanceof cXULElement)
+    		oElement.reflow();
+*/
 };
 
 cXULElement.prototype.getBoxObject	= function()
@@ -355,8 +361,8 @@ cXULElement.getBoxOpenChild = function(oElement)
 	        	aHtml[aHtml.length]	= ' width="' + oElement.attributes.width + '"';
 	    }
 		else {
-	        if (oElement.attributes.height)
-	        	aHtml[aHtml.length]	= ' height="' + oElement.attributes.height + '"';
+			if (oElement.attributes.height)
+				aHtml[aHtml.length]	= ' height="' + oElement.attributes.height + '"';
 		}
 
 	    // Aligning
