@@ -1,5 +1,6 @@
 <?php
 	$aFiles		= array();
+	$aFiles[]	= "debug.css";
     $aFiles[]	= "markup.css";
     $aFiles[]	= "input.css";
     $aFiles[]	= "interaction.css";

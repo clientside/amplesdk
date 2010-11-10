@@ -1,0 +1,28 @@
+/* Content Debugging */
+xul|box[debug=true] {
+	border-width:	1px;
+	border-style:	dashed;
+}
+
+xul|vbox[debug=true] {
+	border-color:	red;
+	border-left-width:	2px;
+	border-left-style:	solid;
+	background-color:	#fee;
+}
+
+xul|hbox[debug=true] {
+	border-color:	blue;
+	border-top-width:	2px;
+	border-top-style:	solid;
+	background-color:	#eef;
+}
+
+xul|vbox[debug=true] xul|box::-box-container,
+xul|hbox[debug=true] xul|box::-box-container {
+	outline: solid 1px green;
+}
+xul|vbox[debug=true] xul|box::-box-child,
+xul|hbox[debug=true] xul|box::-box-child {
+	outline: dotted 1px gray;
+}
