@@ -196,7 +196,7 @@ cXULElement.prototype.reflow   = function()
 //                		oCell.setAttribute(sMeasure, RegExp.$2 == "%" ? nSpaceAbsolute * RegExp.$1 / 100 : RegExp.$1);
 //                	else
                     if ("flex" in oElement.attributes && !isNaN(oElement.attributes["flex"])) {
-                    	oCell.setAttribute(sMeasure, oElement.attributes["flex"] * 100 / nFlex + "%");
+                    	oCell.setAttribute(sMeasure, oElement.attributes["flex"] * (100 - nPercents) / nFlex + "%");
 //                    	oCell.setAttribute(sMeasure, nSpaceFlex * oElement.attributes["flex"] / nFlex);
                     	oElementDOM.style[sMeasure]	= "100%";	// Needed?
                     }
