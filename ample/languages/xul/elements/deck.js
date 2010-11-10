@@ -48,10 +48,10 @@ cXULElement_deck.handlers	= {
 			        this.$mapAttribute(oEvent.attrName, oEvent.newValue);
 			}
 		}
-	}/*,
+	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		oXULReflowManager.schedule(this);
-	}*/
+	}
 };
 
 cXULElement_deck.prototype.reflow	= function() {
