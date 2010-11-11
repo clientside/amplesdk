@@ -184,6 +184,7 @@ cXULElement.prototype.reflow   = function()
             	nSpacePercents	= nSpaceAbsolute * nPercents / 100,
             	nSpaceFlex		= nSpaceAbsolute - nSpacePercents - nAbsolute;
 
+            var nAvailablePercents	= 100 * (1 - nAbsolute / nSpaceAbsolute) - nPercents;
             for (var nIndex = 0; nIndex < nLength; nIndex++) {
             	oElement	= this.childNodes[nIndex];
             	if (oElement.nodeType != AMLNode.ELEMENT_NODE)
@@ -196,7 +197,7 @@ cXULElement.prototype.reflow   = function()
 //                		oCell.setAttribute(sMeasure, RegExp.$2 == "%" ? nSpaceAbsolute * RegExp.$1 / 100 : RegExp.$1);
 //                	else
                     if ("flex" in oElement.attributes && !isNaN(oElement.attributes["flex"])) {
-                    	oCell.setAttribute(sMeasure, oElement.attributes["flex"] * (100 - nPercents) / nFlex + "%");
+                    	oCell.setAttribute(sMeasure, nAvailablePercents * oElement.attributes["flex"] / nFlex + "%");
 //                    	oCell.setAttribute(sMeasure, nSpaceFlex * oElement.attributes["flex"] / nFlex);
                     	oElementDOM.style[sMeasure]	= "100%";	// Needed?
                     }
