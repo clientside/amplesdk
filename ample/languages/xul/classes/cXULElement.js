@@ -131,12 +131,13 @@ cXULElement.prototype.reflow   = function()
 {
 	//
 	var nLength	= this.childNodes.length;
-    if (nLength && this.viewType == cXULElement.VIEW_TYPE_BOXED)
-    {
+    if (nLength && this.viewType == cXULElement.VIEW_TYPE_BOXED) {
     	var oElement;
         var nFlex		= 0,
         	nPixels		= 0,
         	nPercents	= 0,
+        	nElementFirst	=-1,
+        	nElementLast	=-1,
         	bVertical	= this.attributes["orient"] == "vertical",
         	sMeasure	= bVertical ? "height" : "width",
         	sMeasureAlt	= bVertical ? "width" : "height",
@@ -149,14 +150,22 @@ cXULElement.prototype.reflow   = function()
             if (oElement.nodeType == AMLNode.ELEMENT_NODE && oElement.viewType != cXULElement.VIEW_TYPE_VIRTUAL) {
                 nElements++;
                 if ((sMeasure in oElement.attributes) && oElement.attributes[sMeasure].match(/([0-9\.]+)(%?)/)) {
-                	if (RegExp.$2 == "%")
+                	if (RegExp.$2 == "%") {
                 		nPercents	+= RegExp.$1 * 1;
+                		if (nElementFirst ==-1)
+                			nElementFirst	= nIndex;
+                		nElementLast= nIndex;
+                	}
                 	else
                 		nPixels		+= RegExp.$1 * 1;
                 }
                 else
-                if ("flex" in oElement.attributes && !isNaN(oElement.attributes["flex"]))
+                if ("flex" in oElement.attributes && !isNaN(oElement.attributes["flex"])) {
                     nFlex  += oElement.attributes["flex"] * 1;
+            		if (nElementFirst ==-1)
+            			nElementFirst	= nIndex;
+                    nElementLast= nIndex;
+                }
                 else {
                 	var oElementRect	= oElement.getBoundingClientRect();
                 	nPixels	+= bVertical ? oElementRect.bottom - oElementRect.top : oElementRect.right - oElementRect.left;
@@ -181,11 +190,14 @@ cXULElement.prototype.reflow   = function()
 
             var oElementRect	= this.getBoundingClientRect(),
             	nPixelsAvailable= bVertical ? oElementRect.bottom - oElementRect.top : oElementRect.right - oElementRect.left,
-            	nPercentsInPixels	= nPixelsAvailable * nPercents / 100,
-            	nFlexInPixels		= nPixelsAvailable - nPercentsInPixels - nPixels;
+            	nFlexInPercents	= 100 * (1 - nPixels / nPixelsAvailable) - nPercents,
+            	nFlexInPixels	= nPixelsAvailable * (1 - nPercents / 100) - nPixels,
+            	nUsedFlex	= 0,
+            	nUsedPixels	= 0,
+            	nElementFlex,
+            	nElementPixels;
 
-            var nFlexAvailable	= 100 * (1 - nPixels / nPixelsAvailable) - nPercents;
-            for (var nIndex = 0; nIndex < nLength; nIndex++) {
+            for (nIndex = 0; nIndex < nLength; nIndex++) {
             	oElement	= this.childNodes[nIndex];
             	if (oElement.nodeType != AMLNode.ELEMENT_NODE)
             		nVirtual++;
@@ -193,12 +205,13 @@ cXULElement.prototype.reflow   = function()
                 if (oElement.viewType != cXULElement.VIEW_TYPE_VIRTUAL) {
                 	oElementDOM	= oElement.$getContainer();
                 	oCell	= oElementBox.tBodies[0].rows[bVertical ? nIndex - nVirtual : 0].cells[bVertical ? 0 : nIndex - nVirtual];
-//                	if ((sMeasure in oElement.attributes) && oElement.attributes[sMeasure].match(/([0-9\.]+)(%?)/))
-//                		oCell.setAttribute(sMeasure, RegExp.$2 == "%" ? nPixelsAvailable * RegExp.$1 / 100 : RegExp.$1);
-//                	else
                     if ("flex" in oElement.attributes && !isNaN(oElement.attributes["flex"])) {
-                    	oCell.setAttribute(sMeasure, nFlexAvailable * oElement.attributes["flex"] / nFlex + "%");
-//                    	oCell.setAttribute(sMeasure, nFlexInPixels * oElement.attributes["flex"] / nFlex);
+                    	nElementFlex	= nFlexInPercents * oElement.attributes["flex"] / nFlex;
+                    	nElementPixels	= nFlexInPixels * oElement.attributes["flex"] / nFlex;
+                    	oCell.setAttribute(sMeasure, Math.ceil(nElementLast == nIndex ? nFlexInPercents - nUsedFlex : nElementFlex) + "%");
+//                    	oCell.style[sMeasure]	=(nElementLast == nIndex ? nFlexInPixels - nUsedPixels : nElementPixels) + "px";
+                    	nUsedFlex	+= nElementFlex;
+                    	nUsedPixels	+= nElementPixels;
                     	oElementDOM.style[sMeasure]	= "100%";	// Needed?
                     }
                     if (this.attributes["align"] == "stretch")
@@ -207,12 +220,11 @@ cXULElement.prototype.reflow   = function()
             }
         }
     }
-/*
-    // Resize children
+
+    // Reflow children
     for (var nIndex = 0, oElement; oElement = this.childNodes[nIndex]; nIndex++)
     	if (oElement instanceof cXULElement)
     		oElement.reflow();
-*/
 };
 
 cXULElement.prototype.getBoxObject	= function()
