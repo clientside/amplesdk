@@ -133,6 +133,8 @@ cXULWindowElement.interactionstart	= function(oEvent) {
 		if (oEvent.type == "dragstart" && oEvent.$pseudoTarget != that.$getContainer("title"))
 			oEvent.preventDefault();
 		else {
+			if (this instanceof cXULElement_wizard || this instanceof cXULElement_dialog)
+				that.$getContainer("header").style.visibility	= "hidden";
 			that.$getContainer("body").style.visibility	= "hidden";
 			ample.query(that).animate({opacity:0.75});
 		}
@@ -142,6 +144,8 @@ cXULWindowElement.interactionstart	= function(oEvent) {
 cXULWindowElement.interactionend	= function(oEvent) {
 	var that	= oEvent.currentTarget;
 	if (oEvent.target == that) {
+		if (this instanceof cXULElement_wizard || this instanceof cXULElement_dialog)
+			that.$getContainer("header").style.visibility	= "";
 		that.$getContainer("body").style.visibility	= "";
 		ample.query(that).animate({opacity:1.0});
 	}
