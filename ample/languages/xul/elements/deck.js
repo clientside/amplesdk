@@ -37,6 +37,9 @@ cXULElement_deck.handlers	= {
 			            for (var nIndex = 0; nIndex < this.childNodes.length; nIndex++)
 			                this.childNodes[nIndex].setAttribute("hidden", this.selectedIndex == nIndex ? "false" : "true");
 
+			            //
+			            oXULReflowManager.schedule(this.selectedPanel);
+
 			            // send event
 			            var oEvent  = this.ownerDocument.createEvent("Events");
 			            oEvent.initEvent("select", true, true);
@@ -48,9 +51,6 @@ cXULElement_deck.handlers	= {
 			        this.$mapAttribute(oEvent.attrName, oEvent.newValue);
 			}
 		}
-	},
-	"DOMNodeInsertedIntoDocument":	function(oEvent) {
-		oXULReflowManager.schedule(this);
 	}
 };
 

@@ -52,6 +52,8 @@ cXULElement_tabs.prototype.goTo      = function(nIndex) {
         if (this.parentNode.tabpanels && this.parentNode.tabpanels.items[nIndex]) {
             this.parentNode.selectedPanel    = this.parentNode.tabpanels.items[nIndex];
             this.parentNode.selectedPanel.setAttribute("hidden", "false");
+            // Schedule reflow
+            oXULReflowManager.schedule(this.parentNode.selectedPanel);
         }
 
         this.parentNode.selectedIndex    = nIndex;
