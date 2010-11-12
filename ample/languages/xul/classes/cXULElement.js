@@ -206,9 +206,9 @@ cXULElement.prototype.reflow   = function()
                 	oElementDOM	= oElement.$getContainer();
                 	oCell	= oElementBox.tBodies[0].rows[bVertical ? nIndex - nVirtual : 0].cells[bVertical ? 0 : nIndex - nVirtual];
                     if ("flex" in oElement.attributes && !isNaN(oElement.attributes["flex"])) {
-                    	nElementFlex	= nFlexInPercents * oElement.attributes["flex"] / nFlex;
+                    	nElementFlex	= Math.ceil(nFlexInPercents * oElement.attributes["flex"] / nFlex);
                     	nElementPixels	= nFlexInPixels * oElement.attributes["flex"] / nFlex;
-                    	oCell.setAttribute(sMeasure, Math.ceil(nElementLast == nIndex ? nFlexInPercents - nUsedFlex : nElementFlex) + "%");
+                    	oCell.setAttribute(sMeasure, (nElementLast == nIndex ? (document.namespaces ? nFlexInPercents - nUsedFlex : Math.ceil(nFlexInPercents - nUsedFlex)) : nElementFlex) + "%");
 //                    	oCell.style[sMeasure]	=(nElementLast == nIndex ? nFlexInPixels - nUsedPixels : nElementPixels) + "px";
                     	nUsedFlex	+= nElementFlex;
                     	nUsedPixels	+= nElementPixels;
