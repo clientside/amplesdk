@@ -212,7 +212,8 @@ cXULElement.prototype.reflow   = function()
 //                    	oCell.style[sMeasure]	=(nElementLast == nIndex ? nFlexInPixels - nUsedPixels : nElementPixels) + "px";
                     	nUsedFlex	+= nElementFlex;
                     	nUsedPixels	+= nElementPixels;
-                    	oElementDOM.style[sMeasure]	= "100%";	// Needed?
+                    	if (!(oElement instanceof cXULElement_row))
+                    		oElementDOM.style[sMeasure]	= "100%";	// Needed?
                     }
                     if (this.attributes["align"] == "stretch")
                     	oElementDOM.style[sMeasureAlt]	= "100%";
