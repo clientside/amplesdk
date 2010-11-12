@@ -69,7 +69,7 @@ cXULElement_dialog.prototype.acceptDialog    = function()
     var oEvent2  = this.ownerDocument.createEvent("Events");
     oEvent2.initEvent("dialogaccept", true, true);
     if (this.dispatchEvent(oEvent2))
-        this.setAttribute("hidden", "true");
+    	this.close();
 };
 
 cXULElement_dialog.prototype.cancelDialog    = function()
@@ -77,7 +77,7 @@ cXULElement_dialog.prototype.cancelDialog    = function()
     var oEvent2  = this.ownerDocument.createEvent("Events");
     oEvent2.initEvent("dialogcancel", true, true);
     if (this.dispatchEvent(oEvent2))
-        this.setAttribute("hidden", "true");
+        this.close();
 };
 
 cXULElement_dialog.prototype.extra1    = function()

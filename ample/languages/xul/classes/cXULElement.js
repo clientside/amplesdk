@@ -66,7 +66,10 @@ cXULElement.prototype.$mapAttribute	= function(sName, sValue) {
 	            else
 	                oElementDOM.parentNode.parentNode.style.display    =(sValue == "true" ? "none" : "");
 
-	            // Update flexible parameters
+	            // Update self if box and showing
+	            if (sValue != "true" && this.viewType == cXULElement.VIEW_TYPE_BOXED)
+	            	oXULReflowManager.schedule(this);
+	            // Update parent box
 	            if (this.parentNode && this.parentNode.viewType == cXULElement.VIEW_TYPE_BOXED)
 	            	oXULReflowManager.schedule(this.parentNode);
 	        }

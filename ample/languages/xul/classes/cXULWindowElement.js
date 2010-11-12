@@ -21,7 +21,11 @@ cXULWindowElement.prototype.open	= function (nTop, nLeft) {
 		oContainer	= that.$getContainer(),
 		oBody	= that.$getContainer("body"),
 		oHead	= that.$getContainer("head"),
+		oFooter	= that.$getContainer("footer"),
 		oComputedStyle	= oContainer.currentStyle || window.getComputedStyle(oContainer, null);
+
+	// set modal
+	ample.modal(that);
 
 	// If top/left not passed, open centered
 	var nWidth	= this.getAttribute("width") * 1 || parseInt(oComputedStyle.width),
@@ -49,9 +53,11 @@ cXULWindowElement.prototype.open	= function (nTop, nLeft) {
 	// Hide head and body
 	if (this.getAttribute("hidechrome") != "true")
 		oHead.style.display	= "none";
+	if (oFooter)
+		oFooter.style.display	= "none";
 	oBody.style.display	= "none";
 	// Show window
-	oContainer.style.display	= "";
+	that.setAttribute("hidden", "false");
 	// Play effect
 	ample.query(that).animate(
 		{	"opacity":"1",
@@ -65,12 +71,17 @@ cXULWindowElement.prototype.open	= function (nTop, nLeft) {
 			// Show head and body
 			if (that.getAttribute("hidechrome") != "true")
 				oHead.style.display	= "";
+			if (oFooter)
+				oFooter.style.display	= "";
 			oBody.style.display	= "";
 			// Restore sizes if not specified as attributes
 			if (!that.getAttribute("width"))
 				oContainer.style.width	= '';
 			if (!that.getAttribute("height"))
 				oContainer.style.height	= '';
+
+			// Reflow
+			oXULReflowManager.schedule(that);
 
 			// Focus
 			var sButtonFocus	= that.getAttribute("defaultButton");
@@ -90,7 +101,11 @@ cXULWindowElement.prototype.close = function() {
 		oContainer	= that.$getContainer(),
 		oBody	= that.$getContainer("body"),
 		oHead	= that.$getContainer("head"),
+		oFooter	= that.$getContainer("footer"),
 		oRect	= that.getBoundingClientRect();
+
+	// unset modal
+	ample.modal(null);
 
 	var nWidth	= oRect.right - oRect.left,
 		nHeight	= oRect.bottom - oRect.top,
@@ -100,6 +115,8 @@ cXULWindowElement.prototype.close = function() {
 	// Hide head and body
 	if (this.getAttribute("hidechrome") != "true")
 		oHead.style.display	= "none";
+	if (oFooter)
+		oFooter.style.display	= "none";
 	oBody.style.display	= "none";
 	// Play effect
 	ample.query(that).animate(
@@ -112,11 +129,13 @@ cXULWindowElement.prototype.close = function() {
 		"ease-out",
 		function() {
 			// Hide window
-			oContainer.style.display	= "none";
+			that.setAttribute("hidden", "true");
 
 			// show head and body
 			if (that.getAttribute("hidechrome") != "true")
 				oHead.style.display	= "";
+			if (oFooter)
+				oFooter.style.display	= "";
 			oBody.style.display	= "";
 
 			var oEvent  = that.ownerDocument.createEvent("CustomEvent");
