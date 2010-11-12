@@ -12,7 +12,7 @@
 	<xul:grid>
 		<xul:rows>
 			<xul:row>
-				<xul:label value="From:" />
+				<xul:label value="From:" width="100"/>
 				<xul:menulist editable="true">
 					<xul:menupopup />
 				</xul:menulist>

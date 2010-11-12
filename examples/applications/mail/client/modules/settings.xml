@@ -1,19 +1,16 @@
 <?xml version="1.0"?>
-<xul:vbox
+<xul:dialog id="settings" hidden="true"
+	title="Settings"
 	xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	xmlns:xi="http://www.w3.org/2001/XInclude">
-	<xul:toolbar>
-		<xul:toolbarbutton label="Save" />
-		<xul:toolbarbutton label="Discard" />
-	</xul:toolbar>
-	<xul:tabbox>
+	<xul:tabbox flex="1">
 		<xul:tabs>
 			<xul:tab label="General" />
 			<xul:tab label="Labels" />
 			<xul:tab label="Accounts" />
 			<xul:tab label="Filters" />
 		</xul:tabs>
-		<xul:tabpanels>
+		<xul:tabpanels flex="1">
 			<xul:tabpanel>
 General
 			</xul:tabpanel>
@@ -28,4 +25,4 @@ Filters
 			</xul:tabpanel>
 		</xul:tabpanels>
 	</xul:tabbox>
-</xul:vbox>
+</xul:dialog>
