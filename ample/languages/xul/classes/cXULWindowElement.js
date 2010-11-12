@@ -25,6 +25,7 @@ cXULWindowElement.prototype.open	= function (nTop, nLeft) {
 		oComputedStyle	= oContainer.currentStyle || window.getComputedStyle(oContainer, null);
 
 	// set modal
+	that.addEventListener("modal", cXULWindowElement.capture, true);
 	ample.modal(that);
 
 	// If top/left not passed, open centered
@@ -105,6 +106,7 @@ cXULWindowElement.prototype.close = function() {
 		oRect	= that.getBoundingClientRect();
 
 	// unset modal
+	that.removeEventListener("modal", cXULWindowElement.capture, true);
 	ample.modal(null);
 
 	var nWidth	= oRect.right - oRect.left,
@@ -168,6 +170,14 @@ cXULWindowElement.interactionend	= function(oEvent) {
 		that.$getContainer("body").style.visibility	= "";
 		ample.query(that).animate({opacity:1.0});
 	}
+};
+
+cXULWindowElement.capture	= function(oEvent) {
+	ample.query(oEvent.target).animate({"border-color":"white"}, "fast", "ease-out", function() {
+		ample.query(oEvent.target).animate({"border-color":"black"}, "fast", "ease-in", function() {
+			ample.query(oEvent.target).css("border-color", "");
+		})
+	})
 };
 
 // Register Element
