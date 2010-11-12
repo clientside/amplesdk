@@ -227,8 +227,8 @@ cXULElement_wizard.prototype.$getTagOpen    = function() {
 						</tbody>\
 					</table>\
 				</div>\
+				<div class="xul-wizardheader xul-wizard--header"><div class="xul-wizardheader--title xul-wizard--label"></div><div class="xul-wizardheader--description xul-wizard--description"></div></div>\
 				<div class="xul-wizard--body" style="height:100%">\
-					<div class="xul-wizardheader xul-wizard--header"><div class="xul-wizardheader--title xul-wizard--label"></div><div class="xul-wizardheader--description xul-wizard--description"></div></div>\
 					<div class="xul-wizard--gateway" style="height:100%">';
 };
 

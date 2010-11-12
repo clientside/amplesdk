@@ -177,8 +177,8 @@ cXULElement_dialog.prototype.$getTagOpen	= function()
 						</tbody>\
 					</table>\
 				</div>\
+				<div class="xul-dialogheader xul-dialog--header" style="display:none"><div class="xul-dialogheader--title xul-dialog--label"></div><div class="xul-dialogheader--description xul-dialog--description"></div></div>\
 				<div class="xul-dialog--body" style="height:100%">\
-					<div class="xul-dialogheader xul-dialog--header" style="display:none"><div class="xul-dialogheader--title xul-dialog--label"></div><div class="xul-dialogheader--description xul-dialog--description"></div></div>\
 					<div class="xul-dialog--gateway" style="height:100%">';
 };
 
