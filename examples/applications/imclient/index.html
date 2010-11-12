@@ -12,7 +12,7 @@
 
 		<style type="text/css">
 			html, select, input {
-				font: normal 11px Verdana;
+				font: normal 13px Verdana;
 			}
 			html, body {
 				width:	100%;
@@ -21,14 +21,16 @@
 				margin:	0;
 				border: 0;
 			}
-			.xul-tabbox, .xul-tabpanel, .xul-tabpanels {
-				height: 100%;
-			}
 		</style>
 	</head>
 	<body>
 		<script type="application/ample+xml" src="client.xml"></script>
 		<!--script type="application/ample+xml" src="bugreport.xml"></script-->
 		<!--script type="application/ample+xml" src="chat.xml"></script-->
+		<script>
+		ample.ready(function(){
+			ample.getElementById("main").open();
+		})
+		</script>
 	</body>
 </html>

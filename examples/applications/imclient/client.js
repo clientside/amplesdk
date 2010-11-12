@@ -22,11 +22,15 @@ function signOut()
 
 function onSrvSignIn()
 {
+	ample.getElementById("cmd_signout").setAttribute("disabled", "false");
+	ample.getElementById("cmd_signin").setAttribute("disabled", "true");
 	ample.getElementById("workspace").setAttribute("selectedIndex", 1);
 }
 
 function onSrvSignOut()
 {
+	ample.getElementById("cmd_signout").setAttribute("disabled", "true");
+	ample.getElementById("cmd_signin").setAttribute("disabled", "false");
 	ample.getElementById("workspace").setAttribute("selectedIndex", 0);
 }
 

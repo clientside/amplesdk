@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <?xml-stylesheet href="client.css" type="text/css"?>
-<xul:window title="XMPP Client 0.1" context="none" width="300" height="500"
+<xul:window title="IM Client Mock" context="none" width="300" height="400"
+	id="main" hidden="true"
 	xmlns:aml="http://www.amplesdk.com/ns/aml"
 	xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
@@ -45,6 +46,10 @@
 
 	<!-- Commands -->
 	<xul:commandset>
+		<!--  -->
+		<xul:command id="cmd_signin" oncommand="signIn()"/>
+		<xul:command id="cmd_signout" disabled="true" oncommand="signOut()"/>
+
 		<!-- Contacts Commands -->
 		<xul:command id="cmd_contact_options"	disabled="true"/>
 
@@ -133,9 +138,6 @@
 			<xul:toolbargrippy />
 			<xul:menu label="Main">
 				<xul:menupopup>
-					<xul:menuitem label="Sign In" oncommand="onCmdSignIn()"/>
-					<xul:menuitem label="Sign Out" oncommand="onCmdSignOut()"/>
-					<xul:menuseparator/>
 					<xul:menu label="Setup Transport">
 						<xul:menupopup>
 							<xul:menuitem command="cmd_transport_icq" observes="brd_transport_icq"/>
@@ -152,7 +154,7 @@
 					<xul:menuitem label="My Details"/>
 					<xul:menuitem label="Preferences"/>
 					<xul:menuseparator/>
-					<xul:menuitem label="Exit"/>
+					<xul:menuitem label="Exit" command="cmd_signout"/>
 				</xul:menupopup>
 			</xul:menu>
 			<xul:menu label="Contact List">
@@ -242,7 +244,7 @@
 				<xul:checkbox id="LoginRemember" label="Remember me" checked="true"/>
 				<xul:spacer height="10" />
 				<xul:hbox flex="1" pack="center">
-					<xul:button label="Sign In" oncommand="signIn()"/>
+					<xul:button label="Sign In" command="cmd_signin"/>
 				</xul:hbox>
 			</xul:vbox>
 		</xul:vbox>
@@ -270,7 +272,7 @@
 			<!-- Contact List -->
 			<xul:tree id="contactlist" context="ctx_contactlist" class="contactlist" flex="1">
 				<xul:treecols hidden="true">
-					<xul:treecol primary="true"/>
+					<xul:treecol width="200" primary="true"/>
 					<xul:treecol width="40"/>
 				</xul:treecols>
 				<xul:treebody>
