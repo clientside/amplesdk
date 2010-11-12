@@ -13,7 +13,8 @@ cXULElement_rows.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
 
 // Attributes Defaults
 cXULElement_rows.attributes	= {};
-cXULElement_rows.attributes.flex	= "1";
+cXULElement_rows.attributes.height	= "100%";
+cXULElement_rows.attributes.width	= "100%";
 cXULElement_rows.attributes.orient	= "vertical";
 
 /*
