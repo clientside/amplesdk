@@ -50,14 +50,12 @@ cXULElement_window.prototype.$getTagOpen	= function() {
 						</tbody>\
 					</table>\
 				</div>\
-				<div class="xul-window--body" style="height:100%">\
-					<div class="xul-window--gateway" style="height:100%">';
+				<div class="xul-window--body" style="height:100%">';
 };
 
 // Element Render: close
 cXULElement_window.prototype.$getTagClose	= function() {
-	return '		</div>\
-				</div>\
+	return '	</div>\
 			</div>';
 };
 

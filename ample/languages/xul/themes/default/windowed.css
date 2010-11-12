@@ -38,9 +38,9 @@ xul|window::head {
 }
 
 xul|page,
-xul|dialog::gateway,
-xul|window::gateway,
-xul|wizard::gateway {
+xul|dialog::body,
+xul|window::body,
+xul|wizardpage {
 	overflow:	hidden;
 }
 
