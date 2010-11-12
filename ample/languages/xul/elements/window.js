@@ -29,10 +29,10 @@ cXULElement_window.handlers	= {
 		}
 	}
 };
-cXULElement_window.handlers.dragstart	= cXULWindowElement.interactionstart;
-cXULElement_window.handlers.dragend		= cXULWindowElement.interactionend;
-cXULElement_window.handlers.resizestart	= cXULWindowElement.interactionstart;
-cXULElement_window.handlers.resizeend	= cXULWindowElement.interactionend;
+cXULElement_window.handlers.dragstart	= cXULWindowElement.oninteractionstart;
+cXULElement_window.handlers.dragend		= cXULWindowElement.oninteractionend;
+cXULElement_window.handlers.resizestart	= cXULWindowElement.oninteractionstart;
+cXULElement_window.handlers.resizeend	= cXULWindowElement.oninteractionend;
 
 // Element Renders
 cXULElement_window.prototype.$getTagOpen	= function() {

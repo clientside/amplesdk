@@ -155,10 +155,10 @@ cXULElement_wizard.handlers	= {
 		}
 	}
 };
-cXULElement_wizard.handlers.dragstart	= cXULWindowElement.interactionstart;
-cXULElement_wizard.handlers.dragend		= cXULWindowElement.interactionend;
-cXULElement_wizard.handlers.resizestart	= cXULWindowElement.interactionstart;
-cXULElement_wizard.handlers.resizeend	= cXULWindowElement.interactionend;
+cXULElement_wizard.handlers.dragstart	= cXULWindowElement.oninteractionstart;
+cXULElement_wizard.handlers.dragend		= cXULWindowElement.oninteractionend;
+cXULElement_wizard.handlers.resizestart	= cXULWindowElement.oninteractionstart;
+cXULElement_wizard.handlers.resizeend	= cXULWindowElement.oninteractionend;
 
 // Static methods
 cXULElement_wizard.goTo	= function(oElement, oPage) {

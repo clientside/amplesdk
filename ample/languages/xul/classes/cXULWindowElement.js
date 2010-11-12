@@ -27,7 +27,7 @@ cXULWindowElement.prototype.open	= function (nTop, nLeft) {
 		oComputedStyle	= oContainer.currentStyle || window.getComputedStyle(oContainer, null);
 
 	//
-	that.addEventListener("keydown", cXULWindowElement.keydown, true);
+	that.addEventListener("keydown", cXULWindowElement.onkeydown, true);
 
 	// If top/left not passed, open centered
 	var nWidth	= this.getAttribute("width") * 1 || parseInt(oComputedStyle.width),
@@ -101,7 +101,7 @@ cXULWindowElement.prototype.open	= function (nTop, nLeft) {
 cXULWindowElement.prototype.openModal	= function (nTop, nLeft) {
 	// set modal
 	cXULWindowElement.modalWindow	= this;
-	this.addEventListener("modal", cXULWindowElement.capture, true);
+	this.addEventListener("modal", cXULWindowElement.oncapture, true);
 	ample.modal(this);
 	//
 	this.open(nTop, nLeft);
@@ -118,11 +118,11 @@ cXULWindowElement.prototype.close = function() {
 	// unset modal
 	if (cXULWindowElement.modalWindow == this) {
 		cXULWindowElement.modalWindow	= null;
-		this.removeEventListener("modal", cXULWindowElement.capture, true);
+		this.removeEventListener("modal", cXULWindowElement.oncapture, true);
 		ample.modal(null);
 	}
 	//
-	that.removeEventListener("keydown", cXULWindowElement.keydown, true);
+	that.removeEventListener("keydown", cXULWindowElement.onkeydown, true);
 
 	var nWidth	= oRect.right - oRect.left,
 		nHeight	= oRect.bottom - oRect.top,
@@ -162,7 +162,7 @@ cXULWindowElement.prototype.close = function() {
 	);
 };
 
-//
+// Static methods
 cXULWindowElement.snooze	= function(oElement) {
 	var aQuery	= ample.query(oElement);
 	aQuery.animate({"border-color":"white"}, "fast", "ease-out", function() {
@@ -172,8 +172,8 @@ cXULWindowElement.snooze	= function(oElement) {
 	})
 };
 
-//
-cXULWindowElement.interactionstart	= function(oEvent) {
+// Shared event handlers
+cXULWindowElement.oninteractionstart	= function(oEvent) {
 	var that	= oEvent.currentTarget;
 	if (oEvent.target == that) {
 		if (oEvent.type == "dragstart" && oEvent.$pseudoTarget != that.$getContainer("title"))
@@ -187,7 +187,7 @@ cXULWindowElement.interactionstart	= function(oEvent) {
 	}
 };
 
-cXULWindowElement.interactionend	= function(oEvent) {
+cXULWindowElement.oninteractionend	= function(oEvent) {
 	var that	= oEvent.currentTarget;
 	if (oEvent.target == that) {
 		if (this instanceof cXULElement_wizard || this instanceof cXULElement_dialog)
@@ -197,11 +197,11 @@ cXULWindowElement.interactionend	= function(oEvent) {
 	}
 };
 
-cXULWindowElement.capture	= function(oEvent) {
+cXULWindowElement.oncapture	= function(oEvent) {
 	cXULWindowElement.snooze(oEvent.target);
 };
 
-cXULWindowElement.keydown	= function(oEvent) {
+cXULWindowElement.onkeydown	= function(oEvent) {
 	if (oEvent.target == oEvent.currentTarget)
 		if (oEvent.keyIdentifier == "Esc") {
 			if (cXULWindowElement.modalWindow == oEvent.target)

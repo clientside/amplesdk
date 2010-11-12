@@ -156,10 +156,10 @@ cXULElement_dialog.handlers	= {
 		}
 	}
 };
-cXULElement_dialog.handlers.dragstart	= cXULWindowElement.interactionstart;
-cXULElement_dialog.handlers.dragend		= cXULWindowElement.interactionend;
-cXULElement_dialog.handlers.resizestart	= cXULWindowElement.interactionstart;
-cXULElement_dialog.handlers.resizeend	= cXULWindowElement.interactionend;
+cXULElement_dialog.handlers.dragstart	= cXULWindowElement.oninteractionstart;
+cXULElement_dialog.handlers.dragend		= cXULWindowElement.oninteractionend;
+cXULElement_dialog.handlers.resizestart	= cXULWindowElement.oninteractionstart;
+cXULElement_dialog.handlers.resizeend	= cXULWindowElement.oninteractionend;
 
 // Element Renders
 cXULElement_dialog.prototype.$getTagOpen	= function()
