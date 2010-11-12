@@ -16,6 +16,8 @@ cXULWindowElement.prototype.localName	= "#element-window";
 cXULWindowElement.prototype.$draggable	= true;
 cXULWindowElement.prototype.$resizable	= true;
 
+cXULWindowElement.modalWindow	= null;
+
 cXULWindowElement.prototype.open	= function (nTop, nLeft) {
 	var that	= this,
 		oContainer	= that.$getContainer(),
@@ -24,9 +26,8 @@ cXULWindowElement.prototype.open	= function (nTop, nLeft) {
 		oFooter	= that.$getContainer("footer"),
 		oComputedStyle	= oContainer.currentStyle || window.getComputedStyle(oContainer, null);
 
-	// set modal
-	that.addEventListener("modal", cXULWindowElement.capture, true);
-	ample.modal(that);
+	//
+	that.addEventListener("keydown", cXULWindowElement.keydown, true);
 
 	// If top/left not passed, open centered
 	var nWidth	= this.getAttribute("width") * 1 || parseInt(oComputedStyle.width),
@@ -97,6 +98,15 @@ cXULWindowElement.prototype.open	= function (nTop, nLeft) {
 	);
 };
 
+cXULWindowElement.prototype.openModal	= function (nTop, nLeft) {
+	// set modal
+	cXULWindowElement.modalWindow	= this;
+	this.addEventListener("modal", cXULWindowElement.capture, true);
+	ample.modal(this);
+	//
+	this.open(nTop, nLeft);
+};
+
 cXULWindowElement.prototype.close = function() {
 	var that	= this,
 		oContainer	= that.$getContainer(),
@@ -106,8 +116,13 @@ cXULWindowElement.prototype.close = function() {
 		oRect	= that.getBoundingClientRect();
 
 	// unset modal
-	that.removeEventListener("modal", cXULWindowElement.capture, true);
-	ample.modal(null);
+	if (cXULWindowElement.modalWindow == this) {
+		cXULWindowElement.modalWindow	= null;
+		this.removeEventListener("modal", cXULWindowElement.capture, true);
+		ample.modal(null);
+	}
+	//
+	that.removeEventListener("keydown", cXULWindowElement.keydown, true);
 
 	var nWidth	= oRect.right - oRect.left,
 		nHeight	= oRect.bottom - oRect.top,
@@ -148,6 +163,16 @@ cXULWindowElement.prototype.close = function() {
 };
 
 //
+cXULWindowElement.snooze	= function(oElement) {
+	var aQuery	= ample.query(oElement);
+	aQuery.animate({"border-color":"white"}, "fast", "ease-out", function() {
+		aQuery.animate({"border-color":"black"}, "fast", "ease-in", function() {
+			aQuery.css("border-color", "");
+		})
+	})
+};
+
+//
 cXULWindowElement.interactionstart	= function(oEvent) {
 	var that	= oEvent.currentTarget;
 	if (oEvent.target == that) {
@@ -173,11 +198,17 @@ cXULWindowElement.interactionend	= function(oEvent) {
 };
 
 cXULWindowElement.capture	= function(oEvent) {
-	ample.query(oEvent.target).animate({"border-color":"white"}, "fast", "ease-out", function() {
-		ample.query(oEvent.target).animate({"border-color":"black"}, "fast", "ease-in", function() {
-			ample.query(oEvent.target).css("border-color", "");
-		})
-	})
+	cXULWindowElement.snooze(oEvent.target);
+};
+
+cXULWindowElement.keydown	= function(oEvent) {
+	if (oEvent.target == oEvent.currentTarget)
+		if (oEvent.keyIdentifier == "Esc") {
+			if (cXULWindowElement.modalWindow == oEvent.target)
+				cXULWindowElement.snooze(oEvent.target);
+			else
+				oEvent.target.close();
+		}
 };
 
 // Register Element
