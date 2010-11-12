@@ -46,6 +46,7 @@ xul|toolbarbutton::label {
 
 xul|toolbarbutton::arrow {
 	width:	8px;
+	height: 24px;
 	background: url(media/toolbarbutton_arrow.gif) no-repeat center;
 }
 
