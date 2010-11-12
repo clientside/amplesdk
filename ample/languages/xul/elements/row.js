@@ -22,9 +22,6 @@ cXULElement_row.handlers	= {
 		if (oEvent.target == this) {
 			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
 		}
-	},
-	"DOMNodeInsertedIntoDocument":	function(oEvent) {
-		oXULReflowManager.schedule(this);
 	}
 };
 

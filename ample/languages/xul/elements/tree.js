@@ -40,11 +40,6 @@ cXULElement_tree.prototype.ensureRowIsVisible    = function(nIndex) {
     return true;
 };
 
-cXULElement_tree.prototype.refresh   = function() {
-    if (this.body && this.body.children)
-        this.body.children.schedule();
-};
-
 // Class Events Hadlers
 cXULElement_tree.handlers	= {
 	"keydown":	function(oEvent) {
