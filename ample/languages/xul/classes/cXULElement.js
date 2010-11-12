@@ -55,15 +55,12 @@ cXULElement.prototype.$setStyle	= function(sName, sValue) {
 };
 */
 // Private Methods
-cXULElement.prototype.$mapAttribute	= function(sName, sValue)
-{
+cXULElement.prototype.$mapAttribute	= function(sName, sValue) {
 	var oElementDOM	= this.$getContainer();
-	switch (sName)
-	{
+	switch (sName) {
 		case "hidden":
 	        // hide boxed container
-	        if (this.parentNode && this.parentNode.viewType == cXULElement.VIEW_TYPE_BOXED)
-	        {
+	        if (this.parentNode && this.parentNode.viewType == cXULElement.VIEW_TYPE_BOXED) {
 	            if (this.parentNode.attributes["orient"] != "vertical")
 	                oElementDOM.parentNode.style.display   =(sValue == "true" ? "none" : "");
 	            else
@@ -122,13 +119,11 @@ cXULElement.prototype.$mapAttribute	= function(sName, sValue)
 };
 
 // Public methods
-cXULElement.prototype.$isAccessible	= function()
-{
+cXULElement.prototype.$isAccessible	= function() {
 	return this.attributes["disabled"] != "true";
 };
 
-cXULElement.prototype.reflow   = function()
-{
+cXULElement.prototype.reflow   = function() {
 	// No need to reflow either self or children if hidden
 	if (this.attributes.hidden == "true")
 		return;
@@ -231,30 +226,26 @@ cXULElement.prototype.reflow   = function()
     	if (oElement instanceof cXULElement)
     		oElement.reflow();
 };
-
-cXULElement.prototype.getBoxObject	= function()
-{
+/*
+cXULElement.prototype.getBoxObject	= function() {
 	return this.$getContainer("box-child");
 };
 
-cXULElement.prototype.setBoxObjectParam	= function(sName, sValue)
-{
+cXULElement.prototype.setBoxObjectParam	= function(sName, sValue) {
 	if (this.parentNode.attributes["orient"] == "vertical")
 		this.getBoxObject().parentNode[sName]	= sValue;
 	else
 		this.getBoxObject()[sName]	= sValue;
 };
 
-cXULElement.prototype.getBoxObjectParam	= function(sName)
-{
+cXULElement.prototype.getBoxObjectParam	= function(sName) {
 	if (this.parentNode.attributes["orient"] == "vertical")
 		return this.getBoxObject().parentNode[sName];
 	else
 		return this.getBoxObject()[sName];
 };
-
-cXULElement.prototype.$getTag		= function()
-{
+*/
+cXULElement.prototype.$getTag		= function() {
 	var aHtml	= [],
 		bBoxContainer	= this instanceof cXULElement && this.viewType == cXULElement.VIEW_TYPE_BOXED &&!(this instanceof cXULElement_row),
 		bBoxChild		= this.parentNode && this.parentNode.viewType == cXULElement.VIEW_TYPE_BOXED &&!(this.parentNode instanceof cXULElement_rows) || this.parentNode instanceof cXULElement_row;
@@ -300,12 +291,9 @@ AMLElement.prototype.$getTag	= function() {
 };
 
 // Static methods
-cXULElement.getBoxOpen	= function(oElement)
-{
+cXULElement.getBoxOpen	= function(oElement) {
     var aHtml   = ['<table cellpadding="0" cellspacing="0" border="0"'];
-
-    if (oElement.attributes["orient"] == "vertical")
-    {
+    if (oElement.attributes["orient"] == "vertical") {
         // Set width
 //        if (oElement.attributes["width"] && oElement.localName != "window" && oElement.localName != "dialog")
 //			aHtml[aHtml.length]	= ' width="' + oElement.attributes["width"] + '"';
@@ -317,8 +305,7 @@ cXULElement.getBoxOpen	= function(oElement)
         if (!oElement.attributes["align"] && oElement.attributes["height"])
 			aHtml[aHtml.length]	= ' height="' + oElement.attributes["height"] + '"';
     }
-    else
-    {
+    else {
         // Set height
 //        if (oElement.attributes["height"] && oElement.localName != "window" && oElement.localName != "dialog")
 //			aHtml[aHtml.length]	= ' height="' + oElement.attributes["height"] + '"';
@@ -348,11 +335,9 @@ cXULElement.getBoxOpen	= function(oElement)
 cXULElement.getBoxOpenChild = function(oElement)
 {
     var aHtml   = [];
-    if (oElement.parentNode.attributes["orient"] == "vertical")
-    {
+    if (oElement.parentNode.attributes["orient"] == "vertical") {
         aHtml.push('<tr style="');
-		if (oElement.nodeType == AMLNode.ELEMENT_NODE)
-		{
+		if (oElement.nodeType == AMLNode.ELEMENT_NODE) {
 	        if (oElement.attributes["hidden"] == "true")
 				aHtml[aHtml.length]	= 'display:none;';
 	        if (oElement.viewType == cXULElement.VIEW_TYPE_VIRTUAL)
@@ -362,10 +347,8 @@ cXULElement.getBoxOpenChild = function(oElement)
     }
 	aHtml[aHtml.length]	= '<td';
 
-	if (oElement.nodeType == AMLNode.ELEMENT_NODE)
-	{
-		if (oElement.parentNode.attributes["orient"] != "vertical")
-	    {
+	if (oElement.nodeType == AMLNode.ELEMENT_NODE) {
+		if (oElement.parentNode.attributes["orient"] != "vertical") {
 			aHtml[aHtml.length]	= ' style="';
 	        if (oElement.attributes["hidden"] == "true")
 				aHtml[aHtml.length]	= 'display:none;';
@@ -386,15 +369,13 @@ cXULElement.getBoxOpenChild = function(oElement)
 	    // Aligning
 	    var sHtml1  = "left";
 	    var sHtml2  = "top";
-	    if (oElement.attributes["orient"] == "vertical")
-	    {
+	    if (oElement.attributes["orient"] == "vertical") {
 	        if (oElement.attributes["pack"])
 	            sHtml2  = oElement.attributes["pack"]  == "start" ? "top"  : oElement.attributes["pack"]  == "end" ? "bottom" : "center";
 	        if (oElement.attributes["align"])
 	            sHtml1  = oElement.attributes["align"] == "start" ? "left" : oElement.attributes["align"] == "end" ? "right"  : "center";
 	    }
-	    else
-	    {
+	    else {
 	        if (oElement.attributes["align"])
 	            sHtml2  = oElement.attributes["align"] == "start" ? "top"  : oElement.attributes["align"] == "end" ? "bottom" : "center";
 	        if (oElement.attributes["pack"])
@@ -407,20 +388,16 @@ cXULElement.getBoxOpenChild = function(oElement)
     // Debug Grid
 	if (oElement.parentNode.attributes["debug"] == "true")
 		aHtml[aHtml.length]	= ' xul-box-debug-true xul-' + (oElement.parentNode.attributes["orient"] != "vertical" ? "h" : "v") + 'box-debug-true';
-    aHtml[aHtml.length]	= '"';
-
-	aHtml[aHtml.length]	= '>';
+    aHtml[aHtml.length]	= '">';
 
     return aHtml.join('');
 };
 
-cXULElement.getBoxCloseChild    = function(oElement)
-{
+cXULElement.getBoxCloseChild    = function(oElement) {
     return '</td>' +(oElement.parentNode.attributes["orient"] == "vertical" ? '</tr>' : '');
 };
 
-cXULElement.getBoxClose         = function(oElement)
-{
+cXULElement.getBoxClose         = function(oElement) {
     return (oElement.attributes["orient"] != "vertical" ? '</tr>' : '')+ '</tbody></table>';
 };
 
