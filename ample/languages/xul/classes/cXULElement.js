@@ -129,6 +129,10 @@ cXULElement.prototype.$isAccessible	= function()
 
 cXULElement.prototype.reflow   = function()
 {
+	// No need to reflow either self or children if hidden
+	if (this.attributes.hidden == "true")
+		return;
+
 	//
 	var nLength	= this.childNodes.length;
     if (nLength && this.viewType == cXULElement.VIEW_TYPE_BOXED) {
