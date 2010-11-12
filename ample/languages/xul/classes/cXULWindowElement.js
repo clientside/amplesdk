@@ -203,12 +203,8 @@ cXULWindowElement.oncapture	= function(oEvent) {
 
 cXULWindowElement.onkeydown	= function(oEvent) {
 	if (oEvent.target == oEvent.currentTarget)
-		if (oEvent.keyIdentifier == "Esc") {
-			if (cXULWindowElement.modalWindow == oEvent.target)
-				cXULWindowElement.snooze(oEvent.target);
-			else
-				oEvent.target.close();
-		}
+		if (oEvent.keyIdentifier == "Esc")
+			oEvent.target.close();
 };
 
 // Register Element
