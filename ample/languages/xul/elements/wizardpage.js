@@ -14,6 +14,7 @@ cXULElement_wizardpage.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
 // Attributes Defaults
 cXULElement_wizardpage.attributes	= {};
 cXULElement_wizardpage.attributes.orient	= "vertical";
+cXULElement_wizardpage.attributes.flex		= "1";
 cXULElement_wizardpage.attributes.width		= "100%";
 cXULElement_wizardpage.attributes.height	= "100%";
 

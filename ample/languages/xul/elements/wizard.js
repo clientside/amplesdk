@@ -52,8 +52,8 @@ cXULElement_wizard.prototype.buttons		= null;
 
 // Attributes Defaults
 cXULElement_wizard.attributes	= {};
-cXULElement_wizard.attributes.width		= "100%";
-cXULElement_wizard.attributes.height	= "100%";
+cXULElement_wizard.attributes.width		= "400";
+cXULElement_wizard.attributes.height	= "300";
 
 // Public Methods
 cXULElement_wizard.prototype.advance = function(sId) {

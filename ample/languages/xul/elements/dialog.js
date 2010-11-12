@@ -57,10 +57,11 @@ cXULElement_dialog.prototype.buttons	= null;
 
 // Attributes Defaults
 cXULElement_dialog.attributes	= {};
-cXULElement_dialog.attributes.orient	= "vertical";
 cXULElement_dialog.attributes.buttons	= "accept" + "," + "cancel";
-cXULElement_dialog.attributes.width		= "100%";
-cXULElement_dialog.attributes.height	= "100%";
+cXULElement_dialog.attributes.orient	= "vertical";
+cXULElement_dialog.attributes.flex		= "1";
+cXULElement_dialog.attributes.width		= "400";
+cXULElement_dialog.attributes.height	= "300";
 
 // Public Methods
 cXULElement_dialog.prototype.acceptDialog    = function()

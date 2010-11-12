@@ -295,27 +295,27 @@ cXULElement.getBoxOpen	= function(oElement) {
     var aHtml   = ['<table cellpadding="0" cellspacing="0" border="0"'];
     if (oElement.attributes["orient"] == "vertical") {
         // Set width
-//        if (oElement.attributes["width"] && oElement.localName != "window" && oElement.localName != "dialog")
-//			aHtml[aHtml.length]	= ' width="' + oElement.attributes["width"] + '"';
-//        else
         if (!oElement.attributes["align"] || oElement.attributes["align"] == "stretch")
 			aHtml[aHtml.length]	= ' width="100%"';
 
         // Set height
-        if (!oElement.attributes["align"] && oElement.attributes["height"])
-			aHtml[aHtml.length]	= ' height="' + oElement.attributes["height"] + '"';
+        if (oElement instanceof cXULElement_window || oElement instanceof cXULElement_dialog || oElement instanceof cXULElement_wizardpage)
+        	aHtml[aHtml.length]	= ' height="100%"';
+        else
+    	if (!oElement.attributes["align"] && oElement.attributes["height"])
+    		aHtml[aHtml.length]	= ' height="' + oElement.attributes["height"] + '"';
     }
     else {
         // Set height
-//        if (oElement.attributes["height"] && oElement.localName != "window" && oElement.localName != "dialog")
-//			aHtml[aHtml.length]	= ' height="' + oElement.attributes["height"] + '"';
-//        else
         if (!oElement.attributes["align"] || oElement.attributes["align"] == "stretch")
 			aHtml[aHtml.length]	= ' height="100%"';
 
         // Set width
+        if (oElement instanceof cXULElement_window || oElement instanceof cXULElement_dialog || oElement instanceof cXULElement_wizardpage)
+    		aHtml[aHtml.length]	= ' width="100%"';
+        else
         if (!oElement.attributes["align"] && oElement.attributes["width"])
-			aHtml[aHtml.length]	= ' width="' + oElement.attributes["width"] + '"';
+        	aHtml[aHtml.length]	= ' width="' + oElement.attributes["width"] + '"';
     }
 
     if (oElement instanceof cXULElement_rows)

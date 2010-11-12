@@ -14,8 +14,9 @@ cXULElement_window.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
 // Attributes Defaults
 cXULElement_window.attributes	= {};
 cXULElement_window.attributes.orient	= "vertical";
-cXULElement_window.attributes.width		= "100%";
-cXULElement_window.attributes.height	= "100%";
+cXULElement_window.attributes.flex		= "1";
+cXULElement_window.attributes.width		= "400";
+cXULElement_window.attributes.height	= "300";
 
 // Class Events Handlers
 cXULElement_window.handlers	= {
