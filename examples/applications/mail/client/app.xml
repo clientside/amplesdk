@@ -7,7 +7,7 @@
 		<xul:command id="cmd_navigate_messages" oncommand="ample.query('#workspace').attr('selectedIndex', 0)"/>
 		<xul:command id="cmd_navigate_message" oncommand="ample.query('#workspace').attr('selectedIndex', 1)"/>
 		<xul:command id="cmd_navigate_contacts" oncommand="ample.query('#workspace').attr('selectedIndex', 2)"/>
-		<xul:command id="cmd_navigate_settings" oncommand="ample.query('#settings')[0].open()"/>
+		<xul:command id="cmd_navigate_settings" oncommand="ample.query('#settings')[0].openModal()"/>
 	</xul:commandset>
 	<!-- Main broadcasters -->
 	<xul:broadcasterset>
