@@ -38,9 +38,9 @@ var oXULReflowManager	= (function () {
 	ample.bind("DOMNodeInserted", function(oEvent) {
 		if (oEvent.target.parentNode instanceof cXULElement && oEvent.target.parentNode.viewType == cXULElement.VIEW_TYPE_BOXED)
 			fSchedule(oEvent.target.parentNode);
-		else
+/*		else
 		if (oEvent.target instanceof cXULElement && oEvent.target.viewType == cXULElement.VIEW_TYPE_BOXED)
-			fSchedule(oEvent.target);
+			fSchedule(oEvent.target);*/
 	});
 
 	ample.bind("resize", function(oEvent) {
