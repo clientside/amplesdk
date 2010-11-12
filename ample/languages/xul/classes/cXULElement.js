@@ -334,8 +334,9 @@ cXULElement.getBoxOpen	= function(oElement) {
 
 cXULElement.getBoxOpenChild = function(oElement)
 {
-    var aHtml   = [];
-    if (oElement.parentNode.attributes["orient"] == "vertical") {
+    var oContainer	= oElement.parentNode,
+    	aHtml   = [];
+    if (oContainer.attributes["orient"] == "vertical") {
         aHtml.push('<tr style="');
 		if (oElement.nodeType == AMLNode.ELEMENT_NODE) {
 	        if (oElement.attributes["hidden"] == "true")
@@ -348,14 +349,14 @@ cXULElement.getBoxOpenChild = function(oElement)
 	aHtml[aHtml.length]	= '<td';
 
 	if (oElement.nodeType == AMLNode.ELEMENT_NODE) {
-		if (oElement.parentNode.attributes["orient"] != "vertical") {
+		if (oContainer.attributes["orient"] != "vertical") {
 			aHtml[aHtml.length]	= ' style="';
 	        if (oElement.attributes["hidden"] == "true")
 				aHtml[aHtml.length]	= 'display:none;';
 	        if (oElement.viewType == cXULElement.VIEW_TYPE_VIRTUAL)
 				aHtml[aHtml.length]	= 'position:absolute;width:0;top:0;left:0;z-index:1;';
 		    else
-		    if (!(oElement.parentNode instanceof cXULElement_row))
+		    if (!(oContainer instanceof cXULElement_row))
 		    	aHtml[aHtml.length]	= 'height:' + (oElement.attributes["height"] || '100%');
 	        aHtml[aHtml.length]	= '"';
 	        if (oElement.attributes.width)
@@ -386,15 +387,16 @@ cXULElement.getBoxOpenChild = function(oElement)
 
 	aHtml[aHtml.length]	= ' class="xul-box---box-child';
     // Debug Grid
-	if (oElement.parentNode.attributes["debug"] == "true")
-		aHtml[aHtml.length]	= ' xul-box-debug-true xul-' + (oElement.parentNode.attributes["orient"] != "vertical" ? "h" : "v") + 'box-debug-true';
+	if (oContainer.attributes["debug"] == "true")
+		aHtml[aHtml.length]	= ' xul-box-debug-true xul-' + (oContainer.attributes["orient"] != "vertical" ? "h" : "v") + 'box-debug-true';
     aHtml[aHtml.length]	= '">';
 
     return aHtml.join('');
 };
 
 cXULElement.getBoxCloseChild    = function(oElement) {
-    return '</td>' +(oElement.parentNode.attributes["orient"] == "vertical" ? '</tr>' : '');
+	var oContainer	= oElement.parentNode;
+    return '</td>' +(oContainer.attributes["orient"] == "vertical" ? '</tr>' : '');
 };
 
 cXULElement.getBoxClose         = function(oElement) {
