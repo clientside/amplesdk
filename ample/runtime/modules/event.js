@@ -13,6 +13,7 @@ var aAMLQuery_protectedEvents	= [
 	,"focus", "blur"
 	,"DOMFocusIn", "DOMFocusOut", "DOMActivate"
 	,"capture", "losecapture"
+	,"modal"
 	//
 	,"resize", "scroll"
 	// KeyboardEvent
