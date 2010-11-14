@@ -57,6 +57,8 @@ cXULElement_deck.handlers	= {
 cXULElement_deck.prototype.reflow	= function() {
 	if (!isNaN(this.attributes["selectedIndex"]))
 		this.setAttribute("selectedIndex", this.attributes["selectedIndex"] == "-1" ? "0" : this.attributes["selectedIndex"]);
+	//
+	cXULElement.prototype.reflow.call(this);
 };
 
 // Element Render: open
