@@ -101,7 +101,7 @@ xul|toolbarbutton:active xul|toolbarbutton-bottom {
 
 /* disabled */
 xul|toolbarbutton:disabled {
-	color: GrayText;
+	color: #808080;
 }
 xul|toolbarbutton:disabled xul|toolbarbutton-right,
 xul|toolbarbutton:disabled xul|toolbarbutton-top,

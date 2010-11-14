@@ -16,7 +16,7 @@ xul|tree:focus {
 
 xul|listbox:disabled,
 xul|tree:disabled {
-	color: GrayText;/*#aca899;*/
+	color: #808080;
 	background-color: rgb(235, 235, 228);
 }
 

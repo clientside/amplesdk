@@ -1,6 +1,6 @@
 xul|tooltip-pane {
-	border:	solid 1px ThreeDShadow;
-	background-color:	InfoBackground;
+	border:	solid 1px #A0A0A0;
+	background-color:	#FFFFE1;
 	color: InfoText;
 	padding:	2px;
 	z-index:	2000;

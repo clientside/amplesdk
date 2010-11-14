@@ -1,7 +1,7 @@
 xul|menupopup {
     cursor:	default !important;
-    background-color: Menu;
-	border:	solid 1px ThreeDShadow;
+    background-color: #F0F0F0;
+	border:	solid 1px #A0A0A0;
     padding:	2px;
 	z-index:	100;
 }
@@ -23,7 +23,7 @@ xul|menupopup::shadow-bottom {
 xul|menupopup::shadow-right,
 xul|menupopup::shadow-bottom {
 	font-size: 3px;	/* IE fix */
-	background-color:ThreeDShadow;
+	background-color: #A0A0A0;
 }
 
 xul|menuitem {
@@ -31,14 +31,14 @@ xul|menuitem {
 }
 xul|menuitem:hover {
     color: white;
-    background-color: Highlight;
+    background-color: #3399FF;
 }
 xul|menuitem:selected {
-    color: HighlightText;
-    background-color: Highlight;
+    color: #ffffff;
+    background-color: #3399FF;
 }
 xul|menuitem:disabled {
-	color:	GrayText;
+	color:	#808080;
 }
 xul|menuitem[type]::image {
 	background-repeat: no-repeat;
@@ -62,14 +62,14 @@ xul|menu {
 }
 xul|menu:hover {
     color: white;
-    background-color: Highlight;
+    background-color: #3399FF;
 }
 xul|menu:selected {
-    color: HighlightText;
-    background-color: Highlight;
+    color: #ffffff;
+    background-color: #3399FF;
 }
 xul|menu:disabled {
-	color: GrayText;
+	color: #808080;
 }
 xul|menu::arrow {
 	background-image:	url(media/menuitem_arrow.gif);
@@ -97,8 +97,8 @@ xul|menu::arrow:disabled {
 	background-position: 0px -48px;
 }
 xul|menuseparator {
-    border-top:	solid 1px ThreeDShadow;/*#ACA899;*/
-	background-color:	ThreeDHighlight;
+    border-top:	solid 1px #A0A0A0;
+	background-color:	#FFFFFF;
 	margin-top:		2px;
 	margin-bottom:	1px;
 	height:	1px;
