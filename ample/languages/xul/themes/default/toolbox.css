@@ -36,6 +36,7 @@ xul|menubar xul|toolbargrippy {
 xul|toolbarbutton {
 	height: 30px;
 	white-space: nowrap;
+	background-color: #F1F0E8;
 }
 
 xul|toolbarbutton::label {
@@ -52,7 +53,7 @@ xul|toolbarbutton::arrow {
 
 /* hover */
 xul|toolbarbutton:hover {
-	background-color: transparent;
+
 }
 
 xul|toolbarbutton:hover xul|toolbarbutton-top {

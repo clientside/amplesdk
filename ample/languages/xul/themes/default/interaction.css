@@ -76,7 +76,7 @@ xul|splitter-vertical xul|splitter::image {
 	height: 4px;
 /*	border-width: 1px 0;*/
 	line-height: 1px;
-	background: transparent url(media/dimple.png) no-repeat scroll center center;
+	background: url(media/dimple.png) no-repeat scroll center center;
 }
 
 /* div */
@@ -90,7 +90,7 @@ xul|splitter-horizontal xul|splitter::image {
 	width:	4px;
 	height: 100%;
 /*	border-width: 0 1px;*/
-	background: transparent url(media/dimple.png) no-repeat scroll center center;
+	background: url(media/dimple.png) no-repeat scroll center center;
 }
 
 xul|splitter:hover xul|splitter::image {
