@@ -43,16 +43,23 @@ var oXULReflowManager	= (function () {
 			fSchedule(oEvent.target);*/
 	});
 
+	// on browser window resize reflow page
 	ample.bind("resize", function(oEvent) {
-		var oElement	= oEvent.target;
-		if (oEvent instanceof AMLResizeEvent) {
-			if (oElement instanceof cXULWindowElement)
-				fSchedule(oElement);
-		}
-		else {
-			oElement	= this.querySelector("xul|page", function(){return cXULElement.prototype.namespaceURI});
+		if (!(oEvent instanceof AMLResizeEvent)) {
+			var oElement	= this.querySelector("xul|page", function(){return cXULElement.prototype.namespaceURI});
 			if (oElement)
 				fSchedule(oElement);
+		}
+	});
+
+	// on windowed element resize reflow it
+	ample.bind("resizeend", function(oEvent) {
+		var oElement	= oEvent.target;
+		if (oElement instanceof cXULWindowElement) {
+			oElement.setAttribute("width", parseInt(oElement.$getContainer().style.width));
+			oElement.setAttribute("height", parseInt(oElement.$getContainer().style.height));
+			//
+			fSchedule(oElement);
 		}
 	});
 

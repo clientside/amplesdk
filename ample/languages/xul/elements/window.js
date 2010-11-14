@@ -27,12 +27,12 @@ cXULElement_window.handlers	= {
 					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
 			}
 		}
+	},
+	"dragstart":	function(oEvent) {
+		if (oEvent.target == this && oEvent.$pseudoTarget != this.$getContainer("title"))
+			oEvent.preventDefault();
 	}
 };
-cXULElement_window.handlers.dragstart	= cXULWindowElement.oninteractionstart;
-cXULElement_window.handlers.dragend		= cXULWindowElement.oninteractionend;
-cXULElement_window.handlers.resizestart	= cXULWindowElement.oninteractionstart;
-cXULElement_window.handlers.resizeend	= cXULWindowElement.oninteractionend;
 
 // Element Renders
 cXULElement_window.prototype.$getTagOpen	= function() {

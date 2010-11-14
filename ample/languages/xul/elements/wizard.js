@@ -153,12 +153,12 @@ cXULElement_wizard.handlers	= {
 					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
 			}
 		}
+	},
+	"dragstart":	function(oEvent) {
+		if (oEvent.target == this && oEvent.$pseudoTarget != this.$getContainer("title"))
+			oEvent.preventDefault();
 	}
 };
-cXULElement_wizard.handlers.dragstart	= cXULWindowElement.oninteractionstart;
-cXULElement_wizard.handlers.dragend		= cXULWindowElement.oninteractionend;
-cXULElement_wizard.handlers.resizestart	= cXULWindowElement.oninteractionstart;
-cXULElement_wizard.handlers.resizeend	= cXULWindowElement.oninteractionend;
 
 // Static methods
 cXULElement_wizard.goTo	= function(oElement, oPage) {

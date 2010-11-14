@@ -46,7 +46,7 @@ cXULWindowElement.prototype.open	= function (nTop, nLeft) {
 		nTop	+= document.documentElement.scrollTop;
 	}
 
-	oContainer.style.opacity= 0;
+	ample.query(that).css("opacity", "0");
 	oContainer.style.width	= 1 + "px";
 	oContainer.style.height	= 1 + "px";
 	oContainer.style.top	=(nTop + nHeight / 2) + "px";
@@ -76,6 +76,8 @@ cXULWindowElement.prototype.open	= function (nTop, nLeft) {
 			if (oFooter)
 				oFooter.style.display	= "";
 			oBody.style.display	= "";
+			// Restore opacity
+			ample.query(that).css("opacity", null);
 			// Restore sizes if not specified as attributes
 			if (!that.getAttribute("width"))
 				oContainer.style.width	= '';
@@ -170,31 +172,6 @@ cXULWindowElement.snooze	= function(oElement) {
 			aQuery.css("border-color", "");
 		})
 	})
-};
-
-// Shared event handlers
-cXULWindowElement.oninteractionstart	= function(oEvent) {
-	var that	= oEvent.currentTarget;
-	if (oEvent.target == that) {
-		if (oEvent.type == "dragstart" && oEvent.$pseudoTarget != that.$getContainer("title"))
-			oEvent.preventDefault();
-		else {
-			if (this instanceof cXULElement_wizard || this instanceof cXULElement_dialog)
-				that.$getContainer("header").style.visibility	= "hidden";
-			that.$getContainer("body").style.visibility	= "hidden";
-			ample.query(that).animate({opacity:0.75});
-		}
-	}
-};
-
-cXULWindowElement.oninteractionend	= function(oEvent) {
-	var that	= oEvent.currentTarget;
-	if (oEvent.target == that) {
-		if (this instanceof cXULElement_wizard || this instanceof cXULElement_dialog)
-			that.$getContainer("header").style.visibility	= "";
-		that.$getContainer("body").style.visibility	= "";
-		ample.query(that).animate({opacity:1.0});
-	}
 };
 
 cXULWindowElement.oncapture	= function(oEvent) {

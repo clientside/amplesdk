@@ -154,12 +154,12 @@ cXULElement_dialog.handlers	= {
 					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
 			}
 		}
+	},
+	"dragstart":	function(oEvent) {
+		if (oEvent.target == this && oEvent.$pseudoTarget != this.$getContainer("title"))
+			oEvent.preventDefault();
 	}
 };
-cXULElement_dialog.handlers.dragstart	= cXULWindowElement.oninteractionstart;
-cXULElement_dialog.handlers.dragend		= cXULWindowElement.oninteractionend;
-cXULElement_dialog.handlers.resizestart	= cXULWindowElement.oninteractionstart;
-cXULElement_dialog.handlers.resizeend	= cXULWindowElement.oninteractionend;
 
 // Element Renders
 cXULElement_dialog.prototype.$getTagOpen	= function()

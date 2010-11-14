@@ -113,3 +113,29 @@ xul|wizardheader::description {
 	padding-top: 3px;
 	padding-left: 20px;
 }
+
+/* */
+xul|dialog:resize, xul|dialog:drag,
+xul|wizard:resize, xul|wizard:drag,
+xul|window:resize, xul|window:drag {
+	opacity: 0.5;
+}
+
+/* hide contents while resizing/dragging */
+xul|dialog:resize xul|dialog::header,
+xul|dialog:resize xul|dialog::body,
+xul|dialog:resize xul|dialog::footer,
+xul|dialog:drag xul|dialog::header,
+xul|dialog:drag xul|dialog::body,
+xul|dialog:drag xul|dialog::footer,
+xul|wizard:resize xul|wizard::header,
+xul|wizard:resize xul|wizard::body,
+xul|wizard:resize xul|wizard::footer,
+xul|wizard:drag xul|wizard::header,
+xul|wizard:drag xul|wizard::body,
+xul|wizard:drag xul|wizard::footer,
+xul|window:resize xul|window::body,
+xul|window:drag xul|window::body,
+xul|window:drag xul|window::footer {
+	display: none;
+}
