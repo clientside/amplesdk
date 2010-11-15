@@ -149,6 +149,12 @@ cXULElement_wizard.handlers	= {
 						cXULElement_wizard.goTo(this, this.wizardPages[oEvent.newValue]);
 					break;
 
+				case "canAdvance":
+				case "canRewind":
+					if (this.currentPage)
+						cXULElement_wizard.goTo(this, this.currentPage);
+					break;
+
 				default:
 					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
 			}
@@ -177,7 +183,8 @@ cXULElement_wizard.goTo	= function(oElement, oPage) {
 	// Set buttons state
 	var bNext	= cXULElement_wizard.getNextPage(oElement, oPage) != null,	// Is there next page?
 		bPrev	= cXULElement_wizard.getPrevPage(oElement, oPage) != null;	// Is there prev page?
-	oElement.buttons["back"].setAttribute("disabled", !bPrev);
+	oElement.buttons["back"].setAttribute("disabled", String(!bPrev || oElement.getAttribute("canRewind") == "false"));
+	oElement.buttons["next"].setAttribute("disabled", String(oElement.getAttribute("canAdvance") == "false"));
 	oElement.buttons["next"].setAttribute("hidden", bNext ? "false" : "true");
 	oElement.buttons["finish"].setAttribute("hidden", bNext ? "true" : "false");
 
