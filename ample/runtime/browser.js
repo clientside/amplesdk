@@ -810,6 +810,9 @@ function fBrowser_setStyle(oElementDOM, sName, sValue) {
 			return;
 		}
 	}
+	// Add units if ommitted
+	if (sName != "opacity" && sValue.match(/^[\.\d]+$/))
+		sValue	= sValue + 'px';
 	//
 	oStyle[sName]	= sValue;
 };

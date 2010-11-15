@@ -17,8 +17,6 @@ cAMLQuery.prototype.css	= function(sName, sValue) {
 	// Invoke implementation
 	if (arguments.length > 1) {
 		sValue	= sValue == null ? '' : cString(sValue);
-		if (sValue.match(/^[\.\d]+$/))
-			sValue	= sValue + 'px';
 		fAMLQuery_each(this, function() {
 			this.$setStyle(sName, sValue);
 		});
