@@ -14,6 +14,31 @@
 		<xul:broadcaster id="brd_message_selected" disabled="true" />
 	</xul:broadcasterset>
 	<!--  -->
+	<xul:menubar>
+		<xul:menu label="File">
+			<xul:menupopup>
+				<xul:menuitem label="Work offline"/>
+				<xul:menuseparator />
+				<xul:menuitem label="Print Preview"/>
+				<xul:menuitem label="Print.."/>
+				<xul:menuseparator />
+				<xul:menuitem label="Exit"/>
+			</xul:menupopup>
+		</xul:menu>
+		<xul:menu label="Tools">
+			<xul:menupopup>
+				<xul:menuitem label="Address Book..."/>
+				<xul:menuitem label="Options..."/>
+			</xul:menupopup>
+		</xul:menu>
+		<xul:menu label="Help">
+			<xul:menupopup>
+				<xul:menuitem label="Mail Mock Help" />
+				<xul:menuseparator />
+				<xul:menuitem label="About Mail Mock" />
+			</xul:menupopup>
+		</xul:menu>
+	</xul:menubar>
 	<!-- Toolbar -->
 	<xul:toolbar>
 		<xul:toolbarbutton label="Settings" command="cmd_navigate_settings"/>
