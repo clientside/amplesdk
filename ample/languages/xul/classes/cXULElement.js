@@ -302,9 +302,9 @@ cXULElement.getBoxOpen	= function(oElement) {
 			aHtml[aHtml.length]	= ' width="100%"';
 
         // Set height
-        if (oElement instanceof cXULElement_window || oElement instanceof cXULElement_dialog || oElement instanceof cXULElement_wizardpage)
-        	aHtml[aHtml.length]	= ' height="100%"';
-        else
+        if (!(oElement instanceof cXULElement_window || oElement instanceof cXULElement_dialog || oElement instanceof cXULElement_wizardpage))
+//        	aHtml[aHtml.length]	= ' height="100%"';
+//        else
     	if (!oElement.attributes["align"] && oElement.attributes["height"])
     		aHtml[aHtml.length]	= ' height="' + oElement.attributes["height"] + '"';
     }
@@ -314,9 +314,9 @@ cXULElement.getBoxOpen	= function(oElement) {
 			aHtml[aHtml.length]	= ' height="100%"';
 
         // Set width
-        if (oElement instanceof cXULElement_window || oElement instanceof cXULElement_dialog || oElement instanceof cXULElement_wizardpage)
-    		aHtml[aHtml.length]	= ' width="100%"';
-        else
+        if (!(oElement instanceof cXULElement_window || oElement instanceof cXULElement_dialog || oElement instanceof cXULElement_wizardpage))
+//    		aHtml[aHtml.length]	= ' width="100%"';
+//        else
         if (!oElement.attributes["align"] && oElement.attributes["width"])
         	aHtml[aHtml.length]	= ' width="' + oElement.attributes["width"] + '"';
     }
