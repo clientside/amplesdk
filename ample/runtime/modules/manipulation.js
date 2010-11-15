@@ -36,16 +36,17 @@ cAMLQuery.prototype.text	= function(sValue) {
 	}
 };
 
-cAMLQuery.prototype.html	= function() {
+cAMLQuery.prototype.html	= function(vArgument1) {
 	// Validate API call
 	fGuard(arguments, [
 		["value",	cObject, true]
 	]);
 
 	if (arguments.length > 0) {
-		fAMLQuery_each(this, function() {
-
-		});
+		// Empty
+		fAMLQuery_empty(this);
+		//
+		return this.append(fQuery(vArgument1));
 	}
 	else
 	if (this.length) {
@@ -344,13 +345,17 @@ cAMLQuery.prototype.remove	= function() {
 	return this;
 };
 
-cAMLQuery.prototype.empty	= function() {
+function fAMLQuery_empty(oQuery) {
 	// Invoke implementation
-	fAMLQuery_each(this, function() {
+	fAMLQuery_each(oQuery, function() {
 		while (this.lastChild)
 			fAMLElement_removeChild(this, this.lastChild);
 	});
-	return this;
+	return oQuery;
+};
+
+cAMLQuery.prototype.empty	= function() {
+	return fAMLQuery_empty(this);
 };
 
 //
