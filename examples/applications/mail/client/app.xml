@@ -62,11 +62,11 @@
 								<xul:treecell label="Spam" />
 							</xul:treerow>
 						</xul:treeitem>
-						<xul:treeitem container="true">
+						<xul:treeitem container="true" open="true">
 							<xul:treerow>
 								<xul:treecell label="My Folders" />
 							</xul:treerow>
-							<xul:treechildren id="folders-custom" />
+							<xul:treechildren id="folders-custom"/>
 						</xul:treeitem>
 					</xul:treechildren>
 				</xul:treebody>
