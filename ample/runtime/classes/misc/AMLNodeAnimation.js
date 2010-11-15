@@ -156,17 +156,17 @@ function fAMLNodeAnimation_process(oEffect) {
 
 				case "easeout":
 				case "ease-out":
-					nRatio	= fAMLNodeAnimation_cubicBezier(nRatioRaw, 0, 0, 0.58, 1.0, nDuration);
+					nRatio	= fAMLNodeAnimation_cubicBezier(nRatioRaw, 0, 0, 0.58, 1, nDuration);
 					break;
 
 				case "easeinout":
 				case "ease-in-out":
-					nRatio	= fAMLNodeAnimation_cubicBezier(nRatioRaw, 0.42, 0, 0.58, 1.0, nDuration);
+					nRatio	= fAMLNodeAnimation_cubicBezier(nRatioRaw, 0.42, 0, 0.58, 1, nDuration);
 					break;
 
 //				case "ease":
 				default:
-					nRatio	= fAMLNodeAnimation_cubicBezier(nRatioRaw, 0.25, 0.1, 0.25, 1.0, nDuration);
+					nRatio	= fAMLNodeAnimation_cubicBezier(nRatioRaw, 0.25, 0.1, 0.25, 1, nDuration);
 					break;
 			}
 		}
