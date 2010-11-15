@@ -42,7 +42,7 @@
 			<xul:spacer width="5" />
 		</xul:hbox>
 	</xul:toolbar>
-	<xul:listbox minheight="100" maxheight="300" height="200" type="checkbox" onselect="ample.query('#brd_message_selected').attr('disabled', this.selectedItems.length ? 'false' : 'true');">
+	<xul:listbox minheight="100" maxheight="300" height="200" onselect="ample.query('#brd_message_selected').attr('disabled', this.selectedItems.length ? 'false' : 'true');">
 		<xul:listhead>
 			<xul:listheader minwidth="100" width="200" label="From"/>
 			<xul:listheader minwidth="300" width="300" label="Subject"/>
