@@ -947,7 +947,7 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 					sKey = aCSSTransition[nIndex];
 					sValue	= fBrowser_getStyle(oElementDOM, sKey, oComputedStyle);
 					if (oBefore[sKey] != sValue) {
-						if (!oStyle[sValue])
+//						if (!oStyle[sValue])
 							aProperties.push(sKey);
 						fBrowser_setStyle(oElementDOM, sKey, oBefore[sKey]);
 						oProperties[sKey]	= sValue;
@@ -960,7 +960,7 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 					sKey = aCSSAnimation[nIndex];
 					sValue	= fBrowser_getStyle(oElementDOM, sKey, oComputedStyle);
 					if (oBefore[sKey] != sValue) {
-						if (!oStyle[sValue])
+//						if (!oStyle[sValue])
 							aProperties.push(sKey);
 						fBrowser_setStyle(oElementDOM, sKey, oBefore[sKey]);
 						oProperties[sKey]	= sValue;
