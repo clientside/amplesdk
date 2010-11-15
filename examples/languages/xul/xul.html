@@ -140,16 +140,6 @@
 				<xul:tabpanel><xul:description>content 1</xul:description></xul:tabpanel>
 			</xul:tabpanels>
 		</xul:tabbox>
-		<xul:tabbox orient="horizontal">
-			<xul:tabs orient="vertical">
-				<xul:tab label="Tab 0"/>
-				<xul:tab label="Tab 1"/>
-			</xul:tabs>
-			<xul:tabpanels>
-				<xul:tabpanel><xul:description>content 0</xul:description></xul:tabpanel>
-				<xul:tabpanel><xul:description>content 1</xul:description></xul:tabpanel>
-			</xul:tabpanels>
-		</xul:tabbox>
 		<script>ample.close()</script>
 
 		<h3>Menulist</h3>
@@ -278,7 +268,7 @@
 			<xul:textbox />
 		</xul:window>
 
-		<xul:dialog title="Dialog" width="250" height="200" style="left:350px">
+		<xul:dialog title="Dialog" width="250" height="200" style="left:350px" defaultButton="cancel">
 			<xul:label value="label" />
 			<xul:textbox />
 			<xul:textbox />
@@ -351,7 +341,7 @@
 
 		<h3>Tree</h3>
 		<script>ample.open()</script>
-	        <xul:tree flex="1" height="200" type="checkbox" treelines="false">
+	        <xul:tree flex="1" height="200" type="checkbox" treelines="true">
 	          <xul:treecols>
 	              <xul:treecol id="firstname" minwidth="400" label="First Name" primary="true"/>
 	              <xul:treecol id="lastname" width="500" minwidth="500" label="Last Name"/>
