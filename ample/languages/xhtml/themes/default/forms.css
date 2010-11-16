@@ -34,6 +34,7 @@ select {
 
 input {
 	height: 16px;
+	vertical-align: middle;
 }
 
 textarea {
@@ -71,10 +72,18 @@ input[type=range] {
 	margin-bottom: 6px;
 }
 
+input[type=range]::value {
+	display: none;
+}
+
+input[type=range]::field {
+	margin-left: 8px;
+	margin-right: 8px;
+}
+
 input[type=range]::before,
 input[type=range]::after {
-	vertical-align:top;
-	width:	2px;
+	width:	6px;
 	height: 4px;
 	background-color: black;
 }
@@ -165,10 +174,6 @@ select::value {
 	margin:	0;
 	vertical-align:top;
 	width: 100%;
-}
-
-input[type=range]::value {
-	display: none;
 }
 
 input[type=file]::field {
