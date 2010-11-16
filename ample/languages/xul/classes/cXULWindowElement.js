@@ -33,9 +33,9 @@ cXULWindowElement.prototype.open	= function (nTop, nLeft) {
 	var nWidth	= this.getAttribute("width") * 1 || parseInt(oComputedStyle.width),
 		nHeight	= this.getAttribute("height") * 1 || parseInt(oComputedStyle.height);
 	if (isNaN(nTop) || isNaN(nLeft)) {
-		if (this.hasAttribute("top") && this.hasAttribute("left")) {
-			nTop	= this.getAttribute("top") * 1;
-			nLeft	= this.getAttribute("left") * 1;
+		if (this.hasAttribute("screenX") && this.hasAttribute("screenY")) {
+			nTop	= this.getAttribute("screenX") * 1;
+			nLeft	= this.getAttribute("screenY") * 1;
 		}
 		else {
 			nLeft	=((document.documentElement.clientWidth || document.body.clientWidth) - nWidth) / 2;
