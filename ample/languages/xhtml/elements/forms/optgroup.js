@@ -9,6 +9,7 @@
 
 var cXHTMLElement_optgroup	= function(){};
 cXHTMLElement_optgroup.prototype	= new cXHTMLElement("optgroup");
+cXHTMLElement_optgroup.prototype.$selectable	= false;
 
 // Class Events Handlers
 cXHTMLElement_optgroup.handlers	= {

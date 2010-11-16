@@ -6,13 +6,30 @@ datalist {
 input,
 textarea,
 select {
-	background-color: white;
-	border: solid 1px silver;
 	padding: 1px 0px;
 	margin:	1px;
 	width: 200px;
 	display: inline-block;
+}
+
+input[type=text],
+input[type=password],
+input[type=number],
+input[type=color],
+input[type=email],
+input[type=search],
+input[type=url],
+input[type=datetime],
+input[type=datetime-local],
+input[type=date],
+input[type=time],
+input[type=month],
+input[type=week],
+input[type=tel],
+textarea,
+select {
 	border-radius: 2px;
+	border: solid 1px silver;
 }
 
 input {
@@ -79,14 +96,42 @@ input[type=number] {
 	width: 60px;
 }
 
+input[type=text],
+input[type=password],
+input[type=number],
+input[type=color],
+input[type=email],
+input[type=search],
+input[type=url],
+input[type=datetime],
+input[type=datetime-local],
+input[type=date],
+input[type=time],
+input[type=month],
+input[type=week],
+input[type=tel],
+textarea,
+select {
+	background-color: white;
+}
+
+
 /* pseudo-states */
 input:focus,
 textarea:focus,
 select:focus {
-	background-color: lightyellow;
 	margin: 0;
+	background-color: lightyellow;
 	border-color: lightblue;
 	border-width: 2px;
+}
+
+input[type=checkbox].input_focus,
+input[type=radio].input_focus,
+input[type=range].input_focus {
+	margin: 1px;
+	background: none;
+	border: none;
 }
 
 /* pseudo-elements */
@@ -139,116 +184,72 @@ select::button {
 	position:absolute;
 	background-repeat: no-repeat;
 	background-position: 0px 0px;
+	background-image: url("media/forms.png");
 	width: 16px;
 	height: 16px;
 	margin: 0 1px;
 }
 
-input[type=search]::button {
-	background-image: url(media/search.png);
-}
+select::button {					background-position: 0px 0px;	}
+select:hover select::button {		background-position: -16px 0px;	}
+select:disabled select::button {	background-position: -32px 0px;	}
+select:active select::button {		background-position: -48px 0px;	}
 
-select::button,
-input[type=file]::button,
-input[type=date]::button,
-input[type=datetime]::button,
+input[type=search]::button {				background-position: 0 -96px;		}
+input:hover input[type=search]::button {	background-position: -16px -96px;	}
+input:disabled input[type=search]::button {	background-position: -32px -96px;	}
+input:active input[type=search]::button {	background-position: -48px -96px;	}
+
+input[type=file]::button {					background-position: 0 -192px;		}
+input:hover input[type=file]::button {		background-position: -16px -192px;	}
+input:disabled input[type=file]::button {	background-position: -32px -192px;	}
+input:active input[type=file]::button {		background-position: -48px -192px;	}
+
 input[type=datetime-local]::button,
-input[type=week]::button,
-input[type=month]::button,
-input[type=color]::button {
-	background-image: url(media/select.gif);
-}
-
-input[type=range]::button {
-	background-image: url(media/select.gif);
-	margin-left: -8px;
-}
-
-select:hover select::button,
-input:hover input[type=file]::button,
-input:hover input[type=date]::button,
-input:hover input[type=datetime]::button,
+input[type=datetime]::button,
+input[type=date]::button {					background-position: 0 -32px;		}
 input:hover input[type=datetime-local]::button,
-input:hover input[type=week]::button,
-input:hover input[type=month]::button,
-input:hover input[type=color]::button {
-	background-position: 0px -15px;
-}
-
-select:active select::button,
-input:active input[type=file]::button,
-input:active input[type=date]::button,
-input:active input[type=datetime]::button,
-input:active input[type=datetime-local]::button,
-input:active input[type=month]::button,
-input:active input[type=week]::button,
-input:active input[type=color]::button {
-	background-position: 0px -30px;
-}
-
-select:disabled select::button,
-input:disabled input[type=file]::button,
-input:disabled input[type=date]::button,
-input:disabled input[type=datetime]::button,
+input:hover input[type=datetime]::button,
+input:hover input[type=date]::button {		background-position: -16px -32px;	}
 input:disabled input[type=datetime-local]::button,
-input:disabled input[type=month]::button,
-input:disabled input[type=week]::button,
-input:disabled input[type=color]::button {
-	background-position: 0px -45px;
-}
+input:disabled input[type=datetime]::button,
+input:disabled input[type=date]::button {	background-position: -32px -32px;	}
+input:active input[type=datetime-local]::button,
+input:active input[type=datetime]::button,
+input:active input[type=date]::button {		background-position: -48px -32px;	}
 
-input[type=checkbox]::button,
-input[type=radio]::button {
-	background-image: url(media/controls.gif);
-}
+input[type=week]::button {					background-position: 0 -64px;	}
+input:hover input[type=week]::button {		background-position: -16px -64px;	}
+input:disabled input[type=week]::button {	background-position: -32px -64px;	}
+input:active input[type=week]::button {		background-position: -48px -64px;	}
 
-input[type=checkbox]::button {
-	background-position: 0 -32px;
-}
+input[type=month]::button {					background-position: 0 -48px;	}
+input:hover input[type=month]::button {		background-position: -16px -48px;	}
+input:disabled input[type=month]::button {	background-position: -32px -48px;	}
+input:active input[type=month]::button {	background-position: -48px -48px;	}
 
-input:hover input[type=checkbox]::button {
-	background-position: -16px -32px;
-}
+input[type=color]::button {					background-position: 0 -208px;	}
+input:hover input[type=color]::button {		background-position: -16px -208px;	}
+input:disabled input[type=color]::button {	background-position: -32px -208px;	}
+input:active input[type=color]::button {	background-position: -48px -208px;	}
 
-input:disabled input[type=checkbox]::button {
-	background-position: -32px -32px;
-}
+input[type=range]::button {					background-position: 0 -176px;	margin-left: -8px;	}
+input:hover input[type=range]::button {		background-position: -16px -176px;	}
+input:disabled input[type=range]::button {	background-position: -32px -176px;	}
+input:active input[type=range]::button {	background-position: -48px -176px;	}
 
-input:checked input[type=checkbox]::button {
-	background-position: 0px -48px;
-}
-
-input:hover:checked input[type=checkbox]::button {
-	background-position: -16px -48px;
-}
-
-input:disabled:checked input[type=checkbox]::button {
-	background-position: -32px -48px;
-}
-
-input[type=radio]::button {
-	background-position: 0 0;
-}
-
-input:hover input[type=radio]::button {
-	background-position: -16px 0;
-}
-
-input:disabled input[type=radio]::button {
-	background-position: -32px 0;
-}
-
-input:checked input[type=radio]::button {
-	background-position: 0px -16px;
-}
-
-input:hover:checked input[type=radio]::button {
-	background-position: -16px -16px;
-}
-
-input:disabled:checked input[type=radio]::button {
-	background-position: -32px -16px;
-}
+input[type=checkbox]::button {					background-position: 0 -144px;		}
+input:hover input[type=checkbox]::button {		background-position: -16px -144px;	}
+input:disabled input[type=checkbox]::button {	background-position: -32px -144px;	}
+input:checked input[type=checkbox]::button {			background-position: 0 -160px;		}
+input:hover:checked input[type=checkbox]::button {		background-position: -16px -160px;	}
+input:disabled:checked input[type=checkbox]::button {	background-position: -32px -160px;	}
+input[type=radio]::button {						background-position: 0 -112px;		}
+input:hover input[type=radio]::button {			background-position: -16px -112px;	}
+input:disabled input[type=radio]::button {		background-position: -32px -112px;	}
+input:checked input[type=radio]::button {				background-position: 0 -128px;		}
+input:hover:checked input[type=radio]::button {			background-position: -16px -128px;	}
+input:disabled:checked input[type=radio]::button {		background-position: -32px -128px;	}
 
 
 input[type=date]::field,
@@ -338,41 +339,19 @@ spinbuttons::button-down {
 	right: 0;
 	height: 8px;
 	width: 16px;
-	background-image: url(media/spinbuttons.gif);
 	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	background-image: url("media/forms.png");
 	font-size: 1px;
 	line-height: 8px;
 }
 
-spinbuttons::button-up {
-	background-position: 0px 0px;
-}
+spinbuttons::button-up {						background-position: 0px -16px;	top: 0px;	}
+spinbuttons::button-up:hover {					background-position: -16px -16px;		}
+spinbuttons:disabled spinbuttons::button-up {	background-position: -32px -16px;		}
+spinbuttons::button-up:active {					background-position: -48px -16px;		}
+spinbuttons::button-down {						background-position: 0px -24px;	top: 8px;	}
+spinbuttons::button-down:hover {				background-position: -16px -24px;	}
+spinbuttons:disabled spinbuttons::button-down {	background-position: -32px -24px;	}
+spinbuttons::button-down:active {				background-position: -48px -24px;	}
 
-spinbuttons::button-up:hover {
-	background-position: 0px -8px;
-}
-
-spinbuttons::button-up:active {
-	background-position: 0px -16px;
-}
-
-spinbuttons:disabled spinbuttons::button-up {
-	background-position: 0px -24px;
-}
-
-spinbuttons::button-down {
-	top: 8px;
-	background-position: -16px 0px;
-}
-
-spinbuttons::button-down:hover {
-	background-position: -16px -8px;
-}
-
-spinbuttons::button-down:active {
-	background-position: -16px -16px;
-}
-
-spinbuttons:disabled spinbuttons::button-down {
-	background-position: -16px -24px;
-}
