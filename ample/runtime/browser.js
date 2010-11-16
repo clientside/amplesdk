@@ -821,7 +821,7 @@ function fBrowser_adjustStyleValue(oElementDOM, sName, sValue) {
 	if (sName == "opacity")
 		return sValue == '' ? '1' : sValue;
 	if (sName == "backgroundPosition")
-		return(sValue == "0% 0%" || sValue == "none" || sValue == '')? '0px 0px' : sValue;
+		return(sValue == '0%' + ' ' + '0%' || sValue == "none" || sValue == '')? '0px' + ' ' + '0px' : sValue;
 	if (sName == "lineHeight") {
 		if (bTrident && nVersion < 9 && sValue == "normal")
 			return fBrowser_getStyle(oElementDOM, "fontSize");
