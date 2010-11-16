@@ -186,7 +186,7 @@
 												array('/', '.', '$'),
 												array('\/', '\.', '\$'),
 												$this->aStrings[$nIndex]
-											 ). '([^\w])/',	"[_[" . $nIndex . ']]$1',	$sData);
+											 ). '(?!\w)/',	"[_[" . $nIndex . ']]',	$sData);
 
 				// Debug
 				if ($this->debug)
