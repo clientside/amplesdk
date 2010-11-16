@@ -546,6 +546,10 @@ cAMLNode.prototype.addEventListener		= function(sType, fHandler, bUseCapture)
 		["useCapture",	cBoolean,	true]
 	]);
 
+	// Check if call was executed from constructor
+	if (this instanceof arguments.callee.caller)
+		throw new cAMLException(cAMLException.AML_DOM_IN_CONSTRUCTOR_ERR);
+
 	fAMLEventTarget_addEventListener(this, sType, fHandler, bUseCapture);
 };
 
@@ -570,6 +574,10 @@ cAMLNode.prototype.removeEventListener	= function(sType, fHandler, bUseCapture)
 		["listener",	cObject],
 		["useCapture",	cBoolean,	true]
 	]);
+
+	// Check if call was executed from constructor
+	if (this instanceof arguments.callee.caller)
+		throw new cAMLException(cAMLException.AML_DOM_IN_CONSTRUCTOR_ERR);
 
 	// Invoke actual implementation
 	fAMLEventTarget_removeEventListener(this, sType, fHandler, bUseCapture);
@@ -738,6 +746,10 @@ cAMLNode.prototype.dispatchEvent	= function(oEvent)
 	fGuard(arguments, [
 		["event",	cAMLEvent]
 	]);
+
+	// Check if call was executed from constructor
+	if (this instanceof arguments.callee.caller)
+		throw new cAMLException(cAMLException.AML_DOM_IN_CONSTRUCTOR_ERR);
 
 	// Invoke actual implementation
 	return fAMLNode_dispatchEvent(this, oEvent);

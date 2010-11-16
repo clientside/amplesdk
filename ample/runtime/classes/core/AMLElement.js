@@ -56,6 +56,10 @@ cAMLElement.prototype.appendChild	= function(oNode)
 		["node",	cAMLNode]
 	]);
 
+	// Check if call was executed from constructor
+	if (this instanceof arguments.callee.caller)
+		throw new cAMLException(cAMLException.AML_DOM_IN_CONSTRUCTOR_ERR);
+
 	// Invoke actual implementation
 	if (oNode.nodeType == cAMLNode.DOCUMENT_FRAGMENT_NODE)
 		while (oNode.firstChild)
@@ -98,6 +102,14 @@ cAMLElement.prototype.insertBefore	= function(oNode, oBefore)
 		["node",	cAMLNode],
 		["before",	cAMLNode, false, true]
 	]);
+
+	// Check if call was executed from constructor
+	if (this instanceof arguments.callee.caller)
+		throw new cAMLException(cAMLException.AML_DOM_IN_CONSTRUCTOR_ERR);
+
+	// Check if call was executed from constructor
+	if (this instanceof arguments.callee.caller)
+		throw new cAMLException(cAMLException.AML_DOM_IN_CONSTRUCTOR_ERR);
 
 	if (oBefore) {
 		if (this.childNodes.$indexOf(oBefore) !=-1) {
@@ -156,6 +168,10 @@ cAMLElement.prototype.removeChild	= function(oNode)
 		["node",	cAMLNode]
 	]);
 
+	// Check if call was executed from constructor
+	if (this instanceof arguments.callee.caller)
+		throw new cAMLException(cAMLException.AML_DOM_IN_CONSTRUCTOR_ERR);
+
     if (this.childNodes.$indexOf(oNode) !=-1)
     	return fAMLElement_removeChild(this, oNode);
     else
@@ -191,6 +207,10 @@ cAMLElement.prototype.replaceChild	= function(oNode, oOld)
 		["node",	cAMLNode],
 		["old",		cAMLNode, false, true]
 	]);
+
+	// Check if call was executed from constructor
+	if (this instanceof arguments.callee.caller)
+		throw new cAMLException(cAMLException.AML_DOM_IN_CONSTRUCTOR_ERR);
 
 	if (oOld) {
 	    if (this.childNodes.$indexOf(oOld) !=-1) {

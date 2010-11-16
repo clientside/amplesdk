@@ -48,7 +48,7 @@ cAMLException.AML_ARGUMENT_NULL_ERR			=-3;
 cAMLException.AML_SELECTOR_ELEMENT_ERR		=-4;
 cAMLException.AML_SELECTOR_ATTRIBUTE_ERR	=-5;
 cAMLException.AML_NOT_INITIALIZED_ERR		=-6;
-
+cAMLException.AML_DOM_IN_CONSTRUCTOR_ERR	=-7;
 
 cAMLException.AML_MEMBER_MISSING_ERR		=-9;
 cAMLException.AML_TRIGGER_CORE_EVENT_ERR	=-10;
@@ -95,7 +95,7 @@ oAMLException_messages[cAMLException.AML_ARGUMENT_NULL_ERR]			= 'null is not all
 oAMLException_messages[cAMLException.AML_SELECTOR_ELEMENT_ERR]		= 'Unknown element selector "%0"';
 oAMLException_messages[cAMLException.AML_SELECTOR_ATTRIBUTE_ERR]	= 'Unknown attribute selector "%0"';
 oAMLException_messages[cAMLException.AML_NOT_INITIALIZED_ERR]		= 'Object "%0" has not been initialized';
-
+oAMLException_messages[cAMLException.AML_DOM_IN_CONSTRUCTOR_ERR]	= 'Cannot access DOM in element constructor';
 
 oAMLException_messages[cAMLException.AML_MEMBER_MISSING_ERR]		= 'Object does not have a method named "%0"';
 oAMLException_messages[cAMLException.AML_TRIGGER_CORE_EVENT_ERR]	= 'Triggering core event "%0" is not allowed';
