@@ -12,9 +12,18 @@ cXHTMLElement_label.prototype	= new cXHTMLElement("label");
 
 // Class Events Handlers
 cXHTMLElement_label.handlers	= {
+	"click":	function() {
+		this.$activate();
+	},
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this)
 			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
+	},
+	"DOMActivate":	function(oEvent) {
+		var oControl;
+		if (this.attributes["for"] && (oControl = this.ownerDocument.getElementById(this.attributes["for"])))
+			if (oControl instanceof cXHTMLInputElement)
+				oControl.focus();
 	}
 };
 

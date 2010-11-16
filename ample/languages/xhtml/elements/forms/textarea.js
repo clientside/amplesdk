@@ -12,10 +12,6 @@ var cXHTMLElement_textarea	= function(){
 };
 cXHTMLElement_textarea.prototype	= new cXHTMLInputElement("textarea");
 
-cXHTMLElement_textarea.prototype.$getValue	= function(sValue) {
-	return this.$getContainer().value;
-};
-
 // Public methods
 cXHTMLElement_textarea.prototype.select	= function() {
 	this.$getContainer().select();
@@ -33,10 +29,7 @@ cXHTMLElement_textarea.prototype._onChange	= function(oEvent) {
 // Events Handlers
 cXHTMLElement_textarea.handlers	= {
 	"focus":	function(oEvent) {
-		this.$getContainer().focus();
-	},
-	"blur":		function(oEvent) {
-		this.$getContainer().blur();
+		this.$getContainer("value").focus();
 	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		//
