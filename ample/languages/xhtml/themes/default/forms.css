@@ -66,6 +66,17 @@ input[type=submit] {
 
 input[type=range] {
 	width:	200px;
+	height: 4px;
+	margin-top: 6px;
+	margin-bottom: 6px;
+}
+
+input[type=range]::before,
+input[type=range]::after {
+	vertical-align:top;
+	width:	2px;
+	height: 4px;
+	background-color: black;
 }
 
 input[type=datetime],
@@ -135,6 +146,11 @@ input[type=range].input_focus {
 	border-style: solid;
 	border-width: 1px;
 	border-radius: 2px;
+}
+
+input[type=range].input_focus {
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 
 /* pseudo-elements */
@@ -236,7 +252,7 @@ input:hover input[type=color]::button {		background-position: -16px -208px;	}
 input:disabled input[type=color]::button {	background-position: -32px -208px;	}
 input:active input[type=color]::button {	background-position: -48px -208px;	}
 
-input[type=range]::button {					background-position: 0 -176px;	margin-left: -8px;	}
+input[type=range]::button {					background-position: 0 -176px;	margin-left: -8px;	margin-top:	-6px;}
 input:hover input[type=range]::button {		background-position: -16px -176px;	}
 input:disabled input[type=range]::button {	background-position: -32px -176px;	}
 input:active input[type=range]::button {	background-position: -48px -176px;	}
@@ -266,22 +282,6 @@ input[type=color]::field,
 input[type=search]::field,
 select::field {
 	padding-right:18px;
-}
-
-/* */
-input[type=range]::before,
-input[type=range]::after {
-	vertical-align:top;
-	width:2px;
-	height: 16px;
-}
-
-input::before {
-	background-color: green;
-}
-
-input::after {
-	background-color: blue;
 }
 
 /* */
