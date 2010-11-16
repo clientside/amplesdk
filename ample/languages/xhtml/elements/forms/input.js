@@ -208,7 +208,17 @@ cXHTMLElement_input.handlers	= {
 					break;
 
 				case "checkbox":
-					this.setAttribute("checked", this.getAttribute("checked") == "true" ? "false" : "true");
+					this.setAttribute("checked", this.attributes["checked"] == "true" ? "false" : "true");
+					break;
+
+				case "radio":
+					var sName	= this.attributes["name"];
+					if (sName && this.form)
+						for (var nIndex = 0, oElement; nIndex < this.form.elements.length; nIndex++)
+							if ((oElement = this.form.elements[nIndex]) && oElement.attributes["type"] == "radio" && oElement.attributes["name"] == sName)
+								if (oElement.attributes["checked"] == "true")
+									this.form.elements[nIndex].removeAttribute("checked");
+					this.setAttribute("checked", "true");
 					break;
 			}
 		}
