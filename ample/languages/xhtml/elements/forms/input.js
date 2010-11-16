@@ -330,13 +330,19 @@ cXHTMLElement_input.html524	= {
 cXHTMLElement_input.prototype.$getTagOpen		= function() {
 	var sClassName	=(this.prefix ? this.prefix + '-' : '') + this.localName,
 		sClassNameType	= sClassName + '-type-' +(this.attributes["type"] || "text"),
+		bChecked	= this.attributes["checked"] && this.attributes["checked"] != "false",
+		bRequired	= this.attributes["required"] && this.attributes["required"] != "false",
+		bDisabled	= this.attributes["disabled"] && this.attributes["disabled"] != "false",
+		bReadonly	= this.attributes["readonly"] && this.attributes["readonly"] != "false",
+		bValid		= cXHTMLInputElement.isValid(this),
 		aHtml	= [];
 	aHtml.push('<span class="' + sClassName + ' ' + sClassNameType +
-						("class" in this.attributes ? ' ' + this.attributes["class"] : '')+
-						' ' + sClassName + '_' + (this.attributes["required"] ? 'required' : 'optional')+ ' '+
-						' ' + sClassName + '_' + (this.attributes["disabled"] ? 'disabled' : 'enabled')+ ' '+
-						' ' + sClassName + '_' + (this.attributes["readonly"] ? 'read-only' : 'read-write')+ ' '+
-						' ' + sClassName + '_' + (cXHTMLInputElement.isValid(this) ? 'valid' : 'invalid')+ ' '+
+						("class" in this.attributes ? ' ' + this.attributes["class"] : '') +
+						' ' + sClassName + '_' + (bChecked ? 'checked' : '') + ' '+
+						' ' + sClassName + '_' + (bRequired ? 'required' : 'optional') + ' '+
+						' ' + sClassName + '_' + (bDisabled ? 'disabled' : 'enabled') + ' '+
+						' ' + sClassName + '_' + (bReadonly ? 'read-only' : 'read-write') + ' '+
+						' ' + sClassName + '_' + (bValid ? 'valid' : 'invalid') + ' '+
 				'" ' +(this.attributes.style ? ' style="' + this.attributes.style + '"' : '')+ '>');
 	aHtml.push(	'<div style="position:absolute;white-space:nowrap;' + (this.getAttribute("value") == '' ? '' : 'display:none')+ '" class="' + sClassName + '--placeholder">' +(this.getAttribute("placeholder") || '')+ '</div>');
 	aHtml.push(	'<span class="' + sClassName + '--before ' + sClassNameType + '--before" style="float:left"></span>');
