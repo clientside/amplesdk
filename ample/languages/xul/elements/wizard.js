@@ -102,12 +102,12 @@ cXULElement_wizard.prototype.rewind  = function() {
 
 cXULElement_wizard.prototype.cancel  = function() {
     if (cXULElement_wizard.dispatchEvent_onWizard(this, "cancel"))
-    	this.close();
+    	this.hide();
 };
 
 cXULElement_wizard.prototype.finish  = function() {
     if (cXULElement_wizard.dispatchEvent_onWizard(this, "finish"))
-    	this.close();
+    	this.hide();
 };
 
 cXULElement_wizard.prototype.goTo    = function(sId) {

@@ -46,7 +46,7 @@ cXULElement_window.prototype.$getTagOpen	= function() {
 						<tbody>\
 							<tr>\
 								<td class="xul-window--title">' +(this.attributes["title"] || " ")+ '</td>\
-								<td width="1"><div class="xul-window--button-close xul-window--button-close_normal" onclick="ample.$instance(this).close()" onmouseover="this.className=this.className.replace(\'normal\', \'hover\')" onmouseout="this.className=this.className.replace(/hover|active/, \'normal\')" onmousedown="this.className=this.className.replace(\'hover\', \'active\')" onmouseup="this.className=this.className.replace(\'active\', \'normal\')"><br /></div></td>\
+								<td width="1"><div class="xul-window--button-close xul-window--button-close_normal" onclick="ample.$instance(this).hide()" onmouseover="this.className=this.className.replace(\'normal\', \'hover\')" onmouseout="this.className=this.className.replace(/hover|active/, \'normal\')" onmousedown="this.className=this.className.replace(\'hover\', \'active\')" onmouseup="this.className=this.className.replace(\'active\', \'normal\')"><br /></div></td>\
 							</tr>\
 						</tbody>\
 					</table>\

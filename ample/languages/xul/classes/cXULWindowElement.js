@@ -18,7 +18,7 @@ cXULWindowElement.prototype.$resizable	= true;
 
 cXULWindowElement.modalWindow	= null;
 
-cXULWindowElement.prototype.open	= function (nLeft, nTop) {
+cXULWindowElement.prototype.show	= function (nLeft, nTop) {
 	var that	= this,
 		oContainer	= that.$getContainer(),
 		oBody	= that.$getContainer("body"),
@@ -94,22 +94,22 @@ cXULWindowElement.prototype.open	= function (nLeft, nTop) {
 					that.buttons[sButtonFocus].focus();
 
 			var oEvent  = that.ownerDocument.createEvent("CustomEvent");
-			oEvent.initCustomEvent("open", true, false, null);
+			oEvent.initCustomEvent("windowshown", true, false, null);
 			that.dispatchEvent(oEvent);
 		}
 	);
 };
 
-cXULWindowElement.prototype.openModal	= function (nTop, nLeft) {
+cXULWindowElement.prototype.showModal	= function (nTop, nLeft) {
 	// set modal
 	cXULWindowElement.modalWindow	= this;
 	this.addEventListener("modal", cXULWindowElement.oncapture, true);
 	ample.modal(this);
 	//
-	this.open(nTop, nLeft);
+	this.show(nTop, nLeft);
 };
 
-cXULWindowElement.prototype.close = function() {
+cXULWindowElement.prototype.hide = function() {
 	var that	= this,
 		oContainer	= that.$getContainer(),
 		oBody	= that.$getContainer("body"),
@@ -158,7 +158,7 @@ cXULWindowElement.prototype.close = function() {
 			oBody.style.display	= "";
 
 			var oEvent  = that.ownerDocument.createEvent("CustomEvent");
-			oEvent.initCustomEvent("close", true, false, null);
+			oEvent.initCustomEvent("windowhidden", true, false, null);
 			that.dispatchEvent(oEvent);
 		}
 	);
@@ -181,7 +181,7 @@ cXULWindowElement.oncapture	= function(oEvent) {
 cXULWindowElement.onkeydown	= function(oEvent) {
 	if (oEvent.target == oEvent.currentTarget)
 		if (oEvent.keyIdentifier == "Esc")
-			oEvent.target.close();
+			oEvent.target.hide();
 };
 
 // Register Element

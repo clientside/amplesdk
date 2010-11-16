@@ -39,7 +39,7 @@
 			</attribute>
 		</attributes>
 		<methods>
-			<method name="open" type="Void">
+			<method name="show" type="Void">
 				<arguments>
 					<argument name="x" type="Number" required="false">
 						<description>
@@ -62,7 +62,7 @@
 					</locale>
 				</description>
 			</method>
-			<method name="openModal" type="Void">
+			<method name="showModal" type="Void">
 				<arguments>
 					<argument name="x" type="Number" required="false">
 						<description>
@@ -85,7 +85,7 @@
 					</locale>
 				</description>
 			</method>
-			<method name="close" type="Void">
+			<method name="hide" type="Void">
 				<description>
 					<locale>
 						Hides the window.
@@ -93,5 +93,21 @@
 				</description>
 			</method>
 		</methods>
+		<events>
+			<event name="windowshown" type="">
+				<description>
+					<locale>
+						This event is sent to a window after it has been shown.
+					</locale>
+				</description>
+			</event>
+			<event name="windowhidden" type="">
+				<description>
+					<locale>
+						This event is sent to a window after it has been hidden.
+					</locale>
+				</description>
+			</event>
+		</events>
 	</members>
 </class>
