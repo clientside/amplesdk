@@ -18,7 +18,7 @@ cXULWindowElement.prototype.$resizable	= true;
 
 cXULWindowElement.modalWindow	= null;
 
-cXULWindowElement.prototype.open	= function (nTop, nLeft) {
+cXULWindowElement.prototype.open	= function (nLeft, nTop) {
 	var that	= this,
 		oContainer	= that.$getContainer(),
 		oBody	= that.$getContainer("body"),
