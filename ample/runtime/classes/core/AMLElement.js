@@ -107,10 +107,6 @@ cAMLElement.prototype.insertBefore	= function(oNode, oBefore)
 	if (this instanceof arguments.callee.caller)
 		throw new cAMLException(cAMLException.AML_DOM_IN_CONSTRUCTOR_ERR);
 
-	// Check if call was executed from constructor
-	if (this instanceof arguments.callee.caller)
-		throw new cAMLException(cAMLException.AML_DOM_IN_CONSTRUCTOR_ERR);
-
 	if (oBefore) {
 		if (this.childNodes.$indexOf(oBefore) !=-1) {
 			if (oNode.nodeType == cAMLNode.DOCUMENT_FRAGMENT_NODE)
