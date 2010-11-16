@@ -7,5 +7,91 @@
 		</locale>
 	</abstract>
 	<examples/>
-	<members />
+	<members>
+		<attributes>
+			<attribute name="width">
+				<description>
+					<locale>
+						Specifies width of the window.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="height">
+				<description>
+					<locale>
+						Specifies height of the window.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="screenX">
+				<description>
+					<locale>
+						Specifies x location on the screen.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="screenY">
+				<description>
+					<locale>
+						Specifies y location on the screen.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods>
+			<method name="open" type="Void">
+				<arguments>
+					<argument name="x" type="Number" required="false">
+						<description>
+							<locale>
+								screenX position.
+							</locale>
+						</description>
+					</argument>
+					<argument name="y" type="Number" required="false">
+						<description>
+							<locale>
+								screenY position.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Shows the window at a specific screen position specified by x and y.
+					</locale>
+				</description>
+			</method>
+			<method name="openModal" type="Void">
+				<arguments>
+					<argument name="x" type="Number" required="false">
+						<description>
+							<locale>
+								screenX position.
+							</locale>
+						</description>
+					</argument>
+					<argument name="y" type="Number" required="false">
+						<description>
+							<locale>
+								screenY position.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Shows the window at a specific screen position specified by x and y in a modal state.
+					</locale>
+				</description>
+			</method>
+			<method name="close" type="Void">
+				<description>
+					<locale>
+						Hides the window.
+					</locale>
+				</description>
+			</method>
+		</methods>
+	</members>
 </class>
