@@ -45,6 +45,7 @@ input[type=hidden] {
 }
 
 input[type=file],
+input[type=range],
 input[type=checkbox],
 input[type=radio] {
 	border-color: transparent;
@@ -126,12 +127,14 @@ select:focus {
 	border-width: 2px;
 }
 
+input[type=file].input_focus,
 input[type=checkbox].input_focus,
 input[type=radio].input_focus,
 input[type=range].input_focus {
-	margin: 1px;
 	background: none;
-	border: none;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 2px;
 }
 
 /* pseudo-elements */
