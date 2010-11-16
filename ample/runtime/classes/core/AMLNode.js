@@ -635,6 +635,10 @@ function fAMLNode_handleCaptureOnTargetEvent(oNode, oEvent) {
 
 cAMLNode.prototype.hasAttributes	= function()
 {
+	// Check if call was executed from constructor
+	if (this instanceof arguments.callee.caller)
+		throw new cAMLException(cAMLException.AML_DOM_IN_CONSTRUCTOR_ERR);
+
 	if (this.attributes)
 		for (var sAttribute in this.attributes)
 			if (this.attributes.hasOwnProperty(sAttribute))

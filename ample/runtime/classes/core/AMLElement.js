@@ -321,6 +321,10 @@ cAMLElement.prototype.setAttribute	= function(sName, sValue)
 		["value",		cObject]
 	]);
 
+	// Check if call was executed from constructor
+	if (this instanceof arguments.callee.caller)
+		throw new cAMLException(cAMLException.AML_DOM_IN_CONSTRUCTOR_ERR);
+
 	fAMLElement_setAttribute(this, sName, cString(sValue));
 };
 
@@ -410,6 +414,10 @@ cAMLElement.prototype.setAttributeNS	= function(sNameSpaceURI, sQName, sValue)
 		["value",			cObject]
 	]);
 
+	// Check if call was executed from constructor
+	if (this instanceof arguments.callee.caller)
+		throw new cAMLException(cAMLException.AML_DOM_IN_CONSTRUCTOR_ERR);
+
 	fAMLElement_setAttributeNS(this, sNameSpaceURI, sQName, cString(sValue));
 };
 
@@ -447,6 +455,10 @@ cAMLElement.prototype.getAttribute	= function(sName)
 		["name",		cString]
 	]);
 
+	// Check if call was executed from constructor
+	if (this instanceof arguments.callee.caller)
+		throw new cAMLException(cAMLException.AML_DOM_IN_CONSTRUCTOR_ERR);
+
 	return fAMLElement_getAttribute(this, sName);
 };
 
@@ -466,6 +478,10 @@ cAMLElement.prototype.getAttributeNS	= function(sNameSpaceURI, sLocalName)
 		["namespaceURI",	cString, false, true],
 		["localName",		cString]
 	]);
+
+	// Check if call was executed from constructor
+	if (this instanceof arguments.callee.caller)
+		throw new cAMLException(cAMLException.AML_DOM_IN_CONSTRUCTOR_ERR);
 
 	return fAMLElement_getAttributeNS(this, sNameSpaceURI, sLocalName);
 };
@@ -524,6 +540,10 @@ cAMLElement.prototype.removeAttribute	= function(sName)
 	fGuard(arguments, [
 		["name",	cString]
 	]);
+
+	// Check if call was executed from constructor
+	if (this instanceof arguments.callee.caller)
+		throw new cAMLException(cAMLException.AML_DOM_IN_CONSTRUCTOR_ERR);
 
 	fAMLElement_removeAttribute(this, sName);
 };
@@ -584,6 +604,10 @@ cAMLElement.prototype.removeAttributeNS	= function(sNameSpaceURI, sLocalName)
 		["localName",		cString]
 	]);
 
+	// Check if call was executed from constructor
+	if (this instanceof arguments.callee.caller)
+		throw new cAMLException(cAMLException.AML_DOM_IN_CONSTRUCTOR_ERR);
+
 	fAMLElement_removeAttributeNS(this, sNameSpaceURI, sLocalName);
 };
 
@@ -594,6 +618,10 @@ cAMLElement.prototype.removeAttributeNode	= function(oAttribute)
 
 cAMLElement.prototype.hasChildNodes	= function()
 {
+	// Check if call was executed from constructor
+	if (this instanceof arguments.callee.caller)
+		throw new cAMLException(cAMLException.AML_DOM_IN_CONSTRUCTOR_ERR);
+
 	return this.childNodes.length > 0;
 };
 
@@ -620,6 +648,10 @@ cAMLElement.prototype.getElementsByTagName	= function(sTagName)
 	fGuard(arguments, [
 		["name",	cString]
 	]);
+
+	// Check if call was executed from constructor
+	if (this instanceof arguments.callee.caller)
+		throw new cAMLException(cAMLException.AML_DOM_IN_CONSTRUCTOR_ERR);
 
 	return fAMLElement_getElementsByTagName(this, sTagName);
 };
@@ -649,6 +681,10 @@ cAMLElement.prototype.getElementsByTagNameNS	= function(sNameSpaceURI, sLocalNam
 		["namespaceURI",	cString],
 		["localName",		cString]
 	]);
+
+	// Check if call was executed from constructor
+	if (this instanceof arguments.callee.caller)
+		throw new cAMLException(cAMLException.AML_DOM_IN_CONSTRUCTOR_ERR);
 
 	return fAMLElement_getElementsByTagNameNS(this, sNameSpaceURI, sLocalName);
 };
