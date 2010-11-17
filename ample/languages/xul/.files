@@ -117,3 +117,5 @@ elements/timepicker.js
 elements/datepicker-pane.js
 elements/colorpicker-pane.js
 elements/tooltip-pane.js
+# custom
+elements/sidebar.js
