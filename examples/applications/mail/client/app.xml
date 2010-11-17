@@ -103,9 +103,5 @@
 			<xi:include href="modules/message.xml" />
 			<xi:include href="modules/contacts.xml" />
 		</xul:deck>
-		<xul:splitter />
-		<xul:tree width="100" height="100%"/>
 	</xul:hbox>
-	<xul:splitter />
-	<xul:tree height="100"/>
 </xul:page>

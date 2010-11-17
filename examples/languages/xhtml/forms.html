@@ -140,7 +140,7 @@ input:required {
     		<label for="form-11-1">female</label>
     	</div>
     	<div class="entry">
-    		<input id="form-11-2" name="sex" type="radio" value="male"/>
+    		<input id="form-11-2" name="sex" type="radio" value="male" checked="true"/>
     		<label for="form-11-2">male</label>
     	</div>
     </div>
@@ -148,10 +148,14 @@ input:required {
     	<label for="form-12">Option</label>
     	<input id="form-12" type="checkbox"/>
     </div>
+    <div class="entry">
+    	<label for="form-121">Option (checked)</label>
+    	<input id="form-121" type="checkbox" checked="true"/>
+    </div>
     <!-- entry end -->
     <div class="entry">
         <label for="form-8">Attractiveness </label>
-        <input id="form-8"  name="a" type="range" min="1" max="10" value="0" />
+        <input id="form-8"  name="a" type="range" min="1" max="10" value="1" />
         <output name="result"  onforminput="value=a.value"  >0</output>
     </div>
     <!-- entry end -->
