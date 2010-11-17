@@ -36,6 +36,9 @@ cXHTMLElement_input.prototype.selectedOption	= null;
 cXHTMLElement_input.prototype.valueAsNumber	= NaN;
 cXHTMLElement_input.prototype.valueAsDate	= null;
 
+// Private properties
+cXHTMLElement_input.prototype.$captured	= false;
+
 cXHTMLElement_input.prototype.$isAccessible	= function() {
 	return cXHTMLElement.prototype.$isAccessible.call(this) && this.attributes["type"] != "hidden";
 };
@@ -55,6 +58,13 @@ cXHTMLElement_input.prototype.stepUp	= function() {
 		nMin	= parseFloat(this.attributes["min"]),
 		nMax	= parseFloat(this.attributes["max"]);
 
+	if (isNaN(nMin))
+		nMin	= 0;
+	if (isNaN(nMax))
+		nMax	= 100;
+	if (nMax < nMin)
+		nMax	= nMin;
+
 	if (isNaN(nValue))
 		nValue	= nMax;
 	else
@@ -73,6 +83,13 @@ cXHTMLElement_input.prototype.stepDown	= function() {
 		nStep	= parseFloat(this.attributes["step"]) || 1,
 		nMin	= parseFloat(this.attributes["min"]),
 		nMax	= parseFloat(this.attributes["max"]);
+
+	if (isNaN(nMin))
+		nMin	= 0;
+	if (isNaN(nMax))
+		nMax	= 100;
+	if (nMax < nMin)
+		nMax	= nMin;
 
 	if (isNaN(nValue))
 		nValue	= nMin;
@@ -135,7 +152,9 @@ cXHTMLElement_input.handlers	= {
 			switch (this.attributes["type"]) {
 				case "range":
 					if (oEvent.$pseudoTarget == this.$getContainer("button")) {
+						this.$captured	= true;
 						this.setCapture(true);
+						this.$setPseudoClass("active", true);
 					}
 					break;
 			}
@@ -145,7 +164,41 @@ cXHTMLElement_input.handlers	= {
 		if (oEvent.target == this) {
 			switch (this.attributes["type"]) {
 				case "range":
-					this.releaseCapture();
+					if (this.$captured) {
+						this.$captured	= false;
+						this.releaseCapture();
+						this.$setPseudoClass("active", false);
+						//
+						this.setAttribute("value", this.valueAsNumber);
+					}
+					break;
+			}
+		}
+	},
+	"mousemove":	function(oEvent) {
+		if (oEvent.target == this) {
+			switch (this.attributes["type"]) {
+				case "range":
+					if (this.$captured) {
+						var oRect	= this.getBoundingClientRect("field"),
+							nLeft	= Math.max(oRect.left, Math.min(oEvent.clientX, oRect.right)),
+							nRatio	= (nLeft - oRect.left) / (oRect.right - oRect.left);
+
+						var nStep	= parseFloat(this.attributes["step"]) || 1,
+							nMin	= parseFloat(this.attributes["min"]),
+							nMax	= parseFloat(this.attributes["max"]);
+
+						if (isNaN(nMin))
+							nMin	= 0;
+						if (isNaN(nMax))
+							nMax	= 100;
+						if (nMax < nMin)
+							nMax	= nMin;
+						// Save current value
+						this.valueAsNumber	= Math.round(nStep * (nMin + (nMax - nMin) * nRatio)) / nStep;
+						// Update thumb position
+						this.$getContainer("button").style.left	= cXHTMLElement_input.getRangeOffset(this, this.valueAsNumber);
+					}
 					break;
 			}
 		}
@@ -226,6 +279,8 @@ cXHTMLElement_input.handlers	= {
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		//
 		cXHTMLInputElement.register(this);
+		//
+		this.$selectable	= this.attributes["type"] != "range";
 	},
 	"DOMNodeRemovedFromDocument":	function(oEvent) {
 		//
@@ -303,8 +358,16 @@ cXHTMLElement_input.toggle	= function(oInstance, bForce) {
 };
 
 cXHTMLElement_input.getRangeOffset	= function(oInstance, nValue) {
-	var nMax	= oInstance.attributes.max || 100,
-		nMin	= oInstance.attributes.min || 0;
+	var nMax	= parseFloat(oInstance.attributes.max),
+		nMin	= parseFloat(oInstance.attributes.min);
+
+	if (isNaN(nMin))
+		nMin	= 0;
+	if (isNaN(nMax))
+		nMax	= 100;
+	if (nMax < nMin)
+		nMax	= nMin;
+
 	return 100 * (Math.max(nMin, Math.min(nMax, nValue)) - nMin) / (nMax - nMin) + '%';
 };
 
