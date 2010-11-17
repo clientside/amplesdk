@@ -103,7 +103,6 @@ input[type=range]::after {
 	background-position: 0px -245px;
 }
 
-
 input[type=datetime],
 input[type=datetime-local] {
 	width:	130px;
@@ -171,6 +170,14 @@ input[type=range].input_focus {
 	border-style: solid;
 	border-width: 1px;
 	border-radius: 2px;
+}
+
+input[type=button].input_focus,
+input[type=submit].input_focus,
+input[type=reset].input_focus {
+	background: none;
+	border: none;
+	margin: 1px;
 }
 
 input[type=range].input_focus {
@@ -296,7 +303,77 @@ input:checked input[type=radio]::button {				background-position: 0 -128px;		}
 input:hover:checked input[type=radio]::button {			background-position: -16px -128px;	}
 input:disabled:checked input[type=radio]::button {		background-position: -32px -128px;	}
 
+input[type=button]::field,
+input[type=reset]::field,
+input[type=submit]::field,
+input[type=button]::before,
+input[type=reset]::before,
+input[type=submit]::before,
+input[type=button]::after,
+input[type=reset]::after,
+input[type=submit]::after {
+	background-image: url("media/button.png");
+	height: 20px;
+}
 
+input[type=button]::field,
+input[type=reset]::field,
+input[type=submit]::field {
+	background-repeat: repeat-x;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+input[type=button]::before,
+input[type=reset]::before,
+input[type=submit]::before,
+input[type=button]::after,
+input[type=reset]::after,
+input[type=submit]::after {
+	width: 5px;
+	width: 5px;
+}
+
+input[type=button]::field,
+input[type=reset]::field,
+input[type=submit]::field {			background-position: 0 -40px;	}
+input:hover input[type=button]::field,
+input:hover input[type=reset]::field,
+input:hover input[type=submit]::field {		background-position: 0 -60px;	}
+input:disabled input[type=button]::field,
+input:disabled input[type=reset]::field,
+input:disabled input[type=submit]::field {	background-position: 0 -80px;	}
+input:focus input[type=button]::field,
+input:focus input[type=reset]::field,
+input:focus input[type=submit]::field {		background-position: 0 -100px;	}
+
+input[type=button]::before,
+input[type=reset]::before,
+input[type=submit]::before {		background-position: -15px 0px;	}
+input:hover input[type=button]::before,
+input:hover input[type=reset]::before,
+input:hover input[type=submit]::before {	background-position: -35px 0px;	}
+input:disabled input[type=button]::before,
+input:disabled input[type=reset]::before,
+input:disabled input[type=submit]::before {	background-position: -55px 0px;	}
+input:focus input[type=button]::before,
+input:focus input[type=reset]::before,
+input:focus input[type=submit]::before {	background-position: -75px 0px;	}
+
+input[type=button]::after,
+input[type=reset]::after,
+input[type=submit]::after {			background-position: 0px -20px;	}
+input:hover input[type=button]::after,
+input:hover input[type=reset]::after,
+input:hover input[type=submit]::after {		background-position: -20px -20px;	}
+input:disabled input[type=button]::after,
+input:disabled input[type=reset]::after,
+input:disabled input[type=submit]::after {	background-position: -40px -20px;	}
+input:focus input[type=button]::after,
+input:focus input[type=reset]::after,
+input:focus input[type=submit]::after {		background-position: -60px -20px;	}
+
+/* */
 input[type=date]::field,
 input[type=time]::field,
 input[type=datetime]::field,
@@ -355,6 +432,27 @@ select:focus option:selected {
 option:selected {
 	background-color: gray;
 	color: white;
+}
+
+button {
+
+}
+
+button::before,
+button::after {
+
+}
+
+button::before {
+
+}
+
+button::after {
+
+}
+
+button::label {
+
 }
 
 /* spinbuttons */
