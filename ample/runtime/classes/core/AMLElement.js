@@ -54,11 +54,7 @@ cAMLElement.prototype.appendChild	= function(oNode)
 	// Validate arguments
 	fGuard(arguments, [
 		["node",	cAMLNode]
-	]);
-
-	// Check if call was executed from constructor
-	if (this instanceof arguments.callee.caller)
-		throw new cAMLException(cAMLException.AML_DOM_IN_CONSTRUCTOR_ERR);
+	], this);
 
 	// Invoke actual implementation
 	if (oNode.nodeType == cAMLNode.DOCUMENT_FRAGMENT_NODE)
@@ -101,11 +97,7 @@ cAMLElement.prototype.insertBefore	= function(oNode, oBefore)
 	fGuard(arguments, [
 		["node",	cAMLNode],
 		["before",	cAMLNode, false, true]
-	]);
-
-	// Check if call was executed from constructor
-	if (this instanceof arguments.callee.caller)
-		throw new cAMLException(cAMLException.AML_DOM_IN_CONSTRUCTOR_ERR);
+	], this);
 
 	if (oBefore) {
 		if (this.childNodes.$indexOf(oBefore) !=-1) {
@@ -162,11 +154,7 @@ cAMLElement.prototype.removeChild	= function(oNode)
 	// Validate arguments
 	fGuard(arguments, [
 		["node",	cAMLNode]
-	]);
-
-	// Check if call was executed from constructor
-	if (this instanceof arguments.callee.caller)
-		throw new cAMLException(cAMLException.AML_DOM_IN_CONSTRUCTOR_ERR);
+	], this);
 
     if (this.childNodes.$indexOf(oNode) !=-1)
     	return fAMLElement_removeChild(this, oNode);
@@ -202,11 +190,7 @@ cAMLElement.prototype.replaceChild	= function(oNode, oOld)
 	fGuard(arguments, [
 		["node",	cAMLNode],
 		["old",		cAMLNode, false, true]
-	]);
-
-	// Check if call was executed from constructor
-	if (this instanceof arguments.callee.caller)
-		throw new cAMLException(cAMLException.AML_DOM_IN_CONSTRUCTOR_ERR);
+	], this);
 
 	if (oOld) {
 	    if (this.childNodes.$indexOf(oOld) !=-1) {
@@ -243,7 +227,7 @@ cAMLElement.prototype.hasAttribute	= function(sName)
 	// Validate arguments
 	fGuard(arguments, [
 		["name",		cString]
-	]);
+	], this);
 
 	return fAMLElement_hazAttribute(this, sName);
 };
@@ -263,7 +247,7 @@ cAMLElement.prototype.hasAttributeNS	= function(sNameSpaceURI, sLocalName)
 	fGuard(arguments, [
 		["namespaceURI",	cString, false, true],
 		["localName",		cString]
-	]);
+	], this);
 
 	return fAMLElement_hazAttributeNS(this, sNameSpaceURI, sLocalName);
 };
@@ -319,11 +303,7 @@ cAMLElement.prototype.setAttribute	= function(sName, sValue)
 	fGuard(arguments, [
 		["name",		cString],
 		["value",		cObject]
-	]);
-
-	// Check if call was executed from constructor
-	if (this instanceof arguments.callee.caller)
-		throw new cAMLException(cAMLException.AML_DOM_IN_CONSTRUCTOR_ERR);
+	], this);
 
 	fAMLElement_setAttribute(this, sName, cString(sValue));
 };
@@ -412,11 +392,7 @@ cAMLElement.prototype.setAttributeNS	= function(sNameSpaceURI, sQName, sValue)
 		["namespaceURI",	cString, false, true],
 		["name",			cString],
 		["value",			cObject]
-	]);
-
-	// Check if call was executed from constructor
-	if (this instanceof arguments.callee.caller)
-		throw new cAMLException(cAMLException.AML_DOM_IN_CONSTRUCTOR_ERR);
+	], this);
 
 	fAMLElement_setAttributeNS(this, sNameSpaceURI, sQName, cString(sValue));
 };
@@ -453,11 +429,7 @@ cAMLElement.prototype.getAttribute	= function(sName)
 	// Validate arguments
 	fGuard(arguments, [
 		["name",		cString]
-	]);
-
-	// Check if call was executed from constructor
-	if (this instanceof arguments.callee.caller)
-		throw new cAMLException(cAMLException.AML_DOM_IN_CONSTRUCTOR_ERR);
+	], this);
 
 	return fAMLElement_getAttribute(this, sName);
 };
@@ -477,11 +449,7 @@ cAMLElement.prototype.getAttributeNS	= function(sNameSpaceURI, sLocalName)
 	fGuard(arguments, [
 		["namespaceURI",	cString, false, true],
 		["localName",		cString]
-	]);
-
-	// Check if call was executed from constructor
-	if (this instanceof arguments.callee.caller)
-		throw new cAMLException(cAMLException.AML_DOM_IN_CONSTRUCTOR_ERR);
+	], this);
 
 	return fAMLElement_getAttributeNS(this, sNameSpaceURI, sLocalName);
 };
@@ -539,11 +507,7 @@ cAMLElement.prototype.removeAttribute	= function(sName)
 {
 	fGuard(arguments, [
 		["name",	cString]
-	]);
-
-	// Check if call was executed from constructor
-	if (this instanceof arguments.callee.caller)
-		throw new cAMLException(cAMLException.AML_DOM_IN_CONSTRUCTOR_ERR);
+	], this);
 
 	fAMLElement_removeAttribute(this, sName);
 };
@@ -602,11 +566,7 @@ cAMLElement.prototype.removeAttributeNS	= function(sNameSpaceURI, sLocalName)
 	fGuard(arguments, [
 		["namespaceURI",	cString, false, true],
 		["localName",		cString]
-	]);
-
-	// Check if call was executed from constructor
-	if (this instanceof arguments.callee.caller)
-		throw new cAMLException(cAMLException.AML_DOM_IN_CONSTRUCTOR_ERR);
+	], this);
 
 	fAMLElement_removeAttributeNS(this, sNameSpaceURI, sLocalName);
 };
@@ -618,9 +578,8 @@ cAMLElement.prototype.removeAttributeNode	= function(oAttribute)
 
 cAMLElement.prototype.hasChildNodes	= function()
 {
-	// Check if call was executed from constructor
-	if (this instanceof arguments.callee.caller)
-		throw new cAMLException(cAMLException.AML_DOM_IN_CONSTRUCTOR_ERR);
+	fGuard(arguments, [
+	], this);
 
 	return this.childNodes.length > 0;
 };
@@ -647,11 +606,7 @@ cAMLElement.prototype.getElementsByTagName	= function(sTagName)
 	// Validate arguments
 	fGuard(arguments, [
 		["name",	cString]
-	]);
-
-	// Check if call was executed from constructor
-	if (this instanceof arguments.callee.caller)
-		throw new cAMLException(cAMLException.AML_DOM_IN_CONSTRUCTOR_ERR);
+	], this);
 
 	return fAMLElement_getElementsByTagName(this, sTagName);
 };
@@ -680,11 +635,7 @@ cAMLElement.prototype.getElementsByTagNameNS	= function(sNameSpaceURI, sLocalNam
 	fGuard(arguments, [
 		["namespaceURI",	cString],
 		["localName",		cString]
-	]);
-
-	// Check if call was executed from constructor
-	if (this instanceof arguments.callee.caller)
-		throw new cAMLException(cAMLException.AML_DOM_IN_CONSTRUCTOR_ERR);
+	], this);
 
 	return fAMLElement_getElementsByTagNameNS(this, sNameSpaceURI, sLocalName);
 };

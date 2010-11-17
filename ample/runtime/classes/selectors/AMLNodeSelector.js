@@ -476,11 +476,7 @@ cAMLNodeSelector.prototype.querySelector	= function(sCSS, fResolver)
 	fGuard(arguments, [
 		["query",		cString],
 		["resolver",	cFunction, true]
-	]);
-
-	// Check if call was executed from constructor
-	if (this instanceof arguments.callee.caller)
-		throw new cAMLException(cAMLException.AML_DOM_IN_CONSTRUCTOR_ERR);
+	], this);
 
 	var aNodeList	= fAMLSelector_query([this], sCSS, fResolver, true);
 	return aNodeList.length ? aNodeList[0] : null;
@@ -494,11 +490,7 @@ cAMLNodeSelector.prototype.querySelectorAll	= function(sCSS, fResolver)
 	fGuard(arguments, [
 		["query",		cString],
 		["resolver",	cFunction, true]
-	]);
-
-	// Check if call was executed from constructor
-	if (this instanceof arguments.callee.caller)
-		throw new cAMLException(cAMLException.AML_DOM_IN_CONSTRUCTOR_ERR);
+	], this);
 
 	return fAMLSelector_query([this], sCSS, fResolver);
 };

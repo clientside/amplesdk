@@ -19,7 +19,7 @@ var oGuard_endings	= 'st-nd-rd-th'.split('-'),
 	oGuard_types	= fUtilities_stringToHash('0:Node;1:Element;9:Document');
 //<-Debug
 
-function fGuard(aArguments, aParameters) {
+function fGuard(aArguments, aParameters, oObject) {
 	var fCallee	= aArguments.callee,
 		fCaller	= null;
 	// Has to be wrapped in try/catch because Firebug throws "Permission denied to get property on Function.caller" in XMLHttpRequest
@@ -29,6 +29,10 @@ function fGuard(aArguments, aParameters) {
 //->Debug
 	var sFunction	= cString(fCallee).match(rGuard_function) ? cRegExp.$1 : "anonymous";
 //<-Debug
+
+	// Check constructor
+	if (oObject && fCaller && oObject instanceof fCaller)
+		throw new cAMLException(cAMLException.AML_DOM_IN_CONSTRUCTOR_ERR, fCaller);
 
 	// Iterate over parameters list
 	for (var nIndex = 0, nLength = aArguments.length, aParameter, vValue; aParameter = aParameters[nIndex]; nIndex++) {
