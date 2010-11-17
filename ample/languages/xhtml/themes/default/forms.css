@@ -67,7 +67,7 @@ input[type=submit] {
 
 input[type=range] {
 	width:	200px;
-	height: 4px;
+	height: 6px;
 	margin-top: 6px;
 	margin-bottom: 6px;
 }
@@ -76,17 +76,33 @@ input[type=range]::value {
 	display: none;
 }
 
-input[type=range]::field {
-	margin-left: 8px;
-	margin-right: 8px;
+input[type=range]::field,
+input[type=range]::before,
+input[type=range]::after {
+	height: 6px;
+	background-image: url("media/forms.png");
 }
 
 input[type=range]::before,
 input[type=range]::after {
 	width:	6px;
-	height: 4px;
-	background-color: black;
 }
+
+input[type=range]::field {
+	margin-left: 6px;
+	margin-right: 6px;
+	background-position: 0px -261px;
+	background-repeat: repeat-x;
+}
+
+input[type=range]::before {
+	background-position: -10px -230px;
+}
+
+input[type=range]::after {
+	background-position: 0px -245px;
+}
+
 
 input[type=datetime],
 input[type=datetime-local] {
@@ -212,6 +228,11 @@ select::button {
 	width: 16px;
 	height: 16px;
 	margin: 0 1px;
+}
+
+input[type=time]::button,
+input[type=number]::button {
+	background-position: 0px 16px;;
 }
 
 select::button {					background-position: 0px 0px;	}
