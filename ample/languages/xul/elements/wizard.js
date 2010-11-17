@@ -128,6 +128,13 @@ cXULElement_wizard.prototype.getButton   = function(sName) {
     return this.buttons[sName];
 };
 
+// Redefine cXULElement.prototype.reflow behavior
+cXULElement_wizard.prototype.reflow	= function() {
+	if (this.currentPage)
+		this.currentPage.reflow();
+};
+
+// Static methods
 cXULElement_wizard.dispatchEvent_onWizard  = function(oElement, sName) {
     var oEvent  = oElement.ownerDocument.createEvent("Events");
     oEvent.initEvent("wizard" + sName, true, true);
