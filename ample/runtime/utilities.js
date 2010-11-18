@@ -204,7 +204,7 @@ function fAML_processScripts() {
 				if (bGecko)
 					sText	= sText.replace(new cRegExp(sNS_XUL, 'g'), sNS_XUL + '#');
 				// Create fragment
-			    oDocument   = new cDOMParser().parseFromString(sText, "text/xml");
+			    oDocument   = fBrowser_parseXML(sText);
 			}
 
 			oParserError	= oDocument ? oDocument.getElementsByTagName("parsererror")[0] : null;
@@ -251,7 +251,7 @@ function fAML_processScripts() {
 		    		if (!bReferenced && !oAttributes['id'])
 		    			oAttributes['id']	= oElement.uniqueID;
 
-		    		oElementNew	= oUADocument.importNode(new cDOMParser().parseFromString(
+		    		oElementNew	= oUADocument.importNode(fBrowser_parseXML(
 		    															'<!' + "DOCTYPE" + ' ' + "div" + ' ' + '[' + aUtilities_entities + ']>' +
 //->Debug
 																		'\n' +
@@ -264,7 +264,7 @@ function fAML_processScripts() {
 //->Debug
 																		'\n' +
 //<-Debug
-		    															'</' + "div"+ '>', "text/xml").documentElement, true);
+		    															'</' + "div"+ '>').documentElement, true);
 		    		oElementDOM.parentNode.replaceChild(oElementNew, oElementDOM);
 		    	}
 

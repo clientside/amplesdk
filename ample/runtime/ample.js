@@ -44,7 +44,7 @@ function fQuery(vArgument1, vArgument2, vArgument3) {
 				if (bGecko)
 					sText	= sText.replace(new cRegExp(sNS_XUL, 'g'), sNS_XUL + '#');
 				//
-				var oDocument	= new cDOMParser().parseFromString(sText, "text/xml");
+				var oDocument	= fBrowser_parseXML(sText);
 				if (!oDocument || ((bTrident && oDocument.parseError != 0) || !oDocument.documentElement || oDocument.getElementsByTagName("parsererror").length))
 					throw new cAMLException(cAMLException.SYNTAX_ERR, fQuery.caller);
 				else

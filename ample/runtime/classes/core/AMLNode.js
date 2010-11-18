@@ -750,7 +750,7 @@ cAMLNode.prototype.dispatchEvent	= function(oEvent)
 cAMLNode.prototype.selectNodes	= function(sXPath)
 {
 	var oDocument	= this.nodeType == cAMLNode.DOCUMENT_NODE ? this : this.ownerDocument,
-		oXMLDocument= new cDOMParser().parseFromString(oDocument.toXML(), "text/xml"),
+		oXMLDocument= fBrowser_parseXML(oDocument.toXML()),
 		aNodeList	= new cAMLNodeList,
 		aXMLNodeList= [],
 		oNode,

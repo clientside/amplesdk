@@ -107,7 +107,7 @@ function fBrowser_render(oNode) {
 				// Add namespace declarations to the shadow content
 				if (!("xmlns" + (oNode.prefix ? ':' + oNode.prefix : '') in oNode.attributes) || (oNode.namespaceURI != sNS_SVG && oNode.namespaceURI != sNS_XHTML))
 					sHtml	= sHtml.replace(/^(<(?:(\w+)(:))?(\w+))/, '$1 ' + "xmlns" + '$3$2="' + (oNode.namespaceURI == sNS_SVG ? sNS_SVG : sNS_XHTML) + '"');
-				return oUADocument.importNode(new cDOMParser().parseFromString('<!' + "DOCTYPE" + ' ' + "div" + '[' + aUtilities_entities + ']>' + sHtml, "text/xml").documentElement, true);
+				return oUADocument.importNode(fBrowser_parseXML('<!' + "DOCTYPE" + ' ' + "div" + '[' + aUtilities_entities + ']>' + sHtml).documentElement, true);
 			}
 		}
 	}
@@ -711,11 +711,15 @@ function fBrowser_replaceNode(oOld, oNew) {
 	oOld.parentNode.removeChild(oOld);
 };
 
-function fBrowser_eval(sScript) {
+function fBrowser_eval(sText) {
 	var oElementDOM	= oUADocument.getElementsByTagName("head")[0].appendChild(oUADocument.createElement("script"));
 	oElementDOM.type= "text/javascript";
-	oElementDOM.text= sScript;
+	oElementDOM.text= sText;
 	oElementDOM.parentNode.removeChild(oElementDOM);
+};
+
+function fBrowser_parseXML(sText) {
+	return new cDOMParser().parseFromString(sText, "text/xml");
 };
 
 function fBrowser_getResponseDocument(oRequest) {
@@ -725,12 +729,12 @@ function fBrowser_getResponseDocument(oRequest) {
 	if (sText) {
 		if (bTrident) {
 			if (oDocument && !oDocument.documentElement && oRequest.getResponseHeader("Content-Type").match(/[^\/]+\/[^\+]+\+xml/))
-				oDocument	= new cDOMParser().parseFromString(sText, "text/xml");
+				oDocument	= fBrowser_parseXML(sText);
 		}
 		// Bugfix FF4 (remote XUL)
 		if (bGecko) {
 			sText	= sText.replace(new cRegExp(sNS_XUL, 'g'), sNS_XUL + '#');
-			oDocument	= new cDOMParser().parseFromString(sText, "text/xml");
+			oDocument	= fBrowser_parseXML(sText);
 		}
 	}
 	// Check if there is no error in document
