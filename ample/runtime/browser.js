@@ -711,6 +711,13 @@ function fBrowser_replaceNode(oOld, oNew) {
 	oOld.parentNode.removeChild(oOld);
 };
 
+function fBrowser_eval(sScript) {
+	var oElementDOM	= oUADocument.getElementsByTagName("head")[0].appendChild(oUADocument.createElement("script"));
+	oElementDOM.type= "text/javascript";
+	oElementDOM.text= sScript;
+	oElementDOM.parentNode.removeChild(oElementDOM);
+};
+
 function fBrowser_getResponseDocument(oRequest) {
 	var oDocument	= oRequest.responseXML,
 		sText		= oRequest.responseText;

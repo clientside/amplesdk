@@ -1282,10 +1282,8 @@ fAMLEventTarget_addEventListener(oAmple_document, "configchange",	function(oEven
 		if (aAMLQuery_cultures.indexOf(sCulture) >-1) {
 			var oSettings	= {};
 			oSettings.url	= fUtilities_resolveUri("cultures" + '/' + sCulture + ".js", sAMLQuery_baseURI);
-			oSettings.success	= function(sScript) {
-				// Execute locale code
-				new cFunction(sScript)();
-				//
+			oSettings.dataType	= "script";
+			oSettings.success	= function() {
 				fChangeCulture(oCultures[sCulture]);
 			};
 			//

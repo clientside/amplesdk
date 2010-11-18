@@ -245,11 +245,8 @@ oAmple.include	= function(sSrc) {
 	var oRequest	= new cXMLHttpRequest;
 	oRequest.open("GET", sAmple_include, false);
 	oRequest.send();
-	// Keep head lookup here as document is not yet loaded and oBrowser_head is not available
-	var oScript	= oUADocument.getElementsByTagName("head")[0].appendChild(oUADocument.createElement("script"));
-	oScript.type= "text/javascript";
-	oScript.text= oRequest.responseText;
-	oScript.parentNode.removeChild(oScript);
+	// Evaluate result
+	fBrowser_eval(oRequest.responseText);
 	// Restore base location
 	sAmple_include	= sValue;
 };

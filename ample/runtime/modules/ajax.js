@@ -40,10 +40,7 @@ function fAMLQuery_ajax(oSettings) {
 				}
 				else
 				if (sRequestType == "script" || sResponseType == "javascript" || sResponseType == "ecmascript") {
-					var oScript	= oUADocument.getElementsByTagName("head")[0].appendChild(oUADocument.createElement("script"));
-					oScript.type= "text/javascript";
-					oScript.text= oResponse;
-					oScript.parentNode.removeChild(oScript);
+					fBrowser_eval(oResponse);
 				}
 				//
 				if (oSettings.success)

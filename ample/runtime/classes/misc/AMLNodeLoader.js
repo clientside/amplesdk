@@ -58,26 +58,25 @@ function fAMLNodeLoader_load(oElement, sUrl, vData, fCallback) {
 		oSettings.type	= "GET";
 		oSettings.url	= sUrl;
 		oSettings.data	= vData || null;
-		oSettings.complete	= function(oRequest) {
+		oSettings.dataType	= "xml";
+		oSettings.success	= function(oDocument) {
 			// Clear
 			fAMLNodeLoader_clear(oElement);
-
-		    var oDocument	= fBrowser_getResponseDocument(oRequest),
-				oEvent		= new cAMLEvent;
-		    if (oDocument) {
-				// Render Content
-		    	fAMLElement_appendChild(oElement, fAMLDocument_importNode(oElement.ownerDocument, oDocument.documentElement, true));
-				// Initialize event
-				oEvent.initEvent("load", false, false);
-		    }
-		    else {
+			// Render Content
+	    	fAMLElement_appendChild(oElement, fAMLDocument_importNode(oElement.ownerDocument, oDocument.documentElement, true));
+			// Dispatch load event
+		    var oEvent		= new cAMLEvent;
+			oEvent.initEvent("load", false, false);
+			fAMLNode_dispatchEvent(oElement, oEvent);
+		};
+		oSettings.error	= function(oRequest, sMessage) {
 //->Debug
+			if (sMessage == "parsererror")
 				fUtilities_warn(sAML_NOT_WELLFORMED_WRN);
 //<-Debug
-				// Initialize event
-				oEvent.initEvent("error", false, false);
-		    }
-			// Dispatch event
+			// Dispatch error event
+		    var oEvent		= new cAMLEvent;
+			oEvent.initEvent("error", false, false);
 			fAMLNode_dispatchEvent(oElement, oEvent);
 		};
 
