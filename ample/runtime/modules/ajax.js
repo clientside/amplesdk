@@ -10,7 +10,8 @@
 function fAMLQuery_ajax(oSettings) {
 	var oRequest	= new cXMLHttpRequest,
 		sRequestType= oSettings.dataType,
-		bAsync		= "async" in oSettings ? oSettings.async : true,
+		vData	= "data" in oSettings ? oSettings.data : null,
+		bAsync	= "async" in oSettings ? oSettings.async : true,
 		nTimeout;
 	oRequest.open(oSettings.type || "GET", oSettings.url || '.', bAsync);
 	// Add headers
@@ -95,7 +96,9 @@ function fAMLQuery_ajax(oSettings) {
 				oSettings.complete(oRequest, "timeout");
 		}, oSettings.timeout);
 	// Send data
-	oRequest.send("data" in oSettings ? oSettings.data : null);
+	if (vData != null && typeof vData == "object" && !("ownerDocument" in vData))
+		vData	= oJSON.stringify(vData);
+	oRequest.send(vData);
 
 	return oRequest;
 };
