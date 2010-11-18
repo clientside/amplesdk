@@ -8,7 +8,8 @@
  */
 
 function fAMLQuery_ajax(oSettings) {
-	var oRequest	= new cXMLHttpRequest;
+	var oRequest	= new cXMLHttpRequest,
+		sRequestType	= oSettings.dataType;
 	oRequest.open(oSettings.type || "GET", oSettings.url || '.', "async" in oSettings ? oSettings.async : true);
 	// Add headers
 	oRequest.setRequestHeader("X-Requested-With", "XMLHttpRequest");
@@ -27,8 +28,26 @@ function fAMLQuery_ajax(oSettings) {
 			var nStatus	= oRequest.status;
 			// Success
 			if (nStatus >= 200 && nStatus <= 300 || nStatus == 304 || nStatus == 1223) {
+				var oResponse		= oRequest.responseText,
+					sContentType	= oRequest.getResponseHeader("Content-Type"),
+					sResponseType	= cString(sContentType).match(/(\w+)\/([-\w]+\+)?(?:x\-)?([-\w]+)?;?(.+)?/) ? cRegExp.$1 : '';
+				if (sRequestType == "xml" || sResponseType == "xml") {
+					oResponse	= fBrowser_getResponseDocument(oRequest);
+				}
+				else
+				if (sRequestType == "json" || sResponseType == "json") {
+					oResponse	= JSON.parse(oResponse);
+				}
+				else
+				if (sRequestType == "script" || sResponseType == "javascript" || sResponseType == "ecmascript") {
+					var oScript	= oUADocument.getElementsByTagName("head")[0].appendChild(oUADocument.createElement("script"));
+					oScript.type= "text/javascript";
+					oScript.text= oResponse;
+					oScript.parentNode.removeChild(oScript);
+				}
+				//
 				if (oSettings.success)
-					oSettings.success(oRequest.responseXML || oRequest.responseText, "success", oRequest);
+					oSettings.success(oResponse, "success", oRequest);
 			}
 			// Error
 			else {

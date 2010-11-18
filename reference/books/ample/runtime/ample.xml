@@ -151,6 +151,7 @@
 									<li><b>url</b> - A string containing the URL to which the request is sent.</li>
 									<li><b>async</b> - By default, all requests are sent asynchronous.</li>
 									<li><b>data</b> - Data to be sent to the server.</li>
+									<li><b>dataType</b> - The type of data that you're expecting back from the server ("xml", "html", "script", "json" or "text").</li>
 									<li><b>timeout</b> - A timeout (in milliseconds) for the request. </li>
 									<li><b>success</b> - A function to be called if the request succeeds.</li>
 									<li><b>error</b> - A function to be called if the request fails.</li>
