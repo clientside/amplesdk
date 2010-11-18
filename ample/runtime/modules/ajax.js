@@ -9,8 +9,10 @@
 
 function fAMLQuery_ajax(oSettings) {
 	var oRequest	= new cXMLHttpRequest,
-		sRequestType	= oSettings.dataType;
-	oRequest.open(oSettings.type || "GET", oSettings.url || '.', "async" in oSettings ? oSettings.async : true);
+		sRequestType= oSettings.dataType,
+		bAsync		= "async" in oSettings ? oSettings.async : true,
+		nTimeout;
+	oRequest.open(oSettings.type || "GET", oSettings.url || '.', bAsync);
 	// Add headers
 	oRequest.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 	oRequest.setRequestHeader("X-User-Agent", oAMLConfiguration_values["ample-user-agent"]);
@@ -25,6 +27,10 @@ function fAMLQuery_ajax(oSettings) {
 	// Register readystatechange handler
 	oRequest.onreadystatechange	= function() {
 		if (oRequest.readyState == 4) {
+			// Clear timeout
+			if (nTimeout)
+				fClearTimeout(nTimeout);
+			//
 			var nStatus	= oRequest.status,
 				sStatus	= "success";
 			if (nStatus >= 200 && nStatus <= 300 || nStatus == 304 || nStatus == 1223) {
@@ -75,6 +81,19 @@ function fAMLQuery_ajax(oSettings) {
 				oSettings.complete(oRequest, sStatus);
 		}
 	};
+	// Set timeout
+	if (bAsync && !fIsNaN(oSettings.timeout))
+		nTimeout	= fSetTimeout(function() {
+			// remove handler
+			oRequest.onreadystatechange	= new cFunction;
+			oRequest.abort();
+			// Error
+			if (oSettings.error)
+				oSettings.error(oRequest, "timeout");
+			// Complete
+			if (oSettings.complete)
+				oSettings.complete(oRequest, "timeout");
+		}, oSettings.timeout);
 	// Send data
 	oRequest.send("data" in oSettings ? oSettings.data : null);
 
