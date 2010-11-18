@@ -50,7 +50,7 @@ function fAMLQuery_ajax(oSettings) {
 							oResponse	= JSON.parse(oResponse);
 						}
 						catch (oException) {
-							sStatus	= "error";
+							sStatus	= "parsererror";
 						}
 					}
 					else
