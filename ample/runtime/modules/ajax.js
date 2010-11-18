@@ -36,7 +36,7 @@ function fAMLQuery_ajax(oSettings) {
 			if (nStatus >= 200 && nStatus <= 300 || nStatus == 304 || nStatus == 1223) {
 				var oResponse		= oRequest.responseText,
 					sContentType	= oRequest.getResponseHeader("Content-Type"),
-					sResponseType	= cString(sContentType).match(/(\w+)\/([-\w]+\+)?(?:x\-)?([-\w]+)?;?(.+)?/) ? cRegExp.$1 : '';
+					sResponseType	= cString(sContentType).match(/(\w+)\/([-\w]+\+)?(?:x\-)?([-\w]+)?;?(.+)?/) ? cRegExp.$3 : '';
 				if (sRequestType != "text") {
 					if (sRequestType == "xml" || sResponseType == "xml") {
 						oResponse	= fBrowser_getResponseDocument(oRequest);
