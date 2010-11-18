@@ -25,8 +25,8 @@ function fAMLQuery_ajax(oSettings) {
 	// Register readystatechange handler
 	oRequest.onreadystatechange	= function() {
 		if (oRequest.readyState == 4) {
-			var nStatus	= oRequest.status;
-			// Success
+			var nStatus	= oRequest.status,
+				sStatus	= "success";
 			if (nStatus >= 200 && nStatus <= 300 || nStatus == 304 || nStatus == 1223) {
 				var oResponse		= oRequest.responseText,
 					sContentType	= oRequest.getResponseHeader("Content-Type"),
@@ -34,28 +34,45 @@ function fAMLQuery_ajax(oSettings) {
 				if (sRequestType != "text") {
 					if (sRequestType == "xml" || sResponseType == "xml") {
 						oResponse	= fBrowser_getResponseDocument(oRequest);
+						if (!oResponse)
+							sStatus	= "parsererror";
 					}
 					else
 					if (sRequestType == "json" || sResponseType == "json") {
-						oResponse	= JSON.parse(oResponse);
+						try {
+							oResponse	= JSON.parse(oResponse);
+						}
+						catch (e) {
+							sStatus	= "error";
+						}
 					}
 					else
 					if (sRequestType == "script" || sResponseType == "javascript" || sResponseType == "ecmascript") {
-						fBrowser_eval(oResponse);
+						try {
+							fBrowser_eval(oResponse);
+						}
+						catch (e) {
+							sStatus	= "error";
+						}
 					}
 				}
-				//
-				if (oSettings.success)
-					oSettings.success(oResponse, "success", oRequest);
 			}
-			// Error
 			else {
-				if (oSettings.error)
-					oSettings.error(oRequest, "error");
+				sStatus	= "error";
 			}
+
+			// Call handlers
+			if (sStatus == "success") {
+				if (oSettings.success)
+					oSettings.success(oResponse, sStatus, oRequest);
+			}
+			else
+			if (oSettings.error)
+				oSettings.error(oRequest, sStatus);
+
 			// Complete
 			if (oSettings.complete)
-				oSettings.complete(oRequest, "success");
+				oSettings.complete(oRequest, sStatus);
 		}
 	};
 	// Send data
