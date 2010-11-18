@@ -31,16 +31,18 @@ function fAMLQuery_ajax(oSettings) {
 				var oResponse		= oRequest.responseText,
 					sContentType	= oRequest.getResponseHeader("Content-Type"),
 					sResponseType	= cString(sContentType).match(/(\w+)\/([-\w]+\+)?(?:x\-)?([-\w]+)?;?(.+)?/) ? cRegExp.$1 : '';
-				if (sRequestType == "xml" || sResponseType == "xml") {
-					oResponse	= fBrowser_getResponseDocument(oRequest);
-				}
-				else
-				if (sRequestType == "json" || sResponseType == "json") {
-					oResponse	= JSON.parse(oResponse);
-				}
-				else
-				if (sRequestType == "script" || sResponseType == "javascript" || sResponseType == "ecmascript") {
-					fBrowser_eval(oResponse);
+				if (sRequestType != "text") {
+					if (sRequestType == "xml" || sResponseType == "xml") {
+						oResponse	= fBrowser_getResponseDocument(oRequest);
+					}
+					else
+					if (sRequestType == "json" || sResponseType == "json") {
+						oResponse	= JSON.parse(oResponse);
+					}
+					else
+					if (sRequestType == "script" || sResponseType == "javascript" || sResponseType == "ecmascript") {
+						fBrowser_eval(oResponse);
+					}
 				}
 				//
 				if (oSettings.success)
