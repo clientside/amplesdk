@@ -66,11 +66,11 @@ cAMLElement_repeater.prototype.refresh	= function() {
 		return;
 
 	// schedule refresh
-	var self	= this;
+	var oElement	= this;
 	this._timeout	= fSetTimeout(function() {
 		// execute refresh
-		self._timeout	= null;
-		self.repeat();
+		oElement._timeout	= null;
+		oElement.repeat();
 	}, 0);
 };
 

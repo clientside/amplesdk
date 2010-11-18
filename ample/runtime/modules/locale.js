@@ -100,7 +100,7 @@ oGlobalization.findClosestCulture = function(vName) {
         }
     }
     else
-    if (typeof vName == 'object')
+    if (typeof vName == "object")
         return vName;
     return aMatch || null;
 };
@@ -772,9 +772,9 @@ function fParseExact(sValue, sFormat, oCulture) {
                     if (aOffsets.length !== 2) return null;
                     nHourOffset = fParseInt(aOffsets[0], 10);
                     if (fNumber_outOfRange(nHourOffset, -12, 13)) return null;
-                    var nMinOffset = fParseInt(aOffsets[1], 10);
-                    if (fNumber_outOfRange(nMinOffset, 0, 59)) return null;
-                    nTZMinOffset = (nHourOffset * 60) + (fString_startsWith(oMatchGroup, '-') ? -nMinOffset : nMinOffset);
+                    var nTempMinOffset = fParseInt(aOffsets[1], 10);
+                    if (fNumber_outOfRange(nTempMinOffset, 0, 59)) return null;
+                    nTZMinOffset = (nHourOffset * 60) + (fString_startsWith(oMatchGroup, '-') ? -nTempMinOffset : nTempMinOffset);
                     break;
                 case 'z': case 'zz':
                     // Time zone offset in +/- hours.

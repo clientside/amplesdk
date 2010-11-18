@@ -12,7 +12,7 @@ function fAMLQuery_ajax(oSettings) {
 		sRequestType= oSettings.dataType,
 		vData	= "data" in oSettings ? oSettings.data : null,
 		bAsync	= "async" in oSettings ? oSettings.async : true,
-		nTimeout;
+		nRequestTimeout;
 	oRequest.open(oSettings.type || "GET", oSettings.url || '.', bAsync);
 	// Add headers
 	oRequest.setRequestHeader("X-Requested-With", "XMLHttpRequest");
@@ -29,8 +29,8 @@ function fAMLQuery_ajax(oSettings) {
 	oRequest.onreadystatechange	= function() {
 		if (oRequest.readyState == 4) {
 			// Clear timeout
-			if (nTimeout)
-				fClearTimeout(nTimeout);
+			if (nRequestTimeout)
+				fClearTimeout(nRequestTimeout);
 			//
 			var nStatus	= oRequest.status,
 				sStatus	= "success";
@@ -47,7 +47,7 @@ function fAMLQuery_ajax(oSettings) {
 					else
 					if (sRequestType == "json" || sResponseType == "json") {
 						try {
-							oResponse	= JSON.parse(oResponse);
+							oResponse	= oJSON.parse(oResponse);
 						}
 						catch (oException) {
 							sStatus	= "parsererror";
@@ -84,7 +84,7 @@ function fAMLQuery_ajax(oSettings) {
 	};
 	// Set timeout
 	if (bAsync && !fIsNaN(oSettings.timeout))
-		nTimeout	= fSetTimeout(function() {
+		nRequestTimeout	= fSetTimeout(function() {
 			// remove handler
 			oRequest.onreadystatechange	= new cFunction;
 			oRequest.abort();

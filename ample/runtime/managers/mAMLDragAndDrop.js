@@ -275,7 +275,7 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
 		nAreaTarget,
 		nAreaTargetMin	= nInfinity,
 		nIntersection,
-		nIntersectionPartialMax	= 0;
+		nPartialMax	= 0;
 
 	for (var nIndex = 0, nLength = aAMLDragAndDrop_dropTargets.length; nIndex < nLength; nIndex++)
 	{
@@ -292,8 +292,8 @@ function fAMLDragAndDrop_onMouseMove(oEvent)
 		nIntersection = fAMLDragAndDrop_intersectRectangle(oRect, oRect2);
 		if (nIntersection < nAreaSource) {
 			// partial intersection
-			if (nIntersection > nIntersectionPartialMax) {
-				nIntersectionPartialMax	= nIntersection;
+			if (nIntersection > nPartialMax) {
+				nPartialMax	= nIntersection;
 				oDropTarget	= aAMLDragAndDrop_dropTargets[nIndex];
 			}
 		}
