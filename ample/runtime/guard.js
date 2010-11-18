@@ -20,6 +20,9 @@ var oGuard_endings	= 'st-nd-rd-th'.split('-'),
 //<-Debug
 
 function fGuard(aArguments, aParameters, oObject) {
+	if (!oAMLConfiguration_values["ample-enable-guard"])
+		return;
+
 	var fCallee	= aArguments.callee,
 		fCaller	= null;
 	// Has to be wrapped in try/catch because Firebug throws "Permission denied to get property on Function.caller" in XMLHttpRequest

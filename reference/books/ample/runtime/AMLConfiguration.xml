@@ -126,6 +126,7 @@
 					<li><b>ample-user-agent</b> - Ample SDK user agent string</li>
 					<li><b>ample-user-locale</b> - User locale</li>
 					<li><b>ample-enable-style</b> - enable/disable style property on elements</li>
+					<li><b>ample-enable-guard</b> - enable/disable API validation</li>
 					<li><b>ample-enable-transitions</b> - enable/disable transitions</li>
 					<li><b>ample-enable-animations</b> - enable/disable animations</li>
 				</ul>
@@ -139,7 +140,8 @@
 					<li><b>ample-locale</b> - Ample SDK culture</li>
 					<li><b>ample-user-agent</b> - Ample SDK user agent string</li>
 					<li><b>ample-user-locale</b> - User locale</li>
-					<li><b>ample-enable-style</b> - включить/отключить поддержку доступа к стилям через свойство style</li>
+					<li><b>ample-enable-style</b> - включить/отключить поддержку свойства style</li>
+					<li><b>ample-enable-guard</b> - enable/disable API validation</li>
 					<li><b>ample-enable-transitions</b> - enable/disable transitions</li>
 					<li><b>ample-enable-animations</b> - enable/disable animations</li>
 				</ul>

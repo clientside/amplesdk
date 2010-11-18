@@ -269,6 +269,7 @@
 							<li><b>enable-transitions</b> - Enable/Disable transitions</li>
 							<li><b>enable-animations</b> - Enable/Disable animations</li>
 							<li><b>enable-style</b> - Enable/Disable style property</li>
+							<li><b>enable-guard</b> - Enable/Disable API validation</li>
 						</ul>
 					</locale>
 				</description>
