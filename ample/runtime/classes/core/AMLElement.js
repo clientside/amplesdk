@@ -977,7 +977,7 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 				fAMLNodeAnimation_play(oElement, oProperties, "fast", "ease", function() {
 					for (var nIndex = 0; nIndex < aProperties.length; nIndex++)
 						fBrowser_setStyle(oElementDOM, aProperties[nIndex], '');
-				});
+				}, sContainer);
 /*
 				fAMLEventTarget_addEventListener(oElement, "effectend", function() {
 					fAMLEventTarget_removeEventListener(oElement, "effectend", arguments.callee);
