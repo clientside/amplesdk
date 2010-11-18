@@ -365,12 +365,12 @@ fAMLConfiguration_setParameter(oConfiguration, "element-content-whitespace", fal
 fAMLConfiguration_setParameter(oConfiguration, "entities", false);	// in DOM-Core spec the default value is true
 fAMLConfiguration_setParameter(oConfiguration, "comments", false); 	// in DOM-Core spec the default value is true
 //set ample parameters
-fAMLConfiguration_setParameter(oConfiguration, "ample-use-style-property", true);	// -> ample-core-style
 fAMLConfiguration_setParameter(oConfiguration, "ample-module-history-fix", false);	// -> ample-history
 fAMLConfiguration_setParameter(oConfiguration, "ample-version", '@project.version@');
 fAMLConfiguration_setParameter(oConfiguration, "ample-locale", "en");
 fAMLConfiguration_setParameter(oConfiguration, "ample-user-locale", oUANavigator.language || oUANavigator.userLanguage || 'en-US');
 fAMLConfiguration_setParameter(oConfiguration, "ample-user-agent", '@project.userAgent@');
+fAMLConfiguration_setParameter(oConfiguration, "ample-enable-style", true);
 fAMLConfiguration_setParameter(oConfiguration, "ample-enable-animations", true);
 fAMLConfiguration_setParameter(oConfiguration, "ample-enable-transitions", true);
 

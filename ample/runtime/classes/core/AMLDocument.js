@@ -593,7 +593,7 @@ function fAMLDocument_register(oDocument, oElement) {
 		}
 
 		// Set style property
-		if (oAMLConfiguration_values["ample-use-style-property"]) {
+		if (oAMLConfiguration_values["ample-enable-style"]) {
 			var oElementDOM	= oElement.$getContainer();
 			if (oElementDOM)
 				oElement.style	= oElementDOM.style;
@@ -670,7 +670,7 @@ function fAMLDocument_unregister(oDocument, oElement) {
 		fAMLNode_dispatchEvent(oElement, oEvent);
 
 		// Unset style property
-		if (oAMLConfiguration_values["ample-use-style-property"])
+		if (oAMLConfiguration_values["ample-enable-style"])
 			delete oElement.style;
 
 		// Unregister Instance

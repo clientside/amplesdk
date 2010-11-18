@@ -987,7 +987,7 @@ function fAML_initialize() {
 	fAML_changeReadyState("interactive");
 
 	// Set documentElement style pointer object
-    if (oAMLConfiguration_values["ample-use-style-property"])
+    if (oAMLConfiguration_values["ample-enable-style"])
     	oAmple_root.style	= oBrowser_body.style;
 
 	// IE background images cache fix

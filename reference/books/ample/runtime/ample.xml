@@ -265,10 +265,10 @@
 							<li><b>locale</b> - Ample SDK culture</li>
 							<li><b>user-agent</b> - Ample SDK user agent string</li>
 							<li><b>user-locale</b> - User locale</li>
-							<li><b>enable-transitions</b> - Transitions</li>
-							<li><b>enable-animations</b> - Animations</li>
-							<li><b>use-style-property</b> - style property</li>
 							<li><b>module-history-fix</b> - fix IE hash problem</li>
+							<li><b>enable-transitions</b> - Enable/Disable transitions</li>
+							<li><b>enable-animations</b> - Enable/Disable animations</li>
+							<li><b>enable-style</b> - Enable/Disable style property</li>
 						</ul>
 					</locale>
 				</description>
