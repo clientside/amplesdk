@@ -42,7 +42,7 @@ function fAMLQuery_ajax(oSettings) {
 						try {
 							oResponse	= JSON.parse(oResponse);
 						}
-						catch (e) {
+						catch (oException) {
 							sStatus	= "error";
 						}
 					}
@@ -51,7 +51,7 @@ function fAMLQuery_ajax(oSettings) {
 						try {
 							fBrowser_eval(oResponse);
 						}
-						catch (e) {
+						catch (oException) {
 							sStatus	= "error";
 						}
 					}
