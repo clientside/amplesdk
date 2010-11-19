@@ -347,14 +347,14 @@ function fAMLElement_setAttributeNS(oElement, sNameSpaceURI, sQName, sValue)
 		// Global attributes module
 		if (!(sQName == "xmlns" || sNameSpaceURI == sNS_XMLNS || sNameSpaceURI == sNS_XML))
 		{
-			var cAttribute	= hClasses[sNameSpaceURI + '#' + '@' + sLocalName],
+			var fConstructor	= hClasses[sNameSpaceURI + '#' + '@' + sLocalName],
 				oAttribute,
 				oEvent;
 
-			if (cAttribute)
+			if (fConstructor)
 			{
 				// oAttribute used to create fake object
-				oAttribute	= new cAttribute;
+				oAttribute	= new fConstructor;
 				oAttribute.ownerDocument= oElement.ownerDocument;
 				oAttribute.ownerElement	= oElement;
 				oAttribute.nodeValue	= sValue;
@@ -535,15 +535,15 @@ function fAMLElement_removeAttributeNS(oElement, sNameSpaceURI, sLocalName)
 		// Global attributes module
 		if (sQName in oElement.attributes && !(sLocalName == "xmlns" || sNameSpaceURI == sNS_XMLNS || sNameSpaceURI == sNS_XML))
 		{
-			var cAttribute	= hClasses[sNameSpaceURI + '#' + '@' + sLocalName],
+			var fConstructor= hClasses[sNameSpaceURI + '#' + '@' + sLocalName],
 				sValue		= oElement.attributes[sQName],
 				oAttribute,
 				oEvent;
 
-			if (cAttribute)
+			if (fConstructor)
 			{
 				// oAttribute used to create fake object
-				oAttribute	= new cAttribute;
+				oAttribute	= new fConstructor;
 				oAttribute.ownerDocument= oElement.ownerDocument;
 				oAttribute.ownerElement	= oElement;
 				oAttribute.nodeValue	= sValue;

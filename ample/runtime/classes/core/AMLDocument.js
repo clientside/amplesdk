@@ -183,8 +183,8 @@ function fAMLDocument_createElementNS(oDocument, sNameSpaceURI, sQName)
 	var aQName		= sQName.split(':'),
 		sLocalName	= aQName.pop(),
 		sPrefix		= aQName.pop() || null,
-		cElement	= hClasses[sNameSpaceURI + '#' + sLocalName],
-		oElement	= new (cElement || cAMLElement),
+		fConstructor= hClasses[sNameSpaceURI + '#' + sLocalName],
+		oElement	= new (fConstructor || cAMLElement),
 		sName;
 
 	// DOM Properties
@@ -199,11 +199,11 @@ function fAMLDocument_createElementNS(oDocument, sNameSpaceURI, sQName)
     oElement.uniqueID	= 'ele_' + nAMLDocument_index++;
 
     //
-	if (cElement) {
+	if (fConstructor) {
 	    // Set default attributes, if defined
-		for (sName in cElement.attributes)
-			if (cElement.attributes.hasOwnProperty(sName))
-				oElement.attributes[sName]	= cElement.attributes[sName];
+		for (sName in fConstructor.attributes)
+			if (fConstructor.attributes.hasOwnProperty(sName))
+				oElement.attributes[sName]	= fConstructor.attributes[sName];
 	}
 	else {
 		// Set namespaceURI for unknown elements manually
@@ -429,11 +429,11 @@ function fAMLDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse
 				}
 
 				// Copy default attributes values if not specified
-				var cElement	= hClasses[sNameSpaceURI + '#' + sLocalName];
-				if (cElement) {
-					for (sName in cElement.attributes)
-						if (cElement.attributes.hasOwnProperty(sName) && !(sName in oAttributes))
-							oAttributes[sName]	= cElement.attributes[sName];
+				var fConstructor	= hClasses[sNameSpaceURI + '#' + sLocalName];
+				if (fConstructor) {
+					for (sName in fConstructor.attributes)
+						if (fConstructor.attributes.hasOwnProperty(sName) && !(sName in oAttributes))
+							oAttributes[sName]	= fConstructor.attributes[sName];
 				}
 //->Debug
 				else
@@ -616,10 +616,10 @@ function fAMLDocument_register(oDocument, oElement) {
 					sNameSpaceURI;
 
 				if (sName != "xmlns" && sPrefix && sPrefix != "xmlns" && (sNameSpaceURI = fAMLNode_lookupNamespaceURI(oElement, sPrefix))) {
-					var cAttribute	= hClasses[sNameSpaceURI + '#' + '@' + sLocalName];
-					if (cAttribute)	{
+					var fConstructor	= hClasses[sNameSpaceURI + '#' + '@' + sLocalName];
+					if (fConstructor)	{
 						// oAttribute used to create fake object
-						var oAttribute	= new cAttribute;
+						var oAttribute	= new fConstructor;
 						oAttribute.ownerDocument= oDocument;
 						oAttribute.ownerElement	= oElement;
 						oAttribute.name			=
