@@ -325,16 +325,6 @@ oAmple.$class	= function(oNode) {
 	return oElement ? hClasses[oElement.namespaceURI + '#' + oElement.localName] || cAMLElement : null;
 };
 */
-//
-oAmple.param	= function(vValue) {
-//->Guard
-	fGuard(arguments, [
-		["value",	cObject]
-	]);
-//<-Guard
-
-	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
-};
 
 //
 oAmple.resolveUri	= function(sUri, sBaseUri) {

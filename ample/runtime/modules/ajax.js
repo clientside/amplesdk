@@ -9,19 +9,31 @@
 
 function fAMLQuery_ajax(oSettings) {
 	var oRequest	= new cXMLHttpRequest,
+		oHeaders	= oSettings.headers || {},
 		sRequestType= oSettings.dataType,
-		vData	= "data" in oSettings ? oSettings.data : null,
+		sUrl	= oSettings.url || '.',
+		sType	= oSettings.type || "GET",
 		bAsync	= "async" in oSettings ? oSettings.async : true,
+		vData	= "data" in oSettings ? oSettings.data : null,
 		nRequestTimeout;
-	oRequest.open(oSettings.type || "GET", oSettings.url || '.', bAsync);
-	// Add headers
+	//
+	if (vData != null) {
+		if (typeof vData == "object" && !("ownerDocument" in vData))
+			vData	= fAMLQuery_param(vData);
+		if (sType == "POST") {
+			if (!oHeaders["Content-Type"] && typeof vData == "string")
+				oHeaders["Content-Type"]	= "application/x-www-form-urlencoded";
+		}
+		else {
+			sUrl	+=(sUrl.indexOf('?') ==-1 ? '?' : '&')+ vData;
+			vData	= null;
+		}
+	}
+	// Open connection
+	oRequest.open(sType, sUrl, bAsync);
+	// Set headers
 	oRequest.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 	oRequest.setRequestHeader("X-User-Agent", oAMLConfiguration_values["ample-user-agent"]);
-	var oHeaders	= oSettings.headers;
-	if (!oHeaders)
-		oHeaders	= {};
-	if (cString(oSettings.type).toUpperCase() == "POST" && !oHeaders["Content-Type"])
-		oHeaders["Content-Type"]	= "application/x-www-form-urlencoded";
 	for (var sKey in oHeaders)
 		if (oHeaders.hasOwnProperty(sKey))
 			oRequest.setRequestHeader(sKey, oHeaders[sKey]);
@@ -96,11 +108,13 @@ function fAMLQuery_ajax(oSettings) {
 				oSettings.complete(oRequest, "timeout");
 		}, oSettings.timeout);
 	// Send data
-	if (vData != null && typeof vData == "object" && !("ownerDocument" in vData))
-		vData	= oJSON.stringify(vData);
 	oRequest.send(vData);
 
 	return oRequest;
+};
+
+function fAMLQuery_param(vValue) {
+	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
 
 // ample extensions
@@ -112,6 +126,16 @@ oAmple.ajax	= function(oSettings) {
 //<-Guard
 
 	return fAMLQuery_ajax(oSettings);
+};
+
+oAmple.param	= function(vValue) {
+//->Guard
+	fGuard(arguments, [
+		["value",	cObject]
+	]);
+//<-Guard
+
+	return fAMLQuery_param(vValue);
 };
 
 oAmple.get	= function(sUrl, vData, fCallback, sType) {
