@@ -12,7 +12,7 @@ function fAMLQuery_ajax(oSettings) {
 		oHeaders	= oSettings.headers || {},
 		sRequestType= oSettings.dataType,
 		sUrl	= oSettings.url || '.',
-		sType	= oSettings.type || "GET",
+		sType	= "type" in oSettings ? cString(oSettings.type).toUpperCase() : "GET",
 		bAsync	= "async" in oSettings ? oSettings.async : true,
 		vData	= "data" in oSettings ? oSettings.data : null,
 		nRequestTimeout;
