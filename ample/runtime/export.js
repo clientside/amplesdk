@@ -105,12 +105,6 @@ if (!window.XSLTProcessor)
 	fAMLExporter_export(cXSLTProcessor,	"XSLTProcessor",	window);
 if (bTrident)
 	fAMLExporter_export(cXMLHttpRequest,"XMLHttpRequest",	window);
-//fAMLExporter_export(cRPCClient,	"RPCClient");
-//
-//if (!window.JSONRequest)
-//	fAMLExporter_export(cJSONRequest,	"JSONRequest");
-//if (!window.SoapRequest)
-//	fAMLExporter_export(cSoapRequest,	"SoapRequest");
 if (!window.JSON)
 	fAMLExporter_export(oJSON,	"JSON",	window);
 

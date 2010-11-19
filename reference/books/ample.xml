@@ -76,7 +76,6 @@
 				<node title="XSLTProcessor" url="ample/runtime/XSLTProcessor.xml"/>
 			</node>
 			<node title="I/O Objects">
-				<node title="RPCClient" xurl="ample/runtime/RPCClient.xml"/>
 				<node title="XMLHttpRequest" url="ample/runtime/XMLHttpRequest.xml"/>
 			</node>
 		</node>

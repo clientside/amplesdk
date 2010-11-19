@@ -29,15 +29,12 @@ var cString		= window.String,
 	cDOMParser		= window.DOMParser,
 	cXMLSerializer	= window.XMLSerializer,
 	cXSLTProcessor	= window.XSLTProcessor,
-// XML APIs virtual
+//	JSON API
+	oJSON			= window.JSON,
+//	XML APIs virtual
 	cXMLNode		= 0,
 	cXMLElement		= 1,
 	cXMLDocument	= 9,
-//
-//	cJSONRequest	= window.JSONRequest,
-//	cSoapRequest	= window.SoapRequest,
-//
-	oJSON			= window.JSON,
 //	intervals/timeouts
 	fSetTimeout		= window.setTimeout,
 	fClearTimeout	= window.clearTimeout,
