@@ -14,7 +14,7 @@
 	<members>
 		<constants />
 		<attributes>
-			<attribute name="id" readonly="true">
+			<attribute name="id" readonly="false">
 				<description>
 					<locale>
 						Element identifier.
