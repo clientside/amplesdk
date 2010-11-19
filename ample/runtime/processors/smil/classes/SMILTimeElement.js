@@ -236,11 +236,11 @@ function fSMILTimeElement_parseDate(sValue) {
 		// Offset
 		// clock-value
 		if (aValue = sValue.match(/^(?:(\d+):)?([0-5]\d):([0-5]\d)(.\d+)?$/))
-			oDate.offset	= (bOffsetPositive ? 1 :-1) * ((aValue[1] ? aValue[1] * hSMILElement_multipliers['h'] : 0) + aValue[2] * hSMILElement_multipliers['min'] + aValue[3] * hSMILElement_multipliers['s']) * 1000 + (aValue[4] ? aValue[4] : 0);
+			oDate.offset	= (bOffsetPositive ? 1 :-1) * ((aValue[1] ? aValue[1] * hSMILElement_multipliers['h'] : 0) + aValue[2] * hSMILElement_multipliers['min'] + aValue[3] * hSMILElement_multipliers['s']) * 1e3 + (aValue[4] ? aValue[4] : 0);
 		else
 		// Timecount-value
 		if (aValue = sValue.match(/^(\d+)(.\d+)?(h|min|s|ms)?$/))
-			oDate.offset	= (bOffsetPositive ? 1 :-1) * (aValue[1] * 1 + (aValue[2] ? aValue[2] * 1 : 0)) * (aValue[3] == 'ms' ? 1 : 1000 * hSMILElement_multipliers[aValue[3] || 's']);
+			oDate.offset	= (bOffsetPositive ? 1 :-1) * (aValue[1] * 1 + (aValue[2] ? aValue[2] * 1 : 0)) * (aValue[3] == 'ms' ? 1 : 1e3 * hSMILElement_multipliers[aValue[3] || 's']);
 		else
 			oDate.offset	= 0;
 	}
@@ -254,11 +254,11 @@ function fSMILTimeElement_parseDuration(sValue) {
 	else
 	// clock-value
 	if (aValue = sValue.match(/^(?:(\d+):)?([0-5]\d):([0-5]\d)(.\d+)?$/))
-		return ((aValue[1] ? aValue[1] * hSMILElement_multipliers['h'] : 0) + aValue[2] * hSMILElement_multipliers['min'] + aValue[3] * hSMILElement_multipliers['s']) * 1000 + (aValue[4] ? aValue[4] : 0);
+		return ((aValue[1] ? aValue[1] * hSMILElement_multipliers['h'] : 0) + aValue[2] * hSMILElement_multipliers['min'] + aValue[3] * hSMILElement_multipliers['s']) * 1e3 + (aValue[4] ? aValue[4] : 0);
 	else
 	// Timecount-value
 	if (aValue = sValue.match(/^(\d+)(.\d+)?(h|min|s|ms)$/))
-		return (aValue[1] * 1 + (aValue[2] ? aValue[2] * 1 : 0)) * (aValue[3] == 'ms' ? 1 : 1000 * hSMILElement_multipliers[aValue[3]]);
+		return (aValue[1] * 1 + (aValue[2] ? aValue[2] * 1 : 0)) * (aValue[3] == 'ms' ? 1 : 1e3 * hSMILElement_multipliers[aValue[3]]);
 	else
 		return nInfinity;
 };
