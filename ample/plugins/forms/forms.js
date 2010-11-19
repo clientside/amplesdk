@@ -86,7 +86,7 @@ ample.extend({
 					ample.query(this).bind("change", fHandler);
 			});
 		else
-			throw new AMLException(AMLException.NOT_SUPPORTED_ERR);
+			throw new ample.classes.AMLException(AMLException.NOT_SUPPORTED_ERR);
 		//
 		return this;
 	},
@@ -157,4 +157,4 @@ ample.extend({
 	serializeArray:	function() {
 
 	}
-}, AMLQuery.prototype);
+}, ample.classes.AMLQuery.prototype);

@@ -9,8 +9,8 @@
 
 var cXULElement_listbox	= function() {
     // Collections
-    this.items  = new AMLNodeList;
-	this.selectedItems	= new AMLNodeList;
+    this.items  = new ample.classes.AMLNodeList;
+	this.selectedItems	= new ample.classes.AMLNodeList;
 };
 cXULElement_listbox.prototype    = new cXULSelectElement("listbox");
 
@@ -104,7 +104,7 @@ cXULElement_listbox.sort   = function(oInstance, nCell, bDir) {
 		for (var nIndex = 0; nIndex < oInstance.items.length; nIndex++)
 			aElements.push(oInstance.items[nIndex]);
 		aElements.sort(function(oElement1, oElement2){return oElement1.cells[nCell-1].attributes["label"] > oElement2.cells[nCell-1].attributes["label"] ? bDir ? 1 :-1 : oElement1.cells[nCell-1].attributes["label"] == oElement2.cells[nCell-1].attributes["label"] ? 0 : bDir ?-1 : 1;});
-		oInstance.items	= new AMLNodeList;
+		oInstance.items	= new ample.classes.AMLNodeList;
 		for (var nIndex = 0; nIndex < aElements.length; nIndex++)
 			oInstance.items.$add(aElements[nIndex]);
 

@@ -39,7 +39,7 @@ function fAMLExporter_export(cObject, sName, oObject, sOrigin) {
 	fAMLExporter_sign(cObject, sName, sOrigin);
 
 	// Publish
-	(oObject || window)[sName]	= cObject;
+	(oObject || hClasses)[sName]	= cObject;
 };
 
 // publish classes to window
@@ -98,13 +98,13 @@ fAMLExporter_export(cAMLRange,			"AMLRange");
 
 // XML Objects
 if (!window.DOMParser)
-	fAMLExporter_export(cDOMParser,		"DOMParser");
+	fAMLExporter_export(cDOMParser,		"DOMParser",		window);
 if (!window.XMLSerializer)
-	fAMLExporter_export(cXMLSerializer,	"XMLSerializer");
+	fAMLExporter_export(cXMLSerializer,	"XMLSerializer",	window);
 if (!window.XSLTProcessor)
-	fAMLExporter_export(cXSLTProcessor,	"XSLTProcessor");
+	fAMLExporter_export(cXSLTProcessor,	"XSLTProcessor",	window);
 if (bTrident)
-	fAMLExporter_export(cXMLHttpRequest,"XMLHttpRequest");
+	fAMLExporter_export(cXMLHttpRequest,"XMLHttpRequest",	window);
 //fAMLExporter_export(cRPCClient,	"RPCClient");
 //
 //if (!window.JSONRequest)
@@ -112,7 +112,7 @@ if (bTrident)
 //if (!window.SoapRequest)
 //	fAMLExporter_export(cSoapRequest,	"SoapRequest");
 if (!window.JSON)
-	fAMLExporter_export(oJSON,	"JSON");
+	fAMLExporter_export(oJSON,	"JSON",	window);
 
 // Special virtual type
 fAMLExporter_sign(cArguments,	"Arguments");
@@ -123,7 +123,7 @@ fAMLExporter_sign(oAmple.locale,	"locale");
 fAMLExporter_sign(cAMLNodeSelector.pseudoClass, "pseudoClass");
 fAMLExporter_sign(oAmple_root.$getContainer,		"$getContainer");
 //
-fAMLExporter_export(oAmple,	"ample");
+fAMLExporter_export(oAmple,	"ample", window);
 
 // JavaScript 1.5
 if (!cArray.prototype.push)

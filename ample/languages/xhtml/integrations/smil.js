@@ -9,7 +9,7 @@
 
 function copyElements(sSourceNS, sTargetNS, aElements) {
 	for (var nIndex = 0, fSource, fTarget; nIndex < aElements.length; nIndex++) {
-		fSource	= ample.$element(sSourceNS + '#' + aElements[nIndex]);
+		fSource	= ample.classes[sSourceNS + '#' + aElements[nIndex]];
 		fTarget	= function() {
 			fSource.call(this);
 		};

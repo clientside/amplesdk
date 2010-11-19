@@ -9,7 +9,7 @@
 
 var cXULElement_menulist	= function() {
 	// Collections
-	this.items	  	= new AMLNodeList;
+	this.items	  	= new ample.classes.AMLNodeList;
 };
 cXULElement_menulist.prototype   = new cXULInputElement("menulist");
 
@@ -51,14 +51,14 @@ cXULElement_menulist.prototype.insertItemAt  = function(nIndex, sLabel, sValue) 
 		return oElement;
 	}
 	else
-		throw new AMLException(AMLException.NOT_FOUND_ERR);
+		throw new ample.classes.AMLException(AMLException.NOT_FOUND_ERR);
 };
 
 cXULElement_menulist.prototype.removeItemAt  = function(nIndex) {
 	if (this.items[nIndex])
 		return this.menupopup.removeChild(this.items[nIndex]);
 	else
-		throw new AMLException(AMLException.NOT_FOUND_ERR);
+		throw new ample.classes.AMLException(AMLException.NOT_FOUND_ERR);
 };
 
 cXULElement_menulist.prototype.select	= function() {

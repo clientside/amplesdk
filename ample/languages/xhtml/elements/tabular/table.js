@@ -9,12 +9,12 @@
 
 var cXHTMLElement_table	= function() {
 	this.tHead		= null;
-	this.tBodies	= new AMLNodeList;
+	this.tBodies	= new ample.classes.AMLNodeList;
 	this.tFoot		= null;
 
 	this.caption	= null;
 
-	this.rows	= new AMLNodeList;
+	this.rows	= new ample.classes.AMLNodeList;
 };
 cXHTMLElement_table.prototype	= new cXHTMLElement("table");
 

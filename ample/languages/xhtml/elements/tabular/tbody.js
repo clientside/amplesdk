@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_tbody	= function() {
-	this.rows	= new AMLNodeList;
+	this.rows	= new ample.classes.AMLNodeList;
 };
 cXHTMLElement_tbody.prototype	= new cXHTMLElement("tbody");
 

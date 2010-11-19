@@ -9,7 +9,7 @@
 
 var cXULElement_menupopup	= function() {
     // Collections
-    this.items  = new AMLNodeList;
+    this.items  = new ample.classes.AMLNodeList;
 };
 cXULElement_menupopup.prototype	= new cXULPopupElement("menupopup");
 

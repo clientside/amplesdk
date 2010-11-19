@@ -347,7 +347,7 @@ function fAMLElement_setAttributeNS(oElement, sNameSpaceURI, sQName, sValue)
 		// Global attributes module
 		if (!(sQName == "xmlns" || sNameSpaceURI == sNS_XMLNS || sNameSpaceURI == sNS_XML))
 		{
-			var cAttribute	= oAMLImplementation_attributes[sNameSpaceURI + '#' + sLocalName],
+			var cAttribute	= hClasses[sNameSpaceURI + '#' + '@' + sLocalName],
 				oAttribute,
 				oEvent;
 
@@ -535,7 +535,7 @@ function fAMLElement_removeAttributeNS(oElement, sNameSpaceURI, sLocalName)
 		// Global attributes module
 		if (sQName in oElement.attributes && !(sLocalName == "xmlns" || sNameSpaceURI == sNS_XMLNS || sNameSpaceURI == sNS_XML))
 		{
-			var cAttribute	= oAMLImplementation_attributes[sNameSpaceURI + '#' + sLocalName],
+			var cAttribute	= hClasses[sNameSpaceURI + '#' + '@' + sLocalName],
 				sValue		= oElement.attributes[sQName],
 				oAttribute,
 				oEvent;

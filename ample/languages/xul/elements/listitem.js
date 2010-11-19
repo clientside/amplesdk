@@ -9,7 +9,7 @@
 
 var cXULElement_listitem	= function() {
     // Collections
-    this.cells  = new AMLNodeList;
+    this.cells  = new ample.classes.AMLNodeList;
 };
 cXULElement_listitem.prototype   = new cXULElement("listitem");
 cXULElement_listitem.prototype.$hoverable	= true;

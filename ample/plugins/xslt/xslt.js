@@ -94,4 +94,4 @@ ample.extend({
 		//
 		return this;
 	}
-}, AMLQuery.prototype);
+}, ample.classes.AMLQuery.prototype);

@@ -10,7 +10,7 @@
 var cAUIElement	= function(sLocalName) {
 	this.localName	= sLocalName;
 };
-cAUIElement.prototype	= new AMLElement;
+cAUIElement.prototype	= new ample.classes.AMLElement;
 cAUIElement.prototype.namespaceURI	= "http://www.amplesdk.com/ns/aui";
 cAUIElement.prototype.localName		= "#element";
 

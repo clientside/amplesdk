@@ -49,4 +49,4 @@ ample.extend({
 		return fXHTMLElement_isInputInForm(oElement)
 				&& oElement.validity && (oElement.rangeUnderflow || oElement.validity.rangeOverflow);
 	}
-}, AMLNodeSelector.pseudoClass);
+}, ample.classes.AMLNodeSelector.pseudoClass);

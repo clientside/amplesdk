@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_tfoot	= function() {
-	this.rows	= new AMLNodeList;
+	this.rows	= new ample.classes.AMLNodeList;
 };
 cXHTMLElement_tfoot.prototype	= new cXHTMLElement("tfoot");
 

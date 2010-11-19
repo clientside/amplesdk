@@ -23,7 +23,7 @@ cXULElement_arrowscrollbox.prototype._interval	= null;
 // Public Methods
 cXULElement_arrowscrollbox.prototype.scrollByIndex	= function(nLines)
 {
-	throw new AMLException(AMLException.NOT_SUPPORTED_ERR);
+	throw new ample.classes.AMLException(AMLException.NOT_SUPPORTED_ERR);
 };
 
 // Class Handlers

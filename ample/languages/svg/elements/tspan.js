@@ -32,7 +32,7 @@ if (cSVGElement.useVML) {
 			}
 		},
 		'DOMNodeInsertedIntoDocument':	function(oEvent) {
-			if (this.firstChild instanceof AMLCharacterData)
+			if (this.firstChild instanceof ample.classes.AMLCharacterData)
 				this.$getContainer().getElementsByTagName("textpath")[0].string	= this.firstChild.data.replace(/^\s+/, '').replace(/\s+$/, '').replace(/&gt;/g, '>').replace(/&lt;/g, '<').replace(/&amp;/g, '&').replace(/&quot;/g, '"');
 
 			var sValue;

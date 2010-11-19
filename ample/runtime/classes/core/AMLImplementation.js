@@ -9,9 +9,6 @@
 
 var cAMLImplementation	= function(){};
 
-var oAMLImplementation_elements		= {},
-	oAMLImplementation_attributes	= {};
-
 // nsIDOMImplementation Level 1
 cAMLImplementation.prototype.hasFeature		= function(sFeature, sVersion)
 {

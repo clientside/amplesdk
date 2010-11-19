@@ -33,14 +33,14 @@ cSVGPathSegList.prototype.initialize	= function(oItem) {
 
 cSVGPathSegList.prototype.getItem		= function(nIndex) {
 	if (nIndex > this.numberOfItems || nIndex < 0)
-		throw new AMLException(AMLException.INDEX_SIZE_ERR);
+		throw new ample.classes.AMLException(AMLException.INDEX_SIZE_ERR);
 
 	return this.$items[nIndex];
 };
 
 cSVGPathSegList.prototype.insertItemBefore	= function(oItem, nIndex) {
 	if (nIndex > this.numberOfItems || nIndex < 0)
-		throw new AMLException(AMLException.INDEX_SIZE_ERR);
+		throw new ample.classes.AMLException(AMLException.INDEX_SIZE_ERR);
 
 	this.numberOfItems	= this.$items.length++;
 	for (var n = this.numberOfItems - 1; n > nIndex; n--)
@@ -52,7 +52,7 @@ cSVGPathSegList.prototype.insertItemBefore	= function(oItem, nIndex) {
 
 cSVGPathSegList.prototype.replaceItem 	= function(oItem, nIndex) {
 	if (nIndex > this.numberOfItems || nIndex < 0)
-		throw new AMLException(AMLException.INDEX_SIZE_ERR);
+		throw new ample.classes.AMLException(AMLException.INDEX_SIZE_ERR);
 
 	this.$items[nIndex]	= oItem;
 	this.$onchange();
@@ -61,7 +61,7 @@ cSVGPathSegList.prototype.replaceItem 	= function(oItem, nIndex) {
 
 cSVGPathSegList.prototype.removeItem	= function(nIndex) {
 	if (nIndex > this.numberOfItems || nIndex < 0)
-		throw new AMLException(AMLException.INDEX_SIZE_ERR);
+		throw new ample.classes.AMLException(AMLException.INDEX_SIZE_ERR);
 
 	var oItem	= this.$items[nIndex];
 	for (var n = nIndex + 1; n < this.numberOfItems; n++)

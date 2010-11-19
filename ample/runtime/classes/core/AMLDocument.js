@@ -183,7 +183,7 @@ function fAMLDocument_createElementNS(oDocument, sNameSpaceURI, sQName)
 	var aQName		= sQName.split(':'),
 		sLocalName	= aQName.pop(),
 		sPrefix		= aQName.pop() || null,
-		cElement	= oAMLImplementation_elements[sNameSpaceURI + '#' + sLocalName],
+		cElement	= hClasses[sNameSpaceURI + '#' + sLocalName],
 		oElement	= new (cElement || cAMLElement),
 		sName;
 
@@ -245,7 +245,7 @@ cAMLDocument.prototype.createEvent     = function(sName)
 	]);
 //<-Guard
 
-	var cEvent	= window["AML" + sName.replace(/s$/, '')];
+	var cEvent	= hClasses["AML" + sName.replace(/s$/, '')];
 	if (cEvent && (cEvent == cAMLEvent || cEvent.prototype instanceof cAMLEvent))
 		return new cEvent;
 	else
@@ -429,7 +429,7 @@ function fAMLDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse
 				}
 
 				// Copy default attributes values if not specified
-				var cElement	= oAMLImplementation_elements[sNameSpaceURI + '#' + sLocalName];
+				var cElement	= hClasses[sNameSpaceURI + '#' + sLocalName];
 				if (cElement) {
 					for (sName in cElement.attributes)
 						if (cElement.attributes.hasOwnProperty(sName) && !(sName in oAttributes))
@@ -616,7 +616,7 @@ function fAMLDocument_register(oDocument, oElement) {
 					sNameSpaceURI;
 
 				if (sName != "xmlns" && sPrefix && sPrefix != "xmlns" && (sNameSpaceURI = fAMLNode_lookupNamespaceURI(oElement, sPrefix))) {
-					var cAttribute	= oAMLImplementation_attributes[sNameSpaceURI + '#' + sLocalName];
+					var cAttribute	= hClasses[sNameSpaceURI + '#' + '@' + sLocalName];
 					if (cAttribute)	{
 						// oAttribute used to create fake object
 						var oAttribute	= new cAttribute;

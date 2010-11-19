@@ -9,7 +9,7 @@
 
 var cXULElement_radiogroup	= function() {
     // Collections
-    this.items      = new AMLNodeList;
+    this.items      = new ample.classes.AMLNodeList;
 };
 cXULElement_radiogroup.prototype	= new cXULInputElement("radiogroup");
 cXULElement_radiogroup.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;

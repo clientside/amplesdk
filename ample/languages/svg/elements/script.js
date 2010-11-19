@@ -21,7 +21,7 @@ cSVGElement_script.prototype.$getTag	= function() {
 
 cSVGElement_script.handlers	= {
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
-		if (this.firstChild instanceof AMLCharacterData) {
+		if (this.firstChild instanceof ample.classes.AMLCharacterData) {
 			var oScript	= document.createElement("script");
 			document.getElementsByTagName("head")[0].appendChild(oScript);
 			oScript.type	= "text/javascript";

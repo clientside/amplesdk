@@ -16,7 +16,7 @@ cXULElement.VIEW_TYPE_VIRTUAL	= 0;    // Element is not rendered [keyset, key, s
 cXULElement.VIEW_TYPE_BOXED		= 1;    // Element is rendered as boxed
 cXULElement.VIEW_TYPE_NORMAL	= 2;    // Element is rendered as not boxed
 
-cXULElement.prototype	= new AMLElement;
+cXULElement.prototype	= new ample.classes.AMLElement;
 cXULElement.prototype.namespaceURI	= "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
 cXULElement.prototype.localName		= "#element";
 cXULElement.prototype.viewType		= cXULElement.VIEW_TYPE_NORMAL;
@@ -31,7 +31,7 @@ cXULElement.prototype.$getStyle	= function(sName) {
 		case "height":
 			break;
 		default:
-			return AMLElement.prototype.$getStyle(sName);
+			return ample.classes.AMLElement.prototype.$getStyle(sName);
 	}
 };
 
@@ -50,7 +50,7 @@ cXULElement.prototype.$setStyle	= function(sName, sValue) {
 		case "height":
 			break;
 		default:
-			return AMLElement.prototype.$setStyle(sName, sValue);
+			return ample.classes.AMLElement.prototype.$setStyle(sName, sValue);
 	}
 };
 */
@@ -149,7 +149,7 @@ cXULElement.prototype.reflow   = function() {
         // Count the amount of elements and their cumulative flex
         for (var nIndex = 0; nIndex < nLength; nIndex++) {
 			oElement	= this.childNodes[nIndex];
-            if (oElement.nodeType == AMLNode.ELEMENT_NODE && oElement.viewType != cXULElement.VIEW_TYPE_VIRTUAL) {
+            if (oElement.nodeType == ample.classes.AMLNode.ELEMENT_NODE && oElement.viewType != cXULElement.VIEW_TYPE_VIRTUAL) {
                 nElements++;
                 if ((sMeasure in oElement.attributes) && oElement.attributes[sMeasure].match(/([0-9\.]+)(%?)/)) {
                 	if (RegExp.$2 == "%") {
@@ -201,7 +201,7 @@ cXULElement.prototype.reflow   = function() {
 
             for (nIndex = 0; nIndex < nLength; nIndex++) {
             	oElement	= this.childNodes[nIndex];
-            	if (oElement.nodeType != AMLNode.ELEMENT_NODE)
+            	if (oElement.nodeType != ample.classes.AMLNode.ELEMENT_NODE)
             		nVirtual++;
             	else
                 if (oElement.viewType != cXULElement.VIEW_TYPE_VIRTUAL) {
@@ -285,8 +285,8 @@ cXULElement.prototype.$getTag		= function() {
 };
 
 /* Hack. This enables using non-XUL elements as children of XUL elements */
-var fAMLElement_prototype_$getTag	= AMLElement.prototype.$getTag;
-AMLElement.prototype.$getTag	= function() {
+var fAMLElement_prototype_$getTag	= ample.classes.AMLElement.prototype.$getTag;
+ample.classes.AMLElement.prototype.$getTag	= function() {
 	if (this.parentNode instanceof cXULElement)
 		return cXULElement.prototype.$getTag.call(this);
 	else
@@ -341,7 +341,7 @@ cXULElement.getBoxOpenChild = function(oElement)
     	aHtml   = [];
     if (oContainer.attributes["orient"] == "vertical") {
         aHtml.push('<tr style="');
-		if (oElement.nodeType == AMLNode.ELEMENT_NODE) {
+		if (oElement.nodeType == ample.classes.AMLNode.ELEMENT_NODE) {
 	        if (oElement.attributes["hidden"] == "true")
 				aHtml[aHtml.length]	= 'display:none;';
 	        if (oElement.viewType == cXULElement.VIEW_TYPE_VIRTUAL)
@@ -351,7 +351,7 @@ cXULElement.getBoxOpenChild = function(oElement)
     }
 	aHtml[aHtml.length]	= '<td';
 
-	if (oElement.nodeType == AMLNode.ELEMENT_NODE) {
+	if (oElement.nodeType == ample.classes.AMLNode.ELEMENT_NODE) {
 		if (oContainer.attributes["orient"] != "vertical") {
 			aHtml[aHtml.length]	= ' style="';
 	        if (oElement.attributes["hidden"] == "true")

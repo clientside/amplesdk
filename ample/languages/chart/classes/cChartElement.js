@@ -10,7 +10,7 @@
 var cChartElement	= function(sLocalName) {
 	this.localName	= sLocalName;
 };
-cChartElement.prototype	= new AMLElement;
+cChartElement.prototype	= new ample.classes.AMLElement;
 cChartElement.prototype.namespaceURI	= "http://www.amplesdk.com/ns/chart";
 cChartElement.prototype.localName		= "#element";
 

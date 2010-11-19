@@ -7,6 +7,8 @@
  *
  */
 
+var hClasses	= {};
+
 // Create Ample SDK document object
 var oAmple_document	= fAMLImplementation_createDocument(new cAMLImplementation, sNS_XHTML, "body", null),
 	oAmple_root		= oAmple_document.documentElement;
@@ -116,6 +118,7 @@ function fQuery(vArgument1, vArgument2, vArgument3) {
 var oAmple	= oAmple_document;
 oAmple.query	= fQuery;
 oAmple.prefixes	= {};
+oAmple.classes	= hClasses;
 oAmple.activeElement= null;
 oAmple.readyState	= "loading";
 
@@ -123,10 +126,10 @@ function fAmple_extend(oSource, oTarget) {
 	if (oSource instanceof cFunction) {
 		var oPrototype	= oSource.prototype;
 		if (oPrototype instanceof cAMLElement)
-			oAMLImplementation_elements[oPrototype.namespaceURI + '#' + oPrototype.localName]	= oSource;
+			hClasses[oPrototype.namespaceURI + '#' + oPrototype.localName]	= oSource;
 		else
 		if (oPrototype instanceof cAMLAttr)
-			oAMLImplementation_attributes[oPrototype.namespaceURI + '#' + oPrototype.localName]	= oSource;
+			hClasses[oPrototype.namespaceURI + '#' + '@' + oPrototype.localName]	= oSource;
 		else
 			throw new cAMLException(cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR, null
 //->Debug
@@ -316,30 +319,10 @@ oAmple.$instance	= function(oNode) {
 	return fAmple_instance(oAmple_document, oNode);
 };
 
-//
-oAmple.$element		= function(sUri) {
-//->Guard
-	fGuard(arguments, [
-		["uri",	cString]
-	]);
-//<-Guard
-
-	return oAMLImplementation_elements[sUri] || null;
-};
-
-oAmple.$attribute	= function(sUri) {
-//->Guard
-	fGuard(arguments, [
-		["uri",	cString]
-	]);
-//<-Guard
-
-	return oAMLImplementation_attributes[sUri] || null;
-};
 /*
 oAmple.$class	= function(oNode) {
 	var oElement	= fAmple_instance(oAmple_document, oNode);
-	return oElement ? oAMLImplementation_elements[oElement.namespaceURI + '#' + oElement.localName] || cAMLElement : null;
+	return oElement ? hClasses[oElement.namespaceURI + '#' + oElement.localName] || cAMLElement : null;
 };
 */
 //

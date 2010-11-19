@@ -619,7 +619,7 @@ function fAMLNode_handleEvent(oNode, oEvent) {
 	// Event default actions implementation
 	if (oEvent.eventPhase != cAMLEvent.CAPTURING_PHASE && !oEvent.defaultPrevented)
 		if (oNode.nodeType == 1 || oNode.nodeType == 2) {
-			var cNode	=(oNode.nodeType == 1 ? oAMLImplementation_elements : oAMLImplementation_attributes)[oNode.namespaceURI + '#' + oNode.localName];
+			var cNode	= hClasses[oNode.namespaceURI + '#' + (oNode.nodeType == 1 ? '' : '@') + oNode.localName];
 			if (cNode && cNode.handlers && cNode.handlers[sType])
 				cNode.handlers[sType].call(oNode, oEvent);
 		}

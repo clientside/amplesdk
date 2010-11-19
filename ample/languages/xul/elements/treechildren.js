@@ -9,7 +9,7 @@
 
 var cXULElement_treechildren	= function() {
     // Public Collections
-    this.items  = new AMLNodeList;
+    this.items  = new ample.classes.AMLNodeList;
 };
 cXULElement_treechildren.prototype	= new cXULElement("treechildren");
 

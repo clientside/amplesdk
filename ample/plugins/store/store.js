@@ -39,4 +39,4 @@ ample.extend({
 		// Invoke implementation
 		return fAmple_store(this, sName, vValue);
 	}
-}, AMLQuery.prototype);
+}, ample.classes.AMLQuery.prototype);

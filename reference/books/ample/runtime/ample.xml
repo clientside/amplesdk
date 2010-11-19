@@ -424,34 +424,6 @@
 					</locale>
 				</description>
 			</method>
-			<method name="$element" type="Function">
-				<arguments>
-					<argument name="uri" type="String">
-						<description>
-							Element class uri (namespace#name).
-						</description>
-					</argument>
-				</arguments>
-				<description>
-					<locale>
-						Returns element constructor.
-					</locale>
-				</description>
-			</method>
-			<method name="$attribute" type="Function">
-				<arguments>
-					<argument name="uri" type="String">
-						<description>
-							Attribute class uri (namespace#name).
-						</description>
-					</argument>
-				</arguments>
-				<description>
-					<locale>
-						Returns attribute constructor.
-					</locale>
-				</description>
-			</method>
 			<!-- Events -->
 			<method name="bind" type="Void">
 				<arguments>

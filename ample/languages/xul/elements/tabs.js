@@ -9,7 +9,7 @@
 
 var cXULElement_tabs	= function() {
     // Collections
-    this.items      = new AMLNodeList;
+    this.items      = new ample.classes.AMLNodeList;
 };
 cXULElement_tabs.prototype	= new cXULElement("tabs");
 cXULElement_tabs.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;

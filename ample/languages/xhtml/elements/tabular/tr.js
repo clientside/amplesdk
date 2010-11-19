@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_tr	= function() {
-	this.cells	= new AMLNodeList;
+	this.cells	= new ample.classes.AMLNodeList;
 };
 cXHTMLElement_tr.prototype	= new cXHTMLElement("tr");
 

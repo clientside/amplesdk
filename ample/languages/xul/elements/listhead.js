@@ -9,7 +9,7 @@
 
 var cXULElement_listhead	= function() {
     // Collections
-    this.items  = new AMLNodeList;
+    this.items  = new ample.classes.AMLNodeList;
 };
 cXULElement_listhead.prototype   = new cXULElement("listhead");
 

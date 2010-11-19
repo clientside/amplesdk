@@ -11,7 +11,7 @@ function cAMLXPathNamespace() {
 
 };
 
-cAMLXPathNamespace.prototype	= new AMLNode;
+cAMLXPathNamespace.prototype	= new ample.classes.AMLNode;
 
 // Constants
 cAMLXPathNamespace.XPATH_NAMESPACE_NODE	= 13;

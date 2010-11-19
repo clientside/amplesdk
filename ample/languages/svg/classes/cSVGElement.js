@@ -10,7 +10,7 @@
 var cSVGElement	= function(sLocalName) {
 	this.localName	= sLocalName;
 };
-cSVGElement.prototype	= new AMLElement;
+cSVGElement.prototype	= new ample.classes.AMLElement;
 cSVGElement.prototype.namespaceURI	= "http://www.w3.org/2000/svg";
 cSVGElement.prototype.localName		= "-element";
 
@@ -808,7 +808,7 @@ else {
 			oElementDOM.setAttribute(sName, sValue);
 
 		//
-		AMLElement.prototype.setAttribute.call(this, sName, sValue);
+		ample.classes.AMLElement.prototype.setAttribute.call(this, sName, sValue);
 	};
 
 	cSVGElement.prototype.removeAttribute	= function(sName) {
@@ -818,7 +818,7 @@ else {
 			oElementDOM.removeAttribute(sName);
 
 		//
-		AMLElement.prototype.removeAttribute.call(this, sName);
+		ample.classes.AMLElement.prototype.removeAttribute.call(this, sName);
 	};
 
 	cSVGElement.prototype.getBBox	= function() {
