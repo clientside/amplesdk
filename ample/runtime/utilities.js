@@ -292,7 +292,7 @@ function fAML_processScripts() {
 															oParserMessage.textContent;
 					else
 					// Webkit
-					if (oParserMessage = oParserError.getElementsByTagName('div')[0])
+					if (oParserMessage = oParserError.getElementsByTagName("div")[0])
 						oElementNew.textContent	= 'XML Parsing Error: ' + oParserMessage.textContent.replace(/.+:/, '') +
 													'Location: ' + oUALocation + '\n' +
 													 oParserMessage.textContent.replace(/:.+/, '');
