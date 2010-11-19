@@ -849,7 +849,7 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 		sTagName	=(oElement.prefix ? oElement.prefix + '-' : '') + oElement.localName,
 		bHover		= sName == "hover",
 		bTransition	=!bHover && oAMLConfiguration_values["ample-enable-transitions"],
-		bAnimation	=!bHover && oAMLConfiguration_values["ample-enable-animations"] &&!(nAMLResize_resizeState || nAMLDragAndDrop_dragState);	// Disable animations
+		bAnimation	= bTransition &&!(nAMLResize_resizeState || nAMLDragAndDrop_dragState);	// Disable animations
 
 //->Source
 //console.warn("processing: " + oElement.tagName + ' ' + sName + '(' + (bValue ? 'true' : 'false') + ')');

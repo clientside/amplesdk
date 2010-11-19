@@ -372,7 +372,6 @@ fAMLConfiguration_setParameter(oConfiguration, "ample-user-locale", oUANavigator
 fAMLConfiguration_setParameter(oConfiguration, "ample-user-agent", '@project.userAgent@');
 fAMLConfiguration_setParameter(oConfiguration, "ample-enable-style", true);
 fAMLConfiguration_setParameter(oConfiguration, "ample-enable-guard", true);
-fAMLConfiguration_setParameter(oConfiguration, "ample-enable-animations", true);
 fAMLConfiguration_setParameter(oConfiguration, "ample-enable-transitions", true);
 
 //->Debug

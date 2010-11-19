@@ -297,7 +297,7 @@ function fAMLResize_onMouseUp(oEvent)
 				};
 
 		    // Restore element position
-			if (oAMLConfiguration_values["ample-enable-animations"]) {
+			if (oAMLConfiguration_values["ample-enable-transitions"]) {
 				var oProperties	= {};
 				oProperties["left"]		= sAMLResize_clientLeft || "auto";
 				oProperties["top"]		= sAMLResize_clientTop || "auto";
