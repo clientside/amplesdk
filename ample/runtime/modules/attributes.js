@@ -8,13 +8,13 @@
  */
 
 cAMLQuery.prototype.attr	= function(sQName, sValue) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["name",	cString],
 		["value",	cObject,	true,	true]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	if (arguments.length > 1) {
 		var aQName		= sQName.split(':'),
 			sLocalName	= aQName.pop(),

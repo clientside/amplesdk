@@ -27,40 +27,40 @@ fAmple_extend(cXBLElement);
 cAMLDocument.prototype.bindingDocuments	= null;
 
 cAMLDocument.prototype.loadBindingDocument	= function(sDocumentUri) {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["documentURI",	cString]
 	]);
+//<-Guard
 
-	//
 };
 
 //AMLElement
 cAMLElement.prototype.xblImplementations	= null;
 
 cAMLElement.prototype.addBinding	= function(sBindingUri) {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["bindingURI",	cString]
 	]);
+//<-Guard
 
-	//
 };
 
 cAMLElement.prototype.removeBinding	= function(sBindingUri) {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["bindingURI",	cString]
 	]);
+//<-Guard
 
-	//
 };
 
 cAMLElement.prototype.hasBinding	= function(sBindingUri) {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["bindingURI",	cString]
 	]);
+//<-Guard
 
-	//
 };

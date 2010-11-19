@@ -36,10 +36,11 @@ var nAMLDocument_index	= 0,
 // Public Methods
 cAMLDocument.prototype.createAttribute	= function(sName)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["name",	cString]
 	]);
+//<-Guard
 
 	return fAMLDocument_createAttributeNS(this, null, sName);
 };
@@ -70,11 +71,12 @@ function fAMLDocument_createAttributeNS(oDocument, sNameSpaceURI, sQName)
 
 cAMLDocument.prototype.createAttributeNS	= function(sNameSpaceURI, sQName)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["namespaceURI",	cString, false, true],
 		["name",			cString]
 	]);
+//<-Guard
 
 	return fAMLDocument_createAttributeNS(this, sNameSpaceURI, sQName);
 };
@@ -92,16 +94,15 @@ function fAMLDocument_createTextNode(oDocument, sData)
 
 cAMLDocument.prototype.createTextNode	= function(sData)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["data",	cObject, true]
 	]);
-
+//<-Guard
 	// if no argument was provided, use empty string
 	if (!arguments.length)
 		sData	= '';
 
-	// Invoke actual implementation
 	return fAMLDocument_createTextNode(this, cString(sData));
 };
 
@@ -118,16 +119,15 @@ function fAMLDocument_createCDATASection(oDocument, sData)
 
 cAMLDocument.prototype.createCDATASection	= function(sData)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["data",	cObject, true]
 	]);
-
+//<-Guard
 	// if no argument was provided, use empty string
 	if (!arguments.length)
 		sData	= '';
 
-	// Invoke actual implementation
 	return fAMLDocument_createCDATASection(this, cString(sData));
 };
 
@@ -148,10 +148,11 @@ function fAMLDocument_createComment(oDocument, sData)
 
 cAMLDocument.prototype.createComment	= function(sData)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["data",	cObject, true]
 	]);
+//<-Guard
 
 //->Source
 /*
@@ -168,12 +169,12 @@ cAMLDocument.prototype.createComment	= function(sData)
 
 cAMLDocument.prototype.createElement	= function(sName)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["name",	cString]
 	]);
+//<-Guard
 
-	// Invoke actual implementation
 	return fAMLDocument_createElementNS(this, this.documentElement.namespaceURI, sName);
 };
 
@@ -215,32 +216,34 @@ function fAMLDocument_createElementNS(oDocument, sNameSpaceURI, sQName)
 
 cAMLDocument.prototype.createElementNS	= function(sNameSpaceURI, sQName)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["namespaceURI",	cString, false, true],
 		["name",			cString]
 	]);
+//<-Guard
 
-	// Invoke actual implementation
 	return fAMLDocument_createElementNS(this, sNameSpaceURI, sQName);
 };
 
 cAMLDocument.prototype.createEntityReference	= function(sName)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["name",	cString]
 	]);
+//<-Guard
 
 	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
 
 cAMLDocument.prototype.createEvent     = function(sName)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["eventType",	cString]
 	]);
+//<-Guard
 
 	var cEvent	= window["AML" + sName.replace(/s$/, '')];
 	if (cEvent && (cEvent == cAMLEvent || cEvent.prototype instanceof cAMLEvent))
@@ -251,11 +254,12 @@ cAMLDocument.prototype.createEvent     = function(sName)
 
 cAMLDocument.prototype.canDispatch	= function(sNameSpaceURI, sType)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["namespaceURI",	cString, false, true],
 		["type",			cString]
 	]);
+//<-Guard
 
 	return true;
 };
@@ -286,43 +290,46 @@ function fAMLDocument_createProcessingInstruction(oDocument, sTarget, sData)
 
 cAMLDocument.prototype.createProcessingInstruction	= function(sTarget, sData)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["target",	cString],
 		["data",	cString]
 	]);
+//<-Guard
 
-	// Invoke actual implementation
 	return fAMLDocument_createProcessingInstruction(this, sTarget, sData);
 };
 
 cAMLDocument.prototype.getElementById	= function(sId)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		['id',	cString]
 	]);
+//<-Guard
 
     return oAMLDocument_ids[sId] || null;
 };
 
 cAMLDocument.prototype.getElementsByTagName	= function(sTagName)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["name",	cString]
 	]);
+//<-Guard
 
 	return fAMLElement_getElementsByTagName(this, sTagName);
 };
 
 cAMLDocument.prototype.getElementsByTagNameNS	= function(sNameSpaceURI, sLocalName)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["namespaceURI",	cString, false, true],
 		["localName",		cString]
 	]);
+//<-Guard
 
 	return fAMLElement_getElementsByTagNameNS(this, sNameSpaceURI, sLocalName);
 };
@@ -514,11 +521,12 @@ function fAMLDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse
 
 cAMLDocument.prototype.importNode	= function(oNode, bDeep)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["node",	cXMLNode],
 		["deep",	cBoolean]
 	]);
+//<-Guard
 
 	if (oNode.nodeType == cAMLNode.ELEMENT_NODE)
 		return fAMLDocument_importNode(this, oNode, bDeep);

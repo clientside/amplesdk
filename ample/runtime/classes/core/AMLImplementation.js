@@ -55,14 +55,14 @@ function fAMLImplementation_createDocument(oImplementation, sNameSpaceURI, sQNam
 
 cAMLImplementation.prototype.createDocument	= function(sNameSpaceURI, sQName, oDocType)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["namespaceURI",	cString, false, true],
 		["name",			cString, false, true],
 		["doctype",			cObject, false, true]
 	]);
+//<-Guard
 
-	// Invoke actual implementation
 	return fAMLImplementation_createDocument(this, sNameSpaceURI, sQName, oDocType);
 };
 

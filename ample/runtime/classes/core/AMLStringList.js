@@ -12,10 +12,11 @@ var cAMLStringList	= function(){};
 cAMLStringList.prototype.length	= 0;
 
 cAMLStringList.prototype.item		= function(nIndex) {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["index",	cNumber]
 	]);
+//<-Guard
 
 	return nIndex < this.length ? this[nIndex] : null;
 };
@@ -28,10 +29,11 @@ function fAMLStringList_contains(oStringList, sValue) {
 };
 
 cAMLStringList.prototype.contains	= function(sValue) {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["value",	cString]
 	]);
+//<-Guard
 
 	return fAMLStringList_contains(this, sValue);
 };

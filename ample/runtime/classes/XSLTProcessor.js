@@ -13,10 +13,11 @@ if (!cXSLTProcessor) {
 		this.reset();
 	};
 	cXSLTProcessor.prototype.importStylesheet	= function(oNode) {
-		// Validate arguments
+//->Guard
 		fGuard(arguments, [
 			["stylesheet",	cXMLNode]
 		]);
+//<-Guard
 
 		var oStylesheet	= new cActiveXObject("MSXML2" + '.' + "FreeThreadedDOMDocument");
 //		oStylesheet.resolveExternals	= true;
@@ -39,11 +40,12 @@ if (!cXSLTProcessor) {
 		this._parameters	= {};
 	};
 	cXSLTProcessor.prototype.getParameter		= function(sNameSpaceURI, sLocalName) {
-		// Validate arguments
+//->Guard
 		fGuard(arguments, [
 			["namespaceURI",	cString, false, true],
 			["localName",		cString]
 		]);
+//<-Guard
 
 		if (sNameSpaceURI == null)
 			sNameSpaceURI	=  '';
@@ -53,11 +55,12 @@ if (!cXSLTProcessor) {
 		return null;
 	};
 	cXSLTProcessor.prototype.removeParameter	= function(sNameSpaceURI, sLocalName) {
-		// Validate arguments
+//->Guard
 		fGuard(arguments, [
 			["namespaceURI",	cString, false, true],
 			["localName",		cString]
 		]);
+//<-Guard
 
 		if (sNameSpaceURI == null)
 			sNameSpaceURI	=  '';
@@ -70,12 +73,13 @@ if (!cXSLTProcessor) {
 			delete oNameSpace[sLocalName];
 	};
 	cXSLTProcessor.prototype.setParameter		= function(sNameSpaceURI, sLocalName, sValue) {
-		// Validate arguments
+//->Guard
 		fGuard(arguments, [
 			["namespaceURI",	cString, false, true],
 			["localName",		cString],
 			["value",			cObject]
 		]);
+//<-Guard
 
 		if (sNameSpaceURI == null)
 			sNameSpaceURI	=  '';
@@ -94,10 +98,11 @@ if (!cXSLTProcessor) {
 		this._method	= "xml";
 	};
 	cXSLTProcessor.prototype.transformToDocument	= function(oNode) {
-		// Validate arguments
+//->Guard
 		fGuard(arguments, [
 			["source",	cXMLNode]
 		]);
+//<-Guard
 
 		var oProcessor	= this._processor,
 			oOutput		= new cActiveXObject("Microsoft.XMLDOM");
@@ -114,11 +119,12 @@ if (!cXSLTProcessor) {
 		return oOutput;
 	};
 	cXSLTProcessor.prototype.transformToFragment	= function(oNode, oDocument) {
-		// Validate arguments
+//->Guard
 		fGuard(arguments, [
 			["source",	cXMLNode],
 			["output",	cXMLDocument]
 		]);
+//<-Guard
 
 		var oProcessor	= this._processor,
 			oOutput		= new cActiveXObject("Microsoft.XMLDOM"),

@@ -9,13 +9,13 @@
 
 //
 cAMLQuery.prototype.offset	= function(oOffset) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["offset",	cObject, true]
 	]);
+//<-Guard
 
 	if (arguments.length) {
-		//
 		return this;
 	}
 	else
@@ -70,15 +70,21 @@ cAMLQuery.prototype.position	= function() {
 };
 
 cAMLQuery.prototype.scrollTop	= function(nValue) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["value",	cNumber, true]
 	]);
+//<-Guard
+
+	// TODO: Implementation missing
 };
 
 cAMLQuery.prototype.scrollLeft	= function(nValue) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["value",	cNumber, true]
 	]);
+//<-Guard
+
+	// TODO: Implementation missing
 };

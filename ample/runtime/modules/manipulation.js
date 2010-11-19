@@ -10,12 +10,12 @@
 
 // Text (get/set)
 cAMLQuery.prototype.text	= function(sValue) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["value",	cObject, true]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	if (arguments.length > 0) {
 		// Replace children with a text node
 		fAMLQuery_each(this, function() {
@@ -37,10 +37,11 @@ cAMLQuery.prototype.text	= function(sValue) {
 };
 
 cAMLQuery.prototype.html	= function(vArgument1) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["value",	cObject, true]
 	]);
+//<-Guard
 
 	if (arguments.length > 0) {
 		// Empty
@@ -60,12 +61,12 @@ cAMLQuery.prototype.html	= function(vArgument1) {
 // Structure
 //
 cAMLQuery.prototype.appendTo	= function(vArgument1) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["target",	cObject]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	var oQuery	= new cAMLQuery;
 	if (this.length) {
 		//
@@ -86,12 +87,12 @@ cAMLQuery.prototype.appendTo	= function(vArgument1) {
 };
 
 cAMLQuery.prototype.prependTo	= function(vArgument1) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["target",	cObject]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	var oQuery	= new cAMLQuery;
 	if (this.length) {
 		//
@@ -116,12 +117,12 @@ cAMLQuery.prototype.prependTo	= function(vArgument1) {
 };
 
 cAMLQuery.prototype.insertBefore	= function(vArgument1) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["anchor",	cObject]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	var oQuery	= new cAMLQuery;
 	if (this.length) {
 		//
@@ -143,12 +144,12 @@ cAMLQuery.prototype.insertBefore	= function(vArgument1) {
 };
 
 cAMLQuery.prototype.insertAfter	= function(vArgument1) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["anchor",	cObject]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	var oQuery	= new cAMLQuery;
 	if (this.length) {
 		//
@@ -173,12 +174,12 @@ cAMLQuery.prototype.insertAfter	= function(vArgument1) {
 };
 
 cAMLQuery.prototype.replaceAll	= function(vArgument1) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["source",	cObject]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	var oQuery	= new cAMLQuery;
 	if (this.length) {
 		//
@@ -202,12 +203,12 @@ cAMLQuery.prototype.replaceAll	= function(vArgument1) {
 
 //
 cAMLQuery.prototype.append	= function(vArgument1) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["source",	cObject]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	if (this.length) {
 		//
 		if (!(vArgument1 instanceof cAMLQuery))
@@ -225,12 +226,12 @@ cAMLQuery.prototype.append	= function(vArgument1) {
 };
 
 cAMLQuery.prototype.prepend	= function(vArgument1) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["source",	cObject]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	if (this.length) {
 		//
 		if (!(vArgument1 instanceof cAMLQuery))
@@ -252,12 +253,12 @@ cAMLQuery.prototype.prepend	= function(vArgument1) {
 };
 
 cAMLQuery.prototype.before	= function(vArgument1) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["source",	cObject]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	if (this.length) {
 		//
 		if (!(vArgument1 instanceof cAMLQuery))
@@ -280,12 +281,12 @@ cAMLQuery.prototype.before	= function(vArgument1) {
 };
 
 cAMLQuery.prototype.after	= function(vArgument1) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["source",	cObject]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	if (this.length) {
 		//
 		if (!(vArgument1 instanceof cAMLQuery))
@@ -313,12 +314,12 @@ cAMLQuery.prototype.after	= function(vArgument1) {
 
 //
 cAMLQuery.prototype.replaceWith	= function(vArgument1) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["source",	cObject]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	if (this.length) {
 		//
 		if (!(vArgument1 instanceof cAMLQuery))

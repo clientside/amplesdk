@@ -113,10 +113,11 @@ function fAMLNode_appendChild(oParent, oNode)
 
 cAMLNode.prototype.appendChild	= function(oNode)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["node",	cAMLNode]
 	]);
+//<-Guard
 
 	// Additional check: do not allow adding document nodes as children
 	if (oNode.nodeType == cAMLNode.DOCUMENT_NODE)
@@ -172,11 +173,12 @@ function fAMLNode_insertBefore(oParent, oNode, oBefore)
 
 cAMLNode.prototype.insertBefore	= function(oNode, oBefore)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["node",	cAMLNode],
 		["before",	cAMLNode, false, true]
 	]);
+//<-Guard
 
 	// Additional check: do not allow adding document nodes as children
 	if (oNode.nodeType == cAMLNode.DOCUMENT_NODE)
@@ -221,10 +223,11 @@ function fAMLNode_removeChild(oParent, oNode)
 
 cAMLNode.prototype.removeChild	= function(oNode)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["node",	cAMLNode]
 	]);
+//<-Guard
 
     if (this.childNodes.$indexOf(oNode) !=-1)
     	return fAMLNode_removeChild(this, oNode);
@@ -240,11 +243,12 @@ function fAMLNode_replaceChild(oParent, oNode, oOld)
 
 cAMLNode.prototype.replaceChild	= function(oNode, oOld)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["node",	cAMLNode],
 		["old",		cAMLNode, false, true]
 	]);
+//<-Guard
 
     if (this.childNodes.$indexOf(oOld) !=-1)
     	return fAMLNode_replaceChild(this, oNode, oOld);
@@ -287,10 +291,11 @@ function fAMLNode_cloneNode(oNode, bDeep)
 
 cAMLNode.prototype.cloneNode	= function(bDeep)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["deep",	cBoolean]
 	]);
+//<-Guard
 
 	return fAMLNode_cloneNode(this, bDeep);
 };
@@ -344,10 +349,11 @@ function fAMLNode_lookupPrefix(oNode, sNameSpaceURI)
 
 cAMLNode.prototype.lookupPrefix	= function(sNameSpaceURI)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["namespaceURI",	cString, false, true]
 	]);
+//<-Guard
 
 	return fAMLNode_lookupPrefix(this, sNameSpaceURI);
 };
@@ -378,12 +384,12 @@ function fAMLNode_lookupNamespaceURI(oNode, sPrefix)
 
 cAMLNode.prototype.lookupNamespaceURI	= function(sPrefix)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["prefix",	cString, false, true]
 	]);
+//<-Guard
 
-	// Invoke actual implementation
 	return fAMLNode_lookupNamespaceURI(this, sPrefix);
 };
 
@@ -421,10 +427,11 @@ function fAMLNode_compareDocumentPosition(oNode, oChild)
 
 cAMLNode.prototype.compareDocumentPosition	= function(oChild)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["node",	cAMLNode]
 	]);
+//<-Guard
 
 	return fAMLNode_compareDocumentPosition(this, oChild);
 };
@@ -539,12 +546,13 @@ function fAMLEventTarget_addEventListener(oNode, sType, fHandler, bUseCapture)
 
 cAMLNode.prototype.addEventListener		= function(sType, fHandler, bUseCapture)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["eventType",	cString],
 		["listener",	cObject],
 		["useCapture",	cBoolean,	true]
 	], this);
+//<-Guard
 
 	fAMLEventTarget_addEventListener(this, sType, fHandler, bUseCapture);
 };
@@ -564,14 +572,14 @@ function fAMLEventTarget_removeEventListener(oNode, sType, fHandler, bUseCapture
 
 cAMLNode.prototype.removeEventListener	= function(sType, fHandler, bUseCapture)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["eventType",	cString],
 		["listener",	cObject],
 		["useCapture",	cBoolean,	true]
 	], this);
+//<-Guard
 
-	// Invoke actual implementation
 	fAMLEventTarget_removeEventListener(this, sType, fHandler, bUseCapture);
 };
 
@@ -627,8 +635,10 @@ function fAMLNode_handleCaptureOnTargetEvent(oNode, oEvent) {
 
 cAMLNode.prototype.hasAttributes	= function()
 {
+//->Guard
 	fGuard(arguments, [
 	], this);
+//<-Guard
 
 	if (this.attributes)
 		for (var sAttribute in this.attributes)
@@ -737,12 +747,12 @@ function fAMLNode_dispatchEvent(oNode, oEvent)
 
 cAMLNode.prototype.dispatchEvent	= function(oEvent)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["event",	cAMLEvent]
 	], this);
+//<-Guard
 
-	// Invoke actual implementation
 	return fAMLNode_dispatchEvent(this, oEvent);
 };
 //->Source

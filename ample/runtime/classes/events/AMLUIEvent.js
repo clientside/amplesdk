@@ -20,12 +20,13 @@ cAMLUIEvent.prototype.$pseudoTarget	= null;	// readonly
 cAMLUIEvent.prototype.initUIEvent	= function(sType, bCanBubble, bCancelable, oView, nDetail)
 {
 /*
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["type",		cString],
 		["canBubble",	cBoolean],
 		["cancelable",	cBoolean]
 	]);
+//<-Guard
 */
 	this.initEvent(sType, bCanBubble, bCancelable);
 

@@ -51,12 +51,12 @@ function fAMLElement_appendChild(oParent, oNode)
 
 cAMLElement.prototype.appendChild	= function(oNode)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["node",	cAMLNode]
 	], this);
+//<-Guard
 
-	// Invoke actual implementation
 	if (oNode.nodeType == cAMLNode.DOCUMENT_FRAGMENT_NODE)
 		while (oNode.firstChild)
 			fAMLElement_appendChild(this, oNode.firstChild);
@@ -93,11 +93,12 @@ function fAMLElement_insertBefore(oParent, oNode, oBefore)
 
 cAMLElement.prototype.insertBefore	= function(oNode, oBefore)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["node",	cAMLNode],
 		["before",	cAMLNode, false, true]
 	], this);
+//<-Guard
 
 	if (oBefore) {
 		if (this.childNodes.$indexOf(oBefore) !=-1) {
@@ -151,10 +152,11 @@ function fAMLElement_removeChild(oParent, oNode)
 
 cAMLElement.prototype.removeChild	= function(oNode)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["node",	cAMLNode]
 	], this);
+//<-Guard
 
     if (this.childNodes.$indexOf(oNode) !=-1)
     	return fAMLElement_removeChild(this, oNode);
@@ -186,11 +188,12 @@ function fAMLElement_replaceChild(oParent, oNode, oOld)
 
 cAMLElement.prototype.replaceChild	= function(oNode, oOld)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["node",	cAMLNode],
 		["old",		cAMLNode, false, true]
 	], this);
+//<-Guard
 
 	if (oOld) {
 	    if (this.childNodes.$indexOf(oOld) !=-1) {
@@ -224,10 +227,11 @@ function fAMLElement_hazAttribute(oElement, sName)
 
 cAMLElement.prototype.hasAttribute	= function(sName)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["name",		cString]
 	], this);
+//<-Guard
 
 	return fAMLElement_hazAttribute(this, sName);
 };
@@ -243,11 +247,12 @@ function fAMLElement_hazAttributeNS(oElement, sNameSpaceURI, sLocalName)
 
 cAMLElement.prototype.hasAttributeNS	= function(sNameSpaceURI, sLocalName)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["namespaceURI",	cString, false, true],
 		["localName",		cString]
 	], this);
+//<-Guard
 
 	return fAMLElement_hazAttributeNS(this, sNameSpaceURI, sLocalName);
 };
@@ -299,11 +304,12 @@ function fAMLElement_setAttribute(oElement, sName, sValue)
 
 cAMLElement.prototype.setAttribute	= function(sName, sValue)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["name",		cString],
 		["value",		cObject]
 	], this);
+//<-Guard
 
 	fAMLElement_setAttribute(this, sName, cString(sValue));
 };
@@ -387,12 +393,13 @@ function fAMLElement_setAttributeNS(oElement, sNameSpaceURI, sQName, sValue)
 
 cAMLElement.prototype.setAttributeNS	= function(sNameSpaceURI, sQName, sValue)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["namespaceURI",	cString, false, true],
 		["name",			cString],
 		["value",			cObject]
 	], this);
+//<-Guard
 
 	fAMLElement_setAttributeNS(this, sNameSpaceURI, sQName, cString(sValue));
 };
@@ -404,14 +411,14 @@ cAMLElement.prototype.setAttributeNode	= function(oAttribute)
 
 cAMLElement.prototype.setAttributeNodeNS	= function(oAttribute)
 {
-//->Source
-/*
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["node",		cAMLAttr]
 	]);
+//<-Guard
 
-	//
+//->Source
+/*
 	oAttribute.ownerElement	= this;
 	this.setAttributeNS(oAttribute.namespaceURI, oAttribute.nodeName, oAttribute.nodeValue);
 */
@@ -426,10 +433,11 @@ function fAMLElement_getAttribute(oElement, sName)
 
 cAMLElement.prototype.getAttribute	= function(sName)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["name",		cString]
 	], this);
+//<-Guard
 
 	return fAMLElement_getAttribute(this, sName);
 };
@@ -445,11 +453,12 @@ function fAMLElement_getAttributeNS(oElement, sNameSpaceURI, sLocalName)
 
 cAMLElement.prototype.getAttributeNS	= function(sNameSpaceURI, sLocalName)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["namespaceURI",	cString, false, true],
 		["localName",		cString]
 	], this);
+//<-Guard
 
 	return fAMLElement_getAttributeNS(this, sNameSpaceURI, sLocalName);
 };
@@ -505,9 +514,11 @@ function fAMLElement_removeAttribute(oElement, sName)
 
 cAMLElement.prototype.removeAttribute	= function(sName)
 {
+//->Guard
 	fGuard(arguments, [
 		["name",	cString]
 	], this);
+//<-Guard
 
 	fAMLElement_removeAttribute(this, sName);
 };
@@ -562,11 +573,12 @@ function fAMLElement_removeAttributeNS(oElement, sNameSpaceURI, sLocalName)
 
 cAMLElement.prototype.removeAttributeNS	= function(sNameSpaceURI, sLocalName)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["namespaceURI",	cString, false, true],
 		["localName",		cString]
 	], this);
+//<-Guard
 
 	fAMLElement_removeAttributeNS(this, sNameSpaceURI, sLocalName);
 };
@@ -578,8 +590,10 @@ cAMLElement.prototype.removeAttributeNode	= function(oAttribute)
 
 cAMLElement.prototype.hasChildNodes	= function()
 {
+//->Guard
 	fGuard(arguments, [
 	], this);
+//<-Guard
 
 	return this.childNodes.length > 0;
 };
@@ -603,10 +617,11 @@ function fAMLElement_getElementsByTagName(oElement, sTagName)
 
 cAMLElement.prototype.getElementsByTagName	= function(sTagName)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["name",	cString]
 	], this);
+//<-Guard
 
 	return fAMLElement_getElementsByTagName(this, sTagName);
 };
@@ -631,11 +646,12 @@ function fAMLElement_getElementsByTagNameNS(oElement, sNameSpaceURI, sLocalName)
 
 cAMLElement.prototype.getElementsByTagNameNS	= function(sNameSpaceURI, sLocalName)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["namespaceURI",	cString],
 		["localName",		cString]
 	], this);
+//<-Guard
 
 	return fAMLElement_getElementsByTagNameNS(this, sNameSpaceURI, sLocalName);
 };
@@ -1001,12 +1017,13 @@ function fAMLElement_setPseudoClass(oElement, sName, bValue, sContainer)
 // Attaching to implementation
 cAMLElement.prototype.$setPseudoClass	= function(sName, bState, sContainer)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["name",	cString],
 		["state",	cBoolean],
 		["pseudoElement",	cString, true]
 	]);
+//<-Guard
 
 	fAMLElement_setPseudoClass(this, sName, bState, sContainer);
 };
@@ -1028,10 +1045,11 @@ cAMLElement.prototype.$getStyleComputed	= function(sName) {
 };
 
 cAMLElement.prototype.scrollIntoView	= function(bTop) {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["top",	cBoolean, true, false]	// Optional, null is not allowed
 	]);
+//<-Guard
 
 	var oElementDOM	= this.$getContainer();
 	if (oElementDOM) {

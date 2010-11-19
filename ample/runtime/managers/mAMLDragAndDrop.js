@@ -423,40 +423,44 @@ cAMLDataTransfer.prototype.effectAllowed	= "uninitialized";	// copy|move|link|co
 cAMLDataTransfer.prototype.types			= null;
 
 cAMLDataTransfer.prototype.clearData	= function(sFormat) {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["format",	cString]
 	]);
+//<-Guard
 
 	delete this.types[sFormat];
 };
 
 cAMLDataTransfer.prototype.setData	= function(sFormat, vData) {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["format",	cString],
 		["data",	cString]
 	]);
+//<-Guard
 
 	this.types[sFormat]	= vData;
 };
 
 cAMLDataTransfer.prototype.getData	= function(sFormat) {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["format",	cString]
 	]);
+//<-Guard
 
 	return this.types[sFormat] || null;
 };
 
 cAMLDataTransfer.prototype.setDragImage	= function(oImage, nLeft, nTop) {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["image",	cXMLElement],
 		["left",	cNumber,	true],
 		["top",		cNumber,	true]
 	]);
+//<-Guard
 
 	oAMLDragAndDrop_image.appendChild(oImage);
 	oAMLDragAndDrop_image.style.marginLeft	= (nLeft || 0) + 'px';
@@ -464,10 +468,11 @@ cAMLDataTransfer.prototype.setDragImage	= function(oImage, nLeft, nTop) {
 };
 
 cAMLDataTransfer.prototype.addElement		= function(oElement) {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["element",	cXMLElement]
 	]);
+//<-Guard
 
 	oAMLDragAndDrop_image.appendChild(oElement);
 };

@@ -8,13 +8,13 @@
  */
 
 cAMLQuery.prototype.css	= function(sName, sValue) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["name",	cString],
 		["value",	cObject,	true,	true]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	if (arguments.length > 1) {
 		sValue	= sValue == null ? '' : cString(sValue);
 		fAMLQuery_each(this, function() {

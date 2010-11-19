@@ -30,11 +30,12 @@ function fAMLRange_setStart(oRange, oNode, nOffset) {
 };
 
 cAMLRange.prototype.setStart	= function(oNode, nOffset) {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["node",	cAMLNode],
 		["offset",	cNumber]
 	]);
+//<-Guard
 
 	fAMLRange_setStart(this, oNode, nOffset);
 };
@@ -45,85 +46,94 @@ function fAMLRange_setEnd(oRange, oNode, nOffset) {
 };
 
 cAMLRange.prototype.setEnd		= function(oNode, nOffset) {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["node",	cAMLNode],
 		["offset",	cNumber]
 	]);
+//<-Guard
 
 	fAMLRange_setEnd(this, oNode, nOffset);
 };
 
 cAMLRange.prototype.setStartBefore	= function(oNode) {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["node",	cAMLNode]
 	]);
+//<-Guard
 
 	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
 
 cAMLRange.prototype.setStartAfter	= function(oNode) {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["node",	cAMLNode]
 	]);
+//<-Guard
 
 	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
 
 cAMLRange.prototype.setEndBefore	= function(oNode) {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["node",	cAMLNode]
 	]);
+//<-Guard
 
 	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
 
 cAMLRange.prototype.setEndAfter		= function(oNode) {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["node",	cAMLNode]
 	]);
+//<-Guard
 
 	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
 
 cAMLRange.prototype.collapse	= function(bStart) {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["toStart",	cBoolean]
 	]);
+//<-Guard
 
 	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
 
 cAMLRange.prototype.selectNode	= function(oNode) {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["node",	cAMLNode]
 	]);
+//<-Guard
 
 	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
 
 cAMLRange.prototype.selectNodeContents	= function(oNode) {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["node",	cAMLNode]
 	]);
+//<-Guard
 
 	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
 
 //
 cAMLRange.prototype.compareBoundaryPoints	= function(nHow, oRange) {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["how",			cNumber],
 		["sourceRange",	cAMLRange]
 	]);
+//<-Guard
 
 	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
@@ -141,19 +151,21 @@ cAMLRange.prototype.cloneContents	= function() {
 };
 
 cAMLRange.prototype.insertNode		= function(oNode) {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["node",	cAMLNode]
 	]);
+//<-Guard
 
 	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
 
 cAMLRange.prototype.surroundContents= function(oParent) {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["parent",	cAMLNode]
 	]);
+//<-Guard
 
 	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };

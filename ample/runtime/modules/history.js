@@ -102,11 +102,12 @@ cAMLHashChangeEvent.prototype.initHashChangeEvent	= function(sType, bCanBubble, 
 
 // Attaching to implementation
 oAmple.bookmark	= function(sHash, sTitle) {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["hash",	cString, true],
 		["title",	cString, true]
 	]);
+//<-Guard
 
 	if (arguments.length)
 		fAMLQuery_history_bookmark(sHash, sTitle);

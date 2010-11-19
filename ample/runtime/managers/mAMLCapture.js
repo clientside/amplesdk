@@ -26,10 +26,11 @@ function fAMLCapture_setCapture(oNode, bCapture) {
 };
 
 cAMLElement.prototype.setCapture	= function(bCapture) {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["useCapture",	cBoolean, true]
 	]);
+//<-Guard
 
 	// Raise NOT_SUPPORTED_ERR exception in case setCapture(false) called
 	if (arguments.length && !bCapture)

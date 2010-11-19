@@ -19,6 +19,7 @@ var oGuard_endings	= 'st-nd-rd-th'.split('-'),
 	oGuard_types	= fUtilities_stringToHash('0:Node;1:Element;9:Document');
 //<-Debug
 
+//->Guard
 function fGuard(aArguments, aParameters, oObject) {
 	if (!oAMLConfiguration_values["ample-enable-guard"])
 		return;
@@ -72,6 +73,7 @@ function fGuard(aArguments, aParameters, oObject) {
 		}
 	}
 };
+//<-Guard
 
 function fGuard_instanceOf(vValue, cType) {
 	var sType	= typeof vValue;

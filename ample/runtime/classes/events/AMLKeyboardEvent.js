@@ -27,12 +27,13 @@ cAMLKeyboardEvent.prototype.shiftKey = null;
 // Public Methods
 cAMLKeyboardEvent.prototype.initKeyboardEvent	= function(sType, bCanBubble, bCancelable, oView, sKeyIdentifier, nKeyLocation, sModifiersList) {
 /*
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["type",		cString],
 		["canBubble",	cBoolean],
 		["cancelable",	cBoolean]
 	]);
+//<-Guard
 */
 	this.initUIEvent(sType, bCanBubble, bCancelable, oView, null);
 

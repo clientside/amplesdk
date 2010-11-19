@@ -105,25 +105,25 @@ function fAMLQuery_ajax(oSettings) {
 
 // ample extensions
 oAmple.ajax	= function(oSettings) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["settings",	cObject]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	return fAMLQuery_ajax(oSettings);
 };
 
 oAmple.get	= function(sUrl, vData, fCallback, sType) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["url",		cString],
 		["data",	cObject,	true,	true],
 		["success",	cFunction,	true],
 		["dataType",cString,	true]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	var oSettings	= {};
 	oSettings.url	= sUrl;
 	oSettings.type	= "GET";
@@ -135,15 +135,15 @@ oAmple.get	= function(sUrl, vData, fCallback, sType) {
 };
 
 oAmple.post	= function(sUrl, vData, fCallback, sType) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
    		["url",		cString],
 		["data",	cObject,	true,	true],
 		["success",	cFunction,	true],
 		["dataType",cString,	true]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	var oSettings	= {};
 	oSettings.url	= sUrl;
 	oSettings.type	= "POST";
@@ -156,14 +156,14 @@ oAmple.post	= function(sUrl, vData, fCallback, sType) {
 
 // AMLQuery extensions
 cAMLQuery.prototype.load	= function(sUrl, vData, fCallback) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["url",		cString],
 		["data",	cObject,	true,	true],
 		["success",	cFunction,	true]
 	]);
+//<-Guard
 
-	// Invoke Implementation
 	fAMLQuery_each(this, function() {
 		fAMLNodeLoader_load(this, sUrl, vData, fCallback);
 	});
@@ -172,7 +172,6 @@ cAMLQuery.prototype.load	= function(sUrl, vData, fCallback) {
 };
 
 cAMLQuery.prototype.abort	= function() {
-	// Invoke Implementation
 	fAMLQuery_each(this, function() {
 		fAMLNodeLoader_abort(this);
 	});

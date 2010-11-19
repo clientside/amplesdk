@@ -36,25 +36,25 @@ function fAMLQuery_data(oQuery, sName, oValue) {
 };
 
 cAMLQuery.prototype.data	= function(sName, oValue) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["name",	cString, true],
 		["value",	cObject, true, true]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	return fAMLQuery_data(this, sName, oValue);
 };
 
 oAmple.data	= function(oElement, sName, oValue) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["element",	cAMLElement],
 		["name",	cString, true],
 		["value",	cObject, true, true]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	var oQuery	= new cAMLQuery;
 	oQuery[oQuery.length++]	= oElement;
 	return fAMLQuery_data(oQuery, sName, oValue);

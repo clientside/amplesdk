@@ -9,15 +9,15 @@
 
 //
 cAMLQuery.prototype.animate	= function(oProperties, vDuration, sEasing, fCallback) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["properties",	cObject],
 		["duration",	cObject, true],
 		["easing",		cObject, true],
 		["callback",	cFunction, true]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	var sPseudo	= arguments[4];
 	fAMLQuery_each(this, function() {
 		fAMLNodeAnimation_play(this, oProperties, vDuration, sEasing, fCallback, sPseudo);
@@ -36,12 +36,12 @@ cAMLQuery.prototype.stop	= function() {
 };
 
 cAMLQuery.prototype.delay	= function(vDuration) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["duration",	cObject]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	fAMLQuery_each(this, function() {
 		fAMLNodeAnimation_delay(this, vDuration);
 	});
@@ -52,13 +52,13 @@ cAMLQuery.prototype.delay	= function(vDuration) {
 
 // Pre-defined animations
 cAMLQuery.prototype.fadeIn	= function(vDuration, fCallback) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["duration",	cObject, true],
 		["callback",	cFunction, true]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	var oProperties	= {};
 	oProperties.opacity	= 1;
 	fAMLQuery_each(this, function() {
@@ -70,13 +70,13 @@ cAMLQuery.prototype.fadeIn	= function(vDuration, fCallback) {
 };
 
 cAMLQuery.prototype.fadeOut	= function(vDuration, fCallback) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["duration",	cObject, true],
 		["callback",	cFunction, true]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	var oProperties	= {};
 	oProperties.opacity	= 0;
 	fAMLQuery_each(this, function() {
@@ -91,14 +91,14 @@ cAMLQuery.prototype.fadeOut	= function(vDuration, fCallback) {
 };
 
 cAMLQuery.prototype.fadeTo	= function(vDuration, nOpacity, fCallback) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["duration",	cObject],
 		["opacity",		cNumber],
 		["callback",	cFunction, true]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	var oProperties	= {};
 	oProperties.opacity	= nOpacity;
 	fAMLQuery_each(this, function() {
@@ -109,13 +109,13 @@ cAMLQuery.prototype.fadeTo	= function(vDuration, nOpacity, fCallback) {
 };
 
 cAMLQuery.prototype.show	= function(vDuration, fCallback) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
    		["duration",	cObject, true],
    		["callback",	cFunction, true]
    	]);
+//<-Guard
 
-	// Invoke implementation
 	fAMLQuery_each(this, function() {
 		var oElementDOM	= this.$getContainer(),
 			oStyle	= oElementDOM.style;
@@ -150,13 +150,13 @@ cAMLQuery.prototype.show	= function(vDuration, fCallback) {
 };
 
 cAMLQuery.prototype.hide	= function(vDuration, fCallback) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
    		["duration",	cObject, true],
    		["callback",	cFunction, true]
    	]);
+//<-Guard
 
-	// Invoke implementation
 	fAMLQuery_each(this, function() {
 		var oElementDOM	= this.$getContainer(),
 			oStyle	= oElementDOM.style;
@@ -190,13 +190,13 @@ cAMLQuery.prototype.hide	= function(vDuration, fCallback) {
 };
 
 cAMLQuery.prototype.slideDown	= function(vDuration, fCallback) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["duration",	cObject, true],
 		["callback",	cFunction, true]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	fAMLQuery_each(this, function() {
 		var oElementDOM	= this.$getContainer(),
 			oStyle	= oElementDOM.style;
@@ -226,13 +226,13 @@ cAMLQuery.prototype.slideDown	= function(vDuration, fCallback) {
 };
 
 cAMLQuery.prototype.slideUp		= function(vDuration, fCallback) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["duration",	cObject, true],
 		["callback",	cFunction, true]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	fAMLQuery_each(this, function() {
 		var oElementDOM	= this.$getContainer(),
 			oStyle	= oElementDOM.style;

@@ -14,10 +14,11 @@ cAMLNodeList.prototype.length	= 0;
 
 cAMLNodeList.prototype.item		= function(nIndex)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["index",	cNumber]
 	]);
+//<-Guard
 
 	if (nIndex < this.length && nIndex >= 0)
 		return this[nIndex];

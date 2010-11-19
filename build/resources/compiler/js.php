@@ -26,6 +26,11 @@
 		echo "Stripping 'Debug' code\n";
 		$sOutput	= fStripTags($sOutput, "Debug");
 	}
+	// Strip "Guard" version tags
+	if (in_array("--strip-Debug", $_SERVER["argv"])) {
+		echo "Stripping 'Guard' code\n";
+		$sOutput	= fStripTags($sOutput, "Guard");
+	}
 
 	if (in_array("--obfuscate", $_SERVER["argv"])) {
 

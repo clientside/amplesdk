@@ -15,13 +15,14 @@ cAMLCustomEvent.prototype.detail	= null;
 
 cAMLCustomEvent.prototype.initCustomEvent	= function(sType, bCanBubble, bCancelable, oDetail)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["type",		cString],
 		["canBubble",	cBoolean],
 		["cancelable",	cBoolean],
 		["detail",		cObject,	false, true]
 	]);
+//<-Guard
 
 	this.initEvent(sType, bCanBubble, bCancelable);
 

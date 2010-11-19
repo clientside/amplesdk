@@ -17,12 +17,13 @@ cAMLTextEvent.prototype.inputMethod	= null;
 cAMLTextEvent.prototype.initTextEvent	= function(sType, bCanBubble, bCancelable, oView, sData, nInputMethod)
 {
 /*
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["type",		cString],
 		["canBubble",	cBoolean],
 		["cancelable",	cBoolean]
 	]);
+//<-Guard
 */
 	this.initUIEvent(sType, bCanBubble, bCancelable, oView, null);
 

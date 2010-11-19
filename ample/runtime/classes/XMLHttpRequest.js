@@ -26,12 +26,13 @@ if (bTrident) {
 
 	// Public Methods
 	cXMLHttpRequest.prototype.open	= function(sMethod, sUrl, bAsync, sUser, sPassword) {
-		// Validate arguments
+//->Guard
 		fGuard(arguments, [
 			["method",	cString],
 			["url",		cString],
 			["async",	cBoolean, false]
 		]);
+//<-Guard
 
 		// Delete headers, required when object is reused
 		delete this._headers;

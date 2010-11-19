@@ -472,11 +472,12 @@ cAMLElement.prototype.querySelector			=
 cAMLDocument.prototype.querySelector		=
 cAMLNodeSelector.prototype.querySelector	= function(sCSS, fResolver)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["query",		cString],
 		["resolver",	cFunction, true]
 	], this);
+//<-Guard
 
 	var aNodeList	= fAMLSelector_query([this], sCSS, fResolver, true);
 	return aNodeList.length ? aNodeList[0] : null;
@@ -486,11 +487,12 @@ cAMLElement.prototype.querySelectorAll		=
 cAMLDocument.prototype.querySelectorAll		=
 cAMLNodeSelector.prototype.querySelectorAll	= function(sCSS, fResolver)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["query",		cString],
 		["resolver",	cFunction, true]
 	], this);
+//<-Guard
 
 	return fAMLSelector_query([this], sCSS, fResolver);
 };

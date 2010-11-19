@@ -9,10 +9,11 @@
 
 //
 cAMLQuery.prototype.width	= function(sValue) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["value",	cObject, true]
 	]);
+//<-Guard
 
 	if (arguments.length) {
 		fAMLQuery_each(this, function() {
@@ -38,10 +39,11 @@ cAMLQuery.prototype.width	= function(sValue) {
 };
 
 cAMLQuery.prototype.height	= function(sValue) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["value",	cObject, true]
 	]);
+//<-Guard
 
 	if (arguments.length) {
 		fAMLQuery_each(this, function() {

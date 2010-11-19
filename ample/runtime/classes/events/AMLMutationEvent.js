@@ -24,12 +24,13 @@ cAMLMutationEvent.prototype.attrChange	= null;
 cAMLMutationEvent.prototype.initMutationEvent	= function(sType, bCanBubble, bCancelable, oRelatedNode, sOldValue, sNewValue, sAttrName, nAttrChange)
 {
 /*
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["type",		cString],
 		["canBubble",	cBoolean],
 		["cancelable",	cBoolean]
 	]);
+//<-Guard
 */
 	this.initEvent(sType, bCanBubble, bCancelable);
 

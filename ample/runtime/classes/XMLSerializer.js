@@ -10,10 +10,11 @@
 if (!cXMLSerializer) {
 	cXMLSerializer = function(){};
 	cXMLSerializer.prototype.serializeToString = function(oNode) {
-		// Validate arguments
+//->Guard
 		fGuard(arguments, [
 			["node",	cXMLNode]
 		]);
+//<-Guard
 
 		return oNode.xml;
 	};

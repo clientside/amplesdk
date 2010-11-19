@@ -20,10 +20,11 @@ cAMLText.prototype.wholeText	= null;
 // nsIDOMText
 cAMLText.prototype.splitText	= function(nOffset)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["offset",	cNumber]
 	]);
+//<-Guard
 
 	if (nOffset <= this.length && nOffset >= 0)
 	{
@@ -94,10 +95,11 @@ cAMLText.prototype.replaceData	= function(nOffset, nLength, sData)
 
 // Level 3
 cAMLText.prototype.replaceWholeText	= function(sContent) {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["content",	cString]
 	]);
+//<-Guard
 
 	var sValueOld	= this.data;
 	this.data		= sContent;

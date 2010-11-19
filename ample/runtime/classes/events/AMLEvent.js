@@ -38,12 +38,13 @@ cAMLEvent.prototype._stoppedImmediately	= false;
 cAMLEvent.prototype.initEvent		= function(sType, bCanBubble, bCancelable)
 {
 /*
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["type",		cString],
 		["canBubble",	cBoolean],
 		["cancelable",	cBoolean]
 	]);
+//<-Guard
 */
     this.type       = sType;
     this.bubbles    = bCanBubble;

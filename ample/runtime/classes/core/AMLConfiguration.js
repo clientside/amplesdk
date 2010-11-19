@@ -21,12 +21,12 @@ function fAMLConfiguration_setParameter(oConfiguration, sName, vValue) {
 };
 
 cAMLConfiguration.prototype.setParameter	= function(sName, vValue) {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["name",	cString],
 		["value",	cObject,	false, true]
 	]);
-
+//<-Guard
 	fAMLConfiguration_setParameter(this, sName, vValue);
 };
 
@@ -35,20 +35,20 @@ function fAMLConfiguration_getParameter(oConfiguration, sName) {
 };
 
 cAMLConfiguration.prototype.getParameter	= function(sName) {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["name",	cString]
 	]);
-
+//<-Guard
 	return fAMLConfiguration_getParameter(this, sName);
 };
 
 cAMLConfiguration.prototype.canSetParameter	= function(sName, vValue) {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["name",	cString],
 		["value",	cObject,	false, true]
 	]);
-
+//<-Guard
 	return this.parameterNames.contains(sName);
 };

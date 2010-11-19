@@ -143,12 +143,12 @@ if (!cArray.prototype.pop)
 //
 if (!cArray.prototype.indexOf)
 	fAMLExporter_export(function(oElement, nIndex) {
-		// Validate arguments
+//->Guard
 		fGuard(arguments, [
 			["element",	cObject, false, true],
 			["index",	cNumber, true, false]
 		]);
-
+//<-Guard
 		// adjust nIndex
 		var nLength = this.length;
 		if (nIndex == null) {
@@ -169,12 +169,12 @@ if (!cArray.prototype.indexOf)
 
 if (!cArray.prototype.lastIndexOf)
 	fAMLExporter_export(function(oElement, nIndex) {
-		// Validate arguments
+//->Guard
 		fGuard(arguments, [
 			["element",	cObject, false, true],
 			["index",	cNumber, true, false]
 		]);
-
+//<-Guard
 		// adjust nIndex
 		var nLength = this.length;
 		if (nIndex == null) {
@@ -199,11 +199,12 @@ if (!cArray.prototype.lastIndexOf)
 //
 if (!cArray.prototype.filter)
 	fAMLExporter_export(function(fCallback, oReceiver) {
-		// Validate arguments
+//->Guard
 		fGuard(arguments, [
 			["callback",	cFunction],
 			["receiver",	cObject, true, true]
 		]);
+//<-Guard
 
 		for (var nIndex = 0, nLength = this.length, aResult = [], vValue; nIndex < nLength; nIndex++)
 			if (!(typeof(vValue = this[nIndex]) == "undefined") || nIndex in this)
@@ -214,11 +215,12 @@ if (!cArray.prototype.filter)
 
 if (!cArray.prototype.forEach)
 	fAMLExporter_export(function(fCallback, oReceiver) {
-		// Validate arguments
+//->Guard
 		fGuard(arguments, [
 			["callback",	cFunction],
 			["receiver",	cObject, true, true]
 		]);
+//<-Guard
 
 		for (var nIndex = 0, nLength = this.length, vValue; nIndex < nLength; nIndex++)
 			if (!(typeof(vValue = this[nIndex]) == "undefined") || nIndex in this)
@@ -227,11 +229,12 @@ if (!cArray.prototype.forEach)
 
 if (!cArray.prototype.every)
 	fAMLExporter_export(function(fCallback, oReceiver) {
-		// Validate arguments
+//->Guard
 		fGuard(arguments, [
 			["callback",	cFunction],
 			["receiver",	cObject, true, true]
 		]);
+//<-Guard
 
 		for (var nIndex = 0, nLength = this.length, vValue; nIndex < nLength; nIndex++)
 			if (!(typeof(vValue = this[nIndex]) == "undefined") || nIndex in this)
@@ -242,11 +245,12 @@ if (!cArray.prototype.every)
 
 if (!cArray.prototype.map)
 	fAMLExporter_export(function(fCallback, oReceiver) {
-		// Validate arguments
+//->Guard
 		fGuard(arguments, [
 			["callback",	cFunction],
 			["receiver",	cObject, true, true]
 		]);
+//<-Guard
 
 		for (var nIndex = 0, nLength = this.length, aResult = new cArray(nLength), vValue; nIndex < nLength; nIndex++)
 			if (!(typeof(vValue = this[nIndex]) == "undefined") || nIndex in this)
@@ -256,11 +260,12 @@ if (!cArray.prototype.map)
 
 if (!cArray.prototype.some)
 	fAMLExporter_export(function(fCallback, oReceiver) {
-		// Validate arguments
+//->Guard
 		fGuard(arguments, [
 			["callback",	cFunction],
 			["receiver",	cObject, true, true]
 		]);
+//<-Guard
 
 		for (var nIndex = 0, nLength = this.length, vValue; nIndex < nLength; nIndex++)
 			if (!(typeof(vValue = this[nIndex]) == "undefined") || nIndex in this)
@@ -276,10 +281,11 @@ if (!cArray.prototype.some)
 // Expression closures, Generator expressions
 if (!cArray.prototype.reduce)
 	fAMLExporter_export(function(fCallback/*, initial*/) {
-		// Validate arguments
+//->Guard
 		fGuard(arguments, [
 			["callback",	cFunction]
 		]);
+//<-Guard
 
 		var nLength = this.length >>> 0,
 			nIndex	= 0,
@@ -313,10 +319,11 @@ if (!cArray.prototype.reduce)
 
 if (!cArray.prototype.reduceRight)
 	fAMLExporter_export(function(fCallback/*, initial*/) {
-		// Validate arguments
+//->Guard
 		fGuard(arguments, [
 			["callback",	cFunction]
 		]);
+//<-Guard
 
 		var nLength = this.length >>> 0,
 			nIndex	= nLength - 1,

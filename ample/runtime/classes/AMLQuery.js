@@ -16,12 +16,12 @@ cAMLQuery.prototype.resolver	= null;
 
 // DOM Element Methods
 cAMLQuery.prototype.get	= function(nIndex) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["index",	cNumber, true]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	if (arguments.length)
 		return this[nIndex];
 	else
@@ -33,9 +33,6 @@ cAMLQuery.prototype.index	= function() {
 };
 
 cAMLQuery.prototype.size	= function() {
-	// Validate API call
-
-	// Invoke implementation
 	return this.length;
 };
 
@@ -49,20 +46,17 @@ function fAMLQuery_toArray(oQuery) {
 };
 
 cAMLQuery.prototype.toArray	= function() {
-	// Validate API call
-
-	// Invoke implementation
 	return fAMLQuery_toArray(this);
 };
 
 // Filtering
 cAMLQuery.prototype.eq	= function(nIndex) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["index",	cNumber]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	var oQuery	= new cAMLQuery;
 	if (nIndex < 0)
 		nIndex	= this.length + nIndex;
@@ -106,13 +100,13 @@ cAMLQuery.prototype.not	= function() {
 };
 
 cAMLQuery.prototype.slice	= function(nFirst, nLast) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["first",	cNumber],
 		["last",	cNumber, true]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	var oQuery	= new cAMLQuery;
 	// TODO: negative values, optional last
 	if (nFirst >-1 && nLast < this.length)
@@ -123,13 +117,13 @@ cAMLQuery.prototype.slice	= function(nFirst, nLast) {
 
 // Enables printing AMLQuery objects in JavaScript consoles (See https://bugs.webkit.org/show_bug.cgi?id=30974 for details)
 cAMLQuery.prototype.splice	= function(nFirst, nLength/*vValue1, vValue2,..vValueN*/) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["first",	cNumber],
 		["length",	cNumber, true]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	var oQuery	= new cAMLQuery;
 	// TODO: negative values, optional length
 	if (nFirst >-1 && nFirst + nLength < this.length)
@@ -145,13 +139,13 @@ function fAMLQuery_each(oQuery, fCallback, aArguments) {
 };
 
 cAMLQuery.prototype.each	= function(fCallback, aArguments) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["callback",	cFunction],
 		["arguments",	cObject, true]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	fAMLQuery_each(this, fCallback, aArguments);
 
 	return this;

@@ -219,11 +219,12 @@ if (!oJSON) {
 // If the JSON object does not yet have a parse method, give it one.
 
 	oJSON.parse = function(sText, fReviver) {
-
-		// Validate arguments
+//->Guard
 		fGuard(arguments, [
-			["string",	cString]
+			["string",	cString],
+			["reviver", cFunction, true]
 		]);
+//<-Guard
 
 // The parse method takes a text and an optional reviver function, and returns
 // a JavaScript value if the text is a valid JSON text.

@@ -41,7 +41,6 @@ ample.extend({
 			["settings",Object,	true]
 		]);
 
-		// Invoke implementation
 		if (arguments.length > 1)
 			fAmple_setCookie(this, sName, vValue, oSettings || {});
 		else

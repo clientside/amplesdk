@@ -69,28 +69,31 @@ cSMILTimeElement.prototype.endElement	= function() {
 };
 
 cSMILTimeElement.prototype.beginElementAt	= function(nOffset) {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["offset",	cNumber]
 	]);
+//<-Guard
 
 	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
 
 cSMILTimeElement.prototype.endElementAt		= function(nOffset) {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["offset",	cNumber]
 	]);
+//<-Guard
 
 	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
 
 cSMILTimeElement.prototype.seekElement	= function(nSeekTo) {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["seekTo",	cNumber]
 	]);
+//<-Guard
 
 	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };

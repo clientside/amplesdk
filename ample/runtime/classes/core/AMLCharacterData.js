@@ -32,12 +32,11 @@ function fAMLCharacterData_appendData(oNode, sData)
 
 cAMLCharacterData.prototype.appendData	= function(sData)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["data",	cString]
 	]);
-
-	// Invoke actual implementation
+//<-Guard
 	fAMLCharacterData_appendData(this, sData);
 };
 
@@ -58,12 +57,12 @@ function fAMLCharacterData_deleteData(oNode, nOffset, nLength)
 
 cAMLCharacterData.prototype.deleteData	= function(nOffset, nLength)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["offset",	cNumber],
 		["length",	cNumber]
 	]);
-
+//<-Guard
 	if (nOffset <= this.length && nOffset >= 0 && nLength >= 0)
 		fAMLCharacterData_deleteData(this, nOffset, nLength);
 	else
@@ -87,12 +86,12 @@ function fAMLCharacterData_insertData(oNode, nOffset, sData)
 
 cAMLCharacterData.prototype.insertData	= function(nOffset, sData)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["offset",	cNumber],
 		["data",	cString]
 	]);
-
+//<-Guard
 	if (nOffset <= this.length && nOffset >= 0)
 		fAMLCharacterData_insertData(this, nOffset, sData);
 	else
@@ -116,13 +115,13 @@ function fAMLCharacterData_replaceData(oNode, nOffset, nLength, sData)
 
 cAMLCharacterData.prototype.replaceData	= function(nOffset, nLength, sData)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["offset",	cNumber],
 		["length",	cNumber],
 		["data",	cString]
 	]);
-
+//<-Guard
 	if (nOffset <= this.length && nOffset >= 0 && nLength >= 0)
 		fAMLCharacterData_replaceData(this, nOffset, nLength, sData);
 	else
@@ -136,12 +135,12 @@ function fAMLCharacterData_substringData(oNode, nOffset, nLength)
 
 cAMLCharacterData.prototype.substringData	= function(nOffset, nLength)
 {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["offset",	cNumber],
 		["length",	cNumber]
 	]);
-
+//<-Guard
 	if (nOffset <= this.length && nOffset >= 0 && nLength >= 0)
 		return fAMLCharacterData_substringData(this, nOffset, nLength);
 	else

@@ -14,7 +14,6 @@ oAmple_root.$getContainer	= function(sName) {return sName == "gateway" ? oBrowse
 
 //
 function fQuery(vArgument1, vArgument2, vArgument3) {
-	// Validate API call
 	var oQuery	= new cAMLQuery;
 	if (arguments.length > 0) {
 		if (typeof vArgument1 == "string" || vArgument1 instanceof cString) {
@@ -110,7 +109,6 @@ function fQuery(vArgument1, vArgument2, vArgument3) {
 			);
 	}
 
-	// Invoke implementation
 	return oQuery;
 };
 
@@ -155,13 +153,13 @@ function fAmple_extend(oSource, oTarget) {
 
 // Extension Mechanism
 oAmple.extend	= function(oSource, oTarget) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["source",	cObject],
 		["target",	cObject, true]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	// Sign
 	fAMLExporter_signMembers(oSource, "plugin");
 	// Extend
@@ -170,46 +168,48 @@ oAmple.extend	= function(oSource, oTarget) {
 
 // Ready event
 oAmple.ready	= function(fHandler) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["handler",	cFunction]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	oAmple_document.addEventListener("load", fHandler, false);
 };
 
 oAmple.guard	= function(aArguments, aParameters) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["arguments",	cArguments],
 		["parameters",	cArray]
 	]);
+//<-Guard
 
-	// Invoke implementation
+//->Guard
 	fGuard(aArguments, aParameters);
+//<-Guard
 };
 
 oAmple.publish	= function(oSource, sName, oTarget) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["source",	cObject],
 		["name",	cString],
 		["target",	cObject,	true]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	fAMLExporter_export(oSource, sName, oTarget, "plugin");
 };
 
 oAmple.config	= function(sName, oValue) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["name",	cString],
 		["value",	cObject, true,	true]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	var sParameter	= "ample" + '-' + sName,
 		oOldValue	= fAMLConfiguration_getParameter(oAmple_document.domConfig, sParameter);
 	if (arguments.length > 1) {
@@ -233,12 +233,12 @@ oAmple.config	= function(sName, oValue) {
 
 var sAmple_include	= oUALocation.href;
 oAmple.include	= function(sSrc) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["src",	cString]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	var sValue	= sAmple_include;
 	// Save current location
 	sAmple_include	= fUtilities_resolveUri(sSrc, sValue);
@@ -318,22 +318,22 @@ oAmple.$instance	= function(oNode) {
 
 //
 oAmple.$element		= function(sUri) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["uri",	cString]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	return oAMLImplementation_elements[sUri] || null;
 };
 
 oAmple.$attribute	= function(sUri) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["uri",	cString]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	return oAMLImplementation_attributes[sUri] || null;
 };
 /*
@@ -344,12 +344,12 @@ oAmple.$class	= function(oNode) {
 */
 //
 oAmple.param	= function(vValue) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["value",	cObject]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
 };
 

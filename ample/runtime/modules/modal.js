@@ -8,11 +8,12 @@
  */
 
 oAmple.modal		= function(oNode) {
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["element",	cAMLElement, true, true]
 	]);
-	//
+//<-Guard
+
 	if (oNode == null) {
 		oBrowser_modalNode	= oAmple.activeElement	= null;
 	}

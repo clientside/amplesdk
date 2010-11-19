@@ -25,12 +25,13 @@ cAMLMouseEvent.prototype.shiftKey		= null;
 cAMLMouseEvent.prototype.initMouseEvent = function(sType, bCanBubble, bCancelable, oView, nDetail, nScreenX, nScreenY, nClientX, nClientY, bCtrlKey, bAltKey, bShiftKey, bMetaKey, nButton, oRelatedTarget)
 {
 /*
-	// Validate arguments
+//->Guard
 	fGuard(arguments, [
 		["type",		cString],
 		["canBubble",	cBoolean],
 		["cancelable",	cBoolean]
 	]);
+//<-Guard
 */
 	this.initUIEvent(sType, bCanBubble, bCancelable, oView, nDetail);
 

@@ -47,17 +47,17 @@ var aAMLQuery_protectedEvents	= [
 ];
 
 cAMLQuery.prototype.trigger	= function(sType, oDetail) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["type",	cString],
 		["detail",	cObject, true, true]
 	]);
+//<-Guard
 
 	// Check if event triggering allowed
 	if (aAMLQuery_protectedEvents.indexOf(sType) !=-1)
 		throw new cAMLException(cAMLException.AML_TRIGGER_CORE_EVENT_ERR, null, [sType]);
 
-	// Invoke implementation
 	if (arguments.length < 2)
 		oDetail	= null;
 	fAMLQuery_each(this, function() {
@@ -66,14 +66,14 @@ cAMLQuery.prototype.trigger	= function(sType, oDetail) {
 };
 
 cAMLQuery.prototype.bind	= function(sType, fHandler, bCapture) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["type",	cString],
 		["handler",	cObject],
 		["capture",	cBoolean,	true]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	fAMLQuery_each(this, function() {
 		fAMLEventTarget_addEventListener(this, sType, fHandler, bCapture || false);
 	});
@@ -81,14 +81,14 @@ cAMLQuery.prototype.bind	= function(sType, fHandler, bCapture) {
 };
 
 cAMLQuery.prototype.unbind	= function(sType, fHandler, bCaprure) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["type",	cString],
 		["handler",	cObject],
 		["capture",	cBoolean,	true]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	fAMLQuery_each(this, function() {
 		fAMLEventTarget_removeEventListener(this, sType, fHandler, bCapture || false);
 	});
@@ -98,26 +98,26 @@ cAMLQuery.prototype.unbind	= function(sType, fHandler, bCaprure) {
 
 // Global Object
 oAmple.bind	= function(sType, fHandler, bCapture) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["type",	cString],
 		["handler",	cObject],
 		["capture",	cBoolean,	true]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	fAMLEventTarget_addEventListener(oAmple_document, sType, fHandler, bCapture || false);
 };
 
 oAmple.unbind	= function(sType, fHandler, bCapture) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["type",	cString],
 		["handler",	cObject],
 		["capture",	cBoolean,	true]
 	]);
+//<-Guard
 
-	// Invoke implementation
 	fAMLEventTarget_removeEventListener(oAmple_document, sType, fHandler, bCapture || false);
 };
 
@@ -128,17 +128,17 @@ function fAMLQuery_trigger(oNode, sType, oDetail) {
 };
 
 oAmple.trigger	= function(sType, oDetail) {
-	// Validate API call
+//->Guard
 	fGuard(arguments, [
 		["type",	cString],
 		["detail",	cObject, true, true]
 	]);
+//<-Guard
 
 	// Check if event triggering allowed
 	if (aAMLQuery_protectedEvents.indexOf(sType) !=-1)
 		throw new cAMLException(cAMLException.AML_TRIGGER_CORE_EVENT_ERR, null, [sType]);
 
-	// Invoke implementation
 	if (arguments.length < 2)
 		oDetail	= null;
 
