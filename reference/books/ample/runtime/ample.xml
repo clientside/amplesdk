@@ -31,10 +31,17 @@
 					</locale>
 				</description>
 			</property>
+			<property name="classes" type="Object" readonly="true">
+				<description>
+					<locale>
+						Retrieves a reference to a hash object of Ample SDK base classes, and markup elements and attributes.
+					</locale>
+				</description>
+			</property>
 			<property name="prefixes" type="Object" readonly="true">
 				<description>
 					<locale>
-						Retrieves a reference to a hash object of namespace prefixes collected from the root element of the hosting document.
+						Retrieves a reference to a hash object of namespace prefixes collected from the root element of the hosting HTML page.
 					</locale>
 				</description>
 			</property>
