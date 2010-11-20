@@ -469,7 +469,7 @@
 			</td>
 			<td nowrap="yes">
 				<xsl:choose>
-					<xsl:when test="not(starts-with(@type, 'XML') or @type='Object' or @type='Variant' or @type='String' or @type='Number' or @type='Boolean' or @type='Function' or @type='Void' or @type='HTMLElement' or @type='TimeStamp' or @type='CSSStyleDeclaration')">
+					<xsl:when test="not(@type='Object' or @type='Variant' or @type='String' or @type='Number' or @type='Boolean' or @type='Function' or @type='Void' or @type='XMLNode' or @type='XMLDocument' or @type='XMLDocumentFragment' or @type='XMLElement' or @type='HTMLElement' or @type='TimeStamp' or @type='CSSStyleDeclaration')">
 						<a href="../runtime/{@type}.xml" class="object"><xsl:value-of select="@type" /></a>
 					</xsl:when>
 					<xsl:otherwise>
@@ -591,7 +591,7 @@
 			</td>
 			<td nowrap="yes">
 				<xsl:choose>
-					<xsl:when test="not(starts-with(@type, 'XML') or @type='Object' or @type='Variant' or @type='String' or @type='Number' or @type='Boolean' or @type='Function' or @type='Void' or @type='HTMLElement' or @type='TimeStamp' or @type='CSSStyleDeclaration')">
+					<xsl:when test="not(@type='Object' or @type='Variant' or @type='String' or @type='Number' or @type='Boolean' or @type='Function' or @type='Void' or @type='XMLNode' or @type='XMLDocument' or @type='XMLDocumentFragment' or @type='XMLElement' or @type='HTMLElement' or @type='TimeStamp' or @type='CSSStyleDeclaration')">
 						<a href="../runtime/{@type}.xml" class="object"><xsl:value-of select="@type" /></a>
 					</xsl:when>
 					<xsl:otherwise>
@@ -642,7 +642,7 @@
 										<td nowrap="yes"><i><xsl:value-of select="@name"/></i></td>
 										<td nowrap="yes">
 											<xsl:choose>
-												<xsl:when test="not(starts-with(@type, 'XML') or @type='Object' or @type='Variant' or @type='String' or @type='Number' or @type='Boolean' or @type='Function' or @type='Void' or @type='HTMLElement' or @type='TimeStamp' or @type='CSSStyleDeclaration')">
+												<xsl:when test="not(@type='Object' or @type='Variant' or @type='String' or @type='Number' or @type='Boolean' or @type='Function' or @type='Void' or @type='XMLNode' or @type='XMLDocument' or @type='XMLDocumentFragment' or @type='XMLElement' or @type='HTMLElement' or @type='TimeStamp' or @type='CSSStyleDeclaration')">
 													<a href="../runtime/{@type}.xml" class="object"><xsl:value-of select="@type" /></a>
 												</xsl:when>
 												<xsl:otherwise>
