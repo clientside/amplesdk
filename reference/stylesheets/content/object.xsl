@@ -341,7 +341,7 @@
 		<thead>
 			<tr>
 				<td><b><xsl:value-of select="$strings/attr_name" /></b></td>
-				<td nowrap="yes"><b><xsl:value-of select="$strings/attr_ronly" /></b></td>
+				<!--td nowrap="yes"><b><xsl:value-of select="$strings/attr_ronly" /></b></td-->
 				<td width="100%"><b><xsl:value-of select="$strings/attr_descr" /></b></td>
 			</tr>
 		</thead>
@@ -377,7 +377,7 @@
 					<xsl:text> *</xsl:text>
 				</xsl:if>
 			</td>
-			<td nowrap="yes">
+			<!--td nowrap="yes">
 				<xsl:choose>
 					<xsl:when test="@readonly">
 						<xsl:value-of select="@readonly" />
@@ -386,7 +386,7 @@
 						false
 					</xsl:otherwise>
 				</xsl:choose>
-			</td>
+			</td-->
 			<td><xsl:apply-templates select="description"/></td>
 		</tr>
 		<xsl:if test="values/*">
@@ -469,7 +469,7 @@
 			</td>
 			<td nowrap="yes">
 				<xsl:choose>
-					<xsl:when test="starts-with(@type, 'AML')">
+					<xsl:when test="not(starts-with(@type, 'XML') or @type='Object' or @type='Variant' or @type='String' or @type='Number' or @type='Boolean' or @type='Function' or @type='Void' or @type='HTMLElement' or @type='TimeStamp' or @type='CSSStyleDeclaration')">
 						<a href="../runtime/{@type}.xml" class="object"><xsl:value-of select="@type" /></a>
 					</xsl:when>
 					<xsl:otherwise>
@@ -591,7 +591,7 @@
 			</td>
 			<td nowrap="yes">
 				<xsl:choose>
-					<xsl:when test="starts-with(@type, 'AML')">
+					<xsl:when test="not(starts-with(@type, 'XML') or @type='Object' or @type='Variant' or @type='String' or @type='Number' or @type='Boolean' or @type='Function' or @type='Void' or @type='HTMLElement' or @type='TimeStamp' or @type='CSSStyleDeclaration')">
 						<a href="../runtime/{@type}.xml" class="object"><xsl:value-of select="@type" /></a>
 					</xsl:when>
 					<xsl:otherwise>
@@ -642,7 +642,7 @@
 										<td nowrap="yes"><i><xsl:value-of select="@name"/></i></td>
 										<td nowrap="yes">
 											<xsl:choose>
-												<xsl:when test="starts-with(@type, 'AML')">
+												<xsl:when test="not(starts-with(@type, 'XML') or @type='Object' or @type='Variant' or @type='String' or @type='Number' or @type='Boolean' or @type='Function' or @type='Void' or @type='HTMLElement' or @type='TimeStamp' or @type='CSSStyleDeclaration')">
 													<a href="../runtime/{@type}.xml" class="object"><xsl:value-of select="@type" /></a>
 												</xsl:when>
 												<xsl:otherwise>
@@ -723,7 +723,7 @@
 				</xsl:choose>
 			</td>
 			<td nowrap="yes">
-				<a href="../runtime/AML{@type}.xml"><xsl:value-of select="@type" /></a>
+				<a href="../runtime/{@type}.xml"><xsl:value-of select="@type" /></a>
 			</td>
 			<td><xsl:apply-templates select="description"/></td>
 		</tr>

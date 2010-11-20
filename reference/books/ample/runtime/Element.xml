@@ -759,7 +759,7 @@
 				</description>
 			</property>
 			<!-- Ample SDK -->
-			<property name="contentFragment" type="FragmentNode" readonly="false">
+			<property name="contentFragment" type="DocumentFragment" readonly="false">
 				<description>
 					<locale>
 						<b>UI element definition API.</b>

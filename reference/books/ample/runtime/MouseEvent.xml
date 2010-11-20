@@ -246,7 +246,7 @@
 					</locale>
 				</description>
 			</property>
-			<property name="relatedTarget" type="EventTarget" readonly="true">
+			<property name="relatedTarget" type="Node" readonly="true">
 				<description>
 					<locale>
 						Used to identify a secondary EventTarget related to a UI event. Currently this attribute is used with the mouseover event to indicate the EventTarget which the pointing device exited and with the mouseout event to indicate the EventTarget which the pointing device entered.
