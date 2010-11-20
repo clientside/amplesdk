@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<class name="CharacterData" extends="runtime:Node">
+	<abstract>
+		<locale>
+			Base object for text nodes.
+		</locale>
+		<locale xml:lang="ru">
+			Текстовые данные.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples/>
+	<members>
+		<methods>
+			<method name="appendData" type="Void">
+				<arguments>
+					<argument name="value" type="String" required="true">
+						<description>
+							<locale>
+								The DOMString to append.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Appends data to the end.
+					</locale>
+					<locale xml:lang="ru">
+						Добавляет данные в конец.
+					</locale>
+				</description>
+			</method>
+			<method name="deleteData" type="Void">
+				<arguments>
+					<argument name="offset" type="Number" required="true">
+						<description>
+							<locale>
+								The offset from which to start removing.
+							</locale>
+						</description>
+					</argument>
+					<argument name="count" type="Number" required="true">
+						<description>
+							<locale>
+								The number of 16-bit units to delete.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Removes portion of data from the specified position.
+					</locale>
+					<locale xml:lang="ru">
+						Удаляет часть данных, начиная с указанной позиции.
+					</locale>
+				</description>
+			</method>
+			<method name="insertData" type="Void">
+				<arguments>
+					<argument name="offset" type="Number" required="true">
+						<description>
+							<locale>
+								The character offset at which to insert.
+							</locale>
+						</description>
+					</argument>
+					<argument name="value" type="String" required="true">
+						<description>
+							<locale>
+								The DOMString to insert.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Inserts portion of data at the specified position.
+					</locale>
+					<locale xml:lang="ru">
+						Вставляет часть данных после указаной позиции.
+					</locale>
+				</description>
+			</method>
+			<method name="replaceData" type="Void">
+				<arguments>
+					<argument name="offset" type="Number" required="true">
+						<description>
+							<locale>
+								The offset from which to start replacing.
+							</locale>
+						</description>
+					</argument>
+					<argument name="count" type="Number" required="true">
+						<description>
+							<locale>
+								The number of 16-bit units to replace.
+							</locale>
+						</description>
+					</argument>
+					<argument name="value" type="String" required="true">
+						<description>
+							<locale>
+								The DOMString with which the range must be replaced.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Replaces portion of data.
+					</locale>
+					<locale xml:lang="ru">
+						Заменяет часть данных.
+					</locale>
+				</description>
+			</method>
+			<method name="substringData" type="String">
+				<arguments>
+					<argument name="offset" type="Number" required="true">
+						<description>
+							<locale>
+								Start offset of substring to extract.
+							</locale>
+						</description>
+					</argument>
+					<argument name="count" type="Number" required="true">
+						<description>
+							<locale>
+								The number of 16-bit units to extract.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Retrieves portion of data from the specified position.
+					</locale>
+					<locale xml:lang="ru">
+						Возвращает часть данных, начиная с указанной позиции.
+					</locale>
+				</description>
+			</method>
+		</methods>
+		<properties>
+			<property name="data" type="String" readonly="true">
+				<description>
+					<locale>
+						Data loaded.
+					</locale>
+					<locale xml:lang="ru">
+						Строковое представление данных.
+					</locale>
+				</description>
+			</property>
+			<property name="length" type="Number" readonly="true">
+				<description>
+					<locale>
+						Length of the data.
+					</locale>
+					<locale xml:lang="ru">
+						Длина строки данных.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<events>
+			<event name="DOMCharacterDataModified" type="MutationEvent" cancelable="false" bubbles="true">
+				<description>
+					<locale>
+						Occurs after <b>data</b> property have been modified, but the node itself has not been inserted or deleted.
+					</locale>
+          <locale xml:lang="ru">
+            Срабатывает, когда изменяется свойство <b>data</b>, но сам узел не был вставлен в документ или удален из него.
+          </locale>
+				</description>
+			</event>
+		</events>
+	</members>
+</class>

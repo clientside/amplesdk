@@ -27,7 +27,7 @@ ample.extend({
 	}
 });
 
-// Extend AMLQuery
+// Extend Query
 ample.extend({
 	"store":	function(sName, vValue) {
 		// Validate API call
@@ -39,4 +39,4 @@ ample.extend({
 		// Invoke implementation
 		return fAmple_store(this, sName, vValue);
 	}
-}, ample.classes.AMLQuery.prototype);
+}, ample.classes.Query.prototype);

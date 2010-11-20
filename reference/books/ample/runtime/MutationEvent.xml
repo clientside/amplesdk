@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<class name="MutationEvent" extends="runtime:Event">
+	<abstract>
+		<locale>
+			The MutationEvent interface provides specific contextual information associated with Mutation events.
+		</locale>
+		<locale xml:lang="ru">
+			Интерфейс MutationEvent предоставляет контекстную информацию, специфичную для событий изменения.
+		</locale>
+	</abstract>
+	<examples/>
+	<members>
+		<methods>
+			<method name="initMutationEvent" type="Void">
+				<arguments>
+					<argument name="type" type="String" required="true">
+						<description>
+							<locale>
+								Specifies the event type.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает на тип события (Event.type).
+							</locale>
+						</description>
+					</argument>
+					<argument name="canBubble" type="Boolean" required="true">
+						<description>
+							<locale>
+								Specifies whether or not the event can bubble.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает, может ли событие распространяться в фазе "bubbling".
+							</locale>
+						</description>
+					</argument>
+					<argument name="cancelable" type="Boolean" required="true">
+						<description>
+							<locale>
+								Specifies whether or not the event's default action can be prevented.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает, возможно ли отменить ответную реакцию браузера по умолчанию на событие.
+							</locale>
+						</description>
+					</argument>
+					<argument name="relatedNode" type="Node" required="true">
+						<description>
+							<locale>
+								Used to identify a secondary node related to a mutation event.
+							</locale>
+						</description>
+					</argument>
+					<argument name="prevValue" type="String" required="true">
+						<description>
+							<locale>
+								Indicates the previous value of the Attr node in DOMAttrModified events, and of the CharacterData node in DOMCharDataModified events.
+							</locale>
+						</description>
+					</argument>
+					<argument name="newValue" type="String" required="true">
+						<description>
+							<locale>
+								Indicates the new value of the Attr node in DOMAttrModified events, and of the CharacterData node in DOMCharDataModified events.
+							</locale>
+						</description>
+					</argument>
+					<argument name="attrName" type="String" required="true">
+						<description>
+							<locale>
+								Indicates the name of the changed Attr node in a DOMAttrModified event.
+							</locale>
+						</description>
+					</argument>
+					<argument name="attrChange" type="Number" required="true">
+						<description>
+							<locale>
+								Indicates the type of change which triggered the <link type="event">DOMAttrModified</link> event.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						The initMutationEvent method is used to initialize the value of a <link type="class">MutationEvent</link> object.
+					</locale>
+					<locale xml:lang="ru">
+						Метод initMutationEvent используется для инициализации значения объекта <link type="class">MutationEvent</link>.
+					</locale>
+				</description>
+			</method>
+		</methods>
+		<properties>
+			<property name="attrChange" type="Number" readonly="true">
+				<values>
+					<value name="MODIFICATION">
+						<description>
+							<locale>
+								The <link type="class">Attr</link> was modified in place.
+							</locale>
+							<locale xml:lang="ru">
+								Произошло изменение объекта <link type="class">Attr</link>.
+							</locale>
+						</description>
+					</value>
+					<value name="ADDITION">
+						<description>
+							<locale>
+								The <link type="class">Attr</link> was just added.
+							</locale>
+							<locale xml:lang="ru">
+								Произошло добавление объекта <link type="class">Attr</link>.
+							</locale>
+						</description>
+					</value>
+					<value name="REMOVAL">
+						<description>
+							<locale>
+								The <link type="class">Attr</link> was just removed.
+							</locale>
+							<locale xml:lang="ru">
+								Произошло удаление объекта <link type="class">Attr</link>.
+							</locale>
+						</description>
+					</value>
+				</values>
+				<description>
+					<locale>
+						Indicates the type of change which triggered the <link type="event">DOMAttrModified</link> event.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает на тип изменения, которое возникает по событию <link type="event">DOMAttrModified</link>.
+					</locale>
+				</description>
+			</property>
+			<property name="attrName" type="String" readonly="true">
+				<description>
+					<locale>
+						Indicates the name of the changed Attr node in a DOMAttrModified event.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает на имя узла <link type="class">Attr</link>, в котором возникло событие <link type="event">DOMAttrModified</link>.
+					</locale>
+				</description>
+			</property>
+			<property name="newValue" type="String" readonly="true">
+				<description>
+					<locale>
+						Indicates the new value of the Attr node in DOMAttrModified events, and of the CharacterData node in DOMCharDataModified events.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает на новое значение узла <link type="element">Attr</link>, в котором возникло событие <link type="event">DOMAttrModified</link> или узла <link type="element">CDATASection</link>, в котором возникло событие <link type="event">DOMCharDataModified</link>.
+					</locale>
+				</description>
+			</property>
+			<property name="prevValue" type="String" readonly="true">
+				<description>
+					<locale>
+						Indicates the previous value of the Attr node in DOMAttrModified events, and of the CharacterData node in DOMCharDataModified events.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает на предыдущее значение узла <link type="element">Attr</link>, в котором возникло событие <link type="event">DOMAttrModified</link> или узла <link type="element">CDATASection</link>, в котором возникло событие <link type="event">DOMCharDataModified</link>.
+					</locale>
+				</description>
+			</property>
+			<property name="relatedNode" type="Node" readonly="true">
+				<description>
+					<locale>
+						Used to identify a secondary node related to a mutation event. For example, if a mutation event is dispatched to a node indicating that its parent has changed, the relatedNode is the changed parent. If an event is instead dispatched to a subtree indicating a node was changed within it, the relatedNode is the changed node. In the case of the DOMAttrModified event it indicates the Attr node which was modified, added, or removed.
+					</locale>
+					<locale xml:lang="ru">
+						Используется для связанного с событием <link type="class">MutationEvent</link> вторичного узла <link type="element">Node</link>. Например, если событие <link type="class">MutationEvent</link> отсылается узлу для оповещения о изменении его родителя, значением этого свойства будет родительский узел. Если, наоборот, событие отсылается вверх по дереву для оповещения об изменении узла, значением этого свойства будет измененный узел. В случае события <link type="event">DOMAttrModified</link> это свойство указывает на <link type="element">Attr</link>, который был изменен, добавен или удален.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<attributes />
+		<constants>
+			<constant name="MODIFICATION" value="1">
+				<description>
+					<locale>
+						The <link type="class">Attr</link> was modified in place.
+					</locale>
+					<locale xml:lang="ru">
+						Произошло изменение объекта <link type="class">Attr</link>.
+					</locale>
+				</description>
+			</constant>
+			<constant name="ADDITION" value="2">
+				<description>
+					<locale>
+						The <link type="class">Attr</link> was just added.
+					</locale>
+					<locale xml:lang="ru">
+						Произошло добавление объекта <link type="class">Attr</link>.
+					</locale>
+				</description>
+			</constant>
+			<constant name="REMOVAL" value="3">
+				<description>
+					<locale>
+						The <link type="class">Attr</link> was just removed.
+					</locale>
+					<locale xml:lang="ru">
+						Произошло удаление объекта <link type="class">Attr</link>.
+					</locale>
+				</description>
+			</constant>
+		</constants>
+	</members>
+	<remarks>
+		<remark>
+			<locale>Events of that type:</locale>
+      <locale xml:lang="ru">События этого типа:</locale>
+      <ul>
+        <li><link type="event" href="runtime:Node">DOMNodeInserted</link></li>
+        <li><link type="event" href="runtime:Node">DOMNodeInsertedIntoDocument</link></li>
+        <li><link type="event" href="runtime:Node">DOMNodeRemoved</link></li>
+        <li><link type="event" href="runtime:Node">DOMNodeRemovedFromDocument</link></li>
+        <li><link type="event" href="runtime:Element">DOMAttrModified</link></li>
+        <li><link type="event" href="runtime:CharacterData">DOMCharacterDataModified</link></li>
+      </ul>
+		</remark>
+	</remarks>
+	<examples />
+</class>

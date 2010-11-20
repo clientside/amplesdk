@@ -7,7 +7,7 @@
  *
  */
 
-// Extend AMLQuery
+// Extend Query
 
 var sAmple_formsXHTMLNS	= "http://www.w3.org/1999/xhtml";
 
@@ -86,7 +86,7 @@ ample.extend({
 					ample.query(this).bind("change", fHandler);
 			});
 		else
-			throw new ample.classes.AMLException(AMLException.NOT_SUPPORTED_ERR);
+			throw new ample.classes.DOMException(DOMException.NOT_SUPPORTED_ERR);
 		//
 		return this;
 	},
@@ -157,4 +157,4 @@ ample.extend({
 	serializeArray:	function() {
 
 	}
-}, ample.classes.AMLQuery.prototype);
+}, ample.classes.Query.prototype);

@@ -34,13 +34,13 @@
 		</attributes>
 		<methods />
 		<properties>
-			<property name="contentDocument" readonly="true" type="AMLDocument">
+			<property name="contentDocument" readonly="true" type="Document">
 				<description>
 					<locale>
 						This read-only property contains the document object in the element.
 					</locale>
 					<locale xml:lang="ru">
-						Ссылка на объект <b>AMLDocument</b> элемента <link type="class">iframe</link>.
+						Ссылка на объект <b>Document</b> элемента <link type="class">iframe</link>.
 					</locale>
 				</description>
 			</property>

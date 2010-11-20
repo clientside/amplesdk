@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<class name="ResizeEvent" extends="runtime:UIEvent">
+	<abstract>
+		<locale>
+			The ResizeEvent interface provides specific contextual information associated with Resize Events.
+		</locale>
+		<locale xml:lang="ru">
+			Интерфейс ResizeEvent предоставляет контекстную информацию, специфичную для событий пользовательского интерфейса.
+		</locale>
+	</abstract>
+	<examples/>
+	<members>
+		<methods>
+			<method name="initResizeEvent" type="Void">
+				<arguments>
+					<argument name="type" type="String" required="true">
+						<description>
+							<locale>
+								Specifies the event type.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает на тип события (Event.type).
+							</locale>
+						</description>
+					</argument>
+					<argument name="canBubble" type="Boolean" required="true">
+						<description>
+							<locale>
+								Specifies whether or not the event can bubble.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает, может ли событие распространяться в фазе "bubbling".
+							</locale>
+						</description>
+					</argument>
+					<argument name="cancelable" type="Boolean" required="true">
+						<description>
+							<locale>
+								Specifies whether or not the event's default action can be prevented.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает, возможно ли отменить ответную реакцию браузера по умолчанию на событие.
+							</locale>
+						</description>
+					</argument>
+					<argument name="view" type="Object" required="true">
+						<description>
+							<locale>
+								Specifies view. This value may be null.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает на обьект View, в котором произошло событие.
+							</locale>
+						</description>
+					</argument>
+					<argument name="detail" type="Number" required="true">
+						<description>
+							<locale>
+								Specifies detail.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает дополнительное значение, ассоциированииое с данным событием.
+							</locale>
+						</description>
+					</argument>
+					<argument name="edge" type="Number" required="true">
+						<description>
+							<locale>
+								Indicates what edge of the object gets resized.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Initializes attributes of a <link type="class">ResizeEvent</link> object.
+					</locale>
+					<locale xml:lang="ru">
+						Метод initResizeEvent используется для инициализации значения объекта ResizeEvent.
+					</locale>
+				</description>
+			</method>
+		</methods>
+		<properties>
+			<property name="edge" type="Number" readonly="true">
+				<description>
+					<locale>
+						Indicates what edge of the object gets resized.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<constants />
+	</members>
+	<remarks>
+		<remark>
+			<locale>Events of that type:</locale>
+      <locale xml:lang="ru">События этого типа:</locale>
+      <ul>
+        <li><link type="event" href="runtime:Element">resize</link></li>
+        <li><link type="event" href="runtime:Element">resizestart</link></li>
+        <li><link type="event" href="runtime:Element">resizeend</link></li>
+      </ul>
+		</remark>
+	</remarks>
+	<examples />
+</class>

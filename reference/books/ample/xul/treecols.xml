@@ -17,7 +17,7 @@
 		<attributes />
 		<methods />
 		<properties>
-			<property name="items" type="AMLNodeList" readonly="true">
+			<property name="items" type="NodeList" readonly="true">
 				<description>
 					<locale>
 						Contains a collection of <link type="element">treecol</link> child elements.

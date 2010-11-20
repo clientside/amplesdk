@@ -10,7 +10,7 @@
 var cXMLEventsElement	= function(sLocalName) {
 	this.localName	= sLocalName;
 };
-cXMLEventsElement.prototype	= new cAMLElement;
+cXMLEventsElement.prototype	= new cElement;
 cXMLEventsElement.prototype.namespaceURI	= sNS_XEVENTS;
 cXMLEventsElement.prototype.localName		= "#element";
 

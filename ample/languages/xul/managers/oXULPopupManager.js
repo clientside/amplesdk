@@ -18,7 +18,7 @@ var oXULPopupManager	= (function () {
 
 	// Attaching manager to document
 	ample.bind("mouseenter",	function(oEvent) {
-		for (var oElement = oEvent.target, oTooltip; oElement.nodeType != ample.classes.AMLNode.DOCUMENT_NODE; oElement = oElement.parentNode) {
+		for (var oElement = oEvent.target, oTooltip; oElement.nodeType != ample.classes.Node.DOCUMENT_NODE; oElement = oElement.parentNode) {
 			if (oElement.$isAccessible()) {
 			    if (oElement.attributes["tooltiptext"]) {
 			    	oTooltip	= oTooltipPane;
@@ -51,7 +51,7 @@ var oXULPopupManager	= (function () {
 	}, true);
 
 	ample.bind("click",	function(oEvent) {
-		for (var oElement = oEvent.target, oPopup; oElement.nodeType != ample.classes.AMLNode.DOCUMENT_NODE; oElement = oElement.parentNode) {
+		for (var oElement = oEvent.target, oPopup; oElement.nodeType != ample.classes.Node.DOCUMENT_NODE; oElement = oElement.parentNode) {
 			if (oElement.$isAccessible()) {
 				if (oEvent.button == 2) {
 			        if (oElement.attributes["context"]) {
@@ -80,7 +80,7 @@ var oXULPopupManager	= (function () {
 
 	ample.bind("mousedown",	function(oEvent) {
 		// Hide popup node
-		if (this.popupNode && !(oEvent.target == this.popupNode ||(oEvent.target.compareDocumentPosition(this.popupNode) & ample.classes.AMLNode.DOCUMENT_POSITION_CONTAINS))) {
+		if (this.popupNode && !(oEvent.target == this.popupNode ||(oEvent.target.compareDocumentPosition(this.popupNode) & ample.classes.Node.DOCUMENT_POSITION_CONTAINS))) {
 			this.popupNode.hidePopup();
 			this.popupNode	= null;
 

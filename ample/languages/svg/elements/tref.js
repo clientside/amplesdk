@@ -38,7 +38,7 @@ if (cSVGElement.useVML) {
 			if (sHref) {
 				setTimeout(function() {
 					var oRef	= that.ownerDocument.getElementById(sHref.substr(1));
-					if (oRef instanceof cSVGElement_text && oRef.firstChild instanceof ample.classes.AMLCharacterData)
+					if (oRef instanceof cSVGElement_text && oRef.firstChild instanceof ample.classes.CharacterData)
 						that.$getContainer().getElementsByTagName("textpath")[0].string	= oRef.firstChild.data.replace(/^\s+/, '').replace(/\s+$/, '').replace(/&gt;/g, '>').replace(/&lt;/g, '<').replace(/&amp;/g, '&');
 				}, 0);
 			}

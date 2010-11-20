@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_fieldset	= function() {
-	this.elements	= new ample.classes.AMLNodeList;
+	this.elements	= new ample.classes.NodeList;
 };
 cXHTMLElement_fieldset.prototype	= new cXHTMLElement("fieldset");
 

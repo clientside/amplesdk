@@ -30,15 +30,15 @@ cSVGElement_path.prototype.pathSegList				= null;
 cSVGElement_path.prototype.pathLength	= 0;
 
 cSVGElement_path.prototype.getTotalLength	= function() {
-	throw new ample.classes.AMLException(AMLException.NOT_SUPPORTED_ERR);
+	throw new ample.classes.DOMException(DOMException.NOT_SUPPORTED_ERR);
 };
 
 cSVGElement_path.prototype.getPointAtLength	= function(nDistance) {
-	throw new ample.classes.AMLException(AMLException.NOT_SUPPORTED_ERR);
+	throw new ample.classes.DOMException(DOMException.NOT_SUPPORTED_ERR);
 };
 
 cSVGElement_path.prototype.getPathSegAtLength	= function(nDistance) {
-	throw new ample.classes.AMLException(AMLException.NOT_SUPPORTED_ERR);
+	throw new ample.classes.DOMException(DOMException.NOT_SUPPORTED_ERR);
 };
 
 cSVGElement_path.prototype.createSVGPathSegClosePath	= function() {

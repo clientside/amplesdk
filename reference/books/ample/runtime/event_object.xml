@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<object name="event" xextends="runtime:Event">
+	<abstract>
+		<locale>
+			Represents the state of an event.
+			Depending on the nature of occurance <link type="object">event</link> object may have different specialized interface,
+			every however extending on <link type="class">Event</link>.
+		</locale>
+	</abstract>
+	<remarks>
+		<remark>
+			<locale>
+				The <link type="object">event</link> object is available only during an event—that is, you can use it in event handlers but not in other code.
+				<b>Note:</b> in SVG content you should use <b>evt</b> object instead.
+			</locale>
+		</remark>
+	</remarks>
+	<implements />
+	<members />
+	<examples>
+		<example>
+			<locale>
+				The code below illustrates usage of inline event handler.
+			</locale>
+			<locale xml:lang="ru">
+				Этот код иллюстрирует пример использования объекта Event.
+			</locale>
+			<code type="text/xml"><![CDATA[<div onclick="alert(event.currentTarget.tagName)">click me</div>
+			]]></code>
+			<locale>
+				When user clicks the div, he will be alerted with 'div' message.
+			</locale>
+			<locale xml:lang="ru">
+				По событию "click", выведется сообщение 'div'.
+			</locale>
+		</example>
+	</examples>
+</object>

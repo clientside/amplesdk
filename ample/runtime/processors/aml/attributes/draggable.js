@@ -7,17 +7,17 @@
  *
  */
 
-var cAMLAttr_draggable	= function(){};
-cAMLAttr_draggable.prototype	= new cAMLAttr_prototype("draggable");
+var cAttr_draggable	= function(){};
+cAttr_draggable.prototype	= new cAMLAttr("draggable");
 
 // Class Events Handlers
-cAMLAttr_draggable.handlers	= {};
-cAMLAttr_draggable.handlers["DOMNodeInsertedIntoDocument"]	= function(oEvent) {
+cAttr_draggable.handlers	= {};
+cAttr_draggable.handlers["DOMNodeInsertedIntoDocument"]	= function(oEvent) {
 	this.ownerElement.$draggable	= this.value == "true";
 };
-cAMLAttr_draggable.handlers["DOMNodeRemovedFromDocument"]	= function(oEvent) {
+cAttr_draggable.handlers["DOMNodeRemovedFromDocument"]	= function(oEvent) {
 	this.ownerElement.$draggable	= false;
 };
 
 // Register Attribute
-fAmple_extend(cAMLAttr_draggable);
+fAmple_extend(cAttr_draggable);

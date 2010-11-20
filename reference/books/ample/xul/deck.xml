@@ -41,7 +41,7 @@
 					</locale>
 				</description>
 			</property>
-			<property name="selectedPanel" type="AMLElement" readonly="true">
+			<property name="selectedPanel" type="Element" readonly="true">
 				<description>
 					<locale>
 						Holds a reference to the currently selected panel within a deck element.

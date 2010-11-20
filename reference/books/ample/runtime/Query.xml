@@ -1,0 +1,1101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<class name="Query">
+	<abstract>
+		<locale>
+			Holds a collection of elements returned from <link type="object">ample</link>.<link type="method" href="runtime:ample">query</link>() function call.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<properties>
+			<property name="length" type="Number" readonly="true">
+				<description>
+					<locale>
+						Holds the length of the collection returned.
+					</locale>
+				</description>
+			</property>
+			<property name="selector" type="String" readonly="true">
+				<description>
+					<locale>
+						Holds the CSS selector used in selection query.
+					</locale>
+				</description>
+			</property>
+			<property name="context" type="Node" readonly="true">
+				<description>
+					<locale>
+						Holds the context of the selection query executed.
+					</locale>
+				</description>
+			</property>
+			<property name="resolver" type="Function" readonly="true">
+				<description>
+					<locale>
+						Holds the namespace resolver function used to resolve namespaces in the selection query.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<methods>
+			<!-- DOM Element Methods -->
+			<method name="get" type="Variant">
+				<arguments>
+					<argument name="index" type="Number">
+						<description>
+							<locale>
+								A zero-based integer indicating which element to retrieve.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Retrieves the element matched.
+					</locale>
+				</description>
+			</method>
+			<!--
+			<method name="index" type="Element">
+				<arguments>
+					<argument name="index" type="Number">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			-->
+			<method name="size" type="Number">
+				<description>
+					<locale>
+						Returns the number of elements in the <link type="object">Query</link> collection.
+					</locale>
+				</description>
+			</method>
+			<method name="toArray" type="Array">
+				<description>
+					<locale>
+						Retrieve all the elements contained in the <link type="object">Query</link> collection, as an array.
+					</locale>
+				</description>
+			</method>
+			<!-- Filtering -->
+			<method name="eq" type="Element">
+				<arguments>
+					<argument name="index" type="Number">
+						<description>
+							<locale>
+								An integer indicating the 0-based position of the element.
+								Negative values count backwards from the last element in the set.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Reduces the set of matched elements to the one at the specified index.
+					</locale>
+				</description>
+			</method>
+			<!--
+			<method name="filter" type="Query">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			 -->
+			<method name="first" type="Query">
+				<description>
+					<locale>
+ 						Reduces the set of matched elements to the first in the set.
+					</locale>
+				</description>
+			</method>
+			<method name="has" type="Query">
+				<arguments>
+					<argument name="selector" type="String">
+						<description>
+							<locale>
+								A string containing a selector expression to match elements against.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<arguments>
+					<argument name="element" type="Element">
+						<description>
+							<locale>
+								An element to match elements against.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Reduces the set of matched elements to those that have a descendant that matches the selector or element.
+					</locale>
+				</description>
+			</method>
+			<!--
+			<method name="is" type="Query">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			 -->
+			<method name="last" type="Query">
+				<description>
+					<locale>
+						Reduces the set of matched elements to the last in the set.
+					</locale>
+				</description>
+			</method>
+			<!--
+			<method name="map" type="Query">
+				<arguments>
+					<argument name="callback" type="Function">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			 -->
+			<!--
+			<method name="not" type="Query">
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			 -->
+			<method name="slice" type="Query">
+				<arguments>
+					<argument name="first" type="Number">
+						<description>
+							<locale>
+								An integer that specifies where to start the selection (The first element has an index of 0).
+								You can also use negative numbers to select from the end of a collection.
+							</locale>
+						</description>
+					</argument>
+					<argument name="last" type="Number" required="false">
+						<description>
+							<locale>
+								An integer that specifies where to end the selection.
+								If omitted, slice() selects all elements from the start position and to the end of the collection.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Reduces the set of matched elements to a subset specified by a range of indices.
+					</locale>
+				</description>
+			</method>
+			<method name="splice" type="Query">
+				<arguments>
+					<argument name="first" type="Number">
+						<description>
+							<locale>
+								An integer that specifies at what position to add/remove elements.
+							</locale>
+						</description>
+					</argument>
+					<argument name="length" type="Number" required="false">
+						<description>
+							<locale>
+								The number of elements to be removed. If set to 0, no elements will be removed.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Adds and/or removes elements to/from a collection, and returns the removed element(s).
+					</locale>
+				</description>
+			</method>
+			<method name="each" type="Query">
+				<arguments>
+					<argument name="callback" type="Function">
+						<description>
+							<locale>
+								A callback function.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Iterates over a collection, executing a function for each element.
+					</locale>
+				</description>
+			</method>
+
+			<!-- Effects -->
+			<method name="animate" type="Query">
+				<arguments>
+					<argument name="properties" type="Object">
+						<description>
+							<locale>
+								A hash of CSS properties that the animation will move toward.
+							</locale>
+						</description>
+					</argument>
+					<argument name="duration" type="Variant" required="false">
+						<description>
+							<locale>
+								A string or number determining how long the animation will run.
+							</locale>
+						</description>
+					</argument>
+					<argument name="easing" type="Variant" required="false">
+						<description>
+							<locale>
+								A string indicating which easing function to use for the transition.
+							</locale>
+						</description>
+					</argument>
+					<argument name="callback" type="Function" required="false">
+						<description>
+							<locale>
+								A function to call once the animation is complete.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Perform an animation of a set of CSS properties.
+					</locale>
+				</description>
+			</method>
+			<method name="stop" type="Query">
+				<description>
+					<locale>
+						Stops all animations running on elements in the set.
+					</locale>
+				</description>
+			</method>
+			<method name="delay" type="Query">
+				<arguments>
+					<argument name="duration" type="Variant">
+						<description>
+							<locale>
+								A string or number determining how long the delay will run.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Sets a timer to delay execution of subsequent animations.
+					</locale>
+				</description>
+			</method>
+			<method name="fadeIn" type="Query">
+				<arguments>
+					<argument name="duration" type="Variant" required="false">
+						<description>
+							<locale>
+								A string or number determining how long the animation will run.
+							</locale>
+						</description>
+					</argument>
+					<argument name="callback" type="Function" required="false">
+						<description>
+							<locale>
+								A function to call once the animation is complete.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Reveals the matched elements by fading them to opaque.
+					</locale>
+				</description>
+			</method>
+			<method name="fadeOut" type="Query">
+				<arguments>
+					<argument name="duration" type="Variant" required="false">
+						<description>
+							<locale>
+								A string or number determining how long the animation will run.
+							</locale>
+						</description>
+					</argument>
+					<argument name="callback" type="Function" required="false">
+						<description>
+							<locale>
+								A function to call once the animation is complete.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Hides the matched elements by fading them to transparent.
+					</locale>
+				</description>
+			</method>
+			<method name="fadeTo" type="Query">
+				<arguments>
+					<argument name="duration" type="Variant">
+						<description>
+							<locale>
+								A string or number determining how long the animation will run.
+							</locale>
+						</description>
+					</argument>
+					<argument name="opacity" type="Number">
+						<description>
+							<locale>
+								A number between 0 and 1 denoting the target opacity.
+							</locale>
+						</description>
+					</argument>
+					<argument name="callback" type="Function" required="false">
+						<description>
+							<locale>
+								A function to call once the animation is complete.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Adjusts the opacity of the matched elements.
+					</locale>
+				</description>
+			</method>
+			<method name="show" type="Query">
+				<arguments>
+					<argument name="duration" type="Variant" required="false">
+						<description>
+							<locale>
+								A string or number determining how long the animation will run.
+							</locale>
+						</description>
+					</argument>
+					<argument name="callback" type="Function" required="false">
+						<description>
+							<locale>
+								A function to call once the animation is complete.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Reveals the matched elements.
+						When no duration provided the matched elements will be revealed immediately, with no animation.
+					</locale>
+				</description>
+			</method>
+			<method name="hide" type="Query">
+				<arguments>
+					<argument name="duration" type="Variant" required="false">
+						<description>
+							<locale>
+								A string or number determining how long the animation will run.
+							</locale>
+						</description>
+					</argument>
+					<argument name="callback" type="Function" required="false">
+						<description>
+							<locale>
+								A function to call once the animation is complete.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Hides the matched elements.
+						When no duration provided the matched elements will be hidden immediately, with no animation.
+					</locale>
+				</description>
+			</method>
+			<method name="slideDown" type="Query">
+				<arguments>
+					<argument name="duration" type="Variant" required="false">
+						<description>
+							<locale>
+								A string or number determining how long the animation will run.
+							</locale>
+						</description>
+					</argument>
+					<argument name="callback" type="Function" required="false">
+						<description>
+							<locale>
+								A function to call once the animation is complete.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Reveals the matched elements with a sliding motion.
+					</locale>
+				</description>
+			</method>
+			<method name="slideUp" type="Query">
+				<arguments>
+					<argument name="duration" type="Variant" required="false">
+						<description>
+							<locale>
+								A string or number determining how long the animation will run.
+							</locale>
+						</description>
+					</argument>
+					<argument name="callback" type="Function" required="false">
+						<description>
+							<locale>
+								A function to call once the animation is complete.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Hides the matched elements with a sliding motion.
+					</locale>
+				</description>
+			</method>
+
+			<!-- Css -->
+			<method name="css" type="Variant">
+				<arguments>
+					<argument name="name" type="String">
+						<description>
+							<locale>
+								CSS property name.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<arguments>
+					<argument name="name" type="String">
+						<description>
+							<locale>
+								CSS property name.
+							</locale>
+						</description>
+					</argument>
+					<argument name="value" type="String">
+						<description>
+							<locale>
+								CSS property name.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Gets the value of a style property for the first element in the set of matched elements
+						or set the value of a CSS property for the set of matched elements.
+					</locale>
+				</description>
+			</method>
+
+			<!-- Events -->
+			<method name="bind" type="Query">
+				<arguments>
+					<argument name="type" type="String">
+						<description>
+							<locale>
+								Event name
+							</locale>
+						</description>
+					</argument>
+					<argument name="handler" type="Function">
+						<description>
+							<locale>
+								Handler function
+							</locale>
+						</description>
+					</argument>
+					<argument name="capture" type="Boolean" required="false">
+						<description>
+							<locale>
+								If true, the handler will be executed during capture phase only
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Registers a handler with every element in set
+					</locale>
+				</description>
+			</method>
+			<method name="unbind" type="Query">
+				<arguments>
+					<argument name="type" type="String">
+						<description>
+							<locale>
+								Event name
+							</locale>
+						</description>
+					</argument>
+					<argument name="handler" type="Function">
+						<description>
+							<locale>
+								Handler function
+							</locale>
+						</description>
+					</argument>
+					<argument name="capture" type="Boolean" required="false">
+						<description>
+							<locale>
+								If true, the handler will be executed during capture phase only
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Unregisters a handler from every element in set
+					</locale>
+				</description>
+			</method>
+			<method name="trigger" type="Query">
+				<arguments>
+					<argument name="type" type="String">
+						<description>
+							<locale>
+								Event name
+							</locale>
+						</description>
+					</argument>
+					<argument name="detail" type="Variant" required="false">
+						<description>
+							<locale>
+								Event detail
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Triggers an event on every element in set.
+					</locale>
+				</description>
+			</method>
+
+			<!-- Attributes -->
+			<method name="attr" type="Variant">
+				<arguments>
+					<argument name="name" type="String">
+						<description>
+							<locale>
+								Name of the attribute.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<arguments>
+					<argument name="name" type="String">
+						<description>
+							<locale>
+								Name of the attribute.
+							</locale>
+						</description>
+					</argument>
+					<argument name="value" type="String">
+						<description>
+							<locale>
+								String value to be set.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Gets the value of an attribute for the first element in the set of matched elements
+						or sets the value of an ttribute for the set of matched elements.
+					</locale>
+				</description>
+			</method>
+
+			<!-- Manimulation -->
+			<method name="text" type="Variant">
+				<arguments />
+				<arguments>
+					<argument name="value" type="String">
+						<description>
+							<locale>
+								A string of text.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Gets the combined text contents of each element in the set of matched elements, including their descendants
+						or sets the content of each element in the set of matched elements to the specified text.
+					</locale>
+				</description>
+			</method>
+			<method name="html" type="Variant">
+				<arguments />
+				<arguments>
+					<argument name="html" type="String">
+						<description>
+							<locale>
+								A string of HTML.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Gets or sets the HTML contents of the first element in the set of matched elements.
+					</locale>
+				</description>
+			</method>
+			<method name="appendTo" type="Query">
+				<arguments>
+					<argument name="target" type="Variant">
+						<description>
+							<locale>
+								An element, selector, XML string, or <link type="object">Query</link> object.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Inserts every element in the set of matched elements to the end of the target.
+					</locale>
+				</description>
+			</method>
+			<method name="prependTo" type="Query">
+				<arguments>
+					<argument name="target" type="Variant">
+						<description>
+							<locale>
+								An element, selector, XML string, or <link type="object">Query</link> object.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+ 						Inserts every element in the set of matched elements to the beginning of the target.
+					</locale>
+				</description>
+			</method>
+			<method name="insertBefore" type="Query">
+				<arguments>
+					<argument name="target" type="Variant">
+						<description>
+							<locale>
+								An element, selector, XML string, or <link type="object">Query</link> object.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Inserts every element in the set of matched elements before the target.
+					</locale>
+				</description>
+			</method>
+			<method name="insertAfter" type="Query">
+				<arguments>
+					<argument name="target" type="Variant">
+						<description>
+							<locale>
+								An element, selector, XML string, or <link type="object">Query</link> object.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						 Inserts every element in the set of matched elements after the target.
+					</locale>
+				</description>
+			</method>
+			<method name="replaceAll" type="Query">
+				<description>
+					<locale>
+						Replaces each target element with the set of matched elements.
+					</locale>
+				</description>
+			</method>
+			<method name="append" type="Query">
+				<arguments>
+					<argument name="content" type="Variant">
+						<description>
+							<locale>
+								An element, XML string, or <link type="object">Query</link> object to insert.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Inserts content, specified by the parameter, to the end of each element in the set of matched elements.
+					</locale>
+				</description>
+			</method>
+			<method name="prepend" type="Query">
+				<arguments>
+					<argument name="content" type="Variant">
+						<description>
+							<locale>
+								An element, XML string, or <link type="object">Query</link> object to insert.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Inserts content, specified by the parameter, to the beginning of each element in the set of matched elements.
+					</locale>
+				</description>
+			</method>
+			<method name="before" type="Query">
+				<arguments>
+					<argument name="content" type="Variant">
+						<description>
+							<locale>
+								An element, XML string, or <link type="object">Query</link> object to insert.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Inserts content, specified by the parameter, before each element in the set of matched elements.
+					</locale>
+				</description>
+			</method>
+			<method name="after" type="Query">
+				<arguments>
+					<argument name="content" type="Variant">
+						<description>
+							<locale>
+								An element, XML string, or <link type="object">Query</link> object to insert.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+ 						Inserts content, specified by the parameter, after each element in the set of matched elements.
+					</locale>
+				</description>
+			</method>
+			<method name="remove" type="Query">
+				<description>
+					<locale>
+						Removes the set of matched elements from the DOM.
+					</locale>
+				</description>
+			</method>
+			<method name="empty" type="Query">
+				<description>
+					<locale>
+						Removes all child nodes of the set of matched elements from the DOM.
+					</locale>
+				</description>
+			</method>
+			<method name="replaceWith" type="Query">
+				<arguments>
+					<argument name="content" type="Variant">
+						<description>
+							<locale>
+								An element, XML string, or <link type="object">Query</link> object to insert.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Replaces each element in the set of matched elements with the provided new content.
+					</locale>
+				</description>
+			</method>
+			<method name="clone" type="Query">
+				<description>
+					<locale>
+						Creates a deep copy of the set of matched elements.
+						No event handlers either data associated with element will be copied.
+					</locale>
+				</description>
+			</method>
+			<!-- Data -->
+			<method name="data" type="Variant">
+				<arguments>
+					<argument name="name" type="String">
+						<description>
+							<locale>
+								A string key name.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<arguments>
+					<argument name="name" type="String">
+						<description>
+							<locale>
+								A string key name.
+							</locale>
+						</description>
+					</argument>
+					<argument name="value" type="Variant">
+						<description>
+							<locale>
+								The data value.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Gets value at named data store for the first element in the collection
+						or sets arbitrary data associated with the matched elements.
+					</locale>
+				</description>
+			</method>
+			<!-- Ajax -->
+			<method name="load" type="Query">
+				<arguments>
+					<argument name="url" type="String">
+						<description>
+							<locale>
+								A string containing the URL to which the request is sent.
+							</locale>
+						</description>
+					</argument>
+					<argument name="data" type="Object" required="false">
+						<description>
+							<locale>
+								Data to be sent with request.
+							</locale>
+						</description>
+					</argument>
+					<argument name="complete" type="Function" required="false">
+						<description>
+							<locale>
+								Function to be executed on request completion.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Loads data from the server and apends it to the first element in colection.
+					</locale>
+				</description>
+			</method>
+			<method name="abort" type="Query">
+				<description>
+					<locale>
+						Aborts loading operation.
+					</locale>
+				</description>
+			</method>
+			<!-- Dimensions -->
+			<method name="width" type="Variant">
+				<arguments />
+				<arguments>
+					<argument name="value" type="Object">
+						<description>
+							<locale>
+								An integer representing the number of pixels, or an integer with an optional unit of measure appended.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Gets the current computed width for the first element in the set of matched elements
+						or sets the CSS width of every matched element.
+					</locale>
+				</description>
+			</method>
+			<method name="height" type="Variant">
+				<arguments />
+				<arguments>
+					<argument name="value" type="Object">
+						<description>
+							<locale>
+								An integer representing the number of pixels, or an integer with an optional unit of measure appended.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Gets the current computed height for the first element in the set of matched elements
+						or sets the CSS height of every matched element.
+					</locale>
+				</description>
+			</method>
+			<method name="innerWidth" type="Number">
+				<description>
+					<locale>
+						Gets the current computed width for the first element in the set of matched elements, including padding but not border.
+					</locale>
+				</description>
+			</method>
+			<method name="innerHeight" type="Number">
+				<description>
+					<locale>
+						Gets the current computed height for the first element in the set of matched elements, including padding but not border.
+					</locale>
+				</description>
+			</method>
+			<method name="outerWidth" type="Number">
+				<description>
+					<locale>
+						Gets the current computed width for the first element in the set of matched elements, including padding, border, and optionally margin.
+					</locale>
+				</description>
+			</method>
+			<method name="outerHeight" type="Number">
+				<description>
+					<locale>
+						Gets the current computed height for the first element in the set of matched elements, including padding, border, and optionally margin.
+					</locale>
+				</description>
+			</method>
+			<!-- Offset -->
+			<method name="offset" type="Variant">
+				<arguments />
+				<arguments>
+					<argument name="coordinates" type="Object">
+						<description>
+							<locale>
+								An object containing the properties top and left, which are integers.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Gets the current coordinates of the first element in the set of matched elements, relative to the document
+						or sets the current coordinates of every element in the set of matched elements, relative to the document.
+					</locale>
+				</description>
+			</method>
+			<method name="position" type="Object">
+				<description>
+					<locale>
+						Gets the current coordinates of the first element in the set of matched elements, relative to the offset parent.
+						Return object contains the properties top and left.
+					</locale>
+				</description>
+			</method>
+			<method name="offsetParent" type="Element">
+				<description>
+					<locale>
+						Gets the closest ancestor element that is positioned.
+					</locale>
+				</description>
+			</method>
+			<method name="scrollLeft" type="Variant">
+				<arguments />
+				<arguments>
+					<argument name="value" type="Number">
+						<description>
+							<locale>
+								An integer indicating the new position to set the scroll bar to.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Gets the current horizontal position of the scroll bar for the first element in the set of matched elements
+						or sets the current horizontal position of the scroll bar for each of the set of matched elements.
+					</locale>
+				</description>
+			</method>
+			<method name="scrollTop" type="Variant">
+				<arguments />
+				<arguments>
+					<argument name="value" type="Number">
+						<description>
+							<locale>
+								An integer indicating the new position to set the scroll bar to.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Gets the current vertical position of the scroll bar for the first element in the set of matched elements
+						or sets the current vertical position of the scroll bar for each of the set of matched elements.
+					</locale>
+				</description>
+			</method>
+		</methods>
+		<events>
+			<!-- Global Ajax Event Handlers -->
+			<!--
+			<event name="ajaxComplete" type="CustomEvent" cancelable="false" bubbles="false">
+				<description>
+					<locale>
+						Ajax requests completed.
+						Property <link type="property" href="runtime:CustomEvent">detail</link> holds the reference to the instance of <link type="object">XMLHttpRequest</link> object.
+					</locale>
+				</description>
+			</event>
+			<event name="ajaxError" type="CustomEvent" cancelable="false" bubbles="false">
+				<description>
+					<locale>
+						Ajax request completed with an error.
+						Property <link type="property" href="runtime:CustomEvent">detail</link> holds the reference to the instance of <link type="object">XMLHttpRequest</link> object.
+					</locale>
+				</description>
+			</event>
+			<event name="ajaxSend" type="CustomEvent" cancelable="false" bubbles="false">
+				<description>
+					<locale>
+						Ajax request is about to be sent.
+						Property <link type="property" href="runtime:CustomEvent">detail</link> holds the reference to the instance of <link type="object">XMLHttpRequest</link> object.
+					</locale>
+				</description>
+			</event>
+			<event name="ajaxSuccess" type="CustomEvent" cancelable="false" bubbles="false">
+				<description>
+					<locale>
+						Ajax request completed successfully.
+						Property <link type="property" href="runtime:CustomEvent">detail</link> holds the reference to the instance of <link type="object">XMLHttpRequest</link> object.
+					</locale>
+				</description>
+			</event>
+			-->
+		</events>
+	</members>
+</class>

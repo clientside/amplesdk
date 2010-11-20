@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<object name="ample" xextends="runtime:AMLDocument">
+<object name="ample" xextends="runtime:Document">
 	<abstract>
 		<locale>
 			Represents the document created out of all Ample SDK fragments found on the page.
-			In addition to the members listed in the table it also has all members of <link type="class">AMLDocument</link> object.
+			In addition to the members listed in the table it also has all members of <link type="class">Document</link> object.
 		</locale>
 	</abstract>
 	<abstract>
@@ -12,10 +12,10 @@
 			If you are coming from the jQuery universe, you will most likely enjoy using <link type="object">ample</link>.<link type="method">query</link> function,
 			which is the jQuery-like API to Ample SDK. The function is overloaded and it can be called in any of the following flavours:
 			<ul>
-				<li><link type="class">AMLQuery</link> <link type="object">ample</link>.query(String <em>selector</em>[, <link type="class">AMLNode</link> <em>context</em>[, Function <em>resolver</em>]])</li>
-				<li><link type="class">AMLQuery</link> <link type="object">ample</link>.query(String <em>xml</em>)</li>
-				<li><link type="class">AMLQuery</link> <link type="object">ample</link>.query(<link type="class">AMLQuery</link> <em>collection</em>)</li>
-				<li><link type="class">AMLQuery</link> <link type="object">ample</link>.query(<link type="class">AMLElement</link> <em>element</em>)</li>
+				<li><link type="class">Query</link> <link type="object">ample</link>.query(String <em>selector</em>[, <link type="class">Node</link> <em>context</em>[, Function <em>resolver</em>]])</li>
+				<li><link type="class">Query</link> <link type="object">ample</link>.query(String <em>xml</em>)</li>
+				<li><link type="class">Query</link> <link type="object">ample</link>.query(<link type="class">Query</link> <em>collection</em>)</li>
+				<li><link type="class">Query</link> <link type="object">ample</link>.query(<link type="class">Element</link> <em>element</em>)</li>
 			</ul>
 		</locale>
 	</abstract>
@@ -24,7 +24,7 @@
 	<implements />
 	<members>
 		<properties>
-			<property name="activeElement" type="AMLElement" readonly="true">
+			<property name="activeElement" type="Element" readonly="true">
 				<description>
 					<locale>
 						Retrieves a reference to an element in the document that currently has focus.
@@ -53,7 +53,7 @@
 				</description>
 			</property>
 			<!-- Locale -->
-			<property name="locale" type="AMLLocale" readonly="true">
+			<property name="locale" type="Locale" readonly="true">
 				<description>
 					<locale>
 						Retrieves a reference to localization API.
@@ -76,12 +76,12 @@
 		</properties>
 		<methods>
 			<!-- Query -->
-			<method name="query" type="AMLQuery">
+			<method name="query" type="Query">
 				<arguments>
 					<argument name="query" type="String">
 
 					</argument>
-					<argument name="context" required="false" type="AMLNode">
+					<argument name="context" required="false" type="Node">
 
 					</argument>
 					<argument name="resolver" required="false" type="Function">
@@ -98,7 +98,7 @@
 					</argument>
 				</arguments>
 				<arguments>
-					<argument name="element" type="AMLElement">
+					<argument name="element" type="Element">
 						<description>
 							<locale>
 
@@ -107,7 +107,7 @@
 					</argument>
 				</arguments>
 				<arguments>
-					<argument name="query" type="AMLQuery">
+					<argument name="query" type="Query">
 						<description>
 							<locale>
 
@@ -333,7 +333,7 @@
 					<argument name="element" type="Function">
 						<description>
 							<locale>
-								Element definition. Must have <link type="class">AMLElement</link> in its prototype chain.
+								Element definition. Must have <link type="class">Element</link> in its prototype chain.
 							</locale>
 						</description>
 					</argument>
@@ -342,7 +342,7 @@
 					<argument name="attribute" type="Function">
 						<description>
 							<locale>
-								Attribute definition. Must have <link type="class">AMLAttr</link> in its prototype chain.
+								Attribute definition. Must have <link type="class">Attr</link> in its prototype chain.
 							</locale>
 						</description>
 					</argument>
@@ -417,7 +417,7 @@
 				</description>
 			</method>
 			<!--  -->
-			<method name="$instance" type="AMLElement">
+			<method name="$instance" type="Element">
 				<arguments>
 					<argument name="node" type="HTMLElement">
 						<description>
@@ -573,7 +573,7 @@
 			<!-- Data -->
 			<method name="data" type="Variant">
 				<arguments>
-					<argument name="element" type="AMLElement">
+					<argument name="element" type="Element">
 						<description>
 							<locale>
 								The DOM element.
@@ -589,7 +589,7 @@
 					</argument>
 				</arguments>
 				<arguments>
-					<argument name="element" type="AMLElement">
+					<argument name="element" type="Element">
 						<description>
 							<locale>
 								The DOM element.
@@ -621,7 +621,7 @@
 			<!-- Modal -->
 			<method name="modal" type="Void">
 				<arguments>
-					<argument name="element" type="AMLElement" required="true">
+					<argument name="element" type="Element" required="true">
 						<description>
 							<locale>
 								Element to be set as modal or null to reset.
@@ -634,7 +634,7 @@
 						Sets element in a modal state when element reference provided,
 						Unsets modal state from the modal element if null passed.
 						UI Events originated outside this element get supressed,
-						except for one <link type="event" href="runtime:AMLElement">modal</link> that is fired upon a click outside modal area.
+						except for one <link type="event" href="runtime:Element">modal</link> that is fired upon a click outside modal area.
 					</locale>
 				</description>
 			</method>
@@ -643,7 +643,7 @@
 			<event name="configchange" type="CustomEvent" cancelable="false" bubbles="false">
 				<description>
 					<locale>
-						Fires after the config value changes. The <link type="property" href="runtime:AMLCustomEvent">detail</link> property keeps the name of the parameter name changed.
+						Fires after the config value changes. The <link type="property" href="runtime:CustomEvent">detail</link> property keeps the name of the parameter name changed.
 					</locale>
 				</description>
 			</event>
@@ -661,7 +661,7 @@
 						Fires on the document when user navigates browser history. Please note this event is not fired when <link type="method">bookmark</link> method is called.
 					</locale>
 					<locale xml:lang="ru">
-						Загорается на объекте <link type="class">AMLDocument</link>, когда пользователь перемещается по истории навигации браузера.
+						Загорается на объекте <link type="class">Document</link>, когда пользователь перемещается по истории навигации браузера.
 					</locale>
 				</description>
 			</event>

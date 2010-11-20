@@ -8,7 +8,7 @@
  */
 
 //
-cAMLQuery.prototype.width	= function(sValue) {
+cQuery.prototype.width	= function(sValue) {
 //->Guard
 	fGuard(arguments, [
 		["value",	cObject, true]
@@ -16,7 +16,7 @@ cAMLQuery.prototype.width	= function(sValue) {
 //<-Guard
 
 	if (arguments.length) {
-		fAMLQuery_each(this, function() {
+		fQuery_each(this, function() {
 			var oElementDOM	= this.$getContainer();
 			if (oElementDOM)
 				fBrowser_setStyle(oElementDOM, "width", sValue +(fIsNaN(sValue) ? '' : 'px'));
@@ -27,7 +27,7 @@ cAMLQuery.prototype.width	= function(sValue) {
 	if (this.length) {
 		var oElementDOM	= this[0].$getContainer();
 		if (oElementDOM) {
-			var oRect	= fAMLElement_getBoundingClientRect(this[0]),
+			var oRect	= fElement_getBoundingClientRect(this[0]),
 				nPaddingLeft	= fParseInt(fBrowser_getStyle(oElementDOM, "paddingLeft")) || 0,
 				nPaddingRight	= fParseInt(fBrowser_getStyle(oElementDOM, "paddingRight")) || 0,
 				nBorderLeft		= fParseInt(fBrowser_getStyle(oElementDOM, "borderLeftWidth")) || 0,
@@ -38,7 +38,7 @@ cAMLQuery.prototype.width	= function(sValue) {
 	}
 };
 
-cAMLQuery.prototype.height	= function(sValue) {
+cQuery.prototype.height	= function(sValue) {
 //->Guard
 	fGuard(arguments, [
 		["value",	cObject, true]
@@ -46,7 +46,7 @@ cAMLQuery.prototype.height	= function(sValue) {
 //<-Guard
 
 	if (arguments.length) {
-		fAMLQuery_each(this, function() {
+		fQuery_each(this, function() {
 			var oElementDOM	= this.$getContainer();
 			if (oElementDOM)
 				fBrowser_setStyle(oElementDOM, "height", sValue +(fIsNaN(sValue) ? '' : 'px'));
@@ -57,7 +57,7 @@ cAMLQuery.prototype.height	= function(sValue) {
 	if (this.length) {
 		var oElementDOM	= this[0].$getContainer();
 		if (oElementDOM) {
-			var oRect	= fAMLElement_getBoundingClientRect(this[0]),
+			var oRect	= fElement_getBoundingClientRect(this[0]),
 				nPaddingTop		= fParseInt(fBrowser_getStyle(oElementDOM, "paddingTop")) || 0,
 				nPaddingBottom	= fParseInt(fBrowser_getStyle(oElementDOM, "paddingBottom")) || 0,
 				nBorderTop		= fParseInt(fBrowser_getStyle(oElementDOM, "borderTopWidth")) || 0,
@@ -68,11 +68,11 @@ cAMLQuery.prototype.height	= function(sValue) {
 	}
 };
 
-cAMLQuery.prototype.innerWidth	= function() {
+cQuery.prototype.innerWidth	= function() {
 	if (this.length) {
 		var oElementDOM	= this[0].$getContainer();
 		if (oElementDOM) {
-			var oRect	= fAMLElement_getBoundingClientRect(this[0]),
+			var oRect	= fElement_getBoundingClientRect(this[0]),
 				nBorderLeft		= fParseInt(fBrowser_getStyle(oElementDOM, "borderLeftWidth")) || 0,
 				nBorderRight	= fParseInt(fBrowser_getStyle(oElementDOM, "borderRightWidth")) || 0;
 			return (oRect.right - oRect.left) - (nBorderLeft + nBorderRight);
@@ -81,11 +81,11 @@ cAMLQuery.prototype.innerWidth	= function() {
 	return 0;
 };
 
-cAMLQuery.prototype.innerHeight	= function() {
+cQuery.prototype.innerHeight	= function() {
 	if (this.length) {
 		var oElementDOM	= this[0].$getContainer();
 		if (oElementDOM) {
-			var oRect	= fAMLElement_getBoundingClientRect(this[0]),
+			var oRect	= fElement_getBoundingClientRect(this[0]),
 				nBorderTop		= fParseInt(fBrowser_getStyle(oElementDOM, "borderTopWidth")) || 0,
 				nBorderBottom	= fParseInt(fBrowser_getStyle(oElementDOM, "borderBottomWidth")) || 0;
 			return (oRect.bottom - oRect.top) - (nBorderTop + nBorderBottom);
@@ -94,22 +94,22 @@ cAMLQuery.prototype.innerHeight	= function() {
 	return 0;
 };
 
-cAMLQuery.prototype.outerWidth	= function(bMargin) {
+cQuery.prototype.outerWidth	= function(bMargin) {
 	if (this.length) {
 		var oElementDOM	= this[0].$getContainer();
 		if (oElementDOM) {
-			var oRect	= fAMLElement_getBoundingClientRect(this[0]);
+			var oRect	= fElement_getBoundingClientRect(this[0]);
 			return (oRect.right - oRect.left) + (bMargin ? (fParseInt(fBrowser_getStyle(oElementDOM, "marginLeft")) || 0) + (fParseInt(fBrowser_getStyle(oElementDOM, "marginRight")) || 0) : 0);
 		}
 	}
 	return 0;
 };
 
-cAMLQuery.prototype.outerHeight	= function(bMargin) {
+cQuery.prototype.outerHeight	= function(bMargin) {
 	if (this.length) {
 		var oElementDOM	= this[0].$getContainer();
 		if (oElementDOM) {
-			var oRect	= fAMLElement_getBoundingClientRect(this[0]);
+			var oRect	= fElement_getBoundingClientRect(this[0]);
 			return (oRect.bottom - oRect.top) + (bMargin ? (fParseInt(fBrowser_getStyle(oElementDOM, "marginTop")) || 0) + (fParseInt(fBrowser_getStyle(oElementDOM, "marginBottom")) || 0) : 0);
 		}
 	}

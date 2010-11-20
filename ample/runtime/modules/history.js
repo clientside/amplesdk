@@ -7,22 +7,22 @@
  *
  */
 
-var sAMLQuery_history_prev	= null,		// Properties
-	sAMLQuery_history_new	= null,
-	nAMLQuery_history_timeout	= null,
-	oAMLQuery_history_window	= null;
+var sQuery_history_prev	= null,		// Properties
+	sQuery_history_new	= null,
+	nQuery_history_timeout	= null,
+	oQuery_history_window	= null;
 
 // Private Functions
-function fAMLQuery_history_bookmark(sHash, sTitle) {
+function fQuery_history_bookmark(sHash, sTitle) {
 	// Check if we do not submit the same page for second time
-	if (sAMLQuery_history_prev == sHash)
+	if (sQuery_history_prev == sHash)
 		return;
 
 	//
-	sAMLQuery_history_new	= sHash;
+	sQuery_history_new	= sHash;
 
-	if (oAMLQuery_history_window)	{
-		var oDocument	= oAMLQuery_history_window.document;
+	if (oQuery_history_window)	{
+		var oDocument	= oQuery_history_window.document;
 		oDocument.open();
 		oDocument.write('<' + "script" +'>' + "parent" + '.' + "location" + '.' + "hash" + /*'=' + "hash" +*/ '="' + sHash + '"</' + "script" + '>');
 		oDocument.close();
@@ -31,69 +31,69 @@ function fAMLQuery_history_bookmark(sHash, sTitle) {
 		oUALocation.hash	= sHash;
 };
 
-function fAMLQuery_history_onTimeout() {
-	fAMLQuery_history_onHashChange();
+function fQuery_history_onTimeout() {
+	fQuery_history_onHashChange();
 	//
-	nAMLQuery_history_timeout	= fSetTimeout(fAMLQuery_history_onTimeout, 20);
+	nQuery_history_timeout	= fSetTimeout(fQuery_history_onTimeout, 20);
 };
 
-function fAMLQuery_history_onHashChange() {
+function fQuery_history_onHashChange() {
 	var aUrl	= oUALocation.href.split('#'),
 		sUrl	= aUrl[0],
 		sHash	= aUrl[1] || '';
-	if (sAMLQuery_history_prev != sHash) {
+	if (sQuery_history_prev != sHash) {
 		// Manual input was conducted in Internet Explorer
-//		if (oAMLQuery_history_window && oAMLQuery_history_window.hash && sHash != oAMLQuery_history_window.hash)
-//			fAMLQuery_history_bookmark(sHash);
+//		if (oQuery_history_window && oQuery_history_window.hash && sHash != oQuery_history_window.hash)
+//			fQuery_history_bookmark(sHash);
 //		else {
 			// dispatch hashchange event
-			if (sAMLQuery_history_new != sHash) {
-				var oEvent	= new cAMLHashChangeEvent;
-				oEvent.initHashChangeEvent("hashchange", true, false, sUrl + (sAMLQuery_history_prev ? '#' : '') + sAMLQuery_history_prev, sUrl + (sHash ? '#' : '') + sHash);
-				fAMLNode_dispatchEvent(oAmple_document, oEvent);
+			if (sQuery_history_new != sHash) {
+				var oEvent	= new cHashChangeEvent;
+				oEvent.initHashChangeEvent("hashchange", true, false, sUrl + (sQuery_history_prev ? '#' : '') + sQuery_history_prev, sUrl + (sHash ? '#' : '') + sHash);
+				fNode_dispatchEvent(oAmple_document, oEvent);
 			}
 			//
-			sAMLQuery_history_prev	= sHash;
-			sAMLQuery_history_new		= null;
+			sQuery_history_prev	= sHash;
+			sQuery_history_new		= null;
 //		}
 	}
 };
 
-function fAMLQuery_history_onLoad(oEvent) {
+function fQuery_history_onLoad(oEvent) {
 	if (bTrident && nVersion > 7)
-		fBrowser_attachEvent(window, "hashchange", fAMLQuery_history_onHashChange);
+		fBrowser_attachEvent(window, "hashchange", fQuery_history_onHashChange);
 	else {
 		var sHash	= oUALocation.hash.replace(/^#/, '');
 		if (bTrident) {
 			var oElement	= oUADocument.createElement("iframe");
 			oElement.style.display	= "none";
 			oBrowser_body.appendChild(oElement);
-			oAMLQuery_history_window	= oElement.contentWindow;
-			if (oAMLConfiguration_values["ample-module-history-fix"])
-				fAMLQuery_history_bookmark(sHash);
+			oQuery_history_window	= oElement.contentWindow;
+			if (oDOMConfiguration_values["ample-module-history-fix"])
+				fQuery_history_bookmark(sHash);
 		}
-		sAMLQuery_history_prev		= sHash;	// set to null to get initial 'hashchange' event
-		nAMLQuery_history_timeout		= fSetTimeout(fAMLQuery_history_onTimeout, 20);
+		sQuery_history_prev		= sHash;	// set to null to get initial 'hashchange' event
+		nQuery_history_timeout		= fSetTimeout(fQuery_history_onTimeout, 20);
 	}
 };
 
-function fAMLQuery_history_onUnLoad(oEvent) {
+function fQuery_history_onUnLoad(oEvent) {
 	if (bTrident && nVersion > 7)
-		fBrowser_detachEvent(window, "hashchange", fAMLQuery_history_onHashChange);
+		fBrowser_detachEvent(window, "hashchange", fQuery_history_onHashChange);
 	else
-		fClearTimeout(nAMLQuery_history_timeout);
+		fClearTimeout(nQuery_history_timeout);
 };
 
 //
-function cAMLHashChangeEvent() {
+function cHashChangeEvent() {
 
 };
-cAMLHashChangeEvent.prototype	= new cAMLEvent;
+cHashChangeEvent.prototype	= new cEvent;
 //
-cAMLHashChangeEvent.prototype.oldURL	= null;
-cAMLHashChangeEvent.prototype.newURL	= null;
+cHashChangeEvent.prototype.oldURL	= null;
+cHashChangeEvent.prototype.newURL	= null;
 
-cAMLHashChangeEvent.prototype.initHashChangeEvent	= function(sType, bCanBubble, bCancelable, sOldUrl, sNewUrl) {
+cHashChangeEvent.prototype.initHashChangeEvent	= function(sType, bCanBubble, bCancelable, sOldUrl, sNewUrl) {
 	this.initEvent(sType, bCanBubble, bCancelable);
 
 	this.oldURL	= sOldUrl;
@@ -110,11 +110,11 @@ oAmple.bookmark	= function(sHash, sTitle) {
 //<-Guard
 
 	if (arguments.length)
-		fAMLQuery_history_bookmark(sHash, sTitle);
+		fQuery_history_bookmark(sHash, sTitle);
 	else
-		return sAMLQuery_history_prev;
+		return sQuery_history_prev;
 };
 
 // Registering Event Handlers
-fAMLEventTarget_addEventListener(oAmple_document, "load",	fAMLQuery_history_onLoad,	false);
-fAMLEventTarget_addEventListener(oAmple_document, "unload",	fAMLQuery_history_onUnLoad,	false);
+fEventTarget_addEventListener(oAmple_document, "load",	fQuery_history_onLoad,	false);
+fEventTarget_addEventListener(oAmple_document, "unload",	fQuery_history_onUnLoad,	false);

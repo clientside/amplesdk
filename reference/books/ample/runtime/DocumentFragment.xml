@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<class name="DocumentFragment" extends="runtime:Node">
+	<abstract>
+		<locale>
+			DocumentFragment is a "lightweight" or "minimal" Document object.
+		</locale>
+		<locale xml:lang="ru">
+			DocumentFragment является "облегченным" или "минимальным" вариантом объекта <link type="class">Document</link>.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples/>
+	<members />
+</class>

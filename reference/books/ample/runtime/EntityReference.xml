@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<class name="CharacterData" extends="runtime:Node">
+	<abstract>
+		<locale>
+			Represents an entity reference in the tree.
+		</locale>
+	</abstract>
+	<warning>
+		<locale>
+			Ths kind of node does not get instantiated in Ample SDK.
+		</locale>
+	</warning>
+	<remarks />
+	<examples/>
+	<members />
+</class>

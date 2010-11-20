@@ -7,7 +7,7 @@
  *
  */
 
-cAMLQuery.prototype.css	= function(sName, sValue) {
+cQuery.prototype.css	= function(sName, sValue) {
 //->Guard
 	fGuard(arguments, [
 		["name",	cString],
@@ -17,7 +17,7 @@ cAMLQuery.prototype.css	= function(sName, sValue) {
 
 	if (arguments.length > 1) {
 		sValue	= sValue == null ? '' : cString(sValue);
-		fAMLQuery_each(this, function() {
+		fQuery_each(this, function() {
 			this.$setStyle(sName, sValue);
 		});
 		return this;

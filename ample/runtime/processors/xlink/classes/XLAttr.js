@@ -11,7 +11,7 @@ var cXLAttr	= function(sLocalName) {
 	this.localName	= sLocalName;
 };
 
-cXLAttr.prototype	= new cAMLAttr;
+cXLAttr.prototype	= new cAttr;
 cXLAttr.prototype.namespaceURI	= sNS_XLINK;
 cXLAttr.prototype.localName		= "#attribute";
 

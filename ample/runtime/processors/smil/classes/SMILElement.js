@@ -10,7 +10,7 @@
 var cSMILElement	= function(sLocalName) {
 	this.localName	= sLocalName;
 };
-cSMILElement.prototype	= new cAMLElement;
+cSMILElement.prototype	= new cElement;
 cSMILElement.prototype.namespaceURI	= sNS_SMIL;
 cSMILElement.prototype.localName	= "#element";
 
@@ -101,9 +101,9 @@ fAmple_extend(cSMILElement);
 // Temp
 
 // Registering Event Handlers
-fAMLEventTarget_addEventListener(oAmple_document, "load",	function() {
+fEventTarget_addEventListener(oAmple_document, "load",	function() {
 	nSMILElement_timeline	= fSetTimeout(fSMILElement_onTimeline, nSMILElement_timeout);
 }, false);
-fAMLEventTarget_addEventListener(oAmple_document, "unload", function() {
+fEventTarget_addEventListener(oAmple_document, "unload", function() {
 	fClearTimeout(nSMILElement_timeline);
 }, false);

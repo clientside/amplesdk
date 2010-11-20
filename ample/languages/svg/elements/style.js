@@ -32,7 +32,7 @@ if (cSVGElement.useVML) {
 	// presentation
 	cSVGElement_style.prototype.$getTagOpen	= function() {
 		// Fix/Translate styles (only invoked for startup)
-		if (this.firstChild instanceof ample.classes.AMLText) {
+		if (this.firstChild instanceof ample.classes.Text) {
 			this.firstChild.nodeValue	=
 			this.firstChild.data	= cSVGElement_style.translate(this.firstChild.data);
 			this.firstChild.length	= this.firstChild.data.length;

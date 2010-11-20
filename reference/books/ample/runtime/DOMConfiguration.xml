@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<class name="DOMConfiguration">
+	<abstract>
+		<locale>
+			Configuration object.
+		</locale>
+		<locale xml:lang="ru">
+			Объект Configuration.
+		</locale>
+	</abstract>
+	<examples/>
+	<members>
+		<properties>
+			<property name="parameterNames" type="DOMStringList" readonly="true">
+				<description>
+          <locale>
+            The list of the parameters supported by this DOMConfiguration object and for which at least one value can be set by the application.
+            Note that this list can also contain parameter names defined outside this specification.
+          </locale>
+          <locale xml:lang="ru">
+            Список параметров, поддерживаемых этим объектом, для каждого из которых
+            Note that this list can also contain parameter names defined outside this specification.
+          </locale>
+				</description>
+			</property>
+		</properties>
+		<methods>
+			<method name="canSetParameter" type="Boolean">
+				<arguments>
+					<argument name="name" type="String" required="true">
+						<description>
+							<locale>
+								Parameter name
+							</locale>
+							<locale xml:lang="ru">
+								Название параметра
+							</locale>
+						</description>
+					</argument>
+					<argument name="value" type="Object" required="true">
+						<description>
+							<locale>
+								Parameter value
+							</locale>
+							<locale xml:lang="ru">
+								Значение параметра
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Checks if <link type="class">DOMConfiguration</link> parameter value can be set.
+					</locale>
+					<locale xml:lang="ru">
+						Проверяет, можно ли выставить указанное значение параметра объекта <link type="class">DOMConfiguration</link>.
+					</locale>
+				</description>
+			</method>
+			<method name="setParameter" type="Void">
+				<arguments>
+					<argument name="name" type="String" required="true">
+						<description>
+							<locale>
+								Parameter name
+							</locale>
+							<locale xml:lang="ru">
+								Название параметра
+							</locale>
+						</description>
+					</argument>
+					<argument name="value" type="Object" required="true">
+						<description>
+							<locale>
+								Parameter value
+							</locale>
+							<locale xml:lang="ru">
+								Значение параметра
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Sets <link type="class">DOMConfiguration</link> parameter value.
+					</locale>
+					<locale xml:lang="ru">
+						Устанавливает значение параметра объекта <link type="class">DOMConfiguration</link>.
+					</locale>
+				</description>
+			</method>
+			<method name="getParameter" type="Object">
+				<arguments>
+					<argument name="name" type="String" required="true">
+						<description>
+							<locale>
+								Parameter name
+							</locale>
+							<locale xml:lang="ru">
+								Название параметра
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Returns <link type="class">DOMConfiguration</link> parameter value.
+					</locale>
+					<locale xml:lang="ru">
+						Возвращает значение параметра объекта <link type="class">DOMConfiguration</link>.
+					</locale>
+				</description>
+			</method>
+		</methods>
+	</members>
+	<remarks>
+		<remark>
+			<locale>
+				<p>List of supported parameters:</p>
+				<ul>
+					<li><b>error-handler</b> - if an error is encountered in the document, the implementation will call back the ErrorHandler registered using this parameter</li>
+					<li><b>ample-module-history-fix</b> - fix initial value of the location.hash property in Internet Explorer</li>
+					<li><b>ample-version</b> - Ample SDK version identifier</li>
+					<li><b>ample-locale</b> - Ample SDK culture</li>
+					<li><b>ample-user-agent</b> - Ample SDK user agent string</li>
+					<li><b>ample-user-locale</b> - User locale</li>
+					<li><b>ample-enable-style</b> - enable/disable style property on elements</li>
+					<li><b>ample-enable-guard</b> - enable/disable API validation</li>
+					<li><b>ample-enable-transitions</b> - enable/disable transitions</li>
+				</ul>
+			</locale>
+			<locale xml:lang="ru">
+				<p>Список параметров, поддерживаемых объектом:</p>
+				<ul>
+					<li><b>error-handler</b> - позволяет зарегистрировать обработчик ошибок, который будет вызываться в случае, если приозойдет ошибка</li>
+					<li><b>ample-module-history-fix</b> - починить начальное значение свойства location.hash в Internet Explorer</li>
+					<li><b>ample-version</b> - версия Ample SDK</li>
+					<li><b>ample-locale</b> - Ample SDK culture</li>
+					<li><b>ample-user-agent</b> - Ample SDK user agent string</li>
+					<li><b>ample-user-locale</b> - User locale</li>
+					<li><b>ample-enable-style</b> - включить/отключить поддержку свойства style</li>
+					<li><b>ample-enable-guard</b> - enable/disable API validation</li>
+					<li><b>ample-enable-transitions</b> - enable/disable transitions</li>
+				</ul>
+			</locale>
+		</remark>
+	</remarks>
+</class>

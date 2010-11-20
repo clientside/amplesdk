@@ -43,7 +43,7 @@
 					</locale>
 				</description>
 			</property>
-			<property name="responseXML" type="Document">
+			<property name="responseXML" type="XMLDocument">
 				<description>
 					<locale>
 						Document object, representing the parsed data.
@@ -119,7 +119,7 @@
 			</method>
 			<method name="send" type="Void">
 				<arguments>
-					<argument name="data" required="true" type="Node">
+					<argument name="data" required="true" type="XMLNode">
 						<description>
 							<locale>
 								Data to be sent to the server.

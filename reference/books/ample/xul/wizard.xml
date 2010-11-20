@@ -124,7 +124,7 @@
 					</locale>
 				</description>
 			</method>
-			<method name="getPageById" type="AMLElement">
+			<method name="getPageById" type="Element">
 				<arguments>
 					<argument name="pageId" type="String" required="true">
 						<description>
@@ -146,7 +146,7 @@
 					</locale>
 				</description>
 			</method>
-			<method name="getButton" type="AMLElement">
+			<method name="getButton" type="Element">
 				<arguments>
 					<argument name="type" type="String" required="true">
 						<description>
@@ -171,7 +171,7 @@
 			</method>
 		</methods>
 		<properties>
-			<property name="currentPage" type="AMLElement" readonly="true">
+			<property name="currentPage" type="Element" readonly="true">
 				<description>
 					<locale>
 						This property returns the <link type="element">wizardpage</link> element that is currently displayed.
@@ -183,7 +183,7 @@
 					</locale>
 				</description>
 			</property>
-			<property name="wizardPages" type="AMLNodeList" readonly="readonly">
+			<property name="wizardPages" type="NodeList" readonly="readonly">
 				<description>
 					<locale>
 						This property holds the list of <link type="element">wizardpage</link> elements in the <link type="element">wizard</link>.

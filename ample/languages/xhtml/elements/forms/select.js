@@ -10,7 +10,7 @@
 var cXHTMLElement_select	= function() {
    	this.validity	= new cXHTMLValidityState;
 	//
-    this.options	= new ample.classes.AMLNodeList;
+    this.options	= new ample.classes.NodeList;
 
     var oSelf	= this;
     this.options.add	= function (oElement, nIndex) {oSelf.add(oElement, nIndex)};

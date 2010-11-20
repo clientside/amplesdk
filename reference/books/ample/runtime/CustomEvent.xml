@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<class name="CustomEvent" extends="runtime:Event">
+	<abstract>
+		<locale>
+			The CustomEvent interface is the recommended interface for application-specific event types.
+		</locale>
+		<locale xml:lang="ru">
+			Интерфейс объекта CustomEvent используется для предоставления контекстной информации о событии обработчику этого события.
+		</locale>
+	</abstract>
+	<examples/>
+	<members>
+		<methods>
+			<method name="initCustomEvent" type="Void">
+				<arguments>
+					<argument name="type" type="String" required="true">
+						<description>
+							<locale>
+								Specifies the event type.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает на тип события (Event.type).
+							</locale>
+						</description>
+					</argument>
+					<argument name="canBubble" type="Boolean" required="true">
+						<description>
+							<locale>
+								Specifies whether or not the event can bubble.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает, может ли событие распространяться в фазе "bubbling".
+							</locale>
+						</description>
+					</argument>
+					<argument name="cancelable" type="Boolean" required="true">
+						<description>
+							<locale>
+								Specifies whether or not the event's default action can be prevented.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает, возможно ли отменить ответную реакцию браузера по умолчанию на событие.
+							</locale>
+						</description>
+					</argument>
+					<argument name="detail" type="Object" required="true">
+						<description>
+							<locale>
+								Specifies detail. This value may be null.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает дополнительное значение, ассоциированииое с данным событием.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Initializes attributes of a <link type="class">CustomEvent</link> object.
+					</locale>
+					<locale xml:lang="ru">
+						Этот метод используется для инициализации значения объекта <link type="class">CustomEvent</link>.
+					</locale>
+				</description>
+			</method>
+		</methods>
+		<properties>
+			<property name="detail" type="Object">
+				<description>
+					<locale>
+						Specifies some detail information about the Event.
+					</locale>
+					<locale xml:lang="ru">
+						Содержит дополнительное значение, ассоциированииое с данным событием.
+					</locale>
+				</description>
+			</property>
+		</properties>
+	</members>
+	<remarks>
+		<remark>
+			<locale>
+				Events of that type are usually implemented in custom components.
+			</locale>
+		</remark>
+	</remarks>
+	<examples />
+</class>

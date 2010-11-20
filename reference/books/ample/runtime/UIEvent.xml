@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<class name="UIEvent" extends="runtime:Event">
+	<abstract>
+		<locale>
+			The UIEvent interface provides specific contextual information associated with User Interface events.
+		</locale>
+		<locale xml:lang="ru">
+			Интерфейс UIEvent предоставляет контекстную информацию, специфичную для событий пользовательского интерфейса.
+		</locale>
+	</abstract>
+	<examples/>
+	<members>
+		<methods>
+			<method name="initUIEvent" type="Void">
+				<arguments>
+					<argument name="type" type="String" required="true">
+						<description>
+							<locale>
+								Specifies the event type.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает на тип события (Event.type).
+							</locale>
+						</description>
+					</argument>
+					<argument name="canBubble" type="Boolean" required="true">
+						<description>
+							<locale>
+								Specifies whether or not the event can bubble.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает, может ли событие распространяться в фазе "bubbling".
+							</locale>
+						</description>
+					</argument>
+					<argument name="cancelable" type="Boolean" required="true">
+						<description>
+							<locale>
+								Specifies whether or not the event's default action can be prevented.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает, возможно ли отменить ответную реакцию браузера по умолчанию на событие.
+							</locale>
+						</description>
+					</argument>
+					<argument name="view" type="Object" required="true">
+						<description>
+							<locale>
+								Specifies view. This value may be null.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает на обьект View, в котором произошло событие.
+							</locale>
+						</description>
+					</argument>
+					<argument name="detail" type="Number" required="true">
+						<description>
+							<locale>
+								Specifies detail.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает дополнительное значение, ассоциированииое с данным событием.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						The initUIEvent method is used to initialize the value of a UIEvent object.
+					</locale>
+					<locale xml:lang="ru">
+						Метод initUIEvent используется для инициализации значения объекта UIEvent.
+					</locale>
+				</description>
+			</method>
+		</methods>
+		<properties>
+			<property name="detail" type="Number">
+				<description>
+					<locale>
+						Specifies some detail information about the Event, depending on the type of event.
+					</locale>
+					<locale xml:lang="ru">
+						Содержит дополнительное значение, ассоциированииое с данным событием.
+					</locale>
+				</description>
+			</property>
+			<property name="view" type="Object">
+				<description>
+					<locale>
+						The view attribute identifies the AbstractView from which the event was generated.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает на обьект View, в котором произошло событие.
+					</locale>
+				</description>
+			</property>
+			<property name="$pseudoTarget" type="HTMLElement">
+				<description>
+					<locale>
+						Keeps the reference to pseudo element where event originated.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<constants />
+	</members>
+	<remarks>
+		<remark>
+			<locale>Events of that type:</locale>
+			<locale xml:lang="ru">События этого типа:</locale>
+			<ul>
+				<li><link type="event" href="runtime:Element">DOMActivate</link></li>
+				<li><link type="event" href="runtime:Document">resize</link></li>
+				<li><link type="event" href="runtime:Document">scroll</link></li>
+			</ul>
+		</remark>
+	</remarks>
+	<examples />
+</class>

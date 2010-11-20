@@ -60,7 +60,7 @@
 		<methods>
 		</methods>
 		<properties>
-			<property name="popup" type="AMLElement" readonly="false">
+			<property name="popup" type="Element" readonly="false">
 				<description>
 					<locale>
 						A reference to the <link type="element">menupopup</link>.

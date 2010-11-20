@@ -8,7 +8,7 @@
  */
 
 //
-cAMLQuery.prototype.offset	= function(oOffset) {
+cQuery.prototype.offset	= function(oOffset) {
 //->Guard
 	fGuard(arguments, [
 		["offset",	cObject, true]
@@ -23,7 +23,7 @@ cAMLQuery.prototype.offset	= function(oOffset) {
 		var oElementDOM	= this[0].$getContainer();
 		if (oElementDOM) {
 			var sPosition	= fBrowser_getStyle(oElementDOM, "position"),
-				oRect		= fAMLElement_getBoundingClientRect(this[0]),
+				oRect		= fElement_getBoundingClientRect(this[0]),
 				oPosition	= {};
 
 			oPosition.left	= oRect.left;
@@ -34,7 +34,7 @@ cAMLQuery.prototype.offset	= function(oOffset) {
 				if (oElementDOM != oOffsetDOM) {
 					var oOffsetParent	= fAmple_instance(oAmple_document, oOffsetDOM);
 					if (oOffsetParent) {
-						var oOffsetRect	= fAMLElement_getBoundingClientRect(oOffsetParent);
+						var oOffsetRect	= fElement_getBoundingClientRect(oOffsetParent);
 						oPosition.left	-= oOffsetRect.left;
 						oPosition.top	-= oOffsetRect.top;
 					}
@@ -46,8 +46,8 @@ cAMLQuery.prototype.offset	= function(oOffset) {
 	return null;
 };
 
-cAMLQuery.prototype.offsetParent	= function() {
-	var oQuery	= new cAMLQuery;
+cQuery.prototype.offsetParent	= function() {
+	var oQuery	= new cQuery;
 	if (this.length) {
 		var oElementDOM	= this[0].$getContainer();
 		oQuery[oQuery.length++]	=(oElementDOM ? fAmple_instance(oAmple_document, oElementDOM.offsetParent) : null) || oAmple_root;
@@ -55,11 +55,11 @@ cAMLQuery.prototype.offsetParent	= function() {
 	return oQuery;
 };
 
-cAMLQuery.prototype.position	= function() {
+cQuery.prototype.position	= function() {
 	if (this.length) {
 		var oElementDOM	= this[0].$getContainer();
 		if (oElementDOM) {
-			var oRect	= fAMLElement_getBoundingClientRect(this[0]),
+			var oRect	= fElement_getBoundingClientRect(this[0]),
 				oPosition	= {};
 			oPosition.left	= oRect.left;
 			oPosition.top	= oRect.top;
@@ -69,7 +69,7 @@ cAMLQuery.prototype.position	= function() {
 	return null;
 };
 
-cAMLQuery.prototype.scrollTop	= function(nValue) {
+cQuery.prototype.scrollTop	= function(nValue) {
 //->Guard
 	fGuard(arguments, [
 		["value",	cNumber, true]
@@ -79,7 +79,7 @@ cAMLQuery.prototype.scrollTop	= function(nValue) {
 	// TODO: Implementation missing
 };
 
-cAMLQuery.prototype.scrollLeft	= function(nValue) {
+cQuery.prototype.scrollLeft	= function(nValue) {
 //->Guard
 	fGuard(arguments, [
 		["value",	cNumber, true]

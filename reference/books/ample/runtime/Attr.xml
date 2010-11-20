@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<class name="Attr" extends="runtime:Node">
+	<abstract>
+		<locale>
+			Represents an attribute object.
+		</locale>
+		<locale xml:lang="ru">
+			Является объектом типа "атрибут".
+		</locale>
+	</abstract>
+	<warning>
+	    <locale>
+	      The <link type="class">Attr</link> class is only used in order to define global language attributes.
+	    </locale>
+	    <locale xml:lang="ru">
+	      Класс <link type="class">Attr</link> используется только для объявления глобальных атрибутов языка.
+	    </locale>
+	</warning>
+	<examples/>
+	<members>
+		<properties>
+			<property name="ownerElement" type="Element" readonly="true">
+				<description>
+					<locale>
+						References element that attribute belongs to.
+					</locale>
+					<locale xml:lang="ru">
+						Ссылка на объект, которому принадлежит атрибут.
+					</locale>
+				</description>
+			</property>
+			<property name="specified" type="Boolean" readonly="true">
+				<description>
+					<locale>
+						Indicates wether value of the attribute is specified or not.
+					</locale>
+					<locale xml:lang="ru">
+						Указывает на наличие значения атрибута.
+					</locale>
+				</description>
+			</property>
+			<property name="name" type="String" readonly="true">
+				<description>
+					<locale>
+						Attribute name.
+					</locale>
+					<locale xml:lang="ru">
+						Имя атрибута.
+					</locale>
+				</description>
+			</property>
+			<property name="value" type="String" readonly="true">
+				<description>
+					<locale>
+						Attribute value.
+					</locale>
+					<locale xml:lang="ru">
+						Значение атрибута.
+					</locale>
+				</description>
+			</property>
+		</properties>
+	</members>
+</class>

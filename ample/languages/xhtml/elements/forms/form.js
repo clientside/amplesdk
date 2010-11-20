@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_form	= function() {
-	this.elements	= new ample.classes.AMLNodeList;
+	this.elements	= new ample.classes.NodeList;
 };
 cXHTMLElement_form.prototype	= new cXHTMLElement("form");
 

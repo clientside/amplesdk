@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<class name="DragEvent" extends="runtime:UIEvent">
+	<abstract>
+		<locale>
+			The DragEvent interface provides specific contextual information associated with Drag Events.
+		</locale>
+		<locale xml:lang="ru">
+			Интерфейс DragEvent предоставляет контекстную информацию, специфичную для событий пользовательского интерфейса.
+		</locale>
+	</abstract>
+	<examples/>
+	<members>
+		<methods>
+			<method name="initDragEvent" type="Void">
+				<arguments>
+					<argument name="type" type="String" required="true">
+						<description>
+							<locale>
+								Type of the event.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает на тип события (Event.type).
+							</locale>
+						</description>
+					</argument>
+					<argument name="canBubble" type="Boolean" required="true">
+						<description>
+							<locale xml:lang="ru">
+								Указывает, может ли событие распространяться в фазе "bubbling".
+							</locale>
+							<locale>
+								Specifies if event should have bubbling phase.
+							</locale>
+						</description>
+					</argument>
+					<argument name="cancelable" type="Boolean" required="true">
+						<description>
+							<locale>
+								Specifies whether or not the event's default action can be prevented.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает, возможно ли отменить ответную реакцию браузера по умолчанию на событие.
+							</locale>
+						</description>
+					</argument>
+					<argument name="view" type="Object" required="true">
+						<description>
+							<locale>
+								Specifies view. This value may be null.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает на обьект View, в котором произошло событие.
+							</locale>
+						</description>
+					</argument>
+					<argument name="detail" type="Number" required="true">
+						<description>
+							<locale>
+								Specifies detail.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает дополнительное значение, ассоциированииое с данным событием.
+							</locale>
+						</description>
+					</argument>
+					<argument name="dataTransfer" type="DataTransfer" required="true">
+						<description>
+							<locale>
+								References DataTransfer object associated with the event.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает DataTransfer значение, ассоциированииое с данным событием.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Initializes attributes of a <link type="class">DragEvent</link> object.
+					</locale>
+					<locale xml:lang="ru">
+						Метод initDragEvent используется для инициализации значения объекта DragEvent.
+					</locale>
+				</description>
+			</method>
+		</methods>
+		<properties>
+			<property name="dataTransfer" type="DataTransfer">
+				<description>
+					<locale>
+						Keeps a reference to <link type="class">DataTransfer</link> object, associated with this object.
+					</locale>
+					<locale xml:lang="ru">
+						Содержит <link type="class">DataTransfer</link> object, ассоциированииое с данным событием.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<constants />
+	</members>
+	<remarks>
+		<remark>
+			<locale>Events of that type:</locale>
+			<locale xml:lang="ru">События этого типа:</locale>
+			<ul>
+				<li><link type="event" href="runtime:Element">drag</link></li>
+				<li><link type="event" href="runtime:Element">dragend</link></li>
+				<li><link type="event" href="runtime:Element">dragenter</link></li>
+				<li><link type="event" href="runtime:Element">dragleave</link></li>
+				<li><link type="event" href="runtime:Element">dragover</link></li>
+				<li><link type="event" href="runtime:Element">dragstart</link></li>
+				<li><link type="event" href="runtime:Element">drop</link></li>
+			</ul>
+		</remark>
+	</remarks>
+	<examples />
+</class>

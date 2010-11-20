@@ -7,8 +7,8 @@
  *
  */
 
-function fAMLXPathExpression_evaluate(oExpression, oNode, nType, oResult) {
-	var oResult	= new cAMLXPathResult;
+function fXPathExpression_evaluate(oExpression, oNode, nType, oResult) {
+	var oResult	= new cXPathResult;
 
 	return oResult;
 };

@@ -10,7 +10,7 @@
 oAmple.modal		= function(oNode) {
 //->Guard
 	fGuard(arguments, [
-		["element",	cAMLElement, true, true]
+		["element",	cElement, true, true]
 	]);
 //<-Guard
 
@@ -23,14 +23,14 @@ oAmple.modal		= function(oNode) {
 			oElement	= aBrowser_mouseNodes[nIndex];
 		    // Remove :hover pseudo-class
 			if (oElement.$hoverable && oElement.$isAccessible())
-				fAMLElement_setPseudoClass(oElement, "hover", false);
+				fElement_setPseudoClass(oElement, "hover", false);
 			//
-			oEvent = new cAMLMouseEvent;
+			oEvent = new cMouseEvent;
 			oEvent.initMouseEvent("mouseleave", false, false, window, null, 0, 0, 0, 0, false, false, false, false, 0, aBrowser_mouseNodes[nIndex + 1] || null);
 			oEvent.$pseudoTarget	= oElement.$getContainer();
-		    fAMLNode_dispatchEvent(oElement, oEvent);
+		    fNode_dispatchEvent(oElement, oEvent);
 		}
-		aBrowser_mouseNodes	= new cAMLNodeList;
+		aBrowser_mouseNodes	= new cNodeList;
 		//
 		oBrowser_modalNode	= oAmple.activeElement	= oNode;
 	}

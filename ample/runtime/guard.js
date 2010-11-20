@@ -21,7 +21,7 @@ var oGuard_endings	= 'st-nd-rd-th'.split('-'),
 
 //->Guard
 function fGuard(aArguments, aParameters, oObject) {
-	if (!oAMLConfiguration_values["ample-enable-guard"])
+	if (!oDOMConfiguration_values["ample-enable-guard"])
 		return;
 
 	var fCallee	= aArguments.callee,
@@ -36,7 +36,7 @@ function fGuard(aArguments, aParameters, oObject) {
 
 	// Check constructor
 	if (oObject && fCaller && oObject instanceof fCaller)
-		throw new cAMLException(cAMLException.AML_DOM_IN_CONSTRUCTOR_ERR, fCaller);
+		throw new cDOMException(cDOMException.GUARD_CANNOT_ACCESS_DOM_ERR, fCaller);
 
 	// Iterate over parameters list
 	for (var nIndex = 0, nLength = aArguments.length, aParameter, vValue; aParameter = aParameters[nIndex]; nIndex++) {
@@ -46,7 +46,7 @@ function fGuard(aArguments, aParameters, oObject) {
 //<-Debug
 		// see if argument is missing
 		if (typeof vValue == "undefined" && !aParameter[2])
-			throw new cAMLException(cAMLException.AML_ARGUMENT_MISSING_ERR, fCaller
+			throw new cDOMException(cDOMException.GUARD_ARGUMENT_MISSING_ERR, fCaller
 //->Debug
 								, [sArgument, aParameter[0], sFunction]
 //<-Debug
@@ -56,7 +56,7 @@ function fGuard(aArguments, aParameters, oObject) {
 			if (vValue === null) {
 				// See if null is allowed
 				if (!aParameter[3])
-					throw new cAMLException(cAMLException.AML_ARGUMENT_NULL_ERR, fCaller
+					throw new cDOMException(cDOMException.GUARD_ARGUMENT_NULL_ERR, fCaller
 //->Debug
 										, [sArgument, aParameter[0], sFunction]
 //<-Debug
@@ -65,7 +65,7 @@ function fGuard(aArguments, aParameters, oObject) {
 			else
 			// see if argument has correct type
 			if (!fGuard_instanceOf(vValue, aParameter[1]))
-				throw new cAMLException(cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR, fCaller
+				throw new cDOMException(cDOMException.GUARD_ARGUMENT_WRONG_TYPE_ERR, fCaller
 //->Debug
 									, [sArgument, aParameter[0], sFunction, oGuard_types[aParameter[1]] ||(cString(aParameter[1]).match(rGuard_function) ? cRegExp.$1 : "anonymous")]
 //<-Debug

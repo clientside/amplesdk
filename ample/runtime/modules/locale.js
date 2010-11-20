@@ -402,7 +402,7 @@ function fFormatNumber(sValue, sFormat, oCulture) {
             nNumber = fNumber_expandNumber(nNumber * (sCurrent === 'P' ? 100 : 1), nPrecision, oFormatInfo);
             break;
         default:
-        	throw new cAMLException(cAMLException.AML_LOCALE_BAD_NUMBER_FORMAT, null, [sCurrent]);
+        	throw new cDOMException(cDOMException.SYNTAX_ERR, null, [sCurrent]);
     }
 
     var rPatternParts = /n|\$|-|%/g,
@@ -570,7 +570,7 @@ function fCalendar_expandFormat(oCalendar, sFormat) {
     if (nLength === 1) {
         sPattern = oPatterns[sFormat];
         if (!sPattern)
-        	throw new cAMLException(cAMLException.AML_LOCALE_BAD_DATE_FORMAT, null, [sFormat]);
+        	throw new cDOMException(cDOMException.SYNTAX_ERR, null, [sFormat]);
         sFormat = sPattern;
     }
     else
@@ -652,7 +652,7 @@ function fCalendar_getParseRegExp(oCalendar, sFormat) {
             	sAdd = '(\\' + oCalendar['/'] + ')';
                 break;
             default:
-            	throw new cAMLException(cAMLException.AML_LOCALE_BAD_DATE_FORMAT, null, [sGroupToken]);
+            	throw new cDOMException(cDOMException.SYNTAX_ERR, null, [sGroupToken]);
                 break;
         }
         if (sAdd)
@@ -1040,7 +1040,7 @@ function fFormatDate(dValue, sFormat, oCulture) {
 	        	aReturn.push(oCalendar['/']);
 	            break;
 	        default:
-	        	throw new cAMLException(cAMLException.AML_LOCALE_BAD_DATE_FORMAT, null, [sCurrent]);
+	        	throw new cDOMException(cDOMException.SYNTAX_ERR, null, [sCurrent]);
 	            break;
         }
     }
@@ -1259,19 +1259,19 @@ oAmple.locale	= oGlobalization;
 oAmple.locale.culture	= oDefaultCulture;
 
 // Find Ample SDK location
-var aAMLQuery_cultures	= "af;af-ZA;am;am-ET;ar;ar-AE;ar-BH;ar-DZ;ar-EG;ar-IQ;ar-JO;ar-KW;ar-LB;ar-LY;ar-MA;arn;arn-CL;ar-OM;ar-QA;ar-SA;ar-SY;ar-TN;ar-YE;as;as-IN;az;az-Cyrl;az-Cyrl-AZ;az-Latn;az-Latn-AZ;ba;ba-RU;be;be-BY;bg;bg-BG;bn;bn-BD;bn-IN;bo;bo-CN;br;br-FR;bs;bs-Cyrl;bs-Cyrl-BA;bs-Latn;bs-Latn-BA;ca;ca-ES;co;co-FR;cs;cs-CZ;cy;cy-GB;da;da-DK;de;de-AT;de-CH;de-DE;de-LI;de-LU;dsb;dsb-DE;dv;dv-MV;el;el-GR;en-029;en-AU;en-BZ;en-CA;en-GB;en-IE;en-IN;en-JM;en-MY;en-NZ;en-PH;en-SG;en-TT;en-US;en-ZA;en-ZW;es;es-AR;es-BO;es-CL;es-CO;es-CR;es-DO;es-EC;es-ES;es-GT;es-HN;es-MX;es-NI;es-PA;es-PE;es-PR;es-PY;es-SV;es-US;es-UY;es-VE;et;et-EE;eu;eu-ES;fa;fa-IR;fi;fi-FI;fil;fil-PH;fo;fo-FO;fr;fr-BE;fr-CA;fr-CH;fr-FR;fr-LU;fr-MC;fy;fy-NL;ga;ga-IE;gd;gd-GB;gl;gl-ES;gsw;gsw-FR;gu;gu-IN;ha;ha-Latn;ha-Latn-NG;he;he-IL;hi;hi-IN;hr;hr-BA;hr-HR;hsb;hsb-DE;hu;hu-HU;hy;hy-AM;id;id-ID;ig;ig-NG;ii;ii-CN;is;is-IS;it;it-CH;it-IT;iu;iu-Cans;iu-Cans-CA;iu-Latn;iu-Latn-CA;ja;ja-JP;ka;ka-GE;kk;kk-KZ;kl;kl-GL;km;km-KH;kn;kn-IN;ko;kok;kok-IN;ko-KR;ky;ky-KG;lb;lb-LU;lo;lo-LA;lt;lt-LT;lv;lv-LV;mi;mi-NZ;mk;mk-MK;ml;ml-IN;mn;mn-Cyrl;mn-MN;mn-Mong;mn-Mong-CN;moh;moh-CA;mr;mr-IN;ms;ms-BN;ms-MY;mt;mt-MT;nb;nb-NO;ne;ne-NP;nl;nl-BE;nl-NL;nn;nn-NO;no;nso;nso-ZA;oc;oc-FR;or;or-IN;pa;pa-IN;pl;pl-PL;prs;prs-AF;ps;ps-AF;pt;pt-BR;pt-PT;qut;qut-GT;quz;quz-BO;quz-EC;quz-PE;rm;rm-CH;ro;ro-RO;ru;ru-RU;rw;rw-RW;sa;sah;sah-RU;sa-IN;se;se-FI;se-NO;se-SE;si;si-LK;sk;sk-SK;sl;sl-SI;sma;sma-NO;sma-SE;smj;smj-NO;smj-SE;smn;smn-FI;sms;sms-FI;sq;sq-AL;sr;sr-Cyrl;sr-Cyrl-BA;sr-Cyrl-CS;sr-Cyrl-ME;sr-Cyrl-RS;sr-Latn;sr-Latn-BA;sr-Latn-CS;sr-Latn-ME;sr-Latn-RS;sv;sv-FI;sv-SE;sw;sw-KE;syr;syr-SY;ta;ta-IN;te;te-IN;tg;tg-Cyrl;tg-Cyrl-TJ;th;th-TH;tk;tk-TM;tn;tn-ZA;tr;tr-TR;tt;tt-RU;tzm;tzm-Latn;tzm-Latn-DZ;ug;ug-CN;uk;uk-UA;ur;ur-PK;uz;uz-Cyrl;uz-Cyrl-UZ;uz-Latn;uz-Latn-UZ;vi;vi-VN;wo;wo-SN;xh;xh-ZA;yo;yo-NG;zh;zh-CHS;zh-CHT;zh-CN;zh-Hans;zh-Hant;zh-HK;zh-MO;zh-SG;zh-TW;zu;zu-ZA".split(';'),
-	sAMLQuery_baseURI	= (function(aElements) {
+var aQuery_cultures	= "af;af-ZA;am;am-ET;ar;ar-AE;ar-BH;ar-DZ;ar-EG;ar-IQ;ar-JO;ar-KW;ar-LB;ar-LY;ar-MA;arn;arn-CL;ar-OM;ar-QA;ar-SA;ar-SY;ar-TN;ar-YE;as;as-IN;az;az-Cyrl;az-Cyrl-AZ;az-Latn;az-Latn-AZ;ba;ba-RU;be;be-BY;bg;bg-BG;bn;bn-BD;bn-IN;bo;bo-CN;br;br-FR;bs;bs-Cyrl;bs-Cyrl-BA;bs-Latn;bs-Latn-BA;ca;ca-ES;co;co-FR;cs;cs-CZ;cy;cy-GB;da;da-DK;de;de-AT;de-CH;de-DE;de-LI;de-LU;dsb;dsb-DE;dv;dv-MV;el;el-GR;en-029;en-AU;en-BZ;en-CA;en-GB;en-IE;en-IN;en-JM;en-MY;en-NZ;en-PH;en-SG;en-TT;en-US;en-ZA;en-ZW;es;es-AR;es-BO;es-CL;es-CO;es-CR;es-DO;es-EC;es-ES;es-GT;es-HN;es-MX;es-NI;es-PA;es-PE;es-PR;es-PY;es-SV;es-US;es-UY;es-VE;et;et-EE;eu;eu-ES;fa;fa-IR;fi;fi-FI;fil;fil-PH;fo;fo-FO;fr;fr-BE;fr-CA;fr-CH;fr-FR;fr-LU;fr-MC;fy;fy-NL;ga;ga-IE;gd;gd-GB;gl;gl-ES;gsw;gsw-FR;gu;gu-IN;ha;ha-Latn;ha-Latn-NG;he;he-IL;hi;hi-IN;hr;hr-BA;hr-HR;hsb;hsb-DE;hu;hu-HU;hy;hy-AM;id;id-ID;ig;ig-NG;ii;ii-CN;is;is-IS;it;it-CH;it-IT;iu;iu-Cans;iu-Cans-CA;iu-Latn;iu-Latn-CA;ja;ja-JP;ka;ka-GE;kk;kk-KZ;kl;kl-GL;km;km-KH;kn;kn-IN;ko;kok;kok-IN;ko-KR;ky;ky-KG;lb;lb-LU;lo;lo-LA;lt;lt-LT;lv;lv-LV;mi;mi-NZ;mk;mk-MK;ml;ml-IN;mn;mn-Cyrl;mn-MN;mn-Mong;mn-Mong-CN;moh;moh-CA;mr;mr-IN;ms;ms-BN;ms-MY;mt;mt-MT;nb;nb-NO;ne;ne-NP;nl;nl-BE;nl-NL;nn;nn-NO;no;nso;nso-ZA;oc;oc-FR;or;or-IN;pa;pa-IN;pl;pl-PL;prs;prs-AF;ps;ps-AF;pt;pt-BR;pt-PT;qut;qut-GT;quz;quz-BO;quz-EC;quz-PE;rm;rm-CH;ro;ro-RO;ru;ru-RU;rw;rw-RW;sa;sah;sah-RU;sa-IN;se;se-FI;se-NO;se-SE;si;si-LK;sk;sk-SK;sl;sl-SI;sma;sma-NO;sma-SE;smj;smj-NO;smj-SE;smn;smn-FI;sms;sms-FI;sq;sq-AL;sr;sr-Cyrl;sr-Cyrl-BA;sr-Cyrl-CS;sr-Cyrl-ME;sr-Cyrl-RS;sr-Latn;sr-Latn-BA;sr-Latn-CS;sr-Latn-ME;sr-Latn-RS;sv;sv-FI;sv-SE;sw;sw-KE;syr;syr-SY;ta;ta-IN;te;te-IN;tg;tg-Cyrl;tg-Cyrl-TJ;th;th-TH;tk;tk-TM;tn;tn-ZA;tr;tr-TR;tt;tt-RU;tzm;tzm-Latn;tzm-Latn-DZ;ug;ug-CN;uk;uk-UA;ur;ur-PK;uz;uz-Cyrl;uz-Cyrl-UZ;uz-Latn;uz-Latn-UZ;vi;vi-VN;wo;wo-SN;xh;xh-ZA;yo;yo-NG;zh;zh-CHS;zh-CHT;zh-CN;zh-Hans;zh-Hant;zh-HK;zh-MO;zh-SG;zh-TW;zu;zu-ZA".split(';'),
+	sQuery_baseURI	= (function(aElements) {
 		return aElements[aElements.length - 1].src;
 	})(oUADocument.getElementsByTagName("script"));
 
-fAMLEventTarget_addEventListener(oAmple_document, "configchange",	function(oEvent) {
+fEventTarget_addEventListener(oAmple_document, "configchange",	function(oEvent) {
 	if (oEvent.detail == "locale") {
-		var sCulture	= fAMLConfiguration_getParameter(oAmple_document.domConfig, "ample-locale");
+		var sCulture	= fDOMConfiguration_getParameter(oAmple_document.domConfig, "ample-locale");
 		function fChangeCulture(oCulture) {
 			// Set prefer culture
 			oGlobalization.culture	= oCulture;
 			// Dispatch localechange event
-			fAMLQuery_trigger(oAmple_document, "localechange", sCulture);
+			fQuery_trigger(oAmple_document, "localechange", sCulture);
 		};
 		var oCulture	= oCultures[sCulture];
 		if (oCulture)
@@ -1279,15 +1279,15 @@ fAMLEventTarget_addEventListener(oAmple_document, "configchange",	function(oEven
 				fChangeCulture(oCulture);
 			}, 0);
 		else
-		if (aAMLQuery_cultures.indexOf(sCulture) >-1) {
+		if (aQuery_cultures.indexOf(sCulture) >-1) {
 			var oSettings	= {};
-			oSettings.url	= fUtilities_resolveUri("cultures" + '/' + sCulture + ".js", sAMLQuery_baseURI);
+			oSettings.url	= fUtilities_resolveUri("cultures" + '/' + sCulture + ".js", sQuery_baseURI);
 			oSettings.dataType	= "script";
 			oSettings.success	= function() {
 				fChangeCulture(oCultures[sCulture]);
 			};
 			//
-			fAMLQuery_ajax(oSettings);
+			fQuery_ajax(oSettings);
 		}
 	}
 }, false);

@@ -77,10 +77,10 @@ ample.extend({
 		]);
 
 		// Invoke Implementation
-		var oAMLQuery	= this;
+		var oQuery	= this;
 		fAmple_transform(vXml, vXsl, function(oDocument) {
 			var oElement	= ample.importNode(oDocument.documentElement, true);
-			oAMLQuery.each(function() {
+			oQuery.each(function() {
 				// Remove nodes
 				while (this.lastChild)
 					this.removeChild(this.lastChild);
@@ -94,4 +94,4 @@ ample.extend({
 		//
 		return this;
 	}
-}, ample.classes.AMLQuery.prototype);
+}, ample.classes.Query.prototype);

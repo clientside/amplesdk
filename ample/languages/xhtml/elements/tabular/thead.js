@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_thead	= function() {
-	this.rows	= new ample.classes.AMLNodeList;
+	this.rows	= new ample.classes.NodeList;
 };
 cXHTMLElement_thead.prototype	= new cXHTMLElement("thead");
 

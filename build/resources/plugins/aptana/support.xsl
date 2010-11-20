@@ -10,7 +10,7 @@
 			<!-- global ample object -->
 			<class type="Global">
 				<properties>
-					<property name="ample" type="AMLDocument" scope="static" access="read">
+					<property name="ample" type="Document" scope="static" access="read">
 						<description>
 							Represents the Ample SDK document.
 						</description>

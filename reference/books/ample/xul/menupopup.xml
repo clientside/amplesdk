@@ -16,7 +16,7 @@
 		<attributes />
 		<methods />
 		<properties>
-			<property name="selectedItem" type="AMLElement" readonly="true">
+			<property name="selectedItem" type="Element" readonly="true">
 				<description>
 					<locale>
 						Contains a reference top the selected <link type="element">menuitem</link> element.
@@ -26,7 +26,7 @@
 					</locale>
 				</description>
 			</property>
-			<property name="items" type="AMLNodeList">
+			<property name="items" type="NodeList">
 				<description>
 					<locale>
 						Contains a collection of <link type="element">menuitem</link> child elements.

@@ -8,59 +8,59 @@
  */
 
 //
-cAMLQuery.prototype.children	= function() {
-	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+cQuery.prototype.children	= function() {
+	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };
 
-cAMLQuery.prototype.closest		= function() {
-	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+cQuery.prototype.closest		= function() {
+	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };
 
-cAMLQuery.prototype.find		= function() {
-	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+cQuery.prototype.find		= function() {
+	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };
 
-cAMLQuery.prototype.next		= function() {
-	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+cQuery.prototype.next		= function() {
+	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };
 
-cAMLQuery.prototype.nextAll		= function() {
-	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+cQuery.prototype.nextAll		= function() {
+	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };
 
-cAMLQuery.prototype.nextUntil	= function() {
-	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+cQuery.prototype.nextUntil	= function() {
+	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };
 
-cAMLQuery.prototype.parent		= function() {
-	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+cQuery.prototype.parent		= function() {
+	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };
 
-cAMLQuery.prototype.parents		= function() {
-	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+cQuery.prototype.parents		= function() {
+	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };
 
-cAMLQuery.prototype.parentsUntil= function() {
-	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+cQuery.prototype.parentsUntil= function() {
+	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };
 
-cAMLQuery.prototype.prev		= function() {
-	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+cQuery.prototype.prev		= function() {
+	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };
 
-cAMLQuery.prototype.prevAll		= function() {
-	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+cQuery.prototype.prevAll		= function() {
+	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };
 
-cAMLQuery.prototype.prevUntil	= function() {
-	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+cQuery.prototype.prevUntil	= function() {
+	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };
 
-cAMLQuery.prototype.siblings	= function() {
-	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+cQuery.prototype.siblings	= function() {
+	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };
 
-cAMLQuery.prototype.contents	= function() {
+cQuery.prototype.contents	= function() {
 	// Not to be supported
-	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };

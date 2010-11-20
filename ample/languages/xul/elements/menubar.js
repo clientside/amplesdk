@@ -10,7 +10,7 @@
 var cXULElement_menubar	= function()
 {
     // Collections
-    this.items  = new ample.classes.AMLNodeList;
+    this.items  = new ample.classes.NodeList;
 };
 cXULElement_menubar.prototype	= new cXULElement("menubar");
 cXULElement_menubar.prototype.$selectable	= false;

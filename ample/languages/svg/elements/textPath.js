@@ -32,7 +32,7 @@ if (cSVGElement.useVML) {
 				this.$getContainer().path	= cSVGElement_path.convert(oTextPath.getAttribute("d"));
 
 			// text
-			if (this.firstChild instanceof ample.classes.AMLCharacterData)
+			if (this.firstChild instanceof ample.classes.CharacterData)
 				this.$getContainer().getElementsByTagName("textpath")[0].string	= this.firstChild.data.replace(/^\s+/, '').replace(/\s+$/, '').replace(/&gt;/g, '>').replace(/&lt;/g, '<').replace(/&amp;/g, '&').replace(/&quot;/g, '"');
 
 			var sValue;

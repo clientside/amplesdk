@@ -7,12 +7,12 @@
  *
  */
 
-var cAMLElement_handler	= function(){};
-cAMLElement_handler.prototype	= new cAMLElement_prototype("handler");
+var cElement_handler	= function(){};
+cElement_handler.prototype	= new cAMLElement("handler");
 
 // Class Event Handlers
-cAMLElement_handler.handlers	= {};
-cAMLElement_handler.handlers["DOMNodeInsertedIntoDocument"]	= function(oEvent) {
+cElement_handler.handlers	= {};
+cElement_handler.handlers["DOMNodeInsertedIntoDocument"]	= function(oEvent) {
 	if (this.firstChild) {
 		if (this.attributes["event"])
 			this.parentNode.addEventListener(this.attributes["event"], new cFunction("event", this.firstChild.nodeValue), this.attributes["phase"] == "capture");
@@ -27,4 +27,4 @@ cAMLElement_handler.handlers["DOMNodeInsertedIntoDocument"]	= function(oEvent) {
 };
 
 // Register Element
-fAmple_extend(cAMLElement_handler);
+fAmple_extend(cElement_handler);

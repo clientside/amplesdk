@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<class name="DOMImplementation">
+	<abstract>
+		<locale>
+			Represents an implementation object.
+		</locale>
+		<locale xml:lang="ru">
+			Объект реализации.
+		</locale>
+	</abstract>
+	<remarks />
+	<members>
+		<properties />
+		<methods>
+			<method name="createDocument" type="Document">
+				<arguments>
+					<argument name="namespaceURI" type="String" required="true">
+						<description>
+							<locale>
+								The namespace URI of the document element to create or null.
+							</locale>
+							<locale xml:lang="ru">
+								URI пространства имен корневого элемента документа, который будет создан, или null.
+							</locale>
+						</description>
+					</argument>
+					<argument name="QName" type="String" required="true">
+						<description>
+							<locale>
+								The qualified name of the document element to be created or null.
+							</locale>
+							<locale xml:lang="ru">
+								Название (<a href="http://www.w3.org/TR/REC-xml-names/#ns-qualnames">Qualified Name</a>) документа, который будет создан, или null.
+							</locale>
+						</description>
+					</argument>
+					<argument name="documentType" type="DocumentType" required="true">
+						<description>
+							<locale>
+								The type of document to be created or null.
+							</locale>
+							<locale xml:lang="ru">
+								Тип документа, который будет создан, или null.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Creates a <link type="class">Document</link> object of the specified type with its document element.
+					</locale>
+					<locale xml:lang="ru">
+						Создает объект <link type="class">Document</link> указанного типа.
+					</locale>
+				</description>
+			</method>
+			<method name="createDocumentType" type="DocumentType">
+				<arguments>
+					<argument name="QName" type="String" required="true">
+						<description>
+							<locale>
+								The qualified name of the document type to be created.
+							</locale>
+							<locale xml:lang="ru">
+								Тип документа (<a href="http://www.w3.org/TR/REC-xml-names/#ns-qualnames">Qualified Name</a>), который будет создан.
+							</locale>
+						</description>
+					</argument>
+					<argument name="publicId" type="String" required="true">
+						<description>
+							<locale>
+								The external subset public identifier.
+							</locale>
+						</description>
+					</argument>
+					<argument name="systemId" type="String" required="true">
+						<description>
+							<locale>
+								The external subset system identifier.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Creates an empty DocumentType node.
+					</locale>
+					<locale xml:lang="ru">
+						Создает пустой DocumentType.
+					</locale>
+				</description>
+			</method>
+			<method name="hasFeature" type="Boolean">
+				<arguments>
+					<argument name="feature" type="String" required="true">
+						<description>
+							<locale>
+								The name of the feature requested.
+							</locale>
+							<locale xml:lang="ru">
+								Название запрашиваемой возможности.
+							</locale>
+						</description>
+					</argument>
+					<argument name="version" type="String" required="true">
+						<description>
+							<locale>
+								The version number of the feature to test.
+							</locale>
+							<locale xml:lang="ru">
+								Номер версии запрашиваемой возможности.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Test if the DOM implementation implements a specific feature and version.
+					</locale>
+					<locale xml:lang="ru">
+						Проверяет, имеет ли объект DOM Implementation возможность запрашиваемой версии.
+					</locale>
+				</description>
+			</method>
+		</methods>
+	</members>
+	<examples />
+</class>

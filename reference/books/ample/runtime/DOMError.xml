@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<class name="DOMError">
+	<abstract>
+		<locale>
+			DOMError is an interface that describes an error.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples/>
+	<members>
+		<methods />
+		<properties>
+			<property name="severity" type="Number">
+				<description>
+					<locale>
+						The severity of the error.
+					</locale>
+				</description>
+			</property>
+			<property name="message" type="String">
+				<description>
+					<locale>
+						An implementation specific string describing the error that occurred.
+					</locale>
+				</description>
+			</property>
+			<property name="type" type="String">
+				<description>
+					<locale>
+						A DOMString indicating which related data is expected in relatedData.
+					</locale>
+				</description>
+			</property>
+			<property name="relatedException" type="Object">
+				<description>
+					<locale>
+						The related platform dependent exception if any.
+					</locale>
+				</description>
+			</property>
+			<property name="relatedData" type="Object">
+				<description>
+					<locale>
+						The related DOMError.type dependent data if any.
+					</locale>
+				</description>
+			</property>
+			<property name="location" type="DOMLocator">
+				<description>
+					<locale>
+						The location of the error.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<constants>
+			<constant name="SEVERITY_WARNING" value="1">
+				<description>
+					<locale>
+						A SEVERITY_WARNING will not cause the processing to stop.
+					</locale>
+				</description>
+			</constant>
+			<constant name="SEVERITY_ERROR" value="2">
+				<description>
+					<locale>
+						A SEVERITY_FATAL_ERROR will cause the normal processing to stop.
+					</locale>
+				</description>
+			</constant>
+			<constant name="SEVERITY_FATAL_ERROR" value="3">
+				<description>
+					<locale>
+						A SEVERITY_ERROR  may not cause the processing to stop if the error can be recovered.
+					</locale>
+				</description>
+			</constant>
+		</constants>
+	</members>
+	<examples />
+</class>

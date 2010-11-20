@@ -14,7 +14,7 @@ cXMLEventsElement_listener.prototype	= new cXMLEventsElement("listener");
 cXMLEventsElement_listener.handlers	= {};
 cXMLEventsElement_listener.handlers["DOMNodeInsertedIntoDocument"]	= function(oEvent) {
 	var sValue	= this.attributes["handler"] || '';
-	fAMLEventTarget_addEventListener(this.parentNode,
+	fEventTarget_addEventListener(this.parentNode,
 		this.attributes["event"],
 		cFunction("event",	(this.attributes["propagate"] == "stop" ? "event" + '.' + "stopPropagation" + '();' : '') +
 							(this.attributes["defaultAction"] == "cancel" ? "event" + '.' + "preventDefault" + '();' : '') +

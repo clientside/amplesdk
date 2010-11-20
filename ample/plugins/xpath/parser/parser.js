@@ -7,6 +7,6 @@
  *
  */
 
-function fAMLXPathExpression_parse(oParser, sExpression, oResolver) {
+function fXPathExpression_parse(oParser, sExpression, oResolver) {
 
 };

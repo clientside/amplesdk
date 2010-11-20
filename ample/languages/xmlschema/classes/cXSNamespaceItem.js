@@ -28,17 +28,17 @@ cXSNamespaceItem.prototype.$types			= null;
 
 // @type	XSNamedMap
 cXSNamespaceItem.prototype.getComponents	= function(nObjectType) {
-	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };
 
 // @type	XSElementDeclaration
 cXSNamespaceItem.prototype.getElementDeclaration	= function(sName) {
-	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };
 
 // @type	XSAttributeDeclaration
 cXSNamespaceItem.prototype.getAttributeDeclaration	= function(sName) {
-	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };
 
 // @type	XSTypeDefinition
@@ -53,16 +53,16 @@ cXSNamespaceItem.prototype.getTypeDefinition	= function(sName) {
 
 // @type	XSAttributeGroupDefinition
 cXSNamespaceItem.prototype.getAttributeGroup	= function(sName) {
-	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };
 
 // @type	XSModelGroupDefinition
 cXSNamespaceItem.prototype.getModelGroupDefinition	= function(sName) {
-	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };
 
 // @type	XSNotationDeclaration
 cXSNamespaceItem.prototype.getNotationDeclaration	= function(sName) {
-	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };
 

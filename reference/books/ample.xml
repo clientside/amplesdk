@@ -4,46 +4,46 @@
 	<node title="Runtime" open="true">
 		<node title="JavaScript technologies" open="true">
 			<node title="ample" url="ample/runtime/ample.xml"/>
-			<node title="event" url="ample/runtime/event.xml"/>
+			<node title="event" url="ample/runtime/event_object.xml"/>
 			<!--node title="JavaScript technologies" /-->
 			<node title="DOM Level 2/3" open="true">
 				<!--node title="DOM Level 2/3" xurl="ample/runtime/dom.xml"/-->
-				<node title="AMLQuery" url="ample/runtime/AMLQuery.xml"/>
+				<node title="Query" url="ample/runtime/Query.xml"/>
 				<node title="DOM Core">
-					<node title="AMLAttr" url="ample/runtime/AMLAttr.xml"/>
-					<node title="AMLCDATASection" url="ample/runtime/AMLCDATASection.xml"/>
-					<node title="AMLCharacterData" url="ample/runtime/AMLCharacterData.xml"/>
-					<node title="AMLComment" url="ample/runtime/AMLComment.xml"/>
-					<node title="AMLConfiguration" url="ample/runtime/AMLConfiguration.xml"/>
-					<node title="AMLDocument" url="ample/runtime/AMLDocument.xml"/>
-					<node title="AMLDocumentFragment" url="ample/runtime/AMLDocumentFragment.xml"/>
-					<node title="AMLElement" url="ample/runtime/AMLElement.xml"/>
-					<node title="AMLEntityReference" url="ample/runtime/AMLEntityReference.xml"/>
-					<node title="AMLError" url="ample/runtime/AMLError.xml"/>
-					<node title="AMLException" url="ample/runtime/AMLException.xml"/>
-					<node title="AMLNode" url="ample/runtime/AMLNode.xml"/>
-					<node title="AMLImplementation" url="ample/runtime/AMLImplementation.xml"/>
-					<node title="AMLNodeList" url="ample/runtime/AMLNodeList.xml"/>
-					<node title="AMLProcessingInstruction" url="ample/runtime/AMLProcessingInstruction.xml"/>
-					<node title="AMLStringList" url="ample/runtime/AMLStringList.xml"/>
-					<node title="AMLText" url="ample/runtime/AMLText.xml"/>
+					<node title="Attr" url="ample/runtime/Attr.xml"/>
+					<node title="CDATASection" url="ample/runtime/CDATASection.xml"/>
+					<node title="CharacterData" url="ample/runtime/CharacterData.xml"/>
+					<node title="Comment" url="ample/runtime/Comment.xml"/>
+					<node title="Document" url="ample/runtime/Document.xml"/>
+					<node title="DocumentFragment" url="ample/runtime/DocumentFragment.xml"/>
+					<node title="Element" url="ample/runtime/Element.xml"/>
+					<node title="EntityReference" url="ample/runtime/EntityReference.xml"/>
+					<node title="Node" url="ample/runtime/Node.xml"/>
+					<node title="NodeList" url="ample/runtime/NodeList.xml"/>
+					<node title="ProcessingInstruction" url="ample/runtime/ProcessingInstruction.xml"/>
+					<node title="Text" url="ample/runtime/Text.xml"/>
+					<node title="DOMImplementation" url="ample/runtime/DOMImplementation.xml"/>
+					<node title="DOMConfiguration" url="ample/runtime/DOMConfiguration.xml"/>
+					<node title="DOMError" url="ample/runtime/DOMError.xml"/>
+					<node title="DOMException" url="ample/runtime/DOMException.xml"/>
+					<node title="DOMStringList" url="ample/runtime/DOMStringList.xml"/>
 				</node>
 				<node title="DOM Events">
-					<node title="AMLEvent" url="ample/runtime/AMLEvent.xml"/>
-					<node title="AMLCustomEvent" url="ample/runtime/AMLCustomEvent.xml"/>
-					<node title="AMLUIEvent" url="ample/runtime/AMLUIEvent.xml"/>
-					<node title="AMLFocusEvent" url="ample/runtime/AMLFocusEvent.xml"/>
-					<node title="AMLMouseEvent" url="ample/runtime/AMLMouseEvent.xml"/>
-					<node title="AMLMouseWheelEvent" url="ample/runtime/AMLMouseWheelEvent.xml"/>
-					<node title="AMLKeyboardEvent" url="ample/runtime/AMLKeyboardEvent.xml"/>
-					<node title="AMLTextEvent" url="ample/runtime/AMLTextEvent.xml"/>
-					<node title="AMLMutationEvent" url="ample/runtime/AMLMutationEvent.xml"/>
-					<node title="AMLResizeEvent" url="ample/runtime/AMLResizeEvent.xml"/>
-					<node title="AMLDragEvent" url="ample/runtime/AMLDragEvent.xml"/>
-					<node title="AMLHashChangeEvent" url="ample/runtime/AMLHashChangeEvent.xml"/>
+					<node title="Event" url="ample/runtime/Event.xml"/>
+					<node title="CustomEvent" url="ample/runtime/CustomEvent.xml"/>
+					<node title="UIEvent" url="ample/runtime/UIEvent.xml"/>
+					<node title="FocusEvent" url="ample/runtime/FocusEvent.xml"/>
+					<node title="MouseEvent" url="ample/runtime/MouseEvent.xml"/>
+					<node title="MouseWheelEvent" url="ample/runtime/MouseWheelEvent.xml"/>
+					<node title="KeyboardEvent" url="ample/runtime/KeyboardEvent.xml"/>
+					<node title="TextEvent" url="ample/runtime/TextEvent.xml"/>
+					<node title="MutationEvent" url="ample/runtime/MutationEvent.xml"/>
+					<node title="ResizeEvent" url="ample/runtime/ResizeEvent.xml"/>
+					<node title="DragEvent" url="ample/runtime/DragEvent.xml"/>
+					<node title="HashChangeEvent" url="ample/runtime/HashChangeEvent.xml"/>
 				</node>
 				<node title="DOM Range">
-					<node title="AMLRange" xurl="ample/runtime/AMLRange.xml"/>
+					<node title="Range" xurl="ample/runtime/Range.xml"/>
 				</node>
 				<node title="DOM Load/Save">
 					<node title="LSReader" xurl="ample/runtime/LSReader.xml"/>
@@ -52,19 +52,18 @@
 					<node title="LSSerializer" xurl="ample/runtime/LSSerializer.xml"/>
 				</node>
 				<node title="DOM Helper Objects">
-					<node title="AMLDataTransfer" url="ample/runtime/AMLDataTransfer.xml"/>
-					<node title="AMLLocale" url="ample/runtime/AMLLocale.xml"/>
-					<!-- node title="AMLTreeWalker" url="ample/runtime/dom/AMLTreeWalker.xml"/-->
+					<node title="DataTransfer" url="ample/runtime/DataTransfer.xml"/>
+					<node title="Locale" url="ample/runtime/Locale.xml"/>
 				</node>
 			</node>
 			<node title="Touch UI" open="true">
 				<node title="Touch Core">
-					<node title="AMLTouch" url="ample/runtime/AMLTouch.xml"/>
-					<node title="AMLTouchList" url="ample/runtime/AMLTouchList.xml"/>
+					<node title="Touch" url="ample/runtime/Touch.xml"/>
+					<node title="TouchList" url="ample/runtime/TouchList.xml"/>
 				</node>
 				<node title="Touch Events">
-					<node title="AMLTouchEvent" url="ample/runtime/AMLTouchEvent.xml"/>
-					<node title="AMLGestureEvent" url="ample/runtime/AMLGestureEvent.xml"/>
+					<node title="TouchEvent" url="ample/runtime/TouchEvent.xml"/>
+					<node title="GestureEvent" url="ample/runtime/GestureEvent.xml"/>
 				</node>
 			</node>
 			<node title="JS objects">
@@ -239,12 +238,12 @@
 		</node>
 		<node title="XPath">
 			<node title="Objects">
-				<node title="AMLXPathEvaluator" xhref="ample/plugins/AMLXPathEvaluator.xml"/>
-				<node title="AMLXPathException" xhref="ample/plugins/AMLXPathException.xml"/>
-				<node title="AMLXPathExpression" xhref="ample/plugins/AMLXPathExpression.xml"/>
-				<node title="AMLXPathNamespace" xhref="ample/plugins/AMLXPathNamespace.xml"/>
-				<node title="AMLXPathNSResolver" xhref="ample/plugins/AMLXPathNSResolver.xml"/>
-				<node title="AMLXPathResult" xhref="ample/plugins/AMLXPathResult.xml"/>
+				<node title="XPathEvaluator" xhref="ample/plugins/XPathEvaluator.xml"/>
+				<node title="XPathException" xhref="ample/plugins/XPathException.xml"/>
+				<node title="XPathExpression" xhref="ample/plugins/XPathExpression.xml"/>
+				<node title="XPathNamespace" xhref="ample/plugins/XPathNamespace.xml"/>
+				<node title="XPathNSResolver" xhref="ample/plugins/XPathNSResolver.xml"/>
+				<node title="XPathResult" xhref="ample/plugins/XPathResult.xml"/>
 			</node>
 			<node title="XPath" xhref="ample/plugins/xpath.xml"/>
 		</node>

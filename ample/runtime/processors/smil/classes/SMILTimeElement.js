@@ -41,9 +41,9 @@ function fSMILTimeElement_init(oEvent) {
 
 	// If event-based
 	if (oElement.begin.event) {
-		oTarget	= oElement.begin.element ? oAMLDocument_ids[oElement.begin.element] : oElement.parentNode;
+		oTarget	= oElement.begin.element ? oDocument_ids[oElement.begin.element] : oElement.parentNode;
 		//
-		fAMLEventTarget_addEventListener(oTarget, oElement.begin.event, function() {
+		fEventTarget_addEventListener(oTarget, oElement.begin.event, function() {
 			oElement.begin.offset ? fSetTimeout(fBegin, oElement.begin.offset) : fBegin();
 		});
 	}
@@ -51,9 +51,9 @@ function fSMILTimeElement_init(oEvent) {
 		oElement.begin.offset ? fSetTimeout(fBegin, oElement.begin.offset) : fBegin();
 
 	if (oElement.end.event) {
-		oTarget	= oElement.end.element ? oAMLDocument_ids[oElement.end.element] : oElement.parentNode;
+		oTarget	= oElement.end.element ? oDocument_ids[oElement.end.element] : oElement.parentNode;
 		//
-		fAMLEventTarget_addEventListener(oTarget, oElement.end.event, function() {
+		fEventTarget_addEventListener(oTarget, oElement.end.event, function() {
 			oElement.end.offset ? fSetTimeout(fEnd, oElement.end.offset) : fEnd();
 		});
 	}
@@ -75,7 +75,7 @@ cSMILTimeElement.prototype.beginElementAt	= function(nOffset) {
 	]);
 //<-Guard
 
-	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };
 
 cSMILTimeElement.prototype.endElementAt		= function(nOffset) {
@@ -85,7 +85,7 @@ cSMILTimeElement.prototype.endElementAt		= function(nOffset) {
 	]);
 //<-Guard
 
-	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };
 
 cSMILTimeElement.prototype.seekElement	= function(nSeekTo) {
@@ -95,15 +95,15 @@ cSMILTimeElement.prototype.seekElement	= function(nSeekTo) {
 	]);
 //<-Guard
 
-	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };
 
 cSMILTimeElement.prototype.pauseElement	= function() {
-	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };
 
 cSMILTimeElement.prototype.resumeElement= function() {
-	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };
 
 //
@@ -112,7 +112,7 @@ function fSMILTimeElement_beginElement(oElement) {
 	if (oElement instanceof cSMILAnimationElement) {
 		// If ID was specified for target element
 		if (typeof oElement.targetElement == "string")
-			oElement.targetElement	= oAMLDocument_ids[oElement.targetElement.substr(1)];
+			oElement.targetElement	= oDocument_ids[oElement.targetElement.substr(1)];
 
 		// check if there is already animation running on that @targetElement/@attributeName
 		for (var nIndex = 0, oElementOld; oElementOld = aSMILElement_activeElements[nIndex]; nIndex++)
@@ -149,7 +149,7 @@ function fSMILTimeElement_beginElement(oElement) {
 	// Dispatch end event
 	var oEvent	= new cSMILTimeEvent;
 	oEvent.initTimeEvent("begin", window, null);
-	fAMLNode_dispatchEvent(oElement, oEvent);
+	fNode_dispatchEvent(oElement, oEvent);
 };
 
 function fSMILTimeElement_endElement(oElement) {
@@ -179,7 +179,7 @@ function fSMILTimeElement_endElement(oElement) {
 	// Dispatch end event
 	var oEvent	= new cSMILTimeEvent;
 	oEvent.initTimeEvent("end", window, null);
-	fAMLNode_dispatchEvent(oElement, oEvent);
+	fNode_dispatchEvent(oElement, oEvent);
 };
 
 //Utilities

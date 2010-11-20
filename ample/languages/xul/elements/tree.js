@@ -10,8 +10,8 @@
 var cXULElement_tree	= function()
 {
     // Collections
-    this.items  = new ample.classes.AMLNodeList;
-	this.selectedItems	= new ample.classes.AMLNodeList;
+    this.items  = new ample.classes.NodeList;
+	this.selectedItems	= new ample.classes.NodeList;
 };
 cXULElement_tree.prototype	= new cXULSelectElement("tree");
 

@@ -15,12 +15,12 @@
 (function() {
 	var files	= [];
 	//
-	files.push("classes/AMLXPathEvaluator.js");
-	files.push("classes/AMLXPathException.js");
-	files.push("classes/AMLXPathExpression.js");
-	files.push("classes/AMLXPathNamespace.js");
-	files.push("classes/AMLXPathNSResolver.js");
-	files.push("classes/AMLXPathResult.js");
+	files.push("classes/XPathEvaluator.js");
+	files.push("classes/XPathException.js");
+	files.push("classes/XPathExpression.js");
+	files.push("classes/XPathNamespace.js");
+	files.push("classes/XPathNSResolver.js");
+	files.push("classes/XPathResult.js");
 	//
 	files.push("parser/parser.js");
 	files.push("evaluator/evaluator.js");
@@ -43,12 +43,12 @@
 //<-Source
 
 // Publish objects to window
-ample.publish(cAMLXPathEvaluator,	"AMLXPathEvaluator");
-ample.publish(cAMLXPathException,	"AMLXPathException");
-ample.publish(cAMLXPathExpression,	"AMLXPathExpression");
-ample.publish(cAMLXPathNamespace,	"AMLXPathNamespace");
-ample.publish(cAMLXPathNSResolver,	"AMLXPathNSResolver");
-ample.publish(cAMLXPathResult,		"AMLXPathResult");
+ample.publish(cXPathEvaluator,	"XPathEvaluator");
+ample.publish(cXPathException,	"XPathException");
+ample.publish(cXPathExpression,	"XPathExpression");
+ample.publish(cXPathNamespace,	"XPathNamespace");
+ample.publish(cXPathNSResolver,	"XPathNSResolver");
+ample.publish(cXPathResult,		"XPathResult");
 
 // Extend ample object
-ample.extend(cAMLXPathEvaluator.prototype,	AMLDocument.prototype);
+ample.extend(cXPathEvaluator.prototype,	ample.classes.Document.prototype);

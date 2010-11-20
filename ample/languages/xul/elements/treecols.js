@@ -9,7 +9,7 @@
 
 var cXULElement_treecols	= function() {
     // Collections
-    this.items  = new ample.classes.AMLNodeList;
+    this.items  = new ample.classes.NodeList;
 };
 cXULElement_treecols.prototype   = new cXULElement("treecols");
 

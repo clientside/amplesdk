@@ -37,7 +37,7 @@
 			</method>
 			<method name="selectItem" type="Void">
 				<arguments>
-					<argument name="item" type="AMLElement" required="true">
+					<argument name="item" type="Element" required="true">
 						<description>
 							<locale>
 								Element to be selected.
@@ -61,7 +61,7 @@
 			</method>
 			<method name="toggleItemSelection" type="Void">
 				<arguments>
-					<argument name="item" type="AMLElement" required="true">
+					<argument name="item" type="Element" required="true">
 						<description>
 							<locale>
 								Element whose selection state to be inverted.
@@ -87,7 +87,7 @@
 			</method>
 			<method name="addItemToSelection" type="Void">
 				<arguments>
-					<argument name="item" type="AMLElement" required="true">
+					<argument name="item" type="Element" required="true">
 						<description>
 							<locale>
 								Item to be added.
@@ -109,7 +109,7 @@
 			</method>
 			<method name="removeItemFromSelection" type="Void">
 				<arguments>
-					<argument name="item" type="AMLElement" required="true">
+					<argument name="item" type="Element" required="true">
 						<description>
 							<locale>
 								Element to be removed from selection.
@@ -131,7 +131,7 @@
 			</method>
 			<method name="selectItemRange" type="Void">
 				<arguments>
-					<argument name="item" type="AMLElement" required="true">
+					<argument name="item" type="Element" required="true">
 						<description>
 							<locale>
 								First element from range.
@@ -141,7 +141,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="itemTo" type="AMLElement" required="true">
+					<argument name="itemTo" type="Element" required="true">
 						<description>
 							<locale>
 								Last element from range.
@@ -191,7 +191,7 @@
 			</method>
 		</methods>
 		<properties>
-			<property name="currentItem" type="AMLElement" readonly="true">
+			<property name="currentItem" type="Element" readonly="true">
 				<description>
 					<locale>
 						Returns the last selected item in the list box, which is only useful in a multiple selection list box.
@@ -201,7 +201,7 @@
 					</locale>
 				</description>
 			</property>
-			<property name="selectedItems" type="AMLNodeList">
+			<property name="selectedItems" type="NodeList">
 				<description>
 					<locale>
 						Returns an array of the selected items in the list.

@@ -14,7 +14,7 @@ var oBrowser_factory	= oUADocument.createElement("span"),
 	oBrowser_body		= null,
 	hBrowser_keyIdentifiers	= fUtilities_stringToHash("8:Backspace;9:Tab;13:Enter;16:Shift;17:Control;18:Alt;20:CapsLock;27:Esc;33:PageUp;34:PageDown;35:End;36:Home;37:Left;38:Up;39:Right;40:Down;45:Insert;46:Backspace;91:Win;112:F1;113:F2;114:F3;115:F4;116:F5;117:F6;118:F7;119:F8;120:F9;121:F10;122:F11;123:F12;127:Del"),
 	hBrowser_cssColors		= fUtilities_stringToHash("aliceblue:F0F8FF;antiquewhite:FAEBD7;aqua:00FFFF;aquamarine:7FFFD4;azure:F0FFFF;beige:F5F5DC;bisque:FFE4C4;black:000000;blanchedalmond:FFEBCD;blue:0000FF;blueviolet:8A2BE2;brown:A52A2A;burlywood:DEB887;cadetblue:5F9EA0;chartreuse:7FFF00;chocolate:D2691E;coral:FF7F50;cornflowerblue:6495ED;cornsilk:FFF8DC;crimson:DC143C;cyan:00FFFF;darkblue:00008B;darkcyan:008B8B;darkgoldenrod:B8860B;darkgray:A9A9A9;darkgreen:006400;darkkhaki:BDB76B;darkmagenta:8B008B;darkolivegreen:556B2F;darkorange:FF8C00;darkorchid:9932CC;darkred:8B0000;darksalmon:E9967A;darkseagreen:8FBC8F;darkslateblue:483D8B;darkslategray:2F4F4F;darkturquoise:00CED1;darkviolet:9400D3;deeppink:FF1493;deepskyblue:00BFFF;dimgray:696969;dodgerblue:1E90FF;firebrick:B22222;floralwhite:FFFAF0;forestgreen:228B22;fuchsia:FF00FF;gainsboro:DCDCDC;ghostwhite:F8F8FF;gold:FFD700;goldenrod:DAA520;gray:808080;green:008000;greenyellow:ADFF2F;honeydew:F0FFF0;hotpink:FF69B4;indianred:CD5C5C;indigo:4B0082;ivory:FFFFF0;khaki:F0E68C;lavender:E6E6FA;lavenderblush:FFF0F5;lawngreen:7CFC00;lemonchiffon:FFFACD;lightblue:ADD8E6;lightcoral:F08080;lightcyan:E0FFFF;lightgoldenrodyellow:FAFAD2;lightgreen:90EE90;lightgrey:D3D3D3;lightpink:FFB6C1;lightsalmon:FFA07A;lightseagreen:20B2AA;lightskyblue:87CEFA;lightslategray:778899;lightsteelblue:B0C4DE;lightyellow:FFFFE0;lime:00FF00;limegreen:32CD32;linen:FAF0E6;magenta:FF00FF;maroon:800000;mediumaquamarine:66CDAA;mediumblue:0000CD;mediumorchid:BA55D3;mediumpurple:9370DB;mediumseagreen:3CB371;mediumslateblue:7B68EE;mediumspringgreen:00FA9A;mediumturquoise:48D1CC;mediumvioletred:C71585;midnightblue:191970;mintcream:F5FFFA;mistyrose:FFE4E1;moccasin:FFE4B5;navajowhite:FFDEAD;navy:000080;oldlace:FDF5E6;olive:808000;olivedrab:6B8E23;orange:FFA500;orangered:FF4500;orchid:DA70D6;palegoldenrod:EEE8AA;palegreen:98FB98;paleturquoise:AFEEEE;palevioletred:DB7093;papayawhip:FFEFD5;peachpuff:FFDAB9;peru:CD853F;pink:FFC0CB;plum:DDA0DD;powderblue:B0E0E6;purple:800080;red:FF0000;rosybrown:BC8F8F;royalblue:4169E1;saddlebrown:8B4513;salmon:FA8072;sandybrown:F4A460;seagreen:2E8B57;seashell:FFF5EE;sienna:A0522D;silver:C0C0C0;skyblue:87CEEB;slateblue:6A5ACD;slategray:708090;snow:FFFAFA;springgreen:00FF7F;steelblue:4682B4;tan:D2B48C;teal:008080;thistle:D8BFD8;tomato:FF6347;turquoise:40E0D0;violet:EE82EE;wheat:F5DEB3;white:FFFFFF;whitesmoke:F5F5F5;yellow:FFFF00;yellowgreen:9ACD32", '#'),
-	aBrowser_mouseNodes	= new cAMLNodeList,
+	aBrowser_mouseNodes	= new cNodeList,
 	oBrowser_mouseNode	= null,
 	oBrowser_captureNode= null,		// Set in Capture manager
 	oBrowser_modalNode	= null,		// Set in Capture manager
@@ -36,14 +36,14 @@ function fBrowser_detachEvent(oNode, sType, fHandler) {
 		oNode.removeEventListener(sType, fHandler, false);
 };
 
-// Finds AMLElement by event target
+// Finds Element by event target
 function fBrowser_getEventTarget(oEvent) {
     return fAmple_instance(oAmple_document, oEvent.srcElement || oEvent.target) || oAmple_root;
 };
 
 function fBrowser_getUIEventPseudo(oEvent) {
     for (var oNode = oEvent.srcElement || oEvent.target, sId, sClass; oNode; oNode = oNode.parentNode) {
-        if ((sId = oNode.id) && oAMLDocument_ids[sId])
+        if ((sId = oNode.id) && oDocument_ids[sId])
             return oNode;
 		else
 		if ((sClass = oNode.className) && cString(sClass || sClass.baseVal).match(/--[\w-]+/))
@@ -71,10 +71,10 @@ function fBrowser_getUIEventButton(oEvent) {
 };
 
 function fBrowser_render(oNode) {
-	if (oNode.nodeType == cAMLNode.TEXT_NODE)
+	if (oNode.nodeType == cNode.TEXT_NODE)
 		return oUADocument.createTextNode(oNode.nodeValue);
 	else
-	if (oNode.nodeType == cAMLNode.ELEMENT_NODE) {
+	if (oNode.nodeType == cNode.ELEMENT_NODE) {
 		var sHtml	= oNode.$getTag();
 		if (sHtml) {
 			if (bTrident) {
@@ -147,7 +147,7 @@ function fBrowser_onMouseWheel(oEvent) {
 		oPseudo		= fBrowser_getUIEventPseudo(oEvent),
 		bPrevent	= false,
 		nWheelDelta	= bGecko ? oEvent.detail : -1 * oEvent.wheelDelta / 40,
-		oEventMouseWheel	= new cAMLMouseWheelEvent;
+		oEventMouseWheel	= new cMouseWheelEvent;
 
 	// if modal, do not dispatch event
 	if (oBrowser_captureNode && !fBrowser_isDescendant(oTarget, oBrowser_captureNode)) {
@@ -162,7 +162,7 @@ function fBrowser_onMouseWheel(oEvent) {
 
 	// do not dispatch event if outside modal
     if (!oBrowser_modalNode || fBrowser_isDescendant(oTarget, oBrowser_modalNode))
-    	fAMLNode_dispatchEvent(oTarget, oEventMouseWheel);
+    	fNode_dispatchEvent(oTarget, oEventMouseWheel);
     else
     	bPrevent	= true;
 
@@ -177,7 +177,7 @@ function fBrowser_onMouseWheel(oEvent) {
 function fBrowser_onKeyDown(oEvent) {
 	var oTarget		= oAmple.activeElement || oAmple_root,	// FF bugfix
 		oPseudo		= fBrowser_getUIEventPseudo(oEvent),
-		oEventKeyDown	= new cAMLKeyboardEvent;
+		oEventKeyDown	= new cKeyboardEvent;
 
 	// if modal, do not dispatch event
 	if (oBrowser_captureNode && !fBrowser_isDescendant(oTarget, oBrowser_captureNode)) {
@@ -191,7 +191,7 @@ function fBrowser_onKeyDown(oEvent) {
 
 	// do not dispatch event if outside modal
     if (!oBrowser_modalNode || fBrowser_isDescendant(oTarget, oBrowser_modalNode))
-    	fAMLNode_dispatchEvent(oTarget, oEventKeyDown);
+    	fNode_dispatchEvent(oTarget, oEventKeyDown);
 
 	//
 	return fBrowser_eventPreventDefault(oEvent, oEventKeyDown);
@@ -212,8 +212,8 @@ function fBrowser_onKeyPress(oEvent)
 
 	var oTarget		= oAmple.activeElement || oAmple_root,	// FF bugfix
 		oPseudo		= fBrowser_getUIEventPseudo(oEvent),
-		oEventKeyPress	= new cAMLKeyboardEvent,
-		oEventTextInput	= new cAMLTextEvent;
+		oEventKeyPress	= new cKeyboardEvent,
+		oEventTextInput	= new cTextEvent;
 
 	// if modal, do not dispatch event
 	if (oBrowser_captureNode && !fBrowser_isDescendant(oTarget, oBrowser_captureNode)) {
@@ -231,9 +231,9 @@ function fBrowser_onKeyPress(oEvent)
 
     if (!oBrowser_modalNode || fBrowser_isDescendant(oTarget, oBrowser_modalNode)) {
     	//
-    	fAMLNode_dispatchEvent(oTarget, oEventKeyPress);
+    	fNode_dispatchEvent(oTarget, oEventKeyPress);
 		//
-    	fAMLNode_dispatchEvent(oTarget, oEventTextInput);
+    	fNode_dispatchEvent(oTarget, oEventTextInput);
     }
 
 	//
@@ -243,7 +243,7 @@ function fBrowser_onKeyPress(oEvent)
 function fBrowser_onKeyUp(oEvent) {
 	var oTarget		= oAmple.activeElement || oAmple_root,
 		oPseudo		= fBrowser_getUIEventPseudo(oEvent),
-		oEventKeyUp	= new cAMLKeyboardEvent;
+		oEventKeyUp	= new cKeyboardEvent;
 
 	// if modal, do not dispatch event
 	if (oBrowser_captureNode && !fBrowser_isDescendant(oTarget, oBrowser_captureNode)) {
@@ -257,7 +257,7 @@ function fBrowser_onKeyUp(oEvent) {
 
 	// do not dispatch event if outside modal
     if (!oBrowser_modalNode || fBrowser_isDescendant(oTarget, oBrowser_modalNode))
-    	fAMLNode_dispatchEvent(oTarget, oEventKeyUp);
+    	fNode_dispatchEvent(oTarget, oEventKeyUp);
 
     bBrowser_keyDown	= false;
 
@@ -282,25 +282,25 @@ function fBrowser_onMouseOver(oEvent) {
 	}
 
 	// TODO: Remove this dependency from here
-	if (!(nAMLDragAndDrop_dragState || nAMLResize_resizeState)) {
+	if (!(nDragAndDropManager_dragState || nResizeManager_resizeState)) {
 		// do not dispatch event if outside modal
 	    if (!oBrowser_modalNode || fBrowser_isDescendant(oBrowser_mouseNode, oBrowser_modalNode)) {
-			if (oBrowser_mouseNode && oAMLDocument_all[oBrowser_mouseNode.uniqueID]) {
+			if (oBrowser_mouseNode && oDocument_all[oBrowser_mouseNode.uniqueID]) {
 			    // Create an Event
-			    oEventMouseOut = new cAMLMouseEvent;
+			    oEventMouseOut = new cMouseEvent;
 			    oEventMouseOut.initMouseEvent("mouseout", true, true, window, null, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, oEvent.metaKey, nButton, oTarget);
 				oEventMouseOut.$pseudoTarget	= oPseudo;
-				fAMLNode_dispatchEvent(oBrowser_mouseNode, oEventMouseOut);
+				fNode_dispatchEvent(oBrowser_mouseNode, oEventMouseOut);
 			}
 	    }
 
 		// do not dispatch event if outside modal
 	    if (!oBrowser_modalNode || fBrowser_isDescendant(oTarget, oBrowser_modalNode)) {
 		    // Create an Event
-		    oEventMouseOver = new cAMLMouseEvent;
+		    oEventMouseOver = new cMouseEvent;
 		    oEventMouseOver.initMouseEvent("mouseover", true, true, window, null, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, oEvent.metaKey, nButton, oBrowser_mouseNode);
 		    oEventMouseOver.$pseudoTarget	= oPseudo;
-		    fAMLNode_dispatchEvent(oTarget, oEventMouseOver);
+		    fNode_dispatchEvent(oTarget, oEventMouseOver);
 	    }
 	}
 
@@ -312,12 +312,12 @@ function fBrowser_onMouseOver(oEvent) {
 function fBrowser_getTouches(oUATouches) {
 	var nIndex	= 0,
 		nLength	= oUATouches.length,
-		oTouches	= new cAMLTouchList,
+		oTouches	= new cTouchList,
 		oTouch,
 		oUATouch;
 	while (nIndex < nLength) {
 		oUATouch	= oUATouches.item(nIndex++);
-		oTouch		= new cAMLTouch;
+		oTouch		= new cTouch;
 		oTouch.clientX	= oUATouch.clientX;
 		oTouch.clientY	= oUATouch.clientY;
 		oTouch.identifier	= oUATouch.identifier;
@@ -333,7 +333,7 @@ function fBrowser_getTouches(oUATouches) {
 function fBrowser_onTouch(oEvent) {
 	var oTarget		= fBrowser_getEventTarget(oEvent),
 		oPseudo		= fBrowser_getUIEventPseudo(oEvent),
-		oEventTouch	= new cAMLTouchEvent;
+		oEventTouch	= new cTouchEvent;
 
 	// if modal, do not dispatch event
 	if (oBrowser_captureNode && !fBrowser_isDescendant(oTarget, oBrowser_captureNode)) {
@@ -347,7 +347,7 @@ function fBrowser_onTouch(oEvent) {
 
 	// do not dispatch event if outside modal
     if (!oBrowser_modalNode || fBrowser_isDescendant(oTarget, oBrowser_modalNode))
-    	fAMLNode_dispatchEvent(oTarget, oEventTouch);
+    	fNode_dispatchEvent(oTarget, oEventTouch);
 
 	//
 	return fBrowser_eventPreventDefault(oEvent, oEventTouch);
@@ -356,7 +356,7 @@ function fBrowser_onTouch(oEvent) {
 function fBrowser_onGesture(oEvent) {
 	var oTarget		= fBrowser_getEventTarget(oEvent),
 		oPseudo		= fBrowser_getUIEventPseudo(oEvent),
-		oEventGesture	= new cAMLGestureEvent;
+		oEventGesture	= new cGestureEvent;
 
 	// if modal, do not dispatch event
 	if (oBrowser_captureNode && !fBrowser_isDescendant(oTarget, oBrowser_captureNode)) {
@@ -370,7 +370,7 @@ function fBrowser_onGesture(oEvent) {
 
 	// do not dispatch event if outside modal
     if (!oBrowser_modalNode || fBrowser_isDescendant(oTarget, oBrowser_modalNode))
-    	fAMLNode_dispatchEvent(oTarget, oEventGesture);
+    	fNode_dispatchEvent(oTarget, oEventGesture);
 
 	//
 	return fBrowser_eventPreventDefault(oEvent, oEventGesture);
@@ -381,20 +381,20 @@ oUADocument.attachEvent('on' + "mouseover", function(oEvent) {
 	var oTarget		= fBrowser_getEventTarget(oEvent),
 		oPseudo		= fBrowser_getUIEventPseudo(oEvent);
     // Create an Event
-    var oEventMouseOver = new cAMLMouseEvent;
+    var oEventMouseOver = new cMouseEvent;
     oEventMouseOver.initMouseEvent("mouseover", true, true, window, null, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, oEvent.metaKey, oEvent.button, null);
     oEventMouseOver.$pseudoTarget	= oPseudo;
-	fAMLNode_dispatchEvent(oTarget, oEventMouseOver);
+	fNode_dispatchEvent(oTarget, oEventMouseOver);
 });
 
 oUADocument.attachEvent('on' + "mouseout", function(oEvent) {
 	var oTarget		= fBrowser_getEventTarget(oEvent),
 		oPseudo		= fBrowser_getUIEventPseudo(oEvent);
     // Create an Event
-    var oEventMouseOut = new cAMLMouseEvent;
+    var oEventMouseOut = new cMouseEvent;
     oEventMouseOut.initMouseEvent("mouseout", true, false, window, null, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, oEvent.metaKey, oEvent.button, null);
     oEventMouseOut.$pseudoTarget	= oPseudo;
-	fAMLNode_dispatchEvent(oTarget, oEventMouseOut);
+	fNode_dispatchEvent(oTarget, oEventMouseOut);
 });
 */
 
@@ -403,9 +403,9 @@ function fBrowser_onMouseMove(oEvent) {
     	oPseudo		= fBrowser_getUIEventPseudo(oEvent),
     	nButton 	= fBrowser_getUIEventButton(oEvent),
     	nIndexCommon=-1,
-    	aElements	= new cAMLNodeList,
+    	aElements	= new cNodeList,
     	oElement,
-    	oEventMouseMove = new cAMLMouseEvent,
+    	oEventMouseMove = new cMouseEvent,
     	oEventMouseLeave,
 		oEventMouseEnter;
 
@@ -416,10 +416,10 @@ function fBrowser_onMouseMove(oEvent) {
 	}
 
 	// TODO: Remove this dependency from here
-	if (!(nAMLDragAndDrop_dragState || nAMLResize_resizeState)) {
+	if (!(nDragAndDropManager_dragState || nResizeManager_resizeState)) {
 		if (aBrowser_mouseNodes[0] != oTarget) {
 			// find common relative
-			for (oElement = oTarget; oElement.nodeType != cAMLNode.DOCUMENT_NODE; oElement = oElement.parentNode) {
+			for (oElement = oTarget; oElement.nodeType != cNode.DOCUMENT_NODE; oElement = oElement.parentNode) {
 				aElements.$add(oElement);
 				if (nIndexCommon ==-1)
 					nIndexCommon = aBrowser_mouseNodes.$indexOf(oElement);
@@ -434,12 +434,12 @@ function fBrowser_onMouseMove(oEvent) {
 				if (!oBrowser_modalNode || fBrowser_isDescendant(oElement, oBrowser_modalNode)) {
 				    // Remove :hover pseudo-class
 					if (oElement.$hoverable && oElement.$isAccessible())
-						fAMLElement_setPseudoClass(oElement, "hover", false);
+						fElement_setPseudoClass(oElement, "hover", false);
 					//
-					oEventMouseLeave = new cAMLMouseEvent;
+					oEventMouseLeave = new cMouseEvent;
 				    oEventMouseLeave.initMouseEvent("mouseleave", false, false, window, null, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, oEvent.metaKey, nButton, aBrowser_mouseNodes[nIndex + 1] || null);
 				    oEventMouseLeave.$pseudoTarget	= oPseudo;
-				    fAMLNode_dispatchEvent(oElement, oEventMouseLeave);
+				    fNode_dispatchEvent(oElement, oEventMouseLeave);
 				}
 			}
 
@@ -450,12 +450,12 @@ function fBrowser_onMouseMove(oEvent) {
 				if (!oBrowser_modalNode || fBrowser_isDescendant(oElement, oBrowser_modalNode)) {
 				    // Add :hover pseudo-class
 					if (oElement.$hoverable && oElement.$isAccessible())
-						fAMLElement_setPseudoClass(oElement, "hover", true);
+						fElement_setPseudoClass(oElement, "hover", true);
 					//
-					oEventMouseEnter = new cAMLMouseEvent;
+					oEventMouseEnter = new cMouseEvent;
 				    oEventMouseEnter.initMouseEvent("mouseenter", false, false, window, null, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, oEvent.metaKey, nButton, aElements[nIndex] || null);
 				    oEventMouseEnter.$pseudoTarget	= oPseudo;
-				    fAMLNode_dispatchEvent(oElement, oEventMouseEnter);
+				    fNode_dispatchEvent(oElement, oEventMouseEnter);
 				}
 		    }
 
@@ -471,7 +471,7 @@ function fBrowser_onMouseMove(oEvent) {
     // Init MouseMove event
     oEventMouseMove.initMouseEvent("mousemove", true, true, window, null, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, oEvent.metaKey, nButton, null);
     oEventMouseMove.$pseudoTarget	= oPseudo;
-    fAMLNode_dispatchEvent(oTarget, oEventMouseMove);
+    fNode_dispatchEvent(oTarget, oEventMouseMove);
 
 	//
 	return fBrowser_eventPreventDefault(oEvent, oEventMouseMove);
@@ -482,8 +482,8 @@ function fBrowser_onContextMenu(oEvent) {
 		oPseudo		= fBrowser_getUIEventPseudo(oEvent),
 		nButton 	= fBrowser_getUIEventButton(oEvent),
 		bPrevent	= false,
-		oEventClick	= new cAMLMouseEvent,
-		oEventContextMenu	= new cAMLMouseEvent;
+		oEventClick	= new cMouseEvent,
+		oEventContextMenu	= new cMouseEvent;
 
 	// if modal, do not dispatch event
 	if (oBrowser_captureNode && !fBrowser_isDescendant(oTarget, oBrowser_captureNode)) {
@@ -504,9 +504,9 @@ function fBrowser_onContextMenu(oEvent) {
     if (!oBrowser_modalNode || fBrowser_isDescendant(oTarget, oBrowser_modalNode)) {
     	// Simulate missing 'click' event in IE and WebKit
 		if (bTrident || bWebKit)
-			fAMLNode_dispatchEvent(oTarget, oEventClick);
+			fNode_dispatchEvent(oTarget, oEventClick);
 
-		fAMLNode_dispatchEvent(oTarget, oEventContextMenu);
+		fNode_dispatchEvent(oTarget, oEventContextMenu);
     }
     else
     	bPrevent	= true;
@@ -523,7 +523,7 @@ function fBrowser_onClick(oEvent) {
 		oPseudo		= fBrowser_getUIEventPseudo(oEvent),
 		nButton		= fBrowser_getUIEventButton(oEvent),
 		bPrevent	= false,
-		oEventClick	= new cAMLMouseEvent;
+		oEventClick	= new cMouseEvent;
 
 	// if modal, do not dispatch event
 	if (oBrowser_captureNode && !fBrowser_isDescendant(oTarget, oBrowser_captureNode)) {
@@ -537,7 +537,7 @@ function fBrowser_onClick(oEvent) {
 
 	// do not dispatch event if outside modal
     if (!oBrowser_modalNode || fBrowser_isDescendant(oTarget, oBrowser_modalNode))
-    	fAMLNode_dispatchEvent(oTarget, oEventClick);
+    	fNode_dispatchEvent(oTarget, oEventClick);
     else
     	bPrevent	= true;
 
@@ -552,7 +552,7 @@ function fBrowser_onDblClick(oEvent) {
 	var oTarget		= fBrowser_getEventTarget(oEvent),
 		oPseudo		= fBrowser_getUIEventPseudo(oEvent),
 		nButton		= fBrowser_getUIEventButton(oEvent),
-		oEventDblClick = new cAMLMouseEvent,
+		oEventDblClick = new cMouseEvent,
 		oEventClick,
 		oEventMouseDown,
 		oEventMouseUp;
@@ -571,26 +571,26 @@ function fBrowser_onDblClick(oEvent) {
     if (!oBrowser_modalNode || fBrowser_isDescendant(oTarget, oBrowser_modalNode)) {
 		if (bTrident) {
 	 		// Simulate missing 'mousedown' event in IE
-	    	oEventMouseDown = new cAMLMouseEvent;
+	    	oEventMouseDown = new cMouseEvent;
 	    	oEventMouseDown.initMouseEvent("mousedown", true, true, window, 2, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, null, nButton, null);
 	    	oEventMouseDown.$pseudoTarget	= oPseudo;
-	    	fAMLNode_dispatchEvent(oTarget, oEventMouseDown);
+	    	fNode_dispatchEvent(oTarget, oEventMouseDown);
 
 	 		// Simulate missing 'click' event in IE
-	    	oEventClick = new cAMLMouseEvent;
+	    	oEventClick = new cMouseEvent;
 	    	oEventClick.initMouseEvent("click", true, true, window, 2, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, null, nButton, null);
 	    	oEventClick.$pseudoTarget	= oPseudo;
-	    	fAMLNode_dispatchEvent(oTarget, oEventClick);
+	    	fNode_dispatchEvent(oTarget, oEventClick);
 		}
 
-		fAMLNode_dispatchEvent(oTarget, oEventDblClick);
+		fNode_dispatchEvent(oTarget, oEventDblClick);
 
 		// Simulate missing 'mouseup' event in IE
 		if (bTrident) {
-	    	oEventMouseUp = new cAMLMouseEvent;
+	    	oEventMouseUp = new cMouseEvent;
 	    	oEventMouseUp.initMouseEvent("mouseup", true, true, window, 2, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, null, nButton, null);
 	    	oEventMouseUp.$pseudoTarget	= oPseudo;
-	    	fAMLNode_dispatchEvent(oTarget, oEventMouseUp);
+	    	fNode_dispatchEvent(oTarget, oEventMouseUp);
 		}
     }
 };
@@ -600,7 +600,7 @@ function fBrowser_onMouseDown(oEvent) {
 		oPseudo		= fBrowser_getUIEventPseudo(oEvent),
 		nButton		= fBrowser_getUIEventButton(oEvent),
 		bCapture	= false,
-		oEventMouseDown = new cAMLMouseEvent;
+		oEventMouseDown = new cMouseEvent;
 
 	// change target if some element is set to receive capture
 	if (oBrowser_captureNode && !fBrowser_isDescendant(oTarget, oBrowser_captureNode)) {
@@ -618,24 +618,24 @@ function fBrowser_onMouseDown(oEvent) {
 		// Moved here from #mouseup handler. Not sure yet if it is right though
 		oAmple.activeElement	= oTarget;
 		//
-		fAMLNode_dispatchEvent(oTarget, oEventMouseDown);
+		fNode_dispatchEvent(oTarget, oEventMouseDown);
 	}
 	else {
 		// Notify element on capture
-		var oModalEvent	= new cAMLUIEvent;
+		var oModalEvent	= new cUIEvent;
 		oModalEvent.initUIEvent("modal", true, false, window, null);
 		oModalEvent.$pseudoTarget	= oPseudo;
-		fAMLNode_dispatchEvent(oBrowser_modalNode, oModalEvent);
+		fNode_dispatchEvent(oBrowser_modalNode, oModalEvent);
 		//
 		oEventMouseDown.preventDefault();
 	}
 
 	if (bCapture) {
 		// Notify element on modal
-		var oCaptureEvent	= new cAMLUIEvent;
+		var oCaptureEvent	= new cUIEvent;
 		oCaptureEvent.initUIEvent("capture", true, false, window, null);
 		oCaptureEvent.$pseudoTarget	= oPseudo;
-		fAMLNode_dispatchEvent(oTarget, oCaptureEvent);
+		fNode_dispatchEvent(oTarget, oCaptureEvent);
 		//
 		oEventMouseDown.preventDefault();
 	}
@@ -652,7 +652,7 @@ function fBrowser_onMouseUp(oEvent) {
 	var oTarget		= fBrowser_getEventTarget(oEvent),
 		oPseudo		= fBrowser_getUIEventPseudo(oEvent),
 		nButton		= fBrowser_getUIEventButton(oEvent),
-		oEventMouseUp	= new cAMLMouseEvent;
+		oEventMouseUp	= new cMouseEvent;
 
 	// change target if some element is set to receive capture
 	if (oBrowser_captureNode && !fBrowser_isDescendant(oTarget, oBrowser_captureNode)) {
@@ -666,7 +666,7 @@ function fBrowser_onMouseUp(oEvent) {
 
 	// do not dispatch event if outside modal
 	if (!oBrowser_modalNode || fBrowser_isDescendant(oTarget, oBrowser_modalNode))
-		fAMLNode_dispatchEvent(oTarget, oEventMouseUp);
+		fNode_dispatchEvent(oTarget, oEventMouseUp);
 
 	//
 	return fBrowser_eventPreventDefault(oEvent, oEventMouseUp);
@@ -674,16 +674,16 @@ function fBrowser_onMouseUp(oEvent) {
 
 function fBrowser_onResize(oEvent) {
     // Create an Event
-    var oEventResize = new cAMLUIEvent;
+    var oEventResize = new cUIEvent;
     oEventResize.initUIEvent("resize", true, false, window, null);
-    fAMLNode_dispatchEvent(oAmple_document, oEventResize);
+    fNode_dispatchEvent(oAmple_document, oEventResize);
 };
 
 function fBrowser_onScroll(oEvent) {
     // Create an Event
-    var oEventScroll = new cAMLUIEvent;
+    var oEventScroll = new cUIEvent;
     oEventScroll.initUIEvent("scroll", true, false, window, null);
-    fAMLNode_dispatchEvent(oAmple_document, oEventScroll);
+    fNode_dispatchEvent(oAmple_document, oEventScroll);
 };
 
 function fBrowser_onSelectStart() {
@@ -745,7 +745,7 @@ function fBrowser_getResponseDocument(oRequest) {
 
 function fBrowser_createStyleSheet(sCSS, sUri, sMedia) {
 	// Process Stylesheet
-	oBrowser_factory.innerHTML	= "#text" + '<' + "style" + ' ' + "type" + '="' + "text/css" + '"' + (sMedia ? ' ' + "media" + '="' + sMedia + '"' : '') + '>' + fAML_parseStyleSheet(sCSS, sUri) + '</' + "style" + '>';
+	oBrowser_factory.innerHTML	= "#text" + '<' + "style" + ' ' + "type" + '="' + "text/css" + '"' + (sMedia ? ' ' + "media" + '="' + sMedia + '"' : '') + '>' + fUtilities_translateStyleSheet(sCSS, sUri) + '</' + "style" + '>';
 	return oBrowser_factory.childNodes[1];
 };
 
@@ -854,13 +854,244 @@ function fBrowser_adjustStyleValue(oElementDOM, sName, sValue) {
 };
 
 //
+function fBrowser_processScripts() {
+	var oDocument,
+    	oParserError,
+    	oParserMessage,
+		aElements,
+		oElement,
+		oElementDOM,
+		oElementNew,
+		oAttribute,
+		sAttribute,
+		sPrefix,
+    	aAttributes,
+    	oAttributes,
+    	bReferenced;
+
+	function fHashToString(hHash) {
+		var aAttributes	= [], sAttribute, sPrefix;
+		for (sAttribute in oAmple.prefixes) {
+			sPrefix = "xmlns" + (sAttribute == '' ? '' : ':' + sAttribute);
+			if (!(sPrefix in hHash) && oAmple.prefixes.hasOwnProperty(sAttribute) && sAttribute != "toString")
+				hHash[sPrefix]	= oAmple.prefixes[sAttribute];
+		}
+		for (sAttribute in hHash)
+			if (hHash.hasOwnProperty(sAttribute))
+				aAttributes.push(' ' + sAttribute + '="' + hHash[sAttribute] + '"');
+		return aAttributes.join('');
+	};
+
+	function fGetTagChildren(oElement) {
+		var aHtml	= [];
+		for (var nIndex = 0, aElement = oElement.childNodes; nIndex < aElement.length; nIndex++)
+			aHtml.push(aElement[nIndex].$getTag());
+		return aHtml.join('');
+	};
+
+	// Process script tags
+    aElements = oBrowser_body.getElementsByTagName("script");
+    for (var nIndex = 0, nSkip = 0, sText; aElements.length > nSkip; nIndex++) {
+    	// Current Script
+	    oElementDOM	= aElements[nSkip];
+
+		// Skip if differenet mime-type
+		if (oElementDOM.getAttribute("type") != "application/ample+xml")
+			nSkip++;
+		else {
+			oAttributes	= {};
+			bReferenced	= false;
+
+			// retrieve namespaces list (in older than IE6, attributes on script tag are not parsed into collection)
+			if (bTrident && (nVersion < 6 || nVersion > 8)) {
+				if (aAttributes	= oElementDOM.outerHTML.match(/<script([^\>]+)/i)[1].match(/[^=]+=("[^"]+"|[^\s]+)/gi))
+					for (var nAttribute = 0; oAttribute = aAttributes[nAttribute]; nAttribute++)
+						if (oAttribute.match(/\s([^=]+)="?([^"]+)"?/i) && (sAttribute = cRegExp.$1) != "type")
+                			oAttributes[sAttribute]	= cRegExp.$2;
+			}
+			else {
+		        aAttributes = oElementDOM.attributes;
+		        for (var nAttribute = 0; oAttribute = aAttributes[nAttribute]; nAttribute++)
+		        	if (oAttribute.specified && (sAttribute = oAttribute.nodeName.toLowerCase()) != "type")
+                		oAttributes[sAttribute]	= fUtilities_encodeEntities(sAttribute == "style" ? oElementDOM[sAttribute].cssText : oAttribute.nodeValue);
+			}
+
+			if (oElementDOM.getAttribute("src")) {
+				var oRequest	= new cXMLHttpRequest;
+				oRequest.open("GET", oElementDOM.src, false);
+				oRequest.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+				oRequest.setRequestHeader("X-User-Agent", oDOMConfiguration_values["ample-user-agent"]);
+				oRequest.send(null);
+
+				// loaded fragment
+				oDocument	= fBrowser_getResponseDocument(oRequest);
+				bReferenced	= true;
+			}
+			else {
+				sText	=										//		"<?" + "xml" + ' ' + 'version="1.0"' + "?>" +
+																		'<!' + "DOCTYPE" + ' ' + "div" + '[' + aUtilities_entities + ']>' +
+//->Debug
+																		'\n' +
+//<-Debug
+			    														'<' + "div" + ' ' + "type" + '="' + "application/ample+xml" + '"' + fHashToString(oAttributes).replace(/&/g, '&amp;') + '>' +
+//->Debug
+			    														'\n' +
+//<-Debug
+			    														oElementDOM.text.replace(/^\s*(<!\[CDATA\[)?\s*/, '').replace(/\s*(\]\]>)\s*$/, '').replace(/^\s*<\?xml.+\?>/, '').replace(/&/g, '&amp;').replace(/<script(.|\n|\r)+$/, '') +
+//->Debug
+			    														'\n' +
+//<-Debug
+			    														'</' + "div" + '>';
+				// Bugfix FF4 (remote XUL)
+				if (bGecko)
+					sText	= sText.replace(new cRegExp(sNS_XUL, 'g'), sNS_XUL + '#');
+				// Create fragment
+			    oDocument   = fBrowser_parseXML(sText);
+			}
+
+			oParserError	= oDocument ? oDocument.getElementsByTagName("parsererror")[0] : null;
+		    if (oDocument && oDocument.documentElement && !oParserError) {
+		    	// Set xml:base for referenced documents
+		    	if (bReferenced)
+		    		if (!oDocument.documentElement.getAttribute("xml:base"))
+		    			oDocument.documentElement.setAttribute("xml:base", fUtilities_resolveUri(oElementDOM.src, fNode_getBaseURI(oAmple_root)));
+
+		    	// import XML DOM into Ample DOM
+		    	oElement	= fDocument_importNode(oAmple_document, oDocument.documentElement, true, null, true);
+		    	// Remove prefixes declarations (already available from root)
+		    	if (!bReferenced) {
+		    		for (sAttribute in oAmple.prefixes) {
+			    		sPrefix = "xmlns" + (sAttribute == '' ? '' : ':' + sAttribute);
+		    			if (sPrefix in oAttributes && oAttributes[sPrefix] == oAmple.prefixes[sAttribute])
+		    				delete oElement.attributes[sPrefix];
+		    		}
+		    		// Change root element name to script
+		    		oElement.nodeName	=
+		    		oElement.localName	=
+		    		oElement.tagName	= "script";
+		    	}
+		    	// render Ample DOM
+		    	if (bTrident) {
+		    		oElementNew	= oUADocument.createElement("div");
+		    		fBrowser_replaceNode(oElementDOM, oElementNew);
+			    	oElementNew.innerHTML = bReferenced ? oElement.$getTag() : fGetTagChildren(oElement);
+
+					// Map attributes
+					if (oElementDOM.style.cssText)
+						oElementNew.style.cssText	= oElementDOM.style.cssText;
+					if (oElementDOM.className)
+						oElementNew.className = oElementDOM.className;
+					// duplicate id problem
+					if (!bReferenced)
+						oElementNew.setAttribute('id', oElementDOM.getAttribute('id') || oElement.uniqueID);
+		    	}
+		    	else {
+		    		for (var sName in oAttributes)
+		    			if (oAttributes.hasOwnProperty(sName) && (sName.substr(0, 2) == 'on' || sName == "src"))
+		    				delete oAttributes[sName];
+					// duplicate id problem
+		    		if (!bReferenced && !oAttributes['id'])
+		    			oAttributes['id']	= oElement.uniqueID;
+
+		    		oElementNew	= oUADocument.importNode(fBrowser_parseXML(
+		    															'<!' + "DOCTYPE" + ' ' + "div" + ' ' + '[' + aUtilities_entities + ']>' +
+//->Debug
+																		'\n' +
+//<-Debug
+		    															'<' + "div" + fHashToString(oAttributes).replace(/&/g, '&amp;') + '>' +
+//->Debug
+																		'\n' +
+//<-Debug
+																		(bReferenced ? oElement.$getTag() : fGetTagChildren(oElement)) +
+//->Debug
+																		'\n' +
+//<-Debug
+		    															'</' + "div"+ '>').documentElement, true);
+		    		oElementDOM.parentNode.replaceChild(oElementNew, oElementDOM);
+		    	}
+
+				//
+		    	fNode_appendChild(oAmple_root, oElement);
+
+				// Register tree
+				fDocument_register(oAmple_document, oElement);
+
+			    // Fire load Event
+		    	var oEventLoad = new cEvent;
+			    oEventLoad.initEvent("load", false, false);
+			    fNode_dispatchEvent(oElement, oEventLoad);
+		    }
+		    else {
+				oElementNew	= oUADocument.createElement("pre");
+				fBrowser_replaceNode(oElementDOM, oElementNew);
+		    	oElementNew.innerHTML	= "script" + ' ' + "parsererror";
+//->Debug
+				// First "standard" errors output
+			    if (oParserError) {
+			    	// Gecko/Presto
+					if (oParserMessage = oParserError.getElementsByTagName('sourcetext')[0])
+						oElementNew.textContent	= oParserError.firstChild.textContent + '\n' +
+															oParserMessage.textContent;
+					else
+					// Webkit
+					if (oParserMessage = oParserError.getElementsByTagName("div")[0])
+						oElementNew.textContent	= 'XML Parsing Error: ' + oParserMessage.textContent.replace(/.+:/, '') +
+													'Location: ' + oUALocation + '\n' +
+													 oParserMessage.textContent.replace(/:.+/, '');
+			    }
+			    else
+			    // Trident
+			    if (oDocument && oDocument.parseError) {
+					oElementNew.innerText	= 'XML Parsing Error: ' + oDocument.parseError.reason + '\n' +
+													'Location: ' + (oDocument.parseError.url || oUALocation) + '\n' +
+													'Line Number: ' + oDocument.parseError.line + ', Column ' + oDocument.parseError.linepos + ':\n'+
+													oDocument.parseError.srcText + '\n' +
+													new cArray(oDocument.parseError.linepos).join('-') + '^';
+			    }
+//<-Debug
+
+//->Debug
+			    fUtilities_warn(sGUARD_NOT_WELLFORMED_WRN);
+//<-Debug
+		    }
+		}
+    }
+};
+
+function fBrowser_processStyleSheets() {
+	var aElements,
+		oElement;
+
+	// Process inline StyleSheets
+    aElements   = oUADocument.getElementsByTagName("style");
+    for (var nIndex = 0, nLength = aElements.length; nIndex < nLength; nIndex++) {
+    	oElement	= aElements[nIndex];
+
+    	if (oElement.getAttribute("type") == "text/ample+css")
+    		fBrowser_replaceNode(oElement, fBrowser_createStyleSheet(oElement.innerHTML, oUALocation.href, oElement.getAttribute("media")));
+	}
+
+	// Process external StyleSheets
+    aElements   = oUADocument.getElementsByTagName("link");
+    for (var nIndex = 0, nSkip = 0; aElements.length > nSkip; nIndex++) {
+    	oElement	= aElements[nSkip];
+
+		// Skip if different mime-type
+		if (oElement.getAttribute("type") != "text/ample+css")
+			nSkip++;
+		else
+			fBrowser_replaceNode(oElement, fBrowser_createStyleSheet(fBrowser_loadStyleSheet(oElement.href), oElement.href, oElement.getAttribute("media")));
+    }
+};
+
+//
 fBrowser_attachEvent(window, "load", function(oEvent) {
 	//
 	oBrowser_body	= oUADocument.body;
 	oBrowser_head	= oUADocument.getElementsByTagName("head")[0];
 
 	// change readystate to "loaded"
-	fAML_changeReadyState("loaded");
+	fAmple_changeReadyState("loaded");
 
 //->Source
 	oUADocument.title	= "Initializing...";
@@ -905,9 +1136,9 @@ fBrowser_attachEvent(window, "load", function(oEvent) {
 	// Initialize
 	// When running in Air, start in sync with onload
 	if (bWebKit && window.runtime)
-		fAML_initialize();
+		fAmple_initialize();
 	else
-		fSetTimeout(fAML_initialize, 0);
+		fSetTimeout(fAmple_initialize, 0);
 });
 
 fBrowser_attachEvent(window, "unload", function(oEvent) {
@@ -951,20 +1182,20 @@ fBrowser_attachEvent(window, "unload", function(oEvent) {
 	fBrowser_detachEvent(window, "scroll", fBrowser_onScroll);
 
 	// Finalize
-	fAML_finalize();
+	fAmple_finalize();
 });
 
-function fAML_changeReadyState(sValue) {
+function fAmple_changeReadyState(sValue) {
 	//
 	oAmple.readyState	= sValue;
 
 	// Dispatch
-	var oReadyStateChangeEvent	= new cAMLEvent;
+	var oReadyStateChangeEvent	= new cEvent;
 	oReadyStateChangeEvent.initEvent("readystatechange", false, false);
-	fAMLNode_dispatchEvent(oAmple_document, oReadyStateChangeEvent);
+	fNode_dispatchEvent(oAmple_document, oReadyStateChangeEvent);
 };
 
-function fAML_initialize() {
+function fAmple_initialize() {
 //->Source
 	oUADocument.title	= "Processing...";
 //<-Source
@@ -974,20 +1205,20 @@ function fAML_initialize() {
 //<-Source
 
 	// Process CSS stylesheets
-	fAML_processStyleSheets();
+	fBrowser_processStyleSheets();
 
 //->Source
     var oDateXML	= new cDate;
 //<-Source
 
 	// Process XML markup
-	fAML_processScripts();
+	fBrowser_processScripts();
 
 	// change readystate to "interactive"
-	fAML_changeReadyState("interactive");
+	fAmple_changeReadyState("interactive");
 
 	// Set documentElement style pointer object
-    if (oAMLConfiguration_values["ample-enable-style"])
+    if (oDOMConfiguration_values["ample-enable-style"])
     	oAmple_root.style	= oBrowser_body.style;
 
 	// IE background images cache fix
@@ -997,16 +1228,16 @@ function fAML_initialize() {
 	} catch (oException){};
 
     // Fire Event
-    var oEventLoad = new cAMLEvent;
+    var oEventLoad = new cEvent;
     oEventLoad.initEvent("load", false, false);
-    fAMLNode_dispatchEvent(oAmple_document, oEventLoad);
+    fNode_dispatchEvent(oAmple_document, oEventLoad);
 
 	// change readystate to "complete"
-	fAML_changeReadyState("complete");
+	fAmple_changeReadyState("complete");
 
 //->Source
-	var nElements	= fAMLElement_getElementsByTagName(oAmple_document, '*').length,
-		nAnonymous	= (function(){var nLength = 0; for (var sKey in oAMLDocument_all) if (oAMLDocument_all.hasOwnProperty(sKey)) nLength++; return nLength})();
+	var nElements	= fElement_getElementsByTagName(oAmple_document, '*').length,
+		nAnonymous	= (function(){var nLength = 0; for (var sKey in oDocument_all) if (oDocument_all.hasOwnProperty(sKey)) nLength++; return nLength})();
 	oUADocument.title	=	"Ample: " + nElements + " (+" + (nAnonymous - nElements) + " anonymous). " +
 							"DHTML: " + oUADocument.getElementsByTagName('*').length + ". " +
 							"CSS time: " + (oDateXML - oDateCSS) + " ms. " +
@@ -1014,21 +1245,21 @@ function fAML_initialize() {
 //<-Source
 };
 
-function fAML_finalize() {
+function fAmple_finalize() {
 	var aElements = oAmple_root.childNodes,
 		oEventUnload;
 	for (var nIndex = 0; nIndex < aElements.length; nIndex++) {
 	    // fire unload event on fragments
-		oEventUnload = new cAMLEvent;
+		oEventUnload = new cEvent;
 	    oEventUnload.initEvent("unload", false, false);
-	    fAMLNode_dispatchEvent(aElements[nIndex], oEventUnload);
+	    fNode_dispatchEvent(aElements[nIndex], oEventUnload);
 	}
 
     // fire unload event on document
-    oEventUnload = new cAMLEvent;
+    oEventUnload = new cEvent;
     oEventUnload.initEvent("unload", false, false);
-    fAMLNode_dispatchEvent(oAmple_document, oEventUnload);
+    fNode_dispatchEvent(oAmple_document, oEventUnload);
 
 	// free memory
-    fAMLDocument_unregister(oAmple_document, oAmple_root);
+    fDocument_unregister(oAmple_document, oAmple_root);
 };

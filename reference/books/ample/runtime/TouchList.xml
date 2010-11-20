@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<class name="TouchList">
+	<abstract>
+		<locale>
+			The <link type="class">TouchList</link> class is used to represent a collection of <link type="class">Touch</link> objects.
+		</locale>
+	</abstract>
+	<examples/>
+	<members>
+		<properties>
+			<property name="length" type="Number" readonly="true">
+				<description>
+					<locale>
+						The number of <link type="class">Touch</link> objects in this <link type="class">TouchList</link> object.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<methods>
+			<method name="item" type="Touch">
+				<arguments>
+					<argument name="index" type="Number">
+						<description>
+							<locale>
+								The index of the item to return.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Returns the <link type="class">Touch</link> object at the given index.
+					</locale>
+				</description>
+			</method>
+		</methods>
+	</members>
+</class>

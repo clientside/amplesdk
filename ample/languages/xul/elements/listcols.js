@@ -9,7 +9,7 @@
 
 var cXULElement_listcols	= function() {
     // Collections
-    this.items  = new ample.classes.AMLNodeList;
+    this.items  = new ample.classes.NodeList;
 };
 cXULElement_listcols.prototype	= new cXULElement("listcols");
 

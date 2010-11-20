@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<class name="XULDocument" extends="runtime:AMLDocument">
+<class name="XULDocument" extends="runtime:Document">
 	<abstract>
 		<locale>
 			Represent XUL Document Object
@@ -32,11 +32,11 @@
 			</method>
 			<method name="addBroadcastListenerFor" type="Void">
 				<arguments>
-					<argument name="broadcaster" type="AMLElement">
+					<argument name="broadcaster" type="Element">
 						<description>
 						</description>
 					</argument>
-					<argument name="observer" type="AMLElement">
+					<argument name="observer" type="Element">
 						<description>
 							<locale xml:lang="ru">
 								Обсервер.
@@ -59,11 +59,11 @@
 			</method>
 			<method name="removeBroadcastListenerFor" type="Void">
 				<arguments>
-					<argument name="broadcaster" type="AMLElement">
+					<argument name="broadcaster" type="Element">
 						<description>
 						</description>
 					</argument>
-					<argument name="observer" type="AMLElement">
+					<argument name="observer" type="Element">
 						<description>
 							<locale xml:lang="ru">
 								Обсервер.
@@ -87,7 +87,7 @@
 			 -->
 		</methods>
 		<properties>
-			<property name="popupNode" readonly="true" type="AMLElement">
+			<property name="popupNode" readonly="true" type="Element">
 				<description>
 					<locale>
 						Reference to a currently displayed popup element.
@@ -97,7 +97,7 @@
 					</locale>
 				</description>
 			</property>
-			<property name="tooltipNode" readonly="true" type="AMLElement">
+			<property name="tooltipNode" readonly="true" type="Element">
 				<description>
 					<locale>
 						Reference to a currently displayed tooltip element.

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<class name="GestureEvent" extends="runtime:UIEvent">
+	<abstract>
+		<locale>
+			The <link type="class">GestureEvent</link> class encapsulates information about a multi-touch gesture.
+			<link type="class">GestureEvent</link> objects are high-level events that encapsulate the low-level <link type="class">TouchEvent</link> objects.
+			Both <link type="class">GestureEvent</link>  and <link type="class">TouchEvent</link> events are sent during a multi-touch sequence.
+			Gesture events contain scaling and rotation information allowing gestures to be combined, if supported by the platform.
+			If not supported, one gesture ends before another starts.
+			Listen for <link type="class">GestureEvent</link>  events if you want to respond to gestures only, not process the low-level <link type="class">TouchEvent</link> objects.
+		</locale>
+	</abstract>
+	<examples/>
+	<members>
+		<methods>
+			<method name="initGestureEvent" type="Void">
+				<arguments>
+					<argument name="type" type="String" required="true">
+						<description>
+							<locale>
+								The type of event that occurred.
+							</locale>
+						</description>
+					</argument>
+					<argument name="canBubble" type="Boolean" required="true">
+						<description>
+							<locale>
+								Indicates whether an event can bubble. If true, the event can bubble; otherwise, it cannot.
+							</locale>
+						</description>
+					</argument>
+					<argument name="cancelable" type="Boolean" required="true">
+						<description>
+							<locale>
+								Indicates whether an event can have its default action prevented. If true, the default action can be prevented; otherwise, it cannot.
+							</locale>
+						</description>
+					</argument>
+					<argument name="view" type="Object" required="true">
+						<description>
+							<locale>
+								The view (DOM window) in which the event occurred.
+							</locale>
+						</description>
+					</argument>
+					<argument name="detail" type="Number" required="true">
+						<description>
+							<locale>
+								Specifies some detail information about the event depending on the type of event.
+							</locale>
+						</description>
+					</argument>
+					<argument name="screenX" type="Number" required="true">
+						<description>
+							<locale>
+								The x-coordinate of the event’s location in screen coordinates.
+							</locale>
+						</description>
+					</argument>
+					<argument name="screenY" type="Number" required="true">
+						<description>
+							<locale>
+								The y-coordinate of the event’s location in screen coordinates.
+							</locale>
+						</description>
+					</argument>
+					<argument name="clientX" type="Number" required="true">
+						<description>
+							<locale>
+								The x-coordinate of the event’s location relative to the window’s viewport.
+							</locale>
+						</description>
+					</argument>
+					<argument name="clientY" type="Number" required="true">
+						<description>
+							<locale>
+								The y-coordinate of the event’s location relative to the window’s viewport.
+							</locale>
+						</description>
+					</argument>
+					<argument name="ctrlKey" type="Boolean" required="true">
+						<description>
+							<locale>
+								If true, the control key is pressed; otherwise, it is not.
+							</locale>
+						</description>
+					</argument>
+					<argument name="altKey" type="Boolean" required="true">
+						<description>
+							<locale>
+								If true, the alt key is pressed; otherwise, it is not.
+							</locale>
+						</description>
+					</argument>
+					<argument name="shiftKey" type="Boolean" required="true">
+						<description>
+							<locale>
+								If true, the shift key is pressed; otherwise, it is not.
+							</locale>
+						</description>
+					</argument>
+					<argument name="metaKey" type="Boolean" required="true">
+						<description>
+							<locale>
+								If true, the meta key is pressed; otherwise, it is not.
+							</locale>
+						</description>
+					</argument>
+					<argument name="target" type="Element" required="true">
+						<description>
+							<locale>
+								The target of this gesture.
+							</locale>
+						</description>
+					</argument>
+					<argument name="scale" type="Number" required="true">
+						<description>
+							<locale>
+								The distance between two fingers since the start of an event as a multiplier of the initial distance. The initial value is 1.0. If less than 1.0, the gesture is pinch close (to zoom out). If greater than 1.0, the gesture is pinch open (to zoom in).
+							</locale>
+						</description>
+					</argument>
+					<argument name="rotation" type="Number" required="true">
+						<description>
+							<locale>
+								The delta rotation since the start of an event, in degrees, where clockwise is positive and counter-clockwise is negative. The initial value is 0.0.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Initializes attributes of a <link type="class">GestureEvent</link> object.
+					</locale>
+				</description>
+			</method>
+		</methods>
+		<properties>
+			<property name="altKey" type="Boolean" readonly="true">
+				<description>
+					<locale>
+						If true, the alt key is pressed; otherwise, it is not.
+					</locale>
+				</description>
+			</property>
+			<property name="clientX" type="Number" readonly="true">
+				<description>
+					<locale>
+						The x-coordinate of the event’s location relative to the window’s viewport.
+					</locale>
+				</description>
+			</property>
+			<property name="clientY" type="Number" readonly="true">
+				<description>
+					<locale>
+						The y-coordinate of the event’s location relative to the window’s viewport.
+					</locale>
+				</description>
+			</property>
+			<property name="ctrlKey" type="Boolean" readonly="true">
+				<description>
+					<locale>
+						If true, the control key is pressed; otherwise, it is not.
+					</locale>
+				</description>
+			</property>
+			<property name="metaKey" type="Boolean" readonly="true">
+				<description>
+					<locale>
+						If true, the meta key is pressed; otherwise, it is not.
+					</locale>
+				</description>
+			</property>
+			<property name="screenX" type="Number" readonly="true">
+				<description>
+					<locale>
+						The x-coordinate of the event’s location in screen coordinates.
+					</locale>
+				</description>
+			</property>
+			<property name="screenY" type="Number" readonly="true">
+				<description>
+					<locale>
+						The y-coordinate of the event’s location in screen coordinates.
+					</locale>
+				</description>
+			</property>
+			<property name="shiftKey" type="Boolean" readonly="true">
+				<description>
+					<locale>
+						If true, the shift key is pressed; otherwise, it is not.
+					</locale>
+				</description>
+			</property>
+			<property name="target" type="Element" readonly="true">
+				<description>
+					<locale>
+						The target of this gesture.
+					</locale>
+				</description>
+			</property>
+			<property name="scale" type="Number" readonly="true">
+				<description>
+					<locale>
+						The distance between two fingers since the start of an event, as a multiplier of the initial distance.
+						The initial value is 1.0.
+						If less than 1.0, the gesture is pinch close (to zoom out).
+						If greater than 1.0, the gesture is pinch open (to zoom in).
+					</locale>
+				</description>
+			</property>
+			<property name="rotation" type="Number" readonly="true">
+				<description>
+					<locale>
+						The delta rotation since the start of an event, in degrees, where clockwise is positive and counter-clockwise is negative.
+						The initial value is 0.0.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<constants />
+	</members>
+	<remarks>
+		<remark>
+			<locale>Events of that type:</locale>
+			<ul>
+				<li><link type="event" href="runtime:Element">gesturestart</link></li>
+				<li><link type="event" href="runtime:Element">gesturechange</link></li>
+				<li><link type="event" href="runtime:Element">gestureend</link></li>
+			</ul>
+		</remark>
+	</remarks>
+	<examples />
+</class>

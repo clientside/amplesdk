@@ -10,7 +10,7 @@
 var cREXElement	= function(sLocalName) {
 	this.localName	= sLocalName;
 };
-cREXElement.prototype	= new cAMLElement;
+cREXElement.prototype	= new cElement;
 cREXElement.prototype.namespaceURI	= "http://www.w3.org/2006/rex";
 cREXElement.prototype.localName		= "#element";
 

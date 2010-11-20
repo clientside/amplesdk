@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<class name="DOMException">
+	<abstract>
+		<locale>
+			DOM operations only raise exceptions in "exceptional" circumstances, i.e., when an operation is impossible to perform (either for logical reasons, because data is lost, or because the implementation has become unstable).
+		</locale>
+		<locale xml:lang="ru">
+			Операции DOM вызывают исключения только в "исключительных" ситуациях, например, когда завершение операции невозможно (обусловлено логикой, отсутствием данных или контекст исполнения перестал быть стабильным).
+		</locale>
+	</abstract>
+	<remarks />
+	<examples/>
+	<members>
+		<properties>
+			<property name="code" type="Number" readonly="true">
+				<description>
+					<locale>
+						An integer indicating the type of error generated.
+					</locale>
+				</description>
+			</property>
+			<property name="message" type="String" readonly="true">
+				<description>
+					<locale>
+						An exception message.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<constants>
+			<!-- DOM Exceptions -->
+			<constant name="INDEX_SIZE_ERR" value="1">
+				<description>
+					<locale>
+						If index or size is negative, or greater than the allowed value.
+					</locale>
+					<locale xml:lang="ru">
+						Номер или размер отрицательный или больше разрешенного значения.
+					</locale>
+				</description>
+			</constant>
+			<constant name="DOMSTRING_SIZE_ERR" value="2">
+				<description>
+					<locale>
+						If the specified range of text does not fit into a DOMString.
+					</locale>
+					<locale xml:lang="ru">
+						Размер строки не умещается в размер DOMString.
+					</locale>
+				</description>
+			</constant>
+			<constant name="HIERARCHY_REQUEST_ERR" value="3">
+				<description>
+					<locale>
+						If any Node is inserted somewhere it doesn't belong.
+					</locale>
+					<locale xml:lang="ru">
+						Ошибка размещения любого узла в структуре.
+					</locale>
+				</description>
+			</constant>
+			<constant name="WRONG_DOCUMENT_ERR" value="4">
+				<description>
+					<locale>
+						If a Node is used in a different document than the one that created it (that doesn't support it).
+					</locale>
+					<locale xml:lang="ru">
+						Попытка использования узла в документе, отличном от документа, в контексте которого он был создан.
+					</locale>
+				</description>
+			</constant>
+			<constant name="INVALID_CHARACTER_ERR" value="5">
+				<description>
+					<locale>
+						If an invalid or illegal character is specified, such as in an XML name.
+					</locale>
+					<locale xml:lang="ru">
+						Указан некорректный символ, например, в названии XML тега.
+					</locale>
+				</description>
+			</constant>
+			<constant name="NO_DATA_ALLOWED_ERR" value="6">
+				<description>
+					<locale>
+						If data is specified for a Node which does not support data.
+					</locale>
+					<locale xml:lang="ru">
+						Данные указаны для узла, который не поддерживает данные.
+					</locale>
+				</description>
+			</constant>
+			<constant name="NO_MODIFICATION_ALLOWED_ERR" value="7">
+				<description>
+					<locale>
+						If an attempt is made to modify an object where modifications are not allowed.
+					</locale>
+					<locale xml:lang="ru">
+						Попытка модифицировать объект, но модификация запрещена.
+					</locale>
+				</description>
+			</constant>
+			<constant name="NOT_FOUND_ERR" value="8">
+				<description>
+					<locale>
+						If an attempt is made to reference a Node in a context where it does not exist.
+					</locale>
+					<locale xml:lang="ru">
+						Попытка получить ссылку на узел в контексте, где этот узел не существует.
+					</locale>
+				</description>
+			</constant>
+			<constant name="NOT_SUPPORTED_ERR" value="9">
+				<description>
+					<locale>
+						If the implementation does not support the requested type of object or operation.
+					</locale>
+					<locale xml:lang="ru">
+						Реализация не поддерживает запрашиваемый тип объекта или операции.
+					</locale>
+				</description>
+			</constant>
+			<constant name="INUSE_ATTRIBUTE_ERR" value="10">
+				<description>
+					<locale>
+						If an attempt is made to add an attribute that is already in use elsewhere.
+					</locale>
+					<locale xml:lang="ru">
+						Попытка добавить атрибут, который уже используется.
+					</locale>
+				</description>
+			</constant>
+			<constant name="INVALID_STATE_ERR" value="11">
+				<description>
+					<locale>
+						If an attempt is made to use an object that is not, or is no longer, usable.
+					</locale>
+					<locale xml:lang="ru">
+						Попытка использовать объекта, который в этот момент недоступен для использования.
+					</locale>
+				</description>
+			</constant>
+			<constant name="SYNTAX_ERR" value="12">
+				<description>
+					<locale>
+						If an invalid or illegal string is specified.
+					</locale>
+					<locale xml:lang="ru">
+						Указана некорректная строка.
+					</locale>
+				</description>
+			</constant>
+			<constant name="INVALID_MODIFICATION_ERR" value="13">
+				<description>
+					<locale>
+						If an attempt is made to modify the type of the underlying object.
+					</locale>
+					<locale xml:lang="ru">
+						Попытка изменения типа базового объекта.
+					</locale>
+				</description>
+			</constant>
+			<constant name="NAMESPACE_ERR" value="14">
+				<description>
+					<locale>
+						If an attempt is made to create or change an object in a way which is incorrect with regard to namespaces.
+					</locale>
+					<locale xml:lang="ru">
+						Попытка создать или изменить объект некорректным образом по отношению к его пространству имен.
+					</locale>
+				</description>
+			</constant>
+			<constant name="INVALID_ACCESS_ERR" value="15">
+				<description>
+					<locale>
+						If a parameter or an operation is not supported by the underlying object.
+					</locale>
+					<locale xml:lang="ru">
+						Параметр или операция не поддерживается базовым объектом.
+					</locale>
+				</description>
+			</constant>
+			<constant name="VALIDATION_ERR" value="16">
+				<description>
+					<locale>
+						If a call to a method such as insertBefore or removeChild would make the Node invalid with respect to "partial validity", this exception would be raised and the operation would not be done. This code is used in [DOM Level 3 Validation].
+					</locale>
+					<locale xml:lang="ru">
+						Если вызов метода (например, insertBefore или removeChild) может сделать узел невалидным в смысле ....., возникнет исключение этого типа, а операция не будет произведена.
+					</locale>
+				</description>
+			</constant>
+			<constant name="TYPE_MISMATCH_ERR" value="17">
+				<description>
+					<locale>
+						If the type of an object is incompatible with the expected type of the parameter associated to the object.
+					</locale>
+				</description>
+			</constant>
+			<!-- Ample Exceptions -->
+			<constant name="GUARD_ARGUMENT_MISSING_ERR" value="-1">
+				<description>
+					<locale>
+						Missing required argument from function call.
+					</locale>
+				</description>
+			</constant>
+			<constant name="GUARD_ARGUMENT_WRONG_TYPE_ERR" value="-2">
+				<description>
+					<locale>
+						Incompatible type of argument in function call.
+					</locale>
+				</description>
+			</constant>
+			<constant name="GUARD_ARGUMENT_WRONG_TYPE_ERR" value="-3">
+				<description>
+					<locale>
+						null is not allowed value in function call.
+					</locale>
+				</description>
+			</constant>
+			<constant name="GUARD_NOT_INITIALIZED_ERR" value="-4">
+				<description>
+					<locale>
+						Object has not been initialized.
+					</locale>
+				</description>
+			</constant>
+			<constant name="GUARD_CANNOT_ACCESS_DOM_ERR" value="-5">
+				<description>
+					<locale>
+						Access to DOM in element constructor not allowed.
+					</locale>
+				</description>
+			</constant>
+			<constant name="GUARD_MEMBER_MISSING_ERR" value="-6">
+				<description>
+					<locale>
+						Object does not have a method.
+					</locale>
+				</description>
+			</constant>
+		</constants>
+	</members>
+</class>

@@ -20,5 +20,5 @@ cXBLImplementationsList.prototype.item	= function(nIndex) {
 	if (nIndex <= this.length)
 		return this[nIndex];
 	else
-		throw new cAMLException(cAMLException.INDEX_SIZE_ERR);
+		throw new cDOMException(cDOMException.INDEX_SIZE_ERR);
 };

@@ -10,7 +10,7 @@
 var cXULElement_wizard	= function() {
     // Collections
     this.buttons	= {};
-    this.wizardPages= new ample.classes.AMLNodeList;
+    this.wizardPages= new ample.classes.NodeList;
     //
     var that	= this;
     this.contentFragment	= ample.createDocumentFragment();

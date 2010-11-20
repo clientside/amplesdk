@@ -7,7 +7,7 @@
  *
  */
 
-cAMLQuery.prototype.attr	= function(sQName, sValue) {
+cQuery.prototype.attr	= function(sQName, sValue) {
 //->Guard
 	fGuard(arguments, [
 		["name",	cString],
@@ -22,13 +22,13 @@ cAMLQuery.prototype.attr	= function(sQName, sValue) {
 			sNameSpaceURI	= null;
 		if (sPrefix != null)
 			sNameSpaceURI	= this.resolver ? this.resolver(sPrefix) : oAmple.prefixes[sPrefix] || null;
-		fAMLQuery_each(this, function() {
-			sValue == null ? fAMLElement_removeAttributeNS(this, sNameSpaceURI, sLocalName) : fAMLElement_setAttributeNS(this, sNameSpaceURI, sQName, cString(sValue));
+		fQuery_each(this, function() {
+			sValue == null ? fElement_removeAttributeNS(this, sNameSpaceURI, sLocalName) : fElement_setAttributeNS(this, sNameSpaceURI, sQName, cString(sValue));
 		});
 		return this;
 	}
 	else
 	if (this.length)
-		return fAMLElement_getAttribute(this[0], sQName);
+		return fElement_getAttribute(this[0], sQName);
 	return null;
 };

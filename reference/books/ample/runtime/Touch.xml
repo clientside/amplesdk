@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<class name="Touch">
+	<abstract>
+		<locale>
+			The <link type="class">Touch</link> class represents a single touch on the surface.
+			A touch is the presence or movement of a finger that is part of a unique multi-touch sequence.
+		</locale>
+	</abstract>
+	<examples/>
+	<members>
+		<properties>
+			<property name="clientX" type="Number" readonly="true">
+				<description>
+					<locale>
+						The x-coordinate of the touch’s location relative to the window’s viewport.
+					</locale>
+				</description>
+			</property>
+			<property name="clientY" type="Number" readonly="true">
+				<description>
+					<locale>
+						The y-coordinate of the touch’s location relative to the window’s viewport.
+					</locale>
+				</description>
+			</property>
+			<property name="identifier" type="Number" readonly="true">
+				<description>
+					<locale>
+						The unique identifier for this touch object.
+					</locale>
+				</description>
+			</property>
+			<property name="pageX" type="Number" readonly="true">
+				<description>
+					<locale>
+						The x-coordinate of the touch’s location in page coordinates.
+					</locale>
+				</description>
+			</property>
+			<property name="pageY" type="Number" readonly="true">
+				<description>
+					<locale>
+						The y-coordinate of the touch’s location in page coordinates.
+					</locale>
+				</description>
+			</property>
+			<property name="screenX" type="Number" readonly="true">
+				<description>
+					<locale>
+						The x-coordinate of the touch’s location in screen coordinates.
+					</locale>
+				</description>
+			</property>
+			<property name="screenY" type="Number" readonly="true">
+				<description>
+					<locale>
+						The y-coordinate of the touch’s location in screen coordinates.
+					</locale>
+				</description>
+			</property>
+			<property name="target" type="Element" readonly="true">
+				<description>
+					<locale>
+						The target of this touch.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<methods />
+	</members>
+</class>

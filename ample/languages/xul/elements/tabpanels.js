@@ -9,7 +9,7 @@
 
 var cXULElement_tabpanels	= function() {
     // Collections
-    this.items      = new ample.classes.AMLNodeList;
+    this.items      = new ample.classes.NodeList;
 };
 cXULElement_tabpanels.prototype  = new cXULElement("tabpanels");
 

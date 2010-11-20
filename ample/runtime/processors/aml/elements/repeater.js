@@ -7,18 +7,18 @@
  *
  */
 
-var cAMLElement_repeater	= function(){};
-cAMLElement_repeater.prototype	= new cAMLElement_prototype("repeater");
+var cElement_repeater	= function(){};
+cElement_repeater.prototype	= new cAMLElement("repeater");
 
 // Public properties
-cAMLElement_repeater.prototype.data	= null;
+cElement_repeater.prototype.data	= null;
 
 // Private Properties
-cAMLElement_repeater.prototype._timeout	= null;
+cElement_repeater.prototype._timeout	= null;
 
 // Class Event Handlers
-cAMLElement_repeater.handlers	= {};
-cAMLElement_repeater.handlers["DOMAttrModified"]	= function(oEvent) {
+cElement_repeater.handlers	= {};
+cElement_repeater.handlers["DOMAttrModified"]	= function(oEvent) {
 	if (oEvent.target == this)
 		switch (oEvent.newValue) {
 			case "data":
@@ -31,20 +31,20 @@ cAMLElement_repeater.handlers["DOMAttrModified"]	= function(oEvent) {
 */
 		}
 };
-cAMLElement_repeater.handlers["DOMNodeInsertedIntoDocument"]	= function(oEvent) {
-	var oElement	= oAMLDocument_ids[this.attributes["data"]];
+cElement_repeater.handlers["DOMNodeInsertedIntoDocument"]	= function(oEvent) {
+	var oElement	= oDocument_ids[this.attributes["data"]];
 	if (oElement) {
 		this.bind(oElement);
 		//
 		this.refresh();
 	}
 };
-cAMLElement_repeater.handlers["DOMNodeRemovedFromDocument"]	= function(oEvent) {
+cElement_repeater.handlers["DOMNodeRemovedFromDocument"]	= function(oEvent) {
 	this.unbind();
 };
 
 // Public Methods
-cAMLElement_repeater.prototype.bind	= function(oElement) {
+cElement_repeater.prototype.bind	= function(oElement) {
 	if (this.data && this.data != oElement)
 		this.unbind();
 	else {
@@ -53,14 +53,14 @@ cAMLElement_repeater.prototype.bind	= function(oElement) {
 	}
 };
 
-cAMLElement_repeater.prototype.unbind	= function() {
+cElement_repeater.prototype.unbind	= function() {
 	if (this.data) {
 		this.data.unregister(this);
 		this.data	= null;
 	}
 };
 
-cAMLElement_repeater.prototype.refresh	= function() {
+cElement_repeater.prototype.refresh	= function() {
 	// skip refresh (if scheduled)
 	if (this._timeout)
 		return;
@@ -74,7 +74,7 @@ cAMLElement_repeater.prototype.refresh	= function() {
 	}, 0);
 };
 
-cAMLElement_repeater.prototype.repeat	= function() {
+cElement_repeater.prototype.repeat	= function() {
 	if (this.data) {
 		var aElements, nIndex, oElement;
 
@@ -82,44 +82,44 @@ cAMLElement_repeater.prototype.repeat	= function() {
 		aElements	= this.parentNode.childNodes;
 		for (nIndex = 0; oElement = aElements[nIndex]; nIndex++)
 			if (oElement.dataIndex)
-				fAMLElement_removeChild(oElement.parentNode, oElement) && nIndex--;
+				fElement_removeChild(oElement.parentNode, oElement) && nIndex--;
 
 		// Generate new content
 		var oContext	= this,
 			oContextCache	= {},
 			fResolver	= function (sPrefix) {
-				return sPrefix in oContextCache ? oContextCache[sPrefix] : oContextCache[sPrefix] = fAMLNode_lookupNamespaceURI(oContext, sPrefix);
+				return sPrefix in oContextCache ? oContextCache[sPrefix] : oContextCache[sPrefix] = fNode_lookupNamespaceURI(oContext, sPrefix);
 			};
-		aElements	= fAMLSelector_query([this.data], this.attributes["select"] || '', fResolver);
+		aElements	= fNodeSelector_query([this.data], this.attributes["select"] || '', fResolver);
 		for (nIndex = 0; nIndex < aElements.length; nIndex++)
-			fAMLElement_insertBefore(this.parentNode,
-				cAMLElement_repeater_processNode(
-					fAMLNode_cloneNode(this.firstChild, true),
+			fElement_insertBefore(this.parentNode,
+				cElement_repeater_processNode(
+					fNode_cloneNode(this.firstChild, true),
 					aElements[nIndex],
 					fResolver),
 				this).dataIndex	= nIndex + 1;
 	}
 };
 
-var rAMLElement_repeater_regexp	= /(\{([^\}]+)\})/g;
+var rElement_repeater_regexp	= /(\{([^\}]+)\})/g;
 
 // 'Static' Methods
-function cAMLElement_repeater_processNode(oElement, oData, fResolver) {
+function cElement_repeater_processNode(oElement, oData, fResolver) {
 	var oNode, sName;
 	for (var nIndex = 0; nIndex < oElement.childNodes.length; nIndex++)	{
 		oNode	= oElement.childNodes[nIndex];
 		switch (oNode.nodeType) {
-			case cAMLNode.ELEMENT_NODE:
+			case cNode.ELEMENT_NODE:
 				for (sName in oNode.attributes)
-					if (oNode.attributes.hasOwnProperty(sName) && oNode.attributes[sName].match(rAMLElement_repeater_regexp))
-						oNode.attributes[sName]	= oNode.attributes[sName].replace(cRegExp.$1, fAMLElement_repeater_resolveValue(cRegExp.$2, oData, fResolver));
-				cAMLElement_repeater_processNode(oNode, oData, fResolver);
+					if (oNode.attributes.hasOwnProperty(sName) && oNode.attributes[sName].match(rElement_repeater_regexp))
+						oNode.attributes[sName]	= oNode.attributes[sName].replace(cRegExp.$1, fElement_repeater_resolveValue(cRegExp.$2, oData, fResolver));
+				cElement_repeater_processNode(oNode, oData, fResolver);
 				break;
 
-			case cAMLNode.TEXT_NODE:
-			case cAMLNode.CDATA_SECTION:
-				if (oNode.data.match(rAMLElement_repeater_regexp)) {
-					oNode.data	= oNode.data.replace(cRegExp.$1, fAMLElement_repeater_resolveValue(cRegExp.$2, oData, fResolver));
+			case cNode.TEXT_NODE:
+			case cNode.CDATA_SECTION:
+				if (oNode.data.match(rElement_repeater_regexp)) {
+					oNode.data	= oNode.data.replace(cRegExp.$1, fElement_repeater_resolveValue(cRegExp.$2, oData, fResolver));
 					oNode.nodeValue	= oNode.data;
 					oNode.length= oNode.data.length;
 				}
@@ -128,10 +128,10 @@ function cAMLElement_repeater_processNode(oElement, oData, fResolver) {
 	return oElement;
 };
 
-function fAMLElement_repeater_resolveValue(sQuery, oData, fResolver) {
-	var oElement	= fAMLSelector_query([oData], sQuery, fResolver, true)[0];
+function fElement_repeater_resolveValue(sQuery, oData, fResolver) {
+	var oElement	= fNodeSelector_query([oData], sQuery, fResolver, true)[0];
 	return oElement && oElement.firstChild ? oElement.firstChild.data : '';
 };
 
 // Register Element
-fAmple_extend(cAMLElement_repeater);
+fAmple_extend(cElement_repeater);

@@ -10,13 +10,13 @@
 var hClasses	= {};
 
 // Create Ample SDK document object
-var oAmple_document	= fAMLImplementation_createDocument(new cAMLImplementation, sNS_XHTML, "body", null),
+var oAmple_document	= fDOMImplementation_createDocument(new cDOMImplementation, sNS_XHTML, "body", null),
 	oAmple_root		= oAmple_document.documentElement;
 oAmple_root.$getContainer	= function(sName) {return sName == "gateway" ? oBrowser_body : sName ? null : oBrowser_root};
 
 //
 function fQuery(vArgument1, vArgument2, vArgument3) {
-	var oQuery	= new cAMLQuery;
+	var oQuery	= new cQuery;
 	if (arguments.length > 0) {
 		if (typeof vArgument1 == "string" || vArgument1 instanceof cString) {
 			if (vArgument1.substr(0,1) == '<') {
@@ -47,20 +47,20 @@ function fQuery(vArgument1, vArgument2, vArgument3) {
 				//
 				var oDocument	= fBrowser_parseXML(sText);
 				if (!oDocument || ((bTrident && oDocument.parseError != 0) || !oDocument.documentElement || oDocument.getElementsByTagName("parsererror").length))
-					throw new cAMLException(cAMLException.SYNTAX_ERR, fQuery.caller);
+					throw new cDOMException(cDOMException.SYNTAX_ERR, fQuery.caller);
 				else
 					for (var nIndex = 0, aElements = oDocument.documentElement.childNodes; nIndex < aElements.length; nIndex++)
-						if (aElements[nIndex].nodeType == cAMLNode.ELEMENT_NODE)
-							oQuery[oQuery.length++]	= fAMLDocument_importNode(oAmple_document, aElements[nIndex], true);
+						if (aElements[nIndex].nodeType == cNode.ELEMENT_NODE)
+							oQuery[oQuery.length++]	= fDocument_importNode(oAmple_document, aElements[nIndex], true);
 			}
 			else {
 				// Validate API call (custom)
 				// Context
 				if (arguments.length > 1) {
-					if (!(vArgument2 instanceof cAMLNode))
-						throw new cAMLException(cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR, fQuery.caller
+					if (!(vArgument2 instanceof cNode))
+						throw new cDOMException(cDOMException.GUARD_ARGUMENT_WRONG_TYPE_ERR, fQuery.caller
 //->Debug
-							, ['2' + oGuard_endings[1], "context", "query", "AMLNode"]
+							, ['2' + oGuard_endings[1], "context", "query", "Node"]
 //<-Debug
 						);
 				}
@@ -69,7 +69,7 @@ function fQuery(vArgument1, vArgument2, vArgument3) {
 				// Resolver
 				if (arguments.length > 2 && vArgument3 !== null) {
 					if (!(vArgument3 instanceof cFunction))
-						throw new cAMLException(cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR, fQuery.caller
+						throw new cDOMException(cDOMException.GUARD_ARGUMENT_WRONG_TYPE_ERR, fQuery.caller
 //->Debug
 							, ['3' + oGuard_endings[2], "resolver", "query", "Function"]
 //<-Debug
@@ -84,7 +84,7 @@ function fQuery(vArgument1, vArgument2, vArgument3) {
 				// Invoke implementation
 				var aResult;
 				try {
-					aResult	= fAMLSelector_query([oQuery.context], vArgument1, vArgument3);
+					aResult	= fNodeSelector_query([oQuery.context], vArgument1, vArgument3);
 				}
 				catch (oException) {
 					// Re-point caller property and re-throw error
@@ -96,17 +96,17 @@ function fQuery(vArgument1, vArgument2, vArgument3) {
 			}
 		}
 		else
-		if (vArgument1 instanceof cAMLElement)
+		if (vArgument1 instanceof cElement)
 			oQuery[oQuery.length++]	= vArgument1;
 		else
-		if (vArgument1 instanceof cAMLQuery)
-			fAMLQuery_each(vArgument1, function() {
+		if (vArgument1 instanceof cQuery)
+			fQuery_each(vArgument1, function() {
 				oQuery[oQuery.length++]	= this;
 			});
 		else
-			throw new cAMLException(cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR, fQuery.caller
+			throw new cDOMException(cDOMException.GUARD_ARGUMENT_WRONG_TYPE_ERR, fQuery.caller
 //->Debug
-				, ['1' + oGuard_endings[0], "query", "query", "String" + '", "' + "AMLQuery" + '" or "' + "AMLElement"]
+				, ['1' + oGuard_endings[0], "query", "query", "String" + '", "' + "Query" + '" or "' + "Element"]
 //<-Debug
 			);
 	}
@@ -125,15 +125,15 @@ oAmple.readyState	= "loading";
 function fAmple_extend(oSource, oTarget) {
 	if (oSource instanceof cFunction) {
 		var oPrototype	= oSource.prototype;
-		if (oPrototype instanceof cAMLElement)
+		if (oPrototype instanceof cElement)
 			hClasses[oPrototype.namespaceURI + '#' + oPrototype.localName]	= oSource;
 		else
-		if (oPrototype instanceof cAMLAttr)
+		if (oPrototype instanceof cAttr)
 			hClasses[oPrototype.namespaceURI + '#' + '@' + oPrototype.localName]	= oSource;
 		else
-			throw new cAMLException(cAMLException.AML_ARGUMENT_WRONG_TYPE_ERR, null
+			throw new cDOMException(cDOMException.GUARD_ARGUMENT_WRONG_TYPE_ERR, null
 //->Debug
-				, ['1' + oGuard_endings[0], "source", "extend", "AMLAttr" + '" or "' + "AMLElement"]
+				, ['1' + oGuard_endings[0], "source", "extend", "Attr" + '" or "' + "Element"]
 //<-Debug
 			);
 	}
@@ -146,7 +146,7 @@ function fAmple_extend(oSource, oTarget) {
 			if (sName != "toString") {
 //->Debug
 				if (oTarget.hasOwnProperty(sName))
-					fUtilities_warn(sAML_REWRITING_MEMBER_WRN, [sName]);
+					fUtilities_warn(sGUARD_REWRITING_MEMBER_WRN, [sName]);
 //<-Debug
 				if (oSource.hasOwnProperty(sName))
 					oTarget[sName]	= oSource[sName];
@@ -164,7 +164,7 @@ oAmple.extend	= function(oSource, oTarget) {
 //<-Guard
 
 	// Sign
-	fAMLExporter_signMembers(oSource, "plugin");
+	fExporter_signMembers(oSource, "plugin");
 	// Extend
 	fAmple_extend(oSource, oTarget);
 };
@@ -202,7 +202,7 @@ oAmple.publish	= function(oSource, sName, oTarget) {
 	]);
 //<-Guard
 
-	fAMLExporter_export(oSource, sName, oTarget, "plugin");
+	fExporter_export(oSource, sName, oTarget, "plugin");
 };
 
 oAmple.config	= function(sName, oValue) {
@@ -214,20 +214,20 @@ oAmple.config	= function(sName, oValue) {
 //<-Guard
 
 	var sParameter	= "ample" + '-' + sName,
-		oOldValue	= fAMLConfiguration_getParameter(oAmple_document.domConfig, sParameter);
+		oOldValue	= fDOMConfiguration_getParameter(oAmple_document.domConfig, sParameter);
 	if (arguments.length > 1) {
 		if (sName != "version") {
-			fAMLConfiguration_setParameter(oAmple_document.domConfig, sParameter, oValue);
+			fDOMConfiguration_setParameter(oAmple_document.domConfig, sParameter, oValue);
 			// Dispatch change event
 			if (oOldValue != oValue) {
-				var oEvent	= new cAMLCustomEvent;
+				var oEvent	= new cCustomEvent;
 				oEvent.initCustomEvent("configchange", false, false, sName);
-				fAMLNode_dispatchEvent(oAmple_document, oEvent);
+				fNode_dispatchEvent(oAmple_document, oEvent);
 			}
 		}
 //->Debug
 		else
-			fUtilities_warn(sAML_CONFIGURATION_READONLY_WRN, [sName]);
+			fUtilities_warn(sGUARD_CONFIGURATION_READONLY_WRN, [sName]);
 //<-Debug
 	}
 	else
@@ -294,7 +294,7 @@ oAmple.open	= function() {
 	}
 //->Debug
 	else
-		fUtilities_warn(sAML_DOCUMENT_INVALID_STATE_WRN);
+		fUtilities_warn(sGUARD_DOCUMENT_INVALID_STATE_WRN);
 //<-Debug
 };
 
@@ -303,14 +303,14 @@ oAmple.close	= function() {
 		oUADocument.write('</' + "script" + '>');
 //->Debug
 	else
-		fUtilities_warn(sAML_DOCUMENT_INVALID_STATE_WRN);
+		fUtilities_warn(sGUARD_DOCUMENT_INVALID_STATE_WRN);
 //<-Debug
 };
 
 //
 function fAmple_instance(oDocument, oNode) {
     for (var oElement, sId; oNode; oNode = oNode.parentNode)
-        if ((sId = oNode.id) && (oElement = (oAMLDocument_ids[sId] || oAMLDocument_all[sId])))
+        if ((sId = oNode.id) && (oElement = (oDocument_ids[sId] || oDocument_all[sId])))
             return oElement;
     return null;
 };
@@ -322,7 +322,7 @@ oAmple.$instance	= function(oNode) {
 /*
 oAmple.$class	= function(oNode) {
 	var oElement	= fAmple_instance(oAmple_document, oNode);
-	return oElement ? hClasses[oElement.namespaceURI + '#' + oElement.localName] || cAMLElement : null;
+	return oElement ? hClasses[oElement.namespaceURI + '#' + oElement.localName] || cElement : null;
 };
 */
 
@@ -333,26 +333,26 @@ oAmple.resolveUri	= function(sUri, sBaseUri) {
 
 // set standard parameters
 var oConfiguration	= oAmple_document.domConfig;
-fAMLConfiguration_setParameter(oConfiguration, "error-handler", null);
-fAMLConfiguration_setParameter(oConfiguration, "element-content-whitespace", false);	// in DOM-Core spec the default value is true
-fAMLConfiguration_setParameter(oConfiguration, "entities", false);	// in DOM-Core spec the default value is true
-fAMLConfiguration_setParameter(oConfiguration, "comments", false); 	// in DOM-Core spec the default value is true
+fDOMConfiguration_setParameter(oConfiguration, "error-handler", null);
+fDOMConfiguration_setParameter(oConfiguration, "element-content-whitespace", false);	// in DOM-Core spec the default value is true
+fDOMConfiguration_setParameter(oConfiguration, "entities", false);	// in DOM-Core spec the default value is true
+fDOMConfiguration_setParameter(oConfiguration, "comments", false); 	// in DOM-Core spec the default value is true
 //set ample parameters
-fAMLConfiguration_setParameter(oConfiguration, "ample-module-history-fix", false);	// -> ample-history
-fAMLConfiguration_setParameter(oConfiguration, "ample-version", '@project.version@');
-fAMLConfiguration_setParameter(oConfiguration, "ample-locale", "en");
-fAMLConfiguration_setParameter(oConfiguration, "ample-user-locale", oUANavigator.language || oUANavigator.userLanguage || 'en-US');
-fAMLConfiguration_setParameter(oConfiguration, "ample-user-agent", '@project.userAgent@');
-fAMLConfiguration_setParameter(oConfiguration, "ample-enable-style", true);
-fAMLConfiguration_setParameter(oConfiguration, "ample-enable-guard", true);
-fAMLConfiguration_setParameter(oConfiguration, "ample-enable-transitions", true);
+fDOMConfiguration_setParameter(oConfiguration, "ample-module-history-fix", false);	// -> ample-history
+fDOMConfiguration_setParameter(oConfiguration, "ample-version", '@project.version@');
+fDOMConfiguration_setParameter(oConfiguration, "ample-locale", "en");
+fDOMConfiguration_setParameter(oConfiguration, "ample-user-locale", oUANavigator.language || oUANavigator.userLanguage || 'en-US');
+fDOMConfiguration_setParameter(oConfiguration, "ample-user-agent", '@project.userAgent@');
+fDOMConfiguration_setParameter(oConfiguration, "ample-enable-style", true);
+fDOMConfiguration_setParameter(oConfiguration, "ample-enable-guard", true);
+fDOMConfiguration_setParameter(oConfiguration, "ample-enable-transitions", true);
 
 //->Debug
 // Enable debugging
-var oAML_errorHandler	= {};
-oAML_errorHandler.handleError	= function(oError) {
+var oAmple_errorHandler	= {};
+oAmple_errorHandler.handleError	= function(oError) {
 	var oConsole	= window.console;
-	if (oError.severity == cAMLError.SEVERITY_WARNING) {
+	if (oError.severity == cDOMError.SEVERITY_WARNING) {
 		// Warning in console
 		if (oConsole)
 			oConsole.warn(oError.message);
@@ -363,5 +363,5 @@ oAML_errorHandler.handleError	= function(oError) {
 		oConsole.error(oError.message + '\n' + oError.relatedException.caller);
 	return false;
 };
-fAMLConfiguration_setParameter(oConfiguration, "error-handler", oAML_errorHandler);
+fDOMConfiguration_setParameter(oConfiguration, "error-handler", oAmple_errorHandler);
 //<-Debug

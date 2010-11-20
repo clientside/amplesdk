@@ -7,7 +7,7 @@
  *
  */
 
-function fAMLQuery_ajax(oSettings) {
+function fQuery_ajax(oSettings) {
 	var oRequest	= new cXMLHttpRequest,
 		oHeaders	= oSettings.headers || {},
 		sRequestType= oSettings.dataType,
@@ -19,7 +19,7 @@ function fAMLQuery_ajax(oSettings) {
 	//
 	if (vData != null) {
 		if (typeof vData == "object" && !("ownerDocument" in vData))
-			vData	= fAMLQuery_param(vData);
+			vData	= fQuery_param(vData);
 		if (sType == "POST") {
 			if (!oHeaders["Content-Type"] && typeof vData == "string")
 				oHeaders["Content-Type"]	= "application/x-www-form-urlencoded";
@@ -33,7 +33,7 @@ function fAMLQuery_ajax(oSettings) {
 	oRequest.open(sType, sUrl, bAsync);
 	// Set headers
 	oRequest.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-	oRequest.setRequestHeader("X-User-Agent", oAMLConfiguration_values["ample-user-agent"]);
+	oRequest.setRequestHeader("X-User-Agent", oDOMConfiguration_values["ample-user-agent"]);
 	for (var sKey in oHeaders)
 		if (oHeaders.hasOwnProperty(sKey))
 			oRequest.setRequestHeader(sKey, oHeaders[sKey]);
@@ -113,8 +113,8 @@ function fAMLQuery_ajax(oSettings) {
 	return oRequest;
 };
 
-function fAMLQuery_param(vValue) {
-	throw new cAMLException(cAMLException.NOT_SUPPORTED_ERR);
+function fQuery_param(vValue) {
+	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };
 
 // ample extensions
@@ -125,7 +125,7 @@ oAmple.ajax	= function(oSettings) {
 	]);
 //<-Guard
 
-	return fAMLQuery_ajax(oSettings);
+	return fQuery_ajax(oSettings);
 };
 
 oAmple.param	= function(vValue) {
@@ -135,7 +135,7 @@ oAmple.param	= function(vValue) {
 	]);
 //<-Guard
 
-	return fAMLQuery_param(vValue);
+	return fQuery_param(vValue);
 };
 
 oAmple.get	= function(sUrl, vData, fCallback, sType) {
@@ -155,7 +155,7 @@ oAmple.get	= function(sUrl, vData, fCallback, sType) {
 	oSettings.success	= fCallback;
 	oSettings.dataType	= sType;
 
-	return fAMLQuery_ajax(oSettings);
+	return fQuery_ajax(oSettings);
 };
 
 oAmple.post	= function(sUrl, vData, fCallback, sType) {
@@ -175,11 +175,11 @@ oAmple.post	= function(sUrl, vData, fCallback, sType) {
 	oSettings.success	= fCallback;
 	oSettings.dataType	= sType;
 
-	return fAMLQuery_ajax(oSettings);
+	return fQuery_ajax(oSettings);
 };
 
-// AMLQuery extensions
-cAMLQuery.prototype.load	= function(sUrl, vData, fCallback) {
+// Query extensions
+cQuery.prototype.load	= function(sUrl, vData, fCallback) {
 //->Guard
 	fGuard(arguments, [
 		["url",		cString],
@@ -188,16 +188,16 @@ cAMLQuery.prototype.load	= function(sUrl, vData, fCallback) {
 	]);
 //<-Guard
 
-	fAMLQuery_each(this, function() {
-		fAMLNodeLoader_load(this, sUrl, vData, fCallback);
+	fQuery_each(this, function() {
+		fNodeLoader_load(this, sUrl, vData, fCallback);
 	});
 
 	return this;
 };
 
-cAMLQuery.prototype.abort	= function() {
-	fAMLQuery_each(this, function() {
-		fAMLNodeLoader_abort(this);
+cQuery.prototype.abort	= function() {
+	fQuery_each(this, function() {
+		fNodeLoader_abort(this);
 	});
 
 	return this;

@@ -7,6 +7,6 @@
  *
  */
 
-function fAMLXMLSchema11_complexType_validate(oType, vValue) {
+function fXMLSchema11_complexType_validate(oType, vValue) {
 
 };

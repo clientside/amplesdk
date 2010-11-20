@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<class name="SMILTimeEvent" extends="runtime:Event">
+	<abstract>
+		<locale>
+			The TimeEvent interface provides specific contextual information associated with Time events.
+		</locale>
+	</abstract>
+	<members>
+		<properties>
+			<property name="view" type="View">
+				<description>
+					<locale>
+						The view attribute identifies the AbstractView from which the event was generated.
+					</locale>
+				</description>
+			</property>
+			<property name="detail" type="Number">
+				<description>
+					<locale>
+						Specifies some detail information about the Event, depending on the type of event.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<methods>
+			<method name="initTimeEvent" type="Void">
+				<arguments>
+					<argument name="type" type="String">
+						<description>
+							<locale>
+								Specifies the event type.
+							</locale>
+						</description>
+					</argument>
+					<argument name="view" type="View">
+						<description>
+							<locale>
+								Specifies the Event's AbstractView.
+							</locale>
+						</description>
+					</argument>
+					<argument name="detail" type="Number">
+						<description>
+							<locale>
+								Specifies the Event's detail.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						The initTimeEvent method is used to initialize the value of a TimeEvent.
+					</locale>
+				</description>
+			</method>
+		</methods>
+	</members>
+</class>

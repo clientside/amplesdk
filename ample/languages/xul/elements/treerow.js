@@ -9,7 +9,7 @@
 
 var cXULElement_treerow	= function() {
     // Collections
-    this.cells      = new ample.classes.AMLNodeList;
+    this.cells      = new ample.classes.NodeList;
 };
 cXULElement_treerow.prototype	= new cXULElement("treerow");
 cXULElement_treerow.prototype.$hoverable	= true;

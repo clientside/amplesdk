@@ -45,7 +45,7 @@ var oXULReflowManager	= (function () {
 
 	// on browser window resize reflow page
 	ample.bind("resize", function(oEvent) {
-		if (!(oEvent instanceof ample.classes.AMLResizeEvent)) {
+		if (!(oEvent instanceof ample.classes.ResizeEvent)) {
 			var oElement	= this.querySelector("xul|page", function(){return cXULElement.prototype.namespaceURI});
 			if (oElement)
 				fSchedule(oElement);

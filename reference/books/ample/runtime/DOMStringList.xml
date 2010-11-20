@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<class name="DOMStringList">
+	<abstract>
+		<locale>
+			The DOMStringList interface provides the abstraction of an ordered collection of DOMString values, without defining or constraining how this collection is implemented.
+			The items in the DOMStringList are accessible via an integral index, starting from 0.
+		</locale>
+	</abstract>
+	<examples/>
+	<members>
+		<properties>
+			<property name="length" type="Number" readonly="true">
+				<description>
+					<locale>
+						The number of DOMString values in the list. The range of valid child node indices is 0 to length-1 inclusive.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<methods>
+			<method name="item" type="DOMString">
+				<arguments>
+					<argument name="index" type="Number">
+						<description>
+							<locale>
+								Index into the collection.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Returns the indexth item in the collection.
+						If index is greater than or equal to the number of DOMStrings in the list, this returns null.
+					</locale>
+				</description>
+			</method>
+			<method name="contains" type="Boolean">
+				<arguments>
+					<argument name="str" type="String">
+						<description>
+							<locale>
+								The string to look for.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Test if a string is part of this DOMStringList.
+					</locale>
+				</description>
+			</method>
+		</methods>
+	</members>
+</class>

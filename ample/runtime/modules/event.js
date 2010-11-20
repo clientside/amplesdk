@@ -8,7 +8,7 @@
  */
 
 // Events
-var aAMLQuery_protectedEvents	= [
+var aQuery_protectedEvents	= [
 	// UIEvent
 	,"focus", "blur"
 	,"DOMFocusIn", "DOMFocusOut", "DOMActivate"
@@ -46,7 +46,7 @@ var aAMLQuery_protectedEvents	= [
 	,"localechange"
 ];
 
-cAMLQuery.prototype.trigger	= function(sType, oDetail) {
+cQuery.prototype.trigger	= function(sType, oDetail) {
 //->Guard
 	fGuard(arguments, [
 		["type",	cString],
@@ -55,17 +55,17 @@ cAMLQuery.prototype.trigger	= function(sType, oDetail) {
 //<-Guard
 
 	// Check if event triggering allowed
-	if (aAMLQuery_protectedEvents.indexOf(sType) !=-1)
-		throw new cAMLException(cAMLException.AML_TRIGGER_CORE_EVENT_ERR, null, [sType]);
+	if (aQuery_protectedEvents.indexOf(sType) !=-1)
+		throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR, null, [sType]);
 
 	if (arguments.length < 2)
 		oDetail	= null;
-	fAMLQuery_each(this, function() {
-		fAMLQuery_trigger(this, sType, oDetail);
+	fQuery_each(this, function() {
+		fQuery_trigger(this, sType, oDetail);
 	});
 };
 
-cAMLQuery.prototype.bind	= function(sType, fHandler, bCapture) {
+cQuery.prototype.bind	= function(sType, fHandler, bCapture) {
 //->Guard
 	fGuard(arguments, [
 		["type",	cString],
@@ -74,13 +74,13 @@ cAMLQuery.prototype.bind	= function(sType, fHandler, bCapture) {
 	]);
 //<-Guard
 
-	fAMLQuery_each(this, function() {
-		fAMLEventTarget_addEventListener(this, sType, fHandler, bCapture || false);
+	fQuery_each(this, function() {
+		fEventTarget_addEventListener(this, sType, fHandler, bCapture || false);
 	});
 	return this;
 };
 
-cAMLQuery.prototype.unbind	= function(sType, fHandler, bCaprure) {
+cQuery.prototype.unbind	= function(sType, fHandler, bCaprure) {
 //->Guard
 	fGuard(arguments, [
 		["type",	cString],
@@ -89,8 +89,8 @@ cAMLQuery.prototype.unbind	= function(sType, fHandler, bCaprure) {
 	]);
 //<-Guard
 
-	fAMLQuery_each(this, function() {
-		fAMLEventTarget_removeEventListener(this, sType, fHandler, bCapture || false);
+	fQuery_each(this, function() {
+		fEventTarget_removeEventListener(this, sType, fHandler, bCapture || false);
 	});
 	return this;
 };
@@ -106,7 +106,7 @@ oAmple.bind	= function(sType, fHandler, bCapture) {
 	]);
 //<-Guard
 
-	fAMLEventTarget_addEventListener(oAmple_document, sType, fHandler, bCapture || false);
+	fEventTarget_addEventListener(oAmple_document, sType, fHandler, bCapture || false);
 };
 
 oAmple.unbind	= function(sType, fHandler, bCapture) {
@@ -118,13 +118,13 @@ oAmple.unbind	= function(sType, fHandler, bCapture) {
 	]);
 //<-Guard
 
-	fAMLEventTarget_removeEventListener(oAmple_document, sType, fHandler, bCapture || false);
+	fEventTarget_removeEventListener(oAmple_document, sType, fHandler, bCapture || false);
 };
 
-function fAMLQuery_trigger(oNode, sType, oDetail) {
-	var oEvent	= new cAMLCustomEvent;
+function fQuery_trigger(oNode, sType, oDetail) {
+	var oEvent	= new cCustomEvent;
 	oEvent.initCustomEvent(sType, true, true, oDetail);
-	fAMLNode_dispatchEvent(oNode, oEvent);
+	fNode_dispatchEvent(oNode, oEvent);
 };
 
 oAmple.trigger	= function(sType, oDetail) {
@@ -136,11 +136,11 @@ oAmple.trigger	= function(sType, oDetail) {
 //<-Guard
 
 	// Check if event triggering allowed
-	if (aAMLQuery_protectedEvents.indexOf(sType) !=-1)
-		throw new cAMLException(cAMLException.AML_TRIGGER_CORE_EVENT_ERR, null, [sType]);
+	if (aQuery_protectedEvents.indexOf(sType) !=-1)
+		throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR, null, [sType]);
 
 	if (arguments.length < 2)
 		oDetail	= null;
 
-	fAMLQuery_trigger(oAmple_document, sType, oDetail);
+	fQuery_trigger(oAmple_document, sType, oDetail);
 };

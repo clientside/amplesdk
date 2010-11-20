@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<class name="Locale">
+	<abstract>
+		<locale>
+			Provides APIs for localizing applications.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples/>
+	<members>
+		<properties>
+			<property name="cultures" type="Object" readonly="true">
+				<description>
+
+				</description>
+			</property>
+		</properties>
+		<methods>
+			<method name="format" type="String">
+				<arguments>
+					<argument name="value" type="Variant" required="true">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+					<argument name="format" type="Variant">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+					<argument name="culture" type="String">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="localize" type="String">
+				<arguments>
+					<argument name="key" type="String" required="true">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+					<argument name="culture" type="String">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+					<argument name="value" type="String">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="parseDate" type="Date">
+				<arguments>
+					<argument name="value" type="String" required="true">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+					<argument name="formats" type="Variant">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+					<argument name="value" type="String">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="parseInt" type="Number">
+				<arguments>
+					<argument name="value" type="String" required="true">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+					<argument name="formats" type="Variant">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+					<argument name="culture" type="String">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="parseFloat" type="Number">
+				<arguments>
+					<argument name="value" type="String" required="true">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+					<argument name="formats" type="Variant">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+					<argument name="culture" type="String">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+		</methods>
+	</members>
+</class>
