@@ -112,47 +112,47 @@
 		<concat destfile="${temp.runtime.dir}/runtime-core.js" fixlastline="yes">
 			<!-- Helper Objects -->
 			<filelist dir="${source.runtime.dir}/classes/" files="
-				AMLQuery.js"/>
+				Query.js"/>
 			<!-- DOM Core/Events/Selectors -->
 			<filelist dir="${source.runtime.dir}/classes/events/" files="
-				AMLEvent.js,
-				AMLCustomEvent.js,
-				AMLUIEvent.js,
-				AMLFocusEvent.js,
-				AMLKeyboardEvent.js,
-				AMLTextEvent.js,
-				AMLMouseEvent.js,
-				AMLMouseWheelEvent.js,
-				AMLMutationEvent.js,
-				AMLTouchEvent.js,
-				AMLGestureEvent.js"/>
+				Event.js,
+				CustomEvent.js,
+				UIEvent.js,
+				FocusEvent.js,
+				KeyboardEvent.js,
+				TextEvent.js,
+				MouseEvent.js,
+				MouseWheelEvent.js,
+				MutationEvent.js,
+				TouchEvent.js,
+				GestureEvent.js"/>
 			<filelist dir="${source.runtime.dir}/classes/core/" files="
-				AMLStringList.js,
-				AMLImplementation.js,
-				AMLConfiguration.js,
-				AMLException.js,
-				AMLError.js,
-				AMLNode.js,
-				AMLNodeList.js,
-				AMLAttr.js,
-				AMLElement.js,
-				AMLEntityReference.js,
-				AMLDocument.js,
-				AMLProcessingInstruction.js,
-				AMLDocumentFragment.js,
-				AMLCharacterData.js,
-				AMLText.js,
-				AMLCDATASection.js,
-				AMLComment.js,
-				AMLTouch.js,
-				AMLTouchList.js"/>
+				DOMStringList.js,
+				DOMImplementation.js,
+				DOMConfiguration.js,
+				DOMException.js,
+				DOMError.js,
+				Node.js,
+				NodeList.js,
+				Attr.js,
+				Element.js,
+				EntityReference.js,
+				Document.js,
+				ProcessingInstruction.js,
+				DocumentFragment.js,
+				CharacterData.js,
+				Text.js,
+				CDATASection.js,
+				Comment.js,
+				Touch.js,
+				TouchList.js"/>
 			<filelist dir="${source.runtime.dir}/classes/selectors/" files="
-				AMLNodeSelector.js"/>
+				NodeSelector.js"/>
 			<filelist dir="${source.runtime.dir}/classes/misc/" files="
-				AMLNodeAnimation.js,
-				AMLNodeLoader.js"/>
+				NodeAnimation.js,
+				NodeLoader.js"/>
 			<filelist dir="${source.runtime.dir}/classes/range/" files="
-				AMLRange.js"/>
+				Range.js"/>
 			<!-- JS API Objects -->
 			<filelist dir="${source.runtime.dir}/classes/" files="
 				JSON.js"/>
@@ -169,12 +169,12 @@
 				ample.js"/>
 			<!-- UI Managers -->
 			<filelist dir="${source.runtime.dir}/managers/" files="
-				mAMLFocus.js,
-				mAMLResize.js,
-				mAMLDragAndDrop.js,
-				mAMLSelection.js,
-				mAMLCapture.js,
-				mAMLTouch.js"/>
+				FocusManager.js,
+				ResizeManager.js,
+				DragAndDropManager.js,
+				SelectionManager.js,
+				CaptureManager.js,
+				TouchManager.js"/>
 			<!-- API Modules -->
 			<filelist dir="${source.runtime.dir}/modules/" files="
 				ajax.js,
@@ -222,8 +222,8 @@
 		<concat destfile="${temp.runtime.dir}/runtime-languages.js" fixlastline="yes" append="yes">
 			<!-- SMIL 3.0 -->
 			<filelist dir="${source.runtime.dir}/processors/aml/classes/" files="
-				cAMLAttr.js,
-				cAMLElement.js"/>
+				AMLAttr.js,
+				AMLElement.js"/>
 			<fileset dir="${source.runtime.dir}/processors/aml/attributes/">
 				<include name="*.js" />
 			</fileset>
@@ -281,6 +281,7 @@
 			<arg value="--obfuscate" />
 			<arg value="--strip-Source" />
 			<arg value="--strip-Debug" />
+			<arg value="--strip-Guard" />
 		</exec>
 		<concat destfile="${target.runtime.dir}/runtime.js" fixlastline="yes">
 			<fileset file="${copying.js}" />
