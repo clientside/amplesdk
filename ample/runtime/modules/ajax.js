@@ -10,7 +10,8 @@
 function fQuery_ajax(oSettings) {
 	var oRequest	= new cXMLHttpRequest,
 		oHeaders	= oSettings.headers || {},
-		sRequestType= oSettings.dataType,
+		sRequestContentType	= oHeaders["Content-Type"] || '',
+		sRequestDataType	= oSettings.dataType,
 		sUrl	= oSettings.url || '.',
 		sType	= "type" in oSettings ? cString(oSettings.type).toUpperCase() : "GET",
 		bAsync	= "async" in oSettings ? oSettings.async : true,
@@ -20,8 +21,9 @@ function fQuery_ajax(oSettings) {
 	if (vData != null) {
 		if (typeof vData == "object" && !("ownerDocument" in vData))
 			vData	= fQuery_param(vData);
+		//
 		if (sType == "POST") {
-			if (!oHeaders["Content-Type"] && typeof vData == "string")
+			if (!sRequestContentType && typeof vData == "string")
 				oHeaders["Content-Type"]	= "application/x-www-form-urlencoded";
 		}
 		else {
@@ -48,16 +50,16 @@ function fQuery_ajax(oSettings) {
 				sStatus	= "success";
 			if (nStatus >= 200 && nStatus <= 300 || nStatus == 304 || nStatus == 1223) {
 				var oResponse		= oRequest.responseText,
-					sContentType	= oRequest.getResponseHeader("Content-Type"),
-					sResponseType	= cString(sContentType).match(/(\w+)\/([-\w]+\+)?(?:x\-)?([-\w]+)?;?(.+)?/) ? cRegExp.$3 : '';
-				if (sRequestType != "text") {
-					if (sRequestType == "xml" || sResponseType == "xml") {
+					sResponseContentType= oRequest.getResponseHeader("Content-Type"),
+					sResponseDataType	= cString(sResponseContentType).match(/(\w+)\/([-\w]+\+)?(?:x\-)?([-\w]+)?;?(.+)?/) ? cRegExp.$3 : '';
+				if (sRequestDataType != "text") {
+					if (sRequestDataType == "xml" || sResponseDataType == "xml") {
 						oResponse	= fBrowser_getResponseDocument(oRequest);
 						if (!oResponse)
 							sStatus	= "parsererror";
 					}
 					else
-					if (sRequestType == "json" || sResponseType == "json") {
+					if (sRequestDataType == "json" || sResponseDataType == "json") {
 						try {
 							oResponse	= oJSON.parse(oResponse);
 						}
@@ -66,7 +68,7 @@ function fQuery_ajax(oSettings) {
 						}
 					}
 					else
-					if (sRequestType == "script" || sResponseType == "javascript" || sResponseType == "ecmascript") {
+					if (sRequestDataType == "script" || sResponseDataType == "javascript" || sResponseDataType == "ecmascript") {
 						try {
 							fBrowser_eval(oResponse);
 						}
