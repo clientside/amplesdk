@@ -749,13 +749,16 @@ function fBrowser_createStyleSheet(sCSS, sUri, sMedia) {
 	return oBrowser_factory.childNodes[1];
 };
 
-function fBrowser_loadStyleSheet(sUri) {
+function fBrowser_load(sUri, sAccept) {
 	var oRequest	= new cXMLHttpRequest;
 	oRequest.open("GET", sUri, false);
-	oRequest.setRequestHeader("Accept", "text/css" + ',*' + '/' + '*;q=0.1');
+	if (sAccept)
+		oRequest.setRequestHeader("Accept", sAccept + ',*' + '/' + '*;q=0.1');
+	oRequest.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+	oRequest.setRequestHeader("X-User-Agent", oDOMConfiguration_values["ample-user-agent"]);
 	oRequest.send(null);
 
-	return oRequest.responseText;
+	return oRequest;
 };
 
 function fBrowser_getComputedStyle(oElementDOM) {
@@ -917,12 +920,7 @@ function fBrowser_processScripts() {
 			}
 
 			if (oElementDOM.getAttribute("src")) {
-				var oRequest	= new cXMLHttpRequest;
-				oRequest.open("GET", oElementDOM.src, false);
-				oRequest.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-				oRequest.setRequestHeader("X-User-Agent", oDOMConfiguration_values["ample-user-agent"]);
-				oRequest.send(null);
-
+				var oRequest	= fBrowser_load(oElementDOM.src, "text/xml");
 				// loaded fragment
 				oDocument	= fBrowser_getResponseDocument(oRequest);
 				bReferenced	= true;
@@ -1080,7 +1078,7 @@ function fBrowser_processStyleSheets() {
 		if (oElement.getAttribute("type") != "text/ample+css")
 			nSkip++;
 		else
-			fBrowser_replaceNode(oElement, fBrowser_createStyleSheet(fBrowser_loadStyleSheet(oElement.href), oElement.href, oElement.getAttribute("media")));
+			fBrowser_replaceNode(oElement, fBrowser_createStyleSheet(fBrowser_load(oElement.href, "text/css").responseText, oElement.href, oElement.getAttribute("media")));
     }
 };
 

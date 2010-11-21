@@ -245,9 +245,8 @@ oAmple.include	= function(sSrc) {
 	var sValue	= sAmple_include;
 	// Save current location
 	sAmple_include	= fUtilities_resolveUri(sSrc, sValue);
-	var oRequest	= new cXMLHttpRequest;
-	oRequest.open("GET", sAmple_include, false);
-	oRequest.send();
+	//
+	var oRequest	= fBrowser_load(sAmple_include, "text/javascript");
 	// Evaluate result
 	fBrowser_eval(oRequest.responseText);
 	// Restore base location

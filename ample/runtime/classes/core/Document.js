@@ -368,16 +368,9 @@ function fDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse) {
 			// XInclude 1.0
 			if (sNameSpaceURI == sNS_XINCLUDE) {
 				if (sLocalName == "include") {
-					var oRequest	= new cXMLHttpRequest,
-						oResponse,
-						sHref	= oElementDOM.getAttribute("href");
-					//
-					sHref	= fUtilities_resolveUri(sHref, fNode_getBaseURI(oNode));
-					//
-					oRequest.open("GET", sHref, false);
-					oRequest.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-					oRequest.setRequestHeader("X-User-Agent", oDOMConfiguration_values["ample-user-agent"]);
-					oRequest.send(null);
+					var sHref	= fUtilities_resolveUri(oElementDOM.getAttribute("href"), fNode_getBaseURI(oNode)),
+						oRequest= fBrowser_load(sHref, "text/xml"),
+						oResponse;
 					if (oResponse = fBrowser_getResponseDocument(oRequest)) {
 						// set xml:base according to spec
 						if (!oResponse.documentElement.getAttribute("xml:base"))
@@ -493,7 +486,7 @@ function fDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse) {
 						var sHref	= cRegExp.$1;
 						if (oElementDOM.nodeValue.match(/type=["']([^"']+)["']/))
 							if (cRegExp.$1 == "text/css" || cRegExp.$1 == "text/ample+css") {
-								var sCSS	= fBrowser_loadStyleSheet(sHref);
+								var sCSS	= fBrowser_load(sHref, "text/css").responseText;
 								if (sCSS)
 									oBrowser_head.appendChild(fBrowser_createStyleSheet(sCSS, sHref));
 							}

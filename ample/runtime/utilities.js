@@ -130,7 +130,7 @@ function fUtilities_translateStyleSheet(sCSS, sUri) {
 	if (aImports)
 		for (var nIndex = 0, nLength = aImports.length; nIndex < nLength; nIndex++)
 			if (aUrl = aImports[nIndex].match(/url\s*\(['"]?([^\)"']+)['"]?\)/i))
-				sCSS	= sCSS.replace(aImports[nIndex], fUtilities_translateStyleSheet(fBrowser_loadStyleSheet(aUrl[1]), aUrl[1]));
+				sCSS	= sCSS.replace(aImports[nIndex], fUtilities_translateStyleSheet(fBrowser_load(aUrl[1], "text/css").responseText, aUrl[1]));
 
 	// 4. Convert styles
 	if (bTrident) {
