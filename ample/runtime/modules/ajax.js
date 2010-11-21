@@ -11,7 +11,7 @@ function fQuery_ajax(oSettings) {
 	var oRequest	= new cXMLHttpRequest,
 		oHeaders	= oSettings.headers || {},
 		sRequestContentType	= oHeaders["Content-Type"] || '',
-		sRequestDataType	= oSettings.dataType,
+		sExpectedDataType	= oSettings.dataType,
 		sUrl	= oSettings.url || '.',
 		sType	= "type" in oSettings ? cString(oSettings.type).toUpperCase() : "GET",
 		bAsync	= "async" in oSettings ? oSettings.async : true,
@@ -50,16 +50,16 @@ function fQuery_ajax(oSettings) {
 				sStatus	= "success";
 			if (nStatus >= 200 && nStatus <= 300 || nStatus == 304 || nStatus == 1223) {
 				var oResponse		= oRequest.responseText,
-					sResponseContentType= oRequest.getResponseHeader("Content-Type"),
-					sResponseDataType	= cString(sResponseContentType).match(/(\w+)\/([-\w]+\+)?(?:x\-)?([-\w]+)?;?(.+)?/) ? cRegExp.$3 : '';
-				if (sRequestDataType != "text") {
-					if (sRequestDataType == "xml" || sResponseDataType == "xml") {
+					sResponseContentType= oRequest.getResponseHeader("Content-Type") || '',
+					sResponseDataType	= sResponseContentType.match(/(\w+)\/([-\w]+\+)?(?:x\-)?([-\w]+)?;?(.+)?/) ? cRegExp.$3 : '';
+				if (sExpectedDataType != "text") {
+					if (sExpectedDataType == "xml" || sResponseDataType == "xml") {
 						oResponse	= fBrowser_getResponseDocument(oRequest);
 						if (!oResponse)
 							sStatus	= "parsererror";
 					}
 					else
-					if (sRequestDataType == "json" || sResponseDataType == "json") {
+					if (sExpectedDataType == "json" || sResponseDataType == "json") {
 						try {
 							oResponse	= oJSON.parse(oResponse);
 						}
@@ -68,7 +68,7 @@ function fQuery_ajax(oSettings) {
 						}
 					}
 					else
-					if (sRequestDataType == "script" || sResponseDataType == "javascript" || sResponseDataType == "ecmascript") {
+					if (sExpectedDataType == "script" || sResponseDataType == "javascript" || sResponseDataType == "ecmascript") {
 						try {
 							fBrowser_eval(oResponse);
 						}
