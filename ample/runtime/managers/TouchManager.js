@@ -76,11 +76,14 @@ function fTouchManager_onTouchEnd(oEvent) {
 		var oAnimation	= {},
 			nOffsetLeft	= nTouchManager_prevClientX - nTouchManager_clientX,
 			nOffsetTop	= nTouchManager_prevClientY - nTouchManager_clientY;
-		if (bTouchManager_scrollLeft && cMath.abs(nOffsetLeft) > 5)
-			oAnimation.scrollLeft	= oTouchManager_scrollPseudo.scrollLeft + nOffsetLeft * 10;
-		if (bTouchManager_scrollTop && cMath.abs(nOffsetTop) > 5)
-			oAnimation.scrollTop	= oTouchManager_scrollPseudo.scrollTop + nOffsetTop * 10;
-		fNodeAnimation_play(oTouchManager_scrollElement, oAnimation, "normal", "easeout", null, oTouchManager_scrollPseudo);
+		if (oTouchManager_scrollPseudo) {
+			if (bTouchManager_scrollLeft && cMath.abs(nOffsetLeft) > 5)
+				oAnimation.scrollLeft	= oTouchManager_scrollPseudo.scrollLeft + nOffsetLeft * 10;
+			if (bTouchManager_scrollTop && cMath.abs(nOffsetTop) > 5)
+				oAnimation.scrollTop	= oTouchManager_scrollPseudo.scrollTop + nOffsetTop * 10;
+			// Play animation
+			fNodeAnimation_play(oTouchManager_scrollElement, oAnimation, "normal", "easeout", null, oTouchManager_scrollPseudo);
+		}
 		oTouchManager_scrollElement	= null;
 		oTouchManager_scrollPseudo	= null;
 		nTouchManager_prevClientY	= nNaN;
