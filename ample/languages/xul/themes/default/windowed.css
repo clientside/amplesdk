@@ -41,6 +41,7 @@ xul|dialog::body,
 xul|window::body,
 xul|wizardpage {
 	overflow:	auto;
+	overflow-x: hidden;
 }
 
 xul|wizard::footer,
