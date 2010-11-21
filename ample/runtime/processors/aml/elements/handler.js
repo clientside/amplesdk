@@ -16,13 +16,8 @@ cElement_handler.handlers["DOMNodeInsertedIntoDocument"]	= function(oEvent) {
 	if (this.firstChild) {
 		if (this.attributes["event"])
 			this.parentNode.addEventListener(this.attributes["event"], new cFunction("event", this.firstChild.nodeValue), this.attributes["phase"] == "capture");
-		else {
-			var oElement	= oUIDocument.createElement("script");
-			oElement.type	= "text/javascript";
-			oElement.text	= this.firstChild.nodeValue;
-			oBrowser_head.appendChild(oElement);
-			oElement.parentNode.removeChild(oElement);
-		}
+		else
+			fBrowser_eval(this.firstChild.nodeValue);
 	}
 };
 
