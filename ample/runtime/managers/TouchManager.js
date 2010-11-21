@@ -8,7 +8,11 @@
  */
 
 var oTouchManager_scrollElement,
+	oTouchManager_scrollPseudo,
+	nTouchManager_prevClientY	= nNaN,
+	nTouchManager_prevClientX	= nNaN,
 	nTouchManager_clientY	= 0,
+	nTouchManager_clientX	= 0,
 	bTouchManager_scrollLeft,
 	bTouchManager_scrollTop,
 	nTouchManager_scrollLeft,
@@ -18,7 +22,9 @@ function fTouchManager_onTouchStart(oEvent) {
 	if (oEvent.touches.length == 1) {
 		//
 		oTouchManager_scrollElement	= null;
+		oTouchManager_scrollPseudo	= null;
 		nTouchManager_clientY	= oEvent.touches[0].clientY;
+		nTouchManager_clientX	= oEvent.touches[0].clientX;
 		//
 		for (var oElement = oEvent.target.$getContainer(), oComputedStyle, sOverflow; oElement && oElement.nodeType == 1; oElement = oElement.parentNode) {
 			oComputedStyle	= fBrowser_getComputedStyle(oElement);
@@ -30,7 +36,8 @@ function fTouchManager_onTouchStart(oEvent) {
 				bTouchManager_scrollTop		= true;
 
 			if (bTouchManager_scrollLeft || bTouchManager_scrollTop) {
-				oTouchManager_scrollElement	= oElement;
+				oTouchManager_scrollElement	= fAmple_instance(oAmple_document, oElement);
+				oTouchManager_scrollPseudo	= oElement;
 				nTouchManager_scrollLeft	= oElement.scrollLeft + oEvent.touches[0].clientX;
 				nTouchManager_scrollTop		= oElement.scrollTop + oEvent.touches[0].clientY;
 				break;
@@ -50,20 +57,35 @@ function fTouchManager_onTouchMove(oEvent) {
 		fNode_dispatchEvent(oEvent.target, oEventMouseWheel);
 	}
 	// Scroll scrollables
-	if (oTouchManager_scrollElement) {
+	if (oTouchManager_scrollPseudo) {
 		if (bTouchManager_scrollLeft)
-			oTouchManager_scrollElement.scrollLeft	= nTouchManager_scrollLeft - nClientX;
+			oTouchManager_scrollPseudo.scrollLeft	= nTouchManager_scrollLeft - nClientX;
 		if (bTouchManager_scrollTop)
-			oTouchManager_scrollElement.scrollTop	= nTouchManager_scrollTop - nClientY;
+			oTouchManager_scrollPseudo.scrollTop	= nTouchManager_scrollTop - nClientY;
 		oEvent.preventDefault();
 	}
 	//
+	nTouchManager_prevClientY	= nTouchManager_clientY;
+	nTouchManager_prevClientX	= nTouchManager_clientX;
 	nTouchManager_clientY	= nClientY;
+	nTouchManager_clientX	= nClientX;
 };
 
 function fTouchManager_onTouchEnd(oEvent) {
-	if (oEvent.touches.length == 1)
+	if (oEvent.touches.length == 0) {
+		var oAnimation	= {},
+			nOffsetLeft	= nTouchManager_prevClientX - nTouchManager_clientX,
+			nOffsetTop	= nTouchManager_prevClientY - nTouchManager_clientY;
+		if (bTouchManager_scrollLeft && cMath.abs(nOffsetLeft) > 5)
+			oAnimation.scrollLeft	= oTouchManager_scrollPseudo.scrollLeft + nOffsetLeft * 10;
+		if (bTouchManager_scrollTop && cMath.abs(nOffsetTop) > 5)
+			oAnimation.scrollTop	= oTouchManager_scrollPseudo.scrollTop + nOffsetTop * 10;
+		fNodeAnimation_play(oTouchManager_scrollElement, oAnimation, "normal", "easeout", null, oTouchManager_scrollPseudo);
 		oTouchManager_scrollElement	= null;
+		oTouchManager_scrollPseudo	= null;
+		nTouchManager_prevClientY	= nNaN;
+		nTouchManager_prevClientX	= nNaN;
+	}
 };
 
 // Attaching to implementation

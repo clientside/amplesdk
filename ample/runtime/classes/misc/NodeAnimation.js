@@ -12,12 +12,12 @@ var aNodeAnimation_effects	= [],
 	nNodeAnimation_counter	= 0,
 	oNodeAnimation_easing	= {},
 	oNodeAnimation_durations	= {};			// Variables
-oNodeAnimation_durations["fast"]		= 200;
+oNodeAnimation_durations["fast"]	= 200;
 oNodeAnimation_durations["normal"]	= 400;
-oNodeAnimation_durations["slow"]		= 600;
+oNodeAnimation_durations["slow"]	= 600;
 
 function fNodeAnimation_play(oElement, oProperties, vDuration, vType, fHandler, sPseudo) {
-	var oElementDOM	= oElement.$getContainer(sPseudo);
+	var oElementDOM	= sPseudo && sPseudo.ownerDocument == oUADocument ? sPseudo : oElement.$getContainer(sPseudo);
 	if (!oElementDOM)
 		return;
 	// initialize effect
