@@ -10,7 +10,7 @@
 var cDocument	= function(){};
 
 cDocument.prototype  = new cNode;
-cDocument.prototype.nodeType	= cNode.DOCUMENT_NODE;
+cDocument.prototype.nodeType	= 9;	// cNode.DOCUMENT_NODE
 cDocument.prototype.nodeName	= "#document";
 
 // nsIDOMDocument interface
@@ -336,7 +336,7 @@ cDocument.prototype.getElementsByTagNameNS	= function(sNameSpaceURI, sLocalName)
 
 function fDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse) {
 	switch (oElementDOM.nodeType) {
-		case cNode.ELEMENT_NODE:
+		case 1:	// cNode.ELEMENT_NODE
 			var sNameSpaceURI	= oElementDOM.namespaceURI,
 				sLocalName		= oElementDOM.localName || oElementDOM.baseName;
 			// Bugfix FF4 (remote XUL)
@@ -347,18 +347,18 @@ function fDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse) {
 					(function (oNode/*, sPrefix*/) {
 						// Lookup entity reference node
 						while (oNode = oNode.parentNode)
-							if (oNode.nodeType == cNode.ENTITY_REFERENCE_NODE)
+							if (oNode.nodeType == 5)	// cNode.ENTITY_REFERENCE_NODE
 								break;
 						// Lookup default namespace URI (IE doesn't allow prefixed elements in entity references)
 						if (oNode && oNode.parentNode)
 							return oNode.parentNode.namespaceURI;
 /*
 						// Lookup namespace URI used in element
-						for (; oNode && oNode.nodeType != cNode.DOCUMENT_NODE; oNode = oNode.parentNode)
+						for (; oNode && oNode.nodeType != 9; oNode = oNode.parentNode)
 							if (oNode.prefix == sPrefix)
 								return oNode.namespaceURI;
 							else
-							if (oNode.nodeType == cNode.ELEMENT_NODE)
+							if (oNode.nodeType == 1)	// cNode.ELEMENT_NODE
 								for (var nIndex = 0, nLength = oNode.attributes.length, sAttribute; nIndex < nLength; nIndex++)
 									if ((sAttribute = oNode.attributes[nIndex].nodeName) && sAttribute.indexOf("xmlns" + ':') == 0 && sAttribute.substr(6) == sPrefix)
 										return oNode.attributes[nIndex].value;
@@ -445,13 +445,13 @@ function fDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse) {
 			}
 			break;
 
-		case cNode.ENTITY_REFERENCE_NODE:
+		case 5:	// cNode.ENTITY_REFERENCE_NODE
 			// This is normally  executed only in IE
 			for (var nIndex = 0, nLength = oElementDOM.childNodes.length; nIndex < nLength; nIndex++)
 				fDocument_importNode(oDocument, oElementDOM.childNodes[nIndex], bDeep, oNode, bCollapse);
 			break;
 
-		case cNode.TEXT_NODE:
+		case 3:	// cNode.TEXT_NODE
 			var sValue	= oElementDOM.nodeValue;
 			if (!bCollapse)
 				sValue	= fUtilities_encodeEntities(sValue);
@@ -464,11 +464,11 @@ function fDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse) {
 			}
 			break;
 
-		case cNode.CDATA_SECTION_NODE:
+		case 4:	// cNode.CDATA_SECTION_NODE
 			fNode_appendChild(oNode, fDocument_createCDATASection(oDocument, oElementDOM.nodeValue));
 			break;
 
-		case cNode.COMMENT_NODE:
+		case 8:	// cNode.COMMENT_NODE
 //->Source
 /*
 			fNode_appendChild(oElement, oElement.ownerDocument.createComment(oElementDOM.nodeValue));
@@ -476,7 +476,7 @@ function fDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse) {
 //<-Source
 			break;
 
-		case cNode.PROCESSING_INSTRUCTION_NODE:
+		case 7:	// cNode.PROCESSING_INSTRUCTION_NODE
 			switch (oElementDOM.target)	{
 				case "xml":
 					break;
@@ -497,13 +497,13 @@ function fDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse) {
 			}
 			break;
 
-		case cNode.DOCUMENT_NODE:
+		case 9:	// cNode.DOCUMENT_NODE
 			if (bDeep)
 				for (var nIndex = 0, nLength = oElementDOM.childNodes.length; nIndex < nLength; nIndex++)
 					fDocument_importNode(oDocument, oElementDOM.childNodes[nIndex], bDeep, oNode, bCollapse);
 			break;
 
-		case cNode.DOCUMENT_TYPE_NODE:
+		case 10:	// cNode.DOCUMENT_TYPE_NODE
 			break;
 
 		default:
@@ -521,7 +521,7 @@ cDocument.prototype.importNode	= function(oNode, bDeep)
 	]);
 //<-Guard
 
-	if (oNode.nodeType == cNode.ELEMENT_NODE)
+	if (oNode.nodeType == 1)	// cNode.ELEMENT_NODE
 		return fDocument_importNode(this, oNode, bDeep);
 	else
 		throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
@@ -566,7 +566,7 @@ cDocument.prototype.$getElementByAnonymousElement	= function(oElementDOM) {
 
 function fDocument_register(oDocument, oElement) {
 	//
-	if (oElement.nodeType == cNode.ELEMENT_NODE && !oDocument_all[oElement.uniqueID]) {
+	if (oElement.nodeType == 1 /* cNode.ELEMENT_NODE */ && !oDocument_all[oElement.uniqueID]) {
 		// Register Instance
 		oDocument_all[oElement.uniqueID]	= oElement;
 
@@ -654,7 +654,7 @@ function fDocument_register(oDocument, oElement) {
 
 function fDocument_unregister(oDocument, oElement) {
 	//
-	if (oElement.nodeType == cNode.ELEMENT_NODE && oDocument_all[oElement.uniqueID]) {
+	if (oElement.nodeType == 1 /* cNode.ELEMENT_NODE */ && oDocument_all[oElement.uniqueID]) {
 		// Fire Mutation event
 		var oEvent = new cMutationEvent;
 		oEvent.initMutationEvent("DOMNodeRemovedFromDocument", false, false, null, null, null, null, null);

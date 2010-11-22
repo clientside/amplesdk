@@ -109,15 +109,15 @@ function cElement_repeater_processNode(oElement, oData, fResolver) {
 	for (var nIndex = 0; nIndex < oElement.childNodes.length; nIndex++)	{
 		oNode	= oElement.childNodes[nIndex];
 		switch (oNode.nodeType) {
-			case cNode.ELEMENT_NODE:
+			case 1:	// cNode.ELEMENT_NODE
 				for (sName in oNode.attributes)
 					if (oNode.attributes.hasOwnProperty(sName) && oNode.attributes[sName].match(rElement_repeater_regexp))
 						oNode.attributes[sName]	= oNode.attributes[sName].replace(cRegExp.$1, fElement_repeater_resolveValue(cRegExp.$2, oData, fResolver));
 				cElement_repeater_processNode(oNode, oData, fResolver);
 				break;
 
-			case cNode.TEXT_NODE:
-			case cNode.CDATA_SECTION:
+			case 3:	// cNode.TEXT_NODE
+			case 4:	// cNode.CDATA_SECTION_NODE
 				if (oNode.data.match(rElement_repeater_regexp)) {
 					oNode.data	= oNode.data.replace(cRegExp.$1, fElement_repeater_resolveValue(cRegExp.$2, oData, fResolver));
 					oNode.nodeValue	= oNode.data;

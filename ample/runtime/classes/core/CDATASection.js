@@ -10,5 +10,5 @@
 var cCDATASection	= function(){};
 
 cCDATASection.prototype	= new cText;
-cCDATASection.prototype.nodeType	= cNode.CDATA_SECTION_NODE;
+cCDATASection.prototype.nodeType	= 4;	// cNode.CDATA_SECTION_NODE
 cCDATASection.prototype.nodeName	= "#cdata-section";

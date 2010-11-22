@@ -10,7 +10,7 @@
 var cEntityReference	= function(){};
 
 cEntityReference.prototype	= new cNode;
-cEntityReference.prototype.nodeType	= cNode.ENTITY_REFERENCE_NODE;
+cEntityReference.prototype.nodeType	= 5;	// cNode.ENTITY_REFERENCE_NODE
 
 /*
 cEntityReference.prototype.$getTag	= function()

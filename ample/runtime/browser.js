@@ -71,10 +71,10 @@ function fBrowser_getUIEventButton(oEvent) {
 };
 
 function fBrowser_render(oNode) {
-	if (oNode.nodeType == cNode.TEXT_NODE)
+	if (oNode.nodeType == 3)	// cNode.TEXT_NODE
 		return oUADocument.createTextNode(oNode.nodeValue);
 	else
-	if (oNode.nodeType == cNode.ELEMENT_NODE) {
+	if (oNode.nodeType == 1) {	// cNode.ELEMENT_NODE
 		var sHtml	= oNode.$getTag();
 		if (sHtml) {
 			if (bTrident) {
@@ -419,7 +419,7 @@ function fBrowser_onMouseMove(oEvent) {
 	if (!(nDragAndDropManager_dragState || nResizeManager_resizeState)) {
 		if (aBrowser_mouseNodes[0] != oTarget) {
 			// find common relative
-			for (oElement = oTarget; oElement.nodeType != cNode.DOCUMENT_NODE; oElement = oElement.parentNode) {
+			for (oElement = oTarget; oElement.nodeType != 9 /* cNode.DOCUMENT_NODE */; oElement = oElement.parentNode) {
 				aElements.$add(oElement);
 				if (nIndexCommon ==-1)
 					nIndexCommon = aBrowser_mouseNodes.$indexOf(oElement);

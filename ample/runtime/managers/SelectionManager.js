@@ -8,7 +8,7 @@
  */
 
 function fSelectionManager_onMouseDown(oEvent) {
-	for (var oElement = oEvent.target, bAllow = false; oElement.nodeType != cNode.DOCUMENT_NODE; oElement = oElement.parentNode)
+	for (var oElement = oEvent.target, bAllow = false; oElement.nodeType != 9 /* cNode.DOCUMENT_NODE */; oElement = oElement.parentNode)
 		if (oElement.$selectable == true)
 			bAllow	= true;
 		else

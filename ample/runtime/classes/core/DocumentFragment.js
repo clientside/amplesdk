@@ -10,7 +10,7 @@
 var cDocumentFragment	= function(){};
 
 cDocumentFragment.prototype	= new cNode;
-cDocumentFragment.prototype.nodeType	= cNode.DOCUMENT_FRAGMENT_NODE;
+cDocumentFragment.prototype.nodeType	= 11;	// cNode.DOCUMENT_FRAGMENT_NODE
 cDocumentFragment.prototype.nodeName	= "#document-fragment";
 
 // nsIDOMDocumentFragment

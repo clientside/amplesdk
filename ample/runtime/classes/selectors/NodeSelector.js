@@ -106,7 +106,7 @@ function fNodeSelector_getText(sString) {
 function fNodeSelector_getNextSibling(oElement)
 {
 	while (oElement = oElement.nextSibling)
-		if (oElement.nodeType == cNode.ELEMENT_NODE)
+		if (oElement.nodeType == 1)	// cNode.ELEMENT_NODE
 			return oElement;
 	return null;
 };
@@ -114,7 +114,7 @@ function fNodeSelector_getNextSibling(oElement)
 function fNodeSelector_getPreviousSibling(oElement)
 {
 	while (oElement = oElement.previousSibling)
-		if (oElement.nodeType == cNode.ELEMENT_NODE)
+		if (oElement.nodeType == 1)	// cNode.ELEMENT_NODE
 			return oElement;
 	return null;
 };
@@ -216,7 +216,7 @@ oNodeSelector_elementSelectors[':'] = function(aReturn, aFrom, sClass, sArgument
 };
 
 function fNodeSelector_pseudoClass(oElement, sClass) {
-	if (oElement.nodeType == cNode.ELEMENT_NODE) {
+	if (oElement.nodeType == 1) {	// cNode.ELEMENT_NODE
 		var oElementDOM	= oElement.$getContainer();
 		if (oElementDOM && (bTrident && nVersion < 8 ? oElementDOM.className : oElementDOM.getAttribute("class") || '').match(fElement_getRegExp(sClass, '')))
 			return true;
@@ -352,7 +352,7 @@ oNodeSelector_attributeSelectors['!='] = function(sAttribute, sValue) {
 oNodeSelector_elementSelectors['~'] = function(aReturn, aFrom, sTagName, sArguments, fResolver) {
 	for (var nIndex = 0, oElement; oElement = aFrom[nIndex]; nIndex++)
 		while (oElement = oElement.nextSibling)
-			if (oElement.nodeType == cNode.ELEMENT_NODE && fNodeSelector_isElementNS(oElement, sTagName, fResolver))
+			if (oElement.nodeType == 1 /* cNode.ELEMENT_NODE */ && fNodeSelector_isElementNS(oElement, sTagName, fResolver))
 				aReturn.push(oElement);
 };
 
@@ -377,7 +377,7 @@ oNodeSelector_pseudoClasses["last-child"] = function(oElement) {
 
 oNodeSelector_pseudoClasses["only-child"] = function(oElement) {
 	for (var nIndex = 0, oNode; oNode = oElement.parentNode.childNodes[nIndex]; nIndex++)
-		if (oNode.nodeType == cNode.ELEMENT_NODE && oNode != oElement)
+		if (oNode.nodeType == 1 /* cNode.ELEMENT_NODE */ && oNode != oElement)
 			return false;
 	return true;
 };
@@ -430,7 +430,7 @@ function fNodeSelector_nthChild(oElement, sArguments, bTraverse) {
 		aChildren = [];
 
 	for (var nIndex = 0; nIndex < aElements.length; nIndex++)
-		if (aElements[nIndex].nodeType == cNode.ELEMENT_NODE)
+		if (aElements[nIndex].nodeType == 1)	// cNode.ELEMENT_NODE
 			aChildren.push(aElements[nIndex]);
 
 	function fCheckIndex(nIndex) {
@@ -454,7 +454,7 @@ function fNodeSelector_nthChild(oElement, sArguments, bTraverse) {
 
 	var nCount = 1;
 	while (oElement = (bTraverse ? oElement.previousSibling : oElement.nextSibling))
-		if (oElement.nodeType == cNode.ELEMENT_NODE)
+		if (oElement.nodeType == 1)	// cNode.ELEMENT_NODE
 			nCount++;
 
 	if (fIsNaN(nMultiplier) || nMultiplier == 1)

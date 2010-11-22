@@ -10,7 +10,7 @@
 var cText	= function(){};
 
 cText.prototype	= new cCharacterData;
-cText.prototype.nodeType	= cNode.TEXT_NODE;
+cText.prototype.nodeType	= 3;	// cNode.TEXT_NODE
 cText.prototype.nodeName	= "#text";
 
 // Level 3

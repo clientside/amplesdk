@@ -10,7 +10,7 @@
 var cElement	= function(){};
 
 cElement.prototype	= new cNode;
-cElement.prototype.nodeType	= cNode.ELEMENT_NODE;
+cElement.prototype.nodeType	= 1;	// cNode.ELEMENT_NODE
 
 // nsIDOMElement
 cElement.prototype.tagName	= null;
@@ -36,7 +36,7 @@ function fElement_appendChild(oParent, oNode)
 
 	// Append DOM
 	var oGateway, oElement;
-	if (oParent.nodeType == cNode.ELEMENT_NODE)
+	if (oParent.nodeType == 1)	// cNode.ELEMENT_NODE
 		if (oGateway =(oParent.$getContainer("gateway") || oParent.$getContainer()))
 			if (oElement = (oNode.$getContainer() || fBrowser_render(oNode)))
 		   		oGateway.appendChild(oElement);
@@ -57,7 +57,7 @@ cElement.prototype.appendChild	= function(oNode)
 	], this);
 //<-Guard
 
-	if (oNode.nodeType == cNode.DOCUMENT_FRAGMENT_NODE)
+	if (oNode.nodeType == 11)	// cNode.DOCUMENT_FRAGMENT_NODE
 		while (oNode.firstChild)
 			fElement_appendChild(this, oNode.firstChild);
 	else
@@ -73,7 +73,7 @@ function fElement_insertBefore(oParent, oNode, oBefore)
 
 	// Insert DOM
 	var oGateway, oChild;
-	if (oParent.nodeType == cNode.ELEMENT_NODE)
+	if (oParent.nodeType == 1)	// cNode.ELEMENT_NODE
 		if ((oGateway =(oParent.$getContainer("gateway") || oParent.$getContainer())))
 			if (oChild = (oNode.$getContainer() || fBrowser_render(oNode)))
 	    		oGateway.insertBefore(oChild, function() {
@@ -102,7 +102,7 @@ cElement.prototype.insertBefore	= function(oNode, oBefore)
 
 	if (oBefore) {
 		if (this.childNodes.$indexOf(oBefore) !=-1) {
-			if (oNode.nodeType == cNode.DOCUMENT_FRAGMENT_NODE)
+			if (oNode.nodeType == 11)	// cNode.DOCUMENT_FRAGMENT_NODE
 				while (oNode.firstChild)
 					fElement_insertBefore(this, oNode.firstChild, oBefore);
 			else
@@ -112,7 +112,7 @@ cElement.prototype.insertBefore	= function(oNode, oBefore)
 			throw new cDOMException(cDOMException.NOT_FOUND_ERR);
 	}
 	else {
-		if (oNode.nodeType == cNode.DOCUMENT_FRAGMENT_NODE)
+		if (oNode.nodeType == 11)	// cNode.DOCUMENT_FRAGMENT_NODE
 			while (oNode.firstChild)
 				fElement_appendChild(this, oNode.firstChild);
 		else
@@ -134,7 +134,7 @@ function fElement_removeChild(oParent, oNode)
 
 	// Remove from DOM
 	var oGateway, oChild;
-	if (oParent.nodeType == cNode.ELEMENT_NODE)
+	if (oParent.nodeType == 1)	// cNode.ELEMENT_NODE
 		if ((oChild = oNode.$getContainer()) && (oGateway = (oParent.$getContainer("gateway") || oParent.$getContainer())))
 			if (oChild = (function() {
 				for (; oChild; oChild = oChild.parentNode)
@@ -174,7 +174,7 @@ function fElement_replaceChild(oParent, oNode, oOld)
 
 	// Replace in from DOM
 	var oElement, oGateway, oChild;
-	if (oParent.nodeType == cNode.ELEMENT_NODE)
+	if (oParent.nodeType == 1)	// cNode.ELEMENT_NODE
 		if ((oGateway =(oParent.$getContainer("gateway") || oParent.$getContainer())) && (oChild = oOld.$getContainer()))
 			if (oElement = (oNode.$getContainer() || fBrowser_render(oNode)))
 		    	oGateway.replaceChild(oElement, oChild);
@@ -197,10 +197,9 @@ cElement.prototype.replaceChild	= function(oNode, oOld)
 
 	if (oOld) {
 	    if (this.childNodes.$indexOf(oOld) !=-1) {
-	    	if (oNode.nodeType == cNode.DOCUMENT_FRAGMENT_NODE) {
+	    	if (oNode.nodeType == 11)	// cNode.DOCUMENT_FRAGMENT_NODE
 	    		while (oNode.firstChild)
 	    			fElement_insertBefore(this, oNode.firstChild, oOld);
-	    	}
 	    	else
 	    		fElement_insertBefore(this, oNode, oOld);
 			fElement_removeChild(this, oOld);
@@ -209,7 +208,7 @@ cElement.prototype.replaceChild	= function(oNode, oOld)
 	    	throw new cDOMException(cDOMException.NOT_FOUND_ERR);
 	}
 	else {
-    	if (oNode.nodeType == cNode.DOCUMENT_FRAGMENT_NODE)
+    	if (oNode.nodeType == 11)	// cNode.DOCUMENT_FRAGMENT_NODE
     		while (oNode.firstChild)
     			fElement_appendChild(this, oNode.firstChild);
     	else
@@ -296,7 +295,7 @@ function fElement_setAttribute(oElement, sName, sValue)
     	// Fire Mutation event
     	if (oDocument_all[oElement.uniqueID]) {
 		    var oEvent = new cMutationEvent;
-		    oEvent.initMutationEvent("DOMAttrModified", true, false, null, bValue ? sValueOld : null, sValue, sName, bValue ? cMutationEvent.MODIFICATION : cMutationEvent.ADDITION);
+		    oEvent.initMutationEvent("DOMAttrModified", true, false, null, bValue ? sValueOld : null, sValue, sName, bValue ? 1 /* cMutationEvent.MODIFICATION */ : 2 /* cMutationEvent.ADDITION */);
 		    fNode_dispatchEvent(oElement, oEvent);
     	}
     }
@@ -506,7 +505,7 @@ function fElement_removeAttribute(oElement, sName)
 		// Fire Mutation event
 	    if (oDocument_all[oElement.uniqueID]) {
 		    var oEvent = new cMutationEvent;
-		    oEvent.initMutationEvent("DOMAttrModified", true, false, null, sValueOld, null, sName, cMutationEvent.REMOVAL);
+		    oEvent.initMutationEvent("DOMAttrModified", true, false, null, sValueOld, null, sName, 3 /* cMutationEvent.REMOVAL */);
 		    fNode_dispatchEvent(oElement, oEvent);
 	    }
 	}
@@ -604,7 +603,7 @@ function fElement_getElementsByTagName(oElement, sTagName)
 		bTagName	= '*' == sTagName;
 	(function(oElement) {
 		for (var nIndex = 0, oNode; oNode = oElement.childNodes[nIndex]; nIndex++) {
-			if (oNode.nodeType == cNode.ELEMENT_NODE) {
+			if (oNode.nodeType == 1) {	// cNode.ELEMENT_NODE
 				if (bTagName || sTagName == oNode.tagName)
 					aElements.$add(oNode);
 				if (oNode.firstChild)
@@ -633,7 +632,7 @@ function fElement_getElementsByTagNameNS(oElement, sNameSpaceURI, sLocalName)
 		bLocalName		= '*' == sLocalName;
 	(function(oElement) {
 		for (var nIndex = 0, oNode; oNode = oElement.childNodes[nIndex]; nIndex++) {
-			if (oNode.nodeType == cNode.ELEMENT_NODE) {
+			if (oNode.nodeType == 1) {	// cNode.ELEMENT_NODE
 				if ((bLocalName || sLocalName == oNode.localName) && (bNameSpaceURI || sNameSpaceURI == oNode.namespaceURI))
 					aElements.$add(oNode);
 				if (oNode.firstChild)

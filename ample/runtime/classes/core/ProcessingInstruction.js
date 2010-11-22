@@ -10,7 +10,7 @@
 var cProcessingInstruction	= function(){};
 
 cProcessingInstruction.prototype	= new cNode;
-cProcessingInstruction.prototype.nodeType	= cNode.PROCESSING_INSTRUCTION_NODE;
+cProcessingInstruction.prototype.nodeType	= 7;	// cNode.PROCESSING_INSTRUCTION_NODE
 
 // nsIDOMProcessingInstruction
 cProcessingInstruction.prototype.data	= null;

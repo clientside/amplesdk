@@ -50,7 +50,7 @@ function fQuery(vArgument1, vArgument2, vArgument3) {
 					throw new cDOMException(cDOMException.SYNTAX_ERR, fQuery.caller);
 				else
 					for (var nIndex = 0, aElements = oDocument.documentElement.childNodes; nIndex < aElements.length; nIndex++)
-						if (aElements[nIndex].nodeType == cNode.ELEMENT_NODE)
+						if (aElements[nIndex].nodeType == 1)	// cNode.ELEMENT_NODE
 							oQuery[oQuery.length++]	= fDocument_importNode(oAmple_document, aElements[nIndex], true);
 			}
 			else {

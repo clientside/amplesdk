@@ -138,12 +138,12 @@ function fFocusManager_isTabStop(oElement, nTabIndex, bDeep) {
 
 function fFocusManager_isVisible(oElement) {
 	// Algorythm 2 (faster but ignores visibility:hidden and will fail if this style was used)
-	for (var oElementDOM; oElement.nodeType != cNode.DOCUMENT_NODE; oElement = oElement.parentNode)
+	for (var oElementDOM; oElement.nodeType != 9 /* cNode.DOCUMENT_NODE */; oElement = oElement.parentNode)
 		if (oElementDOM = oElement.$getContainer())
 			return oElementDOM.offsetHeight > 0;
 
 	// Algorythm 1
-//	for (var oElementDOM = oElement.$getContainer(); oElementDOM.nodeType != cNode.DOCUMENT_NODE; oElementDOM = oElementDOM.parentNode)
+//	for (var oElementDOM = oElement.$getContainer(); oElementDOM.nodeType != 9 /* cNode.DOCUMENT_NODE */; oElementDOM = oElementDOM.parentNode)
 //		if (fBrowser_getComputedStyle(oElementDOM).display == "none")
 //			return false;
 	return true;
@@ -156,7 +156,7 @@ function fFocusManager_onMouseDown(oEvent) {
 
 	// Find new element to focus
 	var oFocusGroup	= null;
-    for (var oElement = oEvent.target; oElement.nodeType != cNode.DOCUMENT_NODE && !oFocusGroup; oElement = oElement.parentNode)
+    for (var oElement = oEvent.target; oElement.nodeType != 9 /* cNode.DOCUMENT_NODE */ && !oFocusGroup; oElement = oElement.parentNode)
     	if (fFocusManager_isTabStop(oElement, 0, true))
     		oFocusGroup = oElement;
 

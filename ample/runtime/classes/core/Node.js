@@ -59,17 +59,17 @@ cNode.prototype.$listeners	= null;
 function fNode_getBaseURI(oNode) {
 	var sBaseUri	= '';
 	for (var oParent = oNode, sUri; oParent; oParent = oParent.parentNode)
-		if (oParent.nodeType == cNode.ELEMENT_NODE && (sUri = oParent.attributes["xml:base"]))
+		if (oParent.nodeType == 1 /* cNode.ELEMENT_NODE */ && (sUri = oParent.attributes["xml:base"]))
 			sBaseUri	= fUtilities_resolveUri(sUri, sBaseUri);
 	return sBaseUri;
 };
 
 function fNode_getTextContent(oNode) {
 	for (var nIndex = 0, aText = [], oChild; oChild = oNode.childNodes[nIndex]; nIndex++)
-		if (oChild.nodeType == cNode.TEXT_NODE || oChild.nodeType == cNode.CDATA_SECTION_NODE)
+		if (oChild.nodeType == 3 /* cNode.TEXT_NODE */ || oChild.nodeType == 4 /* cNode.CDATA_SECTION_NODE */)
 			aText.push(oChild.data);
 		else
-		if (oChild.nodeType == cNode.ELEMENT_NODE && oChild.firstChild)
+		if (oChild.nodeType == 1 /* cNode.ELEMENT_NODE */ && oChild.firstChild)
 			aText.push(fNode_getTextContent(oChild));
 	return aText.join('');
 };
@@ -120,11 +120,11 @@ cNode.prototype.appendChild	= function(oNode)
 //<-Guard
 
 	// Additional check: do not allow adding document nodes as children
-	if (oNode.nodeType == cNode.DOCUMENT_NODE)
+	if (oNode.nodeType == 9)	// cNode.DOCUMENT_NODE
 		throw new cDOMException(cDOMException.HIERARCHY_REQUEST_ERR);
 
 	// Additional check: if document has documentElement already, no other children can be added
-	if (this.nodeType == cNode.DOCUMENT_NODE && this.lastChild && this.lastChild.nodeType == cNode.ELEMENT_NODE)
+	if (this.nodeType == 9 && this.lastChild && this.lastChild.nodeType == 1 /* cNode.ELEMENT_NODE */)
 		throw new cDOMException(cDOMException.HIERARCHY_REQUEST_ERR);
 
 	return fNode_appendChild(this, oNode);
@@ -181,11 +181,11 @@ cNode.prototype.insertBefore	= function(oNode, oBefore)
 //<-Guard
 
 	// Additional check: do not allow adding document nodes as children
-	if (oNode.nodeType == cNode.DOCUMENT_NODE)
+	if (oNode.nodeType == 9)	// cNode.DOCUMENT_NODE
 		throw new cDOMException(cDOMException.HIERARCHY_REQUEST_ERR);
 
 	// Additional check: if document has documentElement already, no other children can be added
-	if (this.nodeType == cNode.DOCUMENT_NODE && this.lastChild && this.lastChild.nodeType == cNode.ELEMENT_NODE)
+	if (this.nodeType == 9 && this.lastChild && this.lastChild.nodeType == 1 /* cNode.ELEMENT_NODE */)
 		throw new cDOMException(cDOMException.HIERARCHY_REQUEST_ERR);
 
 	if (oBefore) {
@@ -260,7 +260,7 @@ function fNode_cloneNode(oNode, bDeep)
 {
 	var oClone;
 	switch (oNode.nodeType) {
-		case cNode.ELEMENT_NODE:
+		case 1:	// cNode.ELEMENT_NODE
 			// Create Element
 			oClone	= fDocument_createElementNS(oNode.ownerDocument, oNode.namespaceURI, oNode.nodeName);
 
@@ -275,11 +275,11 @@ function fNode_cloneNode(oNode, bDeep)
 					fNode_appendChild(oClone, fNode_cloneNode(oNode.childNodes[nIndex], bDeep));
 			break;
 
-		case cNode.TEXT_NODE:
+		case 3:	// cNode.TEXT_NODE
 			oClone	= fDocument_createTextNode(oNode.ownerDocument, oNode.data);
 			break;
 
-		case cNode.CDATA_SECTION_NODE:
+		case 4:	// cNode.CDATA_SECTION_NODE
 			oClone	= fDocument_createCDATASection(oNode.ownerDocument, oNode.data);
 			break;
 
@@ -328,12 +328,12 @@ cNode.prototype.isSameNode 	= function(oNode)
 
 function fNode_lookupPrefix(oNode, sNameSpaceURI)
 {
-	for (var aPrefixes = {}, sPrefix; oNode && oNode.nodeType != cNode.DOCUMENT_NODE; oNode = oNode.parentNode)
+	for (var aPrefixes = {}, sPrefix; oNode && oNode.nodeType != 9; oNode = oNode.parentNode)
 	{
 		if (oNode.namespaceURI == sNameSpaceURI)
 			return oNode.prefix;
 		else
-		if (oNode.nodeType == cNode.ELEMENT_NODE)
+		if (oNode.nodeType == 1)	// cNode.ELEMENT_NODE
 			for (var sAttribute in oNode.attributes)
 				if (oNode.attributes.hasOwnProperty(sAttribute) && sAttribute.indexOf("xmlns" + ':') == 0)
 				{
@@ -371,11 +371,11 @@ cNode.prototype.isDefaultNamespace	= function(sNameSpaceURI)
 
 function fNode_lookupNamespaceURI(oNode, sPrefix)
 {
-	for (; oNode && oNode.nodeType != cNode.DOCUMENT_NODE; oNode = oNode.parentNode)
+	for (; oNode && oNode.nodeType != 9 /* cNode.DOCUMENT_NODE */ ; oNode = oNode.parentNode)
 		if (oNode.prefix == sPrefix)
 			return oNode.namespaceURI;
 		else
-		if (oNode.nodeType == cNode.ELEMENT_NODE)
+		if (oNode.nodeType == 1)	// cNode.ELEMENT_NODE
 			for (var sAttribute in oNode.attributes)
 				if (oNode.attributes.hasOwnProperty(sAttribute) && sAttribute.indexOf("xmlns" + ':') == 0 && sAttribute.substr(6) == sPrefix)
 					return oNode.attributes[sAttribute];
@@ -408,21 +408,21 @@ function fNode_compareDocumentPosition(oNode, oChild)
 		aChain2.push(oElement);
 	// If nodes are from different documents or if they do not have common top, they are disconnected
 	if (((oNode.ownerDocument || oNode) != (oChild.ownerDocument || oChild)) || (aChain1[aChain1.length - 1] != aChain2[aChain2.length - 1]))
-		return cNode.DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC | cNode.DOCUMENT_POSITION_DISCONNECTED;
+		return 32 /* cNode.DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC */ | 1 /* cNode.DOCUMENT_POSITION_DISCONNECTED */;
 	//
 	for (nIndex = cMath.min(nLength1 = aChain1.length, nLength2 = aChain2.length); nIndex; --nIndex)
 		if ((oNode1 = aChain1[--nLength1]) != (oNode2 = aChain2[--nLength2])) {
 			if (!oNode2.nextSibling)
-				return cNode.DOCUMENT_POSITION_FOLLOWING;
+				return 4 /* cNode.DOCUMENT_POSITION_FOLLOWING */;
 			if (!oNode1.nextSibling)
-				return cNode.DOCUMENT_POSITION_PRECEDING;
+				return 1 /* cNode.DOCUMENT_POSITION_PRECEDING */;
 			for (oElement = oNode2.previousSibling; oElement; oElement = oElement.previousSibling)
 				if (oElement == oNode1)
-					return cNode.DOCUMENT_POSITION_FOLLOWING;
-			return cNode.DOCUMENT_POSITION_PRECEDING;
+					return 4 /* cNode.DOCUMENT_POSITION_FOLLOWING */;
+			return 2 /* cNode.DOCUMENT_POSITION_PRECEDING */;
 		}
 	//
-	return nLength1 < nLength2 ? cNode.DOCUMENT_POSITION_FOLLOWING | cNode.DOCUMENT_POSITION_CONTAINED_BY : cNode.DOCUMENT_POSITION_PRECEDING | cNode.DOCUMENT_POSITION_CONTAINS;
+	return nLength1 < nLength2 ? 4 /* cNode.DOCUMENT_POSITION_FOLLOWING */ | 16 /* cNode.DOCUMENT_POSITION_CONTAINED_BY */ : 2 /* cNode.DOCUMENT_POSITION_PRECEDING */ | 8 /* cNode.DOCUMENT_POSITION_CONTAINS */;
 };
 
 cNode.prototype.compareDocumentPosition	= function(oChild)
@@ -444,19 +444,19 @@ cNode.prototype.lookupPrefix	= function(sNameSpaceURI)
 
 	switch (this.nodeType)
 	{
-		case cNode.ELEMENT_NODE:
+		case 1:		// cNode.ELEMENT_NODE
 			return this.lookupNamespacePrefix(sNameSpaceURI);
 
-		case cNode.DOCUMENT_NODE:
+		case 9:		// cNode.DOCUMENT_NODE
 			return this.documentElement.lookupNamespacePrefix(sNameSpaceURI);
 
-		case cNode.ENTITY_NODE:
-		case cNode.NOTATION_NODE:
-		case cNode.DOCUMENT_FRAGMENT_NODE:
-		case cNode.DOCUMENT_TYPE_NODE:
+		case 6:		// cNode.ENTITY_NODE
+		case 12:	// cNode.NOTATION_NODE
+		case 11:	// cNode.DOCUMENT_FRAGMENT_NODE
+		case 10:	// cNode.DOCUMENT_TYPE_NODE
 			return null;  // type is unknown
 
-		case cNode.ATTRIBUTE_NODE:
+		case 2:		// cNode.ATTRIBUTE_NODE
 			if (this.ownerElement)
 				return this.ownerElement.lookupNamespacePrefix(sNameSpaceURI);
 			return null;
@@ -478,7 +478,7 @@ cNode.prototype.lookupNamespacePrefix	= function(sNameSpaceURI)
 		if (this.attributes[i].prefix == "xmlns" && this.attributes[i].nodeValue == sNameSpaceURI && this.lookupNamespaceURI(this.attributes[i].localName) == sNameSpaceURI)
 			return this.attributes[i].localName;
 
-	if (this.parentNode && this.parentNode.nodeType == cNode.ELEMENT_NODE)
+	if (this.parentNode && this.parentNode.nodeType == 1)	// cNode.ELEMENT_NODE
 		// EntityReferences may have to be skipped to get to it
 		return this.parentNode.lookupNamespacePrefix(sNameSpaceURI);
 	return null;
@@ -488,7 +488,7 @@ cNode.prototype.lookupNamespaceURI	= function(sPrefix)
 {
 	switch (this.nodeType)
 	{
-		case cNode.ELEMENT_NODE:
+		case 1:		// cNode.ELEMENT_NODE
 			if (this.namespaceURI && this.prefix == sPrefix)
 				return this.namespaceURI;
 
@@ -501,28 +501,28 @@ cNode.prototype.lookupNamespaceURI	= function(sPrefix)
 					// default namespace
 					return this.attributes[i].nodeValue || null;
 
-			if (this.parentNode && this.parentNode.nodeType == cNode.ELEMENT_NODE)
+			if (this.parentNode && this.parentNode.nodeType == 1)	// cNode.ELEMENT_NODE
 				// EntityReferences may have to be skipped to get to it
 				return this.parentNode.lookupNamespaceURI(sPrefix);
 			return null;
 
-		case cNode.DOCUMENT_NODE:
+		case 9:		// cNode.DOCUMENT_NODE
 			return this.documentElement.lookupNamespaceURI(sPrefix);
 
-		case cNode.ENTITY_NODE:
-		case cNode.NOTATION_NODE:
-		case cNode.DOCUMENT_TYPE_NODE:
-		case cNode.DOCUMENT_FRAGMENT_NODE:
+		case 6:		// cNode.ENTITY_NODE
+		case 12:	// cNode.NOTATION_NODE
+		case 10:	// cNode.DOCUMENT_TYPE_NODE
+		case 11:	// cNode.DOCUMENT_FRAGMENT_NODE
 			return null;
 
-		case cNode.ATTRIBUTE_NODE:
+		case 2:		// cNode.ATTRIBUTE_NODE
 			if (this.ownerElement)
 				return this.ownerElement.lookupNamespaceURI(sPrefix);
 			else
 				return null;
 
 		default:
-			if (this.parentNode && this.parentNode.nodeType == cNode.ELEMENT_NODE)
+			if (this.parentNode && this.parentNode.nodeType == 1)	// cNode.ELEMENT_NODE
 				// EntityReferences may have to be skipped to get to it
 				return this.parentNode.lookupNamespaceURI(sPrefix);
 			else
@@ -668,7 +668,7 @@ function fNode_routeEvent(oEvent)
 
 	// Populate stack targets (...document-fragment, document, #document)
 	for (var oNode = oTarget; oNode; oNode = oNode.parentNode) {
-		if (bUIEvent && oNode.nodeType == cNode.ELEMENT_NODE && !oNode.$isAccessible())
+		if (bUIEvent && oNode.nodeType == 1 /* cNode.ELEMENT_NODE */ && !oNode.$isAccessible())
 			nDisabled	= nLength;
 		aTargets[nLength++]	= oNode;
 	}
@@ -759,7 +759,7 @@ cNode.prototype.dispatchEvent	= function(oEvent)
 /*
 cNode.prototype.selectNodes	= function(sXPath)
 {
-	var oDocument	= this.nodeType == cNode.DOCUMENT_NODE ? this : this.ownerDocument,
+	var oDocument	= this.nodeType == 9 ? this : this.ownerDocument,
 		oXMLDocument= fBrowser_parseXML(oDocument.toXML()),
 		aNodeList	= new cNodeList,
 		aXMLNodeList= [],
@@ -771,7 +771,7 @@ cNode.prototype.selectNodes	= function(sXPath)
 	{
 		// Find Context node
 		var oResult;
-		if (this.nodeType == cNode.DOCUMENT_NODE)
+		if (this.nodeType == 9)	// cNode.DOCUMENT_NODE
 			oXMLNode	= oXMLDocument;
 		else
 		{
@@ -787,7 +787,7 @@ cNode.prototype.selectNodes	= function(sXPath)
 	else
 	{
 		// Find Context node
-		if (this.nodeType == cNode.DOCUMENT_NODE)
+		if (this.nodeType == 9)	// cNode.DOCUMENT_NODE
 			oXMLNode	= oXMLDocument;
 		else
 			oXMLNode	= oXMLDocument.selectSingleNode('/' + '/' + '*[@_="' + this.uniqueID + '"]');
@@ -802,20 +802,20 @@ cNode.prototype.selectNodes	= function(sXPath)
 		oNode	= aXMLNodeList[nIndex];
 		switch (oNode.nodeType)
 		{
-			case cNode.ELEMENT_NODE:
+			case 1:	// cNode.ELEMENT_NODE
 				aNodeList.$add(oDocument_all[oNode.getAttribute('_')]);
 				break;
 
-			case cNode.ATTRIBUTE_NODE:
+			case 2:	// cNode.ATTRIBUTE_NODE
 				aNodeList.$add(oNode.nodeValue);
 				break;
 
-			case cNode.TEXT_NODE:
+			case 3:	// cNode.TEXT_NODE
 			case cNode.CDATA_NODE:
 				aNodeList.$add(oNode.nodeValue);
 				break;
 
-			case cNode.DOCUMENT_NODE:
+			case 9:	// cNode.DOCUMENT_NODE
 				aNodeList.$add(oDocument);
 				break;
 		}
@@ -849,7 +849,7 @@ function fNode_toXML(oNode)
 	aHtml.push(new cArray(nDepth).join('\t'));
 //<-Source
 	switch (oNode.nodeType) {
-		case cNode.ELEMENT_NODE:
+		case 1:	// cNode.ELEMENT_NODE
 			var sName, oAttributes;
 			aHtml.push('<' + oNode.nodeName);
 			oAttributes	= oNode.attributes;
@@ -880,24 +880,24 @@ function fNode_toXML(oNode)
 				aHtml.push('/>');
 			break;
 
-		case cNode.TEXT_NODE:
+		case 3:	// cNode.TEXT_NODE
 			aHtml.push(oNode.nodeValue);
 			break;
 
-		case cNode.CDATA_SECTION_NODE:
+		case 4:	// cNode.CDATA_SECTION_NODE
 			aHtml.push('<![CDATA[' + oNode.nodeValue + ']]>');
 			break;
 
-		case cNode.PROCESSING_INSTRUCTION_NODE:
+		case 7:	// cNode.PROCESSING_INSTRUCTION_NODE
 			aHtml.push('<?' + oNode.nodeName + ' ' + oNode.nodeValue + '?>');
 			break;
 
-		case cNode.COMMENT_NODE:
+		case 8:	// cNode.COMMENT_NODE
 			aHtml.push('<!--' + oNode.nodeValue + '-->');
 			break;
 
-		case cNode.DOCUMENT_FRAGMENT_NODE:
-		case cNode.DOCUMENT_NODE:
+		case 11:	// cNode.DOCUMENT_FRAGMENT_NODE
+		case 9:		// cNode.DOCUMENT_NODE
 			while (nIndex < oNode.childNodes.length)
 				aHtml.push(fNode_toXML(oNode.childNodes[nIndex++]
 //->Source
@@ -906,11 +906,11 @@ function fNode_toXML(oNode)
 				));
 			break;
 /*
-		case cNode.NOTATION_NODE:
-		case cNode.DOCUMENT_TYPE_NODE:
-		case cNode.ENTITY_REFERENCE_NODE:
-		case cNode.ENTITY_NODE:
-		case cNode.ATTRIBUTE_NODE:
+		case 12:	// cNode.NOTATION_NODE
+		case 10:	// cNode.DOCUMENT_TYPE_NODE
+		case 5:		// cNode.ENTITY_REFERENCE_NODE
+		case 6:		// cNode.ENTITY_NODE
+		case 2:		// cNode.ATTRIBUTE_NODE
 */
 		default:
 			throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);

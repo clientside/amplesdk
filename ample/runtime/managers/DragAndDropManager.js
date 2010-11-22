@@ -284,7 +284,7 @@ function fDragAndDropManager_onMouseMove(oEvent)
 			continue;
 
 		// if target contains source, continue
-		if (fNode_compareDocumentPosition(aDragAndDropManager_dropTargets[nIndex], oDragAndDropManager_dragSource) & cNode.DOCUMENT_POSITION_CONTAINS)
+		if (fNode_compareDocumentPosition(aDragAndDropManager_dropTargets[nIndex], oDragAndDropManager_dragSource) & 8 /* cNode.DOCUMENT_POSITION_CONTAINS */)
 			continue;
 
 		oRect2	= fElement_getBoundingClientRect(aDragAndDropManager_dropTargets[nIndex]);

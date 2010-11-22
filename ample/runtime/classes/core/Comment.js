@@ -10,7 +10,7 @@
 var cComment	= function(){};
 
 cComment.prototype	= new cCharacterData;
-cComment.prototype.nodeType	= cNode.COMMENT_NODE;
+cComment.prototype.nodeType	= 8;	// cNode.COMMENT_NODE
 cComment.prototype.nodeName	= "#comment";
 
 // nsIDOMComment
