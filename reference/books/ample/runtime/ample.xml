@@ -79,20 +79,32 @@
 			<method name="query" type="Query">
 				<arguments>
 					<argument name="query" type="String">
-
+						<description>
+							<locale>
+								CSS selector.
+							</locale>
+						</description>
 					</argument>
 					<argument name="context" required="false" type="Node">
-
+						<description>
+							<locale>
+								Context object. If not specified, ample document object is in use.
+							</locale>
+						</description>
 					</argument>
 					<argument name="resolver" required="false" type="Function">
-
+						<description>
+							<locale>
+								Namespace resolver function. If not specified, selector will match against tag names.
+							</locale>
+						</description>
 					</argument>
 				</arguments>
 				<arguments>
 					<argument name="xml" type="String">
 						<description>
 							<locale>
-
+								Valid XML string.
 							</locale>
 						</description>
 					</argument>
@@ -101,7 +113,7 @@
 					<argument name="element" type="Element">
 						<description>
 							<locale>
-
+								An Ample SDK element object.
 							</locale>
 						</description>
 					</argument>
@@ -110,7 +122,7 @@
 					<argument name="query" type="Query">
 						<description>
 							<locale>
-
+								Result of other call to ample.query
 							</locale>
 						</description>
 					</argument>
