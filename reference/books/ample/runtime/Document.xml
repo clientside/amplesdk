@@ -3,7 +3,7 @@
 <class name="Document" extends="runtime:Node">
 	<abstract>
 		<locale>
-			Represents the document in a given browser window.
+			Represents the Ample SDK document created out of all Ample SDK fragments found on the page.
 		</locale>
 		<locale xml:lang="ru">
 			Документ в окне браузера.
