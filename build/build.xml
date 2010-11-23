@@ -339,6 +339,7 @@
 			</fileset>
 			<fileset dir="${source.xhtml.dir}/elements/">
 				<include name="*/*.js" />
+				<include name="*.js" />
 			</fileset>
 			<fileset dir="${source.xhtml.dir}/integrations/">
 				<include name="*.js" />
