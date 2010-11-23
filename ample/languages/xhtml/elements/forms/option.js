@@ -60,6 +60,10 @@ cXHTMLElement_option.handlers	= {
 					this.$setPseudoClass("selected", oEvent.newValue != null && oEvent.newValue != "false");
 					break;
 
+				case "label":
+					this.$getContainer("gateway").innerHTML	= oEvent.newValue || '';
+					break;
+
 				default:
 					cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
 			}
