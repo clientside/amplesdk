@@ -633,13 +633,11 @@ function fDocument_register(oDocument, oElement) {
 			oNode;
 
 		// Process anonymous content
-		if (oElement.contentFragment)
-			for (nIndex = 0; oNode = oElement.contentFragment.childNodes[nIndex]; nIndex++) {
-				// Tweak DOM
-				oNode.parentNode	= oElement;
-				//
+		if (oElement.contentFragment) {
+			oElement.contentFragment.parentNode	= oElement;
+			for (nIndex = 0; oNode = oElement.contentFragment.childNodes[nIndex]; nIndex++)
 				fDocument_register(oDocument, oNode);
-			}
+		}
 
 		// Fire Mutation event on Element
 		var oEvent = new cMutationEvent;
@@ -682,11 +680,10 @@ function fDocument_unregister(oDocument, oElement) {
 			fDocument_unregister(oDocument, oNode);
 
 		// Process anonymous content
-		if (oElement.contentFragment)
-			for (nIndex = 0; oNode = oElement.contentFragment.childNodes[nIndex]; nIndex++) {
+		if (oElement.contentFragment) {
+			for (nIndex = 0; oNode = oElement.contentFragment.childNodes[nIndex]; nIndex++)
 				fDocument_unregister(oDocument, oNode);
-				// Un-tweak DOM
-				oNode.parentNode	= oElement.contentFragment;
-			}
+			oElement.contentFragment.parentNode	= null;
+		}
 	}
 };

@@ -123,7 +123,13 @@ cNode.prototype.appendChild	= function(oNode)
 	if (this.nodeType == 9 && this.documentElement)
 		throw new cDOMException(cDOMException.HIERARCHY_REQUEST_ERR);
 
-	return fNode_appendChild(this, oNode);
+	fNode_appendChild(this, oNode);
+
+	// Register Instance (special case for anonymous DocumentFragment)
+	if (this.nodeType == 11 && this.parentNode && oDocument_all[this.parentNode.uniqueID])
+		fDocument_register(this.ownerDocument, oNode);
+
+	return oNode;
 };
 
 function fNode_insertBefore(oParent, oNode, oBefore)
@@ -182,12 +188,18 @@ cNode.prototype.insertBefore	= function(oNode, oBefore)
 
 	if (oBefore) {
 		if (this.childNodes.$indexOf(oBefore) !=-1)
-			return fNode_insertBefore(this, oNode, oBefore);
+			fNode_insertBefore(this, oNode, oBefore);
 		else
 			throw new cDOMException(cDOMException.NOT_FOUND_ERR);
 	}
 	else
-		return fNode_appendChild(this, oNode);
+		fNode_appendChild(this, oNode);
+
+	// Register Instance (special case for anonymous DocumentFragment)
+	if (this.nodeType == 11 && this.parentNode && oDocument_all[this.parentNode.uniqueID])
+		fDocument_register(this.ownerDocument, oNode);
+
+	return oNode;
 };
 
 function fNode_removeChild(oParent, oNode)
@@ -222,9 +234,15 @@ cNode.prototype.removeChild	= function(oNode)
 //<-Guard
 
     if (this.childNodes.$indexOf(oNode) !=-1)
-    	return fNode_removeChild(this, oNode);
+    	fNode_removeChild(this, oNode);
     else
         throw new cDOMException(cDOMException.NOT_FOUND_ERR);
+
+	// Unregister Instance (special case for anonymous DocumentFragment)
+	if (this.nodeType == 11 && this.parentNode && oDocument_all[this.parentNode.uniqueID])
+		fDocument_unregister(this.ownerDocument, oNode);
+
+    return oNode;
 };
 
 function fNode_replaceChild(oParent, oNode, oOld)
@@ -243,9 +261,19 @@ cNode.prototype.replaceChild	= function(oNode, oOld)
 //<-Guard
 
     if (this.childNodes.$indexOf(oOld) !=-1)
-    	return fNode_replaceChild(this, oNode, oOld);
+    	fNode_replaceChild(this, oNode, oOld);
     else
     	throw new cDOMException(cDOMException.NOT_FOUND_ERR);
+
+	// Unregister Instance (special case for anonymous DocumentFragment)
+	if (this.nodeType == 11 && this.parentNode && oDocument_all[this.parentNode.uniqueID])
+		fDocument_unregister(this.ownerDocument, oOld);
+
+	// Register Instance (special case for anonymous DocumentFragment)
+	if (this.nodeType == 11 && this.parentNode && oDocument_all[this.parentNode.uniqueID])
+		fDocument_register(this.ownerDocument, oNode);
+
+    return oOld;
 };
 
 function fNode_cloneNode(oNode, bDeep)
@@ -663,6 +691,8 @@ function fNode_routeEvent(oEvent)
 		if (bUIEvent && oNode.nodeType == 1 /* cNode.ELEMENT_NODE */ && !oNode.$isAccessible())
 			nDisabled	= nLength;
 		aTargets[nLength++]	= oNode;
+		if (oNode.nodeType == 11)
+			break;
 	}
 
 	// Propagate event
