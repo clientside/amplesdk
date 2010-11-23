@@ -691,7 +691,7 @@ function fNode_routeEvent(oEvent)
 		if (bUIEvent && oNode.nodeType == 1 /* cNode.ELEMENT_NODE */ && !oNode.$isAccessible())
 			nDisabled	= nLength;
 		aTargets[nLength++]	= oNode;
-		if (oNode.nodeType == 11)
+		if (oNode.nodeType == 11 /* cNode.DOCUMENT_FRAGMENT_NODE */)
 			break;
 	}
 
