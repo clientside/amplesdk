@@ -77,6 +77,7 @@ cXHTMLElement_datepicker.prototype.refresh	= function() {
 	// Render
 	this.$getContainer("days-pane").innerHTML	= cXHTMLElement_datepicker.$getTagDays(this, this.current);
 	var oItem	= this._elementMonth.querySelector("[value='" + this.current.getMonth() + "']");
+	return;
 	this._elementMonth.selectItem(oItem);
 	this._elementMonth.setAttribute("value", this.current.getMonth());
 	this._elementYear.setAttribute("value", this.current.getFullYear());
@@ -188,7 +189,7 @@ cXHTMLElement_datepicker.handlers	= {
 					break;
 			}
 	},
-	"DOMNodeInsertedIntoDocument":	function(oEvent) {alert(1);
+	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		//
 		var sValue	= this.getAttribute("value");
 		if (sValue) {

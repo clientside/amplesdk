@@ -174,7 +174,7 @@ cXHTMLElement_colorpicker.prototype.$getTagOpen	= function() {
 				<tbody>\
 					<tr>\
 						<td valign="top">\
-							<div class="colorpicker--palette" style="position:relative;" onmousedown="alert(ample.$instance(this).tagName);ample.$instance(this)._onPointerPaletteMouseDown(event)">\
+							<div class="colorpicker--palette" style="position:relative;" onmousedown="ample.$instance(this)._onPointerPaletteMouseDown(event)">\
 								<div class="colorpicker--palette-shader"><br /></div>\
 								<div class="colorpicker--palette-pointer" style="position:absolute;"><br /></div>\
 							</div>\

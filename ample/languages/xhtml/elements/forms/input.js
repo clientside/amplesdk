@@ -347,9 +347,9 @@ cXHTMLElement_input.toggle	= function(oInstance, bForce) {
 		case "month":
 		case "week":
 			if (!oInstance.datepicker) {
-				var oElement	= oInstance.contentFragment.appendChild(ample.createElement("datepicker"));
-				oElement.parentNode	= oInstance;
+				var oElement	= ample.createElement("datepicker");
 				oPopup.innerHTML	= oElement.$getTag();
+				oInstance.contentFragment.appendChild(oElement);
 				oInstance.datepicker	= oElement;
 			}
 			oInstance.datepicker.setAttribute("value", "2010-11-23"/*oInstance.attributes["value"]*/);
@@ -357,9 +357,9 @@ cXHTMLElement_input.toggle	= function(oInstance, bForce) {
 
 		case "color":
 			if (!oInstance.colorpicker) {
-				var oElement	= oInstance.contentFragment.appendChild(ample.createElement("colorpicker"));
-				oElement.parentNode	= oInstance;
+				var oElement	= ample.createElement("colorpicker");
 				oPopup.innerHTML	= oElement.$getTag();
+				oInstance.contentFragment.appendChild(oElement);
 				oInstance.colorpicker	= oElement;
 			}
 			oInstance.colorpicker.setAttribute("value", "#ffffff"/*oInstance.attributes["value"]*/);
