@@ -119,12 +119,8 @@ cNode.prototype.appendChild	= function(oNode)
 	]);
 //<-Guard
 
-	// Additional check: do not allow adding document nodes as children
-	if (oNode.nodeType == 9)	// cNode.DOCUMENT_NODE
-		throw new cDOMException(cDOMException.HIERARCHY_REQUEST_ERR);
-
 	// Additional check: if document has documentElement already, no other children can be added
-	if (this.nodeType == 9 && this.lastChild && this.lastChild.nodeType == 1 /* cNode.ELEMENT_NODE */)
+	if (this.nodeType == 9 && this.documentElement)
 		throw new cDOMException(cDOMException.HIERARCHY_REQUEST_ERR);
 
 	return fNode_appendChild(this, oNode);
@@ -180,12 +176,8 @@ cNode.prototype.insertBefore	= function(oNode, oBefore)
 	]);
 //<-Guard
 
-	// Additional check: do not allow adding document nodes as children
-	if (oNode.nodeType == 9)	// cNode.DOCUMENT_NODE
-		throw new cDOMException(cDOMException.HIERARCHY_REQUEST_ERR);
-
 	// Additional check: if document has documentElement already, no other children can be added
-	if (this.nodeType == 9 && this.lastChild && this.lastChild.nodeType == 1 /* cNode.ELEMENT_NODE */)
+	if (this.nodeType == 9 && this.documentElement)
 		throw new cDOMException(cDOMException.HIERARCHY_REQUEST_ERR);
 
 	if (oBefore) {
