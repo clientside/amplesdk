@@ -168,16 +168,13 @@ cXHTMLElement_colorpicker.handlers	= {
 
 // Render
 cXHTMLElement_colorpicker.prototype.$getTagOpen	= function() {
-	return '<div class="colorpicker xul-menupopup' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '') + '" style="' +
-				(this.getAttribute("hidden") == "true" ? "display:none;" : '') +
+	return '<div class="colorpicker' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '') + '" style="' +
 				(this.hasAttribute("style") ? this.getAttribute("style") : '') + '">\
-				<div class="xul-menupopup--shadow-right" style="position:absolute;"></div>\
-				<div class="xul-menupopup--shadow-bottom" style="position:absolute;"></div>\
 				<table cellpadding="0" cellspacing="0" border="0">\
 				<tbody>\
 					<tr>\
 						<td valign="top">\
-							<div class="colorpicker--palette" style="position:relative;" onmousedown="ample.$instance(this)._onPointerPaletteMouseDown(event)">\
+							<div class="colorpicker--palette" style="position:relative;" onmousedown="alert(ample.$instance(this).tagName);ample.$instance(this)._onPointerPaletteMouseDown(event)">\
 								<div class="colorpicker--palette-shader"><br /></div>\
 								<div class="colorpicker--palette-pointer" style="position:absolute;"><br /></div>\
 							</div>\

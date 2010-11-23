@@ -392,17 +392,13 @@ select::popup {
 	height: 100px;
 	overflow: auto;
 	overflow-x: hidden;
+	background-color: white;
+	border: solid 1px silver;
+	width: inherit;
 }
 
 select::value {
 	cursor: default;
-}
-
-input::popup,
-select::popup {
-	background-color: white;
-	border: solid 1px silver;
-	width: inherit;
 }
 
 select[multiple]::popup {
@@ -482,3 +478,11 @@ spinbuttons::button-down:hover {				background-position: -16px -24px;	}
 spinbuttons:disabled spinbuttons::button-down {	background-position: -32px -24px;	}
 spinbuttons::button-down:active {				background-position: -48px -24px;	}
 
+/* pickers */
+colorpicker,
+datepicker {
+	position:	absolute;
+	background-color: white;
+	border: outset 1px gray;
+	padding: 2px;
+}

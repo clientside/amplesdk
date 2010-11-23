@@ -1,0 +1,70 @@
+datepicker {
+	position: relative;
+	cursor: default;
+	vertical-align: top;
+	display:inline-block;
+	margin: 1px;
+	z-index: 9999;
+}
+
+datepicker::header {
+	background-color: #B4CBEA;
+	color: white;
+	text-align: center;
+	font-weight: bold;
+}
+datepicker::month {
+	height: 19px;
+}
+datepicker::month-previous,
+datepicker::month-next {
+	margin-left: 2px;
+	margin-right: 2px;
+	width:	17px;
+	height: 17px;
+	line-height: 15px;
+	display: inline-block;
+}
+datepicker::month-previous {
+	background: url('media/scrollbox_arrow_left.gif') no-repeat center center;
+}
+datepicker::month-next {
+	background: url('media/scrollbox_arrow_right.gif') no-repeat center center;
+}
+datepicker-day,
+datepicker-weekend {
+	width: 24px;
+	background-color: #f1f1f1;
+	color: black;
+}
+datepicker-weekend {
+	font-weight: bold;
+}
+datepicker-day:disabled {
+	background-color: #d0d0d0;
+	color: #F0F0F0;
+}
+datepicker-day:selected {
+    color: #ffffff;
+    background-color: #3399FF;
+}
+datepicker-day:hover {
+    background-color: silver;
+}
+datepicker-week {
+	width: 1.5em;
+	/*height:18px;*/
+	color: gray;
+	font-style: italic;
+}
+
+/* Subviews */
+datepicker select {
+	width: 90px;
+}
+datepicker input {
+	width: 60px;
+}
+datepicker input::value {
+	text-align:left;
+}

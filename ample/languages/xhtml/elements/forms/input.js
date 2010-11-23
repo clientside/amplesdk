@@ -120,6 +120,8 @@ cXHTMLElement_input.handlers	= {
 			case "color":
 			case "datetime":
 			case "datetime-local":
+			case "month":
+			case "week":
 				cXHTMLElement_input.toggle(this, false);
 				break;
 		}
@@ -133,6 +135,8 @@ cXHTMLElement_input.handlers	= {
 					case "color":
 					case "datetime":
 					case "datetime-local":
+					case "month":
+					case "week":
 						this.$activate();
 						break;
 				}
@@ -257,6 +261,8 @@ cXHTMLElement_input.handlers	= {
 				case "date":
 				case "datetime":
 				case "datetime-local":
+				case "month":
+				case "week":
 					cXHTMLElement_input.toggle(this);
 					break;
 
@@ -338,21 +344,25 @@ cXHTMLElement_input.toggle	= function(oInstance, bForce) {
 		case "date":
 		case "datetime":
 		case "datetime-local":
-			if (!cXHTMLElement_input.datepicker) {
+		case "month":
+		case "week":
+			if (!oInstance.datepicker) {
 				var oElement	= oInstance.contentFragment.appendChild(ample.createElement("datepicker"));
 				oElement.parentNode	= oInstance;
 				oPopup.innerHTML	= oElement.$getTag();
-				cXHTMLElement_input.datepicker	= oElement;
+				oInstance.datepicker	= oElement;
 			}
+			oInstance.datepicker.setAttribute("value", "2010-11-23"/*oInstance.attributes["value"]*/);
 			break;
 
 		case "color":
-			if (!cXHTMLElement_input.colorpicker) {
+			if (!oInstance.colorpicker) {
 				var oElement	= oInstance.contentFragment.appendChild(ample.createElement("colorpicker"));
 				oElement.parentNode	= oInstance;
 				oPopup.innerHTML	= oElement.$getTag();
-				cXHTMLElement_input.colorpicker	= oElement;
+				oInstance.colorpicker	= oElement;
 			}
+			oInstance.colorpicker.setAttribute("value", "#ffffff"/*oInstance.attributes["value"]*/);
 			break;
 	}
 };

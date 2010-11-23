@@ -1,8 +1,10 @@
 colorpicker {
+	position: relative;
 	cursor:	default;
 	vertical-align: top;
 	display:inline-block;
 	margin: 1px;
+	z-index: 9999;
 }
 
 colorpicker::palette {
