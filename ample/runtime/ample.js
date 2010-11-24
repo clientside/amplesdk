@@ -57,23 +57,27 @@ function fQuery(vArgument1, vArgument2, vArgument3) {
 				// Validate API call (custom)
 				// Context
 				if (arguments.length > 1) {
+//->Guard
 					if (!(vArgument2 instanceof cNode))
 						throw new cDOMException(cDOMException.GUARD_ARGUMENT_WRONG_TYPE_ERR, fQuery.caller
-//->Debug
+	//->Debug
 							, ['2' + oGuard_endings[1], "context", "query", "Node"]
-//<-Debug
+	//<-Debug
 						);
+//<-Guard
 				}
 				else
 					vArgument2	= oAmple_document;
 				// Resolver
 				if (arguments.length > 2 && vArgument3 !== null) {
+//->Guard
 					if (!(vArgument3 instanceof cFunction))
 						throw new cDOMException(cDOMException.GUARD_ARGUMENT_WRONG_TYPE_ERR, fQuery.caller
-//->Debug
+	//->Debug
 							, ['3' + oGuard_endings[2], "resolver", "query", "Function"]
-//<-Debug
+	//<-Debug
 						);
+//<-Guard
 				}
 
 				//
@@ -103,12 +107,14 @@ function fQuery(vArgument1, vArgument2, vArgument3) {
 			fQuery_each(vArgument1, function() {
 				oQuery[oQuery.length++]	= this;
 			});
+//->Guard
 		else
 			throw new cDOMException(cDOMException.GUARD_ARGUMENT_WRONG_TYPE_ERR, fQuery.caller
-//->Debug
+	//->Debug
 				, ['1' + oGuard_endings[0], "query", "query", "String" + '", "' + "Query" + '" or "' + "Element"]
-//<-Debug
+	//<-Debug
 			);
+//<-Guard
 	}
 
 	return oQuery;
@@ -130,12 +136,14 @@ function fAmple_extend(oSource, oTarget) {
 		else
 		if (oPrototype instanceof cAttr)
 			hClasses[oPrototype.namespaceURI + '#' + '@' + oPrototype.localName]	= oSource;
+//->Guard
 		else
 			throw new cDOMException(cDOMException.GUARD_ARGUMENT_WRONG_TYPE_ERR, null
-//->Debug
+	//->Debug
 				, ['1' + oGuard_endings[0], "source", "extend", "Attr" + '" or "' + "Element"]
-//<-Debug
+	//<-Debug
 			);
+//<-Guard
 	}
 	else {
 		if (!oTarget)

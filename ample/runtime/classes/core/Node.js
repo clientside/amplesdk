@@ -610,8 +610,10 @@ function fNode_executeHandler(oNode, fHandler, oEvent) {
 		else
 		if (typeof fHandler.handleEvent == "function")
 			fHandler.handleEvent.call(fHandler, oEvent);
+//->Guard
 		else
 			throw new cDOMException(cDOMException.GUARD_MEMBER_MISSING_ERR, null, ["handleEvent"]);
+//<-Guard
 	}
 	catch (oException) {
 		if (oException instanceof cDOMException) {
