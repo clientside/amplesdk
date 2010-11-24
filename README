@@ -22,15 +22,14 @@
       requests for all other files referenced from it that make up certain library.
 
    2. Running with Apache HTTP web server with mod_rewrite, .htaccess support and PHP
-      In this scenario server redirects the requests to respectful PHP scripts that
-      concatenate source folders contents into single files on the fly. This is faster
+      In this scenario server redirects the requests to ample/source-builder.php script that
+      concatenates source folders contents into single files on the fly. This is faster
       compared to the first option.
 
  Building with Ant:
  ===============
-   The build script is located in "build/build.xml". Before running the script, verify and
-   adjust path to your PHP executable and build destination in "build/build.properties"
-   By default it will build to the "amplesdk-builds" directory next to the "amplesdk" project.
+   The build script is located in "build.xml". Before running the script, verify and
+   adjust path to your PHP executable and build destination in "build.properties"
 
  Pre-built distributives:
  ===============
