@@ -1,7 +1,0 @@
-<!--
-	category: Ample SDK
-	name: Resource include: XUL language
-	toolTip: XUL language bundle (put it in the HEAD section)
--->
-		<script type="text/javascript" src="lib/ample/languages/xul/xul.js"></script>
-		<link type="text/css" href="lib/ample/languages/xul/themes/default/style.css" rel="stylesheet"/>

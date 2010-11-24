@@ -1,6 +1,0 @@
-<!--
-	category: Ample SDK
-	name: Resource include: SVG 1.2 Tiny language
-	toolTip: SVG 1.2 Tiny language bundle (put it in the HEAD section)
--->
-		<script type="text/javascript" src="lib/ample/languages/svg/svg.js"></script>
