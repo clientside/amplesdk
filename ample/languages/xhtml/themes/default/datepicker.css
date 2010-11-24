@@ -62,9 +62,13 @@ datepicker-week {
 datepicker select {
 	width: 90px;
 }
-datepicker input {
+datepicker input[type=spinner] {
 	width: 60px;
 }
-datepicker input::value {
+datepicker input[type=spinner]::value {
 	text-align:left;
+}
+datepicker input[type=button] {
+	width: 20px;
+	margin: 0;
 }

@@ -38,6 +38,21 @@ var cXHTMLElement_datepicker	= function() {
 		// Stop propagation
 		oEvent.stopPropagation();
 	}, false);
+	this._elementMonthPrevious	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "input"));
+	this._elementMonthPrevious.setAttribute("type", "button");
+	this._elementMonthPrevious.tabIndex	=-1;
+	this._elementMonthNext	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "input"));
+	this._elementMonthNext.setAttribute("type", "button");
+	this._elementMonthNext.tabIndex	=-1;
+	//
+	this._elementAccept	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "input"));
+	this._elementAccept.setAttribute("type", "button");
+	this._elementAccept.setAttribute("value", "OK");
+	this._elementAccept.tabIndex	=-1;
+	this._elementCancel	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "input"));
+	this._elementCancel.setAttribute("type", "button");
+	this._elementCancel.setAttribute("value", "Cancel");
+	this._elementCancel.tabIndex	=-1;
 };
 
 // component prototype
@@ -340,9 +355,9 @@ cXHTMLElement_datepicker.prototype.$getTagOpen	= function() {
 				<table cellpadding="0" cellspacing="0" border="0">\
 					<thead>\
 						<tr>\
-							<td><button class="datepicker--month-previous" onmouseover="ample.$instance(this).$setPseudoClass(\'hover\', true, \'month-previous\')" onmouseout="ample.$instance(this).$setPseudoClass(\'hover\', false, \'month-previous\')"><br /></button></td>\
+							<td valign="top">' + this._elementMonthPrevious.$getTag() + '</td>\
 							<td>' + this._elementMonth.$getTag() + '</td>\
-							<td><button class="datepicker--month-next" onmouseover="ample.$instance(this).$setPseudoClass(\'hover\', true, \'month-next\')" onmouseout="ample.$instance(this).$setPseudoClass(\'hover\', false, \'month-next\')"><br /></button></td>\
+							<td valign="top">' + this._elementMonthNext.$getTag() + '</td>\
 							<td>' + this._elementYear.$getTag() + '</td>\
 						</tr>\
 					</thead>\
