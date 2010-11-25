@@ -8,7 +8,7 @@
 	header("Content-type: text/css");
 
 	//
-	include("../../../../../build/resources/compiler/cCSSCompiler.php");
+	include("../../../../../resources/compiler/cCSSCompiler.php");
 /*
 	$oCSSCompiler	= new cCSSCompiler;
 	$oCSSCompiler->readFromString($sOutput);
