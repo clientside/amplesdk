@@ -134,9 +134,6 @@ cNode.prototype.appendChild	= function(oNode)
 
 function fNode_insertBefore(oParent, oNode, oBefore)
 {
-	// Save index
-	var nIndex	= oParent.childNodes.$indexOf(oBefore);
-
 	// Remove element from previous location
 	if (oNode.parentNode) {
 		// Fire Mutation event
@@ -163,7 +160,7 @@ function fNode_insertBefore(oParent, oNode, oBefore)
 	oNode.nextSibling	= oBefore;
 	oBefore.previousSibling	= oNode;
 
-	oParent.childNodes.$add(oNode, nIndex);
+	oParent.childNodes.$add(oNode, oParent.childNodes.$indexOf(oBefore));
 
 	// Fire Mutation event
     var oEvent = new cMutationEvent;
