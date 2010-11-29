@@ -629,14 +629,18 @@ function fDocument_register(oDocument, oElement) {
 			}
 		}
 
-		var nIndex,
+		var oFragment	= oElement.contentFragment,
+			nIndex,
 			oNode;
 
 		// Process anonymous content
-		if (oElement.contentFragment) {
-			oElement.contentFragment.parentNode	= oElement;
-			for (nIndex = 0; oNode = oElement.contentFragment.childNodes[nIndex]; nIndex++)
+		if (oFragment) {
+			oFragment.parentNode	= oElement;
+			for (nIndex = 0; oNode = oFragment.childNodes[nIndex]; nIndex++) {
+				// Tweak node parent
+				oNode.parentNode	= oElement;
 				fDocument_register(oDocument, oNode);
+			}
 		}
 
 		// Fire Mutation event on Element
@@ -672,7 +676,8 @@ function fDocument_unregister(oDocument, oElement) {
 		if (oElement.attributes.id)
 			delete oDocument_ids[oElement.attributes.id];
 
-		var nIndex,
+		var oFragment	= oElement.contentFragment,
+			nIndex,
 			oNode;
 
 		// Process children
@@ -680,10 +685,13 @@ function fDocument_unregister(oDocument, oElement) {
 			fDocument_unregister(oDocument, oNode);
 
 		// Process anonymous content
-		if (oElement.contentFragment) {
-			for (nIndex = 0; oNode = oElement.contentFragment.childNodes[nIndex]; nIndex++)
+		if (oFragment) {
+			for (nIndex = 0; oNode = oFragment.childNodes[nIndex]; nIndex++) {
+				// Un-tweak node parent
+				oNode.parentNode	= oFragment;
 				fDocument_unregister(oDocument, oNode);
-			oElement.contentFragment.parentNode	= null;
+			}
+			oFragment.parentNode	= null;
 		}
 	}
 };
