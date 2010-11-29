@@ -70,8 +70,8 @@ function fFocusManager_getFocusGroupNext(oElement, nTabIndex) {
 		if (oParent == oElement) {
 			if (oParent.firstChild && (oFocusGroup = fFocusManager_getFocusGroupNextChild(oParent.firstChild, nTabIndex)))
 				return oFocusGroup;
-			if (oParent.contentFragment && (oFocusGroup = fFocusManager_getFocusGroupNextChild(oParent.contentFragment.firstChild, nTabIndex)))
-				return oFocusGroup;
+//			if (oParent.contentFragment && (oFocusGroup = fFocusManager_getFocusGroupNextChild(oParent.contentFragment.firstChild, nTabIndex)))
+//				return oFocusGroup;
 		}
 		if (oParent == oBrowser_modalNode)
 			break;
@@ -85,9 +85,9 @@ function fFocusManager_getFocusGroupNextChild(oElement, nTabIndex, bDeep) {
 		if (fFocusManager_isTabStop(oSibling, nTabIndex, bDeep))
 			return oSibling;
 		else
-		if (oSibling.contentFragment && (oFocusGroup = fFocusManager_getFocusGroupNextChild(oSibling.contentFragment.firstChild, nTabIndex)))
-			return oFocusGroup;
-		else
+//		if (oSibling.contentFragment && (oFocusGroup = fFocusManager_getFocusGroupNextChild(oSibling.contentFragment.firstChild, nTabIndex)))
+//			return oFocusGroup;
+//		else
 		if (oSibling.firstChild && (oFocusGroup = fFocusManager_getFocusGroupNextChild(oSibling.firstChild, nTabIndex)))
 			return oFocusGroup;
 	}
@@ -111,9 +111,9 @@ function fFocusManager_getFocusGroupPrevious(oElement, nTabIndex) {
 function fFocusManager_getFocusGroupPreviousChild(oElement, nTabIndex, bDeep) {
 	for (var oSibling = oElement, oFocusGroup/*, aChildren*/; oSibling; oSibling = oSibling.previousSibling)
 		/* Walk into the anonymous tree */
-		if (oSibling.contentFragment &&(oFocusGroup = fFocusManager_getFocusGroupPreviousChild(oSibling.contentFragment.lastChild, nTabIndex)))
-			return oFocusGroup;
-		else
+//		if (oSibling.contentFragment &&(oFocusGroup = fFocusManager_getFocusGroupPreviousChild(oSibling.contentFragment.lastChild, nTabIndex)))
+//			return oFocusGroup;
+//		else
 		if (oSibling.lastChild && (oFocusGroup = fFocusManager_getFocusGroupPreviousChild(oSibling.lastChild, nTabIndex)))
 			return oFocusGroup;
 		else
