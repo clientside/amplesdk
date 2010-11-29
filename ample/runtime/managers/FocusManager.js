@@ -66,59 +66,55 @@ function fFocusManager_blur(oElement) {
 
 /* Focus Group */
 function fFocusManager_getFocusGroupNext(oElement, nTabIndex) {
-	for (var oParent = oElement, oFocusGroup/*, aChildren*/; oParent; oParent = oParent.parentNode) {
+	for (var oParent = oElement, oFocusGroup; oParent; oParent = oParent.parentNode) {
 		if (oParent == oElement) {
 			if (oParent.firstChild && (oFocusGroup = fFocusManager_getFocusGroupNextChild(oParent.firstChild, nTabIndex)))
 				return oFocusGroup;
-//			if (oParent.contentFragment && (oFocusGroup = fFocusManager_getFocusGroupNextChild(oParent.contentFragment.firstChild, nTabIndex)))
-//				return oFocusGroup;
 		}
+//		if (oParent.contentFragment && (oFocusGroup = fFocusManager_getFocusGroupNextChild(oParent.contentFragment.firstChild, nTabIndex)))
+//			return oFocusGroup;
 		if (oParent == oBrowser_modalNode)
-			break;
+			return;
 		if (oParent.nextSibling && (oFocusGroup = fFocusManager_getFocusGroupNextChild(oParent.nextSibling, nTabIndex)))
 			return oFocusGroup;
 	}
 };
 
 function fFocusManager_getFocusGroupNextChild(oElement, nTabIndex, bDeep) {
-	for (var oSibling = oElement, oFocusGroup/*, aChildren*/; oSibling; oSibling = oSibling.nextSibling) {
+	for (var oSibling = oElement, oFocusGroup; oSibling; oSibling = oSibling.nextSibling) {
 		if (fFocusManager_isTabStop(oSibling, nTabIndex, bDeep))
 			return oSibling;
-		else
 //		if (oSibling.contentFragment && (oFocusGroup = fFocusManager_getFocusGroupNextChild(oSibling.contentFragment.firstChild, nTabIndex)))
 //			return oFocusGroup;
-//		else
 		if (oSibling.firstChild && (oFocusGroup = fFocusManager_getFocusGroupNextChild(oSibling.firstChild, nTabIndex)))
 			return oFocusGroup;
 	}
 };
 
 function fFocusManager_getFocusGroupPrevious(oElement, nTabIndex) {
-	for (var oParent = oElement, oFocusGroup/*, aChildren*/; oParent; oParent = oParent.parentNode) {
+	for (var oParent = oElement, oFocusGroup; oParent; oParent = oParent.parentNode) {
 		if (oParent != oElement) {
 			if (fFocusManager_isTabStop(oParent, nTabIndex))
 				return oParent;
-//			if (oParent.contentFragment &&(oFocusGroup = fFocusManager_getFocusGroupPreviousChild(oParent.contentFragment.lastChild, nTabIndex)))
-//				return oFocusGroup;
 		}
+//		if (oParent.contentFragment &&(oFocusGroup = fFocusManager_getFocusGroupPreviousChild(oParent.contentFragment.lastChild, nTabIndex)))
+//			return oFocusGroup;
 		if (oParent == oBrowser_modalNode)
-			break;
+			return;
 		if (oParent.previousSibling && (oFocusGroup = fFocusManager_getFocusGroupPreviousChild(oParent.previousSibling, nTabIndex)))
 			return oFocusGroup;
 	}
 };
 
 function fFocusManager_getFocusGroupPreviousChild(oElement, nTabIndex, bDeep) {
-	for (var oSibling = oElement, oFocusGroup/*, aChildren*/; oSibling; oSibling = oSibling.previousSibling)
-		/* Walk into the anonymous tree */
+	for (var oSibling = oElement, oFocusGroup; oSibling; oSibling = oSibling.previousSibling) {
 //		if (oSibling.contentFragment &&(oFocusGroup = fFocusManager_getFocusGroupPreviousChild(oSibling.contentFragment.lastChild, nTabIndex)))
 //			return oFocusGroup;
-//		else
 		if (oSibling.lastChild && (oFocusGroup = fFocusManager_getFocusGroupPreviousChild(oSibling.lastChild, nTabIndex)))
 			return oFocusGroup;
-		else
 		if (fFocusManager_isTabStop(oSibling, nTabIndex, bDeep))
 			return oSibling;
+	}
 };
 
 function fFocusManager_isTabStop(oElement, nTabIndex, bDeep) {
