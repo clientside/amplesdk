@@ -554,8 +554,7 @@ cXHTMLElement_input.prototype.$getTagOpen		= function() {
 
 // Element Render: close (cancel double tag)
 cXHTMLElement_input.prototype.$getTagClose	= function() {
-	var sClassName	=(this.prefix ? this.prefix + '-' : '') + this.localName,
-		aHtml	= [];
+	var aHtml	= [];
 	aHtml.push(	'</div>');
 	aHtml.push('</span>');
 	return aHtml.join('');

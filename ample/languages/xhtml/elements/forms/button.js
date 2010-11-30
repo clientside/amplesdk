@@ -32,10 +32,37 @@ cXHTMLElement_button.handlers	= {
 		if (oEvent.target == this)
 			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
 	},
+	"mousedown":	function() {
+		this.$setPseudoClass("active", true);
+		this.setCapture(true);
+	},
+	"mouseup":	function() {
+		this.$setPseudoClass("active", false);
+		this.releaseCapture();
+	},
 	"click":	function(oEvent) {
 		if (oEvent.button == 0)
 			this.$activate();
 	}
+};
+
+cXHTMLElement_button.prototype.$getTagOpen	= function() {
+	var sClassName	=(this.prefix ? this.prefix + '-' : '') + this.localName,
+		bDisabled	= this.attributes["disabled"] && this.attributes["disabled"] != "false";
+	return '<span class="' + sClassName + ' ' +
+				("class" in this.attributes ? ' ' + this.attributes["class"] : '') +
+				' ' + sClassName + '_' + (bDisabled ? 'disabled' : 'enabled') + ' '+
+				'" ' +(this.attributes.style ? ' style="' + this.attributes.style + '"' : '')+ '>\
+				<span class="' + sClassName + '--before" style="float:left"></span>\
+				<span class="' + sClassName + '--after" style="float:right"></span>\
+				<div class="' + sClassName + '--field" style="position:relative">\
+					<div class="' + sClassName + '--label">';
+};
+
+cXHTMLElement_button.prototype.$getTagClose	= function() {
+	return '		</div>\
+				</div>\
+			</span>';
 };
 
 // Register Element
