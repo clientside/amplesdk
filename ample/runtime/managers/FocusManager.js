@@ -80,9 +80,9 @@ function fFocusManager_getFocusGroupNext(oElement, nTabIndex) {
 	}
 };
 
-function fFocusManager_getFocusGroupNextChild(oElement, nTabIndex, bDeep) {
+function fFocusManager_getFocusGroupNextChild(oElement, nTabIndex) {
 	for (var oSibling = oElement, oFocusGroup; oSibling; oSibling = oSibling.nextSibling) {
-		if (fFocusManager_isTabStop(oSibling, nTabIndex, bDeep))
+		if (fFocusManager_isTabStop(oSibling, nTabIndex))
 			return oSibling;
 //		if (oSibling.contentFragment && (oFocusGroup = fFocusManager_getFocusGroupNextChild(oSibling.contentFragment.firstChild, nTabIndex)))
 //			return oFocusGroup;
@@ -106,13 +106,13 @@ function fFocusManager_getFocusGroupPrevious(oElement, nTabIndex) {
 	}
 };
 
-function fFocusManager_getFocusGroupPreviousChild(oElement, nTabIndex, bDeep) {
+function fFocusManager_getFocusGroupPreviousChild(oElement, nTabIndex) {
 	for (var oSibling = oElement, oFocusGroup; oSibling; oSibling = oSibling.previousSibling) {
 //		if (oSibling.contentFragment &&(oFocusGroup = fFocusManager_getFocusGroupPreviousChild(oSibling.contentFragment.lastChild, nTabIndex)))
 //			return oFocusGroup;
 		if (oSibling.lastChild && (oFocusGroup = fFocusManager_getFocusGroupPreviousChild(oSibling.lastChild, nTabIndex)))
 			return oFocusGroup;
-		if (fFocusManager_isTabStop(oSibling, nTabIndex, bDeep))
+		if (fFocusManager_isTabStop(oSibling, nTabIndex))
 			return oSibling;
 	}
 };
