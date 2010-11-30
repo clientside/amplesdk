@@ -107,7 +107,7 @@ function fBrowser_render(oNode) {
 				// Add namespace declarations to the shadow content
 				if (!("xmlns" + (oNode.prefix ? ':' + oNode.prefix : '') in oNode.attributes) || (oNode.namespaceURI != sNS_SVG && oNode.namespaceURI != sNS_XHTML))
 					sHtml	= sHtml.replace(/^(<(?:(\w+)(:))?(\w+))/, '$1 ' + "xmlns" + '$3$2="' + (oNode.namespaceURI == sNS_SVG ? sNS_SVG : sNS_XHTML) + '"');
-				return oUADocument.importNode(fBrowser_parseXML('<!' + "DOCTYPE" + ' ' + "div" + '[' + sUtilities_entities + ']>' + sHtml).documentElement, true);
+				return oUADocument.importNode(fBrowser_parseXML('<!' + "DOCTYPE" + ' ' + "div" + '[' + sBrowser_entities + ']>' + sHtml).documentElement, true);
 			}
 		}
 	}
@@ -743,6 +743,33 @@ function fBrowser_getResponseDocument(oRequest) {
 	return oDocument;
 };
 
+//<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd" [
+//]>
+var sBrowser_entities	= '',
+	aEntities		= "nbsp;iexcl;cent;pound;curren;yen;brvbar;sect;uml;copy;ordf;laquo;not;shy;reg;macr;deg;plusmn;sup2;sup3;acute;micro;para;middot;cedil;sup1;ordm;raquo;frac14;frac12;frac34;iquest;Agrave;Aacute;Acirc;Atilde;Auml;Aring;AElig;Ccedil;Egrave;Eacute;Ecirc;Euml;Igrave;Iacute;Icirc;Iuml;ETH;Ntilde;Ograve;Oacute;Ocirc;Otilde;Ouml;times;Oslash;Ugrave;Uacute;Ucirc;Uuml;Yacute;THORN;szlig;agrave;aacute;acirc;atilde;auml;aring;aelig;ccedil;egrave;eacute;ecirc;euml;igrave;iacute;icirc;iuml;eth;ntilde;ograve;oacute;ocirc;otilde;ouml;divide;oslash;ugrave;uacute;ucirc;uuml;yacute;thorn;yuml".split(';');
+for (var nIndex = 0, nLength = aEntities.length; nIndex < nLength; nIndex++)
+	sBrowser_entities	+= '<!' + "ENTITY" + ' ' + aEntities[nIndex] + ' "&#' +(160 + nIndex)+ ';">';
+
+function fBrowser_createFragment(sXml, sAttributes) {
+	// Bugfix FF4 (remote XUL)
+	if (bGecko)
+		sXml	= sXml.replace(new cRegExp(sNS_XUL, 'g'), sNS_XUL + '#');
+	return fBrowser_parseXML(//		"<?" + "xml" + ' ' + 'version="1.0"' + "?>" +
+				'<!' + "DOCTYPE" + ' ' + "div" + '[' + sBrowser_entities + ']>' +
+//->Debug
+				'\n' +
+//<-Debug
+				'<' + "div" + ' ' + (sAttributes ? sAttributes.replace(/&/g, '&amp;') : '') + '>' +
+//->Debug
+				'\n' +
+//<-Debug
+				sXml +
+//->Debug
+				'\n' +
+//<-Debug
+				'</' + "div" + '>');
+};
+
 function fBrowser_createStyleSheet(sCSS, sUri, sMedia) {
 	// Process Stylesheet
 	oBrowser_factory.innerHTML	= "#text" + '<' + "style" + ' ' + "type" + '="' + "text/css" + '"' + (sMedia ? ' ' + "media" + '="' + sMedia + '"' : '') + '>' + fUtilities_translateStyleSheet(sCSS, sUri) + '</' + "style" + '>';
@@ -869,7 +896,7 @@ function fBrowser_processScripts() {
 		sAttribute,
 		sPrefix,
     	aAttributes,
-    	oAttributes,
+    	hAttributes,
     	bReferenced;
 
 	function fHashToString(hHash) {
@@ -881,8 +908,8 @@ function fBrowser_processScripts() {
 		}
 		for (sAttribute in hHash)
 			if (hHash.hasOwnProperty(sAttribute))
-				aAttributes.push(' ' + sAttribute + '="' + hHash[sAttribute] + '"');
-		return aAttributes.join('');
+				aAttributes.push(sAttribute + '="' + hHash[sAttribute] + '"');
+		return aAttributes.join(' ');
 	};
 
 	function fGetTagChildren(oElement) {
@@ -894,7 +921,7 @@ function fBrowser_processScripts() {
 
 	// Process script tags
     aElements = oBrowser_body.getElementsByTagName("script");
-    for (var nIndex = 0, nSkip = 0, sText; aElements.length > nSkip; nIndex++) {
+    for (var nIndex = 0, nSkip = 0; aElements.length > nSkip; nIndex++) {
     	// Current Script
 	    oElementDOM	= aElements[nSkip];
 
@@ -902,7 +929,7 @@ function fBrowser_processScripts() {
 		if (oElementDOM.getAttribute("type") != "application/ample+xml")
 			nSkip++;
 		else {
-			oAttributes	= {};
+			hAttributes	= {};
 			bReferenced	= false;
 
 			// retrieve namespaces list (in older than IE6, attributes on script tag are not parsed into collection)
@@ -910,13 +937,13 @@ function fBrowser_processScripts() {
 				if (aAttributes	= oElementDOM.outerHTML.match(/<script([^\>]+)/i)[1].match(/[^=]+=("[^"]+"|[^\s]+)/gi))
 					for (var nAttribute = 0; oAttribute = aAttributes[nAttribute]; nAttribute++)
 						if (oAttribute.match(/\s([^=]+)="?([^"]+)"?/i) && (sAttribute = cRegExp.$1) != "type")
-                			oAttributes[sAttribute]	= cRegExp.$2;
+                			hAttributes[sAttribute]	= cRegExp.$2;
 			}
 			else {
 		        aAttributes = oElementDOM.attributes;
 		        for (var nAttribute = 0; oAttribute = aAttributes[nAttribute]; nAttribute++)
 		        	if (oAttribute.specified && (sAttribute = oAttribute.nodeName.toLowerCase()) != "type")
-                		oAttributes[sAttribute]	= fUtilities_encodeEntities(sAttribute == "style" ? oElementDOM[sAttribute].cssText : oAttribute.nodeValue);
+                		hAttributes[sAttribute]	= fUtilities_encodeEntities(sAttribute == "style" ? oElementDOM[sAttribute].cssText : oAttribute.nodeValue);
 			}
 
 			if (oElementDOM.getAttribute("src")) {
@@ -925,27 +952,11 @@ function fBrowser_processScripts() {
 				oDocument	= fBrowser_getResponseDocument(oRequest);
 				bReferenced	= true;
 			}
-			else {
-				sText	=										//		"<?" + "xml" + ' ' + 'version="1.0"' + "?>" +
-																		'<!' + "DOCTYPE" + ' ' + "div" + '[' + sUtilities_entities + ']>' +
-//->Debug
-																		'\n' +
-//<-Debug
-			    														'<' + "div" + ' ' + "type" + '="' + "application/ample+xml" + '"' + fHashToString(oAttributes).replace(/&/g, '&amp;') + '>' +
-//->Debug
-			    														'\n' +
-//<-Debug
-			    														oElementDOM.text.replace(/^\s*(<!\[CDATA\[)?\s*/, '').replace(/\s*(\]\]>)\s*$/, '').replace(/^\s*<\?xml.+\?>/, '').replace(/&/g, '&amp;').replace(/<script(.|\n|\r)+$/, '') +
-//->Debug
-			    														'\n' +
-//<-Debug
-			    														'</' + "div" + '>';
-				// Bugfix FF4 (remote XUL)
-				if (bGecko)
-					sText	= sText.replace(new cRegExp(sNS_XUL, 'g'), sNS_XUL + '#');
-				// Create fragment
-			    oDocument   = fBrowser_parseXML(sText);
-			}
+			else
+				oDocument	= fBrowser_createFragment(
+									oElementDOM.text.replace(/^\s*(<!\[CDATA\[)?\s*/, '').replace(/\s*(\]\]>)\s*$/, '').replace(/^\s*<\?xml.+\?>/, '').replace(/&/g, '&amp;').replace(/<script(.|\n|\r)+$/, ''),
+									fHashToString(hAttributes)
+								);
 
 			oParserError	= oDocument ? oDocument.getElementsByTagName("parsererror")[0] : null;
 		    if (oDocument && oDocument.documentElement && !oParserError) {
@@ -960,7 +971,7 @@ function fBrowser_processScripts() {
 		    	if (!bReferenced) {
 		    		for (sAttribute in oAmple.prefixes) {
 			    		sPrefix = "xmlns" + (sAttribute == '' ? '' : ':' + sAttribute);
-		    			if (sPrefix in oAttributes && oAttributes[sPrefix] == oAmple.prefixes[sAttribute])
+		    			if (sPrefix in hAttributes && hAttributes[sPrefix] == oAmple.prefixes[sAttribute])
 		    				delete oElement.attributes[sPrefix];
 		    		}
 		    		// Change root element name to script
@@ -984,27 +995,19 @@ function fBrowser_processScripts() {
 						oElementNew.setAttribute('id', oElementDOM.getAttribute('id') || oElement.uniqueID);
 		    	}
 		    	else {
-		    		for (var sName in oAttributes)
-		    			if (oAttributes.hasOwnProperty(sName) && (sName.substr(0, 2) == 'on' || sName == "src"))
-		    				delete oAttributes[sName];
+		    		for (sAttribute in hAttributes)
+		    			if (hAttributes.hasOwnProperty(sAttribute) && (sAttribute.substr(0, 2) == 'on' || sAttribute == "src"))
+		    				delete hAttributes[sAttribute];
 					// duplicate id problem
-		    		if (!bReferenced && !oAttributes['id'])
-		    			oAttributes['id']	= oElement.uniqueID;
+		    		if (!bReferenced && !hAttributes['id'])
+		    			hAttributes['id']	= oElement.uniqueID;
 
-		    		oElementNew	= oUADocument.importNode(fBrowser_parseXML(
-		    															'<!' + "DOCTYPE" + ' ' + "div" + ' ' + '[' + sUtilities_entities + ']>' +
-//->Debug
-																		'\n' +
-//<-Debug
-		    															'<' + "div" + fHashToString(oAttributes).replace(/&/g, '&amp;') + '>' +
-//->Debug
-																		'\n' +
-//<-Debug
-																		(bReferenced ? oElement.$getTag() : fGetTagChildren(oElement)) +
-//->Debug
-																		'\n' +
-//<-Debug
-		    															'</' + "div"+ '>').documentElement, true);
+		    		oElementNew	= oUADocument.importNode(
+		    							fBrowser_createFragment(
+		    									bReferenced ? oElement.$getTag() : fGetTagChildren(oElement),
+		    									fHashToString(hAttributes)
+		    								).documentElement,
+		    							true);
 		    		oElementDOM.parentNode.replaceChild(oElementNew, oElementDOM);
 		    	}
 

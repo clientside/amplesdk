@@ -27,25 +27,7 @@ function fQuery(vArgument1, vArgument2, vArgument3) {
 					if (oAmple.prefixes.hasOwnProperty(sKey) && sKey != "toString")
 						aNameSpaces.push("xmlns" + (sKey == '' ? '' : ':') + sKey + '="' + oAmple.prefixes[sKey] + '"');
 				//
-				sText	=						//		"<?" + "xml" + ' ' + 'version="1.0"' + "?>" +
-														'<!' + "DOCTYPE" + ' ' + "div" + '[' + sUtilities_entities + ']>' +
-//->Debug
-														'\n' +
-//<-Debug
-														'<' + "div" + ' ' + "type" + '="' + "application/ample+xml" + '"' + ' ' + aNameSpaces.join(' ') + '>' +
-//->Debug
-														'\n' +
-//<-Debug
-														vArgument1 +
-//->Debug
-														'\n' +
-//<-Debug
-														'</' + "div" + '>';
-				// Bugfix FF4 (remote XUL)
-				if (bGecko)
-					sText	= sText.replace(new cRegExp(sNS_XUL, 'g'), sNS_XUL + '#');
-				//
-				var oDocument	= fBrowser_parseXML(sText);
+				var oDocument	= fBrowser_createFragment(vArgument1, aNameSpaces.join(' '));
 				if (!oDocument || ((bTrident && oDocument.parseError != 0) || !oDocument.documentElement || oDocument.getElementsByTagName("parsererror").length))
 					throw new cDOMException(cDOMException.SYNTAX_ERR, fQuery.caller);
 				else
