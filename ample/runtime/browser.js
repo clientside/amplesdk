@@ -107,7 +107,7 @@ function fBrowser_render(oNode) {
 				// Add namespace declarations to the shadow content
 				if (!("xmlns" + (oNode.prefix ? ':' + oNode.prefix : '') in oNode.attributes) || (oNode.namespaceURI != sNS_SVG && oNode.namespaceURI != sNS_XHTML))
 					sHtml	= sHtml.replace(/^(<(?:(\w+)(:))?(\w+))/, '$1 ' + "xmlns" + '$3$2="' + (oNode.namespaceURI == sNS_SVG ? sNS_SVG : sNS_XHTML) + '"');
-				return oUADocument.importNode(fBrowser_parseXML('<!' + "DOCTYPE" + ' ' + "div" + '[' + aUtilities_entities + ']>' + sHtml).documentElement, true);
+				return oUADocument.importNode(fBrowser_parseXML('<!' + "DOCTYPE" + ' ' + "div" + '[' + sUtilities_entities + ']>' + sHtml).documentElement, true);
 			}
 		}
 	}
@@ -927,7 +927,7 @@ function fBrowser_processScripts() {
 			}
 			else {
 				sText	=										//		"<?" + "xml" + ' ' + 'version="1.0"' + "?>" +
-																		'<!' + "DOCTYPE" + ' ' + "div" + '[' + aUtilities_entities + ']>' +
+																		'<!' + "DOCTYPE" + ' ' + "div" + '[' + sUtilities_entities + ']>' +
 //->Debug
 																		'\n' +
 //<-Debug
@@ -992,7 +992,7 @@ function fBrowser_processScripts() {
 		    			oAttributes['id']	= oElement.uniqueID;
 
 		    		oElementNew	= oUADocument.importNode(fBrowser_parseXML(
-		    															'<!' + "DOCTYPE" + ' ' + "div" + ' ' + '[' + aUtilities_entities + ']>' +
+		    															'<!' + "DOCTYPE" + ' ' + "div" + ' ' + '[' + sUtilities_entities + ']>' +
 //->Debug
 																		'\n' +
 //<-Debug

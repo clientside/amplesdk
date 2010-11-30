@@ -28,7 +28,7 @@ function fQuery(vArgument1, vArgument2, vArgument3) {
 						aNameSpaces.push("xmlns" + (sKey == '' ? '' : ':') + sKey + '="' + oAmple.prefixes[sKey] + '"');
 				//
 				sText	=						//		"<?" + "xml" + ' ' + 'version="1.0"' + "?>" +
-														'<!' + "DOCTYPE" + ' ' + "div" + '[' + aUtilities_entities + ']>' +
+														'<!' + "DOCTYPE" + ' ' + "div" + '[' + sUtilities_entities + ']>' +
 //->Debug
 														'\n' +
 //<-Debug
