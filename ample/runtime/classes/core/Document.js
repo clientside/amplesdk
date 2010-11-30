@@ -430,7 +430,7 @@ function fDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse) {
 				}
 //->Debug
 				else
-				if (!(sNameSpaceURI == sNS_XHTML && sLocalName == "div" && oAttributes["type"] == "application/ample+xml"))
+				if (!(sNameSpaceURI == sNS_XHTML && sLocalName == "div"))
 					fUtilities_warn(sGUARD_UNKNOWN_ELEMENT_NS_WRN, [oElementDOM.nodeName, sNameSpaceURI]);
 //<-Debug
 

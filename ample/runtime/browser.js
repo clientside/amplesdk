@@ -759,7 +759,7 @@ function fBrowser_createFragment(sXml, sAttributes) {
 //->Debug
 				'\n' +
 //<-Debug
-				'<' + "div" + ' ' + (sAttributes ? sAttributes.replace(/&/g, '&amp;') : '') + '>' +
+				'<' + "div" + ' ' + (sAttributes || '') + '>' +
 //->Debug
 				'\n' +
 //<-Debug
@@ -943,7 +943,7 @@ function fBrowser_processScripts() {
 		        aAttributes = oElementDOM.attributes;
 		        for (var nAttribute = 0; oAttribute = aAttributes[nAttribute]; nAttribute++)
 		        	if (oAttribute.specified && (sAttribute = oAttribute.nodeName.toLowerCase()) != "type")
-                		hAttributes[sAttribute]	= fUtilities_encodeEntities(sAttribute == "style" ? oElementDOM[sAttribute].cssText : oAttribute.nodeValue);
+                		hAttributes[sAttribute]	= sAttribute == "style" ? oElementDOM[sAttribute].cssText : fUtilities_encodeEntities(oAttribute.nodeValue);
 			}
 
 			if (oElementDOM.getAttribute("src")) {
