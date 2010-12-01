@@ -155,11 +155,14 @@ cXHTMLElement_input.handlers	= {
 		if (oEvent.target == this) {
 			switch (this.attributes["type"]) {
 				case "range":
-					if (oEvent.$pseudoTarget == this.$getContainer("button")) {
-						this.$captured	= true;
-						this.setCapture(true);
-						this.$setPseudoClass("active", true);
-					}
+					if (oEvent.$pseudoTarget != this.$getContainer("button"))
+						break;
+				case "reset":
+				case "submit":
+				case "button":
+					this.$captured	= true;
+					this.setCapture(true);
+					this.$setPseudoClass("active", true);
 					break;
 			}
 		}
@@ -167,13 +170,17 @@ cXHTMLElement_input.handlers	= {
 	"mouseup":	function(oEvent) {
 		if (oEvent.target == this) {
 			switch (this.attributes["type"]) {
+				case "reset":
+				case "submit":
+				case "button":
 				case "range":
 					if (this.$captured) {
 						this.$captured	= false;
 						this.releaseCapture();
 						this.$setPseudoClass("active", false);
 						//
-						this.setAttribute("value", this.valueAsNumber);
+						if (this.attributes["type"] == "range")
+							this.setAttribute("value", this.valueAsNumber);
 					}
 					break;
 			}
@@ -424,7 +431,7 @@ cXHTMLElement_input.prototype.$getTagOpen		= function() {
 	aHtml.push(		'<span class="' + sClassName + '--button ' + sClassNameType + '--button" style="' +(this.attributes["type"] == "range" ? "left:" + cXHTMLElement_input.getRangeOffset(this, this.attributes.value) : "right:0")+ '">');
 	if (this.attributes["type"] == "number" || this.attributes["type"] == "time")
 		aHtml.push(this._spinButtons.$getTag());
-	aHtml.push('</span>');
+	aHtml.push(		'</span>');
 	switch (this.attributes["type"]) {
 		// Hidden
 		// .value
@@ -547,6 +554,7 @@ cXHTMLElement_input.prototype.$getTagOpen		= function() {
 						' + (this.attributes["value"] ? 'value="' + this.attributes["value"] + '"' : '') + ' \
 						' + (this.attributes.name ? 'name="' + this.attributes.name + '"' : '')+ ' \
 					/>');
+	aHtml.push(		'<div class="' + sClassName + '--label ' + sClassNameType + '--label"></div>');
 	aHtml.push(	'</div>');
 	aHtml.push(	'<div class="' + sClassName + '--popup" style="position:absolute;display:none">');
     return aHtml.join('');

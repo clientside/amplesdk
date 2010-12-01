@@ -60,6 +60,13 @@ input[type=radio]::value {
 	opacity: 0;
 }
 
+input[type=button]::value,
+input[type=image]::value,
+input[type=reset]::value,
+input[type=submit]::value {
+	display: none;
+}
+
 button,
 input[type=button],
 input[type=image],
@@ -69,6 +76,7 @@ input[type=submit] {
 	cursor:	default;
 }
 
+input::label,
 button::label {
 	line-height:14px;
 	position: relative;
@@ -113,6 +121,13 @@ input[type=range]::before {
 
 input[type=range]::after {
 	background-position: 0px -245px;
+}
+
+input[type=datetime]::value,
+input[type=datetime-local]::value,
+input[type=month]::value,
+input[type=week]::value {
+	display: none;
 }
 
 input[type=datetime],
@@ -371,11 +386,23 @@ input:active input[type=button]::field,
 input:active input[type=reset]::field,
 input:active input[type=submit]::field {		background-position: 0 -100px;	}
 
+input[type=datetime]:focus input::label,
+input[type=datetime-local]:focus input::label,
+input[type=date]:focus input::label,
+input[type=time]:focus input::label,
+input[type=month]:focus input::label,
+input[type=week]:focus input::label,
+input[type=button]:focus input::label,
+input[type=reset]:focus input::label,
+input[type=submit]:focus input::label,
 button:focus button::label {
 	border: dotted 1px black;
 	top: 2px;
 	left: 0px;
 }
+input[type=button]:active input::label,
+input[type=reset]:active input::label,
+input[type=submit]:active input::label,
 button:active button::label {
 	left: 1px;
 }
