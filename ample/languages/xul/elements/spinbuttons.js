@@ -11,7 +11,6 @@ var cXULElement_spinbuttons	= function(){};
 cXULElement_spinbuttons.prototype	= new cXULElement("spinbuttons");
 
 // Private property
-cXULElement_spinbuttons.captured	= false;
 cXULElement_spinbuttons.interval	= null;
 cXULElement_spinbuttons.timeout		= null;
 
