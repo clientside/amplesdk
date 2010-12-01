@@ -71,8 +71,8 @@ cXULElement_timepicker.prototype._onInputTimeChange    = function(oEvent, sName,
 cXULElement_timepicker.handlers	= {
 	"focus":	function(oEvent) {
 		var oInput	= this.$getContainer("input");
-		cXULElement_timepicker.setEditComponent(this, oInput.lastCursorPosition || 'h');
 		oInput.focus();
+		cXULElement_timepicker.setEditComponent(this, oInput.lastCursorPosition || 'h');
 	},
 	"blur":		function(oEvent) {
 		var oInput	= this.$getContainer("input");
