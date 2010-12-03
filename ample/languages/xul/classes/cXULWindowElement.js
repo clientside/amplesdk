@@ -51,6 +51,9 @@ cXULWindowElement.prototype.show	= function (nLeft, nTop) {
 	oContainer.style.height	= 1 + "px";
 	oContainer.style.top	=(nTop + nHeight / 2) + "px";
 	oContainer.style.left	=(nLeft + nWidth / 2) + "px";
+	//
+	oContainer.style.minWidth	= 1 + "px";
+	oContainer.style.minHeight	= 1 + "px";
 
 	// Hide head and body
 	if (this.getAttribute("hidechrome") != "true")
@@ -83,7 +86,9 @@ cXULWindowElement.prototype.show	= function (nLeft, nTop) {
 				oContainer.style.width	= '';
 			if (!that.getAttribute("height"))
 				oContainer.style.height	= '';
-
+			//
+			oContainer.style.minWidth	= "";
+			oContainer.style.minHeight	= "";
 			// Reflow
 			oXULReflowManager.schedule(that);
 
@@ -92,7 +97,7 @@ cXULWindowElement.prototype.show	= function (nLeft, nTop) {
 			if (sButtonFocus != "")
 				if (that.getAttribute("buttons").split(/\s*,\s*/).indexOf(sButtonFocus) != -1)
 					that.buttons[sButtonFocus].focus();
-
+			//
 			var oEvent  = that.ownerDocument.createEvent("CustomEvent");
 			oEvent.initCustomEvent("windowshown", true, false, null);
 			that.dispatchEvent(oEvent);
@@ -137,6 +142,9 @@ cXULWindowElement.prototype.hide = function() {
 	if (oFooter)
 		oFooter.style.display	= "none";
 	oBody.style.display	= "none";
+	//
+	oContainer.style.minWidth	= 1 + "px";
+	oContainer.style.minHeight	= 1 + "px";
 	// Play effect
 	ample.query(that).animate(
 		{	"opacity":"0",
@@ -156,7 +164,10 @@ cXULWindowElement.prototype.hide = function() {
 			if (oFooter)
 				oFooter.style.display	= "";
 			oBody.style.display	= "";
-
+			//
+			oContainer.style.minWidth	= "";
+			oContainer.style.minHeight	= "";
+			//
 			var oEvent  = that.ownerDocument.createEvent("CustomEvent");
 			oEvent.initCustomEvent("windowhidden", true, false, null);
 			that.dispatchEvent(oEvent);
