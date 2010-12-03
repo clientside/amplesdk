@@ -30,7 +30,7 @@ if (bTrident) {
 		fGuard(arguments, [
 			["method",	cString],
 			["url",		cString],
-			["async",	cBoolean, false]
+			["async",	cBoolean, true]
 		]);
 //<-Guard
 
