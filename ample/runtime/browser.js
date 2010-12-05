@@ -820,6 +820,12 @@ function fBrowser_getStyle(oElementDOM, sName, oStyle) {
 		return oStyle["borderLeftWidth"];
 	if (sName == "borderColor")
 		return oStyle["borderLeftColor"];
+	if (sName == "backgroundColor") {
+		var sValue	= oStyle[sName];
+		while (sValue == "transparent" && oElementDOM.parentNode.nodeType == 1)
+			sValue	= fBrowser_getStyle(oElementDOM.parentNode, sName);
+		return sValue;
+	}
 	//
 	return oStyle[sName];
 };
