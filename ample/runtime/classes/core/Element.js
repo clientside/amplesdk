@@ -838,21 +838,20 @@ function fElement_getRegExp(sName, sContainer) {
 		:	oElement_cache[sName + sContainer] = new cRegExp('(^|\\s)[-\\w]*' + sContainer + '(_\\w+)?' + '_' + sName + '(_\\w+)?' + '(|$)', 'g');
 };
 
-var aCSSAnimation	= [
+/*var aCSSAnimation	= [
 			"top", "left", "right", "bottom"
 			,"width", "height"
-//			,"fontSize"/*, "fontWeight"*/, "lineHeight"
+//			,"fontSize", "fontWeight", "lineHeight"
 //			,"marginTop", "marginLeft", "marginRight", "marginBottom"
 //			,"paddingTop", "paddingLeft", "paddingRight", "paddingBottom"
 //			,"borderTopWidth", "borderLeftWidth", "borderRightWidth", "borderBottomWidth"
 //			,"outlineWidth"
-	],
-	aCSSTransition	= [
-			"opacity", "color"
-			,"backgroundColor"
+	];*/
+var	aCSSTransition	= [
+			"opacity", "color", "backgroundColor"
 //			,"backgroundPosition"
-			,"borderTopColor", "borderLeftColor", "borderRightColor", "borderBottomColor"
-			,"outlineColor"
+//			,"borderTopColor", "borderLeftColor", "borderRightColor", "borderBottomColor"
+//			,"outlineColor"
 	];
 
 function fElement_setPseudoClass(oElement, sName, bValue, sContainer)
@@ -863,8 +862,8 @@ function fElement_setPseudoClass(oElement, sName, bValue, sContainer)
 		sPseudoName	= sContainer ? '--' + sContainer : '',
 		sTagName	=(oElement.prefix ? oElement.prefix + '-' : '') + oElement.localName,
 		bHover		= sName == "hover",
-		bTransition	=!bHover && oDOMConfiguration_values["ample-enable-transitions"],
-		bAnimation	= bTransition &&!(nResizeManager_resizeState || nDragAndDropManager_dragState);	// Disable animations
+		bTransition	=!bHover && oDOMConfiguration_values["ample-enable-transitions"]/*,
+		bAnimation	= bTransition &&!(nResizeManager_resizeState || nDragAndDropManager_dragState)*/;	// Disable animations
 
 //->Source
 //console.warn("processing: " + oElement.tagName + ' ' + sName + '(' + (bValue ? 'true' : 'false') + ')');
@@ -878,16 +877,16 @@ function fElement_setPseudoClass(oElement, sName, bValue, sContainer)
 		}
 */
 		// Animation + Transition effects
-		if (bTransition || bAnimation) {
+		if (bTransition/* || bAnimation*/) {
 			var oComputedStyle	= fBrowser_getComputedStyle(oElementDOM),
 				oBefore	= {},
 				nIndex, nLength, sKey;
 			if (bTransition)
 				for (nIndex = 0, nLength = aCSSTransition.length; nIndex < nLength; nIndex++)
 					oBefore[sKey = aCSSTransition[nIndex]]	= fBrowser_getStyle(oElementDOM, sKey, oComputedStyle);
-			if (bAnimation)
+/*			if (bAnimation)
 				for (nIndex = 0, nLength = aCSSAnimation.length; nIndex < nLength; nIndex++)
-					oBefore[sKey = aCSSAnimation[nIndex]]	= fBrowser_getStyle(oElementDOM, sKey, oComputedStyle);
+					oBefore[sKey = aCSSAnimation[nIndex]]	= fBrowser_getStyle(oElementDOM, sKey, oComputedStyle);*/
 		}
 
 		var sOldName= bTrident && nVersion < 8 ? oElementDOM.className : oElementDOM.getAttribute("class") || '',
@@ -954,7 +953,7 @@ function fElement_setPseudoClass(oElement, sName, bValue, sContainer)
 			}
 		}
 		// Animation + Transition effects
-		if (bTransition || bAnimation) {
+		if (bTransition/* || bAnimation*/) {
 			var oStyle	= oElementDOM.style,
 				oProperties	= {},
 				aProperties	= [],
@@ -973,7 +972,7 @@ function fElement_setPseudoClass(oElement, sName, bValue, sContainer)
 							bPlay	= true;
 					}
 				}
-			if (bAnimation)
+/*			if (bAnimation)
 				for (nIndex = 0, nLength = aCSSAnimation.length; nIndex < nLength; nIndex++) {
 					sKey = aCSSAnimation[nIndex];
 					sValue	= fBrowser_getStyle(oElementDOM, sKey, oComputedStyle);
@@ -985,7 +984,7 @@ function fElement_setPseudoClass(oElement, sName, bValue, sContainer)
 						if (!bPlay)
 							bPlay	= true;
 					}
-				}
+				}*/
 
 			if (bPlay) {
 //				oElement.$transition	=
