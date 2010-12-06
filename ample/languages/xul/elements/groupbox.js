@@ -9,7 +9,7 @@
 
 var cXULElement_groupbox	= function(){};
 cXULElement_groupbox.prototype	= new cXULElement("groupbox");
-//cXULElement_groupbox.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
+cXULElement_groupbox.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
 
 // Attributes Defaults
 cXULElement_groupbox.attributes	= {};
@@ -18,41 +18,42 @@ cXULElement_groupbox.attributes.orient	= "vertical";
 // Public Methods
 
 // Element Render: open
-cXULElement_groupbox.prototype.$getTagOpen		= function()
-{
-    var sHtml   = '<table cellpadding="0" cellspacing="0" border="0" width="' + (this.attributes["width"] || "100%") + '" height="' + (this.attributes["height"] || "100%") + '" class="xul-groupbox' +(this.attributes["class"] ? " " + this.attributes["class"] : "") + '">';
-    sHtml  += '<thead>';
-    sHtml  += '<tr>';
-    sHtml  += '<td class="xul-groupbox-head-left"></td>';
-    sHtml  += '<td class="xul-groupbox-head"><span class="xul-groupbox--caption xul-caption" style="display:none;"></span></td>';
-    sHtml  += '<td class="xul-groupbox-head-right"></td>';
-    sHtml  += '</tr>';
-    sHtml  += '</thead>';
-    sHtml  += '<tbody>';
-    sHtml  += '<tr>';
-    sHtml  += '<td class="xul-groupbox-body-left"></td>';
-    sHtml  += '<td height="100%" class="xul-groupbox-body">';
-
-    return sHtml;
+cXULElement_groupbox.prototype.$getTagOpen		= function() {
+	var sWidth	= this.attributes.width,
+		sHeight	= this.attributes.height;
+    return '<div class="xul-groupbox' +(this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="' +
+			(sWidth ? 'width:' + (isNaN(parseInt(sWidth)) ? sWidth : sWidth + 'px;') : '')+
+			(sHeight ? 'height:' + (isNaN(parseInt(sHeight)) ? sHeight : sHeight + 'px;') : '')+
+    			'">\
+	    		<table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%">\
+	    			<thead>\
+	    				<tr>\
+	    					<td class="xul-groupbox-head-left"></td>\
+	    					<td class="xul-groupbox-head"><span class="xul-groupbox--caption xul-caption" style="display:none;"></span></td>\
+	    					<td class="xul-groupbox-head-right"></td>\
+	    				</tr>\
+	    			</thead>\
+	    			<tbody>\
+	    				<tr>\
+	    					<td class="xul-groupbox-body-left"></td>\
+	    					<td height="100%" class="xul-groupbox-body">';
 };
 
 // Element Render: close
-cXULElement_groupbox.prototype.$getTagClose	= function()
-{
-    var sHtml   = '</td>';
-    sHtml  += '<td class="xul-groupbox-body-right"></td>';
-    sHtml  += '</tr>';
-    sHtml  += '</tbody>';
-    sHtml  += '<tfoot>';
-    sHtml  += '<tr>';
-    sHtml  += '<td class="xul-groupbox-foot-left"></td>';
-    sHtml  += '<td class="xul-groupbox-foot"></td>';
-    sHtml  += '<td class="xul-groupbox-foot-right"></td>';
-    sHtml  += '</tr>';
-    sHtml  += '</tfoot>';
-    sHtml  += '</table>';
-
-    return sHtml;
+cXULElement_groupbox.prototype.$getTagClose	= function() {
+	return 					'</td>\
+							<td class="xul-groupbox-body-right"></td>\
+						</tr>\
+					</tbody>\
+					<tfoot>\
+						<tr>\
+							<td class="xul-groupbox-foot-left"></td>\
+							<td class="xul-groupbox-foot"></td>\
+							<td class="xul-groupbox-foot-right"></td>\
+						</tr>\
+					</tfoot>\
+				</table>\
+			</div>';
 };
 
 // Register Element
