@@ -13,6 +13,14 @@ select {
 	display: inline-block;
 }
 
+input::label {
+	display: none;
+}
+
+input::button {
+	display: none;
+}
+
 input[type=text],
 input[type=password],
 input[type=number],
@@ -36,7 +44,6 @@ select {
 button,
 input {
 	height: 16px;
-	vertical-align: middle;
 }
 
 textarea {
@@ -52,12 +59,16 @@ input[type=range],
 input[type=checkbox],
 input[type=radio] {
 	border-color: transparent;
-	width: 18px;
 }
 
 input[type=checkbox]::value,
 input[type=radio]::value {
 	opacity: 0;
+}
+
+input[type=checkbox],
+input[type=radio] {
+	width: 18px;
 }
 
 input[type=button]::value,
@@ -72,17 +83,44 @@ input[type=button],
 input[type=image],
 input[type=reset],
 input[type=submit] {
-	width:	60px;
+	width: auto;
 	cursor:	default;
 }
 
-input::label,
-button::label {
-	line-height:14px;
+button::label,
+select::label,
+input[type=color]::label,
+input[type=file]::label,
+input[type=datetime]::label,
+input[type=datetime-local]::label,
+input[type=date]::label,
+input[type=time]::label,
+input[type=month]::label,
+input[type=week]::label,
+input[type=button]::label,
+input[type=reset]::label,
+input[type=submit]::label {
+	display: block;
+	overflow:hidden;
 	position: relative;
-	top: 3px;
-	left: 1px;
+	line-height:14px;
 	height: 14px;
+	left: 1px;
+	top: 1px;
+	cursor: default;
+}
+
+button::label,
+input[type=button]::label,
+input[type=image]::label,
+input[type=reset]::label,
+input[type=submit]::label {
+	top: 3px;
+}
+
+input[type=file]::label {
+	position: absolute;
+	left: 20px;
 }
 
 input[type=range] {
@@ -123,6 +161,10 @@ input[type=range]::after {
 	background-position: 0px -245px;
 }
 
+select::value,
+input[type=color]::value,
+input[type=date]::value,
+input[type=time]::value,
 input[type=datetime]::value,
 input[type=datetime-local]::value,
 input[type=month]::value,
@@ -224,8 +266,8 @@ select::value {
 	color: inherit;
 	padding: 0;
 	margin:	0;
-	vertical-align:top;
 	width: 100%;
+	font: inherit;
 }
 
 input[type=file]::field {
@@ -257,6 +299,8 @@ input[type=range]::button,
 input[type=file]::button,
 input[type=search]::button,
 select::button {
+	display: block;
+	right: 0;
 	position:absolute;
 	background-repeat: no-repeat;
 	background-position: 0px 0px;
@@ -264,6 +308,10 @@ select::button {
 	width: 16px;
 	height: 16px;
 	margin: 0 1px;
+}
+
+input[type=file]::button {
+	left: 0;
 }
 
 input[type=time]::button,
@@ -453,6 +501,7 @@ input[type=color]::field,
 input[type=search]::field,
 select::field {
 	padding-right:18px;
+	height: 16px;
 }
 
 /* */
@@ -463,14 +512,19 @@ select::popup {
 	background-color: white;
 	border: solid 1px silver;
 	width: inherit;
+	margin-left:-1px;
 }
 
 select::value {
 	cursor: default;
 }
 
-select[multiple]::popup {
+select[multiple] {
 	padding: 0;
+}
+
+select[multiple]::popup {
+	margin-left:0;
 	border: none;
 }
 

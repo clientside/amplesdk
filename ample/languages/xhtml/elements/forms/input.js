@@ -428,10 +428,10 @@ cXHTMLElement_input.prototype.$getTagOpen		= function() {
 	aHtml.push(	'<span class="' + sClassName + '--before ' + sClassNameType + '--before" style="float:left"></span>');
 	aHtml.push(	'<span class="' + sClassName + '--after ' + sClassNameType + '--after" style="float:right"></span>');
 	aHtml.push(	'<div class="' + sClassName + '--field ' + sClassNameType + '--field" style="position:relative">');
-	aHtml.push(		'<span class="' + sClassName + '--button ' + sClassNameType + '--button" style="' +(this.attributes["type"] == "range" ? "left:" + cXHTMLElement_input.getRangeOffset(this, this.attributes.value) : "right:0")+ '">');
+	aHtml.push(		'<div class="' + sClassName + '--button ' + sClassNameType + '--button" style="' +(this.attributes["type"] == "range" ? "left:" + cXHTMLElement_input.getRangeOffset(this, this.attributes.value) : "")+ '">');
 	if (this.attributes["type"] == "number" || this.attributes["type"] == "time")
 		aHtml.push(this._spinButtons.$getTag());
-	aHtml.push(		'</span>');
+	aHtml.push(		'</div>');
 	switch (this.attributes["type"]) {
 		// Hidden
 		// .value
@@ -548,13 +548,14 @@ cXHTMLElement_input.prototype.$getTagOpen		= function() {
 	}
 	aHtml.push(		'<input class="' + sClassName + '--value ' + sClassNameType + '--value" \
 						type="' +(cXHTMLElement_input.html524[this.attributes.type] || "text")+ '" \
-						' + (this.attributes["readonly"] ? 'readonly="true"' : '') + ' \
-						' + (this.attributes["disabled"] ? 'disabled="true"' : '') + ' \
-						' + (this.attributes["maxlength"] ? 'maxlength="' + this.attributes["maxlength"] + '"' : '') + ' \
-						' + (this.attributes["value"] ? 'value="' + this.attributes["value"] + '"' : '') + ' \
-						' + (this.attributes.name ? 'name="' + this.attributes.name + '"' : '')+ ' \
+						onchange="var o = ample.$instance(this).$getContainer(\'label\'); o.innerText = o.textContent = this.value" \
+						' + (this.attributes["readonly"] ? ' readonly="true"' : '') + ' \
+						' + (this.attributes["disabled"] ? ' disabled="true"' : '') + ' \
+						' + (this.attributes["maxlength"] ? ' maxlength="' + this.attributes["maxlength"] + '"' : '') + ' \
+						' + (this.attributes["value"] ? ' value="' + this.attributes["value"] + '"' : '') + ' \
+						' + (this.attributes.name ? ' name="' + this.attributes.name + '"' : '')+ ' \
 					/>');
-	aHtml.push(		'<div class="' + sClassName + '--label ' + sClassNameType + '--label"></div>');
+	aHtml.push(		'<div class="' + sClassName + '--label ' + sClassNameType + '--label">' + (this.attributes["type"] == "reset" || this.attributes["type"] == "submit" || this.attributes["type"] == "button" ? this.attributes["value"] || '' : '') + '</div>');
 	aHtml.push(	'</div>');
 	aHtml.push(	'<div class="' + sClassName + '--popup" style="position:absolute;display:none">');
     return aHtml.join('');

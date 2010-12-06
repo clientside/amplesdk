@@ -140,11 +140,12 @@ cXHTMLElement_select.prototype.$getTagOpen	= function() {
     		'">\
 				<div style="position:absolute;margin-top:-2px;white-space:nowrap" class="' + sClassName + '--placeholder">' +(this.getAttribute("placeholder") || '')+ '</div>\
    				<div class="' + sClassName + '--field" style="position:relative;' + (bPopupMode ? 'display:none' : '') + '">\
-    				<span class="' + sClassName + '--button" style="right:0;"></span>\
+    				<div class="' + sClassName + '--button"></div>\
     				<input class="' + sClassName + '--value" type="text" />\
+    				<div class="' + sClassName + '--label" />\
    				</div>\
    				<div class="' + sClassName + '--popup' + (bMultiple ? ' ' + sClassName + '-multiple---popup' : '') +'" style="' +(bPopupMode ? '' : 'position:absolute;display:none;')+ '">\
-    				<div class="' + sClassName + '--gateway">';
+    				<div class="' + sClassName + '--gateway" style="margin:1px">';
 };
 
 cXHTMLElement_select.prototype.$getTagClose	= function() {
