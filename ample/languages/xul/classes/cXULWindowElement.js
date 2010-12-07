@@ -178,11 +178,9 @@ cXULWindowElement.prototype.hide = function() {
 // Static methods
 cXULWindowElement.snooze	= function(oElement) {
 	var aQuery	= ample.query(oElement);
-	aQuery.animate({"border-color":"white"}, "fast", "ease-out", function() {
-		aQuery.animate({"border-color":"black"}, "fast", "ease-in", function() {
-			aQuery.css("border-color", "");
-		})
-	})
+	aQuery.animate({"border-color": "#fff"}, 500, function(n) {return Math.sin(Math.PI*6*n)}, function() {
+		aQuery.css("border-color", "");
+	});
 };
 
 cXULWindowElement.oncapture	= function(oEvent) {
