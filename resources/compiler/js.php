@@ -27,7 +27,7 @@
 		$sOutput	= fStripTags($sOutput, "Debug");
 	}
 	// Strip "Guard" version tags
-	if (in_array("--strip-Debug", $_SERVER["argv"])) {
+	if (in_array("--strip-Guard", $_SERVER["argv"])) {
 		echo "Stripping 'Guard' code\n";
 		$sOutput	= fStripTags($sOutput, "Guard");
 	}
