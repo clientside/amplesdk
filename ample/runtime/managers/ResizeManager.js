@@ -177,8 +177,8 @@ function fResizeManager_onMouseMove(oEvent)
 		}
 
 		// Save current position
-		sResizeManager_originalWidth		= oStyle.width;
-		sResizeManager_originalHeight		= oStyle.height;
+		sResizeManager_originalWidth	= oStyle.width;
+		sResizeManager_originalHeight	= oStyle.height;
 		sResizeManager_originalLeft		= oStyle.left;
 		sResizeManager_originalTop		= oStyle.top;
 
