@@ -369,5 +369,5 @@ cElement.prototype.$resizeEdges	= 0;
 // Registering Event Handlers
 fEventTarget_addEventListener(oAmple_document, "mousedown",	fResizeManager_onMouseDown,		false);
 fEventTarget_addEventListener(oAmple_document, "mousemove",	fResizeManager_onMouseMove,		false);
-fEventTarget_addEventListener(oAmple_document, "mouseup",		fResizeManager_onMouseUp,		false);
-fEventTarget_addEventListener(oAmple_document, "keydown",		fResizeManager_onKeyDown,		false);
+fEventTarget_addEventListener(oAmple_document, "mouseup",	fResizeManager_onMouseUp,		false);
+fEventTarget_addEventListener(oAmple_document, "keydown",	fResizeManager_onKeyDown,		false);

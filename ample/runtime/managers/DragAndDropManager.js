@@ -224,7 +224,7 @@ function fDragAndDropManager_onMouseMove(oEvent)
 		}
 
 		// Save current position
-		sDragAndDropManager_originalLeft		= oStyle.left;
+		sDragAndDropManager_originalLeft	= oStyle.left;
 		sDragAndDropManager_originalTop		= oStyle.top;
 
 		// Add :drag pseudo-class
