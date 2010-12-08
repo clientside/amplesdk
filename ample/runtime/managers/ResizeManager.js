@@ -28,10 +28,10 @@ var nResizeManager_STATE_RELEASED	= 0,	// Constants
 
 	nResizeManager_mouseX,
 	nResizeManager_mouseY,
-	sResizeManager_clientLeft,
-	sResizeManager_clientTop,
-	sResizeManager_clientHeight,
-	sResizeManager_clientWidth,
+	sResizeManager_originalLeft,
+	sResizeManager_originalTop,
+	sResizeManager_originalHeight,
+	sResizeManager_originalWidth,
 	nResizeManager_offsetLeft,
 	nResizeManager_offsetTop,
 	nResizeManager_offsetHeight,
@@ -177,10 +177,10 @@ function fResizeManager_onMouseMove(oEvent)
 		}
 
 		// Save current position
-		sResizeManager_clientWidth		= oStyle.width;
-		sResizeManager_clientHeight		= oStyle.height;
-		sResizeManager_clientLeft		= oStyle.left;
-		sResizeManager_clientTop		= oStyle.top;
+		sResizeManager_originalWidth		= oStyle.width;
+		sResizeManager_originalHeight		= oStyle.height;
+		sResizeManager_originalLeft		= oStyle.left;
+		sResizeManager_originalTop		= oStyle.top;
 
 		// Add :resize pseudo-class
 		fElement_setPseudoClass(oResizeManager_resizeNode, "resize", true);
@@ -201,8 +201,8 @@ function fResizeManager_onMouseMove(oEvent)
 		var oRect0	= fElement_getBoundingClientRect(oResizeManager_resizeNode);
 
 		// restore resizable position
-		oStyle.left	= sResizeManager_clientLeft;
-		oStyle.top	= sResizeManager_clientTop;
+		oStyle.left	= sResizeManager_originalLeft;
+		oStyle.top	= sResizeManager_originalTop;
 
 	    //
     	nResizeManager_resizeState	= nResizeManager_STATE_RESIZED;
@@ -290,19 +290,19 @@ function fResizeManager_onMouseUp(oEvent)
 		{
 			var oStyle		= oResizeManager_resizeNode.$getContainer().style,
 				fRestore	= function() {
-				    oStyle.width	= sResizeManager_clientWidth;
-				    oStyle.height	= sResizeManager_clientHeight;
-					oStyle.left		= sResizeManager_clientLeft;
-					oStyle.top		= sResizeManager_clientTop;
+				    oStyle.width	= sResizeManager_originalWidth;
+				    oStyle.height	= sResizeManager_originalHeight;
+					oStyle.left		= sResizeManager_originalLeft;
+					oStyle.top		= sResizeManager_originalTop;
 				};
 
 		    // Restore element position
 			if (oDOMConfiguration_values["ample-enable-transitions"]) {
 				var oProperties	= {};
-				oProperties["left"]		= sResizeManager_clientLeft || "auto";
-				oProperties["top"]		= sResizeManager_clientTop || "auto";
-				oProperties["width"]	= sResizeManager_clientWidth || "auto";
-				oProperties["height"]	= sResizeManager_clientHeight || "auto";
+				oProperties["left"]		= sResizeManager_originalLeft || "auto";
+				oProperties["top"]		= sResizeManager_originalTop || "auto";
+				oProperties["width"]	= sResizeManager_originalWidth || "auto";
+				oProperties["height"]	= sResizeManager_originalHeight || "auto";
 				//
 				fNodeAnimation_play(oResizeManager_resizeNode, oProperties, "normal", "ease", fRestore);
 			}
