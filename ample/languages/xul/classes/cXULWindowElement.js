@@ -21,8 +21,9 @@ cXULWindowElement.modalWindow	= null;
 cXULWindowElement.prototype.show	= function (nLeft, nTop) {
 	var that	= this,
 		oContainer	= that.$getContainer(),
-		oBody	= that.$getContainer("body"),
 		oHead	= that.$getContainer("head"),
+		oBody	= that.$getContainer("body"),
+		oHeader	= that.$getContainer("header"),
 		oFooter	= that.$getContainer("footer"),
 		oComputedStyle	= oContainer.currentStyle || window.getComputedStyle(oContainer, null);
 
@@ -58,6 +59,8 @@ cXULWindowElement.prototype.show	= function (nLeft, nTop) {
 	// Hide head and body
 	if (this.getAttribute("hidechrome") != "true")
 		oHead.style.display	= "none";
+	if (oHeader)
+		oHeader.style.display	= "none";
 	if (oFooter)
 		oFooter.style.display	= "none";
 	oBody.style.display	= "none";
@@ -76,6 +79,8 @@ cXULWindowElement.prototype.show	= function (nLeft, nTop) {
 			// Show head and body
 			if (that.getAttribute("hidechrome") != "true")
 				oHead.style.display	= "";
+			if (oHeader)
+				oHeader.style.display	= "";
 			if (oFooter)
 				oFooter.style.display	= "";
 			oBody.style.display	= "";
@@ -117,8 +122,9 @@ cXULWindowElement.prototype.showModal	= function (nTop, nLeft) {
 cXULWindowElement.prototype.hide = function() {
 	var that	= this,
 		oContainer	= that.$getContainer(),
-		oBody	= that.$getContainer("body"),
 		oHead	= that.$getContainer("head"),
+		oBody	= that.$getContainer("body"),
+		oHeader	= that.$getContainer("header"),
 		oFooter	= that.$getContainer("footer"),
 		oRect	= that.getBoundingClientRect();
 
@@ -139,6 +145,8 @@ cXULWindowElement.prototype.hide = function() {
 	// Hide head and body
 	if (this.getAttribute("hidechrome") != "true")
 		oHead.style.display	= "none";
+	if (oHeader)
+		oHeader.style.display	= "none";
 	if (oFooter)
 		oFooter.style.display	= "none";
 	oBody.style.display	= "none";
@@ -161,6 +169,8 @@ cXULWindowElement.prototype.hide = function() {
 			// show head and body
 			if (that.getAttribute("hidechrome") != "true")
 				oHead.style.display	= "";
+			if (oHeader)
+				oHeader.style.display	= "";
 			if (oFooter)
 				oFooter.style.display	= "";
 			oBody.style.display	= "";
