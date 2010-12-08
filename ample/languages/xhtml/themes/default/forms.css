@@ -115,6 +115,7 @@ input[type=button]::label,
 input[type=image]::label,
 input[type=reset]::label,
 input[type=submit]::label {
+	text-align: center;
 	top: 3px;
 }
 

@@ -12,6 +12,22 @@ var cXHTMLElement_colorpicker  = function() {
     this.x  = 0;
     this.y  = 0;
     this.b  = 1;
+    //
+    var that	= this;
+    this.contentFragment	= ample.createDocumentFragment();
+    // Action buttons
+    this._buttonAccept	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "button"));
+    this._buttonAccept.setAttribute("class", "accept");
+    this._buttonAccept.appendChild(ample.createTextNode("Accept"));
+    this._buttonAccept.addEventListener("DOMActivate", function() {
+    	that.acceptDialog();
+    });
+    this._buttonCancel	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "button"));
+    this._buttonCancel.setAttribute("class", "cancel");
+    this._buttonCancel.appendChild(ample.createTextNode("Cancel"));
+    this._buttonCancel.addEventListener("DOMActivate", function() {
+    	that.cancelDialog();
+    });
 };
 cXHTMLElement_colorpicker.prototype	= new cXHTMLElement("colorpicker");
 
@@ -127,13 +143,12 @@ cXHTMLElement_colorpicker.prototype._onPointerPaletteMouseDown  = function(oEven
     this._onPointerPaletteMouseMove(oEvent);
 };
 
-// Overrride dialog methods
 cXHTMLElement_colorpicker.prototype.acceptDialog	= function() {
     this.attributes.value  = this.$getContainer('value').value;
 
     // fire select event
-    var oEvent  = this.ownerDocument.createEvent("Events");
-    oEvent.initEvent("accept", false, false);
+    var oEvent  = this.ownerDocument.createEvent("CustomEvent");
+    oEvent.initCustomEvent("accept", false, false, null);
     this.dispatchEvent(oEvent);
 };
 
@@ -141,8 +156,8 @@ cXHTMLElement_colorpicker.prototype.cancelDialog	= function() {
 	this.setAttribute("value", this.attributes.value);
 
     // fire cancel event
-    var oEvent  = this.ownerDocument.createEvent("Events");
-    oEvent.initEvent("cancel", false, false);
+    var oEvent  = this.ownerDocument.createEvent("CustomEvent");
+    oEvent.initCustomEvent("cancel", false, false, null);
     this.dispatchEvent(oEvent);
 };
 
@@ -194,9 +209,9 @@ cXHTMLElement_colorpicker.prototype.$getTagOpen	= function() {
 									<tr><td><br /></td></tr>\
 									<tr><td><input autocomplete="no" type="text" value="#FF0000" maxlength="7" class="colorpicker--value" onchange="ample.$instance(this)._onInputChange(event, this.value)" onkeyup="ample.$instance(this)._onInputChange(event, this.value)" onselectstart="event.cancelBubble=true;" oncontextmenu="event.cancelBubble=true"/></td></tr>\
 									<tr><td><br /></td></tr>\
-									<tr><td><button type="button" onclick="ample.$instance(this).acceptDialog();" class="colorpicker--button-accept">Accept</button></td></tr>\
+									<tr><td>' + this._buttonAccept.$getTag() + '</td></tr>\
 									<tr><td height="3"></td></tr>\
-									<tr><td><button type="button" onclick="ample.$instance(this).cancelDialog()" class="colorpicker--button-cancel">Cancel</button></td></tr>\
+									<tr><td>' + this._buttonCancel.$getTag() + '</td></tr>\
 								</tbody>\
 							</table>\
 						</td>\

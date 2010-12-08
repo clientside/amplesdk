@@ -14,6 +14,19 @@ var cXHTMLElement_datepicker	= function() {
     //
     var that	= this;
     this.contentFragment	= ample.createDocumentFragment();
+    // Action buttons
+    this._buttonAccept	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "button"));
+    this._buttonAccept.setAttribute("class", "accept");
+    this._buttonAccept.appendChild(ample.createTextNode("Accept"));
+    this._buttonAccept.addEventListener("DOMActivate", function() {
+    	that.acceptDialog();
+    });
+    this._buttonCancel	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "button"));
+    this._buttonCancel.setAttribute("class", "cancel");
+    this._buttonCancel.appendChild(ample.createTextNode("Cancel"));
+    this._buttonCancel.addEventListener("DOMActivate", function() {
+    	that.cancelDialog();
+    });
 	// Month select
 	this._elementMonth	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "select"));
 	this._elementMonth.tabIndex	=-1;
@@ -138,6 +151,24 @@ cXHTMLElement_datepicker.prototype.doSelectYear	= function(nYear) {
 //Static members
 cXHTMLElement_datepicker.parseDateFromString	= function(sDate) {
 	return new Date(sDate);
+};
+
+cXHTMLElement_datepicker.prototype.acceptDialog	= function() {
+    this.attributes.value  = this.$getContainer('value').value;
+
+    // fire select event
+    var oEvent  = this.ownerDocument.createEvent("CustomEvent");
+    oEvent.initCustomEvent("accept", false, false, null);
+    this.dispatchEvent(oEvent);
+};
+
+cXHTMLElement_datepicker.prototype.cancelDialog	= function() {
+	this.setAttribute("value", this.attributes.value);
+
+    // fire cancel event
+    var oEvent  = this.ownerDocument.createEvent("CustomEvent");
+    oEvent.initCustomEvent("cancel", false, false, null);
+    this.dispatchEvent(oEvent);
 };
 
 cXHTMLElement_datepicker.handlers	= {
@@ -366,6 +397,14 @@ cXHTMLElement_datepicker.prototype.$getTagOpen	= function() {
 							<td colspan="4" class="datepicker--days-pane"></td>\
 						</tr>\
 					</tbody>\
+					<tfoot>\
+						<tr>\
+							<td colspan="4" align="center">' +
+								this._buttonAccept.$getTag() +
+								this._buttonCancel.$getTag() + '\
+							</td>\
+						</tr>\
+					</tfoot>\
 				</table>\
 			</div>';
 };

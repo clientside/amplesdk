@@ -72,3 +72,9 @@ datepicker input[type=button] {
 	width: 20px;
 	margin: 0;
 }
+
+/* buttons */
+datepicker button.accept,
+datepicker button.cancel {
+	width:	80px;
+}

@@ -58,7 +58,7 @@ colorpicker::value {
 }
 
 /* buttons */
-colorpicker::button-accept,
-colorpicker::button-cancel {
+colorpicker button.accept,
+colorpicker button.cancel {
 	width:	80px;
 }
