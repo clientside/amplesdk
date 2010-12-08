@@ -408,8 +408,10 @@ cXHTMLElement_input.html524	= {
 
 // Element Render: open
 cXHTMLElement_input.prototype.$getTagOpen		= function() {
-	var sClassName	=(this.prefix ? this.prefix + '-' : '') + this.localName,
-		sClassNameType	= sClassName + '-type-' +(this.attributes["type"] || "text"),
+	var sType	= this.attributes.type || "text",
+		sValue	= this.attributes.value || "",
+		sClassName	=(this.prefix ? this.prefix + '-' : '') + this.localName,
+		sClassNameType	= sClassName + '-type-' + sType,
 		bChecked	= this.attributes["checked"] && this.attributes["checked"] != "false",
 		bRequired	= this.attributes["required"] && this.attributes["required"] != "false",
 		bDisabled	= this.attributes["disabled"] && this.attributes["disabled"] != "false",
@@ -424,138 +426,37 @@ cXHTMLElement_input.prototype.$getTagOpen		= function() {
 						' ' + sClassName + '_' + (bReadonly ? 'read-only' : 'read-write') + ' '+
 						' ' + sClassName + '_' + (bValid ? 'valid' : 'invalid') + ' '+
 				'" ' +(this.attributes.style ? ' style="' + this.attributes.style + '"' : '')+ '>');
-	aHtml.push(	'<div style="position:absolute;white-space:nowrap;' + (this.getAttribute("value") == '' ? '' : 'display:none')+ '" class="' + sClassName + '--placeholder">' +(this.getAttribute("placeholder") || '')+ '</div>');
+	aHtml.push(	'<div style="position:absolute;white-space:nowrap;' + (sValue == '' ? '' : 'display:none')+ '" class="' + sClassName + '--placeholder">' +
+					(this.getAttribute("placeholder") || '')+
+				'</div>');
 	aHtml.push(	'<span class="' + sClassName + '--before ' + sClassNameType + '--before" style="float:left"></span>');
 	aHtml.push(	'<span class="' + sClassName + '--after ' + sClassNameType + '--after" style="float:right"></span>');
 	aHtml.push(	'<div class="' + sClassName + '--field ' + sClassNameType + '--field" style="position:relative">');
-	aHtml.push(		'<div class="' + sClassName + '--button ' + sClassNameType + '--button" style="' +(this.attributes["type"] == "range" ? "left:" + cXHTMLElement_input.getRangeOffset(this, this.attributes.value) : "right:0")+ '">');
-	if (this.attributes["type"] == "number" || this.attributes["type"] == "time")
+	aHtml.push(		'<div class="' + sClassName + '--button ' + sClassNameType + '--button" style="' +
+						(sType == "range"
+							? "left:" + cXHTMLElement_input.getRangeOffset(this, sValue)
+							: "right:0")+
+					'">');
+	if (sType == "number" || sType == "time")
 		aHtml.push(this._spinButtons.$getTag());
 	aHtml.push(		'</div>');
-	switch (this.attributes["type"]) {
-		// Hidden
-		// .value
-		case "hidden":	// n/a
-			break;
-
-		// E-mail
-		// @autocomplete, @list, @maxlength, @multiple, @pattern, @placeholder, @readonly, @required, @size
-		// .value, .list, .selectedOption, .selectionStart, .selectionEnd
-		// select(), setSelectionRange()
-		// oninput, onchange
-		case "email":	// A text field
-			break;
-
-		// Password
-		// @autocomplete, @maxlength, @pattern, @placeholder, @readonly, @required, @size
-		// .value, .selectionStart, .selectionEnd
-		// select(), setSelectionRange()
-		// oninput, onchange
-		case "password":// Text field that obscures data entry
-			break;
-
-		// Date and Time,  Date,  Month,  Week,  Time | Local Date and Time,  Number
-		// @autocomplete, @list, @max, @min, @readonly, @required, @step
-		// .value, .valueAsDate (not Local Date and Time, Number) .valueAsNumber, .list, .selectedOption
-		// .stepDown(), .stepUp()
-		// oninput, onchange
-		case "datetime":// A date and time control
-			break;
-
-		case "date":	// A date control
-			break;
-
-		case "month":	// A month control
-			break;
-
-		case "week":	// A week control
-			break;
-
-		case "time":	// A time control
-			break;
-
-		case "datetime-local":	// A date and time control
-			break;
-
-		case "number":	// A text field or spinner control
-			break;
-
-		// Range
-		// @autocomplete, @list, @max, @min, @step
-		// .value, .valueAsNumber, .list, .selectedOption
-		// .stepDown(), .stepUp()
-		// onchange, oninput
-		case "range":	// A slider control or similar
-			break;
-
-		// Color
-		// @autocomplete, @list
-		// .value, .list, .selectedOption
-		// oninput, onchange
-		case "color":	// A color well
-			break;
-
-		// Checkbox,  Radio Button
-		// @checked, @required
-		// .checked, @value (default/on)
-		// onchange
-		case "checkbox":// A checkbox
-		case "radio":	// A radio button
-			break;
-
-		// File Upload
-		// @accept, @multiple, @required
-		// .files, .value
-		// onchange
-		case "file":	// A label and a button
-			break;
-
-		// Submit Button, Image Button
-		// @formaction, @formenctype, @formmethod, @formnovalidate, @formtarget
-		// .value (default)
-		// image: @alt, @src, @height, @width
-		case "submit":	// A button
-			break;
-
-		case "image":	// Either a clickable image, or a button
-			break;
-
-		// Reset Button,  Button
-		// @value (default)
-		case "reset":	// A button
-			break;
-
-		case "button":	// A button
-			break;
-
-		// Text,  Search,  URL,  Telephone
-		// @autocomplete, @list, @maxlength, @pattern, @placeholder, @readonly, @required, @size
-		// .value, .list, .selectedOption, .selectionStart, .selectionEnd
-		// select(), setSelectionRange()
-		// oninput, onchange
-		case "search":	// Search field
-			break;
-
-		case "tel":		// A text field
-			break;
-
-		case "url":		// A text field
-			break;
-
-//		case "text":	// Text field
-		default:
-			break;
-	}
 	aHtml.push(		'<input class="' + sClassName + '--value ' + sClassNameType + '--value" \
-						type="' +(cXHTMLElement_input.html524[this.attributes.type] || "text")+ '" \
-						onchange="var o = ample.$instance(this).$getContainer(\'label\'); o.innerText = o.textContent = this.value" \
-						' + (this.attributes["readonly"] ? ' readonly="true"' : '') + ' \
-						' + (this.attributes["disabled"] ? ' disabled="true"' : '') + ' \
-						' + (this.attributes["maxlength"] ? ' maxlength="' + this.attributes["maxlength"] + '"' : '') + ' \
-						' + (this.attributes["value"] ? ' value="' + this.attributes["value"] + '"' : '') + ' \
-						' + (this.attributes.name ? ' name="' + this.attributes.name + '"' : '')+ ' \
-					/>');
-	aHtml.push(		'<div class="' + sClassName + '--label ' + sClassNameType + '--label">' + (this.attributes["type"] == "reset" || this.attributes["type"] == "submit" || this.attributes["type"] == "button" ? this.attributes["value"] || '' : '') + '</div>');
+						type="' +(cXHTMLElement_input.html524[sType] || "text")+ '" \
+						onchange="var o = ample.$instance(this).$getContainer(\'label\'); o.innerText = o.textContent = this.value"' +
+						(this.attributes["readonly"] ? ' readonly="true"' : '') +
+						(this.attributes["disabled"] ? ' disabled="true"' : '') +
+						(this.attributes["maxlength"] ? ' maxlength="' + this.attributes["maxlength"] + '"' : '') +
+						(sValue ? ' value="' + sValue + '"' : '') +
+						(this.attributes.name ? ' name="' + this.attributes.name + '"' : '')+
+					'/>');
+	aHtml.push(		'<div class="' + sClassName + '--label ' + sClassNameType + '--label">' +
+						(sType == "reset" || sType == "submit" || sType == "button"
+							? sValue
+							: sType == "date"
+								? ample.locale.format(ample.locale.parseDate(sValue, "yyyy-mm-dd"), "D")
+								: sType == "time" || sType == "color"
+									? sValue : '') +
+					'</div>');
 	aHtml.push(	'</div>');
 	aHtml.push(	'<div class="' + sClassName + '--popup" style="position:absolute;display:none">');
     return aHtml.join('');
@@ -571,3 +472,120 @@ cXHTMLElement_input.prototype.$getTagClose	= function() {
 
 // Register Element
 ample.extend(cXHTMLElement_input);
+
+/*
+switch (this.attributes["type"]) {
+// Hidden
+// .value
+case "hidden":	// n/a
+	break;
+
+// E-mail
+// @autocomplete, @list, @maxlength, @multiple, @pattern, @placeholder, @readonly, @required, @size
+// .value, .list, .selectedOption, .selectionStart, .selectionEnd
+// select(), setSelectionRange()
+// oninput, onchange
+case "email":	// A text field
+	break;
+
+// Password
+// @autocomplete, @maxlength, @pattern, @placeholder, @readonly, @required, @size
+// .value, .selectionStart, .selectionEnd
+// select(), setSelectionRange()
+// oninput, onchange
+case "password":// Text field that obscures data entry
+	break;
+
+// Date and Time,  Date,  Month,  Week,  Time | Local Date and Time,  Number
+// @autocomplete, @list, @max, @min, @readonly, @required, @step
+// .value, .valueAsDate (not Local Date and Time, Number) .valueAsNumber, .list, .selectedOption
+// .stepDown(), .stepUp()
+// oninput, onchange
+case "datetime":// A date and time control
+	break;
+
+case "date":	// A date control
+	break;
+
+case "month":	// A month control
+	break;
+
+case "week":	// A week control
+	break;
+
+case "time":	// A time control
+	break;
+
+case "datetime-local":	// A date and time control
+	break;
+
+case "number":	// A text field or spinner control
+	break;
+
+// Range
+// @autocomplete, @list, @max, @min, @step
+// .value, .valueAsNumber, .list, .selectedOption
+// .stepDown(), .stepUp()
+// onchange, oninput
+case "range":	// A slider control or similar
+	break;
+
+// Color
+// @autocomplete, @list
+// .value, .list, .selectedOption
+// oninput, onchange
+case "color":	// A color well
+	break;
+
+// Checkbox,  Radio Button
+// @checked, @required
+// .checked, @value (default/on)
+// onchange
+case "checkbox":// A checkbox
+case "radio":	// A radio button
+	break;
+
+// File Upload
+// @accept, @multiple, @required
+// .files, .value
+// onchange
+case "file":	// A label and a button
+	break;
+
+// Submit Button, Image Button
+// @formaction, @formenctype, @formmethod, @formnovalidate, @formtarget
+// .value (default)
+// image: @alt, @src, @height, @width
+case "submit":	// A button
+	break;
+
+case "image":	// Either a clickable image, or a button
+	break;
+
+// Reset Button,  Button
+// @value (default)
+case "reset":	// A button
+	break;
+
+case "button":	// A button
+	break;
+
+// Text,  Search,  URL,  Telephone
+// @autocomplete, @list, @maxlength, @pattern, @placeholder, @readonly, @required, @size
+// .value, .list, .selectedOption, .selectionStart, .selectionEnd
+// select(), setSelectionRange()
+// oninput, onchange
+case "search":	// Search field
+	break;
+
+case "tel":		// A text field
+	break;
+
+case "url":		// A text field
+	break;
+
+//case "text":	// Text field
+default:
+	break;
+}
+*/

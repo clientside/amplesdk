@@ -178,7 +178,7 @@ input[type=datetime-local] {
 }
 
 input[type=date] {
-	width:	90px;
+	width:	200px;
 }
 
 input[type=color] {
