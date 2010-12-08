@@ -428,7 +428,7 @@ cXHTMLElement_input.prototype.$getTagOpen		= function() {
 	aHtml.push(	'<span class="' + sClassName + '--before ' + sClassNameType + '--before" style="float:left"></span>');
 	aHtml.push(	'<span class="' + sClassName + '--after ' + sClassNameType + '--after" style="float:right"></span>');
 	aHtml.push(	'<div class="' + sClassName + '--field ' + sClassNameType + '--field" style="position:relative">');
-	aHtml.push(		'<div class="' + sClassName + '--button ' + sClassNameType + '--button" style="' +(this.attributes["type"] == "range" ? "left:" + cXHTMLElement_input.getRangeOffset(this, this.attributes.value) : "")+ '">');
+	aHtml.push(		'<div class="' + sClassName + '--button ' + sClassNameType + '--button" style="' +(this.attributes["type"] == "range" ? "left:" + cXHTMLElement_input.getRangeOffset(this, this.attributes.value) : "right:0")+ '">');
 	if (this.attributes["type"] == "number" || this.attributes["type"] == "time")
 		aHtml.push(this._spinButtons.$getTag());
 	aHtml.push(		'</div>');

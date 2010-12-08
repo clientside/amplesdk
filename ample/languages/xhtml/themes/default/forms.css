@@ -300,7 +300,6 @@ input[type=file]::button,
 input[type=search]::button,
 select::button {
 	display: block;
-	right: 0;
 	position:absolute;
 	background-repeat: no-repeat;
 	background-position: 0px 0px;

@@ -140,7 +140,7 @@ cXHTMLElement_select.prototype.$getTagOpen	= function() {
     		'">\
 				<div style="position:absolute;margin-top:-2px;white-space:nowrap" class="' + sClassName + '--placeholder">' +(this.getAttribute("placeholder") || '')+ '</div>\
    				<div class="' + sClassName + '--field" style="position:relative;' + (bPopupMode ? 'display:none' : '') + '">\
-    				<div class="' + sClassName + '--button"></div>\
+    				<div class="' + sClassName + '--button" style="right:0"></div>\
     				<input class="' + sClassName + '--value" type="text" />\
     				<div class="' + sClassName + '--label" />\
    				</div>\
