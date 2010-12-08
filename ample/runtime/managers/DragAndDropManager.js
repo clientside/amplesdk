@@ -484,5 +484,5 @@ cElement.prototype.$droppable	= false;
 // Registering Event Handlers
 fEventTarget_addEventListener(oAmple_document, "mousedown",	fDragAndDropManager_onMouseDown,	false);
 fEventTarget_addEventListener(oAmple_document, "mousemove",	fDragAndDropManager_onMouseMove,	false);
-fEventTarget_addEventListener(oAmple_document, "mouseup",		fDragAndDropManager_onMouseUp,		false);
-fEventTarget_addEventListener(oAmple_document, "keydown",		fDragAndDropManager_onKeyDown,		false);
+fEventTarget_addEventListener(oAmple_document, "mouseup",	fDragAndDropManager_onMouseUp,		false);
+fEventTarget_addEventListener(oAmple_document, "keydown",	fDragAndDropManager_onKeyDown,		false);
