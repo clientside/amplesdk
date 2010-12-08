@@ -121,15 +121,15 @@ function fDragAndDropManager_onMouseUp(oEvent)
 	    	bPlay	= oDOMConfiguration_values["ample-enable-transitions"] &&(bDefaultPrevented || oDragAndDropManager_dataTransfer.dropEffect == "move" || oDragAndDropManager_dataTransfer.dropEffect == "copy");
 	    if (bPlay) {
 	    	var oRect	= fElement_getBoundingClientRect(oDragAndDropManager_dragSource),
-	    		sLeft	=(oRect0.left - oRect.left + fParseInt(oElementDOM.style.left)) + 'px',
-		    	sTop	=(oRect0.top - oRect.top + fParseInt(oElementDOM.style.top)) + 'px';
+	    		nLeft	=(oRect0.left - oRect.left + fParseInt(oElementDOM.style.left)),
+		    	nTop	=(oRect0.top - oRect.top + fParseInt(oElementDOM.style.top));
 		    // Commit
 		    oElementDOM.style.left	= sDragAndDropManager_clientLeft;
 		    oElementDOM.style.top	= sDragAndDropManager_clientTop;
 	    	var oRect1	= fElement_getBoundingClientRect(oDragAndDropManager_dragSource);
 	    	// Rollback
-		    oElementDOM.style.left	= sLeft;
-		    oElementDOM.style.top	= sTop;
+		    oElementDOM.style.left	= nLeft + 'px';
+		    oElementDOM.style.top	= nTop + 'px';
 	    }
 
 	    // Execute default action
@@ -156,8 +156,8 @@ function fDragAndDropManager_onMouseUp(oEvent)
 				oStyle.top	= sDragAndDropManager_clientTop;
 				var oRect2	= fElement_getBoundingClientRect(oDragAndDropManager_dragSource);
 				// Rollback
-				oStyle.left	=(fParseInt(sLeft) + oRect1.left - oRect2.left)+ 'px';
-				oStyle.top	=(fParseInt(sTop) + oRect1.top - oRect2.top)+ 'px';
+				oStyle.left	=(nLeft + oRect1.left - oRect2.left)+ 'px';
+				oStyle.top	=(nTop + oRect1.top - oRect2.top)+ 'px';
 				//
 				var oProperties	= {};
 				oProperties["left"]		= sDragAndDropManager_clientLeft || "auto";
