@@ -188,7 +188,7 @@ input[type=color] {
 }
 
 input[type=time] {
-	width:	54px;
+	width:	56px;
 }
 
 input[type=month] {
@@ -499,7 +499,7 @@ input[type=number]::field,
 input[type=color]::field,
 input[type=search]::field,
 select::field {
-	padding-right:18px;
+	padding-right:19px;
 	height: 16px;
 }
 
