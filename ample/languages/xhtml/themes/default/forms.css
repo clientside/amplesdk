@@ -115,8 +115,9 @@ input[type=button]::label,
 input[type=image]::label,
 input[type=reset]::label,
 input[type=submit]::label {
+	border: solid 1px transparent;
 	text-align: center;
-	top: 3px;
+	top: 2px;
 }
 
 input[type=file]::label {
@@ -440,19 +441,17 @@ input[type=date]:focus input::label,
 input[type=time]:focus input::label,
 input[type=month]:focus input::label,
 input[type=week]:focus input::label,
-input[type=button]:focus input::label,
-input[type=reset]:focus input::label,
-input[type=submit]:focus input::label,
+input:focus input[type=button]::label,
+input:focus input[type=reset]::label,
+input:focus input[type=submit]::label,
 button:focus button::label {
 	border: dotted 1px black;
-	top: 2px;
-	left: 0px;
 }
-input[type=button]:active input::label,
-input[type=reset]:active input::label,
-input[type=submit]:active input::label,
+input:active input[type=button]::label,
+input:active input[type=reset]::label,
+input:active input[type=submit]::label,
 button:active button::label {
-	left: 1px;
+
 }
 
 button::before,
