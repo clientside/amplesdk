@@ -22,6 +22,8 @@ var nDragAndDropManager_STATE_RELEASED	= 0,	// Constants
 	nDragAndDropManager_mouseY,
 	sDragAndDropManager_originalLeft,
 	sDragAndDropManager_originalTop,
+	nDragAndDropManager_scrollLeft,
+	nDragAndDropManager_scrollTop,
 	nDragAndDropManager_offsetLeft,
 	nDragAndDropManager_offsetTop;
 
@@ -263,9 +265,14 @@ function fDragAndDropManager_onMouseMove(oEvent)
 		oStyle.left	= sDragAndDropManager_originalLeft;
 		oStyle.top	= sDragAndDropManager_originalTop;
 
-		// calculate offset position
+		// save offset position
 	    nDragAndDropManager_offsetLeft	= oRect.left - oRect0.left;
 	    nDragAndDropManager_offsetTop	= oRect.top - oRect0.top;
+
+	    // save initial scroll positions
+	    var oScroll	= fDragAndDropManager_getScroll(oElementDOM);
+	    nDragAndDropManager_scrollLeft	= oScroll.left;
+	    nDragAndDropManager_scrollTop	= oScroll.top;
 	}
 
 	var oDropTarget	= null,
@@ -329,18 +336,6 @@ function fDragAndDropManager_onMouseMove(oEvent)
     oEventDrag.relatedTarget	= oDropTarget;
     fNode_dispatchEvent(oDragAndDropManager_dragSource, oEventDrag);
 
-    if (!oEventDrag.defaultPrevented)
-	{
-		// Display dragged element
-	    oStyle.left	= nDragAndDropManager_offsetLeft + (oEvent.clientX - nDragAndDropManager_mouseX) + 'px';
-	    oStyle.top	= nDragAndDropManager_offsetTop + (oEvent.clientY - nDragAndDropManager_mouseY) + 'px';
-	}
-
-    if (oDragAndDropManager_image) {
-    	oDragAndDropManager_image.style.left	= oEvent.clientX + 'px';
-    	oDragAndDropManager_image.style.top		= oEvent.clientY + 'px';
-    }
-
 	//
 	if (oDropTarget)
 	{
@@ -366,6 +361,18 @@ function fDragAndDropManager_onMouseMove(oEvent)
 
 	oDragAndDropManager_dropTarget	= oDropTarget;
 
+    var oScroll	= fDragAndDropManager_getScroll(oElementDOM);
+    if (!oEventDrag.defaultPrevented) {
+		// Move dragged element
+	    oStyle.left	=(oScroll.left - nDragAndDropManager_scrollLeft) + nDragAndDropManager_offsetLeft + (oEvent.clientX - nDragAndDropManager_mouseX) + 'px';
+	    oStyle.top	=(oScroll.top - nDragAndDropManager_scrollTop) + nDragAndDropManager_offsetTop + (oEvent.clientY - nDragAndDropManager_mouseY) + 'px';
+	}
+
+    if (oDragAndDropManager_image) {
+    	oDragAndDropManager_image.style.left	= oEvent.clientX + 'px';
+    	oDragAndDropManager_image.style.top		= oEvent.clientY + 'px';
+    }
+
 	// Opera doesn't support userSelect, so manual clearing of ranges is used
 	if (!bTrident)
 		window.getSelection().removeAllRanges();
@@ -376,6 +383,17 @@ function fDragAndDropManager_onKeyDown(oEvent) {
 		oEvent.preventDefault();
 		fDragAndDropManager_onMouseUp(oEvent);	// TODO: object with Keyboard interface passing to a function expecting MouseEvent interface
 	}
+};
+
+function fDragAndDropManager_getScroll(oElementDOM) {
+	var oScroll	= {};
+	oScroll.left	= 0;
+	oScroll.top		= 0;
+	for (; oElementDOM && oElementDOM.nodeType == 1; oElementDOM = oElementDOM.parentNode) {
+		oScroll.left	+= oElementDOM.scrollLeft;
+		oScroll.top		+= oElementDOM.scrollTop;
+	}
+	return oScroll;
 };
 
 function fDragAndDropManager_intersectRectangle(oRect1, oRect2)
