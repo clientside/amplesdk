@@ -19,15 +19,5 @@ cXULElement_column.handlers	= {
 	}
 };
 
-// Element Render: open
-cXULElement_column.prototype.$getTagOpen	= function() {
-    return '<th class="xul-column' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">' +(this.attributes["label"] ? this.attributes["label"] : '');
-};
-
-// Element Render: close
-cXULElement_column.prototype.$getTagClose	= function() {
-    return '</th>';
-};
-
 // Register Element
 ample.extend(cXULElement_column);
