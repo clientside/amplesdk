@@ -295,30 +295,33 @@ ample.classes.Element.prototype.$getTag	= function() {
 
 // Static methods
 cXULElement.getBoxOpen	= function(oElement) {
-    var aHtml   = ['<table cellpadding="0" cellspacing="0" border="0"'];
+    var aHtml   = ['<table cellpadding="0" cellspacing="0" border="0"'],
+    	sAlign	= oElement.attributes["align"],
+    	sHeight	= oElement.attributes["height"],
+    	sWidth	= oElement.attributes["width"];
     if (oElement.attributes["orient"] == "vertical") {
         // Set width
-        if (!oElement.attributes["align"] || oElement.attributes["align"] == "stretch")
+        if (!sAlign || sAlign == "stretch")
 			aHtml[aHtml.length]	= ' width="100%"';
 
         // Set height
         if (!(oElement instanceof cXULElement_window || oElement instanceof cXULElement_dialog || oElement instanceof cXULElement_wizardpage))
 //        	aHtml[aHtml.length]	= ' height="100%"';
 //        else
-    	if (!oElement.attributes["align"] && oElement.attributes["height"])
-    		aHtml[aHtml.length]	= ' height="' + oElement.attributes["height"] + '"';
+    	if (!sAlign && sHeight)
+    		aHtml[aHtml.length]	= ' height="' + sHeight + '"';
     }
     else {
         // Set height
-        if (!oElement.attributes["align"] || oElement.attributes["align"] == "stretch")
+        if (!sAlign || sAlign == "stretch")
 			aHtml[aHtml.length]	= ' height="100%"';
 
         // Set width
         if (!(oElement instanceof cXULElement_window || oElement instanceof cXULElement_dialog || oElement instanceof cXULElement_wizardpage))
 //    		aHtml[aHtml.length]	= ' width="100%"';
 //        else
-        if (!oElement.attributes["align"] && oElement.attributes["width"])
-        	aHtml[aHtml.length]	= ' width="' + oElement.attributes["width"] + '"';
+        if (!sAlign && sWidth)
+        	aHtml[aHtml.length]	= ' width="' + sWidth + '"';
     }
 
     if (oElement instanceof cXULElement_rows)
@@ -337,8 +340,12 @@ cXULElement.getBoxOpen	= function(oElement) {
 
 cXULElement.getBoxOpenChild = function(oElement)
 {
-    var oContainer	= oElement.parentNode,
-    	aHtml   = [];
+    var aHtml   = [],
+    	oContainer	= oElement.parentNode,
+    	sAlign	= oElement.attributes["align"],
+    	sPack	= oElement.attributes["pack"],
+    	sHeight	= oElement.attributes["height"],
+    	sWidth	= oElement.attributes["width"];
     if (oContainer.attributes["orient"] == "vertical") {
         aHtml.push('<tr style="');
 		if (oElement.nodeType == ample.classes.Node.ELEMENT_NODE) {
@@ -352,7 +359,11 @@ cXULElement.getBoxOpenChild = function(oElement)
 	aHtml[aHtml.length]	= '<td';
 
 	if (oElement.nodeType == ample.classes.Node.ELEMENT_NODE) {
-		if (oContainer.attributes["orient"] != "vertical") {
+		if (oContainer.attributes["orient"] == "vertical") {
+			if (sHeight)
+				aHtml[aHtml.length]	= ' height="' + sHeight + '"';
+		}
+		else {
 			aHtml[aHtml.length]	= ' style="';
 	        if (oElement.attributes["hidden"] == "true")
 				aHtml[aHtml.length]	= 'display:none;';
@@ -360,30 +371,26 @@ cXULElement.getBoxOpenChild = function(oElement)
 				aHtml[aHtml.length]	= 'position:absolute;width:0;top:0;left:0;z-index:1;';
 		    else
 		    if (!(oContainer instanceof cXULElement_row))
-		    	aHtml[aHtml.length]	= 'height:' + (oElement.attributes["height"] || '100%');
+		    	aHtml[aHtml.length]	= 'height:' + (sHeight || '100%');
 	        aHtml[aHtml.length]	= '"';
-	        if (oElement.attributes.width)
-	        	aHtml[aHtml.length]	= ' width="' + oElement.attributes.width + '"';
+	        if (sWidth)
+	        	aHtml[aHtml.length]	= ' width="' + sWidth + '"';
 	    }
-		else {
-			if (oElement.attributes.height)
-				aHtml[aHtml.length]	= ' height="' + oElement.attributes.height + '"';
-		}
 
 	    // Aligning
 	    var sHtml1  = "left";
 	    var sHtml2  = "top";
 	    if (oElement.attributes["orient"] == "vertical") {
-	        if (oElement.attributes["pack"])
-	            sHtml2  = oElement.attributes["pack"]  == "start" ? "top"  : oElement.attributes["pack"]  == "end" ? "bottom" : "center";
-	        if (oElement.attributes["align"])
-	            sHtml1  = oElement.attributes["align"] == "start" ? "left" : oElement.attributes["align"] == "end" ? "right"  : "center";
+	        if (sPack)
+	            sHtml2  = sPack  == "start" ? "top"  : sPack  == "end" ? "bottom" : "center";
+	        if (sAlign)
+	            sHtml1  = sAlign == "start" ? "left" : sAlign == "end" ? "right"  : "center";
 	    }
 	    else {
-	        if (oElement.attributes["align"])
-	            sHtml2  = oElement.attributes["align"] == "start" ? "top"  : oElement.attributes["align"] == "end" ? "bottom" : "center";
-	        if (oElement.attributes["pack"])
-	            sHtml1  = oElement.attributes["pack"]  == "start" ? "left" : oElement.attributes["pack"]  == "end" ? "right"  : "center";
+	        if (sAlign)
+	            sHtml2  = sAlign == "start" ? "top"  : sAlign == "end" ? "bottom" : "center";
+	        if (sPack)
+	            sHtml1  = sPack  == "start" ? "left" : sPack  == "end" ? "right"  : "center";
 	    }
 		aHtml[aHtml.length]	= ' valign="' + sHtml2 + '" align="' + sHtml1 + '"';
 	}
