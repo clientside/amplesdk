@@ -23,6 +23,7 @@ cXULWindowElement.prototype.show	= function (nLeft, nTop) {
 		oContainer	= that.$getContainer(),
 		oHead	= that.$getContainer("head"),
 		oBody	= that.$getContainer("body"),
+		bHeader	= that instanceof cXULElement_wizard ||(that instanceof cXULElement_dialog && cXULElement_dialog.firstChild instanceof cXULElement_dialogheader),
 		oHeader	= that.$getContainer("header"),
 		oFooter	= that.$getContainer("footer"),
 		oComputedStyle	= oContainer.currentStyle || window.getComputedStyle(oContainer, null);
@@ -59,7 +60,7 @@ cXULWindowElement.prototype.show	= function (nLeft, nTop) {
 	// Hide head and body
 	if (this.getAttribute("hidechrome") != "true")
 		oHead.style.display	= "none";
-	if (oHeader)
+	if (bHeader)
 		oHeader.style.display	= "none";
 	if (oFooter)
 		oFooter.style.display	= "none";
@@ -79,7 +80,7 @@ cXULWindowElement.prototype.show	= function (nLeft, nTop) {
 			// Show head and body
 			if (that.getAttribute("hidechrome") != "true")
 				oHead.style.display	= "";
-			if (oHeader)
+			if (bHeader)
 				oHeader.style.display	= "";
 			if (oFooter)
 				oFooter.style.display	= "";
@@ -124,6 +125,7 @@ cXULWindowElement.prototype.hide = function() {
 		oContainer	= that.$getContainer(),
 		oHead	= that.$getContainer("head"),
 		oBody	= that.$getContainer("body"),
+		bHeader	= that instanceof cXULElement_wizard ||(that instanceof cXULElement_dialog && cXULElement_dialog.firstChild instanceof cXULElement_dialogheader),
 		oHeader	= that.$getContainer("header"),
 		oFooter	= that.$getContainer("footer"),
 		oRect	= that.getBoundingClientRect();
@@ -145,7 +147,7 @@ cXULWindowElement.prototype.hide = function() {
 	// Hide head and body
 	if (this.getAttribute("hidechrome") != "true")
 		oHead.style.display	= "none";
-	if (oHeader)
+	if (bHeader)
 		oHeader.style.display	= "none";
 	if (oFooter)
 		oFooter.style.display	= "none";
@@ -169,7 +171,7 @@ cXULWindowElement.prototype.hide = function() {
 			// show head and body
 			if (that.getAttribute("hidechrome") != "true")
 				oHead.style.display	= "";
-			if (oHeader)
+			if (bHeader)
 				oHeader.style.display	= "";
 			if (oFooter)
 				oFooter.style.display	= "";
