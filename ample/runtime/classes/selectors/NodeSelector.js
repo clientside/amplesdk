@@ -143,7 +143,6 @@ var oNodeSelector_elementSelectors	= {},
 var rNodeSelector_whiteSpace = /\s*([\s>+~(,]|^|$)\s*/g,
 	rNodeSelector_impliedAll = /([\s>+~,]|[^(]\+|^)([#.:@])/g,
 	rNodeSelector_attribute  = /([^(]|^)(\[[^\]]+)/g;
-;
 
 function fNodeSelector_parseSelector(sSelector) {
     return cString(sSelector)
