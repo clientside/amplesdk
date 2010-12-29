@@ -94,7 +94,7 @@ cText.prototype.replaceData	= function(nOffset, nLength, sData)
 };
 
 // Level 3
-cText.prototype.replaceWholeText	= function(sContent) {
+cText.prototype.replaceWholeText	= function(sData) {
 //->Guard
 	fGuard(arguments, [
 		["content",	cString]
@@ -102,12 +102,12 @@ cText.prototype.replaceWholeText	= function(sContent) {
 //<-Guard
 
 	var sValueOld	= this.data;
-	this.data		= sContent;
-	this.length		= sContent.length;
-	this.nodeValue	= sContent;
+	this.data		= sData;
+	this.length		= sData.length;
+	this.nodeValue	= sData;
 
 	// Fire Mutation event
-    if (sValueOld != sContent) {
+    if (sValueOld != sData) {
 	    var oEvent = new cMutationEvent;
 	    oEvent.initMutationEvent("DOMCharacterDataModified", true, false, null, sValueOld, this.data, null, null);
 	    fNode_dispatchEvent(this, oEvent);

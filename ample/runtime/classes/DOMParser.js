@@ -11,7 +11,7 @@ if (!cDOMParser)
 {
 	cDOMParser = function(){};
 	cDOMParser.prototype.baseURI = null;
-	cDOMParser.prototype.parseFromString = function(sXml, sMime) {
+	cDOMParser.prototype.parseFromString = function(sXml, sType) {
 //->Guard
 		fGuard(arguments, [
 			["string",		cString],
