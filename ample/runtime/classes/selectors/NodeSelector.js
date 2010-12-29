@@ -21,9 +21,25 @@ function fNodeSelector_query(aFrom, sQuery, fResolver, bMatchOne)
 	    	nSelector,
 	    	aSelector;
 	    for (nSelector = 0; nSelector < aSelectors.length; nSelector++) {
-	        // convert the selector to a stream
-	        aSelector = fNodeSelector_toStream(aSelectors[nSelector]);
 			aFrom = aBase;
+	        // Optimization for #id
+	    	if (aSelectors[nSelector].match(/^\s*\*#([-_a-z0-9]+)$/i)) {
+	    		aFrom	= [];
+	    		// Make sure found element is a descendant of collection
+	    		for (var oElement = oDocument_ids[cRegExp.$1]; oElement; oElement = oElement.parentNode) {
+	    			for (var nIndex = 0, nLength = aBase.length; nIndex < nLength; nIndex++)
+	    				if (aBase[nIndex] == oElement) {
+	    					aFrom	= [oElement];
+	    					break;
+	    				}
+	    			if (aFrom.length)
+	    				break;
+	    		}
+	    		continue;
+	    	}
+
+	    	// convert the selector to a stream
+	        aSelector = fNodeSelector_toStream(aSelectors[nSelector]);
 
 	        // process the stream
 	        var nIndex = 0, sToken, sFilter, sArguments, bBracketRounded, bBracketSquare;
