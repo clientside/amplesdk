@@ -26,31 +26,29 @@ cText.prototype.splitText	= function(nOffset)
 	]);
 //<-Guard
 
-	if (nOffset <= this.length && nOffset >= 0)
-	{
-		var sData	= fCharacterData_substringData(this, nOffset, this.length);
-		fElement_insertBefore(this.parentNode, fDocument_createTextNode(this.ownerDocument, sData), this);
-
-		var sValueOld	= this.data;
-		this.data	= sData;
-		this.length	= sData.length;
-		this.nodeValue	= this.data;
-
-	    // Fire Event
-	    if (sValueOld != this.data)
-	    {
-		    var oEvent = new cMutationEvent;
-		    oEvent.initMutationEvent("DOMCharacterDataModified", true, false, null, sValueOld, this.data, null, null);
-		    fNode_dispatchEvent(this, oEvent);
-		}
-
-		// Update presentation
-		var oNode	= this.$getContainer();
-		if (oNode)
-			oNode.nodeValue	= this.data;
-	}
-	else
+	if (nOffset > this.length || nOffset < 0)
 		throw new cDOMException(cDOMException.INDEX_SIZE_ERR);
+
+	var sData	= fCharacterData_substringData(this, nOffset, this.length);
+	fElement_insertBefore(this.parentNode, fDocument_createTextNode(this.ownerDocument, sData), this);
+
+	var sValueOld	= this.data;
+	this.data	=
+	this.nodeValue	= sData;
+	this.length	= sData.length;
+
+    // Fire Event
+    if (sValueOld != sData)
+    {
+	    var oEvent = new cMutationEvent;
+	    oEvent.initMutationEvent("DOMCharacterDataModified", true, false, null, sValueOld, sData, null, null);
+	    fNode_dispatchEvent(this, oEvent);
+	}
+
+	// Update presentation
+	var oNode	= this.$getContainer();
+	if (oNode)
+		oNode.nodeValue	= this.data;
 };
 
 cText.prototype.appendData	= function(sData)
@@ -102,14 +100,15 @@ cText.prototype.replaceWholeText	= function(sData) {
 //<-Guard
 
 	var sValueOld	= this.data;
-	this.data		= sData;
-	this.length		= sData.length;
+	this.data		=
 	this.nodeValue	= sData;
+	this.length		= sData.length;
+
 
 	// Fire Mutation event
     if (sValueOld != sData) {
 	    var oEvent = new cMutationEvent;
-	    oEvent.initMutationEvent("DOMCharacterDataModified", true, false, null, sValueOld, this.data, null, null);
+	    oEvent.initMutationEvent("DOMCharacterDataModified", true, false, null, sValueOld, sData, null, null);
 	    fNode_dispatchEvent(this, oEvent);
 	}
 };
