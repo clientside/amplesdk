@@ -63,10 +63,12 @@ cCharacterData.prototype.deleteData	= function(nOffset, nLength)
 		["length",	cNumber]
 	]);
 //<-Guard
-	if (nOffset <= this.length && nOffset >= 0 && nLength >= 0)
-		fCharacterData_deleteData(this, nOffset, nLength);
-	else
+
+	// Additional validation
+	if (nOffset > this.length || nOffset < 0 || nLength < 0)
 		throw new cDOMException(cDOMException.INDEX_SIZE_ERR);
+
+	fCharacterData_deleteData(this, nOffset, nLength);
 };
 
 function fCharacterData_insertData(oNode, nOffset, sData)
@@ -92,10 +94,12 @@ cCharacterData.prototype.insertData	= function(nOffset, sData)
 		["data",	cString]
 	]);
 //<-Guard
-	if (nOffset <= this.length && nOffset >= 0)
-		fCharacterData_insertData(this, nOffset, sData);
-	else
+
+	// Additional validation
+	if (nOffset > this.length || nOffset < 0)
 		throw new cDOMException(cDOMException.INDEX_SIZE_ERR);
+
+	fCharacterData_insertData(this, nOffset, sData);
 };
 
 function fCharacterData_replaceData(oNode, nOffset, nLength, sData)
@@ -122,10 +126,12 @@ cCharacterData.prototype.replaceData	= function(nOffset, nLength, sData)
 		["data",	cString]
 	]);
 //<-Guard
-	if (nOffset <= this.length && nOffset >= 0 && nLength >= 0)
-		fCharacterData_replaceData(this, nOffset, nLength, sData);
-	else
+
+	// Additional validation
+	if (nOffset > this.length || nOffset < 0 || nLength < 0)
 		throw new cDOMException(cDOMException.INDEX_SIZE_ERR);
+
+	fCharacterData_replaceData(this, nOffset, nLength, sData);
 };
 
 function fCharacterData_substringData(oNode, nOffset, nLength)
@@ -141,10 +147,12 @@ cCharacterData.prototype.substringData	= function(nOffset, nLength)
 		["length",	cNumber]
 	]);
 //<-Guard
-	if (nOffset <= this.length && nOffset >= 0 && nLength >= 0)
-		return fCharacterData_substringData(this, nOffset, nLength);
-	else
+
+	// Additional validation
+	if (nOffset > this.length || nOffset < 0 || nLength < 0)
 		throw new cDOMException(cDOMException.INDEX_SIZE_ERR);
+
+	return fCharacterData_substringData(this, nOffset, nLength);
 };
 
 cCharacterData.prototype.$getContainer	= function()
