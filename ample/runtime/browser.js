@@ -719,6 +719,9 @@ function fBrowser_eval(sText) {
 };
 
 function fBrowser_parseXML(sText) {
+	// Bugfix FF4 (remote XUL)
+	if (bGecko)
+		sText	= sText.replace(new cRegExp(sNS_XUL, 'g'), sNS_XUL + '#');
 	return new cDOMParser().parseFromString(sText, "text/xml");
 };
 
@@ -732,10 +735,8 @@ function fBrowser_getResponseDocument(oRequest) {
 				oDocument	= fBrowser_parseXML(sText);
 		}
 		// Bugfix FF4 (remote XUL)
-		if (bGecko) {
-			sText	= sText.replace(new cRegExp(sNS_XUL, 'g'), sNS_XUL + '#');
+		if (bGecko)
 			oDocument	= fBrowser_parseXML(sText);
-		}
 	}
 	// Check if there is no error in document
 	if (!oDocument || ((bTrident && oDocument.parseError != 0) || !oDocument.documentElement || oDocument.getElementsByTagName("parsererror").length))
@@ -751,9 +752,6 @@ for (var nIndex = 0, nLength = aEntities.length; nIndex < nLength; nIndex++)
 	sBrowser_entities	+= '<!' + "ENTITY" + ' ' + aEntities[nIndex] + ' "&#' +(160 + nIndex)+ ';">';
 
 function fBrowser_createFragment(sXml, sAttributes) {
-	// Bugfix FF4 (remote XUL)
-	if (bGecko)
-		sXml	= sXml.replace(new cRegExp(sNS_XUL, 'g'), sNS_XUL + '#');
 	return fBrowser_parseXML(//		"<?" + "xml" + ' ' + 'version="1.0"' + "?>" +
 				'<!' + "DOCTYPE" + ' ' + "div" + '[' + sBrowser_entities + ']>' +
 //->Debug
