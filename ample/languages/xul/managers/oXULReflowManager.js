@@ -20,8 +20,13 @@ var oXULReflowManager	= (function () {
 	};
 
 	function fSchedule(oElement) {
-		if (aReflowStack.indexOf(oElement) ==-1)
-			aReflowStack.push(oElement);
+		// Return if an ascendant is scheduled
+		for (var oNode = oElement, nIndex, nLength = aReflowStack.length; oNode; oNode = oNode.parentNode)
+			for (nIndex = 0, nLength; nIndex < nLength; nIndex++)
+				if (aReflowStack[nIndex] == oNode)
+					return;
+		// Schedule reflow otherwise (asynch)
+		aReflowStack.push(oElement);
 		if (!nTimeout)
 			nTimeout	= setTimeout(fOnTimeout, 0);
 	};
@@ -29,19 +34,9 @@ var oXULReflowManager	= (function () {
 	// Add handlers
 	// Elements added at build-time
 	ample.bind("DOMNodeInsertedIntoDocument", function(oEvent) {
-		// Add to the stack for reflow
-		if (oEvent.target instanceof cXULElement_page)
-			fSchedule(oEvent.target);
-	}, true);
-
-	// Elements added at runtime
-	ample.bind("DOMNodeInserted", function(oEvent) {
 		if (oEvent.target.parentNode instanceof cXULElement && oEvent.target.parentNode.viewType == cXULElement.VIEW_TYPE_BOXED)
 			fSchedule(oEvent.target.parentNode);
-/*		else
-		if (oEvent.target instanceof cXULElement && oEvent.target.viewType == cXULElement.VIEW_TYPE_BOXED)
-			fSchedule(oEvent.target);*/
-	});
+	}, true);
 
 	// on browser window resize reflow page
 	ample.bind("resize", function(oEvent) {
