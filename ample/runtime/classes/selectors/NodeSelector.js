@@ -26,48 +26,48 @@ function fNodeSelector_query(aFrom, sQuery, fResolver, bMatchOne)
 	    	if (aSelectors[nSelector].match(/^\s*\*#([-_a-z0-9]+)$/i)) {
 	    		aFrom	= [];
 	    		// Make sure found element is a descendant of collection
-	    		for (var oElement = oDocument_ids[cRegExp.$1]; oElement; oElement = oElement.parentNode) {
+	    		for (var oElement = oDocument_ids[cRegExp.$1], oNode = oElement; oNode; oNode = oNode.parentNode) {
 	    			for (var nIndex = 0, nLength = aBase.length; nIndex < nLength; nIndex++)
-	    				if (aBase[nIndex] == oElement) {
+	    				if (aBase[nIndex] == oNode) {
 	    					aFrom	= [oElement];
 	    					break;
 	    				}
 	    			if (aFrom.length)
 	    				break;
 	    		}
-	    		continue;
 	    	}
+	    	else {
+		    	// convert the selector to a stream
+		        aSelector = fNodeSelector_toStream(aSelectors[nSelector]);
 
-	    	// convert the selector to a stream
-	        aSelector = fNodeSelector_toStream(aSelectors[nSelector]);
-
-	        // process the stream
-	        var nIndex = 0, sToken, sFilter, sArguments, bBracketRounded, bBracketSquare;
-	        while (nIndex < aSelector.length) {
-	            sToken = aSelector[nIndex++];
-	            sFilter = aSelector[nIndex++];
-	            // some pseudo-classes allow arguments to be passed
-	            //  e.g. nth-child(even)
-	            sArguments = '';
-	            bBracketRounded	= aSelector[nIndex] == '(';
-	            bBracketSquare	= aSelector[nIndex-1] == '[';
-	            if (bBracketRounded || bBracketSquare) {
-	            	if (bBracketSquare)
-	            		nIndex--;
-	                while (aSelector[nIndex++] != (bBracketRounded ? ')' : ']') && nIndex < aSelector.length)
-	                    sArguments += aSelector[nIndex];
-	                sArguments = sArguments.slice(0, -1);
-	            }
-	            // process a token/filter pair use cached results if possible
-	            if (sToken != '::')
-	            	aFrom	= fNodeSelector_select(aFrom, sToken, sFilter, sArguments, fResolver);
-				else {
-					aFrom	= [];
+		        // process the stream
+		        var nIndex = 0, sToken, sFilter, sArguments, bBracketRounded, bBracketSquare;
+		        while (nIndex < aSelector.length) {
+		            sToken = aSelector[nIndex++];
+		            sFilter = aSelector[nIndex++];
+		            // some pseudo-classes allow arguments to be passed
+		            //  e.g. nth-child(even)
+		            sArguments = '';
+		            bBracketRounded	= aSelector[nIndex] == '(';
+		            bBracketSquare	= aSelector[nIndex-1] == '[';
+		            if (bBracketRounded || bBracketSquare) {
+		            	if (bBracketSquare)
+		            		nIndex--;
+		                while (aSelector[nIndex++] != (bBracketRounded ? ')' : ']') && nIndex < aSelector.length)
+		                    sArguments += aSelector[nIndex];
+		                sArguments = sArguments.slice(0, -1);
+		            }
+		            // process a token/filter pair use cached results if possible
+		            if (sToken != '::')
+		            	aFrom	= fNodeSelector_select(aFrom, sToken, sFilter, sArguments, fResolver);
+					else {
+						aFrom	= [];
 //->Debug
-					fUtilities_warn(sGUARD_QUERYING_PSEUDOELEMENT_WRN);
+						fUtilities_warn(sGUARD_QUERYING_PSEUDOELEMENT_WRN);
 //<-Debug
-				}
-	        }
+					}
+		        }
+	    	}
 	        // Setting _cssIndex enables selection uniqueness
 	        for (nIndex = 0; nIndex < aFrom.length; nIndex++) {
 	        	if (aFrom[nIndex]._cssIndex != nNodeSelector_iterator) {
