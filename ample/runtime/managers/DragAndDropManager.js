@@ -341,22 +341,28 @@ function fDragAndDropManager_onMouseMove(oEvent)
 	{
 		if (oDropTarget != oDragAndDropManager_dropTarget)
 		{
-			// Add :drop pseudo-class
-			fElement_setPseudoClass(oDropTarget, "drop", true);
 			// fire ondragenter event
 			var oEventDragEnter	= new cDragEvent;
 		    oEventDragEnter.initDragEvent("dragenter", true, true, window, null, oDragAndDropManager_dataTransfer);
 		    oEventDragEnter.$pseudoTarget	= oEvent.$pseudoTarget;
 		    oEventDragEnter.relatedTarget	= oDragAndDropManager_dragSource;
 		    fNode_dispatchEvent(oDropTarget, oEventDragEnter);
+		    if (oEventDragEnter.defaultPrevented)
+		    	oDropTarget	= null;
+		    else	// Add :drop pseudo-class
+		    	fElement_setPseudoClass(oDropTarget, "drop", true);
 		}
 
-		// fire ondragover event
-		var oEventDragOver	= new cDragEvent;
-	    oEventDragOver.initDragEvent("dragover", true, true, window, null, oDragAndDropManager_dataTransfer);
-	    oEventDragOver.$pseudoTarget	= oEvent.$pseudoTarget;
-	    oEventDragOver.relatedTarget	= oDragAndDropManager_dragSource;
-	    fNode_dispatchEvent(oDropTarget, oEventDragOver);
+		// If dragenter was not canceled, fire dragover
+		if (oDropTarget)
+		{
+			// fire ondragover event
+			var oEventDragOver	= new cDragEvent;
+		    oEventDragOver.initDragEvent("dragover", true, true, window, null, oDragAndDropManager_dataTransfer);
+		    oEventDragOver.$pseudoTarget	= oEvent.$pseudoTarget;
+		    oEventDragOver.relatedTarget	= oDragAndDropManager_dragSource;
+		    fNode_dispatchEvent(oDropTarget, oEventDragOver);
+		}
 	}
 
 	oDragAndDropManager_dropTarget	= oDropTarget;
