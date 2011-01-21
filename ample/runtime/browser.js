@@ -978,10 +978,12 @@ function fBrowser_processScripts() {
 		    			if (sPrefix in hAttributes && hAttributes[sPrefix] == oAmple.prefixes[sAttribute])
 		    				delete oElement.attributes[sPrefix];
 		    		}
+/*
 		    		// Change root element name to script
 		    		oElement.nodeName	=
 		    		oElement.localName	=
 		    		oElement.tagName	= "script";
+*/
 		    	}
 		    	// render Ample DOM
 		    	if (bTrident) {
