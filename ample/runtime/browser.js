@@ -43,7 +43,7 @@ function fBrowser_getEventTarget(oEvent) {
 
 function fBrowser_getUIEventPseudo(oEvent) {
     for (var oNode = oEvent.srcElement || oEvent.target, sId, sClass; oNode; oNode = oNode.parentNode) {
-        if ((sId = oNode.id) && oDocument_ids[sId])
+        if ((sId = oNode.id) && oDocument_all[sId])
             return oNode;
 		else
 		if ((sClass = oNode.className) && cString(sClass || sClass.baseVal).match(/--[\w-]+/))
