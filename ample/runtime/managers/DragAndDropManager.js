@@ -80,6 +80,7 @@ function fDragAndDropManager_onMouseUp(oEvent)
 		return;
 
 	var oElementDOM	= oDragAndDropManager_dragSource.$getContainer(),
+		bDropPrevented	= false,
 		oRect0	= fElement_getBoundingClientRect(oDragAndDropManager_dragSource);
 
 	if (nDragAndDropManager_dragState == nDragAndDropManager_STATE_DRAGGED)
@@ -93,7 +94,7 @@ function fDragAndDropManager_onMouseUp(oEvent)
 			    oEventDrop.initDragEvent("drop", true, true, window, null, oDragAndDropManager_dataTransfer);
 			    oEventDrop.relatedTarget	= oDragAndDropManager_dragSource;
 			    oEventDrop.$pseudoTarget	= oEvent.$pseudoTarget;
-			    fNode_dispatchEvent(oDragAndDropManager_dropTarget, oEventDrop);
+			    bDropPrevented	= !fNode_dispatchEvent(oDragAndDropManager_dropTarget, oEventDrop);
 			}
 
 			// Remove :drop pseudo-class
@@ -119,7 +120,7 @@ function fDragAndDropManager_onMouseUp(oEvent)
 	    oEventDragEnd.$pseudoTarget	= oEvent.$pseudoTarget;
 	    fNode_dispatchEvent(oDragAndDropManager_dragSource, oEventDragEnd);
 
-	    var bDefaultPrevented	= oEvent.defaultPrevented || oEvent.button || oEventDragEnd.defaultPrevented,
+	    var bDefaultPrevented	= oEvent.defaultPrevented || oEvent.button || bDropPrevented || oEventDragEnd.defaultPrevented,
 	    	bPlay	= oDOMConfiguration_values["ample-enable-transitions"] &&(bDefaultPrevented || oDragAndDropManager_dataTransfer.dropEffect == "move" || oDragAndDropManager_dataTransfer.dropEffect == "copy");
 	    if (bPlay) {
 	    	var oRect	= fElement_getBoundingClientRect(oDragAndDropManager_dragSource),
