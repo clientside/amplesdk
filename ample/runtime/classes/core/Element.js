@@ -861,8 +861,7 @@ function fElement_setPseudoClass(oElement, sName, bValue, sContainer)
 		aClass		= sClass.length ? sClass.split(/\s+/g) : null,
 		sPseudoName	= sContainer ? '--' + sContainer : '',
 		sTagName	=(oElement.prefix ? oElement.prefix + '-' : '') + oElement.localName,
-		bHover		= sName == "hover",
-		bTransition	=!bHover && oDOMConfiguration_values["ample-enable-transitions"]/*,
+		bTransition	= sName != "hover" && oDOMConfiguration_values["ample-enable-transitions"]/*,
 		bAnimation	= bTransition &&!(nResizeManager_resizeState || nDragAndDropManager_dragState)*/;	// Disable animations
 
 //->Source
