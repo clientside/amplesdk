@@ -234,7 +234,7 @@ cXULElement_editor.handlers	= {
 				setTimeout(function(){
 					cXULElement_editor.initializeDocument(that);
 				}, 0);
-			}, 200);
+			}, 0);
 		}
 	},
 	"DOMNodeRemovedFromDocument":	function() {
@@ -337,6 +337,14 @@ cXULElement_editor.initializeDocument	= function(oInstance) {
 	var fOnMouseDown	= function(oEvent) {
 		// Re-dispatch event to the element
 		if (oInstance.$isAccessible()) {
+			try {
+				oDOMElement.contentWindow.document.designMode	= "on";
+			} catch (e) {
+				var f = arguments.callee
+				setTimeout(function(){f(oEvent)}, 0);
+				return;
+			}
+
 			var oMouseEvent	= oInstance.ownerDocument.createEvent("MouseEvent");
 			oMouseEvent.initMouseEvent("mousedown", true, true, window, 1, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, oEvent.metaKey, 0, null);
 			oMouseEvent.$pseudoTarget	= oInstance.$getContainer("frame");
