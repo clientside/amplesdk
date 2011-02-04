@@ -32,9 +32,9 @@ var cString		= window.String,
 //	JSON API
 	oJSON			= window.JSON,
 //	XML APIs virtual
-	cXMLNode		= 0,
-	cXMLElement		= 1,
-	cXMLDocument	= 9,
+	cXMLNode		= function(){},
+	cXMLElement		= function(){},
+	cXMLDocument	= function(){},
 //	intervals/timeouts
 	fSetTimeout		= window.setTimeout,
 	fClearTimeout	= window.clearTimeout,

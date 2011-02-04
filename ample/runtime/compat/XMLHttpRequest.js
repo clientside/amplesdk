@@ -204,4 +204,7 @@ if (bTrident) {
 		// BUGFIX: IE - memory leak (on-page leak)
 		oRequest._object['on' + "readystatechange"]	= new cFunction;
 	};
+
+	// Export
+	fExporter_export(cXMLHttpRequest,	"XMLHttpRequest",	window);
 };

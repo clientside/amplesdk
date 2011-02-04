@@ -43,14 +43,6 @@ runtime/classes/misc/NodeLoader.js
 runtime/classes/range/Range.js
 # Ample addons
 runtime/classes/Query.js
-# XML APIs
-runtime/classes/DOMParser.js
-runtime/classes/XMLSerializer.js
-runtime/classes/XMLHttpRequest.js
-runtime/classes/XSLTProcessor.js
-#runtime/classes/RPCProxy.js
-#
-runtime/classes/JSON.js
 # Runtime
 runtime/utilities.js
 runtime/guard.js
@@ -111,5 +103,12 @@ runtime/modules/manipulation.js
 runtime/modules/modal.js
 runtime/modules/offset.js
 runtime/modules/traversing.js
+#
+runtime/compat/javascript.js
+runtime/compat/JSON.js
+runtime/compat/DOMParser.js
+runtime/compat/XMLSerializer.js
+runtime/compat/XMLHttpRequest.js
+runtime/compat/XSLTProcessor.js
 #
 runtime/export.js

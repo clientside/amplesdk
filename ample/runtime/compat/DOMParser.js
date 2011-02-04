@@ -7,8 +7,7 @@
  *
  */
 
-if (!cDOMParser)
-{
+if (!cDOMParser) {
 	cDOMParser = function(){};
 	cDOMParser.prototype.baseURI = null;
 	cDOMParser.prototype.parseFromString = function(sXml, sType) {
@@ -27,4 +26,6 @@ if (!cDOMParser)
 		oDocument.loadXML(sXml);
 		return oDocument;
 	};
+	// Export object
+	fExporter_export(cDOMParser,		"DOMParser",		window);
 };

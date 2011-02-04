@@ -144,4 +144,7 @@ if (!cXSLTProcessor) {
 
 		return oFragment;
 	};
+
+	// Export
+	fExporter_export(cXSLTProcessor,	"XSLTProcessor",	window);
 };

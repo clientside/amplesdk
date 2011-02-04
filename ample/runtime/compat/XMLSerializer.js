@@ -18,4 +18,7 @@ if (!cXMLSerializer) {
 
 		return oNode.xml;
 	};
+
+	// Export
+	fExporter_export(cXMLSerializer,	"XMLSerializer",	window);
 };

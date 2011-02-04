@@ -87,12 +87,15 @@
 	<target name="BUILD_AMPLE_RUNTIME_PREPARE">
 		<echo message="Merging into: ${temp.runtime.dir}/runtime-raw.js" level="info"/>
 
+		<antcall target="BUILD_AMPLE_RUNTIME_PREPARE_COMPAT" />
 		<antcall target="BUILD_AMPLE_RUNTIME_PREPARE_CORE" />
 		<antcall target="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES" />
 
 		<concat destfile="${temp.runtime.dir}/runtime-raw.js" fixlastline="yes">
 			<filelist dir="${source.runtime.dir}/" files="
 				import.js"/>
+			<filelist dir="${temp.runtime.dir}/" files="
+				runtime-compat.js"/>
 			<filelist dir="${temp.runtime.dir}/" files="
 				runtime-core.js"/>
 			<filelist dir="${temp.runtime.dir}/" files="
@@ -151,14 +154,6 @@
 				NodeLoader.js"/>
 			<filelist dir="${source.runtime.dir}/classes/range/" files="
 				Range.js"/>
-			<!-- JS API Objects -->
-			<filelist dir="${source.runtime.dir}/classes/" files="
-				JSON.js"/>
-			<filelist dir="${source.runtime.dir}/classes/" files="
-				DOMParser.js,
-				XMLHttpRequest.js,
-				XMLSerializer.js,
-				XSLTProcessor.js"/>
 			<!-- Browser integration and runner -->
 			<filelist dir="${source.runtime.dir}/" files="
 				utilities.js,
@@ -196,6 +191,19 @@
 		<antcall target="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES_SMIL" />
 		<antcall target="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES_XMLEVENTS" />
 		<antcall target="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES_XLINK" />
+	</target>
+
+	<target name="BUILD_AMPLE_RUNTIME_PREPARE_COMPAT" unless="skip.ample.runtime.compat">
+		<concat destfile="${temp.runtime.dir}/runtime-compat.js" fixlastline="yes">
+			<filelist dir="${source.runtime.dir}/compat/" files="
+				JSON.js,
+				DOMParser.js,
+				XMLHttpRequest.js,
+				XMLSerializer.js,
+				XSLTProcessor.js,
+				javascript.js,
+				base64.js"/>
+		</concat>
 	</target>
 
 	<target name="BUILD_AMPLE_RUNTIME_PREPARE_LANGUAGES_XBL" unless="skip.ample.runtime.languages.xbl">

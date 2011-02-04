@@ -301,6 +301,38 @@ replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
 
 		throw new cSyntaxError("JSON" + '.' + "parse");
 	};
+
+	//
+	fExporter_export(oJSON,	"JSON",	window);
 };
 
+// JSON
+function fJSON_doublizeInteger(n) {
+	// Format integers to have at least two digits.
+	return n < 10 ? '0' + n : n;
+};
 
+if (!cDate.prototype.toJSON)
+	fExporter_export(function(sKey) {
+		return this.getUTCFullYear()	+ '-' +
+			fJSON_doublizeInteger(this.getUTCMonth() + 1)	+ '-' +
+			fJSON_doublizeInteger(this.getUTCDate())		+ 'T' +
+			fJSON_doublizeInteger(this.getUTCHours())		+ ':' +
+			fJSON_doublizeInteger(this.getUTCMinutes())		+ ':' +
+			fJSON_doublizeInteger(this.getUTCSeconds())		+ 'Z';
+	}, "toJSON", cDate.prototype);
+
+if (!cString.prototype.toJSON)
+	fExporter_export(function(sKey) {
+		return this.valueOf();
+	}, "toJSON", cString.prototype);
+
+if (!cNumber.prototype.toJSON)
+	fExporter_export(function(sKey) {
+		return this.valueOf();
+	}, "toJSON", cNumber.prototype);
+
+if (!cBoolean.prototype.toJSON)
+	fExporter_export(function(sKey) {
+		return this.valueOf();
+	}, "toJSON", cBoolean.prototype);

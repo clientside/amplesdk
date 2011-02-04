@@ -15,8 +15,7 @@
  */
 //->Debug
 var oGuard_endings	= 'st-nd-rd-th'.split('-'),
-	rGuard_function	= /function ([^\s]+)\(/,
-	oGuard_types	= fUtilities_stringToHash('0:Node;1:Element;9:Document');
+	rGuard_function	= /function ([^\s]+)\(/;
 //<-Debug
 
 //->Guard
@@ -67,7 +66,7 @@ function fGuard(aArguments, aParameters, oObject) {
 			if (!fGuard_instanceOf(vValue, aParameter[1]))
 				throw new cDOMException(cDOMException.GUARD_ARGUMENT_WRONG_TYPE_ERR, fCaller
 //->Debug
-									, [sArgument, aParameter[0], sFunction, oGuard_types[aParameter[1]] ||(cString(aParameter[1]).match(rGuard_function) ? cRegExp.$1 : "anonymous")]
+									, [sArgument, aParameter[0], sFunction, cString(aParameter[1]).match(rGuard_function) ? cRegExp.$1 : "anonymous"]
 //<-Debug
 				);
 		}
