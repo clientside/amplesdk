@@ -320,6 +320,8 @@ if (cSVGElement.useVML) {
 				oElementDOM.stroke.weight	= nStrokeWidth + (aStrokeWidth[2] || 'px');
 				if (nStrokeWidth < 1 && !(oElement instanceof cSVGElement_text || oElement instanceof cSVGElement_tspan || oElement instanceof cSVGElement_textPath))
 					oElementDOM.stroke.opacity	= (oElement.attributes["stroke-opacity"] || 1) * nStrokeWidth;
+				else
+					oElementDOM.stroke.opacity	= 1;
 				break;
 			case "stroke-opacity":
 				if (sValue == null || sValue == "")
@@ -327,7 +329,7 @@ if (cSVGElement.useVML) {
 				sValue	=(cSVGElement.getStyle(oElement, "opacity") || 1) * sValue;
 				var aStrokeWidth,
 					nStrokeWidth	= 1;
-				if (aStrokeWidth = cSVGElement.getStyle(oElement, "stroke-width").match(/([\d.]+)(.*)/)) {
+				if (aStrokeWidth =(cSVGElement.getStyle(oElement, "stroke-width") || "1").match(/([\d.]+)(.*)/)) {
 					nStrokeWidth	= aStrokeWidth[1] * cSVGElement.getScaleFactor(oElement) * Math.sqrt(Math.abs(cSVGElement.matrixDeterminant(cSVGElement.getMatrix(oElement))));
 					if (nStrokeWidth < 1 && !(oElement instanceof cSVGElement_text || oElement instanceof cSVGElement_tspan || oElement instanceof cSVGElement_textPath))
 						sValue	= sValue * nStrokeWidth;
@@ -538,6 +540,24 @@ if (cSVGElement.useVML) {
 				if (!aHeight)
 					aHeight	= [null, aViewBox[3], "px"];
 			}
+
+			if (aWidth[2] == "%" || aHeight[2] == "%") {
+				var oBCRect		= oNode.getBoundingClientRect();
+				if (aWidth[2] == "%") {
+					if (oBCRect.right - oBCRect.left) {
+						aWidth		= [null, oBCRect.right - oBCRect.left, "px"];
+						aHeight		= [null,(oBCRect.right - oBCRect.left)/(aViewBox[2] / aViewBox[3]), "px"];
+					}
+				}
+				else
+				if (aHeight[2] == "%") {
+					if (oBCRect.bottom - oBCRect.top) {
+						aHeight	= [null,(oBCRect.bottom - oBCRect.top)*(aViewBox[2] / aViewBox[3]), "px"];
+						aWidth	= [null, oBCRect.bottom - oBCRect.top, "px"];
+					}
+				}
+			}
+
 			// Account for fitting
 			var nRatio	= (aViewBox[2] / aViewBox[3]) / (aWidth[1] / aHeight[1]);
 			if (nRatio > 1)
@@ -589,7 +609,7 @@ if (cSVGElement.useVML) {
 			nFillOpacity	=(cSVGElement.getStyle(oElement, "fill-opacity") || 1) * nOpacity,
 			sStroke			= cSVGElement.getStyle(oElement, "stroke"),
 			nStrokeOpacity	=(cSVGElement.getStyle(oElement, "stroke-opacity") || 1) * nOpacity,
-			sStrokeWidth	= cSVGElement.getStyle(oElement, "stroke-width"),
+			sStrokeWidth	= cSVGElement.getStyle(oElement, "stroke-width") || "1",
 			sStrokeLineJoin	= cSVGElement.getStyle(oElement, "stroke-linejoin") || 'miter',
 			sStrokeMiterLimit	= cSVGElement.getStyle(oElement, "stroke-miterlimit") || '4',
 			sStrokeLineCap	= cSVGElement.getStyle(oElement, "stroke-linecap") || 'square',
@@ -611,7 +631,7 @@ if (cSVGElement.useVML) {
 
 		if (sStrokeWidth) {
 			var aStrokeWidth	= sStrokeWidth.match(/([\d.]+)(.*)/),
-				nStrokeWidth	= (aStrokeWidth[1] || 1) * cSVGElement.getScaleFactor(oElement) * Math.sqrt(Math.abs(cSVGElement.matrixDeterminant(cSVGElement.getMatrix(oElement))));
+				nStrokeWidth	= aStrokeWidth[1] * cSVGElement.getScaleFactor(oElement) * Math.sqrt(Math.abs(cSVGElement.matrixDeterminant(cSVGElement.getMatrix(oElement))));
 			if (nStrokeWidth < 1 && !(oElement instanceof cSVGElement_text || oElement instanceof cSVGElement_tspan || oElement instanceof cSVGElement_textPath))
 				nStrokeOpacity	= nStrokeOpacity * nStrokeWidth;
 			sStrokeWidth	= nStrokeWidth + (aStrokeWidth[2] || "px");
@@ -798,6 +818,36 @@ if (cSVGElement.useVML) {
 		'whitesmoke':	[245,245,245],
 		'yellow':		[255,255,0],
 		'yellowgreen':	[154,205,50]
+	};
+
+	cSVGElement.prototype.refresh	= function() {
+		var sValue;
+		switch (this.localName) {
+			case "text":
+			case "textPath":
+			case "tspan":
+				cSVGElement.setStyle(this, "font-size", cSVGElement.getStyle(this, "font-size") || "16px");
+				// No break intentially left here
+			case "circle":
+			case "ellipse":
+			case "line":
+			case "path":
+			case "polygon":
+			case "polyline":
+			case "rect":
+				// Apply transform
+				cSVGElement.setMatrixOwn(this, cSVGElement.getMatrix(this));
+				//
+				cSVGElement.setStyle(this, "stroke-width", cSVGElement.getStyle(this, "stroke-width") || "1");
+				break;
+			case "svg":
+				cSVGElement_svg.resize(this);
+				break;
+		}
+		// Refresh children
+		for (var oNode = this.firstChild; oNode; oNode = oNode.nextSibling)
+			if (oNode instanceof cSVGElement)
+				oNode.refresh();
 	};
 }
 else {

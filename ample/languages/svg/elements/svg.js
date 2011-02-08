@@ -49,13 +49,20 @@ if (cSVGElement.useVML) {
 		var oElement	= oInstance.$getContainer(),
 			oElementGroup	= oInstance.$getContainer("gateway"),
 			aBox	= cSVGElement_svg.getBox(oInstance);
+		oElementGroup.style.display	= "none";
 		oElementGroup.style.marginLeft	= aBox[0][0];
 		oElementGroup.style.marginTop	= aBox[0][1];
 		oElementGroup.style.width	= aBox[1][0];
 		oElementGroup.style.height	= aBox[1][1];
 		oElement.style.width	= aBox[2][0];
 		oElement.style.height	= aBox[2][1];
-//		oElementGroup.coordSize.value	= aBox[3][0] + ',' + aBox[3][1];
+
+		setTimeout(function() {
+			var oGroup	= oInstance.$getContainer("gateway");
+			if (oGroup)
+				oGroup.style.display	= "";
+		}, 0);
+	//	oElementGroup.coordSize.value	= aBox[3][0] + ',' + aBox[3][1];
 	};
 
 	cSVGElement_svg.getBox	= function(oInstance) {
@@ -81,8 +88,7 @@ if (cSVGElement.useVML) {
 		var sWidthOuter	= aWidth[1] + (aWidth[2] || "px"),
 			sHeightOuter= aHeight[1] + (aHeight[2] || "px");
 			nWidthInner	= aWidth[1],
-			nHeightInner= aHeight[1],
-			nRatio	= (aViewBox[2] / aViewBox[3]) / (nWidthInner / nHeightInner);
+			nHeightInner= aHeight[1];
 
 		if (aWidth[2] == "%" || aHeight[2] == "%") {
 			var oBCRect		= oInstance.getBoundingClientRect();
@@ -95,17 +101,17 @@ if (cSVGElement.useVML) {
 			if (aHeight[2] == "%") {
 				nHeightInner	= oBCRect.bottom - oBCRect.top;
 				nWidthInner		= nHeightInner * (aViewBox[2] / aViewBox[3]);
-				sWidthInner		= nWidthInner + "px";
+				sWidthOuter		= nWidthInner + "px";
 			}
 		}
 
 		// Correct viewport
+		var nRatio	= (aViewBox[2] / aViewBox[3]) / (nWidthInner / nHeightInner);
 		if (nRatio > 1) {
 			nTop	= (nHeightInner - (nHeightInner / nRatio)) / 2;
 			nHeightInner	/= nRatio;
 		}
-		else
-		if (nRatio < 1) {
+		else {
 			nLeft	= (nWidthInner - (nWidthInner * nRatio)) / 2;
 			nWidthInner 	*= nRatio;
 		}
@@ -129,8 +135,14 @@ if (cSVGElement.useVML) {
 		];
 	};
 
-	cSVGElement_svg.prototype.$resize	= function() {
-		cSVGElement_svg.resize(this);
+	cSVGElement_svg.prototype.resize	= function() {
+		// Skip multiple resize requests
+		if (this._resize)
+			clearTimeout(this._resize);
+		var that	= this;
+		this._resize	= setTimeout(function() {
+			that.refresh();
+		}, 100);
 	};
 
 	// presentation
@@ -139,7 +151,7 @@ if (cSVGElement.useVML) {
 			aWidth	= this.getAttribute("width").match(/([\d.]+)([%\w]*)/) || [],
 			aHeight	= this.getAttribute("height").match(/([\d.]+)([%\w]*)/) || [];
 		return '<div class="svg-svg' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="position:relative;display:inline-block;overflow:hidden;' + (this.hasAttribute("style") ? this.getAttribute("style") : '') + '"\
-					onresize="ample.$instance(this).$resize()">\
+					onresize="ample.$instance(this).resize()">\
 					<svg2vml:group class="svg-svg--gateway" style="position:absolute;display:none;"\
 						coordOrigin="0,0"\
 						coordSize="' + (aViewBox[2] || aWidth[1] || 600) + ',' + (aViewBox[3] || aHeight[1] || 600) + '"\
