@@ -78,14 +78,26 @@ if (cSVGElement.useVML) {
 				aHeight	= [null, aViewBox[3], "px"];
 		}
 
-		var oBCRect		= aWidth[2] == "%" || aHeight[2] == "%" ? oInstance.getBoundingClientRect() : {},
-			sWidthOuter	= aWidth[1] + (aWidth[2] || "px"),
+		var sWidthOuter	= aWidth[1] + (aWidth[2] || "px"),
 			sHeightOuter= aHeight[1] + (aHeight[2] || "px");
-			nWidthInner	= aWidth[2] == "%" ? oBCRect.right - oBCRect.left : aWidth[1],
-			nHeightInner= aHeight[2] == "%" ? oBCRect.bottom - oBCRect.top : aHeight[1],
-			nRatio	= (aViewBox[2] / aViewBox[3]) / (nWidthInner / nHeightInner),
-			nLeft	= 0,
-			nTop	= 0;
+			nWidthInner	= aWidth[1],
+			nHeightInner= aHeight[1],
+			nRatio	= (aViewBox[2] / aViewBox[3]) / (nWidthInner / nHeightInner);
+
+		if (aWidth[2] == "%" || aHeight[2] == "%") {
+			var oBCRect		= oInstance.getBoundingClientRect();
+			if (aWidth[2] == "%") {
+				nWidthInner		= oBCRect.right - oBCRect.left;
+				nHeightInner	= nWidthInner / (aViewBox[2] / aViewBox[3]);
+				sHeightOuter	= nHeightInner + "px";
+			}
+			else
+			if (aHeight[2] == "%") {
+				nHeightInner	= oBCRect.bottom - oBCRect.top;
+				nWidthInner		= nHeightInner * (aViewBox[2] / aViewBox[3]);
+				sWidthInner		= nWidthInner + "px";
+			}
+		}
 
 		// Correct viewport
 		if (nRatio > 1) {
@@ -99,6 +111,8 @@ if (cSVGElement.useVML) {
 		}
 
 		// account for min-x, min-y
+		var nLeft	= 0,
+			nTop	= 0;
 		if (aViewBox[0])
 			nLeft	-= (aViewBox[0] / aViewBox[2]) * nWidthInner;
 		if (aViewBox[1])
