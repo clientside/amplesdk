@@ -30,18 +30,14 @@ if (cSVGElement.useVML) {
 			// Hiding SVG content initially and showing it after timeout improves performance!
 			var that	= this;
 			setTimeout(function() {
-				var oGroup	= that.$getContainer("gateway");
-				if (oGroup)
-					oGroup.style.display	= "";
+				// Resize synchronously
+				that.refresh();
 
 				// Dispatch onload event
 				var oEventLoad	= that.ownerDocument.createEvent("Event");
 				oEventLoad.initEvent("load", false, false);
 				that.dispatchEvent(oEventLoad);
 			}, 0);
-			// Resize synchronously
-			if (navigator.userAgent.match(/MSIE ([0-9.]+)/) && RegExp.$1 * 1 == 8)
-				cSVGElement_svg.resize(this);
 		}
 	};
 
@@ -49,6 +45,7 @@ if (cSVGElement.useVML) {
 		var oElement	= oInstance.$getContainer(),
 			oElementGroup	= oInstance.$getContainer("gateway"),
 			aBox	= cSVGElement_svg.getBox(oInstance);
+		//
 		oElementGroup.style.display	= "none";
 		oElementGroup.style.marginLeft	= aBox[0][0];
 		oElementGroup.style.marginTop	= aBox[0][1];
@@ -56,11 +53,17 @@ if (cSVGElement.useVML) {
 		oElementGroup.style.height	= aBox[1][1];
 		oElement.style.width	= aBox[2][0];
 		oElement.style.height	= aBox[2][1];
-
+		// Turn off resize handler
+		oElement.onresize	= null;
+		//
 		setTimeout(function() {
 			var oGroup	= oInstance.$getContainer("gateway");
 			if (oGroup)
 				oGroup.style.display	= "";
+			// Turn on resize handler
+			oElement.onresize	= function() {
+				oInstance.resize();
+			};
 		}, 0);
 	//	oElementGroup.coordSize.value	= aBox[3][0] + ',' + aBox[3][1];
 	};
@@ -150,8 +153,7 @@ if (cSVGElement.useVML) {
 		var aViewBox= this.getAttribute("viewBox").split(/[\s,]/) || [],
 			aWidth	= this.getAttribute("width").match(/([\d.]+)([%\w]*)/) || [],
 			aHeight	= this.getAttribute("height").match(/([\d.]+)([%\w]*)/) || [];
-		return '<div class="svg-svg' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="position:relative;display:inline-block;overflow:hidden;' + (this.hasAttribute("style") ? this.getAttribute("style") : '') + '"\
-					onresize="ample.$instance(this).resize()">\
+		return '<div class="svg-svg' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="position:relative;display:block;overflow:hidden;' + (this.hasAttribute("style") ? this.getAttribute("style") : '') + '">\
 					<svg2vml:group class="svg-svg--gateway" style="position:absolute;display:none;"\
 						coordOrigin="0,0"\
 						coordSize="' + (aViewBox[2] || aWidth[1] || 600) + ',' + (aViewBox[3] || aHeight[1] || 600) + '"\
