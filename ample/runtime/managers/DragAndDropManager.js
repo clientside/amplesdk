@@ -18,6 +18,8 @@ var nDragAndDropManager_STATE_RELEASED	= 0,	// Constants
 	oDragAndDropManager_dataTransfer= null,
 	oDragAndDropManager_image	= null,
 
+	nDragAndDropManager_timeout,
+
 	nDragAndDropManager_mouseX,					// Variables
 	nDragAndDropManager_mouseY,
 	sDragAndDropManager_originalLeft,
@@ -45,11 +47,7 @@ function fDragAndDropManager_abortSession() {
 // Handlers
 function fDragAndDropManager_onMouseDown(oEvent)
 {
-	if (oEvent.defaultPrevented)
-		return;
-
-	// Only react on left button
-	if (oEvent.button)
+	if (oEvent.defaultPrevented || oEvent.button)
 		return;
 
 	// if resize kicked in
@@ -65,9 +63,11 @@ function fDragAndDropManager_onMouseDown(oEvent)
 			oDragAndDropManager_dragSource	= oElement;
 
 		    // Simulate initial mousemove event
-			fSetTimeout(function() {
+			nDragAndDropManager_timeout	= fSetTimeout(function() {
+				nDragAndDropManager_timeout	= 0;
+				//
 				fDragAndDropManager_onMouseMove.call(oEvent.currentTarget, oEvent);
-			}, 0);
+			}, 200);
 
 			return;
 		}
@@ -78,6 +78,10 @@ function fDragAndDropManager_onMouseUp(oEvent)
 {
 	if (nDragAndDropManager_dragState == nDragAndDropManager_STATE_RELEASED)
 		return;
+
+	// Clear timeout
+	if (nDragAndDropManager_timeout)
+		nDragAndDropManager_timeout	= fClearTimeout(nDragAndDropManager_timeout);
 
 	var oElementDOM	= oDragAndDropManager_dragSource.$getContainer(),
 		bDropPrevented	= false,
@@ -194,6 +198,10 @@ function fDragAndDropManager_onMouseMove(oEvent)
 {
 	if (nDragAndDropManager_dragState == nDragAndDropManager_STATE_RELEASED)
 		return;
+
+	// Clear timeout
+	if (nDragAndDropManager_timeout)
+		nDragAndDropManager_timeout	= fClearTimeout(nDragAndDropManager_timeout);
 
    	// Stop event propagation
    	oEvent.stopPropagation();
