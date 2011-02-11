@@ -21,6 +21,8 @@ var nResizeManager_STATE_RELEASED	= 0,	// Constants
 	nResizeManager_resizeEdge	= nResizeManager_EDGE_NONE,
 	nResizeManager_resizeState	= nResizeManager_STATE_RELEASED,
 
+	nResizeManager_timeout,
+
 	nResizeManager_widthMin,
 	nResizeManager_widthMax,
 	nResizeManager_heightMin,
@@ -55,11 +57,7 @@ function fResizeManager_abortSession() {
 // Handlers
 function fResizeManager_onMouseDown(oEvent)
 {
-	if (oEvent.defaultPrevented)
-		return;
-
-	// Only react on left button
-	if (oEvent.button)
+	if (oEvent.defaultPrevented || oEvent.button)
 		return;
 
 	// if drag and drop kicked in
@@ -71,12 +69,12 @@ function fResizeManager_onMouseDown(oEvent)
 		// Start session
 	    nResizeManager_resizeState	= nResizeManager_STATE_CAPTURED;
 
-	    fCaptureManager_setCapture(oResizeManager_resizeNode, true);
-
 	    // Simulate initial mousemove event
-		fSetTimeout(function() {
+	    nResizeManager_timeout	= fSetTimeout(function() {
+	    	nResizeManager_timeout	= 0;
+	    	//
 			fResizeManager_onMouseMove.call(oEvent.currentTarget, oEvent);
-		}, 0);
+		}, 200);
 	}
 };
 
@@ -154,6 +152,10 @@ function fResizeManager_onMouseMove(oEvent)
 		return;
 	}
 
+	// Clear timeout
+	if (nResizeManager_timeout)
+		nResizeManager_timeout	= fClearTimeout(nResizeManager_timeout);
+
    	// Stop event propagation
    	oEvent.stopPropagation();
 
@@ -188,7 +190,8 @@ function fResizeManager_onMouseMove(oEvent)
 		// set capture and prevent selection
 		fBrowser_toggleSelect(false);
 		if (bTrident)
-			oResizeManager_resizeNode.$getContainer().setCapture();
+			oElementDOM.setCapture();
+	    fCaptureManager_setCapture(oResizeManager_resizeNode, true);
 
 		var oComputedStyle	= fBrowser_getComputedStyle(oElementDOM),
 			bBackCompat		= oUADocument.compatMode == "BackCompat";
@@ -275,6 +278,12 @@ function fResizeManager_onMouseUp(oEvent)
 	if (nResizeManager_resizeState == nResizeManager_STATE_RELEASED)
 		return;
 
+	// Clear timeout
+	if (nResizeManager_timeout)
+		nResizeManager_timeout	= fClearTimeout(nResizeManager_timeout);
+
+	var oElementDOM	= oResizeManager_resizeNode.$getContainer();
+
 	if (nResizeManager_resizeState == nResizeManager_STATE_RESIZED)
 	{
 		// Remove :resize pseudo-class
@@ -288,7 +297,7 @@ function fResizeManager_onMouseUp(oEvent)
 
 		if (oEventResizeEnd.defaultPrevented || (oEvent.defaultPrevented || oEvent.button))
 		{
-			var oStyle		= oResizeManager_resizeNode.$getContainer().style,
+			var oStyle		= oElementDOM.style,
 				fRestore	= function() {
 				    oStyle.width	= sResizeManager_originalWidth;
 				    oStyle.height	= sResizeManager_originalHeight;
@@ -313,7 +322,7 @@ function fResizeManager_onMouseUp(oEvent)
 		// End session
 		fBrowser_toggleSelect(true);
 		if (bTrident)
-			oResizeManager_resizeNode.$getContainer().releaseCapture();
+			oElementDOM.releaseCapture();
 
 		//
 		fCaptureManager_releaseCapture(oResizeManager_resizeNode);

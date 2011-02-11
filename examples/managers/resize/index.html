@@ -10,13 +10,22 @@
 				height:	100%;
 			}
 		</style>
+		<style type="text/ample+css">
+			.resizable {
+				border-style: solid;
+				border-width: 1px;
+			}
+			div:resize {
+				border-style: dashed;
+			}
+		</style>
 	</head>
 	<body>
 		<script type="application/ample+xml"
 			xmlns="http://www.w3.org/1999/xhtml"
 			xmlns:aml="http://www.amplesdk.com/ns/aml">
-			<div aml:resizable="true" style="width: 300px; height: 300px; float: left; background-color: lightgreen; border: solid 1px green;">
-				<div aml:resizable="true" style="width: 250px; height: 250px; background-color: pink; border: solid 1px red;">
+			<div aml:resizable="true" class="resizable" style="width: 300px; height: 300px; float: left; background-color: lightgreen; border-color: green">
+				<div aml:resizable="true" class="resizable" style="width: 250px; height: 250px; background-color: pink; border-color: red;">
 					Resize me
 				</div>
 			</div>
