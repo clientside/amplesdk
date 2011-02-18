@@ -38,6 +38,9 @@ if (cSVGElement.useVML) {
 				oEventLoad.initEvent("load", false, false);
 				that.dispatchEvent(oEventLoad);
 			}, 0);
+		},
+		'DOMNodeRemovedFromDocument':	function() {
+			this.$getContainer().onresize	= null;
 		}
 	};
 
@@ -89,7 +92,7 @@ if (cSVGElement.useVML) {
 		}
 
 		var sWidthOuter	= aWidth[1] + (aWidth[2] || "px"),
-			sHeightOuter= aHeight[1] + (aHeight[2] || "px");
+			sHeightOuter= aHeight[1] + (aHeight[2] || "px"),
 			nWidthInner	= aWidth[1],
 			nHeightInner= aHeight[1];
 
