@@ -636,11 +636,8 @@ function fDocument_register(oDocument, oElement) {
 		// Process anonymous content
 		if (oFragment) {
 			oFragment.parentNode	= oElement;
-			for (nIndex = 0; oNode = oFragment.childNodes[nIndex]; nIndex++) {
-				// Tweak node parent
-				oNode.parentNode	= oElement;
+			for (nIndex = 0; oNode = oFragment.childNodes[nIndex]; nIndex++)
 				fDocument_register(oDocument, oNode);
-			}
 		}
 
 		// Fire Mutation event on Element
@@ -686,11 +683,8 @@ function fDocument_unregister(oDocument, oElement) {
 
 		// Process anonymous content
 		if (oFragment) {
-			for (nIndex = 0; oNode = oFragment.childNodes[nIndex]; nIndex++) {
-				// Un-tweak node parent
-				oNode.parentNode	= oFragment;
+			for (nIndex = 0; oNode = oFragment.childNodes[nIndex]; nIndex++)
 				fDocument_unregister(oDocument, oNode);
-			}
 			oFragment.parentNode	= null;
 		}
 	}

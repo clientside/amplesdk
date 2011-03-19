@@ -8,7 +8,8 @@
  */
 
 // Properties
-var oFocusManager_focusGroup	= null;
+var oFocusManager_focusGroup	= null,
+	aFocusManager_focusStack	= [];
 
 //
 function fFocusManager_focus(oElement) {
@@ -27,6 +28,12 @@ function fFocusManager_focus(oElement) {
 
 			// Add :focus pseudo-class
 			fElement_setPseudoClass(oElement, "focus", true);
+
+			// Find context
+//			aFocusManager_focusStack	= [];
+	//		for (var oNode = oElement; oNode; oNode = oNode.parentNode)
+		//		if (oNode.nodeType == 11)
+			//		aFocusManager_focusStack.push(oNode);
 
 			var oEvent	= new cFocusEvent;
 			oEvent.initFocusEvent("focus", false, false, window, null, null);
@@ -52,6 +59,14 @@ function fFocusManager_blur(oElement) {
 			// Remove :focus pseudo-class
 			fElement_setPseudoClass(oElement, "focus", false);
 
+			// Find context
+			for (var oNode = oElement; oNode && oNode.nodeType != 11; oNode = oNode.parentNode)
+				;
+
+//			for (var nIndex = 0; aFocusGroup_focusStack[nIndex]; nIndex++) {
+	//			if (aFocusGroup_focusStack[nIndex] !)
+		//
+			//}
 			// If element has not been removed from DOM
 			var oEvent	= new cFocusEvent;
 			oEvent.initFocusEvent("blur", false, false, window, null, null);
@@ -70,9 +85,9 @@ function fFocusManager_getFocusGroupNext(oElement, nTabIndex) {
 		if (oParent == oElement) {
 			if (oParent.firstChild && (oFocusGroup = fFocusManager_getFocusGroupNextChild(oParent.firstChild, nTabIndex)))
 				return oFocusGroup;
+			if (oParent.contentFragment && (oFocusGroup = fFocusManager_getFocusGroupNextChild(oParent.contentFragment.firstChild, nTabIndex)))
+				return oFocusGroup;
 		}
-//		if (oParent.contentFragment && (oFocusGroup = fFocusManager_getFocusGroupNextChild(oParent.contentFragment.firstChild, nTabIndex)))
-//			return oFocusGroup;
 		if (oParent == oBrowser_modalNode)
 			return;
 		if (oParent.nextSibling && (oFocusGroup = fFocusManager_getFocusGroupNextChild(oParent.nextSibling, nTabIndex)))
@@ -84,8 +99,8 @@ function fFocusManager_getFocusGroupNextChild(oElement, nTabIndex) {
 	for (var oSibling = oElement, oFocusGroup; oSibling; oSibling = oSibling.nextSibling) {
 		if (fFocusManager_isTabStop(oSibling, nTabIndex))
 			return oSibling;
-//		if (oSibling.contentFragment && (oFocusGroup = fFocusManager_getFocusGroupNextChild(oSibling.contentFragment.firstChild, nTabIndex)))
-//			return oFocusGroup;
+		if (oSibling.contentFragment && (oFocusGroup = fFocusManager_getFocusGroupNext(oSibling.contentFragment, nTabIndex)))
+			return oFocusGroup;
 		if (oSibling.firstChild && (oFocusGroup = fFocusManager_getFocusGroupNextChild(oSibling.firstChild, nTabIndex)))
 			return oFocusGroup;
 	}
@@ -97,7 +112,7 @@ function fFocusManager_getFocusGroupPrevious(oElement, nTabIndex) {
 			if (fFocusManager_isTabStop(oParent, nTabIndex))
 				return oParent;
 		}
-//		if (oParent.contentFragment &&(oFocusGroup = fFocusManager_getFocusGroupPreviousChild(oParent.contentFragment.lastChild, nTabIndex)))
+//		if (oParent.contentFragment && (oFocusGroup = fFocusManager_getFocusGroupPreviousChild(oParent.contentFragment.lastChild, nTabIndex)))
 //			return oFocusGroup;
 		if (oParent == oBrowser_modalNode)
 			return;
@@ -108,9 +123,9 @@ function fFocusManager_getFocusGroupPrevious(oElement, nTabIndex) {
 
 function fFocusManager_getFocusGroupPreviousChild(oElement, nTabIndex) {
 	for (var oSibling = oElement, oFocusGroup; oSibling; oSibling = oSibling.previousSibling) {
-//		if (oSibling.contentFragment &&(oFocusGroup = fFocusManager_getFocusGroupPreviousChild(oSibling.contentFragment.lastChild, nTabIndex)))
-//			return oFocusGroup;
 		if (oSibling.lastChild && (oFocusGroup = fFocusManager_getFocusGroupPreviousChild(oSibling.lastChild, nTabIndex)))
+			return oFocusGroup;
+		if (oSibling.contentFragment && (oFocusGroup = fFocusManager_getFocusGroupPreviousChild(oSibling.contentFragment.lastChild, nTabIndex)))
 			return oFocusGroup;
 		if (fFocusManager_isTabStop(oSibling, nTabIndex))
 			return oSibling;
@@ -141,9 +156,11 @@ function fFocusManager_onMouseDown(oEvent) {
 
 	// Find new element to focus
 	var oFocusGroup	= null;
-    for (var oElement = oEvent.target; oElement.nodeType != 9 /* cNode.DOCUMENT_NODE */ && !oFocusGroup; oElement = oElement.parentNode)
+    for (var oElement = oEvent.target; oElement.nodeType != 9 /* cNode.DOCUMENT_NODE */ && !oFocusGroup; oElement = oElement.parentNode) {
+//    	console.log(oElement.nodeName, fFocusManager_isTabStop(oElement, 0, true))
     	if (fFocusManager_isTabStop(oElement, 0, true))
     		oFocusGroup = oElement;
+    }
 
 	//
     if (oFocusGroup)
@@ -204,7 +221,7 @@ function fFocusManager_onKeyDown(oEvent) {
 			if (oEvent.shiftKey)
 				oFocusGroup	= fFocusManager_getFocusGroupPreviousChild(oRoot, nTabIndexPrev) || fFocusManager_getFocusGroupPreviousChild(oRoot, nTabIndexMax);
 			else
-				oFocusGroup	= fFocusManager_getFocusGroupNextChild(oRoot, nTabIndexNext) ||fFocusManager_getFocusGroupNextChild(oRoot, nTabIndexMin);
+				oFocusGroup	= fFocusManager_getFocusGroupNextChild(oRoot, nTabIndexNext) || fFocusManager_getFocusGroupNextChild(oRoot, nTabIndexMin);
 		}
 
 		// Use setTimeout to fix tabbed navigation in Opera)

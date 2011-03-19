@@ -551,14 +551,15 @@ cNode.prototype.lookupNamespaceURI	= function(sPrefix)
 // nsIDOMEventTarget
 function fEventTarget_addEventListener(oNode, sType, fHandler, bUseCapture)
 {
-	if (!oNode.$listeners)
-		oNode.$listeners	= {};
-	if (!oNode.$listeners[sType])
-		oNode.$listeners[sType]	= [];
-	for (var nIndex = 0, aListeners = oNode.$listeners[sType], bCapture = bUseCapture == true; nIndex < aListeners.length; nIndex++)
+	var hListeners	= oNode.$listeners;
+	if (!hListeners)
+		hListeners	= oNode.$listeners	= {};
+	if (!hListeners[sType])
+		hListeners[sType]	= [];
+	for (var nIndex = 0, aListeners = hListeners[sType], bCapture = bUseCapture == true; nIndex < aListeners.length; nIndex++)
 		if (aListeners[nIndex][0] == fHandler && aListeners[nIndex][1] == bCapture)
 			return;
-	oNode.$listeners[sType].push([fHandler, bCapture]);
+	hListeners[sType].push([fHandler, bCapture]);
 };
 
 cNode.prototype.addEventListener		= function(sType, fHandler, bUseCapture)
@@ -576,13 +577,14 @@ cNode.prototype.addEventListener		= function(sType, fHandler, bUseCapture)
 
 function fEventTarget_removeEventListener(oNode, sType, fHandler, bUseCapture)
 {
-	if (oNode.$listeners && oNode.$listeners[sType])
-		for (var nIndex = 0, aListeners = oNode.$listeners[sType], bCapture = bUseCapture == true; nIndex < aListeners.length; nIndex++)
+	var hListeners	= oNode.$listeners;
+	if (hListeners && hListeners[sType])
+		for (var nIndex = 0, aListeners = hListeners[sType], bCapture = bUseCapture == true; nIndex < aListeners.length; nIndex++)
 			if (aListeners[nIndex][0] == fHandler && aListeners[nIndex][1] == bCapture)
 			{
-				oNode.$listeners[sType]	= aListeners.slice(0, nIndex).concat(aListeners.slice(nIndex + 1));
-				if (!oNode.$listeners[sType].length)
-					delete oNode.$listeners[sType];
+				hListeners[sType]	= aListeners.slice(0, nIndex).concat(aListeners.slice(nIndex + 1));
+				if (!hListeners[sType].length)
+					delete hListeners[sType];
 				return;
 			}
 };
@@ -623,15 +625,16 @@ function fNode_executeHandler(oNode, fHandler, oEvent) {
 };
 
 function fNode_handleEvent(oNode, oEvent) {
-	var sType	= oEvent.type;
+	var sType	= oEvent.type,
+		hListeners	= oNode.$listeners;
 
 	// Process inline handler
     if (oEvent.eventPhase != cEvent.CAPTURING_PHASE && oNode['on' + sType])
     	fNode_executeHandler(oNode, oNode['on' + sType], oEvent);
 
 	// Notify listeners
-    if (oNode.$listeners && oNode.$listeners[sType])
-    	for (var nIndex = 0, aListeners = oNode.$listeners[sType]; nIndex < aListeners.length && !oEvent._stoppedImmediately; nIndex++)
+    if (hListeners && hListeners[sType])
+    	for (var nIndex = 0, aListeners = hListeners[sType]; nIndex < aListeners.length && !oEvent._stoppedImmediately; nIndex++)
     		if (aListeners[nIndex][1] == (oEvent.eventPhase == cEvent.CAPTURING_PHASE))
     			fNode_executeHandler(oNode, aListeners[nIndex][0], oEvent);
 
@@ -645,9 +648,11 @@ function fNode_handleEvent(oNode, oEvent) {
 };
 
 function fNode_handleCaptureOnTargetEvent(oNode, oEvent) {
-	var sType	= oEvent.type;
-    if (oNode.$listeners && oNode.$listeners[sType])
-   		for (var nIndex = 0, aListeners = oNode.$listeners[sType]; nIndex < aListeners.length && !oEvent._stoppedImmediately; nIndex++)
+	var sType	= oEvent.type,
+		hListeners	= oNode.$listeners;
+	//
+    if (hListeners && hListeners[sType])
+   		for (var nIndex = 0, aListeners = hListeners[sType]; nIndex < aListeners.length && !oEvent._stoppedImmediately; nIndex++)
    			if (aListeners[nIndex][1] == true)
    				fNode_executeHandler(oNode, aListeners[nIndex][0], oEvent);
 };
@@ -676,31 +681,42 @@ cNode.prototype.isSupported	= function()
 	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };
 
-function fNode_routeEvent(oEvent)
+function fNode_routeEvent(oTarget, oEvent)
 {
 	var aTargets	= [],
 		nLength		= 0,
 		nCurrent	= 0,
-		bUIEvent	= oEvent instanceof cUIEvent,
 		nDisabled	=-1,
-		oTarget		= oEvent.target;
+		bUIEvent		= oEvent instanceof cUIEvent,
+		bMutationEvent	= oEvent instanceof cMutationEvent;
 
 	// Populate stack targets (...document-fragment, document, #document)
-	for (var oNode = oTarget; oNode; oNode = oNode.parentNode) {
+	for (var oNode = oContext = oTarget; oNode; oNode = oNode.parentNode) {
+		if (oNode.nodeType == 11 /* cNode.DOCUMENT_FRAGMENT_NODE */) {
+			if (bMutationEvent)
+				break;	// do not propagate Mutation Events higher than owner
+		}
+		else
 		if (bUIEvent && oNode.nodeType == 1 /* cNode.ELEMENT_NODE */ && !oNode.$isAccessible())
 			nDisabled	= nLength;
-		aTargets[nLength++]	= oNode;
+		aTargets[nLength++]	= [oNode, oContext];
+		//
+		if (oNode.nodeType == 11 /* cNode.DOCUMENT_FRAGMENT_NODE */)
+			oContext	= oNode.parentNode;
 	}
 
 	// Propagate event
 	while (!oEvent._stopped) {
 		switch (oEvent.eventPhase) {
 			case cEvent.CAPTURING_PHASE:
-				if (--nCurrent > 0)
-					oEvent.currentTarget	= aTargets[nCurrent];
+				if (--nCurrent > 0) {
+					oEvent.currentTarget	= aTargets[nCurrent][0];
+					oEvent.target			= aTargets[nCurrent][1];
+				}
 				else {
 					oEvent.eventPhase		= cEvent.AT_TARGET;
-					oEvent.currentTarget	= oTarget;
+					oEvent.currentTarget	=
+					oEvent.target			= aTargets[nCurrent][1];
 					// Special case: handling capture-phase events on target
 					fNode_handleCaptureOnTargetEvent(oTarget, oEvent);
 					// Do not handle target if there is disabled element
@@ -722,8 +738,10 @@ function fNode_routeEvent(oEvent)
 					nCurrent	= nDisabled;
 				// No break left intentionally
 			case cEvent.BUBBLING_PHASE:
-				if (++nCurrent < nLength)
-					oEvent.currentTarget	= aTargets[nCurrent];
+				if (++nCurrent < nLength) {
+					oEvent.currentTarget	= aTargets[nCurrent][0];
+					oEvent.target			= aTargets[nCurrent][1];
+				}
 				else
 					return;
 				break;
@@ -732,13 +750,15 @@ function fNode_routeEvent(oEvent)
 				// Set current target
 				if (nLength > 1) {
 					nCurrent	= nLength - 1;
-					oEvent.eventPhase	= cEvent.CAPTURING_PHASE;
-					oEvent.currentTarget= aTargets[nCurrent];
+					oEvent.eventPhase		= cEvent.CAPTURING_PHASE;
+					oEvent.currentTarget	= aTargets[nCurrent][0];
+					oEvent.target			= aTargets[nCurrent][1];
 				}
 				else {
 					nCurrent	= 0;
-					oEvent.eventPhase	= cEvent.AT_TARGET;
-					oEvent.currentTarget= oTarget;
+					oEvent.eventPhase		= cEvent.AT_TARGET;
+					oEvent.currentTarget	=
+					oEvent.target			= oTarget;
 					// Special case: handling capture-phase events on target
 					fNode_handleCaptureOnTargetEvent(oTarget, oEvent);
 				}
@@ -748,18 +768,20 @@ function fNode_routeEvent(oEvent)
 //console.log(oEvent.currentTarget);
 //<-Source
 
+//->Source
+//		if (oEvent.type == "keydown")
+//			console.log(oEvent.eventPhase, oEvent.target.tagName, oEvent.currentTarget.tagName);
+//<-Source
+
 		// Handle event
 		fNode_handleEvent(oEvent.currentTarget, oEvent);
 	}
 };
 
-function fNode_dispatchEvent(oNode, oEvent)
+function fNode_dispatchEvent(oTarget, oEvent)
 {
-	// Set event target and currentTarget
-	oEvent.target	= oNode;
-
 	// Start event flow
-	fNode_routeEvent(oEvent);
+	fNode_routeEvent(oTarget, oEvent);
 
 	return !oEvent.defaultPrevented;
 };
