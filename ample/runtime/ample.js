@@ -110,14 +110,14 @@ oAmple.classes	= hClasses;
 oAmple.activeElement= null;
 oAmple.readyState	= "loading";
 
-function fAmple_extend(oSource, oTarget) {
-	if (oSource instanceof cFunction) {
-		var oPrototype	= oSource.prototype;
+function fAmple_extend(oTarget, oSource) {
+	if (!oSource && oTarget instanceof cFunction) {
+		var oPrototype	= oTarget.prototype;
 		if (oPrototype instanceof cElement)
-			hClasses[oPrototype.namespaceURI + '#' + oPrototype.localName]	= oSource;
+			hClasses[oPrototype.namespaceURI + '#' + oPrototype.localName]	= oTarget;
 		else
 		if (oPrototype instanceof cAttr)
-			hClasses[oPrototype.namespaceURI + '#' + '@' + oPrototype.localName]	= oSource;
+			hClasses[oPrototype.namespaceURI + '#' + '@' + oPrototype.localName]	= oTarget;
 //->Guard
 		else
 			throw new cDOMException(cDOMException.GUARD_ARGUMENT_WRONG_TYPE_ERR, null
@@ -128,8 +128,10 @@ function fAmple_extend(oSource, oTarget) {
 //<-Guard
 	}
 	else {
-		if (!oTarget)
+		if (!oSource) {
+			oSource	= oTarget;
 			oTarget	= oAmple;
+		}
 
 		//
 		for (var sName in oSource)
@@ -141,22 +143,25 @@ function fAmple_extend(oSource, oTarget) {
 				if (oSource.hasOwnProperty(sName))
 					oTarget[sName]	= oSource[sName];
 			}
+		//
+		return oTarget;
 	}
 };
 
 // Extension Mechanism
-oAmple.extend	= function(oSource, oTarget) {
+oAmple.extend	= function(oTarget, oSource) {
 //->Guard
 	fGuard(arguments, [
-		["source",	cObject],
-		["target",	cObject, true]
+		["target",	cObject],
+		["source",	cObject, true]
 	]);
 //<-Guard
 
 	// Sign
-	fExporter_signMembers(oSource, "plugin");
+	fExporter_signMembers(oTarget, "plugin");
+
 	// Extend
-	fAmple_extend(oSource, oTarget);
+	return fAmple_extend(oTarget, oSource);
 };
 
 // Ready event

@@ -66,7 +66,7 @@ ample.extend({
 });
 
 // Extend collection object
-ample.extend({
+ample.extend(ample.classes.Query.prototype, {
 	xslt:	function(vXml, vXsl, fCallback, aParameters) {
 		// validate API
 		ample.guard(arguments, [
@@ -94,4 +94,4 @@ ample.extend({
 		//
 		return this;
 	}
-}, ample.classes.Query.prototype);
+});

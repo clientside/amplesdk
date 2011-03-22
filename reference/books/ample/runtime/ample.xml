@@ -324,19 +324,19 @@
 					</locale>
 				</description>
 			</method>
-			<method name="extend" type="Void">
+			<method name="extend" type="Object">
 				<arguments>
+					<argument name="target" type="Object">
+						<description>
+							<locale>
+								Target object for extension.
+							</locale>
+						</description>
+					</argument>
 					<argument name="source" type="Object">
 						<description>
 							<locale>
 								Source object to extend from.
-							</locale>
-						</description>
-					</argument>
-					<argument name="target" type="Object" required="false">
-						<description>
-							<locale>
-								Target object for extension. If ommited, <link type="object">ample</link> object is in use.
 							</locale>
 						</description>
 					</argument>

@@ -51,4 +51,4 @@ ample.publish(cXPathNSResolver,	"XPathNSResolver");
 ample.publish(cXPathResult,		"XPathResult");
 
 // Extend ample object
-ample.extend(cXPathEvaluator.prototype,	ample.classes.Document.prototype);
+ample.extend(ample.classes.Document.prototype, cXPathEvaluator.prototype);

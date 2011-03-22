@@ -11,7 +11,7 @@
 
 var sAmple_formsXHTMLNS	= "http://www.w3.org/1999/xhtml";
 
-ample.extend({
+ample.extend(ample.classes.Query.prototype, {
 	//
 	val:	function(vValue) {
 		// validate API
@@ -157,4 +157,4 @@ ample.extend({
 	serializeArray:	function() {
 
 	}
-}, ample.classes.Query.prototype);
+});

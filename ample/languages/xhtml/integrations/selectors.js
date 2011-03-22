@@ -11,7 +11,7 @@ function fXHTMLElement_isInputInForm(oElement) {
 	return oElement instanceof cXHTMLInputElement && oElement.form;
 };
 
-ample.extend({
+ample.extend(ample.classes.NodeSelector.pseudoClass, {
 	"default":		function(oElement) {
 		return fXHTMLElement_isInputInForm(oElement)
 				&& (oElement.attributes.type == "checkbox" || oElement.attributes.type == "radio")
@@ -49,4 +49,4 @@ ample.extend({
 		return fXHTMLElement_isInputInForm(oElement)
 				&& oElement.validity && (oElement.rangeUnderflow || oElement.validity.rangeOverflow);
 	}
-}, ample.classes.NodeSelector.pseudoClass);
+});

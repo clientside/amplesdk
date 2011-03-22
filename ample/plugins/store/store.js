@@ -28,7 +28,7 @@ ample.extend({
 });
 
 // Extend Query
-ample.extend({
+ample.extend(ample.classes.Query.prototype, {
 	"store":	function(sName, vValue) {
 		// Validate API call
 		ample.guard(arguments, [
@@ -39,4 +39,4 @@ ample.extend({
 		// Invoke implementation
 		return fAmple_store(this, sName, vValue);
 	}
-}, ample.classes.Query.prototype);
+});
