@@ -739,7 +739,7 @@ function fBrowser_getResponseDocument(oRequest) {
 			oDocument	= fBrowser_parseXML(sText);
 	}
 	// Check if there is no error in document
-	if (!oDocument || ((bTrident && oDocument.parseError != 0) || !oDocument.documentElement || oDocument.getElementsByTagName("parsererror").length))
+	if (!oDocument || ((bTrident && nVerion < 9 && oDocument.parseError != 0) || !oDocument.documentElement || oDocument.getElementsByTagName("parsererror").length))
 		return null;
 	return oDocument;
 };
