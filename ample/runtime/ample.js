@@ -28,7 +28,7 @@ function fQuery(vArgument1, vArgument2, vArgument3) {
 						aNameSpaces.push("xmlns" + (sKey == '' ? '' : ':') + sKey + '="' + oAmple.prefixes[sKey] + '"');
 				//
 				var oDocument	= fBrowser_createFragment(vArgument1, aNameSpaces.join(' '));
-				if (!oDocument || ((bTrident && nVerion < 9 && oDocument.parseError != 0) || !oDocument.documentElement || oDocument.getElementsByTagName("parsererror").length))
+				if (!oDocument || ((bTrident && nVersion < 9 && oDocument.parseError != 0) || !oDocument.documentElement || oDocument.getElementsByTagName("parsererror").length))
 					throw new cDOMException(cDOMException.SYNTAX_ERR, fQuery.caller);
 				else
 					for (var nIndex = 0, aElements = oDocument.documentElement.childNodes; nIndex < aElements.length; nIndex++)
