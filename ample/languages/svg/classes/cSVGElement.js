@@ -187,7 +187,7 @@ if (cSVGElement.useVML) {
 
 		// 1) first check if style specified
 		if (sValue = oElement.attributes["style"])
-			if (sValue.match(new RegExp(sName + "\\s*:\\s*([^;]+)")))
+			if (sValue.match(new RegExp(sName + "\\s*:\\s*[\'\"]?\\s*([^;\'\"]+)\\s*[\'\"]?")))
 				return RegExp.$1;
 
 		// 2) second check if attribute specified
