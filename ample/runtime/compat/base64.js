@@ -41,7 +41,7 @@ if (!window.btoa) {
 };
 
 if (!window.atob) {
-	var aBase64DecodeChars = new Array(
+	var aBase64DecodeChars = new cArray(
 		    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
 		    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
 		    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 62, -1, -1, -1, 63,
