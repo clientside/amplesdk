@@ -62,7 +62,7 @@ cQuery.prototype.fadeIn	= function(vDuration, fCallback) {
 	var oProperties	= {};
 	oProperties.opacity	= 1;
 	fQuery_each(this, function() {
-		fBrowser_setStyle(this.$getContainer(), "display", "");
+		fBrowser_setStyle(this.$getContainer(), "display", '');
 		fNodeAnimation_play(this, oProperties, vDuration, "ease", fCallback);
 	});
 
