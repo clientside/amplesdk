@@ -691,7 +691,7 @@ function fNode_routeEvent(oTarget, oEvent)
 		bMutationEvent	= oEvent instanceof cMutationEvent;
 
 	// Populate stack targets (...document-fragment, document, #document)
-	for (var oNode = oContext = oTarget; oNode; oNode = oNode.parentNode) {
+	for (var oNode = oTarget, oContext = oTarget; oNode; oNode = oNode.parentNode) {
 		if (oNode.nodeType == 11 /* cNode.DOCUMENT_FRAGMENT_NODE */) {
 			if (bMutationEvent)
 				break;	// do not propagate Mutation Events higher than owner
