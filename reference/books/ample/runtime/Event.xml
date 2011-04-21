@@ -105,7 +105,7 @@
 						Used to indicate whether or not an event can have its default action prevented.
 					</locale>
 					<locale xml:lang="ru">
-						Указвает, возможно ли отменить ответную реакцию браузера по умолчанию на событие.
+						Указывает, возможно ли отменить ответную реакцию браузера по умолчанию на событие.
 					</locale>
 				</description>
 			</property>
