@@ -804,10 +804,26 @@ cElement.prototype.$getContainer	= function(sName)
 {
 	var oElement	= oUADocument.getElementById(this.attributes.id || this.uniqueID);
 	if (sName && oElement)
-		return fElement_getContainerTraverse(oElement, new cRegExp('--' + sName + '(\\s|$)'));
+		oElement	= fElement_getContainerTraverse(oElement, new cRegExp('--' + sName + '(\\s|$)'));
 	return oElement;
 };
-
+/*
+cElement.prototype.$getContainer	= function(sName)
+{
+	if (!oDocument_all[this.uniqueID])
+		return null;
+	var oCache	= oDocument_shadow[this.uniqueID],
+		sPseudo	= '--' + (sName || '');
+	if (sPseudo in oCache)
+		return oCache[sPseudo];
+	else {
+		var oElement	= oUADocument.getElementById(this.attributes.id || this.uniqueID);
+		if (sName && oElement)
+			oElement	= fElement_getContainerTraverse(oElement, new cRegExp(sPseudo + '(\\s|$)'));
+		return oCache[sPseudo] = oElement;
+	}
+};
+*/
 /*
 function fElement_setPseudoClass(oElement, sName, bValue, sContainer)
 {

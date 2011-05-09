@@ -29,7 +29,7 @@ cDocument.prototype.xmlVersion 		= null;
 
 // Private Variables
 var nDocument_index	= 0,
-	//oDocument_shadow	= {},
+//	oDocument_shadow= {},
 	oDocument_all	= {},
 	oDocument_ids	= {};
 
@@ -667,6 +667,10 @@ function fDocument_unregister(oDocument, oElement) {
 		delete oDocument_all[oElement.uniqueID];
 
 		// Cache for shadow links
+//		var oCache	= oDocument_shadow[oElement.uniqueID];
+//		if (oCache)
+//			for (var sPseudo in oCache)
+//				delete oCache[sPseudo];
 //		delete oDocument_shadow[oElement.uniqueID];
 
 		// Unregister "identified" Instance
