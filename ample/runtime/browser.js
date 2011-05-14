@@ -580,7 +580,7 @@ function fBrowser_onDblClick(oEvent) {
 
 	// do not dispatch event if outside modal
     if (!oBrowser_modalNode || fBrowser_isDescendant(oTarget, oBrowser_modalNode)) {
-		if (bTrident) {
+		if (bTrident && nVersion < 9) {
 	 		// Simulate missing 'mousedown' event in IE
 	    	oEventMouseDown = new cMouseEvent;
 	    	oEventMouseDown.initMouseEvent("mousedown", true, true, window, 2, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, null, nButton, null);
