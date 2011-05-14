@@ -565,8 +565,8 @@ function fBrowser_onDblClick(oEvent) {
 		nButton		= fBrowser_getUIEventButton(oEvent),
 		oEventDblClick = new cMouseEvent,
 		oEventClick,
-		oEventMouseDown,
-		oEventMouseUp;
+//		oEventMouseUp,
+		oEventMouseDown;
 
 	// if modal, do not dispatch event
 	if (oBrowser_captureNode && !fBrowser_isDescendant(oTarget, oBrowser_captureNode)) {
@@ -597,12 +597,12 @@ function fBrowser_onDblClick(oEvent) {
 		fNode_dispatchEvent(oTarget, oEventDblClick);
 
 		// Simulate missing 'mouseup' event in IE
-		if (bTrident) {
-	    	oEventMouseUp = new cMouseEvent;
-	    	oEventMouseUp.initMouseEvent("mouseup", true, true, window, 2, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, null, nButton, null);
-	    	oEventMouseUp.$pseudoTarget	= oPseudo;
-	    	fNode_dispatchEvent(oTarget, oEventMouseUp);
-		}
+//		if (bTrident) {
+//	    	oEventMouseUp = new cMouseEvent;
+//	    	oEventMouseUp.initMouseEvent("mouseup", true, true, window, 2, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, null, nButton, null);
+//	    	oEventMouseUp.$pseudoTarget	= oPseudo;
+//	    	fNode_dispatchEvent(oTarget, oEventMouseUp);
+//		}
     }
 };
 
