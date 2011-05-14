@@ -502,11 +502,22 @@ function fBrowser_onContextMenu(oEvent) {
 
 	// do not dispatch event if outside modal
     if (!oBrowser_modalNode || fBrowser_isDescendant(oTarget, oBrowser_modalNode)) {
-    	// Simulate missing 'click' event in IE and WebKit
-		if (bTrident || bWebKit)
-			fNode_dispatchEvent(oTarget, oEventClick);
 
 		fNode_dispatchEvent(oTarget, oEventContextMenu);
+
+		// Simulate missing mouseup event in WebKit
+		if (bWebKit) {
+			var oEventMouseUp	= new cMouseEvent;
+			// Init MouseUp event
+			oEventMouseUp.initMouseEvent("mouseup", true, true, window, oEvent.detail || 1, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, null, 2, null);
+			oEventMouseUp.$pseudoTarget	= oPseudo;
+			//
+			fNode_dispatchEvent(oTarget, oEventMouseUp);
+		}
+
+    	// Simulate missing 'click' event in IE, Presto and WebKit
+		if (bTrident || bWebKit || bPresto)
+			fNode_dispatchEvent(oTarget, oEventClick);
     }
     else
     	bPrevent	= true;
