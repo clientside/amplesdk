@@ -200,7 +200,7 @@ function fBrowser_onKeyDown(oEvent) {
 function fBrowser_onKeyPress(oEvent)
 {
 	// Opera doesn't repeat keydown, but does repeat keypress
-	if (bPresto && bBrowser_keyDown)
+	if ((bPresto || (bGecko && nVersion < 2)) && bBrowser_keyDown)
 		fBrowser_onKeyDown(oEvent);
 
     // Fix for repeated keydown in presto
