@@ -18,6 +18,7 @@ var oBrowser_factory	= oUADocument.createElement("span"),
 	oBrowser_mouseNode	= null,
 	oBrowser_captureNode= null,		// Set in Capture manager
 	oBrowser_modalNode	= null,		// Set in Capture manager
+	bBrowser_mouseDown	= false,
 	bBrowser_keyDown	= false,	// Holds keydown state
 	bBrowser_userSelect	= true;
 
@@ -565,7 +566,6 @@ function fBrowser_onDblClick(oEvent) {
 		nButton		= fBrowser_getUIEventButton(oEvent),
 		oEventDblClick = new cMouseEvent,
 		oEventClick,
-//		oEventMouseUp,
 		oEventMouseDown;
 
 	// if modal, do not dispatch event
@@ -581,12 +581,6 @@ function fBrowser_onDblClick(oEvent) {
 	// do not dispatch event if outside modal
     if (!oBrowser_modalNode || fBrowser_isDescendant(oTarget, oBrowser_modalNode)) {
 		if (bTrident && nVersion < 9) {
-	 		// Simulate missing 'mousedown' event in IE
-	    	oEventMouseDown = new cMouseEvent;
-	    	oEventMouseDown.initMouseEvent("mousedown", true, true, window, 2, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, null, nButton, null);
-	    	oEventMouseDown.$pseudoTarget	= oPseudo;
-	    	fNode_dispatchEvent(oTarget, oEventMouseDown);
-
 	 		// Simulate missing 'click' event in IE
 	    	oEventClick = new cMouseEvent;
 	    	oEventClick.initMouseEvent("click", true, true, window, 2, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, null, nButton, null);
@@ -595,14 +589,6 @@ function fBrowser_onDblClick(oEvent) {
 		}
 
 		fNode_dispatchEvent(oTarget, oEventDblClick);
-
-		// Simulate missing 'mouseup' event in IE
-//		if (bTrident) {
-//	    	oEventMouseUp = new cMouseEvent;
-//	    	oEventMouseUp.initMouseEvent("mouseup", true, true, window, 2, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, null, nButton, null);
-//	    	oEventMouseUp.$pseudoTarget	= oPseudo;
-//	    	fNode_dispatchEvent(oTarget, oEventMouseUp);
-//		}
     }
 };
 
@@ -612,6 +598,9 @@ function fBrowser_onMouseDown(oEvent) {
 		nButton		= fBrowser_getUIEventButton(oEvent),
 		bCapture	= false,
 		oEventMouseDown = new cMouseEvent;
+
+	// Flag for the dblclick fix in IE9<
+	bBrowser_mouseDown	= true;
 
 	// change target if some element is set to receive capture
 	if (oBrowser_captureNode && !fBrowser_isDescendant(oTarget, oBrowser_captureNode)) {
@@ -663,6 +652,7 @@ function fBrowser_onMouseUp(oEvent) {
 	var oTarget		= fBrowser_getEventTarget(oEvent),
 		oPseudo		= fBrowser_getUIEventPseudo(oEvent),
 		nButton		= fBrowser_getUIEventButton(oEvent),
+		oEventMouseDown,
 		oEventMouseUp	= new cMouseEvent;
 
 	// change target if some element is set to receive capture
@@ -672,12 +662,24 @@ function fBrowser_onMouseUp(oEvent) {
 	}
 
 	// Init MouseUp event
-    oEventMouseUp.initMouseEvent("mouseup", true, true, window, oEvent.detail || 1, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, oEvent.metaKey, nButton, null);
+    oEventMouseUp.initMouseEvent("mouseup", true, true, window, !bBrowser_mouseDown ? 2 : oEvent.detail || 1, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, oEvent.metaKey, nButton, null);
     oEventMouseUp.$pseudoTarget	= oPseudo;
 
 	// do not dispatch event if outside modal
-	if (!oBrowser_modalNode || fBrowser_isDescendant(oTarget, oBrowser_modalNode))
+	if (!oBrowser_modalNode || fBrowser_isDescendant(oTarget, oBrowser_modalNode)) {
+		// Simulate missing 'mousedown' event in IE (when in dblclick)
+		if ((bTrident && nVersion < 9) && !bBrowser_mouseDown) {
+	    	oEventMouseDown = new cMouseEvent;
+	    	oEventMouseDown.initMouseEvent("mousedown", true, true, window, 2, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, null, nButton, null);
+	    	oEventMouseDown.$pseudoTarget	= oPseudo;
+	    	fNode_dispatchEvent(oTarget, oEventMouseDown);
+		}
+
 		fNode_dispatchEvent(oTarget, oEventMouseUp);
+	}
+
+	// Flag for the dblclick fix in IE9<
+	bBrowser_mouseDown	= false;
 
 	//
 	return fBrowser_eventPreventDefault(oEvent, oEventMouseUp);
