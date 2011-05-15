@@ -104,11 +104,12 @@ runtime/modules/modal.js
 runtime/modules/offset.js
 runtime/modules/traversing.js
 #
-runtime/compat/javascript.js
 runtime/compat/JSON.js
 runtime/compat/DOMParser.js
 runtime/compat/XMLSerializer.js
 runtime/compat/XMLHttpRequest.js
 runtime/compat/XSLTProcessor.js
+runtime/compat/javascript.js
+runtime/compat/base64.js
 #
 runtime/export.js
