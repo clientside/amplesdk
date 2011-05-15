@@ -116,7 +116,28 @@ function fQuery_ajax(oSettings) {
 };
 
 function fQuery_param(vValue) {
-	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
+	var aValue	= [];
+	if (vValue instanceof cNodeList) {
+		throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
+	}
+	else
+	if (vValue instanceof cObject) {
+		(function(sPrefix, vValue) {
+			if (vValue instanceof cArray)
+				for (var nIndex = 0, nLength = vValue.length, oValue; nIndex < nLength; nIndex++)
+					arguments.callee(sPrefix + '[' + ((oValue = vValue[nIndex]) instanceof cArray || typeof oValue == "object " ? nIndex : '') + ']', oValue);
+			else
+			if (vValue instanceof cObject)
+				for (var sKey in vValue)
+					arguments.callee(sPrefix + (sPrefix == '' ? sKey : '[' + sKey + ']'), vValue[sKey]);
+			else
+				aValue[aValue.length]	= encodeURIComponent(sPrefix) + '=' + encodeURIComponent(vValue);
+		})('', vValue);
+	}
+	else
+		throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
+	//
+	return aValue.join('&').replace(/%20/g, '+');
 };
 
 // ample extensions
