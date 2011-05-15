@@ -500,7 +500,7 @@ function fBrowser_onContextMenu(oEvent) {
 	oEventClick.$pseudoTarget	= oPseudo;
 
     // Init ContextMenu event
-    oEventContextMenu.initMouseEvent("contextmenu", true, true, window, oEvent.detail || 1, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, oEvent.metaKey, 2, null);
+    oEventContextMenu.initMouseEvent("contextmenu", true, true, window, 0, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, oEvent.metaKey, 2, null);
     oEventContextMenu.$pseudoTarget	= oPseudo;
 
 	// do not dispatch event if outside modal
