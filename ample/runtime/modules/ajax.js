@@ -131,7 +131,7 @@ function fQuery_param(vValue) {
 				for (var sKey in vValue)
 					arguments.callee(sPrefix + (sPrefix == '' ? sKey : '[' + sKey + ']'), vValue[sKey]);
 			else
-				aValue[aValue.length]	= encodeURIComponent(sPrefix) + '=' + encodeURIComponent(vValue);
+				aValue[aValue.length]	= fEncodeURIComponent(sPrefix) + '=' + fEncodeURIComponent(vValue);
 		})('', vValue);
 	}
 	else
