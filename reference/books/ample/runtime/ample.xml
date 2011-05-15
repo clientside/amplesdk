@@ -172,9 +172,9 @@
 									<li><b>data</b> - Data to be sent to the server.</li>
 									<li><b>dataType</b> - The type of data that you're expecting back from the server ("xml", "html", "script", "json" or "text").</li>
 									<li><b>timeout</b> - A timeout (in milliseconds) for the request. </li>
-									<li><b>success</b> - A function to be called if the request succeeds.</li>
-									<li><b>error</b> - A function to be called if the request fails.</li>
-									<li><b>complete</b> - A function to be called when the request finishes</li>
+									<li><b>success(data, status, xhr)</b> - A function to be called if the request succeeds. Parameter status can have of the following values: "success", "notmodified", "error", "timeout", "abort", or "parsererror".</li>
+									<li><b>error(xhr, status)</b> - A function to be called if the request fails.</li>
+									<li><b>complete(xhr, status)</b> - A function to be called when the request finishes</li>
 									<li><b>username</b> - A username to be used in response to an HTTP access authentication request.</li>
 									<li><b>password</b> - A password to be used in response to an HTTP access authentication request.</li>
 									<li><b>headers</b> - Headers bag</li>
@@ -205,10 +205,10 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="callback" type="Function" required="false">
+					<argument name="success" type="Function" required="false">
 						<description>
 							<locale>
-								A callback function that is executed if the request succeeds.
+								A callback function that is executed if the request succeeds. Consult <link type="method">ajax</link> function for parameters.
 							</locale>
 						</description>
 					</argument>
@@ -235,10 +235,10 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="callback" type="Function" required="false">
+					<argument name="success" type="Function" required="false">
 						<description>
 							<locale>
-								A callback function that is executed if the request succeeds.
+								A callback function that is executed if the request succeeds. Consult <link type="method">ajax</link> function for parameters.
 							</locale>
 						</description>
 					</argument>
