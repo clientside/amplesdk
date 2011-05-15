@@ -543,6 +543,9 @@ function fBrowser_onClick(oEvent) {
 		bPrevent	= false,
 		oEventClick	= new cMouseEvent;
 
+//	if (bGecko && oEvent.button == 2)
+//		return;
+
 	// if modal, do not dispatch event
 	if (oBrowser_captureNode && !fBrowser_isDescendant(oTarget, oBrowser_captureNode)) {
 		oTarget	= oBrowser_captureNode;
