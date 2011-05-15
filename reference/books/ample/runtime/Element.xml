@@ -854,8 +854,7 @@
 			<event name="contextmenu" type="MouseEvent" cancelable="true" bubbles="true">
 				<description>
 					<locale>
-						<b>* legacy.</b> Fires when the user clicks the right mouse button in the client area, opening the context menu.
-						It is recommended that you use <link type="event">click</link> event and check <link type="property">button</link> if its value is 2.
+						Fires when the user clicks the right mouse button in the client area, opening the context menu.
 					</locale>
 					<locale xml:lang="ru">
 						Загорается, когда происходит щелчок левой кнопкой мыши открывает контекстное меню.

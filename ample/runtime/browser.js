@@ -485,7 +485,6 @@ function fBrowser_onContextMenu(oEvent) {
 		oPseudo		= fBrowser_getUIEventPseudo(oEvent),
 		nButton 	= fBrowser_getUIEventButton(oEvent),
 		bPrevent	= false,
-		oEventClick	= new cMouseEvent,
 		oEventContextMenu	= new cMouseEvent;
 
 	// if modal, do not dispatch event
@@ -494,10 +493,6 @@ function fBrowser_onContextMenu(oEvent) {
 		oPseudo	= oTarget.$getContainer();
 		bPrevent	= true;
 	}
-
-	// Init Click event
-	oEventClick.initMouseEvent("click", true, true, window, oEvent.detail || 1, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, null, 2, null);
-	oEventClick.$pseudoTarget	= oPseudo;
 
     // Init ContextMenu event
     oEventContextMenu.initMouseEvent("contextmenu", true, true, window, 0, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, oEvent.metaKey, 2, null);
@@ -517,12 +512,6 @@ function fBrowser_onContextMenu(oEvent) {
 			//
 			fNode_dispatchEvent(oTarget, oEventMouseUp);
 		}
-
-    	// Simulate missing 'click' event (somewhat atavism, to be removed)
-		fNode_dispatchEvent(oTarget, oEventClick);
-		//
-		if (oEventClick.defaultPrevented)
-			oEventContextMenu.preventDefault();
     }
     else
     	bPrevent	= true;

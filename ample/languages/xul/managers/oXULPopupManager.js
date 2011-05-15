@@ -50,30 +50,32 @@ var oXULPopupManager	= (function () {
 		}
 	}, true);
 
-	ample.bind("click",	function(oEvent) {
+	ample.bind("contextmenu", function(oEvent) {
 		for (var oElement = oEvent.target, oPopup; oElement.nodeType != ample.classes.Node.DOCUMENT_NODE; oElement = oElement.parentNode) {
 			if (oElement.$isAccessible()) {
-				if (oEvent.button == 2) {
-			        if (oElement.attributes["context"]) {
-			            if (oPopup = this.getElementById(oElement.attributes["context"])) {
-			            	oPopup.showPopup(oElement, oEvent.clientX + document.documentElement.scrollLeft, oEvent.clientY + document.documentElement.scrollTop, cXULPopupElement.POPUP_TYPE_POPUP);
-			                this.popupNode	= oPopup;
-			            }
-			            oEvent.preventDefault();
-			            break;
-			        }
-				}
-				else
-		        if (oEvent.button == 0) {
-		        	if (oElement.attributes["popup"]) {
-			            if (oPopup = this.getElementById(oElement.attributes["popup"])) {
-			                oPopup.showPopup(oElement, oEvent.clientX + document.documentElement.scrollLeft, oEvent.clientY + document.documentElement.scrollTop, cXULPopupElement.POPUP_TYPE_POPUP);
-				    		this.popupNode	= oPopup;
-				    	}
-			            oEvent.preventDefault();
-			            break;
-		        	}
+		        if (oElement.attributes["context"]) {
+		            if (oPopup = this.getElementById(oElement.attributes["context"])) {
+		            	oPopup.showPopup(oElement, oEvent.clientX + document.documentElement.scrollLeft, oEvent.clientY + document.documentElement.scrollTop, cXULPopupElement.POPUP_TYPE_POPUP);
+		                this.popupNode	= oPopup;
+		            }
+		            oEvent.preventDefault();
+		            break;
 		        }
+			}
+		}
+	}, true);
+
+	ample.bind("click", function(oEvent) {
+		for (var oElement = oEvent.target, oPopup; oElement.nodeType != ample.classes.Node.DOCUMENT_NODE; oElement = oElement.parentNode) {
+			if (oElement.$isAccessible()) {
+	        	if (oElement.attributes["popup"]) {
+		            if (oPopup = this.getElementById(oElement.attributes["popup"])) {
+		                oPopup.showPopup(oElement, oEvent.clientX + document.documentElement.scrollLeft, oEvent.clientY + document.documentElement.scrollTop, cXULPopupElement.POPUP_TYPE_POPUP);
+			    		this.popupNode	= oPopup;
+			    	}
+		            oEvent.preventDefault();
+		            break;
+	        	}
 			}
 		}
 	}, true);
