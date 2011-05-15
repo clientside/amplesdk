@@ -518,13 +518,11 @@ function fBrowser_onContextMenu(oEvent) {
 			fNode_dispatchEvent(oTarget, oEventMouseUp);
 		}
 
-    	// Simulate missing 'click' event in IE, Presto and WebKit
-		if (bTrident || bWebKit || bPresto) {
-			fNode_dispatchEvent(oTarget, oEventClick);
-			//
-			if (oEventClick.defaultPrevented)
-				oEventContextMenu.preventDefault();
-		}
+    	// Simulate missing 'click' event (somewhat atavism, to be removed)
+		fNode_dispatchEvent(oTarget, oEventClick);
+		//
+		if (oEventClick.defaultPrevented)
+			oEventContextMenu.preventDefault();
     }
     else
     	bPrevent	= true;
@@ -543,8 +541,8 @@ function fBrowser_onClick(oEvent) {
 		bPrevent	= false,
 		oEventClick	= new cMouseEvent;
 
-//	if (bGecko && oEvent.button == 2)
-//		return;
+	if (bGecko && oEvent.button == 2)
+		return;
 
 	// if modal, do not dispatch event
 	if (oBrowser_captureNode && !fBrowser_isDescendant(oTarget, oBrowser_captureNode)) {
