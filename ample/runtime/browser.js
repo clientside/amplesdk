@@ -24,17 +24,17 @@ var oBrowser_factory	= oUADocument.createElement("span"),
 
 // Events handling
 function fBrowser_attachEvent(oNode, sType, fHandler) {
-	if (bTrident)
-		oNode.attachEvent('on' + sType, fHandler);
-	else
+	if (oNode.addEventListener)
 		oNode.addEventListener(sType, fHandler, false);
+	else
+		oNode.attachEvent('on' + sType, fHandler);
 };
 
 function fBrowser_detachEvent(oNode, sType, fHandler) {
-	if (bTrident)
-		oNode.detachEvent('on' + sType, fHandler);
-	else
+	if (oNode.removeEventListener)
 		oNode.removeEventListener(sType, fHandler, false);
+	else
+		oNode.detachEvent('on' + sType, fHandler);
 };
 
 // Finds Element by event target
