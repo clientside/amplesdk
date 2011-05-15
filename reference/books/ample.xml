@@ -34,7 +34,7 @@
 					<node title="UIEvent" url="ample/runtime/UIEvent.xml"/>
 					<node title="FocusEvent" url="ample/runtime/FocusEvent.xml"/>
 					<node title="MouseEvent" url="ample/runtime/MouseEvent.xml"/>
-					<node title="MouseWheelEvent" url="ample/runtime/MouseWheelEvent.xml"/>
+					<node title="WheelEvent" url="ample/runtime/WheelEvent.xml"/>
 					<node title="KeyboardEvent" url="ample/runtime/KeyboardEvent.xml"/>
 					<node title="TextEvent" url="ample/runtime/TextEvent.xml"/>
 					<node title="MutationEvent" url="ample/runtime/MutationEvent.xml"/>

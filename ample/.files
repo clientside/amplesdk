@@ -7,7 +7,7 @@ runtime/classes/events/UIEvent.js
 runtime/classes/events/FocusEvent.js
 runtime/classes/events/MutationEvent.js
 runtime/classes/events/MouseEvent.js
-runtime/classes/events/MouseWheelEvent.js
+runtime/classes/events/WheelEvent.js
 runtime/classes/events/KeyboardEvent.js
 runtime/classes/events/TextEvent.js
 # Touches

@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<class name="MouseWheelEvent" extends="runtime:MouseEvent">
+<class name="WheelEvent" extends="runtime:MouseEvent">
 	<abstract>
 		<locale>
-			The MouseWheelEvent interface provides specific contextual information associated with mouse wheel events.
+			The WheelEvent interface provides specific contextual information associated with mouse wheel events.
 		</locale>
 		<locale xml:lang="ru">
-			Интерфейс MouseWheelEvent предоставляет контекстную информацию, специфичную для событий манипулятора "мышь".
+			Интерфейс WheelEvent предоставляет контекстную информацию, специфичную для событий манипулятора "мышь".
 		</locale>
 	</abstract>
 	<examples/>
 	<members>
 		<methods>
-			<method name="initMouseWheelEvent" type="Void">
+			<method name="initWheelEvent" type="Void">
 				<arguments>
 					<argument name="type" type="String" required="true">
 						<description>
@@ -131,34 +131,100 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="wheelDelta" type="Number" required="true">
+					<argument name="deltaX" type="Number" required="true">
+						<description>
+							<locale>
+								The distance the wheel has rotated around the x-axis.
+							</locale>
+						</description>
+					</argument>
+					<argument name="deltaY" type="Number" required="true">
 						<description>
 							<locale>
 								The distance the wheel has rotated around the y-axis.
 							</locale>
 						</description>
 					</argument>
+					<argument name="deltaZ" type="Number" required="true">
+						<description>
+							<locale>
+								The distance the wheel has rotated around the z-axis.
+							</locale>
+						</description>
+					</argument>
+					<argument name="deltaMode" type="Number" required="true">
+						<description>
+							<locale>
+								The deltaMode attribute contains an indication of the units of measurement for the delta values.
+								The default value is DOM_DELTA_PIXEL.
+							</locale>
+						</description>
+					</argument>
 				</arguments>
 				<description>
 					<locale>
-						Initializes attributes of a <link type="class">MouseWheelEvent</link> object.
+						Initializes attributes of a <link type="class">WheelEvent</link> object.
 					</locale>
 					<locale xml:lang="ru">
-						Метод initMouseWheelEvent используется для инициализации значения объекта MouseEvent.
+						Метод initWheelEvent используется для инициализации значения объекта MouseEvent.
 					</locale>
 				</description>
 			</method>
 		</methods>
 		<properties>
-			<property name="wheelDelta" type="Number" readonly="true">
+			<property name="deltaX" type="Number" readonly="true">
+				<description>
+					<locale>
+						The distance the wheel has rotated around the x-axis.
+					</locale>
+				</description>
+			</property>
+			<property name="deltaY" type="Number" readonly="true">
 				<description>
 					<locale>
 						The distance the wheel has rotated around the y-axis.
 					</locale>
 				</description>
 			</property>
+			<property name="deltaZ" type="Number" readonly="true">
+				<description>
+					<locale>
+						The distance the wheel has rotated around the z-axis.
+					</locale>
+				</description>
+			</property>
+			<property name="deltaMode" type="Number" readonly="true">
+				<description>
+					<locale>
+						The deltaMode attribute contains an indication of the units of measurement for the delta values.
+						The default value is DOM_DELTA_PIXEL.
+					</locale>
+				</description>
+			</property>
 		</properties>
-		<constants />
+		<constants>
+			<constant name="DOM_DELTA_PIXEL" value="0">
+				<description>
+					<locale>
+						The units of measurement for the delta must be pixels.
+					</locale>
+				</description>
+			</constant>
+			<constant name="DOM_DELTA_LINE" value="1">
+				<description>
+					<locale>
+						The units of measurement for the delta must be individual lines of tex.
+					</locale>
+				</description>
+			</constant>
+			<constant name="DOM_DELTA_PAGE" value="2">
+				<description>
+					<locale>
+						The units of measurement for the delta must be pages.
+					</locale>
+				</description>
+			</constant>
+		</constants>
 	</members>
 	<remarks>
 		<remark>

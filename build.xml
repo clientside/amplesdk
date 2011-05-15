@@ -123,7 +123,7 @@
 				KeyboardEvent.js,
 				TextEvent.js,
 				MouseEvent.js,
-				MouseWheelEvent.js,
+				WheelEvent.js,
 				MutationEvent.js,
 				TouchEvent.js,
 				GestureEvent.js"/>

@@ -931,7 +931,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="mousewheel" type="MouseWheelEvent" cancelable="true" bubbles="true">
+			<event name="mousewheel" type="WheelEvent" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						Fires when the user wheels the mouse within the boundaries of the object.

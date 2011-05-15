@@ -51,10 +51,11 @@ function fTouchManager_onTouchMove(oEvent) {
 		nClientY	= oEvent.touches[0].clientY;
 	// Simulate wheel event
 	if (nTouchManager_clientY - nClientY) {
-		var oEventMouseWheel	= new cMouseWheelEvent;
-		oEventMouseWheel.initMouseWheelEvent("mousewheel", true, true, window, null, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, 0, null, fBrowser_getKeyboardEventModifiersList(oEvent), nTouchManager_clientY	- nClientY);
-		oEventMouseWheel.$pseudoTarget	= oEvent.$pseudoTarget;
-		fNode_dispatchEvent(oEvent.target, oEventMouseWheel);
+		var oEventWheel	= new cWheelEvent;
+		oEventWheel.initWheelEvent("mousewheel", true, true, window, null, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, 0, null, fBrowser_getKeyboardEventModifiersList(oEvent), 0, nTouchManager_clientY - nClientY, 0, 0);
+		oEventWheel.$pseudoTarget	= oEvent.$pseudoTarget;
+		oEventWheel.wheelDelta	= oEventWheel.deltaY;
+		fNode_dispatchEvent(oEvent.target, oEventWheel);
 	}
 	// Scroll scrollables
 	if (oTouchManager_scrollPseudo) {

@@ -147,7 +147,7 @@ function fBrowser_onMouseWheel(oEvent) {
 		oPseudo		= fBrowser_getUIEventPseudo(oEvent),
 		bPrevent	= false,
 		nWheelDelta	= bGecko ? oEvent.detail : -1 * oEvent.wheelDelta / 40,
-		oEventMouseWheel	= new cMouseWheelEvent;
+		oEventWheel	= new cWheelEvent;
 
 	// if modal, do not dispatch event
 	if (oBrowser_captureNode && !fBrowser_isDescendant(oTarget, oBrowser_captureNode)) {
@@ -157,20 +157,21 @@ function fBrowser_onMouseWheel(oEvent) {
 	}
 
 	// Init MouseWheel event
-	oEventMouseWheel.initMouseWheelEvent("mousewheel", true, true, window, null, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, fBrowser_getUIEventButton(oEvent), null, fBrowser_getKeyboardEventModifiersList(oEvent), nWheelDelta);
-	oEventMouseWheel.$pseudoTarget	= oPseudo;
+	oEventWheel.initWheelEvent("mousewheel", true, true, window, null, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, fBrowser_getUIEventButton(oEvent), null, fBrowser_getKeyboardEventModifiersList(oEvent), 0, nWheelDelta, 0, 0);
+	oEventWheel.$pseudoTarget	= oPseudo;
+	oEventWheel.wheelDelta		= oEventWheel.deltaY;
 
 	// do not dispatch event if outside modal
     if (!oBrowser_modalNode || fBrowser_isDescendant(oTarget, oBrowser_modalNode))
-    	fNode_dispatchEvent(oTarget, oEventMouseWheel);
+    	fNode_dispatchEvent(oTarget, oEventWheel);
     else
     	bPrevent	= true;
 
     if (bPrevent)
-    	oEventMouseWheel.preventDefault();
+    	oEventWheel.preventDefault();
 
 	//
-	return fBrowser_eventPreventDefault(oEvent, oEventMouseWheel);
+	return fBrowser_eventPreventDefault(oEvent, oEventWheel);
 };
 
 // Key Events
