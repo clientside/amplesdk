@@ -571,8 +571,7 @@ function fBrowser_onDblClick(oEvent) {
 		oPseudo		= fBrowser_getUIEventPseudo(oEvent),
 		nButton		= fBrowser_getUIEventButton(oEvent),
 		oEventDblClick = new cMouseEvent,
-		oEventClick,
-		oEventMouseDown;
+		oEventClick;
 
 	// if modal, do not dispatch event
 	if (oBrowser_captureNode && !fBrowser_isDescendant(oTarget, oBrowser_captureNode)) {
