@@ -133,13 +133,12 @@ function fBrowser_getKeyboardEventModifiersList(oEvent) {
 	return aModifiersList.join(' ');
 };
 
-function fBrowser_eventPreventDefault(oEvent) {
-    for (var nIndex = 1, nLength = arguments.length; nIndex < nLength; nIndex++)
-	    if (arguments[nIndex].defaultPrevented) {
-	    	if (oEvent.preventDefault)
-		    	oEvent.preventDefault();
-	    	return false;
-	    }
+function fBrowser_eventPreventDefault(oEventOriginal, oEvent) {
+    if (oEvent.defaultPrevented) {
+    	if (oEventOriginal.preventDefault)
+    		oEventOriginal.preventDefault();
+    	return false;
+    }
     return true;
 };
 
@@ -235,10 +234,13 @@ function fBrowser_onKeyPress(oEvent)
     	fNode_dispatchEvent(oTarget, oEventKeyPress);
 		//
     	fNode_dispatchEvent(oTarget, oEventTextInput);
+    	//
+    	if (oEventTextInput.defaultPrevented)
+    		oEventKeyPress.preventDefault();
     }
 
 	//
-	return fBrowser_eventPreventDefault(oEvent, oEventKeyPress, oEventTextInput);
+	return fBrowser_eventPreventDefault(oEvent, oEventKeyPress);
 };
 
 function fBrowser_onKeyUp(oEvent) {
@@ -517,8 +519,12 @@ function fBrowser_onContextMenu(oEvent) {
 		}
 
     	// Simulate missing 'click' event in IE, Presto and WebKit
-		if (bTrident || bWebKit || bPresto)
+		if (bTrident || bWebKit || bPresto) {
 			fNode_dispatchEvent(oTarget, oEventClick);
+			//
+			if (oEventClick.defaultPrevented)
+				oEventContextMenu.preventDefault();
+		}
     }
     else
     	bPrevent	= true;
@@ -527,7 +533,7 @@ function fBrowser_onContextMenu(oEvent) {
 		oEventContextMenu.preventDefault();
 
 	//
-	return fBrowser_eventPreventDefault(oEvent, oEventContextMenu, oEventClick);
+	return fBrowser_eventPreventDefault(oEvent, oEventContextMenu);
 };
 
 function fBrowser_onClick(oEvent) {
