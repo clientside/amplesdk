@@ -964,7 +964,6 @@
 			<event name="keypress" type="KeyboardEvent" cancelable="true" bubbles="true">
 				<description>
 					<locale>
-						<b>* legacy.</b> Fires when the user presses key on the keyboard.
 						It is recommended that you use <link type="event">textInput</link> event instead.
 					</locale>
 					<locale xml:lang="ru">

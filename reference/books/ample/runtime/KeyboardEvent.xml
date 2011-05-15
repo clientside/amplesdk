@@ -194,7 +194,7 @@
       <ul>
         <li><link type="event" href="runtime:Element">keydown</link></li>
         <li><link type="event" href="runtime:Element">keyup</link></li>
-        <li><link type="event" href="runtime:Element">keypress</link> (deprecated)</li>
+        <li><link type="event" href="runtime:Element">keypress</link></li>
       </ul>
 		</remark>
 	</remarks>
