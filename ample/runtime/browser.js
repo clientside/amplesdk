@@ -146,8 +146,12 @@ function fBrowser_onMouseWheel(oEvent) {
 	var oTarget		= fBrowser_getEventTarget(oEvent),
 		oPseudo		= fBrowser_getUIEventPseudo(oEvent),
 		bPrevent	= false,
-		nWheelDelta	= bGecko ? oEvent.detail : -1 * oEvent.wheelDelta / 40,
+		nWheelDelta	= bGecko ? -120 * oEvent.detail : oEvent.wheelDelta * (bPresto ? 3 : 1),
 		oEventWheel	= new cWheelEvent;
+
+	// Before Opera 9.5 sign was inverted
+//	if (bPresto && nVersion < 9.5)
+//		nWheelDelta	*=-1;
 
 	// if modal, do not dispatch event
 	if (oBrowser_captureNode && !fBrowser_isDescendant(oTarget, oBrowser_captureNode)) {
