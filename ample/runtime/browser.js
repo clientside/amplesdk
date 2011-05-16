@@ -146,12 +146,16 @@ function fBrowser_onMouseWheel(oEvent) {
 	var oTarget		= fBrowser_getEventTarget(oEvent),
 		oPseudo		= fBrowser_getUIEventPseudo(oEvent),
 		bPrevent	= false,
-		nWheelDelta	= bGecko ? -120 * oEvent.detail : oEvent.wheelDelta * (bPresto ? 3 : 1),
+		nWheelDelta	= bGecko ? -40 * oEvent.detail : oEvent.wheelDelta,
 		oEventWheel	= new cWheelEvent;
 
-	// Before Opera 9.5 sign was inverted
-//	if (bPresto && nVersion < 9.5)
-//		nWheelDelta	*=-1;
+	// Let me know how would you feature-detect this
+	if (oUANavigator.platform == "MacIntel")
+		if (bPresto || bGecko)
+			nWheelDelta	*= 3;
+	// Opera 9.5 corrected sign
+	if (bPresto && nVersion < 2.1)
+		nWheelDelta	*=-1;
 
 	// if modal, do not dispatch event
 	if (oBrowser_captureNode && !fBrowser_isDescendant(oTarget, oBrowser_captureNode)) {

@@ -76,19 +76,20 @@ var bTrident	= false,
 
 if (!!oUADocument.namespaces) {
 	bTrident	= true;
-	nVersion	= oUANavigator.userAgent.match(/MSIE ([\d.]+)/)[1];
+	nVersion	= 1 * oUANavigator.userAgent.match(/MSIE (\d+\.\d+)/)[1];
 }
 else
 if (!!window.controllers) {
 	bGecko		= true;
-	nVersion	= fParseFloat(oUANavigator.userAgent.match(/rv:(\d\.\d)/)[1]);
+	nVersion	= 1 * oUANavigator.userAgent.match(/rv:(\d+\.\d+)/)[1];
 }
 else
 if (!!window.opera) {
 	bPresto		= true;
-//	nVersion	= oUANavigator.userAgent.match(/Presto\/([\d.]+)/)[1];
+	nVersion	= 1 * oUANavigator.userAgent.match(/Presto\/(\d+\.\d+)/)[1];
 }
 else
-if (oUANavigator.userAgent.match(/AppleWebKit\/([\d.]+)/)[1]) {
+if (oUANavigator.userAgent.match(/AppleWebKit\/(\d+\.\d+)/)) {
 	bWebKit		= true;
+	nVersion	= 1 * cRegExp.$1;
 }
