@@ -36,7 +36,7 @@ function fSMILElement_onTimeline() {
 		nTimeFilteredSimpleTime,
 		nTimeDeceleration;
 
-	for (var nIndex = 0, oElement, oElement, oElement; oElement = aSMILElement_activeElements[nIndex]; nIndex++) {
+	for (var nIndex = 0, oElement; oElement = aSMILElement_activeElements[nIndex]; nIndex++) {
 		// Simple Duration
 		nTimeSimpleDuration	= oElement.dur;
 
