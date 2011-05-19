@@ -15,7 +15,7 @@ cXSObjectList.prototype.length	= 0;
 
 cXSObjectList.prototype.item	= function(nIndex) {
 	// Validate arguments
-	fGuard(arguments, [
+	ample.guard(arguments, [
 		["node",	cNumber]
 	]);
 

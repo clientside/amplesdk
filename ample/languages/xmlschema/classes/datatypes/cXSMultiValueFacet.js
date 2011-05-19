@@ -15,4 +15,4 @@ cXSMultiValueFacet.prototype	= new cXSObject;
 
 cXSMultiValueFacet.prototype.facetKind			= null;	// Number
 cXSMultiValueFacet.prototype.lexicalFacetValues	= null; // StringList
-cXSMultiValueFacet.prototype.annotations			= null; // XSObjectList
+cXSMultiValueFacet.prototype.annotations		= null; // XSObjectList

@@ -15,7 +15,7 @@ cXSNamespaceItemList.prototype.length	= 0;
 
 cXSNamespaceItemList.prototype.item	= function(nIndex) {
 	// Validate arguments
-	fGuard(arguments, [
+	ample.guard(arguments, [
 		["index",	cNumber]
 	]);
 

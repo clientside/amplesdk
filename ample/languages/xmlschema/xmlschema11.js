@@ -69,7 +69,7 @@ cXSTypeDefinition.prototype.$validate	= function(vValue) {
 	switch (this.typeCategory) {
 		case cXSTypeDefinition.SIMPLE_TYPE:
 			// Validate arguments
-			fGuard(arguments, [
+			ample.guard(arguments, [
 				["value",		cString]
 			]);
 
@@ -77,7 +77,7 @@ cXSTypeDefinition.prototype.$validate	= function(vValue) {
 
 		case cXSTypeDefinition.COMPLEX_TYPE:
 			// Validate arguments
-			fGuard(arguments, [
+			ample.guard(arguments, [
 				["value",		cNode]
 			]);
 

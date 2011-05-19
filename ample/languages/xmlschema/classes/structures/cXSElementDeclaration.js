@@ -18,15 +18,15 @@ cXSElementDeclaration.prototype.scope					= null;	// Number
 cXSElementDeclaration.prototype.enclosingCTDefinition	= null;	// XSComplexTypeDefinition
 cXSElementDeclaration.prototype.constraintType			= null;	// Number
 cXSElementDeclaration.prototype.constraintValue			= null;	// String
-cXSElementDeclaration.prototype.actualVC					= null;	// Object
-cXSElementDeclaration.prototype.actualVCType				= null;	// Number
+cXSElementDeclaration.prototype.actualVC				= null;	// Object
+cXSElementDeclaration.prototype.actualVCType			= null;	// Number
 cXSElementDeclaration.prototype.itemValueTypes			= null;	// ShortList
-cXSElementDeclaration.prototype.nillable					= null;	// Boolean
+cXSElementDeclaration.prototype.nillable				= null;	// Boolean
 cXSElementDeclaration.prototype.identityConstraints		= null;	// XSNamedMap
 cXSElementDeclaration.prototype.substitutionGroupAffiliation	= null;	// XSElementDeclaration
-cXSElementDeclaration.prototype.substitutionGroupExclusions	= null;	// Number
+cXSElementDeclaration.prototype.substitutionGroupExclusions		= null;	// Number
 cXSElementDeclaration.prototype.disallowedSubstitutions	= null;	// Number
-cXSElementDeclaration.prototype.abstract					= null;	// Boolean
+cXSElementDeclaration.prototype.abstract				= null;	// Boolean
 cXSElementDeclaration.prototype.annotation				= null;	// XSAnnotation
 
 /* @type	Boolean */

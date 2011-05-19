@@ -15,7 +15,7 @@ cXSModelGroup.prototype	= new cXSTerm;
 
 cXSModelGroup.COMPOSITOR_SEQUENCE	= 1;
 cXSModelGroup.COMPOSITOR_CHOICE		= 2;
-cXSModelGroup.COMPOSITOR_ALL			= 3;
+cXSModelGroup.COMPOSITOR_ALL		= 3;
 
 cXSModelGroup.prototype.compositor	= null;	// Number
 cXSModelGroup.prototype.particles	= null;	// XSObjectList

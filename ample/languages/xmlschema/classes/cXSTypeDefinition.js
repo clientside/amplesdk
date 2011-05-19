@@ -19,7 +19,7 @@ cXSTypeDefinition.SIMPLE_TYPE	= 16;
 cXSTypeDefinition.prototype.typeCategory	= null;	// Number
 cXSTypeDefinition.prototype.baseType		= null;	// XSTypeDefinition
 cXSTypeDefinition.prototype["final"]		= null;	// Number
-cXSTypeDefinition.prototype.anonymous	= null;	// Boolean
+cXSTypeDefinition.prototype.anonymous		= null;	// Boolean
 
 // @type	Boolean
 cXSTypeDefinition.prototype.isFinal	= function(nRestriction) {

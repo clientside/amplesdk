@@ -1,0 +1,44 @@
+# Classes
+classes/cXSConstants.js
+classes/cXSException.js
+classes/cXSObject.js
+classes/cXSObjectList.js
+classes/cXSNamedMap.js
+classes/cXSNamespaceItem.js
+classes/cXSNamespaceItemList.js
+
+classes/cXSModel.js
+classes/cXSTypeDefinition.js
+
+classes/datatypes/cXSFacet.js
+classes/datatypes/cXSMultiValueFacet.js
+classes/datatypes/cXSSimpleTypeDefinition.js
+
+# Elements
+elements/annotation.js
+elements/schema.js
+elements/documentation.js
+
+# Datatypes
+elements/datatypes/list.js
+elements/datatypes/restriction.js
+elements/datatypes/simpleType.js
+elements/datatypes/union.js
+
+# Facets
+elements/datatypes/facets/assertion.js
+elements/datatypes/facets/enumeration.js
+elements/datatypes/facets/fractionDigits.js
+elements/datatypes/facets/length.js
+elements/datatypes/facets/maxExclusive.js
+elements/datatypes/facets/maxInclusive.js
+elements/datatypes/facets/maxLength.js
+elements/datatypes/facets/maxScale.js
+elements/datatypes/facets/minExclusive.js
+elements/datatypes/facets/minInclusive.js
+elements/datatypes/facets/minLength.js
+elements/datatypes/facets/minScale.js
+elements/datatypes/facets/pattern.js
+elements/datatypes/facets/totalDigits.js
+elements/datatypes/facets/whiteSpace.js
+

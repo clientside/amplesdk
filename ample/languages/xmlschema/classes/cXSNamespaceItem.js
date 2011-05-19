@@ -17,10 +17,10 @@ var cXSNamespaceItem	= function() {
 
 cXSNamespaceItem.prototype.schemaNamespace	= null;	// String
 cXSNamespaceItem.prototype.annotations		= null;	// XSObjectList
-cXSNamespaceItem.prototype.documentLocations	= null; // StringList
+cXSNamespaceItem.prototype.documentLocations= null; // StringList
 
 // Private
-cXSNamespaceItem.prototype.$elements			= null;
+cXSNamespaceItem.prototype.$elements		= null;
 cXSNamespaceItem.prototype.$attributes		= null;
 cXSNamespaceItem.prototype.$attributeGroups	= null;
 cXSNamespaceItem.prototype.$modelGroups		= null;
@@ -44,7 +44,7 @@ cXSNamespaceItem.prototype.getAttributeDeclaration	= function(sName) {
 // @type	XSTypeDefinition
 cXSNamespaceItem.prototype.getTypeDefinition	= function(sName) {
 	// Validate arguments
-	fGuard(arguments, [
+	ample.guard(arguments, [
 		["name",		cString]
 	]);
 

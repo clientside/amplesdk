@@ -39,7 +39,7 @@ cXSModel.prototype.getAttributeDeclaration	= function(sNameSpaceURI, sLocalName)
 // @type	XSTypeDefinition
 cXSModel.prototype.getTypeDefinition	= function(sNameSpaceURI, sLocalName) {
 	// Validate arguments
-	fGuard(arguments, [
+	ample.guard(arguments, [
 		["namespaceURI",	cString],
 		["name",			cString]
 	]);

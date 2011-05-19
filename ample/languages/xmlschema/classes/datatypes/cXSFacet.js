@@ -16,4 +16,4 @@ cXSFacet.prototype	= new cXSObject;
 cXSFacet.prototype.facetKind			= null;	// Number
 cXSFacet.prototype.lexicalFacetValue	= null; // String
 cXSFacet.prototype.fixed				= null; // Boolean
-cXSFacet.prototype.annotation		= null; // XSAnnotation
+cXSFacet.prototype.annotation			= null; // XSAnnotation

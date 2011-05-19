@@ -13,9 +13,9 @@ var cXSAnnotation	= function() {
 
 cXSAnnotation.prototype	= new cXSObject;
 
-cXSAnnotation.W3C_DOM_ELEMENT	= 1;
+cXSAnnotation.W3C_DOM_ELEMENT		= 1;
 cXSAnnotation.SAX_CONTENTHANDLER	= 2;
-cXSAnnotation.W3C_DOM_DOCUMENT	= 3;
+cXSAnnotation.W3C_DOM_DOCUMENT		= 3;
 
 cXSAnnotation.prototype.annotationString	= null;	// String
 

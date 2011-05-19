@@ -15,8 +15,8 @@ cXSAttributeUse.prototype	= new cXSObject;
 
 cXSAttributeUse.prototype.required			= null;	// Boolean
 cXSAttributeUse.prototype.attrDeclaration	= null;	// XSAttributeDeclaration
-cXSAttributeUse.prototype.constraintType		= null;	// Number
+cXSAttributeUse.prototype.constraintType	= null;	// Number
 cXSAttributeUse.prototype.constraintValue	= null;	// String
 cXSAttributeUse.prototype.actualVC			= null;	// Object
 cXSAttributeUse.prototype.actualVCType		= null;	// Number
-cXSAttributeUse.prototype.itemValueTypes		= null;	// ShortList
+cXSAttributeUse.prototype.itemValueTypes	= null;	// ShortList

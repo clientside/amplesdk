@@ -15,4 +15,4 @@ cXSAttributeGroupDefinition.prototype	= new cXSObject;
 
 cXSAttributeGroupDefinition.prototype.attributeUses		= null;	// XSObjectList
 cXSAttributeGroupDefinition.prototype.attributeWildcard	= null;	// XSWildcard
-cXSAttributeGroupDefinition.prototype.annotation			= null;	// XSAnnotation
+cXSAttributeGroupDefinition.prototype.annotation		= null;	// XSAnnotation
