@@ -1265,8 +1265,11 @@ fEventTarget_addEventListener(oAmple_document, "configchange",	function(oEvent) 
 			oGlobalization.culture	= oCultures[sLocale];
 			// Dispatch localechange event to every element
 			for (var sId in oDocument_all)
-				if (oDocument_all.hasOwnProperty(sId))
-					fQuery_trigger(oDocument_all[sId], "localechange", sLocale);
+				if (oDocument_all.hasOwnProperty(sId)) {
+					var oChangeEvent	= new cCustomEvent;
+					oChangeEvent.initCustomEvent("localechange", false, false, sLocale);
+					fNode_dispatchEvent(oDocument_all[sId], oChangeEvent);
+				}
 			// Dispatch localechange event to document
 			fQuery_trigger(oAmple_document, "localechange", sLocale);
 		}
