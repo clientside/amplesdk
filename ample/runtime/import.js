@@ -38,8 +38,8 @@ var cString		= window.String,
 //	intervals/timeouts
 	fSetTimeout		= window.setTimeout,
 	fClearTimeout	= window.clearTimeout,
-	fSetInterval	= window.setInterval,
-	fClearInterval	= window.clearInterval,
+//	fSetInterval	= window.setInterval,
+//	fClearInterval	= window.clearInterval,
 //	misc
 	fParseInt	= window.parseInt,
 	fParseFloat	= window.parseFloat,
