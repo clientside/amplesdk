@@ -19,6 +19,7 @@ var sGUARD_NOT_WELLFORMED_WRN			= 'Not well-formed XML',
 	sGUARD_DOCUMENT_INVALID_STATE_WRN	= 'Document invalid state',
 	sGUARD_REWRITING_MEMBER_WRN			= 'Re-writing member "%0"',
 	sGUARD_QUERYING_PSEUDOELEMENT_WRN	= 'Querying for pseudo-elements is not supported',
+	sGUARD_NOT_FOUND_LOCALE_WRN			= 'Locale "%0" was not found',
 	sGUARD_CONFIGURATION_READONLY_WRN	= 'Configuration parameter "%0" is readonly. Value has not been set';
 
 function fUtilities_warn(sWarning, aArguments) {
