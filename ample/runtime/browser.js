@@ -388,6 +388,29 @@ function fBrowser_onGesture(oEvent) {
 	return fBrowser_eventPreventDefault(oEvent, oEventGesture);
 };
 
+function fBrowser_onClipboard(oEvent) {
+	var oTarget		= fBrowser_getEventTarget(oEvent),
+		oPseudo		= fBrowser_getUIEventPseudo(oEvent),
+		oEventClipboard	= new cClipboardEvent;
+
+	// if modal, do not dispatch event
+	if (oBrowser_captureNode && !fBrowser_isDescendant(oTarget, oBrowser_captureNode)) {
+		oTarget	= oBrowser_captureNode;
+		oPseudo	= oTarget.$getContainer();
+	}
+
+    // Init Clipboard event
+	oEventClipboard.initClipboardEvent(oEvent.type, oEvent.bubbles, oEvent.cancelable, "", null);
+	oEventClipboard.$pseudoTarget	= oPseudo;
+
+	// do not dispatch event if outside modal
+    if (!oBrowser_modalNode || fBrowser_isDescendant(oTarget, oBrowser_modalNode))
+    	fNode_dispatchEvent(oTarget, oEventClipboard);
+
+	//
+	return fBrowser_eventPreventDefault(oEvent, oEventClipboard);
+};
+
 /*
 oUADocument.attachEvent('on' + "mouseover", function(oEvent) {
 	var oTarget		= fBrowser_getEventTarget(oEvent),
@@ -1157,6 +1180,14 @@ fBrowser_attachEvent(window, "load", function(oEvent) {
 	fBrowser_attachEvent(oUADocument, "gesturechange",	fBrowser_onGesture);
 	fBrowser_attachEvent(oUADocument, "gestureend",		fBrowser_onGesture);
 
+	// Register clipboard events
+	fBrowser_attachEvent(oUADocument, "copy",			fBrowser_onClipboard);
+	fBrowser_attachEvent(oUADocument, "beforecopy",		fBrowser_onClipboard);
+	fBrowser_attachEvent(oUADocument, "cut",			fBrowser_onClipboard);
+	fBrowser_attachEvent(oUADocument, "beforecut",		fBrowser_onClipboard);
+	fBrowser_attachEvent(oUADocument, "paste",			fBrowser_onClipboard);
+	fBrowser_attachEvent(oUADocument, "beforepaste",	fBrowser_onClipboard);
+
 	// Initialize
 	// When running in Air, start in sync with onload
 	if (bWebKit && window.runtime)
@@ -1200,6 +1231,14 @@ fBrowser_attachEvent(window, "unload", function(oEvent) {
 	fBrowser_detachEvent(oUADocument, "gesturestart",	fBrowser_onGesture);
 	fBrowser_detachEvent(oUADocument, "gesturechange",	fBrowser_onGesture);
 	fBrowser_detachEvent(oUADocument, "gestureend",		fBrowser_onGesture);
+
+	// Unregister clipboard events
+	fBrowser_detachEvent(oUADocument, "copy",			fBrowser_onClipboard);
+	fBrowser_detachEvent(oUADocument, "beforecopy",		fBrowser_onClipboard);
+	fBrowser_detachEvent(oUADocument, "cut",			fBrowser_onClipboard);
+	fBrowser_detachEvent(oUADocument, "beforecut",		fBrowser_onClipboard);
+	fBrowser_detachEvent(oUADocument, "paste",			fBrowser_onClipboard);
+	fBrowser_detachEvent(oUADocument, "beforepaste",	fBrowser_onClipboard);
 
 	// Unregister window event listeners
 	fBrowser_detachEvent(window, "resize", fBrowser_onResize);

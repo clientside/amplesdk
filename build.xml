@@ -125,6 +125,7 @@
 				MouseEvent.js,
 				WheelEvent.js,
 				MutationEvent.js,
+				ClipboardEvent.js,
 				TouchEvent.js,
 				GestureEvent.js"/>
 			<filelist dir="${source.runtime.dir}/classes/core/" files="
@@ -145,6 +146,7 @@
 				Text.js,
 				CDATASection.js,
 				Comment.js,
+				Clipboard.js,
 				Touch.js,
 				TouchList.js"/>
 			<filelist dir="${source.runtime.dir}/classes/selectors/" files="

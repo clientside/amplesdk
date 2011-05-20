@@ -10,6 +10,8 @@ runtime/classes/events/MouseEvent.js
 runtime/classes/events/WheelEvent.js
 runtime/classes/events/KeyboardEvent.js
 runtime/classes/events/TextEvent.js
+# Clipboard
+runtime/classes/events/ClipboardEvent.js
 # Touches
 runtime/classes/events/GestureEvent.js
 runtime/classes/events/TouchEvent.js
@@ -31,6 +33,8 @@ runtime/classes/core/CharacterData.js
 runtime/classes/core/Text.js
 runtime/classes/core/CDATASection.js
 runtime/classes/core/Comment.js
+# Clipboard
+runtime/classes/core/Clipboard.js
 # Touches
 runtime/classes/core/Touch.js
 runtime/classes/core/TouchList.js
