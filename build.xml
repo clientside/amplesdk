@@ -147,6 +147,7 @@
 				CDATASection.js,
 				Comment.js,
 				Clipboard.js,
+				DataTransferItems.js,
 				Touch.js,
 				TouchList.js"/>
 			<filelist dir="${source.runtime.dir}/classes/selectors/" files="
