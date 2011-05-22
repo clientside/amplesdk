@@ -107,6 +107,7 @@ runtime/modules/locale.js
 runtime/modules/manipulation.js
 runtime/modules/modal.js
 runtime/modules/offset.js
+runtime/modules/queue.js
 runtime/modules/traversing.js
 #
 runtime/compat/JSON.js

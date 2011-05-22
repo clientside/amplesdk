@@ -185,6 +185,7 @@
 				manipulation.js,
 				modal.js,
 				offset.js,
+				queue.js,
 				traversing.js"/>
 		</concat>
 	</target>
