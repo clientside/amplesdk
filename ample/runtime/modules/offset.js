@@ -76,7 +76,17 @@ cQuery.prototype.scrollTop	= function(nValue) {
 	]);
 //<-Guard
 
-	// TODO: Implementation missing
+	if (this.length) {
+		var oElementDOM	= this[0].$getContainer();
+		if (oElementDOM) {
+			if (arguments.length)
+				oElementDOM.scrollTop	= nValue;
+			else
+				return oElementDOM.scrollTop;
+		}
+	}
+
+	return null;
 };
 
 cQuery.prototype.scrollLeft	= function(nValue) {
@@ -86,5 +96,15 @@ cQuery.prototype.scrollLeft	= function(nValue) {
 	]);
 //<-Guard
 
-	// TODO: Implementation missing
+	if (this.length) {
+		var oElementDOM	= this[0].$getContainer();
+		if (oElementDOM) {
+			if (arguments.length)
+				oElementDOM.scrollLeft	= nValue;
+			else
+				return oElementDOM.scrollLeft;
+		}
+	}
+
+	return null;
 };
