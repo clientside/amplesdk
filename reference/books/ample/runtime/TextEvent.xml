@@ -71,6 +71,13 @@
 							</locale>
 						</description>
 					</argument>
+					<argument name="locale" type="String" required="true">
+						<description>
+							<locale>
+								The language code for the text input, if available; otherwise, the empty string.
+							</locale>
+						</description>
+					</argument>
 				</arguments>
 				<description>
 					<locale>
@@ -98,6 +105,13 @@
 					</locale>
 					<locale xml:lang="ru">
 						Содержит введенные данные.
+					</locale>
+				</description>
+			</property>
+			<property name="locale" type="String" readonly="true">
+				<description>
+					<locale>
+						The language code for the text input, if available; otherwise, the empty string.
 					</locale>
 				</description>
 			</property>
@@ -180,7 +194,7 @@
 			<locale>Events of that type:</locale>
       <locale xml:lang="ru">События этого типа:</locale>
       <ul>
-        <li><link type="event" href="runtime:Element">textInput</link></li>
+        <li><link type="event" href="runtime:Element">textinput</link></li>
       </ul>
 		</remark>
 	</remarks>

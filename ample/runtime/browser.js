@@ -235,7 +235,7 @@ function fBrowser_onKeyPress(oEvent)
 	oEventKeyPress.$pseudoTarget	= oPseudo;
 
 	// Init TextInput event
-	oEventTextInput.initTextEvent("textInput", true, true, null, cString.fromCharCode(oEvent.charCode || oEvent.keyCode), 0);
+	oEventTextInput.initTextEvent("textinput", true, true, window, cString.fromCharCode(oEvent.charCode || oEvent.keyCode), 1 /* TextEvent.DOM_INPUT_METHOD_KEYBOARD */, '');
     oEventTextInput.$pseudoTarget	= oPseudo;
 
     if (!oBrowser_modalNode || fBrowser_isDescendant(oTarget, oBrowser_modalNode)) {

@@ -971,7 +971,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="textInput" type="TextEvent" cancelable="true" bubbles="true">
+			<event name="textinput" type="TextEvent" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						User typed in a character.
