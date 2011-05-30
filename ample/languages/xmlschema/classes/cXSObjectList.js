@@ -16,7 +16,7 @@ cXSObjectList.prototype.length	= 0;
 cXSObjectList.prototype.item	= function(nIndex) {
 	// Validate arguments
 	ample.guard(arguments, [
-		["node",	cNumber]
+		["node",	Number]
 	]);
 
 	return nIndex < this.length ? this[nIndex] : null;

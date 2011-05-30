@@ -8,7 +8,7 @@
  */
 
 var cXSMultiValueFacet	= function() {
-	this.lexicalFacetValues	= new cDOMStringList;
+	this.lexicalFacetValues	= new ample.classes.DOMStringList;
 };
 
 cXSMultiValueFacet.prototype	= new cXSObject;

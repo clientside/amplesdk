@@ -9,8 +9,8 @@
 
 var cXSSimpleTypeDefinition	= function() {
 	this.memberTypes		= new cXSObjectList;
-	this.lexicalEnumeration	= new cDOMStringList;
-	this.lexicalPattern		= new cDOMStringList;
+	this.lexicalEnumeration	= new ample.classes.DOMStringList;
+	this.lexicalPattern		= new ample.classes.DOMStringList;
 	this.facets				= new cXSObjectList;
 	this.multiValueFacets	= new cXSObjectList;
 };

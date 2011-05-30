@@ -8,7 +8,7 @@
  */
 
 var cXSModel	= function() {
-	this.namespaces		= new cDOMStringList;
+	this.namespaces		= new ample.classes.DOMStringList;
 	this.namespaceItems	= new cXSNamespaceItemList;
 };
 
@@ -40,8 +40,8 @@ cXSModel.prototype.getAttributeDeclaration	= function(sNameSpaceURI, sLocalName)
 cXSModel.prototype.getTypeDefinition	= function(sNameSpaceURI, sLocalName) {
 	// Validate arguments
 	ample.guard(arguments, [
-		["namespaceURI",	cString],
-		["name",			cString]
+		["namespaceURI",	String],
+		["name",			String]
 	]);
 
 	for (var nIndex = 0; nIndex < this.namespaceItems.length; nIndex++)

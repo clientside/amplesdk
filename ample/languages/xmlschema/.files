@@ -4,6 +4,7 @@ classes/cXSException.js
 classes/cXSObject.js
 classes/cXSObjectList.js
 classes/cXSNamedMap.js
+classes/cXSAnnotation.js
 classes/cXSNamespaceItem.js
 classes/cXSNamespaceItemList.js
 
@@ -13,6 +14,15 @@ classes/cXSTypeDefinition.js
 classes/datatypes/cXSFacet.js
 classes/datatypes/cXSMultiValueFacet.js
 classes/datatypes/cXSSimpleTypeDefinition.js
+
+classes/cXSElement.js
+
+# Integration
+xmlschema11.js
+xmlschema11-datatypes.js
+
+# Built-in types
+builtin/xmlschema11-builtin.js
 
 # Elements
 elements/annotation.js
@@ -41,4 +51,3 @@ elements/datatypes/facets/minScale.js
 elements/datatypes/facets/pattern.js
 elements/datatypes/facets/totalDigits.js
 elements/datatypes/facets/whiteSpace.js
-

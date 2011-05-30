@@ -45,7 +45,7 @@ cXSNamespaceItem.prototype.getAttributeDeclaration	= function(sName) {
 cXSNamespaceItem.prototype.getTypeDefinition	= function(sName) {
 	// Validate arguments
 	ample.guard(arguments, [
-		["name",		cString]
+		["name",		String]
 	]);
 
 	return this.$types[sName] || null;

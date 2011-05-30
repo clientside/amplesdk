@@ -11,8 +11,8 @@
 var oXMLSchema11_namespaceDataTypes	= new cXSNamespaceItem,
 	oXMLSchema11_builtinDataTypes	= oXMLSchema11_namespaceDataTypes.$types,
 	oXMLSchema11_primitiveDataTypes	= {};
-oXMLSchema11_namespaceDataTypes.schemaNamespace	= sXMLSchema11_namespaceURI;
-oXMLSchema11_model.namespaces.$add(sXMLSchema11_namespaceURI);
+oXMLSchema11_namespaceDataTypes.schemaNamespace	= "http://www.w3.org/2001/XMLSchema";
+oXMLSchema11_model.namespaces.$add(oXMLSchema11_namespaceDataTypes.schemaNamespace);
 oXMLSchema11_model.namespaceItems.$add(oXMLSchema11_namespaceDataTypes);
 
 

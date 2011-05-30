@@ -7,6 +7,7 @@
  *
  */
 
+
 function fXMLSchema11_simpleType_validate(oType, sValue) {
 	switch (oType.variety) {
 		case cXSSimpleTypeDefinition.VARIETY_ATOMIC:
@@ -21,9 +22,9 @@ function fXMLSchema11_simpleType_validate(oType, sValue) {
 				case cXSConstants.DATE_DT:
 				case cXSConstants.GMONTHDAY_DT:
 					var aValue	= sValue.match(/^(-|-?\d{4,})-(\d\d)-(\d\d)/),
-						nYear	= aValue[1] != '-' ? cNumber(aValue[1]) : 0,
-						nMonth	= cNumber(aValue[2]),
-						nDay	= cNumber(aValue[3]);
+						nYear	= aValue[1] != '-' ? Number(aValue[1]) : 0,
+						nMonth	= Number(aValue[2]),
+						nDay	= Number(aValue[3]);
 					if (!(nDay == 29 && nMonth == 2 && (nYear % 400 == 0 || nYear % 100 != 0 && nYear % 4 == 0)))
 						if (nDay > [31,28,31,30,31,30,31,31,30,31,30,31][nMonth - 1])
 							return false;
@@ -46,19 +47,19 @@ function fXMLSchema11_simpleType_validate(oType, sValue) {
 
 					case cXSSimpleTypeDefinition.FACET_LENGTH:
 						var nLength	= fXMLSchema11_simpleType_getLength(oType, sValue);
-						if (nLength === false || nLength != cNumber(oFacet.lexicalFacetValue))
+						if (nLength === false || nLength != Number(oFacet.lexicalFacetValue))
 							return false;
 						break;
 
 					case cXSSimpleTypeDefinition.FACET_MINLENGTH:
 						var nLength	= fXMLSchema11_simpleType_getLength(oType, sValue);
-						if (nLength === false || nLength < cNumber(oFacet.lexicalFacetValue))
+						if (nLength === false || nLength < Number(oFacet.lexicalFacetValue))
 							return false;
 						break;
 
 					case cXSSimpleTypeDefinition.FACET_MAXLENGTH:
 						var nLength	= fXMLSchema11_simpleType_getLength(oType, sValue);
-						if (nLength === false || nLength > cNumber(oFacet.lexicalFacetValue))
+						if (nLength === false || nLength > Number(oFacet.lexicalFacetValue))
 							return false;
 						break;
 
@@ -87,12 +88,12 @@ function fXMLSchema11_simpleType_validate(oType, sValue) {
 						break;
 
 					case cXSSimpleTypeDefinition.FACET_TOTALDIGITS:
-						if (cNumber(sValue).toString().replace(/[^\d]/g, '').length > cNumber(oFacet.lexicalFacetValue))
+						if (Number(sValue).toString().replace(/[^\d]/g, '').length > Number(oFacet.lexicalFacetValue))
 							return false;
 						break;
 
 					case cXSSimpleTypeDefinition.FACET_FRACTIONDIGITS:
-						if (cNumber(sValue).toString().match(/\.(\d+)/) && cRegExp.$1.length > cNumber(oFacet.lexicalFacetValue))
+						if (Number(sValue).toString().match(/\.(\d+)/) && RegExp.$1.length > Number(oFacet.lexicalFacetValue))
 							return false;
 						break;
 
@@ -111,7 +112,7 @@ function fXMLSchema11_simpleType_validate(oType, sValue) {
 				switch (oFacet.facetKind) {
 					case cXSSimpleTypeDefinition.FACET_PATTERN:
 						for (var nIndex = 0; nIndex < oFacet.lexicalFacetValues.length; nIndex++)
-							if (!(new cRegExp('^' + fXMLSchema11_schemaRegExpToJSRegExp(oFacet.lexicalFacetValues[nIndex]) + '$')).test(sValue))
+							if (!(new RegExp('^' + fXMLSchema11_schemaRegExpToJSRegExp(oFacet.lexicalFacetValues[nIndex]) + '$')).test(sValue))
 								return false;
 						break;
 
@@ -154,6 +155,8 @@ function fXMLSchema11_simpleType_validate(oType, sValue) {
 	}
 };
 
+ample.$validate	= fXMLSchema11_simpleType_validate;
+
 function fXMLSchema11_simpleType_getValue(oType, sValue) {
 //	sValue = fXMLSchema11_simpleType_getWhiteSpace(oType, sValue);
 	if (oType.variety == cXSSimpleTypeDefinition.VARIETY_ATOMIC) {
@@ -163,17 +166,17 @@ function fXMLSchema11_simpleType_getValue(oType, sValue) {
 
 			case cXSConstants.FLOAT_DT:
 			case cXSConstants.DOUBLE_DT:
-				return sValue == "INF" ? nInfinity : sValue == '-' + "INF" ? -nInfinity : sValue == "NaN" ? nNaN : fParseFloat(sValue);
+				return sValue == "INF" ? Infinity : sValue == '-' + "INF" ? -Infinity : sValue == "NaN" ? nNaN : parseFloat(sValue);
 
 			case cXSConstants.DECIMAL_DT:
 // TODO:			case cXSConstants.PRECISIONDECIMAL_DT:
-				return cNumber(sValue);
+				return Number(sValue);
 
 			case cXSConstants.DURATION_DT:
 				var aDate	= oXMLSchema11_primitives[cXSConstants.DURATION_DT].exec(sValue),
-					nMonths = fParseInt(aDate[2], 10) * 12 + fParseInt(aDate[3], 10),
-					nSeconds = ((fParseInt(aDate[4], 10) * 24 + fParseInt(aDate[5], 10)) * 60 + fParseInt(aDate[6], 10)) * 60 + fParseFloat(aDate[7]);
-				return cString(aDate[1] == '-' ? [-nMonths, -nSeconds] : [nMonths, nSeconds]);
+					nMonths = parseInt(aDate[2], 10) * 12 + parseInt(aDate[3], 10),
+					nSeconds = ((parseInt(aDate[4], 10) * 24 + parseInt(aDate[5], 10)) * 60 + parseInt(aDate[6], 10)) * 60 + parseFloat(aDate[7]);
+				return String(aDate[1] == '-' ? [-nMonths, -nSeconds] : [nMonths, nSeconds]);
 
 			// DATETIME/TIME/DATE
 			// GYEAR/GYEARMONTH/GMONTH/GMONTHDAY/GDAY
@@ -227,7 +230,7 @@ function fXMLSchema11_simpleType_getLength(oType, sValue) {
 					return fXMLSchema11_simpleType_getWhiteSpace(oType, sValue).length / 2;
 
 				case cXSConstants.BASE64BINARY_DT:
-					return cMath.floor(fXMLSchema11_simpleType_getWhiteSpace(oType, sValue).replace(/[^a-zA-Z0-9+\/]/g,'').length * 3 / 4);
+					return Math.floor(fXMLSchema11_simpleType_getWhiteSpace(oType, sValue).replace(/[^a-zA-Z0-9+\/]/g,'').length * 3 / 4);
 
 				case cXSConstants.QNAME_DT:
 				case cXSConstants.NOTATION_DT:
@@ -311,7 +314,7 @@ function fXMLSchema11_schemaRegExpToJSRegExp(sValue) {
 				.replace(/\\c/g, '[:' + c + ']')
 				.replace(/\\C/g, '[^:' + c + ']');
 };
-
+/*
 // Simple Types processor
 oXMLSchema11_processors["schema"]["simpleType"]	= function(oElementDOM, oNamespace) {
 	var sName	= oElementDOM.getAttribute("name");
@@ -345,7 +348,7 @@ oXMLSchema11_processors["simpleType"]["list"]	= function(oElementDOM, oType) {
 	if (sItemType) {
 		var aQName	= sItemType.split(':'),
 			sLocalName		= aQName[1],
-			sNameSpaceURI	= fXMLSchema11_lookupNamespaceURI(oElementDOM, aQName[0]),
+			sNameSpaceURI	= this.lookupNamespaceURI(aQName[0]),
 			oItemType		= oXMLSchema11_model.getTypeDefinition(sNameSpaceURI, sLocalName);
 		if (oItemType)
 			oType.itemType	= oItemType;
@@ -364,7 +367,7 @@ oXMLSchema11_processors["simpleType"]["union"]	= function(oElementDOM, oType) {
 		for (var nIndex = 0, aMemberTypes = sMemberTypes.split(' '); nIndex < aMemberTypes.length; nIndex++) {
 			var aQName	= aMemberTypes[nIndex].split(':'),
 				sLocalName		= aQName[1],
-				sNameSpaceURI	= fXMLSchema11_lookupNamespaceURI(oElementDOM, aQName[0]),
+				sNameSpaceURI	= this.lookupNamespaceURI(aQName[0]),
 				oMemberType		= oXMLSchema11_model.getTypeDefinition(sNameSpaceURI, sLocalName);
 			if (oMemberType)
 				oType.memberTypes.$add(oMemberType);
@@ -383,7 +386,7 @@ oXMLSchema11_processors["simpleType"]["restriction"]	= function(oElementDOM, oTy
 	if (sBase) {
 		var aQName	= sBase.split(':'),
 			sLocalName		= aQName[1],
-			sNameSpaceURI	= fXMLSchema11_lookupNamespaceURI(oElementDOM, aQName[0]),
+			sNameSpaceURI	= this.lookupNamespaceURI(aQName[0]),
 			oBaseType		= oXMLSchema11_model.getTypeDefinition(sNameSpaceURI, sLocalName);
 
 		if (oBaseType) {
@@ -507,3 +510,4 @@ oXMLSchema11_processors["restriction"]["enumeration"]	= function(oElementDOM, oT
 		fUtilities_warn(sGUARD_MISSING_ATTRIBUTE_WRN, ["value", oElementDOM.tagName]);
 //<-Debug
 };
+*/

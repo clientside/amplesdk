@@ -7,11 +7,11 @@
  *
  */
 
-var oXMLSchema11_implementation	= {},
-	sXMLSchema11_namespaceURI	= "http://www.w3.org/2001/XMLSchema",
-	oXMLSchema11_model			= new cXSModel,
-	oXMLSchema11_processors		= {};
-
+var /*oXMLSchema11_implementation	= {},
+	sXMLSchema11_namespaceURI	= "http://www.w3.org/2001/XMLSchema",*/
+	oXMLSchema11_model			= new cXSModel/*,
+	oXMLSchema11_processors		= {}*/;
+/*
 //sGUARD_MISSING_ATTRIBUTE_WRN		= 'Required attribute "%0" is missing from "%1" element. Element processing skipped',
 //sGUARD_UNKNOWN_SIMPLE_TYPE_WRN	= 'Simple type definition "%0" not found',
 
@@ -43,7 +43,7 @@ oXMLSchema11_implementation.traverse	= function(oElementDOM, oNode) {
 oXMLSchema11_processors["schema"]	= {};
 function fXMLSchema11_traverseChildren(oElementDOM, hProcessors, oParam) {
 	for (var nIndex = 0, fProcessor, oElement; oElement = oElementDOM.childNodes[nIndex]; nIndex++)
-		if (oElement.nodeType == 1 && oElement.namespaceURI == sXMLSchema11_namespaceURI)
+		if (oElement.nodeType == 1 && oElement.namespaceURI == this.namespaceURI)
 			if (fProcessor = hProcessors[oElement.localName || oElement.baseName])
 				fProcessor(oElement, oParam);
 //->Debug
@@ -64,13 +64,13 @@ function fXMLSchema11_lookupNamespaceURI(oNode, sPrefix) {
 					return oAttribute.value;
 	return null;
 };
-
+*/
 cXSTypeDefinition.prototype.$validate	= function(vValue) {
 	switch (this.typeCategory) {
 		case cXSTypeDefinition.SIMPLE_TYPE:
 			// Validate arguments
 			ample.guard(arguments, [
-				["value",		cString]
+				["value",		String]
 			]);
 
 			return fXMLSchema11_simpleType_validate(this, vValue);
@@ -89,7 +89,7 @@ cXSTypeDefinition.prototype.$validate	= function(vValue) {
 };
 
 // Publish
-oAmple.$model	= oXMLSchema11_model;
+ample.$model	= oXMLSchema11_model;
 
 // register processor
-oDOMImplementation_processors[sXMLSchema11_namespaceURI]	= oXMLSchema11_implementation;
+//oDOMImplementation_processors[sXMLSchema11_namespaceURI]	= oXMLSchema11_implementation;
