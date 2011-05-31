@@ -20,7 +20,7 @@ cXSElement_union.handlers.DOMNodeInsertedIntoDocument	= function(oEvent) {
 			var aQName	= aMemberTypes[nIndex].split(':'),
 				sLocalName		= aQName[1],
 				sNameSpaceURI	= this.lookupNamespaceURI(aQName[0]),
-				oMemberType		= oXMLSchema11_model.getTypeDefinition(sNameSpaceURI, sLocalName);
+				oMemberType		= oXSModel.getTypeDefinition(sNameSpaceURI, sLocalName);
 			if (oMemberType)
 				oSimpleType.memberTypes.$add(oMemberType);
 		}

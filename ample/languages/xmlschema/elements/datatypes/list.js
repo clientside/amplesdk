@@ -19,7 +19,7 @@ cXSElement_list.handlers.DOMNodeInsertedIntoDocument	= function(oEvent) {
 		var aQName	= sItemType.split(':'),
 			sLocalName		= aQName[1],
 			sNameSpaceURI	= this.lookupNamespaceURI(aQName[0]),
-			oItemType		= oXMLSchema11_model.getTypeDefinition(sNameSpaceURI, sLocalName);
+			oItemType		= oXSModel.getTypeDefinition(sNameSpaceURI, sLocalName);
 		if (oItemType)
 			oType.itemType	= oItemType;
 	}

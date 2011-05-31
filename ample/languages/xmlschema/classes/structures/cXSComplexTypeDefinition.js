@@ -33,3 +33,16 @@ cXSComplexTypeDefinition.prototype.annotations		= null;	// XSObjectList
 cXSComplexTypeDefinition.prototype.isProhibitedSubstitution	= function(nRestriction) {
 
 };
+
+cXSComplexTypeDefinition.prototype.$validate	= function(vValue) {
+	// Validate arguments
+	ample.guard(arguments, [
+		["value",		cNode]
+	]);
+
+	return fXSComplexTypeDefinition_validate(this, vValue);
+};
+
+function fXSComplexTypeDefinition_validate(oType, vValue) {
+	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
+};

@@ -18,8 +18,8 @@ cXSElement_schema.handlers.DOMNodeInsertedIntoDocument	= function(oEvent) {
 		var oNamespaceItem	= new cXSNamespaceItem;
 		oNamespaceItem.schemaNamespace	= sNameSpaceURI;
 		// Register new namespace item
-		oXMLSchema11_model.namespaces.$add(sNameSpaceURI);
-		oXMLSchema11_model.namespaceItems.$add(oNamespaceItem);
+		oXSModel.namespaces.$add(sNameSpaceURI);
+		oXSModel.namespaceItems.$add(oNamespaceItem);
 
 		//
 		this.$namespaceItem	= oNamespaceItem;

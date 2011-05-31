@@ -19,7 +19,7 @@ cXSElement_restriction.handlers.DOMNodeInsertedIntoDocument	= function(oEvent) {
 		var aQName	= sBase.split(':'),
 			sLocalName		= aQName[1],
 			sNameSpaceURI	= this.lookupNamespaceURI(aQName[0]),
-			oBaseType		= oXMLSchema11_model.getTypeDefinition(sNameSpaceURI, sLocalName);
+			oBaseType		= oXSModel.getTypeDefinition(sNameSpaceURI, sLocalName);
 
 		if (oBaseType)
 			oType.baseType		= oBaseType;

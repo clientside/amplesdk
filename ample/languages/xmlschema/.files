@@ -18,11 +18,10 @@ classes/datatypes/cXSSimpleTypeDefinition.js
 classes/cXSElement.js
 
 # Integration
-xmlschema11.js
-xmlschema11-datatypes.js
+integrations/ample.js
 
 # Built-in types
-builtin/xmlschema11-builtin.js
+builtin/builtin.js
 
 # Elements
 elements/annotation.js
