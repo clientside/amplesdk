@@ -111,7 +111,7 @@ cXSSimpleTypeDefinition.prototype.$validate	= function(vValue) {
 		["value",		String]
 	]);
 
-	return fXSSimpleTypeDefinition_validate_validate(this, vValue);
+	return fXSSimpleTypeDefinition_validate(this, vValue);
 };
 
 
@@ -148,11 +148,11 @@ function fXSSimpleTypeDefinition_schemaRegExpToJSRegExp(sValue) {
 				.replace(/\\C/g, '[^:' + c + ']');
 };
 
-function fXSSimpleTypeDefinition_validate_validate(oType, sValue) {
+function fXSSimpleTypeDefinition_validate(oType, sValue) {
 	switch (oType.variety) {
 		case cXSSimpleTypeDefinition.VARIETY_ATOMIC:
 			// 1: Validate lexical space
-//			sValue = fXSSimpleTypeDefinition_validate_getValue(oType, sValue);
+//			sValue = fXSSimpleTypeDefinition_getValue(oType, sValue);
 			if (oType.builtInKind in oXSPrimitives && !oXSPrimitives[oType.builtInKind].test(sValue))
 				return false;
 
@@ -186,19 +186,19 @@ function fXSSimpleTypeDefinition_validate_validate(oType, sValue) {
 //						break;
 
 					case cXSSimpleTypeDefinition.FACET_LENGTH:
-						var nLength	= fXSSimpleTypeDefinition_validate_getLength(oType, sValue);
+						var nLength	= fXSSimpleTypeDefinition_getLength(oType, sValue);
 						if (nLength === false || nLength != Number(oFacet.lexicalFacetValue))
 							return false;
 						break;
 
 					case cXSSimpleTypeDefinition.FACET_MINLENGTH:
-						var nLength	= fXSSimpleTypeDefinition_validate_getLength(oType, sValue);
+						var nLength	= fXSSimpleTypeDefinition_getLength(oType, sValue);
 						if (nLength === false || nLength < Number(oFacet.lexicalFacetValue))
 							return false;
 						break;
 
 					case cXSSimpleTypeDefinition.FACET_MAXLENGTH:
-						var nLength	= fXSSimpleTypeDefinition_validate_getLength(oType, sValue);
+						var nLength	= fXSSimpleTypeDefinition_getLength(oType, sValue);
 						if (nLength === false || nLength > Number(oFacet.lexicalFacetValue))
 							return false;
 						break;
@@ -208,22 +208,22 @@ function fXSSimpleTypeDefinition_validate_validate(oType, sValue) {
 						break;
 
 					case cXSSimpleTypeDefinition.FACET_MAXINCLUSIVE:
-						if (fXSSimpleTypeDefinition_validate_getValue(oType, sValue) > fXSSimpleTypeDefinition_validate_getValue(oType, oFacet.lexicalFacetValue))
+						if (fXSSimpleTypeDefinition_getValue(oType, sValue) > fXSSimpleTypeDefinition_getValue(oType, oFacet.lexicalFacetValue))
 							return false;
 						break;
 
 					case cXSSimpleTypeDefinition.FACET_MAXEXCLUSIVE:
-						if (fXSSimpleTypeDefinition_validate_getValue(oType, sValue) >= fXSSimpleTypeDefinition_validate_getValue(oType, oFacet.lexicalFacetValue))
+						if (fXSSimpleTypeDefinition_getValue(oType, sValue) >= fXSSimpleTypeDefinition_getValue(oType, oFacet.lexicalFacetValue))
 							return false;
 						break;
 
 					case cXSSimpleTypeDefinition.FACET_MINEXCLUSIVE:
-						if (fXSSimpleTypeDefinition_validate_getValue(oType, sValue) <= fXSSimpleTypeDefinition_validate_getValue(oType, oFacet.lexicalFacetValue))
+						if (fXSSimpleTypeDefinition_getValue(oType, sValue) <= fXSSimpleTypeDefinition_getValue(oType, oFacet.lexicalFacetValue))
 							return false;
 						break;
 
 					case cXSSimpleTypeDefinition.FACET_MININCLUSIVE:
-						if (fXSSimpleTypeDefinition_validate_getValue(oType, sValue) < fXSSimpleTypeDefinition_validate_getValue(oType, oFacet.lexicalFacetValue))
+						if (fXSSimpleTypeDefinition_getValue(oType, sValue) < fXSSimpleTypeDefinition_getValue(oType, oFacet.lexicalFacetValue))
 							return false;
 						break;
 
@@ -272,21 +272,21 @@ function fXSSimpleTypeDefinition_validate_validate(oType, sValue) {
 
 			// 3: Validate base type
 			if (oType.baseType)
-				return fXSSimpleTypeDefinition_validate_validate(oType.baseType, sValue);
+				return fXSSimpleTypeDefinition_validate(oType.baseType, sValue);
 			return true;
 
 		case cXSSimpleTypeDefinition.VARIETY_LIST:
 			// Validate every value from the list against itemType
 			if (sValue)
-				for (var nIndex = 0, aValue = fXSSimpleTypeDefinition_validate_getWhiteSpace(oType, sValue).split(' '); nIndex < aValue.length; nIndex++)
-					if (oType.itemType && !fXSSimpleTypeDefinition_validate_validate(oType.itemType, aValue[nIndex]))
+				for (var nIndex = 0, aValue = fXSSimpleTypeDefinition_getWhiteSpace(oType, sValue).split(' '); nIndex < aValue.length; nIndex++)
+					if (oType.itemType && !fXSSimpleTypeDefinition_validate(oType.itemType, aValue[nIndex]))
 						return false;
 			return true;
 
 		case cXSSimpleTypeDefinition.VARIETY_UNION:
 			// Validate value against member types untill successfull
 			for (var nIndex = 0; nIndex < oType.memberTypes.length; nIndex++)
-				if (fXSSimpleTypeDefinition_validate_validate(oType.memberTypes[nIndex], sValue))
+				if (fXSSimpleTypeDefinition_validate(oType.memberTypes[nIndex], sValue))
 					return true;
 			return false;
 
@@ -295,10 +295,10 @@ function fXSSimpleTypeDefinition_validate_validate(oType, sValue) {
 	}
 };
 
-function fXSSimpleTypeDefinition_validate_getValue(oType, sValue) {
-//	sValue = fXSSimpleTypeDefinition_validate_getWhiteSpace(oType, sValue);
+function fXSSimpleTypeDefinition_getValue(oType, sValue) {
+//	sValue = fXSSimpleTypeDefinition_getWhiteSpace(oType, sValue);
 	if (oType.variety == cXSSimpleTypeDefinition.VARIETY_ATOMIC) {
-		switch (fXSSimpleTypeDefinition_validate_getPrimitiveType(oType).builtInKind) {
+		switch (fXSSimpleTypeDefinition_getPrimitiveType(oType).builtInKind) {
 			case cXSConstants.BOOLEAN_DT:
 				return sValue == "true" || sValue == '1';
 
@@ -332,7 +332,7 @@ function fXSSimpleTypeDefinition_validate_getValue(oType, sValue) {
 	return sValue;
 };
 
-function fXSSimpleTypeDefinition_validate_getWhiteSpace(oType, sValue) {
+function fXSSimpleTypeDefinition_getWhiteSpace(oType, sValue) {
 	var sWhiteSpace	= null;
 	if (oType.variety == cXSSimpleTypeDefinition.VARIETY_ATOMIC) {
 		// find whiteSpace facet specified
@@ -356,19 +356,19 @@ function fXSSimpleTypeDefinition_validate_getWhiteSpace(oType, sValue) {
 	}
 };
 
-function fXSSimpleTypeDefinition_validate_getLength(oType, sValue) {
+function fXSSimpleTypeDefinition_getLength(oType, sValue) {
 	switch (oType.variety) {
 		case cXSSimpleTypeDefinition.VARIETY_ATOMIC:
-			switch (fXSSimpleTypeDefinition_validate_getPrimitiveType(oType).builtInKind) {
+			switch (fXSSimpleTypeDefinition_getPrimitiveType(oType).builtInKind) {
 				case cXSConstants.STRING_DT:
 				case cXSConstants.ANYURI_DT:
-					return fXSSimpleTypeDefinition_validate_getWhiteSpace(oType, sValue).length;
+					return fXSSimpleTypeDefinition_getWhiteSpace(oType, sValue).length;
 
 				case cXSConstants.HEXBINARY_DT:
-					return fXSSimpleTypeDefinition_validate_getWhiteSpace(oType, sValue).length / 2;
+					return fXSSimpleTypeDefinition_getWhiteSpace(oType, sValue).length / 2;
 
 				case cXSConstants.BASE64BINARY_DT:
-					return Math.floor(fXSSimpleTypeDefinition_validate_getWhiteSpace(oType, sValue).replace(/[^a-zA-Z0-9+\/]/g,'').length * 3 / 4);
+					return Math.floor(fXSSimpleTypeDefinition_getWhiteSpace(oType, sValue).replace(/[^a-zA-Z0-9+\/]/g,'').length * 3 / 4);
 
 				case cXSConstants.QNAME_DT:
 				case cXSConstants.NOTATION_DT:
@@ -380,13 +380,13 @@ function fXSSimpleTypeDefinition_validate_getLength(oType, sValue) {
 			break;
 
 		case cXSSimpleTypeDefinition.VARIETY_LIST:
-			var sLexicalValue	= fXSSimpleTypeDefinition_validate_getWhiteSpace(oType, sValue);
+			var sLexicalValue	= fXSSimpleTypeDefinition_getWhiteSpace(oType, sValue);
 			return sLexicalValue == '' ? 0 : sLexicalValue.split(' ').length;
 	}
 	return false;
 };
 
-function fXSSimpleTypeDefinition_validate_getPrimitiveType(oType) {
+function fXSSimpleTypeDefinition_getPrimitiveType(oType) {
 	for (; oType; oType = oType.baseType)
 		if (oXSBuiltin_primitiveDataTypes[oType.builtInKind])
 			return oType;
