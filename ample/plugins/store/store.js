@@ -9,7 +9,7 @@
 
 // Private members
 function fAmple_store(oNode, sName, vValue) {
-
+	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };
 
 // Extend ample object
