@@ -619,9 +619,18 @@
 		<concat destfile="${temp.languages.dir}/xmlschema-raw.js" fixlastline="yes">
 			<fileset dir="${source.xmlschema.dir}/classes/">
 				<include name="*.js" />
+				<include name="datatypes/*.js" />
+			</fileset>
+			<fileset dir="${source.xmlschema.dir}/integrations/">
+				<include name="*.js" />
+			</fileset>
+			<fileset dir="${source.xmlschema.dir}/builtin/">
+				<include name="*.js" />
 			</fileset>
 			<fileset dir="${source.xmlschema.dir}/elements/">
 				<include name="*.js" />
+				<include name="datatypes/*.js" />
+				<include name="datatypes/facets/*.js" />
 			</fileset>
 		</concat>
 
