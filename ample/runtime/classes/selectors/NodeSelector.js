@@ -9,21 +9,23 @@
 
 // CSS Query driver
 var nNodeSelector_iterator	= 0,
-	rNodeSelector_comma 		= /\s*,\s*/;
+	rNodeSelector_comma 	= /\s*,\s*/;
 
 function fNodeSelector_query(aFrom, sQuery, fResolver, bMatchOne)
 {
-    var aMatch	= new cNodeList;
-    if (sQuery = fNodeSelector_parseSelector(sQuery)) {
-	    // process comma separated selectors
-	    var aBase	= aFrom,
-	    	aSelectors = sQuery.split(rNodeSelector_comma),
-	    	nSelector,
-	    	aSelector;
-	    for (nSelector = 0; nSelector < aSelectors.length; nSelector++) {
+    // process comma separated selectors
+    var aMatch	= new cNodeList,
+    	aBase	= aFrom,
+    	aSelectors	= sQuery.split(rNodeSelector_comma),
+    	sSelector,
+    	nSelector,
+    	aSelector;
+
+    for (nSelector = 0; nSelector < aSelectors.length; nSelector++) {
+        if (sSelector = fNodeSelector_parseSelector(aSelectors[nSelector])) {
 			aFrom = aBase;
 	        // Optimization for #id
-	    	if (aSelectors[nSelector].match(/^\s*\*#([-_a-z0-9]+)$/i)) {
+	    	if (sSelector.match(/^\s*\*#([-_a-z0-9]+)$/i)) {
 	    		aFrom	= [];
 	    		// Make sure found element is a descendant of collection
 	    		for (var oElement = oDocument_ids[cRegExp.$1], oNode = oElement; oNode; oNode = oNode.parentNode) {
@@ -38,7 +40,7 @@ function fNodeSelector_query(aFrom, sQuery, fResolver, bMatchOne)
 	    	}
 	    	else {
 		    	// convert the selector to a stream
-		        aSelector = fNodeSelector_toStream(aSelectors[nSelector]);
+		        aSelector = fNodeSelector_toStream(sSelector);
 
 		        // process the stream
 		        var nIndex = 0, sToken, sFilter, sArguments, bBracketRounded, bBracketSquare;
@@ -57,6 +59,12 @@ function fNodeSelector_query(aFrom, sQuery, fResolver, bMatchOne)
 		                    sArguments += aSelector[nIndex];
 		                sArguments = sArguments.slice(0, -1);
 		            }
+		            if (typeof sFilter == "undefined")
+		        		throw new cDOMException(cDOMException.SYNTAX_ERR, fNodeSelector_query.caller.caller
+//->Debug
+		        								, [sQuery]
+//<-Debug
+		        						);
 		            // process a token/filter pair use cached results if possible
 		            aFrom	= fNodeSelector_select(aFrom, sToken, sFilter, sArguments, fResolver);
 		        }
@@ -72,6 +80,12 @@ function fNodeSelector_query(aFrom, sQuery, fResolver, bMatchOne)
 	        	}
 	        }
 	    }
+        else
+    		throw new cDOMException(cDOMException.SYNTAX_ERR, fNodeSelector_query.caller.caller
+//->Debug
+    						        	, [sQuery]
+//<-Debug
+    		);
 
 		// Remove temporarily set _cssIndex
 		for (var nIndex = 0; nIndex < aMatch.length; nIndex++)
@@ -149,8 +163,8 @@ var oNodeSelector_elementSelectors	= {},
 // CSS1 selectors
 // ----------------------------------------------------------------------------
 
-var rNodeSelector_whiteSpace = /\s*([\s>+~(,]|^|$)\s*/g,
-	rNodeSelector_impliedAll = /([\s>+~,]|[^(]\+|^)([#.:@])/g,
+var rNodeSelector_whiteSpace = /\s*([\s>+~(]|^|$)\s*/g,
+	rNodeSelector_impliedAll = /([\s>+~]|[^(]\+|^)([#.:@])/g,
 	rNodeSelector_attribute  = /([^(]|^)(\[[^\]]+)/g;
 
 function fNodeSelector_parseSelector(sSelector) {
@@ -241,7 +255,7 @@ oNodeSelector_elementSelectors['::'] = function(aReturn, aFrom, sPseudoElement) 
     for (var nIndex = 0, oElement, oElementDOM; oElement = aFrom[nIndex]; nIndex++)
     	if (oElementDOM = oElement.$getContainer(sPseudoElement))
     		aReturn.push(oElementDOM);
-   */
+*/
 };
 
 // pseudo-class selectors
