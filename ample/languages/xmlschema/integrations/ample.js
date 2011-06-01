@@ -11,5 +11,5 @@ var oXSModel	= new cXSModel;
 
 // Publish
 ample.extend(ample, {
-	model:	oXSModel
+	schema:	oXSModel
 });
