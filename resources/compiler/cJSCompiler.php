@@ -66,8 +66,10 @@
 	        //
 	        $sData	= preg_replace('/ *(if|for|with|do|while|try|catch) +/', '\\1', $sData);
 
+	        // strip carriage returns
+	        $sData	= preg_replace("/\r\n|\r|\n/",	"",			$sData);
 	        // strip all more than one spaces
-	        $sData	= preg_replace("/\s\s+/",	"",			$sData);
+	        $sData	= preg_replace("/\s\s+/",		"",			$sData);
 
 	        // correct the bug produced above
 	        $sData	= str_replace("else",		"else ",	$sData);
