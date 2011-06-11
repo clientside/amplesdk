@@ -8,43 +8,43 @@
  */
 
 (function($) {
-    var locales = $.locales,
-    	locale	= locales["en"]	= $.extend(true, {}, locales.en, {
-    		// window/dialog/wizard
-    		"dialog.button.accept":		"OK",
-    		"dialog.button.cancel":		"Cancel",
-    		"dialog.button.close":		"Close",
-    		"dialog.button.help":		"Help",
-    		"dialog.button.finish":		"Finish",
-    		"dialog.button.next":		"Next",
-    		"dialog.button.previous":	"Previous",
+	var locales = $.locales,
+		locale	= locales["en"]	= $.extend(true, {}, locales.en, {
+			// window/dialog/wizard
+			"xul.dialog.button.accept":		"OK",
+			"xul.dialog.button.cancel":		"Cancel",
+			"xul.dialog.button.close":		"Close",
+			"xul.dialog.button.help":		"Help",
+			"xul.dialog.button.finish":		"Finish",
+			"xul.dialog.button.next":		"Next",
+			"xul.dialog.button.previous":	"Previous",
 
-    		// editor
-    		"editor.button.undo":				"Undo typing",
-    		"editor.button.redo":				"Redo typing",
-    		"editor.button.justifyleft":		"Align text to the left",
-    		"editor.button.justifycenter":		"Center text",
-    		"editor.button.justifyright":		"Align text to the right",
-    		"editor.button.justifyfull":		"Default alignment",
-    		"editor.button.outdent":			"Decrease the indent level of the paragraph",
-    		"editor.button.indent":				"Increase the indent level of the paragraph",
-    		"editor.button.insertunorderedlist":"Start a bulleted list",
-    		"editor.button.insertorderedlist":	"Start a numbered list",
-    		"editor.button.createlink":			"Create a hyperlink",
-    		"editor.button.unlink":				"Remove hyperlink",
-    		"editor.button.bold":				"Make the selected text bold",
-    		"editor.button.italic":				"Italicize the selected text",
-    		"editor.button.underline":			"Underline the selected text",
-    		"editor.button.strikethrough":		"Strikethrough the selected text",
-    		"editor.button.subscript":			"Subscript the selected text",
-    		"editor.button.superscript":		"Superscript the selected text",
-    		"editor.button.fontsize":			"Change the font size",
-    		"editor.button.fontname":			"Change the font name",
-    		"editor.button.formatblock":		"Format block",
-    		"editor.button.forecolor":			"Change the text color",
-    		"editor.button.backcolor":			"Change the text background color",
+			// editor
+			"xul.editor.button.undo":				"Undo typing",
+			"xul.editor.button.redo":				"Redo typing",
+			"xul.editor.button.justifyleft":		"Align text to the left",
+			"xul.editor.button.justifycenter":		"Center text",
+			"xul.editor.button.justifyright":		"Align text to the right",
+			"xul.editor.button.justifyfull":		"Default alignment",
+			"xul.editor.button.outdent":			"Decrease the indent level of the paragraph",
+			"xul.editor.button.indent":				"Increase the indent level of the paragraph",
+			"xul.editor.button.insertunorderedlist":"Start a bulleted list",
+			"xul.editor.button.insertorderedlist":	"Start a numbered list",
+			"xul.editor.button.createlink":			"Create a hyperlink",
+			"xul.editor.button.unlink":				"Remove hyperlink",
+			"xul.editor.button.bold":				"Make the selected text bold",
+			"xul.editor.button.italic":				"Italicize the selected text",
+			"xul.editor.button.underline":			"Underline the selected text",
+			"xul.editor.button.strikethrough":		"Strikethrough the selected text",
+			"xul.editor.button.subscript":			"Subscript the selected text",
+			"xul.editor.button.superscript":		"Superscript the selected text",
+			"xul.editor.button.fontsize":			"Change the font size",
+			"xul.editor.button.fontname":			"Change the font name",
+			"xul.editor.button.formatblock":		"Format block",
+			"xul.editor.button.forecolor":			"Change the text color",
+			"xul.editor.button.backcolor":			"Change the text background color",
 
-    		// Stupid text (please keep it for RCS and later editions)
-    		"{":"}"
-    	}, locales["en"]);
+			// Stupid text (please keep it for RCS and later editions)
+			"{":"}"
+		}, locales["en"]);
 })(ample.locale);

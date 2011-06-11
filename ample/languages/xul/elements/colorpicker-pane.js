@@ -197,9 +197,9 @@ cXULElement_colorpicker_pane.prototype.$getTagOpen	= function() {
 									<tr><td><br /></td></tr>\
 									<tr><td><input autocomplete="no" type="text" value="#FF0000" maxlength="7" class="xul-colorpicker-pane--value" onchange="ample.$instance(this)._onInputChange(event, this.value)" onkeyup="ample.$instance(this)._onInputChange(event, this.value)" onselectstart="event.cancelBubble=true;" oncontextmenu="event.cancelBubble=true"/></td></tr>\
 									<tr><td><br /></td></tr>\
-									<tr><td><button type="button" onclick="ample.$instance(this).acceptDialog();" class="xul-colorpicker-pane--button-accept">' + ample.locale.localize("dialog.button.accept") + '</button></td></tr>\
+									<tr><td><button type="button" onclick="ample.$instance(this).acceptDialog();" class="xul-colorpicker-pane--button-accept">' + ample.locale.localize("xul.dialog.button.accept") + '</button></td></tr>\
 									<tr><td height="3"></td></tr>\
-									<tr><td><button type="button" onclick="ample.$instance(this).cancelDialog()" class="xul-colorpicker-pane--button-cancel">' + ample.locale.localize("dialog.button.cancel") + '</button></td></tr>\
+									<tr><td><button type="button" onclick="ample.$instance(this).cancelDialog()" class="xul-colorpicker-pane--button-cancel">' + ample.locale.localize("xul.dialog.button.cancel") + '</button></td></tr>\
 								</tbody>\
 							</table>\
 						</td>\

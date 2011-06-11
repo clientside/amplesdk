@@ -19,28 +19,28 @@ var cXULElement_wizard	= function() {
     this.buttons.back.addEventListener("DOMActivate", function(oEvent) {
 		that.rewind();
 	}, false);
-    this.buttons.back.setAttribute("label", ample.locale.localize("dialog.button.previous"));
+    this.buttons.back.setAttribute("label", ample.locale.localize("xul.dialog.button.previous"));
     this.buttons.back.setAttribute("class", "back");
 	// Next
 	this.buttons.next	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "xul:button"));
 	this.buttons.next.addEventListener("DOMActivate", function(oEvent) {
 		that.advance();
 	}, false);
-	this.buttons.next.setAttribute("label", ample.locale.localize("dialog.button.next"));
+	this.buttons.next.setAttribute("label", ample.locale.localize("xul.dialog.button.next"));
 	this.buttons.next.setAttribute("class", "next");
 	// Finish
 	this.buttons.finish	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "xul:button"));
 	this.buttons.finish.addEventListener("DOMActivate", function(oEvent) {
         that.finish();
 	}, false);
-	this.buttons.finish.setAttribute("label", ample.locale.localize("dialog.button.finish"));
+	this.buttons.finish.setAttribute("label", ample.locale.localize("xul.dialog.button.finish"));
 	this.buttons.finish.setAttribute("class", "finish");
 	// Cancel
 	this.buttons.cancel	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "xul:button"));
 	this.buttons.cancel.addEventListener("DOMActivate", function(oEvent) {
 		that.cancel();
 	}, false);
-	this.buttons.cancel.setAttribute("label", ample.locale.localize("dialog.button.cancel"));
+	this.buttons.cancel.setAttribute("label", ample.locale.localize("xul.dialog.button.cancel"));
 	this.buttons.cancel.setAttribute("class", "cancel");
 };
 cXULElement_wizard.prototype = new cXULWindowElement("wizard");

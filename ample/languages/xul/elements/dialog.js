@@ -18,14 +18,14 @@ var cXULElement_dialog	= function(){
     this.buttons.accept.addEventListener("DOMActivate", function(oEvent) {
 		that.acceptDialog();
 	}, false);
-    this.buttons.accept.setAttribute("label", ample.locale.localize("dialog.button.accept"));
+    this.buttons.accept.setAttribute("label", ample.locale.localize("xul.dialog.button.accept"));
     this.buttons.accept.setAttribute("class", "accept");
 	// Cancel
 	this.buttons.cancel	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "xul:button"));
 	this.buttons.cancel.addEventListener("DOMActivate", function(oEvent) {
 		that.cancelDialog();
 	}, false);
-	this.buttons.cancel.setAttribute("label", ample.locale.localize("dialog.button.cancel"));
+	this.buttons.cancel.setAttribute("label", ample.locale.localize("xul.dialog.button.cancel"));
 	this.buttons.cancel.setAttribute("class", "cancel");
 	// Help
 	this.buttons.help	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "xul:button"));
@@ -34,7 +34,7 @@ var cXULElement_dialog	= function(){
         oEvent2.initEvent("dialoghelp", true, true);
         that.dispatchEvent(oEvent2);
 	}, false);
-	this.buttons.help.setAttribute("label", ample.locale.localize("dialog.button.help"));
+	this.buttons.help.setAttribute("label", ample.locale.localize("xul.dialog.button.help"));
 	this.buttons.help.setAttribute("class", "help");
 	// Extra1
 	this.buttons.extra1	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "xul:button"));
