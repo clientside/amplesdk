@@ -468,7 +468,7 @@
 				<include name="*.js" />
 			</fileset>
 			<fileset dir="${source.xul.dir}/locales/">
-				<include name="*.js" />
+				<include name="en.js" />
 			</fileset>
 			<fileset dir="${source.xul.dir}/elements/">
 				<include name="*.js" />
@@ -513,6 +513,14 @@
 		<copy todir="${target.xul.dir}/themes/default/">
 			<fileset dir="${source.xul.dir}/themes/default/">
 				<include name="media/**"/>
+			</fileset>
+		</copy>
+
+		<echo message="Copying locales to: " level="info" />
+		<mkdir dir="${target.xul.dir}/locales/" />
+		<copy todir="${target.xul.dir}/locales/">
+			<fileset dir="${source.xul.dir}/locales/">
+				<include name="*.js"/>
 			</fileset>
 		</copy>
 	</target>

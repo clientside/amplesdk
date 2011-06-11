@@ -14,8 +14,6 @@ managers/oXULWindowManager.js
 
 # Locales
 locales/en.js
-locales/fr.js
-locales/it.js
 
 # Elements
 # windowing
