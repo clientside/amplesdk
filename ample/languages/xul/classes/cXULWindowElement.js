@@ -141,7 +141,7 @@ cXULWindowElement.prototype.hide = function() {
 
 	var nWidth	= oRect.right - oRect.left,
 		nHeight	= oRect.bottom - oRect.top,
-		nLeft	= document.documentElement.scrollLeft + oRect.left;
+		nLeft	= document.documentElement.scrollLeft + oRect.left,
 		nTop	= document.documentElement.scrollTop + oRect.top;
 
 	// Hide head and body
