@@ -6,13 +6,12 @@
 			Provides APIs for localizing applications.
 		</locale>
 	</abstract>
-	<remarks />
 	<examples/>
 	<members>
 		<properties>
 			<property name="cultures" type="Object" readonly="true">
 				<description>
-
+					A mapping of culture codes to culture objects.
 				</description>
 			</property>
 		</properties>
@@ -22,28 +21,28 @@
 					<argument name="value" type="Variant" required="true">
 						<description>
 							<locale>
-
+								Date or number value to be formatted.
 							</locale>
 						</description>
 					</argument>
-					<argument name="format" type="Variant">
+					<argument name="format" type="String">
 						<description>
 							<locale>
-
+								Format string.
 							</locale>
 						</description>
 					</argument>
-					<argument name="culture" type="String">
+					<argument name="culture" type="String" required="false">
 						<description>
 							<locale>
-
+								Culture identifier.
 							</locale>
 						</description>
 					</argument>
 				</arguments>
 				<description>
 					<locale>
-
+						Formats a date or number according to the given format string and/or the given culture
 					</locale>
 				</description>
 			</method>
@@ -52,28 +51,28 @@
 					<argument name="key" type="String" required="true">
 						<description>
 							<locale>
-
+								Key.
 							</locale>
 						</description>
 					</argument>
-					<argument name="culture" type="String">
+					<argument name="culture" type="String" required="false">
 						<description>
 							<locale>
-
+								Culture name.
 							</locale>
 						</description>
 					</argument>
-					<argument name="value" type="String">
+					<argument name="value" type="String" required="false">
 						<description>
 							<locale>
-
+								Value to be set.
 							</locale>
 						</description>
 					</argument>
 				</arguments>
 				<description>
 					<locale>
-
+						Gets or sets a localized value.
 					</locale>
 				</description>
 			</method>
@@ -82,28 +81,28 @@
 					<argument name="value" type="String" required="true">
 						<description>
 							<locale>
-
+								Value to be parsed.
 							</locale>
 						</description>
 					</argument>
 					<argument name="formats" type="Variant">
 						<description>
 							<locale>
-
+								Format string.
 							</locale>
 						</description>
 					</argument>
-					<argument name="value" type="String">
+					<argument name="culture" type="String" required="false">
 						<description>
 							<locale>
-
+								Culture name.
 							</locale>
 						</description>
 					</argument>
 				</arguments>
 				<description>
 					<locale>
-
+						Parses a string representing a date into a JavaScript Date object, taking into account the given possible formats.
 					</locale>
 				</description>
 			</method>
@@ -112,28 +111,28 @@
 					<argument name="value" type="String" required="true">
 						<description>
 							<locale>
-
+								Value to be parsed.
 							</locale>
 						</description>
 					</argument>
-					<argument name="formats" type="Variant">
+					<argument name="radix" type="Number" required="false">
 						<description>
 							<locale>
-
+								Radix (10 by default).
 							</locale>
 						</description>
 					</argument>
-					<argument name="culture" type="String">
+					<argument name="culture" type="String" required="false">
 						<description>
 							<locale>
-
+								Culture name.
 							</locale>
 						</description>
 					</argument>
 				</arguments>
 				<description>
 					<locale>
-
+						Parses a string representing a whole number in the given radix (10 by default).
 					</locale>
 				</description>
 			</method>
@@ -142,31 +141,63 @@
 					<argument name="value" type="String" required="true">
 						<description>
 							<locale>
-
+								Value to be parsed.
 							</locale>
 						</description>
 					</argument>
-					<argument name="formats" type="Variant">
+					<argument name="radix" type="Number" required="false">
 						<description>
 							<locale>
-
+								Radix (10 by default).
 							</locale>
 						</description>
 					</argument>
-					<argument name="culture" type="String">
+					<argument name="culture" type="String" required="false">
 						<description>
 							<locale>
-
+								Culture name.
 							</locale>
 						</description>
 					</argument>
 				</arguments>
 				<description>
 					<locale>
-
+						Parses a string representing a floating point number in the given radix (10 by default).
 					</locale>
 				</description>
 			</method>
 		</methods>
 	</members>
+	<remarks>
+		<remark>
+			<locale>
+				<p>
+					<b>Date formats.</b>
+					When more specific control is needed over the formatting, you may create custom formats using custom tokens.
+				</p>
+				<ul>
+					<li>f - Long Date, Short Time</li>
+					<li>F - Long Date, Long Time</li>
+					<li>t - Short Time</li>
+					<li>T - Long Time</li>
+					<li>d - Short Date</li>
+					<li>D - Long Date</li>
+					<li>Y - Month/Year</li>
+					<li>M - Month/Day</li>
+					<li>S - Sortable date format "yyyy-MM-ddTHH:mm:ss"</li>
+				</ul>
+				<p>
+					<b>Number formats.</b>
+					For number formats you can also use number next to format identifier to give output string length.
+					For example ample.locale.format(0.12345, "p4") will output 12.3450 % in default en-US locale.
+				</p>
+				<ul>
+					<li>n - number</li>
+					<li>d - decimal digits</li>
+					<li>p - percentage</li>
+					<li>c - currency</li>
+				</ul>
+			</locale>
+		</remark>
+	</remarks>
 </class>
