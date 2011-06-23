@@ -61,7 +61,7 @@ function fQuery_history_onHashChange() {
 
 function fQuery_history_onLoad(oEvent) {
 	var sHash	= oUALocation.hash.replace(/^#/, '');
-	if (typeof window.onhashchange != "undefined")
+	if (('on' + "hashchange") in window)
 		fBrowser_attachEvent(window, "hashchange", fQuery_history_onHashChange);
 	else {
 		if (bTrident) {
@@ -78,7 +78,7 @@ function fQuery_history_onLoad(oEvent) {
 };
 
 function fQuery_history_onUnLoad(oEvent) {
-	if (typeof window.onhashchange != "undefined")
+	if (('on' + "hashchange") in window)
 		fBrowser_detachEvent(window, "hashchange", fQuery_history_onHashChange);
 	else
 		fClearTimeout(nQuery_history_timeout);
