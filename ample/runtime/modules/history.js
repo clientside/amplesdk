@@ -60,10 +60,10 @@ function fQuery_history_onHashChange() {
 };
 
 function fQuery_history_onLoad(oEvent) {
-	if (bTrident && nVersion > 7)
+	var sHash	= oUALocation.hash.replace(/^#/, '');
+	if (typeof window.onhashchange != "undefined")
 		fBrowser_attachEvent(window, "hashchange", fQuery_history_onHashChange);
 	else {
-		var sHash	= oUALocation.hash.replace(/^#/, '');
 		if (bTrident) {
 			var oElement	= oUADocument.createElement("iframe");
 			oElement.style.display	= "none";
@@ -72,13 +72,13 @@ function fQuery_history_onLoad(oEvent) {
 			if (oDOMConfiguration_values["ample-module-history-fix"])
 				fQuery_history_bookmark(sHash);
 		}
-		sQuery_history_prev		= sHash;	// set to null to get initial 'hashchange' event
-		nQuery_history_timeout		= fSetTimeout(fQuery_history_onTimeout, 20);
+		nQuery_history_timeout	= fSetTimeout(fQuery_history_onTimeout, 20);
 	}
+	sQuery_history_prev		= sHash;	// set to null to get initial 'hashchange' event
 };
 
 function fQuery_history_onUnLoad(oEvent) {
-	if (bTrident && nVersion > 7)
+	if (typeof window.onhashchange != "undefined")
 		fBrowser_detachEvent(window, "hashchange", fQuery_history_onHashChange);
 	else
 		fClearTimeout(nQuery_history_timeout);
