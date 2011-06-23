@@ -106,6 +106,88 @@ cSMILTimeElement.prototype.resumeElement= function() {
 	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };
 
+var aSMILTimeElement_activeElements	= [],
+	nSMILTimeElement_timeline		= 0,
+	nSMILTimeElement_timeout		= 10;	// This is a timeout, not interval
+
+// Time
+function fSMILTimeElement_onTimeline() {
+//	console.info("progress timeline");
+	// Walk over all active elements
+	var oDate	= new cDate,
+		nTimeRunRate,
+		nTimeSimpleDuration,
+		nTimeIntermediateActiveDuration,
+		nTimeActiveDuration,
+		nTimeUnfilteredActiveTime,
+		nTimeFilteredActiveTime,
+		nTimeModifiedSimpleDuration,
+		nTimeUnfilteredSimpleTime,
+		nTimeAccelerationDuration,
+		nTimeDecelerationDuration,
+		nTimeFilteredSimpleTime,
+		nTimeDeceleration;
+
+	for (var nIndex = 0, oElement; oElement = aSMILTimeElement_activeElements[nIndex]; nIndex++) {
+		// Simple Duration
+		nTimeSimpleDuration	= oElement.dur;
+
+		// Active duration computation
+		nTimeIntermediateActiveDuration	= oElement.dur * oElement.repeatCount;
+		if (oElement.repeatDur != nInfinity)
+			nTimeIntermediateActiveDuration	= oElement.repeatCount == 1 ? oElement.repeatDur : cMath.min(nTimeIntermediateActiveDuration, oElement.repeatDur);
+		nTimeActiveDuration	= nTimeIntermediateActiveDuration;
+
+		// Filtered active time calculation
+		nTimeUnfilteredActiveTime	= oDate - oElement.start;
+		nTimeFilteredActiveTime		= oElement.speed > 0 ? nTimeUnfilteredActiveTime * oElement.speed : nTimeActiveDuration - nTimeUnfilteredActiveTime * cMath.abs(oElement.speed);
+
+		if ((oElement.end.offset && nTimeUnfilteredActiveTime >= oElement.end.offset) || (nTimeUnfilteredActiveTime >= nTimeActiveDuration * (oElement.autoReverse ? 2 : 1) / oElement.speed)) {
+			//
+			fSMILTimeElement_endElement(oElement);
+			//
+			if (oElement.parentNode instanceof cSMILElement_seq) {
+				for (var aChildNodes = oElement.parentNode.childNodes, nChild = aChildNodes.$indexOf(oElement); nChild < aChildNodes.length; nChild++)
+					if (aChildNodes[nChild+1] instanceof cSMILTimeElement) {
+						fSMILTimeElement_beginElement(aChildNodes[nChild+1]);
+						break;
+					}
+			}
+		}
+		else
+		if (oElement instanceof cSMILAnimationElement && !(oElement instanceof cSMILElement_set)) {
+			// Filtered simple time calculation
+			nTimeModifiedSimpleDuration	= nTimeSimpleDuration * (oElement.autoReverse ? 2 : 1);
+			// 1. Unfiltered simple time
+			nTimeUnfilteredSimpleTime	= nTimeFilteredActiveTime - nTimeModifiedSimpleDuration * cMath.floor(nTimeFilteredActiveTime / nTimeModifiedSimpleDuration);
+			// 2. Account for autoReverse behavior
+			if (oElement.autoReverse && nTimeUnfilteredSimpleTime >= nTimeSimpleDuration)
+				nTimeUnfilteredSimpleTime	= 2 * nTimeSimpleDuration - nTimeUnfilteredSimpleTime;
+			// 3. Account for acceleration and/or deceleration behavior
+			nTimeRunRate	= 1 / (1 - oElement.accelerate / 2 - oElement.decelerate / 2);
+			nTimeAccelerationDuration	= nTimeSimpleDuration * oElement.accelerate;
+			nTimeDecelerationDuration	= nTimeSimpleDuration * oElement.decelerate;
+			if (nTimeUnfilteredSimpleTime < nTimeAccelerationDuration)
+				nTimeFilteredSimpleTime	= nTimeUnfilteredSimpleTime * (nTimeRunRate * nTimeUnfilteredSimpleTime / nTimeAccelerationDuration) / 2;
+			else
+			if (nTimeUnfilteredSimpleTime > nTimeSimpleDuration - nTimeDecelerationDuration) {
+				nTimeDeceleration	= nTimeUnfilteredSimpleTime - (nTimeSimpleDuration - nTimeDecelerationDuration);
+				nTimeFilteredSimpleTime	= nTimeRunRate * (nTimeSimpleDuration - nTimeAccelerationDuration / 2 - nTimeDecelerationDuration +
+											nTimeDeceleration * (2 - nTimeDeceleration / nTimeDecelerationDuration) / 2);
+			}
+			else
+				nTimeFilteredSimpleTime	= nTimeRunRate * (nTimeUnfilteredSimpleTime - nTimeAccelerationDuration / 2);
+
+			// Progress animation
+			fSMILAnimationElement_progressAnimation(oElement, nTimeFilteredSimpleTime / nTimeSimpleDuration);
+		}
+	}
+
+	// Continue timer
+	if (aSMILTimeElement_activeElements.length)
+		nSMILTimeElement_timeline	= fSetTimeout(fSMILTimeElement_onTimeline, nSMILTimeElement_timeout);
+};
+
 //
 function fSMILTimeElement_beginElement(oElement) {
 //	console.info("begin element", oElement.tagName, oElement);
@@ -115,7 +197,7 @@ function fSMILTimeElement_beginElement(oElement) {
 			oElement.targetElement	= oDocument_ids[oElement.targetElement.substr(1)];
 
 		// check if there is already animation running on that @targetElement/@attributeName
-		for (var nIndex = 0, oElementOld; oElementOld = aSMILElement_activeElements[nIndex]; nIndex++)
+		for (var nIndex = 0, oElementOld; oElementOld = aSMILTimeElement_activeElements[nIndex]; nIndex++)
 			if (oElementOld instanceof cSMILAnimationElement && oElementOld.targetElement == oElement.targetElement && oElementOld.attributeName == oElement.attributeName) {
 				fSMILTimeElement_endElement(oElementOld);
 				break;
@@ -124,7 +206,7 @@ function fSMILTimeElement_beginElement(oElement) {
 
 	// Add element to timeline
 	oElement.start	= new cDate;
-	aSMILElement_activeElements.push(oElement);
+	aSMILTimeElement_activeElements.push(oElement);
 
 	// Begin Animation
 	if (oElement instanceof cSMILAnimationElement)
@@ -146,6 +228,10 @@ function fSMILTimeElement_beginElement(oElement) {
 			}
 	}
 
+	// Start timer
+	if (aSMILTimeElement_activeElements.length && !nSMILTimeElement_timeline)
+		nSMILTimeElement_timeline	= fSetTimeout(fSMILTimeElement_onTimeline, nSMILTimeElement_timeout);
+
 	// Dispatch end event
 	var oEvent	= new cSMILTimeEvent;
 	oEvent.initTimeEvent("begin", window, null);
@@ -156,14 +242,14 @@ function fSMILTimeElement_endElement(oElement) {
 //	console.info("end element", oElement.tagName, oElement);
 
 	// Remove element from timeline
-	for (var nIndex = 0, oElementOld, bFound = false; oElementOld = aSMILElement_activeElements[nIndex]; nIndex++)
+	for (var nIndex = 0, oElementOld, bFound = false; oElementOld = aSMILTimeElement_activeElements[nIndex]; nIndex++)
 		if (bFound)
-			aSMILElement_activeElements[nIndex - 1]	= oElementOld;
+			aSMILTimeElement_activeElements[nIndex - 1]	= oElementOld;
 		else
 		if (oElementOld == oElement)
 			bFound	= true;
 	if (bFound)
-		aSMILElement_activeElements.length--;
+		aSMILTimeElement_activeElements.length--;
 
 	// End children Elements timeline
 	var aChildNodes	= oElement.childNodes;
@@ -175,6 +261,10 @@ function fSMILTimeElement_endElement(oElement) {
 	// End Animation
 	if (oElement instanceof cSMILAnimationElement)
 		fSMILAnimationElement_endAnimation(oElement);
+
+	// Stop timer
+	if (!aSMILTimeElement_activeElements.length && nSMILTimeElement_timeline)
+		nSMILTimeElement_timeline	= fClearTimeout(nSMILTimeElement_timeline);
 
 	// Dispatch end event
 	var oEvent	= new cSMILTimeEvent;
@@ -199,7 +289,7 @@ DIGIT               ::= [0-9]
 */
 // Clock-value: /^(?:(\d+):)?([0-5]\d):([0-5]\d)(.\d+)?$/
 // Timecount-value: /^(\d+)(.\d+)?(h|min|s|ms)$/
-var hSMILElement_multipliers		= {};
+var hSMILElement_multipliers	= {};
 hSMILElement_multipliers['h']	= 3600;
 hSMILElement_multipliers["min"]	= 60;
 hSMILElement_multipliers['s']	= 1;

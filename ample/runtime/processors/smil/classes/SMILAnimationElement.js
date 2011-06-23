@@ -89,7 +89,7 @@ function fSMILAnimationElement_endAnimation(oElement) {
 	var oValue;
 
 	// if element is to be frozen on it is a child of another time container that is still active
-	if (oElement.fill == "freeze" || (oElement.fill == "hold" && aSMILElement_activeElements.indexOf(oElement.parentNode) >-1))
+	if (oElement.fill == "freeze" || (oElement.fill == "hold" && aSMILTimeElement_activeElements.indexOf(oElement.parentNode) >-1))
 		oValue	= oElement.values[oElement.values.length - 1] || oElement.to || fNodeAnimation_sumValue(oElement.original, oElement.by);
 	else
 		oValue	= oElement.original;
