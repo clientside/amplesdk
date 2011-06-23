@@ -62,9 +62,9 @@
 	        $sData	= str_replace("	",   " ",    		$sData);
 
 	        // Strip ' : ' spaces around
-	        $sData	= preg_replace('/ *([=\+\-\*\/\?\:\|\&\^\!<>\{\},%;]) */', '\\1', $sData);
+	        $sData	= preg_replace('/\s*([=\+\-\*\/\?\:\|\&\^\!<>\{\},%;\(\)])\s*/', '\\1', $sData);
 	        //
-	        $sData	= preg_replace('/ *(if|for|with|do|while|try|catch) +/', '\\1', $sData);
+	        $sData	= preg_replace('/\s*(if|for|with|do|while|try|catch)\s+/', '\\1', $sData);
 
 	        // strip carriage returns
 	        $sData	= preg_replace("/\r\n|\r|\n/",	"",			$sData);
