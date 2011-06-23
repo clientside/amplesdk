@@ -107,11 +107,10 @@ cSMILTimeElement.prototype.resumeElement= function() {
 };
 
 var aSMILTimeElement_activeElements	= [],
-	nSMILTimeElement_timeline		= 0,
-	nSMILTimeElement_timeout		= 10;	// This is a timeout, not interval
+	nSMILTimeElement_timeout;
 
 // Time
-function fSMILTimeElement_onTimeline() {
+function fSMILTimeElement_onTimeout() {
 //	console.info("progress timeline");
 	// Walk over all active elements
 	var oDate	= new cDate,
@@ -185,7 +184,7 @@ function fSMILTimeElement_onTimeline() {
 
 	// Continue timer
 	if (aSMILTimeElement_activeElements.length)
-		nSMILTimeElement_timeline	= fSetTimeout(fSMILTimeElement_onTimeline, nSMILTimeElement_timeout);
+		nSMILTimeElement_timeout	= fSetTimeout(fSMILTimeElement_onTimeout, 10);
 };
 
 //
@@ -229,8 +228,8 @@ function fSMILTimeElement_beginElement(oElement) {
 	}
 
 	// Start timer
-	if (aSMILTimeElement_activeElements.length && !nSMILTimeElement_timeline)
-		nSMILTimeElement_timeline	= fSetTimeout(fSMILTimeElement_onTimeline, nSMILTimeElement_timeout);
+	if (aSMILTimeElement_activeElements.length && !nSMILTimeElement_timeout)
+		nSMILTimeElement_timeout	= fSetTimeout(fSMILTimeElement_onTimeout, 0);
 
 	// Dispatch end event
 	var oEvent	= new cSMILTimeEvent;
@@ -263,8 +262,8 @@ function fSMILTimeElement_endElement(oElement) {
 		fSMILAnimationElement_endAnimation(oElement);
 
 	// Stop timer
-	if (!aSMILTimeElement_activeElements.length && nSMILTimeElement_timeline)
-		nSMILTimeElement_timeline	= fClearTimeout(nSMILTimeElement_timeline);
+	if (!aSMILTimeElement_activeElements.length && nSMILTimeElement_timeout)
+		nSMILTimeElement_timeout	= fClearTimeout(nSMILTimeElement_timeout);
 
 	// Dispatch end event
 	var oEvent	= new cSMILTimeEvent;
