@@ -15,20 +15,24 @@ cQuery.prototype.attr	= function(sQName, sValue) {
 	]);
 //<-Guard
 
+	var aQName		= sQName.split(':'),
+		sLocalName	= aQName.pop(),
+		sPrefix		= aQName.pop() || null,
+		sNameSpaceURI	= null;
+	if (sPrefix != null)
+		sNameSpaceURI	= this.resolver ? this.resolver(sPrefix) : oAmple.prefixes[sPrefix] || null;
+
 	if (arguments.length > 1) {
-		var aQName		= sQName.split(':'),
-			sLocalName	= aQName.pop(),
-			sPrefix		= aQName.pop() || null,
-			sNameSpaceURI	= null;
-		if (sPrefix != null)
-			sNameSpaceURI	= this.resolver ? this.resolver(sPrefix) : oAmple.prefixes[sPrefix] || null;
 		fQuery_each(this, function() {
-			sValue == null ? fElement_removeAttributeNS(this, sNameSpaceURI, sLocalName) : fElement_setAttributeNS(this, sNameSpaceURI, sQName, cString(sValue));
+			if (sValue == null)
+				sNameSpaceURI == null ? this.removeAttribute(sQName) : this.removeAttributeNS(sNameSpaceURI, sLocalName);
+			else
+				sNameSpaceURI == null ? this.setAttribute(sQName, sValue) : this.setAttributeNS(sNameSpaceURI, sQName, sValue);
 		});
 		return this;
 	}
 	else
 	if (this.length)
-		return fElement_getAttribute(this[0], sQName);
+		return sNameSpaceURI == null ? this[0].getAttribute(sQName) : this[0].getAttributeNS(sNameSpaceURI, sLocalName);
 	return null;
 };
