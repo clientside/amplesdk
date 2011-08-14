@@ -331,7 +331,7 @@ fDOMConfiguration_setParameter(oConfiguration, "error-handler", null);
 fDOMConfiguration_setParameter(oConfiguration, "element-content-whitespace", false);	// in DOM-Core spec the default value is true
 fDOMConfiguration_setParameter(oConfiguration, "entities", false);	// in DOM-Core spec the default value is true
 fDOMConfiguration_setParameter(oConfiguration, "comments", false); 	// in DOM-Core spec the default value is true
-//set ample parameters
+// set ample parameters
 fDOMConfiguration_setParameter(oConfiguration, "ample-module-history-fix", false);	// -> ample-history
 fDOMConfiguration_setParameter(oConfiguration, "ample-version", '@project.version@');
 fDOMConfiguration_setParameter(oConfiguration, "ample-locale", "en");
@@ -343,8 +343,7 @@ fDOMConfiguration_setParameter(oConfiguration, "ample-enable-transitions", true)
 
 //->Debug
 // Enable debugging
-var oAmple_errorHandler	= {};
-oAmple_errorHandler.handleError	= function(oError) {
+var fErrorHandler	= function(oError) {
 	var oConsole	= window.console;
 	if (oError.severity == cDOMError.SEVERITY_WARNING) {
 		// Warning in console
@@ -357,5 +356,5 @@ oAmple_errorHandler.handleError	= function(oError) {
 		oConsole.error(oError.message + '\n' + oError.relatedException.caller);
 	return false;
 };
-fDOMConfiguration_setParameter(oConfiguration, "error-handler", oAmple_errorHandler);
+fDOMConfiguration_setParameter(oConfiguration, "error-handler", fErrorHandler);
 //<-Debug

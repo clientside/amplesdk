@@ -23,9 +23,14 @@ var sGUARD_NOT_WELLFORMED_WRN			= 'Not well-formed XML',
 	sGUARD_CONFIGURATION_READONLY_WRN	= 'Configuration parameter "%0" is readonly. Value has not been set';
 
 function fUtilities_warn(sWarning, aArguments) {
-	var oErrorHandler	= oDOMConfiguration_values["error-handler"];
-	if (oErrorHandler)
-		oErrorHandler.handleError(new cDOMError(fDOMException_format(sWarning, aArguments || []), cDOMError.SEVERITY_WARNING));
+	var fErrorHandler	= oDOMConfiguration_values["error-handler"];
+	if (fErrorHandler) {
+		var oError	= new cDOMError(fDOMException_format(sWarning, aArguments || []), cDOMError.SEVERITY_WARNING);
+	if (typeof fErrorHandler == "function")
+		fErrorHandler(oError);
+	else
+	if (typeof fErrorHandler.handleError == "function")
+		fErrorHandler.handleError(oError);
 };
 //<-Debug
 
