@@ -37,9 +37,9 @@ cXPathEvaluator.prototype.evaluate	= function(sExpression, oNode, oResolver, nTy
 	ample.guard(arguments, [
 		["expression",	String],
 		["context",		Node],
-		["resolver",	cXPathNSResolver,true,	true],
+		["resolver",	cXPathNSResolver,	true,	true],
 		["type",		Number,				true,	true],
-		["result",		cXPathResult,	true,	true]
+		["result",		cXPathResult,		true,	true]
 	]);
 
 	// Invoke implementation

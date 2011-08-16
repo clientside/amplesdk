@@ -15,4 +15,4 @@ cXPathException.prototype.code	= null;
 
 // Constants
 cXPathException.INVALID_EXPRESSION_ERR	= 51;
-cXPathException.TYPE_ERR					= 52;
+cXPathException.TYPE_ERR				= 52;

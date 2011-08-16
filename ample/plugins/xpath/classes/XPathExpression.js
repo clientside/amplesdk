@@ -8,7 +8,8 @@
  */
 
 function cXPathExpression(sExpression, oResolver) {
-	this.$expression	= fXPathExpression_parse(this, sExpression, oResolver);
+	this.$expression	= fXPathExpression_parse(this, sExpression);
+	this.$resolver		= oResolver;
 };
 
 cXPathExpression.prototype.evaluate	= function(oNode, nType, oResult) {
