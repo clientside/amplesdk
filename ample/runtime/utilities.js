@@ -26,11 +26,12 @@ function fUtilities_warn(sWarning, aArguments) {
 	var fErrorHandler	= oDOMConfiguration_values["error-handler"];
 	if (fErrorHandler) {
 		var oError	= new cDOMError(fDOMException_format(sWarning, aArguments || []), cDOMError.SEVERITY_WARNING);
-	if (typeof fErrorHandler == "function")
-		fErrorHandler(oError);
-	else
-	if (typeof fErrorHandler.handleError == "function")
-		fErrorHandler.handleError(oError);
+		if (typeof fErrorHandler == "function")
+			fErrorHandler(oError);
+		else
+		if (typeof fErrorHandler.handleError == "function")
+			fErrorHandler.handleError(oError);
+	}
 };
 //<-Debug
 
