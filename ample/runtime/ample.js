@@ -40,10 +40,10 @@ function fQuery(vArgument1, vArgument2, vArgument3) {
 				// Context
 				if (arguments.length > 1) {
 //->Guard
-					if (!(vArgument2 instanceof cNode))
+					if (!(vArgument2 instanceof cNode) &&!(vArgument2 instanceof cQuery))
 						throw new cDOMException(cDOMException.GUARD_ARGUMENT_WRONG_TYPE_ERR, fQuery.caller
 	//->Debug
-							, ['2' + oGuard_endings[1], "context", "query", "Node"]
+							, ['2' + oGuard_endings[1], "context", "query", "Node" + '" ' + 'or' + ' "' + "Query"]
 	//<-Debug
 						);
 //<-Guard
@@ -70,7 +70,7 @@ function fQuery(vArgument1, vArgument2, vArgument3) {
 				// Invoke implementation
 				var aResult;
 				try {
-					aResult	= fNodeSelector_query([oQuery.context], vArgument1, vArgument3);
+					aResult	= fNodeSelector_query(vArgument2 instanceof cNode ? [vArgument2] : vArgument2, vArgument1, vArgument3);
 				}
 				catch (oException) {
 					// Re-point caller property and re-throw error
