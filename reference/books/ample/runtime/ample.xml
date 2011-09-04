@@ -635,7 +635,7 @@
 				<description>
 					<locale>
 						Gets value at named data store for the specified element
-						or sets arbitrary data associated with thespecified element.
+						or sets arbitrary data associated with the specified element.
 					</locale>
 				</description>
 			</method>
