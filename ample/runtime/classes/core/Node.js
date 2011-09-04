@@ -340,7 +340,7 @@ cNode.prototype.isEqualNode 	= function(oNode)
 
 cNode.prototype.isSameNode 	= function(oNode)
 {
-	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
+	return this == oNode;
 };
 
 function fNode_lookupPrefix(oNode, sNameSpaceURI)
