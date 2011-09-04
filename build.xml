@@ -127,6 +127,7 @@
 				MouseEvent.js,
 				WheelEvent.js,
 				MutationEvent.js,
+				HashChangeEvent.js,
 				ClipboardEvent.js,
 				TouchEvent.js,
 				GestureEvent.js"/>

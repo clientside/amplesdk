@@ -84,22 +84,6 @@ function fQuery_history_onUnLoad(oEvent) {
 		fClearTimeout(nQuery_history_timeout);
 };
 
-//
-function cHashChangeEvent() {
-
-};
-cHashChangeEvent.prototype	= new cEvent;
-//
-cHashChangeEvent.prototype.oldURL	= null;
-cHashChangeEvent.prototype.newURL	= null;
-
-cHashChangeEvent.prototype.initHashChangeEvent	= function(sType, bCanBubble, bCancelable, sOldUrl, sNewUrl) {
-	this.initEvent(sType, bCanBubble, bCancelable);
-
-	this.oldURL	= sOldUrl;
-	this.newURL	= sNewUrl;
-};
-
 // Attaching to implementation
 oAmple.bookmark	= function(sHash, sTitle) {
 //->Guard

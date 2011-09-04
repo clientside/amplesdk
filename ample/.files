@@ -12,6 +12,7 @@ runtime/classes/events/MouseEvent.js
 runtime/classes/events/WheelEvent.js
 runtime/classes/events/KeyboardEvent.js
 runtime/classes/events/TextEvent.js
+runtime/classes/events/HashChangeEvent.js
 # Clipboard
 runtime/classes/events/ClipboardEvent.js
 # Touches
