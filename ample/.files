@@ -38,6 +38,7 @@ runtime/classes/core/CDATASection.js
 runtime/classes/core/Comment.js
 # Clipboard
 runtime/classes/core/Clipboard.js
+runtime/classes/core/DataTransfer.js
 runtime/classes/core/DataTransferItems.js
 # Touches
 runtime/classes/core/Touch.js

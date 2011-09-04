@@ -150,6 +150,7 @@
 				CDATASection.js,
 				Comment.js,
 				Clipboard.js,
+				DataTransfer.js,
 				DataTransferItems.js,
 				Touch.js,
 				TouchList.js"/>
