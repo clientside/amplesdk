@@ -355,21 +355,6 @@ function fResizeManager_inScope(nValue, nBorder) {
 	return cMath.abs(nValue) < cMath.max(5, nBorder);
 };
 
-// Event interfaces
-var cResizeEvent	= function(){};
-cResizeEvent.prototype	= new cUIEvent;
-
-cResizeEvent.prototype.edge	= null;
-
-// nsIDOMResizeEvent
-cResizeEvent.prototype.initResizeEvent	= function(sType, bCanBubble, bCancelable, oView, nDetail, nEdge)
-{
-	this.initUIEvent(sType, bCanBubble, bCancelable, oView, nDetail);
-
-	//
-	this.edge	= nEdge;
-};
-
 // Attaching to implementation
 // Public Properties
 cElement.prototype.$resizable	= false;

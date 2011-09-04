@@ -5,6 +5,7 @@ runtime/classes/events/Event.js
 runtime/classes/events/CustomEvent.js
 runtime/classes/events/UIEvent.js
 runtime/classes/events/DragEvent.js
+runtime/classes/events/ResizeEvent.js
 runtime/classes/events/FocusEvent.js
 runtime/classes/events/MutationEvent.js
 runtime/classes/events/MouseEvent.js

@@ -120,6 +120,7 @@
 				CustomEvent.js,
 				UIEvent.js,
 				DragEvent.js,
+				ResizeEvent.js,
 				FocusEvent.js,
 				KeyboardEvent.js,
 				TextEvent.js,
