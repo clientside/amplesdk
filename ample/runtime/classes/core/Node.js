@@ -566,7 +566,7 @@ cNode.prototype.addEventListener		= function(sType, fHandler, bUseCapture)
 {
 //->Guard
 	fGuard(arguments, [
-		["eventType",	cString],
+		["type",		cString],
 		["listener",	cObject],
 		["useCapture",	cBoolean,	true]
 	], this);
@@ -593,7 +593,7 @@ cNode.prototype.removeEventListener	= function(sType, fHandler, bUseCapture)
 {
 //->Guard
 	fGuard(arguments, [
-		["eventType",	cString],
+		["type",		cString],
 		["listener",	cObject],
 		["useCapture",	cBoolean,	true]
 	], this);

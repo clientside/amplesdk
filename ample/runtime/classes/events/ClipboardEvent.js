@@ -9,6 +9,7 @@
 
 var cClipboardEvent	= function(){};
 cClipboardEvent.prototype	= new cEvent;
+cClipboardEvent.prototype.eventInterface	= "ClipboardEvent";
 
 // nsIDOMClipboardEvent
 cClipboardEvent.prototype.clipboardData	= null;

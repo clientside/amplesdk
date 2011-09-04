@@ -9,6 +9,7 @@
 
 var cWheelEvent	= function(){};
 cWheelEvent.prototype	= new cMouseEvent;
+cWheelEvent.prototype.eventInterface	= "WheelEvent";
 
 // Constants
 cWheelEvent.DOM_DELTA_PIXEL	= 0;

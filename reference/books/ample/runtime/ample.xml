@@ -359,9 +359,18 @@
 						</description>
 					</argument>
 				</arguments>
+				<arguments>
+					<argument name="event" type="Function">
+						<description>
+							<locale>
+								Event interface definition. Must have <link type="class">Event</link> in its prototype chain.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
 				<description>
 					<locale>
-						Provides extensibility point.
+						Core extensibility API.
 						The source object members get signed automatically.
 					</locale>
 				</description>

@@ -9,6 +9,7 @@
 
 var cMouseEvent	= function(){};
 cMouseEvent.prototype	= new cUIEvent;
+cMouseEvent.prototype.eventInterface	= "MouseEvent";
 
 // nsIDOMMouseEvent
 cMouseEvent.prototype.altKey		= null;

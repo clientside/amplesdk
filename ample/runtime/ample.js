@@ -110,9 +110,26 @@ oAmple.classes	= hClasses;
 oAmple.activeElement= null;
 oAmple.readyState	= "loading";
 
+var aAmple_protectedEventInterfaces	= [
+	"Event", "CustomEvent", "MutationEvent",
+	"UIEvent", "MouseEvent", "KeyboardEvent", "FocusEvent", "WheelEvent", "TextEvent",
+	"DragEvent", "ResizeEvent",
+	"ClipboardEvent",
+	"GestureEvent", "TouchEvent"
+];
+
 function fAmple_extend(oTarget, oSource) {
 	if (!oSource && oTarget instanceof cFunction) {
 		var oPrototype	= oTarget.prototype;
+		if (oPrototype instanceof cEvent) {
+			var sEventInterface	= oPrototype.eventInterface;
+			// Check if event triggering allowed
+			if (aAmple_protectedEventInterfaces.indexOf(sEventInterface) !=-1)
+				throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR, null, [sEventInterface]);
+
+			hClasses[sEventInterface]	= oTarget;
+		}
+		else
 		if (oPrototype instanceof cElement)
 			hClasses[oPrototype.namespaceURI + '#' + oPrototype.localName]	= oTarget;
 		else

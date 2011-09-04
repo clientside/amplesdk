@@ -8,6 +8,7 @@
  */
 
 var cEvent	= function(){};
+cEvent.prototype.eventInterface	= "Event";
 
 cEvent.CAPTURING_PHASE	= 1;
 cEvent.AT_TARGET		= 2;

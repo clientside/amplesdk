@@ -9,6 +9,7 @@
 
 var cDragEvent	= function(){};
 cDragEvent.prototype	= new cUIEvent;
+cDragEvent.prototype.eventInterface	= "DragEvent";
 
 // nsIDOMDragEvent
 cDragEvent.prototype.dataTransfer	= null;

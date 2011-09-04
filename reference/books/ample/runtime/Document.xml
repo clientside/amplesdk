@@ -360,23 +360,23 @@
 			<!-- DOM Level 3 -->
 			<method name="createEvent" type="Event">
 				<arguments>
-					<argument name="type" type="String" required="true">
+					<argument name="eventInterface" type="String" required="true">
 						<description>
 							<locale>
-								Type of event.
+								The name of the interface to be supported by the created event object.
 							</locale>
 							<locale xml:lang="ru">
-								Тип события (Event.type).
+								The name of the interface to be supported by the created event object.
 							</locale>
 						</description>
 					</argument>
 				</arguments>
 				<description>
 					<locale>
-						Creates an instance of the <link type="class">Event</link>.
+						Creates an event object with the interface name specified.
 					</locale>
 					<locale xml:lang="ru">
-						Создает экземпляр объекта <link type="class">Event</link>.
+						Creates an event object with the interface name specified.
 					</locale>
 				</description>
 			</method>

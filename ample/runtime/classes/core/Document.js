@@ -241,7 +241,7 @@ cDocument.prototype.createEvent     = function(sName)
 {
 //->Guard
 	fGuard(arguments, [
-		["eventType",	cString]
+		["eventInterface",	cString]
 	]);
 //<-Guard
 

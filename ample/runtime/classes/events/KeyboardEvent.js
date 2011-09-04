@@ -9,6 +9,7 @@
 
 var cKeyboardEvent	= function(){};
 cKeyboardEvent.prototype	= new cUIEvent;
+cKeyboardEvent.prototype.eventInterface	= "KeyboardEvent";
 
 // Constants
 cKeyboardEvent.DOM_KEY_LOCATION_STANDARD = 0;

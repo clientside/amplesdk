@@ -9,6 +9,7 @@
 
 var cCustomEvent	= function(){};
 cCustomEvent.prototype	= new cEvent;
+cCustomEvent.prototype.eventInterface	= "CustomEvent";
 
 // nsIDOMCustomEvent
 cCustomEvent.prototype.detail	= null;

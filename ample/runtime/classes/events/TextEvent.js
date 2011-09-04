@@ -9,6 +9,7 @@
 
 var cTextEvent	= function(){};
 cTextEvent.prototype	= new cUIEvent;
+cTextEvent.prototype.eventInterface	= "TextEvent";
 
 // nsIDOMTextEvent
 cTextEvent.DOM_INPUT_METHOD_UNKNOWN 	= 0;

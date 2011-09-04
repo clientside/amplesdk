@@ -9,6 +9,7 @@
 
 var cFocusEvent	= function(){};
 cFocusEvent.prototype	= new cUIEvent;
+cFocusEvent.prototype.eventInterface	= "FocusEvent";
 
 // nsIDOMFocusEvent
 cFocusEvent.prototype.relatedTarget	= null;

@@ -9,6 +9,7 @@
 
 var cMutationEvent	= function(){};
 cMutationEvent.prototype	= new cEvent;
+cMutationEvent.prototype.eventInterface	= "MutationEvent";
 
 // nsIDOMMutationEvent
 cMutationEvent.MODIFICATION	= 1;

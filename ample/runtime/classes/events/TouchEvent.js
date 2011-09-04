@@ -9,6 +9,7 @@
 
 var cTouchEvent	= function(){};
 cTouchEvent.prototype	= new cUIEvent;
+cTouchEvent.prototype.eventInterface	= "TouchEvent";
 
 //
 cTouchEvent.prototype.altKey	= null;

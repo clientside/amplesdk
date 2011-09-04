@@ -9,6 +9,7 @@
 
 var cResizeEvent	= function(){};
 cResizeEvent.prototype	= new cUIEvent;
+cResizeEvent.prototype.eventInterface	= "ResizeEvent";
 
 cResizeEvent.prototype.edge	= null;
 

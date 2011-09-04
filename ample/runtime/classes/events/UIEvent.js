@@ -9,6 +9,7 @@
 
 var cUIEvent	= function(){};
 cUIEvent.prototype	= new cEvent;
+cUIEvent.prototype.eventInterface	= "UIEvent";
 
 // nsIDOMUIEvent
 cUIEvent.prototype.view		= null;

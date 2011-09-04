@@ -9,6 +9,7 @@
 
 var cGestureEvent	= function(){};
 cGestureEvent.prototype	= new cUIEvent;
+cGestureEvent.prototype.eventInterface	= "GestureEvent";
 
 //
 cGestureEvent.prototype.altKey	= null;
