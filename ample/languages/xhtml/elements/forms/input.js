@@ -389,7 +389,7 @@ cXHTMLElement_input.getRangeOffset	= function(oInstance, nValue) {
 };
 
 cXHTMLElement_input.dispatchInputEvent	= function(oInstance) {
-	var oEvent	= oInstance.ownerDocument.createEvent("Events");
+	var oEvent	= oInstance.ownerDocument.createEvent("Event");
 	oEvent.initEvent("input", false, false);
 	oInstance.dispatchEvent(oEvent);
 };

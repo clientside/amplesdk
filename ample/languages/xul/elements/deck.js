@@ -41,7 +41,7 @@ cXULElement_deck.handlers	= {
 			            oXULReflowManager.schedule(this.selectedPanel);
 
 			            // send event
-			            var oEvent  = this.ownerDocument.createEvent("Events");
+			            var oEvent  = this.ownerDocument.createEvent("Event");
 			            oEvent.initEvent("select", true, true);
 			            this.dispatchEvent(oEvent);
 			        }

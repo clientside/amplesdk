@@ -136,7 +136,7 @@ cXULElement_wizard.prototype.reflow	= function() {
 
 // Static methods
 cXULElement_wizard.dispatchEvent_onWizard  = function(oElement, sName) {
-    var oEvent  = oElement.ownerDocument.createEvent("Events");
+    var oEvent  = oElement.ownerDocument.createEvent("Event");
     oEvent.initEvent("wizard" + sName, true, true);
 
     return oElement.dispatchEvent(oEvent);

@@ -20,7 +20,7 @@ cXHTMLElement_textarea.prototype.select	= function() {
 // Events Handlers
 cXHTMLElement_textarea.prototype._onChange	= function(oEvent) {
     // Fire Event
-    var oEvent2 = this.ownerDocument.createEvent("UIEvents");
+    var oEvent2 = this.ownerDocument.createEvent("UIEvent");
     oEvent2.initUIEvent("change", true, false, window, null);
 
     this.dispatchEvent(oEvent2);

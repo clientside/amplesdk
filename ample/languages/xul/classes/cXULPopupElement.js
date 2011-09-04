@@ -170,7 +170,7 @@ cXULPopupElement.prototype.sizeTo	= function(nWidth, nHeight)
 // Static Methods
 cXULPopupElement.fireEventOnPopup	= function(oInstance, sName)
 {
-    var oEvent  = oInstance.ownerDocument.createEvent("Events");
+    var oEvent  = oInstance.ownerDocument.createEvent("Event");
     oEvent.initEvent("popup" + sName, true, true);
 
     return oInstance.dispatchEvent(oEvent);

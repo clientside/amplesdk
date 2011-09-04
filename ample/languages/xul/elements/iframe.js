@@ -38,7 +38,7 @@ cXULElement_iframe.prototype._onLoad     = function(oEvent) {
     this.contentDocument	= this.$getContainer().contentDocument;
 
     // Fire event
-    var oEvent  = this.ownerDocument.createEvent("Events");
+    var oEvent  = this.ownerDocument.createEvent("Event");
     oEvent.initEvent("load", false, false);
     this.dispatchEvent(oEvent);
 };
@@ -48,7 +48,7 @@ cXULElement_iframe.prototype._onUnLoad   = function(oEvent) {
 	this.contentDocument	= null;
 
     // Fire event
-    var oEvent  = this.ownerDocument.createEvent("Events");
+    var oEvent  = this.ownerDocument.createEvent("Event");
     oEvent.initEvent("unload", false, false);
     this.dispatchEvent(oEvent);
 };

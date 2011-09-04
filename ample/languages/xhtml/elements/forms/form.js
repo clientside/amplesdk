@@ -72,7 +72,7 @@ cXHTMLElement_form.prototype.dispatchFormChange	= function() {
 /* Event handlers */
 cXHTMLElement_form.prototype._onSubmit	= function() {
     // Fire Event
-    var oEvent = this.ownerDocument.createEvent("Events");
+    var oEvent = this.ownerDocument.createEvent("Event");
     oEvent.initEvent("submit", true, true);
 
     return this.dispatchEvent(oEvent);
@@ -80,7 +80,7 @@ cXHTMLElement_form.prototype._onSubmit	= function() {
 
 cXHTMLElement_form.prototype._onReset	= function() {
     // Fire Event
-    var oEvent = this.ownerDocument.createEvent("Events");
+    var oEvent = this.ownerDocument.createEvent("Event");
     oEvent.initEvent("reset", true, true);
 
     return this.dispatchEvent(oEvent);

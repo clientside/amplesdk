@@ -75,7 +75,7 @@ cXULElement_treeitem.handlers	= {
 								// Apply pseudo-class
 								this.row.cells[nIndex].$setPseudoClass("open", oEvent.newValue == "true", "toc");
 
-								var oEvent = this.ownerDocument.createEvent("Events");
+								var oEvent = this.ownerDocument.createEvent("Event");
 								oEvent.initEvent("OpenStateChange", true, false);
 								this.dispatchEvent(oEvent);
 

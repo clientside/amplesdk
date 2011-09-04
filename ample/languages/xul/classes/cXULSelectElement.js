@@ -225,7 +225,7 @@ cXULSelectElement.fireEventOnSelect	= function(oInstance)
         	oInstance.head.$getContainer("command").checked    = oInstance.selectedItems.length != 0;
     }
 
-    var oEvent  = oInstance.ownerDocument.createEvent("Events");
+    var oEvent  = oInstance.ownerDocument.createEvent("Event");
     oEvent.initEvent("select", true, true);
     oInstance.dispatchEvent(oEvent);
 
@@ -234,7 +234,7 @@ cXULSelectElement.fireEventOnSelect	= function(oInstance)
 
 cXULSelectElement.fireEventOnBeforeSelect	= function(oInstance)
 {
-    var oEvent  = oInstance.ownerDocument.createEvent("Events");
+    var oEvent  = oInstance.ownerDocument.createEvent("Event");
     oEvent.initEvent("beforeselect", false, true);
     return oInstance.dispatchEvent(oEvent);
 };

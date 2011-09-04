@@ -30,7 +30,7 @@ cXULElement_image.handlers	= {
 // Events Handlers
 cXULElement_image.prototype._onLoad  = function(oEvent) {
     // Fire Event
-    var oEvent2 = this.ownerDocument.createEvent("Events");
+    var oEvent2 = this.ownerDocument.createEvent("Event");
     oEvent2.initEvent("load", false, false);
     this.dispatchEvent(oEvent2);
 };

@@ -46,7 +46,7 @@ cAUIElement_pager.prototype.goTo     = function(nIndex)
     }
 
     // Fire event
-    var oEvent  = this.ownerDocument.createEvent("Events");
+    var oEvent  = this.ownerDocument.createEvent("Event");
     oEvent.initEvent("change", true, false);
     this.dispatchEvent(oEvent);
 };

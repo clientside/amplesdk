@@ -20,7 +20,7 @@ cXULElement_wizardpage.attributes.height	= "100%";
 
 // Private Methods
 cXULElement_wizardpage.dispatchEvent_onPage    = function(oElement, sName) {
-    var oEvent  = oElement.ownerDocument.createEvent("Events");
+    var oEvent  = oElement.ownerDocument.createEvent("Event");
     oEvent.initEvent("page" + sName, true, true);
     return oElement.dispatchEvent(oEvent);
 };

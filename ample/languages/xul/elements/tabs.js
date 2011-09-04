@@ -35,7 +35,7 @@ cXULElement_tabs.prototype.goTo      = function(nIndex) {
     // TODO
     if (this.parentNode.selectedIndex != nIndex && this.items[nIndex]) {
         // send onselect event
-        var oEvent  = this.ownerDocument.createEvent("Events");
+        var oEvent  = this.ownerDocument.createEvent("Event");
         oEvent.initEvent("beforeselect", false, true);
         if (this.dispatchEvent(oEvent) == false)
             return;
@@ -59,7 +59,7 @@ cXULElement_tabs.prototype.goTo      = function(nIndex) {
         this.parentNode.selectedIndex    = nIndex;
 
         // send onselect event
-        var oEvent  = this.ownerDocument.createEvent("Events");
+        var oEvent  = this.ownerDocument.createEvent("Event");
         oEvent.initEvent("select", true, true);
         this.dispatchEvent(oEvent);
     }

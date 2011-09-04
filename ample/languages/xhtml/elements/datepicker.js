@@ -123,7 +123,7 @@ cXHTMLElement_datepicker.prototype._onSelectDay	= function(nDay) {
 		this.setAttribute("value", sValue);
 
 		// dispatch "change" event
-	    var oEvent  = this.ownerDocument.createEvent("UIEvents");
+	    var oEvent  = this.ownerDocument.createEvent("UIEvent");
 	    oEvent.initEvent("change", false, false, window, null);
 	    this.dispatchEvent(oEvent);
 	}

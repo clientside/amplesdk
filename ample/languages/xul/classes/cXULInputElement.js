@@ -52,7 +52,7 @@ cXULInputElement.setSelectionRange	= function(oInstance, nStart, nEnd) {
 // Static Methods
 cXULInputElement.dispatchChange	= function(oInstance) {
     // Fire Event
-    var oEvent  = oInstance.ownerDocument.createEvent("UIEvents");
+    var oEvent  = oInstance.ownerDocument.createEvent("UIEvent");
     oEvent.initEvent("change", true, false, window, null);
     oInstance.dispatchEvent(oEvent);
 };

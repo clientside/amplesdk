@@ -25,7 +25,7 @@ cAUIElement_filepicker.prototype._onChange   = function(oEvent)
     this.attributes["value"]   = this.$getContainer("input").value;
 
     // Fire Event
-    var oEvent  = this.ownerDocument.createEvent("Events");
+    var oEvent  = this.ownerDocument.createEvent("Event");
     oEvent.initEvent("change", true, false);
     this.dispatchEvent(oEvent);
 };

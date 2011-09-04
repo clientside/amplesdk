@@ -132,7 +132,7 @@ cXULElement_colorpicker_pane.prototype.acceptDialog	= function() {
     this.attributes.value  = this.$getContainer('value').value;
 
     // fire select event
-    var oEvent  = this.ownerDocument.createEvent("Events");
+    var oEvent  = this.ownerDocument.createEvent("Event");
     oEvent.initEvent("accept", false, false);
     this.dispatchEvent(oEvent);
 };
@@ -141,7 +141,7 @@ cXULElement_colorpicker_pane.prototype.cancelDialog	= function() {
 	this.setAttribute("value", this.attributes.value);
 
     // fire cancel event
-    var oEvent  = this.ownerDocument.createEvent("Events");
+    var oEvent  = this.ownerDocument.createEvent("Event");
     oEvent.initEvent("cancel", false, false);
     this.dispatchEvent(oEvent);
 };
