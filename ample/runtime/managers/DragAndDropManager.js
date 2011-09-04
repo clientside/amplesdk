@@ -421,32 +421,6 @@ function fDragAndDropManager_intersectSegment(x, y, a, b)
 	return a > x ? (a <= x + y ? a + b < x + y ? b : x + y - a : 0) : (a >= x - b ? a + b < x + y ? a + b - x : y : 0);
 };
 
-// Event interfaces
-var cDragEvent	= function(){};
-cDragEvent.prototype	= new cUIEvent;
-
-// nsIDOMDragEvent
-cDragEvent.prototype.dataTransfer	= null;
-
-cDragEvent.prototype.initDragEvent	= function(sType, bCanBubble, bCancelable, oView, nDetail, oDataTransfer)
-{
-	this.initUIEvent(sType, bCanBubble, bCancelable, oView, nDetail);
-
-	//
-	this.dataTransfer	= oDataTransfer;
-};
-
-cDragEvent.prototype.getModifierState	= function(sModifier)
-{
-	switch (sModifier) {
-		case "Alt":		return this.altKey;
-		case "Control":	return this.ctrlKey;
-		case "Meta":	return this.metaKey;
-		case "Shift":	return this.shiftKey;
-	}
-	return false;
-};
-
 //
 var cDataTransfer	= function() {
 	this.types	= new cDOMStringList;
