@@ -375,15 +375,44 @@ cNode.prototype.lookupPrefix	= function(sNameSpaceURI)
 	return fNode_lookupPrefix(this, sNameSpaceURI);
 };
 
+function fNode_isDefaultNamespace(oNode, sNameSpaceURI)
+{
+	switch (oNode.nodeType) {
+		case 9:	// cNode.DOCUMENT_NODE
+			return fNode_isDefaultNamespace(oNode.documentElement, sNameSpaceURI);
+
+		case 2:	// cNode.ATTRIBUTE_NODE
+			return oNode.ownerElement ? fNode_isDefaultNamespace(oNode.ownerElement, sNameSpaceURI) : false;
+
+		case 6:	// cNode.ENTITY_NODE
+		case 12:// cNode.NOTATION_NODE
+		case 10:// cNode.DOCUMENT_TYPE_NODE
+		case 11:// cNode.DOCUMENT_FRAGMENT_NODE
+			return false;
+
+		case 1:	// cNode.ELEMENT_NODE
+			for (; oNode && oNode.nodeType != 9 /* cNode.DOCUMENT_NODE */ ; oNode = oNode.parentNode)
+				if (!oNode.prefix)
+					return oNode.namespaceURI == sNameSpaceURI;
+				else
+				if (oNode.attributes.hasOwnProperty("xmlns"))
+					return oNode.attributes["xmlns"] == sNameSpaceURI;
+			return false;
+
+		default:
+			return oNode.parentNode ? fNode_isDefaultNamespace(oNode.parentNode, sNameSpaceURI) : false;
+	}
+};
+
 cNode.prototype.isDefaultNamespace	= function(sNameSpaceURI)
 {
-/*
-	if (!oElement.prefix)
-		return oElement.namespaceURI == sNameSpaceURI;
-	else
-		return oElement.parentNode ? oElement.parentNode.isDefaultNamespace(sNameSpaceURI) : false;
-*/
-	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
+//->Guard
+	fGuard(arguments, [
+		["namespaceURI",	cString, false, true]
+	]);
+//<-Guard
+
+	return fNode_isDefaultNamespace(this, sNameSpaceURI);
 };
 
 function fNode_lookupNamespaceURI(oNode, sPrefix)
