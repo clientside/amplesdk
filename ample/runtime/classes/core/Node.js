@@ -378,19 +378,19 @@ cNode.prototype.lookupPrefix	= function(sNameSpaceURI)
 function fNode_isDefaultNamespace(oNode, sNameSpaceURI)
 {
 	switch (oNode.nodeType) {
-		case 9:	// cNode.DOCUMENT_NODE
+		case 9:		// cNode.DOCUMENT_NODE
 			return fNode_isDefaultNamespace(oNode.documentElement, sNameSpaceURI);
 
-		case 2:	// cNode.ATTRIBUTE_NODE
+		case 2:		// cNode.ATTRIBUTE_NODE
 			return oNode.ownerElement ? fNode_isDefaultNamespace(oNode.ownerElement, sNameSpaceURI) : false;
 
-		case 6:	// cNode.ENTITY_NODE
-		case 12:// cNode.NOTATION_NODE
-		case 10:// cNode.DOCUMENT_TYPE_NODE
-		case 11:// cNode.DOCUMENT_FRAGMENT_NODE
+		case 6:		// cNode.ENTITY_NODE
+		case 12:	// cNode.NOTATION_NODE
+		case 10:	// cNode.DOCUMENT_TYPE_NODE
+		case 11:	// cNode.DOCUMENT_FRAGMENT_NODE
 			return false;
 
-		case 1:	// cNode.ELEMENT_NODE
+		case 1:		// cNode.ELEMENT_NODE
 			for (; oNode && oNode.nodeType != 9 /* cNode.DOCUMENT_NODE */ ; oNode = oNode.parentNode)
 				if (!oNode.prefix)
 					return oNode.namespaceURI == sNameSpaceURI;
