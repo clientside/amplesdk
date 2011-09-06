@@ -1112,7 +1112,7 @@ function fBrowser_processScripts() {
 
 			// Try executing
 			try {
-				new cFunction(sText)();
+				fBrowser_eval(sText);
 			} catch (oException) {
 //->Debug
 				fUtilities_warn(sGUARD_JAVASCRIPT_SYNTAX_WRN, [oException.message]);
