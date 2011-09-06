@@ -968,7 +968,7 @@ function fBrowser_processScripts() {
     for (var nIndex = 0, nSkip = 0, sType, sSrc, sText; aElements.length > nSkip; nIndex++) {
     	// Current Script
 		oElementDOM	= aElements[nSkip];
-		sType	= oElementDOM.getAttribute("type");
+		sType	= oElementDOM.type;
 		sText	= oElementDOM.text;
 		sSrc	= oElementDOM.src;
 		if (sText)
@@ -1137,7 +1137,7 @@ function fBrowser_processStyleSheets() {
     for (var nIndex = 0, nLength = aElements.length; nIndex < nLength; nIndex++) {
     	oElement	= aElements[nIndex];
 
-    	if (oElement.getAttribute("type") == "text/ample+css")
+    	if (oElement.type == "text/ample+css")
     		fBrowser_replaceNode(oElement, fBrowser_createStyleSheet(oElement.innerHTML, oUALocation.href, oElement.getAttribute("media")));
 	}
 
@@ -1147,7 +1147,7 @@ function fBrowser_processStyleSheets() {
     	oElement	= aElements[nSkip];
 
 		// Skip if different mime-type
-		if (oElement.getAttribute("type") != "text/ample+css")
+		if (oElement.type != "text/ample+css")
 			nSkip++;
 		else
 			fBrowser_replaceNode(oElement, fBrowser_createStyleSheet(fBrowser_load(oElement.href, "text/css").responseText, oElement.href, oElement.getAttribute("media")));
