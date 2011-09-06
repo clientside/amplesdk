@@ -418,9 +418,9 @@ function fDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse) {
 					if (sName.indexOf('on') == 0) {
 						try {
 							oElement[sName]	= new cFunction(sNameSpaceURI == sNS_SVG ? "evt" : "event", bCollapse ? fUtilities_decodeEntities(sValue) : sValue);
-						} catch (e) {
+						} catch (oException) {
 //->Debug
-							fUtilities_warn(sGUARD_JAVASCRIPT_SYNTAX_WRN, [e.message]);
+							fUtilities_warn(sGUARD_JAVASCRIPT_SYNTAX_WRN, [oException.message]);
 //<-Debug
 						}
 					}
