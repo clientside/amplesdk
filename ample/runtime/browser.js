@@ -964,7 +964,7 @@ function fBrowser_processScripts() {
 	};
 
 	// Process script tags
-    aElements = oBrowser_body.getElementsByTagName("script");
+    aElements = oUADocument.getElementsByTagName("script");
     for (var nIndex = 0, nSkip = 0, sType, sSrc, sText; aElements.length > nSkip; nIndex++) {
     	// Current Script
 		oElementDOM	= aElements[nSkip];
@@ -976,6 +976,13 @@ function fBrowser_processScripts() {
 
 		// Skip if differenet mime-type
 		if (sType == "application/ample+xml" || sType == "text/ample+xml") {
+			if (oElementDOM.parentNode == oBrowser_head) {
+//->Debug
+				fUtilities_warn(sQUARD_FRAGMENT_POSITION_WRN);
+//<-Debug
+				nSkip++;
+				continue;
+			}
 			hAttributes	= {};
 			bReferenced	= false;
 
