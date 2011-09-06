@@ -415,8 +415,15 @@ function fDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse) {
 						sValue	= sNS_XUL;
 
 					// Inline event handler
-					if (sName.indexOf('on') == 0)
-						oElement[sName]	= new cFunction(sNameSpaceURI == sNS_SVG ? "evt" : "event", bCollapse ? fUtilities_decodeEntities(sValue) : sValue);
+					if (sName.indexOf('on') == 0) {
+						try {
+							oElement[sName]	= new cFunction(sNameSpaceURI == sNS_SVG ? "evt" : "event", bCollapse ? fUtilities_decodeEntities(sValue) : sValue);
+						} catch (e) {
+//->Debug
+							fUtilities_warn(sGUARD_JAVASCRIPT_SYNTAX_WRN, [e.message]);
+//<-Debug
+						}
+					}
 					else
 						oAttributes[sName]	= bCollapse ? sValue : fUtilities_encodeEntities(sValue);
 				}

@@ -9,6 +9,7 @@
 
 //->Debug
 var sGUARD_NOT_WELLFORMED_WRN			= 'Not well-formed XML',
+	sGUARD_JAVASCRIPT_SYNTAX_WRN		= 'JavaScript syntax error: %0',
 	sGUARD_NOT_UNIQUE_ID_WRN			= 'Duplicate ID attribute value "%0" used',
 	sGUARD_NOT_FOUND_SHADOW_WRN			= 'Shadow content was not found. Element "%0" quiried for pseudo-element "%1"',
 	sGUARD_FEATURE_DEPRECATED_WRN		= 'Feature "%0" had been deprecated. Use "%1" instead',

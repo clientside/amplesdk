@@ -1115,7 +1115,7 @@ function fBrowser_processScripts() {
 				new cFunction(sText)();
 			} catch (e) {
 //->Debug
-				fUtilities_warn("JavaScript parsing error %0", [e.message]);
+				fUtilities_warn(sGUARD_JAVASCRIPT_SYNTAX_WRN, [e.message]);
 //<-Debug
 			}
 			//
