@@ -76,7 +76,7 @@ var bTrident	= false,
 
 if (!!oUADocument.namespaces) {
 	bTrident	= true;
-	nVersion	= 1 * oUANavigator.userAgent.match(/MSIE (\d+\.\d+)/)[1];
+	nVersion	= 1 * oUANavigator.userAgent.match(/MSIE\s(\d+\.\d+)/)[1];
 }
 else
 if (!!window.controllers) {
