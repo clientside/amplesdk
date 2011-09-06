@@ -1072,11 +1072,6 @@ function fBrowser_processScripts() {
 
 				// Register tree
 				fDocument_register(oAmple_document, oElement);
-
-			    // Fire load Event
-		    	var oEventLoad = new cEvent;
-			    oEventLoad.initEvent("load", false, false);
-			    fNode_dispatchEvent(oElement, oEventLoad);
 		    }
 		    else {
 				oElementNew	= oUADocument.createElement("pre");
