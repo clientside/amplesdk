@@ -965,14 +965,17 @@ function fBrowser_processScripts() {
 
 	// Process script tags
     aElements = oBrowser_body.getElementsByTagName("script");
-    for (var nIndex = 0, nSkip = 0; aElements.length > nSkip; nIndex++) {
+    for (var nIndex = 0, nSkip = 0, sType, sSrc, sText; aElements.length > nSkip; nIndex++) {
     	// Current Script
-	    oElementDOM	= aElements[nSkip];
+		oElementDOM	= aElements[nSkip];
+		sType	= oElementDOM.getAttribute("type");
+		sText	= oElementDOM.text;
+		sSrc	= oElementDOM.src;
+		if (sText)
+			sText	= sText.replace(/^\s*(<!\[CDATA\[)?\s*/, '').replace(/\s*(\]\]>)\s*$/, '');
 
 		// Skip if differenet mime-type
-		if (oElementDOM.getAttribute("type") != "application/ample+xml")
-			nSkip++;
-		else {
+		if (sType == "application/ample+xml" || sType == "text/ample+xml") {
 			hAttributes	= {};
 			bReferenced	= false;
 
@@ -990,15 +993,15 @@ function fBrowser_processScripts() {
                 		hAttributes[sAttribute]	= sAttribute == "style" ? oElementDOM[sAttribute].cssText : fUtilities_encodeEntities(oAttribute.nodeValue);
 			}
 
-			if (oElementDOM.getAttribute("src")) {
-				var oRequest	= fBrowser_load(oElementDOM.src, "text/xml");
+			if (sSrc) {
+				var oRequest	= fBrowser_load(sSrc, "text/xml");
 				// loaded fragment
 				oDocument	= fBrowser_getResponseDocument(oRequest);
 				bReferenced	= true;
 			}
 			else
 				oDocument	= fBrowser_createFragment(
-									oElementDOM.text.replace(/^\s*(<!\[CDATA\[)?\s*/, '').replace(/\s*(\]\]>)\s*$/, '').replace(/^\s*<\?xml.+\?>/, '').replace(/&/g, '&amp;').replace(/<script(.|\n|\r)+$/, ''),
+									sText.replace(/^\s*<\?xml.+\?>/, '').replace(/&/g, '&amp;').replace(/<script(.|\n|\r)+$/, ''),
 									fHashToString(hAttributes)
 								);
 
@@ -1007,7 +1010,7 @@ function fBrowser_processScripts() {
 		    	// Set xml:base for referenced documents
 		    	if (bReferenced)
 		    		if (!oDocument.documentElement.getAttribute("xml:base"))
-		    			oDocument.documentElement.setAttribute("xml:base", fUtilities_resolveUri(oElementDOM.src, fNode_getBaseURI(oAmple_root)));
+		    			oDocument.documentElement.setAttribute("xml:base", fUtilities_resolveUri(sSrc, fNode_getBaseURI(oAmple_root)));
 
 		    	// import XML DOM into Ample DOM
 		    	oElement	= fDocument_importNode(oAmple_document, oDocument.documentElement, true, null, true);
@@ -1102,6 +1105,24 @@ function fBrowser_processScripts() {
 //<-Debug
 		    }
 		}
+		else
+		if (sType == "application/ample+javascript" || sType == "text/ample+javascript") {
+			if (sSrc)
+				sText	= fBrowser_load(sSrc, "text/javascript");
+
+			// Try executing
+			try {
+				new cFunction(sText)();
+			} catch (e) {
+//->Debug
+				fUtilities_warn("JavaScript parsing error %0", [e.message]);
+//<-Debug
+			}
+			//
+			oElementDOM.parentNode.removeChild(oElementDOM);
+		}
+		else
+			nSkip++;
     }
 };
 
