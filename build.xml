@@ -208,6 +208,7 @@
 				base64.js,
 				Date.js,
 				DOMParser.js,
+				Function.js,
 				JSON.js,
 				String.js,
 				XMLHttpRequest.js,
