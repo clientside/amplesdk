@@ -7,6 +7,12 @@
  *
  */
 
+// JavaScript 1.5
+if (!cDate.now)
+	fExporter_export(function(sKey) {
+		return +new cDate;
+	}, "now", cDate);
+
 // JavaScript 1.8.5
 function fDate_doublizeInteger(n) {
 	// Format integers to have at least two digits.
