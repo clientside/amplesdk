@@ -14,17 +14,17 @@ if (!cDate.now)
 	}, "now", cDate);
 
 // JavaScript 1.8.5
-function fDate_doublizeInteger(n) {
-	// Format integers to have at least two digits.
-	return n < 10 ? '0' + n : n;
+function fDate_pad(nValue) {
+	return new cArray(1 - cString(nValue).length +(arguments[1] || 2)).join('0') + nValue;
 };
 
 if (!cDate.prototype.toJSON)
 	fExporter_export(function() {
 		return this.getUTCFullYear()	+ '-' +
-			fDate_doublizeInteger(this.getUTCMonth() + 1)	+ '-' +
-			fDate_doublizeInteger(this.getUTCDate())		+ 'T' +
-			fDate_doublizeInteger(this.getUTCHours())		+ ':' +
-			fDate_doublizeInteger(this.getUTCMinutes())		+ ':' +
-			fDate_doublizeInteger(this.getUTCSeconds())		+ 'Z';
+			fDate_pad(this.getUTCMonth() + 1)	+ '-' +
+			fDate_pad(this.getUTCDate())		+ 'T' +
+			fDate_pad(this.getUTCHours())		+ ':' +
+			fDate_pad(this.getUTCMinutes())		+ ':' +
+			fDate_pad(this.getUTCSeconds())		+ '.' +
+			fDate_pad(this.getUTCMilliseconds(), 3)	+ 'Z';
 	}, "toJSON", cDate.prototype);
