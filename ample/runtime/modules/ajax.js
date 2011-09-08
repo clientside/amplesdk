@@ -125,7 +125,7 @@ function fQuery_param(vValue) {
 		(function(sPrefix, vValue) {
 			if (vValue instanceof cArray)
 				for (var nIndex = 0, nLength = vValue.length, oValue; nIndex < nLength; nIndex++)
-					arguments.callee(sPrefix + '[' + ((oValue = vValue[nIndex]) instanceof cArray || typeof oValue == "object " ? nIndex : '') + ']', oValue);
+					arguments.callee(sPrefix + '[' + ((oValue = vValue[nIndex]) instanceof cArray || typeof oValue == "object" ? nIndex : '') + ']', oValue);
 			else
 			if (vValue instanceof cObject)
 				for (var sKey in vValue)
