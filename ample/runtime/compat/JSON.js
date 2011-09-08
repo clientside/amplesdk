@@ -308,16 +308,16 @@ replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
 
 // Non-standard
 if (!cString.prototype.toJSON)
-	fExporter_export(function(sKey) {
+	fExporter_export(function() {
 		return this.valueOf();
 	}, "toJSON", cString.prototype);
 
 if (!cNumber.prototype.toJSON)
-	fExporter_export(function(sKey) {
+	fExporter_export(function() {
 		return this.valueOf();
 	}, "toJSON", cNumber.prototype);
 
 if (!cBoolean.prototype.toJSON)
-	fExporter_export(function(sKey) {
+	fExporter_export(function() {
 		return this.valueOf();
 	}, "toJSON", cBoolean.prototype);

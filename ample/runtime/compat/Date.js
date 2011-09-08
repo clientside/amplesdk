@@ -9,7 +9,7 @@
 
 // JavaScript 1.5
 if (!cDate.now)
-	fExporter_export(function(sKey) {
+	fExporter_export(function() {
 		return +new cDate;
 	}, "now", cDate);
 
@@ -20,7 +20,7 @@ function fDate_doublizeInteger(n) {
 };
 
 if (!cDate.prototype.toJSON)
-	fExporter_export(function(sKey) {
+	fExporter_export(function() {
 		return this.getUTCFullYear()	+ '-' +
 			fDate_doublizeInteger(this.getUTCMonth() + 1)	+ '-' +
 			fDate_doublizeInteger(this.getUTCDate())		+ 'T' +
