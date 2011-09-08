@@ -306,22 +306,7 @@ replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
 	fExporter_export(oJSON,	"JSON",	window);
 };
 
-// JSON
-function fJSON_doublizeInteger(n) {
-	// Format integers to have at least two digits.
-	return n < 10 ? '0' + n : n;
-};
-
-if (!cDate.prototype.toJSON)
-	fExporter_export(function(sKey) {
-		return this.getUTCFullYear()	+ '-' +
-			fJSON_doublizeInteger(this.getUTCMonth() + 1)	+ '-' +
-			fJSON_doublizeInteger(this.getUTCDate())		+ 'T' +
-			fJSON_doublizeInteger(this.getUTCHours())		+ ':' +
-			fJSON_doublizeInteger(this.getUTCMinutes())		+ ':' +
-			fJSON_doublizeInteger(this.getUTCSeconds())		+ 'Z';
-	}, "toJSON", cDate.prototype);
-
+// Non-standard
 if (!cString.prototype.toJSON)
 	fExporter_export(function(sKey) {
 		return this.valueOf();

@@ -1,7 +1,7 @@
 /*
  * Ample SDK - JavaScript GUI Framework
  *
- * Copyright (c) 2010 Sergey Ilinsky
+ * Copyright (c) 2011 Sergey Ilinsky
  * Dual licensed under the MIT and GPL licenses.
  * See: http://www.amplesdk.com/about/licensing/
  *
@@ -157,11 +157,8 @@ if (!cArray.prototype.some)
 		return false;
 	}, "some", cArray.prototype);
 
-// JavaScript 1.7
-// generators, iterators, array comprehensions, let expressions, and destructuring assignment
-
-// JavaScript 1.8
-// Expression closures, Generator expressions
+//JavaScript 1.8
+//Expression closures, Generator expressions
 if (!cArray.prototype.reduce)
 	fExporter_export(function(fCallback/*, initial*/) {
 //->Guard
@@ -237,19 +234,13 @@ if (!cArray.prototype.reduceRight)
 		return aValue;
 	}, "reduceRight", cArray.prototype);
 
-// JavaScript 1.8.1
-// Object.getPrototypeOf(), Native JSON, String methods
-if (!cString.prototype.trim)
-	fExporter_export(function() {
-		return this.replace(/^\s+|\s+$/g, '');
-	}, "trim", cString.prototype);
-
-if (!cString.prototype.trimLeft)
-	fExporter_export(function(fCallback, oReceiver) {
-		return this.replace(/^\s+/, '');
-	}, "trimLeft", cString.prototype);
-
-if (!cString.prototype.trimRight)
-	fExporter_export(function(fCallback, oReceiver) {
-		return this.replace(/\s+$/, '');
-	}, "trimRight", cString.prototype);
+// JavaScript 1.8.5
+if (!cArray.isArray)
+	fExporter_export(function(oObject) {
+//->Guard
+		fGuard(arguments, [
+			["object",	cObject]
+		]);
+//<-Guard
+		return cObject.prototype.toString.call(oObject) == '[' + "object" + ' ' + "Array" + ']';
+	}, "isArray", cArray);
