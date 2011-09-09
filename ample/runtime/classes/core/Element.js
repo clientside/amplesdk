@@ -969,9 +969,9 @@ function fElement_setPseudoClass(oElement, sName, bValue, sContainer)
 		}
 		// Animation + Transition effects
 		if (bTransition/* || bAnimation*/) {
-			var oStyle	= oElementDOM.style,
-				oProperties	= {},
+			var oProperties	= {},
 				aProperties	= [],
+//				oStyle	= oElementDOM.style,
 				bPlay	= false,
 				nIndex, nLength, sKey, sValue;
 			if (bTransition)

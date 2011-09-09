@@ -21,8 +21,7 @@ function fQuery(vArgument1, vArgument2, vArgument3) {
 		if (typeof vArgument1 == "string" || vArgument1 instanceof cString) {
 			if (vArgument1.substr(0,1) == '<') {
 				// XML string
-				var aNameSpaces	= [],
-					sText;
+				var aNameSpaces	= [];
 				for (var sKey in oAmple.prefixes)
 					if (oAmple.prefixes.hasOwnProperty(sKey) && sKey != "toString")
 						aNameSpaces.push("xmlns" + (sKey == '' ? '' : ':') + sKey + '="' + oAmple.prefixes[sKey] + '"');

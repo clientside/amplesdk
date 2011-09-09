@@ -287,7 +287,6 @@ function fDragAndDropManager_onMouseMove(oEvent)
 	var oDropTarget	= null,
 		oRect2,
 		nAreaSource	=(oRect.right - oRect.left) * (oRect.bottom - oRect.top),
-		nAreaSourceMax	= 0,
 		nAreaTarget,
 		nAreaTargetMin	= nInfinity,
 		nIntersection,

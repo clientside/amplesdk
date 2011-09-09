@@ -23,7 +23,7 @@ function fAmple_setCookie(oAmple, sName, vValue, oSettings) {
 function fAmple_getCookie(oAmple, sName) {
 	var oCookie	= document.cookie;
 	if (oCookie && oCookie != '') {
-		for (var nIndex = 0, aCookie = oCookie.split(';'), nLength = aCookie.length, sCookie; nIndex < nLength; nIndex++)
+		for (var nIndex = 0, aCookie = oCookie.split(';'), nLength = aCookie.length; nIndex < nLength; nIndex++)
 			if (aCookie[nIndex].match(/^\s*([^=]+)=(.*)\s*/) && RegExp.$1 == sName)
 				return decodeURIComponent(RegExp.$2);
 	}
