@@ -515,7 +515,6 @@ function fBrowser_onMouseMove(oEvent) {
 function fBrowser_onContextMenu(oEvent) {
 	var oTarget		= fBrowser_getEventTarget(oEvent),
 		oPseudo		= fBrowser_getUIEventPseudo(oEvent),
-		nButton 	= fBrowser_getUIEventButton(oEvent),
 		bPrevent	= false,
 		oEventContextMenu	= new cMouseEvent;
 
