@@ -7,7 +7,6 @@
 
 	<!-- Resources -->
 	<xul:script src="client.js" type="text/javascript" />
-	<xul:script src="XMLXmppProxy.js" type="text/javascript" />
 
 	<!-- Broadcasters -->
 	<xul:broadcasterset>
