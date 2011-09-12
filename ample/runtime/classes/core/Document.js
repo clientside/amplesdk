@@ -334,7 +334,8 @@ cDocument.prototype.getElementsByTagNameNS	= function(sNameSpaceURI, sLocalName)
 	return fElement_getElementsByTagNameNS(this, sNameSpaceURI, sLocalName);
 };
 
-function fDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse) {
+function fDocument_importNode(oDocument, oElementDOM, bDeep, oParent, bCollapse) {
+	var oNode	= null;
 	switch (oElementDOM.nodeType) {
 		case 1:	// cNode.ELEMENT_NODE
 			var sNameSpaceURI	= oElementDOM.namespaceURI,
@@ -368,14 +369,15 @@ function fDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse) {
 			// XInclude 1.0
 			if (sNameSpaceURI == sNS_XINCLUDE) {
 				if (sLocalName == "include") {
-					var sHref	= fUtilities_resolveUri(oElementDOM.getAttribute("href"), fNode_getBaseURI(oNode)),
+					var sHref	= fUtilities_resolveUri(oElementDOM.getAttribute("href"), fNode_getBaseURI(oParent)),
 						oRequest= fBrowser_load(sHref, "text/xml"),
 						oResponse;
 					if (oResponse = fBrowser_getResponseDocument(oRequest)) {
+						oElementDOM	= oResponse.documentElement;
 						// set xml:base according to spec
-						if (!oResponse.documentElement.getAttribute("xml:base"))
-							oResponse.documentElement.setAttribute("xml:base", sHref);
-						fDocument_importNode(oDocument, oResponse, bDeep, oNode, bCollapse);
+						if (!oElementDOM.getAttribute("xml:base"))
+							oElementDOM.setAttribute("xml:base", sHref);
+						oNode	= fDocument_importNode(oDocument, oElementDOM, bDeep, oParent, bCollapse);
 					}
 					else {
 						// lookup if there is fallback
@@ -383,7 +385,7 @@ function fDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse) {
 						if (oElementDOM) {
 							if ((oElementDOM.localName || oElementDOM.baseName).toLowerCase() == "fallback" && oElementDOM.namespaceURI == sNameSpaceURI) {
 								if (oElementDOM.firstChild)
-									fDocument_importNode(oDocument, oElementDOM.getElementsByTagName('*')[0] || oElementDOM.childNodes[0], bDeep, oNode, bCollapse);
+									oNode	= fDocument_importNode(oDocument, oElementDOM.getElementsByTagName('*')[0] || oElementDOM.childNodes[0], bDeep, oParent, bCollapse);
 							}
 //->Debug
 							else
@@ -399,9 +401,10 @@ function fDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse) {
 			}
 			// Other namespaces
 			else {
-				// Create element (note: in IE, namespaceURI is empty string if not specified, hence "oElementDOM.namespaceURI || null")
-				var oElement	= fDocument_createElementNS(oDocument, sNameSpaceURI, oElementDOM.nodeName),
-					oAttributes	= oElement.attributes,
+				// Create element
+				oNode	= fDocument_createElementNS(oDocument, sNameSpaceURI, oElementDOM.nodeName);
+
+				var oAttributes	= oNode.attributes,
 					aAttributes = oElementDOM.attributes,
 					oAttribute, sName, sValue;
 
@@ -417,7 +420,7 @@ function fDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse) {
 					// Inline event handler
 					if (sName.indexOf('on') == 0) {
 						try {
-							oElement[sName]	= new cFunction(sNameSpaceURI == sNS_SVG ? "evt" : "event", bCollapse ? fUtilities_decodeEntities(sValue) : sValue);
+							oNode[sName]	= new cFunction(sNameSpaceURI == sNS_SVG ? "evt" : "event", bCollapse ? fUtilities_decodeEntities(sValue) : sValue);
 						} catch (oException) {
 //->Debug
 							fUtilities_warn(sGUARD_JAVASCRIPT_SYNTAX_WRN, [oException.message]);
@@ -442,37 +445,39 @@ function fDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse) {
 //<-Debug
 
 				// and append it to parent (if there is one)
-				if (oNode)
-					fNode_appendChild(oNode, oElement);
+				if (oParent)
+					fNode_appendChild(oParent, oNode);
 
 				// Render Children
 				if (bDeep)
 					for (var nIndex = 0, nLength = oElementDOM.childNodes.length; nIndex < nLength; nIndex++)
-						fDocument_importNode(oDocument, oElementDOM.childNodes[nIndex], bDeep, oElement, bCollapse);
+						fDocument_importNode(oDocument, oElementDOM.childNodes[nIndex], bDeep, oNode, bCollapse);
+				//
+				return oNode;
 			}
 			break;
 
 		case 5:	// cNode.ENTITY_REFERENCE_NODE
 			// This is normally  executed only in IE
 			for (var nIndex = 0, nLength = oElementDOM.childNodes.length; nIndex < nLength; nIndex++)
-				fDocument_importNode(oDocument, oElementDOM.childNodes[nIndex], bDeep, oNode, bCollapse);
+				fDocument_importNode(oDocument, oElementDOM.childNodes[nIndex], bDeep, oParent, bCollapse);
 			break;
 
 		case 3:	// cNode.TEXT_NODE
 			var sValue	= oElementDOM.nodeValue;
-			if (!bCollapse)
-				sValue	= fUtilities_encodeEntities(sValue);
-
 			if (sValue.trim() != '') {
-				if (oNode.lastChild instanceof cCharacterData)
-					fCharacterData_appendData(oNode.lastChild, sValue);
+				if (!bCollapse)
+					sValue	= fUtilities_encodeEntities(sValue);
+				//
+				if (oParent.lastChild instanceof cCharacterData)
+					oNode	= fCharacterData_appendData(oParent.lastChild, sValue);
 				else
-					fNode_appendChild(oNode, fDocument_createTextNode(oDocument, sValue));
+					oNode	= fNode_appendChild(oParent, fDocument_createTextNode(oDocument, sValue));
 			}
 			break;
 
 		case 4:	// cNode.CDATA_SECTION_NODE
-			fNode_appendChild(oNode, fDocument_createCDATASection(oDocument, oElementDOM.nodeValue));
+			oNode	= fNode_appendChild(oParent, fDocument_createCDATASection(oDocument, oElementDOM.nodeValue));
 			break;
 
 		case 8:	// cNode.COMMENT_NODE
@@ -500,23 +505,20 @@ function fDocument_importNode(oDocument, oElementDOM, bDeep, oNode, bCollapse) {
 					}
 					// no break is left intentionally
 				default:
-					fNode_appendChild(oNode, fDocument_createProcessingInstruction(oDocument, oElementDOM.nodeName, oElementDOM.nodeValue));
+					oNode	= fNode_appendChild(oParent, fDocument_createProcessingInstruction(oDocument, oElementDOM.nodeName, oElementDOM.nodeValue));
 			}
 			break;
 
 		case 9:	// cNode.DOCUMENT_NODE
-			if (bDeep)
-				for (var nIndex = 0, nLength = oElementDOM.childNodes.length; nIndex < nLength; nIndex++)
-					fDocument_importNode(oDocument, oElementDOM.childNodes[nIndex], bDeep, oNode, bCollapse);
-			break;
+//			break;
 
 		case 10:	// cNode.DOCUMENT_TYPE_NODE
-			break;
+//			break;
 
 		default:
 			throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 	}
-	return oElement;
+	return oNode;
 };
 
 cDocument.prototype.importNode	= function(oNode, bDeep)
