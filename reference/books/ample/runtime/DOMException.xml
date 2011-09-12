@@ -201,21 +201,21 @@
 			<constant name="GUARD_ARGUMENT_MISSING_ERR" value="-1">
 				<description>
 					<locale>
-						Missing required argument from function call.
+						Missing required argument from a function call.
 					</locale>
 				</description>
 			</constant>
 			<constant name="GUARD_ARGUMENT_WRONG_TYPE_ERR" value="-2">
 				<description>
 					<locale>
-						Incompatible type of argument in function call.
+						Incompatible type of argument in a function call.
 					</locale>
 				</description>
 			</constant>
 			<constant name="GUARD_ARGUMENT_WRONG_TYPE_ERR" value="-3">
 				<description>
 					<locale>
-						null is not allowed value in function call.
+						null is not allowed value of argument in a function call.
 					</locale>
 				</description>
 			</constant>
@@ -236,7 +236,7 @@
 			<constant name="GUARD_MEMBER_MISSING_ERR" value="-6">
 				<description>
 					<locale>
-						Object does not have a method.
+						Object does not have a member required.
 					</locale>
 				</description>
 			</constant>
