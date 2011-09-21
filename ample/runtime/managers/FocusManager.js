@@ -194,13 +194,13 @@ function fFocusManager_onKeyDown(oEvent) {
 
 		// Otherwise
 		if (!oFocusGroup) {
-			var oRoot	= oBrowser_modalNode || this.documentElement,
+			var oParent	= oBrowser_modalNode || this.documentElement,
 				nTabIndexMax	=-nInfinity,
 				nTabIndexMin	= nInfinity,
 				nTabIndexNext	= nTabIndexMin,
 				nTabIndexPrev	= nTabIndexMax;
 
-			for (var nIndex = 0, nTabIndex, oElement, aElements = fElement_getElementsByTagName(oRoot, '*'); oElement = aElements[nIndex]; nIndex++) {
+			for (var nIndex = 0, nTabIndex, oElement, aElements = fElement_getElementsByTagName(oParent, '*'); oElement = aElements[nIndex]; nIndex++) {
 				nTabIndex	= oElement.tabIndex;
 				if (nTabIndex >-1) {
 					if (nTabIndex > nTabIndexMax)
@@ -219,9 +219,9 @@ function fFocusManager_onKeyDown(oEvent) {
 				nTabIndexPrev	= 0;
 			//
 			if (oEvent.shiftKey)
-				oFocusGroup	= fFocusManager_getFocusGroupPreviousChild(oRoot, nTabIndexPrev) || fFocusManager_getFocusGroupPreviousChild(oRoot, nTabIndexMax);
+				oFocusGroup	= fFocusManager_getFocusGroupPreviousChild(oParent, nTabIndexPrev) || fFocusManager_getFocusGroupPreviousChild(oParent, nTabIndexMax);
 			else
-				oFocusGroup	= fFocusManager_getFocusGroupNextChild(oRoot, nTabIndexNext) || fFocusManager_getFocusGroupNextChild(oRoot, nTabIndexMin);
+				oFocusGroup	= fFocusManager_getFocusGroupNextChild(oParent, nTabIndexNext) || fFocusManager_getFocusGroupNextChild(oParent, nTabIndexMin);
 		}
 
 		// Use setTimeout to fix tabbed navigation in Opera)
