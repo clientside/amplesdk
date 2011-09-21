@@ -8,7 +8,8 @@
  */
 
 //->Debug
-var sGUARD_NOT_WELLFORMED_WRN			= 'Not well-formed XML',
+var sGUARD_XML_SYNTAX_WRN				= 'Not well-formed XML',
+	sGUARD_JSON_SYNTAX_WRN				= 'JSON syntax error: %0',
 	sGUARD_JAVASCRIPT_SYNTAX_WRN		= 'JavaScript syntax error: %0',
 	sQUARD_FRAGMENT_POSITION_WRN		= 'XML fragment is not allowed in head section. Fragment processing skipped',
 	sGUARD_NOT_UNIQUE_ID_WRN			= 'Duplicate ID attribute value "%0" used',

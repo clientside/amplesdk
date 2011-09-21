@@ -70,10 +70,6 @@ function fNodeLoader_load(oElement, sUrl, vData, fCallback) {
 			fNode_dispatchEvent(oElement, oEvent);
 		};
 		oSettings.error	= function(oRequest, sMessage) {
-//->Debug
-			if (sMessage == "parsererror")
-				fUtilities_warn(sGUARD_NOT_WELLFORMED_WRN);
-//<-Debug
 			// Dispatch error event
 		    var oEvent		= new cEvent;
 			oEvent.initEvent("error", false, false);

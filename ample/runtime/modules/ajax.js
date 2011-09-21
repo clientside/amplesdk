@@ -55,8 +55,12 @@ function fQuery_ajax(oSettings) {
 				if (sExpectedDataType != "text") {
 					if (sExpectedDataType == "xml" || sResponseDataType == "xml") {
 						oResponse	= fBrowser_getResponseDocument(oRequest);
-						if (!oResponse)
+						if (!oResponse) {
 							sStatus	= "parsererror";
+//->Debug
+							fUtilities_warn(sGUARD_XML_SYNTAX_WRN);
+//<-Debug
+						}
 					}
 					else
 					if (sExpectedDataType == "json" || sResponseDataType == "json") {
@@ -65,6 +69,9 @@ function fQuery_ajax(oSettings) {
 						}
 						catch (oException) {
 							sStatus	= "parsererror";
+//->Debug
+							fUtilities_warn(sGUARD_JSON_SYNTAX_WRN, [oException.message]);
+//<-Debug
 						}
 					}
 					else
@@ -74,6 +81,9 @@ function fQuery_ajax(oSettings) {
 						}
 						catch (oException) {
 							sStatus	= "error";
+//->Debug
+							fUtilities_warn(sGUARD_JAVASCRIPT_SYNTAX_WRN, [oException.message]);
+//<-Debug
 						}
 					}
 				}

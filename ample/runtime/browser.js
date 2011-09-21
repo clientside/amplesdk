@@ -1102,7 +1102,7 @@ function fBrowser_processScripts() {
 //<-Debug
 
 //->Debug
-			    fUtilities_warn(sGUARD_NOT_WELLFORMED_WRN);
+			    fUtilities_warn(sGUARD_XML_SYNTAX_WRN);
 //<-Debug
 		    }
 		}
