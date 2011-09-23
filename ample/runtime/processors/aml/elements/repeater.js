@@ -93,7 +93,7 @@ cElement_repeater.prototype.repeat	= function() {
 		aElements	= fNodeSelector_query([this.data], this.attributes["select"] || '', fResolver);
 		for (nIndex = 0; nIndex < aElements.length; nIndex++)
 			fElement_insertBefore(this.parentNode,
-				cElement_repeater_processNode(
+				fElement_repeater_processNode(
 					fNode_cloneNode(this.firstChild, true),
 					aElements[nIndex],
 					fResolver),
@@ -104,7 +104,7 @@ cElement_repeater.prototype.repeat	= function() {
 var rElement_repeater_regexp	= /(\{([^\}]+)\})/g;
 
 // 'Static' Methods
-function cElement_repeater_processNode(oElement, oData, fResolver) {
+function fElement_repeater_processNode(oElement, oData, fResolver) {
 	var oNode, sName;
 	for (var nIndex = 0; nIndex < oElement.childNodes.length; nIndex++)	{
 		oNode	= oElement.childNodes[nIndex];
@@ -113,7 +113,7 @@ function cElement_repeater_processNode(oElement, oData, fResolver) {
 				for (sName in oNode.attributes)
 					if (oNode.attributes.hasOwnProperty(sName) && oNode.attributes[sName].match(rElement_repeater_regexp))
 						oNode.attributes[sName]	= oNode.attributes[sName].replace(cRegExp.$1, fElement_repeater_resolveValue(cRegExp.$2, oData, fResolver));
-				cElement_repeater_processNode(oNode, oData, fResolver);
+				fElement_repeater_processNode(oNode, oData, fResolver);
 				break;
 
 			case 3:	// cNode.TEXT_NODE
