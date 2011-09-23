@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<class name="AmpleException">
+	<abstract>
+		<locale>
+			Ample SDK exceptions.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples/>
+	<members>
+		<properties>
+			<property name="code" type="Number" readonly="true">
+				<description>
+					<locale>
+						An integer indicating the type of error generated.
+					</locale>
+				</description>
+			</property>
+			<property name="message" type="String" readonly="true">
+				<description>
+					<locale>
+						An exception message.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<constants>
+			<constant name="ARGUMENT_MISSING_ERR" value="1">
+				<description>
+					<locale>
+						Missing required argument from a function call.
+					</locale>
+				</description>
+			</constant>
+			<constant name="ARGUMENT_WRONG_TYPE_ERR" value="2">
+				<description>
+					<locale>
+						Incompatible type of argument in a function call.
+					</locale>
+				</description>
+			</constant>
+			<constant name="ARGUMENT_NULL_ERR" value="3">
+				<description>
+					<locale>
+						null is not allowed value of argument in a function call.
+					</locale>
+				</description>
+			</constant>
+			<constant name="NOT_INITIALIZED_ERR" value="4">
+				<description>
+					<locale>
+						Object has not been initialized.
+					</locale>
+				</description>
+			</constant>
+			<constant name="CANNOT_ACCESS_DOM_ERR" value="5">
+				<description>
+					<locale>
+						Access to DOM in element constructor not allowed.
+					</locale>
+				</description>
+			</constant>
+			<constant name="MEMBER_MISSING_ERR" value="6">
+				<description>
+					<locale>
+						Object does not have a member required.
+					</locale>
+				</description>
+			</constant>
+		</constants>
+	</members>
+</class>

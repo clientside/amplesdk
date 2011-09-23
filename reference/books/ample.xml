@@ -77,6 +77,7 @@
 			<node title="I/O Objects">
 				<node title="XMLHttpRequest" url="ample/runtime/XMLHttpRequest.xml"/>
 			</node>
+			<node title="AmpleException" url="ample/runtime/AmpleException.xml"/>
 		</node>
 
 		<node title="XML technologies" open="true">

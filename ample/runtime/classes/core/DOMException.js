@@ -10,14 +10,10 @@
 var cDOMException	= function(nCode) {
 	this.code	= nCode;
 
-	var sMessage	= "Ample" + ' ' + "exception" + ': ' + nCode;
+	var sMessage	= "DOMException" + ' ' + nCode;
 //->Debug
-	// Replace placeholders
-	sMessage	= oDOMException_messages[nCode] || "Unknown error";
-	if (arguments.length > 2)
-		sMessage	= fDOMException_format(sMessage, arguments[2]);
+	sMessage	+= '...' + ' ' + oDOMException_messages[nCode];
 //<-Debug
-
 	this.message= sMessage;
 	this.caller	= arguments[1] || cDOMException.caller.caller;
 };
@@ -41,26 +37,12 @@ cDOMException.INVALID_ACCESS_ERR			= 15;
 cDOMException.VALIDATION_ERR				= 16;	// DOM 3
 cDOMException.TYPE_MISMATCH_ERR				= 17;
 
-// Ample Exceptions
-cDOMException.GUARD_ARGUMENT_MISSING_ERR	=-1;
-cDOMException.GUARD_ARGUMENT_WRONG_TYPE_ERR	=-2;
-cDOMException.GUARD_ARGUMENT_NULL_ERR		=-3;
-cDOMException.GUARD_NOT_INITIALIZED_ERR		=-4;
-cDOMException.GUARD_CANNOT_ACCESS_DOM_ERR	=-5;
-cDOMException.GUARD_MEMBER_MISSING_ERR		=-6;
-
 //
 cDOMException.prototype.code	= null;
 cDOMException.prototype.message	= null;
 
 cDOMException.prototype.toString	= function() {
-	return this.message;
-};
-
-function fDOMException_format(sMessage, aArguments) {
-	for (var nIndex = 0; nIndex < aArguments.length; nIndex++)
-		sMessage	= sMessage.replace('%' + nIndex, aArguments[nIndex]);
-	return sMessage;
+	return '[' + this.message + ']';
 };
 
 //->Debug
@@ -82,12 +64,4 @@ oDOMException_messages[cDOMException.SYNTAX_ERR]					= 'An invalid or illegal st
 //oDOMException_messages[cDOMException.INVALID_ACCESS_ERR]			= '';
 //oDOMException_messages[cDOMException.VALIDATION_ERR]				= '';
 oDOMException_messages[cDOMException.TYPE_MISMATCH_ERR]				= 'The type of an object is incompatible with the expected type of the parameter';
-
-// Ample Exceptions
-oDOMException_messages[cDOMException.GUARD_ARGUMENT_MISSING_ERR]	= 'Missing required %0 argument "%1" in "%2" function call';
-oDOMException_messages[cDOMException.GUARD_ARGUMENT_WRONG_TYPE_ERR]	= 'Incompatible type of %0 argument "%1" in "%2" function call. Expecting "%3"';
-oDOMException_messages[cDOMException.GUARD_ARGUMENT_NULL_ERR]		= 'null is not allowed value of %0 argument "%1" in "%2" function call';
-oDOMException_messages[cDOMException.GUARD_NOT_INITIALIZED_ERR]		= 'Object "%0" has not been initialized';
-oDOMException_messages[cDOMException.GUARD_CANNOT_ACCESS_DOM_ERR]	= 'Cannot access DOM in element constructor';
-oDOMException_messages[cDOMException.GUARD_MEMBER_MISSING_ERR]		= 'Object does not have a method named "%0"';
 //<-Debug

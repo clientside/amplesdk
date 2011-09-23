@@ -51,6 +51,7 @@ runtime/classes/misc/NodeLoader.js
 # Range
 runtime/classes/range/Range.js
 # Ample addons
+runtime/classes/AmpleException.js
 runtime/classes/Query.js
 # Runtime
 runtime/utilities.js

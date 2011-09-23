@@ -87,6 +87,7 @@ fExporter_export(cHashChangeEvent,	"HashChangeEvent");
 // Selectors
 fExporter_export(cNodeSelector,		"NodeSelector");
 // Ample SDK objects
+fExporter_export(cAmpleException,	"AmpleException");
 fExporter_export(cQuery,			"Query");
 
 //->Source
