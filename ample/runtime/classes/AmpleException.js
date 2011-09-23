@@ -7,7 +7,7 @@
  *
  */
 
-function cAmpleException(nCode) {
+var cAmpleException	= function(nCode) {
 	this.code	= nCode;
 	var sMessage= "AmpleException" + ' ' + nCode;
 //->Debug

@@ -8,9 +8,7 @@
  */
 
 //
-function cHashChangeEvent() {
-
-};
+var cHashChangeEvent	= function() {};
 cHashChangeEvent.prototype	= new cEvent;
 cHashChangeEvent.prototype.eventInterface	= "HashChangeEvent";
 //
