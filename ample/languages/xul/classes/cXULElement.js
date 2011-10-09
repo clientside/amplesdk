@@ -54,6 +54,11 @@ cXULElement.prototype.$setStyle	= function(sName, sValue) {
 	}
 };
 */
+
+cXULElement.decodeXMLEntities	= function(sValue) {
+	return sValue.replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+};
+
 // Private Methods
 cXULElement.prototype.$mapAttribute	= function(sName, sValue) {
 	var oElementDOM	= this.$getContainer();
