@@ -2,6 +2,6 @@
 RewriteEngine on
 
 ##
-RewriteRule runtime.js source-builder.php?path=./
-RewriteRule languages/([a-z]+)/([a-z]+).js source-builder.php?path=./languages/$1/
-RewriteRule ^(.*).css $1.php
+RewriteRule runtime.js /development/syn/SPO/branches/rm3-clean/src/public/ample/source-builder.php?path=./
+RewriteRule languages/([a-z]+)/([a-z]+).js /development/syn/SPO/branches/rm3-clean/src/public/ample/source-builder.php?path=./languages/$1/
+RewriteRule ^(.*).css /development/syn/SPO/branches/rm3-clean/src/public/ample/$1.php
