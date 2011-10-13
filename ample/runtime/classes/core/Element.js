@@ -70,7 +70,6 @@ function fElement_insertBefore(oParent, oNode, oBefore)
 {
 	// Call parent class method
 	fNode_insertBefore(oParent, oNode, oBefore);
-
 	// Insert DOM
 	var oGateway, oChild;
 	if (oParent.nodeType == 1)	// cNode.ELEMENT_NODE
@@ -79,10 +78,11 @@ function fElement_insertBefore(oParent, oNode, oBefore)
 	    		oGateway.insertBefore(oChild, function() {
 	    			for (var oElement; oBefore; oBefore = oBefore.nextSibling)
 	    				if (oElement = oBefore.$getContainer())
-	    					return oElement;
+	    					for (; oElement; oElement = oElement.parentNode)
+	    						if (oElement.parentNode == oGateway)
+	    							return oElement;
 	    			return null;
 	    		}());
-
 	// Register Instance
 	if (oDocument_all[oParent.uniqueID])
 		fDocument_register(oParent.ownerDocument, oNode);

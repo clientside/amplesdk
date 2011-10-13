@@ -54,6 +54,11 @@ cXULElement.prototype.$setStyle	= function(sName, sValue) {
 	}
 };
 */
+
+cXULElement.decodeXMLEntities	= function(sValue) {
+	return sValue.replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+};
+
 // Private Methods
 cXULElement.prototype.$mapAttribute	= function(sName, sValue) {
 	var oElementDOM	= this.$getContainer();
@@ -214,10 +219,10 @@ cXULElement.prototype.reflow   = function() {
 //                    	oCell.style[sMeasure]	=(nElementLast == nIndex ? nFlexInPixels - nUsedPixels : nElementPixels) + "px";
                     	nUsedFlex	+= nElementFlex;
                     	nUsedPixels	+= nElementPixels;
-                    	if (!(oElement instanceof cXULElement_row))
+                    	if (!(oElement instanceof cXULElement_row) && oElementDOM)
                     		oElementDOM.style[sMeasure]	= "100%";	// Needed?
                     }
-                    if (this.attributes["align"] == "stretch")
+                    if ((this.attributes["align"] == "stretch") && oElementDOM)
                     	oElementDOM.style[sMeasureAlt]	= "100%";
                 }
             }
