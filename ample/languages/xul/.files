@@ -79,6 +79,8 @@ elements/tabpanels.js
 elements/toolbar.js
 elements/toolbarbutton.js
 elements/toolbarseparator.js
+elements/toolbarspacer.js
+elements/toolbarspring.js
 elements/toolbargrippy.js
 elements/toolbox.js
 # listbox
