@@ -19,6 +19,12 @@ xul|toolbarseparator {
 	background:	url(media/toolbarseparator.gif) repeat-y;
 }
 
+xul|toolbarspacer {
+}
+
+xul|toolbarspring {
+}
+
 xul|toolbargrippy {
 	width:	3px;
 	margin: 3px;
