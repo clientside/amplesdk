@@ -12,10 +12,6 @@ var oXULPopupManager	= (function () {
 	// Local variables
 	var oTooltipPane	= null;
 
-	// Extend ample object to XULDocument
-	ample.tooltipNode	= null;
-	ample.popupNode		= null;
-
 	// Attaching manager to document
 	ample.bind("mouseenter",	function(oEvent) {
 		for (var oElement = oEvent.target, oTooltip; oElement.nodeType != ample.classes.Node.DOCUMENT_NODE; oElement = oElement.parentNode) {

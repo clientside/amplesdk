@@ -1,5 +1,6 @@
 # Classes
 classes/cXULElement.js
+classes/cXULDocument.js
 classes/cXULController.js
 classes/cXULInputElement.js
 classes/cXULSelectElement.js
@@ -11,6 +12,9 @@ managers/oXULCommandDispatcher.js
 managers/oXULPopupManager.js
 managers/oXULReflowManager.js
 managers/oXULWindowManager.js
+
+# Processing Instructions
+pis/xul-overlay.js
 
 # Locales
 locales/en.js

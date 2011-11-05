@@ -472,6 +472,9 @@
 			<fileset dir="${source.xul.dir}/classes/">
 				<include name="*.js" />
 			</fileset>
+				<fileset dir="${source.xul.dir}/pis/">
+					<include name="*.js" />
+				</fileset>
 			<fileset dir="${source.xul.dir}/managers/">
 				<include name="*.js" />
 			</fileset>
