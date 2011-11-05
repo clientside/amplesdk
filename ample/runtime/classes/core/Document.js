@@ -280,7 +280,7 @@ cDocument.prototype.createDocumentFragment	= function()
 
 function fDocument_createProcessingInstruction(oDocument, sTarget, sData)
 {
-	var oNode	= new cProcessingInstruction;
+	var oNode	= new (hClasses['?' + sTarget] || cProcessingInstruction);
 	oNode.ownerDocument	= oDocument;
 	oNode.nodeName	= oNode.target	= sTarget;
 	oNode.nodeValue	= oNode.data	= sData;

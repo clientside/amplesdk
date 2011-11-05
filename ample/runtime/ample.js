@@ -134,6 +134,9 @@ function fAmple_extend(oTarget, oSource) {
 		else
 		if (oPrototype instanceof cAttr)
 			hClasses[oPrototype.namespaceURI + '#' + '@' + oPrototype.localName]	= oTarget;
+		else
+		if (oPrototype instanceof cProcessingInstruction)
+			hClasses['?' + oPrototype.target]	= oTarget;
 //->Guard
 		else
 			throw new cAmpleException(cAmpleException.ARGUMENT_WRONG_TYPE_ERR, null
