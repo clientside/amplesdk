@@ -107,9 +107,18 @@ cQuery.prototype.slice	= function(nFirst, nLast) {
 	]);
 //<-Guard
 
+	var nLength	= this.length;
+	if (nFirst < 0)
+		nFirst	+= nLength;
+	// If last omitted
+	if (arguments.length < 2)
+		nLast	= nLength;
+	else
+	if (nLast < 0)
+		nLast	+= nLength;
+
 	var oQuery	= new cQuery;
-	// TODO: negative values, optional last
-	if (nFirst >-1 && nLast < this.length)
+	if (nFirst >-1 && nLast < nLength + 1)
 		for (var nIndex = nFirst; nIndex < nLast; nIndex++)
 			oQuery[oQuery.length++]	= this[nIndex];
 	return oQuery;
