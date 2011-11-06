@@ -17,7 +17,7 @@ cXULOverlayPI.handlers	= {
 	"DOMNodeInsertedIntoDocument":	function() {
 		var aHref	= this.data.match(/href=('([^']*)'|"([^"]*)")/);
 		if (aHref)
-			this.ownerDocument.loadOverlay(aHref[3]);
+			this.ownerDocument.loadOverlay(aHref[2] || aHref[3]);
 	}
 };
 
