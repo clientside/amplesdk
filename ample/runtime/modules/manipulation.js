@@ -163,7 +163,7 @@ cQuery.prototype.insertAfter	= function(vArgument1) {
 			fQuery_each(oSelf, function() {
 				var oNode	= nIndex ? fNode_cloneNode(this, true) : this;
 				if (oBefore)
-					fElement_insertBefore(oParent, oNode, oBefore);
+					fElement_insertBefore(oParent, oNode, oBefore == this ? oBefore.nextSibling : oBefore);
 				else
 					fElement_appendChild(oParent, oNode);
 				oQuery[oQuery.length++] = oNode;
@@ -299,7 +299,7 @@ cQuery.prototype.after	= function(vArgument1) {
 				var oNode	= nIndex ? fNode_cloneNode(this, true) : this;
 				if (oParent) {
 					if (oBefore)
-						fElement_insertBefore(oParent, oNode, oBefore);
+						fElement_insertBefore(oParent, oNode, oBefore == this ? oBefore.nextSibling : oBefore);
 					else
 						fElement_appendChild(oParent, oNode);
 				}
