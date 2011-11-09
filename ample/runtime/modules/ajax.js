@@ -40,6 +40,7 @@ function fQuery_ajax(oSettings) {
 		if (oHeaders.hasOwnProperty(sKey))
 			oRequest.setRequestHeader(sKey, oHeaders[sKey]);
 	// Register readystatechange handler
+	var fOnReadStateChange	=
 	oRequest.onreadystatechange	= function() {
 		if (oRequest.readyState == 4) {
 			// Clear timeout
@@ -121,6 +122,10 @@ function fQuery_ajax(oSettings) {
 		}, oSettings.timeout);
 	// Send data
 	oRequest.send(vData);
+
+	// Fix Gecko bug with onreadystatechange not firing, happens for example in 3.6
+	if (!bAsync && bGecko && nVersion < 2)
+		fOnReadStateChange();
 
 	return oRequest;
 };
