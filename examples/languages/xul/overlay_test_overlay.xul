@@ -2,10 +2,10 @@
 <xul:overlay xmlns:aml="http://www.amplesdk.com/ns/aml"
 	    xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
     <xul:toolbar id="toolbar1">
-        <xul:toolbarbutton id="buttonend" label="End Overlaid" />
-		<xul:toolbarbutton id="overlaybutton" label="Overlay Button" />        
+        <xul:toolbarbutton id="buttonoverlay" label="Remote overlay applied!" />
+		<xul:toolbarbutton id="overlaybutton" label="Extra Button" />        
     </xul:toolbar>
-    <xul:box id="box1">
-        <xul:label value="Overlay Label" />
-    </xul:box>
+    <xul:vbox id="box1">
+        <xul:label value="Extra Label" />
+    </xul:vbox>
 </xul:overlay>
