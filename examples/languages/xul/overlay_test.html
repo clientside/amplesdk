@@ -6,26 +6,27 @@
 		<script type="text/javascript" src="../../../ample/languages/xhtml/xhtml.js"></script>
 		<script type="text/javascript" src="../../../ample/languages/xul/xul.js"></script>
 		<link type="text/ample+css" href="../../../ample/languages/xul/themes/default/style.css" rel="stylesheet"/>
-		<script>
-            function test() {
-                ample.documentElement.ownerDocument.loadOverlay('overlay_test_overlay.xul');
-            }
-		</script>
 	</head>
 	<body bgcolor="silver">
 		<script>ample.open()</script>
         <xul:commandset>
-		    <xul:command id="cmd_button_start" oncommand="test()"/>
+		    <xul:command id="cmd_button_overlay" oncommand="ample.documentElement.ownerDocument.loadOverlay('overlay_test_overlay.xul');"/>
+		    <xul:command id="cmd_button_matchID" oncommand="ample.documentElement.ownerDocument.loadOverlay('overlay_test_matchID.xul');"/>
             <xul:command id="cmd_button_end" oncommand="console.log(ample.documentElement.toXML());"/>
         </xul:commandset>
 		<xul:toolbar id="toolbar1">
-			<xul:toolbarbutton id="buttonstart" label="Start" command="cmd_button_start" />
+			<xul:toolbarbutton id="buttonoverlay" label="Load remote overlay" command="cmd_button_overlay" />
+			<!-- <xul:toolbarbutton id="buttonmatchid" label="Match ID" command="cmd_button_matchID" /> -->
 			<xul:toolbarspring id="buttonspacer" />
-			<xul:toolbarbutton id="buttonend" label="End" command="cmd_button_end" />
+			<xul:toolbarbutton id="buttondocument" label="Print document" command="cmd_button_end" />
 		</xul:toolbar>
-        <xul:box id="box1" flex="1">
+        <xul:vbox id="box1" flex="1">
             <xul:label value="Initial Label" />
-        </xul:box>
+            <xul:label value="This demonstrates the use of overlays." />
+            <!-- <xul:label value="An overlay has been loaded which contains an unmatched ID." /> -->
+            <xul:label value="Clicking &quot;Load remote overlay&quot; loads and applies a remote overlay." />
+            <!-- <xul:label value="Clicking &quot;Load remote file&quot; loads and applies a remote overlay which will match the previously unmatched ID." /> -->
+        </xul:vbox>
 		<script>ample.close()</script>
 	</body>
 </html>

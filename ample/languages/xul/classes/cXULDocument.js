@@ -17,6 +17,7 @@ cXULDocument.prototype.commandDispatcher	= null;
 
 // Private properties
 var hXULDocument_overlays	= {};
+var hXULDocument_overlayFragments	= {};
 
 // Public methods
 cXULDocument.prototype.loadOverlay	= function(sUrl, fObserver) {
@@ -40,51 +41,70 @@ cXULDocument.prototype.loadOverlay	= function(sUrl, fObserver) {
 		fXULDocument_applyOverlays(oDocument, oOverlay);
 };
 
-cXULDocument.prototype.applyOverlay	= function(oOverlay) {
+cXULDocument.prototype.applyOverlay	= function(oOverlayRoot) {
 	var oDocument	= this;
-    fXULDocument_applyOverlays(oDocument.documentElement, oOverlay);
+    fXULDocument_applyOverlays(oDocument.documentElement, oOverlayRoot);
 };
 
-function fXULDocument_applyOverlays(oDocument, oOverlay) {
-    //If this an empty overlay node, add it to the parent and return.
-    /*
-    if (!oOverlay.childNodes.length) { 
-        fXULDocument_importAndAdd(oDocument,oOverlay); 
-        fXULDocument_mergeAttributes(oChild,oNewDocEl);
-        return; 
-    }
-    */
+function fXULDocument_applyOverlays(oAmpleNode, oOverlayNode) {
+    //For each child of the overlay node, if:
+    //  - it does have an ID and:
+    //    -- that ID matches an existing node in the ample document, then 
+    //       the attributes of the overlay node are merged with the ample node, and the process repeats for all children.
+    //    -- it doesn't match an existing ID in the ample document, then if
+    //       --- these are children of the root node, then
+    //           it gets stored until that ID appears and applied later, possibly in another overlay or javascript insert.
+    //       --- otherwise, it gets inserted into the ample node passed in by this function 
+    //                      and the process repeats for all children.    
+    //  - it doesn't have an ID, then if
+    //       --- these are children of the root node, then
+    //           it gets inserted into the root of the document, and the process repeats for all children.
+    //       --- otherwise, it gets inserted into the ample node passed in by this function 
+    //                      and the process repeats for all children.    
     //Action...
-    for (var iIndex = 0; iIndex < oOverlay.childNodes.length; iIndex++) {
-        var oChild = oOverlay.childNodes.item(iIndex);
+    for (var iIndex = 0; iIndex < oOverlayNode.childNodes.length; iIndex++) {
+        var oChild = oOverlayNode.childNodes.item(iIndex);
         if (oChild instanceof cXULElement || oChild instanceof Node) {
             var oNewDocEl = null;
             if (oChild.hasAttribute('id')) {
-                //We have an id
+                //Our overlay node child has an ID.
                 oNewDocEl = ample.getElementById(oChild.getAttribute('id'));
-                if (!oNewDocEl) { //Our id doesn't match an existing element, so create the element.
-                    oNewDocEl = fXULDocument_importAndAdd(oDocument,oChild);
+                if (!oNewDocEl) {
+                    //Our id doesn't match an existing element, ...
+                    if (oOverlayNode == oOverlayNode.ownerDocument.documentElement) {
+                        //...and it's a child of the overlay root, so store it for later.
+                        hXULDocument_overlayFragments[oChild.getAttribute('id')] = oChild;
+                        continue;
+                    } else {
+                        //...and it's not a child of the overlay root, so add it to the current node.
+                        oNewDocEl = fXULDocument_importAndAdd(oAmpleNode,oChild);
+                    }
                 }
-                fXULDocument_mergeAttributes(oNewDocEl,oChild);
+            } else {
+                //Our overlay node child doesn't have an ID.
+                if (oOverlayNode == oOverlayNode.ownerDocument.documentElement) {
+                    //...and it's a child of the overlay root, so insert it into the root.
+                    oNewDocEl = fXULDocument_importAndAdd(oAmpleNode.getOwnerDocument().documentElement,oChild);
+                } else {
+                    //...and it's not a child of root, so add it to the current node.
+                    oNewDocEl = fXULDocument_importAndAdd(oAmpleNode,oChild); //We don't have an id, so insert.
+                }
             }
-            else {
-                oNewDocEl = fXULDocument_importAndAdd(oDocument,oChild); //We don't have an id, so insert.
-                fXULDocument_mergeAttributes(oNewDocEl,oChild);
-            }
+            fXULDocument_mergeAttributes(oNewDocEl,oChild);
             fXULDocument_applyOverlays(oNewDocEl,oChild);
         } else alert('Non-XUL element in overlay.'+oChild); //We have a non-XUL element, alert.
     }
 /*
     var oMatchRootEl = null;
-    if (oOverlay.hasAttribute('id')) {
-        oMatchRootEl = ample.query('//[id='+oOverlay.getAttribute('id')+']');
+    if (oOverlayNode.hasAttribute('id')) {
+        oMatchRootEl = ample.query('//[id='+oOverlayNode.getAttribute('id')+']');
     }
-    if (oMatchRootEl) fXULDocument_applyOverlaysRecurse(oOverlay,oMatchRootEl);
+    if (oMatchRootEl) fXULDocument_applyOverlaysRecurse(oOverlayNode,oMatchRootEl);
     else {
-        for (var iIndex = 0; iIndex < oOverlay.childNodes.length; iIndex++) {
-            var oChild = oOverlay.childNodes.item(iIndex);
+        for (var iIndex = 0; iIndex < oOverlayNode.childNodes.length; iIndex++) {
+            var oChild = oOverlayNode.childNodes.item(iIndex);
             var oNewDocEl = ample.getElementById(oChild.getAttribute('id'));
-            if (oNewDocEl) fXULDocument_applyOverlaysRecurse(oOverlay,oNewDocEl);  //Our id matches an existing element.
+            if (oNewDocEl) fXULDocument_applyOverlaysRecurse(oOverlayNode,oNewDocEl);  //Our id matches an existing element.
         }
     }
 */
@@ -101,10 +121,10 @@ function fXULDocument_importAndAdd(oParent,oNodeToAdd) {
     return(oNewNode);
 }
 
-function fXULDocument_mergeAttributes(oDocNode,oOverlayNode) {
+function fXULDocument_mergeAttributes(oAmpleNode,oOverlayNode) {
     for (var attr in oOverlayNode.attributes) {
         if (!(oOverlayNode.attributes[attr] instanceof Function)) {
-            oDocNode.setAttribute(attr,oOverlayNode.attributes[attr]);
+            oAmpleNode.setAttribute(attr,oOverlayNode.attributes[attr]);
         }
     }    
 }
