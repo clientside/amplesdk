@@ -44,7 +44,7 @@ function fNodeSelector_query(aFrom, sQuery, fResolver, bMatchOne)
 
 		        // process the stream
 		        var nIndex = 0, sToken, sFilter, sArguments, bBracketRounded, bBracketSquare;
-		        while (nIndex < aSelector.length) {
+		        while ((nIndex < aSelector.length) && aFrom.length) {
 		            sToken = aSelector[nIndex++];
 		            sFilter = aSelector[nIndex++];
 		            // some pseudo-classes allow arguments to be passed
