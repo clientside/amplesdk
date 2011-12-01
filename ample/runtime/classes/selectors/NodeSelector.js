@@ -86,12 +86,15 @@ function fNodeSelector_query(aFrom, sQuery, fResolver, bMatchOne)
     						        	, [sQuery]
 //<-Debug
     		);
-
-		// Remove temporarily set _cssIndex
-		for (var nIndex = 0; nIndex < aMatch.length; nIndex++)
-			delete aMatch[nIndex]._cssIndex;
-		nNodeSelector_iterator++;
     }
+
+	// Remove temporarily set _cssIndex
+	for (var nIndex = 0; nIndex < aMatch.length; nIndex++)
+		delete aMatch[nIndex]._cssIndex;
+
+	// Increase iterator value
+	nNodeSelector_iterator++;
+
     return aMatch;
 };
 
