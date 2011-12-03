@@ -11,11 +11,11 @@
 var nNodeSelector_iterator	= 0,
 	rNodeSelector_comma 	= /\s*,\s*/;
 
-function fNodeSelector_query(aFrom, sQuery, fResolver, bMatchOne)
+function fNodeSelector_query(aBase, sQuery, fResolver, bMatchOne)
 {
     // process comma separated selectors
     var aMatch	= new cNodeList,
-    	aBase	= aFrom,
+    	aFrom,
     	aSelectors	= sQuery.split(rNodeSelector_comma),
     	sSelector,
     	nSelector,
@@ -23,7 +23,6 @@ function fNodeSelector_query(aFrom, sQuery, fResolver, bMatchOne)
 
     for (nSelector = 0; nSelector < aSelectors.length; nSelector++) {
         if (sSelector = fNodeSelector_parseSelector(aSelectors[nSelector])) {
-			aFrom = aBase;
 	        // Optimization for #id
 	    	if (sSelector.match(/^\s*\*#([-_a-z0-9]+)$/i)) {
 	    		aFrom	= [];
@@ -39,12 +38,14 @@ function fNodeSelector_query(aFrom, sQuery, fResolver, bMatchOne)
 	    		}
 	    	}
 	    	else {
+				aFrom = aBase;
+
 		    	// convert the selector to a stream
 		        aSelector = fNodeSelector_toStream(sSelector);
 
 		        // process the stream
 		        var nIndex = 0, sToken, sFilter, sArguments, bBracketRounded, bBracketSquare;
-		        while (nIndex < aSelector.length) {
+		        while ((nIndex < aSelector.length) && aFrom.length) {
 		            sToken = aSelector[nIndex++];
 		            sFilter = aSelector[nIndex++];
 		            // some pseudo-classes allow arguments to be passed
@@ -86,12 +87,15 @@ function fNodeSelector_query(aFrom, sQuery, fResolver, bMatchOne)
     						        	, [sQuery]
 //<-Debug
     		);
-
-		// Remove temporarily set _cssIndex
-		for (var nIndex = 0; nIndex < aMatch.length; nIndex++)
-			delete aMatch[nIndex]._cssIndex;
-		nNodeSelector_iterator++;
     }
+
+	// Remove temporarily set _cssIndex
+	for (var nIndex = 0; nIndex < aMatch.length; nIndex++)
+		delete aMatch[nIndex]._cssIndex;
+
+	// Increase iterator value
+	nNodeSelector_iterator++;
+
     return aMatch;
 };
 
