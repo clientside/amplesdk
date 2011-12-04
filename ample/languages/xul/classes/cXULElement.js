@@ -20,6 +20,16 @@ cXULElement.prototype	= new ample.classes.Element;
 cXULElement.prototype.namespaceURI	= "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
 cXULElement.prototype.localName		= "#element";
 cXULElement.prototype.viewType		= cXULElement.VIEW_TYPE_NORMAL;
+
+cXULElement.prototype.handlers = {
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this
+            && oEvent.attrName = "id"
+            && hXULDocument_overlayFragments[oEvent.newValue]) {                
+            cXULDocument.applyOverlays(this,hXULDocument_overlayFragments[oEvent.newValue]);
+		}
+	}    
+}
 /*
 cXULElement.prototype.$getStyle	= function(sName) {
 	switch (sName) {
@@ -346,64 +356,65 @@ cXULElement.getBoxOpen	= function(oElement) {
 cXULElement.getBoxOpenChild = function(oElement)
 {
     var aHtml   = [],
+	aStyle = [],
     	oContainer	= oElement.parentNode,
     	sAlign	= oElement.attributes["align"],
     	sPack	= oElement.attributes["pack"],
     	sHeight	= oElement.attributes["height"],
     	sWidth	= oElement.attributes["width"];
     if (oContainer.attributes["orient"] == "vertical") {
-        aHtml.push('<tr style="');
-		if (oElement.nodeType == ample.classes.Node.ELEMENT_NODE) {
-	        if (oElement.attributes["hidden"] == "true")
-				aHtml[aHtml.length]	= 'display:none;';
-	        if (oElement.viewType == cXULElement.VIEW_TYPE_VIRTUAL)
-				aHtml[aHtml.length]	= 'position:absolute;height:0;top:0;left:0;z-index:1;';
-		}
-		aHtml[aHtml.length]	= '">';
-    }
-	aHtml[aHtml.length]	= '<td';
-
+        aHtml.push('<tr');
 	if (oElement.nodeType == ample.classes.Node.ELEMENT_NODE) {
-		if (oContainer.attributes["orient"] == "vertical") {
-			if (sHeight)
-				aHtml[aHtml.length]	= ' height="' + sHeight + '"';
-		}
-		else {
-			aHtml[aHtml.length]	= ' style="';
 	        if (oElement.attributes["hidden"] == "true")
-				aHtml[aHtml.length]	= 'display:none;';
+				aStyle[aStyle.length]	= 'display:none;';
 	        if (oElement.viewType == cXULElement.VIEW_TYPE_VIRTUAL)
-				aHtml[aHtml.length]	= 'position:absolute;width:0;top:0;left:0;z-index:1;';
-		    else
-		    if (!(oContainer instanceof cXULElement_row))
-		    	aHtml[aHtml.length]	= 'height:' + (sHeight || '100%');
-	        aHtml[aHtml.length]	= '"';
-	        if (sWidth)
-	        	aHtml[aHtml.length]	= ' width="' + sWidth + '"';
-	    }
-
-	    // Aligning
-	    var sHtml1  = "left";
-	    var sHtml2  = "top";
-	    if (oElement.attributes["orient"] == "vertical") {
-	        if (sPack)
-	            sHtml2  = sPack  == "start" ? "top"  : sPack  == "end" ? "bottom" : "center";
-	        if (sAlign)
-	            sHtml1  = sAlign == "start" ? "left" : sAlign == "end" ? "right"  : "center";
-	    }
-	    else {
-	        if (sAlign)
-	            sHtml2  = sAlign == "start" ? "top"  : sAlign == "end" ? "bottom" : "center";
-	        if (sPack)
-	            sHtml1  = sPack  == "start" ? "left" : sPack  == "end" ? "right"  : "center";
-	    }
-		aHtml[aHtml.length]	= ' valign="' + sHtml2 + '" align="' + sHtml1 + '"';
+				aStyle[aStyle.length]	= 'position:absolute;height:0;top:0;left:0;z-index:1;';
 	}
+	aHtml[aHtml.length] = (aStyle.length ? ' style="'+aStyle+'"' : '');
+	aHtml[aHtml.length]	= '>';
+    }
 
-	aHtml[aHtml.length]	= ' class="xul-box---box-child';
+    aStyle = [];  //Reset aStyle in case it has been used already.
+    aHtml[aHtml.length]	= '<td';
+    if (oElement.nodeType == ample.classes.Node.ELEMENT_NODE) {
+	if (oContainer.attributes["orient"] == "vertical") {
+	    if (sHeight)
+		aHtml[aHtml.length]	= ' height="' + sHeight + '"';
+	}
+	else {
+	    if (oElement.attributes["hidden"] == "true")
+		aStyle[aStyle.length]	= 'display:none;';
+	    if (oElement.viewType == cXULElement.VIEW_TYPE_VIRTUAL)
+		aStyle[aStyle.length]	= 'position:absolute;width:0;top:0;left:0;z-index:1;';
+	    else if (!(oContainer instanceof cXULElement_row))
+		aStyle[aStyle.length]	= 'height:' + (sHeight || '100%');
+     	    aHtml[aHtml.length] = (aStyle.length ? ' style="'+aStyle+'"' : '');
+	    if (sWidth)
+	       	aHtml[aHtml.length]	= ' width="' + sWidth + '"';
+        }
+
+	// Aligning
+	var sHtml1  = "left";
+	var sHtml2  = "top";
+	if (oElement.attributes["orient"] == "vertical") {
+	    if (sPack)
+	        sHtml2  = sPack  == "start" ? "top"  : sPack  == "end" ? "bottom" : "center";
+	    if (sAlign)
+	        sHtml1  = sAlign == "start" ? "left" : sAlign == "end" ? "right"  : "center";
+	}
+	else {
+	    if (sAlign)
+	        sHtml2  = sAlign == "start" ? "top"  : sAlign == "end" ? "bottom" : "center";
+	    if (sPack)
+	        sHtml1  = sPack  == "start" ? "left" : sPack  == "end" ? "right"  : "center";
+	}
+	aHtml[aHtml.length]	= ' valign="' + sHtml2 + '" align="' + sHtml1 + '"';
+    }
+
+    aHtml[aHtml.length]	= ' class="xul-box---box-child';
     // Debug Grid
-	if (oContainer.attributes["debug"] == "true")
-		aHtml[aHtml.length]	= ' xul-box-debug-true xul-' + (oContainer.attributes["orient"] != "vertical" ? "h" : "v") + 'box-debug-true';
+    if (oContainer.attributes["debug"] == "true")
+	aHtml[aHtml.length]	= ' xul-box-debug-true xul-' + (oContainer.attributes["orient"] != "vertical" ? "h" : "v") + 'box-debug-true';
     aHtml[aHtml.length]	= '">';
 
     return aHtml.join('');

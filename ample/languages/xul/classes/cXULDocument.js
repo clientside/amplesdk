@@ -19,6 +19,14 @@ cXULDocument.prototype.commandDispatcher	= null;
 var hXULDocument_overlays	= {};
 var hXULDocument_overlayFragments	= {};
 
+cXULDocument.prototype.handlers = {
+	"DOMNodeInsertedIntoDocument":	function() {
+		if (oEvent.getAttribute("id") == hXULDocument_overlayFragments[oEvent.newValue]) {                
+            cXULDocument.applyOverlays(this,hXULDocument_overlayFragments[oEvent.newValue]);
+		}
+	}    
+}
+
 // Public methods
 cXULDocument.prototype.loadOverlay	= function(sUrl, fObserver) {
 	var oDocument	= this,
@@ -29,7 +37,8 @@ cXULDocument.prototype.loadOverlay	= function(sUrl, fObserver) {
 				"async":	true,
 				"dataType":	"xml",
 				"success":	function(oResponse) {
-					oOverlay	= ample.importNode(oResponse.documentElement, true);
+					//oOverlay	= ample.importNode(oResponse.documentElement, true);
+                    oOverlay = oResponse.documentElement;  //We can't import the overlay document because we still need to differentiate between the ample Document and the Overlay Document.
 					// Cache document
 					hXULDocument_overlays[sUrl]	= oOverlay;
 					// Kick off processing
@@ -64,7 +73,8 @@ function fXULDocument_applyOverlays(oAmpleNode, oOverlayNode) {
     //Action...
     for (var iIndex = 0; iIndex < oOverlayNode.childNodes.length; iIndex++) {
         var oChild = oOverlayNode.childNodes.item(iIndex);
-        if (oChild instanceof cXULElement || oChild instanceof Node) {
+        if (oChild instanceof Text && oChild.nodeValue.trim() == '') continue;
+        if (oChild instanceof cXULElement || oChild instanceof Element) {
             var oNewDocEl = null;
             if (oChild.hasAttribute('id')) {
                 //Our overlay node child has an ID.
@@ -112,18 +122,51 @@ function fXULDocument_applyOverlays(oAmpleNode, oOverlayNode) {
 
 function fXULDocument_importAndAdd(oParent,oNodeToAdd) {
     var oNewNode = ample.importNode(oNodeToAdd,false);
-    if (oNodeToAdd.hasAttribute('position')) {
-        var iPosition = oNodeToAdd.getAttribute('position');
-        oParent.insertBefore(oNewNode,oParent.childNodes.item(iPosition));
-    } else {
-        oParent.appendChild(oNewNode);
+    if (oNodeToAdd.hasAttribute('insertafter')) {
+        var aInsertAfter = oNodeToAdd.getAttribute('insertafter').split(',');
+        for (var iIndex = 0; iIndex < aInsertAfter.length; iIndex++) {
+            oInsertAfterEl = ample.query("#"+aInsertAfter[iIndex].trim());
+            if (oInsertAfterEl.size() > 0) {
+                oInsertAfterEl.after(oNewNode);
+                return(oNewNode);
+            }
+        }
     }
+    if (oNodeToAdd.hasAttribute('insertbefore')) {
+       var aInsertBefore = oNodeToAdd.getAttribute('insertbefore').split(',');
+        for (var iIndex = 0; iIndex < aInsertBefore.length; iIndex++) {
+            oInsertBeforeEl = ample.query("#"+aInsertBefore[iIndex].trim());
+            if (oInsertBeforeEl.size() > 0) {
+                oInsertBeforeEl.before(oNewNode);
+                return(oNewNode);
+            }
+        }
+    }
+    if (oNodeToAdd.hasAttribute('position')) {
+        var iPosition = parseInt(oNodeToAdd.getAttribute('position'));
+        if (iPosition < oParent.childNodes.length) {
+            oParent.insertBefore(oNewNode,oParent.childNodes.item(iPosition-1));  
+                //The position is "one-based", whereas childNodes are 0-based.  So -1.
+            return(oNewNode);
+        }
+    }
+    oParent.appendChild(oNewNode);
     return(oNewNode);
 }
 
 function fXULDocument_mergeAttributes(oAmpleNode,oOverlayNode) {
+    if (oOverlayNode.attributes instanceof NamedNodeMap) {
+        for (var attr in oOverlayNode.attributes) {
+            if (oOverlayNode.attributes[attr] instanceof Attr) {
+                oAmpleNode.setAttribute(oOverlayNode.attributes[attr].name,oOverlayNode.attributes[attr].value);
+            }
+        }
+        return;
+    }
+    //else
     for (var attr in oOverlayNode.attributes) {
-        if (!(oOverlayNode.attributes[attr] instanceof Function)) {
+        if (!(oOverlayNode.attributes[attr] instanceof Function)
+            && !(oOverlayNode.attributes[attr] instanceof Object)) {
             oAmpleNode.setAttribute(attr,oOverlayNode.attributes[attr]);
         }
     }    

@@ -11,21 +11,18 @@
 		<script>ample.open()</script>
         <xul:commandset>
 		    <xul:command id="cmd_button_overlay" oncommand="ample.documentElement.ownerDocument.loadOverlay('overlay_test_overlay.xul');"/>
-		    <xul:command id="cmd_button_matchID" oncommand="ample.documentElement.ownerDocument.loadOverlay('overlay_test_matchID.xul');"/>
-            <xul:command id="cmd_button_end" oncommand="console.log(ample.documentElement.toXML());"/>
+		    <xul:command id="cmd_button_insertmissing" oncommand="ample.query('#box1').append('&lt;xul:label id=&quot;missinglabel&quot;/&gt;');ample.query('#buttoninsertmissing').remove();"/>
+            <xul:command id="cmd_button_debug" oncommand="console.log(ample.documentElement.toXML());"/>
         </xul:commandset>
 		<xul:toolbar id="toolbar1">
 			<xul:toolbarbutton id="buttonoverlay" label="Load remote overlay" command="cmd_button_overlay" />
-			<!-- <xul:toolbarbutton id="buttonmatchid" label="Match ID" command="cmd_button_matchID" /> -->
+			<xul:toolbarbutton id="buttoninsertmissing" label="Insert missing element." command="cmd_button_insertmissing" />
 			<xul:toolbarspring id="buttonspacer" />
-			<xul:toolbarbutton id="buttondocument" label="Print document" command="cmd_button_end" />
+			<xul:toolbarbutton id="buttondebug" label="Print document" command="cmd_button_debug" />
 		</xul:toolbar>
         <xul:vbox id="box1" flex="1">
-            <xul:label value="Initial Label" />
-            <xul:label value="This demonstrates the use of overlays." />
-            <!-- <xul:label value="An overlay has been loaded which contains an unmatched ID." /> -->
-            <xul:label value="Clicking &quot;Load remote overlay&quot; loads and applies a remote overlay." />
-            <!-- <xul:label value="Clicking &quot;Load remote file&quot; loads and applies a remote overlay which will match the previously unmatched ID." /> -->
+            <xul:label id="message1" value="Message 1 - This example demonstrates the use of overlays." />
+            <xul:label id="message2" value="Message 2 - Clicking &quot;Load remote overlay&quot; loads and applies a remote overlay." />
         </xul:vbox>
 		<script>ample.close()</script>
 	</body>
