@@ -9,10 +9,10 @@
         <xul:label position="1" value="At the time this overlay is applied..." />
         <xul:label insertbefore="blahblah, message1" value="This label should be inserted BEFORE the label marked &quot;Message 1&quot;, unless an element with ID &quot;blahblah&quot; exists." />
         <xul:label insertafter="blahblah, message1" value="This label should be inserted AFTER the label marked &quot;Message 1&quot;, unless an element with ID &quot;blahblah&quot; exists." />
-        <xul:label id="message2" value="Message 2 - The overlay has been applied.  Repeated attempts to load the overlay will result in extra labels due to a label in the overlay without an ID attribute, but the toolbar buttons should not change." />
+        <xul:label id="message2" value="Message 2 - The overlay has been applied.  Repeated attempts to load the overlay will result in extra labels due to labels in the overlay without an ID attribute. The toolbar buttons should not change." />
         <xul:label id="message3" value="Message 3 - Additionally, a top level fragment was introduced by this overlay that will only appear when an element with the correct ID is added to the document." />
         <xul:label value="Extra Label" />
-        <xul:label position="4" value="This label should be the fourth label, or the last if less than 4 labels exist." />
+        <xul:label position="7" value="This label should be the seventh label, or the last if less than 7 labels exist." />
     </xul:vbox>
     <xul:vbox id="missingsegment">
         <xul:label value="This was the stored missing label!" />

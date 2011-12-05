@@ -122,6 +122,11 @@ function fXULDocument_applyOverlays(oAmpleNode, oOverlayNode) {
 
 function fXULDocument_importAndAdd(oParent,oNodeToAdd) {
     var oNewNode = ample.importNode(oNodeToAdd,false);
+    //Remove insertafter,insertbefore, and position attributes from node to be inserted.
+    for (var sAttr in {insertafter:0,insertbefore:0,position:0}) {
+        if (oNewNode.hasAttribute(sAttr))
+            oNewNode.removeAttribute(sAttr);
+    }
     if (oNodeToAdd.hasAttribute('insertafter')) {
         var aInsertAfter = oNodeToAdd.getAttribute('insertafter').split(',');
         for (var iIndex = 0; iIndex < aInsertAfter.length; iIndex++) {
@@ -144,7 +149,8 @@ function fXULDocument_importAndAdd(oParent,oNodeToAdd) {
     }
     if (oNodeToAdd.hasAttribute('position')) {
         var iPosition = parseInt(oNodeToAdd.getAttribute('position'));
-        if (iPosition < oParent.childNodes.length) {
+        if (iPosition >= 1 && iPosition < oParent.childNodes.length) { 
+            //If the position is out of range, simply let it fall through to be appended.
             oParent.insertBefore(oNewNode,oParent.childNodes.item(iPosition-1));  
                 //The position is "one-based", whereas childNodes are 0-based.  So -1.
             return(oNewNode);
@@ -156,18 +162,21 @@ function fXULDocument_importAndAdd(oParent,oNodeToAdd) {
 
 function fXULDocument_mergeAttributes(oAmpleNode,oOverlayNode) {
     if (oOverlayNode.attributes instanceof NamedNodeMap) {
-        for (var attr in oOverlayNode.attributes) {
-            if (oOverlayNode.attributes[attr] instanceof Attr) {
-                oAmpleNode.setAttribute(oOverlayNode.attributes[attr].name,oOverlayNode.attributes[attr].value);
+        for (var sAttr in oOverlayNode.attributes) {
+            if (oOverlayNode.attributes[sAttr] instanceof Attr) {
+                if (['insertbefore','insertafter','position'].indexOf(oOverlayNode.attributes[sAttr].name) < 0)
+                    oAmpleNode.setAttribute(oOverlayNode.attributes[sAttr].name,oOverlayNode.attributes[sAttr].value);
             }
         }
         return;
     }
     //else
-    for (var attr in oOverlayNode.attributes) {
-        if (!(oOverlayNode.attributes[attr] instanceof Function)
-            && !(oOverlayNode.attributes[attr] instanceof Object)) {
-            oAmpleNode.setAttribute(attr,oOverlayNode.attributes[attr]);
+    for (var sAttr in oOverlayNode.attributes) {
+        if (!(oOverlayNode.attributes[sAttr] instanceof Function)
+            && !(oOverlayNode.attributes[sAttr] instanceof Object)
+            && ['insertbefore','insertafter','position'].indexOf(sAttr) < 0
+           ) {
+            oAmpleNode.setAttribute(sAttr,oOverlayNode.attributes[sAttr]);
         }
     }    
 }
