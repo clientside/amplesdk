@@ -1,0 +1,3 @@
+content xulpix jar:content.jar!/
+locale	xulgear	en-US	locale/en-US/
+skin	xulgear	classic/1.0	../skin/
