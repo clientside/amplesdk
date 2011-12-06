@@ -74,11 +74,13 @@ function fXULDocument_applyOverlays(oAmpleNode, oOverlayNode) {
     for (var iIndex = 0; iIndex < oOverlayNode.childNodes.length; iIndex++) {
         var oChild = oOverlayNode.childNodes.item(iIndex);
         if (oChild instanceof Text && oChild.nodeValue.trim() == '') continue;
+        if (oChild instanceof Comment) continue;
         if (oChild instanceof cXULElement || oChild instanceof Element) {
             var oNewDocEl = null;
             if (oChild.hasAttribute('id')) {
                 //Our overlay node child has an ID.
-                oNewDocEl = ample.getElementById(oChild.getAttribute('id'));
+                var sID = oChild.getAttribute('id');
+                oNewDocEl = ample.getElementById(sID);
                 if (!oNewDocEl) {
                     //Our id doesn't match an existing element, ...
                     if (oOverlayNode == oOverlayNode.ownerDocument.documentElement) {
