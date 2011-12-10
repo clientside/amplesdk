@@ -19,14 +19,6 @@ cXULDocument.prototype.commandDispatcher	= null;
 var hXULDocument_overlays	= {};
 var hXULDocument_overlayFragments	= {};
 
-cXULDocument.prototype.handlers = {
-	"DOMNodeInsertedIntoDocument":	function() {
-		if (oEvent.getAttribute("id") == hXULDocument_overlayFragments[oEvent.newValue]) {                
-            cXULDocument.applyOverlays(this,hXULDocument_overlayFragments[oEvent.newValue]);
-		}
-	}    
-}
-
 // Public methods
 cXULDocument.prototype.loadOverlay	= function(sUrl, fObserver) {
 	var oDocument	= this,
@@ -210,3 +202,16 @@ cXULDocument.prototype.removeBroadcastListenerFor	= function(oBroadcaster, oObse
 */
 // Register with Ample SDK
 ample.extend(ample.classes.Document.prototype, cXULDocument.prototype);
+
+// Add cXULDocument-wide events
+ample.addEventListener(
+	"DOMNodeInsertedIntoDocument",	
+    function(oEvent) {
+        if (oEvent.target.hasAttribute("id")) {
+      		if (hXULDocument_overlayFragments[oEvent.target.getAttribute("id")]) {
+                fXULDocument_applyOverlays(ample.documentElement,hXULDocument_overlayFragments[oEvent.target.getAttribute("id")]);
+            }
+		}
+	},
+    true);
+
