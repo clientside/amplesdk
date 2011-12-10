@@ -1,0 +1,12 @@
+#xulgear-toolbar-button {
+	list-style-image: url("chrome://xulgear/skin/Gears_Gray.svg");
+}
+
+#xulgear-status-bar-icon {
+	width: 83px;
+	margin: 0 5px;
+}
+
+.xulgear-selected {
+	outline: 2px solid red !important;
+}

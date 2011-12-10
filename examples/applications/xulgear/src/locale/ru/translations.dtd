@@ -1,0 +1,38 @@
+<!ENTITY visit_us_at "Посетите нас">
+<!ENTITY autorun "Автозапуск">
+<!ENTITY settings "Настройки">
+<!ENTITY xul_gear_preferences "XUL Gear Предпочтения">
+<!ENTITY close "Закрыть">
+<!ENTITY selected "Выбранный">
+<!ENTITY mouse_over "Наведение мышкой">
+<!ENTITY style "Стиль">
+<!ENTITY create_processing_instruction "Создать обрабатывающую инструкцию">
+<!ENTITY events "События">
+<!ENTITY styles "Стили">
+<!ENTITY attributes "Аттрибуты">
+<!ENTITY xul_element "XUL Элемент">
+<!ENTITY paste "Вставить">
+<!ENTITY copy "Копировать">
+<!ENTITY cut "Вырезать">
+<!ENTITY down "Вверх">
+<!ENTITY up "Вниз">
+<!ENTITY new_textnode "New TextNode">
+<!ENTITY new_element "Новый элемент">
+<!ENTITY reload "Обновить()">
+<!ENTITY layout_b "Раскладка B">
+<!ENTITY layout_a "Раскладка A">
+<!ENTITY hide_main_tabbox "Скрыть главный tabbox">
+<!ENTITY show_main_tabbox "Показать главный tabbox">
+<!ENTITY show_new_elements_panel "Показать панель Новые элементы">
+<!ENTITY redo "Повторить">
+<!ENTITY undo "Отменить">
+<!ENTITY insert_overlay "Вставить наложение">
+<!ENTITY insert_stylesheet "Вставить стиль">
+<!ENTITY exit "Выход">
+<!ENTITY new "Создать">
+<!ENTITY open "Открыть">
+<!ENTITY save "Сохранить">
+<!ENTITY saveas "Сохранить как">
+<!ENTITY runxulgear "Запустить XUL Gear">
+<!ENTITY delete "Удалить">
+<!ENTITY export "Экспорт xul">

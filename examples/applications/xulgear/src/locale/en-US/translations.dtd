@@ -1,0 +1,38 @@
+<!ENTITY visit_us_at "visit us at">
+<!ENTITY autorun "Autorun">
+<!ENTITY settings "Settings">
+<!ENTITY xul_gear_preferences "XUL Gear Preferences">
+<!ENTITY close "Close">
+<!ENTITY selected "Selected">
+<!ENTITY mouse_over "Mouse over">
+<!ENTITY style "Style">
+<!ENTITY create_processing_instruction "create Processing Instruction">
+<!ENTITY events "Events">
+<!ENTITY styles "Styles">
+<!ENTITY attributes "Attributes">
+<!ENTITY xul_element "XUL Element">
+<!ENTITY paste "Paste">
+<!ENTITY copy "Copy">
+<!ENTITY cut "Cut">
+<!ENTITY down "Down">
+<!ENTITY up "Up">
+<!ENTITY new_textnode "New TextNode">
+<!ENTITY new_element "New Element">
+<!ENTITY reload "Reload()">
+<!ENTITY layout_b "Layout B">
+<!ENTITY layout_a "Layout A">
+<!ENTITY hide_main_tabbox "Hide Main tabbox">
+<!ENTITY show_main_tabbox "Show Main tabbox">
+<!ENTITY show_new_elements_panel "Show New Elements Panel">
+<!ENTITY redo "Redo">
+<!ENTITY undo "Undo">
+<!ENTITY insert_overlay "Insert Overlay">
+<!ENTITY insert_stylesheet "Insert Stylesheet">
+<!ENTITY exit "Exit">
+<!ENTITY new "New">
+<!ENTITY open "Open">
+<!ENTITY save "Save">
+<!ENTITY saveas "Save As">
+<!ENTITY runxulgear "Run XUL Gear">
+<!ENTITY delete "Delete">
+<!ENTITY export "Export xul">
