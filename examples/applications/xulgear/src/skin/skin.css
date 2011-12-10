@@ -1,0 +1,40 @@
+/*
+treechildren::-moz-tree-row(odd) { background-color: #EEEEEE; }
+ 
+treechildren::-moz-tree-row(odd, selected) { background-color: #FFFFAA; }
+treechildren::-moz-tree-row(selected) { background-color: #FFFFAA; }
+treechildren::-moz-tree-cell-text(selected) { color: #000000; }
+treechildren::-moz-tree-cell-text(odd, selected) { color: #000000; }
+ */
+
+treechildren::-moz-tree-line { visibility:visible; border-style: dotted; border-color:ThreeDShadow;/*#999999*/}
+
+treechildren::-moz-tree-cell-text(top-over) {border-top: 1px solid red}
+treechildren::-moz-tree-row(top-over) {border-top: 1px solid red}
+treechildren::-moz-tree-cell-text(bottom-over) {border-bottom: 1px solid blue}
+treechildren::-moz-tree-row(bottom-over) {border-bottom: 1px solid blue}
+treechildren::-moz-tree-cell-text(mover) {background-color: pink;}
+treechildren::-moz-tree-row(hover) {cursor:move}
+
+treechildren::-moz-tree-row(sync) {border: 1px solid lightgreen}
+/*menupopup > menuitem, menupopup > menu { max-width: none; }*/
+
+menulist {padding:1px; margin:1px}
+menulist > * {padding:0px; margin:0px}
+textbox {padding:1px; margin:1px}
+
+colorpicker {height:90%;margin-right:1px}
+
+/*
+row > label {text-align:center; margin:1px; padding:1px}
+*/
+scrollbar {padding:0px; margin:1px}
+/*
+rowstyle="margin:0px; padding:5px; text-align: center"
+*/
+label.attribute-label {text-align:left}
+checkbox {margin-bottom:0px;margin-top:0px; padding:0px;}
+
+.main-tab {
+	max-width: 150px;
+}

@@ -1,0 +1,38 @@
+<!ENTITY visit_us_at "visitez nous sur">
+<!ENTITY autorun "Démarrage Auto">
+<!ENTITY settings "Paramètres">
+<!ENTITY xul_gear_preferences "Préférences de XUL Gear">
+<!ENTITY close "Fermer">
+<!ENTITY selected "Sélectionné">
+<!ENTITY mouse_over "Survol de la souris">
+<!ENTITY style "Style">
+<!ENTITY create_processing_instruction "créer instructions de traitement">
+<!ENTITY events "Événements">
+<!ENTITY styles "Styles">
+<!ENTITY attributes "Attributs">
+<!ENTITY xul_element "Élément XUL">
+<!ENTITY paste "Coller">
+<!ENTITY copy "Copier">
+<!ENTITY cut "Couper">
+<!ENTITY down "Bas">
+<!ENTITY up "Haut">
+<!ENTITY new_textnode "Nouveau bloc de texte">
+<!ENTITY new_element "Nouvel Élément">
+<!ENTITY reload "Reload()">
+<!ENTITY layout_b "Disposition B">
+<!ENTITY layout_a "Disposition A">
+<!ENTITY hide_main_tabbox "Cacher la boîte d'onglets principale">
+<!ENTITY show_main_tabbox "Afficher la boîte d'onglets principale">
+<!ENTITY show_new_elements_panel "Afficher le panneau des nouveaux éléments">
+<!ENTITY redo "Refaire">
+<!ENTITY undo "Annuler">
+<!ENTITY insert_overlay "Insérer un Overlay">
+<!ENTITY insert_stylesheet "Insérer une feuille de style">
+<!ENTITY exit "Quitter">
+<!ENTITY new "Nouveau">
+<!ENTITY open "Ouvrir">
+<!ENTITY save "Enregistrer">
+<!ENTITY saveas "Enregistrer sous">
+<!ENTITY runxulgear "Démarrer XUL Gear">
+<!ENTITY delete "Supprimer">
+<!ENTITY export "Exporter xul">

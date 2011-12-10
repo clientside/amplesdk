@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE xulgeartrans SYSTEM "chrome://xulgear/locale/translations.dtd"> 
+<prefwindow 
+     title="XUL Gear Preferences"
+     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+ 
+	<prefpane label="&xul_gear_preferences;">
+		<preferences>
+			<preference id="xulgear-autorun" name="extensions.xulgear.autorun" type="bool"/>
+		</preferences>
+		
+		<groupbox>
+			<caption label="&settings;"/>
+			<grid>
+				<columns>
+					<column flex="4"/>
+					<column flex="1"/>
+				</columns>
+				<rows>
+					<row>
+						<label control="autorun" value="&autorun;"/>
+						<checkbox id="autorun" preference="xulgear-autorun"/>
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+        <vbox>	
+        <label value="2007-2010 kentyabi, Ilya.Kharlamov@gmail.com"/>
+		<label />
+        <label value="&visit_us_at; http://code.google.com/p/xulgear/"/>
+		</vbox>
+		
+	</prefpane>
+ 
+</prefwindow>
