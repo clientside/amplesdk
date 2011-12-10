@@ -127,7 +127,7 @@ function fXULDocument_importAndAdd(oParent,oNodeToAdd) {
             oInsertAfterEl = ample.query("#"+aInsertAfter[iIndex].trim());
             if (oInsertAfterEl.size() > 0) {
                 oInsertAfterEl.after(oNewNode);
-                return(oNewNode);
+                return oNewNode;
             }
         }
     }
@@ -137,7 +137,7 @@ function fXULDocument_importAndAdd(oParent,oNodeToAdd) {
             oInsertBeforeEl = ample.query("#"+aInsertBefore[iIndex].trim());
             if (oInsertBeforeEl.size() > 0) {
                 oInsertBeforeEl.before(oNewNode);
-                return(oNewNode);
+                return oNewNode;
             }
         }
     }
@@ -147,11 +147,11 @@ function fXULDocument_importAndAdd(oParent,oNodeToAdd) {
             //If the position is out of range, simply let it fall through to be appended.
             oParent.insertBefore(oNewNode,oParent.childNodes.item(iPosition-1));  
                 //The position is "one-based", whereas childNodes are 0-based.  So -1.
-            return(oNewNode);
+            return oNewNode;
         }
     }
     oParent.appendChild(oNewNode);
-    return(oNewNode);
+    return oNewNode;
 }
 
 function fXULDocument_mergeAttributes(oAmpleNode,oOverlayNode) {
@@ -209,6 +209,10 @@ ample.addEventListener(
     function(oEvent) {
         if (oEvent.target.hasAttribute("id")) {
       		if (hXULDocument_overlayFragments[oEvent.target.getAttribute("id")]) {
+                //WARN: Technically, the document used when initially storing the overlay fragment may not be the ample
+                //      document, but we shall presume so for now since we can't add an event to the XULDocument prototype.  
+                //      Really this event should be linked to the document used when storing the overlay fragment.
+                //      I can think of no trivial use case for this situation.  (Applying overlays to unapplied overlays??)
                 fXULDocument_applyOverlays(ample.documentElement,hXULDocument_overlayFragments[oEvent.target.getAttribute("id")]);
             }
 		}
