@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE xulgeartrans SYSTEM "chrome://xulgear/locale/translations.dtd">
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://xulgear/skin/skin.css" type="text/css"?>
+
+<!--<?xul-overlay href="styles.xul"?>-->
+<window persist="width height" id="root-window" onmouseup="var e = window.document.getElementById('element-tree');if(e.ondrag){e.ondrag=false}" width="1024" height="768" title="XUL Gear" onload="initWindow(event)" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" orient="horizontal">
+
+	<script src="json2.js"/>
+	<script src="project.js"/>
+	<script src="xulgear_data.js"/>
+	<script src="io.js"/>
+	<script src="move.js"/>
+	<script src="layout.js"/>
+	<script src="edit.js"/>
+	<script src="xulgear.js"/>
+
+	<keyset>
+		<key id="save" modifiers="accel" key="S" oncommand="saveXULFile()" />
+		<key id="open" modifiers="accel" key="O" oncommand="openXULFile()" />
+		<key id="copy" modifiers="accel" key="C" oncommand="copyElements()" />
+		<key id="paste" modifiers="accel" key="V" oncommand="pasteElements()" />
+		<key id="cut" modifiers="accel" key="X" oncommand="cutElement()" />
+		<key id="reload" modifiers="accel" key="r" oncommand="reload()" />
+		<key id="select_next" modifiers="alt" key="n" oncommand="selectNextItem()" />
+		<key id="select_prev" modifiers="alt" key="p" oncommand="selectPrevItem()" />
+
+		<key id="undo" modifiers="accel" key="Z" oncommand="undo()" />
+		<key id="redo" modifiers="accel shift" key="Z" oncommand="redo()" />
+		<key id="delete" keycode="VK_DELETE" oncommand="deleteElement()" />
+	</keyset>
+	<popupset>
+		<menupopup id="clipmenu" >
+			<menu label="&new_element;">
+				<menupopup id="new-element" onpopupshowing="passFilterToContextMenu()">
+					<menuitem label="box"/>
+				</menupopup>
+			</menu>
+			<menuitem label="&new_textnode;" oncommand="createTexts('')" />
+			<menuseparator/>
+			<menuitem label="&up;" oncommand="upElement()" />
+			<menuitem label="&down;" oncommand="downElement()"/>
+			<menuseparator/>
+			<menuitem label="&cut;" oncommand="cutElement()" key="cut"/>
+			<menuitem label="&copy;" key="copy" oncommand="copyElements()" />
+			<menuitem label="&paste;" key="paste" oncommand="pasteElements()"/>
+			<menuseparator/>
+			<menuitem label="&delete;" key="delete" oncommand="deleteElement()"/>
+		</menupopup>
+	</popupset>
+	
+	<vbox id="left-box">
+		<!--<toolbox>-->
+			<menubar id="menubar">
+				<menu id="file-menu" label="File">
+					<menupopup id="file-popup">
+						<menuitem label="&new;" oncommand="initialize()" />
+						<menuitem label="&open;" accesskey="a" key="open" oncommand="openXULFile()" />
+						<menuitem label="&save;" key="save" oncommand="saveXULFile()" />
+						<menuitem label="&saveas;" key="save-as" oncommand="saveXULFileAs()" />
+						<menuitem label="&export;" oncommand="exportXML(event)"/>
+						<menuseparator/>
+						<menuitem label="&exit;" oncommand="closeWindow()"/>
+					</menupopup>
+				</menu>
+				<menu id="edit-menu" label="Edit">
+					<menupopup id="edit-popup">
+						<menuitem id="undo_item" label="&undo;" key="undo" oncommand="undo()" disabled="true"/>
+						<menuitem id="redo_item" label="&redo;" key="redo" oncommand="redo()" disabled="true"/>
+						<menuseparator/>
+						<menuitem label="&insert_stylesheet;" oncommand="enablePIBox('xml-stylesheet')"/>
+						<menuitem label="&insert_overlay;" oncommand="enablePIBox('overlay')"/>
+					</menupopup>
+				</menu>
+				<menu id="view-menu" label="View">
+					<menupopup id="view-popup">
+						<menuitem type="checkbox" checked="true" oncommand="showPanel('new-element-box', this.hasAttribute('checked'))" label="&show_new_elements_panel;"/>
+						<menuitem  oncommand="showTabbox()" label="&show_main_tabbox;"/>
+						<menuitem  oncommand="hideTabbox()" label="&hide_main_tabbox;"/>
+						<menuseparator/>
+						<menuitem label="&layout_a;" type="radio" checked="true" oncommand="changeLayout(0)"/>
+						<menuitem label="&layout_b;" type="radio" oncommand="changeLayout(1)"/>
+					</menupopup>
+				</menu>
+				<!--
+				<menu id="tool-menu" label="Tool">
+					<menupopup id="tool-popup">
+						<menuitem  label="Upload" oncommand="upload()"/>
+						<menuitem  label="Download" oncommand="download()"/>
+						<menuitem  label="Reload" key="reload" oncommand="reload()"/>
+					</menupopup>
+				</menu>
+				<menu id="option-menu" label="Option">
+					<menupopup id="option-popup">
+						<menuitem label="Option" oncommand="window.document.getElementById('right-deck').selectedIndex=1;" />
+					</menupopup>
+				</menu>
+				-->
+				<toolbarbutton label="&reload;" oncommand="reload()"/>
+			</menubar>
+			<!--</toolbox>-->
+		
+		<hbox flex="1">
+			<vbox width="300px" flex="1">
+			<!--XULElement hierarchy tree-->
+			<tree seltype="multiple" rows="8" height="300" onmousedown="this.ondrag=false;" ondraggesture="dragElement(event,this);" 
+				onmouseout="lightDown(); return;if(this.ondrag)this.ondrag=false;" onmouseup="dropElement(event,this); " context="clipmenu" 
+				onkeypress="//if (event.keyCode == event.DOM_VK_DELETE) {cutElement()}" style="margin:0px" ondblclick="showTextboxOnTabbox()"
+				onselect="selectElement();" id="element-tree" editable="true" onmousemove="lightup(event); dragging(event, this)"><!-- rows="6" -->
+				<treecols>
+					<treecol id="element" label="&xul_element;" editable="false" primary="true" flex="3"/>
+					<splitter/>
+					<treecol id="lastname"  type="text" editable="true" label="id" flex="1"/>
+				</treecols>
+
+				<treechildren>
+					<treeitem id="global-skin-treeitem">
+						<treerow>							
+							<treecell label="#xml-stylesheet" editable="false" />
+							<treecell id="globalcss-treecell" editable="false"/>
+						</treerow>
+					</treeitem>
+					<treeitem  id="window-treeitem"><!-- container="true" open="true">-->
+						<treerow>							
+							<treecell label="window" editable="false" />
+							<treecell id="window-treecell" editable="true"/>
+						</treerow>
+						<treechildren id="window-children">
+
+						</treechildren>
+					</treeitem>
+				</treechildren>
+			</tree>
+
+
+		<!--
+		<splitter collapse="before" resizeafter="farthest">
+		    <grippy/>
+		  </splitter>
+		<spacer />
+		  -->
+			<splitter id="tree-bottom-splitter"/>
+			
+
+			<deck id="elementInfoBox" selectedIndex="0" flex="1">
+				<tabbox  flex="1">
+				<tabs onselect="//if(this.selectedIndex==1)changeStylesBox(getSelectedTreeitems()[0])">
+					<tab label="&attributes;" flex="1"/>
+					<tab label="&styles;" flex="1" />
+					<tab label="&events;" flex="1"/>
+				</tabs>
+				<tabpanels flex="1">
+					<tabpanel id="attributes-tabpanel" orient="vertical">
+						<deck flex="1" id="attributes-deck">
+						</deck>
+					</tabpanel>
+					<tabpanel flex="1" id="styles-tabpanel" style="overflow:auto">
+						<grid id="styles" flex="1" >
+							<columns>
+								<column flex="1"/>
+								<column flex="3"/>
+							</columns>
+
+							<rows id="style-rows">
+
+							</rows>
+						</grid>
+					</tabpanel>
+					<tabpanel flex="1" style="overflow:auto; margin:0; padding:0" id="events-tabpanel" orient="vertical">
+						<!--
+						<box id="events-box">
+						<deck flex="1" id="events-deck">
+						</deck>
+					</box>-->
+					</tabpanel>
+				</tabpanels>
+			</tabbox>
+			<textbox id="textnode" multiline="true" wrap="off" oninput="this.treeitem.target.data = (this.value); " 
+				onkeypress="if (event.keyCode == 9 &amp;&amp; !event.ctrlKey) {insertTab(this); this.treeitem.target.data = this.value; return false;}"/>
+			<vbox id="pi-box">
+				<hbox><label value="&lt;?"/><label style="margin-left:0px"/></hbox>
+				<hbox align="center">
+					<label value="href = "/>
+					<textbox flex="1"/>
+				</hbox>
+				<label value="?&gt;"/>
+			<button oncommand="createSpecifiedPI(previousSibling.previousSibling.previousSibling.lastChild.value, previousSibling.previousSibling.lastChild.value)" label="&create_processing_instruction;"/>
+			</vbox>
+		</deck>
+
+	</vbox>
+	<splitter/>
+		<arrowscrollbox style="overflow:auto" width="90" minwidth="60" orient="vertical" id="new-element-box">
+			<!--
+				<button label="button" oncommand="createXULElement('button')"/>
+				<button label="label" oncommand="createXULElement('label')"/>
+				<button label="textbox" oncommand="createXULElement('textbox')"/>
+				<button label="box" oncommand="createXULElement('box')"/>
+				<button label="groupbox" oncommand="createXULElement('groupbox')"/>
+				<button label="checkbox" oncommand="createXULElement('checkbox')"/>
+				-->
+			<separator class="groove" />
+		</arrowscrollbox>
+		<splitter id="right-splitter" hidden="true"/>
+	</hbox>
+	</vbox>
+	<splitter/>
+	<deck id="right-deck" flex="1">
+		<vbox>
+		<iframe type="content" id="targetWindow" src="xulgear_target.xul" flex="1" />
+	</vbox>
+		<vbox id="option">
+			<groupbox label="&style;">
+				<caption label="&style;"/>
+				<grid>
+					<columns>
+						<column/>
+						<column flex="1"/>
+					</columns>
+					<rows>
+						<row align="center">
+							<label value="&mouse_over;"/><textbox label=""/>
+						</row>
+						<row align="center">
+							<label value="&selected;"/><textbox label=""/>
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+
+			<button label="&close;" oncommand="this.parentNode.parentNode.selectedIndex=0;"/>
+		</vbox>
+		<vbox><button label="&close;" oncommand="this.parentNode.parentNode.selectedIndex=0" /><textbox id="xml-textbox" multiline="true" flex="1" /></vbox>
+	</deck>
+
+</window>
