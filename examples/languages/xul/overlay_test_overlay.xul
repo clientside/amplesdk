@@ -15,6 +15,6 @@
         <xul:label position="7" value="This label should be the seventh label, or the last if less than 7 labels exist." />
     </xul:vbox>
     <xul:vbox id="missinglabel">
-        <xul:label value="This was the stored missing label!" />
+        <xul:label value="Thanks for giving me a home!" />
     </xul:vbox>
 </xul:overlay>

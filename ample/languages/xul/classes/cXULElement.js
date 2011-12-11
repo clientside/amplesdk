@@ -422,22 +422,3 @@ cXULElement.getBoxClose         = function(oElement) {
 
 // Register Element
 ample.extend(cXULElement);
-
-// Add cXULElement-wide events
-/*
-ample.addEventListener(
-	"DOMAttrModified",	
-    function(oEvent) {
-		if (oEvent.target == this
-            && oEvent.attrName = "id"
-            && hXULDocument_overlayFragments[oEvent.newValue]) {                
-            var sFragmentIDs = "";
-            for (var sFragmentID in hXULDocument_overlayFragments) {
-                sFragmentIDs += sFragmentID + " ";
-            }
-            cXULDocument.applyOverlays(this,hXULDocument_overlayFragments[oEvent.newValue]);
-		}
-    },
-    true);
-*/
-

@@ -209,13 +209,25 @@ ample.addEventListener(
     function(oEvent) {
         if (oEvent.target.hasAttribute("id")) {
       		if (hXULDocument_overlayFragments[oEvent.target.getAttribute("id")]) {
-                //WARN: Technically, the document used when initially storing the overlay fragment may not be the ample
-                //      document, but we shall presume so for now since we can't add an event to the XULDocument prototype.  
-                //      Really this event should be linked to the document used when storing the overlay fragment.
-                //      I can think of no trivial use case for this situation.  (Applying overlays to unapplied overlays??)
-                fXULDocument_applyOverlays(ample.documentElement,hXULDocument_overlayFragments[oEvent.target.getAttribute("id")]);
+                fXULDocument_applyOverlays(oEvent.target,hXULDocument_overlayFragments[oEvent.target.getAttribute("id")]);
+                delete hXULDocument_overlayFragments[oEvent.target.getAttribute("id")];
             }
 		}
 	},
     true);
 
+ample.addEventListener(
+    "DOMAttrModified",	
+    function(oEvent) {
+	    if (oEvent.attrName = "id"
+            && hXULDocument_overlayFragments[oEvent.newValue]) {                
+            var sFragmentIDs = "";
+            for (var sFragmentID in hXULDocument_overlayFragments) {
+                sFragmentIDs += sFragmentID + " ";
+            }
+            alert("Attribute modified! "+oEvent.newValue+" in ("+sFragmentIDs+")?");
+            fXULDocument_applyOverlays(oEvent.target,hXULDocument_overlayFragments[oEvent.newValue]);
+            delete hXULDocument_overlayFragments[oEvent.newValue];            
+	    }
+    },
+    true);
