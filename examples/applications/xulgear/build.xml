@@ -1,0 +1,72 @@
+<?xml version="1.0" ?>
+<project name="xulgear" default="all">
+	<property name="src_dir" location="./src" />
+	<property name="build_dir" location="./build" />
+	<property name="win32dir" location="${build_dir}/xulgear_win32"/>
+	<property name="dist_dir" location="./dist" />
+	<property file="version.number"/>
+
+
+
+	<!-- Targets -->
+
+	<target name="all" depends="createDistributionXPI, createZips"/>
+
+	<target name="dir.check">
+		<mkdir dir="${build_dir}" />
+		<mkdir dir="${dist_dir}" />
+	</target>
+
+	<target name="createDistributionXPI" depends="dir.check">
+		<zip destfile="./dist/${ant.project.name}_${version.number}.xpi" update="true">
+			<zipfileset dir="${src_dir}/chrome" includes="**/*" prefix="chrome" />
+			<zipfileset dir="${src_dir}/defaults" includes="**/*" prefix="defaults" />
+			<zipfileset dir="${src_dir}/locale" includes="**/*" prefix="locale" />
+			<zipfileset dir="${src_dir}/skin" includes="**/*" prefix="skin" />
+			<zipfileset dir="${src_dir}" includes="install.rdf" />
+			<zipfileset dir="${src_dir}" includes="chrome.manifest" />
+		</zip>
+	</target>
+
+	<target name="createZips" depends="xulgear_xulrunner_win32">
+		<zip destfile="${dist_dir}/xulgear_win32.zip" basedir="${win32dir}"/>
+	</target>
+
+	<condition property="nothave.xulrunnerFolder">
+		<not>
+			<available file="${win32dir}/xulrunner"/>
+		</not>
+	</condition>
+
+	<target name="copyXULRunner" if="nothave.xulrunnerFolder">
+		<unzip  src="xulrunner/xulrunner-1.9.1.13.en-US.win32.zip" dest="${win32dir}"/>
+	</target>
+
+	<target name="xulgear_xulrunner_win32" depends="dir.check">
+		<mkdir dir="${win32dir}"/>
+
+		<copy todir="${win32dir}">
+			<fileset dir="src_xulrunner" includes="**/*"/>
+		</copy>
+
+		<zip destfile="${win32dir}/chrome/content.jar" >
+			<zipfileset dir="${src_dir}/chrome/content/" includes="*" />
+		</zip>
+
+		<copy todir="${win32dir}/skin">
+			<fileset dir="${src_dir}/skin" includes="**/*"/>
+		</copy>
+		<copy todir="${win32dir}/chrome/locale">
+			<fileset dir="${src_dir}/locale" includes="**/*"/>
+		</copy>
+
+		<antcall target="copyXULRunner"/>
+
+		
+
+		<copy file="${win32dir}/xulrunner/xulrunner-stub.exe"
+			tofile="${win32dir}/xulgear.exe"/>
+
+	</target>
+</project> 
+

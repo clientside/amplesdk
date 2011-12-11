@@ -1,0 +1,8 @@
+content     xulgear    chrome/content/
+content     xulgear    chrome/content/ contentaccessible=yes
+overlay chrome://browser/content/browser.xul chrome://xulgear/content/overlay.xul
+
+locale	xulgear	en-US	locale/en-US/
+
+skin	xulgear	classic/1.0	skin/
+style	chrome://global/content/customizeToolbar.xul	chrome://xulgear/skin/overlay.css

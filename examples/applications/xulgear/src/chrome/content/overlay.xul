@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://xulgear/skin/skin.css" type="text/css"?> 
+<!DOCTYPE xulgeartrans SYSTEM "chrome://xulgear/locale/translations.dtd">
+<overlay id="xulgear" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+	<menupopup id="menu_ToolsPopup">
+		<menuitem label="&runxulgear;" accesskey="X" key="xulgear-run-key"
+			oncommand="window.open('chrome://xulgear/content/xulgear.xul','', 'chrome,resizable');"/>
+	</menupopup>
+
+	<keyset>
+		<key id="xulgear-run-key" modifiers="accel alt shift" key="X" oncommand="window.open('chrome://xulgear/content/xulgear.xul','', 'chrome,resizable');"/>
+	</keyset>
+
+	<toolbarpalette id="BrowserToolbarPalette">
+		<toolbarbutton id="xulgear-toolbar-button" label="&runxulgear;"
+			tooltiptext="&runxulgear;" oncommand="window.open('chrome://xulgear/content/xulgear.xul','', 'chrome,resizable');"/>
+	</toolbarpalette>
+</overlay>
