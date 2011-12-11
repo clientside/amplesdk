@@ -50,8 +50,10 @@ cXULDocument.prototype.applyOverlay	= function(oOverlayRoot) {
 function fXULDocument_applyOverlays(oAmpleNode, oOverlayNode) {
     //For each child of the overlay node, if:
     //  - it does have an ID and:
-    //    -- that ID matches an existing node in the ample document, then 
-    //       the attributes of the overlay node are merged with the ample node, and the process repeats for all children.
+    //    -- that ID matches an existing node in the ample document, then if
+    //       --- it has an attribute "removeelement" with a value of "true", remove the element and all children, if it exists
+    //       --- otherwise, the attributes of the overlay node are merged with the ample node, 
+    //           and the process repeats for all children.
     //    -- it doesn't match an existing ID in the ample document, then if
     //       --- these are children of the root node, then
     //           it gets stored until that ID appears and applied later, possibly in another overlay or javascript insert.
@@ -76,13 +78,22 @@ function fXULDocument_applyOverlays(oAmpleNode, oOverlayNode) {
                 if (!oNewDocEl) {
                     //Our id doesn't match an existing element, ...
                     if (oOverlayNode == oOverlayNode.ownerDocument.documentElement) {
-                        //...and it's a child of the overlay root, so store it for later.
+                        //...and it's a child of the overlay root, so store it for later, and skip to the next child.
                         hXULDocument_overlayFragments[oChild.getAttribute('id')] = oChild;
                         continue;
                     } else {
                         //...and it's not a child of the overlay root, so add it to the current node.
                         oNewDocEl = fXULDocument_importAndAdd(oAmpleNode,oChild);
                     }
+                } else {
+                    //Our id does match an existing element
+                    //Check to see if this is a remove instruction...
+                    if (oChild.hasAttribute('removeelement') && oChild.getAttribute('removeelement') == 'true') {
+                        //Remove it, and all children, and skip to the next child.
+                        oNewDocEl.parentNode.removeChild(oNewDocEl);
+                        continue;
+                    }
+                    //Otherwise, just allow it to merge.
                 }
             } else {
                 //Our overlay node child doesn't have an ID.
@@ -225,7 +236,6 @@ ample.addEventListener(
             for (var sFragmentID in hXULDocument_overlayFragments) {
                 sFragmentIDs += sFragmentID + " ";
             }
-            alert("Attribute modified! "+oEvent.newValue+" in ("+sFragmentIDs+")?");
             fXULDocument_applyOverlays(oEvent.target,hXULDocument_overlayFragments[oEvent.newValue]);
             delete hXULDocument_overlayFragments[oEvent.newValue];            
 	    }
