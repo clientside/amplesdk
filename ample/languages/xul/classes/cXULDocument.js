@@ -16,14 +16,14 @@ cXULDocument.prototype.tooltipNode	= null;
 cXULDocument.prototype.commandDispatcher	= null;
 
 // Private properties
-var hXULDocument_overlays	= {};
+//var hXULDocument_overlays	= {};
 var hXULDocument_overlayFragments	= {};
 
 // Public methods
 cXULDocument.prototype.loadOverlay	= function(sUrl, fObserver) {
-	var oDocument	= this,
-		oOverlay	= hXULDocument_overlays[sUrl];
-	if (!oOverlay) {
+	var oDocument	= this;
+	//var	oOverlay	= hXULDocument_overlays[sUrl];
+	//if (!oOverlay) {
 		ample.ajax({
 				"url": 		sUrl,
 				"async":	true,
@@ -32,14 +32,14 @@ cXULDocument.prototype.loadOverlay	= function(sUrl, fObserver) {
 					//oOverlay	= ample.importNode(oResponse.documentElement, true);
                     oOverlay = oResponse.documentElement;  //We can't import the overlay document because we still need to differentiate between the ample Document and the Overlay Document.
 					// Cache document
-					hXULDocument_overlays[sUrl]	= oOverlay;
+					//hXULDocument_overlays[sUrl]	= oOverlay;
 					// Kick off processing
 					fXULDocument_applyOverlays(oDocument.documentElement, oOverlay);
 				}
 		});
-	}
-	else
-		fXULDocument_applyOverlays(oDocument, oOverlay);
+	//}
+	//else
+	//	fXULDocument_applyOverlays(oDocument, oOverlay);
 };
 
 cXULDocument.prototype.applyOverlay	= function(oOverlayRoot) {
