@@ -35,6 +35,9 @@ cXULDocument.prototype.loadOverlay	= function(sUrl, fObserver) {
 					//hXULDocument_overlays[sUrl]	= oOverlay;
 					// Kick off processing
 					fXULDocument_applyOverlays(oDocument.documentElement, oOverlay);
+                    //Overlay applied, notify observer.
+                    //TODO: This is not really an observer in the XBL sense, but a callback function.
+                    if (fObserver instanceof Function) fObserver();
 				}
 		});
 	//}
@@ -99,7 +102,7 @@ function fXULDocument_applyOverlays(oAmpleNode, oOverlayNode) {
                 //Our overlay node child doesn't have an ID.
                 if (oOverlayNode == oOverlayNode.ownerDocument.documentElement) {
                     //...and it's a child of the overlay root, so insert it into the root.
-                    oNewDocEl = fXULDocument_importAndAdd(oAmpleNode.getOwnerDocument().documentElement,oChild);
+                    oNewDocEl = fXULDocument_importAndAdd(oAmpleNode.ownerDocument.documentElement,oChild);
                 } else {
                     //...and it's not a child of root, so add it to the current node.
                     oNewDocEl = fXULDocument_importAndAdd(oAmpleNode,oChild); //We don't have an id, so insert.
@@ -154,7 +157,7 @@ function fXULDocument_importAndAdd(oParent,oNodeToAdd) {
     }
     if (oNodeToAdd.hasAttribute('position')) {
         var iPosition = parseInt(oNodeToAdd.getAttribute('position'));
-        if (iPosition >= 1 && iPosition < oParent.childNodes.length) { 
+        if (iPosition >= 1 && iPosition <= oParent.childNodes.length) { 
             //If the position is out of range, simply let it fall through to be appended.
             oParent.insertBefore(oNewNode,oParent.childNodes.item(iPosition-1));  
                 //The position is "one-based", whereas childNodes are 0-based.  So -1.
