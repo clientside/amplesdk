@@ -8,20 +8,17 @@
  */
 
 cXULElement.prototype.doCommand		= function() {
-	var oCommand;
-	if (this instanceof cXULElement_command)
-		oCommand	= this;
-	else {
-		var sCommand	= this.attributes.command;
-		if (sCommand) {
-			var oElement	= this.ownerDocument.getElementById(sCommand);
-			if (oElement && oElement instanceof cXULElement_command)
-				oCommand	= oElement;
-		}
+	var oCommand	= this,
+		sCommand	= this.attributes.command;
+	// If element is not command and if it has command attribute
+	if (!(this instanceof cXULElement_command) && sCommand) {
+		oCommand	= this.ownerDocument.getElementById(sCommand);
+		if (!(oCommand instanceof cXULElement_command))
+			oCommand	= null;
 	}
 
+    // Fire Event on command element
 	if (oCommand) {
-	    // Fire Event on command element
 	    var oEvent = this.ownerDocument.createEvent("CustomEvent");
 	    oEvent.initCustomEvent("command", true, true, null);
 	    oCommand.dispatchEvent(oEvent);
