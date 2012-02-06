@@ -62,7 +62,7 @@ elements/button.js
 elements/panel.js
 elements/popupset.js
 elements/progressmeter.js
-#elements/scrollbox.js
+elements/scrollbox.js
 elements/splitter.js
 elements/statusbar.js
 elements/statusbarpanel.js
