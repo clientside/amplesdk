@@ -765,18 +765,11 @@ function fBrowser_parseXML(sText) {
 };
 
 function fBrowser_getResponseDocument(oRequest) {
-	var oDocument	= oRequest.responseXML,
+	var oDocument	= null,
 		sText		= oRequest.responseText;
 	// Try parsing responseText
-	if (sText) {
-		if (bTrident) {
-			if (oDocument && !oDocument.documentElement && oRequest.getResponseHeader("Content-Type").match(/[^\/]+\/[^\+]+\+xml/))
-				oDocument	= fBrowser_parseXML(sText);
-		}
-		// Bugfix FF4 (remote XUL)
-		if (bGecko)
-			oDocument	= fBrowser_parseXML(sText);
-	}
+	if (sText)
+		oDocument	= fBrowser_parseXML(sText);
 	// Check if there is no error in document
 	if (!oDocument || ((bTrident && nVersion < 9 && oDocument.parseError != 0) || !oDocument.documentElement || oDocument.getElementsByTagName("parsererror").length))
 		return null;
