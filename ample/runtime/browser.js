@@ -1119,7 +1119,7 @@ function fBrowser_processScripts() {
 		else
 		if (sType == "application/ample+javascript" || sType == "text/ample+javascript") {
 			if (sSrc)
-				sText	= fBrowser_load(sSrc, "text/javascript");
+				sText	= fBrowser_load(sSrc, "text/javascript").responseText;
 
 			// Try executing
 			try {
