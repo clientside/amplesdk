@@ -22,12 +22,14 @@ cXULElement_scrollbox.handlers	= {
 
 // Element Render: open
 cXULElement_scrollbox.prototype.$getTagOpen	= function() {
-    return '<div class="xul-scrollbox' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="overflow:hidden">';
+    return '<div class="xul-scrollbox' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="position:relative;overflow:auto;width:100%;height:100%;">\
+    			<div style="position:absolute;width:100%;height:100%;">';
 };
 
 // Element Render: close
 cXULElement_scrollbox.prototype.$getTagClose	= function() {
-    return '</div>';
+    return '	</div>\
+    		</div>';
 };
 
 // Register Element

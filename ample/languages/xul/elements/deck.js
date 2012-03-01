@@ -24,39 +24,50 @@ cXULElement_deck.attributes.selectedIndex	= "-1";
 cXULElement_deck.handlers	= {
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this) {
+			//
+			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			//
 			switch (oEvent.attrName) {
 				case "selectedIndex":
-			        if (this.childNodes.length > 0) {
-			        	var sValue	= oEvent.newValue;
-			            if (isNaN(sValue) || this.childNodes.length < sValue * 1)
-			                sValue  = "0";
-
-			            this.selectedIndex  = sValue * 1;
-			            this.selectedPanel  = this.childNodes[this.selectedIndex];
-
-			            for (var nIndex = 0; nIndex < this.childNodes.length; nIndex++)
-			                this.childNodes[nIndex].setAttribute("hidden", this.selectedIndex == nIndex ? "false" : "true");
-
-			            //
+		            //
+					if (this.selectedPanel) {
 			            oXULReflowManager.schedule(this.selectedPanel);
 
 			            // send event
 			            var oEvent  = this.ownerDocument.createEvent("Event");
 			            oEvent.initEvent("select", true, true);
 			            this.dispatchEvent(oEvent);
-			        }
-			        break;
-
-				default:
-			        this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+					}
+		            break;
 			}
 		}
 	}
 };
 
+cXULElement_deck.prototype.$mapAttribute	= function(sName, sValue) {
+	switch (sName) {
+		case "selectedIndex":
+	        if (this.childNodes.length > 0) {
+	        	var nValue	= sValue * 1;
+	            if (isNaN(nValue) || this.childNodes.length < nValue || nValue < 0)
+	            	nValue  = 0;
+
+	            this.selectedIndex  = nValue;
+	            this.selectedPanel  = this.childNodes[this.selectedIndex];
+
+	            for (var nIndex = 0; nIndex < this.childNodes.length; nIndex++)
+	                this.childNodes[nIndex].setAttribute("hidden", this.selectedIndex == nIndex ? "false" : "true");
+	        }
+	        break;
+
+		default:
+			cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
+	}
+};
+
 cXULElement_deck.prototype.reflow	= function() {
-	if (!isNaN(this.attributes["selectedIndex"]))
-		this.setAttribute("selectedIndex", this.attributes["selectedIndex"] == "-1" ? "0" : this.attributes["selectedIndex"]);
+	//
+	this.$mapAttribute("selectedIndex", this.attributes["selectedIndex"]);
 	//
 	cXULElement.prototype.reflow.call(this);
 };

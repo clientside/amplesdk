@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<class name="CharacterData" extends="runtime:Node">
+<class name="EntityReference" extends="runtime:Node">
 	<abstract>
 		<locale>
 			Represents an entity reference in the tree.
