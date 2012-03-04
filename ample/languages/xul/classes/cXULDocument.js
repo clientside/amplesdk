@@ -70,11 +70,11 @@ function fXULDocument_applyOverlays(oAmpleNode, oOverlayNode) {
     //Action...
     for (var iIndex = 0; iIndex < oOverlayNode.childNodes.length; iIndex++) {
         var oChild = oOverlayNode.childNodes.item(iIndex);
-        if (oChild instanceof Text && oChild.nodeValue.trim() == '') continue;
-        if (oChild instanceof Comment) continue;
-        if (oChild instanceof cXULElement || oChild instanceof Element) {
+        if (oChild.nodeType == ample.classes.Node.TEXT_NODE && oChild.nodeValue.trim() == '') continue;
+        if (oChild.nodeType == ample.classes.Node.COMMENT_NODE) continue;
+        if (oChild.nodeType == ample.classes.Node.ELEMENT_NODE) {
             var oNewDocEl = null;
-            if (oChild.hasAttribute('id')) {
+            if (oChild.getAttribute('id')) {
                 //Our overlay node child has an ID.
                 var sID = oChild.getAttribute('id');
                 oNewDocEl = ample.getElementById(sID);
@@ -91,7 +91,7 @@ function fXULDocument_applyOverlays(oAmpleNode, oOverlayNode) {
                 } else {
                     //Our id does match an existing element
                     //Check to see if this is a remove instruction...
-                    if (oChild.hasAttribute('removeelement') && oChild.getAttribute('removeelement') == 'true') {
+                    if (oChild.getAttribute('removeelement') && oChild.getAttribute('removeelement') == 'true') {
                         //Remove it, and all children, and skip to the next child.
                         oNewDocEl.parentNode.removeChild(oNewDocEl);
                         continue;
@@ -114,7 +114,7 @@ function fXULDocument_applyOverlays(oAmpleNode, oOverlayNode) {
     }
 /*
     var oMatchRootEl = null;
-    if (oOverlayNode.hasAttribute('id')) {
+    if (oOverlayNode.getAttribute('id')) {
         oMatchRootEl = ample.query('//[id='+oOverlayNode.getAttribute('id')+']');
     }
     if (oMatchRootEl) fXULDocument_applyOverlaysRecurse(oOverlayNode,oMatchRootEl);
@@ -132,10 +132,10 @@ function fXULDocument_importAndAdd(oParent,oNodeToAdd) {
     var oNewNode = ample.importNode(oNodeToAdd,false);
     //Remove insertafter,insertbefore, and position attributes from node to be inserted.
     for (var sAttr in {insertafter:0,insertbefore:0,position:0}) {
-        if (oNewNode.hasAttribute(sAttr))
+        if (oNewNode.getAttribute(sAttr))
             oNewNode.removeAttribute(sAttr);
     }
-    if (oNodeToAdd.hasAttribute('insertafter')) {
+    if (oNodeToAdd.getAttribute('insertafter')) {
         var aInsertAfter = oNodeToAdd.getAttribute('insertafter').split(',');
         for (var iIndex = 0; iIndex < aInsertAfter.length; iIndex++) {
             oInsertAfterEl = ample.query("#"+aInsertAfter[iIndex].trim());
@@ -145,7 +145,7 @@ function fXULDocument_importAndAdd(oParent,oNodeToAdd) {
             }
         }
     }
-    if (oNodeToAdd.hasAttribute('insertbefore')) {
+    if (oNodeToAdd.getAttribute('insertbefore')) {
        var aInsertBefore = oNodeToAdd.getAttribute('insertbefore').split(',');
         for (var iIndex = 0; iIndex < aInsertBefore.length; iIndex++) {
             oInsertBeforeEl = ample.query("#"+aInsertBefore[iIndex].trim());
@@ -155,7 +155,7 @@ function fXULDocument_importAndAdd(oParent,oNodeToAdd) {
             }
         }
     }
-    if (oNodeToAdd.hasAttribute('position')) {
+    if (oNodeToAdd.getAttribute('position')) {
         var iPosition = parseInt(oNodeToAdd.getAttribute('position'));
         if (iPosition >= 1 && iPosition <= oParent.childNodes.length) { 
             //If the position is out of range, simply let it fall through to be appended.
@@ -169,22 +169,22 @@ function fXULDocument_importAndAdd(oParent,oNodeToAdd) {
 }
 
 function fXULDocument_mergeAttributes(oAmpleNode,oOverlayNode) {
-    if (oOverlayNode.attributes instanceof NamedNodeMap) {
-        for (var sAttr in oOverlayNode.attributes) {
-            if (oOverlayNode.attributes[sAttr] instanceof Attr) {
-                if (['insertbefore','insertafter','position'].indexOf(oOverlayNode.attributes[sAttr].name) < 0)
-                    oAmpleNode.setAttribute(oOverlayNode.attributes[sAttr].name,oOverlayNode.attributes[sAttr].value);
-            }
+    if (oOverlayNode.attributes) {
+        for (var iCounter = 0; iCounter < oOverlayNode.attributes.length; iCounter++) {
+            var oAttr = oOverlayNode.attributes.item(iCounter);
+            if (['insertbefore','insertafter','position'].indexOf(oAttr.name) < 0)
+                oAmpleNode.setAttribute(oAttr.name,oAttr.value);
         }
         return;
     }
     //else
-    for (var sAttr in oOverlayNode.attributes) {
-        if (!(oOverlayNode.attributes[sAttr] instanceof Function)
-            && !(oOverlayNode.attributes[sAttr] instanceof Object)
-            && ['insertbefore','insertafter','position'].indexOf(sAttr) < 0
+    for (var iCounter = 0; iCounter < oOverlayNode.attributes.length; iCounter++) {
+        var oAttr = oOverlayNode.attributes.item(iCounter);
+        if (!(oAttr.value instanceof Function)
+            && !(oAttr.value instanceof Object)
+            && ['insertbefore','insertafter','position'].indexOf(oAttr.name) < 0
            ) {
-            oAmpleNode.setAttribute(sAttr,oOverlayNode.attributes[sAttr]);
+            oAmpleNode.setAttribute(oAttr.name,oAttr.value);
         }
     }    
 }
@@ -194,7 +194,7 @@ function fXULDocument_applyOverlaysRecurse(oOverlayEl,oDocEl) {
     //Action...
     for (var iIndex = 0; iIndex < oOverlayEl.childNodes.length; iIndex++) {
         var oChild = oOverlayEl.childNodes.item(iIndex);
-        if (oChild.hasAttribute('id')) {
+        if (oChild.getAttribute('id')) {
             //We have an id
             var oNewDocEl = ample.query(oChild.getAttribute('id'),oDocEl);
             if (oNewDocEl) fXULDocument_applyOverlaysRecurse(oChild,oNewDocEl);  //Our id matches an existing element.
@@ -221,7 +221,7 @@ ample.extend(ample.classes.Document.prototype, cXULDocument.prototype);
 ample.addEventListener(
 	"DOMNodeInsertedIntoDocument",	
     function(oEvent) {
-        if (oEvent.target.hasAttribute("id")) {
+        if (oEvent.target.getAttribute("id")) {
       		if (hXULDocument_overlayFragments[oEvent.target.getAttribute("id")]) {
                 fXULDocument_applyOverlays(oEvent.target,hXULDocument_overlayFragments[oEvent.target.getAttribute("id")]);
                 delete hXULDocument_overlayFragments[oEvent.target.getAttribute("id")];
