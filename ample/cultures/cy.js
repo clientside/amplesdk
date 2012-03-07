@@ -44,4 +44,4 @@
         }
     }, cultures["cy"]);
     culture.calendar = culture.calendars.standard;
-}})(ample.locale)
+})(ample.locale)
