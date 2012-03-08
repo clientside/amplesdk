@@ -50,6 +50,11 @@ var cString		= window.String,
 	oUANavigator= window.navigator,
 	oUALocation	= window.location,
 	oUADocument	= window.document,
+//
+	fGlobal		= arguments.callee,
+//
+	oUALocalStorage		= window.localStorage,
+	oUASessionStorage	= window.sessionStorage,
 // constants
 	nNaN		= window.NaN,
 	nInfinity	= window.Infinity,
