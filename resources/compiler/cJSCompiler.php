@@ -324,16 +324,16 @@
 			return $aValues;
 		}
 
-		var $reservedTokens	= array("as", "do", "if", "in", "is", "for", "let", "var");
-		var $alphabet	= "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		var $reservedTokens	= array("as", "do", "if", "in", "is", "for"/*, "let"*/, "var");
+		var $alphabet	= "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
 		function createToken($nIndex) {
 			$sToken	= $nIndex < 52
 							? substr($this->alphabet, $nIndex, 1)
-							: substr($this->alphabet, (int) ($nIndex / 52), 1) . substr($this->alphabet, $nIndex % 52, 1);
+							: substr($this->alphabet, (int) ($nIndex / 52), 1) . substr($this->alphabet, $nIndex % 62, 1);
 			$nPosition = array_search($sToken, $this->reservedTokens);
 
-			return $nPosition ? "_" . chr(97 + $nPosition % 26) : $sToken;
+			return $nPosition ? "_" . chr(97 + $nPosition % 62) : $sToken;
 		}
 	}
 ?>
