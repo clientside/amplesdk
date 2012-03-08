@@ -127,5 +127,6 @@ runtime/compat/String.js
 runtime/compat/XMLHttpRequest.js
 runtime/compat/XMLSerializer.js
 runtime/compat/XSLTProcessor.js
+runtime/compat/Storage.js
 #
 runtime/export.js
