@@ -971,7 +971,11 @@ function fNode_toXML(oNode)
 		case 4:	// cNode.CDATA_SECTION_NODE
 			aHtml.push('<![CDATA[' + oNode.nodeValue + ']]>');
 			break;
-
+/*
+		case 6:		// cNode.ENTITY_NODE
+			aHtml.push('<!ENTITY' + ' ' + oNode.nodeName + ' ' + '"' + oNode.nodeValue + '"' + '>');
+			break;
+*/
 		case 7:	// cNode.PROCESSING_INSTRUCTION_NODE
 			aHtml.push('<?' + oNode.nodeName + ' ' + oNode.nodeValue + '?>');
 			break;
@@ -979,7 +983,14 @@ function fNode_toXML(oNode)
 		case 8:	// cNode.COMMENT_NODE
 			aHtml.push('<!--' + oNode.nodeValue + '-->');
 			break;
-
+/*
+		case 10:	// cNode.DOCUMENT_TYPE_NODE
+			aHtml.push('<!DOCTYPE' + ' ' + oNode.name + ' ' + "SYSTEM" + ' ');
+			if (oNode.internalSubset)
+				aHtml.push('[' + oNode.internalSubset + ']');
+			aHtml.push('>');
+			break;
+*/
 		case 11:	// cNode.DOCUMENT_FRAGMENT_NODE
 		case 9:		// cNode.DOCUMENT_NODE
 			while (nIndex < oNode.childNodes.length)
@@ -991,11 +1002,10 @@ function fNode_toXML(oNode)
 			break;
 /*
 		case 12:	// cNode.NOTATION_NODE
-		case 10:	// cNode.DOCUMENT_TYPE_NODE
 		case 5:		// cNode.ENTITY_REFERENCE_NODE
-		case 6:		// cNode.ENTITY_NODE
 		case 2:		// cNode.ATTRIBUTE_NODE
 */
+
 		default:
 			throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 	}
