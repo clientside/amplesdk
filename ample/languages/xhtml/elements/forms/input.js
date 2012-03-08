@@ -316,7 +316,12 @@ cXHTMLElement_input.handlers	= {
 
 				case "checked":
 					this.$setPseudoClass("checked", oEvent.newValue != null && oEvent.newValue != "false");
-					break
+					break;
+
+				case "disabled":
+					this.$setPseudoClass("disabled", oEvent.newValue != null, "value");
+					this.$getContainer("value").disabled	= oEvent.newValue != null;
+					break;
 
 				case "value":
 					switch (this.attributes["type"]) {
