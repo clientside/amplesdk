@@ -79,7 +79,7 @@ function fBrowser_render(oNode) {
 	if (oNode.nodeType == 1) {	// cNode.ELEMENT_NODE
 		var sHtml	= oNode.$getTag();
 		if (sHtml) {
-			if (bTrident) {
+			if (bTrident && nVersion < 9) {
 				if (sHtml.match(/^<(\w*:)?(\w+)/)) {
 					var sTagName	= cRegExp.$2;
 					switch (sTagName) {
@@ -1045,7 +1045,7 @@ function fBrowser_processScripts() {
 */
 		    	}
 		    	// render Ample DOM
-		    	if (bTrident) {
+		    	if (bTrident && nVersion < 9) {
 		    		oElementNew	= oUADocument.createElement("div");
 		    		fBrowser_replaceNode(oElementDOM, oElementNew);
 			    	oElementNew.innerHTML = bReferenced ? oElement.$getTag() : fGetTagChildren(oElement);
