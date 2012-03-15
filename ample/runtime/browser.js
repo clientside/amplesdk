@@ -778,7 +778,13 @@ function fBrowser_parseXML(sText) {
 						'>');
 		}
 	};
-	return new cDOMParser().parseFromString(sText, "text/xml");
+	// IE9 throws errror for invalid XML
+	try {
+		return new cDOMParser().parseFromString(sText, "text/xml");
+	}
+	catch (oError) {
+		return null;
+	}
 };
 
 function fBrowser_getResponseDocument(oRequest) {
