@@ -21,7 +21,7 @@ if (!cXSLTProcessor) {
 
 		var oStylesheet	= new cActiveXObject("MSXML2" + '.' + "FreeThreadedDOMDocument");
 //		oStylesheet.resolveExternals	= true;
-		oStylesheet.loadXML(oNode.xml);
+		oStylesheet.loadXML(new cXMLSerializer().serializeToString(oNode));
 		oStylesheet.setProperty("SelectionNamespaces", "xmlns" + ':' + "xsl" + '="' + sNS_XSLT + '"');
 		var oMethod	= oStylesheet.selectSingleNode('/' + '/' + "xsl" + ':' + "output");
 
