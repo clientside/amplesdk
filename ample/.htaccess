@@ -3,5 +3,7 @@ RewriteEngine on
 
 ##
 RewriteRule runtime.js source-builder.php?path=./
+RewriteRule runtime-dev.js source-builder.php?dev=true&path=./
+RewriteRule hmvc.js source-builder.php?path=./hmvc/
 RewriteRule languages/([a-z]+)/([a-z]+).js source-builder.php?path=./languages/$1/
-RewriteRule ^(.*).css $1.php
+RewriteRule ^(.*).css($|\?) $1.php

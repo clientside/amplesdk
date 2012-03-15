@@ -1,12 +1,20 @@
 <?php
 	if (isset($_GET["path"])) {
 		$path	= $_GET["path"];
+		$dev	= isset($_GET["dev"]) && $_GET["dev"] == "true";
 		$files	= file($path . ".files");
 
 		$output	= "";
 		for ($n = 0; $n < count($files); $n++)
 			if (($file = trim($files[$n])) != "" && substr($file, 0, 1) != "#")
 				$output	.= join('', file($path . $file)) . "\n";
+
+		$output	= fStripTags($output, "Source");
+
+		if (!$dev) {
+			$output	= fStripTags($output, "Debug");
+			$output	= fStripTags($output, "Guard");
+		}
 
 		header("Content-type: application/javascript");
 
@@ -20,5 +28,10 @@
 	}
 	else {
 		echo "GET path parameter missing.";
+	}
+
+	function fStripTags($sInput, $sTagName)
+	{
+		return preg_replace('/\/\/\->' . $sTagName . '.+\/\/<\-' . $sTagName . '/Us', "", $sInput);
 	}
 ?>
