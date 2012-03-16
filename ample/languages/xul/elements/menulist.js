@@ -147,7 +147,7 @@ cXULElement_menulist.handlers	= {
 				oEvent.preventDefault();
 				break;
 
-			case "Esc":
+			case "U+001B":	// Esc
 				this.toggle(false);
 				break;
 
@@ -169,9 +169,9 @@ cXULElement_menulist.handlers	= {
 	},
 	"keyup":	function(oEvent) {
 		switch (oEvent.keyIdentifier) {
-			case "Esc":
+			case "U+001B":	// Esc
 			case "Enter":
-			case "Tab":
+			case "U+0009":	// Tab
 				return;
 
 			case "Up":

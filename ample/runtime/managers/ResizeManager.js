@@ -335,7 +335,7 @@ function fResizeManager_onMouseUp(oEvent)
 };
 
 function fResizeManager_onKeyDown(oEvent) {
-	if (oEvent.keyIdentifier == "Esc") {
+	if (oEvent.keyIdentifier == "U+001B") {	// Esc
 		oEvent.preventDefault();
 		fResizeManager_onMouseUp(oEvent);
 	}

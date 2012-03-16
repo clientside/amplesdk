@@ -38,7 +38,7 @@ cXULElement_scale.handlers	= {
 		}
 	},
 	"keydown":	function(oEvent) {
-		if (cXULElement_scale.captured && oEvent.keyIdentifier == "Esc") {
+		if (cXULElement_scale.captured && oEvent.keyIdentifier == "U+001B") {	// Esc
 			cXULElement_scale.finishSession(this);
 			this.setAttribute("value", cXULElement_scale.prevValue);
 		}

@@ -393,7 +393,7 @@ function fDragAndDropManager_onMouseMove(oEvent)
 };
 
 function fDragAndDropManager_onKeyDown(oEvent) {
-	if (oEvent.keyIdentifier == "Esc") {
+	if (oEvent.keyIdentifier == "U+001B") {	// Esc
 		oEvent.preventDefault();
 		fDragAndDropManager_onMouseUp(oEvent);	// TODO: object with Keyboard interface passing to a function expecting MouseEvent interface
 	}
