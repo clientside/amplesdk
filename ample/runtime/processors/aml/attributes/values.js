@@ -7,15 +7,15 @@
  *
  */
 
-var cAttr_values	= function(){};
-cAttr_values.prototype	= new cAMLAttr("values");
+var cAMLAttr_values	= function(){};
+cAMLAttr_values.prototype	= new cAMLAttr("values");
 
 // Class Events Handlers
-cAttr_values.handlers	= {};
-cAttr_values.handlers["DOMNodeInsertedIntoDocument"]	= function(oEvent) {
+cAMLAttr_values.handlers	= {};
+cAMLAttr_values.handlers["DOMNodeInsertedIntoDocument"]	= function(oEvent) {
 	fAttr_values_map(this.ownerElement, this.value);
 };
-cAttr_content.handlers["DOMNodeRemovedFromDocument"]	= function(oEvent) {
+cAMLAttr_content.handlers["DOMNodeRemovedFromDocument"]	= function(oEvent) {
 	fAttr_values_map(this.ownerElement, '');
 };
 
@@ -51,4 +51,4 @@ function fAttr_values_map(oElement, sValue) {
 };
 
 // Register Attribute
-fAmple_extend(cAttr_values);
+fAmple_extend(cAMLAttr_values);

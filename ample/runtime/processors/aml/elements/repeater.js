@@ -7,18 +7,18 @@
  *
  */
 
-var cElement_repeater	= function(){};
-cElement_repeater.prototype	= new cAMLElement("repeater");
+var cAMLElement_repeater	= function(){};
+cAMLElement_repeater.prototype	= new cAMLElement("repeater");
 
 // Public properties
-cElement_repeater.prototype.data	= null;
+cAMLElement_repeater.prototype.data	= null;
 
 // Private Properties
-cElement_repeater.prototype._timeout	= null;
+cAMLElement_repeater.prototype._timeout	= null;
 
 // Class Event Handlers
-cElement_repeater.handlers	= {};
-cElement_repeater.handlers["DOMAttrModified"]	= function(oEvent) {
+cAMLElement_repeater.handlers	= {};
+cAMLElement_repeater.handlers["DOMAttrModified"]	= function(oEvent) {
 	if (oEvent.target == this)
 		switch (oEvent.newValue) {
 			case "data":
@@ -31,7 +31,7 @@ cElement_repeater.handlers["DOMAttrModified"]	= function(oEvent) {
 */
 		}
 };
-cElement_repeater.handlers["DOMNodeInsertedIntoDocument"]	= function(oEvent) {
+cAMLElement_repeater.handlers["DOMNodeInsertedIntoDocument"]	= function(oEvent) {
 	var oElement	= oDocument_ids[this.attributes["data"]];
 	if (oElement) {
 		this.bind(oElement);
@@ -39,12 +39,12 @@ cElement_repeater.handlers["DOMNodeInsertedIntoDocument"]	= function(oEvent) {
 		this.refresh();
 	}
 };
-cElement_repeater.handlers["DOMNodeRemovedFromDocument"]	= function(oEvent) {
+cAMLElement_repeater.handlers["DOMNodeRemovedFromDocument"]	= function(oEvent) {
 	this.unbind();
 };
 
 // Public Methods
-cElement_repeater.prototype.bind	= function(oElement) {
+cAMLElement_repeater.prototype.bind	= function(oElement) {
 	if (this.data && this.data != oElement)
 		this.unbind();
 	else {
@@ -53,14 +53,14 @@ cElement_repeater.prototype.bind	= function(oElement) {
 	}
 };
 
-cElement_repeater.prototype.unbind	= function() {
+cAMLElement_repeater.prototype.unbind	= function() {
 	if (this.data) {
 		this.data.unregister(this);
 		this.data	= null;
 	}
 };
 
-cElement_repeater.prototype.refresh	= function() {
+cAMLElement_repeater.prototype.refresh	= function() {
 	// skip refresh (if scheduled)
 	if (this._timeout)
 		return;
@@ -74,7 +74,7 @@ cElement_repeater.prototype.refresh	= function() {
 	}, 0);
 };
 
-cElement_repeater.prototype.repeat	= function() {
+cAMLElement_repeater.prototype.repeat	= function() {
 	if (this.data) {
 		var aElements, nIndex, oElement;
 
@@ -134,4 +134,4 @@ function fElement_repeater_resolveValue(sQuery, oData, fResolver) {
 };
 
 // Register Element
-fAmple_extend(cElement_repeater);
+fAmple_extend(cAMLElement_repeater);

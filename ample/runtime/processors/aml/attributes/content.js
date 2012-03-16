@@ -7,15 +7,15 @@
  *
  */
 
-var cAttr_content	= function(){};
-cAttr_content.prototype	= new cAMLAttr("content");
+var cAMLAttr_content	= function(){};
+cAMLAttr_content.prototype	= new cAMLAttr("content");
 
 // Class Events Handlers
-cAttr_content.handlers	= {};
-cAttr_content.handlers["DOMNodeInsertedIntoDocument"]	= function(oEvent) {
+cAMLAttr_content.handlers	= {};
+cAMLAttr_content.handlers["DOMNodeInsertedIntoDocument"]	= function(oEvent) {
 	fAttr_content_map(this.ownerElement, this.value);
 };
-cAttr_content.handlers["DOMNodeRemovedFromDocument"]	= function(oEvent) {
+cAMLAttr_content.handlers["DOMNodeRemovedFromDocument"]	= function(oEvent) {
 	fAttr_content_map(this.ownerElement, '');
 };
 
@@ -28,4 +28,4 @@ function fAttr_content_map(oElement, sValue) {
 };
 
 // Register Attribute
-fAmple_extend(cAttr_content);
+fAmple_extend(cAMLAttr_content);
