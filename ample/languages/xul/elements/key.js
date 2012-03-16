@@ -27,9 +27,17 @@ cXULElement_key._handleKeyDown	= function(oEvent, oElement) {
 	}
 
 	// filter out by key
-	if (oElement.hasAttribute("key"))
-		if (oEvent.keyIdentifier != oElement.getAttribute("key"))
+	if (oElement.hasAttribute("key")) {
+		var sIdentifier	= oEvent.keyIdentifier,
+			sKey	= oElement.getAttribute("key");
+		if (sIdentifier.match(/^U\+(\d+)/)) {
+			if (String.fromCharCode(parseInt(RegExp.$1, 16)).toLowerCase() != sKey.toLowerCase())
+				return;
+		}
+		else
+		if (oEvent.keyIdentifier != sKey)
 			return;
+	}
 
 	// filter out by keycode
 	// TODO: KeyEvent changed to KeboardEvent, so no keyCode property is available!
