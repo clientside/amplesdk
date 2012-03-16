@@ -7,12 +7,12 @@
  *
  */
 
-var cElement_handler	= function(){};
-cElement_handler.prototype	= new cAMLElement("handler");
+var cAMLElement_handler	= function(){};
+cAMLElement_handler.prototype	= new cAMLElement("handler");
 
 // Class Event Handlers
-cElement_handler.handlers	= {};
-cElement_handler.handlers["DOMNodeInsertedIntoDocument"]	= function(oEvent) {
+cAMLElement_handler.handlers	= {};
+cAMLElement_handler.handlers["DOMNodeInsertedIntoDocument"]	= function(oEvent) {
 	if (this.firstChild) {
 		if (this.attributes["event"])
 			this.parentNode.addEventListener(this.attributes["event"], new cFunction("event", this.firstChild.nodeValue), this.attributes["phase"] == "capture");
@@ -22,4 +22,4 @@ cElement_handler.handlers["DOMNodeInsertedIntoDocument"]	= function(oEvent) {
 };
 
 // Register Element
-fAmple_extend(cElement_handler);
+fAmple_extend(cAMLElement_handler);

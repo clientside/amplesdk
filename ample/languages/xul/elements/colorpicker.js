@@ -89,7 +89,7 @@ cXULElement_colorpicker.handlers	= {
 		if (!this.$isAccessible())
 			return;
 
-		if (oEvent.keyIdentifier == "Esc")
+		if (oEvent.keyIdentifier == "U+001B")	// Esc
 			this.toggle(false);
 	},
 	// focus

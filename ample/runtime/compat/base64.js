@@ -10,31 +10,31 @@
 
 //
 if (!window.btoa) {
-	var sBase64EncodeChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+	var aBase64EncodeChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".split('');
 	fExporter_export(function(vValue) {
 	    var aValue = [],
 	    	sValue	= cString(vValue);
 	    for (var nIndex = 0, nLength = sValue.length, nValue1, nValue2, nValue3; nIndex < nLength;) {
 			nValue1 = sValue.charCodeAt(nIndex++) & 255;
 			if (nIndex == nLength) {
-				aValue.push(sBase64EncodeChars.charAt(nValue1 >> 2));
-				aValue.push(sBase64EncodeChars.charAt((nValue1 & 3) << 4));
+				aValue.push(aBase64EncodeChars[nValue1 >> 2]);
+				aValue.push(aBase64EncodeChars[(nValue1 & 3) << 4]);
 				aValue.push('==');
 			    break;
 			}
 			nValue2 = sValue.charCodeAt(nIndex++);
 			if (nIndex == nLength) {
-			    aValue.push(sBase64EncodeChars.charAt(nValue1 >> 2));
-			    aValue.push(sBase64EncodeChars.charAt(((nValue1 & 3)<< 4) | ((nValue2 & 240) >> 4)));
-			    aValue.push(sBase64EncodeChars.charAt((nValue2 & 15) << 2));
+			    aValue.push(aBase64EncodeChars[nValue1 >> 2]);
+			    aValue.push(aBase64EncodeChars[((nValue1 & 3) << 4) | ((nValue2 & 240) >> 4)]);
+			    aValue.push(aBase64EncodeChars[(nValue2 & 15) << 2]);
 			    aValue.push('=');
 			    break;
 			}
 			nValue3 = sValue.charCodeAt(nIndex++);
-			aValue.push(sBase64EncodeChars.charAt(nValue1 >> 2));
-			aValue.push(sBase64EncodeChars.charAt(((nValue1 & 3)<< 4) | ((nValue2 & 240) >> 4)));
-			aValue.push(sBase64EncodeChars.charAt(((nValue2 & 15) << 2) | ((nValue3 & 192) >>6)));
-			aValue.push(sBase64EncodeChars.charAt(nValue3 & 63));
+			aValue.push(aBase64EncodeChars[nValue1 >> 2]);
+			aValue.push(aBase64EncodeChars[((nValue1 & 3) << 4) | ((nValue2 & 240) >> 4)]);
+			aValue.push(aBase64EncodeChars[((nValue2 & 15) << 2) | ((nValue3 & 192) >> 6)]);
+			aValue.push(aBase64EncodeChars[nValue3 & 63]);
 	    }
 	    return aValue.join('');
 	}, "btoa", window);

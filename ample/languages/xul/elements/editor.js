@@ -359,7 +359,7 @@ cXULElement_editor.initializeDocument	= function(oInstance) {
 		// Re-dispatch event to the element
 		if (oInstance.$isAccessible() && oEvent.keyCode == 9) {
 			var oKeydownEvent	= oInstance.ownerDocument.createEvent("KeyboardEvent");
-			oKeydownEvent.initKeyboardEvent("keydown", true, true, window, "Tab", null, (oEvent.ctrlKey ? "Control" : "") + (oEvent.shiftKey ? "Shift" : "") + (oEvent.altKey ? "Alt" : ""));
+			oKeydownEvent.initKeyboardEvent("keydown", true, true, window, "U+0009", null, (oEvent.ctrlKey ? "Control" : "") + (oEvent.shiftKey ? "Shift" : "") + (oEvent.altKey ? "Alt" : ""));
 			oKeydownEvent.$pseudoTarget	= oInstance.$getContainer("frame");
 			oInstance.dispatchEvent(oKeydownEvent);
 			if (!window.controllers) {

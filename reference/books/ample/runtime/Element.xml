@@ -230,6 +230,22 @@
 					</locale>
 				</description>
 			</attribute>
+			<!-- Localizaiton -->
+			<attribute name="aml:content" type="String">
+				<description>
+					<locale>
+						Name of locale key to substitute element's content.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="aml:values" type="String">
+				<description>
+					<locale>
+						Semicolon-separated list of name:locale key pairs to substitute element's attributes or properties.
+						For example: value:key_value;.innerHTML:key_innerHTML
+					</locale>
+				</description>
+			</attribute>
 		</attributes>
 		<methods>
 			<method name="getAttribute" type="String">
@@ -1265,6 +1281,15 @@
 					<locale xml:lang="ru">
 						Загорается на объекте непрерывно, пока его размеры изменяются пользователем.
 						Свойство <link type="property">edge</link> содержит значение of the edge
+					</locale>
+				</description>
+			</event>
+			<!-- Locale -->
+			<event name="localechange" type="CustomEvent" cancelable="false" bubbles="false">
+				<description>
+					<locale>
+						Fires when locale has been successfully changed.
+						The <link type="property" href="runtime:CustomEvent">detail</link> property keeps the new locale name name.
 					</locale>
 				</description>
 			</event>

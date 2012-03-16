@@ -14,11 +14,11 @@ if (!cString.prototype.trim)
 	}, "trim", cString.prototype);
 
 if (!cString.prototype.trimLeft)
-	fExporter_export(function(fCallback, oReceiver) {
+	fExporter_export(function() {
 		return this.replace(/^\s+/, '');
 	}, "trimLeft", cString.prototype);
 
 if (!cString.prototype.trimRight)
-	fExporter_export(function(fCallback, oReceiver) {
+	fExporter_export(function() {
 		return this.replace(/\s+$/, '');
 	}, "trimRight", cString.prototype);

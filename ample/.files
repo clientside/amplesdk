@@ -72,9 +72,12 @@ runtime/processors/aml/attributes/droppable.js
 runtime/processors/aml/attributes/resizable.js
 runtime/processors/aml/attributes/selectable.js
 runtime/processors/aml/attributes/resize-edges.js
+runtime/processors/aml/attributes/content.js
+runtime/processors/aml/attributes/values.js
 runtime/processors/aml/elements/data.js
 runtime/processors/aml/elements/handler.js
 runtime/processors/aml/elements/repeater.js
+runtime/processors/aml/managers/LocaleChangeManager.js
 # SMIL 3.0
 runtime/processors/smil/classes/SMILElement.js
 runtime/processors/smil/classes/SMILTimeElement.js
@@ -125,5 +128,6 @@ runtime/compat/String.js
 runtime/compat/XMLHttpRequest.js
 runtime/compat/XMLSerializer.js
 runtime/compat/XSLTProcessor.js
+runtime/compat/Storage.js
 #
 runtime/export.js

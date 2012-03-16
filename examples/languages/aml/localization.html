@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Example: AML Localization</title>
+		<script type="text/javascript" src="../../../ample/runtime.js"></script>
+		<script type="text/javascript" src="../../../ample/cultures/it.js"></script>
+		<script type="text/javascript" src="../../../ample/languages/xhtml/xhtml.js"></script>
+		<link type="text/ample+css" href="../../../ample/languages/xhtml/themes/default/style.css" rel="stylesheet"/>
+		<script type="text/javascript">
+			// En
+			ample.locale.localize("input_state", "en", "true");
+			ample.locale.localize("input_value", "en", "localized input value");
+			ample.locale.localize("div_content", "en", "localized div content");
+			// It
+			ample.locale.localize("input_state", "it", "false");
+			ample.locale.localize("input_value", "it", "valore di ingresso localizzato");
+			ample.locale.localize("div_content", "it", "div contenuti localizzati");
+		</script>
+	</head>
+	<body>
+
+	Culture:
+	<select onchange="ample.config('locale', this.value)">
+		<option selected="selected" value="en">English</option>
+		<option value="it">Italian</option>
+	</select>
+
+<script type="application/ample+xml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:d="http://www.amplesdk.com/ns/data"
+    xmlns:a="http://www.amplesdk.com/ns/aml">
+
+	<h4>@aml:values</h4>
+	<p>
+		<input a:values="disabled:input_state;value:input_value" />
+	</p>
+
+	<h4>@aml:content</h4>
+	<p>
+		<div a:content="div_content" />
+	</p>
+
+</script>
+
+	</body>
+</html>
