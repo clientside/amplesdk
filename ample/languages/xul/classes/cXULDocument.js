@@ -78,42 +78,42 @@ function fXULDocument_applyOverlays(oAmpleNode, oOverlayNode) {
 				if (!oNewDocEl) {
 					//Our id doesn't match an existing element, ...
 					if (oOverlayNode == oOverlayNode.ownerDocument.documentElement) {
-						//...and it's a child of the overlay root, so store it for later, and 
+						//...and it's a child of the overlay root, so store it for later, and
 						//skip to the next child.
 						hXULDocument_overlayFragments[oChild.getAttribute('id')] = oChild;
 						continue;
-					} 
+					}
 					else {
 						//...and it's not a child of the overlay root, so add it to the current node.
 						oNewDocEl = fXULDocument_importAndAdd(oAmpleNode,oChild);
 					}
-				} 
+				}
 				else {
 					//Our id does match an existing element
 					//Check to see if this is a remove instruction...
 					if (oChild.getAttribute('removeelement') && oChild.getAttribute('removeelement') == 'true')	{
-		 	 	 	 	//Remove it, and all children, and skip to the next child.
-		 	 	 	 	oNewDocEl.parentNode.removeChild(oNewDocEl);
-		 	 	 	 	continue;
-		 	 	 	 }
-				 	 //Otherwise, just allow it to merge.
-		 	 	}
-	 		}
+						//Remove it, and all children, and skip to the next child.
+						oNewDocEl.parentNode.removeChild(oNewDocEl);
+						continue;
+					}
+					//Otherwise, just allow it to merge.
+				}
+			}
 			else { //(!oChild.getAttribute('id')
-		 	 	//Our overlay node child doesn't have an ID.
-		 	 	if (oOverlayNode == oOverlayNode.ownerDocument.documentElement) {
-		 	 		//...and it's a child of the overlay root, so insert it into the root.
-		 	 		oNewDocEl = fXULDocument_importAndAdd(oAmpleNode.ownerDocument.documentElement,oChild);
-		 	 	} 
+				//Our overlay node child doesn't have an ID.
+				if (oOverlayNode == oOverlayNode.ownerDocument.documentElement) {
+					//...and it's a child of the overlay root, so insert it into the root.
+					oNewDocEl = fXULDocument_importAndAdd(oAmpleNode.ownerDocument.documentElement,oChild);
+				}
 				else {
-		 	 		//...and it's not a child of root, so add it to the current node.
-		 	 		oNewDocEl = fXULDocument_importAndAdd(oAmpleNode,oChild); //We don't have an id, so insert.
-		 	 	}
+					//...and it's not a child of root, so add it to the current node.
+					oNewDocEl = fXULDocument_importAndAdd(oAmpleNode,oChild); //We don't have an id, so insert.
+				}
 			}
 			fXULDocument_mergeAttributes(oNewDocEl,oChild);
 			fXULDocument_applyOverlays(oNewDocEl,oChild);
-		} 
-		else 
+		}
+		else
 			alert('Non-XUL element in overlay.'+oChild); //We have a non-XUL element, alert.
 	}
 };
@@ -122,37 +122,37 @@ function fXULDocument_importAndAdd(oParent,oNodeToAdd) {
 	var oNewNode = ample.importNode(oNodeToAdd,false);
 	//Remove insertafter,insertbefore, and position attributes from node to be inserted.
 	for (var sAttr in {insertafter:0,insertbefore:0,position:0}) {
-	    if (oNewNode.getAttribute(sAttr))
-	 	   oNewNode.removeAttribute(sAttr);
+		if (oNewNode.getAttribute(sAttr))
+			oNewNode.removeAttribute(sAttr);
 	}
 	if (oNodeToAdd.getAttribute('insertafter')) {
-	    var aInsertAfter = oNodeToAdd.getAttribute('insertafter').split(',');
-	    for (var nIndex = 0; nIndex < aInsertAfter.length; nIndex++) {
-	 	   oInsertAfterEl = ample.query("#"+aInsertAfter[nIndex].trim());
-	 	   if (oInsertAfterEl.size() > 0) {
-	 	 	  oInsertAfterEl.after(oNewNode);
-	 	 	  return oNewNode;
-	 	   }
-	    }
+		var aInsertAfter = oNodeToAdd.getAttribute('insertafter').split(',');
+		for (var nIndex = 0; nIndex < aInsertAfter.length; nIndex++) {
+			oInsertAfterEl = ample.query("#"+aInsertAfter[nIndex].trim());
+			if (oInsertAfterEl.size() > 0) {
+				oInsertAfterEl.after(oNewNode);
+				return oNewNode;
+			}
+		}
 	}
 	if (oNodeToAdd.getAttribute('insertbefore')) {
-	   var aInsertBefore = oNodeToAdd.getAttribute('insertbefore').split(',');
-	    for (var nIndex = 0; nIndex < aInsertBefore.length; nIndex++) {
-	 	   oInsertBeforeEl = ample.query("#"+aInsertBefore[nIndex].trim());
-	 	   if (oInsertBeforeEl.size() > 0) {
-	 	 	  oInsertBeforeEl.before(oNewNode);
-	 	 	  return oNewNode;
-	 	   }
-	    }
+		var aInsertBefore = oNodeToAdd.getAttribute('insertbefore').split(',');
+		for (var nIndex = 0; nIndex < aInsertBefore.length; nIndex++) {
+			oInsertBeforeEl = ample.query("#"+aInsertBefore[nIndex].trim());
+			if (oInsertBeforeEl.size() > 0) {
+				oInsertBeforeEl.before(oNewNode);
+				return oNewNode;
+			}
+		}
 	}
 	if (oNodeToAdd.getAttribute('position')) {
-	    var iPosition = parseInt(oNodeToAdd.getAttribute('position'));
-	    if (iPosition >= 1 && iPosition <= oParent.childNodes.length) { 
-	 	   //If the position is out of range, simply let it fall through to be appended.
-	 	   oParent.insertBefore(oNewNode,oParent.childNodes.item(iPosition-1));  
-	 	 	  //The position is "one-based", whereas childNodes are 0-based.  So -1.
-	 	   return oNewNode;
-	    }
+		var iPosition = parseInt(oNodeToAdd.getAttribute('position'));
+		if (iPosition >= 1 && iPosition <= oParent.childNodes.length) {
+			//If the position is out of range, simply let it fall through to be appended.
+			oParent.insertBefore(oNewNode,oParent.childNodes.item(iPosition-1));
+			//The position is "one-based", whereas childNodes are 0-based.  So -1.
+			return oNewNode;
+		}
 	}
 	oParent.appendChild(oNewNode);
 	return oNewNode;
@@ -160,22 +160,22 @@ function fXULDocument_importAndAdd(oParent,oNodeToAdd) {
 
 function fXULDocument_mergeAttributes(oAmpleNode,oOverlayNode) {
 	if (oOverlayNode.attributes) {
-	    for (var nCounter = 0; nCounter < oOverlayNode.attributes.length; nCounter++) {
-	 	   var oAttr = oOverlayNode.attributes.item(nCounter);
-	 	   if (['insertbefore','insertafter','position'].indexOf(oAttr.name) < 0)
-	 	 	  oAmpleNode.setAttribute(oAttr.name,oAttr.value);
-	    }
-	    return;
+		for (var nCounter = 0; nCounter < oOverlayNode.attributes.length; nCounter++) {
+			var oAttr = oOverlayNode.attributes.item(nCounter);
+			if (['insertbefore','insertafter','position'].indexOf(oAttr.name) < 0)
+				oAmpleNode.setAttribute(oAttr.name,oAttr.value);
+		}
+		return;
 	}
 	//else
 	for (var nCounter = 0; nCounter < oOverlayNode.attributes.length; nCounter++) {
-	    var oAttr = oOverlayNode.attributes.item(nCounter);
-	    if (!(oAttr.value instanceof Function)
-	 	   && !(oAttr.value instanceof Object)
-	 	   && ['insertbefore','insertafter','position'].indexOf(oAttr.name) < 0
-	 	  ) {
-	 	   oAmpleNode.setAttribute(oAttr.name,oAttr.value);
-	    }
+		var oAttr = oOverlayNode.attributes.item(nCounter);
+		if (!(oAttr.value instanceof Function)
+			&& !(oAttr.value instanceof Object)
+			&& ['insertbefore','insertafter','position'].indexOf(oAttr.name) < 0
+		) {
+			oAmpleNode.setAttribute(oAttr.name,oAttr.value);
+		}
 	}	
 }
 
@@ -195,11 +195,11 @@ ample.extend(ample.classes.Document.prototype, cXULDocument.prototype);
 ample.addEventListener(
 	"DOMNodeInsertedIntoDocument",	
 	function(oEvent) {
-	    if (oEvent.target.getAttribute("id")) {
-	  		if (hXULDocument_overlayFragments[oEvent.target.getAttribute("id")]) {
-	 	 	  fXULDocument_applyOverlays(oEvent.target,hXULDocument_overlayFragments[oEvent.target.getAttribute("id")]);
-	 	 	  delete hXULDocument_overlayFragments[oEvent.target.getAttribute("id")];
-	 	   }
+		if (oEvent.target.getAttribute("id")) {
+			if (hXULDocument_overlayFragments[oEvent.target.getAttribute("id")]) {
+				fXULDocument_applyOverlays(oEvent.target,hXULDocument_overlayFragments[oEvent.target.getAttribute("id")]);
+				delete hXULDocument_overlayFragments[oEvent.target.getAttribute("id")];
+			}
 		}
 	},
 	true);
@@ -208,13 +208,13 @@ ample.addEventListener(
 	"DOMAttrModified",	
 	function(oEvent) {
 		if (oEvent.attrName = "id"
-	 	   && hXULDocument_overlayFragments[oEvent.newValue]) {	 	 	  
-	 	   var sFragmentIDs = "";
-	 	   for (var sFragmentID in hXULDocument_overlayFragments) {
-	 	 	  sFragmentIDs += sFragmentID + " ";
-	 	   }
-	 	   fXULDocument_applyOverlays(oEvent.target,hXULDocument_overlayFragments[oEvent.newValue]);
-	 	   delete hXULDocument_overlayFragments[oEvent.newValue];	 	   
+			&& hXULDocument_overlayFragments[oEvent.newValue]) {
+			var sFragmentIDs = "";
+			for (var sFragmentID in hXULDocument_overlayFragments) {
+				sFragmentIDs += sFragmentID + " ";
+			}
+			fXULDocument_applyOverlays(oEvent.target,hXULDocument_overlayFragments[oEvent.newValue]);
+			delete hXULDocument_overlayFragments[oEvent.newValue];
 		}
 	},
 	true);
