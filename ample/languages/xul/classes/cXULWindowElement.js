@@ -78,25 +78,23 @@ cXULWindowElement.prototype.show	= function (nLeft, nTop) {
 		"ease-in",
 		function() {
 			// Show head and body
-			if (that.getAttribute("hidechrome") != "true") {
-				oHead.style.removeProperty('display');
-				
-			}
+			if (that.getAttribute("hidechrome") != "true")
+				oHead.style.display	= "";
 			if (bHeader)
-				oHeader.style.removeProperty('display');
+				oHeader.style.display	= "";
 			if (oFooter)
-				oFooter.style.removeProperty('display');
-			oBody.style.removeProperty('display');
+				oFooter.style.display	= "";
+			oBody.style.display	= "";
 			// Restore opacity
 			ample.query(that).css("opacity", null);
 			// Restore sizes if not specified as attributes
 			if (!that.getAttribute("width"))
-				oContainer.style.width = "";
+				oContainer.style.width	= '';
 			if (!that.getAttribute("height"))
-				oContainer.style.height = "";
+				oContainer.style.height	= '';
 			//
-			oContainer.style.minWidth = "";
-			oContainer.style.minHeight = "";
+			oContainer.style.minWidth	= "";
+			oContainer.style.minHeight	= "";
 			// Reflow
 			oXULReflowManager.schedule(that);
 
@@ -172,15 +170,15 @@ cXULWindowElement.prototype.hide = function() {
 
 			// show head and body
 			if (that.getAttribute("hidechrome") != "true")
-				oHead.style.removeProperty('display');
+				oHead.style.display	= "";
 			if (bHeader)
-				oHeader.style.removeProperty('display');
+				oHeader.style.display	= "";
 			if (oFooter)
-				oFooter.style.removeProperty('display');
-			oBody.style.removeProperty('display');
+				oFooter.style.display	= "";
+			oBody.style.display	= "";
 			//
-			oContainer.style.minWidth = "";
-			oContainer.style.minHeight = "";
+			oContainer.style.minWidth	= "";
+			oContainer.style.minHeight	= "";
 			//
 			var oEvent  = that.ownerDocument.createEvent("CustomEvent");
 			oEvent.initCustomEvent("windowhidden", true, false, null);
