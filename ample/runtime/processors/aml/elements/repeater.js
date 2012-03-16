@@ -93,7 +93,7 @@ cAMLElement_repeater.prototype.repeat	= function() {
 		aElements	= fNodeSelector_query([this.data], this.attributes["select"] || '', fResolver);
 		for (nIndex = 0; nIndex < aElements.length; nIndex++)
 			fElement_insertBefore(this.parentNode,
-				fElement_repeater_processNode(
+				fAMLElement_repeater_processNode(
 					fNode_cloneNode(this.firstChild, true),
 					aElements[nIndex],
 					fResolver),
@@ -101,25 +101,25 @@ cAMLElement_repeater.prototype.repeat	= function() {
 	}
 };
 
-var rElement_repeater_regexp	= /(\{([^\}]+)\})/g;
+var rAMLElement_repeater_regexp	= /(\{([^\}]+)\})/g;
 
 // 'Static' Methods
-function fElement_repeater_processNode(oElement, oData, fResolver) {
+function fAMLElement_repeater_processNode(oElement, oData, fResolver) {
 	var oNode, sName;
 	for (var nIndex = 0; nIndex < oElement.childNodes.length; nIndex++)	{
 		oNode	= oElement.childNodes[nIndex];
 		switch (oNode.nodeType) {
 			case 1:	// cNode.ELEMENT_NODE
 				for (sName in oNode.attributes)
-					if (oNode.attributes.hasOwnProperty(sName) && oNode.attributes[sName].match(rElement_repeater_regexp))
-						oNode.attributes[sName]	= oNode.attributes[sName].replace(cRegExp.$1, fElement_repeater_resolveValue(cRegExp.$2, oData, fResolver));
-				fElement_repeater_processNode(oNode, oData, fResolver);
+					if (oNode.attributes.hasOwnProperty(sName) && oNode.attributes[sName].match(rAMLElement_repeater_regexp))
+						oNode.attributes[sName]	= oNode.attributes[sName].replace(cRegExp.$1, fAMLElement_repeater_resolveValue(cRegExp.$2, oData, fResolver));
+				fAMLElement_repeater_processNode(oNode, oData, fResolver);
 				break;
 
 			case 3:	// cNode.TEXT_NODE
 			case 4:	// cNode.CDATA_SECTION_NODE
-				if (oNode.data.match(rElement_repeater_regexp)) {
-					oNode.data	= oNode.data.replace(cRegExp.$1, fElement_repeater_resolveValue(cRegExp.$2, oData, fResolver));
+				if (oNode.data.match(rAMLElement_repeater_regexp)) {
+					oNode.data	= oNode.data.replace(cRegExp.$1, fAMLElement_repeater_resolveValue(cRegExp.$2, oData, fResolver));
 					oNode.nodeValue	= oNode.data;
 					oNode.length= oNode.data.length;
 				}
@@ -128,7 +128,7 @@ function fElement_repeater_processNode(oElement, oData, fResolver) {
 	return oElement;
 };
 
-function fElement_repeater_resolveValue(sQuery, oData, fResolver) {
+function fAMLElement_repeater_resolveValue(sQuery, oData, fResolver) {
 	var oElement	= fNodeSelector_query([oData], sQuery, fResolver, true)[0];
 	return oElement && oElement.firstChild ? oElement.firstChild.data : '';
 };

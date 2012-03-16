@@ -13,13 +13,13 @@ cAMLAttr_content.prototype	= new cAMLAttr("content");
 // Class Events Handlers
 cAMLAttr_content.handlers	= {};
 cAMLAttr_content.handlers["DOMNodeInsertedIntoDocument"]	= function(oEvent) {
-	fAttr_content_map(this.ownerElement, this.value);
+	fAMLAttr_content_map(this.ownerElement, this.value);
 };
 cAMLAttr_content.handlers["DOMNodeRemovedFromDocument"]	= function(oEvent) {
-	fAttr_content_map(this.ownerElement, '');
+	fAMLAttr_content_map(this.ownerElement, '');
 };
 
-function fAttr_content_map(oElement, sValue) {
+function fAMLAttr_content_map(oElement, sValue) {
 	if (!oElement.childNodes.length) {
 		var oElementDOM	= oElement.$getContainer("gateway") || oElement.$getContainer();
 		if (oElementDOM)

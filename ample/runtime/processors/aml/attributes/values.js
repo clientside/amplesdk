@@ -13,13 +13,13 @@ cAMLAttr_values.prototype	= new cAMLAttr("values");
 // Class Events Handlers
 cAMLAttr_values.handlers	= {};
 cAMLAttr_values.handlers["DOMNodeInsertedIntoDocument"]	= function(oEvent) {
-	fAttr_values_map(this.ownerElement, this.value);
+	fAMLAttr_values_map(this.ownerElement, this.value);
 };
 cAMLAttr_content.handlers["DOMNodeRemovedFromDocument"]	= function(oEvent) {
-	fAttr_values_map(this.ownerElement, '');
+	fAMLAttr_values_map(this.ownerElement, '');
 };
 
-function fAttr_values_map(oElement, sValue) {
+function fAMLAttr_values_map(oElement, sValue) {
 	var aValues		= sValue.trim().split(/\s*;\s*/),
 		oElementDOM	= oElement.$getContainer("gateway") || oElement.$getContainer();
 	for (var nIndex = 0, nLength = aValues.length, aName, aValue, sValue; nIndex < nLength; nIndex++) {
