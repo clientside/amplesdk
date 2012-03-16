@@ -13,15 +13,18 @@ cAttr_content.prototype	= new cAMLAttr("content");
 // Class Events Handlers
 cAttr_content.handlers	= {};
 cAttr_content.handlers["DOMNodeInsertedIntoDocument"]	= function(oEvent) {
-	var oElement	= this.ownerElement;
+	fAttr_content_map(this.ownerElement, this.value);
+};
+cAttr_content.handlers["DOMNodeRemovedFromDocument"]	= function(oEvent) {
+	fAttr_content_map(this.ownerElement, '');
+};
+
+function fAttr_content_map(oElement, sValue) {
 	if (!oElement.childNodes.length) {
 		var oElementDOM	= oElement.$getContainer("gateway") || oElement.$getContainer();
 		if (oElementDOM)
-			oElementDOM.innerHTML	= this.value;
+			oElementDOM.innerHTML	= sValue ? ample.locale.localize(sValue) || '' : '';
 	}
-};
-cAttr_content.handlers["DOMNodeRemovedFromDocument"]	= function(oEvent) {
-	// TODO
 };
 
 // Register Attribute

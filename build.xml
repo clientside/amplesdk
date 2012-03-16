@@ -243,6 +243,8 @@
 			<filelist dir="${source.runtime.dir}/processors/aml/classes/" files="
 				AMLAttr.js,
 				AMLElement.js"/>
+			<filelist dir="${source.runtime.dir}/processors/aml/managers/" files="
+				LocaleChangeManager.js"/>
 			<fileset dir="${source.runtime.dir}/processors/aml/attributes/">
 				<include name="*.js" />
 			</fileset>

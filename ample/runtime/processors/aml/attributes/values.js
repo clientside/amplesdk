@@ -13,24 +13,30 @@ cAttr_values.prototype	= new cAMLAttr("values");
 // Class Events Handlers
 cAttr_values.handlers	= {};
 cAttr_values.handlers["DOMNodeInsertedIntoDocument"]	= function(oEvent) {
-	var oElement	= this.ownerElement,
-		aValues		= this.value.trim().split(/\s*;\s*/),
+	fAttr_values_map(this.ownerElement, this.value);
+};
+cAttr_content.handlers["DOMNodeRemovedFromDocument"]	= function(oEvent) {
+	fAttr_values_map(this.ownerElement, '');
+};
+
+function fAttr_values_map(oElement, sValue) {
+	var aValues		= sValue.trim().split(/\s*;\s*/),
 		oElementDOM	= oElement.$getContainer("gateway") || oElement.$getContainer();
-	for (var nIndex = 0, nLength = aValues.length, aName, aValue, sKey; nIndex < nLength; nIndex++) {
+	for (var nIndex = 0, nLength = aValues.length, aName, aValue, sValue; nIndex < nLength; nIndex++) {
 		aValue	= aValues[nIndex].split(/\s*:\s*/);
 		aName	= aValue[0].split('.');
-		sKey	= aValue[1];
+		sValue	= ample.locale.localize(aValue[1]) || '';
 		if (aName[0] == '') {
 			// Property
 			switch (aName[1]) {
 				case "style":
 					if (oElementDOM)
-						oElementDOM.style[aName[2]]	= sKey;
+						oElementDOM.style[aName[2]]	= sValue;
 					break;
 
 				case "innerHTML":
 					if (oElementDOM)
-						oElementDOM.innerHTML	= sKey;
+						oElementDOM.innerHTML	= sValue;
 					break;
 
 				default:
@@ -39,12 +45,9 @@ cAttr_values.handlers["DOMNodeInsertedIntoDocument"]	= function(oEvent) {
 		}
 		else {
 			// Attribute
-			oElement.setAttribute(aName[0], sKey);
+			oElement.setAttribute(aName[0], sValue);
 		}
 	}
-};
-cAttr_content.handlers["DOMNodeRemovedFromDocument"]	= function(oEvent) {
-	// TODO
 };
 
 // Register Attribute

@@ -77,6 +77,7 @@ runtime/processors/aml/attributes/values.js
 runtime/processors/aml/elements/data.js
 runtime/processors/aml/elements/handler.js
 runtime/processors/aml/elements/repeater.js
+runtime/processors/aml/managers/LocaleChangeManager.js
 # SMIL 3.0
 runtime/processors/smil/classes/SMILElement.js
 runtime/processors/smil/classes/SMILTimeElement.js
