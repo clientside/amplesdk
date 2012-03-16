@@ -13,7 +13,7 @@ cXULElement_overlay.prototype	= new cXULElement("overlay");
 
 // Element Render: open
 cXULElement_overlay.prototype.$getTagOpen	= function() {
-    return '';
+	return '';
 };
 
 // Register Element
