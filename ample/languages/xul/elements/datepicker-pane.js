@@ -120,7 +120,7 @@ cXULElement_datepicker_pane.prototype.doSelectYear	= function(nYear) {
 
 //Static members
 cXULElement_datepicker_pane.parseDateFromString	= function(sDate) {
-	return new Date(sDate);
+	return sDate == '' ? new Date : new Date(sDate.replace(/-/g, '/'));	// IE7 cannot create date object out of empty string
 };
 
 cXULElement_datepicker_pane.handlers	= {
