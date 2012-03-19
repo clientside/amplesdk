@@ -88,7 +88,7 @@ cXULElement_datepicker_pane.prototype._onSelectDay	= function(nDay) {
 	var nYear	= this.current.getFullYear();
 
 	// Update own value attribute
-	var sValue	= nYear + '/' + (nMonth + 1 < 10 ? '0' : '') + (nMonth + 1) + '/' + (nDay < 10 ? '0' : '') + nDay;
+	var sValue	= nYear + '-' + (nMonth + 1 < 10 ? '0' : '') + (nMonth + 1) + '-' + (nDay < 10 ? '0' : '') + nDay;
 	if (this.getAttribute("value") != sValue) {
 		this.setAttribute("value", sValue);
 
