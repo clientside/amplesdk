@@ -41,10 +41,6 @@ cXULDocument.prototype.loadOverlay	= function(sUrl, fObserver) {
 	});
 };
 
-cXULDocument.prototype.applyOverlay	= function(oOverlayDocumentElement) {
-	fXULElement_overlay_applyOverlays(this.documentElement, oOverlayDocumentElement);
-};
-
 /*
 cXULDocument.prototype.addBroadcastListenerFor	= function(oBroadcaster, oObserver, sAttr) {
 
