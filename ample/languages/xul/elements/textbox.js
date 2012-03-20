@@ -66,7 +66,7 @@ cXULElement_textbox.handlers	= {
 					this.$setPseudoClass("disabled", oEvent.newValue == "true");
 					this.$getContainer("input").disabled = oEvent.newValue == "true";
 					if (this.attributes["type"] == "number")
-						this.spinButtons.setAttribute("disabled", oEvent.newValue);
+						this.spinButtons.setAttribute("disabled", oEvent.newValue == "true" ? "true" : "false");
 					break;
 
 				case "readonly":
@@ -112,6 +112,8 @@ cXULElement_textbox.prototype._onChange  = function(oEvent) {
 // Element Render: open
 cXULElement_textbox.prototype.$getTagOpen	= function(oElement) {
 	var bMultiline	= this.attributes["multiline"] == "true";
+	if (this.attributes["type"] == "number" && this.attributes["disabled"] == "true")
+		this.spinButtons.setAttribute("disabled", "true");
     return	'<div class="xul-textbox' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + (bMultiline ? ' xul-textbox-multiline-true' : '') + " xul-textbox-type-" + (this.attributes["type"] || '') + (!this.$isAccessible() ? " xul-textbox_disabled" : '')+ '" style="'+
 				(this.attributes["height"] ? 'height:' + this.attributes["height"] + ';' : '')+
 				(this.attributes["width"] ? 'width:' + this.attributes["width"] + ';' : '')+

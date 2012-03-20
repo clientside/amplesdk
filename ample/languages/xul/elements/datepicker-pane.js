@@ -88,7 +88,7 @@ cXULElement_datepicker_pane.prototype._onSelectDay	= function(nDay) {
 	var nYear	= this.current.getFullYear();
 
 	// Update own value attribute
-	var sValue	= nYear + '/' + (nMonth + 1 < 10 ? '0' : '') + (nMonth + 1) + '/' + (nDay < 10 ? '0' : '') + nDay;
+	var sValue	= nYear + '-' + (nMonth + 1 < 10 ? '0' : '') + (nMonth + 1) + '-' + (nDay < 10 ? '0' : '') + nDay;
 	if (this.getAttribute("value") != sValue) {
 		this.setAttribute("value", sValue);
 
@@ -120,7 +120,7 @@ cXULElement_datepicker_pane.prototype.doSelectYear	= function(nYear) {
 
 //Static members
 cXULElement_datepicker_pane.parseDateFromString	= function(sDate) {
-	return new Date(sDate);
+	return sDate == '' ? new Date : new Date(sDate.replace(/-/g, '/'));	// IE7 cannot create date object out of empty string
 };
 
 cXULElement_datepicker_pane.handlers	= {
@@ -184,6 +184,11 @@ cXULElement_datepicker_pane.handlers	= {
 						this.value	= null;
 					}
 					this.refresh();
+					break;
+
+				case "disabled":
+					this._elementMonth.setAttribute("disabled", oEvent.newValue == "true" ? "true" : "false");
+					this._elementYear.setAttribute("disabled", oEvent.newValue == "true" ? "true" : "false");
 					break;
 			}
 	},
@@ -333,6 +338,11 @@ cXULElement_datepicker_pane.$getTagDays	= function(oInstance, oDate) {
 
 // component renderers
 cXULElement_datepicker_pane.prototype.$getTagOpen	= function() {
+	//
+	if (this.attributes["disabled"] == "true") {
+		this._elementMonth.setAttribute("disabled", "true");
+		this._elementYear.setAttribute("disabled", "true");
+	}
 	return '<div class="xul-datepicker-pane xul-menupopup' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '') + '" style="' +
 				(this.getAttribute("hidden") == "true" ? "display:none;" : '') +
 				(this.hasAttribute("style") ? this.getAttribute("style") : '') + '">\

@@ -79,12 +79,15 @@ xul|menu::arrow {
 	width: 16px;
 	height:16px;
 }
+xul|menu::label,
+xul|menuitem::label,
+xul|menupopup xul|menu::label {
+	padding: 1px;
+}
 xul|menu::label {
+	padding: 2px;
 	padding-left:	5px;
 	padding-right:	5px;
-}
-xul|menupopup xul|menu::label {
-	padding: 0;
 }
 xul|menuitem:selected xul|menuitem::image:checked,
 xul|menuitem:selected xul|menuitem::image:checked,

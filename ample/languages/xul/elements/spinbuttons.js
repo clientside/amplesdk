@@ -53,7 +53,7 @@ cXULElement_spinbuttons.handlers	= {
 			this.releaseCapture();
 		}
 	},
-	"DOMAttrModifed":	function(oEvent) {
+	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this) {
 			switch (oEvent.attrName) {
 				case "disabled":
