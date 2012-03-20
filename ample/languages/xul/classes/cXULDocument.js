@@ -27,12 +27,12 @@ cXULDocument.prototype.loadOverlay	= function(sUrl, fObserver) {
 			"dataType":	"xml",
 			"success":	function(oResponse) {
 				// oOverlay	= ample.importNode(oResponse.documentElement, true);
-				oOverlayDocumentElement = oResponse.documentElement; // We can't import the overlay document 
+				oOverlayDocumentElement = oResponse.documentElement; // We can't import the overlay document
 									// because we still need to differentiate
 									// between the ample Document and the Overlay
 									// Document.
 				// Kick off processing
-				fXULElement_applyOverlays(oDocument.documentElement, oOverlayDocumentElement);
+				fXULElement_overlay_applyOverlays(oDocument.documentElement, oOverlayDocumentElement);
 				// Overlay applied, notify observer.
 				// TODO: This is not really an observer in the XBL sense, but a callback function.
 				if (fObserver instanceof Function)
@@ -42,7 +42,7 @@ cXULDocument.prototype.loadOverlay	= function(sUrl, fObserver) {
 };
 
 cXULDocument.prototype.applyOverlay	= function(oOverlayDocumentElement) {
-	fXULElement_applyOverlays(this.documentElement, oOverlayDocumentElement);
+	fXULElement_overlay_applyOverlays(this.documentElement, oOverlayDocumentElement);
 };
 
 /*
@@ -59,19 +59,21 @@ ample.extend(ample.classes.Document.prototype, cXULDocument.prototype);
 
 // Add cXULDocument-wide events
 ample.addEventListener(
-	"DOMNodeInsertedIntoDocument",	
+	"DOMNodeInsertedIntoDocument",
 	function(oEvent) {
 		if (oEvent.target.hasAttribute("id")) {
-			if (hXULDocument_overlayFragments[oEvent.target.getAttribute("id")]) {
-				fXULElement_applyOverlays(oEvent.target, hXULDocument_overlayFragments[oEvent.target.getAttribute("id")]);
-				delete hXULDocument_overlayFragments[oEvent.target.getAttribute("id")];
+			var sId	= oEvent.target.getAttribute("id");
+			if (hXULDocument_overlayFragments[sId]) {
+				fXULElement_overlay_applyOverlays(oEvent.target, hXULDocument_overlayFragments[sId]);
+				//
+				delete hXULDocument_overlayFragments[sId];
 			}
 		}
 	},
 	true);
 
 ample.addEventListener(
-	"DOMAttrModified",	
+	"DOMAttrModified",
 	function(oEvent) {
 		if (oEvent.attrName = "id" && hXULDocument_overlayFragments[oEvent.newValue]) {
 			var sFragmentIDs = "";
@@ -79,7 +81,8 @@ ample.addEventListener(
 				if (hXULDocument_overlayFragments.hasOwnProperty(sFragmentID))
 					sFragmentIDs += sFragmentID + " ";
 			}
-			fXULElement_applyOverlays(oEvent.target, hXULDocument_overlayFragments[oEvent.newValue]);
+			fXULElement_overlay_applyOverlays(oEvent.target, hXULDocument_overlayFragments[oEvent.newValue]);
+			//
 			delete hXULDocument_overlayFragments[oEvent.newValue];
 		}
 	},

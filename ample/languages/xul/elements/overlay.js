@@ -11,26 +11,26 @@ var cXULElement_overlay	= function(){};
 cXULElement_overlay.prototype	= new cXULElement("overlay");
 
 // Functions for merging overlay DOM into Ample DOM
-function fXULElement_applyOverlays(oAmpleNode, oOverlayNode) {
+function fXULElement_overlay_applyOverlays(oAmpleNode, oOverlayNode) {
 /*
 	For each child of the overlay node, if:
 	  - it does have an ID and:
 		-- that ID matches an existing node in the ample document, then if
-		   --- it has an attribute "removeelement" with a value of "true", remove the element and all children, 
+		   --- it has an attribute "removeelement" with a value of "true", remove the element and all children,
 			if it exists
-		   --- otherwise, the attributes of the overlay node are merged with the ample node, 
+		   --- otherwise, the attributes of the overlay node are merged with the ample node,
 			and the process repeats for all children.
 		-- it doesn't match an existing ID in the ample document, then if
 		   --- these are children of the root node, then
-			it gets stored until that ID appears and applied later, possibly in another overlay or 
+			it gets stored until that ID appears and applied later, possibly in another overlay or
 			javascript insert.
-		   --- otherwise, it gets inserted into the ample node passed in by this function 
-			and the process repeats for all children.	
+		   --- otherwise, it gets inserted into the ample node passed in by this function
+			and the process repeats for all children.
 	  - it doesn't have an ID, then if
 		   --- these are children of the root node, then
 			it gets inserted into the root of the document, and the process repeats for all children.
-		   --- otherwise, it gets inserted into the ample node passed in by this function 
-			and the process repeats for all children.	
+		   --- otherwise, it gets inserted into the ample node passed in by this function
+			and the process repeats for all children.
 */
 	// Action...
 	for (var nIndex = 0; nIndex < oOverlayNode.childNodes.length; nIndex++) {
@@ -43,19 +43,19 @@ function fXULElement_applyOverlays(oAmpleNode, oOverlayNode) {
 			var oAmpleMatchingElement = null;
 			if (oOverlayChild.getAttribute('id')) {
 				// Our overlay node child has an ID.
-				var sID = oOverlayChild.getAttribute('id');
-				oAmpleMatchingElement = ample.getElementById(sID);
+				var sId = oOverlayChild.getAttribute('id');
+				oAmpleMatchingElement = ample.getElementById(sId);
 				if (!oAmpleMatchingElement) {
 					// Our id doesn't match an existing element, ...
 					if (oOverlayNode == oOverlayNode.ownerDocument.documentElement) {
 						// ...and it's a child of the overlay root, so store it for later, and
 						// skip to the next child.
-						hXULDocument_overlayFragments[sID] = oOverlayChild;
+						hXULDocument_overlayFragments[sId] = oOverlayChild;
 						continue;
 					}
 					else {
 						//...and it's not a child of the overlay root, so add it to the current node.
-						oAmpleMatchingElement = fXULElement_importAndAdd(oAmpleNode, oOverlayChild);
+						oAmpleMatchingElement = fXULElement_overlay_importAndAdd(oAmpleNode, oOverlayChild);
 					}
 				}
 				else {
@@ -73,22 +73,22 @@ function fXULElement_applyOverlays(oAmpleNode, oOverlayNode) {
 				// Our overlay node child doesn't have an ID.
 				if (oOverlayNode == oOverlayNode.ownerDocument.documentElement) {
 					// ...and it's a child of the overlay root, so insert it into the root.
-					oAmpleMatchingElement = fXULElement_importAndAdd(oAmpleNode.ownerDocument.documentElement, oOverlayChild);
+					oAmpleMatchingElement = fXULElement_overlay_importAndAdd(oAmpleNode.ownerDocument.documentElement, oOverlayChild);
 				}
 				else {
 					// ...and it's not a child of root, so add it to the current node.
-					oAmpleMatchingElement = fXULElement_importAndAdd(oAmpleNode, oOverlayChild); // We don't have an id, so insert.
+					oAmpleMatchingElement = fXULElement_overlay_importAndAdd(oAmpleNode, oOverlayChild); // We don't have an id, so insert.
 				}
 			}
-			fXULElement_mergeAttributes(oAmpleMatchingElement, oOverlayChild);
-			fXULElement_applyOverlays(oAmpleMatchingElement, oOverlayChild);
+			fXULElement_overlay_mergeAttributes(oAmpleMatchingElement, oOverlayChild);
+			fXULElement_overlay_applyOverlays(oAmpleMatchingElement, oOverlayChild);
 		}
 		else
 			alert('Non-XUL element in overlay.'+oOverlayChild); // We have a non-XUL element, alert.
 	}
 };
 
-function fXULElement_importAndAdd(oParent, oOverlayNodeToAdd) {
+function fXULElement_overlay_importAndAdd(oParent, oOverlayNodeToAdd) {
 	var oAmpleNewNode = ample.importNode(oOverlayNodeToAdd, false);
 	// Remove insertafter, insertbefore, and position attributes from node to be inserted.
 	var hAttributeFilter = {insertafter:1, insertbefore:1, position:1};
@@ -136,7 +136,7 @@ function fXULElement_importAndAdd(oParent, oOverlayNodeToAdd) {
 	return oAmpleNewNode;
 }
 
-function fXULElement_mergeAttributes(oAmpleNode, oOverlayNode) {
+function fXULElement_overlay_mergeAttributes(oAmpleNode, oOverlayNode) {
 	var hAttributeFilter = {insertafter:1, insertbefore:1, position:1};
 	if (oOverlayNode.attributes) {
 		for (var nCounter = 0; nCounter < oOverlayNode.attributes.length; nCounter++) {
@@ -152,7 +152,7 @@ function fXULElement_mergeAttributes(oAmpleNode, oOverlayNode) {
 		if (!(oAttr.value instanceof Function) && !(oAttr.value instanceof Object) && (!hAttributeFilter.hasOwnProperty(oAttr.name) || !hAttributeFilter[oAttr.name])) {
 			oAmpleNode.setAttribute(oAttr.name, oAttr.value);
 		}
-	}	
+	}
 }
 
 
