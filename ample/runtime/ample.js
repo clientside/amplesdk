@@ -84,6 +84,12 @@ function fQuery(vArgument1, vArgument2, vArgument3) {
 		if (vArgument1 instanceof cElement)
 			oQuery[oQuery.length++]	= vArgument1;
 		else
+		if (vArgument1 instanceof cNodeList)
+			fQuery_each(vArgument1, function() {
+				if (this.nodeType == 1)
+					oQuery[oQuery.length++]	= this;
+			});
+		else
 		if (vArgument1 instanceof cQuery)
 			fQuery_each(vArgument1, function() {
 				oQuery[oQuery.length++]	= this;
