@@ -70,16 +70,12 @@ ample.addEventListener("DOMNodeInsertedIntoDocument", function(oEvent) {
 }, true);
 
 ample.addEventListener("DOMAttrModified", function(oEvent) {
-	if (oEvent.target.ownerElement instanceof cXULElement && oEvent.attrName == "id") {
-		if (hXULDocument_overlayFragments[oEvent.newValue]) {
-			var sFragmentIDs = "";
-			for (var sFragmentID in hXULDocument_overlayFragments) {
-				if (hXULDocument_overlayFragments.hasOwnProperty(sFragmentID))
-					sFragmentIDs += sFragmentID + " ";
-			}
-			fXULElement_overlay_applyOverlays(oEvent.target, hXULDocument_overlayFragments[oEvent.newValue]);
+	if (oEvent.target instanceof cXULElement && oEvent.attrName == "id") {
+		var sId	= oEvent.newValue;
+		if (hXULDocument_overlayFragments[sId]) {
+			fXULElement_overlay_applyOverlays(oEvent.target, hXULDocument_overlayFragments[sId]);
 			//
-			delete hXULDocument_overlayFragments[oEvent.newValue];
+			delete hXULDocument_overlayFragments[sId];
 		}
 	}
 }, true);
