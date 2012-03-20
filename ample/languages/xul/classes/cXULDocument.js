@@ -16,32 +16,33 @@ cXULDocument.prototype.tooltipNode	= null;
 cXULDocument.prototype.commandDispatcher	= null;
 
 // Private properties
-var hXULDocument_overlays	= {};
+var hXULDocument_overlayFragments	= {};
 
 // Public methods
 cXULDocument.prototype.loadOverlay	= function(sUrl, fObserver) {
-	var oDocument	= this,
-		oOverlay	= hXULDocument_overlays[sUrl];
-	if (!oOverlay) {
-		ample.ajax({
-				"url": 		sUrl,
-				"async":	true,
-				"dataType":	"xml",
-				"success":	function(oResponse) {
-					oOverlay	= ample.importNode(oResponse.documentElement, true);
-					// Cache document
-					hXULDocument_overlays[sUrl]	= oOverlay;
-					// Kick off processing
-					fXULDocument_applyOverlays(oDocument, oOverlay);
-				}
-		});
-	}
-	else
-		fXULDocument_applyOverlays(oDocument, oOverlay);
+	var oDocument	= this;
+	ample.ajax({
+			"url": 		sUrl,
+			"async":	true,
+			"dataType":	"xml",
+			"success":	function(oResponse) {
+				// oOverlay	= ample.importNode(oResponse.documentElement, true);
+				oOverlayDocumentElement = oResponse.documentElement; // We can't import the overlay document 
+									// because we still need to differentiate
+									// between the ample Document and the Overlay
+									// Document.
+				// Kick off processing
+				fXULElement_applyOverlays(oDocument.documentElement, oOverlayDocumentElement);
+				// Overlay applied, notify observer.
+				// TODO: This is not really an observer in the XBL sense, but a callback function.
+				if (fObserver instanceof Function)
+					fObserver();
+			}
+	});
 };
 
-function fXULDocument_applyOverlays(oDocument, oOverlay) {
-	console.log(oOverlay);
+cXULDocument.prototype.applyOverlay	= function(oOverlayDocumentElement) {
+	fXULElement_applyOverlays(this.documentElement, oOverlayDocumentElement);
 };
 
 /*
@@ -55,3 +56,31 @@ cXULDocument.prototype.removeBroadcastListenerFor	= function(oBroadcaster, oObse
 */
 // Register with Ample SDK
 ample.extend(ample.classes.Document.prototype, cXULDocument.prototype);
+
+// Add cXULDocument-wide events
+ample.addEventListener(
+	"DOMNodeInsertedIntoDocument",	
+	function(oEvent) {
+		if (oEvent.target.hasAttribute("id")) {
+			if (hXULDocument_overlayFragments[oEvent.target.getAttribute("id")]) {
+				fXULElement_applyOverlays(oEvent.target, hXULDocument_overlayFragments[oEvent.target.getAttribute("id")]);
+				delete hXULDocument_overlayFragments[oEvent.target.getAttribute("id")];
+			}
+		}
+	},
+	true);
+
+ample.addEventListener(
+	"DOMAttrModified",	
+	function(oEvent) {
+		if (oEvent.attrName = "id" && hXULDocument_overlayFragments[oEvent.newValue]) {
+			var sFragmentIDs = "";
+			for (var sFragmentID in hXULDocument_overlayFragments) {
+				if (hXULDocument_overlayFragments.hasOwnProperty(sFragmentID))
+					sFragmentIDs += sFragmentID + " ";
+			}
+			fXULElement_applyOverlays(oEvent.target, hXULDocument_overlayFragments[oEvent.newValue]);
+			delete hXULDocument_overlayFragments[oEvent.newValue];
+		}
+	},
+	true);
