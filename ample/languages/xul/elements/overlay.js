@@ -61,7 +61,7 @@ function fXULElement_overlay_applyOverlays(oAmpleNode, oOverlayNode) {
 				else {
 					// Our id does match an existing element
 					// Check to see if this is a remove instruction...
-					if (oOverlayChild.getAttribute('removeelement') && oOverlayChild.getAttribute('removeelement') == 'true')	{
+					if (oOverlayChild.getAttribute('removeelement') == 'true')	{
 						// Remove it, and all children, and skip to the next child.
 						oAmpleMatchingElement.parentNode.removeChild(oAmpleMatchingElement);
 						continue;
@@ -124,7 +124,7 @@ function fXULElement_overlay_importAndAdd(oParent, oOverlayNodeToAdd) {
 		}
 	}
 	if (oOverlayNodeToAdd.getAttribute('position')) {
-		var nPosition = parseInt(oOverlayNodeToAdd.getAttribute('position'));
+		var nPosition = oOverlayNodeToAdd.getAttribute('position') * 1;
 		if (nPosition >= 1 && nPosition <= oParent.childNodes.length) {
 			// If the position is out of range, simply let it fall through to be appended.
 			oParent.insertBefore(oAmpleNewNode, oParent.childNodes[nPosition-1]);
