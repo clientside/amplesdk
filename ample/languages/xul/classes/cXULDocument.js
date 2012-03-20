@@ -58,34 +58,28 @@ cXULDocument.prototype.removeBroadcastListenerFor	= function(oBroadcaster, oObse
 ample.extend(ample.classes.Document.prototype, cXULDocument.prototype);
 
 // Add cXULDocument-wide events
-ample.addEventListener(
-	"DOMNodeInsertedIntoDocument",
-	function(oEvent) {
-		if (oEvent.target.ownerElement instanceof cXULElement && oEvent.target.hasAttribute("id")) {
-			var sId	= oEvent.target.getAttribute("id");
-			if (hXULDocument_overlayFragments[sId]) {
-				fXULElement_overlay_applyOverlays(oEvent.target, hXULDocument_overlayFragments[sId]);
-				//
-				delete hXULDocument_overlayFragments[sId];
-			}
+ample.addEventListener("DOMNodeInsertedIntoDocument", function(oEvent) {
+	if (oEvent.target instanceof cXULElement && oEvent.target.hasAttribute("id")) {
+		var sId	= oEvent.target.getAttribute("id");
+		if (hXULDocument_overlayFragments[sId]) {
+			fXULElement_overlay_applyOverlays(oEvent.target, hXULDocument_overlayFragments[sId]);
+			//
+			delete hXULDocument_overlayFragments[sId];
 		}
-	},
-	true);
+	}
+}, true);
 
-ample.addEventListener(
-	"DOMAttrModified",
-	function(oEvent) {
-		if (oEvent.target.ownerElement instanceof cXULElement && oEvent.attrName == "id") {
-			if (hXULDocument_overlayFragments[oEvent.newValue]) {
-				var sFragmentIDs = "";
-				for (var sFragmentID in hXULDocument_overlayFragments) {
-					if (hXULDocument_overlayFragments.hasOwnProperty(sFragmentID))
-						sFragmentIDs += sFragmentID + " ";
-				}
-				fXULElement_overlay_applyOverlays(oEvent.target, hXULDocument_overlayFragments[oEvent.newValue]);
-				//
-				delete hXULDocument_overlayFragments[oEvent.newValue];
+ample.addEventListener("DOMAttrModified", function(oEvent) {
+	if (oEvent.target.ownerElement instanceof cXULElement && oEvent.attrName == "id") {
+		if (hXULDocument_overlayFragments[oEvent.newValue]) {
+			var sFragmentIDs = "";
+			for (var sFragmentID in hXULDocument_overlayFragments) {
+				if (hXULDocument_overlayFragments.hasOwnProperty(sFragmentID))
+					sFragmentIDs += sFragmentID + " ";
 			}
+			fXULElement_overlay_applyOverlays(oEvent.target, hXULDocument_overlayFragments[oEvent.newValue]);
+			//
+			delete hXULDocument_overlayFragments[oEvent.newValue];
 		}
-	},
-	true);
+	}
+}, true);
