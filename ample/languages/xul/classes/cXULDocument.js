@@ -61,7 +61,7 @@ ample.extend(ample.classes.Document.prototype, cXULDocument.prototype);
 ample.addEventListener(
 	"DOMNodeInsertedIntoDocument",
 	function(oEvent) {
-		if (oEvent.target.hasAttribute("id")) {
+		if (oEvent.target.ownerElement instanceof cXULElement && oEvent.target.hasAttribute("id")) {
 			var sId	= oEvent.target.getAttribute("id");
 			if (hXULDocument_overlayFragments[sId]) {
 				fXULElement_overlay_applyOverlays(oEvent.target, hXULDocument_overlayFragments[sId]);
@@ -75,15 +75,17 @@ ample.addEventListener(
 ample.addEventListener(
 	"DOMAttrModified",
 	function(oEvent) {
-		if (oEvent.attrName = "id" && hXULDocument_overlayFragments[oEvent.newValue]) {
-			var sFragmentIDs = "";
-			for (var sFragmentID in hXULDocument_overlayFragments) {
-				if (hXULDocument_overlayFragments.hasOwnProperty(sFragmentID))
-					sFragmentIDs += sFragmentID + " ";
+		if (oEvent.target.ownerElement instanceof cXULElement && oEvent.attrName == "id") {
+			if (hXULDocument_overlayFragments[oEvent.newValue]) {
+				var sFragmentIDs = "";
+				for (var sFragmentID in hXULDocument_overlayFragments) {
+					if (hXULDocument_overlayFragments.hasOwnProperty(sFragmentID))
+						sFragmentIDs += sFragmentID + " ";
+				}
+				fXULElement_overlay_applyOverlays(oEvent.target, hXULDocument_overlayFragments[oEvent.newValue]);
+				//
+				delete hXULDocument_overlayFragments[oEvent.newValue];
 			}
-			fXULElement_overlay_applyOverlays(oEvent.target, hXULDocument_overlayFragments[oEvent.newValue]);
-			//
-			delete hXULDocument_overlayFragments[oEvent.newValue];
 		}
 	},
 	true);
