@@ -360,7 +360,7 @@
 			<node title="Elements">
 				<node title="Windows">
 					<node title="dialog" url="ample/xul/dialog.xml"/>
-					<node title="overlay" xurl="ample/xul/overlay.xml"/>
+					<node title="overlay" url="ample/xul/overlay.xml"/>
 					<node title="preference" xurl="ample/xul/preference.xml"/>
 					<node title="preferences" xurl="ample/xul/preferences.xml"/>
 					<node title="prefpane" xurl="ample/xul/prefpane.xml"/>
