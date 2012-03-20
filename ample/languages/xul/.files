@@ -27,6 +27,8 @@ elements/page.js
 elements/window.js
 elements/wizard.js
 elements/wizardpage.js
+# overlays
+elements/overlay.js
 # resource
 elements/script.js
 # commands
