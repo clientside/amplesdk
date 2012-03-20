@@ -80,7 +80,7 @@ cQuery.prototype.bind	= function(sType, fHandler, bCapture) {
 	return this;
 };
 
-cQuery.prototype.unbind	= function(sType, fHandler, bCaprure) {
+cQuery.prototype.unbind	= function(sType, fHandler, bCapture) {
 //->Guard
 	fGuard(arguments, [
 		["type",	cString],

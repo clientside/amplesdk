@@ -16,6 +16,7 @@
 				<li><link type="class">Query</link> <link type="object">ample</link>.query(String <em>xml</em>)</li>
 				<li><link type="class">Query</link> <link type="object">ample</link>.query(<link type="class">Query</link> <em>collection</em>)</li>
 				<li><link type="class">Query</link> <link type="object">ample</link>.query(<link type="class">Element</link> <em>element</em>)</li>
+				<li><link type="class">Query</link> <link type="object">ample</link>.query(<link type="class">NodeList</link> <em>nodelist</em>)</li>
 			</ul>
 		</locale>
 	</abstract>
@@ -113,7 +114,16 @@
 					<argument name="element" type="Element">
 						<description>
 							<locale>
-								An Ample SDK element object.
+								An Ample SDK Element object.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<arguments>
+					<argument name="nodelist" type="NodeList">
+						<description>
+							<locale>
+								An Ample SDK NodeList object.
 							</locale>
 						</description>
 					</argument>
