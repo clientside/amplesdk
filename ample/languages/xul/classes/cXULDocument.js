@@ -74,12 +74,12 @@ function fXULElement_applyOverlays(oAmpleNode, oOverlayNode) {
 		if (oOverlayChild.nodeType == ample.classes.Node.COMMENT_NODE)
 			continue;
 		if (oOverlayChild.nodeType == ample.classes.Node.ELEMENT_NODE) {
-			var oNewDocumentElement = null;
+			var oAmpleMatchingElement = null;
 			if (oOverlayChild.getAttribute('id')) {
 				//Our overlay node child has an ID.
 				var sID = oOverlayChild.getAttribute('id');
-				oNewDocumentElement = ample.getElementById(sID);
-				if (!oNewDocumentElement) {
+				oAmpleMatchingElement = ample.getElementById(sID);
+				if (!oAmpleMatchingElement) {
 					//Our id doesn't match an existing element, ...
 					if (oOverlayNode == oOverlayNode.ownerDocument.documentElement) {
 						//...and it's a child of the overlay root, so store it for later, and
@@ -89,7 +89,7 @@ function fXULElement_applyOverlays(oAmpleNode, oOverlayNode) {
 					}
 					else {
 						//...and it's not a child of the overlay root, so add it to the current node.
-						oNewDocumentElement = fXULElement_importAndAdd(oAmpleNode,oOverlayChild);
+						oAmpleMatchingElement = fXULElement_importAndAdd(oAmpleNode,oOverlayChild);
 					}
 				}
 				else {
@@ -97,7 +97,7 @@ function fXULElement_applyOverlays(oAmpleNode, oOverlayNode) {
 					//Check to see if this is a remove instruction...
 					if (oOverlayChild.getAttribute('removeelement') && oOverlayChild.getAttribute('removeelement') == 'true')	{
 						//Remove it, and all children, and skip to the next child.
-						oNewDocumentElement.parentNode.removeChild(oNewDocumentElement);
+						oAmpleMatchingElement.parentNode.removeChild(oAmpleMatchingElement);
 						continue;
 					}
 					//Otherwise, just allow it to merge.
@@ -107,15 +107,15 @@ function fXULElement_applyOverlays(oAmpleNode, oOverlayNode) {
 				//Our overlay node child doesn't have an ID.
 				if (oOverlayNode == oOverlayNode.ownerDocument.documentElement) {
 					//...and it's a child of the overlay root, so insert it into the root.
-					oNewDocumentElement = fXULElement_importAndAdd(oAmpleNode.ownerDocument.documentElement,oOverlayChild);
+					oAmpleMatchingElement = fXULElement_importAndAdd(oAmpleNode.ownerDocument.documentElement,oOverlayChild);
 				}
 				else {
 					//...and it's not a child of root, so add it to the current node.
-					oNewDocumentElement = fXULElement_importAndAdd(oAmpleNode,oOverlayChild); //We don't have an id, so insert.
+					oAmpleMatchingElement = fXULElement_importAndAdd(oAmpleNode,oOverlayChild); //We don't have an id, so insert.
 				}
 			}
-			fXULElement_mergeAttributes(oNewDocumentElement,oOverlayChild);
-			fXULElement_applyOverlays(oNewDocumentElement,oOverlayChild);
+			fXULElement_mergeAttributes(oAmpleMatchingElement,oOverlayChild);
+			fXULElement_applyOverlays(oAmpleMatchingElement,oOverlayChild);
 		}
 		else
 			alert('Non-XUL element in overlay.'+oOverlayChild); //We have a non-XUL element, alert.
@@ -123,11 +123,11 @@ function fXULElement_applyOverlays(oAmpleNode, oOverlayNode) {
 };
 
 function fXULElement_importAndAdd(oParent,oOverlayNodeToAdd) {
-	var oNewNode = ample.importNode(oOverlayNodeToAdd,false);
+	var oAmpleNewNode = ample.importNode(oOverlayNodeToAdd,false);
 	//Remove insertafter,insertbefore, and position attributes from node to be inserted.
 	for (var sAttributeName in {insertafter:0,insertbefore:0,position:0}) {
-		if (oNewNode.hasAttribute(sAttributeName))
-			oNewNode.removeAttribute(sAttributeName);
+		if (oAmpleNewNode.hasAttribute(sAttributeName))
+			oAmpleNewNode.removeAttribute(sAttributeName);
 	}
 	if (oOverlayNodeToAdd.getAttribute('insertafter')) {
 		var aInsertAfter = oOverlayNodeToAdd.getAttribute('insertafter').split(',');
@@ -137,10 +137,10 @@ function fXULElement_importAndAdd(oParent,oOverlayNodeToAdd) {
 			for (var nAfterIndex = 0; nAfterIndex < oParent.childNodes.length; nAfterIndex++) {
 				if (oParent.childNodes[nAfterIndex] == oInsertAfterElement) {
 					if (nAfterIndex == oParent.childNodes.length-1)
-						oParent.appendChild(oNewNode);
+						oParent.appendChild(oAmpleNewNode);
 					else
-						oParent.insertBefore(oNewNode,oParent.childNodes[nAfterIndex+1]);
-					return oNewNode;
+						oParent.insertBefore(oAmpleNewNode,oParent.childNodes[nAfterIndex+1]);
+					return oAmpleNewNode;
 				}
 			}
 		}
@@ -150,8 +150,8 @@ function fXULElement_importAndAdd(oParent,oOverlayNodeToAdd) {
 		for (var nIndex = 0; nIndex < aInsertBefore.length; nIndex++) {
 			oInsertBeforeElement = ample.getElementById(aInsertBefore[nIndex].trim());
 			if (oInsertBeforeElement) {
-				oParent.insertBefore(oNewNode,oInsertBeforeElement);
-				return oNewNode;
+				oParent.insertBefore(oAmpleNewNode,oInsertBeforeElement);
+				return oAmpleNewNode;
 			}
 		}
 	}
@@ -159,13 +159,13 @@ function fXULElement_importAndAdd(oParent,oOverlayNodeToAdd) {
 		var nPosition = parseInt(oOverlayNodeToAdd.getAttribute('position'));
 		if (nPosition >= 1 && nPosition <= oParent.childNodes.length) {
 			//If the position is out of range, simply let it fall through to be appended.
-			oParent.insertBefore(oNewNode,oParent.childNodes[nPosition-1]);
+			oParent.insertBefore(oAmpleNewNode,oParent.childNodes[nPosition-1]);
 			//The position is "one-based", whereas childNodes are 0-based.  So -1.
-			return oNewNode;
+			return oAmpleNewNode;
 		}
 	}
-	oParent.appendChild(oNewNode);
-	return oNewNode;
+	oParent.appendChild(oAmpleNewNode);
+	return oAmpleNewNode;
 }
 
 function fXULElement_mergeAttributes(oAmpleNode,oOverlayNode) {
