@@ -13,11 +13,13 @@
 	<examples/>
 	<members>
 		<methods>
-			<!--
 			<method name="loadOverlay" type="Void">
 				<arguments>
 					<argument name="url" type="String">
 						<description>
+							<locale>
+								A string containing the URL of the overlay to load.
+							</locale>
 							<locale xml:lang="ru">
 								URL ресурса для загрузки
 							</locale>
@@ -25,11 +27,15 @@
 					</argument>
 				</arguments>
 				<description>
+					<locale>
+						Loads a XUL overlay and merges it with the current document, notifying an observer when the merge is complete.
+					</locale>
 					<locale xml:lang="ru">
 						Загружает ресурс с фрагментом XUL, склеивает его с текущим документом, а по завершении склеивания передает событие обсерверу.
 					</locale>
 				</description>
 			</method>
+			<!--
 			<method name="addBroadcastListenerFor" type="Void">
 				<arguments>
 					<argument name="broadcaster" type="Element">
