@@ -222,7 +222,7 @@ cQuery.prototype.load	= function(sUrl, vData, fCallback) {
 	fGuard(arguments, [
 		["url",		cString],
 		["data",	cObject,	true,	true],
-		["success",	cFunction,	true]
+		["complete",cFunction,	true]
 	]);
 //<-Guard
 
