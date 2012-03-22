@@ -254,7 +254,7 @@ cXULElement.prototype.getBoxObjectParam	= function(sName) {
 };
 */
 cXULElement.prototype.$getTag		= function() {
-	var aHtml	= [],
+	var aHtml		= [],
 		bBoxContainer	= this instanceof cXULElement && this.viewType == cXULElement.VIEW_TYPE_BOXED &&!(this instanceof cXULElement_row),
 		bBoxChild		= this.parentNode && this.parentNode.viewType == cXULElement.VIEW_TYPE_BOXED &&!(this.parentNode instanceof cXULElement_rows) || this.parentNode instanceof cXULElement_row;
 
@@ -286,7 +286,7 @@ cXULElement.prototype.$getTag		= function() {
 	if (bBoxChild)
 		aHtml[aHtml.length]	= cXULElement.getBoxCloseChild(this);
 
-	return aHtml.join("");
+	return aHtml.join('');//.length ? (bBoxChild ? cXULElement.getBoxOpenChild(this) : '') + aHtml.join('') + (bBoxChild ? cXULElement.getBoxCloseChild(this) : '') : '';
 };
 
 /* Hack. This enables using non-XUL elements as children of XUL elements */

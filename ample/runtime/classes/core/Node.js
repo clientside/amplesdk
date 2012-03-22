@@ -683,8 +683,8 @@ function fNode_handleEvent(oNode, oEvent) {
 
 	// Event default actions implementation
 	if (oEvent.eventPhase != cEvent.CAPTURING_PHASE && !oEvent.defaultPrevented)
-		if (oNode.nodeType == 1 || oNode.nodeType == 2) {
-			var fConstructor	= hClasses[oNode.namespaceURI + '#' + (oNode.nodeType == 1 ? '' : '@') + oNode.localName];
+		if (oNode.nodeType == 1 || oNode.nodeType == 2 || oNode.nodeType == 7) {
+			var fConstructor	= hClasses[oNode.nodeType != 7 ? (oNode.namespaceURI + '#' + (oNode.nodeType == 1 ? '' : '@') + oNode.localName): '?' + oNode.nodeName];
 			if (fConstructor && fConstructor.handlers && fConstructor.handlers[sType])
 				fConstructor.handlers[sType].call(oNode, oEvent);
 		}

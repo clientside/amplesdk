@@ -14,7 +14,7 @@ cXULOverlayPI.prototype	= new ample.classes.ProcessingInstruction;
 cXULOverlayPI.prototype.target	= "xul-overlay";
 
 cXULOverlayPI.handlers	= {
-	"DOMNodeInsertedIntoDocument":	function() {
+	"DOMNodeInserted":	function() {
 		var aHref	= this.data.match(/href=('([^']*)'|"([^"]*)")/);
 		if (aHref)
 			this.ownerDocument.loadOverlay(aHref[2] || aHref[3]);
