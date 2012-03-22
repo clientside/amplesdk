@@ -318,10 +318,10 @@
 			<arg value="--obfuscate" />
 			<arg value="--strip-Source" />
 		</exec>
-			<replace file="${temp.runtime.dir}/runtime-dev.js">
-				<replacefilter token="@project_version@"	value="${project.name}/${project.version} (build:${build.signature; dev})"	/>
-				<replacefilter token="@project_userAgent@"	value="${project.name}/${project.version}"	/>
-			</replace>
+		<replace file="${temp.runtime.dir}/runtime-dev.js">
+			<replacefilter token="@project_version@"	value="${project.name}/${project.version} (build:${build.signature}; dev)"	/>
+			<replacefilter token="@project_userAgent@"	value="${project.name}/${project.version}"	/>
+		</replace>
 		<concat destfile="${target.runtime.dir}/runtime-dev.js" fixlastline="yes">
 			<fileset file="${copying.js}" />
 			<fileset file="${temp.runtime.dir}/runtime-dev.js" />
