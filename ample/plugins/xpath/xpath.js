@@ -12,6 +12,8 @@
  * Source-only loader (fallback for missing Apache+mod_rewrite+PHP installation)
  *
  */
+var cRegExp	= window.RegExp;
+
 (function() {
 	var files	= [];
 	//
@@ -20,7 +22,10 @@
 	files.push("classes/XPathExpression.js");
 	files.push("classes/XPathNamespace.js");
 	files.push("classes/XPathNSResolver.js");
+	files.push("classes/XPathParser.js");
 	files.push("classes/XPathResult.js");
+	files.push("classes/XPathToken.js");
+	files.push("classes/XPathTokenizer.js");
 	//
 	files.push("parser/parser.js");
 	files.push("evaluator/evaluator.js");

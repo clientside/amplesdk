@@ -1,0 +1,3 @@
+NodeTest
+KindTest
+Wildcard

@@ -8,16 +8,16 @@
  */
 
 function cXPathExpression(sExpression, oResolver) {
-	this.$expression	= fXPathExpression_parse(this, sExpression);
+	this.$expression	= fXPathParser_parse(sExpression, 1, 1);
 	this.$resolver		= oResolver;
 };
 
 cXPathExpression.prototype.evaluate	= function(oNode, nType, oResult) {
 	// validate API
 	ample.guard(arguments, [
-		["context",		Node],
-		["type",		Number,	true,	true],
-		["result",		Object, true,	true]
+		["context",		cNode],
+		["type",		cNumber,	true,	true],
+		["result",		cObject, 	true,	true]
 	]);
 
 	// Invoke implementation
