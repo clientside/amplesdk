@@ -174,8 +174,7 @@
 				ResizeManager.js,
 				DragAndDropManager.js,
 				SelectionManager.js,
-				CaptureManager.js,
-				TouchManager.js"/>
+				CaptureManager.js"/>
 			<!-- API Modules -->
 			<filelist dir="${source.runtime.dir}/modules/" files="
 				ajax.js,
@@ -749,6 +748,7 @@
 		<antcall target="BUILD_AMPLE_PLUGINS_COOKIE" />
 		<antcall target="BUILD_AMPLE_PLUGINS_FORMS" />
 		<antcall target="BUILD_AMPLE_PLUGINS_STORE" />
+		<antcall target="BUILD_AMPLE_PLUGINS_TOUCH" />
 		<antcall target="BUILD_AMPLE_PLUGINS_XPATH" />
 		<antcall target="BUILD_AMPLE_PLUGINS_XSLT" />
 
@@ -834,6 +834,33 @@
 		<concat destfile="${target.store.dir}/store.js" fixlastline="yes">
 			<fileset file="${copying.js}" />
 			<fileset file="${temp.ample.plugins.dir}/store-raw-wrapped.js" />
+		</concat>
+	</target>
+
+	<target name="BUILD_AMPLE_PLUGINS_TOUCH" unless="skip.ample.plugins.touch">
+		<property name="source.touch.dir" value="${source.ample.plugins.dir}/touch/" />
+		<property name="target.touch.dir" value="${target.ample.plugins.dir}/touch/" />
+
+		<echo message="Merging into: ${temp.ample.plugins.dir}/touch-raw.js" level="info"/>
+		<concat destfile="${temp.ample.plugins.dir}/touch-raw.js" fixlastline="yes">
+			<fileset dir="${source.touch.dir}/">
+				<include name="touch.js" />
+			</fileset>
+		</concat>
+
+		<echo message="Wrapping into: ${temp.ample.plugins.dir}/touch-raw-wrapped.js" level="info"/>
+		<exec executable="${executable.php}" failonerror="true">
+			<arg value="resources/compiler/js.php" />
+			<arg value="${temp.ample.plugins.dir}/touch-raw.js" />
+			<arg value="${temp.ample.plugins.dir}/touch-raw-wrapped.js" />
+			<arg value="--strip-Source" />
+		</exec>
+
+		<!-- package -->
+		<mkdir dir="${target.touch.dir}" />
+		<concat destfile="${target.touch.dir}/touch.js" fixlastline="yes">
+			<fileset file="${copying.js}" />
+			<fileset file="${temp.ample.plugins.dir}/touch-raw-wrapped.js" />
 		</concat>
 	</target>
 

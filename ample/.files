@@ -101,7 +101,6 @@ runtime/managers/ResizeManager.js
 runtime/managers/DragAndDropManager.js
 runtime/managers/SelectionManager.js
 runtime/managers/CaptureManager.js
-runtime/managers/TouchManager.js
 # Modules
 runtime/modules/ajax.js
 runtime/modules/attributes.js
