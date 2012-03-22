@@ -35,11 +35,11 @@ function fElement_appendChild(oParent, oNode)
 	fNode_appendChild(oParent, oNode);
 
 	// Append DOM
-	var oGateway, oElement;
+	var oGateway, oChild;
 	if (oParent.nodeType == 1)	// cNode.ELEMENT_NODE
 		if (oGateway =(oParent.$getContainer("gateway") || oParent.$getContainer()))
-			if (oElement = (oNode.$getContainer() || fBrowser_render(oNode)))
-		   		oGateway.appendChild(oElement);
+			if (oChild = (oNode.$getContainer() || fBrowser_render(oNode)))
+		   		oGateway.appendChild(oChild);
 
 	// Register Instance
 	if (oDocument_all[oParent.uniqueID])
@@ -73,7 +73,7 @@ function fElement_insertBefore(oParent, oNode, oBefore)
 	// Insert DOM
 	var oGateway, oChild;
 	if (oParent.nodeType == 1)	// cNode.ELEMENT_NODE
-		if ((oGateway =(oParent.$getContainer("gateway") || oParent.$getContainer())))
+		if (oGateway =(oParent.$getContainer("gateway") || oParent.$getContainer()))
 			if (oChild = (oNode.$getContainer() || fBrowser_render(oNode)))
 	    		oGateway.insertBefore(oChild, function() {
 	    			for (var oElement; oBefore; oBefore = oBefore.nextSibling)
@@ -135,13 +135,14 @@ function fElement_removeChild(oParent, oNode)
 	// Remove from DOM
 	var oGateway, oChild;
 	if (oParent.nodeType == 1)	// cNode.ELEMENT_NODE
-		if ((oChild = oNode.$getContainer()) && (oGateway = (oParent.$getContainer("gateway") || oParent.$getContainer())))
-			if (oChild = (function() {
-				for (; oChild; oChild = oChild.parentNode)
-					if (oChild.parentNode == oGateway)
-						return oChild;
-			}()))
-				oGateway.removeChild(oChild);
+		if (oGateway = (oParent.$getContainer("gateway") || oParent.$getContainer()))
+			if (oChild = oNode.$getContainer())
+				if (oChild = (function() {
+					for (; oChild; oChild = oChild.parentNode)
+						if (oChild.parentNode == oGateway)
+							return oChild;
+				}()))
+					oGateway.removeChild(oChild);
 
 	// Call parent class method
 	fNode_removeChild(oParent, oNode);
@@ -173,11 +174,12 @@ function fElement_replaceChild(oParent, oNode, oOld)
 	fDocument_unregister(oParent.ownerDocument, oOld);
 
 	// Replace in from DOM
-	var oElement, oGateway, oChild;
+	var oGateway, oChild, oElement;
 	if (oParent.nodeType == 1)	// cNode.ELEMENT_NODE
-		if ((oGateway =(oParent.$getContainer("gateway") || oParent.$getContainer())) && (oChild = oOld.$getContainer()))
-			if (oElement = (oNode.$getContainer() || fBrowser_render(oNode)))
-		    	oGateway.replaceChild(oElement, oChild);
+		if (oElement = oOld.$getContainer())
+			if (oGateway =(oParent.$getContainer("gateway") || oParent.$getContainer()))
+				if (oChild = (oNode.$getContainer() || fBrowser_render(oNode)))
+			    	oGateway.replaceChild(oChild, oElement);
 
 	// Register Instance
 	if (oDocument_all[oParent.uniqueID])
