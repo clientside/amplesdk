@@ -933,7 +933,8 @@
 			<fileset dir="examples/">
 				<include name="helloworld.html" />
 				<include name="index.html" />
-				<include name="applications/**" />
+				<include name="applications/imclient/" />
+				<include name="applications/mail/" />
 				<include name="languages/**" />
 				<include name="managers/**" />
 				<include name="modules/**" />
