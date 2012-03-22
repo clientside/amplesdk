@@ -54,7 +54,7 @@ function fTouch_onTouchMove(oEvent) {
 	// Simulate wheel event
 	if (nTouch_clientY - nClientY) {
 		var oEventWheel	= ample.createEvent("WheelEvent");
-		oEventWheel.initWheelEvent("mousewheel", true, true, window, null, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, 0, null, fBrowser_getKeyboardEventModifiersList(oEvent), 0, nTouch_clientY - nClientY, 0, 0);
+		oEventWheel.initWheelEvent("mousewheel", true, true, window, null, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, 0, null, '', 0, nTouch_clientY - nClientY, 0, 0);
 		oEventWheel.$pseudoTarget	= oEvent.$pseudoTarget;
 		oEventWheel.wheelDelta	= oEventWheel.deltaY;
 		oEvent.target.dispatchEvent(oEventWheel);
