@@ -103,10 +103,6 @@
 			<filelist dir="${source.runtime.dir}/" files="
 				export.js"/>
 		</concat>
-		<replace file="${temp.runtime.dir}/runtime-raw.js">
-			<replacefilter token="@project.version@"	value="${project.name}/${project.version} (build:${build.signature})"	/>
-			<replacefilter token="@project.userAgent@"	value="${project.name}/${project.version}"	/>
-		</replace>
 	</target>
 
 	<target name="BUILD_AMPLE_RUNTIME_PREPARE_CORE" unless="skip.ample.runtime.core">
@@ -303,6 +299,10 @@
 			<arg value="--strip-Debug" />
 			<arg value="--strip-Guard" />
 		</exec>
+		<replace file="${temp.runtime.dir}/runtime.js">
+			<replacefilter token="@project_version@"	value="${project.name}/${project.version} (build:${build.signature})"	/>
+			<replacefilter token="@project_userAgent@"	value="${project.name}/${project.version}"	/>
+		</replace>
 		<concat destfile="${target.runtime.dir}/runtime.js" fixlastline="yes">
 			<fileset file="${copying.js}" />
 			<fileset file="${temp.runtime.dir}/runtime.js" />
@@ -318,6 +318,10 @@
 			<arg value="--obfuscate" />
 			<arg value="--strip-Source" />
 		</exec>
+			<replace file="${temp.runtime.dir}/runtime-dev.js">
+				<replacefilter token="@project_version@"	value="${project.name}/${project.version} (build:${build.signature; dev})"	/>
+				<replacefilter token="@project_userAgent@"	value="${project.name}/${project.version}"	/>
+			</replace>
 		<concat destfile="${target.runtime.dir}/runtime-dev.js" fixlastline="yes">
 			<fileset file="${copying.js}" />
 			<fileset file="${temp.runtime.dir}/runtime-dev.js" />
