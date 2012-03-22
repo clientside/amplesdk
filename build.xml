@@ -17,7 +17,7 @@
 
 	<!-- Project-related -->
 	<property name="copyright.year" value="${tstamp.year}" />
-	<property name="copyright.name" value="Clientside OY" />
+	<property name="copyright.name" value="Sergey Ilinsky" />
 
 	<!-- Build-related -->
 	<property name="build.package" value="ample-${project.version}" />
@@ -210,11 +210,11 @@
 				DOMParser.js,
 				Function.js,
 				JSON.js,
+				Storage.js,
 				String.js,
 				XMLHttpRequest.js,
 				XMLSerializer.js,
-				XSLTProcessor.js,
-				Storage.js"/>
+				XSLTProcessor.js"/>
 		</concat>
 	</target>
 

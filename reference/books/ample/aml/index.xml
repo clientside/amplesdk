@@ -37,10 +37,10 @@
 			</title>
 			<content>
 				<locale>
-					This language is being developed by <a href="http://www.clientside.fi/">Clientside OY</a> company.
+					This language is being developed by <a href="http://www.amplesdk.com/community/">Ample SDK community</a>.
 				</locale>
 				<locale xml:lang="ru">
-					Этот язык разрабатывается и поддерживается компанией <a href="http://www.clientside.fi/">Clientside OY</a>.
+					Этот язык разрабатывается и поддерживается <a href="http://www.amplesdk.com/community/">сообществом Ample SDK</a>.
 				</locale>
 			</content>
 		</section>
