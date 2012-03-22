@@ -115,7 +115,7 @@ cXULElement_menuitem.prototype.scrollIntoView	= function() {
 cXULElement_menuitem.prototype.$getTagOpen		= function() {
 	return '<tr class="xul-menuitem' + (!this.$isAccessible() ? " xul-menuitem_disabled" : "") + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"' + (this.attributes["style"] ? ' style="' + this.attributes["style"] + '"' : '') + '>\
 				<td width="18"><div class="xul-menuitem-type---image' + (this.attributes["type"] ? ' xul-menuitem-type-' + this.attributes["type"] + '--image' +(this.attributes["checked"] == "true" ? ' xul-menuitem--image_checked' : '') : '') + '"' +(this.attributes["image"] ? ' style="background-image:url('+ this.attributes["image"] + ')"' : '')+ '></div></td>\
-				<td nowrap="nowrap" style="white-space:nowrap;">' +(this.attributes["label"] || ' ');
+				<td nowrap="nowrap" class="xul-menuitem--label" style="white-space:nowrap;">' +(this.attributes["label"] || ' ');
 };
 
 // Element Render: open
