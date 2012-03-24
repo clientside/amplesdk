@@ -1348,17 +1348,8 @@ function fAmple_initialize() {
 };
 
 function fAmple_finalize() {
-	var aElements = oAmple_root.childNodes,
-		oEventUnload;
-	for (var nIndex = 0; nIndex < aElements.length; nIndex++) {
-	    // fire unload event on fragments
-		oEventUnload = new cEvent;
-	    oEventUnload.initEvent("unload", false, false);
-	    fNode_dispatchEvent(aElements[nIndex], oEventUnload);
-	}
-
     // fire unload event on document
-    oEventUnload = new cEvent;
+    var oEventUnload = new cEvent;
     oEventUnload.initEvent("unload", false, false);
     fNode_dispatchEvent(oAmple_document, oEventUnload);
 
