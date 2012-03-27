@@ -28,7 +28,7 @@ var sGUARD_XML_SYNTAX_WRN				= 'Not well-formed XML',
 function fUtilities_warn(sWarning, aArguments) {
 	var fErrorHandler	= oDOMConfiguration_values["error-handler"];
 	if (fErrorHandler) {
-		var oError	= new cDOMError(fGuardException_format(sWarning, aArguments || []), cDOMError.SEVERITY_WARNING);
+		var oError	= new cDOMError(fAmpleException_format(sWarning, aArguments || []), cDOMError.SEVERITY_WARNING);
 		if (typeof fErrorHandler == "function")
 			fErrorHandler(oError);
 		else

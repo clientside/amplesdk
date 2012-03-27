@@ -12,9 +12,9 @@ var cAmpleException	= function(nCode) {
 	var sMessage= "AmpleException" + ' ' + nCode;
 //->Debug
 	// Replace placeholders
-	var sValue	= oGuardException_messages[nCode];
+	var sValue	= oAmpleException_messages[nCode];
 	if (arguments.length > 2)
-		sValue	= fGuardException_format(sValue, arguments[2]);
+		sValue	= fAmpleException_format(sValue, arguments[2]);
 	sMessage	+= '...' + ' ' + sValue;
 //<-Debug
 
@@ -40,16 +40,16 @@ cAmpleException.prototype.toString	= function() {
 
 //->Debug
 // Ample Exceptions
-var oGuardException_messages	= {};
-oGuardException_messages[cAmpleException.ARGUMENT_MISSING_ERR]		= 'Missing required %0 argument "%1" in "%2" function call';
-oGuardException_messages[cAmpleException.ARGUMENT_WRONG_TYPE_ERR]	= 'Incompatible type of %0 argument "%1" in "%2" function call. Expecting "%3"';
-oGuardException_messages[cAmpleException.ARGUMENT_NULL_ERR]			= 'null is not allowed value of %0 argument "%1" in "%2" function call';
-oGuardException_messages[cAmpleException.NOT_INITIALIZED_ERR]		= 'Object "%0" has not been initialized';
-oGuardException_messages[cAmpleException.CANNOT_ACCESS_DOM_ERR]		= 'Cannot access DOM in element constructor';
-oGuardException_messages[cAmpleException.MEMBER_MISSING_ERR]		= 'Object does not have a method named "%0"';
+var oAmpleException_messages	= {};
+oAmpleException_messages[cAmpleException.ARGUMENT_MISSING_ERR]		= 'Missing required %0 argument "%1" in "%2" function call';
+oAmpleException_messages[cAmpleException.ARGUMENT_WRONG_TYPE_ERR]	= 'Incompatible type of %0 argument "%1" in "%2" function call. Expecting "%3"';
+oAmpleException_messages[cAmpleException.ARGUMENT_NULL_ERR]			= 'null is not allowed value of %0 argument "%1" in "%2" function call';
+oAmpleException_messages[cAmpleException.NOT_INITIALIZED_ERR]		= 'Object "%0" has not been initialized';
+oAmpleException_messages[cAmpleException.CANNOT_ACCESS_DOM_ERR]		= 'Cannot access DOM in element constructor';
+oAmpleException_messages[cAmpleException.MEMBER_MISSING_ERR]		= 'Object does not have a method named "%0"';
 //<-Debug
 
-function fGuardException_format(sMessage, aArguments) {
+function fAmpleException_format(sMessage, aArguments) {
 	for (var nIndex = 0; nIndex < aArguments.length; nIndex++)
 		sMessage	= sMessage.replace('%' + nIndex, aArguments[nIndex]);
 	return sMessage;
