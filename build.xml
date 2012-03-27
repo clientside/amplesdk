@@ -293,19 +293,19 @@
 		<exec executable="${executable.php}" failonerror="true">
 			<arg value="resources/compiler/js.php" />
 			<arg value="${temp.runtime.dir}/runtime-raw.js" />
-			<arg value="${temp.runtime.dir}/runtime.js" />
+			<arg value="${temp.runtime.dir}/runtime-prod.js" />
 			<arg value="--obfuscate" />
 			<arg value="--strip-Source" />
 			<arg value="--strip-Debug" />
 			<arg value="--strip-Guard" />
 		</exec>
-		<replace file="${temp.runtime.dir}/runtime.js">
-			<replacefilter token="@project_version@"	value="${project.name}/${project.version} (build:${build.signature})"	/>
+		<replace file="${temp.runtime.dir}/runtime-prod.js">
+			<replacefilter token="@project_version@"	value="${project.name}/${project.version} (build:${build.signature}; prod)"	/>
 			<replacefilter token="@project_userAgent@"	value="${project.name}/${project.version}"	/>
 		</replace>
-		<concat destfile="${target.runtime.dir}/runtime.js" fixlastline="yes">
+		<concat destfile="${target.runtime.dir}/runtime-prod.js" fixlastline="yes">
 			<fileset file="${copying.js}" />
-			<fileset file="${temp.runtime.dir}/runtime.js" />
+			<fileset file="${temp.runtime.dir}/runtime-prod.js" />
 		</concat>
 	</target>
 
@@ -314,17 +314,17 @@
 		<exec executable="${executable.php}" failonerror="true">
 			<arg value="resources/compiler/js.php" />
 			<arg value="${temp.runtime.dir}/runtime-raw.js" />
-			<arg value="${temp.runtime.dir}/runtime-dev.js" />
+			<arg value="${temp.runtime.dir}/runtime.js" />
 			<arg value="--obfuscate" />
 			<arg value="--strip-Source" />
 		</exec>
-		<replace file="${temp.runtime.dir}/runtime-dev.js">
-			<replacefilter token="@project_version@"	value="${project.name}/${project.version} (build:${build.signature}; dev)"	/>
+		<replace file="${temp.runtime.dir}/runtime.js">
+			<replacefilter token="@project_version@"	value="${project.name}/${project.version} (build:${build.signature})"	/>
 			<replacefilter token="@project_userAgent@"	value="${project.name}/${project.version}"	/>
 		</replace>
-		<concat destfile="${target.runtime.dir}/runtime-dev.js" fixlastline="yes">
+		<concat destfile="${target.runtime.dir}/runtime.js" fixlastline="yes">
 			<fileset file="${copying.js}" />
-			<fileset file="${temp.runtime.dir}/runtime-dev.js" />
+			<fileset file="${temp.runtime.dir}/runtime.js" />
 		</concat>
 	</target>
 
@@ -404,8 +404,8 @@
 
 		<echo message="Copying default theme to: ${target.xhtml.dir}/themes/default/" level="info"/>
 		<mkdir dir="${target.xhtml.dir}/themes/default/" />
-		<copy tofile="${target.xhtml.dir}/themes/default/style-raw.css" file="${temp.languages.dir}/xhtml-raw.css" />
-		<copy tofile="${target.xhtml.dir}/themes/default/style.css" file="${temp.languages.dir}/xhtml.css" />
+		<copy tofile="${target.xhtml.dir}/themes/default/style.css" file="${temp.languages.dir}/xhtml-raw.css" />
+		<copy tofile="${target.xhtml.dir}/themes/default/style-prod.css" file="${temp.languages.dir}/xhtml.css" />
 		<copy todir="${target.xhtml.dir}/themes/default/">
 			<fileset dir="${source.xhtml.dir}/themes/default/">
 				<include name="media/**"/>
@@ -460,8 +460,8 @@
 
 		<echo message="Copying default theme to: ${target.aui.dir}/themes/default/" level="info"/>
 		<mkdir dir="${target.aui.dir}/themes/default/" />
-		<copy tofile="${target.aui.dir}/themes/default/style-raw.css" file="${temp.languages.dir}/aui-raw.css" />
-		<copy tofile="${target.aui.dir}/themes/default/style.css" file="${temp.languages.dir}/aui.css" />
+		<copy tofile="${target.aui.dir}/themes/default/style.css" file="${temp.languages.dir}/aui-raw.css" />
+		<copy tofile="${target.aui.dir}/themes/default/style-prod.css" file="${temp.languages.dir}/aui.css" />
 		<copy todir="${target.aui.dir}/themes/default/">
 			<fileset dir="${source.aui.dir}/themes/default/">
 				<include name="media/**"/>
@@ -525,8 +525,8 @@
 
 		<echo message="Copying default theme to: ${target.xul.dir}/themes/default/" level="info"/>
 		<mkdir dir="${target.xul.dir}/themes/default/" />
-		<copy tofile="${target.xul.dir}/themes/default/style-raw.css" file="${temp.languages.dir}/xul-raw.css" />
-		<copy tofile="${target.xul.dir}/themes/default/style.css" file="${temp.languages.dir}/xul.css" />
+		<copy tofile="${target.xul.dir}/themes/default/style.css" file="${temp.languages.dir}/xul-raw.css" />
+		<copy tofile="${target.xul.dir}/themes/default/style-prod.css" file="${temp.languages.dir}/xul.css" />
 		<copy todir="${target.xul.dir}/themes/default/">
 			<fileset dir="${source.xul.dir}/themes/default/">
 				<include name="media/**"/>
@@ -721,8 +721,8 @@
 		</concat>
 		<echo message="Copying default theme to: ${target.chart.dir}/themes/default/" level="info"/>
 		<mkdir dir="${target.chart.dir}/themes/default/" />
-		<copy tofile="${target.chart.dir}/themes/default/style-raw.css" file="${temp.languages.dir}/chart-raw.css" />
-		<copy tofile="${target.chart.dir}/themes/default/style.css" file="${temp.languages.dir}/chart.css" />
+		<copy tofile="${target.chart.dir}/themes/default/style.css" file="${temp.languages.dir}/chart-raw.css" />
+		<copy tofile="${target.chart.dir}/themes/default/style-prod.css" file="${temp.languages.dir}/chart.css" />
 		<copy todir="${target.chart.dir}/themes/default/">
 			<fileset dir="${source.chart.dir}/themes/default/">
 				<include name="media/**"/>
@@ -945,11 +945,6 @@
 				<include name="plugins/**" />
 			</fileset>
 		</copy>
-		<replace dir="${target.dir}/examples/">
-			<include name="**/*.html"/>
-			<replacetoken><![CDATA[<link type="text/ample+css"]]></replacetoken>
-			<replacevalue><![CDATA[<link type="text/css"]]></replacevalue>
-		</replace>
 	</target>
 
 	<!-- Reference -->
