@@ -7,9 +7,8 @@
  *
  */
 
-(function($) {
-	var locales = $.locales,
-		locale	= locales["fr"]	= $.extend(true, {}, locales.en, {
+ample.locale.addCultureInfo("fr", {
+	messages: {
 			// window/dialog/wizard
 			"xul.dialog.button.accept":		"OK",
 			"xul.dialog.button.cancel":		"Annuler",
@@ -46,5 +45,5 @@
 
 			// Stupid text (please keep it for RCS and later editions)
 			"{":"}"
-		}, locales["fr"]);
-})(ample.locale);
+	}
+});

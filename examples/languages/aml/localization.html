@@ -8,13 +8,19 @@
 		<link type="text/ample+css" href="../../../ample/languages/xhtml/themes/default/style.css" rel="stylesheet"/>
 		<script type="text/javascript">
 			// En
-			ample.locale.localize("input_state", "en", "true");
-			ample.locale.localize("input_value", "en", "localized input value");
-			ample.locale.localize("div_content", "en", "localized div content");
+			ample.locale.addCultureInfo("en", {
+				messages: {
+					"input_value":	"localized input value",
+					"div_content":	"localized div content"
+				}
+			});
 			// It
-			ample.locale.localize("input_state", "it", "false");
-			ample.locale.localize("input_value", "it", "valore di ingresso localizzato");
-			ample.locale.localize("div_content", "it", "div contenuti localizzati");
+			ample.locale.addCultureInfo("it", {
+				messages: {
+					"input_value":	"valore di ingresso localizzato",
+					"div_content":	"div contenuti localizzati"
+				}
+			});
 		</script>
 	</head>
 	<body>
@@ -32,7 +38,7 @@
 
 	<h4>@aml:values</h4>
 	<p>
-		<input a:values="disabled:input_state;value:input_value" />
+		<input a:values="value:input_value" />
 	</p>
 
 	<h4>@aml:content</h4>
