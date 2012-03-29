@@ -339,10 +339,9 @@ cXULElement_datepicker_pane.$getTagDays	= function(oInstance, oDate) {
 // component renderers
 cXULElement_datepicker_pane.prototype.$getTagOpen	= function() {
 	//
-	if (this.attributes["disabled"] == "true") {
-		this._elementMonth.setAttribute("disabled", "true");
-		this._elementYear.setAttribute("disabled", "true");
-	}
+	this._elementMonth.attributes["disabled"]	= this.$isAccessible() ? "false" : "true";
+	this._elementYear.attributes["disabled"]	= this.$isAccessible() ? "false" : "true";
+	//
 	return '<div class="xul-datepicker-pane xul-menupopup' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '') + '" style="' +
 				(this.getAttribute("hidden") == "true" ? "display:none;" : '') +
 				(this.hasAttribute("style") ? this.getAttribute("style") : '') + '">\

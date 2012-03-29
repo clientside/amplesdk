@@ -118,9 +118,6 @@ cXULElement_timepicker.handlers	= {
 		if (oEvent.$pseudoTarget == this.$getContainer("input"))
 			cXULElement_timepicker.setEditComponent(this, cXULElement_timepicker.getEditComponent(this));
 	},
-	"DOMNodeInsertedIntoDocument":	function(oEvent) {
-		this.spinButtons.setAttribute("disabled", this.$isAccessible() ? "false" : "true");
-	},
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this) {
 			switch (oEvent.attrName) {
@@ -175,6 +172,7 @@ cXULElement_timepicker.setEditComponent	= function(oInstance, sComponent) {
 // Element Render: open
 cXULElement_timepicker.prototype.$getTagOpen		= function() {
     var aTime    = this.attributes["value"].split(":");
+	this.spinButtons.attributes["disabled"]	= this.$isAccessible() ? "false" : "true";
     return '<div class="xul-timepicker' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + (!this.$isAccessible() ? " xul-timepicker_disabled" : '') + '">\
 				<div class="xul-timepicker--field">\
    					' + this.spinButtons.$getTag() + '\
