@@ -321,7 +321,7 @@ fExtend = function() {
 	}
 
 	// Handle case when target is a string or something (possible in deep copy)
-	if (typeof oTarget !== "object" && !fIsFunction(oTarget)) {
+	if (!fIsObject(oTarget) && !fIsFunction(oTarget)) {
 		oTarget = {};
 	}
 
@@ -364,15 +364,15 @@ fExtend = function() {
 };
 
 fIsArray = cArray.isArray || function(vValue) {
-	return cObject.prototype.toString.call(vValue) === "[object Array]";
+	return vValue instanceof cArray;	// cObject.prototype.toString.call(vValue) === "[object Array]";
 };
 
 fIsFunction = function(vValue) {
-	return cObject.prototype.toString.call(vValue) === "[object Function]";
+	return vValue instanceof cFunction;	// cObject.prototype.toString.call(vValue) === "[object Function]";
 };
 
 fIsObject = function(vValue) {
-	return cObject.prototype.toString.call(vValue) === "[object Object]";
+	return typeof vValue == "object";	// cObject.prototype.toString.call(vValue) === "[object Object]";
 };
 
 fStartsWith = function(sValue, sPattern) {
@@ -1413,7 +1413,7 @@ oGlobalize.findClosestCulture = function(vName) {
 			}
 		}
 	}
-	else if (typeof vName === "object") {
+	else if (fIsObject(vName)) {
 		return vName;
 	}
 	return oCulture || null;
