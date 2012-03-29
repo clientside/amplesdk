@@ -123,7 +123,7 @@ cXULElement_timepicker.handlers	= {
 			switch (oEvent.attrName) {
 				case "disabled":
 					this.$setPseudoClass("disabled", oEvent.newValue == "true");
-					this.spinButtons.setAttribute("disabled", oEvent.newValue);
+					this.spinButtons.setAttribute("disabled", oEvent.newValue == "true" ? "true" : "false");
 					break;
 
 				case "value":
