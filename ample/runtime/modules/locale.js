@@ -352,7 +352,7 @@ fExtend = function() {
 					oTarget[sName] = fExtend(bDeep, oClone, oCopy);
 
 				// Don't bring in undefined values
-				} else if (oCopy !== undefined) {
+				} else if (typeof oCopy != "undefined") {
 					oTarget[sName] = oCopy;
 				}
 			}
