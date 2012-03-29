@@ -88,7 +88,7 @@ oDefaultCulture.name	= 'en';
 	// the name of the culture in the english language
 oDefaultCulture.englishName	=
 	// the name of the culture in its own language
-oDefaultCulture.nativeName	= "English";
+oDefaultCulture.nativeName	= 'English';
 	// whether the culture uses right-to-left text
 oDefaultCulture.isRTL	= false;
 	// "language" is used for so-called "specific" cultures.
@@ -212,8 +212,8 @@ oCalendarFormat.months.namesAbbr= 'Jan;Feb;Mar;Apr;May;Jun;Jul;Aug;Sep;Oct;Nov;D
 			//   [standard, lowercase, uppercase]
 			// The culture does not use AM or PM (likely all standard date formats use 24 hour time)
 			//   null
-oCalendarFormat.AM	= 'AM;am;AM'.split(';');
-oCalendarFormat.PM	= 'PM;pm;PM'.split(';');
+oCalendarFormat.AM	= ['AM', 'am', 'AM'];
+oCalendarFormat.PM	= ['PM', 'pm', 'PM'];
 
 var oCalendarEra	= {};
 oCalendarFormat.eras	= [oCalendarEra];
