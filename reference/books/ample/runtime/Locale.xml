@@ -4,11 +4,27 @@
 	<abstract>
 		<locale>
 			Provides APIs for localizing applications.
+			You can set or change current locale in your application by setting <b>locale</b> configuration property.
 		</locale>
 	</abstract>
-	<examples/>
+	<examples>
+		<example>
+			<description>
+				<locale>
+					Setting application locale to South-African Afrikaans language:
+				</locale>
+			</description>
+			<code type="text/javascript"><![CDATA[ample.config("locale", "af-ZA");
+]]></code>
+		</example>
+	</examples>
 	<members>
 		<properties>
+			<property name="culture" type="Object" readonly="true">
+				<description>
+					Currently selected culture object.
+				</description>
+			</property>
 			<property name="cultures" type="Object" readonly="true">
 				<description>
 					A mapping of culture codes to culture objects.
@@ -16,6 +32,52 @@
 			</property>
 		</properties>
 		<methods>
+			<method name="addCultureInfo" type="Void">
+				<arguments>
+					<argument name="culture" type="String">
+						<description>
+							<locale>
+								Name of culture being added.
+							</locale>
+						</description>
+					</argument>
+					<argument name="baseCulture" type="String">
+						<description>
+							<locale>
+								Name of culture to extend on.
+							</locale>
+						</description>
+					</argument>
+					<argument name="cultureInfo" type="Object">
+						<description>
+							<locale>
+								Culture object.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<arguments>
+					<argument name="culture" type="String">
+						<description>
+							<locale>
+								Name of culture being added.
+							</locale>
+						</description>
+					</argument>
+					<argument name="cultureInfo" type="Object">
+						<description>
+							<locale>
+								Culture object.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Adds new culture information. If baseCulture parameter provided, new culture will inherit its information.
+					</locale>
+				</description>
+			</method>
 			<method name="format" type="String">
 				<arguments>
 					<argument name="value" type="Variant" required="true">
