@@ -217,7 +217,6 @@ function fNodeAnimation_parseValue(sValue) {
 	sValue	= sValue.trim();
 
 	var aValue,
-		nIndex,
 		sValueLower = sValue.toLowerCase();
 
 	// if standard color used
