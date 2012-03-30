@@ -1339,7 +1339,7 @@ function fAmple_initialize() {
 
 //->Source
 	var nElements	= fElement_getElementsByTagName(oAmple_document, '*').length,
-		nAnonymous	= (function(){var nLength = 0; for (var sKey in oDocument_all) if (oDocument_all.hasOwnProperty(sKey)) nLength++; return nLength})();
+		nAnonymous	= (function(){var nLength = 0; for (var sKey in oDocument_all) if (oDocument_all.hasOwnProperty(sKey)) nLength++; return nLength;})();
 	oUADocument.title	=	"Ample: " + nElements + " (+" + (nAnonymous - nElements) + " anonymous). " +
 							"DHTML: " + oUADocument.getElementsByTagName('*').length + ". " +
 							"CSS time: " + (oDateXML - oDateCSS) + " ms. " +

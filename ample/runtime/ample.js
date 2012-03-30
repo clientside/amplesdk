@@ -12,7 +12,7 @@ var hClasses	= {};
 // Create Ample SDK document object
 var oAmple_document	= fDOMImplementation_createDocument(new cDOMImplementation, sNS_XHTML, "body", null),
 	oAmple_root		= oAmple_document.documentElement;
-oAmple_root.$getContainer	= function(sName) {return sName == "gateway" ? oBrowser_body : sName ? null : oBrowser_root};
+oAmple_root.$getContainer	= function(sName) {return sName == "gateway" ? oBrowser_body : sName ? null : oBrowser_root;};
 
 //
 function fQuery(vArgument1, vArgument2, vArgument3) {

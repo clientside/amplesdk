@@ -113,7 +113,7 @@ if (bTrident) {
 				fReadyStateChange(oRequest);
 
 			nState	= oRequest.readyState;
-		}
+		};
 	};
 	cXMLHttpRequest.prototype.send	= function(vData) {
 /*
