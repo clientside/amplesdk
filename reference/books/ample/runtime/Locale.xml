@@ -117,29 +117,6 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="culture" type="String" required="true">
-						<description>
-							<locale>
-								Culture name.
-							</locale>
-						</description>
-					</argument>
-					<argument name="value" type="String" required="true">
-						<description>
-							<locale>
-								Value to be set.
-							</locale>
-						</description>
-					</argument>
-				</arguments>
-				<arguments>
-					<argument name="key" type="String" required="true">
-						<description>
-							<locale>
-								Key.
-							</locale>
-						</description>
-					</argument>
 					<argument name="culture" type="String" required="false">
 						<description>
 							<locale>
@@ -150,7 +127,7 @@
 				</arguments>
 				<description>
 					<locale>
-						Gets or sets a localized value.
+						Gets localized text for key.
 					</locale>
 				</description>
 			</method>
