@@ -2,7 +2,7 @@
 	$aFiles		= array();
     $aFiles[]	= "elements.css";
 
-    $sOutput	= "@namespace aml \"http://www.amplesdk.com/ns/aml\";\n";
+    $sOutput	= "@namespace aui \"http://www.amplesdk.com/ns/aui\";\n";
     for ($nIndex = 0; $nIndex < count($aFiles); $nIndex++)
         $sOutput	.= join('', file($aFiles[$nIndex])) . "\n";
 

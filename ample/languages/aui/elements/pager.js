@@ -75,22 +75,22 @@ cAUIElement_pager.prototype._onButtonClick   = function(oEvent, sButtonType)
 // Element Render: open
 cAUIElement_pager.prototype.$getTagOpen	= function()
 {
-    var sHtml   = '<table cellpadding="0" cellspacing="0" border="0" class="aml-pager">';
+    var sHtml   = '<table cellpadding="0" cellspacing="0" border="0" class="aui-pager">';
     sHtml  += '<tbody>';
     sHtml  += '<tr>';
     sHtml  += '<td width="1">Page:</td>';
     sHtml  += '<td>';
-    sHtml  += '<table cellpadding="0" cellspacing="0" border="0" height="100%" class="aml-pager--body">';
+    sHtml  += '<table cellpadding="0" cellspacing="0" border="0" height="100%" class="aui-pager--body">';
     sHtml  += '<tbody>';
     sHtml  += '<tr>';
     for (var nIndex = 0; nIndex < this.attributes["pagesamount"] * 1; nIndex++)
-        sHtml  += '<td class="aml-pager-item" onmouseover="this.className=this.className.replace(\'normal\', \'hover\');" onmouseout="this.className=this.className.replace(\'hover\', \'normal\');" onmousedown="this.className=this.className.replace(\'hover\', \'active\');" onmouseup="this.className=this.className.replace(\'active\', \'hover\');" onclick="ample.$instance(this)._onItemClick(event, this.cellIndex)">' + nIndex + '</td>';
+        sHtml  += '<td class="aui-pager-item" onmouseover="this.className=this.className.replace(\'normal\', \'hover\');" onmouseout="this.className=this.className.replace(\'hover\', \'normal\');" onmousedown="this.className=this.className.replace(\'hover\', \'active\');" onmouseup="this.className=this.className.replace(\'active\', \'hover\');" onclick="ample.$instance(this)._onItemClick(event, this.cellIndex)">' + nIndex + '</td>';
     sHtml  += '</tr>';
     sHtml  += '</tbody>';
     sHtml  += '</table>';
     sHtml  += '</td>';
-    sHtml  += '<td width="1" class="aml-pager-item" onclick="ample.$instance(this)._onButtonClick(event, \'back\')">&lt;&lt;</td>';
-    sHtml  += '<td width="1" class="aml-pager-item" onclick="ample.$instance(this)._onButtonClick(event, \'next\')">&gt;&gt;</td>';
+    sHtml  += '<td width="1" class="aui-pager-item" onclick="ample.$instance(this)._onButtonClick(event, \'back\')">&lt;&lt;</td>';
+    sHtml  += '<td width="1" class="aui-pager-item" onclick="ample.$instance(this)._onButtonClick(event, \'next\')">&gt;&gt;</td>';
     sHtml  += '<td> </td>';
     sHtml  += '</tr>';
     sHtml  += '</tbody>';

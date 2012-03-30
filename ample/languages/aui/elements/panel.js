@@ -28,12 +28,12 @@ cAUIElement_panel.prototype.toggle	= function() {
 
 // Renderers
 cAUIElement_panel.prototype.$getTagOpen	= function() {
-	return '<div class="aml-panel"' + (this.hasAttribute("style") ? ' style="' + this.getAttribute("style") + '"' : '') + '>\
-				<div class="aml-panel--head">\
-					<div class="aml-panel--icon"><br /></div>\
-					<div class="aml-panel--label">' + this.getAttribute("label")+ '</div>\
+	return '<div class="aui-panel"' + (this.hasAttribute("style") ? ' style="' + this.getAttribute("style") + '"' : '') + '>\
+				<div class="aui-panel--head">\
+					<div class="aui-panel--icon"><br /></div>\
+					<div class="aui-panel--label">' + this.getAttribute("label")+ '</div>\
 				</div>\
-				<div class="aml-panel--gateway">';
+				<div class="aui-panel--gateway">';
 };
 
 cAUIElement_panel.prototype.$getTagClose	= function() {
