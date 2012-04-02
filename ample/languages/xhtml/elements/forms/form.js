@@ -23,7 +23,7 @@ cXHTMLElement_form.prototype.submit	= function() {
 		oTarget;
 	if (sTarget.match(/#(.+)$/) && (oTarget = this.ownerDocument.getElementById(window.RegExp.$1))) {
 		var aValue	= [],
-			sAction	= this.getAttribute("action").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&'),
+			sAction	= this.getAttribute("action"),
 			vValue,
 			sName,
 			oElement;
