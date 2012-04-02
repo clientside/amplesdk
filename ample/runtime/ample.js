@@ -339,10 +339,20 @@ oAmple.$instance	= function(oNode) {
 };
 
 oAmple.$encodeXMLCharacters	= function(sValue) {
+//->Guard
+	fGuard(arguments, [
+		["value",	cString]
+	]);
+//<-Guard
 	return fUtilities_encodeXMLCharacters(sValue);
 };
 
 oAmple.$decodeXMLCharacters	= function(sValue) {
+//->Guard
+	fGuard(arguments, [
+		["value",	cString]
+	]);
+//<-Guard
 	return fUtilities_decodeXMLCharacters(sValue);
 };
 
@@ -355,6 +365,12 @@ oAmple.$class	= function(oNode) {
 
 //
 oAmple.resolveUri	= function(sUri, sBaseUri) {
+//->Guard
+	fGuard(arguments, [
+		["uri",		cString],
+		["baseURI",	cString]
+	]);
+//<-Guard
 	return fUtilities_resolveUri(sUri, sBaseUri);
 };
 
