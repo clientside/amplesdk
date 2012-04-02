@@ -965,7 +965,7 @@ function fNode_toXML(oNode)
 			break;
 
 		case 3:	// cNode.TEXT_NODE
-			aHtml.push(oNode.nodeValue);
+			aHtml.push(fUtilities_encodeEntities(oNode.nodeValue));
 			break;
 
 		case 4:	// cNode.CDATA_SECTION_NODE
