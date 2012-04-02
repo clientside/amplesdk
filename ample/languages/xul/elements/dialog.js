@@ -173,7 +173,7 @@ cXULElement_dialog.prototype.$getTagOpen	= function()
 					<table cellpadding="0" cellspacing="0" border="0" width="100%">\
 						<tbody>\
 							<tr>\
-								<td class="xul-dialog--title">' +(this.attributes["title"] || " ")+ '</td>\
+								<td class="xul-dialog--title">' + (this.attributes["title"] ? ample.$encodeXMLCharacters(this.attributes["title"]) : " ") + '</td>\
 							</tr>\
 						</tbody>\
 					</table>\

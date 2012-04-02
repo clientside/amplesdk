@@ -70,8 +70,8 @@ cXULElement_treecell.prototype.$getTagOpen	= function() {
 
 	sHtml	+= '<div class="xul-treecell--gateway">';
     if (this.attributes["src"])
-        sHtml  += '<img src="' + this.attributes["src"] + '" align="absmiddle"/> ';
-    sHtml  += this.attributes["label"] ? this.attributes["label"] : '';
+        sHtml  += '<img src="' + ample.$encodeXMLCharacters(this.attributes["src"]) + '" align="absmiddle"/> ';
+    sHtml  += this.attributes["label"] ? ample.$encodeXMLCharacters(this.attributes["label"]) : '';
 
     return sHtml;
 };

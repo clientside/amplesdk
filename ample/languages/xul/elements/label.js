@@ -40,7 +40,7 @@ cXULElement_label.handlers	= {
 
 // Element Render: open
 cXULElement_label.prototype.$getTagOpen	= function() {
-    return '<label class="xul-label' +(this.attributes["class"] ? " " + this.attributes["class"] : "")+ '">' +(this.attributes["value"] ? this.attributes["value"] : '');
+    return '<label class="xul-label' +(this.attributes["class"] ? " " + this.attributes["class"] : "")+ '">' + (this.attributes["value"] ? ample.$encodeXMLCharacters(this.attributes["value"]) : '');
 };
 
 // Element Render: close

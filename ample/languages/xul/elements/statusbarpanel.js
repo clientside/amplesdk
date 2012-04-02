@@ -38,10 +38,10 @@ cXULElement_statusbarpanel.handlers	= {
 cXULElement_statusbarpanel.prototype.$getTagOpen	= function() {
     var sHtml   = '<div class="xul-statusbarpanel' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">';
     if (this.attributes["image"])
-        sHtml  += '<img src="' + this.attributes["image"] + '" align="absmiddle"/>';
+        sHtml  += '<img src="' + ample.$encodeXMLCharacters(this.attributes["image"]) + '" align="absmiddle"/>';
     else
     if (this.attributes["label"])
-        sHtml  += this.attributes["label"];
+        sHtml  += ample.$encodeXMLCharacters(this.attributes["label"]);
 //    else
 //        sHtml  += ' ';
     return sHtml;

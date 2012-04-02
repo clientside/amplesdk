@@ -55,7 +55,7 @@ cXULElement_iframe.prototype._onUnLoad   = function(oEvent) {
 
 // Element Renders
 cXULElement_iframe.prototype.$getTagOpen	= function() {
-    return '<iframe class="xul-iframe' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '" height="' +(this.attributes["height"] || '100%')+ '" width="' +(this.attributes["width"] || '100%')+ '" src="' +(this.attributes["src"] || 'about:blank') + '" frameborder="0" border="0" scrolling="no" onload="ample.$instance(this)._onLoad(event)" onunload="ample.$instance(this)._onUnLoad(event)">';
+    return '<iframe class="xul-iframe' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '" height="' +(this.attributes["height"] || '100%')+ '" width="' +(this.attributes["width"] || '100%')+ '" src="' + (this.attributes["src"] ? ample.$encodeXMLCharacters(this.attributes["src"]) : 'about:blank') + '" frameborder="0" border="0" scrolling="no" onload="ample.$instance(this)._onLoad(event)" onunload="ample.$instance(this)._onUnLoad(event)">';
 };
 
 cXULElement_iframe.prototype.$getTagClose	= function() {

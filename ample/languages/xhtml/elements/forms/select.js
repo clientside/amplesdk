@@ -138,7 +138,7 @@ cXHTMLElement_select.prototype.$getTagOpen	= function() {
 					(this.attributes["required"] ? ' ' + sClassName + '_required' : '')+
 					(this.attributes["disabled"] ? ' ' + sClassName + '_disabled' : '')+
     		'">\
-				<div style="position:absolute;margin-top:-2px;white-space:nowrap" class="' + sClassName + '--placeholder">' +(this.getAttribute("placeholder") || '')+ '</div>\
+				<div style="position:absolute;margin-top:-2px;white-space:nowrap" class="' + sClassName + '--placeholder">' +(this.attributes["placeholder"] ? ample.$encodeXMLCharacters(this.attributes["placeholder"]) : '')+ '</div>\
    				<div class="' + sClassName + '--field" style="position:relative;' + (bPopupMode ? 'display:none' : '') + '">\
     				<div class="' + sClassName + '--button" style="right:0"></div>\
     				<input class="' + sClassName + '--value" type="text" />\

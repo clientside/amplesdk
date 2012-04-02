@@ -62,9 +62,9 @@ cXULElement_button.prototype.$getTagOpen	= function()
     	sHtml  += 'display:none';
     sHtml  += '">';
     if (this.attributes["image"])
-        sHtml  += '<img src="' + this.attributes["image"] + '" align="absmiddle"/> ';
+        sHtml  += '<img src="' + ample.$encodeXMLCharacters(this.attributes["image"]) + '" align="absmiddle"/> ';
     if (this.attributes["label"])
-        sHtml  += this.attributes["label"];
+        sHtml  += ample.$encodeXMLCharacters(this.attributes["label"]);
 
     return sHtml;
 };

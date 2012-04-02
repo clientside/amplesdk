@@ -51,7 +51,7 @@ cXHTMLElement_textarea.prototype.$getTagOpen	= function() {
     	aHtml   =['<span'];
     for (var sName in this.attributes)
     	if (this.attributes.hasOwnProperty(sName) && sName != "class" && sName != "id" && sName.indexOf(':') ==-1)
-    		aHtml.push(' ' + sName + '="' + this.attributes[sName].replace(/"/g, '\"') + '"');
+    		aHtml.push(' ' + sName + '="' + ample.$encodeXMLCharacters(this.attributes[sName]) + '"');
     aHtml.push(' class="' + sClassName + ("class" in this.attributes ? ' ' + this.attributes["class"] : '') + '">');
 	aHtml.push(	'<div style="position:absolute;margin-top:-2px;white-space:nowrap" class="' + sClassName + '--placeholder">' +(this.getAttribute("placeholder") || '')+ '</div>');
 	aHtml.push(	'<div class="' + sClassName + '--field" style="position:relative;height:100%;">');

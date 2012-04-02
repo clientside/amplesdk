@@ -233,7 +233,7 @@ cXULElement_wizard.prototype.$getTagOpen    = function() {
 				<div class="xul-wizard--head" ' +(this.attributes["hidechrome"] == "true" ? ' style="display:none"': '')+ '>\
 					<table cellpadding="0" cellspacing="0" border="0" width="100%">\
 						<tbody>\
-							<tr><td class="xul-wizard--title">' +(this.attributes["title"] || " ")+ '</td></tr>\
+							<tr><td class="xul-wizard--title">' +(this.attributes["title"] ? ample.$encodeXMLCharacters(this.attributes["title"]) : " ")+ '</td></tr>\
 						</tbody>\
 					</table>\
 				</div>\

@@ -881,7 +881,7 @@ else {
 		var sHtml   = '<' + this.tagName;
 		for (var sName in this.attributes)
 			if (this.attributes.hasOwnProperty(sName) && sName != "id" && sName != "class")// && sName.indexOf(':') ==-1)
-				sHtml  += ' ' + sName + '="' + this.getAttribute(sName).replace(/"/g, '\"') + '"';
+				sHtml  += ' ' + sName + '="' + ample.$encodeXMLCharacters(this.attributes[sName]) + '"';
 		sHtml	+= ' class="' + ('svg-' + this.localName + ' ') + (this.prefix ? this.prefix + '-' : '') + this.localName + ("class" in this.attributes ? ' ' + this.attributes["class"] : '') + '"';
 	    return sHtml + '>';
 	};

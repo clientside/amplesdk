@@ -107,7 +107,7 @@ cXULElement_radio.prototype.$getTagOpen		= function() {
 		bDisabled	= !this.$isAccessible();
 	return '<div class="xul-radio' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + (bDisabled ? " xul-radio_disabled" : "") + (bSelected ? " xul-radio_selected" : "") + (bSelected && bDisabled ? " xul-radio_selected_disabled xul-radio_disabled_selected" : "") + '">\
 				<div class="xul-radio--input"><br /></div>\
-				<div class="xul-radio--label">' +(this.attributes["label"] || '')+ '</div>';
+				<div class="xul-radio--label">' +(this.attributes["label"] ? ample.$encodeXMLCharacters(this.attributes["label"]) : '')+ '</div>';
 };
 
 // Element Render: close

@@ -451,8 +451,8 @@ cXHTMLElement_input.prototype.$getTagOpen		= function() {
 						(this.attributes["readonly"] ? ' readonly="true"' : '') +
 						(this.attributes["disabled"] ? ' disabled="true"' : '') +
 						(this.attributes["maxlength"] ? ' maxlength="' + this.attributes["maxlength"] + '"' : '') +
-						(sValue ? ' value="' + sValue + '"' : '') +
-						(this.attributes.name ? ' name="' + this.attributes.name + '"' : '')+
+						(sValue ? ' value="' + ample.$encodeXMLCharacters(sValue) + '"' : '') +
+						(this.attributes["name"] ? ' name="' + ample.$encodeXMLCharacters(this.attributes["name"]) + '"' : '')+
 					'/>');
 	aHtml.push(		'<div class="' + sClassName + '--label ' + sClassNameType + '--label">' +
 						(sType == "reset" || sType == "submit" || sType == "button"

@@ -89,7 +89,7 @@ cXULElement_listheader.handlers	= {
 cXULElement_listheader.prototype.$getTagOpen	= function() {
 	return '<td class="xul-listheader' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"' +(this.attributes["hidden"] == "true" ? ' style="display:none"' : "")+ '>\
 				<div class="xul-listheader--box" style="position:relative;width:100%;">\
-    				<div class="xul-listheader--label xul-listheader--gateway" style="position:absolute;width:100%;overflow:hidden;"> ' + (this.attributes["label"] || "");
+    				<div class="xul-listheader--label xul-listheader--gateway" style="position:absolute;width:100%;overflow:hidden;"> ' + (this.attributes["label"] ? ample.$encodeXMLCharacters(this.attributes["label"]) : "");
 };
 
 // Element Render: close

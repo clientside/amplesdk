@@ -115,7 +115,7 @@ cXULElement_textbox.prototype.$getTagOpen	= function(oElement) {
 				(this.attributes["height"] ? 'height:' + this.attributes["height"] + ';' : '')+
 				(this.attributes["width"] ? 'width:' + this.attributes["width"] + ';' : '')+
 				(this.attributes["style"] ? this.attributes["style"] : '')+'">\
-				<div class="xul-textbox--placeholder" style="position:absolute;' + (this.getAttribute("value") == '' ? '' : 'display:none')+ '" onmousedown="var o = ample.$instance(this); setTimeout(function(){o.$getContainer(\'input\').focus();o.$getContainer(\'input\').select()}, 0)">' + this.getAttribute("placeholder") + '</div>\
+				<div class="xul-textbox--placeholder" style="position:absolute;' + (this.getAttribute("value") == '' ? '' : 'display:none')+ '" onmousedown="var o = ample.$instance(this); setTimeout(function(){o.$getContainer(\'input\').focus();o.$getContainer(\'input\').select()}, 0)">' + (this.attributes["placeholder"] ? ample.$encodeXMLCharacters(this.attributes["placeholder"]) : '') + '</div>\
 				<div class="xul-textbox--field">\
 					' + (this.attributes["type"] == "number" ? this.spinButtons.$getTag() : this.attributes["type"] == "search" ? '<div class="xul-textbox--button" onmousedown="return false"></div>' : '')+ '\
 					<' +
@@ -124,14 +124,14 @@ cXULElement_textbox.prototype.$getTagOpen	= function(oElement) {
 						: this.attributes["type"] == "password"
 							? 'input type="password"'
 							: 'input type="text"')+
-						' class="xul-textbox--input" name="' + this.attributes["name"] + '" autocomplete="off" style="width:100%;' + (bMultiline ? 'height:100%;' : '') + 'border:0px solid white;"'+
+						' class="xul-textbox--input" name="' + ample.$encodeXMLCharacters(this.attributes["name"] || '') + '" autocomplete="off" style="width:100%;' + (bMultiline ? 'height:100%;' : '') + 'border:0px solid white;"'+
 						' onblur="ample.$instance(this)._onChange(event)" onselectstart="event.cancelBubble=true;"'+
 						(!this.$isAccessible() ? ' disabled="true"' : '')+
 						(this.attributes["readonly"] == "true" ? ' readonly="true"' : '')+
 						(this.hasAttribute("maxlength") ? ' maxlength="' + this.getAttribute("maxlength") + '"' : '')+
 					(bMultiline
-						? '>' + this.attributes["value"] + '</textarea>'
-						: ' value="' + this.attributes["value"] + '" />')+ '\
+						? '>' + (this.attributes["value"] ? ample.$encodeXMLCharacters(this.attributes["value"]) : '') + '</textarea>'
+						:(this.attributes["value"] ? ' value="' + ample.$encodeXMLCharacters(this.attributes["value"]) + '"' : '') +' />')+ '\
 				</div>\
 			</div>';
 };

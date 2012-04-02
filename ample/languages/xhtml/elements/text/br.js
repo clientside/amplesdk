@@ -23,7 +23,7 @@ cXHTMLElement_br.prototype.$getTagOpen	= function() {
 	var sHtml   = '<' + this.localName;
 	for (var sName in this.attributes)
 		if (this.attributes.hasOwnProperty(sName) && sName != "class" && sName != "id" && sName.indexOf(':') ==-1)
-			sHtml  += ' ' + sName + '="' + this.getAttribute(sName).replace(/"/g, '\"') + '"';
+			sHtml  += ' ' + sName + '="' + ample.$encodeXMLCharacters(this.attributes[sName]) + '"';
 	sHtml	+= ' class="' + (this.prefix ? this.prefix + '-' : '') + this.localName + ("class" in this.attributes ? ' ' + this.attributes["class"] : '') + '"';
     return sHtml + '/>';
 };

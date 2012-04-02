@@ -132,11 +132,11 @@ cXULElement_toolbarbutton.prototype.$getTagOpen	= function() {
 					<tr>\
 						<td nowrap="nowrap">\
 							<div class="xul-toolbarbutton--label">' +
-					(this.getAttribute("image")
-						? '<img src="' + this.getAttribute("image") + '" align="absmiddle"/>'
+					(this.hasAttribute("image")
+						? '<img src="' + ample.$encodeXMLCharacters(this.getAttribute("image")) + '" align="absmiddle"/>'
 						: '')+
-					(this.getAttribute("label")
-						? ' ' + this.getAttribute("label")
+					(this.hasAttribute("label")
+						? ' ' + ample.$encodeXMLCharacters(this.getAttribute("label"))
 						: '')+ '\
 							</div>\
 							<div class="xul-toolbarbutton--gateway">';

@@ -33,7 +33,7 @@ if (!cChartElement.useVML) {
 					<svg:path class="c-group--shadow" style="fill:none;stroke-linejoin:round" transform="translate(2, 2)"/>\
 					<svg:path class="c-group--line" style="fill:none;stroke-linejoin:round"/>\
 					<svg:path class="c-group--area" style="stroke:none"/>\
-					<svg:text class="c-group--label" style="stroke:none">' + this.getAttribute("label")+ '</svg:text>\
+					<svg:text class="c-group--label" style="stroke:none">' + ample.$encodeXMLCharacters(this.getAttribute("label")) + '</svg:text>\
 					<svg:g class="c-group--gateway">';
 	};
 
@@ -87,7 +87,7 @@ else {
 					<chart2vml:shape class="c-group--area" stroked="false" fillcolor="black" style="position:absolute;width:100%;height:100%"/>\
 					<chart2vml:shape path="m0,0 l100,0" class="c-group--label" stroked="false" fillcolor="black" allowoverlap="true" style="position:absolute;width:100%;height:100%;margin-left:0;margin-top:0">\
 						<chart2vml:path textpathok="true" />\
-						<chart2vml:textpath on="true" string="' + this.getAttribute("label")+ '" style="v-text-align:left" />\
+						<chart2vml:textpath on="true" string="' + ample.$encodeXMLCharacters(this.getAttribute("label")) + '" style="v-text-align:left" />\
 					</chart2vml:shape>\
 					<chart2vml:group class="c-group--gateway" style="position:absolute;width:100%;height:100%">';
 	};

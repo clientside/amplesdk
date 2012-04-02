@@ -56,8 +56,8 @@ cXULElement_tab.prototype.$getTagOpen	= function() {
     			<div class="xul-tab--before" style="float:left;height:100%"></div>\
 				<div class="xul-tab--after" style="float:right;height:100%"></div>\
     			<div class="xul-tab--gateway">'+
-    				(this.attributes["image"] ? '<img src="' + this.attributes["image"] + '" border="0" align="absmiddle"/> ' : '')+
-    				(this.attributes["label"] ? this.attributes["label"] : '');
+    				(this.attributes["image"] ? '<img src="' + ample.$encodeXMLCharacters(this.attributes["image"]) + '" border="0" align="absmiddle"/> ' : '')+
+    				(this.attributes["label"] ? ample.$encodeXMLCharacters(this.attributes["label"]) : '');
 };
 
 // Element Render: close
