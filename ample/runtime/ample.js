@@ -338,6 +338,14 @@ oAmple.$instance	= function(oNode) {
 	return fAmple_instance(oAmple_document, oNode);
 };
 
+oAmple.$encodeXMLCharacters	= function(sValue) {
+	return fUtilities_encodeXMLCharacters(sValue);
+};
+
+oAmple.$decodeXMLCharacters	= function(sValue) {
+	return fUtilities_decodeXMLCharacters(sValue);
+};
+
 /*
 oAmple.$class	= function(oNode) {
 	var oElement	= fAmple_instance(oAmple_document, oNode);

@@ -106,12 +106,12 @@ function fUtilities_resolveUri(sUri, sBaseUri)
 	return aResult.join('');
 };
 
-function fUtilities_encodeEntities(sValue) {
-	return sValue.replace(/&(?![a-z]+;)/gi, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+function fUtilities_encodeXMLCharacters(sValue) {
+	return sValue.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
 };
 
-function fUtilities_decodeEntities(sValue) {
-	return sValue.replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+function fUtilities_decodeXMLCharacters(sValue) {
+	return sValue.replace(/&apos;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
 };
 
 function fUtilities_translateStyleSheet(sCSS, sUri) {

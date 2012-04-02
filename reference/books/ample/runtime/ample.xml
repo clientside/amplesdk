@@ -447,7 +447,7 @@
 					</locale>
 				</description>
 			</method>
-			<!--  -->
+			<!-- Elements -->
 			<method name="$instance" type="Element">
 				<arguments>
 					<argument name="node" type="HTMLElement">
@@ -458,7 +458,39 @@
 				</arguments>
 				<description>
 					<locale>
-						Finds corresponding to the HTML DOM element in the Ample SDK DOM.
+						<b>UI element definition API.</b> Finds corresponding to the HTML DOM element in the Ample SDK DOM.
+					</locale>
+				</description>
+			</method>
+			<method name="$encodeXMLCharacters" type="String">
+				<arguments>
+					<argument name="value" type="String">
+						<description>
+							<locale>
+								String value to encode.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Encodes XML characters, such as &amp;, &lt;, &gt;, " and ' to XML entities.
+					</locale>
+				</description>
+			</method>
+			<method name="$decodeXMLCharacters" type="String">
+				<arguments>
+					<argument name="value" type="String">
+						<description>
+							<locale>
+								String value to decode.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Decodes XML entities, such as &amp;lt;, &amp;gt;, &amp;amp;, &amp;quot; and &amp;apos; to XML characters.
 					</locale>
 				</description>
 			</method>

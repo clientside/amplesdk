@@ -115,5 +115,5 @@ cText.prototype.replaceWholeText	= function(sData) {
 
 cText.prototype.$getTag	= function()
 {
-	return this.nodeValue;
+	return fUtilities_encodeXMLCharacters(this.nodeValue);
 };

@@ -939,7 +939,7 @@ function fNode_toXML(oNode)
 			oAttributes	= oNode.attributes;
 			for (sName in oAttributes)
 				if (oAttributes.hasOwnProperty(sName))
-					aHtml.push(' ' + sName + '=' + '"' + fUtilities_encodeEntities(oAttributes[sName]) + '"');
+					aHtml.push(' ' + sName + '=' + '"' + fUtilities_encodeXMLCharacters(oAttributes[sName]) + '"');
 //			aHtml.push(' ' + '_' + '=' + '"' + oNode.uniqueID + '"');
 			if (oNode.hasChildNodes()) {
 				aHtml.push('>');
@@ -965,7 +965,7 @@ function fNode_toXML(oNode)
 			break;
 
 		case 3:	// cNode.TEXT_NODE
-			aHtml.push(fUtilities_encodeEntities(oNode.nodeValue));
+			aHtml.push(fUtilities_encodeXMLCharacters(oNode.nodeValue));
 			break;
 
 		case 4:	// cNode.CDATA_SECTION_NODE

@@ -334,7 +334,7 @@ cDocument.prototype.getElementsByTagNameNS	= function(sNameSpaceURI, sLocalName)
 	return fElement_getElementsByTagNameNS(this, sNameSpaceURI, sLocalName);
 };
 
-function fDocument_importNode(oDocument, oElementDOM, bDeep, oParent, bCollapse) {
+function fDocument_importNode(oDocument, oElementDOM, bDeep, oParent) {
 	var oNode	= null;
 	switch (oElementDOM.nodeType) {
 		case 1:	// cNode.ELEMENT_NODE
@@ -377,7 +377,7 @@ function fDocument_importNode(oDocument, oElementDOM, bDeep, oParent, bCollapse)
 						// set xml:base according to spec
 						if (!oElementDOM.getAttribute("xml:base"))
 							oElementDOM.setAttribute("xml:base", sHref);
-						oNode	= fDocument_importNode(oDocument, oElementDOM, bDeep, oParent, bCollapse);
+						oNode	= fDocument_importNode(oDocument, oElementDOM, bDeep, oParent);
 					}
 					else {
 						// lookup if there is fallback
@@ -385,7 +385,7 @@ function fDocument_importNode(oDocument, oElementDOM, bDeep, oParent, bCollapse)
 						if (oElementDOM) {
 							if ((oElementDOM.localName || oElementDOM.baseName).toLowerCase() == "fallback" && oElementDOM.namespaceURI == sNameSpaceURI) {
 								if (oElementDOM.firstChild)
-									oNode	= fDocument_importNode(oDocument, oElementDOM.getElementsByTagName('*')[0] || oElementDOM.childNodes[0], bDeep, oParent, bCollapse);
+									oNode	= fDocument_importNode(oDocument, oElementDOM.getElementsByTagName('*')[0] || oElementDOM.childNodes[0], bDeep, oParent);
 							}
 //->Debug
 							else
@@ -420,7 +420,7 @@ function fDocument_importNode(oDocument, oElementDOM, bDeep, oParent, bCollapse)
 					// Inline event handler
 					if (sName.indexOf('on') == 0) {
 						try {
-							oNode[sName]	= new cFunction(sNameSpaceURI == sNS_SVG ? "evt" : "event", bCollapse ? fUtilities_decodeEntities(sValue) : sValue);
+							oNode[sName]	= new cFunction(sNameSpaceURI == sNS_SVG ? "evt" : "event", sValue);
 						} catch (oException) {
 //->Debug
 							fUtilities_warn(sGUARD_JAVASCRIPT_SYNTAX_WRN, [oException.message]);
@@ -428,7 +428,7 @@ function fDocument_importNode(oDocument, oElementDOM, bDeep, oParent, bCollapse)
 						}
 					}
 					else
-						oAttributes[sName]	= bCollapse ? sValue : fUtilities_encodeEntities(sValue);
+						oAttributes[sName]	= sValue;
 				}
 
 				// Copy default attributes values if not specified
@@ -451,7 +451,7 @@ function fDocument_importNode(oDocument, oElementDOM, bDeep, oParent, bCollapse)
 				// Render Children
 				if (bDeep)
 					for (var nIndex = 0, nLength = oElementDOM.childNodes.length; nIndex < nLength; nIndex++)
-						fDocument_importNode(oDocument, oElementDOM.childNodes[nIndex], bDeep, oNode, bCollapse);
+						fDocument_importNode(oDocument, oElementDOM.childNodes[nIndex], bDeep, oNode);
 				//
 				return oNode;
 			}
@@ -460,14 +460,12 @@ function fDocument_importNode(oDocument, oElementDOM, bDeep, oParent, bCollapse)
 		case 5:	// cNode.ENTITY_REFERENCE_NODE
 			// This is normally  executed only in IE
 			for (var nIndex = 0, nLength = oElementDOM.childNodes.length; nIndex < nLength; nIndex++)
-				fDocument_importNode(oDocument, oElementDOM.childNodes[nIndex], bDeep, oParent, bCollapse);
+				fDocument_importNode(oDocument, oElementDOM.childNodes[nIndex], bDeep, oParent);
 			break;
 
 		case 3:	// cNode.TEXT_NODE
 			var sValue	= oElementDOM.nodeValue;
 			if (sValue.trim() != '') {
-				if (!bCollapse)
-					sValue	= fUtilities_encodeEntities(sValue);
 				//
 				if (oParent.lastChild instanceof cCharacterData)
 					oNode	= fCharacterData_appendData(oParent.lastChild, sValue);

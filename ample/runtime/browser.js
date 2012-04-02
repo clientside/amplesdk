@@ -74,9 +74,8 @@ function fBrowser_getUIEventButton(oEvent) {
 };
 
 function fBrowser_render(oNode) {
-	if (oNode.nodeType == 3)	// cNode.TEXT_NODE
+	if (oNode.nodeType == 3 || oNode.nodeType == 4)	// cNode.TEXT_NODE || cNode.CDATA_SECTION_NODE
 		return oUADocument.createTextNode(oNode.nodeValue);
-	else
 	if (oNode.nodeType == 1) {	// cNode.ELEMENT_NODE
 		var sHtml	= oNode.$getTag();
 		if (sHtml) {
@@ -1013,7 +1012,7 @@ function fBrowser_processScripts() {
 		        aAttributes = oElementDOM.attributes;
 		        for (var nAttribute = 0; oAttribute = aAttributes[nAttribute]; nAttribute++)
 		        	if (oAttribute.specified && (sAttribute = oAttribute.nodeName.toLowerCase()) != "type")
-                		hAttributes[sAttribute]	= sAttribute == "style" ? oElementDOM[sAttribute].cssText : fUtilities_encodeEntities(oAttribute.nodeValue);
+                		hAttributes[sAttribute]	= sAttribute == "style" ? oElementDOM[sAttribute].cssText : fUtilities_encodeXMLCharacters(oAttribute.nodeValue);
 			}
 
 			if (sSrc) {
@@ -1024,7 +1023,7 @@ function fBrowser_processScripts() {
 			}
 			else
 				oDocument	= fBrowser_createFragment(
-									sText.replace(/^\s*<\?xml.+\?>/, '').replace(/&/g, '&amp;').replace(/<script(.|\n|\r)+$/, ''),
+									sText.replace(/^\s*<\?xml.+\?>/, '').replace(/<script(.|\n|\r)+$/, ''),
 									fHashToString(hAttributes)
 								);
 
@@ -1036,7 +1035,7 @@ function fBrowser_processScripts() {
 		    			oDocument.documentElement.setAttribute("xml:base", fUtilities_resolveUri(sSrc, fNode_getBaseURI(oAmple_root)));
 
 		    	// import XML DOM into Ample DOM
-		    	oElement	= fDocument_importNode(oAmple_document, oDocument.documentElement, true, null, true);
+		    	oElement	= fDocument_importNode(oAmple_document, oDocument.documentElement, true);
 		    	// Remove prefixes declarations (already available from root)
 		    	if (!bReferenced) {
 		    		for (sAttribute in oAmple.prefixes) {
