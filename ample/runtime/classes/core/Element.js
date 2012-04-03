@@ -260,35 +260,40 @@ cElement.prototype.hasAttributeNS	= function(sNameSpaceURI, sLocalName)
 
 function fElement_setAttribute(oElement, sName, sValue)
 {
-	// convert value to string
 	var sValueOld	= oElement.attributes[sName],
 		bValue	= sName in oElement.attributes;
 
     if (sValueOld != sValue) {
     	// Only operate on shadow if element is in the DOM
-    	if (oDocument_all[oElement.uniqueID] && (sName == 'id' || sName == "class" || sName == "style")) {
-    		// Find shadow content first
-    		var oElementDOM	= oElement.$getContainer();
-    		if (sName == 'id') {
-	    		if (sValue)
-	    			oDocument_ids[sValue]	= oElement;
-    			delete oDocument_ids[sValueOld];
-	    	}
-    		// Update view
-    		if (oElementDOM) {
-		    	if (sName == "class") {
-		    		var sValueClass	=(oElement.prefix ? oElement.prefix + '-' : '') + oElement.localName + (sValue ? ' ' + sValue : '');
-		    		if (bTrident && nVersion < 8)
-		    			oElementDOM.className	= sValueClass;
-		    		else
-		    			oElementDOM.setAttribute("class", sValueClass);
+    	if (oDocument_all[oElement.uniqueID]) {
+    		if (sName == 'id' || sName == "class" || sName == "style") {
+	    		if (sName == 'id') {
+		    		if (sValue)
+		    			oDocument_ids[sValue]	= oElement;
+	    			delete oDocument_ids[sValueOld];
 		    	}
-		    	else
-		    	if (sName == "style")
-	    			oElementDOM.style.cssText	= sValue;
-		    	else
-	    			oElementDOM.id	= sValue ? sValue : oElement.uniqueID;
+	    		// Find shadow content
+	    		var oElementDOM	= oElement.$getContainer();
+	    		// Update view
+	    		if (oElementDOM) {
+	    	    	if (sName == "class") {
+	    	    		var sValueClass	=(oElement.prefix ? oElement.prefix + '-' : '') + oElement.localName + (sValue ? ' ' + sValue : '');
+	    	    		if (bTrident && nVersion < 8)
+	    	    			oElementDOM.className	= sValueClass;
+	    	    		else
+	    	    			oElementDOM.setAttribute("class", sValueClass);
+	    	    	}
+	    	    	else
+	    	    	if (sName == "style")
+	    				oElementDOM.style.cssText	= sValue;
+	    	    	else
+	    				oElementDOM.id	= sValue ? sValue : oElement.uniqueID;
+	    		}
     		}
+    		// Map attribute
+    		else
+    		if (sName.indexOf(':') ==-1)
+    			oElement.$mapAttribute(sName, sValue);
     	}
 
     	//
@@ -301,6 +306,10 @@ function fElement_setAttribute(oElement, sName, sValue)
 		    fNode_dispatchEvent(oElement, oEvent);
     	}
     }
+};
+
+cElement.prototype.$mapAttribute	= function(sName, sValue) {
+	// Should be implemented in elements
 };
 
 cElement.prototype.setAttribute	= function(sName, sValue)
