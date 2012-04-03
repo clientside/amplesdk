@@ -46,7 +46,7 @@ if (cSVGElement.useVML) {
 
 	// Static members
 	cSVGElement_a.recalcCSS	= function(oElement) {
-		for (var nIndex = 0, oChild, oElementDOM; oChild = oElement.childNodes[nIndex]; nIndex++)
+		for (var nIndex = 0, oChild; oChild = oElement.childNodes[nIndex]; nIndex++)
 			if (oChild.nodeType == 1) {
 				if (oChild instanceof cSVGElement_g)
 					cSVGElement_a.recalcCSS(oChild);
@@ -60,8 +60,11 @@ if (cSVGElement.useVML) {
 			if (oChild instanceof cSVGElement_g)
 				cSVGElement_a.setHref(oChild, sValue);
 			else
-			if (oChild instanceof cSVGElement_text)
-				oChild.$getContainer().getElementsByTagName("shape")[0].href	= sValue;
+			if (oChild instanceof cSVGElement_text) {
+				oElementDOM	= oChild.$getContainer();
+				if (oElementDOM)
+					oElementDOM.getElementsByTagName("shape")[0].href	= sValue;
+			}
 			else
 			if (oChild.nodeType == 1) {
 				oElementDOM	= oChild.$getContainer();

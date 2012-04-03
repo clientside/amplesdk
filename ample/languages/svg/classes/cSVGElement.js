@@ -798,7 +798,6 @@ if (cSVGElement.useVML) {
 	};
 
 	cSVGElement.prototype.refresh	= function() {
-		var sValue;
 		switch (this.localName) {
 			case "text":
 			case "textPath":

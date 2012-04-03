@@ -228,13 +228,12 @@ if (cSVGElement.useVML) {
 			iCurrentY	= 0,
 			aCubic		= null,
 			aQuadratic	= null,
-			iControlY	= 0,
 			aPath		= [];
 
 		if (!aCommands)
 			return '';
 
-		for (var i = 0, aCommand, sCommand, aParameters, nParameters, nCommands = aCommands.length; i < nCommands; i++) {
+		for (var i = 0, sCommand, aParameters, nParameters, nCommands = aCommands.length; i < nCommands; i++) {
 			sCommand	= aCommands[i].substr(0, 1);
 			aParameters	= aCommands[i].substr(1).
 								replace(/(\d)-/g, '$1,-').
