@@ -264,6 +264,9 @@ function fElement_setAttribute(oElement, sName, sValue)
 		bValue	= sName in oElement.attributes;
 
     if (sValueOld != sValue) {
+    	//
+    	oElement.attributes[sName]	= sValue;
+
     	// Only operate on shadow if element is in the DOM
     	if (oDocument_all[oElement.uniqueID]) {
     		if (sName == 'id' || sName == "class" || sName == "style") {
@@ -295,9 +298,6 @@ function fElement_setAttribute(oElement, sName, sValue)
     		if (sName.indexOf(':') ==-1)
     			oElement.$mapAttribute(sName, sValue);
     	}
-
-    	//
-    	oElement.attributes[sName]	= sValue;
 
     	// Fire Mutation event
     	if (oDocument_all[oElement.uniqueID]) {
