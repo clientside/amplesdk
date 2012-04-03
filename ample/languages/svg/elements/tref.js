@@ -50,10 +50,10 @@ if (cSVGElement.useVML) {
 
 	// presentation
 	cSVGElement_tref.prototype.$getTagOpen	= function() {
-		var sFontFamily	= cSVGElement.getStyle(this, "font-family") || "Times New Roman",
-			sFontWeight	= cSVGElement.getStyle(this, "font-weight"),
-			sFontSize	= cSVGElement.getStyle(this, "font-size"),
-			sTextAnchor	= cSVGElement.getStyle(this, "text-anchor"),
+		var sFontFamily	= this.$getStyleComputed("font-family") || "Times New Roman",
+			sFontWeight	= this.$getStyleComputed("font-weight"),
+			sFontSize	= this.$getStyleComputed("font-size"),
+			sTextAnchor	= this.$getStyleComputed("text-anchor"),
 			nLeft	=((this.getAttribute("x") || (this.parentNode ? this.parentNode.getAttribute("x") : "0")).match(/([0-9\.]+)?/)[1] * 1 || 0) + (this.getAttribute("dx") * 1 || 0),
 			nTop	=((this.getAttribute("y") || (this.parentNode ? this.parentNode.getAttribute("y") : "0")).match(/([0-9\.]+)?/)[1] * 1 || 0) + (this.getAttribute("dy") * 1 || 0),
 			// Font size calculations

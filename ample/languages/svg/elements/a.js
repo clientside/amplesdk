@@ -38,6 +38,12 @@ if (cSVGElement.useVML) {
 		}
 	};
 
+	cSVGElement_a.prototype.$setStyle	= function(sName, sValue) {
+		for (var nIndex = 0, oChild; oChild = this.childNodes[nIndex]; nIndex++)
+			if (oChild.nodeType == 1 && !oChild.$getStyle(sName))
+				oChild.$setStyle(sName, sValue);
+	};
+
 	// Static members
 	cSVGElement_a.recalcCSS	= function(oElement) {
 		for (var nIndex = 0, oChild, oElementDOM; oChild = oElement.childNodes[nIndex]; nIndex++)

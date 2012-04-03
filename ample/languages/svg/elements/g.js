@@ -12,6 +12,11 @@ cSVGElement_g.prototype	= new cSVGElement("g");
 
 if (cSVGElement.useVML) {
 	// Implementation for IE
+	cSVGElement_g.prototype.$setStyle	= function(sName, sValue) {
+		for (var nIndex = 0, oChild; oChild = this.childNodes[nIndex]; nIndex++)
+			if (oChild.nodeType == 1 && !oChild.$getStyle(sName))
+				oChild.$setStyle(sName, sValue);
+	};
 
 	// presentation
 	cSVGElement_g.prototype.$getTagOpen	= function() {

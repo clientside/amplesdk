@@ -25,8 +25,8 @@ if (cSVGElement.useVML) {
 			var sValue;
 
 			// Apply gradients
-			if ((sValue = cSVGElement.getStyle(this, "fill")) && sValue.substr(0, 3) == "url")
-				cSVGElement.setStyle(this, "fill", sValue);
+			if ((sValue = this.$getStyleComputed("fill")) && sValue.substr(0, 3) == "url")
+				this.$setStyle("fill", sValue);
 
 			// Apply transformations
 			cSVGElement.applyTransform(this);
@@ -50,14 +50,23 @@ if (cSVGElement.useVML) {
 			cSVGElement.prototype.$mapAttribute.call(this, sName, sValue);
 	};
 
+	//
+	cSVGElement_text.prototype.$setStyle	= function(sName, sValue) {
+		for (var nIndex = 0, oChild; oChild = this.childNodes[nIndex]; nIndex++)
+			if (oChild.nodeType == 1 && !oChild.$getStyle(sName))
+				oChild.$setStyle(sName, sValue);
+		//
+		cSVGElement.prototype.$setStyle.call(this, sName, sValue);
+	};
+
 	// presentation
 	cSVGElement_text.prototype.$getTagOpen	= function() {
-		var sFontFamily	= cSVGElement.getStyle(this, "font-family") || "Times New Roman",
-			sFontWeight	= cSVGElement.getStyle(this, "font-weight"),
-			sFontSize	= cSVGElement.getStyle(this, "font-size"),
-			sFontStyle	= cSVGElement.getStyle(this, "font-style"),
-			sTextAnchor	= cSVGElement.getStyle(this, "text-anchor"),
-//			sTextSpacing= cSVGElement.getStyle(this, "letter-spacing") || "0",
+		var sFontFamily	= this.$getStyleComputed("font-family") || "Times New Roman",
+			sFontWeight	= this.$getStyleComputed("font-weight"),
+			sFontSize	= this.$getStyleComputed("font-size"),
+			sFontStyle	= this.$getStyleComputed("font-style"),
+			sTextAnchor	= this.$getStyleComputed("text-anchor"),
+//			sTextSpacing= this.$getStyleComputed("letter-spacing") || "0",
 			nLeft	=(this.getAttribute("x").match(/([0-9\.]+)?/)[1] * 1 || 0) + (this.getAttribute("dx") * 1 || 0),
 			nTop	=(this.getAttribute("y").match(/([0-9\.]+)?/)[1] * 1 || 0) + (this.getAttribute("dy") * 1 || 0),
 			// Font size calculations

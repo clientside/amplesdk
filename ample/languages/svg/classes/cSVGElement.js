@@ -20,18 +20,6 @@ if (cSVGElement.useVML) {
 	// Add namespace
 	document.namespaces.add("svg2vml", "urn:schemas-microsoft-com:vml", "#default#VML");
 
-	cSVGElement.prototype.$getStyle	= function(sName) {
-		return cSVGElement.getStyleOwn(this, sName);
-	};
-
-	cSVGElement.prototype.$setStyle	= function(sName, sValue) {
-		cSVGElement.setStyle(this, sName, sValue);
-	};
-
-	cSVGElement.prototype.$getStyleComputed	= function(sName) {
-		return cSVGElement.getStyle(this, sName);
-	};
-
 	cSVGElement.prototype.getBBox	= function() {
 		var oBCRectRoot	= cSVGElement.getViewportElement(this).$getContainer().getBoundingClientRect(),
 			oBCRectThis	= this.$getContainer().getBoundingClientRect(),
@@ -182,25 +170,24 @@ if (cSVGElement.useVML) {
 	};
 
 	// Note! Performance optimization: Getting attribute values in a hacky way here ".attributes[]" instead of ".getAttribute()"
-	cSVGElement.getStyleOwn	= function(oElement, sName) {
+	cSVGElement.prototype.$getStyle	= function(sName) {
 		var sValue;
 
 		// 1) first check if style specified
-		if (sValue = oElement.attributes["style"])
+		if (sValue = this.attributes["style"])
 			if (sValue.match(new RegExp(sName + "\\s*:\\s*[\'\"]?\\s*([^;\'\"]+)\\s*[\'\"]?")))
 				return RegExp.$1;
 
 		// 2) second check if attribute specified
-		if (sValue = oElement.attributes[sName])
+		if (sValue = this.attributes[sName])
 			return sValue;
 
 		return '';
 	};
 
-	cSVGElement.setStyleOwn	= function(oElement, sName, sValue) {
-		// other
-		var oElementDOM	= oElement.$getContainer();
-		if (oElement instanceof cSVGElement_text)
+	cSVGElement.prototype.$setStyle	= function(sName, sValue) {
+		var oElementDOM	= this.$getContainer();
+		if (this instanceof cSVGElement_text)
 			oElementDOM	= oElementDOM.getElementsByTagName("shape")[0];
 
 		// Some element do not have view, skip them
@@ -210,14 +197,14 @@ if (cSVGElement.useVML) {
 		switch (sName) {
 			// opacity (general)
 			case "opacity":
-				if (oElement instanceof cSVGElement_image) {
+				if (this instanceof cSVGElement_image) {
 					var oAlpha	= oElementDOM.filters.item('DXImageTransform.Microsoft.Alpha');
 					oAlpha.enabled	= sValue != 1;
 					oAlpha.opacity	= sValue * 100;
 				}
 				else {
-					cSVGElement.setStyleOwn(oElement, "fill-opacity", cSVGElement.getStyle(oElement, "fill-opacity"));
-					cSVGElement.setStyleOwn(oElement, "stroke-opacity", cSVGElement.getStyle(oElement, "stroke-opacity"));
+					this.$setStyle("fill-opacity", this.$getStyleComputed("fill-opacity"));
+					this.$setStyle("stroke-opacity", this.$getStyleComputed("stroke-opacity"));
 				}
 				break;
 			// fill
@@ -225,7 +212,7 @@ if (cSVGElement.useVML) {
 				oElementDOM.fill.on	= sValue != "none";
 				var aValue, oGradient;
 				if (aValue = sValue.match(/url\(['"]?#([^'")]+)['"]?\)/)) {
-					if (oGradient = oElement.ownerDocument.getElementById(aValue[1])) {
+					if (oGradient = this.ownerDocument.getElementById(aValue[1])) {
 						if (oGradient instanceof cSVGElement_linearGradient || oGradient instanceof cSVGElement_radialGradient) {
 							if (oGradient instanceof cSVGElement_linearGradient) {
 								var x1	= parseFloat(oGradient.getAttribute("x1") || "0") / (oGradient.getAttribute("x1").indexOf("%") ==-1 ? 1 : 100),
@@ -255,17 +242,17 @@ if (cSVGElement.useVML) {
 							oElementDOM.fill.method		= "sigma";
 
 							// Find referred gradient with stops
-							for (var oGradientStop = oGradient; oGradientStop && oGradientStop.hasAttribute("xlink:href"); oGradientStop = oElement.ownerDocument.getElementById(oGradientStop.getAttribute("xlink:href").substr(1)))
+							for (var oGradientStop = oGradient; oGradientStop && oGradientStop.hasAttribute("xlink:href"); oGradientStop = this.ownerDocument.getElementById(oGradientStop.getAttribute("xlink:href").substr(1)))
 								if (oGradientStop.hasChildNodes())
 									break;
 
 							if (oGradientStop) {
 								// Collect stops
 								var aColors	= [],
-									nOpacity	=(cSVGElement.getStyle(oElement, "opacity") || 1) * (cSVGElement.getStyle(oElement, "fill-opacity") || 1);
+									nOpacity	=(this.$getStyleComputed("opacity") || 1) * (this.$getStyleComputed("fill-opacity") || 1);
 								for (var i = 0, oStop, sColor; oStop = oGradientStop.childNodes[i]; i++)
 									if (oGradientStop.childNodes[i] instanceof cSVGElement_stop)
-										aColors.push([parseFloat(oStop.getAttribute("offset") || "1") / (oStop.getAttribute("offset").indexOf("%") ==-1 ? 1 : 100), ((sColor = cSVGElement.getStyleOwn(oStop, "stop-color")) in oSVGElement_colors ? 'rgb(' + oSVGElement_colors[sColor] + ')' : cSVGElement.correctColor(sColor)), nOpacity * parseFloat(cSVGElement.getStyleOwn(oStop, "stop-opacity") || "1")]);
+										aColors.push([parseFloat(oStop.getAttribute("offset") || "1") / (oStop.getAttribute("offset").indexOf("%") ==-1 ? 1 : 100), ((sColor = oStop.$getStyle("stop-color")) in oSVGElement_colors ? 'rgb(' + oSVGElement_colors[sColor] + ')' : cSVGElement.correctColor(sColor)), nOpacity * parseFloat(oStop.$getStyle("stop-opacity") || "1")]);
 
 								var nLength	= aColors.length;
 								if (nLength) {
@@ -303,7 +290,7 @@ if (cSVGElement.useVML) {
 			case "fill-opacity":
 				if (sValue == null || sValue == "")
 					sValue	= 1;
-				sValue	=(cSVGElement.getStyle(oElement, "opacity") || 1) * sValue;
+				sValue	=(this.$getStyleComputed("opacity") || 1) * sValue;
 				if (sValue > 1)
 					sValue	= 1;
 				if (oElementDOM.fill.opacity != sValue)
@@ -316,22 +303,22 @@ if (cSVGElement.useVML) {
 				break;
 			case "stroke-width":
 				var aStrokeWidth	= sValue.match(/([\d.]+)(.*)/),
-					nStrokeWidth	= aStrokeWidth[1] * cSVGElement.getScaleFactor(oElement) * Math.sqrt(Math.abs(cSVGElement.matrixDeterminant(cSVGElement.getMatrix(oElement))));
+					nStrokeWidth	= aStrokeWidth[1] * cSVGElement.getScaleFactor(this) * Math.sqrt(Math.abs(cSVGElement.matrixDeterminant(cSVGElement.getMatrix(this))));
 				oElementDOM.stroke.weight	= nStrokeWidth + (aStrokeWidth[2] || 'px');
-				if (nStrokeWidth < 1 && !(oElement instanceof cSVGElement_text || oElement instanceof cSVGElement_tspan || oElement instanceof cSVGElement_textPath))
-					oElementDOM.stroke.opacity	= (oElement.attributes["stroke-opacity"] || 1) * nStrokeWidth;
+				if (nStrokeWidth < 1 && !(this instanceof cSVGElement_text || this instanceof cSVGElement_tspan || this instanceof cSVGElement_textPath))
+					oElementDOM.stroke.opacity	= (this.attributes["stroke-opacity"] || 1) * nStrokeWidth;
 				else
 					oElementDOM.stroke.opacity	= 1;
 				break;
 			case "stroke-opacity":
 				if (sValue == null || sValue == "")
 					sValue	= 1;
-				sValue	=(cSVGElement.getStyle(oElement, "opacity") || 1) * sValue;
+				sValue	=(this.$getStyleComputed("opacity") || 1) * sValue;
 				var aStrokeWidth,
 					nStrokeWidth	= 1;
-				if (aStrokeWidth =(cSVGElement.getStyle(oElement, "stroke-width") || "1").match(/([\d.]+)(.*)/)) {
-					nStrokeWidth	= aStrokeWidth[1] * cSVGElement.getScaleFactor(oElement) * Math.sqrt(Math.abs(cSVGElement.matrixDeterminant(cSVGElement.getMatrix(oElement))));
-					if (nStrokeWidth < 1 && !(oElement instanceof cSVGElement_text || oElement instanceof cSVGElement_tspan || oElement instanceof cSVGElement_textPath))
+				if (aStrokeWidth =(this.$getStyleComputed("stroke-width") || "1").match(/([\d.]+)(.*)/)) {
+					nStrokeWidth	= aStrokeWidth[1] * cSVGElement.getScaleFactor(this) * Math.sqrt(Math.abs(cSVGElement.matrixDeterminant(cSVGElement.getMatrix(this))));
+					if (nStrokeWidth < 1 && !(this instanceof cSVGElement_text || this instanceof cSVGElement_tspan || this instanceof cSVGElement_textPath))
 						sValue	= sValue * nStrokeWidth;
 				}
 				if (sValue > 1)
@@ -366,7 +353,7 @@ if (cSVGElement.useVML) {
 				var aFontSize	= sValue.match(/(^[\d.]*)(.*)$/),
 					sFontSizeUnit	= aFontSize[2] || "px",
 					nFontSizeValue	= aFontSize[1],
-					nFontSize	= Math.round(nFontSizeValue * cSVGElement.getScaleFactor(oElement)),
+					nFontSize	= Math.round(nFontSizeValue * cSVGElement.getScaleFactor(this)),
 					nMarginTop	= -(sFontSizeUnit == "pt" ? Math.round(nFontSizeValue * 0.35) : nFontSizeValue * 0.35);
 
 				oElementDOM.style.marginTop	=-(sFontSizeUnit == "pt" ? Math.round(nFontSizeValue * 0.35) : nFontSizeValue * 0.35) + "px";
@@ -387,29 +374,19 @@ if (cSVGElement.useVML) {
 		}
 	};
 
-	cSVGElement.getStyle	= function(oElement, sName) {
-		var sValue	= cSVGElement.getStyleOwn(oElement, sName);
+	cSVGElement.prototype.$getStyleComputed	= function(sName) {
+		var sValue	= this.$getStyle(sName);
 		if (sValue == "currentColor")
-			return cSVGElement.getStyle(oElement, "color");
+			return oElement.$getStyleComputed("color");
 
 		if (sValue && sValue != "inherit")
 			return sValue;
 
 		// check if parent is group
-		if (sValue == "inherit" || oElement.parentNode instanceof cSVGElement_g || oElement.parentNode instanceof cSVGElement_text || oElement.parentNode instanceof cSVGElement_a)
-			return cSVGElement.getStyle(oElement.parentNode, sName);
+		if (sValue == "inherit" || this.parentNode instanceof cSVGElement_g || this.parentNode instanceof cSVGElement_text || this.parentNode instanceof cSVGElement_a)
+			return this.parentNode.$getStyleComputed(sName);
 
 		return '';
-	};
-
-	cSVGElement.setStyle	= function(oElement, sName, sValue) {
-		// groups
-		if (oElement instanceof cSVGElement_g || oElement instanceof cSVGElement_text || oElement instanceof cSVGElement_a)
-			for (var nIndex = 0, oChild; oChild = oElement.childNodes[nIndex]; nIndex++)
-				if (oChild.nodeType == 1 && !cSVGElement.getStyleOwn(oChild, sName))
-					cSVGElement.setStyle(oChild, sName, sValue);
-		if (!(oElement instanceof cSVGElement_g) && !(oElement instanceof cSVGElement_a))
-			cSVGElement.setStyleOwn(oElement, sName, sValue);
 	};
 
 	// Should never be called on groups
@@ -423,44 +400,44 @@ if (cSVGElement.useVML) {
 				sValue;
 			// opacity (general)
 			if (sValue = oStyle["opacity"])
-				cSVGElement.setStyle(oElement, "opacity", sValue);
+				oElement.$setStyle("opacity", sValue);
 			// fills
 			if (sValue = oStyle["fill"])
-				cSVGElement.setStyle(oElement, "fill", sValue);
+				oElement.$setStyle("fill", sValue);
 			if (sValue = oStyle["fill-opacity"])
-				cSVGElement.setStyle(oElement, "fill-opacity", sValue);
+				oElement.$setStyle("fill-opacity", sValue);
 			// strokes
 			if (sValue = oStyle["stroke"])
-				cSVGElement.setStyle(oElement, "stroke", sValue);
+				oElement.$setStyle("stroke", sValue);
 			if (sValue = oStyle["stroke-width"])
-				cSVGElement.setStyle(oElement, "stroke-width", sValue);
+				oElement.$setStyle("stroke-width", sValue);
 			if (sValue = oStyle["stroke-opacity"])
-				cSVGElement.setStyle(oElement, "stroke-opacity", sValue);
+				oElement.$setStyle("stroke-opacity", sValue);
 			if (sValue = oStyle["stroke-linejoin"])
-				cSVGElement.setStyle(oElement, "stroke-linejoin", sValue);
+				oElement.$setStyle("stroke-linejoin", sValue);
 			if (sValue = oStyle["stroke-miterlimit"])
-				cSVGElement.setStyle(oElement, "stroke-miterlimit", sValue);
+				oElement.$setStyle("stroke-miterlimit", sValue);
 			if (sValue = oStyle["stroke-linecap"])
-				cSVGElement.setStyle(oElement, "stroke-linecap", sValue);
+				oElement.$setStyle("stroke-linecap", sValue);
 			if (sValue = oStyle["stroke-dasharray"])
-				cSVGElement.setStyle(oElement, "stroke-dasharray", sValue);
+				oElement.$setStyle("stroke-dasharray", sValue);
 			// Markers
 			if (sValue = oStyle["marker-start"])
-				cSVGElement.setStyle(oElement, "marker-start", sValue);
+				oElement.$setStyle("marker-start", sValue);
 			if (sValue = oStyle["marker-end"])
-				cSVGElement.setStyle(oElement, "marker-end", sValue);
+				oElement.$setStyle("marker-end", sValue);
 			// Text module
 			if (oElement instanceof cSVGElement_text || oElement instanceof cSVGElement_tspan || oElement instanceof cSVGElement_textPath) {
-				if (!cSVGElement.getStyle(oElement, "text-anchor") && (sValue = oStyle["text-anchor"]))
-					cSVGElement.setStyle(oElement, "text-anchor", sValue);
-				if (!cSVGElement.getStyle(oElement, "font-weight") && (sValue = oStyle["fontWeight"]))
-					cSVGElement.setStyle(oElement, "font-weight", sValue);
-				if (!cSVGElement.getStyle(oElement, "font-family") && (sValue = oStyle["fontFamily"]))
-					cSVGElement.setStyle(oElement, "font-family", sValue);
-				if (!cSVGElement.getStyle(oElement, "font-size") && (sValue = oStyle["fontSize"]))
-					cSVGElement.setStyle(oElement, "font-size", sValue);
-				if (!cSVGElement.getStyle(oElement, "font-style") && (sValue = oStyle["fontStyle"]))
-					cSVGElement.setStyle(oElement, "font-style", sValue);
+				if (!oElement.$getStyleComputed("text-anchor") && (sValue = oStyle["text-anchor"]))
+					oElement.$setStyle("text-anchor", sValue);
+				if (!oElement.$getStyleComputed("font-weight") && (sValue = oStyle["fontWeight"]))
+					oElement.$setStyle("font-weight", sValue);
+				if (!oElement.$getStyleComputed("font-family") && (sValue = oStyle["fontFamily"]))
+					oElement.$setStyle("font-family", sValue);
+				if (!oElement.$getStyleComputed("font-size") && (sValue = oStyle["fontSize"]))
+					oElement.$setStyle("font-size", sValue);
+				if (!oElement.$getStyleComputed("font-style") && (sValue = oStyle["fontStyle"]))
+					oElement.$setStyle("font-style", sValue);
 			}
 //		}, 0);
 	};
@@ -471,14 +448,14 @@ if (cSVGElement.useVML) {
 			return;
 		var oStyle	= oElementDOM.currentStyle,
 			sValue;
-		if (sValue = (oStyle["stroke-width"] || cSVGElement.getStyle(oElement, "stroke-width")))
-			cSVGElement.setStyle(oElement, "stroke-width", sValue);
-		if (sValue = (oStyle["stroke-opacity"] || cSVGElement.getStyle(oElement, "stroke-opacity")))
-			cSVGElement.setStyle(oElement, "stroke-opacity", sValue);
+		if (sValue = (oStyle["stroke-width"] || oElement.$getStyleComputed("stroke-width")))
+			oElement.$setStyle("stroke-width", sValue);
+		if (sValue = (oStyle["stroke-opacity"] || oElement.$getStyleComputed("stroke-opacity")))
+			oElement.$setStyle("stroke-opacity", sValue);
 		// Text module
 		if (oElement instanceof cSVGElement_text || oElement instanceof cSVGElement_tspan || oElement instanceof cSVGElement_textPath) {
-			if (sValue = cSVGElement.getStyle(oElement, "font-size"))
-				cSVGElement.setStyle(oElement, "font-size", sValue);
+			if (sValue = oElement.$getStyleComputed("font-size"))
+				oElement.$setStyle("font-size", sValue);
 		}
 		for (var oChild = oElement.firstChild; oChild; oChild = oChild.nextSibling)
 			if (!(oChild instanceof cSVGElement_g))
@@ -604,16 +581,16 @@ if (cSVGElement.useVML) {
 	};
 
 	cSVGElement.getTagStyle	= function(oElement) {
-		var nOpacity		= cSVGElement.getStyle(oElement, "opacity") || 1,
-			sFill			= cSVGElement.getStyle(oElement, "fill"),
-			nFillOpacity	=(cSVGElement.getStyle(oElement, "fill-opacity") || 1) * nOpacity,
-			sStroke			= cSVGElement.getStyle(oElement, "stroke"),
-			nStrokeOpacity	=(cSVGElement.getStyle(oElement, "stroke-opacity") || 1) * nOpacity,
-			sStrokeWidth	= cSVGElement.getStyle(oElement, "stroke-width") || "1",
-			sStrokeLineJoin	= cSVGElement.getStyle(oElement, "stroke-linejoin") || 'miter',
-			sStrokeMiterLimit	= cSVGElement.getStyle(oElement, "stroke-miterlimit") || '4',
-			sStrokeLineCap	= cSVGElement.getStyle(oElement, "stroke-linecap") || 'square',
-			sStrokeDashArray= cSVGElement.getStyle(oElement, "stroke-dasharray");
+		var nOpacity		= oElement.$getStyleComputed("opacity") || 1,
+			sFill			= oElement.$getStyleComputed("fill"),
+			nFillOpacity	=(oElement.$getStyleComputed("fill-opacity") || 1) * nOpacity,
+			sStroke			= oElement.$getStyleComputed("stroke"),
+			nStrokeOpacity	=(oElement.$getStyleComputed("stroke-opacity") || 1) * nOpacity,
+			sStrokeWidth	= oElement.$getStyleComputed("stroke-width") || "1",
+			sStrokeLineJoin	= oElement.$getStyleComputed("stroke-linejoin") || 'miter',
+			sStrokeMiterLimit	= oElement.$getStyleComputed("stroke-miterlimit") || '4',
+			sStrokeLineCap	= oElement.$getStyleComputed("stroke-linecap") || 'square',
+			sStrokeDashArray= oElement.$getStyleComputed("stroke-dasharray");
 
 		var aColor;
 		// Process rgba
@@ -826,7 +803,7 @@ if (cSVGElement.useVML) {
 			case "text":
 			case "textPath":
 			case "tspan":
-				cSVGElement.setStyle(this, "font-size", cSVGElement.getStyle(this, "font-size") || "16px");
+				this.$setStyle("font-size", this.$getStyleComputed("font-size") || "16px");
 				// No break intentially left here
 			case "circle":
 			case "ellipse":
@@ -838,7 +815,7 @@ if (cSVGElement.useVML) {
 				// Apply transform
 				cSVGElement.setMatrixOwn(this, cSVGElement.getMatrix(this));
 				//
-				cSVGElement.setStyle(this, "stroke-width", cSVGElement.getStyle(this, "stroke-width") || "1");
+				this.$setStyle("stroke-width", this.$getStyleComputed("stroke-width") || "1");
 				break;
 			case "svg":
 				cSVGElement_svg.resize(this);
@@ -855,7 +832,7 @@ if (cSVGElement.useVML) {
 			cSVGElement.applyTransform(this);
 		}
 		else
-			cSVGElement.setStyle(this, sName, sValue);
+			this.$setStyle(sName, sValue);
 	};
 }
 else {

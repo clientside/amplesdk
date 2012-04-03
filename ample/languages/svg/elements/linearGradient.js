@@ -18,7 +18,7 @@ if (cSVGElement.useVML) {
 			if (sId) {
 				var aElements	= this.ownerDocument.querySelectorAll("[fill=url(#" + sId + ")]");
 				for (var nIndex = 0; nIndex < aElements.length; nIndex++)
-					cSVGElement.setStyle(aElements[nIndex], "fill", "url(#" + sId + ")");
+					aElements[nIndex].$setStyle("fill", "url(#" + sId + ")");
 			}
 		}
 	};

@@ -36,8 +36,8 @@ if (cSVGElement.useVML) {
 			var sValue;
 
 			// Apply gradients
-			if ((sValue = cSVGElement.getStyle(this, "fill")) && sValue.substr(0, 3) == "url")
-				cSVGElement.setStyle(this, "fill", sValue);
+			if ((sValue = this.$getStyleComputed("fill")) && sValue.substr(0, 3) == "url")
+				this.$setStyle("fill", sValue);
 
 			// Apply transform
 			cSVGElement.applyTransform(this);
@@ -57,11 +57,11 @@ if (cSVGElement.useVML) {
 
 	// presentation
 	cSVGElement_textPath.prototype.$getTagOpen	= function() {
-		var sFontFamily	= cSVGElement.getStyle(this, "font-family") || "Times New Roman",
-			sFontWeight	= cSVGElement.getStyle(this, "font-weight"),
-			sFontSize	= cSVGElement.getStyle(this, "font-size"),
-			sFontStyle	= cSVGElement.getStyle(this, "font-style"),
-			sTextAnchor	= cSVGElement.getStyle(this, "text-anchor"),
+		var sFontFamily	= this.$getStyleComputed("font-family") || "Times New Roman",
+			sFontWeight	= this.$getStyleComputed("font-weight"),
+			sFontSize	= this.$getStyleComputed("font-size"),
+			sFontStyle	= this.$getStyleComputed("font-style"),
+			sTextAnchor	= this.$getStyleComputed("text-anchor"),
 			// Font size calculations
 			aFontSize	= sFontSize.match(/(^[\d.]*)(.*)$/),
 			sFontSizeUnit	= aFontSize[2] || "px",
