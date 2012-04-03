@@ -12,6 +12,9 @@ cSVGElement_script.prototype	= new cSVGElement("script");
 
 if (cSVGElement.useVML) {
 	// Implementation for IE
+	cSVGElement_script.prototype.$mapAttribute	= function(sName, sValue) {
+		// No implementation
+	};
 };
 
 // presentation

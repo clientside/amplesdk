@@ -12,6 +12,9 @@ cSVGElement_symbol.prototype	= new cSVGElement("symbol");
 
 if (cSVGElement.useVML) {
 	// Implementation for IE
+	cSVGElement_symbol.prototype.$mapAttribute	= function(sName, sValue) {
+		// No implementation
+	};
 };
 
 // Register Element

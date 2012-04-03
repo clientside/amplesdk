@@ -12,6 +12,9 @@ cSVGElement_marker.prototype	= new cSVGElement("marker");
 
 if (cSVGElement.useVML) {
 	// Implementation for IE
+	cSVGElement_marker.prototype.$mapAttribute	= function(sName, sValue) {
+		// No implementation
+	};
 
 	// presentation
 	cSVGElement_marker.prototype.$getTagOpen	= function() {

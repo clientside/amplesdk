@@ -17,37 +17,27 @@ if (cSVGElement.useVML) {
 	cSVGElement_image.handlers	= {
 		'DOMAttrModified':	function(oEvent) {
 			if (oEvent.target == this) {
-				var oElement	= this.$getContainer();
-				switch (oEvent.attrName) {
-					case "xlink:href":
-						oElement.imagedata.src	= oEvent.newValue;
-						break;
-					//
-					case "width":
-					case "height":
-						var aValue	= oEvent.newValue.match(/([\d.]+)([%\w]*)/);
-						oElement.style[oEvent.attrName]	= aValue[1] + (aValue[2] || "px");
-						break;
-					case "x":
-					case "y":
-					case "transform":
-						cSVGElement.applyTransform(this);
-						break;
-					//
-					default:
-						cSVGElement.setStyle(this, oEvent.attrName, oEvent.newValue);
+				if (oEvent.attrName == "xlink:href") {
+					this.$getContainer().imagedata.src	= oEvent.newValue;
 				}
 			}
 		},
 		'DOMNodeInsertedIntoDocument':	function(oEvent) {
-			var sValue;
-
 			// Apply transform
 			cSVGElement.applyTransform(this);
 
 			// Apply CSS
 			cSVGElement.applyCSS(this);
 		}
+	};
+
+	cSVGElement_image.prototype.$mapAttribute	= function(sName, sValue) {
+		if (sName == "width" || sName == "height") {
+			var aValue	= sValue.match(/([\d.]+)([%\w]*)/);
+			this.$getContainer().style[sName]	= aValue[1] + (aValue[2] || "px");
+		}
+		else
+			cSVGElement.prototype.$mapAttribute.call(this, sName, sValue);
 	};
 
 	cSVGElement_image.resolveXmlBase	= function(oElement, sUri) {

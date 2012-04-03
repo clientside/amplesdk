@@ -29,6 +29,10 @@ if (cSVGElement.useVML) {
 		return aCSS.join('');
 	};
 
+	cSVGElement_style.prototype.$mapAttribute	= function(sName, sValue) {
+		// No implementation
+	};
+
 	// presentation
 	cSVGElement_style.prototype.$getTagOpen	= function() {
 		// Fix/Translate styles (only invoked for startup)

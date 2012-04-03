@@ -131,22 +131,6 @@ if (cSVGElement.useVML) {
 
 	// handlers
 	cSVGElement_path.handlers	= {
-		'DOMAttrModified':	function(oEvent) {
-			if (oEvent.target == this) {
-				switch (oEvent.attrName) {
-					case "d":
-						this.$getContainer().path	= cSVGElement_path.convert(oEvent.newValue);
-						break;
-					//
-					case "transform":
-						cSVGElement.applyTransform(this);
-						break;
-					//
-					default:
-						cSVGElement.setStyle(this, oEvent.attrName, oEvent.newValue);
-				}
-			}
-		},
 		'DOMNodeInsertedIntoDocument':	function(oEvent) {
 			var sValue;
 
@@ -160,6 +144,13 @@ if (cSVGElement.useVML) {
 			// Apply CSS
 			cSVGElement.applyCSS(this);
 		}
+	};
+
+	cSVGElement_path.prototype.$mapAttribute	= function(sName, sValue) {
+		if (sName == "d")
+			this.$getContainer().path	= cSVGElement_path.convert(sValue);
+		else
+			cSVGElement.prototype.$mapAttribute.call(this, sName, sValue);
 	};
 
 	cSVGElement_path.pathSegList2Path	= function(oPathSegList) {

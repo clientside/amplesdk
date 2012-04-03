@@ -12,6 +12,9 @@ cSVGElement_metadata.prototype	= new cSVGElement("metadata");
 
 if (cSVGElement.useVML) {
 	// Implementation for IE
+	cSVGElement_metadata.prototype.$mapAttribute	= function(sName, sValue) {
+		// No implementation
+	};
 
 	// presentation
 	cSVGElement_metadata.prototype.$getTag	= function() {

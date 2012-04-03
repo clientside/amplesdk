@@ -12,21 +12,13 @@ cSVGElement_linearGradient.prototype	= new cSVGElement("linearGradient");
 
 if (cSVGElement.useVML) {
 	// Implementation for IE
-	cSVGElement_linearGradient.handlers	= {
-		"DOMAttrModified":	function(oEvent) {
-			if (oEvent.target == this) {
-				switch (oEvent.attrName) {
-					case "x1":
-					case "x2":
-					case "y1":
-					case "y2":
-						var sId	= this.getAttribute("id");
-						if (sId) {
-							var aElements	= this.ownerDocument.querySelectorAll("[fill=url(#" + sId + ")]");
-							for (var nIndex = 0; nIndex < aElements.length; nIndex++)
-								cSVGElement.setStyle(aElements[nIndex], "fill", "url(#" + sId + ")");
-						}
-				}
+	cSVGElement_linearGradient.prototype.$mapAttribute	= function(sName, sValue) {
+		if (sName == "x1" || sName == "y1" || sName == "x2" || sName == "y2") {
+			var sId	= this.getAttribute("id");
+			if (sId) {
+				var aElements	= this.ownerDocument.querySelectorAll("[fill=url(#" + sId + ")]");
+				for (var nIndex = 0; nIndex < aElements.length; nIndex++)
+					cSVGElement.setStyle(aElements[nIndex], "fill", "url(#" + sId + ")");
 			}
 		}
 	};

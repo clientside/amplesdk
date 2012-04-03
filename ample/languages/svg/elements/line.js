@@ -15,25 +15,6 @@ if (cSVGElement.useVML) {
 
 	// handlers
 	cSVGElement_line.handlers	= {
-		'DOMAttrModified':	function(oEvent) {
-			if (oEvent.target == this) {
-				switch (oEvent.attrName) {
-					case "x1":
-					case "y1":
-					case "x2":
-					case "y2":
-						this.$getContainer().path	= cSVGElement_line.toPath(this);
-						break;
-					//
-					case "transform":
-						cSVGElement.applyTransform(this);
-						break;
-					//
-					default:
-						cSVGElement.setStyle(this, oEvent.attrName, oEvent.newValue);
-				}
-			}
-		},
 		'DOMNodeInsertedIntoDocument':	function(oEvent) {
 			var sValue;
 
@@ -47,6 +28,13 @@ if (cSVGElement.useVML) {
 			// Apply CSS
 			cSVGElement.applyCSS(this);
 		}
+	};
+
+	cSVGElement_line.prototype.$mapAttribute	= function(sName, sValue) {
+		if (sName == "x1" || sName == "y1" || sName == "x2" || sName == "y2")
+			this.$getContainer().path	= cSVGElement_line.toPath(this);
+		else
+			cSVGElement.prototype.$mapAttribute.call(this, sName, sValue);
 	};
 
 	cSVGElement_line.toPath	= function(oElement) {

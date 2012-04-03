@@ -65,6 +65,10 @@ if (cSVGElement.useVML) {
 		}
 	};
 
+	cSVGElement_a.prototype.$mapAttribute	= function(sName, sValue) {
+		// No implementation
+	};
+
 	// presentation
 	cSVGElement_a.prototype.$getTagOpen	= function() {
 		return '<svg2vml:group class="svg-a' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '"\

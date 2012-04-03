@@ -12,20 +12,13 @@ cSVGElement_stop.prototype	= new cSVGElement("stop");
 
 if (cSVGElement.useVML) {
 	// Implementation for IE
-	cSVGElement_stop.handlers	= {
-		"DOMAttrModified":	function(oEvent) {
-			if (oEvent.target == this) {
-				switch (oEvent.attrName) {
-					case "offset":
-					case "stop-color":
-					case "stop-opacity":
-						var sId	= this.parentNode.getAttribute("id");
-						if (sId) {
-							var aElements	= this.ownerDocument.querySelectorAll("[fill=url(#" + sId + ")]");
-							for (var nIndex = 0; nIndex < aElements.length; nIndex++)
-								cSVGElement.setStyle(aElements[nIndex], "fill", "url(#" + sId + ")");
-						}
-				}
+	cSVGElement_stop.prototype.$mapAttribute	= function(sName, sValue) {
+		if (sName == "offset" || sName == "stop-color" || sName == "stop-opacity") {
+			var sId	= this.parentNode.getAttribute("id");
+			if (sId) {
+				var aElements	= this.ownerDocument.querySelectorAll("[fill=url(#" + sId + ")]");
+				for (var nIndex = 0; nIndex < aElements.length; nIndex++)
+					cSVGElement.setStyle(aElements[nIndex], "fill", "url(#" + sId + ")");
 			}
 		}
 	};

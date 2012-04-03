@@ -15,17 +15,6 @@ if (cSVGElement.useVML) {
 
 	// handlers
 	cSVGElement_svg.handlers	= {
-		'DOMAttrModified':	function(oEvent) {
-			if (oEvent.target == this) {
-				switch (oEvent.attrName) {
-					case "viewBox":
-					case "width":
-					case "height":
-						cSVGElement_svg.resize(this);
-						break;
-				}
-			}
-		},
 		'DOMNodeInsertedIntoDocument':	function(oEvent) {
 			// Hiding SVG content initially and showing it after timeout improves performance!
 			var that	= this;
@@ -42,6 +31,11 @@ if (cSVGElement.useVML) {
 		'DOMNodeRemovedFromDocument':	function() {
 			this.$getContainer().onresize	= null;
 		}
+	};
+
+	cSVGElement_svg.prototype.$mapAttribute	= function(sName, sValue) {
+		if (sName == "width" || sName == "height" || sName == "viewBox")
+			cSVGElement_svg.resize(this);
 	};
 
 	cSVGElement_svg.resize	= function(oInstance) {

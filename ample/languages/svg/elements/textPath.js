@@ -16,12 +16,10 @@ if (cSVGElement.useVML) {
 	cSVGElement_textPath.handlers	= {
 		'DOMAttrModified':	function(oEvent) {
 			if (oEvent.target == this) {
-				switch (oEvent.attrName) {
-					case "xlink:href":
-						var oTextPath = this.ownerDocument.getElementById(oEvent.newValue.substr(1));
-						if (oTextPath)
-							this.$getContainer().path	= cSVGElement_path.convert(oTextPath.getAttribute("d"));
-						break;
+				if (oEvent.attrName == "xlink:href") {
+					var oTextPath = this.ownerDocument.getElementById(oEvent.newValue.substr(1));
+					if (oTextPath)
+						this.$getContainer().path	= cSVGElement_path.convert(oTextPath.getAttribute("d"));
 				}
 			}
 		},
@@ -51,6 +49,10 @@ if (cSVGElement.useVML) {
 			if (oEvent.target.parentNode == this)
 				this.$getContainer().getElementsByTagName("textpath")[0].string	= oEvent.target.data.replace(/^\s+/, '').replace(/\s+$/, '');
 		}
+	};
+
+	cSVGElement_textPath.prototype.$mapAttribute	= function(sName, sValue) {
+		// No implementation
 	};
 
 	// presentation

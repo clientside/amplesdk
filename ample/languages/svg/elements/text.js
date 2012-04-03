@@ -13,27 +13,6 @@ cSVGElement_text.prototype	= new cSVGElement("text");
 if (cSVGElement.useVML) {
 	// Implementation for IE
 	cSVGElement_text.handlers	= {
-		'DOMAttrModified':	function(oEvent) {
-			if (oEvent.target == this) {
-				switch (oEvent.attrName) {
-					case "x":
-					case "y":
-					case "dx":
-					case "dy":
-						var nLeft	=(this.getAttribute("x").match(/([0-9\.]+)?/)[1] * 1 || 0) + (this.getAttribute("dx") * 1 || 0),
-							nTop	=(this.getAttribute("y").match(/([0-9\.]+)?/)[1] * 1 || 0) + (this.getAttribute("dy") * 1 || 0);
-						this.$getContainer().getElementsByTagName("shape")[0].path	= 'm ' + [nLeft, nTop].map(Math.round) + ' r 1000,0 x';
-						break;
-					//
-					case "transform":
-						cSVGElement.applyTransform(this);
-						break;
-					//
-					default:
-						cSVGElement.setStyle(this, oEvent.attrName, oEvent.newValue);
-				}
-			}
-		},
 		'DOMNodeInsertedIntoDocument':	function(oEvent) {
 			// Remove text elements from view
 			for (var oElement = this.$getContainer(), i = 0; oElement.childNodes[i]; i++)
@@ -59,6 +38,16 @@ if (cSVGElement.useVML) {
 			if (oEvent.target.parentNode == this)
 				this.$getContainer().getElementsByTagName("textpath")[0].string	= oEvent.target.data.replace(/^\s+/, '').replace(/\s+$/, '');
 		}
+	};
+
+	cSVGElement_text.prototype.$mapAttribute	= function(sName, sValue) {
+		if (sName == "x" || sName == "y" || sName == "dx" || sName == "dy") {
+			var nLeft	=(this.getAttribute("x").match(/([0-9\.]+)?/)[1] * 1 || 0) + (this.getAttribute("dx") * 1 || 0),
+				nTop	=(this.getAttribute("y").match(/([0-9\.]+)?/)[1] * 1 || 0) + (this.getAttribute("dy") * 1 || 0);
+			this.$getContainer().getElementsByTagName("shape")[0].path	= 'm ' + [nLeft, nTop].map(Math.round) + ' r 1000,0 x';
+		}
+		else
+			cSVGElement.prototype.$mapAttribute.call(this, sName, sValue);
 	};
 
 	// presentation

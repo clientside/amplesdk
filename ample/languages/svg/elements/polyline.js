@@ -15,22 +15,6 @@ if (cSVGElement.useVML) {
 
 	// handlers
 	cSVGElement_polyline.handlers	= {
-		'DOMAttrModified':	function(oEvent) {
-			if (oEvent.target == this) {
-				switch (oEvent.attrName) {
-					case "points":
-						this.$getContainer().path	= cSVGElement_polyline.toPath(this);
-						break;
-					//
-					case "transform":
-						cSVGElement.applyTransform(this);
-						break;
-					//
-					default:
-						cSVGElement.setStyle(this, oEvent.attrName, oEvent.newValue);
-				}
-			}
-		},
 		'DOMNodeInsertedIntoDocument':	function(oEvent) {
 			var sValue;
 
@@ -44,6 +28,13 @@ if (cSVGElement.useVML) {
 			// Apply CSS
 			cSVGElement.applyCSS(this);
 		}
+	};
+
+	cSVGElement_polyline.prototype.$mapAttribute	= function(sName, sValue) {
+		if (sName == "points")
+			this.$getContainer().path	= cSVGElement_polyline.toPath(this);
+		else
+			cSVGElement.prototype.$mapAttribute.call(this, sName, sValue);
 	};
 
 	cSVGElement_polyline.toPath	= function(oElement) {

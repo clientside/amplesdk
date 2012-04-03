@@ -12,20 +12,13 @@ cSVGElement_radialGradient.prototype	= new cSVGElement("radialGradient");
 
 if (cSVGElement.useVML) {
 	// Implementation for IE
-	cSVGElement_radialGradient.handlers	= {
-		"DOMAttrModified":	function(oEvent) {
-			if (oEvent.target == this) {
-				switch (oEvent.attrName) {
-					case "cx":
-					case "cy":
-					case "r":
-						var sId	= this.getAttribute("id");
-						if (sId) {
-							var aElements	= this.ownerDocument.querySelectorAll("[fill=url(#" + sId + ")]");
-							for (var nIndex = 0; nIndex < aElements.length; nIndex++)
-								cSVGElement.setStyle(aElements[nIndex], "fill", "url(#" + sId + ")");
-						}
-				}
+	cSVGElement_radialGradient.prototype.$mapAttribute	= function(sName, sValue) {
+		if (sName == "cx" || sName == "cy" || sName == "y") {
+			var sId	= this.getAttribute("id");
+			if (sId) {
+				var aElements	= this.ownerDocument.querySelectorAll("[fill=url(#" + sId + ")]");
+				for (var nIndex = 0; nIndex < aElements.length; nIndex++)
+					cSVGElement.setStyle(aElements[nIndex], "fill", "url(#" + sId + ")");
 			}
 		}
 	};

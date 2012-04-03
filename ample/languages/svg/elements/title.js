@@ -20,6 +20,10 @@ if (cSVGElement.useVML) {
 		}
 	};
 
+	cSVGElement_title.prototype.$mapAttribute	= function(sName, sValue) {
+		// No implementation
+	};
+
 	// presentation
 	cSVGElement_title.prototype.$getTag	= function() {
 		return '';

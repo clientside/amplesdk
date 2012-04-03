@@ -15,30 +15,6 @@ if (cSVGElement.useVML) {
 
 	// handlers
 	cSVGElement_foreignObject.handlers	= {
-		'DOMAttrModified':	function(oEvent) {
-			if (oEvent.target == this) {
-				var oElement	= this.$getContainer();
-				switch (oEvent.attrName) {
-					//
-					case "width":
-					case "height":
-						oElement.style[oEvent.attrName]	= oEvent.newValue + "px";
-						break;
-					//
-					case "x":
-					case "y":
-						oElement.style[oEvent.attrName == "x" ? "left" : "top"]	= oEvent.newValue + "px";
-						break;
-					//
-					case "transform":
-						cSVGElement.applyTransform(this);
-						break;
-					//
-					default:
-						cSVGElement.setStyle(this, oEvent.attrName, oEvent.newValue);
-				}
-			}
-		},
 		'DOMNodeInsertedIntoDocument':	function(oEvent) {
 			// Apply transform
 			cSVGElement.applyTransform(this);
@@ -46,6 +22,16 @@ if (cSVGElement.useVML) {
 			// Apply CSS
 			cSVGElement.applyCSS(this);
 		}
+	};
+
+	cSVGElement_foreignObject.prototype.$mapAttribute	= function(sName, sValue) {
+		if (sName == "width" || sName == "height")
+			this.$getContainer().style[sName]	= sValue + "px";
+		else
+		if (sName == "x" || sName == "y")
+			oElement.style[sName == "x" ? "left" : "top"]	= sValue + "px";
+		else
+			cSVGElement.prototype.$mapAttribute.call(this, sName, sValue);
 	};
 
 	// presentation

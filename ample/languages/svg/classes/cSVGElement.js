@@ -849,26 +849,24 @@ if (cSVGElement.useVML) {
 			if (oNode instanceof cSVGElement)
 				oNode.refresh();
 	};
+
+	cSVGElement.prototype.$mapAttribute	= function(sName, sValue) {
+		if (sName == "transform") {
+			cSVGElement.applyTransform(this);
+		}
+		else
+			cSVGElement.setStyle(this, sName, sValue);
+	};
 }
 else {
-	cSVGElement.prototype.setAttribute	= function(sName, sValue) {
+	cSVGElement.prototype.$mapAttribute	= function(sName, sValue) {
 		var oElementDOM	= this.$getContainer();
-		// Map attribute value (only when in the live tree)
-		if (oElementDOM && sName != "id" && sName != "class")
-			oElementDOM.setAttribute(sName, sValue);
-
-		//
-		ample.classes.Element.prototype.setAttribute.call(this, sName, sValue);
-	};
-
-	cSVGElement.prototype.removeAttribute	= function(sName) {
-		var oElementDOM	= this.$getContainer();
-		// Map attribute value (only when in the live tree)
-		if (oElementDOM && sName != "id" && sName != "class")
-			oElementDOM.removeAttribute(sName);
-
-		//
-		ample.classes.Element.prototype.removeAttribute.call(this, sName);
+		if (oElementDOM) {
+			if (sValue === null)
+				oElementDOM.removeAttribute(sName);
+			else
+				oElementDOM.setAttribute(sName, sValue);
+		}
 	};
 
 	cSVGElement.prototype.getBBox	= function() {

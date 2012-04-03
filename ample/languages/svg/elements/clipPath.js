@@ -12,6 +12,9 @@ cSVGElement_clipPath.prototype	= new cSVGElement("clipPath");
 
 if (cSVGElement.useVML) {
 	// Implementation for IE
+	cSVGElement_clipPath.prototype.$mapAttribute	= function(sName, sValue) {
+		// No implementation
+	};
 
 	cSVGElement_clipPath.prototype.$getTagOpen	= function() {
 		return '<svg2vml:group style="top:0;left:0;width:100%;height:100%;display:none">';

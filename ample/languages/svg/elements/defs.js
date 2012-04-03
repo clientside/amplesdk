@@ -12,6 +12,9 @@ cSVGElement_defs.prototype	= new cSVGElement("defs");
 
 if (cSVGElement.useVML) {
 	// Implementation for IE
+	cSVGElement_defs.prototype.$mapAttribute	= function(sName, sValue) {
+		// No implementation
+	};
 
 	cSVGElement_defs.prototype.$getTagOpen	= function() {
 		return '<svg2vml:group style="top:0;left:0;width:100%;height:100%;display:none">';

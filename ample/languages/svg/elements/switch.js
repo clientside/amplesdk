@@ -12,9 +12,8 @@ cSVGElement_switch.prototype	= new cSVGElement("switch");
 
 if (cSVGElement.useVML) {
 	// Implementation for IE
-
-	cSVGElement_switch.handlers	= {
-
+	cSVGElement_switch.prototype.$mapAttribute	= function(sName, sValue) {
+		// No implementation
 	};
 };
 

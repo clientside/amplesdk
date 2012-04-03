@@ -13,22 +13,6 @@ cSVGElement_g.prototype	= new cSVGElement("g");
 if (cSVGElement.useVML) {
 	// Implementation for IE
 
-	// Class Event Handlers
-	cSVGElement_g.handlers	= {
-		'DOMAttrModified':	function(oEvent) {
-			if (oEvent.target == this) {
-				switch (oEvent.attrName) {
-					case "transform":
-						cSVGElement.applyTransform(this);
-						break;
-
-					default:
-						cSVGElement.setStyle(this, oEvent.attrName, oEvent.newValue);
-				}
-			}
-		}
-	};
-
 	// presentation
 	cSVGElement_g.prototype.$getTagOpen	= function() {
 		// Keep left:0 and top:0
