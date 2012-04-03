@@ -16,15 +16,6 @@ cXULElement_row.attributes	= {};
 //cXULElement_row.attributes.flex	= "1";
 cXULElement_row.attributes.orient	= "horizontal";
 
-// Class event handlers
-cXULElement_row.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-		}
-	}
-};
-
 // Element Render: open
 cXULElement_row.prototype.$getTagOpen		= function() {
     return '<tr class="xul-row' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"' +(this.attributes["height"] ? ' height="' + this.attributes["height"] + '"' : '')+(this.attributes["hidden"] == "true" ? ' style="display:none"' : '')+'>';

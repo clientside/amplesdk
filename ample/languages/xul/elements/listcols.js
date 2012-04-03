@@ -13,15 +13,6 @@ var cXULElement_listcols	= function() {
 };
 cXULElement_listcols.prototype	= new cXULElement("listcols");
 
-// Class Events Handlers
-cXULElement_listcols.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-		}
-	}
-};
-
 // Element Render: open
 cXULElement_listcols.prototype.$getTagOpen	= function() {
     return '<table cellpadding="0" cellspacing="0" border="0" width="100%" class="xul-listcols' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">\

@@ -90,27 +90,19 @@ cXULElement_datepicker.handlers	= {
 		if (this.popup.getAttribute("hidden") != "true")
 			this.toggle(false);
 		this.$getContainer("input").blur();
-	},
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
-			switch (oEvent.attrName) {
-				case "value":
-					this.$getContainer("input").value	= oEvent.newValue || '';
-					break;
-
-				case "min":
-				case "max":
-					break;
-
-				case "disabled":
-					this.$getContainer("input").disabled	= oEvent.newValue == "true";
-					this.$setPseudoClass("disabled", oEvent.newValue == "true");
-					break;
-
-				default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-			}
 	}
+};
+
+cXULElement_datepicker.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "value")
+		this.$getContainer("input").value = sValue || '';
+	else
+	if (sName == "disabled") {
+		this.$setPseudoClass("disabled", sValue == "true");
+		this.$getContainer("input").disabled = sValue == "true";
+	}
+	else
+		cXULInputElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
 // component renderers

@@ -28,44 +28,6 @@ cXULElement_progressmeter.prototype._onInterval  = function() {
 
 // Class handlers
 cXULElement_progressmeter.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			switch (oEvent.attrName) {
-				case "value":
-					if (this.attributes["mode"] != "undetermined")
-						this.$getContainer("value").style.width = oEvent.newValue + '%';
-					break;
-
-				case "mode":
-					if (oEvent.newValue == "undetermined") {
-						if (!this._interval) {
-							var oElementDOM	= this.$getContainer("value");
-							oElementDOM.style.width = '0%';
-							oElementDOM.style.left  = '0%';
-
-							this._left  = 0;
-							var oSelf	= this;
-							this._interval  = setInterval(function() {
-								oSelf._onInterval();
-							}, 40);
-						}
-					}
-					else {
-						if (this._interval) {
-							clearInterval(this._interval);
-							this._interval  = null;
-						}
-						var oElementDOM	= this.$getContainer("value");
-						oElementDOM.style.width = this.attributes["value"] + '%';
-						oElementDOM.style.left  = '0%';
-					}
-					break;
-
-				default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-			}
-		}
-	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 	    if (this.getAttribute("mode") == "undetermined") {
 	        var oSelf	= this;
@@ -78,6 +40,40 @@ cXULElement_progressmeter.handlers	= {
 		if (this._interval)
 			clearInterval(this._interval);
 	}
+};
+
+cXULElement_progressmeter.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "value") {
+		if (this.attributes["mode"] != "undetermined")
+			this.$getContainer("value").style.width = sValue + '%';
+	}
+	else
+	if (sName == "mode") {
+		if (sValue == "undetermined") {
+			if (!this._interval) {
+				var oElementDOM	= this.$getContainer("value");
+				oElementDOM.style.width = '0%';
+				oElementDOM.style.left  = '0%';
+
+				this._left  = 0;
+				var oSelf	= this;
+				this._interval  = setInterval(function() {
+					oSelf._onInterval();
+				}, 40);
+			}
+		}
+		else {
+			if (this._interval) {
+				clearInterval(this._interval);
+				this._interval  = null;
+			}
+			var oElementDOM	= this.$getContainer("value");
+			oElementDOM.style.width = this.attributes["value"] + '%';
+			oElementDOM.style.left  = '0%';
+		}
+	}
+	else
+		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
 // Element Render: open

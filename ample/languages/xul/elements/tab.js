@@ -24,22 +24,6 @@ cXULElement_tab.handlers	= {
 		this.parentNode.goTo(this.parentNode.items.$indexOf(this));
 		this.doCommand();
 	},
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			switch (oEvent.attrName) {
-				case "disabled":
-					this.$setPseudoClass("disabled", oEvent.newValue == "true");
-					break;
-
-				case "selected":
-					this.$setPseudoClass("selected", oEvent.newValue == "true");
-					break;
-
-				default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-			}
-		}
-	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		if (this.parentNode instanceof cXULElement_tabs)
 			this.parentNode.items.$add(this);
@@ -48,6 +32,16 @@ cXULElement_tab.handlers	= {
 		if (this.parentNode instanceof cXULElement_tabs)
 			this.parentNode.items.$remove(this);
 	}
+};
+
+cXULElement_tab.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "disabled")
+		this.$setPseudoClass("disabled", sValue == "true");
+	else
+	if (sName == "selected")
+		this.$setPseudoClass("selected", sValue == "true");
+	else
+		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
 // Element Render: open

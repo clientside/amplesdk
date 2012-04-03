@@ -15,21 +15,11 @@ cXULElement_iframe.prototype.tabIndex	= 0;
 cXULElement_iframe.prototype.contentDocument	= null;
 cXULElement_iframe.prototype.contentWindow		= null;
 
-// Class Events Handlers
-cXULElement_iframe.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			switch (oEvent.attrName) {
-				case "src":
-					if (oEvent.newValue)
-						this.$getContainer().src  = oEvent.newValue;
-					break;
-
-				default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-			}
-		}
-	}
+cXULElement_iframe.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "src")
+		this.$getContainer().src  = sValue || "about:blank";
+	else
+		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
 // Events Handlers

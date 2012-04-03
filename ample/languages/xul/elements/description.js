@@ -10,20 +10,11 @@
 var cXULElement_description	= function(){};
 cXULElement_description.prototype    = new cXULElement("description");
 
-// Class Events Handlers
-cXULElement_description.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			switch (oEvent.attrName) {
-				case "value":
-					this.$getContainer().innerHTML    = oEvent.newValue || '';
-					break;
-
-				default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-			}
-		}
-	}
+cXULElement_description.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "value")
+		this.$getContainer().innerHTML	= sValue || '';
+	else
+		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
 // Element Render: open

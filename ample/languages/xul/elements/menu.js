@@ -28,39 +28,6 @@ cXULElement_menu.handlers	= {
 		if (oEvent.target == this && oEvent.button == 0)
 			this.$activate();
 	},
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			switch (oEvent.attrName) {
-				case "open":
-					// TODO
-					break;
-
-				case "selected":
-			    	this.$setPseudoClass("selected", oEvent.newValue == "true");
-			    	if (this.parentNode instanceof cXULElement_menupopup)
-			    		this.$setPseudoClass("selected", oEvent.newValue == "true", "arrow");
-			    	break;
-
-				case "label":
-					this.$getContainer("label").innerHTML   = sValue;
-					break;
-
-				case "image":
-					if (this.parentNode instanceof cXULElement_menupopup)
-			            this.$getContainer("control").style.backgroundImage   = oEvent.newValue ? "url(" + oEvent.newValue + ")" : '';
-					break;
-
-				case "disabled":
-			    	this.$setPseudoClass("disabled", oEvent.newValue == "true");
-			    	if (this.parentNode instanceof cXULElement_menupopup)
-			    		this.$setPseudoClass("disabled", oEvent.newValue == "true", "arrow");
-			    	break;
-
-				default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-			}
-		}
-	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		var oParent	= this.parentNode;
 		if (oParent instanceof cXULElement_menupopup || oParent instanceof cXULElement_menubar)
@@ -75,6 +42,34 @@ cXULElement_menu.handlers	= {
 		if (oEvent.target.parentNode instanceof cXULElement_menubar)
    			this.parentNode.selectItem(this.parentNode.selectedItem == this ? null : this);
 	}
+};
+
+cXULElement_menu.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "open") {
+		// TODO
+	}
+	else
+	if (sName == "selected") {
+		this.$setPseudoClass("selected", sValue == "true");
+		if (this.parentNode instanceof cXULElement_menupopup)
+			this.$setPseudoClass("selected", sValue == "true", "arrow");
+	}
+	else
+	if (sName == "label")
+		this.$getContainer("label").innerHTML	= sValue;
+	else
+	if (sName == "image") {
+		if (this.parentNode instanceof cXULElement_menupopup)
+			this.$getContainer("control").style.backgroundImage	= sValue ? "url(" + sValue + ")" : '';
+	}
+	else
+	if (sName == "disabled") {
+		this.$setPseudoClass("disabled", sValue == "true");
+		if (this.parentNode instanceof cXULElement_menupopup)
+			this.$setPseudoClass("disabled", sValue == "true", "arrow");
+	}
+	else
+		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
 // Element Render: open

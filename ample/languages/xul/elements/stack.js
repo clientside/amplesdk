@@ -11,16 +11,6 @@ var cXULElement_stack	= function(){};
 cXULElement_stack.prototype  = new cXULElement("stack");
 
 // Public Methods
-
-// Class event handlers
-cXULElement_stack.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-		}
-	}
-};
-
 cXULElement_stack.prototype.reflow	= function() {
 	// set position style property to absolute
 	for (var nIndex = 0, oElementDOM; nIndex < this.childNodes.length; nIndex++)

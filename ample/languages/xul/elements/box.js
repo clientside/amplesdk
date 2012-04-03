@@ -12,18 +12,7 @@ var cXULElement_box	= function(){};
 cXULElement_box.prototype	= new cXULElement("box");
 cXULElement_box.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
 
-// Class Handlers
-cXULElement_box.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			switch (oEvent.attrName) {
-				default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-			}
-		}
-	}
-};
-
+// Renderers
 cXULElement_box.prototype.$getTagOpen	= function() {
 	var sWidth	= this.attributes.width,
 		sHeight	= this.attributes.height;

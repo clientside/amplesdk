@@ -113,11 +113,6 @@ cXULElement_menupopup.handlers	= {
 		if (this.selectedItem)
 			this.selectItem(null);
 	},
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-		}
-	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		var oParent	= this.parentNode;
 		if (oParent instanceof cXULElement_menulist || oParent instanceof cXULElement_menu)

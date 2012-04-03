@@ -55,38 +55,15 @@ cXULElement_treeitem.handlers	= {
 	},
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this) {
-			switch (oEvent.attrName) {
-				case "selected":
-					this.$setPseudoClass("selected", oEvent.newValue == "true");
-					if (this.parentNode.tree.attributes["type"] == "checkbox" || this.parentNode.tree.attributes["type"] == "radio")
-						this.$getContainer("command").checked = oEvent.newValue == "true";
-			        break;
-
-				case "open":
-					if (this.children) {
-						// Show/hide child items
-						this.children.setAttribute("hidden", oEvent.newValue == "true" ? "false" : "true");
-
-						// Change toc image at primary cell
-						if (this.parentNode.tree.head) {
-							var nDepth  = this._getNodeDepth(),
-								nIndex  = this.parentNode.tree.head._getPrimaryColIndex();
-							if (nIndex !=-1 && this.row.cells[nIndex]) {
-								// Apply pseudo-class
-								this.row.cells[nIndex].$setPseudoClass("open", oEvent.newValue == "true", "toc");
-
-								var oEvent = this.ownerDocument.createEvent("Event");
-								oEvent.initEvent("OpenStateChange", true, false);
-								this.dispatchEvent(oEvent);
-
-								return;
-							}
-						}
-					};
-					break;
-
-				default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			if (oEvent.attrName == "open") {
+				if (this.children) {
+					// Show/hide child items
+					this.children.setAttribute("hidden", oEvent.newValue == "true" ? "false" : "true");
+					//
+					var oEvent = this.ownerDocument.createEvent("Event");
+					oEvent.initEvent("OpenStateChange", true, false);
+					this.dispatchEvent(oEvent);
+				}
 			}
 		}
 	},
@@ -110,6 +87,28 @@ cXULElement_treeitem.handlers	= {
 				oEvent.target.tree	= null;
 			}
 	}
+};
+
+cXULElement_treeitem.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "selected") {
+		this.$setPseudoClass("selected", sValue == "true");
+		if (this.parentNode.tree.attributes["type"] == "checkbox" || this.parentNode.tree.attributes["type"] == "radio")
+			this.$getContainer("command").checked = sValue == "true";
+	}
+	else
+	if (sName == "open") {
+		// Change toc image at primary cell
+		if (this.parentNode.tree.head) {
+			var nDepth  = this._getNodeDepth(),
+				nIndex  = this.parentNode.tree.head._getPrimaryColIndex();
+			if (nIndex !=-1 && this.row.cells[nIndex]) {
+				// Apply pseudo-class
+				this.row.cells[nIndex].$setPseudoClass("open", sValue == "true", "toc");
+			}
+		}
+	}
+	else
+		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
 cXULElement_treeitem.prototype.$getContainer	= function(sName) {

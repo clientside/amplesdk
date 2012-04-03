@@ -77,21 +77,19 @@ cXULElement_scale.handlers	= {
 	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		cXULElement_scale.redraw(this);
-	},
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			switch (oEvent.attrName) {
-				case "value":
-					if (!cXULElement_scale.captured)
-						cXULElement_scale.redraw(this);
-					break;
-
-				case "disabled":
-					this.$setPseudoClass("disabled", oEvent.newValue == "true");
-					break;
-			}
-		}
 	}
+};
+
+cXULElement_scale.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "value") {
+		if (!cXULElement_scale.captured)
+			cXULElement_scale.redraw(this);
+	}
+	else
+	if (sName == "disabled")
+		this.$setPseudoClass("disabled", sValue == "true");
+	else
+		cXULInputElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
 // Static methods

@@ -32,19 +32,14 @@ cXULElement_button.handlers	= {
 	},
 	"DOMActivate":	function(oEvent) {
 		this.doCommand();
-	},
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			switch (oEvent.attrName) {
-				case "disabled":
-					this.$getContainer().disabled = oEvent.newValue == "true";
-					break;
-
-				default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-			}
-		}
 	}
+};
+
+cXULElement_button.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "disabled")
+		this.$getContainer().disabled = sValue == "true";
+	else
+		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
 // Element Render: open

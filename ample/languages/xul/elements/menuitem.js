@@ -30,46 +30,15 @@ cXULElement_menuitem.handlers	= {
 	},
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this) {
-			switch (oEvent.attrName) {
-				case "selected":
-					this.$setPseudoClass("selected", oEvent.newValue == "true");
-					break;
-
-				case "label":
-					var oCell	= this.$getContainer().cells[1];
-					// Strange IE problem, it doesn't allow setting innerHTML here..
-					if (document.namespaces)
-						oCell.innerText   = oEvent.newValue || '';
-					else
-						oCell.innerHTML   = oEvent.newValue || '';
-					break;
-
-				case "image":
-					this.$getContainer("image").style.backgroundImage   = oEvent.newValue ? "url(" + oEvent.newValue + ")" : '';
-					break;
-
-				case "type":
-					// TODO
-					break;
-
-				case "checked":
-					if (this.attributes["type"] == "radio" && oEvent.newValue == "true") {
-						// uncheck all the sibling items with the same name attribute
-						var oElement	= this.parentNode;
-						for (var nIndex = 0; nIndex < oElement.items.length; nIndex++)
-							if (oElement.items[nIndex] instanceof cXULElement_menuitem && oElement.items[nIndex].attributes["type"] == "radio")
-								if (oElement.items[nIndex] != this && oElement.items[nIndex].attributes["name"] == this.attributes["name"])
-									oElement.items[nIndex].setAttribute("checked", "false");
-					}
-					this.$setPseudoClass("checked", oEvent.newValue == "true", "image");
-					break;
-
-				case "disabled":
-					this.$setPseudoClass("disabled", oEvent.newValue == "true");
-					break;
-
-				default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			if (oEvent.attrName == "checked") {
+				// uncheck all the sibling items with the same name attribute
+				var oElement	= this.parentNode;
+				if (this.attributes["type"] == "radio" && oEvent.newValue == "true") {
+					for (var nIndex = 0; nIndex < oElement.items.length; nIndex++)
+						if (oElement.items[nIndex] instanceof cXULElement_menuitem && oElement.items[nIndex].attributes["type"] == "radio")
+							if (oElement.items[nIndex] != this && oElement.items[nIndex].attributes["name"] == this.attributes["name"])
+								oElement.items[nIndex].setAttribute("checked", "false");
+				}
 			}
 		}
 	},
@@ -99,6 +68,35 @@ cXULElement_menuitem.handlers	= {
 		// Execute commands
 	    this.doCommand();
 	}
+};
+
+cXULElement_menuitem.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "selected")
+		this.$setPseudoClass("selected", sValue == "true");
+	else
+	if (sName == "label") {
+		var oCell	= this.$getContainer().cells[1];
+		// Strange IE problem, it doesn't allow setting innerHTML here..
+		if (document.namespaces)
+			oCell.innerText	= sValue || '';
+		else
+			oCell.innerHTML	= sValue || '';
+	}
+	else
+	if (sName == "image")
+		this.$getContainer("image").style.backgroundImage   = sValue ? "url(" + sValue + ")" : '';
+	else
+	if (sName == "type") {
+		// TODO
+	}
+	else
+	if (sName == "checked")
+		this.$setPseudoClass("checked", sValue == "true", "image");
+	else
+	if (sName == "disabled")
+		this.$setPseudoClass("disabled", sValue == "true");
+	else
+		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
 cXULElement_menuitem.prototype.scrollIntoView	= function() {

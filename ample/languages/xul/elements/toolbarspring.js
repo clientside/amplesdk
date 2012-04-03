@@ -14,15 +14,6 @@ cXULElement_toolbarspring.prototype	= new cXULElement("toolbarspring");
 cXULElement_toolbarspring.attributes	= {};
 cXULElement_toolbarspring.attributes.flex	= "1";
 
-// Class Events Handlers
-cXULElement_toolbarspring.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-		}
-	}
-};
-
 // Element Render: open
 cXULElement_toolbarspring.prototype.$getTagOpen	= function() {
     return '<div class="xul-toolbarspring' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"><br /></div>';

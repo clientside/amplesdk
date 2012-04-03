@@ -14,24 +14,14 @@ cXULElement_statusbarpanel.prototype = new cXULElement("statusbarpanel");
 cXULElement_statusbarpanel.attributes	= {};
 cXULElement_statusbarpanel.attributes.align	= "center";
 
-// Class Events Handlers
-cXULElement_statusbarpanel.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			switch (oEvent.attrName) {
-				case "label":
-					this.$getContainer().innerHTML    =(this.attributes["image"] ? '<img src="' + this.attributes["image"] + '" align="absmiddle"/>' : '') + oEvent.newValue || '';
-					break;
-
-				case "image":
-					this.$getContainer().innerHTML    =(oEvent.newValue ? '<img src="' + oEvent.newValue + '" align="absmiddle"/>' : '') + this.attributes["label"] || '';
-					break;
-
-				default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-			}
-		}
-	}
+cXULElement_statusbarpanel.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "label")
+		this.$getContainer().innerHTML	=(this.attributes["image"] ? '<img src="' + this.attributes["image"] + '" align="absmiddle"/>' : '') + (sValue || '');
+	else
+	if (sName == "image")
+		this.$getContainer().innerHTML	=(sValue ? '<img src="' + sValue + '" align="absmiddle"/>' : '') + (this.attributes["label"] || '');
+	else
+		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
 // Element Render: open

@@ -16,38 +16,32 @@ cXULElement_treecell.handlers	= {
 		if (oEvent.target == this && oEvent.$pseudoTarget == this.$getContainer("toc"))
 			this.parentNode.parentNode.setAttribute("open", this.parentNode.parentNode.getAttribute("open") == "true" ? "false" : "true");
 	},
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			switch (oEvent.attrName)  {
-				case "label":
-			        this.$getContainer("gateway").innerHTML  =(this.attributes["src"] ? '<img src="' + this.attributes["src"] + '" align="absmiddle" /> ' :'') + (oEvent.newValue || '');
-					break;
-
-				case "src":
-			        this.$getContainer("gateway").innerHTML  =(oEvent.newValue ? '<img src="' + oEvent.newValue + '" align="absmiddle" /> ' :'') + (this.attributes["label"] || '');
-					break;
-
-				case "editable":
-			        if (oEvent.newValue == "true") {
-			        	var oElementDOM	= this.$getContainer("gateway");
-			            oElementDOM.innerHTML  = '<input style="border:none; margin:0px; margin-left: 2px; padding-left: 2px; padding-top:1px; width:100px;" onselectstart="event.cancelBubble=true;" onchange="ample.$instance(this).setAttribute(\'label\', this.value)" onblur="this.onchange();" onkeydown="if (event.keyCode == 13) this.onchange(); else if (event.keyCode == 27) ample.$instance(this).setAttribute(\'editable\', \'false\')"/>';
-			            oElementDOM.firstChild.focus();
-			            oElementDOM.firstChild.value   = this.attributes["label"] || '';
-			        }
-			        else
-			            this.setAttribute("label", this.attributes["label"]);
-			        break;
-
-				default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-			}
-		}
-	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		var oChildren	= this.parentNode.parentNode.parentNode;
 		if (oChildren.tree.head && oChildren.tree.head._getPrimaryColIndex() == this.parentNode.childNodes.$indexOf(this))
 			oXULReflowManager.schedule(oChildren);
 	}
+};
+
+cXULElement_treecell.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "label")
+		this.$getContainer("gateway").innerHTML	=(this.attributes["src"] ? '<img src="' + this.attributes["src"] + '" align="absmiddle" /> ' :'') + (sValue || '');
+	else
+	if (sName == "src")
+		this.$getContainer("gateway").innerHTML	=(sValue ? '<img src="' + sValue + '" align="absmiddle" /> ' :'') + (this.attributes["label"] || '');
+	else
+	if (sName == "editable") {
+		if (sValue == "true") {
+			var oElementDOM	= this.$getContainer("gateway");
+			oElementDOM.innerHTML  = '<input style="border:none; margin:0px; margin-left: 2px; padding-left: 2px; padding-top:1px; width:100px;" onselectstart="event.cancelBubble=true;" onchange="ample.$instance(this).setAttribute(\'label\', this.value)" onblur="this.onchange();" onkeydown="if (event.keyCode == 13) this.onchange(); else if (event.keyCode == 27) ample.$instance(this).setAttribute(\'editable\', \'false\')"/>';
+			oElementDOM.firstChild.focus();
+			oElementDOM.firstChild.value   = this.attributes["label"] || '';
+		}
+		else
+			this.$mapAttribute("label", this.attributes["label"]);
+	}
+	else
+		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
 // Element Render: open

@@ -10,21 +10,11 @@
 var cXULElement_image	= function(){};
 cXULElement_image.prototype  = new cXULElement("image");
 
-// Class Events Handlers
-cXULElement_image.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			switch (oEvent.attrName) {
-				case "src":
-					if (oEvent.newValue)
-						this.$getContainer().src  = oEvent.newValue;
-					break;
-
-				default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-			}
-		}
-	}
+cXULElement_image.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "src")
+		this.$getContainer().src  = sValue || "about:blank";
+	else
+		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
 // Events Handlers

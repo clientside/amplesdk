@@ -196,26 +196,6 @@ cXULElement_editor.handlers	= {
 		//
 		cXULElement_editor.resetButtons(this);
 	},
-	"DOMAttrModified" : function (oEvent) {
-		if (oEvent.target == this)
-			switch (oEvent.attrName) {
-				case "disabled":
-					this.$setPseudoClass("disabled", oEvent.newValue == "true");
-					this.$getContainer("frame").contentWindow.document.designMode	= oEvent.newValue == "true" ? "off" : "on";
-					//
-//					if (event.newValue == "true")
-						cXULElement_editor.resetButtons(this);
-					// IE needs re-initialization
-					if (navigator.userAgent.match(/MSIE ([\d\.]+)/)) {
-						var that	= this;
-						cXULElement_editor.finalizeDocument(that);
-						setTimeout(function() {
-							cXULElement_editor.initializeDocument(that);
-						}, 0);
-					}
-					break;
-			}
-	},
 	"DOMCharacterDataModified":	function() {
 		if (this.firstChild.data != this.contentDocument.body.innerHTML)
 			this.contentDocument.body.innerHTML	= this.firstChild.data;
@@ -240,6 +220,26 @@ cXULElement_editor.handlers	= {
 	"DOMNodeRemovedFromDocument":	function() {
 		cXULElement_editor.finalizeDocument(this);
 	}
+};
+
+cXULElement_editor.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "disabled") {
+		this.$setPseudoClass("disabled", sValue == "true");
+		this.$getContainer("frame").contentWindow.document.designMode	= sValue == "true" ? "off" : "on";
+		//
+//		if (event.newValue == "true")
+			cXULElement_editor.resetButtons(this);
+		// IE needs re-initialization
+		if (navigator.userAgent.match(/MSIE ([\d\.]+)/)) {
+			var that	= this;
+			cXULElement_editor.finalizeDocument(that);
+			setTimeout(function() {
+				cXULElement_editor.initializeDocument(that);
+			}, 0);
+		}
+	}
+	else
+		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
 // Static members

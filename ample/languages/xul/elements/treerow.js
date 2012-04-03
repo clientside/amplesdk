@@ -35,14 +35,6 @@ cXULElement_treerow.prototype._onCommandClick   = function(oEvent) {
 
 // Class events handlers
 cXULElement_treerow.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			switch (oEvent.attrName) {
-				default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-			}
-		}
-	},
 	"DOMNodeInserted":	function(oEvent) {
 		if (oEvent.target.parentNode == this)
 			if (oEvent.target instanceof cXULElement_treecell)

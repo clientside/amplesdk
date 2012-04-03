@@ -26,29 +26,6 @@ cXULElement_wizardpage.dispatchEvent_onPage    = function(oElement, sName) {
 };
 
 cXULElement_wizardpage.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			switch (oEvent.attrName) {
-				case "label":
-					if (this.parentNode.currentPage == this)
-						this.parentNode.$getContainer("label").innerHTML	= oEvent.newValue || '';
-					break;
-
-				case "description":
-					if (this.parentNode.currentPage == this)
-						this.parentNode.$getContainer("description").innerHTML	= oEvent.newValue || '';
-					break;
-
-				case "class":
-					if (this.parentNode.currentPage == this)
-						this.parentNode.$getContainer("header").className	= "xul-wizardheader xul-wizard--header " +(oEvent.newValue || '');
-					break;
-
-				default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-			}
-		}
-	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		this.parentNode.wizardPages.$add(this);
 		//
@@ -58,7 +35,26 @@ cXULElement_wizardpage.handlers	= {
 	"DOMNodeRemovedFromDocument":	function(oEvent) {
 		this.parentNode.wizardPages.$remove(this);
 	}
-}
+};
+
+cXULElement_wizardpage.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "label") {
+		if (this.parentNode.currentPage == this)
+			this.parentNode.$getContainer("label").innerHTML	= sValue || '';
+	}
+	else
+	if (sName == "description") {
+		if (this.parentNode.currentPage == this)
+			this.parentNode.$getContainer("description").innerHTML	= sValue || '';
+	}
+	else
+	if (sName == "class") {
+		if (this.parentNode.currentPage == this)
+			this.parentNode.$getContainer("header").className	= "xul-wizardheader xul-wizard--header " +(sValue || '');
+	}
+	else
+		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
+};
 
 // Element Render: open
 cXULElement_wizardpage.prototype.$getTagOpen	= function() {

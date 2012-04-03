@@ -64,15 +64,6 @@ cXULElement_menubar.prototype.selectItem	= function(oItem)
 	}
 };
 
-// Class event handler
-cXULElement_menubar.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-		}
-	}
-};
-
 // Element Render: open
 cXULElement_menubar.prototype.$getTagOpen		= function()
 {

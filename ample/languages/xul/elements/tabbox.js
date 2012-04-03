@@ -22,15 +22,6 @@ cXULElement_tabbox.prototype.selectedPanel	= null; // not supported
 cXULElement_tabbox.attributes	= {};
 cXULElement_tabbox.attributes.orient	= "vertical";
 
-// Class Events Handlers
-cXULElement_tabbox.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-		}
-	}
-};
-
 // Element Render: open
 cXULElement_tabbox.prototype.$getTagOpen	= function() {
     return '<div class="xul-tabbox' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">';

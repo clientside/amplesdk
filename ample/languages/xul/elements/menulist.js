@@ -234,23 +234,6 @@ cXULElement_menulist.handlers	= {
 			}
 		}
 	},
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			switch (oEvent.attrName) {
-				case "value":
-					this.$getContainer("input").value	= oEvent.newValue || '';
-					break;
-
-				case "disabled":
-					this.$setPseudoClass("disabled", oEvent.newValue == "true");
-					this.$getContainer("input").disabled = oEvent.newValue == "true";
-					break;
-
-				default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-			}
-		}
-	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		var oElement	= this.querySelector(">xul|menupopup>xul|menuitem[checked=true]", function() {
 			return oEvent.target.namespaceURI;
@@ -277,6 +260,18 @@ cXULElement_menulist.handlers	= {
 		if (this.form)
 			this.form.elements.$remove(this);
 	}*/
+};
+
+cXULElement_menulist.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "value")
+		this.$getContainer("input").value	= sValue || '';
+	else
+	if (sName == "disabled") {
+		this.$setPseudoClass("disabled", sValue == "true");
+		this.$getContainer("input").disabled	= sValue == "true";
+	}
+	else
+		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
 // Element Render: open

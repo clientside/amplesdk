@@ -17,15 +17,6 @@ cXULElement_page.attributes.orient	= "vertical";
 cXULElement_page.attributes.width	= "100%";
 cXULElement_page.attributes.height	= "100%";
 
-// Class Events Handlers
-cXULElement_page.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-		}
-	}
-};
-
 // Element Renders
 cXULElement_page.prototype.$getTagOpen	= function() {
     return '<div class="xul-page' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="' +

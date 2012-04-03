@@ -10,15 +10,6 @@
 var cXULElement_spacer	= function(){};
 cXULElement_spacer.prototype = new cXULElement("spacer");
 
-//Class Events Handlers
-cXULElement_spacer.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-		}
-	}
-};
-
 // Element Render: open
 cXULElement_spacer.prototype.$getTagOpen	= function() {
     var sHtml   = '<div class="xul-spacer' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="';

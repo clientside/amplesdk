@@ -14,13 +14,8 @@ cXULElement_listcol.prototype    = new cXULElement("listcol");
 cXULElement_listcol.handlers	= {
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this) {
-			switch (oEvent.attrName) {
-				case "sortDirection":
-					// TODO: natural | descending | descending
-					break;
-
-				default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			if (oEvent.attrName == "sortDirection") {
+				// TODO: natural | descending | descending
 			}
 		}
 	},

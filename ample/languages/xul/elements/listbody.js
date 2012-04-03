@@ -20,11 +20,6 @@ cXULElement_listbody.prototype._onScroll = function() {
 
 // Class events handlers
 cXULElement_listbody.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-		}
-	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		if (this.parentNode instanceof cXULElement_listbox)
 			this.parentNode.body = this;

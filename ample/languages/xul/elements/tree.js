@@ -132,17 +132,8 @@ cXULElement_tree.handlers	= {
 	},
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this) {
-			switch (oEvent.attrName) {
-				case "seltype":
-					// TODO
-					break;
-
-				case "disabled":
-					this.$setPseudoClass("disabled", oEvent.newValue == "true");
-					break;
-
-				default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			if (oEvent.attrName == "seltype") {
+				// TODO
 			}
 		}
 	},
@@ -160,6 +151,17 @@ cXULElement_tree.handlers	= {
 		if (oEvent.target instanceof cXULElement_treecols)
 			this.head = null;
 	}
+};
+
+cXULElement_tree.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "disabled")
+		this.$setPseudoClass("disabled", sValue == "true");
+	else
+	if (sName == "seltype") {
+		// TODO
+	}
+	else
+		cXULSelectElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
 // Element Render: open

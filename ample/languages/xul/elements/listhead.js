@@ -74,11 +74,6 @@ cXULElement_listhead.handlers	= {
 			this.ownerDocument.popupNode	= oPopup;
 		}
 	},
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-		}
-	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		if (this.parentNode instanceof cXULElement_listbox)
 			this.parentNode.head = this;

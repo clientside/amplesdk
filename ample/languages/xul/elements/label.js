@@ -14,18 +14,6 @@ cXULElement_label.prototype  = new cXULElement("label");
 
 // Class Events Handlers
 cXULElement_label.handlers	= {
-	"DOMAttrModified": function (oEvent) {
-		if (oEvent.target == this) {
-			switch (oEvent.attrName) {
-				case "value":
-					this.$getContainer().innerHTML	= oEvent.newValue || '';
-					break;
-
-				default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-			}
-		}
-	},
 	"click":	function(oEvent) {
 		if (oEvent.button == 0)
 			this.$activate();
@@ -36,6 +24,13 @@ cXULElement_label.handlers	= {
 			if (this.attributes["control"] && (oControl = this.ownerDocument.getElementById(this.attributes["control"])))
 				oControl.focus();
 	}
+};
+
+cXULElement_label.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "value")
+		this.$getContainer().innerHTML	= sValue || '';
+	else
+		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
 // Element Render: open

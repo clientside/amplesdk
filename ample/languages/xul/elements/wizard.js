@@ -144,33 +144,27 @@ cXULElement_wizard.dispatchEvent_onWizard  = function(oElement, sName) {
 
 // Class events handlers
 cXULElement_wizard.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			switch (oEvent.attrName) {
-				case "title":
-					this.$getContainer("title").innerHTML   = oEvent.newValue || '';
-					break;
-
-				case "pagestep":
-					if (this.wizardPages[oEvent.newValue])
-						cXULElement_wizard.goTo(this, this.wizardPages[oEvent.newValue]);
-					break;
-
-				case "canAdvance":
-				case "canRewind":
-					if (this.currentPage)
-						cXULElement_wizard.goTo(this, this.currentPage);
-					break;
-
-				default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-			}
-		}
-	},
 	"dragstart":	function(oEvent) {
 		if (oEvent.target == this && oEvent.$pseudoTarget != this.$getContainer("title"))
 			oEvent.preventDefault();
 	}
+};
+
+cXULElement_wizard.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "title")
+		this.$getContainer("title").innerHTML	= sValue || '';
+	else
+	if (sName == "pagestep") {
+		if (this.wizardPages[sValue])
+			cXULElement_wizard.goTo(this, this.wizardPages[sValue]);
+	}
+	else
+	if (sName == "canAdvance" || sName == "canRewind") {
+		if (this.currentPage)
+			cXULElement_wizard.goTo(this, this.currentPage);
+	}
+	else
+		cXULWindowElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
 // Static methods

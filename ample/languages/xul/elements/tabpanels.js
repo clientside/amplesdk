@@ -21,11 +21,6 @@ cXULElement_tabpanels.prototype.selectedPanel	= null; // Not implemented
 
 // Class event handlers
 cXULElement_tabpanels.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-		}
-	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		if (this.parentNode instanceof cXULElement_tabbox)
 			this.parentNode.tabpanels = this;

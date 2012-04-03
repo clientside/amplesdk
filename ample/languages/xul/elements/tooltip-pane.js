@@ -15,15 +15,6 @@ cXULElement_tooltip_pane.prototype.setText	= function(sValue) {
 	this.$getContainer("gateway").innerHTML	= sValue;
 };
 
-// Class Events Handlers
-cXULElement_tooltip_pane.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-		}
-	}
-};
-
 // Render
 cXULElement_tooltip_pane.prototype.$getTagOpen	= function() {
     return '<div class="xul-tooltip-pane" style="position:absolute;display:none;">\

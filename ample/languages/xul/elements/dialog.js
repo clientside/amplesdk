@@ -108,10 +108,6 @@ cXULElement_dialog.handlers	= {
 		if (oEvent.target == this) {
 			var sValue	= oEvent.newValue || '';
 			switch (oEvent.attrName) {
-				case "title":
-					this.$getContainer("title").innerHTML = sValue;
-					break;
-
 				case "buttons":
 					this.buttons["help"].setAttribute("hidden", !sValue || sValue.indexOf("help")    ==-1 ? "true" : "false");
 					this.buttons["cancel"].setAttribute("hidden", !sValue || sValue.indexOf("cancel")  ==-1 ? "true" : "false");
@@ -119,16 +115,6 @@ cXULElement_dialog.handlers	= {
 					this.buttons["extra1"].setAttribute("hidden", !sValue || sValue.indexOf("extra1")  ==-1 ? "true" : "false");
 					this.buttons["extra2"].setAttribute("hidden", !sValue || sValue.indexOf("extra2")  ==-1 ? "true" : "false");
 					break;
-
-				case "buttonalign":
-			        if (oEvent.newValue == "start")
-			            this.$getContainer("foot").align  = "left";
-			        else
-			        if (oEvent.newValue == "center")
-			            this.$getContainer("foot").align  = "center";
-			        else
-			            this.$getContainer("foot").align  = "right";
-			        break;
 
 				case "buttonlabelhelp":
 					this.buttons["help"].setAttribute("label", sValue);
@@ -149,9 +135,6 @@ cXULElement_dialog.handlers	= {
 				case "buttonlabelextra2":
 					this.buttons["extra2"].setAttribute("label", sValue);
 					break;
-
-				default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
 			}
 		}
 	},
@@ -159,6 +142,23 @@ cXULElement_dialog.handlers	= {
 		if (oEvent.target == this && oEvent.$pseudoTarget != this.$getContainer("title"))
 			oEvent.preventDefault();
 	}
+};
+
+cXULElement_dialog.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "title")
+		this.$getContainer("title").innerHTML = sValue || '';
+	else
+	if (sName == "buttonalign") {
+		if (sValue == "start")
+			this.$getContainer("foot").align	= "left";
+		else
+		if (sValue == "center")
+			this.$getContainer("foot").align	= "center";
+		else
+			this.$getContainer("foot").align	= "right";
+	}
+	else
+		cXULWindowElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
 // Element Renders

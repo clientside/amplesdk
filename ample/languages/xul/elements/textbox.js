@@ -56,49 +56,55 @@ cXULElement_textbox.handlers	= {
 	},
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this) {
-			switch (oEvent.attrName) {
-				case "value":
-					this.$getContainer("placeholder").style.display	= oEvent.newValue ? "none" : '';
-					this.$getContainer("input").value    = oEvent.newValue || '';
-					break;
-
-				case "disabled":
-					this.$setPseudoClass("disabled", oEvent.newValue == "true");
-					this.$getContainer("input").disabled = oEvent.newValue == "true";
-					if (this.attributes["type"] == "number")
-						this.spinButtons.setAttribute("disabled", oEvent.newValue == "true" ? "true" : "false");
-					break;
-
-				case "readonly":
-					this.$getContainer("input").readOnly	= oEvent.newValue == "true";
-					break;
-
-				case "type":
-					// TODO
-					break;
-
-				case "multiline":
-					// TODO
-					break;
-
-				case "maxlength":
-					break;
-
-				case "rows":
-					if (this.attributes["multiline"] == "true")
-						this.$getContainer("input").rows	= oEvent.newValue;
-					break;
-
-				case "cols":
-					if (this.attributes["multiline"] == "true")
-						this.$getContainer("input").cols	= oEvent.newValue;
-					break;
-
-				default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			if (oEvent.attrName == "disabled") {
+				if (this.attributes["type"] == "number")
+					this.spinButtons.setAttribute("disabled", oEvent.newValue == "true" ? "true" : "false");
+			}
+			else
+			if (oEvent.attrName == "type") {
+				// TODO
+			}
+			else
+			if (oEvent.attrName == "maxlength") {
+				// TODO
 			}
 		}
 	}
+};
+
+cXULElement_textbox.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "value") {
+		this.$getContainer("placeholder").style.display	= sValue ? "none" : '';
+		this.$getContainer("input").value	= sValue || '';
+	}
+	else
+	if (sName == "disabled") {
+		this.$setPseudoClass("disabled", sValue == "true");
+		this.$getContainer("input").disabled	= sValue == "true";
+	}
+	else
+	if (sName == "readonly")
+		this.$getContainer("input").readOnly	= sValue == "true";
+	else
+	if (sName == "type") {
+		// TODO
+	}
+	else
+	if (sName == "multiline") {
+		// TODO
+	}
+	else
+	if (sName == "row") {
+		if (this.attributes["multiline"] == "true")
+			this.$getContainer("input").rows	= sValue || '';
+	}
+	else
+	if (sName == "cols") {
+		if (this.attributes["multiline"] == "true")
+			this.$getContainer("input").cols	= sValue || '';
+	}
+	else
+		cXULInputElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
 cXULElement_textbox.prototype._onChange  = function(oEvent) {

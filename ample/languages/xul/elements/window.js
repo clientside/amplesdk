@@ -20,18 +20,17 @@ cXULElement_window.attributes.height	= "300";
 
 // Class Events Handlers
 cXULElement_window.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			switch (oEvent.attrName) {
-				default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-			}
-		}
-	},
 	"dragstart":	function(oEvent) {
 		if (oEvent.target == this && oEvent.$pseudoTarget != this.$getContainer("title"))
 			oEvent.preventDefault();
 	}
+};
+
+cXULElement_window.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "title")
+		this.$getContainer("title").innerHTML	= sValue || '';
+	else
+		cXULWindowElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
 // Element Renders

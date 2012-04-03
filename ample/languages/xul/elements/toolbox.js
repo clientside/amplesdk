@@ -14,15 +14,6 @@ cXULElement_toolbox.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
 cXULElement_toolbox.attributes	= {};
 cXULElement_toolbox.attributes.orient	= "vertical";
 
-// Class Events Handlers
-cXULElement_toolbox.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-		}
-	}
-};
-
 // Element Render: open
 cXULElement_toolbox.prototype.$getTagOpen		= function() {
     return '<div class="xul-toolbox' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">';

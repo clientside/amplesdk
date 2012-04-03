@@ -26,15 +26,6 @@ cXULElement_arrowscrollbox.prototype.scrollByIndex	= function(nLines)
 	throw new ample.classes.DOMException(DOMException.NOT_SUPPORTED_ERR);
 };
 
-// Class Handlers
-cXULElement_arrowscrollbox.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-		}
-	}
-};
-
 // Private method
 cXULElement_arrowscrollbox.prototype._onInterval  = function(sName, nSign) {
     this.$getContainer("gateway")[sName == "vertical" ? "scrollTop" : "scrollLeft"]+= 3 * nSign;

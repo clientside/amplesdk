@@ -20,11 +20,6 @@ cXULElement_tabpanel.attributes.width	= "100%";
 
 // Class event handlers
 cXULElement_tabpanel.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-		}
-	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		if (this.parentNode instanceof cXULElement_tabpanels) {
 			this.parentNode.items.$add(this);

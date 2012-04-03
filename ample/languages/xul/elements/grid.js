@@ -13,15 +13,6 @@ var cXULElement_grid	= function() {
 };
 cXULElement_grid.prototype	= new cXULElement("grid");
 
-// Class Events Handlers
-cXULElement_grid.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-		}
-	}
-};
-
 cXULElement_grid.prototype.$getTagOpen	= function() {
 	var sWidth	= this.attributes.width,
 		sHeight	= this.attributes.height;

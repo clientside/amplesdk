@@ -158,38 +158,28 @@ cXULElement_datepicker_pane.handlers	= {
 	},
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this)
-			switch (oEvent.attrName) {
-				case "min":
-					if (oEvent.newValue)
-						this.min	= cXULElement_datepicker_pane.parseDateFromString(oEvent.newValue);
-					else
-						this.min	= null;
-//					this.refresh();
-					break;
-
-				case "max":
-					if (oEvent.newValue)
-						this.max	= cXULElement_datepicker_pane.parseDateFromString(oEvent.newValue);
-					else
-						this.max	= null;
-//					this.refresh();
-					break;
-
-				case "value":
-					if (oEvent.newValue) {
-						this.value	= cXULElement_datepicker_pane.parseDateFromString(oEvent.newValue);
-						this.current= cXULElement_datepicker_pane.parseDateFromString(oEvent.newValue);
-					}
-					else {
-						this.value	= null;
-					}
-					this.refresh();
-					break;
-
-				case "disabled":
-					this._elementMonth.setAttribute("disabled", oEvent.newValue == "true" ? "true" : "false");
-					this._elementYear.setAttribute("disabled", oEvent.newValue == "true" ? "true" : "false");
-					break;
+			if (oEvent.attrName == "min") {
+				if (oEvent.newValue)
+					this.min	= cXULElement_datepicker_pane.parseDateFromString(oEvent.newValue);
+				else
+					this.min	= null;
+			}
+			else
+			if (oEvent.attrName == "max") {
+				if (oEvent.newValue)
+					this.max	= cXULElement_datepicker_pane.parseDateFromString(oEvent.newValue);
+				else
+					this.max	= null;
+			}
+			else
+			if (oEvent.attrName == "value") {
+				if (oEvent.newValue) {
+					this.value	= cXULElement_datepicker_pane.parseDateFromString(oEvent.newValue);
+					this.current= cXULElement_datepicker_pane.parseDateFromString(oEvent.newValue);
+				}
+				else {
+					this.value	= null;
+				}
 			}
 	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
@@ -204,6 +194,18 @@ cXULElement_datepicker_pane.handlers	= {
 		//
 		this.refresh();
 	}
+};
+
+cXULElement_datepicker_pane.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "value")
+		this.refresh();
+	else
+	if (sName == "disabled") {
+		this._elementMonth.setAttribute("disabled", sValue == "true" ? "true" : "false");
+		this._elementYear.setAttribute("disabled", sValue == "true" ? "true" : "false");
+	}
+	else
+		cXULPopupElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
 // algorythm found at http://www.jslab.dk/library/Date.getISOWeek

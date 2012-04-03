@@ -40,26 +40,23 @@ cXULElement_radiogroup.prototype.removeItemAt= function(nIndex) {
 cXULElement_radiogroup.handlers	= {
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this) {
-			switch (oEvent.attrName) {
-				case "value":
-					for (var nIndex = 0; nIndex < this.items.length; nIndex++) {
-						if (this.items[nIndex].attributes["value"] == oEvent.newValue) {
-							this.items[nIndex].setAttribute("selected", "true");
-							break;
-						}
+			if (oEvent.attrName == "value") {
+				for (var nIndex = 0; nIndex < this.items.length; nIndex++) {
+					if (this.items[nIndex].attributes["value"] == oEvent.newValue) {
+						this.items[nIndex].setAttribute("selected", "true");
+						break;
 					}
-					break;
-
-				case "disabled":
-					var oElementDOM	= this.$getContainer();
-					this.$setPseudoClass("disabled", oEvent.newValue == "true");
-					break;
-
-				default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+				}
 			}
 		}
 	}
+};
+
+cXULElement_radiogroup.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "disabled")
+		this.$setPseudoClass("disabled", sValue == "true");
+	else
+		cXULInputElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
 // Element Render: open

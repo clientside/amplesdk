@@ -15,17 +15,5 @@ cXULElement_hbox.prototype.localName	= "hbox";
 cXULElement_hbox.attributes	= {};
 cXULElement_hbox.attributes.orient	= "horizontal";
 
-// Class Events Handlers
-cXULElement_hbox.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			switch (oEvent.attrName) {
-				default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-			}
-		}
-	}
-};
-
 // Register Element
 ample.extend(cXULElement_hbox);

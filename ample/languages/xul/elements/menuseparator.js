@@ -10,15 +10,6 @@
 var cXULElement_menuseparator	= function(){};
 cXULElement_menuseparator.prototype  = new cXULElement("menuseparator");
 
-//Class Events Handlers
-cXULElement_menuseparator.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-		}
-	}
-};
-
 // Element Render: open
 cXULElement_menuseparator.prototype.$getTagOpen	= function() {
     return '<tr>\

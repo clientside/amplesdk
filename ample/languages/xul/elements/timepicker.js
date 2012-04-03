@@ -120,21 +120,21 @@ cXULElement_timepicker.handlers	= {
 	},
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this) {
-			switch (oEvent.attrName) {
-				case "disabled":
-					this.$setPseudoClass("disabled", oEvent.newValue == "true");
-					this.spinButtons.setAttribute("disabled", oEvent.newValue == "true" ? "true" : "false");
-					break;
-
-				case "value":
-					this.$getContainer("input").value	= oEvent.newValue || '';
-					break;
-
-				default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			if (oEvent.attrName == "disabled") {
+				this.spinButtons.setAttribute("disabled", oEvent.newValue == "true" ? "true" : "false");
 			}
 		}
 	}
+};
+
+cXULElement_timepicker.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "disabled")
+		this.$setPseudoClass("disabled", sValue == "true");
+	else
+	if (sName == "value")
+		this.$getContainer("input").value	= sValue || '';
+	else
+		cXULInputElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
 cXULElement_timepicker.getEditComponent	= function(oInstance) {

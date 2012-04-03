@@ -15,17 +15,5 @@ cXULElement_vbox.prototype.localName	= "vbox";
 cXULElement_vbox.attributes	= {};
 cXULElement_vbox.attributes.orient	= "vertical";
 
-// Class Events Handlers
-cXULElement_vbox.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			switch (oEvent.attrName) {
-				default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-			}
-		}
-	}
-};
-
 // Register Element
 ample.extend(cXULElement_vbox);

@@ -64,17 +64,12 @@ cXULElement_treechildren.prototype._refresh	= function(aStack, nPrimaryCol) {
 cXULElement_treechildren.handlers	= {
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this) {
-			switch (oEvent.attrName) {
-				case "hidden":
-					for (var nIndex = 0; nIndex < this.items.length; nIndex++) {
-						this.items[nIndex].setAttribute("hidden", oEvent.newValue);
-						if (this.items[nIndex].children && this.items[nIndex].attributes["open"] != "false")
-							this.items[nIndex].children.setAttribute("hidden", oEvent.newValue);
-					}
-					break;
-
-				default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			if (oEvent.attrName == "hidden") {
+				for (var nIndex = 0; nIndex < this.items.length; nIndex++) {
+					this.items[nIndex].setAttribute("hidden", oEvent.newValue);
+					if (this.items[nIndex].children && this.items[nIndex].attributes["open"] != "false")
+						this.items[nIndex].children.setAttribute("hidden", oEvent.newValue);
+				}
 			}
 		}
 	},
@@ -95,6 +90,14 @@ cXULElement_treechildren.handlers	= {
 				this.tree.items.$remove(oEvent.target);
 			}
 	}
+};
+
+cXULElement_treechildren.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "hidden") {
+		// Do not let cXULElement map
+	}
+	else
+		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
 // TODO: Temp hack

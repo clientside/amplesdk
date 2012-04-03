@@ -104,7 +104,7 @@ cXULElement.prototype.$mapAttribute	= function(sName, sValue) {
 	    		oElementDOM.parentNode[sName] = sValue;
 	        oElementDOM.style[sName]  = sValue ? isNaN(sValue) ? sValue : sValue + "px" : '';
 			break;
-
+/*
 		case "label":
 	        var sHtml   = "";
 	        if (this.attributes["image"])
@@ -119,6 +119,7 @@ cXULElement.prototype.$mapAttribute	= function(sName, sValue) {
 	            sHtml  += this.attributes["label"];
 	        oElementDOM.innerHTML    = sHtml;
 	        break;
+*/
 	}
 };
 

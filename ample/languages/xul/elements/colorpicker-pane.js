@@ -148,22 +148,18 @@ cXULElement_colorpicker_pane.prototype.cancelDialog	= function() {
 
 // Class handlers
 cXULElement_colorpicker_pane.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			switch (oEvent.attrName) {
-				case "value":
-			    	this._setColor(oEvent.newValue || '');
-			    	this.$getContainer('value').value    = oEvent.newValue || '';
-			    	break;
-
-				default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-			}
-		}
-	},
 	"DOMNodeInsertedIntoDocument":	function() {
 		this._setColor(cXULElement_colorpicker_pane.attributes.value);
 	}
+};
+
+cXULElement_colorpicker_pane.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "value") {
+		this._setColor(sValue || '');
+		this.$getContainer('value').value	= sValue || '';
+	}
+	else
+		cXULPopupElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
 // Render

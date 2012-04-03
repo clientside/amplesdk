@@ -18,19 +18,6 @@ cXULElement_script.attributes.hidden	= "true";
 
 // Element Handlers
 cXULElement_script.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			switch (oEvent.attrName) {
-				case "src":
-					if (oEvent.newValue)
-						this.$getContainer().src  = oEvent.newValue || '';
-					break;
-
-				default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-			}
-		}
-	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		if (this.attributes["src"])
 			this.$getContainer().src  = this.attributes["src"];
@@ -41,6 +28,15 @@ cXULElement_script.handlers	= {
 			oElement.text	= this.firstChild.nodeValue;
 		}
 	}
+};
+
+cXULElement_script.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "src") {
+		if (sValue)
+			this.$getContainer().src  = sValue || '';
+	}
+	else
+		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
 // Element Render: open

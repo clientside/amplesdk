@@ -31,41 +31,24 @@ cXULElement_radio.handlers	= {
 	},
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this) {
-			switch (oEvent.attrName) {
-				case "disabled":
-					this.$setPseudoClass("disabled", oEvent.newValue == "true");
-					break;
+			if (oEvent.attrName == "selected") {
+				var oGroup	= this.group;
+				if (oGroup) {
+					if (oEvent.newValue == "true") {
+						// deselect previously selected radio
+						if (oGroup.selectedItem)
+							oGroup.selectedItem.setAttribute("selected", "false");
 
-				case "label":
-					this.$getContainer("label").innerHTML = oEvent.newValue || '';
-					break;
-
-				case "value":
-					break;
-
-				case "selected":
-					var oGroup	= this.group;
-					if (oGroup) {
-						if (oEvent.newValue == "true") {
-							// deselect previously selected radio
-							if (oGroup.selectedItem)
-								oGroup.selectedItem.setAttribute("selected", "false");
-
-							oGroup.selectedIndex	= this.group.items.$indexOf(this);
-							oGroup.selectedItem		= this;
-							oGroup.attributes["value"]  = this.attributes["value"];
-						}
-						else {
-							oGroup.selectedIndex	=-1;
-							oGroup.selectedItem		= null;
-							oGroup.attributes["value"]  = "";
-						}
+						oGroup.selectedIndex	= this.group.items.$indexOf(this);
+						oGroup.selectedItem		= this;
+						oGroup.attributes["value"]  = this.attributes["value"];
 					}
-					this.$setPseudoClass("selected", oEvent.newValue == "true");
-					break;
-
-				default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+					else {
+						oGroup.selectedIndex	=-1;
+						oGroup.selectedItem		= null;
+						oGroup.attributes["value"]  = "";
+					}
+				}
 			}
 		}
 	},
@@ -99,6 +82,19 @@ cXULElement_radio.handlers	= {
 			this.group   = null;
 		}
 	}
+};
+
+cXULElement_radio.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "disabled")
+		this.$setPseudoClass("disabled", sValue == "true");
+	else
+	if (sName == "label")
+		this.$getContainer("label").innerHTML = sValue || '';
+	else
+	if (sName == "selected")
+		this.$setPseudoClass("selected", sValue == "true");
+	else
+		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
 // Element Render: open

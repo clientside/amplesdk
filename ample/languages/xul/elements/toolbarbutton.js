@@ -58,59 +58,50 @@ cXULElement_toolbarbutton.handlers	= {
 			if (this.getAttribute("type") != "menu" && this.getAttribute("type") != "menu-button")
 				this.$activate();
 	},
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			switch (oEvent.attrName) {
-				case "open":
-					var oElement	= this.getElementsByTagNameNS(this.namespaceURI, "menupopup")[0];
-					if (oElement) {
-						if (oEvent.newValue == "true") {
-							var that	= this;
-							oElement.showPopup(this, -1, -1, cXULPopupElement.POPUP_TYPE_POPUP);
-							oElement.addEventListener("popuphidden", function(oEvent) {
-								oElement.removeEventListener("popuphidden", arguments.callee, false);
-								//
-								that.$setPseudoClass("active", false);
-								that.setAttribute("open", "false");
-							}, false);
-
-				            //
-							this.ownerDocument.popupNode	= oElement;
-						}
-						else {
-							oElement.hidePopup();
-
-				            //
-							this.ownerDocument.popupNode	= null;
-				        }
-					}
-					break;
-
-				case "disabled":
-					this.$setPseudoClass("disabled", oEvent.newValue == "true");
-					break;
-
-				case "type":
-					// TODO
-					break;
-
-				case "label":
-					this.$getContainer("label").innerHTML  =(this.attributes["image"] ? '<img src="' + this.attributes["image"] + '" align="absmiddle" />' : '') + ' ' + (oEvent.newValue || '');
-					break;
-
-				case "image":
-			        this.$getContainer("label").innerHTML  =(oEvent.newValue ? '<img src="' + oEvent.newValue + '" align="absmiddle" />' : '') + ' ' + (this.attributes["label"] || '');
-			        break;
-
-				default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-			}
-		}
-	},
 	"DOMActivate":	function(oEvent) {
 		if (oEvent.target == this)
 			this.doCommand();
 	}
+};
+
+cXULElement_toolbarbutton.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "open") {
+		var oElement	= this.getElementsByTagNameNS(this.namespaceURI, "menupopup")[0];
+		if (oElement) {
+			if (sValue == "true") {
+				var that	= this;
+				oElement.showPopup(this, -1, -1, cXULPopupElement.POPUP_TYPE_POPUP);
+				oElement.addEventListener("popuphidden", function(oEvent) {
+					oElement.removeEventListener("popuphidden", arguments.callee, false);
+					//
+					that.$setPseudoClass("active", false);
+					that.setAttribute("open", "false");
+				}, false);
+				//
+				this.ownerDocument.popupNode	= oElement;
+			}
+			else {
+				oElement.hidePopup();
+				//
+				this.ownerDocument.popupNode	= null;
+			}
+		}
+	}
+	else
+	if (sName == "disabled")
+		this.$setPseudoClass("disabled", sValue == "true");
+	else
+	if (sName == "type") {
+		// TODO
+	}
+	else
+	if (sName == "label")
+		this.$getContainer("label").innerHTML  =(this.attributes["image"] ? '<img src="' + this.attributes["image"] + '" align="absmiddle" />' : '') + ' ' + (sValue || '');
+	else
+	if (sName == "image")
+		this.$getContainer("label").innerHTML  =(sValue ? '<img src="' + sValue + '" align="absmiddle" />' : '') + ' ' + (this.attributes["label"] || '');
+	else
+		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
 // Element Render: open

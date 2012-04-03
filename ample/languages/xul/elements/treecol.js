@@ -44,31 +44,32 @@ cXULElement_treecol.handlers	= {
 	},
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this) {
-			switch (oEvent.attrName) {
-				case "width":
-					this.$getContainer("stretch").style.width	= oEvent.newValue != null ? oEvent.newValue + "px" : '';
-					this.parentNode.parentNode.body.$getContainer("foot").rows[0].cells[this.parentNode.items.$indexOf(this) + (this.parentNode.parentNode.attributes["type"] ? 1 : 0)].getElementsByTagName("div")[0].style.width	= oEvent.newValue != null ? oEvent.newValue + "px" : '';
-					break;
-
-				case "label":
-					this.$getContainer("label").innerHTML	= oEvent.newValue || '';
-					break;
-
-				case "hidden":
-//				case "hideheader":
-					var nCell	= this.parentNode.items.$indexOf(this);
-					this.$getContainer().style.display	= oEvent.newValue == "true" ? "none" : "";
-					for (var nIndex = 0, aItems = this.parentNode.parentNode.items; nIndex < aItems.length; nIndex++)
-						if (aItems[nIndex].row)
-							aItems[nIndex].row.cells[nCell].setAttribute("hidden", oEvent.newValue);
-					this.parentNode.parentNode.body.$getContainer("foot").rows[0].cells[nCell + (this.parentNode.parentNode.attributes["type"] ? 1 : 0)].style.display	= oEvent.newValue == "true" ? "none" : "";
-					break;
-
-				default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+			if (oEvent.attrName ==  "hidden") {
+				var nCell	= this.parentNode.items.$indexOf(this);
+				for (var nIndex = 0, aItems = this.parentNode.parentNode.items; nIndex < aItems.length; nIndex++)
+					if (aItems[nIndex].row)
+						aItems[nIndex].row.cells[nCell].setAttribute("hidden", oEvent.newValue);
 			}
 		}
 	}
+};
+
+cXULElement_treecol.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "width") {
+		this.$getContainer("stretch").style.width	= sValue != null ? sValue + "px" : '';
+		this.parentNode.parentNode.body.$getContainer("foot").rows[0].cells[this.parentNode.items.$indexOf(this) + (this.parentNode.parentNode.attributes["type"] ? 1 : 0)].getElementsByTagName("div")[0].style.width	= sValue != null ? sValue + "px" : '';
+	}
+	else
+	if (sName == "label")
+		this.$getContainer("label").innerHTML	= sValue || '';
+	else
+	if (sName == "hidden") {
+		var nCell	= this.parentNode.items.$indexOf(this);
+		this.$getContainer().style.display	= sValue == "true" ? "none" : "";
+		this.parentNode.parentNode.body.$getContainer("foot").rows[0].cells[nCell + (this.parentNode.parentNode.attributes["type"] ? 1 : 0)].style.display	= sValue == "true" ? "none" : "";
+	}
+	else
+		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
 // Element Render: open

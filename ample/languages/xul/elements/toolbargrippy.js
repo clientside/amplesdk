@@ -10,15 +10,6 @@
 var cXULElement_toolbargrippy	= function(){};
 cXULElement_toolbargrippy.prototype  = new cXULElement("toolbargrippy");
 
-// Class Events Handlers
-cXULElement_toolbargrippy.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-		}
-	}
-};
-
 // Element Render: open
 cXULElement_toolbargrippy.prototype.$getTagOpen	= function() {
     return (this.parentNode instanceof cXULElement_menubar ? "<td>" : "") + '<div class="xul-toolbargrippy' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"><br /></div>';

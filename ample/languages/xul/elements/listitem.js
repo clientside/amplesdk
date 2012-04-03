@@ -37,20 +37,6 @@ cXULElement_listitem.handlers	= {
 	        	oView.selectItem(this);
 	    }
 	},
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			switch (oEvent.attrName) {
-				case "selected":
-			    	this.$setPseudoClass("selected", oEvent.newValue == "true");
-			        if (this.parentNode.parentNode.attributes["type"] == "checkbox" || this.parentNode.parentNode.attributes["type"] == "radio")
-			            this.$getContainer("command").checked = oEvent.newValue == "true";
-			        break;
-
-				default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-			}
-		}
-	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		if (this.parentNode instanceof cXULElement_listbody && this.parentNode.parentNode instanceof cXULElement_listbox)
 			this.parentNode.parentNode.items.$add(this);
@@ -64,6 +50,16 @@ cXULElement_listitem.handlers	= {
 			this.parentNode.parentNode.items.$remove(this);
 		}
 	}
+};
+
+cXULElement_listitem.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "selected") {
+		this.$setPseudoClass("selected", sValue == "true");
+		if (this.parentNode.parentNode.attributes["type"] == "checkbox" || this.parentNode.parentNode.attributes["type"] == "radio")
+			this.$getContainer("command").checked = sValue == "true";
+	}
+	else
+		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
 cXULElement_listitem.prototype.$isAccessible	= function() {

@@ -10,14 +10,5 @@
 var cXULElement_columns	= function(){};
 cXULElement_columns.prototype	= new cXULElement("columns");
 
-// Class Event Handlers
-cXULElement_columns.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-		}
-	}
-};
-
 // Register Element
 ample.extend(cXULElement_columns);

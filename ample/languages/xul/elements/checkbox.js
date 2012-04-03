@@ -30,32 +30,27 @@ cXULElement_checkbox.handlers	= {
 	},
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this) {
-			switch (oEvent.attrName) {
-				case "disabled":
-			    	this.$setPseudoClass("disabled", oEvent.newValue == "true");
-			        break;
-
-		    	case "value":
-		    		this.setAttribute("checked", oEvent.newValue == "on" ? "true" : "false");
-			        break;
-
-		    	case "checked":
-			        this.setAttribute("value", oEvent.newValue == "true" ? "on" : "off");
-			        this.$setPseudoClass("checked", oEvent.newValue == "true");
-			        break;
-
-		    	case "label":
-		    		this.$getContainer("label").innerHTML = oEvent.newValue || '';
-		    		break;
-
-		    	default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-			}
+			if (oEvent.attrName == "value")
+				this.setAttribute("checked", oEvent.newValue == "on" ? "true" : "false");
+			else
+			if (oEvent.attrName == "checked")
+				this.setAttribute("value", oEvent.newValue == "true" ? "on" : "off");
 		}
 	},
 	"DOMActivate":	function(oEvent) {
 		this.setAttribute("checked", this.getAttribute("checked") == "true" ? "false" : "true");
 	}
+};
+
+cXULElement_checkbox.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "disabled")
+		this.$setPseudoClass("disabled", sValue == "true");
+	else
+	if (sName == "checked") {
+		this.$setPseudoClass("checked", sValue == "true");
+	}
+	else
+		cXULInputElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
 // Element Render: open

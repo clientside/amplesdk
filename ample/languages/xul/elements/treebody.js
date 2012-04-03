@@ -23,14 +23,6 @@ cXULElement_treebody.prototype._onScroll     = function() {
 
 // Class events handlers
 cXULElement_treebody.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			switch (oEvent.attrName) {
-				default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-			}
-		}
-	},
 	"DOMNodeInserted":	function(oEvent) {
 		if (oEvent.target.parentNode == this)
 			if (oEvent.target instanceof cXULElement_treechildren) {

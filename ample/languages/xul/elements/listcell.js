@@ -14,22 +14,6 @@ cXULElement_listcell.prototype	= new cXULElement("listcell");
 
 // Class Events Handlers
 cXULElement_listcell.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			switch (oEvent.attrName)  {
-				case "label":
-			        this.$getContainer("gateway").innerHTML  =(this.attributes["src"] ? '<img src="' + this.attributes["src"] + '" align="absmiddle" /> ' :'') + (oEvent.newValue || '');
-					break;
-
-				case "src":
-			        this.$getContainer("gateway").innerHTML  =(oEvent.newValue ? '<img src="' + oEvent.newValue + '" align="absmiddle" /> ' :'') + (this.attributes["label"] || '');
-					break;
-
-				default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-			}
-		}
-	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		if (this.parentNode instanceof cXULElement_listitem)
 			this.parentNode.cells.$add(oEvent.target);
@@ -38,6 +22,16 @@ cXULElement_listcell.handlers	= {
 		if (this.parentNode instanceof cXULElement_listitem)
 			this.parentNode.cells.$remove(oEvent.target);
 	}
+};
+
+cXULElement_listcell.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "label")
+		this.$getContainer("gateway").innerHTML	=(this.attributes["src"] ? '<img src="' + this.attributes["src"] + '" align="absmiddle" /> ' :'') + (sValue || '');
+	else
+	if (sName == "src")
+		this.$getContainer("gateway").innerHTML	=(sValue ? '<img src="' + sValue + '" align="absmiddle" /> ' :'') + (this.attributes["label"] || '');
+	else
+		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
 // Element Render: open
