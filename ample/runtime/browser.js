@@ -764,8 +764,8 @@ function fBrowser_parseXML(sText) {
 	if (bGecko)
 		sText	= sText.replace(new cRegExp(sNS_XUL, 'g'), sNS_XUL + '#');
 	// Process embedded DTDs
-	if (aMatch = sText.match(rBrowser_docType)) {
-		if (aMatch[7]) {
+	if ((aMatch = sText.match(rBrowser_docType)) && aMatch[7]) {
+		if (fBrowser_isPageOrigin(aMatch[7])) {
 			// Fetch external DTD (synch)
 			var oRequest	= fBrowser_load(aMatch[7], "application/xml-dtd");
 			// TODO: check if referenced DTD is available
@@ -839,6 +839,12 @@ function fBrowser_load(sUri, sAccept) {
 	oRequest.send(null);
 
 	return oRequest;
+};
+
+var aBrowser_pageUri	= fUtilities_getUriComponents(oUALocation.href);
+function fBrowser_isPageOrigin(sUri) {
+	var aUri = fUtilities_getUriComponents(sUri);
+	return (!aUri[0] && (!aUri[1] || aUri[1] == aBrowser_pageUri[1])) || (aUri[0] == aBrowser_pageUri[0] && aUri[1] == aBrowser_pageUri[1]);
 };
 
 function fBrowser_getComputedStyle(oElementDOM) {
