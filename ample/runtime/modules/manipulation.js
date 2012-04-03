@@ -19,10 +19,16 @@ cQuery.prototype.text	= function(sValue) {
 	if (arguments.length > 0) {
 		// Replace children with a text node
 		fQuery_each(this, function() {
-			while (this.lastChild)
-				fElement_removeChild(this, this.lastChild);
+			var oText	= null;
+			if (this.childNodes.length == 1 && (this.firstChild.nodeType == 3 || this.firstChild.nodeType == 4))
+				oText	= this.firstChild;
+			else {
+				while (this.lastChild)
+					fElement_removeChild(this, this.lastChild);
+				oText	= fElement_appendChild(this, fDocument_createTextNode(this.ownerDocument, ''));
+			}
 			// Add child
-			fElement_appendChild(this, fDocument_createTextNode(this.ownerDocument, cString(sValue)));
+			fCharacterData_replaceData(oText, 0, oText.length, cString(sValue));
 		});
 		return this;
 	}
