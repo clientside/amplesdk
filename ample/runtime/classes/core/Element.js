@@ -296,11 +296,9 @@ function fElement_setAttribute(oElement, sName, sValue)
 		oElement.attributes[sName]	= sValue;
 
 		// Fire Mutation event
-		if (bRegistered) {
-			var oEvent = new cMutationEvent;
-			oEvent.initMutationEvent("DOMAttrModified", true, false, null, bValue ? sValueOld : null, sValue, sName, bValue ? 1 /* cMutationEvent.MODIFICATION */ : 2 /* cMutationEvent.ADDITION */);
-			fNode_dispatchEvent(oElement, oEvent);
-		}
+		var oEvent = new cMutationEvent;
+		oEvent.initMutationEvent("DOMAttrModified", true, false, null, bValue ? sValueOld : null, sValue, sName, bValue ? 1 /* cMutationEvent.MODIFICATION */ : 2 /* cMutationEvent.ADDITION */);
+		fNode_dispatchEvent(oElement, oEvent);
 
 		// Run mapper
 		if (bRegistered && !bCoreAttr && sName.indexOf(':') ==-1)
