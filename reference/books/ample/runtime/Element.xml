@@ -599,6 +599,29 @@
 					</locale>
 				</description>
 			</method>
+			<method name="$mapAttribute" type="Void">
+				<arguments>
+					<argument name="name" type="String">
+						<description>
+							<locale>
+								Attribute name
+							</locale>
+						</description>
+					</argument>
+					<argument name="value" type="String">
+						<description>
+							<locale>
+								Attribute value. null if attribute is being removed.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						<b>UI element definition API.</b> Provide your function to map attribute value to shadow tree. Not called for id, class and style attributes.
+					</locale>
+				</description>
+			</method>
 			<method name="$getContainer" type="HTMLElement">
 				<arguments>
 					<argument name="pseudoElement" type="String" required="false">
