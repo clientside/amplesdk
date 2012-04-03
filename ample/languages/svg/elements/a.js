@@ -18,6 +18,7 @@ if (cSVGElement.useVML) {
 		'DOMAttrModified':	function(oEvent) {
 			if (oEvent.target == this) {
 				switch (oEvent.attrName) {
+					case "xlink:href":
 					case "href":
 						cSVGElement_a.setHref(this, oEvent.newValue);
 						break;
@@ -25,7 +26,7 @@ if (cSVGElement.useVML) {
 			}
 		},
 		'DOMNodeInsertedIntoDocument':	function(oEvent) {
-			var sValue	= this.getAttribute("xlink:href");
+			var sValue	= this.getAttribute("xlink:href") || this.getAttribute("href");
 			if (sValue != "")
 				cSVGElement_a.setHref(this, sValue);
 		},
