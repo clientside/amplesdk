@@ -260,52 +260,52 @@ cElement.prototype.hasAttributeNS	= function(sNameSpaceURI, sLocalName)
 
 function fElement_setAttribute(oElement, sName, sValue)
 {
-	var sValueOld	= oElement.attributes[sName],
-		bValue	= sName in oElement.attributes;
+	var sValueOld	= oElement.attributes[sName];
 
-    if (sValueOld != sValue) {
-    	//
-    	oElement.attributes[sName]	= sValue;
+	if (sValueOld != sValue) {
+		var bValue	= sName in oElement.attributes,
+			bRegistered	= oDocument_all[oElement.uniqueID],
+			bCoreAttr	= sName == 'id' || sName == "class" || sName == "style";
 
-    	// Only operate on shadow if element is in the DOM
-    	if (oDocument_all[oElement.uniqueID]) {
-    		if (sName == 'id' || sName == "class" || sName == "style") {
-	    		if (sName == 'id') {
-		    		if (sValue)
-		    			oDocument_ids[sValue]	= oElement;
-	    			delete oDocument_ids[sValueOld];
-		    	}
-	    		// Find shadow content
-	    		var oElementDOM	= oElement.$getContainer();
-	    		// Update view
-	    		if (oElementDOM) {
-	    	    	if (sName == "class") {
-	    	    		var sValueClass	=(oElement.prefix ? oElement.prefix + '-' : '') + oElement.localName + (sValue ? ' ' + sValue : '');
-	    	    		if (bTrident && nVersion < 8)
-	    	    			oElementDOM.className	= sValueClass;
-	    	    		else
-	    	    			oElementDOM.setAttribute("class", sValueClass);
-	    	    	}
-	    	    	else
-	    	    	if (sName == "style")
-	    				oElementDOM.style.cssText	= sValue;
-	    	    	else
-	    				oElementDOM.id	= sValue ? sValue : oElement.uniqueID;
-	    		}
-    		}
-    		// Map attribute
-    		else
-    		if (sName.indexOf(':') ==-1)
-    			oElement.$mapAttribute(sName, sValue);
-    	}
+		// Only operate on shadow if element is in the DOM
+		if (bRegistered && bCoreAttr) {
+			if (sName == 'id') {
+				if (sValue)
+					oDocument_ids[sValue]	= oElement;
+				delete oDocument_ids[sValueOld];
+			}
+			// Find shadow content
+			var oElementDOM	= oElement.$getContainer();
+			// Update view
+			if (oElementDOM) {
+				if (sName == "class") {
+					var sValueClass	=(oElement.prefix ? oElement.prefix + '-' : '') + oElement.localName + (sValue ? ' ' + sValue : '');
+					if (bTrident && nVersion < 8)
+						oElementDOM.className	= sValueClass;
+					else
+						oElementDOM.setAttribute("class", sValueClass);
+				}
+				else
+				if (sName == "style")
+					oElementDOM.style.cssText	= sValue;
+				else
+					oElementDOM.id	= sValue ? sValue : oElement.uniqueID;
+			}
+		}
+		//
+		oElement.attributes[sName]	= sValue;
 
-    	// Fire Mutation event
-    	if (oDocument_all[oElement.uniqueID]) {
-		    var oEvent = new cMutationEvent;
-		    oEvent.initMutationEvent("DOMAttrModified", true, false, null, bValue ? sValueOld : null, sValue, sName, bValue ? 1 /* cMutationEvent.MODIFICATION */ : 2 /* cMutationEvent.ADDITION */);
-		    fNode_dispatchEvent(oElement, oEvent);
-    	}
-    }
+		// Fire Mutation event
+		if (bRegistered) {
+			var oEvent = new cMutationEvent;
+			oEvent.initMutationEvent("DOMAttrModified", true, false, null, bValue ? sValueOld : null, sValue, sName, bValue ? 1 /* cMutationEvent.MODIFICATION */ : 2 /* cMutationEvent.ADDITION */);
+			fNode_dispatchEvent(oElement, oEvent);
+		}
+
+		// Run mapper
+		if (bRegistered && !bCoreAttr && sName.indexOf(':') ==-1)
+			oElement.$mapAttribute(sName, sValue);
+	}
 };
 
 cElement.prototype.$mapAttribute	= function(sName, sValue) {
