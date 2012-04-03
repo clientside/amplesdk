@@ -19,8 +19,6 @@ cXULElement_menulist.attributes	= {
 };
 
 // Public Properties
-//cXULElement_menulist.prototype.form	= null;
-
 cXULElement_menulist.prototype.menupopup	= null;
 
 cXULElement_menulist.prototype.selectedIndex	=-1;
@@ -240,26 +238,7 @@ cXULElement_menulist.handlers	= {
 		});
 		if (oElement)
 			this.$getContainer("input").value	= oElement.getAttribute("label");
-	}/*,
-	"DOMNodeInsertedIntoDocument":	function(oEvent) {
-		for (var oElementTemp = this; oElementTemp; oElementTemp = oElementTemp.parentNode)
-			if (oElementTemp instanceof cXHTMLElement_form)
-				break;
-
-		if (oElementTemp)
-		{
-			// Set reference to the form element
-			this.form	= oElementTemp;
-
-			// Add to collection of elements
-			oElementTemp.elements.$add(this);
-	//		oElementTemp.elements[this.attributes["name"]]	= this;
-		}
-	},
-	"DOMNodeRemovedFromDocument":	function(oEvent) {
-		if (this.form)
-			this.form.elements.$remove(this);
-	}*/
+	}
 };
 
 cXULElement_menulist.prototype.$mapAttribute	= function(sName, sValue) {
