@@ -56,8 +56,12 @@ cXULElement_deck.prototype.$mapAttribute	= function(sName, sValue) {
 };
 
 cXULElement_deck.prototype.reflow	= function() {
-	//
-	this.$mapAttribute("selectedIndex", this.attributes["selectedIndex"]);
+	// Temp fix
+	var sValue	= this.attributes["selectedIndex"];
+	if (sValue) {
+		delete this.attributes["selectedIndex"];
+		this.setAttribute("selectedIndex", sValue);
+	}
 	//
 	cXULElement.prototype.reflow.call(this);
 };
