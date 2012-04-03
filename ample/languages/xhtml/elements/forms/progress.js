@@ -10,13 +10,5 @@
 var cXHTMLElement_progress	= function(){};
 cXHTMLElement_progress.prototype	= new cXHTMLElement("progress");
 
-// Class Events Handlers
-cXHTMLElement_progress.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-	}
-};
-
 // Register Element
 ample.extend(cXHTMLElement_progress);

@@ -10,13 +10,5 @@
 var cXHTMLElement_h6	= function(){};
 cXHTMLElement_h6.prototype	= new cXHTMLElement("h6");
 
-// Class Events Handlers
-cXHTMLElement_h6.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-	}
-};
-
 // Register Element
 ample.extend(cXHTMLElement_h6);

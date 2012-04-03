@@ -88,10 +88,6 @@ cXHTMLElement_table.handlers	= {
 			else
 			if (oEvent.target instanceof cXHTMLElement_thead)
 				this.tHead	= null;
-	},
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
 	}
 };
 

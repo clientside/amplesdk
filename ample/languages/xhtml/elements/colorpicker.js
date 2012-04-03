@@ -163,22 +163,18 @@ cXHTMLElement_colorpicker.prototype.cancelDialog	= function() {
 
 // Class handlers
 cXHTMLElement_colorpicker.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			switch (oEvent.attrName) {
-				case "value":
-			    	this._setColor(oEvent.newValue || '');
-			    	this.$getContainer('value').value    = oEvent.newValue || '';
-			    	break;
-
-				default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-			}
-		}
-	},
 	"DOMNodeInsertedIntoDocument":	function() {
 		this._setColor(cXHTMLElement_colorpicker.attributes.value);
 	}
+};
+
+cXHTMLElement_colorpicker.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "value") {
+    	this._setColor(sValue || '');
+    	this.$getContainer('value').value	= sValue || '';
+	}
+	else
+		cXHTMLElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
 // Render

@@ -10,14 +10,6 @@
 var cXHTMLElement_br	= function(){};
 cXHTMLElement_br.prototype	= new cXHTMLElement("br");
 
-// Class Events Handlers
-cXHTMLElement_br.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-	}
-};
-
 // Element Render: close (cancel double tag)
 cXHTMLElement_br.prototype.$getTagOpen	= function() {
 	var sHtml   = '<' + this.localName;

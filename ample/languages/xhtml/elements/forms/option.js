@@ -52,22 +52,17 @@ cXHTMLElement_option.handlers	= {
 				break;
 		if (oNode)
 			oNode.options.$remove(this);
-	},
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
-			switch (oEvent.attrName) {
-				case "selected":
-					this.$setPseudoClass("selected", oEvent.newValue != null && oEvent.newValue != "false");
-					break;
-
-				case "label":
-					this.$getContainer("gateway").innerHTML	= oEvent.newValue || '';
-					break;
-
-				default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-			}
 	}
+};
+
+cXHTMLElement_option.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "selected")
+		this.$setPseudoClass("selected", sValue != null && sValue != "false");
+	else
+	if (sName == "label")
+		this.$getContainer("gateway").innerHTML	= sValue || '';
+	else
+		cXHTMLElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
 cXHTMLElement_option.prototype.$getTagOpen	= function() {

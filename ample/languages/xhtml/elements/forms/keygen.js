@@ -12,13 +12,5 @@ var cXHTMLElement_keygen	= function(){
 };
 cXHTMLElement_keygen.prototype	= new cXHTMLInputElement("keygen");
 
-// Class Events Handlers
-cXHTMLElement_keygen.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-	}
-};
-
 // Register Element
 ample.extend(cXHTMLElement_keygen);

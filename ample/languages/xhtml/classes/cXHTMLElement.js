@@ -31,11 +31,6 @@ cXHTMLElement.prototype.$mapAttribute	= function(sName, sValue) {
 			this.accessKey	= sValue || null;
 			break;
 
-		case "id":
-		case "class":
-		case "style":
-			break;
-
 		default:
 			var oContainer	= this.$getContainer();
 			if (oContainer)

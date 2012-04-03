@@ -15,10 +15,6 @@ cXHTMLElement_label.handlers	= {
 	"click":	function() {
 		this.$activate();
 	},
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-	},
 	"DOMActivate":	function(oEvent) {
 		var oControl;
 		if (this.attributes["for"] && (oControl = this.ownerDocument.getElementById(this.attributes["for"])))

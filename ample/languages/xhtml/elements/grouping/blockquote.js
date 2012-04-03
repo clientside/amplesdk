@@ -10,13 +10,5 @@
 var cXHTMLElement_blockquote	= function(){};
 cXHTMLElement_blockquote.prototype	= new cXHTMLElement("blockquote");
 
-// Class Events Handlers
-cXHTMLElement_blockquote.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-	}
-};
-
 // Register Element
 ample.extend(cXHTMLElement_blockquote);

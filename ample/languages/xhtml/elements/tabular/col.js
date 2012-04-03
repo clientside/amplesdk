@@ -10,13 +10,5 @@
 var cXHTMLElement_col	= function(){};
 cXHTMLElement_col.prototype	= new cXHTMLElement("col");
 
-// Class Events Handlers
-cXHTMLElement_col.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-	}
-};
-
 // Register Element
 ample.extend(cXHTMLElement_col);

@@ -33,10 +33,6 @@ cXHTMLElement_optgroup.handlers	= {
 			if (this.parentNode != oNode)
 				this.$getContainer("gap").style.width	= nDepth + "em";
 		}
-	},
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
 	}
 };
 

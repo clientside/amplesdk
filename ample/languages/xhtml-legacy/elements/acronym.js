@@ -10,13 +10,5 @@
 var cXHTMLElement_acronym	= function(){};
 cXHTMLElement_acronym.prototype	= new cXHTMLElement("acronym");
 
-// Class Events Handlers
-cXHTMLElement_acronym.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-	}
-};
-
 // Register Element
 ample.extend(cXHTMLElement_acronym);

@@ -10,14 +10,6 @@
 var cXHTMLElement_object	= function(){};
 cXHTMLElement_object.prototype	= new cXHTMLElement("object");
 
-// Class Events Handlers
-cXHTMLElement_object.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-	}
-};
-
 cXHTMLElement_object.prototype.$getTag	= function() {
 	if (window.navigator.userAgent.indexOf("Gecko") >-1) {
 		var sHtml   = '<embed';

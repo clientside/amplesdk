@@ -12,24 +12,24 @@ cXHTMLElement_canvas.prototype	= new cXHTMLElement("canvas");
 
 // Class Events Handlers
 cXHTMLElement_canvas.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			switch (oEvent.attrName) {
-				case "width":
-				case "height":
-					this[oEvent.attrName]	= oEvent.newValue;
-					this.$getContainer()[oEvent.attrName]	= oEvent.newValue;
-					break;
-
-				default:
-					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-			}
-		}
-	},
 	"DOMNodeInsertedIntoDocument":	function() {
 		this.width	= this.attributes["width"];
 		this.height	= this.attributes["height"];
+	},
+	"DOMAttrModified":	function(oEvent) {
+		if (oEvent.target == this)
+			if (oEvent.attrName == "width" || oEvent.attrName == "height") {
+				this[oEvent.attrName]	= oEvent.attrValue;
+			}
 	}
+};
+
+cXHTMLElement_canvas.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "width" || sName == "height") {
+		this.$getContainer()[sName]	= sValue;
+	}
+	else
+		cXHTMLElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
 cXHTMLElement_canvas.prototype.getContext	= function(sMode) {

@@ -10,13 +10,5 @@
 var cXHTMLElement_dialog	= function(){};
 cXHTMLElement_dialog.prototype	= new cXHTMLElement("dialog");
 
-// Class Events Handlers
-cXHTMLElement_dialog.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-	}
-};
-
 // Register Element
 ample.extend(cXHTMLElement_dialog);

@@ -10,13 +10,5 @@
 var cXHTMLElement_dfn	= function(){};
 cXHTMLElement_dfn.prototype	= new cXHTMLElement("dfn");
 
-// Class Events Handlers
-cXHTMLElement_dfn.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-	}
-};
-
 // Register Element
 ample.extend(cXHTMLElement_dfn);

@@ -10,13 +10,5 @@
 var cXHTMLElement_colgroup	= function(){};
 cXHTMLElement_colgroup.prototype	= new cXHTMLElement("colgroup");
 
-// Class Events Handlers
-cXHTMLElement_colgroup.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-	}
-};
-
 // Register Element
 ample.extend(cXHTMLElement_colgroup);

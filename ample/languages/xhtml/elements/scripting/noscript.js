@@ -10,13 +10,5 @@
 var cXHTMLElement_noscript	= function(){};
 cXHTMLElement_noscript.prototype	= new cXHTMLElement("noscript");
 
-// Class Events Handlers
-cXHTMLElement_noscript.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-	}
-};
-
 // Register Element
 ample.extend(cXHTMLElement_noscript);

@@ -10,13 +10,5 @@
 var cXHTMLElement_tt	= function(){};
 cXHTMLElement_tt.prototype	= new cXHTMLElement("tt");
 
-// Class Events Handlers
-cXHTMLElement_tt.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-	}
-};
-
 // Register Element
 ample.extend(cXHTMLElement_tt);

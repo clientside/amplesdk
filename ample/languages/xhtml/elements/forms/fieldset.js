@@ -12,16 +12,8 @@ var cXHTMLElement_fieldset	= function() {
 };
 cXHTMLElement_fieldset.prototype	= new cXHTMLElement("fieldset");
 
-//Public Properties
+// Public Properties
 cXHTMLElement_fieldset.prototype.elements	= null;
-
-// Class Events Handlers
-cXHTMLElement_fieldset.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-	}
-};
 
 // Register Element
 ample.extend(cXHTMLElement_fieldset);

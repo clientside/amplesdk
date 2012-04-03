@@ -298,45 +298,41 @@ cXHTMLElement_input.handlers	= {
 	"DOMNodeRemovedFromDocument":	function(oEvent) {
 		//
 		cXHTMLInputElement.unregister(this);
-	},
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this) {
-			switch (oEvent.attrName) {
-				case "type":
-					// Re-render content
-					var oElementDOM	= this.$getContainer(),
-						oFactory	= document.createElement("div");
-					oFactory.innerHTML	= this.$getTag();
-					oElementDOM.parentNode.replaceChild(oFactory.firstChild, oElementDOM);
-					break;
+	}
+};
 
-				case "placeholder":
-					this.$getContainer("placeholder").innerHTML	= oEvent.newValue || '';
-					break;
-
-				case "checked":
-					this.$setPseudoClass("checked", oEvent.newValue != null && oEvent.newValue != "false");
-					break;
-
-				case "disabled":
-					this.$setPseudoClass("disabled", oEvent.newValue != null, "value");
-					this.$getContainer("value").disabled	= oEvent.newValue != null;
-					break;
-
-				case "value":
-					switch (this.attributes["type"]) {
-						case "range":
-							this.$getContainer("button").style.left	= cXHTMLElement_input.getRangeOffset(this, oEvent.newValue || '');
-							break;
-
-						default:
-							this.$getContainer("value").value	= oEvent.newValue || '';
-					}
-					break;
-			}
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
+cXHTMLElement_input.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "type") {
+		// Re-render content
+		var oElementDOM	= this.$getContainer(),
+			oFactory	= document.createElement("div");
+		oFactory.innerHTML	= this.$getTag();
+		oElementDOM.parentNode.replaceChild(oFactory.firstChild, oElementDOM);
+	}
+	else
+	if (sName == "placeholder") {
+		this.$getContainer("placeholder").innerHTML	= sValue || '';
+	}
+	else
+	if (sName == "checked") {
+		this.$setPseudoClass("checked", sValue != null && sValue != "false");
+	}
+	else
+	if (sName == "disabled") {
+		this.$setPseudoClass("disabled", sValue != null, "value");	// Why on value pseudo-element?
+		this.$getContainer("value").disabled	= sValue != null;
+	}
+	else
+	if (sName == "value") {
+		if (this.attributes["type"] == "range") {
+			this.$getContainer("button").style.left	= cXHTMLElement_input.getRangeOffset(this, sValue || '');
+		}
+		else {
+			this.$getContainer("value").value	= sValue || '';
 		}
 	}
+	else
+		cXHTMLElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
 // Static Members

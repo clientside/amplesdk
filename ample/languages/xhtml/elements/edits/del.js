@@ -10,13 +10,5 @@
 var cXHTMLElement_del	= function(){};
 cXHTMLElement_del.prototype	= new cXHTMLElement("del");
 
-// Class Events Handlers
-cXHTMLElement_del.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-	}
-};
-
 // Register Element
 ample.extend(cXHTMLElement_del);

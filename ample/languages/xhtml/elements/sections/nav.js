@@ -10,13 +10,5 @@
 var cXHTMLElement_nav	= function(){};
 cXHTMLElement_nav.prototype	= new cXHTMLElement("nav");
 
-// Class Events Handlers
-cXHTMLElement_nav.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-	}
-};
-
 // Register Element
 ample.extend(cXHTMLElement_nav);

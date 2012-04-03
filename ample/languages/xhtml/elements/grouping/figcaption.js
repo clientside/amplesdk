@@ -10,13 +10,5 @@
 var cXHTMLElement_figcaption	= function(){};
 cXHTMLElement_figcaption.prototype	= new cXHTMLElement("figcaption");
 
-// Class Events Handlers
-cXHTMLElement_figcaption.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-	}
-};
-
 // Register Element
 ample.extend(cXHTMLElement_figcaption);

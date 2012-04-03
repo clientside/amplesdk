@@ -10,13 +10,5 @@
 var cXHTMLElement_link	= function(){};
 cXHTMLElement_link.prototype	= new cXHTMLElement("link");
 
-// Class Events Handlers
-cXHTMLElement_link.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-	}
-};
-
 // Register Element
 ample.extend(cXHTMLElement_link);

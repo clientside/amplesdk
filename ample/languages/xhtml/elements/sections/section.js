@@ -10,13 +10,5 @@
 var cXHTMLElement_section	= function(){};
 cXHTMLElement_section.prototype	= new cXHTMLElement("section");
 
-// Class Events Handlers
-cXHTMLElement_section.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-	}
-};
-
 // Register Element
 ample.extend(cXHTMLElement_section);

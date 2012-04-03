@@ -10,14 +10,6 @@
 var cXHTMLElement_audio	= function(){};
 cXHTMLElement_audio.prototype	= new cXHTMLElement("audio");
 
-// Class Events Handlers
-cXHTMLElement_audio.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-	}
-};
-
 // Register Element
 ample.extend(cXHTMLElement_audio);
 

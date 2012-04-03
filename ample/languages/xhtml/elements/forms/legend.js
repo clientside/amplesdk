@@ -10,13 +10,5 @@
 var cXHTMLElement_legend	= function(){};
 cXHTMLElement_legend.prototype	= new cXHTMLElement("legend");
 
-// Class Events Handlers
-cXHTMLElement_legend.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-	}
-};
-
 // Register Element
 ample.extend(cXHTMLElement_legend);

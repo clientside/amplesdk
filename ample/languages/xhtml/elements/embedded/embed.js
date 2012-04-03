@@ -10,14 +10,6 @@
 var cXHTMLElement_embed	= function(){};
 cXHTMLElement_embed.prototype	= new cXHTMLElement("embed");
 
-// Class Events Handlers
-cXHTMLElement_embed.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-	}
-};
-
 // Register Element
 ample.extend(cXHTMLElement_embed);
 

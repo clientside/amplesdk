@@ -10,13 +10,5 @@
 var cXHTMLElement_kbd	= function(){};
 cXHTMLElement_kbd.prototype	= new cXHTMLElement("kbd");
 
-// Class Events Handlers
-cXHTMLElement_kbd.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-	}
-};
-
 // Register Element
 ample.extend(cXHTMLElement_kbd);

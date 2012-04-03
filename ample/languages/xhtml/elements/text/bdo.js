@@ -10,13 +10,5 @@
 var cXHTMLElement_bdo	= function(){};
 cXHTMLElement_bdo.prototype	= new cXHTMLElement("bdo");
 
-// Class Events Handlers
-cXHTMLElement_bdo.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-	}
-};
-
 // Register Element
 ample.extend(cXHTMLElement_bdo);

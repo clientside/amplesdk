@@ -10,14 +10,6 @@
 var cXHTMLElement_img	= function(){};
 cXHTMLElement_img.prototype	= new cXHTMLElement("img");
 
-// Class Events Handlers
-cXHTMLElement_img.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-	}
-};
-
 // Element Render: open
 cXHTMLElement_img.prototype.$getTagOpen	= function() {
     var sHtml   = '<' + this.localName + ' onmousedown="return '+ "false" + '" ondragstart="return '+ "false" + '"';

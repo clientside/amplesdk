@@ -10,13 +10,5 @@
 var cXHTMLElement_aside	= function(){};
 cXHTMLElement_aside.prototype	= new cXHTMLElement("aside");
 
-// Class Events Handlers
-cXHTMLElement_aside.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-	}
-};
-
 // Register Element
 ample.extend(cXHTMLElement_aside);

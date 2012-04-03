@@ -86,14 +86,6 @@ cXHTMLElement_form.prototype._onReset	= function() {
     return this.dispatchEvent(oEvent);
 };
 
-// Default actions implementations
-cXHTMLElement_form.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-	}
-};
-
 // Default Element Render: open
 cXHTMLElement_form.prototype.$getTagOpen	= function() {
     var sHtml   = '<' + this.localName + ' onsubmit="var oElement = ample.$instance(this); if (oElement._onSubmit()) oElement.submit(); return false;" onreset="var oElement = ample.$instance(this); if (oElement._onReset()) oElement.reset(); return false;"';

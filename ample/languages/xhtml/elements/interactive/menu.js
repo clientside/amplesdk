@@ -10,13 +10,5 @@
 var cXHTMLElement_menu	= function(){};
 cXHTMLElement_menu.prototype	= new cXHTMLElement("menu");
 
-// Class Events Handlers
-cXHTMLElement_menu.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-	}
-};
-
 // Register Element
 ample.extend(cXHTMLElement_menu);

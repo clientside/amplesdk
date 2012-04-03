@@ -10,14 +10,6 @@
 var cXHTMLElement_figure	= function(){};
 cXHTMLElement_figure.prototype	= new cXHTMLElement("figure");
 
-// Class Events Handlers
-cXHTMLElement_figure.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-	}
-};
-
 // Register Element
 ample.extend(cXHTMLElement_figure);
 

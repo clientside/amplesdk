@@ -36,10 +36,6 @@ cXHTMLElement_tr.handlers	= {
 		if (oEvent.target.parentNode == this)
 			if (oEvent.target instanceof cXHTMLElement_td || oEvent.target instanceof cXHTMLElement_th)
 				this.cells.$remove(oEvent.target);
-	},
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
 	}
 };
 

@@ -38,10 +38,6 @@ cXHTMLElement_textarea.handlers	= {
 	"DOMNodeRemovedFromDocument":	function(oEvent) {
 		//
 		cXHTMLInputElement.unregister(this);
-	},
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
 	}
 };
 

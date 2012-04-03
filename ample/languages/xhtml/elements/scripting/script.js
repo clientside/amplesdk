@@ -12,10 +12,6 @@ cXHTMLElement_script.prototype	= new cXHTMLElement("script");
 
 // Class Events Handlers
 cXHTMLElement_script.handlers	= {
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		var sType	=(this.attributes["type"] || '').match(/(\w+)\/([-\w]+\+)?(?:x\-)?([-\w]+)?;?(.+)?/) ? RegExp.$3 : '';
 		if (this.attributes["src"])

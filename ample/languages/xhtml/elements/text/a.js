@@ -46,10 +46,6 @@ cXHTMLElement_a.handlers	= {
 			// Prevent following link
 			oEvent.preventDefault();
 		}
-	},
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
 	}
 }
 

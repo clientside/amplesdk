@@ -28,10 +28,6 @@ cXHTMLElement_button.handlers	= {
 		//
 		cXHTMLInputElement.unregister(this);
 	},
-	"DOMAttrModified":	function(oEvent) {
-		if (oEvent.target == this)
-			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
-	},
 	"mousedown":	function() {
 		this.$setPseudoClass("active", true);
 		this.setCapture(true);
