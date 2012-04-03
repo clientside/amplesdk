@@ -20,6 +20,17 @@ cXULSelectElement.prototype.selectedItems	= null;
 cXULSelectElement.prototype.tabIndex		= 0;
 cXULSelectElement.prototype.$selectable		= false;
 
+cXULSelectElement.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "disabled")
+		this.$setPseudoClass("disabled", sValue == "true");
+	else
+	if (sName == "seltype") {
+		// TODO
+	}
+	else
+		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
+};
+
 // Public Methods
 cXULSelectElement.prototype.selectAll	= function()
 {

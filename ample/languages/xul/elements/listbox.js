@@ -79,17 +79,6 @@ cXULElement_listbox.handlers	= {
 	}
 };
 
-cXULElement_listbox.prototype.$mapAttribute	= function(sName, sValue) {
-	if (sName == "disabled")
-		this.$setPseudoClass("disabled", sValue == "true");
-	else
-	if (sName == "seltype") {
-		// TODO
-	}
-	else
-		cXULSelectElement.prototype.$mapAttribute.call(this, sName, sValue);
-};
-
 // Static Methods
 cXULElement_listbox.sort   = function(oInstance, nCell, bDir) {
     // correct for different types

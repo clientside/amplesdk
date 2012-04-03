@@ -153,17 +153,6 @@ cXULElement_tree.handlers	= {
 	}
 };
 
-cXULElement_tree.prototype.$mapAttribute	= function(sName, sValue) {
-	if (sName == "disabled")
-		this.$setPseudoClass("disabled", sValue == "true");
-	else
-	if (sName == "seltype") {
-		// TODO
-	}
-	else
-		cXULSelectElement.prototype.$mapAttribute.call(this, sName, sValue);
-};
-
 // Element Render: open
 cXULElement_tree.prototype.$getTagOpen		= function() {
 	var sHeight	= this.attributes["height"],
