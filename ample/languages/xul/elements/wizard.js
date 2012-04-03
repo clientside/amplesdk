@@ -151,9 +151,6 @@ cXULElement_wizard.handlers	= {
 };
 
 cXULElement_wizard.prototype.$mapAttribute	= function(sName, sValue) {
-	if (sName == "title")
-		this.$getContainer("title").innerHTML	= sValue || '';
-	else
 	if (sName == "pagestep") {
 		if (this.wizardPages[sValue])
 			cXULElement_wizard.goTo(this, this.wizardPages[sValue]);

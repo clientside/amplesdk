@@ -26,13 +26,6 @@ cXULElement_window.handlers	= {
 	}
 };
 
-cXULElement_window.prototype.$mapAttribute	= function(sName, sValue) {
-	if (sName == "title")
-		this.$getContainer("title").innerHTML	= sValue || '';
-	else
-		cXULWindowElement.prototype.$mapAttribute.call(this, sName, sValue);
-};
-
 // Element Renders
 cXULElement_window.prototype.$getTagOpen	= function() {
 	return '<div class="xul-window'+(this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="' +

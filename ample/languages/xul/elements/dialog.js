@@ -145,9 +145,6 @@ cXULElement_dialog.handlers	= {
 };
 
 cXULElement_dialog.prototype.$mapAttribute	= function(sName, sValue) {
-	if (sName == "title")
-		this.$getContainer("title").innerHTML = sValue || '';
-	else
 	if (sName == "buttonalign") {
 		if (sValue == "start")
 			this.$getContainer("foot").align	= "left";

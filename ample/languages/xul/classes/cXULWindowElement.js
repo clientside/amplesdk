@@ -18,6 +18,13 @@ cXULWindowElement.prototype.$resizable	= true;
 
 cXULWindowElement.modalWindow	= null;
 
+cXULWindowElement.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "title")
+		this.$getContainer("title").innerHTML	= sValue || '';
+	else
+		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
+};
+
 cXULWindowElement.prototype.show	= function (nLeft, nTop) {
 	var that	= this,
 		oContainer	= that.$getContainer(),
