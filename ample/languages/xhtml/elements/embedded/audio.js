@@ -14,7 +14,7 @@ cXHTMLElement_audio.prototype	= new cXHTMLElement("audio");
 cXHTMLElement_audio.handlers	= {
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this)
-			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
+			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
 	}
 };
 

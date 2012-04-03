@@ -14,7 +14,7 @@ cXHTMLElement_h6.prototype	= new cXHTMLElement("h6");
 cXHTMLElement_h6.handlers	= {
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this)
-			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
+			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
 	}
 };
 

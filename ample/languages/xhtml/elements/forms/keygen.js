@@ -16,7 +16,7 @@ cXHTMLElement_keygen.prototype	= new cXHTMLInputElement("keygen");
 cXHTMLElement_keygen.handlers	= {
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this)
-			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
+			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
 	}
 };
 

@@ -14,7 +14,7 @@ cXHTMLElement_datalist.prototype	= new cXHTMLElement("datalist");
 cXHTMLElement_datalist.handlers	= {
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this)
-			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
+			this.$mapAttribute(Event.attrName, oEvent.newValue);
 	}
 };
 

@@ -14,7 +14,7 @@ cXHTMLElement_aside.prototype	= new cXHTMLElement("aside");
 cXHTMLElement_aside.handlers	= {
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this)
-			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
+			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
 	}
 };
 

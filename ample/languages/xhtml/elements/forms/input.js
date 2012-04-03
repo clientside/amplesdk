@@ -334,7 +334,7 @@ cXHTMLElement_input.handlers	= {
 					}
 					break;
 			}
-			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
+			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
 		}
 	}
 };

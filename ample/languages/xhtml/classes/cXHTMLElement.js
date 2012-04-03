@@ -21,15 +21,14 @@ cXHTMLElement.prototype.$isAccessible	= function() {
 	return !this.attributes["disabled"];
 };
 
-// Static method
-cXHTMLElement.mapAttribute	= function(oElement, sName, sValue) {
+cXHTMLElement.prototype.$mapAttribute	= function(sName, sValue) {
 	switch (sName) {
 		case "tabIndex":
-			oElement.tabIndex	= isNaN(sValue) ? -1 : sValue * 1;
+			this.tabIndex	= isNaN(sValue) ? -1 : sValue * 1;
 			break;
 
 		case "accessKey":
-			oElement.accessKey	= sValue || null;
+			this.accessKey	= sValue || null;
 			break;
 
 		case "id":
@@ -38,7 +37,9 @@ cXHTMLElement.mapAttribute	= function(oElement, sName, sValue) {
 			break;
 
 		default:
-			oElement.$getContainer()[sName]	= sValue;
+			var oContainer	= this.$getContainer();
+			if (oContainer)
+				oContainer[sName]	= sValue;
 	}
 };
 

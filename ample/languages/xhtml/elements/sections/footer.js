@@ -14,7 +14,7 @@ cXHTMLElement_footer.prototype	= new cXHTMLElement("footer");
 cXHTMLElement_footer.handlers	= {
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this)
-			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
+			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
 	}
 };
 

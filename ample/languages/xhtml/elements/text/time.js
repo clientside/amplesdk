@@ -14,7 +14,7 @@ cXHTMLElement_time.prototype	= new cXHTMLElement("time");
 cXHTMLElement_time.handlers	= {
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this)
-			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
+			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
 	}
 };
 

@@ -14,7 +14,7 @@ cXHTMLElement_legend.prototype	= new cXHTMLElement("legend");
 cXHTMLElement_legend.handlers	= {
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this)
-			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
+			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
 	}
 };
 

@@ -14,7 +14,7 @@ cXHTMLElement_nav.prototype	= new cXHTMLElement("nav");
 cXHTMLElement_nav.handlers	= {
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this)
-			cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
+			this.$mapAttribute(oEvent.attrName, oEvent.newValue);
 	}
 };
 

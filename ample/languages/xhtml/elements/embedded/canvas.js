@@ -22,7 +22,7 @@ cXHTMLElement_canvas.handlers	= {
 					break;
 
 				default:
-					cXHTMLElement.mapAttribute(this, oEvent.attrName, oEvent.newValue);
+					this.$mapAttribute(oEvent.attrName, oEvent.newValue);
 			}
 		}
 	},
