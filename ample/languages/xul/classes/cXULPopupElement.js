@@ -22,6 +22,20 @@ cXULPopupElement.POPUP_TYPE_BUBBLE	= 3;
 // Public Properties
 cXULPopupElement.prototype.popupType	= cXULPopupElement.POPUP_TYPE_POPUP;
 
+cXULPopupElement.prototype.$mapAttribute	= function(sName, sValue) {
+	if (sName == "top") {
+		if (!isNaN(sValue) && !isNaN(this.attributes["left"]))
+			this.moveTo(this.attributes["left"] * 1, sValue * 1);
+	}
+	else
+	if (sName == "left") {
+		if (!isNaN(sValue) && !isNaN(this.attributes["top"]))
+			this.moveTo(sValue * 1, this.attributes["top"] * 1);
+	}
+	else
+		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
+};
+
 // Public Methods
 cXULPopupElement.prototype.showPopup	= function(oElement, nLeft, nTop, nType, oAnchor, sAlign)
 {
