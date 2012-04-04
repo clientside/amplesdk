@@ -299,7 +299,6 @@ function fElement_setAttribute(oElement, sName, sValue)
 		var oEvent = new cMutationEvent;
 		oEvent.initMutationEvent("DOMAttrModified", true, false, null, bValue ? sValueOld : null, sValue, sName, bValue ? 1 /* cMutationEvent.MODIFICATION */ : 2 /* cMutationEvent.ADDITION */);
 		fNode_dispatchEvent(oElement, oEvent);
-		console.log(oElement.tagName, sName, sValue, sValueOld);
 
 		// Run mapper
 		if (bRegistered && !bCoreAttr && sName.indexOf(':') ==-1)
