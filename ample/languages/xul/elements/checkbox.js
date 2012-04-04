@@ -46,9 +46,11 @@ cXULElement_checkbox.prototype.$mapAttribute	= function(sName, sValue) {
 	if (sName == "disabled")
 		this.$setPseudoClass("disabled", sValue == "true");
 	else
-	if (sName == "checked") {
+	if (sName == "checked")
 		this.$setPseudoClass("checked", sValue == "true");
-	}
+	else
+	if (sName == "label")
+		this.$getContainer("label").innerHTML	= sValue || '';
 	else
 		cXULInputElement.prototype.$mapAttribute.call(this, sName, sValue);
 };

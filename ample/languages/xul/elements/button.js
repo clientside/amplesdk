@@ -39,6 +39,12 @@ cXULElement_button.prototype.$mapAttribute	= function(sName, sValue) {
 	if (sName == "disabled")
 		this.$getContainer().disabled = sValue == "true";
 	else
+	if (sName == "label")
+		this.$getContainer().innerHTML	=(this.attributes["image"] ? '<img src="' + this.attributes["image"] + '" align="absmiddle" /> ' :'') + (sValue || '');
+	else
+	if (sName == "image")
+		this.$getContainer().innerHTML	=(sValue ? '<img src="' + sValue + '" align="absmiddle" /> ' :'') + (this.attributes["label"] || '');
+	else
 		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 

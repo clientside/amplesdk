@@ -41,6 +41,12 @@ cXULElement_tab.prototype.$mapAttribute	= function(sName, sValue) {
 	if (sName == "selected")
 		this.$setPseudoClass("selected", sValue == "true");
 	else
+	if (sName == "label")
+		this.$getContainer("gateway").innerHTML	=(this.attributes["image"] ? '<img src="' + this.attributes["image"] + '" align="absmiddle" /> ' :'') + (sValue || '');
+	else
+	if (sName == "image")
+		this.$getContainer("gateway").innerHTML	=(sValue ? '<img src="' + sValue + '" align="absmiddle" /> ' :'') + (this.attributes["label"] || '');
+	else
 		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
