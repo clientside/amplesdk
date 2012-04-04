@@ -365,31 +365,36 @@ function fElement_setAttributeNS(oElement, sNameSpaceURI, sQName, sValue)
 				oAttribute	= new fConstructor;
 				oAttribute.ownerDocument= oElement.ownerDocument;
 				oAttribute.ownerElement	= oElement;
-				oAttribute.nodeValue	= sValue;
+				oAttribute.name			=
 				oAttribute.nodeName		= sQName;
 				oAttribute.localName	= sLocalName;
 				oAttribute.prefix		= sPrefix;
 				oAttribute.namespaceURI	= sNameSpaceURI;
-				oAttribute.name		= sQName;
-				oAttribute.value	= sValue;
 
 				if (sQName in oElement.attributes)
 				{
+					// Old attribute values
+					oAttribute.value		=
+					oAttribute.nodeValue	= oElement.attributes[sQName];
 					// Fire Mutation event (pseudo)
 					oEvent = new cMutationEvent;
 					oEvent.initMutationEvent("DOMNodeRemovedFromDocument", false, false, null, null, null, null, null);
 					oEvent.target	=
 					oEvent.currentTarget	= oAttribute;
 					oEvent.eventPhase		= cEvent.AT_TARGET;
+					//
 					fNode_handleEvent(oAttribute, oEvent);
 				}
-
+				// New attribute values
+				oAttribute.value		=
+				oAttribute.nodeValue	= sValue;
 				// Fire Mutation event (pseudo)
 				oEvent = new cMutationEvent;
 				oEvent.initMutationEvent("DOMNodeInsertedIntoDocument", false, false, null, null, null, null, null);
 				oEvent.target	=
 				oEvent.currentTarget	= oAttribute;
 				oEvent.eventPhase		= cEvent.AT_TARGET;
+				//
 				fNode_handleEvent(oAttribute, oEvent);
 			}
 		}
@@ -561,13 +566,13 @@ function fElement_removeAttributeNS(oElement, sNameSpaceURI, sLocalName)
 				oAttribute	= new fConstructor;
 				oAttribute.ownerDocument= oElement.ownerDocument;
 				oAttribute.ownerElement	= oElement;
-				oAttribute.nodeValue	= sValue;
+				oAttribute.name			=
 				oAttribute.nodeName		= sQName;
 				oAttribute.localName	= sLocalName;
 				oAttribute.prefix		= sPrefix;
 				oAttribute.namespaceURI	= sNameSpaceURI;
-				oAttribute.name		= sQName;
-				oAttribute.value	= sValue;
+				oAttribute.value		=
+				oAttribute.nodeValue	= sValue;
 
 				// Fire Mutation event (pseudo)
 				oEvent = new cMutationEvent;
@@ -575,6 +580,7 @@ function fElement_removeAttributeNS(oElement, sNameSpaceURI, sLocalName)
 				oEvent.target	=
 				oEvent.currentTarget	= oAttribute;
 				oEvent.eventPhase		= cEvent.AT_TARGET;
+				//
 				fNode_handleEvent(oAttribute, oEvent);
 			}
 		}
