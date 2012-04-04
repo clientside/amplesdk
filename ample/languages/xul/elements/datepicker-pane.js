@@ -84,11 +84,11 @@ cXULElement_datepicker_pane.prototype.refresh	= function() {
 cXULElement_datepicker_pane.prototype._onSelectDay	= function(nDay) {
 	// set current "day" in data object
 	this.current.setDate(nDay);
-	var nMonth	= this.current.getMonth();
+	var nMonth	= this.current.getMonth() + 1;
 	var nYear	= this.current.getFullYear();
 
 	// Update own value attribute
-	var sValue	= nYear + '-' + (nMonth + 1 < 10 ? '0' : '') + (nMonth + 1) + '-' + (nDay < 10 ? '0' : '') + nDay;
+	var sValue	= nYear + '-' + (nMonth < 10 ? '0' : '') + nMonth + '-' + (nDay < 10 ? '0' : '') + nDay;
 	if (this.getAttribute("value") != sValue) {
 		this.setAttribute("value", sValue);
 
@@ -120,7 +120,17 @@ cXULElement_datepicker_pane.prototype.doSelectYear	= function(nYear) {
 
 //Static members
 cXULElement_datepicker_pane.parseDateFromString	= function(sDate) {
-	return sDate == '' ? new Date : new Date(sDate.replace(/-/g, '/'));	// IE7 cannot create date object out of empty string
+	var aDate	= sDate.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+	if (aDate) {
+		var nYear	= aDate[1] * 1,
+			nMonth	= aDate[2] * 1 - 1,
+			nDate	= aDate[3] * 1;
+		// Check if date is valid
+		var oDate	= new Date(nYear, nMonth, nDate, 0, 0, 0);
+		if (oDate.getFullYear() == nYear && oDate.getMonth() == nMonth && oDate.getDate() == nDate)
+			return oDate;
+	}
+	return null;
 };
 
 cXULElement_datepicker_pane.handlers	= {
@@ -173,12 +183,13 @@ cXULElement_datepicker_pane.handlers	= {
 			}
 			else
 			if (oEvent.attrName == "value") {
+				this.value	= null;
 				if (oEvent.newValue) {
-					this.value	= cXULElement_datepicker_pane.parseDateFromString(oEvent.newValue);
-					this.current= cXULElement_datepicker_pane.parseDateFromString(oEvent.newValue);
-				}
-				else {
-					this.value	= null;
+					var oDate	= cXULElement_datepicker_pane.parseDateFromString(oEvent.newValue);
+					if (oDate) {
+						this.value	= oDate;
+						this.current= new Date(oDate);
+					}
 				}
 			}
 	},
@@ -186,8 +197,11 @@ cXULElement_datepicker_pane.handlers	= {
 		//
 		var sValue	= this.getAttribute("value");
 		if (sValue) {
-			this.value	= cXULElement_datepicker_pane.parseDateFromString(sValue);
-			this.current= cXULElement_datepicker_pane.parseDateFromString(sValue);
+			var oDate	= cXULElement_datepicker_pane.parseDateFromString(sValue);
+			if (oDate) {
+				this.value	= oDate;
+				this.current= new Date(oDate);
+			}
 		}
 		this._elementMonth.setAttribute("value", ample.locale.culture.calendar.months.names[this.current.getMonth()]);
 		this._elementYear.setAttribute("value", this.current.getFullYear());
