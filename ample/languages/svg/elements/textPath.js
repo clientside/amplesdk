@@ -14,26 +14,15 @@ if (cSVGElement.useVML) {
 	// Implementation for IE
 	// handlers
 	cSVGElement_textPath.handlers	= {
-		'DOMAttrModified':	function(oEvent) {
-			if (oEvent.target == this) {
-				if (oEvent.attrName == "xlink:href") {
-					var oTextPath = this.ownerDocument.getElementById(oEvent.newValue.substr(1));
-					if (oTextPath)
-						this.$getContainer().path	= cSVGElement_path.convert(oTextPath.getAttribute("d"));
-				}
-			}
-		},
 		'DOMNodeInsertedIntoDocument':	function(oEvent) {
+			var sValue;
 			// path
-			var oTextPath = this.ownerDocument.getElementById(this.getAttribute("xlink:href").substr(1));
-			if (oTextPath)
-				this.$getContainer().path	= cSVGElement_path.convert(oTextPath.getAttribute("d"));
+			if (sValue = this.getAttribute("xlink:href"))
+				this.$mapAttribute("xlink:href", sValue);
 
 			// text
 			if (this.firstChild instanceof ample.classes.CharacterData)
 				this.$getContainer().getElementsByTagName("textpath")[0].string	= this.firstChild.data.replace(/^\s+/, '').replace(/\s+$/, '');
-
-			var sValue;
 
 			// Apply gradients
 			if ((sValue = this.$getStyleComputed("fill")) && sValue.substr(0, 3) == "url")
@@ -52,7 +41,11 @@ if (cSVGElement.useVML) {
 	};
 
 	cSVGElement_textPath.prototype.$mapAttribute	= function(sName, sValue) {
-		// No implementation
+		if (sName == "xlink:href") {
+			var oTextPath = this.ownerDocument.getElementById(sValue.substr(1));
+			if (oTextPath)
+				this.$getContainer().path	= cSVGElement_path.convert(oTextPath.getAttribute("d"));
+		}
 	};
 
 	// presentation

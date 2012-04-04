@@ -13,25 +13,12 @@ cSVGElement_tref.prototype	= new cSVGElement("tref");
 if (cSVGElement.useVML) {
 
 	cSVGElement_tref.handlers	= {
-		'DOMAttrModified':	function(oEvent) {
-			if (oEvent.target == this) {
-				if (oEvent.attrName == "xlink:href") {
-					var oTextPath = this.ownerDocument.getElementById(oEvent.newValue.substr(1));
-					if (oTextPath)
-						this.$getContainer().path	= cSVGElement_path.convert(oTextPath.getAttribute("d"));
-				}
-			}
-		},
 		'DOMNodeInsertedIntoDocument':	function(oEvent) {
-			var sHref	= this.getAttribute("xlink:href"),
-				that	= this;
-			if (sHref) {
-				setTimeout(function() {
-					var oRef	= that.ownerDocument.getElementById(sHref.substr(1));
-					if (oRef instanceof cSVGElement_text && oRef.firstChild instanceof ample.classes.CharacterData)
-						that.$getContainer().getElementsByTagName("textpath")[0].string	= oRef.firstChild.data.replace(/^\s+/, '').replace(/\s+$/, '');
-				}, 0);
-			}
+			var sValue;
+			//
+			if (sValue = this.getAttribute("xlink:href"))
+				this.$mapAttribute("xlink:href", sValue);
+
 			// Apply transform
 			cSVGElement.applyTransform(this);
 
@@ -45,6 +32,17 @@ if (cSVGElement.useVML) {
 			var nLeft	=((this.getAttribute("x") || (this.parentNode ? this.parentNode.getAttribute("x") : "0")).match(/([0-9\.]+)?/)[1] * 1 || 0) + (this.getAttribute("dx") * 1 || 0),
 				nTop	=((this.getAttribute("y") || (this.parentNode ? this.parentNode.getAttribute("y") : "0")).match(/([0-9\.]+)?/)[1] * 1 || 0) + (this.getAttribute("dy") * 1 || 0);
 			this.$getContainer().path	= 'm ' + [nLeft, nTop].map(Math.round) + ' r 1000,0 x';
+		}
+		else
+		if (sName == "xlink:href") {
+			if (sValue) {
+				var that	= this;
+				setTimeout(function() {
+					var oRef	= that.ownerDocument.getElementById(sValue.substr(1));
+					if (oRef instanceof cSVGElement_text && oRef.firstChild instanceof ample.classes.CharacterData)
+						that.$getContainer().getElementsByTagName("textpath")[0].string	= oRef.firstChild.data.replace(/^\s+/, '').replace(/\s+$/, '');
+				}, 0);
+			}
 		}
 	};
 

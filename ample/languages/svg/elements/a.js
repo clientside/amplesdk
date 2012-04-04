@@ -15,20 +15,10 @@ if (cSVGElement.useVML) {
 
 	// handlers
 	cSVGElement_a.handlers	= {
-		'DOMAttrModified':	function(oEvent) {
-			if (oEvent.target == this) {
-				switch (oEvent.attrName) {
-					case "xlink:href":
-					case "href":
-						cSVGElement_a.setHref(this, oEvent.newValue);
-						break;
-				}
-			}
-		},
 		'DOMNodeInsertedIntoDocument':	function(oEvent) {
-			var sValue	= this.getAttribute("xlink:href") || this.getAttribute("href");
+			var sValue	= this.getAttribute("xlink:href");
 			if (sValue != "")
-				cSVGElement_a.setHref(this, sValue);
+				this.$mapAttributesValue(sValue);
 		},
 		'mouseenter':	function(oEvent) {
 			cSVGElement_a.recalcCSS(this);
@@ -36,6 +26,13 @@ if (cSVGElement.useVML) {
 		'mouseleave':	function(oEvent) {
 			cSVGElement_a.recalcCSS(this);
 		}
+	};
+
+	cSVGElement_a.prototype.$mapAttribute	= function(sName, sValue) {
+		if (sName == "xlink:href")
+			cSVGElement_a.setHref(this, sValue);
+		else
+			cSVGElement.prototype.$mapAttribute.call(this, sName, sValue);
 	};
 
 	cSVGElement_a.prototype.$setStyle	= function(sName, sValue) {

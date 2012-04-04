@@ -301,7 +301,7 @@ function fElement_setAttribute(oElement, sName, sValue)
 		fNode_dispatchEvent(oElement, oEvent);
 
 		// Run mapper
-		if (bRegistered && !bCoreAttr && sName.indexOf(':') ==-1)
+		if (bRegistered && !bCoreAttr && (sName == "xlink:href" || sName.indexOf(':') ==-1))
 			oElement.$mapAttribute(sName, sValue);
 	}
 };
@@ -527,7 +527,7 @@ function fElement_removeAttribute(oElement, sName)
 		fNode_dispatchEvent(oElement, oEvent);
 
 		// Run mapper
-		if (bRegistered && !bCoreAttr && sName.indexOf(':') ==-1)
+		if (bRegistered && !bCoreAttr && (sName == "xlink:href" || sName.indexOf(':') ==-1))
 			oElement.$mapAttribute(sName, null);
 	}
 };

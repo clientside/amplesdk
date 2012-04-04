@@ -15,13 +15,6 @@ if (cSVGElement.useVML) {
 
 	// handlers
 	cSVGElement_image.handlers	= {
-		'DOMAttrModified':	function(oEvent) {
-			if (oEvent.target == this) {
-				if (oEvent.attrName == "xlink:href") {
-					this.$getContainer().imagedata.src	= oEvent.newValue;
-				}
-			}
-		},
 		'DOMNodeInsertedIntoDocument':	function(oEvent) {
 			// Apply transform
 			cSVGElement.applyTransform(this);
@@ -36,6 +29,9 @@ if (cSVGElement.useVML) {
 			var aValue	= sValue.match(/([\d.]+)([%\w]*)/);
 			this.$getContainer().style[sName]	= aValue[1] + (aValue[2] || "px");
 		}
+		else
+		if (sName == "xlink:href")
+			this.$getContainer().imagedata.src	= cSVGElement_image.resolveXmlBase(this, sValue);
 		else
 			cSVGElement.prototype.$mapAttribute.call(this, sName, sValue);
 	};
