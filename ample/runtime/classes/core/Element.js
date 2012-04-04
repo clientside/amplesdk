@@ -483,40 +483,47 @@ cElement.prototype.getAttributeNodeNS	= function(sNameSpaceURI, sLocalName)
 
 function fElement_removeAttribute(oElement, sName)
 {
-	if (sName in oElement.attributes) {
-		var sValueOld	= oElement.attributes[sName];
+	var bValue	= sName in oElement.attributes,
+		sValueOld	= bValue ? oElement.attributes[sName] : null;
+
+	if (bValue) {
+		var bRegistered	= oDocument_all[oElement.uniqueID],
+			bCoreAttr	= sName == 'id' || sName == "class" || sName == "style";
+
 		// Only operate on shadow if element is in the DOM
-    	if (oDocument_all[oElement.uniqueID] && (sName == 'id' || sName == "class" || sName == "style")) {
-    		// Find shadow content
-    		var oElementDOM	= oElement.$getContainer();
-    		if (sName == 'id') {
-		    	delete oDocument_ids[sValueOld];
-		    }
-		    // Update view
-		    if (oElementDOM) {
-			    if (sName == "class") {
-			    	var sValueClass	=(oElement.prefix ? oElement.prefix + '-' : '') + oElement.localName;
-			    	if (bTrident && nVersion < 8)
-			    		oElementDOM.className	= sValueClass;
-			    	else
-			    		oElementDOM.setAttribute("class", sValueClass);
-			    }
-			    else
-			    if (sName == "style")
-			    	oElementDOM.style.cssText	= '';
-			    else
-			    	oElementDOM.id	= oElement.uniqueID;
-		    }
-    	}
-	    //
-	    delete oElement.attributes[sName];
+		if (bRegistered && bCoreAttr) {
+			if (sName == 'id')
+				delete oDocument_ids[sValueOld];
+
+			// Find shadow content
+			var oElementDOM	= oElement.$getContainer();
+			// Update view
+			if (oElementDOM) {
+				if (sName == "class") {
+					var sValueClass	=(oElement.prefix ? oElement.prefix + '-' : '') + oElement.localName;
+					if (bTrident && nVersion < 8)
+						oElementDOM.className	= sValueClass;
+					else
+						oElementDOM.setAttribute("class", sValueClass);
+				}
+				else
+				if (sName == "style")
+					oElementDOM.style.cssText	= '';
+				else
+					oElementDOM.id	= oElement.uniqueID;
+			}
+		}
+		//
+		delete oElement.attributes[sName];
 
 		// Fire Mutation event
-	    if (oDocument_all[oElement.uniqueID]) {
-		    var oEvent = new cMutationEvent;
-		    oEvent.initMutationEvent("DOMAttrModified", true, false, null, sValueOld, null, sName, 3 /* cMutationEvent.REMOVAL */);
-		    fNode_dispatchEvent(oElement, oEvent);
-	    }
+		var oEvent = new cMutationEvent;
+		oEvent.initMutationEvent("DOMAttrModified", true, false, null, sValueOld, null, sName, 3 /* cMutationEvent.REMOVAL */);
+		fNode_dispatchEvent(oElement, oEvent);
+
+		// Run mapper
+		if (bRegistered && !bCoreAttr && sName.indexOf(':') ==-1)
+			oElement.$mapAttribute(sName, null);
 	}
 };
 
