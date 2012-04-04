@@ -260,11 +260,11 @@ cElement.prototype.hasAttributeNS	= function(sNameSpaceURI, sLocalName)
 
 function fElement_setAttribute(oElement, sName, sValue)
 {
-	var sValueOld	= oElement.attributes[sName];
+	var bValue	= sName in oElement.attributes,
+		sValueOld	= bValue ? oElement.attributes[sName] : null;
 
 	if (sValueOld != sValue) {
-		var bValue	= sName in oElement.attributes,
-			bRegistered	= oDocument_all[oElement.uniqueID],
+		var bRegistered	= oDocument_all[oElement.uniqueID],
 			bCoreAttr	= sName == 'id' || sName == "class" || sName == "style";
 
 		// Only operate on shadow if element is in the DOM
@@ -299,6 +299,7 @@ function fElement_setAttribute(oElement, sName, sValue)
 		var oEvent = new cMutationEvent;
 		oEvent.initMutationEvent("DOMAttrModified", true, false, null, bValue ? sValueOld : null, sValue, sName, bValue ? 1 /* cMutationEvent.MODIFICATION */ : 2 /* cMutationEvent.ADDITION */);
 		fNode_dispatchEvent(oElement, oEvent);
+		console.log(oElement.tagName, sName, sValue, sValueOld);
 
 		// Run mapper
 		if (bRegistered && !bCoreAttr && sName.indexOf(':') ==-1)
