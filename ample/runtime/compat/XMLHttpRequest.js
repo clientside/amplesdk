@@ -14,8 +14,15 @@ if (bTrident) {
 		this._object	= oXMLHttpRequest && !(bTrident && nVersion == 7) ? new oXMLHttpRequest : new cActiveXObject("Microsoft.XMLHTTP");
 	};
 
+	// Constants
+	cXMLHttpRequest.UNSENT				= 0;
+	cXMLHttpRequest.OPENED				= 1;
+	cXMLHttpRequest.HEADERS_RECEIVED	= 2;
+	cXMLHttpRequest.LOADING				= 3;
+	cXMLHttpRequest.DONE				= 4;
+
 	// Public Properties
-	cXMLHttpRequest.prototype.readyState	= cXMLHttpRequest.UNSENT;
+	cXMLHttpRequest.prototype.readyState	= 0 /* cXMLHttpRequest.UNSENT */;
 	cXMLHttpRequest.prototype.responseText	= '';
 	cXMLHttpRequest.prototype.responseXML	= null;
 	cXMLHttpRequest.prototype.status		= 0;
@@ -52,7 +59,7 @@ if (bTrident) {
 		// BUGFIX: IE - memory leak on page unload (inter-page leak)
 		if (/*bIE && */bAsync) {
 			fOnUnload	= function() {
-				if (nState != cXMLHttpRequest.DONE) {
+				if (nState != 4 /* cXMLHttpRequest.DONE */) {
 					fCleanTransport(oRequest);
 					// Safe to abort here since onreadystatechange handler removed
 					oRequest.abort();
@@ -93,13 +100,13 @@ if (bTrident) {
 			// BUGFIX: Firefox fires unnecessary DONE when aborting
 			if (oRequest._aborted) {
 				// Reset readyState to UNSENT
-				oRequest.readyState	= cXMLHttpRequest.UNSENT;
+				oRequest.readyState	= 0 /*cXMLHttpRequest.UNSENT*/;
 
 				// Return now
 				return;
 			}
 
-			if (oRequest.readyState == cXMLHttpRequest.DONE) {
+			if (oRequest.readyState == 4 /* cXMLHttpRequest.DONE */) {
 				//
 				fCleanTransport(oRequest);
 
@@ -195,7 +202,10 @@ if (bTrident) {
 
 	function fSynchronizeValues(oRequest) {
 		try {	oRequest.responseText	= oRequest._object.responseText;	} catch (oException) {}
-		try {	oRequest.responseXML	= fBrowser_getResponseDocument(oRequest._object);	} catch (oException) {}
+		try {
+			if (oRequest.readyState == 4 /* cXMLHttpRequest.DONE */ && oRequest.getResponseHeader("Content-Type").match(/xml(;.*)?$/))
+				oRequest.responseXML	= fBrowser_getResponseDocument(oRequest._object);
+		} catch (oException) {}
 		try {	oRequest.status			= oRequest._object.status;			} catch (oException) {}
 		try {	oRequest.statusText		= oRequest._object.statusText;		} catch (oException) {}
 	};
