@@ -31,8 +31,7 @@
 		</script>
 		<script type="text/javascript">
 			ample.addEventListener("hashchange", onNavigate, false);
-			function onNavigate(oEvent)
-			{
+			function onNavigate(oEvent) {
 				document.getElementById("navigator").innerHTML+= "navigated to: " + oEvent.newURL + "<br />";
 			}
 			window.setInterval(function() {

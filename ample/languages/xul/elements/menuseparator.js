@@ -8,13 +8,13 @@
  */
 
 var cXULElement_menuseparator	= function(){};
-cXULElement_menuseparator.prototype  = new cXULElement("menuseparator");
+cXULElement_menuseparator.prototype	= new cXULElement("menuseparator");
 
 // Element Render: open
 cXULElement_menuseparator.prototype.$getTagOpen	= function() {
-    return '<tr>\
-    			<td colspan="4"><div class="xul-menuseparator' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"><br /></div></td>\
-    		</tr>';
+	return '<tr>\
+				<td colspan="4"><div class="xul-menuseparator' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"><br /></div></td>\
+			</tr>';
 };
 
 // Register Element

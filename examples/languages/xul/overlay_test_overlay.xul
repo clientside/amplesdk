@@ -1,21 +1,21 @@
 <?xml version="1.0"?>
 <xul:overlay xmlns:aml="http://www.amplesdk.com/ns/aml"
-	    xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-    <xul:toolbar id="toolbar1">
-        <xul:toolbarbutton id="buttonoverlay" label="Remote overlay applied!" />
-		<xul:toolbarbutton id="overlaybutton" label="Extra Button" />        
-    </xul:toolbar>
-    <xul:vbox id="box1">
-        <xul:label position="1" value="At the time this overlay is applied..." />
-        <xul:label insertbefore="blahblah, message1" value="This label should be inserted BEFORE the label marked &quot;Message 1&quot;, unless an element with ID &quot;blahblah&quot; exists." />
-        <xul:label insertafter="blahblah, message1" value="This label should be inserted AFTER the label marked &quot;Message 1&quot;, unless an element with ID &quot;blahblah&quot; exists." />
-        <xul:label id="message2" value="Message 2 - The overlay has been applied.  Repeated attempts to load the overlay will result in extra labels due to labels in the overlay without an ID attribute. The toolbar buttons should not change." />
-        <xul:label id="message3" value="Message 3 - Additionally, a top level fragment was introduced by this overlay that will only appear when an element with the correct ID is added to the document." />
-        <xul:label id="message4" removeelement="true" />
-        <xul:label value="Extra Label" />
-        <xul:label position="7" value="This label should be the seventh label, or the last if less than 7 labels exist." />
-    </xul:vbox>
-    <xul:vbox id="missinglabel">
-        <xul:label value="Thanks for giving me a home!" />
-    </xul:vbox>
+		xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<xul:toolbar id="toolbar1">
+		<xul:toolbarbutton id="buttonoverlay" label="Remote overlay applied!" />
+		<xul:toolbarbutton id="overlaybutton" label="Extra Button" />		
+	</xul:toolbar>
+	<xul:vbox id="box1">
+		<xul:label position="1" value="At the time this overlay is applied..." />
+		<xul:label insertbefore="blahblah, message1" value="This label should be inserted BEFORE the label marked &quot;Message 1&quot;, unless an element with ID &quot;blahblah&quot; exists." />
+		<xul:label insertafter="blahblah, message1" value="This label should be inserted AFTER the label marked &quot;Message 1&quot;, unless an element with ID &quot;blahblah&quot; exists." />
+		<xul:label id="message2" value="Message 2 - The overlay has been applied.  Repeated attempts to load the overlay will result in extra labels due to labels in the overlay without an ID attribute. The toolbar buttons should not change." />
+		<xul:label id="message3" value="Message 3 - Additionally, a top level fragment was introduced by this overlay that will only appear when an element with the correct ID is added to the document." />
+		<xul:label id="message4" removeelement="true" />
+		<xul:label value="Extra Label" />
+		<xul:label position="7" value="This label should be the seventh label, or the last if less than 7 labels exist." />
+	</xul:vbox>
+	<xul:vbox id="missinglabel">
+		<xul:label value="Thanks for giving me a home!" />
+	</xul:vbox>
 </xul:overlay>

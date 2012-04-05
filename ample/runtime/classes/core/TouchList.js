@@ -12,8 +12,7 @@ var cTouchList	= function(){};
 //
 cTouchList.prototype.length	= 0;
 
-cTouchList.prototype.item		= function(nIndex)
-{
+cTouchList.prototype.item		= function(nIndex) {
 //->Guard
 	fGuard(arguments, [
 		["index",	cNumber]

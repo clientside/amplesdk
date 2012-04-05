@@ -328,10 +328,10 @@ oAmple.close	= function() {
 
 //
 function fAmple_instance(oDocument, oNode) {
-    for (var oElement, sId; oNode; oNode = oNode.parentNode)
-        if ((sId = oNode.id) && (oElement = (oDocument_ids[sId] || oDocument_all[sId])))
-            return oElement;
-    return null;
+	for (var oElement, sId; oNode; oNode = oNode.parentNode)
+		if ((sId = oNode.id) && (oElement = (oDocument_ids[sId] || oDocument_all[sId])))
+			return oElement;
+	return null;
 };
 
 oAmple.$instance	= function(oNode) {

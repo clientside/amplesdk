@@ -96,7 +96,7 @@
 					<value name="default">
 						<description>
 							<locale>
-								The fill behavior for the element is determined by the value of the fillDefault  attribute.
+								The fill behavior for the element is determined by the value of the fillDefault attribute.
 								This is the default value.
 							</locale>
 						</description>

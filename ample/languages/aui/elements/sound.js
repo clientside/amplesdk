@@ -28,15 +28,13 @@ cAUIElement_sound.handlers	= {
 };
 
 // Public Methods
-cAUIElement_sound.prototype.play	= function()
-{
-	this.$getContainer().CurrentPosition  = 0;
+cAUIElement_sound.prototype.play	= function() {
+	this.$getContainer().CurrentPosition	= 0;
 	if (this.$getContainer().OpenState == 6)
 		this.$getContainer().Play();
 };
 
-cAUIElement_sound.prototype.stop	= function()
-{
+cAUIElement_sound.prototype.stop	= function() {
 	if (this.$getContainer().OpenState == 6)
 		this.$getContainer().Stop();
 };
@@ -55,8 +53,7 @@ cAUIElement_sound.handlers	= {
 };
 
 // Element Render: open
-cAUIElement_sound.prototype.$getTagOpen	= function()
-{
+cAUIElement_sound.prototype.$getTagOpen	= function() {
 	return '<object classid="' + "clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95" + '" style="' + "display:none" + '"><param name="' + "AutoStart" + '" value="false"/></object>';
 };
 

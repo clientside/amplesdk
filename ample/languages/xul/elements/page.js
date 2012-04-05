@@ -19,15 +19,15 @@ cXULElement_page.attributes.height	= "100%";
 
 // Element Renders
 cXULElement_page.prototype.$getTagOpen	= function() {
-    return '<div class="xul-page' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="' +
-    			(this.attributes["width"] ? 'width:' +(isNaN(this.attributes["width"]) ? this.attributes["width"] : this.attributes["width"] + "px") : '')+ ';' +
-    			(this.attributes["height"] ? 'height:' +(isNaN(this.attributes["height"]) ? this.attributes["height"] : this.attributes["height"] + "px") : '')+ ';' +
-    			(this.attributes["style"] ? this.attributes["style"] : '') + '">';
+	return '<div class="xul-page' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="' +
+				(this.attributes["width"] ? 'width:' +(isNaN(this.attributes["width"]) ? this.attributes["width"] : this.attributes["width"] + "px") : '')+ ';' +
+				(this.attributes["height"] ? 'height:' +(isNaN(this.attributes["height"]) ? this.attributes["height"] : this.attributes["height"] + "px") : '')+ ';' +
+				(this.attributes["style"] ? this.attributes["style"] : '') + '">';
 };
 
 // Element Render: close
 cXULElement_page.prototype.$getTagClose	= function() {
-    return '</div>';
+	return '</div>';
 };
 
 // Register Element

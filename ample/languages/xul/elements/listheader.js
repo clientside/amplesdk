@@ -43,8 +43,8 @@ cXULElement_listheader.handlers	= {
 		cXULSelectElement.onResize(oEvent);
 	},
 	"click":		function(oEvent) {
-	    if (oEvent.button < 2 && oEvent.$pseudoTarget != this.$getContainer("resizer"))
-	    	this.setAttribute("sortDirection", this.getAttribute("sortDirection") != "ascending" ? "ascending" : "descending");
+		if (oEvent.button < 2 && oEvent.$pseudoTarget != this.$getContainer("resizer"))
+			this.setAttribute("sortDirection", this.getAttribute("sortDirection") != "ascending" ? "ascending" : "descending");
 	},
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this) {
@@ -90,7 +90,7 @@ cXULElement_listheader.prototype.$mapAttribute	= function(sName, sValue) {
 cXULElement_listheader.prototype.$getTagOpen	= function() {
 	return '<td class="xul-listheader' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"' +(this.attributes["hidden"] == "true" ? ' style="display:none"' : "")+ '>\
 				<div class="xul-listheader--box" style="position:relative;width:100%;">\
-    				<div class="xul-listheader--label xul-listheader--gateway" style="position:absolute;width:100%;overflow:hidden;"> ' + (this.attributes["label"] ? ample.$encodeXMLCharacters(this.attributes["label"]) : "");
+					<div class="xul-listheader--label xul-listheader--gateway" style="position:absolute;width:100%;overflow:hidden;"> ' + (this.attributes["label"] ? ample.$encodeXMLCharacters(this.attributes["label"]) : "");
 };
 
 // Element Render: close
@@ -100,7 +100,7 @@ cXULElement_listheader.prototype.$getTagClose	= function() {
 				</div>\
 				<div class="xul-listheader--stretch" style="height:1pt;font-size:1px;' + (this.attributes["width"] ? 'width:' + this.attributes["width"] + 'px' : "") + '"></div>\
 				<div style="height:1pt;font-size:1px;' + (this.attributes["minwidth"] ? 'width:' + this.attributes["minwidth"] + 'px' : '') + '"></div>\
-    		</td>';
+			</td>';
 };
 
 // Register Element

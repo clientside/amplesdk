@@ -4,11 +4,11 @@
 	<implements />
 	<abstract>
 		<locale>
-			A command element can be used to invoke an operation that can come from multiple  sources.
-			For example, a clipboard paste operation can be invoked from the Edit  menu, a context menu and by pressing a keyboard shortcut.
-			You attach the code  to the command using the <link type="attribute">oncommand</link> attribute.
-			It will be called no matter how it  is invoked by the user.
-			In addition, disabling the command will automatically  disable the menu items and keyboard shortcuts.
+			A command element can be used to invoke an operation that can come from multiple sources.
+			For example, a clipboard paste operation can be invoked from the Edit menu, a context menu and by pressing a keyboard shortcut.
+			You attach the code to the command using the <link type="attribute">oncommand</link> attribute.
+			It will be called no matter how it is invoked by the user.
+			In addition, disabling the command will automatically disable the menu items and keyboard shortcuts.
 			Commands are identified by their id. Like a <link type="element">broadcaster</link>, commands forward attributes to other elements.
 			You should put all your <link type="element">command</link> elements into <link type="element">commandset</link> placeholder.
 		</locale>

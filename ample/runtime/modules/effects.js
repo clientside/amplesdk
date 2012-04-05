@@ -111,9 +111,9 @@ cQuery.prototype.fadeTo	= function(vDuration, nOpacity, fCallback) {
 cQuery.prototype.show	= function(vDuration, fCallback) {
 //->Guard
 	fGuard(arguments, [
-   		["duration",	cObject, true],
-   		["callback",	cFunction, true]
-   	]);
+			["duration",	cObject, true],
+			["callback",	cFunction, true]
+		]);
 //<-Guard
 
 	fQuery_each(this, function() {
@@ -152,9 +152,9 @@ cQuery.prototype.show	= function(vDuration, fCallback) {
 cQuery.prototype.hide	= function(vDuration, fCallback) {
 //->Guard
 	fGuard(arguments, [
-   		["duration",	cObject, true],
-   		["callback",	cFunction, true]
-   	]);
+			["duration",	cObject, true],
+			["callback",	cFunction, true]
+		]);
 //<-Guard
 
 	fQuery_each(this, function() {

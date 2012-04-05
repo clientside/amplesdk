@@ -8,7 +8,7 @@
  */
 
 var cXSElement_length	= function(){};
-cXSElement_length.prototype    = new cXSElement("length");
+cXSElement_length.prototype	= new cXSElement("length");
 
 cXSElement_length.handlers	= {};
 cXSElement_length.handlers.DOMNodeInsertedIntoDocument	= function(oEvent) {

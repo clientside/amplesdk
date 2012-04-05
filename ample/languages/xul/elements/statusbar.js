@@ -21,12 +21,12 @@ cXULElement_statusbar.prototype.$selectable	= false;
 
 // Element Render: open
 cXULElement_statusbar.prototype.$getTagOpen	= function() {
-    return '<div class="xul-statusbar' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">';
+	return '<div class="xul-statusbar' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">';
 };
 
 // Element Render: close
 cXULElement_statusbar.prototype.$getTagClose	= function() {
-    return '</div>';
+	return '</div>';
 };
 
 // Register Element

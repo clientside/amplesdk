@@ -11,13 +11,13 @@
 // JavaScript 1.5
 if (!cArray.prototype.push)
 	fExporter_export(function(vValue) {
-		this[this.length]   = vValue;
+		this[this.length]	= vValue;
 		return this.length;
 	}, "push", cArray.prototype);
 
 if (!cArray.prototype.pop)
 	fExporter_export(function() {
-		var vValue  = this[this.length-1];
+		var vValue	= this[this.length-1];
 		this.length--;
 		return vValue;
 	}, "pop", cArray.prototype);
@@ -33,14 +33,14 @@ if (!cArray.prototype.indexOf)
 		]);
 //<-Guard
 		// adjust nIndex
-		var nLength = this.length;
+		var nLength	= this.length;
 		if (nIndex == null) {
-			nIndex = 0;
+			nIndex	= 0;
 		} else {
 			if (nIndex < 0)
-				nIndex = nLength + nIndex;
+				nIndex	= nLength + nIndex;
 			if (nIndex < 0)
-				nIndex = 0;
+				nIndex	= 0;
 		}
 		// search
 		for (var vValue; nIndex < nLength; nIndex++)
@@ -59,17 +59,17 @@ if (!cArray.prototype.lastIndexOf)
 		]);
 //<-Guard
 		// adjust nIndex
-		var nLength = this.length;
+		var nLength	= this.length;
 		if (nIndex == null) {
-			nIndex = nLength - 1;
+			nIndex	= nLength - 1;
 		} else {
 			if (nIndex < 0)
-				nIndex = nLength + nIndex;
+				nIndex	= nLength + nIndex;
 			if (nIndex < 0)
-				nIndex = -1;
+				nIndex	= -1;
 			else
 			if (nIndex >= nLength)
-				nIndex = nLength - 1;
+				nIndex	= nLength - 1;
 		}
 		// search
 		for (var vValue; nIndex >= 0; nIndex--)
@@ -137,7 +137,7 @@ if (!cArray.prototype.map)
 
 		for (var nIndex = 0, nLength = this.length, aResult = new cArray(nLength), vValue; nIndex < nLength; nIndex++)
 			if (!(typeof(vValue = this[nIndex]) == "undefined") || nIndex in this)
-				aResult[nIndex] = fCallback.call(oReceiver, vValue, nIndex, this);
+				aResult[nIndex]	= fCallback.call(oReceiver, vValue, nIndex, this);
 		return aResult;
 	}, "map", cArray.prototype);
 
@@ -167,7 +167,7 @@ if (!cArray.prototype.reduce)
 		]);
 //<-Guard
 
-		var nLength = this.length >>> 0,
+		var nLength	= this.length >>> 0,
 			nIndex	= 0,
 			aValue;
 
@@ -180,7 +180,7 @@ if (!cArray.prototype.reduce)
 		else {
 			do {
 				if (nIndex in this)	{
-					aValue = this[nIndex++];
+					aValue	= this[nIndex++];
 					break;
 				}
 				// if array contains no values, no initial value to return
@@ -192,7 +192,7 @@ if (!cArray.prototype.reduce)
 
 		for (; nIndex < nLength; nIndex++)
 			if (nIndex in this)
-				aValue = fCallback.call(null, aValue, this[nIndex], nIndex, this);
+				aValue	= fCallback.call(null, aValue, this[nIndex], nIndex, this);
 
 		return aValue;
 	}, "reduce", cArray.prototype);
@@ -205,7 +205,7 @@ if (!cArray.prototype.reduceRight)
 		]);
 //<-Guard
 
-		var nLength = this.length >>> 0,
+		var nLength	= this.length >>> 0,
 			nIndex	= nLength - 1,
 			aValue;
 		// no value to return if no initial value and an empty array
@@ -217,7 +217,7 @@ if (!cArray.prototype.reduceRight)
 		else {
 			do {
 				if (nIndex in this)	{
-					aValue = this[nIndex--];
+					aValue	= this[nIndex--];
 					break;
 				}
 				// if array contains no values, no initial value to return
@@ -229,7 +229,7 @@ if (!cArray.prototype.reduceRight)
 
 		for (; nIndex >= 0; nIndex--)
 			if (nIndex in this)
-				aValue = fCallback.call(null, aValue, this[nIndex], nIndex, this);
+				aValue	= fCallback.call(null, aValue, this[nIndex], nIndex, this);
 
 		return aValue;
 	}, "reduceRight", cArray.prototype);

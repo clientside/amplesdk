@@ -9,7 +9,7 @@
 
 var cChartElement_item	= function(){};
 cChartElement_item.prototype	= new cChartElement("item");
-cChartElement_item.prototype.$hoverable	 = true;
+cChartElement_item.prototype.$hoverable	= true;
 
 cChartElement_item.handlers	= {
 

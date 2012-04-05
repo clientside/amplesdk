@@ -22,8 +22,7 @@ cWheelEvent.prototype.deltaX	= null;
 cWheelEvent.prototype.deltaY	= null;
 cWheelEvent.prototype.deltaZ	= null;
 
-cWheelEvent.prototype.initWheelEvent	= function(sType, bCanBubble, bCancelable, oView, nDetail, nScreenX, nScreenY, nClientX, nClientY, nButton, oRelatedTarget, sModifiersList, nDeltaX, nDeltaY, nDeltaZ, nDeltaMode)
-{
+cWheelEvent.prototype.initWheelEvent	= function(sType, bCanBubble, bCancelable, oView, nDetail, nScreenX, nScreenY, nClientX, nClientY, nButton, oRelatedTarget, sModifiersList, nDeltaX, nDeltaY, nDeltaZ, nDeltaMode) {
 /*
 //->Guard
 	fGuard(arguments, [

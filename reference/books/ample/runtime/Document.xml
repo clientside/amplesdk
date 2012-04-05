@@ -115,7 +115,7 @@
 						Creates a Comment node given the specified string.
 					</locale>
 					<locale xml:lang="ru">
-						Создает  узел <link type="class">Comment</link> по заданной строке.
+						Создает узел <link type="class">Comment</link> по заданной строке.
 					</locale>
 				</description>
 			</method>

@@ -8,7 +8,7 @@
  */
 
 var cXSElement_maxInclusive	= function(){};
-cXSElement_maxInclusive.prototype    = new cXSElement("maxInclusive");
+cXSElement_maxInclusive.prototype	= new cXSElement("maxInclusive");
 
 cXSElement_maxInclusive.handlers	= {};
 cXSElement_maxInclusive.handlers.DOMNodeInsertedIntoDocument	= function(oEvent) {

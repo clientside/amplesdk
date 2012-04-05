@@ -42,12 +42,12 @@ cXULElement_tabpanel.handlers	= {
 
 // Element Render: open
 cXULElement_tabpanel.prototype.$getTagOpen	= function() {
-    return '<div class="xul-tabpanel' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"' +(this.attributes["hidden"] != "false" ? ' style="display:none"' : '')+ '>';
+	return '<div class="xul-tabpanel' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"' +(this.attributes["hidden"] != "false" ? ' style="display:none"' : '')+ '>';
 };
 
 // Element Render: close
 cXULElement_tabpanel.prototype.$getTagClose	= function() {
-    return '</div>';
+	return '</div>';
 };
 
 // Register Element

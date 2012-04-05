@@ -172,9 +172,9 @@
 					<locale>
 						Occurs after <b>data</b> property have been modified, but the node itself has not been inserted or deleted.
 					</locale>
-          <locale xml:lang="ru">
-            Срабатывает, когда изменяется свойство <b>data</b>, но сам узел не был вставлен в документ или удален из него.
-          </locale>
+					<locale xml:lang="ru">
+						Срабатывает, когда изменяется свойство <b>data</b>, но сам узел не был вставлен в документ или удален из него.
+					</locale>
 				</description>
 			</event>
 		</events>

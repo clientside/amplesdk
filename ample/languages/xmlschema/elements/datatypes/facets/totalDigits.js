@@ -8,7 +8,7 @@
  */
 
 var cXSElement_totalDigits	= function(){};
-cXSElement_totalDigits.prototype    = new cXSElement("totalDigits");
+cXSElement_totalDigits.prototype	= new cXSElement("totalDigits");
 
 cXSElement_totalDigits.handlers	= {};
 cXSElement_totalDigits.handlers.DOMNodeInsertedIntoDocument	= function(oEvent) {

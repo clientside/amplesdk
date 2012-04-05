@@ -72,7 +72,7 @@
 			<constant name="SEVERITY_FATAL_ERROR" value="3">
 				<description>
 					<locale>
-						A SEVERITY_ERROR  may not cause the processing to stop if the error can be recovered.
+						A SEVERITY_ERROR may not cause the processing to stop if the error can be recovered.
 					</locale>
 				</description>
 			</constant>

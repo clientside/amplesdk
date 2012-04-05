@@ -37,7 +37,7 @@ cChartElement_map.prototype.refresh	= function() {
 
 	for (var nGroup = 0, nGroups = aData.length, oGroup; nGroup < nGroups; nGroup++) {
 		// Get DOM element
-		oGroup = this.childNodes[nGroup];
+		oGroup	= this.childNodes[nGroup];
 
 		for (var nItem = 0, nItems = aData[nGroup].length, oItem, oPath; nItem < nItems; nItem++) {
 			// Get DOM element

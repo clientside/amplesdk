@@ -7,10 +7,9 @@
  *
  */
 
-var cXULElement_tree	= function()
-{
-    // Collections
-    this.items  = new ample.classes.NodeList;
+var cXULElement_tree	= function() {
+	// Collections
+	this.items	= new ample.classes.NodeList;
 	this.selectedItems	= new ample.classes.NodeList;
 };
 cXULElement_tree.prototype	= new cXULSelectElement("tree");
@@ -28,107 +27,107 @@ cXULElement_tree.prototype.changeOpenState		= function(oRow, bState) {
 	}
 };
 
-cXULElement_tree.prototype.ensureRowIsVisible    = function(nIndex) {
-    var oElement    = this.items[nIndex];
-    do {
-        if (oElement.parentNode.attributes["hidden"] == "true")
-            return false;
-        oElement    = oElement.parentNode.parentNode;
-    } while (oElement != this.body);
+cXULElement_tree.prototype.ensureRowIsVisible	= function(nIndex) {
+	var oElement	= this.items[nIndex];
+	do {
+		if (oElement.parentNode.attributes["hidden"] == "true")
+			return false;
+		oElement	= oElement.parentNode.parentNode;
+	} while (oElement != this.body);
 
-    // return true
-    return true;
+	// return true
+	return true;
 };
 
 // Class Events Hadlers
 cXULElement_tree.handlers	= {
 	"keydown":	function(oEvent) {
-	    if (this.currentItem) {
-	        if (oEvent.keyIdentifier == "Up")  {
-	            // Key: Up
-	            var nIndex  = this.selectedItems[this.selectedItems.length-1].$getContainer().rowIndex;
+		if (this.currentItem) {
+			if (oEvent.keyIdentifier == "Up") {
+				// Key: Up
+				var nIndex	= this.selectedItems[this.selectedItems.length-1].$getContainer().rowIndex;
 
-	            // Search for the first "previous" visible item
-	            while (nIndex - 1 > 0 && this.ensureRowIsVisible(nIndex - 1) == false)
-	                nIndex--;
+				// Search for the first "previous" visible item
+				while (nIndex - 1 > 0 && this.ensureRowIsVisible(nIndex - 1) == false)
+					nIndex--;
 
-	            if (nIndex > 0) {
-	                if (oEvent.shiftKey) {
-	                    // Jump over the only selected item
-	                    if (this.selectedItems.length > 1)
-	                        if (this.currentItem.$getContainer().rowIndex > this.selectedItems[0].$getContainer().rowIndex)
-	                            nIndex++;
+				if (nIndex > 0) {
+					if (oEvent.shiftKey) {
+						// Jump over the only selected item
+						if (this.selectedItems.length > 1)
+							if (this.currentItem.$getContainer().rowIndex > this.selectedItems[0].$getContainer().rowIndex)
+								nIndex++;
 
-	                    this.toggleItemSelection(this.items[nIndex-1]);
-	                }
-	                else
-	                    this.selectItem(this.items[nIndex-1]);
+						this.toggleItemSelection(this.items[nIndex-1]);
+					}
+					else
+						this.selectItem(this.items[nIndex-1]);
 
-	                // Scroll to item if not visible
-	                this.scrollToIndex(nIndex-1);
-	            }
-	            // Forbid vertical scrolling
-	            oEvent.preventDefault();
-	        }
-	        else
-	        if (oEvent.keyIdentifier == "Down") {
-	            // Key: Down
-	            var nIndex  = this.selectedItems[this.selectedItems.length-1].$getContainer().rowIndex;
+					// Scroll to item if not visible
+					this.scrollToIndex(nIndex-1);
+				}
+				// Forbid vertical scrolling
+				oEvent.preventDefault();
+			}
+			else
+			if (oEvent.keyIdentifier == "Down") {
+				// Key: Down
+				var nIndex	= this.selectedItems[this.selectedItems.length-1].$getContainer().rowIndex;
 
-	            // Search for the first "next" visible item
-	            while (nIndex + 1 < this.items.length && this.ensureRowIsVisible(nIndex + 1) == false)
-	                nIndex++;
+				// Search for the first "next" visible item
+				while (nIndex + 1 < this.items.length && this.ensureRowIsVisible(nIndex + 1) == false)
+					nIndex++;
 
-	            if (nIndex < this.items.length - 1) {
-	                if (oEvent.shiftKey) {
-	                    // Jump over the only selected item
-	                    if (this.selectedItems.length > 1)
-	                        if (this.currentItem.$getContainer().rowIndex < this.selectedItems[0].$getContainer().rowIndex)
-	                            nIndex--;
+				if (nIndex < this.items.length - 1) {
+					if (oEvent.shiftKey) {
+						// Jump over the only selected item
+						if (this.selectedItems.length > 1)
+							if (this.currentItem.$getContainer().rowIndex < this.selectedItems[0].$getContainer().rowIndex)
+								nIndex--;
 
-	                    this.toggleItemSelection(this.items[nIndex+1]);
-	                }
-	                else
-	                    this.selectItem(this.items[nIndex+1]);
+						this.toggleItemSelection(this.items[nIndex+1]);
+					}
+					else
+						this.selectItem(this.items[nIndex+1]);
 
-	                // Scroll to item if not visible
-	                this.scrollToIndex(nIndex+1);
-	            }
-	            // Forbid vertical scrolling
-	            oEvent.preventDefault();
-	        }
-	        else
-	        if (oEvent.keyIdentifier == "Right") {
-	            // Key: Right
-	            if (this.currentItem.children) {
-	                if (this.currentItem.attributes["open"] == "true")
-	                    this.selectItem(this.currentItem.children.items[0]);
-	                else
-	                    this.currentItem.setAttribute("open", "true");
-	            }
+					// Scroll to item if not visible
+					this.scrollToIndex(nIndex+1);
+				}
+				// Forbid vertical scrolling
+				oEvent.preventDefault();
+			}
+			else
+			if (oEvent.keyIdentifier == "Right") {
+				// Key: Right
+				if (this.currentItem.children) {
+					if (this.currentItem.attributes["open"] == "true")
+						this.selectItem(this.currentItem.children.items[0]);
+					else
+						this.currentItem.setAttribute("open", "true");
+				}
 
-	            // Forbid horizontal scrolling
-	            oEvent.preventDefault();
-	        }
-	        else
-	        if (oEvent.keyIdentifier == "Left") {
-	            // Key: Left
-	            if (this.currentItem.children && this.currentItem.attributes["open"] == "true")
-	                this.currentItem.setAttribute("open", "false");
-	            else
-	            if (this.currentItem.parentNode.parentNode != this.body)
-	                this.selectItem(this.currentItem.parentNode.parentNode);
+				// Forbid horizontal scrolling
+				oEvent.preventDefault();
+			}
+			else
+			if (oEvent.keyIdentifier == "Left") {
+				// Key: Left
+				if (this.currentItem.children && this.currentItem.attributes["open"] == "true")
+					this.currentItem.setAttribute("open", "false");
+				else
+				if (this.currentItem.parentNode.parentNode != this.body)
+					this.selectItem(this.currentItem.parentNode.parentNode);
 
-	            // Forbid horizontal scrolling
-	            oEvent.preventDefault();
-	        }
-	        else
-	        if (oEvent.keyIdentifier == "Enter") {
-	            // Key: Enter
-	            if (this.currentItem.children)
-	                this.currentItem.setAttribute("open", this.currentItem.attributes["open"] == "true" ? "false" : "true");
-	        }
-	    }
+				// Forbid horizontal scrolling
+				oEvent.preventDefault();
+			}
+			else
+			if (oEvent.keyIdentifier == "Enter") {
+				// Key: Enter
+				if (this.currentItem.children)
+					this.currentItem.setAttribute("open", this.currentItem.attributes["open"] == "true" ? "false" : "true");
+			}
+		}
 	},
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this) {
@@ -139,17 +138,17 @@ cXULElement_tree.handlers	= {
 	},
 	"DOMNodeInserted":	function(oEvent) {
 		if (oEvent.target instanceof cXULElement_treebody)
-			this.body = oEvent.target;
+			this.body	= oEvent.target;
 		else
 		if (oEvent.target instanceof cXULElement_treecols)
-			this.head = oEvent.target;
+			this.head	= oEvent.target;
 	},
 	"DOMNodeRemoved":	function(oEvent) {
 		if (oEvent.target instanceof cXULElement_treebody)
-			this.body = null;
+			this.body	= null;
 		else
 		if (oEvent.target instanceof cXULElement_treecols)
-			this.head = null;
+			this.head	= null;
 	}
 };
 
@@ -157,19 +156,19 @@ cXULElement_tree.handlers	= {
 cXULElement_tree.prototype.$getTagOpen		= function() {
 	var sHeight	= this.attributes["height"],
 		sWidth	= this.attributes["width"];
-    return '<div class="xul-tree' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + (!this.$isAccessible() ? " xul-tree_disabled" : "") + '" style="' + (sHeight ? 'height:' + (sHeight * 1 == sHeight ? sHeight + "px" : sHeight) + ';' : '') + (sWidth ? 'width:' + (sWidth * 1 == sWidth ? sWidth + "px" : sWidth) + ';' : '') + (this.attributes["style"] ? this.attributes["style"] + '' : '') + '">\
-    			<div style="position:relative;height:100%;top:0;padding-bottom:inherit;">\
-    				<div class="xul-tree--resizer" style="height:100%;position:absolute;top:0px;display:none;z-index:1"></div>\
-    				<table cellpadding="0" cellspacing="0" border="0" height="100%" width="100%" style="position:absolute">\
-    					<tbody class="xul-tree--gateway">';
+	return '<div class="xul-tree' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + (!this.$isAccessible() ? " xul-tree_disabled" : "") + '" style="' + (sHeight ? 'height:' + (sHeight * 1 == sHeight ? sHeight + "px" : sHeight) + ';' : '') + (sWidth ? 'width:' + (sWidth * 1 == sWidth ? sWidth + "px" : sWidth) + ';' : '') + (this.attributes["style"] ? this.attributes["style"] + '' : '') + '">\
+				<div style="position:relative;height:100%;top:0;padding-bottom:inherit;">\
+					<div class="xul-tree--resizer" style="height:100%;position:absolute;top:0px;display:none;z-index:1"></div>\
+					<table cellpadding="0" cellspacing="0" border="0" height="100%" width="100%" style="position:absolute">\
+						<tbody class="xul-tree--gateway">';
 };
 
 // Element Render: close
 cXULElement_tree.prototype.$getTagClose	= function() {
-    return 				'</tbody>\
-    				</table>\
-    			</div>\
-    		</div>';
+	return 				'</tbody>\
+					</table>\
+				</div>\
+			</div>';
 };
 
 // Register Element

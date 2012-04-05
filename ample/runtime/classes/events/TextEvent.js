@@ -27,8 +27,7 @@ cTextEvent.prototype.data	= null;
 cTextEvent.prototype.inputMethod	= null;
 cTextEvent.prototype.locale	= null;
 
-cTextEvent.prototype.initTextEvent	= function(sType, bCanBubble, bCancelable, oView, sData, nInputMethod, sLocale)
-{
+cTextEvent.prototype.initTextEvent	= function(sType, bCanBubble, bCancelable, oView, sData, nInputMethod, sLocale) {
 /*
 //->Guard
 	fGuard(arguments, [

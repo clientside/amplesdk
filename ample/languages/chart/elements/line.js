@@ -65,16 +65,19 @@ cChartElement_line.prototype.refresh	= function() {
 	cChartElement.setPath(this.$getContainer("grid"), d.join(''));
 
 	var aYSumUp	=[],
-		nYFromPrev = 250, nYToPrev = 250, dPrev = [];
+		nYFromPrev	= 250,
+		nYToPrev	= 250,
+		dPrev	= [];
 	// Draw lines
 	for (var nGroup = 0, nGroups = aData.length, oGroup; nGroup < nGroups; nGroup++) {
 		// Get DOM element
-		oGroup = this.childNodes[nGroup];
+		oGroup	= this.childNodes[nGroup];
 
 		// Draw points
 		var nXFrom, nYFrom,
 			nXTo, nYTo,
-			nX, nY,	d = [];
+			nX, nY,
+			d 	= [];
 		for (var nItem = 0, nItems = aData[nGroup].length; nItem < nItems; nItem++) {
 			//
 			if (aYSumUp.length < nItem + 1)

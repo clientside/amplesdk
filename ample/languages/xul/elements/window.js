@@ -37,7 +37,7 @@ cXULElement_window.prototype.$getTagOpen	= function() {
 					<table cellpadding="0" cellspacing="0" border="0" width="100%" height="20">\
 						<tbody>\
 							<tr>\
-								<td class="xul-window--title">' +(this.attributes["title"]  ? ample.$encodeXMLCharacters(this.attributes["title"]) : " ")+ '</td>\
+								<td class="xul-window--title">' +(this.attributes["title"] ? ample.$encodeXMLCharacters(this.attributes["title"]) : " ")+ '</td>\
 								<td width="1"><div class="xul-window--button-close xul-window--button-close_normal" onclick="ample.$instance(this).hide()" onmouseover="this.className=this.className.replace(\'normal\', \'hover\')" onmouseout="this.className=this.className.replace(/hover|active/, \'normal\')" onmousedown="this.className=this.className.replace(\'hover\', \'active\')" onmouseup="this.className=this.className.replace(\'active\', \'normal\')"><br /></div></td>\
 							</tr>\
 						</tbody>\

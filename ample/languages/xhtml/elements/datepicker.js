@@ -11,22 +11,22 @@
 var cXHTMLElement_datepicker	= function() {
 	var oDate	= new Date();
 	this.current	= new Date(oDate.getFullYear(), oDate.getMonth(), oDate.getDate());
-    //
-    var that	= this;
-    this.contentFragment	= ample.createDocumentFragment();
-    // Action buttons
-    this._buttonAccept	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "button"));
-    this._buttonAccept.setAttribute("class", "accept");
-    this._buttonAccept.appendChild(ample.createTextNode("Accept"));
-    this._buttonAccept.addEventListener("DOMActivate", function() {
-    	that.acceptDialog();
-    });
-    this._buttonCancel	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "button"));
-    this._buttonCancel.setAttribute("class", "cancel");
-    this._buttonCancel.appendChild(ample.createTextNode("Cancel"));
-    this._buttonCancel.addEventListener("DOMActivate", function() {
-    	that.cancelDialog();
-    });
+	//
+	var that	= this;
+	this.contentFragment	= ample.createDocumentFragment();
+	// Action buttons
+	this._buttonAccept	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "button"));
+	this._buttonAccept.setAttribute("class", "accept");
+	this._buttonAccept.appendChild(ample.createTextNode("Accept"));
+	this._buttonAccept.addEventListener("DOMActivate", function() {
+		that.acceptDialog();
+	});
+	this._buttonCancel	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "button"));
+	this._buttonCancel.setAttribute("class", "cancel");
+	this._buttonCancel.appendChild(ample.createTextNode("Cancel"));
+	this._buttonCancel.addEventListener("DOMActivate", function() {
+		that.cancelDialog();
+	});
 	// Month select
 	this._elementMonth	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "select"));
 	this._elementMonth.tabIndex	=-1;
@@ -36,11 +36,11 @@ var cXHTMLElement_datepicker	= function() {
 		oEvent.stopPropagation();
 	}, false);
 	// months names
-    for (var nIndex = 0, oElement; nIndex < 12; nIndex++) {
-    	oElement = this._elementMonth.appendChild(ample.createElementNS(this.namespaceURI, "option"));
-    	oElement.setAttribute("value", nIndex);
-    	oElement.setAttribute("label", ample.locale.culture.calendar.months.names[nIndex]);
-    }
+	for (var nIndex = 0, oElement; nIndex < 12; nIndex++) {
+		oElement	= this._elementMonth.appendChild(ample.createElementNS(this.namespaceURI, "option"));
+		oElement.setAttribute("value", nIndex);
+		oElement.setAttribute("label", ample.locale.culture.calendar.months.names[nIndex]);
+	}
 	// Year spinner
 	this._elementYear	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "input"));
 	this._elementYear.setAttribute("type", "number");
@@ -123,9 +123,9 @@ cXHTMLElement_datepicker.prototype._onSelectDay	= function(nDay) {
 		this.setAttribute("value", sValue);
 
 		// dispatch "change" event
-	    var oEvent  = this.ownerDocument.createEvent("UIEvent");
-	    oEvent.initEvent("change", false, false, window, null);
-	    this.dispatchEvent(oEvent);
+		var oEvent	= this.ownerDocument.createEvent("UIEvent");
+		oEvent.initEvent("change", false, false, window, null);
+		this.dispatchEvent(oEvent);
 	}
 
 	// dispatch change event
@@ -154,21 +154,21 @@ cXHTMLElement_datepicker.parseDateFromString	= function(sDate) {
 };
 
 cXHTMLElement_datepicker.prototype.acceptDialog	= function() {
-    this.attributes.value  = this.$getContainer('value').value;
+	this.attributes.value	= this.$getContainer('value').value;
 
-    // fire select event
-    var oEvent  = this.ownerDocument.createEvent("CustomEvent");
-    oEvent.initCustomEvent("accept", false, false, null);
-    this.dispatchEvent(oEvent);
+	// fire select event
+	var oEvent	= this.ownerDocument.createEvent("CustomEvent");
+	oEvent.initCustomEvent("accept", false, false, null);
+	this.dispatchEvent(oEvent);
 };
 
 cXHTMLElement_datepicker.prototype.cancelDialog	= function() {
 	this.setAttribute("value", this.attributes.value);
 
-    // fire cancel event
-    var oEvent  = this.ownerDocument.createEvent("CustomEvent");
-    oEvent.initCustomEvent("cancel", false, false, null);
-    this.dispatchEvent(oEvent);
+	// fire cancel event
+	var oEvent	= this.ownerDocument.createEvent("CustomEvent");
+	oEvent.initCustomEvent("cancel", false, false, null);
+	this.dispatchEvent(oEvent);
 };
 
 cXHTMLElement_datepicker.handlers	= {
@@ -250,63 +250,63 @@ cXHTMLElement_datepicker.handlers	= {
 };
 
 // algorythm found at http://www.jslab.dk/library/Date.getISOWeek
-cXHTMLElement_datepicker.getWeekNum  = function(oDate) {
-    var y = oDate.getFullYear();
-    var m = oDate.getMonth() + 1;
-    var d = 0;
-    // If month jan. or feb.
-    if (m < 3) {
-      var a = y - 1;
-      var b = (a / 4 | 0) - (a / 100 | 0) + (a / 400 | 0);
-      var c = ( (a - 1) / 4 | 0) - ( (a - 1) / 100 | 0) + ( (a - 1) / 400 | 0);
-      var s = b - c;
-      var e = 0;
-      var f = d - 1 + 31 * (m - 1);
-    }
-    // If month mar. through dec.
-    else {
-      var a = y;
-      var b = (a / 4 | 0) - ( a / 100 | 0) + (a / 400 | 0);
-      var c = ( (a - 1) / 4 | 0) - ( (a - 1) / 100 | 0) + ( (a - 1) / 400 | 0);
-      var s = b - c;
-      var e = s + 1;
-      var f = d + ( (153 * (m - 3) + 2) / 5 | 0) + 58 + s;
-    }
-    var g = (a + b) % 7;
-    // ISO Weekday (0 is monday, 1 is tuesday etc.)
-    var d = (f + g - e) % 7;
-    var n = f + 3 - d;
-    if (n < 0)
-      var w = 53 - ( (g - s) / 5 | 0);
-    else if (n > 364 + s)
-      var w = 1;
-    else
-      var w = (n / 7 | 0) + 1;
-    return w;
+cXHTMLElement_datepicker.getWeekNum	= function(oDate) {
+	var y	= oDate.getFullYear();
+	var m	= oDate.getMonth() + 1;
+	var d	= 0;
+	// If month jan. or feb.
+	if (m < 3) {
+		var a	= y - 1;
+		var b	= (a / 4 | 0) - (a / 100 | 0) + (a / 400 | 0);
+		var c	= ( (a - 1) / 4 | 0) - ( (a - 1) / 100 | 0) + ( (a - 1) / 400 | 0);
+		var s	= b - c;
+		var e	= 0;
+		var f	= d - 1 + 31 * (m - 1);
+	}
+	// If month mar. through dec.
+	else {
+		var a	= y;
+		var b	= (a / 4 | 0) - ( a / 100 | 0) + (a / 400 | 0);
+		var c	= ( (a - 1) / 4 | 0) - ( (a - 1) / 100 | 0) + ( (a - 1) / 400 | 0);
+		var s	= b - c;
+		var e	= s + 1;
+		var f	= d + ( (153 * (m - 3) + 2) / 5 | 0) + 58 + s;
+	}
+	var g	= (a + b) % 7;
+	// ISO Weekday (0 is monday, 1 is tuesday etc.)
+	var d	= (f + g - e) % 7;
+	var n	= f + 3 - d;
+	if (n < 0)
+		var w	= 53 - ( (g - s) / 5 | 0);
+	else if (n > 364 + s)
+		var w	= 1;
+	else
+		var w	= (n / 7 | 0) + 1;
+	return w;
 };
 
 /*
 // static members
-cXHTMLElement_datepicker.getWeekNum  = function(oDate, bFirstDay) {
-    var nWeeks  = 0;
-    var nMonth  = oDate.getMonth()      * 1;
-    var nYear   = oDate.getFullYear()   * 1;
+cXHTMLElement_datepicker.getWeekNum	= function(oDate, bFirstDay) {
+	var nWeeks	= 0;
+	var nMonth	= oDate.getMonth()		* 1;
+	var nYear	= oDate.getFullYear()	* 1;
 
-    for (var nIndex = 0; nIndex < nMonth; nIndex++)
-        nWeeks += (new window.Date(nYear, nIndex + 1, 0).getDate());
+	for (var nIndex = 0; nIndex < nMonth; nIndex++)
+		nWeeks += (new window.Date(nYear, nIndex + 1, 0).getDate());
 
-    nWeeks +=(bFirstDay) ? 1 : oDate.getDate() * 1;
-    nWeeks -= 7 - (new window.Date(nYear, 0, 1).getDay());
-    nWeeks  = window.Math.ceil(nWeeks / 7);
-    if (new window.Date(nYear, 0, 1).getDay() <= 3)
-        nWeeks++;
+	nWeeks +=(bFirstDay) ? 1 : oDate.getDate() * 1;
+	nWeeks -= 7 - (new window.Date(nYear, 0, 1).getDay());
+	nWeeks	= window.Math.ceil(nWeeks / 7);
+	if (new window.Date(nYear, 0, 1).getDay() <= 3)
+		nWeeks++;
 
-    return nWeeks ? nWeeks : cXHTMLElement_datepicker.getWeekNum(new window.Date(nYear - 1, 11, 31), false);
+	return nWeeks ? nWeeks : cXHTMLElement_datepicker.getWeekNum(new window.Date(nYear - 1, 11, 31), false);
 };
 */
 
 cXHTMLElement_datepicker.$getTagDays	= function(oInstance, oDate) {
-	var aHtml  = [];
+	var aHtml	= [];
 
 	// Day pane header
 	aHtml.push('<table cellPadding="0" cellSpacing="1" border="0">\
@@ -327,7 +327,7 @@ cXHTMLElement_datepicker.$getTagDays	= function(oInstance, oDate) {
 
 	var oDateToday	= new Date;
 
-	var nWeek   = cXHTMLElement_datepicker.getWeekNum(oDate, true);
+	var nWeek	= cXHTMLElement_datepicker.getWeekNum(oDate, true);
 	// -1 here enables european week (starting on monday)
 	var nWeekDay	= new Date(oDate.getFullYear(), oDate.getMonth(), 1).getDay() - 1;
 	if (nWeekDay < 0)
@@ -338,12 +338,11 @@ cXHTMLElement_datepicker.$getTagDays	= function(oInstance, oDate) {
 	for (var nIndex = 0; nIndex < nWeekDay; nIndex++)
 		aHtml.push('<td><br /></td>');
 
-	nWeek   = (nWeek >= 52) ? 0 : nWeek; // change if the first week is of previous year
+	nWeek	= (nWeek >= 52) ? 0 : nWeek; // change if the first week is of previous year
 
-	var nDays   = new Date(oDate.getFullYear(), oDate.getMonth() * 1 + 1, 0).getDate();
+	var nDays	= new Date(oDate.getFullYear(), oDate.getMonth() * 1 + 1, 0).getDate();
 
-	for (var nIndex = 1, oDateCurrent, bDateDisabled; nIndex <= nDays; nIndex++)
-	{
+	for (var nIndex = 1, oDateCurrent, bDateDisabled; nIndex <= nDays; nIndex++) {
 		oDateCurrent	= new Date(oDate.getFullYear(), oDate.getMonth(), nIndex);
 		bDateDisabled	= (oInstance.min && oDateCurrent < oInstance.min) || (oInstance.max && oDateCurrent > oInstance.max);
 		aHtml.push('	<td align="center" valign="center">\
@@ -354,15 +353,14 @@ cXHTMLElement_datepicker.$getTagDays	= function(oInstance, oDate) {
 								onmouseover="this.className += \' datepicker-day_hover\'" onmouseout="this.className = this.className.replace(\' datepicker-day_hover\', \'\')"\
 								>' + nIndex + '</div>\
 						</td>');
-		if ((nWeekDay == 6) && (nIndex < nDays))
-		{
+		if ((nWeekDay == 6) && (nIndex < nDays)) {
 			nWeek++;
 			if (nWeek == 53)
-				nWeek   = (new Date(oDate.getFullYear(), 11, 31).getDay() < 3) ? 1 : nWeek;
+				nWeek	= (new Date(oDate.getFullYear(), 11, 31).getDay() < 3) ? 1 : nWeek;
 			aHtml.push('</tr>\
 						<tr>\
 							<td align="center" valign="center"><div class="datepicker-week">' + nWeek + '</div></td>');
-			nWeekDay  = 0;
+			nWeekDay	= 0;
 		}
 		else
 			nWeekDay++;

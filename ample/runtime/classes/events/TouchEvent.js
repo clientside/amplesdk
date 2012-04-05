@@ -26,8 +26,7 @@ cTouchEvent.prototype.changedTouches= null;
 cTouchEvent.prototype.rotation	= null;
 cTouchEvent.prototype.scale		= null;
 
-cTouchEvent.prototype.initTouchEvent	= function(sType, bCanBubble, bCancelable, oView, nDetail, nScreenX, nScreenY, nClientX, nClientY, bCtrlKey, bAltKey, bShiftKey, bMetaKey, oTouches, oTargetTouches, oChangedTouches, nScale, nRotation)
-{
+cTouchEvent.prototype.initTouchEvent	= function(sType, bCanBubble, bCancelable, oView, nDetail, nScreenX, nScreenY, nClientX, nClientY, bCtrlKey, bAltKey, bShiftKey, bMetaKey, oTouches, oTargetTouches, oChangedTouches, nScale, nRotation) {
 	this.initUIEvent(sType, bCanBubble, bCancelable, oView, nDetail);
 
 	this.ctrlKey	= bCtrlKey;

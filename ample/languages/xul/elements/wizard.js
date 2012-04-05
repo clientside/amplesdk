@@ -8,19 +8,19 @@
  */
 
 var cXULElement_wizard	= function() {
-    // Collections
-    this.buttons	= {};
-    this.wizardPages= new ample.classes.NodeList;
-    //
-    var that	= this;
-    this.contentFragment	= ample.createDocumentFragment();
+	// Collections
+	this.buttons	= {};
+	this.wizardPages= new ample.classes.NodeList;
+	//
+	var that	= this;
+	this.contentFragment	= ample.createDocumentFragment();
 	// Back
-    this.buttons.back	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "xul:button"));
-    this.buttons.back.addEventListener("DOMActivate", function(oEvent) {
+	this.buttons.back	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "xul:button"));
+	this.buttons.back.addEventListener("DOMActivate", function(oEvent) {
 		that.rewind();
 	}, false);
-    this.buttons.back.setAttribute("label", ample.locale.localize("xul.dialog.button.previous"));
-    this.buttons.back.setAttribute("class", "back");
+	this.buttons.back.setAttribute("label", ample.locale.localize("xul.dialog.button.previous"));
+	this.buttons.back.setAttribute("class", "back");
 	// Next
 	this.buttons.next	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "xul:button"));
 	this.buttons.next.addEventListener("DOMActivate", function(oEvent) {
@@ -31,7 +31,7 @@ var cXULElement_wizard	= function() {
 	// Finish
 	this.buttons.finish	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "xul:button"));
 	this.buttons.finish.addEventListener("DOMActivate", function(oEvent) {
-        that.finish();
+		that.finish();
 	}, false);
 	this.buttons.finish.setAttribute("label", ample.locale.localize("xul.dialog.button.finish"));
 	this.buttons.finish.setAttribute("class", "finish");
@@ -43,7 +43,7 @@ var cXULElement_wizard	= function() {
 	this.buttons.cancel.setAttribute("label", ample.locale.localize("xul.dialog.button.cancel"));
 	this.buttons.cancel.setAttribute("class", "cancel");
 };
-cXULElement_wizard.prototype = new cXULWindowElement("wizard");
+cXULElement_wizard.prototype	= new cXULWindowElement("wizard");
 
 // Public Properties
 cXULElement_wizard.prototype.currentPage	= null;
@@ -56,76 +56,76 @@ cXULElement_wizard.attributes.width		= "400";
 cXULElement_wizard.attributes.height	= "300";
 
 // Public Methods
-cXULElement_wizard.prototype.advance = function(sId) {
-    if (this.currentPage) {
-    	if (!cXULElement_wizardpage.dispatchEvent_onPage(this.currentPage, "hide"))
-        	return;
+cXULElement_wizard.prototype.advance	= function(sId) {
+	if (this.currentPage) {
+		if (!cXULElement_wizardpage.dispatchEvent_onPage(this.currentPage, "hide"))
+			return;
 
-	    if (!cXULElement_wizardpage.dispatchEvent_onPage(this.currentPage, "advanced"))
-	        return;
+		if (!cXULElement_wizardpage.dispatchEvent_onPage(this.currentPage, "advanced"))
+			return;
 	}
 
-    if (!cXULElement_wizard.dispatchEvent_onWizard(this, "next"))
-        return;
+	if (!cXULElement_wizard.dispatchEvent_onWizard(this, "next"))
+		return;
 
-    if (this.currentPage) {
-    	var oPage	= sId ? this.getPage(sId) : cXULElement_wizard.getNextPage(this, this.currentPage);
-        if (oPage) {
-        	cXULElement_wizard.goTo(this, oPage);
-        	//
-            cXULElement_wizardpage.dispatchEvent_onPage(oPage, "show");
-        }
-    }
+	if (this.currentPage) {
+		var oPage	= sId ? this.getPage(sId) : cXULElement_wizard.getNextPage(this, this.currentPage);
+		if (oPage) {
+			cXULElement_wizard.goTo(this, oPage);
+			//
+			cXULElement_wizardpage.dispatchEvent_onPage(oPage, "show");
+		}
+	}
 };
 
-cXULElement_wizard.prototype.rewind  = function() {
-    if (this.currentPage) {
-    	if (!cXULElement_wizardpage.dispatchEvent_onPage(this.currentPage, "hide"))
-        	return;
+cXULElement_wizard.prototype.rewind	= function() {
+	if (this.currentPage) {
+		if (!cXULElement_wizardpage.dispatchEvent_onPage(this.currentPage, "hide"))
+			return;
 
-	    if (!cXULElement_wizardpage.dispatchEvent_onPage(this.currentPage, "rewound"))
-	        return;
-    }
+		if (!cXULElement_wizardpage.dispatchEvent_onPage(this.currentPage, "rewound"))
+			return;
+	}
 
-    if (!cXULElement_wizard.dispatchEvent_onWizard(this, "back"))
-        return;
+	if (!cXULElement_wizard.dispatchEvent_onWizard(this, "back"))
+		return;
 
-    if (this.currentPage) {
-    	var oPage	= cXULElement_wizard.getPrevPage(this, this.currentPage);
-        if (oPage) {
-        	cXULElement_wizard.goTo(this, oPage);
-        	//
-            cXULElement_wizardpage.dispatchEvent_onPage(oPage, "show");
-        }
-    }
+	if (this.currentPage) {
+		var oPage	= cXULElement_wizard.getPrevPage(this, this.currentPage);
+		if (oPage) {
+			cXULElement_wizard.goTo(this, oPage);
+			//
+			cXULElement_wizardpage.dispatchEvent_onPage(oPage, "show");
+		}
+	}
 };
 
-cXULElement_wizard.prototype.cancel  = function() {
-    if (cXULElement_wizard.dispatchEvent_onWizard(this, "cancel"))
-    	this.hide();
+cXULElement_wizard.prototype.cancel	= function() {
+	if (cXULElement_wizard.dispatchEvent_onWizard(this, "cancel"))
+		this.hide();
 };
 
-cXULElement_wizard.prototype.finish  = function() {
-    if (cXULElement_wizard.dispatchEvent_onWizard(this, "finish"))
-    	this.hide();
+cXULElement_wizard.prototype.finish	= function() {
+	if (cXULElement_wizard.dispatchEvent_onWizard(this, "finish"))
+		this.hide();
 };
 
-cXULElement_wizard.prototype.goTo    = function(sId) {
+cXULElement_wizard.prototype.goTo	= function(sId) {
 	var oPage	= this.getPageById(sId);
-    if (oPage)
-    	cXULElement_wizard.goTo(this, oPage);
+	if (oPage)
+		cXULElement_wizard.goTo(this, oPage);
 };
 
-cXULElement_wizard.prototype.getPageById = function(sId) {
-    for (var nIndex = 0; nIndex < this.wizardPages.length; nIndex++)
-        if (this.wizardPages[nIndex].attributes["pageid"] == sId)
-            return this.wizardPages[nIndex];
+cXULElement_wizard.prototype.getPageById	= function(sId) {
+	for (var nIndex = 0; nIndex < this.wizardPages.length; nIndex++)
+		if (this.wizardPages[nIndex].attributes["pageid"] == sId)
+			return this.wizardPages[nIndex];
 
-    return null;
+	return null;
 };
 
-cXULElement_wizard.prototype.getButton   = function(sName) {
-    return this.buttons[sName];
+cXULElement_wizard.prototype.getButton	= function(sName) {
+	return this.buttons[sName];
 };
 
 // Redefine cXULElement.prototype.reflow behavior
@@ -135,11 +135,11 @@ cXULElement_wizard.prototype.reflow	= function() {
 };
 
 // Static methods
-cXULElement_wizard.dispatchEvent_onWizard  = function(oElement, sName) {
-    var oEvent  = oElement.ownerDocument.createEvent("Event");
-    oEvent.initEvent("wizard" + sName, true, true);
+cXULElement_wizard.dispatchEvent_onWizard	= function(oElement, sName) {
+	var oEvent	= oElement.ownerDocument.createEvent("Event");
+	oEvent.initEvent("wizard" + sName, true, true);
 
-    return oElement.dispatchEvent(oEvent);
+	return oElement.dispatchEvent(oEvent);
 };
 
 // Class events handlers
@@ -167,11 +167,11 @@ cXULElement_wizard.prototype.$mapAttribute	= function(sName, sValue) {
 // Static methods
 cXULElement_wizard.goTo	= function(oElement, oPage) {
 	// Hide previous page
-    if (oElement.currentPage)
-    	oElement.currentPage.$getContainer().style.display	= "none";
+	if (oElement.currentPage)
+		oElement.currentPage.$getContainer().style.display	= "none";
 
-    // Show new page
-    oPage.$getContainer().style.display	= "";
+	// Show new page
+	oPage.$getContainer().style.display	= "";
 
 	// Set header label and description
 	oElement.$getContainer("label").innerHTML	= oPage.attributes["label"] || " ";
@@ -186,12 +186,12 @@ cXULElement_wizard.goTo	= function(oElement, oPage) {
 	oElement.buttons["next"].setAttribute("hidden", bNext ? "false" : "true");
 	oElement.buttons["finish"].setAttribute("hidden", bNext ? "true" : "false");
 
-    // Set new current page
-    oElement.currentPage    = oPage;
+	// Set new current page
+	oElement.currentPage	= oPage;
 };
 
 cXULElement_wizard.getPrevPage	= function(oElement, oPage) {
-    var sId = oPage.attributes["pageid"];
+	var sId	= oPage.attributes["pageid"];
 	if (sId)
 		for (var oNode = oElement.lastChild; oNode; oNode = oNode.previousSibling)
 			if (oNode instanceof cXULElement_wizardpage && oNode.attributes["next"] == sId)
@@ -203,8 +203,8 @@ cXULElement_wizard.getPrevPage	= function(oElement, oPage) {
 };
 
 cXULElement_wizard.getNextPage	= function(oElement, oPage) {
-    var sId = oPage.attributes["next"];
-    if (sId)
+	var sId	= oPage.attributes["next"];
+	if (sId)
 		for (var oNode = oElement.firstChild; oNode; oNode = oNode.nextSibling)
 			if (oNode instanceof cXULElement_wizardpage && oNode.attributes["pageid"] == sId)
 				return oNode;
@@ -215,7 +215,7 @@ cXULElement_wizard.getNextPage	= function(oElement, oPage) {
 };
 
 // Element Render: open
-cXULElement_wizard.prototype.$getTagOpen    = function() {
+cXULElement_wizard.prototype.$getTagOpen	= function() {
 	return '<div class="xul-wizard'+(this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="' +
 				(this.attributes["width"] ? 'width:' + this.attributes["width"] + 'px;' : '') +
 				(this.attributes["height"] ? 'height:' + (this.attributes["height"] - 100) + 'px;' : '') +
@@ -234,7 +234,7 @@ cXULElement_wizard.prototype.$getTagOpen    = function() {
 };
 
 // Element Render: close
-cXULElement_wizard.prototype.$getTagClose  = function() {
+cXULElement_wizard.prototype.$getTagClose	= function() {
 	return '		</div>\
 					<div class="xul-wizard--footer">\
 						<table cellpadding="0" cellspacing="0" border="0" height="100%" align="' +(this.attributes["buttonalign"] == "start" ? "left" : this.attributes["buttonalign"] == "center" ? "center" : "right")+ '">\
@@ -250,7 +250,7 @@ cXULElement_wizard.prototype.$getTagClose  = function() {
 						</table>\
 					</div>\
 				</div>\
-	    	</div>';
+			</div>';
 };
 
 // Register Element

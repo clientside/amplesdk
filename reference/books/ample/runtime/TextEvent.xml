@@ -192,10 +192,10 @@
 	<remarks>
 		<remark>
 			<locale>Events of that type:</locale>
-      <locale xml:lang="ru">События этого типа:</locale>
-      <ul>
-        <li><link type="event" href="runtime:Element">textinput</link></li>
-      </ul>
+			<locale xml:lang="ru">События этого типа:</locale>
+			<ul>
+				<li><link type="event" href="runtime:Element">textinput</link></li>
+			</ul>
 		</remark>
 	</remarks>
 	<examples />

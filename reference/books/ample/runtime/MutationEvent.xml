@@ -211,15 +211,15 @@
 	<remarks>
 		<remark>
 			<locale>Events of that type:</locale>
-      <locale xml:lang="ru">События этого типа:</locale>
-      <ul>
-        <li><link type="event" href="runtime:Node">DOMNodeInserted</link></li>
-        <li><link type="event" href="runtime:Node">DOMNodeInsertedIntoDocument</link></li>
-        <li><link type="event" href="runtime:Node">DOMNodeRemoved</link></li>
-        <li><link type="event" href="runtime:Node">DOMNodeRemovedFromDocument</link></li>
-        <li><link type="event" href="runtime:Element">DOMAttrModified</link></li>
-        <li><link type="event" href="runtime:CharacterData">DOMCharacterDataModified</link></li>
-      </ul>
+			<locale xml:lang="ru">События этого типа:</locale>
+			<ul>
+				<li><link type="event" href="runtime:Node">DOMNodeInserted</link></li>
+				<li><link type="event" href="runtime:Node">DOMNodeInsertedIntoDocument</link></li>
+				<li><link type="event" href="runtime:Node">DOMNodeRemoved</link></li>
+				<li><link type="event" href="runtime:Node">DOMNodeRemovedFromDocument</link></li>
+				<li><link type="event" href="runtime:Element">DOMAttrModified</link></li>
+				<li><link type="event" href="runtime:CharacterData">DOMCharacterDataModified</link></li>
+			</ul>
 		</remark>
 	</remarks>
 	<examples />

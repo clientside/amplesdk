@@ -10,12 +10,10 @@
 var cXULController	= function(){};
 
 // Public Methods
-cXULController.prototype.doCommand	= function(sName)
-{
+cXULController.prototype.doCommand	= function(sName) {
 
 };
 
-cXULController.prototype.isCommandEnabled	= function(sName)
-{
+cXULController.prototype.isCommandEnabled	= function(sName) {
 
 };

@@ -8,7 +8,7 @@
  */
 
 var cXSElement_simpleType	= function(){};
-cXSElement_simpleType.prototype    = new cXSElement("simpleType");
+cXSElement_simpleType.prototype	= new cXSElement("simpleType");
 
 cXSElement_simpleType.handlers	= {};
 cXSElement_simpleType.handlers.DOMNodeInsertedIntoDocument	= function(oEvent) {

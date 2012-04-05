@@ -8,7 +8,7 @@
  */
 
 var cXULElement_toolbarbutton	= function(){};
-cXULElement_toolbarbutton.prototype  = new cXULElement("toolbarbutton");
+cXULElement_toolbarbutton.prototype	= new cXULElement("toolbarbutton");
 
 cXULElement_toolbarbutton.prototype.$hoverable	= true;
 
@@ -16,11 +16,11 @@ cXULElement_toolbarbutton.prototype.$hoverable	= true;
 cXULElement_toolbarbutton.handlers	= {
 	"mouseout":		function(oEvent) {
 		if (this.getAttribute("open") != "true")
-		   	this.$setPseudoClass("active", false);
+				this.$setPseudoClass("active", false);
 	},
 	"mouseup":		function(oEvent) {
 		if (this.getAttribute("open") != "true")
-		   	this.$setPseudoClass("active", false);
+				this.$setPseudoClass("active", false);
 	},
 	"mousedown":	function(oEvent) {
 		if (!this.$isAccessible())
@@ -30,27 +30,27 @@ cXULElement_toolbarbutton.handlers	= {
 			if (this.getAttribute("type") == "menu-button") {
 				// If click happend on "arrow" button
 				if (oEvent.$pseudoTarget == this.$getContainer("arrow")) {
-				    if (this.getAttribute("open") == "true")
-				        this.setAttribute("open", "false");
-				    else {
-				        this.setAttribute("open", "true");
-					   	this.$setPseudoClass("active", true);
-				    }
+					if (this.getAttribute("open") == "true")
+						this.setAttribute("open", "false");
+					else {
+						this.setAttribute("open", "true");
+							this.$setPseudoClass("active", true);
+					}
 				}
 				else
-		        if (this.getAttribute("open") == "true")
-		            return;
+				if (this.getAttribute("open") == "true")
+					return;
 			}
 			else
-		    if (this.getAttribute("type") == "menu") {
-		    	if (this.getAttribute("open") != "true")
-	            	this.setAttribute("open", "true");
-	            else
-	            	return;
-		    }
+			if (this.getAttribute("type") == "menu") {
+				if (this.getAttribute("open") != "true")
+					this.setAttribute("open", "true");
+				else
+					return;
+			}
 
 			//
-		   	this.$setPseudoClass("active", true);
+				this.$setPseudoClass("active", true);
 		}
 	},
 	"click":	function(oEvent) {
@@ -96,10 +96,10 @@ cXULElement_toolbarbutton.prototype.$mapAttribute	= function(sName, sValue) {
 	}
 	else
 	if (sName == "label")
-		this.$getContainer("label").innerHTML  =(this.attributes["image"] ? '<img src="' + this.attributes["image"] + '" align="absmiddle" />' : '') + ' ' + (sValue || '');
+		this.$getContainer("label").innerHTML	=(this.attributes["image"] ? '<img src="' + this.attributes["image"] + '" align="absmiddle" />' : '') + ' ' + (sValue || '');
 	else
 	if (sName == "image")
-		this.$getContainer("label").innerHTML  =(sValue ? '<img src="' + sValue + '" align="absmiddle" />' : '') + ' ' + (this.attributes["label"] || '');
+		this.$getContainer("label").innerHTML	=(sValue ? '<img src="' + sValue + '" align="absmiddle" />' : '') + ' ' + (this.attributes["label"] || '');
 	else
 		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
@@ -107,7 +107,7 @@ cXULElement_toolbarbutton.prototype.$mapAttribute	= function(sName, sValue) {
 // Element Render: open
 cXULElement_toolbarbutton.prototype.$getTagOpen	= function() {
 	var sType	= this.getAttribute("type");
-    return '<table cellpadding="0" cellspacing="0" border="0" class="xul-toolbarbutton' + (!this.$isAccessible() ? " xul-toolbarbutton_disabled" : "") + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">\
+	return '<table cellpadding="0" cellspacing="0" border="0" class="xul-toolbarbutton' + (!this.$isAccessible() ? " xul-toolbarbutton_disabled" : "") + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">\
 				<tbody>\
 					<tr height="3">\
 						<td width="3" rowspan="3" class="xul-toolbarbutton-left"><div style="width:3px"/></td>\
@@ -132,7 +132,7 @@ cXULElement_toolbarbutton.prototype.$getTagOpen	= function() {
 							</div>\
 							<div class="xul-toolbarbutton--gateway">';
 
-    return sHtml;
+	return sHtml;
 };
 
 // Element Render: close
@@ -140,9 +140,9 @@ cXULElement_toolbarbutton.prototype.$getTagClose	= function() {
 	var sType	= this.getAttribute("type");
 	return '				</div>\
 						</td>'+
-    				(sType == "menu" || sType == "menu-button"
-    				 ? '<td class="xul-toolbarbutton-arrow"><div class="xul-toolbarbutton--arrow"><br /></div></td>'
-    				 : '') + '\
+					(sType == "menu" || sType == "menu-button"
+					 ? '<td class="xul-toolbarbutton-arrow"><div class="xul-toolbarbutton--arrow"><br /></div></td>'
+					 : '') + '\
 					</tr>\
 					<tr height="3">\
 						<td class="xul-toolbarbutton-bottom"></td>'+

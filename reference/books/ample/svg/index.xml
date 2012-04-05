@@ -52,7 +52,7 @@
 					</ul>
 				</locale>
 				<locale xml:lang="ru">
-					В настоящее время реализация языка SVG 1.1 в <b>Ample SDK</b> находится в стадии разработки.  Следующие модули уже доступны для тестирования:
+					В настоящее время реализация языка SVG 1.1 в <b>Ample SDK</b> находится в стадии разработки. Следующие модули уже доступны для тестирования:
 					<ul>
 						<li><a href="http://www.w3.org/TR/SVG/struct.html">5. Document Structure</a></li>
 						<li><a href="http://www.w3.org/TR/SVG/paths.html">8. Paths</a></li>

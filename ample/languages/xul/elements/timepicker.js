@@ -60,11 +60,11 @@ cXULElement_timepicker.attributes	= {
 };
 
 
-cXULElement_timepicker.prototype._onInputTimeChange    = function(oEvent, sName, sValue) {
-    this._setValue(sName, sValue);
+cXULElement_timepicker.prototype._onInputTimeChange	= function(oEvent, sName, sValue) {
+	this._setValue(sName, sValue);
 
-    // Fire Event
-    cXULInputElement.dispatchChange(this);
+	// Fire Event
+	cXULInputElement.dispatchChange(this);
 };
 
 // Class handlers
@@ -171,11 +171,11 @@ cXULElement_timepicker.setEditComponent	= function(oInstance, sComponent) {
 
 // Element Render: open
 cXULElement_timepicker.prototype.$getTagOpen		= function() {
-    var aTime    = this.attributes["value"].split(":");
+	var aTime	= this.attributes["value"].split(":");
 	this.spinButtons.attributes["disabled"]	= this.$isAccessible() ? "false" : "true";
-    return '<div class="xul-timepicker' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + (!this.$isAccessible() ? " xul-timepicker_disabled" : '') + '">\
+	return '<div class="xul-timepicker' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + (!this.$isAccessible() ? " xul-timepicker_disabled" : '') + '">\
 				<div class="xul-timepicker--field">\
-   					' + this.spinButtons.$getTag() + '\
+						' + this.spinButtons.$getTag() + '\
 					<input type="text" class="xul-timepicker--input" maxlength="8"' +(!this.$isAccessible() ? ' disabled="true"' : '')+ ' style="border:0px solid white;width:100%;" value="' + (aTime ? aTime[0] : "00") + ':' + (aTime ? aTime[1] : "00") + ':' + (aTime ? aTime[2] : "00") + '" />\
 				</div>\
 			</div>';

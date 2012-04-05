@@ -29,8 +29,7 @@ cElement.prototype.contentFragment	= null;
 var nElement_prefix	= 0;
 
 // Public Methods
-function fElement_appendChild(oParent, oNode)
-{
+function fElement_appendChild(oParent, oNode) {
 	// Call parent class method
 	fNode_appendChild(oParent, oNode);
 
@@ -39,18 +38,17 @@ function fElement_appendChild(oParent, oNode)
 	if (oParent.nodeType == 1)	// cNode.ELEMENT_NODE
 		if (oGateway =(oParent.$getContainer("gateway") || oParent.$getContainer()))
 			if (oChild = (oNode.$getContainer() || fBrowser_render(oNode)))
-		   		oGateway.appendChild(oChild);
+					oGateway.appendChild(oChild);
 
 	// Register Instance
 	if (oDocument_all[oParent.uniqueID])
 		fDocument_register(oParent.ownerDocument, oNode);
 
 	//
-    return oNode;
+	return oNode;
 };
 
-cElement.prototype.appendChild	= function(oNode)
-{
+cElement.prototype.appendChild	= function(oNode) {
 //->Guard
 	fGuard(arguments, [
 		["node",	cNode]
@@ -66,8 +64,7 @@ cElement.prototype.appendChild	= function(oNode)
 	return oNode;
 };
 
-function fElement_insertBefore(oParent, oNode, oBefore)
-{
+function fElement_insertBefore(oParent, oNode, oBefore) {
 	// Call parent class method
 	fNode_insertBefore(oParent, oNode, oBefore);
 	// Insert DOM
@@ -75,24 +72,23 @@ function fElement_insertBefore(oParent, oNode, oBefore)
 	if (oParent.nodeType == 1)	// cNode.ELEMENT_NODE
 		if (oGateway =(oParent.$getContainer("gateway") || oParent.$getContainer()))
 			if (oChild = (oNode.$getContainer() || fBrowser_render(oNode)))
-	    		oGateway.insertBefore(oChild, function() {
-	    			for (var oElement; oBefore; oBefore = oBefore.nextSibling)
-	    				if (oElement = oBefore.$getContainer())
-	    					for (; oElement; oElement = oElement.parentNode)
-	    						if (oElement.parentNode == oGateway)
-	    							return oElement;
-	    			return null;
-	    		}());
+				oGateway.insertBefore(oChild, function() {
+					for (var oElement; oBefore; oBefore = oBefore.nextSibling)
+						if (oElement = oBefore.$getContainer())
+							for (; oElement; oElement = oElement.parentNode)
+								if (oElement.parentNode == oGateway)
+									return oElement;
+					return null;
+				}());
 	// Register Instance
 	if (oDocument_all[oParent.uniqueID])
 		fDocument_register(oParent.ownerDocument, oNode);
 
 	//
-    return oNode;
+	return oNode;
 };
 
-cElement.prototype.insertBefore	= function(oNode, oBefore)
-{
+cElement.prototype.insertBefore	= function(oNode, oBefore) {
 //->Guard
 	fGuard(arguments, [
 		["node",	cNode],
@@ -121,10 +117,9 @@ cElement.prototype.insertBefore	= function(oNode, oBefore)
 	return oNode;
 };
 
-function fElement_removeChild(oParent, oNode)
-{
+function fElement_removeChild(oParent, oNode) {
 	// Fire Mutation event
-	var oEvent = new cMutationEvent;
+	var oEvent	= new cMutationEvent;
 	oEvent.initMutationEvent("DOMNodeRemoved", true, false, oParent, null, null, null, null);
 	fNode_dispatchEvent(oNode, oEvent);
 
@@ -151,22 +146,20 @@ function fElement_removeChild(oParent, oNode)
 	return oNode;
 };
 
-cElement.prototype.removeChild	= function(oNode)
-{
+cElement.prototype.removeChild	= function(oNode) {
 //->Guard
 	fGuard(arguments, [
 		["node",	cNode]
 	], this);
 //<-Guard
 
-    if (this.childNodes.$indexOf(oNode) !=-1)
-    	return fElement_removeChild(this, oNode);
-    else
-        throw new cDOMException(cDOMException.NOT_FOUND_ERR);
+	if (this.childNodes.$indexOf(oNode) !=-1)
+		return fElement_removeChild(this, oNode);
+	else
+		throw new cDOMException(cDOMException.NOT_FOUND_ERR);
 };
 
-function fElement_replaceChild(oParent, oNode, oOld)
-{
+function fElement_replaceChild(oParent, oNode, oOld) {
 	// Call parent class method
 	fNode_replaceChild(oParent, oNode, oOld);
 
@@ -179,7 +172,7 @@ function fElement_replaceChild(oParent, oNode, oOld)
 		if (oElement = oOld.$getContainer())
 			if (oGateway =(oParent.$getContainer("gateway") || oParent.$getContainer()))
 				if (oChild = (oNode.$getContainer() || fBrowser_render(oNode)))
-			    	oGateway.replaceChild(oChild, oElement);
+					oGateway.replaceChild(oChild, oElement);
 
 	// Register Instance
 	if (oDocument_all[oParent.uniqueID])
@@ -188,8 +181,7 @@ function fElement_replaceChild(oParent, oNode, oOld)
 	return oOld;
 };
 
-cElement.prototype.replaceChild	= function(oNode, oOld)
-{
+cElement.prototype.replaceChild	= function(oNode, oOld) {
 //->Guard
 	fGuard(arguments, [
 		["node",	cNode],
@@ -198,36 +190,34 @@ cElement.prototype.replaceChild	= function(oNode, oOld)
 //<-Guard
 
 	if (oOld) {
-	    if (this.childNodes.$indexOf(oOld) !=-1) {
-	    	if (oNode.nodeType == 11)	// cNode.DOCUMENT_FRAGMENT_NODE
-	    		while (oNode.firstChild)
-	    			fElement_insertBefore(this, oNode.firstChild, oOld);
-	    	else
-	    		fElement_insertBefore(this, oNode, oOld);
+		if (this.childNodes.$indexOf(oOld) !=-1) {
+			if (oNode.nodeType == 11)	// cNode.DOCUMENT_FRAGMENT_NODE
+				while (oNode.firstChild)
+					fElement_insertBefore(this, oNode.firstChild, oOld);
+			else
+				fElement_insertBefore(this, oNode, oOld);
 			fElement_removeChild(this, oOld);
-	    }
-	    else
-	    	throw new cDOMException(cDOMException.NOT_FOUND_ERR);
+		}
+		else
+			throw new cDOMException(cDOMException.NOT_FOUND_ERR);
 	}
 	else {
-    	if (oNode.nodeType == 11)	// cNode.DOCUMENT_FRAGMENT_NODE
-    		while (oNode.firstChild)
-    			fElement_appendChild(this, oNode.firstChild);
-    	else
-    		fElement_appendChild(this, oNode);
+		if (oNode.nodeType == 11)	// cNode.DOCUMENT_FRAGMENT_NODE
+			while (oNode.firstChild)
+				fElement_appendChild(this, oNode.firstChild);
+		else
+			fElement_appendChild(this, oNode);
 	}
 
-    //
-    return oOld;
+	//
+	return oOld;
 };
 
-function fElement_hazAttribute(oElement, sName)
-{
+function fElement_hazAttribute(oElement, sName) {
 	return oElement.attributes.hasOwnProperty(sName);
 };
 
-cElement.prototype.hasAttribute	= function(sName)
-{
+cElement.prototype.hasAttribute	= function(sName) {
 //->Guard
 	fGuard(arguments, [
 		["name",		cString]
@@ -237,8 +227,7 @@ cElement.prototype.hasAttribute	= function(sName)
 	return fElement_hazAttribute(this, sName);
 };
 
-function fElement_hazAttributeNS(oElement, sNameSpaceURI, sLocalName)
-{
+function fElement_hazAttributeNS(oElement, sNameSpaceURI, sLocalName) {
 	if (sNameSpaceURI == null)
 		return fElement_hazAttribute(oElement, sLocalName);
 
@@ -246,8 +235,7 @@ function fElement_hazAttributeNS(oElement, sNameSpaceURI, sLocalName)
 	return sPrefix ? fElement_hazAttribute(oElement, sPrefix + ':' + sLocalName) : false;
 };
 
-cElement.prototype.hasAttributeNS	= function(sNameSpaceURI, sLocalName)
-{
+cElement.prototype.hasAttributeNS	= function(sNameSpaceURI, sLocalName) {
 //->Guard
 	fGuard(arguments, [
 		["namespaceURI",	cString, false, true],
@@ -258,8 +246,7 @@ cElement.prototype.hasAttributeNS	= function(sNameSpaceURI, sLocalName)
 	return fElement_hazAttributeNS(this, sNameSpaceURI, sLocalName);
 };
 
-function fElement_setAttribute(oElement, sName, sValue)
-{
+function fElement_setAttribute(oElement, sName, sValue) {
 	var bValue	= sName in oElement.attributes,
 		sValueOld	= bValue ? oElement.attributes[sName] : null;
 
@@ -296,7 +283,7 @@ function fElement_setAttribute(oElement, sName, sValue)
 		oElement.attributes[sName]	= sValue;
 
 		// Fire Mutation event
-		var oEvent = new cMutationEvent;
+		var oEvent	= new cMutationEvent;
 		oEvent.initMutationEvent("DOMAttrModified", true, false, null, bValue ? sValueOld : null, sValue, sName, bValue ? 1 /* cMutationEvent.MODIFICATION */ : 2 /* cMutationEvent.ADDITION */);
 		fNode_dispatchEvent(oElement, oEvent);
 
@@ -310,8 +297,7 @@ cElement.prototype.$mapAttribute	= function(sName, sValue) {
 	// Should be implemented in elements
 };
 
-cElement.prototype.setAttribute	= function(sName, sValue)
-{
+cElement.prototype.setAttribute	= function(sName, sValue) {
 //->Guard
 	fGuard(arguments, [
 		["name",		cString],
@@ -322,16 +308,14 @@ cElement.prototype.setAttribute	= function(sName, sValue)
 	fElement_setAttribute(this, sName, cString(sValue));
 };
 
-function fElement_setAttributeNS(oElement, sNameSpaceURI, sQName, sValue)
-{
+function fElement_setAttributeNS(oElement, sNameSpaceURI, sQName, sValue) {
 	if (sNameSpaceURI != null) {
 		var sElementPrefix	= fNode_lookupPrefix(oElement, sNameSpaceURI),
 			aQName		= sQName.split(':'),
 			sLocalName	= aQName.pop(),
 			sPrefix		= aQName.pop() || null;
 
-		if (sPrefix)
-		{
+		if (sPrefix) {
 			if (!sElementPrefix || (sPrefix != sElementPrefix))
 				// Put namespace declaration
 				oElement.attributes["xmlns" + ':' + sPrefix]	= sNameSpaceURI;
@@ -353,14 +337,12 @@ function fElement_setAttributeNS(oElement, sNameSpaceURI, sQName, sValue)
 		}
 
 		// Global attributes module
-		if (!(sQName == "xmlns" || sNameSpaceURI == sNS_XMLNS || sNameSpaceURI == sNS_XML))
-		{
+		if (!(sQName == "xmlns" || sNameSpaceURI == sNS_XMLNS || sNameSpaceURI == sNS_XML)) {
 			var fConstructor	= hClasses[sNameSpaceURI + '#' + '@' + sLocalName],
 				oAttribute,
 				oEvent;
 
-			if (fConstructor)
-			{
+			if (fConstructor) {
 				// oAttribute used to create fake object
 				oAttribute	= new fConstructor;
 				oAttribute.ownerDocument= oElement.ownerDocument;
@@ -371,13 +353,12 @@ function fElement_setAttributeNS(oElement, sNameSpaceURI, sQName, sValue)
 				oAttribute.prefix		= sPrefix;
 				oAttribute.namespaceURI	= sNameSpaceURI;
 
-				if (sQName in oElement.attributes)
-				{
+				if (sQName in oElement.attributes) {
 					// Old attribute values
 					oAttribute.value		=
 					oAttribute.nodeValue	= oElement.attributes[sQName];
 					// Fire Mutation event (pseudo)
-					oEvent = new cMutationEvent;
+					oEvent	= new cMutationEvent;
 					oEvent.initMutationEvent("DOMNodeRemovedFromDocument", false, false, null, null, null, null, null);
 					oEvent.target	=
 					oEvent.currentTarget	= oAttribute;
@@ -389,7 +370,7 @@ function fElement_setAttributeNS(oElement, sNameSpaceURI, sQName, sValue)
 				oAttribute.value		=
 				oAttribute.nodeValue	= sValue;
 				// Fire Mutation event (pseudo)
-				oEvent = new cMutationEvent;
+				oEvent	= new cMutationEvent;
 				oEvent.initMutationEvent("DOMNodeInsertedIntoDocument", false, false, null, null, null, null, null);
 				oEvent.target	=
 				oEvent.currentTarget	= oAttribute;
@@ -404,8 +385,7 @@ function fElement_setAttributeNS(oElement, sNameSpaceURI, sQName, sValue)
 	fElement_setAttribute(oElement, sQName, sValue);
 };
 
-cElement.prototype.setAttributeNS	= function(sNameSpaceURI, sQName, sValue)
-{
+cElement.prototype.setAttributeNS	= function(sNameSpaceURI, sQName, sValue) {
 //->Guard
 	fGuard(arguments, [
 		["namespaceURI",	cString, false, true],
@@ -417,13 +397,11 @@ cElement.prototype.setAttributeNS	= function(sNameSpaceURI, sQName, sValue)
 	fElement_setAttributeNS(this, sNameSpaceURI, sQName, cString(sValue));
 };
 
-cElement.prototype.setAttributeNode	= function(oAttribute)
-{
+cElement.prototype.setAttributeNode	= function(oAttribute) {
 	this.setAttributeNodeNS(oAttribute);
 };
 
-cElement.prototype.setAttributeNodeNS	= function(oAttribute)
-{
+cElement.prototype.setAttributeNodeNS	= function(oAttribute) {
 //->Guard
 	fGuard(arguments, [
 		["node",		cAttr]
@@ -439,13 +417,11 @@ cElement.prototype.setAttributeNodeNS	= function(oAttribute)
 	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };
 
-function fElement_getAttribute(oElement, sName)
-{
-    return oElement.attributes.hasOwnProperty(sName) ? oElement.attributes[sName] : '';
+function fElement_getAttribute(oElement, sName) {
+	return oElement.attributes.hasOwnProperty(sName) ? oElement.attributes[sName] : '';
 };
 
-cElement.prototype.getAttribute	= function(sName)
-{
+cElement.prototype.getAttribute	= function(sName) {
 //->Guard
 	fGuard(arguments, [
 		["name",		cString]
@@ -455,17 +431,15 @@ cElement.prototype.getAttribute	= function(sName)
 	return fElement_getAttribute(this, sName);
 };
 
-function fElement_getAttributeNS(oElement, sNameSpaceURI, sLocalName)
-{
+function fElement_getAttributeNS(oElement, sNameSpaceURI, sLocalName) {
 	if (sNameSpaceURI == null)
 		return fElement_getAttribute(oElement, sLocalName);
 
 	var sPrefix	= fNode_lookupPrefix(oElement, sNameSpaceURI);
-    return sPrefix ? fElement_getAttribute(oElement, sPrefix + ':' + sLocalName) : '';
+	return sPrefix ? fElement_getAttribute(oElement, sPrefix + ':' + sLocalName) : '';
 };
 
-cElement.prototype.getAttributeNS	= function(sNameSpaceURI, sLocalName)
-{
+cElement.prototype.getAttributeNS	= function(sNameSpaceURI, sLocalName) {
 //->Guard
 	fGuard(arguments, [
 		["namespaceURI",	cString, false, true],
@@ -476,18 +450,15 @@ cElement.prototype.getAttributeNS	= function(sNameSpaceURI, sLocalName)
 	return fElement_getAttributeNS(this, sNameSpaceURI, sLocalName);
 };
 
-cElement.prototype.getAttributeNode	= function(sName)
-{
+cElement.prototype.getAttributeNode	= function(sName) {
 	return this.getAttributeNodeNS(null, sName);
 };
 
-cElement.prototype.getAttributeNodeNS	= function(sNameSpaceURI, sLocalName)
-{
+cElement.prototype.getAttributeNodeNS	= function(sNameSpaceURI, sLocalName) {
 	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };
 
-function fElement_removeAttribute(oElement, sName)
-{
+function fElement_removeAttribute(oElement, sName) {
 	var bValue	= sName in oElement.attributes,
 		sValueOld	= bValue ? oElement.attributes[sName] : null;
 
@@ -522,7 +493,7 @@ function fElement_removeAttribute(oElement, sName)
 		delete oElement.attributes[sName];
 
 		// Fire Mutation event
-		var oEvent = new cMutationEvent;
+		var oEvent	= new cMutationEvent;
 		oEvent.initMutationEvent("DOMAttrModified", true, false, null, sValueOld, null, sName, 3 /* cMutationEvent.REMOVAL */);
 		fNode_dispatchEvent(oElement, oEvent);
 
@@ -532,8 +503,7 @@ function fElement_removeAttribute(oElement, sName)
 	}
 };
 
-cElement.prototype.removeAttribute	= function(sName)
-{
+cElement.prototype.removeAttribute	= function(sName) {
 //->Guard
 	fGuard(arguments, [
 		["name",	cString]
@@ -543,8 +513,7 @@ cElement.prototype.removeAttribute	= function(sName)
 	fElement_removeAttribute(this, sName);
 };
 
-function fElement_removeAttributeNS(oElement, sNameSpaceURI, sLocalName)
-{
+function fElement_removeAttributeNS(oElement, sNameSpaceURI, sLocalName) {
 	if (sNameSpaceURI != null) {
 		var sPrefix	= fNode_lookupPrefix(oElement, sNameSpaceURI),
 			sQName	= sPrefix + ':' + sLocalName;
@@ -553,15 +522,13 @@ function fElement_removeAttributeNS(oElement, sNameSpaceURI, sLocalName)
 			return;
 
 		// Global attributes module
-		if (sQName in oElement.attributes && !(sLocalName == "xmlns" || sNameSpaceURI == sNS_XMLNS || sNameSpaceURI == sNS_XML))
-		{
+		if (sQName in oElement.attributes && !(sLocalName == "xmlns" || sNameSpaceURI == sNS_XMLNS || sNameSpaceURI == sNS_XML)) {
 			var fConstructor= hClasses[sNameSpaceURI + '#' + '@' + sLocalName],
 				sValue		= oElement.attributes[sQName],
 				oAttribute,
 				oEvent;
 
-			if (fConstructor)
-			{
+			if (fConstructor) {
 				// oAttribute used to create fake object
 				oAttribute	= new fConstructor;
 				oAttribute.ownerDocument= oElement.ownerDocument;
@@ -575,7 +542,7 @@ function fElement_removeAttributeNS(oElement, sNameSpaceURI, sLocalName)
 				oAttribute.nodeValue	= sValue;
 
 				// Fire Mutation event (pseudo)
-				oEvent = new cMutationEvent;
+				oEvent	= new cMutationEvent;
 				oEvent.initMutationEvent("DOMNodeRemovedFromDocument", false, false, null, null, null, null, null);
 				oEvent.target	=
 				oEvent.currentTarget	= oAttribute;
@@ -592,8 +559,7 @@ function fElement_removeAttributeNS(oElement, sNameSpaceURI, sLocalName)
 	fElement_removeAttribute(oElement, sLocalName);
 };
 
-cElement.prototype.removeAttributeNS	= function(sNameSpaceURI, sLocalName)
-{
+cElement.prototype.removeAttributeNS	= function(sNameSpaceURI, sLocalName) {
 //->Guard
 	fGuard(arguments, [
 		["namespaceURI",	cString, false, true],
@@ -604,13 +570,11 @@ cElement.prototype.removeAttributeNS	= function(sNameSpaceURI, sLocalName)
 	fElement_removeAttributeNS(this, sNameSpaceURI, sLocalName);
 };
 
-cElement.prototype.removeAttributeNode	= function(oAttribute)
-{
+cElement.prototype.removeAttributeNode	= function(oAttribute) {
 	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };
 
-cElement.prototype.hasChildNodes	= function()
-{
+cElement.prototype.hasChildNodes	= function() {
 //->Guard
 	fGuard(arguments, [
 	], this);
@@ -619,8 +583,7 @@ cElement.prototype.hasChildNodes	= function()
 	return this.childNodes.length > 0;
 };
 
-function fElement_getElementsByTagName(oElement, sTagName)
-{
+function fElement_getElementsByTagName(oElement, sTagName) {
 	var aElements	= new cNodeList,
 		bTagName	= '*' == sTagName;
 	(function(oElement) {
@@ -636,8 +599,7 @@ function fElement_getElementsByTagName(oElement, sTagName)
 	return aElements;
 };
 
-cElement.prototype.getElementsByTagName	= function(sTagName)
-{
+cElement.prototype.getElementsByTagName	= function(sTagName) {
 //->Guard
 	fGuard(arguments, [
 		["name",	cString]
@@ -647,8 +609,7 @@ cElement.prototype.getElementsByTagName	= function(sTagName)
 	return fElement_getElementsByTagName(this, sTagName);
 };
 
-function fElement_getElementsByTagNameNS(oElement, sNameSpaceURI, sLocalName)
-{
+function fElement_getElementsByTagNameNS(oElement, sNameSpaceURI, sLocalName) {
 	var aElements	= new cNodeList,
 		bNameSpaceURI	= '*' == sNameSpaceURI,
 		bLocalName		= '*' == sLocalName;
@@ -665,8 +626,7 @@ function fElement_getElementsByTagNameNS(oElement, sNameSpaceURI, sLocalName)
 	return aElements;
 };
 
-cElement.prototype.getElementsByTagNameNS	= function(sNameSpaceURI, sLocalName)
-{
+cElement.prototype.getElementsByTagNameNS	= function(sNameSpaceURI, sLocalName) {
 //->Guard
 	fGuard(arguments, [
 		["namespaceURI",	cString],
@@ -677,60 +637,52 @@ cElement.prototype.getElementsByTagNameNS	= function(sNameSpaceURI, sLocalName)
 	return fElement_getElementsByTagNameNS(this, sNameSpaceURI, sLocalName);
 };
 /*
-cElement.prototype.focus	= function()
-{
+cElement.prototype.focus	= function() {
 
 };
 
-cElement.prototype.blur	= function()
-{
+cElement.prototype.blur	= function() {
 
 };
 */
 
-cElement.prototype.$activate	= function()
-{
+cElement.prototype.$activate	= function() {
 	var oEvent	= new cUIEvent;
 	oEvent.initUIEvent("DOMActivate", true, true, window, null);
 	fNode_dispatchEvent(this, oEvent);
 };
 
-cElement.prototype.$getTag		= function()
-{
+cElement.prototype.$getTag		= function() {
 	var aHtml	= [this.$getTagOpen().replace(/^(\s*<[\w:]+)/, '$1 id="' +(this.attributes.id || this.uniqueID)+ '"')];
 	for (var nIndex = 0, oNode; oNode = this.childNodes[nIndex]; nIndex++)
 		aHtml[aHtml.length]	= oNode.$getTag();
 	return aHtml.join('') + this.$getTagClose();
 };
 
-cElement.prototype.$getTagOpen	= function()
-{
+cElement.prototype.$getTagOpen	= function() {
 	return '';
 };
 
-cElement.prototype.$getTagClose	= function()
-{
+cElement.prototype.$getTagClose	= function() {
 	return '';
 };
 
 /*
 cElement.prototype.$getContainer	= function(sName) {
 	var sId	= this.uniqueID + (sName ? '_' + sName : '');
-    if (!this.$cache)
-    	this.$cache	= {};
-    return this.$cache[sId] ||(this.$cache[sId] = oUADocument.getElementById(sId));
+	if (!this.$cache)
+		this.$cache	= {};
+	return this.$cache[sId] ||(this.$cache[sId] = oUADocument.getElementById(sId));
 };
 */
 /*
-cElement.prototype.$getContainer	= function(sName)
-{
-   	return oUADocument.getElementById(this.uniqueID + (sName ? '_' + sName : ''));
+cElement.prototype.$getContainer	= function(sName) {
+		return oUADocument.getElementById(this.uniqueID + (sName ? '_' + sName : ''));
 };
 */
 
-function fElement_getBoundingClientRect(oElement, sPseudo)
-{
-    var oElementDOM	= oElement.$getContainer(sPseudo),
+function fElement_getBoundingClientRect(oElement, sPseudo) {
+	var oElementDOM	= oElement.$getContainer(sPseudo),
 		oRectangle	= {},
 		oNode,
 		nLeft	= 0,
@@ -753,11 +705,11 @@ function fElement_getBoundingClientRect(oElement, sPseudo)
 				nLeft	+= oNode.offsetLeft;
 				nTop	+= oNode.offsetTop;
 			}
-		    for (oNode = oElementDOM; oNode.nodeType == 1; oNode = oNode.parentNode) {
-		    	nLeft	-= oNode.scrollLeft;
-		    	nTop	-= oNode.scrollTop;
+			for (oNode = oElementDOM; oNode.nodeType == 1; oNode = oNode.parentNode) {
+				nLeft	-= oNode.scrollLeft;
+				nTop	-= oNode.scrollTop;
 			}
-		    //
+			//
 			nRight	= nLeft + oElementDOM.offsetWidth;
 			nBottom	= nTop + oElementDOM.offsetHeight;
 		}
@@ -770,8 +722,7 @@ function fElement_getBoundingClientRect(oElement, sPseudo)
 	return oRectangle;
 };
 
-cElement.prototype.getBoundingClientRect	= function(sPseudo)
-{
+cElement.prototype.getBoundingClientRect	= function(sPseudo) {
 	return fElement_getBoundingClientRect(this, sPseudo || null);
 };
 
@@ -780,8 +731,7 @@ cElement.prototype.$isAccessible	= function() {
 };
 
 /*
-cElement.prototype.$getContainer	= function(sName)
-{
+cElement.prototype.$getContainer	= function(sName) {
 	var sShadow	= '#' +(sName || ''),
 		oCache	= oDocument_shadow[this.uniqueID] ||(oDocument_shadow[this.uniqueID] = {});
 
@@ -808,8 +758,7 @@ cElement.prototype.$getContainer	= function(sName)
 	}
 };
 */
-function fElement_getContainerTraverse(oNode, rClass)
-{
+function fElement_getContainerTraverse(oNode, rClass) {
 	for (var nIndex = 0, aChildNodes = oNode.childNodes, sClass; oNode = aChildNodes[nIndex]; nIndex++)
 		if (oNode.nodeType == 1) {
 			// If pseudo-element
@@ -822,16 +771,14 @@ function fElement_getContainerTraverse(oNode, rClass)
 	return null;
 };
 
-cElement.prototype.$getContainer	= function(sName)
-{
+cElement.prototype.$getContainer	= function(sName) {
 	var oElement	= oUADocument.getElementById(this.attributes.id || this.uniqueID);
 	if (sName && oElement)
 		oElement	= fElement_getContainerTraverse(oElement, new cRegExp('--' + sName + '(\\s|$)'));
 	return oElement;
 };
 /*
-cElement.prototype.$getContainer	= function(sName)
-{
+cElement.prototype.$getContainer	= function(sName) {
 	if (!oDocument_all[this.uniqueID])
 		return null;
 	var oCache	= oDocument_shadow[this.uniqueID],
@@ -847,10 +794,9 @@ cElement.prototype.$getContainer	= function(sName)
 };
 */
 /*
-function fElement_setPseudoClass(oElement, sName, bValue, sContainer)
-{
+function fElement_setPseudoClass(oElement, sName, bValue, sContainer) {
 	var oElementDOM	= oElement.$getContainer(sContainer);
-    oElementDOM.className	= oElementDOM.className.replace(/(\w+-[a-z\-]+)?_(\w+)?/ig, '$1_' + (bValue ? sName : ''));
+	oElementDOM.className	= oElementDOM.className.replace(/(\w+-[a-z\-]+)?_(\w+)?/ig, '$1_' + (bValue ? sName : ''));
 };
 */
 /*
@@ -892,8 +838,7 @@ var	aCSSTransition	= [
 //			,"outlineColor"
 	];
 
-function fElement_setPseudoClass(oElement, sName, bValue, sContainer)
-{
+function fElement_setPseudoClass(oElement, sName, bValue, sContainer) {
 	var oElementDOM	= oElement.$getContainer(sContainer),
 		sClass		= fElement_getAttribute(oElement, "class").trim(),
 		aClass		= sClass.length ? sClass.split(/\s+/g) : null,
@@ -967,7 +912,7 @@ function fElement_setPseudoClass(oElement, sName, bValue, sContainer)
 						aNewName.push(	// ns|element.class(::pseudo-element)?:pseudo-class
 										' ' + sTagName + '-' + sClass + sPseudoName + '_' + sName +
 										// .class(::pseudo-element)?:pseudo-class
-									  	' ' + sClass + sPseudoName + '_' + sName);
+										' ' + sClass + sPseudoName + '_' + sName);
 					}
 				// ns|element(::pseudo-element)?:pseudo-class
 				aNewName.push(	' ' + sTagName + sPseudoName + '_' + sName);
@@ -998,7 +943,7 @@ function fElement_setPseudoClass(oElement, sName, bValue, sContainer)
 				nIndex, nLength, sKey, sValue;
 			if (bTransition)
 				for (nIndex = 0, nLength = aCSSTransition.length; nIndex < nLength; nIndex++) {
-					sKey = aCSSTransition[nIndex];
+					sKey	= aCSSTransition[nIndex];
 					sValue	= fBrowser_getStyle(oElementDOM, sKey, oComputedStyle);
 					if (oBefore[sKey] != sValue) {
 //						if (!oStyle[sValue])
@@ -1011,7 +956,7 @@ function fElement_setPseudoClass(oElement, sName, bValue, sContainer)
 				}
 /*			if (bAnimation)
 				for (nIndex = 0, nLength = aCSSAnimation.length; nIndex < nLength; nIndex++) {
-					sKey = aCSSAnimation[nIndex];
+					sKey	= aCSSAnimation[nIndex];
 					sValue	= fBrowser_getStyle(oElementDOM, sKey, oComputedStyle);
 					if (oBefore[sKey] != sValue) {
 //						if (!oStyle[sValue])
@@ -1050,8 +995,7 @@ function fElement_setPseudoClass(oElement, sName, bValue, sContainer)
 };
 
 // Attaching to implementation
-cElement.prototype.$setPseudoClass	= function(sName, bState, sContainer)
-{
+cElement.prototype.$setPseudoClass	= function(sName, bState, sContainer) {
 //->Guard
 	fGuard(arguments, [
 		["name",	cString],
@@ -1097,8 +1041,7 @@ cElement.prototype.scrollIntoView	= function(bTop) {
 };
 
 /*
-cElement.prototype.$getPseudoElement	= function(sName)
-{
-   	return this.$getContainer(sName);
+cElement.prototype.$getPseudoElement	= function(sName) {
+		return this.$getContainer(sName);
 };
 */

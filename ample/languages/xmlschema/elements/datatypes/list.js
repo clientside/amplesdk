@@ -8,7 +8,7 @@
  */
 
 var cXSElement_list	= function(){};
-cXSElement_list.prototype    = new cXSElement("list");
+cXSElement_list.prototype	= new cXSElement("list");
 
 cXSElement_list.handlers	= {};
 cXSElement_list.handlers.DOMNodeInsertedIntoDocument	= function(oEvent) {

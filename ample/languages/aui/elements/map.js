@@ -49,15 +49,13 @@ cAUIElement_map.handlers	= {
 };
 
 // Element Render: open
-cAUIElement_map.prototype.$getTagOpen	= function()
-{
+cAUIElement_map.prototype.$getTagOpen	= function() {
 	return '<div' + (this.attributes["style"] ? ' style="' + this.attributes["style"] + '"' : '') + '>';
 };
 
 // Element Render: close
-cAUIElement_map.prototype.$getTagClose	= function()
-{
-    return '</div>';
+cAUIElement_map.prototype.$getTagClose	= function() {
+	return '</div>';
 };
 
 // Register Element

@@ -8,8 +8,8 @@
  */
 
 var cXULElement_menupopup	= function() {
-    // Collections
-    this.items  = new ample.classes.NodeList;
+	// Collections
+	this.items	= new ample.classes.NodeList;
 };
 cXULElement_menupopup.prototype	= new cXULPopupElement("menupopup");
 
@@ -32,7 +32,7 @@ cXULElement_menupopup.prototype.selectItem	= function(oItem) {
 			}, 300);
 		}
 		// Lowlight previous element
-        this.selectedItem.setAttribute("selected", "false");
+		this.selectedItem.setAttribute("selected", "false");
 	}
 
 	//
@@ -40,7 +40,7 @@ cXULElement_menupopup.prototype.selectItem	= function(oItem) {
 		this._timeOutShow	= clearTimeout(this._timeOutShow);
 
 	if (oItem) {
-	    // Show new element
+		// Show new element
 		if (oItem.menupopup && oItem.$isAccessible()) {
 			var oMenuPopupNew	= oItem.menupopup;
 			this._timeOutShow	= setTimeout(function() {
@@ -57,11 +57,9 @@ cXULElement_menupopup.prototype.selectItem	= function(oItem) {
 
 // Events Handlers
 /*
-cXULElement_menupopup.prototype._onKeyDown	= function(oEvent)
-{
+cXULElement_menupopup.prototype._onKeyDown	= function(oEvent) {
 	var nIndex	= this.items.$indexOf(this.selectedItem);
-	switch (oEvent.keyCode)
-	{
+	switch (oEvent.keyCode) {
 		case 38:	// up
 			if (nIndex == 0)
 				this.selectItem(this.items[this.items.length - 1]);
@@ -77,8 +75,7 @@ cXULElement_menupopup.prototype._onKeyDown	= function(oEvent)
 			break;
 
 		case 37:	// left
-			if (this.parentNode instanceof cXULElement_menu)
-			{
+			if (this.parentNode instanceof cXULElement_menu) {
 				this.selectItem(null);
 				if (this.parentNode.parentNode instanceof cXULElement_menubar || this.parentNode.parentNode instanceof cXULElement_menupopup);
 					this.parentNode.parentNode.$getContainer().focus();
@@ -86,8 +83,7 @@ cXULElement_menupopup.prototype._onKeyDown	= function(oEvent)
 			break;
 
 		case 39:	// right
-			if (this.selectedItem.menupopup && this.selectedItem.$isAccessible())
-			{
+			if (this.selectedItem.menupopup && this.selectedItem.$isAccessible()) {
 				this.selectedItem.menupopup.selectItem(this.selectedItem.menupopup.items[0]);
 				this.selectedItem.menupopup.$getContainer().focus();
 			}
@@ -125,9 +121,9 @@ cXULElement_menupopup.handlers	= {
 	},
 	"DOMActivate":	function(oEvent) {
 		if (oEvent.target instanceof cXULElement_menuitem)
-	   		this.hidePopup();
+				this.hidePopup();
 		// if document popup is me
-	   	if (this.ownerDocument.popupNode == this)
+			if (this.ownerDocument.popupNode == this)
 			this.ownerDocument.popupNode	= null;
 	}
 };

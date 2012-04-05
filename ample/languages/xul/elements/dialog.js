@@ -8,18 +8,18 @@
  */
 
 var cXULElement_dialog	= function(){
-    // Collections
-    this.buttons	= {};
-    //
-    var that	= this;
-    this.contentFragment	= ample.createDocumentFragment();
+	// Collections
+	this.buttons	= {};
+	//
+	var that	= this;
+	this.contentFragment	= ample.createDocumentFragment();
 	// Accept
-    this.buttons.accept	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "xul:button"));
-    this.buttons.accept.addEventListener("DOMActivate", function(oEvent) {
+	this.buttons.accept	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "xul:button"));
+	this.buttons.accept.addEventListener("DOMActivate", function(oEvent) {
 		that.acceptDialog();
 	}, false);
-    this.buttons.accept.setAttribute("label", ample.locale.localize("xul.dialog.button.accept"));
-    this.buttons.accept.setAttribute("class", "accept");
+	this.buttons.accept.setAttribute("label", ample.locale.localize("xul.dialog.button.accept"));
+	this.buttons.accept.setAttribute("class", "accept");
 	// Cancel
 	this.buttons.cancel	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "xul:button"));
 	this.buttons.cancel.addEventListener("DOMActivate", function(oEvent) {
@@ -30,9 +30,9 @@ var cXULElement_dialog	= function(){
 	// Help
 	this.buttons.help	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "xul:button"));
 	this.buttons.help.addEventListener("DOMActivate", function(oEvent) {
-        var oEvent2    = that.ownerDocument.createEvent("Event");
-        oEvent2.initEvent("dialoghelp", true, true);
-        that.dispatchEvent(oEvent2);
+		var oEvent2	= that.ownerDocument.createEvent("Event");
+		oEvent2.initEvent("dialoghelp", true, true);
+		that.dispatchEvent(oEvent2);
 	}, false);
 	this.buttons.help.setAttribute("label", ample.locale.localize("xul.dialog.button.help"));
 	this.buttons.help.setAttribute("class", "help");
@@ -64,40 +64,35 @@ cXULElement_dialog.attributes.width		= "400";
 cXULElement_dialog.attributes.height	= "300";
 
 // Public Methods
-cXULElement_dialog.prototype.acceptDialog    = function()
-{
-    var oEvent2  = this.ownerDocument.createEvent("Event");
-    oEvent2.initEvent("dialogaccept", true, true);
-    if (this.dispatchEvent(oEvent2))
-    	this.hide();
+cXULElement_dialog.prototype.acceptDialog	= function() {
+	var oEvent2	= this.ownerDocument.createEvent("Event");
+	oEvent2.initEvent("dialogaccept", true, true);
+	if (this.dispatchEvent(oEvent2))
+		this.hide();
 };
 
-cXULElement_dialog.prototype.cancelDialog    = function()
-{
-    var oEvent2  = this.ownerDocument.createEvent("Event");
-    oEvent2.initEvent("dialogcancel", true, true);
-    if (this.dispatchEvent(oEvent2))
-        this.hide();
+cXULElement_dialog.prototype.cancelDialog	= function() {
+	var oEvent2	= this.ownerDocument.createEvent("Event");
+	oEvent2.initEvent("dialogcancel", true, true);
+	if (this.dispatchEvent(oEvent2))
+		this.hide();
 };
 
-cXULElement_dialog.prototype.extra1    = function()
-{
-    var oEvent2  = this.ownerDocument.createEvent("Event");
-    oEvent2.initEvent("dialogextra1", true, true);
-    this.dispatchEvent(oEvent2);
+cXULElement_dialog.prototype.extra1	= function() {
+	var oEvent2	= this.ownerDocument.createEvent("Event");
+	oEvent2.initEvent("dialogextra1", true, true);
+	this.dispatchEvent(oEvent2);
 };
 
-cXULElement_dialog.prototype.extra2    = function()
-{
-    var oEvent2  = this.ownerDocument.createEvent("Event");
-    oEvent2.initEvent("dialogextra2", true, true);
-    this.dispatchEvent(oEvent2);
+cXULElement_dialog.prototype.extra2	= function() {
+	var oEvent2	= this.ownerDocument.createEvent("Event");
+	oEvent2.initEvent("dialogextra2", true, true);
+	this.dispatchEvent(oEvent2);
 };
 
-cXULElement_dialog.prototype.centerWindowOnScreen    = function()
-{
+cXULElement_dialog.prototype.centerWindowOnScreen	= function() {
 	var oElementDOM	= this.$getContainer(),
-    	oPosition	= this.getBoundingClientRect();
+		oPosition	= this.getBoundingClientRect();
 	oElementDOM.style.left	=(document.body.clientWidth - oPosition.right + oPosition.left) / 2;
 	oElementDOM.style.top	=(document.body.clientHeight - oPosition.bottom + oPosition.top) / 2;
 };
@@ -109,11 +104,11 @@ cXULElement_dialog.handlers	= {
 			var sValue	= oEvent.newValue || '';
 			switch (oEvent.attrName) {
 				case "buttons":
-					this.buttons["help"].setAttribute("hidden", !sValue || sValue.indexOf("help")    ==-1 ? "true" : "false");
-					this.buttons["cancel"].setAttribute("hidden", !sValue || sValue.indexOf("cancel")  ==-1 ? "true" : "false");
-					this.buttons["accept"].setAttribute("hidden", !sValue || sValue.indexOf("accept")  ==-1 ? "true" : "false");
-					this.buttons["extra1"].setAttribute("hidden", !sValue || sValue.indexOf("extra1")  ==-1 ? "true" : "false");
-					this.buttons["extra2"].setAttribute("hidden", !sValue || sValue.indexOf("extra2")  ==-1 ? "true" : "false");
+					this.buttons["help"].setAttribute("hidden", !sValue || sValue.indexOf("help")	==-1 ? "true" : "false");
+					this.buttons["cancel"].setAttribute("hidden", !sValue || sValue.indexOf("cancel")	==-1 ? "true" : "false");
+					this.buttons["accept"].setAttribute("hidden", !sValue || sValue.indexOf("accept")	==-1 ? "true" : "false");
+					this.buttons["extra1"].setAttribute("hidden", !sValue || sValue.indexOf("extra1")	==-1 ? "true" : "false");
+					this.buttons["extra2"].setAttribute("hidden", !sValue || sValue.indexOf("extra2")	==-1 ? "true" : "false");
 					break;
 
 				case "buttonlabelhelp":
@@ -159,8 +154,7 @@ cXULElement_dialog.prototype.$mapAttribute	= function(sName, sValue) {
 };
 
 // Element Renders
-cXULElement_dialog.prototype.$getTagOpen	= function()
-{
+cXULElement_dialog.prototype.$getTagOpen	= function() {
 	return '<div class="xul-dialog' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="' +
 				(this.attributes["width"] ? 'width:' + this.attributes["width"] + 'px;' : '') +
 				(this.attributes["height"] ? 'height:' + (this.attributes["height"] - 40) + 'px;' : '') +
@@ -180,8 +174,7 @@ cXULElement_dialog.prototype.$getTagOpen	= function()
 };
 
 // Element Render: close
-cXULElement_dialog.prototype.$getTagClose	= function()
-{
+cXULElement_dialog.prototype.$getTagClose	= function() {
 	if (this.attributes["buttons"].indexOf("accept") ==-1)
 		this.buttons.accept.attributes["hidden"]= "true";
 	if (this.attributes["buttonlabelaccept"])

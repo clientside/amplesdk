@@ -37,7 +37,7 @@ cXULElement_button.handlers	= {
 
 cXULElement_button.prototype.$mapAttribute	= function(sName, sValue) {
 	if (sName == "disabled")
-		this.$getContainer().disabled = sValue == "true";
+		this.$getContainer().disabled	= sValue == "true";
 	else
 	if (sName == "label")
 		this.$getContainer().innerHTML	=(this.attributes["image"] ? '<img src="' + this.attributes["image"] + '" align="absmiddle" /> ' :'') + (sValue || '');
@@ -49,31 +49,29 @@ cXULElement_button.prototype.$mapAttribute	= function(sName, sValue) {
 };
 
 // Element Render: open
-cXULElement_button.prototype.$getTagOpen	= function()
-{
-    var sHtml   = '<button class="xul-button' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"';
-    if (!this.$isAccessible())
-        sHtml  += ' disabled="true"';
-    sHtml  += ' style="';
-    if (this.attributes["width"])
-        sHtml  += 'width:'+this.attributes["width"]+';';
-    if (this.attributes["height"])
-        sHtml  += 'height:'+this.attributes["height"]+';';
-    if (this.attributes["hidden"] == "true")
-    	sHtml  += 'display:none';
-    sHtml  += '">';
-    if (this.attributes["image"])
-        sHtml  += '<img src="' + ample.$encodeXMLCharacters(this.attributes["image"]) + '" align="absmiddle"/> ';
-    if (this.attributes["label"])
-        sHtml  += ample.$encodeXMLCharacters(this.attributes["label"]);
+cXULElement_button.prototype.$getTagOpen	= function() {
+	var sHtml	= '<button class="xul-button' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"';
+	if (!this.$isAccessible())
+		sHtml  += ' disabled="true"';
+	sHtml  += ' style="';
+	if (this.attributes["width"])
+		sHtml  += 'width:'+this.attributes["width"]+';';
+	if (this.attributes["height"])
+		sHtml  += 'height:'+this.attributes["height"]+';';
+	if (this.attributes["hidden"] == "true")
+		sHtml  += 'display:none';
+	sHtml  += '">';
+	if (this.attributes["image"])
+		sHtml  += '<img src="' + ample.$encodeXMLCharacters(this.attributes["image"]) + '" align="absmiddle"/> ';
+	if (this.attributes["label"])
+		sHtml  += ample.$encodeXMLCharacters(this.attributes["label"]);
 
-    return sHtml;
+	return sHtml;
 };
 
 // Element Render: close
-cXULElement_button.prototype.$getTagClose	= function()
-{
-    return '</button>';
+cXULElement_button.prototype.$getTagClose	= function() {
+	return '</button>';
 };
 
 // Register Element

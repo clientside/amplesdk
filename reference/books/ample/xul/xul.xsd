@@ -25,28 +25,28 @@ Schema is object oriented, elements and attributes are objects defined in terms 
 (2) Element types have names ending with "ElementType"
 (3) Abstract element types start with a capitalized name, e.g. "BoxElementType"
 (4) Concrete element types start with the element name, which is necessarily all lower case,
-    e.g. "boxElementType"
+	e.g. "boxElementType"
 @contents:
 The file is organized as follows:
 (1) list of elements
-     (a) alphabetically ordered list of all elements where each element is defined in terms of an element type.
-     (b) element groups
+	 (a) alphabetically ordered list of all elements where each element is defined in terms of an element type.
+	 (b) element groups
 (2) list of element types, ordered in terms of a top down heirarchy, where each element type is defined in terms of 
-     (a) a parent type (identified by its extension base attribute),
-     (b) a content model to describe the order, presence and repeatability of child elements
-     		(This defines the contained elements for a given element)
-     (c) a list of attributes (or  a referenced attribute group),
+	 (a) a parent type (identified by its extension base attribute),
+	 (b) a content model to describe the order, presence and repeatability of child elements
+	 		(This defines the contained elements for a given element)
+	 (c) a list of attributes (or  a referenced attribute group),
 (3) list of attributes and attribute groups 
 (4) list of attribute types
 @TODO
 (1) local attribute declarations should reference a global or group attribute. The local attribute declaration
-    should include the annotation/documentation
+	should include the annotation/documentation
 (2) place global elements in a separate import file allowing for variatins: a) with/without documentation b) different languages
 (3) find a better way of organizing the CommandAttributeGroup
 (4) Incomplete: browser, 
 -->
 <!-- ================================================================================= -->
-<!-- Schema                                                                            -->
+<!-- Schema																			-->
 <!-- ================================================================================= -->
 <xsd:schema id="XMLSCHEMA"  
 xmlns:xsd="http://www.w3.org/2001/XMLSchema"
@@ -70,7 +70,7 @@ targetNamespace="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 		</xsd:documentation>
 	</xsd:annotation>
 	<!-- ================================================================================= -->
-	<!-- Elements                                                                          -->
+	<!-- Elements																		  -->
 	<!-- ================================================================================= -->
 	<xsd:element name="action" type="xul:actionElementType"/>
 	<xsd:element name="arrowscrollbox" type="xul:arrowscrollboxElementType"/>
@@ -199,7 +199,7 @@ targetNamespace="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	</xsd:element>
 	<xsd:element name="wizardpage" type="xul:wizardpageElementType"/>
 	<!-- ================================================================================= -->
-	<!-- Info Container Element Group                                                      -->
+	<!-- Info Container Element Group													  -->
 	<!-- ================================================================================= -->
 	<xsd:group name="InfoContainerElementGroup">
 		<xsd:sequence minOccurs="0" maxOccurs="unbounded">
@@ -214,7 +214,7 @@ targetNamespace="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 		</xsd:sequence>
 	</xsd:group>
 	<!-- ================================================================================= -->
-	<!-- Box Container Element Group                                                       -->
+	<!-- Box Container Element Group													   -->
 	<!-- ================================================================================= -->
 	<!--
 	(1) This is a group of "generic" or "top level" box containers.
@@ -257,7 +257,7 @@ targetNamespace="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 		</xsd:sequence>
 	</xsd:group>
 	<!-- ================================================================================= -->
-	<!-- Widgets Group                                                                     -->
+	<!-- Widgets Group																	 -->
 	<!-- ================================================================================= -->
 	<!-- Widget elements may appear in "generic" Box Container Elements and in any one of the
 	specific (non-generic) terminal box container elements.
@@ -281,9 +281,9 @@ targetNamespace="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 		</xsd:sequence>
 	</xsd:group>
 	<!-- ********************************************************************************* -->
-	<!-- *                                                                               * -->
-	<!-- *                                Element Types                                  * -->
-	<!-- *                                                                               * -->
+	<!-- *																			   * -->
+	<!-- *								Element Types								  * -->
+	<!-- *																			   * -->
 	<!-- ********************************************************************************* -->
 	<!--
 
@@ -339,21 +339,21 @@ XULElementType
 
 -->
 	<!-- ********************************************************************************* -->
-	<!--                                                                                   -->
-	<!--                                 XULElementType                                    -->
-	<!--                                                                                   -->
+	<!--																				   -->
+	<!--								 XULElementType									-->
+	<!--																				   -->
 	<!-- ********************************************************************************* -->
 	<!-- common elements and attributes to XULElementType -->
 	<xsd:complexType name="XULElementType">
 		<xsd:attribute name="observes" type="xul:idType" use="optional"/>
 	</xsd:complexType>
 	<!-- ********************************************************************************* -->
-	<!--                                                                                   -->
-	<!--                                 RootElementTypes                                  -->
-	<!--                                                                                   -->
+	<!--																				   -->
+	<!--								 RootElementTypes								  -->
+	<!--																				   -->
 	<!-- ********************************************************************************* -->
 	<!-- ================================================================================= -->
-	<!-- windowElementType                                                                 -->
+	<!-- windowElementType																 -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="windowElementType">
 		<xsd:annotation>
@@ -409,7 +409,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- pageElementType                                                                   -->
+	<!-- pageElementType																   -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="pageElementType">
 		<xsd:annotation>
@@ -428,7 +428,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- wizardElementType                                                                 -->
+	<!-- wizardElementType																 -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="wizardElementType">
 		<xsd:annotation>
@@ -450,7 +450,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- dialogElementType                                                                 -->
+	<!-- dialogElementType																 -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="dialogElementType">
 		<xsd:annotation>
@@ -469,7 +469,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- overlayElementType                                                                -->
+	<!-- overlayElementType																-->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="overlayElementType">
 		<xsd:annotation>
@@ -488,9 +488,9 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ********************************************************************************* -->
-	<!--                                                                                   -->
-	<!--                       InfoElementType                                             -->
-	<!--                                                                                   -->
+	<!--																				   -->
+	<!--					   InfoElementType											 -->
+	<!--																				   -->
 	<!-- ********************************************************************************* -->
 	<!-- common elements and attributes to InfoElementType -->
 	<xsd:complexType name="InfoElementType">
@@ -514,7 +514,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- broadcastersetElementType                                                         -->
+	<!-- broadcastersetElementType														 -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="broadcastersetElementType">
 		<xsd:complexContent>
@@ -526,7 +526,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- broadcasterElementType                                                            -->
+	<!-- broadcasterElementType															-->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="broadcasterElementType">
 		<xsd:complexContent>
@@ -534,7 +534,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- commandsElementType                                                               -->
+	<!-- commandsElementType															   -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="commandsElementType">
 		<xsd:complexContent>
@@ -546,7 +546,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- commandsetElementType                                                             -->
+	<!-- commandsetElementType															 -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="commandsetElementType">
 		<xsd:complexContent>
@@ -563,7 +563,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- commandElementType                                                                -->
+	<!-- commandElementType																-->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="commandElementType">
 		<xsd:complexContent>
@@ -571,7 +571,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- keysetElementType                                                                 -->
+	<!-- keysetElementType																 -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="keysetElementType">
 		<xsd:complexContent>
@@ -583,7 +583,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- keyElementType                                                                    -->
+	<!-- keyElementType																	-->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="keyElementType">
 		<xsd:complexContent>
@@ -597,7 +597,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- observesElementType                                                               -->
+	<!-- observesElementType															   -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="observesElementType">
 		<xsd:complexContent>
@@ -606,7 +606,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- resourcebundleElementType                                                         -->
+	<!-- resourcebundleElementType														 -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="resourcebundleElementType">
 		<xsd:complexContent>
@@ -615,7 +615,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- stringbundlesetElementType                                                         -->
+	<!-- stringbundlesetElementType														 -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="stringbundlesetElementType">
 		<xsd:complexContent>
@@ -624,7 +624,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- stringbundleElementType                                                         -->
+	<!-- stringbundleElementType														 -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="stringbundleElementType">
 		<xsd:complexContent>
@@ -633,7 +633,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- scriptElementType                                                                 -->
+	<!-- scriptElementType																 -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="scriptElementType">
 		<xsd:complexContent>
@@ -642,9 +642,9 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ********************************************************************************* -->
-	<!--                                                                                   -->
-	<!--                             TemplateElementTypes                                  -->
-	<!--                                                                                   -->
+	<!--																				   -->
+	<!--							 TemplateElementTypes								  -->
+	<!--																				   -->
 	<!-- ********************************************************************************* -->
 	<xsd:complexType name="TemplateElementType">
 		<xsd:choice minOccurs="0" maxOccurs="unbounded">
@@ -657,7 +657,7 @@ XULElementType
 		</xsd:choice>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- templateElementType                                                                   -->
+	<!-- templateElementType																   -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="templateElementType">
 		<xsd:complexContent>
@@ -669,7 +669,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- ruleElementType                                                                   -->
+	<!-- ruleElementType																   -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="ruleElementType">
 		<xsd:complexContent>
@@ -686,7 +686,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- actionElementType                                                                 -->
+	<!-- actionElementType																 -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="actionElementType">
 		<xsd:complexContent>
@@ -694,7 +694,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- bindingsElementType                                                               -->
+	<!-- bindingsElementType															   -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="bindingsElementType">
 		<xsd:complexContent>
@@ -706,7 +706,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- bindingElementType                                                                -->
+	<!-- bindingElementType																-->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="bindingElementType">
 		<xsd:complexContent>
@@ -718,7 +718,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- conditionsElementType                                                             -->
+	<!-- conditionsElementType															 -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="conditionsElementType">
 		<xsd:complexContent>
@@ -732,7 +732,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- contentElementType                                                                -->
+	<!-- contentElementType																-->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="contentElementType">
 		<xsd:complexContent>
@@ -740,7 +740,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- memberElementType                                                                -->
+	<!-- memberElementType																-->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="memberElementType">
 		<xsd:complexContent>
@@ -748,7 +748,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- tripleElementType                                                                -->
+	<!-- tripleElementType																-->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="tripleElementType">
 		<xsd:complexContent>
@@ -756,7 +756,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ********************************************************************************* -->
-	<!-- BoxElementType                                                                    -->
+	<!-- BoxElementType																	-->
 	<!-- ********************************************************************************* -->
 	<!-- common elements and attributes to BoxElementType -->
 	<xsd:complexType name="BoxElementType">
@@ -829,7 +829,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- arrowscrollboxElementType                                                         -->
+	<!-- arrowscrollboxElementType														 -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="arrowscrollboxElementType">
 		<xsd:complexContent>
@@ -842,7 +842,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- autorepeatbuttonElementType                                                       -->
+	<!-- autorepeatbuttonElementType													   -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="autorepeatbuttonElementType">
 		<xsd:complexContent>
@@ -855,7 +855,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- boxElementType                                                                    -->
+	<!-- boxElementType																	-->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="boxElementType">
 		<xsd:complexContent>
@@ -868,7 +868,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- vboxElementType                                                                   -->
+	<!-- vboxElementType																   -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="vboxElementType">
 		<xsd:complexContent>
@@ -881,7 +881,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- browserElementType                                                                -->
+	<!-- browserElementType																-->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="browserElementType">
 		<xsd:complexContent>
@@ -890,7 +890,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- buttonElementType                                                                 -->
+	<!-- buttonElementType																 -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="buttonElementType">
 		<xsd:complexContent>
@@ -994,7 +994,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- captionElementType                                                                -->
+	<!-- captionElementType																-->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="captionElementType">
 		<xsd:complexContent>
@@ -1004,7 +1004,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- checkboxElementType                                                               -->
+	<!-- checkboxElementType															   -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="checkboxElementType">
 		<xsd:complexContent>
@@ -1015,7 +1015,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- colorpickerElementType                                                            -->
+	<!-- colorpickerElementType															-->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="colorpickerElementType">
 		<xsd:complexContent>
@@ -1026,7 +1026,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- columnsElementType                                                                -->
+	<!-- columnsElementType																-->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="columnsElementType">
 		<xsd:complexContent>
@@ -1039,7 +1039,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- columnElementType                                                                 -->
+	<!-- columnElementType																 -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="columnElementType">
 		<xsd:complexContent>
@@ -1052,7 +1052,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- deckElementType                                                                   -->
+	<!-- deckElementType																   -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="deckElementType">
 		<xsd:complexContent>
@@ -1062,7 +1062,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- descriptionElementType                                                            -->
+	<!-- descriptionElementType															-->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="descriptionElementType">
 		<xsd:complexContent>
@@ -1070,7 +1070,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- editorElementType                                                                 -->
+	<!-- editorElementType																 -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="editorElementType">
 		<xsd:complexContent>
@@ -1078,7 +1078,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- gridElementType                                                                   -->
+	<!-- gridElementType																   -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="gridElementType">
 		<xsd:complexContent>
@@ -1091,7 +1091,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- grippyElementType                                                                 -->
+	<!-- grippyElementType																 -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="grippyElementType">
 		<xsd:complexContent>
@@ -1099,7 +1099,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- groupboxElementType                                                               -->
+	<!-- groupboxElementType															   -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="groupboxElementType">
 		<xsd:complexContent>
@@ -1107,7 +1107,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- hboxElementType                                                                   -->
+	<!-- hboxElementType																   -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="hboxElementType">
 		<xsd:complexContent>
@@ -1120,7 +1120,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- wizardpageElementType                                                                   -->
+	<!-- wizardpageElementType																   -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="wizardpageElementType">
 		<xsd:complexContent>
@@ -1129,7 +1129,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- iframeElementType                                                                 -->
+	<!-- iframeElementType																 -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="iframeElementType">
 		<xsd:complexContent>
@@ -1138,7 +1138,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- imageElementType                                                                  -->
+	<!-- imageElementType																  -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="imageElementType">
 		<xsd:complexContent>
@@ -1147,7 +1147,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- labelElementType                                                                  -->
+	<!-- labelElementType																  -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="labelElementType">
 		<xsd:complexContent>
@@ -1156,7 +1156,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- textboxElementType                                                                -->
+	<!-- textboxElementType																-->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="textboxElementType">
 		<xsd:complexContent>
@@ -1175,7 +1175,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- textnodeElementType                                                               -->
+	<!-- textnodeElementType															   -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="textnodeElementType">
 		<xsd:complexContent>
@@ -1184,10 +1184,10 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ********************************************************************************* -->
-	<!-- Listbox Types                                                                     -->
+	<!-- Listbox Types																	 -->
 	<!-- ********************************************************************************* -->
 	<!-- ================================================================================= -->
-	<!-- listboxElementType                                                                -->
+	<!-- listboxElementType																-->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="listboxElementType">
 		<xsd:complexContent>
@@ -1201,7 +1201,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- listcellElementType                                                               -->
+	<!-- listcellElementType															   -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="listcellElementType">
 		<xsd:complexContent>
@@ -1211,7 +1211,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- listcolsElementType                                                               -->
+	<!-- listcolsElementType															   -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="listcolsElementType">
 		<xsd:complexContent>
@@ -1223,7 +1223,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- listcolElementType                                                                -->
+	<!-- listcolElementType																-->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="listcolElementType">
 		<xsd:complexContent>
@@ -1231,7 +1231,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- listheadElementType                                                               -->
+	<!-- listheadElementType															   -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="listheadElementType">
 		<xsd:complexContent>
@@ -1243,7 +1243,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- listheaderElementType                                                             -->
+	<!-- listheaderElementType															 -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="listheaderElementType">
 		<xsd:complexContent>
@@ -1251,7 +1251,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- listitemElementType                                                               -->
+	<!-- listitemElementType															   -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="listitemElementType">
 		<xsd:complexContent>
@@ -1263,10 +1263,10 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ********************************************************************************* -->
-	<!-- Menu Types                                                                        -->
+	<!-- Menu Types																		-->
 	<!-- ********************************************************************************* -->
 	<!-- ================================================================================= -->
-	<!-- menuElementType                                                                  -->
+	<!-- menuElementType																  -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="menuElementType">
 		<xsd:complexContent>
@@ -1274,7 +1274,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- menubarElementType                                                                -->
+	<!-- menubarElementType																-->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="menubarElementType">
 		<xsd:complexContent>
@@ -1282,7 +1282,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- menuitemElementType                                                               -->
+	<!-- menuitemElementType															   -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="menuitemElementType">
 		<xsd:complexContent>
@@ -1290,7 +1290,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- menulistElementType                                                               -->
+	<!-- menulistElementType															   -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="menulistElementType">
 		<xsd:complexContent>
@@ -1298,7 +1298,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- menupopupElementType                                                              -->
+	<!-- menupopupElementType															  -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="menupopupElementType">
 		<xsd:complexContent>
@@ -1306,7 +1306,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- menuseparatorElementType                                                          -->
+	<!-- menuseparatorElementType														  -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="menuseparatorElementType">
 		<xsd:complexContent>
@@ -1314,7 +1314,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- popupElementType                                                                  -->
+	<!-- popupElementType																  -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="popupElementType">
 		<xsd:complexContent>
@@ -1322,7 +1322,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- popupsetElementType                                                               -->
+	<!-- popupsetElementType															   -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="popupsetElementType">
 		<xsd:complexContent>
@@ -1330,7 +1330,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- progressmeterElementType                                                          -->
+	<!-- progressmeterElementType														  -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="progressmeterElementType">
 		<xsd:complexContent>
@@ -1338,7 +1338,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- radiogroupElementType                                                             -->
+	<!-- radiogroupElementType															 -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="radiogroupElementType">
 		<xsd:complexContent>
@@ -1351,7 +1351,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- radioElementType                                                                  -->
+	<!-- radioElementType																  -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="radioElementType">
 		<xsd:complexContent>
@@ -1359,7 +1359,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- rowsElementType                                                                   -->
+	<!-- rowsElementType																   -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="rowsElementType">
 		<xsd:complexContent>
@@ -1371,7 +1371,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- rowElementType                                                                    -->
+	<!-- rowElementType																	-->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="rowElementType">
 		<xsd:complexContent>
@@ -1384,10 +1384,10 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ********************************************************************************* -->
-	<!-- Scrollbox Types                                                                   -->
+	<!-- Scrollbox Types																   -->
 	<!-- ********************************************************************************* -->
 	<!-- ================================================================================= -->
-	<!-- scrollboxElementType                                                              -->
+	<!-- scrollboxElementType															  -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="scrollboxElementType">
 		<xsd:complexContent>
@@ -1401,7 +1401,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- scrollbarElementType                                                              -->
+	<!-- scrollbarElementType															  -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="scrollbarElementType">
 		<xsd:complexContent>
@@ -1416,7 +1416,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- scrollbarbuttonElementType                                                        -->
+	<!-- scrollbarbuttonElementType														-->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="scrollbarbuttonElementType">
 		<xsd:complexContent>
@@ -1424,7 +1424,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- sliderElementType                                                                 -->
+	<!-- sliderElementType																 -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="sliderElementType">
 		<xsd:complexContent>
@@ -1432,7 +1432,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- thumbElementType                                                                  -->
+	<!-- thumbElementType																  -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="thumbElementType">
 		<xsd:complexContent>
@@ -1440,7 +1440,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- stackElementType                                                                  -->
+	<!-- stackElementType																  -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="stackElementType">
 		<xsd:complexContent>
@@ -1448,7 +1448,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- statusbarElementType                                                              -->
+	<!-- statusbarElementType															  -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="statusbarElementType">
 		<xsd:complexContent>
@@ -1456,7 +1456,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- statusbarpanelElementType                                                         -->
+	<!-- statusbarpanelElementType														 -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="statusbarpanelElementType">
 		<xsd:complexContent>
@@ -1464,10 +1464,10 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ********************************************************************************* -->
-	<!-- Toolbar Types                                                                     -->
+	<!-- Toolbar Types																	 -->
 	<!-- ********************************************************************************* -->
 	<!-- ================================================================================= -->
-	<!-- toolboxElementType                                                                -->
+	<!-- toolboxElementType																-->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="toolboxElementType">
 		<xsd:complexContent>
@@ -1475,7 +1475,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- toolbarsetElementType                                                                -->
+	<!-- toolbarsetElementType																-->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="toolbarsetElementType">
 		<xsd:complexContent>
@@ -1483,7 +1483,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- toolbarElementType                                                                -->
+	<!-- toolbarElementType																-->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="toolbarElementType">
 		<xsd:complexContent>
@@ -1491,7 +1491,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- toolbarbuttonElementType                                                          -->
+	<!-- toolbarbuttonElementType														  -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="toolbarbuttonElementType">
 		<xsd:complexContent>
@@ -1499,7 +1499,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- toolbargrippyElementType                                                          -->
+	<!-- toolbargrippyElementType														  -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="toolbargrippyElementType">
 		<xsd:complexContent>
@@ -1507,7 +1507,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- toolbaritemElementType                                                            -->
+	<!-- toolbaritemElementType															-->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="toolbaritemElementType">
 		<xsd:complexContent>
@@ -1515,7 +1515,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- toolbarpaletteElementType                                                         -->
+	<!-- toolbarpaletteElementType														 -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="toolbarpaletteElementType">
 		<xsd:complexContent>
@@ -1523,7 +1523,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- tabbrowserElementType                                                             -->
+	<!-- tabbrowserElementType															 -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="tabbrowserElementType">
 		<xsd:complexContent>
@@ -1531,10 +1531,10 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ********************************************************************************* -->
-	<!-- Tabpanel Types                                                                    -->
+	<!-- Tabpanel Types																	-->
 	<!-- ********************************************************************************* -->
 	<!-- ================================================================================= -->
-	<!-- tabboxElementType                                                                 -->
+	<!-- tabboxElementType																 -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="tabboxElementType">
 		<xsd:complexContent>
@@ -1548,7 +1548,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- tabsElementType                                                                   -->
+	<!-- tabsElementType																   -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="tabsElementType">
 		<xsd:complexContent>
@@ -1561,7 +1561,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- tabElementType                                                                    -->
+	<!-- tabElementType																	-->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="tabElementType">
 		<xsd:complexContent>
@@ -1570,7 +1570,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- tabpanelsElementType                                                              -->
+	<!-- tabpanelsElementType															  -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="tabpanelsElementType">
 		<xsd:complexContent>
@@ -1583,7 +1583,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- tabpanelElementType                                                               -->
+	<!-- tabpanelElementType															   -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="tabpanelElementType">
 		<xsd:complexContent>
@@ -1596,10 +1596,10 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ********************************************************************************* -->
-	<!-- Tree Element Types                                                                -->
+	<!-- Tree Element Types																-->
 	<!-- ********************************************************************************* -->
 	<!-- ================================================================================= -->
-	<!-- treeElementType                                                                   -->
+	<!-- treeElementType																   -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="treeElementType">
 		<xsd:complexContent>
@@ -1612,7 +1612,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- treecolsElementType                                                               -->
+	<!-- treecolsElementType															   -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="treecolsElementType">
 		<xsd:complexContent>
@@ -1624,7 +1624,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- treecolElementType                                                                -->
+	<!-- treecolElementType																-->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="treecolElementType">
 		<xsd:complexContent>
@@ -1637,7 +1637,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- treechildrenElementType                                                           -->
+	<!-- treechildrenElementType														   -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="treechildrenElementType">
 		<xsd:complexContent>
@@ -1649,7 +1649,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- treeitemElementType                                                               -->
+	<!-- treeitemElementType															   -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="treeitemElementType">
 		<xsd:complexContent>
@@ -1662,7 +1662,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- treerowElementType                                                                -->
+	<!-- treerowElementType																-->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="treerowElementType">
 		<xsd:complexContent>
@@ -1674,7 +1674,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- treecellElementType                                                               -->
+	<!-- treecellElementType															   -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="treecellElementType">
 		<xsd:complexContent>
@@ -1687,7 +1687,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- treeseparatorElementType                                                          -->
+	<!-- treeseparatorElementType														  -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="treeseparatorElementType">
 		<xsd:complexContent>
@@ -1695,10 +1695,10 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ********************************************************************************* -->
-	<!-- Utility Box Types                                                                 -->
+	<!-- Utility Box Types																 -->
 	<!-- ********************************************************************************* -->
 	<!-- ================================================================================= -->
-	<!-- titlebarElementType                                                                -->
+	<!-- titlebarElementType																-->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="titlebarElementType">
 		<xsd:complexContent>
@@ -1706,7 +1706,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- resizerElementType                                                                -->
+	<!-- resizerElementType																-->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="resizerElementType">
 		<xsd:complexContent>
@@ -1714,7 +1714,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- splitterElementType                                                               -->
+	<!-- splitterElementType															   -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="splitterElementType">
 		<xsd:complexContent>
@@ -1722,7 +1722,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- separatorElementType                                                              -->
+	<!-- separatorElementType															  -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="separatorElementType">
 		<xsd:complexContent>
@@ -1730,7 +1730,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- spacerElementType                                                                 -->
+	<!-- spacerElementType																 -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="spacerElementType">
 		<xsd:complexContent>
@@ -1738,7 +1738,7 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ================================================================================= -->
-	<!-- tooltipElementType                                                                 -->
+	<!-- tooltipElementType																 -->
 	<!-- ================================================================================= -->
 	<xsd:complexType name="tooltipElementType">
 		<xsd:complexContent>
@@ -1746,19 +1746,19 @@ XULElementType
 		</xsd:complexContent>
 	</xsd:complexType>
 	<!-- ********************************************************************************* -->
-	<!-- *                                                                               * -->
-	<!-- *                              Attributes                                       * -->
-	<!-- *                                                                               * -->
+	<!-- *																			   * -->
+	<!-- *							  Attributes									   * -->
+	<!-- *																			   * -->
 	<!-- ********************************************************************************* -->
 	<!-- ================================================================================= -->
-	<!-- Common (Global) Attributes                                                        -->
+	<!-- Common (Global) Attributes														-->
 	<!-- ================================================================================= -->
 	<xsd:attribute name="disabled" type="xul:booleanType"/>
 	<xsd:attribute name="label" type="xsd:string"/>
 	<xsd:attribute name="value" type="xsd:string"/>
 	<xsd:attribute name="type" type="xsd:string"/>
 	<!-- ================================================================================= -->
-	<!-- Event Handler Attribute Group                                                     -->
+	<!-- Event Handler Attribute Group													 -->
 	<!-- ================================================================================= -->
 	<xsd:attributeGroup name="EventHandlerAttributeGroup">
 		<xsd:attribute name="onblur" type="xsd:string"/>
@@ -1795,7 +1795,7 @@ XULElementType
 		<xsd:attribute name="onunload" type="xsd:string"/>
 	</xsd:attributeGroup>
 	<!-- ================================================================================= -->
-	<!-- XUL Attribute Group                                                               -->
+	<!-- XUL Attribute Group															   -->
 	<!-- ================================================================================= -->
 	<xsd:attributeGroup name="XULElementAttributes">
 		<xsd:annotation>
@@ -1804,7 +1804,7 @@ XULElementType
 		<xsd:attributeGroup ref="xul:EventHandlerAttributeGroup"/>
 	</xsd:attributeGroup>
 	<!-- ================================================================================= -->
-	<!-- Box Attribute Group                                                               -->
+	<!-- Box Attribute Group															   -->
 	<!-- ================================================================================= -->
 	<xsd:attributeGroup name="BoxAttributeGroup">
 		<xsd:attribute name="align" type="xul:alignAttributeType" use="optional"/>
@@ -1852,7 +1852,7 @@ XULElementType
 		<xsd:attribute name="width" type="xul:sizeType" use="optional"/>
 	</xsd:attributeGroup>
 	<!-- ================================================================================= -->
-	<!-- Command Attribute Group                                                           -->
+	<!-- Command Attribute Group														   -->
 	<!-- ================================================================================= -->
 	<xsd:attributeGroup name="CommandAttributeGroup">
 				<xsd:attribute name="accesskey" type="xsd:string">
@@ -1940,12 +1940,12 @@ XULElementType
 				</xsd:attribute>
 	</xsd:attributeGroup>
 	<!-- ********************************************************************************* -->
-	<!-- *                                                                               * -->
-	<!-- *                              Attribute Types                                  * -->
-	<!-- *                                                                               * -->
+	<!-- *																			   * -->
+	<!-- *							  Attribute Types								  * -->
+	<!-- *																			   * -->
 	<!-- ********************************************************************************* -->
 	<!-- ================================================================================= -->
-	<!-- Common Attribute Types                                                            -->
+	<!-- Common Attribute Types															-->
 	<!-- ================================================================================= -->
 	<xsd:simpleType name="booleanType">
 		<xsd:restriction base="xsd:string">
@@ -1984,7 +1984,7 @@ XULElementType
 		<xsd:restriction base="xsd:string"/>
 	</xsd:simpleType>
 	<!-- ================================================================================= -->
-	<!-- alignAttributeType                                                                -->
+	<!-- alignAttributeType																-->
 	<!-- ================================================================================= -->
 	<xsd:simpleType name="alignAttributeType">
 		<xsd:restriction base="xsd:string">
@@ -1996,7 +1996,7 @@ XULElementType
 		</xsd:restriction>
 	</xsd:simpleType>
 	<!-- ================================================================================= -->
-	<!-- dirAttributeType                                                                  -->
+	<!-- dirAttributeType																  -->
 	<!-- ================================================================================= -->
 	<xsd:simpleType name="dirAttributeType">
 		<xsd:annotation>
@@ -2011,7 +2011,7 @@ XULElementType
 		</xsd:restriction>
 	</xsd:simpleType>
 	<!-- ================================================================================= -->
-	<!-- equalsizeAttributeType                                                            -->
+	<!-- equalsizeAttributeType															-->
 	<!-- ================================================================================= -->
 	<xsd:simpleType name="equalsizeAttributeType">
 		<xsd:restriction base="xsd:string">
@@ -2020,7 +2020,7 @@ XULElementType
 		</xsd:restriction>
 	</xsd:simpleType>
 	<!-- ================================================================================= -->
-	<!-- flagsAttributeType                                                                -->
+	<!-- flagsAttributeType																-->
 	<!-- ================================================================================= -->
 	<xsd:simpleType name="flagsAttributeType">
 		<xsd:restriction base="xsd:string">
@@ -2029,7 +2029,7 @@ XULElementType
 		</xsd:restriction>
 	</xsd:simpleType>
 	<!-- ================================================================================= -->
-	<!-- orientAttributeType                                                               -->
+	<!-- orientAttributeType															   -->
 	<!-- ================================================================================= -->
 	<xsd:simpleType name="orientAttributeType">
 		<xsd:restriction base="xsd:string">
@@ -2038,7 +2038,7 @@ XULElementType
 		</xsd:restriction>
 	</xsd:simpleType>
 	<!-- ================================================================================= -->
-	<!-- packAttributeType                                                                 -->
+	<!-- packAttributeType																 -->
 	<!-- ================================================================================= -->
 	<xsd:simpleType name="packAttributeType">
 		<xsd:restriction base="xsd:string">
@@ -2049,7 +2049,7 @@ XULElementType
 		</xsd:restriction>
 	</xsd:simpleType>
 	<!-- ================================================================================= -->
-	<!-- sizemodeAttributeType                                                             -->
+	<!-- sizemodeAttributeType															 -->
 	<!-- ================================================================================= -->
 	<xsd:simpleType name="sizemodeAttributeType">
 		<xsd:restriction base="xsd:string">

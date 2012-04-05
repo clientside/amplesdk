@@ -11,8 +11,7 @@ var cAUIElement_sidebar	= function(){};
 cAUIElement_sidebar.prototype	= new cAUIElement("sidebar");
 
 // Public methods
-cAUIElement_sidebar.prototype.toggle	= function(bState)
-{
+cAUIElement_sidebar.prototype.toggle	= function(bState) {
 	var oContainer	= this.$getContainer(),
 		oStyle		= oContainer.style;
 	// Reset old position
@@ -40,17 +39,15 @@ cAUIElement_sidebar.handlers	= {
 };
 
 // Element Renderers
-cAUIElement_sidebar.prototype.$getTagOpen	= function()
-{
+cAUIElement_sidebar.prototype.$getTagOpen	= function() {
 	var sHtml	= '<div' + (this.attributes["style"] ? ' style="' + this.attributes["style"] + '"' : '') + ' class="aui-sidebar';
-	sHtml  +=(this.attributes["class"] ? " " + "aui-sidebar-" + this.attributes["class"] : '') + '">';
+	sHtml	+=(this.attributes["class"] ? " " + "aui-sidebar-" + this.attributes["class"] : '') + '">';
 
 	return sHtml;
 };
 
-cAUIElement_sidebar.prototype.$getTagClose	= function()
-{
-    return '</div>';
+cAUIElement_sidebar.prototype.$getTagClose	= function() {
+	return '</div>';
 };
 
 // Register Element

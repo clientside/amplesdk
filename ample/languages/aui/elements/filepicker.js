@@ -8,26 +8,24 @@
  */
 
 var cAUIElement_filepicker	= function(){};
-cAUIElement_filepicker.prototype = new cAUIElement("filepicker");
+cAUIElement_filepicker.prototype	= new cAUIElement("filepicker");
 //
 cAUIElement_filepicker.prototype.tabIndex	= 0;
 
-cAUIElement_filepicker.prototype.$isAccessible	= function()
-{
+cAUIElement_filepicker.prototype.$isAccessible	= function() {
 	return !this.getAttribute("disabled");
 };
 
 // Public Methods
 
 // Events Handlers
-cAUIElement_filepicker.prototype._onChange   = function(oEvent)
-{
-    this.attributes["value"]   = this.$getContainer("input").value;
+cAUIElement_filepicker.prototype._onChange	= function(oEvent) {
+	this.attributes["value"]	= this.$getContainer("input").value;
 
-    // Fire Event
-    var oEvent  = this.ownerDocument.createEvent("Event");
-    oEvent.initEvent("change", true, false);
-    this.dispatchEvent(oEvent);
+	// Fire Event
+	var oEvent	= this.ownerDocument.createEvent("Event");
+	oEvent.initEvent("change", true, false);
+	this.dispatchEvent(oEvent);
 };
 
 // Class Events Handlers
@@ -42,25 +40,23 @@ cAUIElement_filepicker.handlers	= {
 		if (oEvent.target == this) {
 			switch (oEvent.attrName) {
 				case "disabled":
-				   	var oElementDOM	= this.$getContainer();
-			    	oElementDOM.className   = oElementDOM.className.replace(oEvent.newValue == "true" ? "normal" : "disabled", oEvent.newValue == "true" ? "disabled" : "normal");
-			        this.$getContainer("input").disabled =(oEvent.newValue == "true");
-			        break;
+						var oElementDOM	= this.$getContainer();
+					oElementDOM.className	= oElementDOM.className.replace(oEvent.newValue == "true" ? "normal" : "disabled", oEvent.newValue == "true" ? "disabled" : "normal");
+					this.$getContainer("input").disabled	=(oEvent.newValue == "true");
+					break;
 			}
 		}
 	}
 };
 
 // Element Render: open
-cAUIElement_filepicker.prototype.$getTagOpen	= function()
-{
-    return '<span class="aui-filepicker"><input type="file" class="aui-filepicker--input"' +(this.attributes["disabled"] ? ' disabled="true"' : '')+ ' style="padding-left:3px;" onselectstart="event.cancelBubble=true;" />';
+cAUIElement_filepicker.prototype.$getTagOpen	= function() {
+	return '<span class="aui-filepicker"><input type="file" class="aui-filepicker--input"' +(this.attributes["disabled"] ? ' disabled="true"' : '')+ ' style="padding-left:3px;" onselectstart="event.cancelBubble=true;" />';
 };
 
 // Element Render: close
-cAUIElement_filepicker.prototype.$getTagClose	= function()
-{
-    return '</span>';
+cAUIElement_filepicker.prototype.$getTagClose	= function() {
+	return '</span>';
 };
 
 // Register Element

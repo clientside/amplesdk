@@ -52,17 +52,17 @@ cXHTMLElement.html524	= {
 
 // Default Element Render: open
 cXHTMLElement.prototype.$getTagOpen	= function() {
-	var sHtml   = '<' + (this.localName in cXHTMLElement.html524 ? cXHTMLElement.html524[this.localName] : this.localName);
+	var sHtml	= '<' + (this.localName in cXHTMLElement.html524 ? cXHTMLElement.html524[this.localName] : this.localName);
 	for (var sName in this.attributes)
 		if (this.attributes.hasOwnProperty(sName) && sName != "class" && sName != "id" && sName.indexOf(':') ==-1)
-			sHtml  += ' ' + sName + '="' + ample.$encodeXMLCharacters(this.attributes[sName]) + '"';
+			sHtml	+= ' ' + sName + '="' + ample.$encodeXMLCharacters(this.attributes[sName]) + '"';
 	sHtml	+= ' class="' + (this.prefix ? this.prefix + '-' : '') + this.localName + ("class" in this.attributes ? ' ' + this.attributes["class"] : '') + '"';
-    return sHtml + '>';
+	return sHtml + '>';
 };
 
 // Default Element Render: close
 cXHTMLElement.prototype.$getTagClose	= function() {
-    return '</' + (this.localName in cXHTMLElement.html524 ? cXHTMLElement.html524[this.localName] : this.localName) + '>';
+	return '</' + (this.localName in cXHTMLElement.html524 ? cXHTMLElement.html524[this.localName] : this.localName) + '>';
 };
 
 // Register Element

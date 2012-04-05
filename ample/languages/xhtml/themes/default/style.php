@@ -1,13 +1,13 @@
 <?php
 	$aFiles		= array();
-    $aFiles[]	= "forms.css";
-    //
-    $aFiles[]	= "colorpicker.css";
-    $aFiles[]	= "datepicker.css";
+	$aFiles[]	= "forms.css";
+	//
+	$aFiles[]	= "colorpicker.css";
+	$aFiles[]	= "datepicker.css";
 
 	$sOutput	= "";
-    for ($nIndex = 0; $nIndex < count($aFiles); $nIndex++)
-        $sOutput	.= join('', file($aFiles[$nIndex])) . "\n";
+	for ($nIndex = 0; $nIndex < count($aFiles); $nIndex++)
+		$sOutput	.= join('', file($aFiles[$nIndex])) . "\n";
 
 	header("Content-type: text/css");
 

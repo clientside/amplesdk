@@ -27,7 +27,7 @@ cXULDocument.prototype.loadOverlay	= function(sUrl, fObserver) {
 			"dataType":	"xml",
 			"success":	function(oResponse) {
 				// oOverlay	= ample.importNode(oResponse.documentElement, true);
-				oOverlayDocumentElement = oResponse.documentElement; // We can't import the overlay document
+				oOverlayDocumentElement	= oResponse.documentElement; // We can't import the overlay document
 									// because we still need to differentiate
 									// between the ample Document and the Overlay
 									// Document.

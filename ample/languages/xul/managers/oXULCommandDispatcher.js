@@ -17,11 +17,11 @@ cXULElement.prototype.doCommand		= function() {
 			oCommand	= null;
 	}
 
-    // Fire Event on command element
+	// Fire Event on command element
 	if (oCommand) {
-	    var oEvent = this.ownerDocument.createEvent("CustomEvent");
-	    oEvent.initCustomEvent("command", true, true, null);
-	    oCommand.dispatchEvent(oEvent);
+		var oEvent	= this.ownerDocument.createEvent("CustomEvent");
+		oEvent.initCustomEvent("command", true, true, null);
+		oCommand.dispatchEvent(oEvent);
 	}
 };
 

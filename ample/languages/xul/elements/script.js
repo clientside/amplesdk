@@ -20,7 +20,7 @@ cXULElement_script.attributes.hidden	= "true";
 cXULElement_script.handlers	= {
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		if (this.attributes["src"])
-			this.$getContainer().src  = this.attributes["src"];
+			this.$getContainer().src	= this.attributes["src"];
 		else
 		if (this.firstChild) {
 			var oElement	= document.body.appendChild(document.createElement("script"));
@@ -33,7 +33,7 @@ cXULElement_script.handlers	= {
 cXULElement_script.prototype.$mapAttribute	= function(sName, sValue) {
 	if (sName == "src") {
 		if (sValue)
-			this.$getContainer().src  = sValue || '';
+			this.$getContainer().src	= sValue || '';
 	}
 	else
 		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
@@ -41,12 +41,12 @@ cXULElement_script.prototype.$mapAttribute	= function(sName, sValue) {
 
 // Element Render: open
 cXULElement_script.prototype.$getTagOpen	= function() {
-    return '<script type="text/javascript">';
+	return '<script type="text/javascript">';
 };
 
 // Element Render: close
 cXULElement_script.prototype.$getTagClose	= function() {
-    return '</script>';
+	return '</script>';
 };
 
 // Register Element

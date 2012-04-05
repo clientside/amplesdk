@@ -284,7 +284,7 @@
 			<attribute name="popup" default="" readonly="false">
 				<description>
 					<locale>
-						Should be set to the value of the id of the popup  element that should appear when the user clicks on the element.
+						Should be set to the value of the id of the popup element that should appear when the user clicks on the element.
 					</locale>
 					<locale xml:lang="ru">
 						Должен быть выставлен в значение атрибута <link type="attribute">id</link> всплывающего элемента, который появится при обычном нажатии.
@@ -294,7 +294,7 @@
 			<attribute name="tooltip" default="" readonly="false">
 				<description>
 					<locale>
-						Should be set to the value of the id  of the popup element that should be used as a tooltip window when the mouse hovers over the element for a moment.
+						Should be set to the value of the id of the popup element that should be used as a tooltip window when the mouse hovers over the element for a moment.
 					</locale>
 					<locale xml:lang="ru">
 						Должен быть выставлен в значение атрибута <link type="attribute">id</link> элемента <link type="element">tooltip</link>, который появится при наведении мыши.

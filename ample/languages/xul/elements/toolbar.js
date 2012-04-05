@@ -16,12 +16,12 @@ cXULElement_toolbar.prototype.$selectable	= false;
 
 // Element Render: open
 cXULElement_toolbar.prototype.$getTagOpen		= function() {
-    return '<div class="xul-toolbar' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">';
+	return '<div class="xul-toolbar' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">';
 };
 
 // Element Render: close
 cXULElement_toolbar.prototype.$getTagClose	= function() {
-    return '</div>';
+	return '</div>';
 };
 
 // Register Element

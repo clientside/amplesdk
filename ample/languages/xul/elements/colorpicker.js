@@ -57,10 +57,10 @@ cXULElement_colorpicker.prototype.toggle	= function(bState) {
 
 // Events handlers
 cXULElement_colorpicker.prototype._onChange	= function(oEvent) {
-    this.attributes["value"]    = this.$getContainer("input").value;
+	this.attributes["value"]	= this.$getContainer("input").value;
 
-    // Fire Event
-    cXULInputElement.dispatchChange(this);
+	// Fire Event
+	cXULInputElement.dispatchChange(this);
 };
 
 // Class Events handlers
@@ -109,7 +109,7 @@ cXULElement_colorpicker.prototype.$mapAttribute	= function(sName, sValue) {
 	else
 	if (sName == "disabled") {
 		this.$setPseudoClass("disabled", sValue == "true");
-		this.$getContainer("input").disabled = sValue == "true";
+		this.$getContainer("input").disabled	= sValue == "true";
 	}
 	else
 		cXULInputElement.prototype.$mapAttribute.call(this, sName, sValue);

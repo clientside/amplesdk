@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_keygen	= function(){
-   	this.validity	= new cXHTMLValidityState;
+		this.validity	= new cXHTMLValidityState;
 };
 cXHTMLElement_keygen.prototype	= new cXHTMLInputElement("keygen");
 

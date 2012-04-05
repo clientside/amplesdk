@@ -8,7 +8,7 @@
  */
 
 var cXSElement_fractionDigits	= function(){};
-cXSElement_fractionDigits.prototype    = new cXSElement("fractionDigits");
+cXSElement_fractionDigits.prototype	= new cXSElement("fractionDigits");
 
 cXSElement_fractionDigits.handlers	= {};
 cXSElement_fractionDigits.handlers.DOMNodeInsertedIntoDocument	= function(oEvent) {

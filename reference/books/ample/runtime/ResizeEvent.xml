@@ -96,12 +96,12 @@
 	<remarks>
 		<remark>
 			<locale>Events of that type:</locale>
-      <locale xml:lang="ru">События этого типа:</locale>
-      <ul>
-        <li><link type="event" href="runtime:Element">resize</link></li>
-        <li><link type="event" href="runtime:Element">resizestart</link></li>
-        <li><link type="event" href="runtime:Element">resizeend</link></li>
-      </ul>
+			<locale xml:lang="ru">События этого типа:</locale>
+			<ul>
+				<li><link type="event" href="runtime:Element">resize</link></li>
+				<li><link type="event" href="runtime:Element">resizestart</link></li>
+				<li><link type="event" href="runtime:Element">resizeend</link></li>
+			</ul>
 		</remark>
 	</remarks>
 	<examples />

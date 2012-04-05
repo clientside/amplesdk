@@ -13,8 +13,7 @@ cEntityReference.prototype	= new cNode;
 cEntityReference.prototype.nodeType	= 5;	// cNode.ENTITY_REFERENCE_NODE
 
 /*
-cEntityReference.prototype.$getTag	= function()
-{
+cEntityReference.prototype.$getTag	= function() {
 	return this.nodeValue;
 };
 */

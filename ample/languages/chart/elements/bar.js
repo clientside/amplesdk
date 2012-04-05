@@ -158,7 +158,7 @@ cChartElement_bar.prototype.refresh	= function() {
 
 		for (var nItem = 0, nItems = aData[nGroup].length, oItem; nItem < nItems; nItem++) {
 			// Get DOM element
-			oItem = oGroup.childNodes[nItem];
+			oItem	= oGroup.childNodes[nItem];
 
 			//
 			if (aSumUp.length < nItem + 1)
@@ -215,7 +215,7 @@ cChartElement_bar.prototype.refresh	= function() {
 					// Bars
 					d	=	"M" + (50 + (nWeightGroup + nOffsetGroup) * nItem + (nOffsetItem + nOffsetGroup) / 2) + "," + (250 - 200 * aSumUp[nItem] / nSumMax) +
 							"v-" + nValue + " " +
-							"h" +  nWeightItem + " " +
+							"h" + nWeightItem + " " +
 							"v" + nValue + " " +
 							"h-" + nWeightItem + " z";
 				}
@@ -227,7 +227,7 @@ cChartElement_bar.prototype.refresh	= function() {
 					// Bars
 					d	=	"M" + (50 + (nWeightGroup + nOffsetGroup) * nItem + (nOffsetItem + nOffsetGroup) / 2) + "," + (250 - 200 * aSumUp[nItem] / aSumAll[nItem]) +
 							"v-" + nValue + " " +
-							"h" +  nWeightItem + " " +
+							"h" + nWeightItem + " " +
 							"v" + nValue + " " +
 							"h-" + nWeightItem + " z";
 				}

@@ -8,7 +8,7 @@
  */
 
 var cXSElement_maxLength	= function(){};
-cXSElement_maxLength.prototype    = new cXSElement("maxLength");
+cXSElement_maxLength.prototype	= new cXSElement("maxLength");
 
 cXSElement_maxLength.handlers	= {};
 cXSElement_maxLength.handlers.DOMNodeInsertedIntoDocument	= function(oEvent) {

@@ -8,7 +8,7 @@
  */
 
 var cXSElement_minScale	= function(){};
-cXSElement_minScale.prototype    = new cXSElement("minScale");
+cXSElement_minScale.prototype	= new cXSElement("minScale");
 
 cXSElement_minScale.handlers	= {};
 cXSElement_minScale.handlers.DOMNodeInsertedIntoDocument	= function(oEvent) {

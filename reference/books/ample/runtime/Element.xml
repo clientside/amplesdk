@@ -1187,7 +1187,7 @@
 						Fires on the target element when the user drags the object to a valid drop target.
 					</locale>
 					<locale xml:lang="ru">
-						Загорается на объекте - валидном месте оставления, когда указатель мыши входит в пределы границ  во время перетаскивания другого объекта.
+						Загорается на объекте - валидном месте оставления, когда указатель мыши входит в пределы границ во время перетаскивания другого объекта.
 					</locale>
 				</description>
 			</event>
@@ -1204,7 +1204,7 @@
 						Fires on the target object when the user moves the mouse out of a valid drop target during a drag operation.
 					</locale>
 					<locale xml:lang="ru">
-						Загорается на объекте - валидном месте оставления, когда указатель мыши выходит за пределы границ  во время перетаскивания другого объекта.
+						Загорается на объекте - валидном месте оставления, когда указатель мыши выходит за пределы границ во время перетаскивания другого объекта.
 					</locale>
 				</description>
 			</event>

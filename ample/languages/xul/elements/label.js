@@ -8,7 +8,7 @@
  */
 
 var cXULElement_label	= function(){};
-cXULElement_label.prototype  = new cXULElement("label");
+cXULElement_label.prototype	= new cXULElement("label");
 
 // Public Methods
 
@@ -35,12 +35,12 @@ cXULElement_label.prototype.$mapAttribute	= function(sName, sValue) {
 
 // Element Render: open
 cXULElement_label.prototype.$getTagOpen	= function() {
-    return '<label class="xul-label' +(this.attributes["class"] ? " " + this.attributes["class"] : "")+ '">' + (this.attributes["value"] ? ample.$encodeXMLCharacters(this.attributes["value"]) : '');
+	return '<label class="xul-label' +(this.attributes["class"] ? " " + this.attributes["class"] : "")+ '">' + (this.attributes["value"] ? ample.$encodeXMLCharacters(this.attributes["value"]) : '');
 };
 
 // Element Render: close
 cXULElement_label.prototype.$getTagClose	= function() {
-    return '</label>';
+	return '</label>';
 };
 
 // Register Element

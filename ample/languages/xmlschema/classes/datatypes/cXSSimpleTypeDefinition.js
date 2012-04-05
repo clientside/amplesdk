@@ -134,11 +134,11 @@ oXSPrimitives[cXSConstants.BASE64BINARY_DT]	= /^((([A-Za-z0-9+\/]\s*){4})*(([A-Z
 
 // Converts XML Schema RegExp syntaxis to JavaScipt one
 function fXSSimpleTypeDefinition_schemaRegExpToJSRegExp(sValue) {
-	var d1= '\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF',
-		d2= '\u0370-\u037D\u037F-\u1FFF\u200C-\u200D',
-		d3= '\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD',
-		c = 'A-Z_a-z\\-.0-9\u00B7' + d1 + '\u0300-\u036F' + d2 + '\u203F-\u2040' + d3,
-		i = 'A-Z_a-z' + d1 + d2 + d3;
+	var d1	= '\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF',
+		d2	= '\u0370-\u037D\u037F-\u1FFF\u200C-\u200D',
+		d3	= '\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD',
+		c	= 'A-Z_a-z\\-.0-9\u00B7' + d1 + '\u0300-\u036F' + d2 + '\u203F-\u2040' + d3,
+		i	= 'A-Z_a-z' + d1 + d2 + d3;
 	return sValue
 				.replace(/\[\\i-\[:\]\]/g, '[' + i + ']')
 				.replace(/\[\\c-\[:\]\]/g, '[' + c + ']')
@@ -312,8 +312,8 @@ function fXSSimpleTypeDefinition_getValue(oType, sValue) {
 
 			case cXSConstants.DURATION_DT:
 				var aDate	= oXSPrimitives[cXSConstants.DURATION_DT].exec(sValue),
-					nMonths = parseInt(aDate[2], 10) * 12 + parseInt(aDate[3], 10),
-					nSeconds = ((parseInt(aDate[4], 10) * 24 + parseInt(aDate[5], 10)) * 60 + parseInt(aDate[6], 10)) * 60 + parseFloat(aDate[7]);
+					nMonths		= parseInt(aDate[2], 10) * 12 + parseInt(aDate[3], 10),
+					nSeconds	= ((parseInt(aDate[4], 10) * 24 + parseInt(aDate[5], 10)) * 60 + parseInt(aDate[6], 10)) * 60 + parseFloat(aDate[7]);
 				return String(aDate[1] == '-' ? [-nMonths, -nSeconds] : [nMonths, nSeconds]);
 
 			// DATETIME/TIME/DATE
@@ -341,7 +341,7 @@ function fXSSimpleTypeDefinition_getWhiteSpace(oType, sValue) {
 				if (oFacet.facetKind == cXSSimpleTypeDefinition.FACET_WHITESPACE)
 					sWhiteSpace	= oFacet.lexicalFacetValue;
 	} else
-		sWhiteSpace = "collapse";
+		sWhiteSpace	= "collapse";
 
 	//
 	switch (sWhiteSpace) {

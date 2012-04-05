@@ -63,7 +63,7 @@ if (typeof require !== "undefined" &&
 }
 */
 oGlobalize	= {};
-oGlobalize.cultures = {};
+oGlobalize.cultures	= {};
 /*
 oGlobalize.prototype = {
 	constructor: oGlobalize,
@@ -81,8 +81,8 @@ oGlobalize.prototype.init.prototype = oGlobalize.prototype;
 //    which serves as the default calendar in use by that culture.
 // 3. Each culture should have a ".calendar" object which is the current calendar being used,
 //    it may be dynamically changed at any time to one of the calendars in ".calendars".
-var oDefaultCulture =
-oGlobalize.cultures["default"] = {};
+var oDefaultCulture	=
+oGlobalize.cultures["default"]	= {};
 	// A unique name for the culture in the form <language code>-<country/region code>
 oDefaultCulture.name	= 'en';
 	// the name of the culture in the english language
@@ -150,7 +150,7 @@ oPercentFormat.decimals	= 2;
 			// TODO: more detailed description and example
 oPercentFormat.groupSizes	= [3];
 			// string that separates number groups, as in 1,000,000
-oPercentFormat[',']	=  ',';
+oPercentFormat[',']	= ',';
 			// string that separates a number from the fractional portion, as in 1.99
 oPercentFormat['.']	= '.';
 			// symbol used to represent a percentage
@@ -232,7 +232,7 @@ oCalendarFormat.twoDigitYearMax	= 2029;
 			// set of predefined date and time patterns used by the culture
 			// these represent the format someone in this culture would expect
 			// to see given the portions of the date that are shown.
-var oCalendarPatterns =
+var oCalendarPatterns	=
 oCalendarFormat.patterns	= {};
 				// short date pattern
 oCalendarPatterns['d']	= 'M/d/yyyy';
@@ -272,24 +272,24 @@ oCalendarPatterns['S']	= 'yyyy\u0027-\u0027MM\u0027-\u0027dd\u0027T\u0027HH\u002
 	// For localized strings
 oDefaultCulture.messages	= {};
 
-oGlobalize.cultures.en = oDefaultCulture;
+oGlobalize.cultures.en	= oDefaultCulture;
 
-oGlobalize.cultureSelector = 'en';
+oGlobalize.cultureSelector	= 'en';
 
 //
 // private variables
 //
 
-rRegexHex = /^0x[a-f0-9]+$/i;
-rRegexInfinity = /^[+\-]?infinity$/i;
-rRegexParseFloat = /^[+\-]?\d*\.?\d*(e[+\-]?\d+)?$/;
-rRegexTrim = /^\s+|\s+$/g;
+rRegexHex	= /^0x[a-f0-9]+$/i;
+rRegexInfinity	= /^[+\-]?infinity$/i;
+rRegexParseFloat	= /^[+\-]?\d*\.?\d*(e[+\-]?\d+)?$/;
+rRegexTrim	= /^\s+|\s+$/g;
 
 //
 // private JavaScript utility functions
 //
 
-fArrayIndexOf = function(aValue, vValue) {
+fArrayIndexOf	= function(aValue, vValue) {
 	if (aValue.indexOf) {
 		return aValue.indexOf(vValue);
 	}
@@ -301,28 +301,28 @@ fArrayIndexOf = function(aValue, vValue) {
 	return -1;
 };
 
-fEndWith = function(sValue, sPattern) {
+fEndWith	= function(sValue, sPattern) {
 	return sValue.substr(sValue.length - sPattern.length) === sPattern;
 };
 
-fExtend = function() {
+fExtend	= function() {
 	var oOptions, sName, oSource, oCopy, bCopyIsArray, oClone,
-		oTarget = arguments[0] || {},
-		nIndex = 1,
-		nLength = arguments.length,
-		bDeep = false;
+		oTarget	= arguments[0] || {},
+		nIndex	= 1,
+		nLength	= arguments.length,
+		bDeep	= false;
 
 	// Handle a deep copy situation
 	if (typeof oTarget === "boolean") {
-		bDeep = oTarget;
-		oTarget = arguments[1] || {};
+		bDeep	= oTarget;
+		oTarget	= arguments[1] || {};
 		// skip the boolean and the target
-		nIndex = 2;
+		nIndex	= 2;
 	}
 
 	// Handle case when target is a string or something (possible in deep copy)
 	if (!fIsObject(oTarget) && !fIsFunction(oTarget)) {
-		oTarget = {};
+		oTarget	= {};
 	}
 
 	for (; nIndex < nLength; nIndex++) {
@@ -330,8 +330,8 @@ fExtend = function() {
 		if ((oOptions = arguments[nIndex]) != null) {
 			// Extend the base object
 			for (sName in oOptions) {
-				oSource = oTarget[sName];
-				oCopy = oOptions[sName];
+				oSource	= oTarget[sName];
+				oCopy	= oOptions[sName];
 
 				// Prevent never-ending loop
 				if (oTarget === oCopy) {
@@ -341,19 +341,19 @@ fExtend = function() {
 				// Recurse if we're merging plain objects or arrays
 				if (bDeep && oCopy && (fIsObject(oCopy) || (bCopyIsArray = fIsArray(oCopy)))) {
 					if (bCopyIsArray) {
-						bCopyIsArray = false;
-						oClone = oSource && fIsArray(oSource) ? oSource : [];
+						bCopyIsArray	= false;
+						oClone	= oSource && fIsArray(oSource) ? oSource : [];
 
 					} else {
-						oClone = oSource && fIsObject(oSource) ? oSource : {};
+						oClone	= oSource && fIsObject(oSource) ? oSource : {};
 					}
 
 					// Never move original objects, clone them
-					oTarget[sName] = fExtend(bDeep, oClone, oCopy);
+					oTarget[sName]	= fExtend(bDeep, oClone, oCopy);
 
 				// Don't bring in undefined values
 				} else if (typeof oCopy != "undefined") {
-					oTarget[sName] = oCopy;
+					oTarget[sName]	= oCopy;
 				}
 			}
 		}
@@ -363,36 +363,36 @@ fExtend = function() {
 	return oTarget;
 };
 
-fIsArray = cArray.isArray || function(vValue) {
+fIsArray	= cArray.isArray || function(vValue) {
 	return vValue instanceof cArray;	// cObject.prototype.toString.call(vValue) === "[object Array]";
 };
 
-fIsFunction = function(vValue) {
+fIsFunction	= function(vValue) {
 	return vValue instanceof cFunction;	// cObject.prototype.toString.call(vValue) === "[object Function]";
 };
 
-fIsObject = function(vValue) {
+fIsObject	= function(vValue) {
 	return typeof vValue == "object";	// cObject.prototype.toString.call(vValue) === "[object Object]";
 };
 
-fStartsWith = function(sValue, sPattern) {
+fStartsWith	= function(sValue, sPattern) {
 	return sValue.indexOf(sPattern) === 0;
 };
 
-fTrim = function(sValue) {
+fTrim	= function(sValue) {
 	return (sValue + '').replace(rRegexTrim, '');
 };
 
-fTruncate = function(nValue) {
+fTruncate	= function(nValue) {
 	if (fIsNaN(nValue)) {
 		return nNaN;
 	}
 	return cMath[nValue < 0 ? "ceil" : "floor"](nValue);
 };
 
-fZeroPad = function(sValue, nCount, bLeft) {
+fZeroPad	= function(sValue, nCount, bLeft) {
 	for (var nLength = sValue.length; nLength < nCount; nLength++) {
-		sValue = (bLeft ? ('0' + sValue) : (sValue + '0'));
+		sValue	= (bLeft ? ('0' + sValue) : (sValue + '0'));
 	}
 	return sValue;
 };
@@ -401,14 +401,14 @@ fZeroPad = function(sValue, nCount, bLeft) {
 // private Globalization utility functions
 //
 
-fAppendPreOrPostMatch = function(sValue, aValue) {
+fAppendPreOrPostMatch	= function(sValue, aValue) {
 	// appends pre- and post- token match strings while removing escaped characters.
 	// Returns a single quote count which is used to determine if the token occurs
 	// in a string literal.
-	var nQuoteCount = 0,
-		bEscaped = false;
+	var nQuoteCount	= 0,
+		bEscaped	= false;
 	for (var nIndex = 0, nLength = sValue.length; nIndex < nLength; nIndex++) {
-		var sChar = sValue.charAt(nIndex);
+		var sChar	= sValue.charAt(nIndex);
 		switch (sChar) {
 			case "\'":
 				if (bEscaped) {
@@ -417,46 +417,46 @@ fAppendPreOrPostMatch = function(sValue, aValue) {
 				else {
 					nQuoteCount++;
 				}
-				bEscaped = false;
+				bEscaped	= false;
 				break;
 			case '\\':
 				if (bEscaped) {
 					aValue.push('\\');
 				}
-				bEscaped = !bEscaped;
+				bEscaped	= !bEscaped;
 				break;
 			default:
 				aValue.push(sChar);
-				bEscaped = false;
+				bEscaped	= false;
 				break;
 		}
 	}
 	return nQuoteCount;
 };
 
-fExpandFormat = function(oCalendar, sFormat) {
+fExpandFormat	= function(oCalendar, sFormat) {
 	// expands unspecified or single character date formats into the full pattern.
-	sFormat = sFormat || 'F';
+	sFormat	= sFormat || 'F';
 	var sPattern,
-		oPattern = oCalendar.patterns,
-		nLength = sFormat.length;
+		oPattern	= oCalendar.patterns,
+		nLength	= sFormat.length;
 	if (nLength === 1) {
-		sPattern = oPattern[sFormat];
+		sPattern	= oPattern[sFormat];
 		if (!sPattern) {
 			throw new cDOMException(cDOMException.SYNTAX_ERR, null, [sFormat]);
 		}
-		sFormat = sPattern;
+		sFormat	= sPattern;
 	}
 	else if (nLength === 2 && sFormat.charAt(0) === '%') {
 		// %X escape format -- intended as a custom format string that is only one character, not a built-in format.
-		sFormat = sFormat.charAt(1);
+		sFormat	= sFormat.charAt(1);
 	}
 	return sFormat;
 };
 
-fFormatDate = function(dValue, sFormat, oCulture) {
-	var oCalendar = oCulture.calendar,
-		oConvert = oCalendar.convert;
+fFormatDate	= function(dValue, sFormat, oCulture) {
+	var oCalendar	= oCulture.calendar,
+		oConvert	= oCalendar.convert;
 
 	if (!sFormat || !sFormat.length || sFormat === 'i') {
 		if (oCulture && oCulture.name.length) {
@@ -465,7 +465,7 @@ fFormatDate = function(dValue, sFormat, oCulture) {
 				return fFormatDate(dValue, oCalendar.patterns.F, oCulture);
 			}
 			else {
-				var dEraDate = new cDate(dValue.getTime());
+				var dEraDate	= new cDate(dValue.getTime());
 				dEraDate.setFullYear(fGetEraYear(dValue, oCalendar, fGetEra(dValue, oCalendar.eras)));
 				return dEraDate.toLocaleString();
 			}
@@ -475,28 +475,28 @@ fFormatDate = function(dValue, sFormat, oCulture) {
 		}
 	}
 
-	var bSortable = sFormat === 's';
-	sFormat = fExpandFormat(oCalendar, sFormat);
+	var bSortable	= sFormat === 's';
+	sFormat	= fExpandFormat(oCalendar, sFormat);
 
 	// Start with an empty string
-	var aDate = [];
-	var aZeros = ['0', '00', '000'],
+	var aDate	= [];
+	var aZeros	= ['0', '00', '000'],
 		bDayFound,
 		bDayChecked,
-		rDayPartRegexp = /([^d]|^)(d|dd)([^d]|$)/g,
-		nQuoteCount = 0,
-		rDateTokenRegexp = fGetDateTokenRegexp(),
+		rDayPartRegexp	= /([^d]|^)(d|dd)([^d]|$)/g,
+		nQuoteCount	= 0,
+		rDateTokenRegexp	= fGetDateTokenRegexp(),
 		nPart,
 		aConverted;
 
 	function fPadZeros(nValue, nCount) {
-		var sReturn, sValue = nValue + '';
+		var sReturn, sValue	= nValue + '';
 		if (nCount > 1 && sValue.length < nCount) {
-			sReturn = (aZeros[nCount - 2] + sValue);
+			sReturn	= (aZeros[nCount - 2] + sValue);
 			return sReturn.substr(sReturn.length - nCount, nCount);
 		}
 		else {
-			sReturn = sValue;
+			sReturn	= sValue;
 		}
 		return sReturn;
 	}
@@ -505,8 +505,8 @@ fFormatDate = function(dValue, sFormat, oCulture) {
 		if (bDayFound || bDayChecked) {
 			return bDayFound;
 		}
-		bDayFound = rDayPartRegexp.test(sFormat);
-		bDayChecked = true;
+		bDayFound	= rDayPartRegexp.test(sFormat);
+		bDayChecked	= true;
 		return bDayFound;
 	}
 
@@ -525,17 +525,17 @@ fFormatDate = function(dValue, sFormat, oCulture) {
 	}
 
 	if (!bSortable && oConvert) {
-		aConverted = oConvert.fromGregorian(dValue);
+		aConverted	= oConvert.fromGregorian(dValue);
 	}
 
 	for (; ;) {
 		// Save the current index
-		var nLastIndex = rDateTokenRegexp.lastIndex,
+		var nLastIndex	= rDateTokenRegexp.lastIndex,
 			// Look for the next pattern
-			aFormat = rDateTokenRegexp.exec(sFormat);
+			aFormat	= rDateTokenRegexp.exec(sFormat);
 
 		// Append the text before the pattern (or the end of the string if not found)
-		var aPreMatch = sFormat.slice(nLastIndex, aFormat ? aFormat.index : sFormat.length);
+		var aPreMatch	= sFormat.slice(nLastIndex, aFormat ? aFormat.index : sFormat.length);
 		nQuoteCount += fAppendPreOrPostMatch(aPreMatch, aDate);
 
 		if (!aFormat) {
@@ -548,22 +548,22 @@ fFormatDate = function(dValue, sFormat, oCulture) {
 			continue;
 		}
 
-		var sCurrent = aFormat[0],
-			nCurrentLength = sCurrent.length;
+		var sCurrent	= aFormat[0],
+			nCurrentLength	= sCurrent.length;
 
 		switch (sCurrent) {
 			case 'ddd':
 				//Day of the week, as a three-letter abbreviation
 			case 'dddd':
 				// Day of the week, using the full name
-				var aNames = (nCurrentLength === 3) ? oCalendar.days.namesAbbr : oCalendar.days.names;
+				var aNames	= (nCurrentLength === 3) ? oCalendar.days.namesAbbr : oCalendar.days.names;
 				aDate.push(aNames[dValue.getDay()]);
 				break;
 			case 'd':
 				// Day of month, without leading zero for single-digit days
 			case 'dd':
 				// Day of month, with leading zero for single-digit days
-				bDayFound = true;
+				bDayFound	= true;
 				aDate.push(
 					fPadZeros(fGetPart(dValue, 2), nCurrentLength)
 				);
@@ -572,7 +572,7 @@ fFormatDate = function(dValue, sFormat, oCulture) {
 				// Month, as a three-letter abbreviation
 			case 'MMMM':
 				// Month, using the full name
-				nPart = fGetPart(dValue, 1);
+				nPart	= fGetPart(dValue, 1);
 				aDate.push(
 					(oCalendar.monthsGenitive && fHasDay()) ?
 					(oCalendar.monthsGenitive[nCurrentLength === 3 ? "namesAbbr" : "names"][nPart]) :
@@ -593,9 +593,9 @@ fFormatDate = function(dValue, sFormat, oCulture) {
 				// Year, as two digits, with leading zero for years less than 10
 			case 'yyyy':
 				// Year represented by four full digits
-				nPart = aConverted ? aConverted[0] : fGetEraYear(dValue, oCalendar, fGetEra(dValue, oCalendar.eras), bSortable);
+				nPart	= aConverted ? aConverted[0] : fGetEraYear(dValue, oCalendar, fGetEra(dValue, oCalendar.eras), bSortable);
 				if (nCurrentLength < 4) {
-					nPart = nPart % 100;
+					nPart	= nPart % 100;
 				}
 				aDate.push(
 					fPadZeros(nPart, nCurrentLength)
@@ -605,8 +605,8 @@ fFormatDate = function(dValue, sFormat, oCulture) {
 				// Hours with no leading zero for single-digit hours, using 12-hour clock
 			case 'hh':
 				// Hours with leading zero for single-digit hours, using 12-hour clock
-				nPart = dValue.getHours() % 12;
-				if (nPart === 0) nPart = 12;
+				nPart	= dValue.getHours() % 12;
+				if (nPart === 0) nPart	= 12;
 				aDate.push(
 					fPadZeros(nPart, nCurrentLength)
 				);
@@ -639,7 +639,7 @@ fFormatDate = function(dValue, sFormat, oCulture) {
 				// One character am/pm indicator ("a" or "p")
 			case 'tt':
 				// Multicharacter am/pm indicator
-				nPart = dValue.getHours() < 12 ? (oCalendar.AM ? oCalendar.AM[0] : ' ') : (oCalendar.PM ? oCalendar.PM[0] : ' ');
+				nPart	= dValue.getHours() < 12 ? (oCalendar.AM ? oCalendar.AM[0] : ' ') : (oCalendar.PM ? oCalendar.PM[0] : ' ');
 				aDate.push(nCurrentLength === 1 ? nPart.charAt(0) : nPart);
 				break;
 			case 'f':
@@ -656,14 +656,14 @@ fFormatDate = function(dValue, sFormat, oCulture) {
 				// Time zone offset, no leading zero
 			case 'zz':
 				// Time zone offset with leading zero
-				nPart = dValue.getTimezoneOffset() / 60;
+				nPart	= dValue.getTimezoneOffset() / 60;
 				aDate.push(
 					(nPart <= 0 ? '+' : '-') + fPadZeros(cMath.floor(cMath.abs(nPart)), nCurrentLength)
 				);
 				break;
 			case 'zzz':
 				// Time zone offset with leading zero
-				nPart = dValue.getTimezoneOffset() / 60;
+				nPart	= dValue.getTimezoneOffset() / 60;
 				aDate.push(
 					(nPart <= 0 ? '+' : '-') + fPadZeros(cMath.floor(cMath.abs(nPart)), 2) +
 					// Hard coded ":" separator, rather than using oCalendar.TimeSeparator
@@ -693,61 +693,61 @@ fFormatDate = function(dValue, sFormat, oCulture) {
 (function() {
 	var fExpandNumber;
 
-	fExpandNumber = function(nValue, nPrecision, oNumberFormat) {
-		var aGroupSizes = oNumberFormat.groupSizes,
-			nCurrentSize = aGroupSizes[0],
-			nCurrentGroupIndex = 1,
-			nFactor = cMath.pow(10, nPrecision),
-			nRounded = cMath.round(nValue * nFactor) / nFactor;
+	fExpandNumber	= function(nValue, nPrecision, oNumberFormat) {
+		var aGroupSizes		= oNumberFormat.groupSizes,
+			nCurrentSize	= aGroupSizes[0],
+			nCurrentGroupIndex	= 1,
+			nFactor		= cMath.pow(10, nPrecision),
+			nRounded	= cMath.round(nValue * nFactor) / nFactor;
 
 		if (!fIsFinite(nRounded)) {
-			nRounded = nValue;
+			nRounded	= nValue;
 		}
-		nValue = nRounded;
+		nValue	= nRounded;
 
-		var sValue = nValue + '',
-			sRight = '',
-			aSplit = sValue.split(/e/i),
-			nExponent = aSplit.length > 1 ? fParseInt(aSplit[1], 10) : 0;
-		sValue = aSplit[0];
-		aSplit = sValue.split('.');
-		sValue = aSplit[0];
-		sRight = aSplit.length > 1 ? aSplit[1] : '';
+		var sValue	= nValue + '',
+			sRight	= '',
+			aSplit	= sValue.split(/e/i),
+			nExponent	= aSplit.length > 1 ? fParseInt(aSplit[1], 10) : 0;
+		sValue	= aSplit[0];
+		aSplit	= sValue.split('.');
+		sValue	= aSplit[0];
+		sRight	= aSplit.length > 1 ? aSplit[1] : '';
 
 		if (nExponent > 0) {
-			sRight = fZeroPad(sRight, nExponent, false);
+			sRight	= fZeroPad(sRight, nExponent, false);
 			sValue += sRight.slice(0, nExponent);
-			sRight = sRight.substr(nExponent);
+			sRight	= sRight.substr(nExponent);
 		}
 		else if (nExponent < 0) {
-			nExponent = -nExponent;
-			sValue = fZeroPad(sValue, nExponent + 1, true);
-			sRight = sValue.slice(-nExponent, sValue.length) + sRight;
-			sValue = sValue.slice(0, -nExponent);
+			nExponent	= -nExponent;
+			sValue	= fZeroPad(sValue, nExponent + 1, true);
+			sRight	= sValue.slice(-nExponent, sValue.length) + sRight;
+			sValue	= sValue.slice(0, -nExponent);
 		}
 
 		if (nPrecision > 0) {
-			sRight = oNumberFormat['.'] +
+			sRight	= oNumberFormat['.'] +
 				((sRight.length > nPrecision) ? sRight.slice(0, nPrecision) : fZeroPad(sRight, nPrecision));
 		}
 		else {
-			sRight = '';
+			sRight	= '';
 		}
 
-		var nStringIndex = sValue.length - 1,
-			sSeparator = oNumberFormat[','],
-			sNumber = '';
+		var nStringIndex	= sValue.length - 1,
+			sSeparator	= oNumberFormat[','],
+			sNumber	= '';
 
 		while (nStringIndex >= 0) {
 			if (nCurrentSize === 0 || nCurrentSize > nStringIndex) {
 				return sValue.slice(0, nStringIndex + 1) + (sNumber.length ? (sSeparator + sNumber + sRight) : sRight);
 			}
-			sNumber = sValue.slice(nStringIndex - nCurrentSize + 1, nStringIndex + 1) + (sNumber.length ? (sSeparator + sNumber) : '');
+			sNumber	= sValue.slice(nStringIndex - nCurrentSize + 1, nStringIndex + 1) + (sNumber.length ? (sSeparator + sNumber) : '');
 
 			nStringIndex -= nCurrentSize;
 
 			if (nCurrentGroupIndex < aGroupSizes.length) {
-				nCurrentSize = aGroupSizes[nCurrentGroupIndex];
+				nCurrentSize	= aGroupSizes[nCurrentGroupIndex];
 				nCurrentGroupIndex++;
 			}
 		}
@@ -755,7 +755,7 @@ fFormatDate = function(dValue, sFormat, oCulture) {
 		return sValue.slice(0, nStringIndex + 1) + sSeparator + sNumber + sRight;
 	};
 
-	fFormatNumber = function(nValue, sFormat, oCulture) {
+	fFormatNumber	= function(nValue, sFormat, oCulture) {
 		if (!fIsFinite(nValue)) {
 			if (nValue === nInfinity) {
 				return oCulture.numberFormat.positiveInfinity;
@@ -768,50 +768,50 @@ fFormatDate = function(dValue, sFormat, oCulture) {
 		if (!sFormat || sFormat === 'i') {
 			return oCulture.name.length ? nValue.toLocaleString() : nValue.toString();
 		}
-		sFormat = sFormat || 'D';
+		sFormat	= sFormat || 'D';
 
-		var oFormat = oCulture.numberFormat,
-			nNumber = cMath.abs(nValue),
-			nPrecision = -1,
+		var oFormat	= oCulture.numberFormat,
+			nNumber	= cMath.abs(nValue),
+			nPrecision	= -1,
 			sPattern;
 		if (sFormat.length > 1)
-			nPrecision = fParseInt(sFormat.slice(1), 10);
+			nPrecision	= fParseInt(sFormat.slice(1), 10);
 
-		var sCurrent = sFormat.charAt(0).toUpperCase(),
+		var sCurrent	= sFormat.charAt(0).toUpperCase(),
 			oNumberFormat;
 
 		switch (sCurrent) {
 			case 'D':
-				sPattern = 'n';
+				sPattern	= 'n';
 				nNumber = fTruncate(nNumber);
 				if (nPrecision !== -1) {
-					nNumber = fZeroPad('' + nNumber, nPrecision, true);
+					nNumber	= fZeroPad('' + nNumber, nPrecision, true);
 				}
 				if (nValue < 0)
-					nNumber = '-' + nNumber;
+					nNumber	= '-' + nNumber;
 				break;
 			case 'N':
-				oNumberFormat = oFormat;
+				oNumberFormat	= oFormat;
 				/* falls through */
 			case 'C':
-				oNumberFormat = oNumberFormat || oFormat.currency;
+				oNumberFormat	= oNumberFormat || oFormat.currency;
 				/* falls through */
 			case 'P':
-				oNumberFormat = oNumberFormat || oFormat.percent;
-				sPattern = nValue < 0 ? oNumberFormat.pattern[0] : (oNumberFormat.pattern[1] || 'n');
+				oNumberFormat	= oNumberFormat || oFormat.percent;
+				sPattern	= nValue < 0 ? oNumberFormat.pattern[0] : (oNumberFormat.pattern[1] || 'n');
 				if (nPrecision === -1)
-					nPrecision = oNumberFormat.decimals;
-				nNumber = fExpandNumber(nNumber * (sCurrent === 'P' ? 100 : 1), nPrecision, oNumberFormat);
+					nPrecision	= oNumberFormat.decimals;
+				nNumber	= fExpandNumber(nNumber * (sCurrent === 'P' ? 100 : 1), nPrecision, oNumberFormat);
 				break;
 			default:
 				throw new cDOMException(cDOMException.SYNTAX_ERR, null, [sCurrent]);
 		}
 
-		var rPattern = /n|\$|-|%/g,
-			sNumber = '';
+		var rPattern	= /n|\$|-|%/g,
+			sNumber		= '';
 		for (; ;) {
-			var nLastIndex = rPattern.lastIndex,
-				aPattern = rPattern.exec(sPattern);
+			var nLastIndex	= rPattern.lastIndex,
+				aPattern	= rPattern.exec(sPattern);
 
 			sNumber += sPattern.slice(nLastIndex, aPattern ? aPattern.index : sPattern.length);
 
@@ -843,17 +843,17 @@ fFormatDate = function(dValue, sFormat, oCulture) {
 
 }());
 
-fGetDateTokenRegexp = function() {
+fGetDateTokenRegexp	= function() {
 	// regular expression for matching date and time tokens in format strings.
 	return (/\/|dddd|ddd|dd|d|MMMM|MMM|MM|M|yyyy|yy|y|hh|h|HH|H|mm|m|ss|s|tt|t|fff|ff|f|zzz|zz|z|gg|g/g);
 };
 
-fGetEra = function(dValue, aEras) {
+fGetEra	= function(dValue, aEras) {
 	if (!aEras) return 0;
 	var nStart,
-		nTicks = dValue.getTime();
+		nTicks	= dValue.getTime();
 	for (var nIndex = 0, nLength = aEras.length; nIndex < nLength; nIndex++) {
-		nStart = aEras[nIndex].start;
+		nStart	= aEras[nIndex].start;
 		if (nStart === null || nTicks >= nStart) {
 			return nIndex;
 		}
@@ -861,8 +861,8 @@ fGetEra = function(dValue, aEras) {
 	return 0;
 };
 
-fGetEraYear = function(dValue, oCalendar, nEra, bSortable) {
-	var nValue = dValue.getFullYear();
+fGetEraYear	= function(dValue, oCalendar, nEra, bSortable) {
+	var nValue	= dValue.getFullYear();
 	if (!bSortable && oCalendar.eras) {
 		// convert normal gregorian year to era-shifted gregorian
 		// year by subtracting the era offset
@@ -881,13 +881,13 @@ fGetEraYear = function(dValue, oCalendar, nEra, bSortable) {
 		fToUpper,
 		fToUpperArray;
 
-	fExpandYear = function(oCalendar, nYear) {
+	fExpandYear	= function(oCalendar, nYear) {
 		// expands 2-digit year into 4 digits.
 		if (nYear < 100) {
-			var dValue = new cDate(),
-				nEraYear = fGetEraYear(dValue, oCalendar, fGetEra(dValue)),
-				nMaxYear = oCalendar.twoDigitYearMax;
-			nMaxYear = typeof nMaxYear === "string" ? new cDate().getFullYear() % 100 + fParseInt(nMaxYear, 10) : nMaxYear;
+			var dValue	= new cDate(),
+				nEraYear	= fGetEraYear(dValue, oCalendar, fGetEra(dValue)),
+				nMaxYear	= oCalendar.twoDigitYearMax;
+			nMaxYear	= typeof nMaxYear === "string" ? new cDate().getFullYear() % 100 + fParseInt(nMaxYear, 10) : nMaxYear;
 			nYear += nEraYear - (nEraYear % 100);
 			if (nYear > nMaxYear) {
 				nYear -= 100;
@@ -896,81 +896,81 @@ fGetEraYear = function(dValue, oCalendar, nEra, bSortable) {
 		return nYear;
 	};
 
-	fGetDayIndex = function	(oCalendar, sValue, bAbbreviation) {
+	fGetDayIndex	= function	(oCalendar, sValue, bAbbreviation) {
 		var nValue,
-			hDays = oCalendar.days,
-			aUpperDays = oCalendar._upperDays;
+			hDays	= oCalendar.days,
+			aUpperDays	= oCalendar._upperDays;
 		if (!aUpperDays) {
-			oCalendar._upperDays = aUpperDays = [
+			oCalendar._upperDays	= aUpperDays	= [
 				fToUpperArray(hDays.names),
 				fToUpperArray(hDays.namesAbbr),
 				fToUpperArray(hDays.namesShort)
 			];
 		}
-		sValue = fToUpper(sValue);
+		sValue	= fToUpper(sValue);
 		if (bAbbreviation) {
-			nValue = fArrayIndexOf(aUpperDays[1], sValue);
+			nValue	= fArrayIndexOf(aUpperDays[1], sValue);
 			if (nValue === -1) {
-				nValue = fArrayIndexOf(aUpperDays[2], sValue);
+				nValue	= fArrayIndexOf(aUpperDays[2], sValue);
 			}
 		}
 		else {
-			nValue = fArrayIndexOf(aUpperDays[0], sValue);
+			nValue	= fArrayIndexOf(aUpperDays[0], sValue);
 		}
 		return nValue;
 	};
 
-	fGetMonthIndex = function(oCalendar, sValue, bAbbreviation) {
-		var hMonths = oCalendar.months,
-			hMonthsGenitive = oCalendar.monthsGenitive || oCalendar.months,
-			aUpperMonths = oCalendar._upperMonths,
-			aUpperMonthsGenitive = oCalendar._upperMonthsGen;
+	fGetMonthIndex	= function(oCalendar, sValue, bAbbreviation) {
+		var hMonths	= oCalendar.months,
+			hMonthsGenitive	= oCalendar.monthsGenitive || oCalendar.months,
+			aUpperMonths	= oCalendar._upperMonths,
+			aUpperMonthsGenitive	= oCalendar._upperMonthsGen;
 		if (!aUpperMonths) {
-			oCalendar._upperMonths = aUpperMonths = [
+			oCalendar._upperMonths	= aUpperMonths	= [
 				fToUpperArray(hMonths.names),
 				fToUpperArray(hMonths.namesAbbr)
 			];
-			oCalendar._upperMonthsGen = aUpperMonthsGenitive = [
+			oCalendar._upperMonthsGen	= aUpperMonthsGenitive	= [
 				fToUpperArray(hMonthsGenitive.names),
 				fToUpperArray(hMonthsGenitive.namesAbbr)
 			];
 		}
-		sValue = fToUpper(sValue);
-		var nValue = fArrayIndexOf(bAbbreviation ? aUpperMonths[1] : aUpperMonths[0], sValue);
+		sValue	= fToUpper(sValue);
+		var nValue	= fArrayIndexOf(bAbbreviation ? aUpperMonths[1] : aUpperMonths[0], sValue);
 		if (nValue < 0) {
-			nValue = fArrayIndexOf(bAbbreviation ? aUpperMonthsGenitive[1] : aUpperMonthsGenitive[0], sValue);
+			nValue	= fArrayIndexOf(bAbbreviation ? aUpperMonthsGenitive[1] : aUpperMonthsGenitive[0], sValue);
 		}
 		return nValue;
 	};
 
-	fGetDateParseRegexp = function(oCalendar, sFormat) {
+	fGetDateParseRegexp	= function(oCalendar, sFormat) {
 		// converts a format string into a regular expression with groups that
 		// can be used to extract date fields from a date string.
 		// check for a cached parse regex.
-		var hRegexpCache = oCalendar._parseRegExp;
+		var hRegexpCache	= oCalendar._parseRegExp;
 		if (!hRegexpCache) {
-			oCalendar._parseRegExp = hRegexpCache = {};
+			oCalendar._parseRegExp	= hRegexpCache	= {};
 		}
 		else {
-			var aDateParseRegexp = hRegexpCache[sFormat];
+			var aDateParseRegexp	= hRegexpCache[sFormat];
 			if (aDateParseRegexp) {
 				return aDateParseRegexp;
 			}
 		}
 
 		// expand single digit formats, then escape regular expression characters.
-		var sExpandedFormat = fExpandFormat(oCalendar, sFormat).replace(/([\^\$\.\*\+\?\|\[\]\(\)\{\}])/g, '\\\\$1'),
-			aRegexp = ['^'],
-			aGroups = [],
-			nLastIndex = 0,
-			nQuoteCount = 0,
-			rDateTokenRegexp = fGetDateTokenRegexp(),
+		var sExpandedFormat	= fExpandFormat(oCalendar, sFormat).replace(/([\^\$\.\*\+\?\|\[\]\(\)\{\}])/g, '\\\\$1'),
+			aRegexp	= ['^'],
+			aGroups	= [],
+			nLastIndex	= 0,
+			nQuoteCount	= 0,
+			rDateTokenRegexp	= fGetDateTokenRegexp(),
 			aMatch;
 
 		// iterate through each date token found.
 		while ((aMatch = rDateTokenRegexp.exec(sExpandedFormat)) !== null) {
-			var aPreMatch = sExpandedFormat.slice(nLastIndex, aMatch.index);
-			nLastIndex = rDateTokenRegexp.lastIndex;
+			var aPreMatch	= sExpandedFormat.slice(nLastIndex, aMatch.index);
+			nLastIndex	= rDateTokenRegexp.lastIndex;
 
 			// don't replace any matches that occur inside a string literal.
 			nQuoteCount += fAppendPreOrPostMatch(aPreMatch, aRegexp);
@@ -980,23 +980,23 @@ fGetEraYear = function(dValue, oCalendar, nEra, bSortable) {
 			}
 
 			// add a regex group for the token.
-			var sMatch = aMatch[0],
-				nLength = sMatch.length,
+			var sMatch	= aMatch[0],
+				nLength	= sMatch.length,
 				sAddition;
 			switch (sMatch) {
 				case 'dddd': case 'ddd':
 				case 'MMMM': case 'MMM':
 				case 'gg': case 'g':
-					sAddition = '(\\D+)';
+					sAddition	= '(\\D+)';
 					break;
 				case 'tt': case 't':
-					sAddition = '(\\D*)';
+					sAddition	= '(\\D*)';
 					break;
 				case 'yyyy':
 				case 'fff':
 				case 'ff':
 				case 'f':
-					sAddition = '(\\d{' + nLength + '})';
+					sAddition	= '(\\d{' + nLength + '})';
 					break;
 				case 'dd': case 'd':
 				case 'MM': case 'M':
@@ -1005,16 +1005,16 @@ fGetEraYear = function(dValue, oCalendar, nEra, bSortable) {
 				case 'hh': case 'h':
 				case 'mm': case 'm':
 				case 'ss': case 's':
-					sAddition = '(\\d\\d?)';
+					sAddition	= '(\\d\\d?)';
 					break;
 				case 'zzz':
-					sAddition = '([+-]?\\d\\d?:\\d{2})';
+					sAddition	= '([+-]?\\d\\d?:\\d{2})';
 					break;
 				case 'zz': case 'z':
-					sAddition = '([+-]?\\d\\d?)';
+					sAddition	= '([+-]?\\d\\d?)';
 					break;
 				case '/':
-					sAddition = '(\\/)';
+					sAddition	= '(\\/)';
 					break;
 				default:
 					throw new cDOMException(cDOMException.SYNTAX_ERR, null, [sMatch]);
@@ -1028,100 +1028,100 @@ fGetEraYear = function(dValue, oCalendar, nEra, bSortable) {
 		aRegexp.push('$');
 
 		// allow whitespace to differ when matching formats.
-		var sRegexp = aRegexp.join('').replace(/\s+/g, '\\s+');
+		var sRegexp	= aRegexp.join('').replace(/\s+/g, '\\s+');
 
 		// cache the regex for this format.
 		return hRegexpCache[sFormat] = [sRegexp, aGroups];
 	};
 
-	fOutOfRange = function(nValue, nLow, nHigh) {
+	fOutOfRange	= function(nValue, nLow, nHigh) {
 		return nValue < nLow || nValue > nHigh;
 	};
 
-	fToUpper = function(sValue) {
+	fToUpper	= function(sValue) {
 		// "he-IL" has non-breaking space in weekday names.
 		return sValue.split('\u00A0').join(' ').toUpperCase();
 	};
 
-	fToUpperArray = function(aValue) {
-		var aReturn = [];
+	fToUpperArray	= function(aValue) {
+		var aReturn	= [];
 		for (var nIndex = 0, nLength = aValue.length; nIndex < nLength; nIndex++) {
-			aReturn[nIndex] = fToUpper(aValue[nIndex]);
+			aReturn[nIndex]	= fToUpper(aValue[nIndex]);
 		}
 		return aReturn;
 	};
 
-	fParseDate = function(sValue, sFormat, oCulture) {
+	fParseDate	= function(sValue, sFormat, oCulture) {
 		// try to parse the date string by matching against the format string
 		// while using the specified culture for date field names.
-		sValue = fTrim(sValue);
-		var oCalendar = oCulture.calendar,
+		sValue	= fTrim(sValue);
+		var oCalendar	= oCulture.calendar,
 			// convert date formats into regular expressions with groupings.
 			// use the regexp to determine the input format and extract the date fields.
-			aDateParseRegexp = fGetDateParseRegexp(oCalendar, sFormat),
-			aMatch = new cRegExp(aDateParseRegexp[0]).exec(sValue);
+			aDateParseRegexp	= fGetDateParseRegexp(oCalendar, sFormat),
+			aMatch	= new cRegExp(aDateParseRegexp[0]).exec(sValue);
 		if (aMatch === null) {
 			return null;
 		}
 		// found a date format that matches the input.
-		var aGroups = aDateParseRegexp[1],
-			nEra = null, nYear = null, nMonth = null, nDate = null, nWeekDay = null,
-			nHour = 0, nHourOffset, nMin = 0, nSecond = 0, nMilliSecond = 0, nOffsetTimezoneMin = null,
-			bPM = false;
+		var aGroups	= aDateParseRegexp[1],
+			nEra	= null, nYear	= null, nMonth	= null, nDate	= null, nWeekDay	= null,
+			nHour	= 0, nHourOffset, nMin = 0, nSecond	= 0, nMilliSecond	= 0, nOffsetTimezoneMin	= null,
+			bPM	= false;
 		// iterate the format groups to extract and set the date fields.
 		for (var nGroup = 0, nGroupLength = aGroups.length; nGroup < nGroupLength; nGroup++) {
-			var sMatchGroup = aMatch[nGroup + 1];
+			var sMatchGroup	= aMatch[nGroup + 1];
 			if (sMatchGroup) {
-				var sCurrent = aGroups[nGroup],
-					nCurrentLength = sCurrent.length,
-					nMatchInt = fParseInt(sMatchGroup, 10);
+				var sCurrent	= aGroups[nGroup],
+					nCurrentLength	= sCurrent.length,
+					nMatchInt	= fParseInt(sMatchGroup, 10);
 				switch (sCurrent) {
 					case 'dd': case 'd':
 						// Day of month.
-						nDate = nMatchInt;
+						nDate	= nMatchInt;
 						// check that date is generally in valid range, also checking overflow below.
 						if (fOutOfRange(nDate, 1, 31)) return null;
 						break;
 					case 'MMM': case 'MMMM':
-						nMonth = fGetMonthIndex(oCalendar, sMatchGroup, nCurrentLength === 3);
+						nMonth	= fGetMonthIndex(oCalendar, sMatchGroup, nCurrentLength === 3);
 						if (fOutOfRange(nMonth, 0, 11)) return null;
 						break;
 					case 'M': case 'MM':
 						// Month.
-						nMonth = nMatchInt - 1;
+						nMonth	= nMatchInt - 1;
 						if (fOutOfRange(nMonth, 0, 11)) return null;
 						break;
 					case 'y': case 'yy':
 					case 'yyyy':
-						nYear = nCurrentLength < 4 ? fExpandYear(oCalendar, nMatchInt) : nMatchInt;
+						nYear	= nCurrentLength < 4 ? fExpandYear(oCalendar, nMatchInt) : nMatchInt;
 						if (fOutOfRange(nYear, 0, 9999)) return null;
 						break;
 					case 'h': case 'hh':
 						// Hours (12-hour clock).
-						nHour = nMatchInt;
-						if (nHour === 12) nHour = 0;
+						nHour	= nMatchInt;
+						if (nHour === 12) nHour	= 0;
 						if (fOutOfRange(nHour, 0, 11)) return null;
 						break;
 					case 'H': case 'HH':
 						// Hours (24-hour clock).
-						nHour = nMatchInt;
+						nHour	= nMatchInt;
 						if (fOutOfRange(nHour, 0, 23)) return null;
 						break;
 					case 'm': case 'mm':
 						// Minutes.
-						nMin = nMatchInt;
+						nMin	= nMatchInt;
 						if (fOutOfRange(nMin, 0, 59)) return null;
 						break;
 					case 's': case 'ss':
 						// Seconds.
-						nSecond = nMatchInt;
+						nSecond	= nMatchInt;
 						if (fOutOfRange(nSecond, 0, 59)) return null;
 						break;
 					case 'tt': case 't':
 						// AM/PM designator.
 						// see if it is standard, upper, or lower case PM. If not, ensure it is at least one of
 						// the AM tokens. If not, fail the parse for this format.
-						bPM = oCalendar.PM && (sMatchGroup === oCalendar.PM[0] || sMatchGroup === oCalendar.PM[1] || sMatchGroup === oCalendar.PM[2]);
+						bPM	= oCalendar.PM && (sMatchGroup === oCalendar.PM[0] || sMatchGroup === oCalendar.PM[1] || sMatchGroup === oCalendar.PM[2]);
 						if (!bPM && (!oCalendar.AM || (sMatchGroup !== oCalendar.AM[0] && sMatchGroup !== oCalendar.AM[1] && sMatchGroup !== oCalendar.AM[2]))) return null;
 						break;
 					case 'f':
@@ -1130,39 +1130,39 @@ fGetEraYear = function(dValue, oCalendar, nEra, bSortable) {
 						// Centiseconds.
 					case 'fff':
 						// Milliseconds.
-						nMilliSecond = nMatchInt * cMath.pow(10, 3 - nCurrentLength);
+						nMilliSecond	= nMatchInt * cMath.pow(10, 3 - nCurrentLength);
 						if (fOutOfRange(nMilliSecond, 0, 999)) return null;
 						break;
 					case 'ddd':
 						// Day of week.
 					case 'dddd':
 						// Day of week.
-						nWeekDay = fGetDayIndex(oCalendar, sMatchGroup, nCurrentLength === 3);
+						nWeekDay	= fGetDayIndex(oCalendar, sMatchGroup, nCurrentLength === 3);
 						if (fOutOfRange(nWeekDay, 0, 6)) return null;
 						break;
 					case 'zzz':
 						// Time zone offset in +/- hours:min.
-						var aOffsets = sMatchGroup.split(/:/);
+						var aOffsets	= sMatchGroup.split(/:/);
 						if (aOffsets.length !== 2) return null;
-						nHourOffset = fParseInt(aOffsets[0], 10);
+						nHourOffset	= fParseInt(aOffsets[0], 10);
 						if (fOutOfRange(nHourOffset, -12, 13)) return null;
-						var nOffsetMin = fParseInt(aOffsets[1], 10);
+						var nOffsetMin	= fParseInt(aOffsets[1], 10);
 						if (fOutOfRange(nOffsetMin, 0, 59)) return null;
-						nOffsetTimezoneMin = (nHourOffset * 60) + (fStartsWith(sMatchGroup, '-') ? -nOffsetMin : nOffsetMin);
+						nOffsetTimezoneMin	= (nHourOffset * 60) + (fStartsWith(sMatchGroup, '-') ? -nOffsetMin : nOffsetMin);
 						break;
 					case 'z': case 'zz':
 						// Time zone offset in +/- hours.
-						nHourOffset = nMatchInt;
+						nHourOffset	= nMatchInt;
 						if (fOutOfRange(nHourOffset, -12, 13)) return null;
-						nOffsetTimezoneMin = nHourOffset * 60;
+						nOffsetTimezoneMin	= nHourOffset * 60;
 						break;
 					case 'g': case 'gg':
-						var sEraName = sMatchGroup;
+						var sEraName	= sMatchGroup;
 						if (!sEraName || !oCalendar.eras) return null;
-						sEraName = fTrim(sEraName.toLowerCase());
+						sEraName	= fTrim(sEraName.toLowerCase());
 						for (var nIndex = 0, nLength = oCalendar.eras.length; nIndex < nLength; nIndex++) {
 							if (sEraName === oCalendar.eras[nIndex].name.toLowerCase()) {
-								nEra = nIndex;
+								nEra	= nIndex;
 								break;
 							}
 						}
@@ -1172,12 +1172,12 @@ fGetEraYear = function(dValue, oCalendar, nEra, bSortable) {
 				}
 			}
 		}
-		var dValue = new cDate(),
+		var dValue	= new cDate(),
 			nDefaultYear,
-			oConvert = oCalendar.convert;
-		nDefaultYear = oConvert ? oConvert.fromGregorian(dValue)[0] : dValue.getFullYear();
+			oConvert	= oCalendar.convert;
+		nDefaultYear	= oConvert ? oConvert.fromGregorian(dValue)[0] : dValue.getFullYear();
 		if (nYear === null) {
-			nYear = nDefaultYear;
+			nYear	= nDefaultYear;
 		}
 		else if (oCalendar.eras) {
 			// year must be shifted to normal gregorian year
@@ -1188,15 +1188,15 @@ fGetEraYear = function(dValue, oCalendar, nEra, bSortable) {
 		// set default day and month to 1 and January, so if unspecified, these are the defaults
 		// instead of the current day/month.
 		if (nMonth === null) {
-			nMonth = 0;
+			nMonth	= 0;
 		}
 		if (nDate === null) {
-			nDate = 1;
+			nDate	= 1;
 		}
 		// now have year, month, and date, but in the culture's calendar.
 		// convert to gregorian if necessary
 		if (oConvert) {
-			dValue = oConvert.toGregorian(nYear, nMonth, nDate);
+			dValue	= oConvert.toGregorian(nYear, nMonth, nDate);
 			// conversion failed, must be an invalid match
 			if (dValue === null) return null;
 		}
@@ -1217,7 +1217,7 @@ fGetEraYear = function(dValue, oCalendar, nEra, bSortable) {
 		dValue.setHours(nHour, nMin, nSecond, nMilliSecond);
 		if (nOffsetTimezoneMin !== null) {
 			// adjust timezone to utc before applying local offset.
-			var nAdjustedMin = dValue.getMinutes() - (nOffsetTimezoneMin + dValue.getTimezoneOffset());
+			var nAdjustedMin	= dValue.getMinutes() - (nOffsetTimezoneMin + dValue.getTimezoneOffset());
 			// Safari limits hours and minutes to the range of -127 to 127.  We need to use setHours
 			// to ensure both these fields will not exceed this range.	adjustedMin will range
 			// somewhere between -1440 and 1500, so we only need to split this into hours.
@@ -1227,21 +1227,21 @@ fGetEraYear = function(dValue, oCalendar, nEra, bSortable) {
 	};
 }());
 
-fParseNegativePattern = function(sValue, oFormat, sPattern) {
-	var sNegative = oFormat['-'],
-		sPositive = oFormat['+'],
+fParseNegativePattern	= function(sValue, oFormat, sPattern) {
+	var sNegative	= oFormat['-'],
+		sPositive	= oFormat['+'],
 		aValue;
 	switch (sPattern) {
 		case 'n' + ' ' + '-':
-			sNegative = ' ' + sNegative;
-			sPositive = ' ' + sPositive;
+			sNegative	= ' ' + sNegative;
+			sPositive	= ' ' + sPositive;
 			/* falls through */
 		case 'n-':
 			if (fEndWith(sValue, sNegative)) {
-				aValue = ['-', sValue.substr(0, sValue.length - sNegative.length)];
+				aValue	= ['-', sValue.substr(0, sValue.length - sNegative.length)];
 			}
 			else if (fEndWith(sValue, sPositive)) {
-				aValue = ['+', sValue.substr(0, sValue.length - sPositive.length)];
+				aValue	= ['+', sValue.substr(0, sValue.length - sPositive.length)];
 			}
 			break;
 		case '-' + ' ' + 'n':
@@ -1250,15 +1250,15 @@ fParseNegativePattern = function(sValue, oFormat, sPattern) {
 			/* falls through */
 		case '-n':
 			if (fStartsWith(sValue, sNegative)) {
-				aValue = ['-', sValue.substr(sNegative.length)];
+				aValue	= ['-', sValue.substr(sNegative.length)];
 			}
 			else if (fStartsWith(sValue, sPositive)) {
-				aValue = ['+', sValue.substr(sPositive.length)];
+				aValue	= ['+', sValue.substr(sPositive.length)];
 			}
 			break;
 		case '(n)':
 			if (fStartsWith(sValue, '(') && fEndWith(sValue, ')')) {
-				aValue = ['-', sValue.substr(1, sValue.length - 2)];
+				aValue	= ['-', sValue.substr(1, sValue.length - 2)];
 			}
 			break;
 	}
@@ -1299,70 +1299,70 @@ oGlobalize.prototype.culture = function(sCultureSelector) {
 
 oGlobalize.addCultureInfo = function(sCulture, sBaseCulture, oCulture) {
 
-	var oBaseCalture = {},
-		bIsNew = false;
+	var oBaseCalture	= {},
+		bIsNew	= false;
 
 	if (typeof sCulture !== "string") {
 		// sCulture argument is optional string. If not specified, assume oCulture is first
 		// and only argument. Specified oCulture deep-extends current culture.
-		oCulture = sCulture;
+		oCulture	= sCulture;
 		// Changed: this.culture().name to this.culture.name
-		sCulture = this.culture.name;
-		oBaseCalture = this.cultures[sCulture];
+		sCulture	= this.culture.name;
+		oBaseCalture	= this.cultures[sCulture];
 	} else if (typeof sBaseCulture !== "string") {
 		// sBaseCulture argument is optional string. If not specified, assume oCulture is second
 		// argument. Specified oCulture deep-extends specified culture.
 		// If specified culture does not exist, create by deep-extending default
-		oCulture = sBaseCulture;
-		bIsNew = (this.cultures[sCulture] == null);
-		oBaseCalture = this.cultures[sCulture] || this.cultures["default"];
+		oCulture	= sBaseCulture;
+		bIsNew	= (this.cultures[sCulture] == null);
+		oBaseCalture	= this.cultures[sCulture] || this.cultures["default"];
 	} else {
 		// sCulture and sBaseCulture specified. Assume a new culture is being created
 		// by deep-extending an specified base culture
-		bIsNew = true;
-		oBaseCalture = this.cultures[sBaseCulture];
+		bIsNew	= true;
+		oBaseCalture	= this.cultures[sBaseCulture];
 	}
 
-	this.cultures[sCulture] = fExtend(true, {},
+	this.cultures[sCulture]	= fExtend(true, {},
 		oBaseCalture,
 		oCulture
 	);
 	// Make the standard calendar the current culture if it's a new culture
 	if (bIsNew) {
-		this.cultures[sCulture].calendar = this.cultures[sCulture].calendars.standard;
+		this.cultures[sCulture].calendar	= this.cultures[sCulture].calendars.standard;
 	}
 };
 
-oGlobalize.findClosestCulture = function(vName) {
+oGlobalize.findClosestCulture	= function(vName) {
 	var oCulture,
 		hCultures	= this.cultures;
 	if (!vName) {
 		return this.findClosestCulture(this.cultureSelector) || hCultures["default"];
 	}
 	if (typeof vName === "string") {
-		vName = vName.split(',');
+		vName	= vName.split(',');
 	}
 	if (fIsArray(vName)) {
 		var sLanguage, sName,
 			nIndex,
-			nLength = vName.length,
-			aPrioritized = [];
+			nLength	= vName.length,
+			aPrioritized	= [];
 		for (nIndex = 0; nIndex < nLength; nIndex++) {
-			sName = fTrim(vName[nIndex]);
-			var nPriority, aName = sName.split(';');
-			sLanguage = fTrim(aName[0]);
+			sName	= fTrim(vName[nIndex]);
+			var nPriority, aName	= sName.split(';');
+			sLanguage	= fTrim(aName[0]);
 			if (aName.length === 1) {
-				nPriority = 1;
+				nPriority	= 1;
 			}
 			else {
-				sName = fTrim(aName[1]);
+				sName	= fTrim(aName[1]);
 				if (sName.indexOf('q=') === 0) {
-					sName = sName.substr(2);
-					nPriority = fParseFloat(sName);
-					nPriority = fIsNaN(nPriority) ? 0 : nPriority;
+					sName	= sName.substr(2);
+					nPriority	= fParseFloat(sName);
+					nPriority	= fIsNaN(nPriority) ? 0 : nPriority;
 				}
 				else {
-					nPriority = 1;
+					nPriority	= 1;
 				}
 			}
 			aPrioritized.push([sLanguage, nPriority]);
@@ -1377,8 +1377,8 @@ oGlobalize.findClosestCulture = function(vName) {
 		});
 		// exact match
 		for (nIndex = 0; nIndex < nLength; nIndex++) {
-			sLanguage = aPrioritized[nIndex][0];
-			oCulture = hCultures[sLanguage];
+			sLanguage	= aPrioritized[nIndex][0];
+			oCulture	= hCultures[sLanguage];
 			if (oCulture) {
 				return oCulture;
 			}
@@ -1386,15 +1386,15 @@ oGlobalize.findClosestCulture = function(vName) {
 
 		// neutral language match
 		for (nIndex = 0; nIndex < nLength; nIndex++) {
-			sLanguage = aPrioritized[nIndex][0];
+			sLanguage	= aPrioritized[nIndex][0];
 			do {
-				var nLastIndex = sLanguage.lastIndexOf('-');
+				var nLastIndex	= sLanguage.lastIndexOf('-');
 				if (nLastIndex === -1) {
 					break;
 				}
 				// strip off the last part. e.g. en-US => en
-				sLanguage = sLanguage.substr(0, nLastIndex);
-				oCulture = hCultures[sLanguage];
+				sLanguage	= sLanguage.substr(0, nLastIndex);
+				oCulture	= hCultures[sLanguage];
 				if (oCulture) {
 					return oCulture;
 				}
@@ -1404,9 +1404,9 @@ oGlobalize.findClosestCulture = function(vName) {
 
 		// last resort: match first culture using that language
 		for (nIndex = 0; nIndex < nLength; nIndex++) {
-			sLanguage = aPrioritized[nIndex][0];
+			sLanguage	= aPrioritized[nIndex][0];
 			for (var sKey in hCultures) {
-				oCulture = hCultures[sKey];
+				oCulture	= hCultures[sKey];
 				if (oCulture.language == sLanguage) {
 					return oCulture;
 				}
@@ -1419,35 +1419,35 @@ oGlobalize.findClosestCulture = function(vName) {
 	return oCulture || null;
 };
 
-oGlobalize.format = function(vValue, sFormat, sCultureSelector) {
-	var oCulture = this.findClosestCulture(sCultureSelector);
+oGlobalize.format	= function(vValue, sFormat, sCultureSelector) {
+	var oCulture	= this.findClosestCulture(sCultureSelector);
 	if (vValue instanceof cDate) {
-		vValue = fFormatDate(vValue, sFormat, oCulture);
+		vValue	= fFormatDate(vValue, sFormat, oCulture);
 	}
 	else if (typeof vValue === "number") {
-		vValue = fFormatNumber(vValue, sFormat, oCulture);
+		vValue	= fFormatNumber(vValue, sFormat, oCulture);
 	}
 	return vValue;
 };
 
-oGlobalize.localize = function(sKey, sCultureSelector) {
+oGlobalize.localize	= function(sKey, sCultureSelector) {
 	return this.findClosestCulture(sCultureSelector).messages[sKey] ||
 		this.cultures["default"].messages[sKey];
 };
 
-oGlobalize.parseDate = function(vValue, vFormat, sCultureSelector) {
-	var oCulture = this.findClosestCulture(sCultureSelector);
+oGlobalize.parseDate	= function(vValue, vFormat, sCultureSelector) {
+	var oCulture	= this.findClosestCulture(sCultureSelector);
 
 	var dValue, sKey, oPatterns;
 	if (vFormat) {
 		if (typeof vFormat === "string") {
-			vFormat = [vFormat];
+			vFormat	= [vFormat];
 		}
 		if (vFormat.length) {
 			for (var nIndex = 0, nLength = vFormat.length; nIndex < nLength; nIndex++) {
-				var sFormat = vFormat[nIndex];
+				var sFormat	= vFormat[nIndex];
 				if (sFormat) {
-					dValue = fParseDate(vValue, sFormat, oCulture);
+					dValue	= fParseDate(vValue, sFormat, oCulture);
 					if (dValue) {
 						break;
 					}
@@ -1455,9 +1455,9 @@ oGlobalize.parseDate = function(vValue, vFormat, sCultureSelector) {
 			}
 		}
 	} else {
-		oPatterns = oCulture.calendar.patterns;
+		oPatterns	= oCulture.calendar.patterns;
 		for (sKey in oPatterns) {
-			dValue = fParseDate(vValue, oPatterns[sKey], oCulture);
+			dValue	= fParseDate(vValue, oPatterns[sKey], oCulture);
 			if (dValue) {
 				break;
 			}
@@ -1467,106 +1467,106 @@ oGlobalize.parseDate = function(vValue, vFormat, sCultureSelector) {
 	return dValue || null;
 };
 
-oGlobalize.parseInt = function(vValue, nRadix, sCultureSelector) {
+oGlobalize.parseInt	= function(vValue, nRadix, sCultureSelector) {
 	return fTruncate(oGlobalize.parseFloat(vValue, nRadix, sCultureSelector));
 };
 
-oGlobalize.parseFloat = function(vValue, nRadix, sCultureSelector) {
+oGlobalize.parseFloat	= function(vValue, nRadix, sCultureSelector) {
 	// nRadix argument is optional
 	if (typeof nRadix !== "number") {
-		sCultureSelector = nRadix;
-		nRadix = 10;
+		sCultureSelector	= nRadix;
+		nRadix	= 10;
 	}
 
-	var oCulture = this.findClosestCulture(sCultureSelector);
-	var nValue = nNaN,
-		oFormat = oCulture.numberFormat;
+	var oCulture	= this.findClosestCulture(sCultureSelector);
+	var nValue	= nNaN,
+		oFormat	= oCulture.numberFormat;
 
 	if (vValue.indexOf(oFormat.currency.symbol) > -1) {
 		// remove currency symbol
-		vValue = vValue.replace(oFormat.currency.symbol, '');
+		vValue	= vValue.replace(oFormat.currency.symbol, '');
 		// replace decimal seperator
-		vValue = vValue.replace(oFormat.currency['.'], oFormat['.']);
+		vValue	= vValue.replace(oFormat.currency['.'], oFormat['.']);
 	}
 
 	// trim leading and trailing whitespace
-	vValue = fTrim(vValue);
+	vValue	= fTrim(vValue);
 
 	// allow infinity or hexidecimal
 	if (rRegexInfinity.test(vValue)) {
-		nValue = fParseFloat(vValue);
+		nValue	= fParseFloat(vValue);
 	}
 	else if (!nRadix && rRegexHex.test(vValue)) {
-		nValue = fParseInt(vValue, 16);
+		nValue	= fParseInt(vValue, 16);
 	}
 	else {
 		// determine sign and number
-		var aSignInfo = fParseNegativePattern(vValue, oFormat, oFormat.pattern[0]),
-			sSign = aSignInfo[0],
-			sValue = aSignInfo[1];
+		var aSignInfo	= fParseNegativePattern(vValue, oFormat, oFormat.pattern[0]),
+			sSign	= aSignInfo[0],
+			sValue	= aSignInfo[1];
 
 		// #44 - try parsing as "(n)"
 		if (sSign === '' && oFormat.pattern[0] !== '(n)') {
-			aSignInfo = fParseNegativePattern(vValue, oFormat, '(n)');
-			sSign = aSignInfo[0];
-			sValue = aSignInfo[1];
+			aSignInfo	= fParseNegativePattern(vValue, oFormat, '(n)');
+			sSign	= aSignInfo[0];
+			sValue	= aSignInfo[1];
 		}
 
 		// try parsing as "-n"
 		if (sSign === '' && oFormat.pattern[0] !== '-n') {
-			aSignInfo = fParseNegativePattern(vValue, oFormat, '-n');
-			sSign = aSignInfo[0];
-			sValue = aSignInfo[1];
+			aSignInfo	= fParseNegativePattern(vValue, oFormat, '-n');
+			sSign	= aSignInfo[0];
+			sValue	= aSignInfo[1];
 		}
 
-		sSign = sSign || '+';
+		sSign	= sSign || '+';
 
 		// determine exponent and number
 		var sExponent,
 			sNumber,
-			nExponentPosition = sValue.indexOf('e');
+			nExponentPosition	= sValue.indexOf('e');
 		if (nExponentPosition < 0)
-			nExponentPosition = sValue.indexOf('E');
+			nExponentPosition	= sValue.indexOf('E');
 		if (nExponentPosition < 0) {
-			sNumber = sValue;
-			sExponent = null;
+			sNumber		= sValue;
+			sExponent	= null;
 		}
 		else {
-			sNumber = sValue.substr(0, nExponentPosition);
-			sExponent = sValue.substr(nExponentPosition + 1);
+			sNumber		= sValue.substr(0, nExponentPosition);
+			sExponent	= sValue.substr(nExponentPosition + 1);
 		}
 		// determine decimal position
 		var sInteger,
 			sFraction,
-			sDecimalSeparator = oFormat['.'],
-			nDecimalPosition = sNumber.indexOf(sDecimalSeparator);
+			sDecimalSeparator	= oFormat['.'],
+			nDecimalPosition	= sNumber.indexOf(sDecimalSeparator);
 		if (nDecimalPosition < 0) {
-			sInteger = sNumber;
-			sFraction = null;
+			sInteger	= sNumber;
+			sFraction	= null;
 		}
 		else {
-			sInteger = sNumber.substr(0, nDecimalPosition);
-			sFraction = sNumber.substr(nDecimalPosition + sDecimalSeparator.length);
+			sInteger	= sNumber.substr(0, nDecimalPosition);
+			sFraction	= sNumber.substr(nDecimalPosition + sDecimalSeparator.length);
 		}
 		// handle groups (e.g. 1,000,000)
-		var sGroupSeparator = oFormat[','];
-		sInteger = sInteger.split(sGroupSeparator).join('');
-		var sAltGroupSeparator = sGroupSeparator.replace(/\u00A0/g, ' ');
+		var sGroupSeparator	= oFormat[','];
+		sInteger	= sInteger.split(sGroupSeparator).join('');
+		var sAltGroupSeparator	= sGroupSeparator.replace(/\u00A0/g, ' ');
 		if (sGroupSeparator !== sAltGroupSeparator) {
-			sInteger = sInteger.split(sAltGroupSeparator).join('');
+			sInteger	= sInteger.split(sAltGroupSeparator).join('');
 		}
 		// build a natively parsable number string
-		var sResult = sSign + sInteger;
+		var sResult	= sSign + sInteger;
 		if (sFraction !== null) {
 			sResult += '.' + sFraction;
 		}
 		if (sExponent !== null) {
 			// exponent itself may have a number patternd
-			var aExponentSignInfo = fParseNegativePattern(sExponent, oFormat, '-n');
+			var aExponentSignInfo	= fParseNegativePattern(sExponent, oFormat, '-n');
 			sResult += 'e' + (aExponentSignInfo[0] || '+') + aExponentSignInfo[1];
 		}
 		if (rRegexParseFloat.test(sResult)) {
-			nValue = fParseFloat(sResult);
+			nValue	= fParseFloat(sResult);
 		}
 	}
 	return nValue;

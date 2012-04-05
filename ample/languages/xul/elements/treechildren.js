@@ -8,8 +8,8 @@
  */
 
 var cXULElement_treechildren	= function() {
-    // Public Collections
-    this.items  = new ample.classes.NodeList;
+	// Public Collections
+	this.items	= new ample.classes.NodeList;
 };
 cXULElement_treechildren.prototype	= new cXULElement("treechildren");
 
@@ -18,9 +18,9 @@ cXULElement_treechildren.prototype.tree	= null;
 
 // Public Methods
 cXULElement_treechildren.prototype.reflow	= function() {
-    var nPrimaryCol = this.tree.head._getPrimaryColIndex();
-    if (nPrimaryCol ==-1)
-        return;
+	var nPrimaryCol	= this.tree.head._getPrimaryColIndex();
+	if (nPrimaryCol ==-1)
+		return;
 
 	var aStack	= [];
 	for (var oElement = this; !(oElement instanceof cXULElement_tree); oElement = oElement.parentNode.parentNode)
@@ -29,35 +29,35 @@ cXULElement_treechildren.prototype.reflow	= function() {
 };
 
 cXULElement_treechildren.prototype._refresh	= function(aStack, nPrimaryCol) {
-    var nDepth		= aStack.length,
-    	oChildren   = aStack[nDepth - 1],
-    	bTreeLines	= this.tree.attributes["treelines"] != "false",
-    	nItems 		= oChildren.items.length;
+	var nDepth		= aStack.length,
+		oChildren	= aStack[nDepth - 1],
+		bTreeLines	= this.tree.attributes["treelines"] != "false",
+		nItems 		= oChildren.items.length;
 
-    for (var nItem = 0, oItem, oElementDOM; nItem < nItems; nItem++) {
-        // Path
-        oItem		= oChildren.items[nItem];
-        oElementDOM	= oItem.row.cells[nPrimaryCol].$getContainer("label");
+	for (var nItem = 0, oItem, oElementDOM; nItem < nItems; nItem++) {
+		// Path
+		oItem		= oChildren.items[nItem];
+		oElementDOM	= oItem.row.cells[nPrimaryCol].$getContainer("label");
 
-        if (bTreeLines) {
-	        // Line
-	        for (var nIndex = 0; nIndex < nDepth - 1; nIndex++)
-	            oElementDOM.childNodes[nIndex].className = "xul-treecell-line" +(aStack[nIndex + 1].parentNode == aStack[nIndex + 1].parentNode.parentNode.items[aStack[nIndex + 1].parentNode.parentNode.items.length - 1] ? "" : " xul-treecell-line-regular");
+		if (bTreeLines) {
+			// Line
+			for (var nIndex = 0; nIndex < nDepth - 1; nIndex++)
+				oElementDOM.childNodes[nIndex].className = "xul-treecell-line" +(aStack[nIndex + 1].parentNode == aStack[nIndex + 1].parentNode.parentNode.items[aStack[nIndex + 1].parentNode.parentNode.items.length - 1] ? "" : " xul-treecell-line-regular");
 
-	        // Leaf
-	        oElementDOM.childNodes[nDepth - 1].className  = "xul-treecell-line xul-treecell-line-" +(nItem == nItems - 1 ? "last" : "next");
-        }
+			// Leaf
+			oElementDOM.childNodes[nDepth - 1].className	= "xul-treecell-line xul-treecell-line-" +(nItem == nItems - 1 ? "last" : "next");
+		}
 
-        // Toc
-        if (oItem.attributes["container"] == "true") {
-            // Step In
-            if (oItem.children)
-	            this._refresh(aStack.concat(oItem.children), nPrimaryCol);
+		// Toc
+		if (oItem.attributes["container"] == "true") {
+			// Step In
+			if (oItem.children)
+				this._refresh(aStack.concat(oItem.children), nPrimaryCol);
 
-            // Add toc +/-
-            oElementDOM.childNodes[nDepth - 1].className = "xul-treecell--toc" +(oChildren.items[nItem].attributes["open"] == "true" ? " xul-treecell--toc_open" : "");
-        }
-    }
+			// Add toc +/-
+			oElementDOM.childNodes[nDepth - 1].className = "xul-treecell--toc" +(oChildren.items[nItem].attributes["open"] == "true" ? " xul-treecell--toc_open" : "");
+		}
+	}
 };
 
 // Class events handlers
@@ -83,8 +83,8 @@ cXULElement_treechildren.handlers	= {
 	"DOMNodeRemoved":	function(oEvent) {
 		if (oEvent.target.parentNode == this)
 			if (oEvent.target instanceof cXULElement_treeitem) {
-			    if (this.tree.selectedItems.$indexOf(oEvent.target) !=-1)
-				    this.tree.removeItemFromSelection(oEvent.target);
+				if (this.tree.selectedItems.$indexOf(oEvent.target) !=-1)
+					this.tree.removeItemFromSelection(oEvent.target);
 
 				this.items.$remove(oEvent.target);
 				this.tree.items.$remove(oEvent.target);

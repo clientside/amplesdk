@@ -1,8 +1,8 @@
 <?xml version="1.0" standalone="no"?>
 <svg viewBox="0,0 1200,1200" width="600px" height="600px" version="1.1"
 	xmlns:smil="http://www.w3.org/2008/SMIL30/"
-    xmlns="http://www.w3.org/2000/svg">
-    <text x="20" y="20" font-size="20px">Shapes Transformations</text>
+	xmlns="http://www.w3.org/2000/svg">
+	<text x="20" y="20" font-size="20px">Shapes Transformations</text>
 
 	<!-- path -->
 	<path d="m0,50 a100,50 0 1 1 0,100" stroke="black" stroke-width="3" fill="none"/>

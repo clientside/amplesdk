@@ -48,7 +48,7 @@ if (!cXSLTProcessor) {
 //<-Guard
 
 		if (sNameSpaceURI == null)
-			sNameSpaceURI	=  '';
+			sNameSpaceURI	=	'';
 		var oNameSpace	= this._parameters[sNameSpaceURI];
 		if (oNameSpace && oNameSpace[sLocalName])
 			return oNameSpace[sLocalName];
@@ -63,7 +63,7 @@ if (!cXSLTProcessor) {
 //<-Guard
 
 		if (sNameSpaceURI == null)
-			sNameSpaceURI	=  '';
+			sNameSpaceURI	=	'';
 		if (sNameSpaceURI)
 			this._processor.addParameter(sLocalName, '', sNameSpaceURI);
 		else
@@ -82,7 +82,7 @@ if (!cXSLTProcessor) {
 //<-Guard
 
 		if (sNameSpaceURI == null)
-			sNameSpaceURI	=  '';
+			sNameSpaceURI	=	'';
 		if (sNameSpaceURI)
 			this._processor.addParameter(sLocalName, sValue, sNameSpaceURI);
 		else

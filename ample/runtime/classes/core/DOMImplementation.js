@@ -10,19 +10,16 @@
 var cDOMImplementation	= function(){};
 
 // nsIDOMImplementation Level 1
-cDOMImplementation.prototype.hasFeature		= function(sFeature, sVersion)
-{
+cDOMImplementation.prototype.hasFeature		= function(sFeature, sVersion) {
 	return false;	// Return false
 };
 
 // nsIDOMImplementation Level 2
-cDOMImplementation.prototype.createDocumentType	= function(sQName, sPublicId, sSystemId)
-{
+cDOMImplementation.prototype.createDocumentType	= function(sQName, sPublicId, sSystemId) {
 	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };
 
-function fDOMImplementation_createDocument(oImplementation, sNameSpaceURI, sQName, oDocType)
-{
+function fDOMImplementation_createDocument(oImplementation, sNameSpaceURI, sQName, oDocType) {
 	// Create docuemnt
 	var oDocument	= new cDocument;
 	oDocument.implementation= oImplementation;
@@ -37,21 +34,19 @@ function fDOMImplementation_createDocument(oImplementation, sNameSpaceURI, sQNam
 		fNode_appendChild(oDocument, oDocType);
 
 	// Add document element
-	if (sQName)
-	{
+	if (sQName) {
 		oDocument.documentElement	= fDocument_createElementNS(oDocument, sNameSpaceURI, sQName);
 		if (sNameSpaceURI)
 			oDocument.documentElement.attributes["xmlns" + (sQName.match(/^([^:]+):/) ? ':' + cRegExp.$1 : '')]	= sNameSpaceURI;
 		fNode_appendChild(oDocument, oDocument.documentElement);
-	    // Register
+		// Register
 		fDocument_register(oDocument, oDocument.documentElement);
 	}
 
 	return oDocument;
 };
 
-cDOMImplementation.prototype.createDocument	= function(sNameSpaceURI, sQName, oDocType)
-{
+cDOMImplementation.prototype.createDocument	= function(sNameSpaceURI, sQName, oDocType) {
 //->Guard
 	fGuard(arguments, [
 		["namespaceURI",	cString, false, true],
@@ -64,7 +59,6 @@ cDOMImplementation.prototype.createDocument	= function(sNameSpaceURI, sQName, oD
 };
 
 // nsIDOMImplementation Level 3
-cDOMImplementation.prototype.getFeature	= function(sFeature, sVersion)
-{
+cDOMImplementation.prototype.getFeature	= function(sFeature, sVersion) {
 	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };

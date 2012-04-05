@@ -35,22 +35,20 @@ cXULElement_listcell.prototype.$mapAttribute	= function(sName, sValue) {
 };
 
 // Element Render: open
-cXULElement_listcell.prototype.$getTagOpen	= function()
-{
+cXULElement_listcell.prototype.$getTagOpen	= function() {
 	var oHeader	= this.parentNode.parentNode.parentNode.firstChild.childNodes[this.parentNode.childNodes.$indexOf(this)];
-    var sHtml   = '<td class="xul-listcell' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"' + (oHeader && oHeader.attributes["hidden"] == "true" ? ' style="display:none;"' : '') + '><div class="xul-listcell--box" style="position:relative;width:100%;"><div class="xul-listcell--label xul-listcell--gateway" style="position:absolute;width:100%;overflow:hidden;">';
-    if (this.attributes["image"])
-        sHtml  += '<img src="' + ample.$encodeXMLCharacters(this.attributes["image"]) + '" align="absmiddle"/> ';
-    if (this.attributes["label"])
-        sHtml  += ample.$encodeXMLCharacters(this.attributes["label"]);
+	var sHtml	= '<td class="xul-listcell' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"' + (oHeader && oHeader.attributes["hidden"] == "true" ? ' style="display:none;"' : '') + '><div class="xul-listcell--box" style="position:relative;width:100%;"><div class="xul-listcell--label xul-listcell--gateway" style="position:absolute;width:100%;overflow:hidden;">';
+	if (this.attributes["image"])
+		sHtml	+= '<img src="' + ample.$encodeXMLCharacters(this.attributes["image"]) + '" align="absmiddle"/> ';
+	if (this.attributes["label"])
+		sHtml	+= ample.$encodeXMLCharacters(this.attributes["label"]);
 
-    return sHtml;
+	return sHtml;
 };
 
 // Element Render: close
-cXULElement_listcell.prototype.$getTagClose	= function()
-{
-    return '</div></div></td>';
+cXULElement_listcell.prototype.$getTagClose	= function() {
+	return '</div></div></td>';
 };
 
 // Register Element

@@ -66,7 +66,7 @@ cXHTMLElement_option.prototype.$mapAttribute	= function(sName, sValue) {
 };
 
 cXHTMLElement_option.prototype.$getTagOpen	= function() {
-    var sClassName	= (this.prefix ? this.prefix + '-' : '') + this.localName;
+	var sClassName	= (this.prefix ? this.prefix + '-' : '') + this.localName;
 	return '<div class="' +	sClassName +
 				("class" in this.attributes ? ' ' + this.attributes["class"] : '')+
 				(this.attributes["disabled"] ? ' ' + sClassName + '_disabled' : '')+

@@ -71,29 +71,27 @@ cXHTMLElement_form.prototype.dispatchFormChange	= function() {
 
 /* Event handlers */
 cXHTMLElement_form.prototype._onSubmit	= function() {
-    // Fire Event
-    var oEvent = this.ownerDocument.createEvent("Event");
-    oEvent.initEvent("submit", true, true);
-
-    return this.dispatchEvent(oEvent);
+	// Fire Event
+	var oEvent	= this.ownerDocument.createEvent("Event");
+	oEvent.initEvent("submit", true, true);
+	return this.dispatchEvent(oEvent);
 };
 
 cXHTMLElement_form.prototype._onReset	= function() {
-    // Fire Event
-    var oEvent = this.ownerDocument.createEvent("Event");
-    oEvent.initEvent("reset", true, true);
-
-    return this.dispatchEvent(oEvent);
+	// Fire Event
+	var oEvent	= this.ownerDocument.createEvent("Event");
+	oEvent.initEvent("reset", true, true);
+	return this.dispatchEvent(oEvent);
 };
 
 // Default Element Render: open
 cXHTMLElement_form.prototype.$getTagOpen	= function() {
-    var sHtml   = '<' + this.localName + ' onsubmit="var oElement = ample.$instance(this); if (oElement._onSubmit()) oElement.submit(); return false;" onreset="var oElement = ample.$instance(this); if (oElement._onReset()) oElement.reset(); return false;"';
-    for (var sName in this.attributes)
+	var sHtml	= '<' + this.localName + ' onsubmit="var oElement = ample.$instance(this); if (oElement._onSubmit()) oElement.submit(); return false;" onreset="var oElement = ample.$instance(this); if (oElement._onReset()) oElement.reset(); return false;"';
+	for (var sName in this.attributes)
 		if (this.attributes.hasOwnProperty(sName) && sName != "class" && sName != "id" && sName.indexOf(':') ==-1)
-			sHtml  += ' ' + sName + '="' + ample.$encodeXMLCharacters(this.attributes[sName]) + '"';
+			sHtml	+= ' ' + sName + '="' + ample.$encodeXMLCharacters(this.attributes[sName]) + '"';
 	sHtml	+= ' class="' + (this.prefix ? this.prefix + '-' : '') + this.localName + ("class" in this.attributes ? ' ' + this.attributes["class"] : '') + '"';
-    return sHtml + '>';
+	return sHtml + '>';
 };
 
 // Register Element

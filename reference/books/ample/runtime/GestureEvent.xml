@@ -5,10 +5,10 @@
 		<locale>
 			The <link type="class">GestureEvent</link> class encapsulates information about a multi-touch gesture.
 			<link type="class">GestureEvent</link> objects are high-level events that encapsulate the low-level <link type="class">TouchEvent</link> objects.
-			Both <link type="class">GestureEvent</link>  and <link type="class">TouchEvent</link> events are sent during a multi-touch sequence.
+			Both <link type="class">GestureEvent</link> and <link type="class">TouchEvent</link> events are sent during a multi-touch sequence.
 			Gesture events contain scaling and rotation information allowing gestures to be combined, if supported by the platform.
 			If not supported, one gesture ends before another starts.
-			Listen for <link type="class">GestureEvent</link>  events if you want to respond to gestures only, not process the low-level <link type="class">TouchEvent</link> objects.
+			Listen for <link type="class">GestureEvent</link> events if you want to respond to gestures only, not process the low-level <link type="class">TouchEvent</link> objects.
 		</locale>
 	</abstract>
 	<examples/>

@@ -216,13 +216,13 @@
 	<remarks>
 		<remark>
 			<locale>Events of that type:</locale>
-      <locale xml:lang="ru">События этого типа:</locale>
-      <ul>
-        <li><link type="event" href="runtime:Document">abort</link></li>
-        <li><link type="event" href="runtime:Document">error</link></li>
-        <li><link type="event" href="runtime:Document">load</link></li>
-        <li><link type="event" href="runtime:Document">unload</link></li>
-      </ul>
+			<locale xml:lang="ru">События этого типа:</locale>
+			<ul>
+				<li><link type="event" href="runtime:Document">abort</link></li>
+				<li><link type="event" href="runtime:Document">error</link></li>
+				<li><link type="event" href="runtime:Document">load</link></li>
+				<li><link type="event" href="runtime:Document">unload</link></li>
+			</ul>
 		</remark>
 	</remarks>
 </class>

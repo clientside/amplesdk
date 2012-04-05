@@ -8,7 +8,7 @@
  */
 
 var cXULElement_wizardpage	= function(){};
-cXULElement_wizardpage.prototype = new cXULElement("wizardpage");
+cXULElement_wizardpage.prototype	= new cXULElement("wizardpage");
 cXULElement_wizardpage.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
 
 // Attributes Defaults
@@ -19,10 +19,10 @@ cXULElement_wizardpage.attributes.width		= "100%";
 cXULElement_wizardpage.attributes.height	= "100%";
 
 // Private Methods
-cXULElement_wizardpage.dispatchEvent_onPage    = function(oElement, sName) {
-    var oEvent  = oElement.ownerDocument.createEvent("Event");
-    oEvent.initEvent("page" + sName, true, true);
-    return oElement.dispatchEvent(oEvent);
+cXULElement_wizardpage.dispatchEvent_onPage	= function(oElement, sName) {
+	var oEvent	= oElement.ownerDocument.createEvent("Event");
+	oEvent.initEvent("page" + sName, true, true);
+	return oElement.dispatchEvent(oEvent);
 };
 
 cXULElement_wizardpage.handlers	= {
@@ -58,12 +58,12 @@ cXULElement_wizardpage.prototype.$mapAttribute	= function(sName, sValue) {
 
 // Element Render: open
 cXULElement_wizardpage.prototype.$getTagOpen	= function() {
-    return '<div class="xul-wizardpage" style="display:none;height:100%">';
+	return '<div class="xul-wizardpage" style="display:none;height:100%">';
 };
 
 // Element Render: close
 cXULElement_wizardpage.prototype.$getTagClose	= function() {
-    return '</div>';
+	return '</div>';
 };
 
 // Register Element

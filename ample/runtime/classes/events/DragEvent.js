@@ -14,16 +14,14 @@ cDragEvent.prototype.eventInterface	= "DragEvent";
 // nsIDOMDragEvent
 cDragEvent.prototype.dataTransfer	= null;
 
-cDragEvent.prototype.initDragEvent	= function(sType, bCanBubble, bCancelable, oView, nDetail, oDataTransfer)
-{
+cDragEvent.prototype.initDragEvent	= function(sType, bCanBubble, bCancelable, oView, nDetail, oDataTransfer) {
 	this.initUIEvent(sType, bCanBubble, bCancelable, oView, nDetail);
 
 	//
 	this.dataTransfer	= oDataTransfer;
 };
 
-cDragEvent.prototype.getModifierState	= function(sModifier)
-{
+cDragEvent.prototype.getModifierState	= function(sModifier) {
 	switch (sModifier) {
 		case "Alt":		return this.altKey;
 		case "Control":	return this.ctrlKey;

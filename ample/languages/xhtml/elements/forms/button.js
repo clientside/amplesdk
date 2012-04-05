@@ -8,7 +8,7 @@
  */
 
 var cXHTMLElement_button	= function(){
-   	this.validity	= new cXHTMLValidityState;
+		this.validity	= new cXHTMLValidityState;
 };
 cXHTMLElement_button.prototype	= new cXHTMLInputElement("button");
 

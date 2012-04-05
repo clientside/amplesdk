@@ -41,7 +41,7 @@ function fNodeAnimation_play(oElement, oProperties, vDuration, vType, fHandler, 
 			if (sKey == "scrollTop" || sKey == "scrollLeft")
 				oEffect._data[sKey]	= [[oElementDOM[sKey]], [sValue]];
 			else
-				oEffect._data[sName = fUtilities_toCssPropertyName(sKey)]	= [fNodeAnimation_parseValue(fBrowser_adjustStyleValue(oElementDOM, sName, fBrowser_getStyle(oElementDOM, sName, oComputedStyle))), fNodeAnimation_parseValue(fBrowser_adjustStyleValue(oElementDOM, sName, sValue))];
+				oEffect._data[sName	= fUtilities_toCssPropertyName(sKey)]	= [fNodeAnimation_parseValue(fBrowser_adjustStyleValue(oElementDOM, sName, fBrowser_getStyle(oElementDOM, sName, oComputedStyle))), fNodeAnimation_parseValue(fBrowser_adjustStyleValue(oElementDOM, sName, sValue))];
 		}
 
 	// delete running effects on new effect properties for the same element
@@ -217,7 +217,7 @@ function fNodeAnimation_parseValue(sValue) {
 	sValue	= sValue.trim();
 
 	var aValue,
-		sValueLower = sValue.toLowerCase();
+		sValueLower	= sValue.toLowerCase();
 
 	// if standard color used
 	if (sValueLower in hBrowser_cssColors)
@@ -316,57 +316,57 @@ function fNodeAnimation_cubicBezier(t, a, b, c, d, nDuration) {
 	// Calculate the polynomial coefficients, implicit first and last control points are (0,0) and (1,1).
 	var cx=3*a, bx=3*(c-a)-cx, ax=1-cx-bx, cy=3*b, by=3*(d-b)-cy, ay=1-cy-by;
 	// `ax t^3 + bx t^2 + cx t' expanded using Horner's rule.
-    function fSampleCurveX(t) {
-    	return ((ax*t+bx)*t+cx)*t;
-    };
-    function fSampleCurveY(t) {
-    	return ((ay*t+by)*t+cy)*t;
-    };
-    function fSampleCurveDerivativeX(t) {
-    	return (3*ax*t+2*bx)*t+cx;
-    };
+	function fSampleCurveX(t) {
+		return ((ax*t+bx)*t+cx)*t;
+	};
+	function fSampleCurveY(t) {
+		return ((ay*t+by)*t+cy)*t;
+	};
+	function fSampleCurveDerivativeX(t) {
+		return (3*ax*t+2*bx)*t+cx;
+	};
 	// The epsilon value to pass given that the animation is going to run over |dur| seconds. The longer the
 	// animation, the more precision is needed in the timing function result to avoid ugly discontinuities.
 	function fSolveEpsilon(nDuration) {
 		return 1/(200*nDuration);
 	};
-    function fSolve(x,nEpsilon) {
-    	return fSampleCurveY(fSolveCurveX(x,nEpsilon));
-    };
+	function fSolve(x,nEpsilon) {
+		return fSampleCurveY(fSolveCurveX(x,nEpsilon));
+	};
 	// Given an x value, find a parametric value it came from.
-    function fSolveCurveX(x,nEpsilon) {
-    	var t0,t1,t2,x2,d2,i;
+	function fSolveCurveX(x,nEpsilon) {
+		var t0,t1,t2,x2,d2,i;
 		function fFabs(n) {
 			return n >= 0 ? n : 0-n;
 		}
-        // First try a few iterations of Newton's method -- normally very fast.
-        for (t2=x, i=0; i<8; i++) {
-        	x2=fSampleCurveX(t2)-x;
-        	if(fFabs(x2)<nEpsilon)
-        		return t2;
-        	d2=fSampleCurveDerivativeX(t2);
-        	if (fFabs(d2) < 1e-6)
-        		break;
-        	t2=t2-x2/d2;
-        }
-        // Fall back to the bisection method for reliability.
-        t0=0; t1=1; t2=x;
-        if(t2<t0)
-        	return t0;
-        if(t2>t1)
-        	return t1;
-        while(t0<t1) {
-        	x2=fSampleCurveX(t2);
-        	if(fFabs(x2-x)<nEpsilon)
-        		return t2;
-        	if(x>x2)
-        		t0=t2;
-        	else
-        		t1=t2;
-        	t2=(t1-t0)/2+t0;
-        }
-        return t2; // Failure.
-    };
+		// First try a few iterations of Newton's method -- normally very fast.
+		for (t2=x, i=0; i<8; i++) {
+			x2=fSampleCurveX(t2)-x;
+			if(fFabs(x2)<nEpsilon)
+				return t2;
+			d2=fSampleCurveDerivativeX(t2);
+			if (fFabs(d2) < 1e-6)
+				break;
+			t2=t2-x2/d2;
+		}
+		// Fall back to the bisection method for reliability.
+		t0=0; t1=1; t2=x;
+		if(t2<t0)
+			return t0;
+		if(t2>t1)
+			return t1;
+		while(t0<t1) {
+			x2=fSampleCurveX(t2);
+			if(fFabs(x2-x)<nEpsilon)
+				return t2;
+			if(x>x2)
+				t0=t2;
+			else
+				t1=t2;
+			t2=(t1-t0)/2+t0;
+		}
+		return t2; // Failure.
+	};
 	// Convert from input time to parametric value in curve, then from that to output time.
 	return fSolve(t, fSolveEpsilon(nDuration));
 };

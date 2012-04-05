@@ -68,14 +68,12 @@ cAUIElement_panelset.prototype.refresh	= function() {
 };
 
 // Renderers
-cAUIElement_panelset.prototype.$getTagOpen	= function()
-{
+cAUIElement_panelset.prototype.$getTagOpen	= function() {
 	return '<div class="aui-panelset' + (this.hasAttribute("rows") ? ' aui-panelset-rows-' : this.hasAttribute("cols") ? ' aui-panelset-cols-' : '')+ '"' + (this.attributes["style"] ? ' style="' + this.attributes["style"] + '"' : '') + '>';
 };
 
-cAUIElement_panelset.prototype.$getTagClose	= function()
-{
-    return 	'</div>';
+cAUIElement_panelset.prototype.$getTagClose	= function() {
+	return 	'</div>';
 };
 
 // Register Element

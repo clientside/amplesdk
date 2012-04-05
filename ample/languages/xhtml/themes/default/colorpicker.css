@@ -8,13 +8,13 @@ colorpicker {
 }
 
 colorpicker::palette {
-	width:  256px;
+	width:	256px;
 	height: 256px;
 	background-image: url(media/colorpicker/huesaturation.jpg);
 }
 
 colorpicker::palette-shader {
-	width:  256px;
+	width:	256px;
 	height: 256px;
 	background-color: #000000;
 }

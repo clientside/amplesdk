@@ -8,14 +8,14 @@
  */
 
 var cXULElement_listcols	= function() {
-    // Collections
-    this.items  = new ample.classes.NodeList;
+	// Collections
+	this.items	= new ample.classes.NodeList;
 };
 cXULElement_listcols.prototype	= new cXULElement("listcols");
 
 // Element Render: open
 cXULElement_listcols.prototype.$getTagOpen	= function() {
-    return '<table cellpadding="0" cellspacing="0" border="0" width="100%" class="xul-listcols' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">\
+	return '<table cellpadding="0" cellspacing="0" border="0" width="100%" class="xul-listcols' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">\
 				<tbody>\
 					<tr>';
 };

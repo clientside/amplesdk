@@ -12,12 +12,12 @@ cXHTMLElement_img.prototype	= new cXHTMLElement("img");
 
 // Element Render: open
 cXHTMLElement_img.prototype.$getTagOpen	= function() {
-    var sHtml   = '<' + this.localName + ' onmousedown="return '+ "false" + '" ondragstart="return '+ "false" + '"';
-    for (var sName in this.attributes)
+	var sHtml	= '<' + this.localName + ' onmousedown="return '+ "false" + '" ondragstart="return '+ "false" + '"';
+	for (var sName in this.attributes)
 		if (this.attributes.hasOwnProperty(sName) && sName != "class" && sName != "id" && sName.indexOf(':') ==-1)
-			sHtml  += ' ' + sName + '="' + ample.$encodeXMLCharacters(this.attributes[sName]) + '"';
+			sHtml	+= ' ' + sName + '="' + ample.$encodeXMLCharacters(this.attributes[sName]) + '"';
 	sHtml	+= ' class="' + (this.prefix ? this.prefix + '-' : '') + this.localName + ("class" in this.attributes ? ' ' + this.attributes["class"] : '') + '"';
-    return sHtml + '/>';
+	return sHtml + '/>';
 };
 
 cXHTMLElement_img.prototype.$getTagClose	= function() {

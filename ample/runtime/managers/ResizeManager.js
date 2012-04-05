@@ -55,8 +55,7 @@ function fResizeManager_abortSession() {
 */
 
 // Handlers
-function fResizeManager_onMouseDown(oEvent)
-{
+function fResizeManager_onMouseDown(oEvent) {
 	if (oEvent.defaultPrevented || oEvent.button)
 		return;
 
@@ -64,33 +63,28 @@ function fResizeManager_onMouseDown(oEvent)
 	if (nDragAndDropManager_dragState)
 		return;
 
-	if (oResizeManager_resizeNode)
-	{
+	if (oResizeManager_resizeNode) {
 		// Start session
-	    nResizeManager_resizeState	= nResizeManager_STATE_CAPTURED;
+		nResizeManager_resizeState	= nResizeManager_STATE_CAPTURED;
 
-	    // Simulate initial mousemove event
-	    nResizeManager_timeout	= fSetTimeout(function() {
-	    	nResizeManager_timeout	= 0;
-	    	//
+		// Simulate initial mousemove event
+		nResizeManager_timeout	= fSetTimeout(function() {
+			nResizeManager_timeout	= 0;
+			//
 			fResizeManager_onMouseMove.call(oEvent.currentTarget, oEvent);
 		}, 200);
 	}
 };
 
-function fResizeManager_onMouseMove(oEvent)
-{
+function fResizeManager_onMouseMove(oEvent) {
 	// Shows the resize indicator when hovering object edges
-	if (nResizeManager_resizeState == nResizeManager_STATE_RELEASED)
-	{
+	if (nResizeManager_resizeState == nResizeManager_STATE_RELEASED) {
 		//
-	    nResizeManager_mouseX	= oEvent.clientX;
-	    nResizeManager_mouseY	= oEvent.clientY;
+		nResizeManager_mouseX	= oEvent.clientX;
+		nResizeManager_mouseY	= oEvent.clientY;
 
-		for (var oElement = oEvent.target; oElement != this; oElement = oElement.parentNode)
-		{
-			if (oElement.$resizable)
-			{
+		for (var oElement = oEvent.target; oElement != this; oElement = oElement.parentNode) {
+			if (oElement.$resizable) {
 				var oElementDOM	= oElement.$getContainer(),
 					oComputedStyle	= fBrowser_getComputedStyle(oElementDOM),
 					oRect	= fElement_getBoundingClientRect(oElement),
@@ -102,34 +96,29 @@ function fResizeManager_onMouseMove(oEvent)
 					nOffsetTop	= nResizeManager_mouseY - oRect.top/* + oRect.scrollTop*/;
 
 				// Vertical
-				if (fResizeManager_inScope(nOffsetTop, fResizeManager_getStyleValueNumeric(oComputedStyle, "borderTopWidth")))
-				{
+				if (fResizeManager_inScope(nOffsetTop, fResizeManager_getStyleValueNumeric(oComputedStyle, "borderTopWidth"))) {
 					nEdge	|= nEdges & nResizeManager_EDGE_TOP;
 					sCursor	+= 'n';
 				}
 				else
-				if (fResizeManager_inScope(nOffsetTop - oRect.bottom + oRect.top, fResizeManager_getStyleValueNumeric(oComputedStyle, "borderBottomWidth")))
-				{
+				if (fResizeManager_inScope(nOffsetTop - oRect.bottom + oRect.top, fResizeManager_getStyleValueNumeric(oComputedStyle, "borderBottomWidth"))) {
 					nEdge	|= nEdges & nResizeManager_EDGE_BOTTOM;
 					sCursor	+= 's';
 				}
 
 				// Horizontal
-				if (fResizeManager_inScope(nOffsetLeft, fResizeManager_getStyleValueNumeric(oComputedStyle, "borderLeftWidth")))
-				{
+				if (fResizeManager_inScope(nOffsetLeft, fResizeManager_getStyleValueNumeric(oComputedStyle, "borderLeftWidth"))) {
 					nEdge	|= nEdges & nResizeManager_EDGE_LEFT;
 					sCursor	+= 'w';
 				}
 				else
-				if (fResizeManager_inScope(nOffsetLeft - oRect.right + oRect.left, fResizeManager_getStyleValueNumeric(oComputedStyle, "borderRightWidth")))
-				{
+				if (fResizeManager_inScope(nOffsetLeft - oRect.right + oRect.left, fResizeManager_getStyleValueNumeric(oComputedStyle, "borderRightWidth"))) {
 					nEdge	|= nEdges & nResizeManager_EDGE_RIGHT;
 					sCursor	+= 'e';
 				}
 
 				//
-				if (nEdge != nResizeManager_EDGE_NONE)
-				{
+				if (nEdge != nResizeManager_EDGE_NONE) {
 					oResizeManager_resizeNode	= oElement;
 					nResizeManager_resizeEdge	= nEdge;
 
@@ -141,8 +130,7 @@ function fResizeManager_onMouseMove(oEvent)
 			}
 		}
 
-		if (oResizeManager_resizeNode)
-		{
+		if (oResizeManager_resizeNode) {
 			oResizeManager_resizeNode	= null;
 			nResizeManager_resizeEdge	= nResizeManager_EDGE_NONE;
 
@@ -156,16 +144,15 @@ function fResizeManager_onMouseMove(oEvent)
 	if (nResizeManager_timeout)
 		nResizeManager_timeout	= fClearTimeout(nResizeManager_timeout);
 
-   	// Stop event propagation
-   	oEvent.stopPropagation();
+		// Stop event propagation
+		oEvent.stopPropagation();
 
 	var oElementDOM	= oResizeManager_resizeNode.$getContainer(),
 		oRect	= fElement_getBoundingClientRect(oResizeManager_resizeNode),
 		oStyle		= oElementDOM.style;
 
 	// Turn mode to interactive
-    if (nResizeManager_resizeState == nResizeManager_STATE_CAPTURED)
-    {
+	if (nResizeManager_resizeState == nResizeManager_STATE_CAPTURED) {
 		// fire onresizestart event
 		var oEventResizeStart	= new cResizeEvent;
 		oEventResizeStart.initResizeEvent("resizestart", true, true, window, null, nResizeManager_resizeEdge);
@@ -191,7 +178,7 @@ function fResizeManager_onMouseMove(oEvent)
 		fBrowser_toggleSelect(false);
 		if (bTrident)
 			oElementDOM.setCapture();
-	    fCaptureManager_setCapture(oResizeManager_resizeNode, true);
+		fCaptureManager_setCapture(oResizeManager_resizeNode, true);
 
 		var oComputedStyle	= fBrowser_getComputedStyle(oElementDOM),
 			bBackCompat		= oUADocument.compatMode == "BackCompat";
@@ -207,13 +194,13 @@ function fResizeManager_onMouseMove(oEvent)
 		oStyle.left	= sResizeManager_originalLeft;
 		oStyle.top	= sResizeManager_originalTop;
 
-	    //
-    	nResizeManager_resizeState	= nResizeManager_STATE_RESIZED;
+		//
+		nResizeManager_resizeState	= nResizeManager_STATE_RESIZED;
 
-	    nResizeManager_offsetWidth		=(oRect.right - oRect.left)	-(bBackCompat ? 0 : (fResizeManager_getStyleValueNumeric(oComputedStyle, "borderLeftWidth") + fResizeManager_getStyleValueNumeric(oComputedStyle, "borderRightWidth")) + fResizeManager_getStyleValueNumeric(oComputedStyle, "paddingLeft") + fResizeManager_getStyleValueNumeric(oComputedStyle, "paddingRight"));
-	    nResizeManager_offsetHeight		=(oRect.bottom - oRect.top)	-(bBackCompat ? 0 : (fResizeManager_getStyleValueNumeric(oComputedStyle, "borderTopWidth") + fResizeManager_getStyleValueNumeric(oComputedStyle, "borderBottomWidth")) + fResizeManager_getStyleValueNumeric(oComputedStyle, "paddingTop") + fResizeManager_getStyleValueNumeric(oComputedStyle, "paddingBottom"));
-	    nResizeManager_offsetLeft		= oRect.left	- oRect0.left;
-	    nResizeManager_offsetTop		= oRect.top		- oRect0.top;
+		nResizeManager_offsetWidth		=(oRect.right - oRect.left)	-(bBackCompat ? 0 : (fResizeManager_getStyleValueNumeric(oComputedStyle, "borderLeftWidth") + fResizeManager_getStyleValueNumeric(oComputedStyle, "borderRightWidth")) + fResizeManager_getStyleValueNumeric(oComputedStyle, "paddingLeft") + fResizeManager_getStyleValueNumeric(oComputedStyle, "paddingRight"));
+		nResizeManager_offsetHeight		=(oRect.bottom - oRect.top)	-(bBackCompat ? 0 : (fResizeManager_getStyleValueNumeric(oComputedStyle, "borderTopWidth") + fResizeManager_getStyleValueNumeric(oComputedStyle, "borderBottomWidth")) + fResizeManager_getStyleValueNumeric(oComputedStyle, "paddingTop") + fResizeManager_getStyleValueNumeric(oComputedStyle, "paddingBottom"));
+		nResizeManager_offsetLeft		= oRect.left	- oRect0.left;
+		nResizeManager_offsetTop		= oRect.top		- oRect0.top;
 
 		// Retrieve min/max allowed height/width
 		nResizeManager_widthMin		= fParseInt(oComputedStyle[fUtilities_toCssPropertyName("min-width")] || oComputedStyle["min-width"]) || 0;
@@ -224,18 +211,17 @@ function fResizeManager_onMouseMove(oEvent)
 		nResizeManager_heightMax	= fParseInt(oComputedStyle[fUtilities_toCssPropertyName("max-height")]|| oComputedStyle["max-height"]) || nInfinity;
 		if (nResizeManager_heightMax < 0)	// Opera 10.5 returns -1
 			nResizeManager_heightMax= nInfinity;
-    }
+	}
 
 	// fire onresize event
 	var oEventResize	= new cResizeEvent;
-    oEventResize.initResizeEvent("resize", true, true, window, null, nResizeManager_resizeEdge);
-    oEventResize.$pseudoTarget	= oEvent.$pseudoTarget;
-    fNode_dispatchEvent(oResizeManager_resizeNode, oEventResize);
+	oEventResize.initResizeEvent("resize", true, true, window, null, nResizeManager_resizeEdge);
+	oEventResize.$pseudoTarget	= oEvent.$pseudoTarget;
+	fNode_dispatchEvent(oResizeManager_resizeNode, oEventResize);
 
-	if (!oEventResize.defaultPrevented)
-	{
+	if (!oEventResize.defaultPrevented) {
 		var nWidth		= nResizeManager_offsetWidth	+ (oEvent.clientX - nResizeManager_mouseX) * (nResizeManager_resizeEdge & nResizeManager_EDGE_LEFT ? -1 : 1),
-			nHeight	= nResizeManager_offsetHeight	+ (oEvent.clientY - nResizeManager_mouseY) * (nResizeManager_resizeEdge & nResizeManager_EDGE_TOP  ? -1 : 1);
+			nHeight	= nResizeManager_offsetHeight	+ (oEvent.clientY - nResizeManager_mouseY) * (nResizeManager_resizeEdge & nResizeManager_EDGE_TOP ? -1 : 1);
 
 		// Horizontal resize
 		if (nWidth <= nResizeManager_widthMin)
@@ -245,8 +231,8 @@ function fResizeManager_onMouseMove(oEvent)
 			nWidth	= nResizeManager_widthMax;
 		// Set
 		if (nResizeManager_resizeEdge & nResizeManager_EDGE_RIGHT)
-    		oStyle.width	= fResizeManager_ensureNonNegative(nWidth) + 'px';
-	    else
+			oStyle.width	= fResizeManager_ensureNonNegative(nWidth) + 'px';
+		else
 		if (nResizeManager_resizeEdge & nResizeManager_EDGE_LEFT) {
 			oStyle.width	= fResizeManager_ensureNonNegative(nWidth) + 'px';
 			oStyle.left		= fResizeManager_ensureNonNegative(nResizeManager_offsetWidth - nWidth + nResizeManager_offsetLeft) + 'px';
@@ -260,11 +246,11 @@ function fResizeManager_onMouseMove(oEvent)
 			nHeight	= nResizeManager_heightMax;
 		// Set
 		if (nResizeManager_resizeEdge & nResizeManager_EDGE_BOTTOM)
-	    	oStyle.height	= fResizeManager_ensureNonNegative(nHeight) + 'px';
-	    else
+			oStyle.height	= fResizeManager_ensureNonNegative(nHeight) + 'px';
+		else
 		if (nResizeManager_resizeEdge & nResizeManager_EDGE_TOP) {
-	    	oStyle.height	= fResizeManager_ensureNonNegative(nHeight) + 'px';
-	    	oStyle.top		= fResizeManager_ensureNonNegative(nResizeManager_offsetHeight - nHeight + nResizeManager_offsetTop) + 'px';
+			oStyle.height	= fResizeManager_ensureNonNegative(nHeight) + 'px';
+			oStyle.top		= fResizeManager_ensureNonNegative(nResizeManager_offsetHeight - nHeight + nResizeManager_offsetTop) + 'px';
 		}
 	}
 
@@ -273,8 +259,7 @@ function fResizeManager_onMouseMove(oEvent)
 		window.getSelection().removeAllRanges();
 };
 
-function fResizeManager_onMouseUp(oEvent)
-{
+function fResizeManager_onMouseUp(oEvent) {
 	if (nResizeManager_resizeState == nResizeManager_STATE_RELEASED)
 		return;
 
@@ -284,28 +269,26 @@ function fResizeManager_onMouseUp(oEvent)
 
 	var oElementDOM	= oResizeManager_resizeNode.$getContainer();
 
-	if (nResizeManager_resizeState == nResizeManager_STATE_RESIZED)
-	{
+	if (nResizeManager_resizeState == nResizeManager_STATE_RESIZED) {
 		// Remove :resize pseudo-class
 		fElement_setPseudoClass(oResizeManager_resizeNode, "resize", false);
 
 		// fire onresizeend event
 		var oEventResizeEnd	= new cResizeEvent;
-	    oEventResizeEnd.initResizeEvent("resizeend", true, true, window, null, nResizeManager_resizeEdge);
-	    oEventResizeEnd.$pseudoTarget	= oEvent.$pseudoTarget;
-	    fNode_dispatchEvent(oResizeManager_resizeNode, oEventResizeEnd);
+		oEventResizeEnd.initResizeEvent("resizeend", true, true, window, null, nResizeManager_resizeEdge);
+		oEventResizeEnd.$pseudoTarget	= oEvent.$pseudoTarget;
+		fNode_dispatchEvent(oResizeManager_resizeNode, oEventResizeEnd);
 
-		if (oEventResizeEnd.defaultPrevented || (oEvent.defaultPrevented || oEvent.button))
-		{
+		if (oEventResizeEnd.defaultPrevented || (oEvent.defaultPrevented || oEvent.button)) {
 			var oStyle		= oElementDOM.style,
 				fRestore	= function() {
-				    oStyle.width	= sResizeManager_originalWidth;
-				    oStyle.height	= sResizeManager_originalHeight;
+					oStyle.width	= sResizeManager_originalWidth;
+					oStyle.height	= sResizeManager_originalHeight;
 					oStyle.left		= sResizeManager_originalLeft;
 					oStyle.top		= sResizeManager_originalTop;
 				};
 
-		    // Restore element position
+			// Restore element position
 			if (oDOMConfiguration_values["ample-enable-transitions"]) {
 				var oProperties	= {};
 				oProperties["left"]		= sResizeManager_originalLeft || "auto";
@@ -328,10 +311,10 @@ function fResizeManager_onMouseUp(oEvent)
 		fCaptureManager_releaseCapture(oResizeManager_resizeNode);
 	}
 
-    nResizeManager_resizeState	= nResizeManager_STATE_RELEASED;
-    // Update position
-    nResizeManager_mouseX	= oEvent.clientX;
-    nResizeManager_mouseY	= oEvent.clientY;
+	nResizeManager_resizeState	= nResizeManager_STATE_RELEASED;
+	// Update position
+	nResizeManager_mouseX	= oEvent.clientX;
+	nResizeManager_mouseY	= oEvent.clientY;
 };
 
 function fResizeManager_onKeyDown(oEvent) {

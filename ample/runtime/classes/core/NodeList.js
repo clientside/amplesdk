@@ -12,8 +12,7 @@ var cNodeList	= function(){};
 // nsIDOMNodeList
 cNodeList.prototype.length	= 0;
 
-cNodeList.prototype.item		= function(nIndex)
-{
+cNodeList.prototype.item	= function(nIndex) {
 //->Guard
 	fGuard(arguments, [
 		["index",	cNumber]
@@ -27,8 +26,7 @@ cNodeList.prototype.item		= function(nIndex)
 };
 
 // Ample methods
-cNodeList.prototype.$add		= function(oNode, nPosition)
-{
+cNodeList.prototype.$add	= function(oNode, nPosition) {
 	if (arguments.length > 1)
 		if (nPosition - 1 < this.length && nPosition >-1)
 			for (var nIndex = this.length; nIndex > nPosition - 1; nIndex--)
@@ -41,11 +39,10 @@ cNodeList.prototype.$add		= function(oNode, nPosition)
 	this.length++;
 
 	// Return added object
-    return oNode;
+	return oNode;
 };
 
-cNodeList.prototype.$remove		= function(oNode)
-{
+cNodeList.prototype.$remove	= function(oNode) {
 	for (var nIndex = 0, bFound	= false; nIndex < this.length; nIndex++)
 		if (bFound)
 			this[nIndex - 1]	= this[nIndex];
@@ -61,10 +58,9 @@ cNodeList.prototype.$remove		= function(oNode)
 	return oNode;
 };
 
-cNodeList.prototype.$indexOf	= function(oNode)
-{
-    for (var nIndex = 0; nIndex < this.length; nIndex++)
-        if (oNode == this[nIndex])
-            return nIndex;
-    return -1;
+cNodeList.prototype.$indexOf	= function(oNode) {
+	for (var nIndex = 0; nIndex < this.length; nIndex++)
+		if (oNode == this[nIndex])
+			return nIndex;
+	return -1;
 };

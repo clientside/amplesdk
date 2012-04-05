@@ -52,7 +52,7 @@ aui|panel::gateway {
 	filepicker
 */
 aui|filepicker::input {
-	width:  150px;
+	width:	150px;
 }
 
 aui|filepicker::input[type=file] {

@@ -8,8 +8,8 @@
  */
 
 var cXULElement_radiogroup	= function() {
-    // Collections
-    this.items      = new ample.classes.NodeList;
+	// Collections
+	this.items		= new ample.classes.NodeList;
 };
 cXULElement_radiogroup.prototype	= new cXULInputElement("radiogroup");
 cXULElement_radiogroup.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
@@ -24,7 +24,7 @@ cXULElement_radiogroup.attributes.orient	= "vertical";
 cXULElement_radiogroup.attributes.value	= "";
 
 // Public Methods
-cXULElement_radiogroup.prototype.appendItem  = function(sName, sValue) {
+cXULElement_radiogroup.prototype.appendItem	= function(sName, sValue) {
 
 };
 
@@ -61,12 +61,12 @@ cXULElement_radiogroup.prototype.$mapAttribute	= function(sName, sValue) {
 
 // Element Render: open
 cXULElement_radiogroup.prototype.$getTagOpen	= function() {
-    return '<div class="xul-radiogroup' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + (!this.$isAccessible() ? " xul-radiogroup_disabled" : "") + '">';
+	return '<div class="xul-radiogroup' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + (!this.$isAccessible() ? " xul-radiogroup_disabled" : "") + '">';
 };
 
 // Element Render: close
 cXULElement_radiogroup.prototype.$getTagClose	= function() {
-    return '</div>';
+	return '</div>';
 };
 
 // Register Element

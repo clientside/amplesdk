@@ -24,8 +24,7 @@ cGestureEvent.prototype.shiftKey	= null;
 cGestureEvent.prototype.rotation	= null;
 cGestureEvent.prototype.scale		= null;
 
-cGestureEvent.prototype.initGestureEvent	= function(sType, bCanBubble, bCancelable, oView, nDetail, nScreenX, nScreenY, nClientX, nClientY, bCtrlKey, bAltKey, bShiftKey, bMetaKey, oTarget, nScale, nRotation)
-{
+cGestureEvent.prototype.initGestureEvent	= function(sType, bCanBubble, bCancelable, oView, nDetail, nScreenX, nScreenY, nClientX, nClientY, bCtrlKey, bAltKey, bShiftKey, bMetaKey, oTarget, nScale, nRotation) {
 	this.initUIEvent(sType, bCanBubble, bCancelable, oView, nDetail);
 
 	this.ctrlKey	= bCtrlKey;

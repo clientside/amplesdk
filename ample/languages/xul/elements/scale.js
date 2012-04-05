@@ -7,7 +7,7 @@
  *
  */
 
-var cXULElement_scale = function(){};
+var cXULElement_scale	= function(){};
 
 cXULElement_scale.prototype	= new cXULInputElement("scale");
 
@@ -58,11 +58,11 @@ cXULElement_scale.handlers	= {
 			// Check lower boundary
 			if (cXULElement_scale.button > 0)
 				if (nValue < aValues[cXULElement_scale.button - 1] * 1)
-					nValue = aValues[cXULElement_scale.button - 1] * 1;
+					nValue	= aValues[cXULElement_scale.button - 1] * 1;
 			// Check upper boundary
 			if (cXULElement_scale.button < aValues.length - 1)
 				if (nValue > aValues[cXULElement_scale.button + 1] * 1)
-					nValue = aValues[cXULElement_scale.button + 1] * 1;
+					nValue	= aValues[cXULElement_scale.button + 1] * 1;
 			// Account for min/max
 			nValue	= Math.min(nMax, Math.max(nMin, nValue));
 

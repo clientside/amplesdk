@@ -14,14 +14,14 @@
 		<properties>
 			<property name="parameterNames" type="DOMStringList" readonly="true">
 				<description>
-          <locale>
-            The list of the parameters supported by this DOMConfiguration object and for which at least one value can be set by the application.
-            Note that this list can also contain parameter names defined outside this specification.
-          </locale>
-          <locale xml:lang="ru">
-            Список параметров, поддерживаемых этим объектом, для каждого из которых
-            Note that this list can also contain parameter names defined outside this specification.
-          </locale>
+					<locale>
+						The list of the parameters supported by this DOMConfiguration object and for which at least one value can be set by the application.
+						Note that this list can also contain parameter names defined outside this specification.
+					</locale>
+					<locale xml:lang="ru">
+						Список параметров, поддерживаемых этим объектом, для каждого из которых
+						Note that this list can also contain parameter names defined outside this specification.
+					</locale>
 				</description>
 			</property>
 		</properties>

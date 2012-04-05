@@ -19,13 +19,13 @@ cXULElement_sidebar.attributes.height	= "100%";
 
 // Element Renders
 cXULElement_sidebar.prototype.$getTagOpen	= function() {
-    return '<div class="xul-sidebar' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="' +
-    			(this.attributes["style"] ? this.attributes["style"] : '') + '">';
+	return '<div class="xul-sidebar' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="' +
+				(this.attributes["style"] ? this.attributes["style"] : '') + '">';
 };
 
 // Element Render: close
 cXULElement_sidebar.prototype.$getTagClose	= function() {
-    return '</div>';
+	return '</div>';
 };
 
 // Register Element

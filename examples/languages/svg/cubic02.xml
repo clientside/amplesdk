@@ -1,18 +1,18 @@
 <?xml version="1.0" standalone="no"?>
 <svg width="600px" height="600px" viewBox="0 0 1000 1000"
-     xmlns="http://www.w3.org/2000/svg" version="1.1">
+	 xmlns="http://www.w3.org/2000/svg" version="1.1">
   <title>Example cubic02 - cubic Bezier commands in path data</title>
   <desc>Picture showing examples of "C" and "S" commands,
-        along with annotations showing the control points
-        and end points</desc>
+		along with annotations showing the control points
+		and end points</desc>
   <style type="text/css"><![CDATA[
-    .Border { fill:none; stroke:blue; stroke-width:1 }
-    .Connect { fill:none; stroke:#888888; stroke-width:2 }
-    .SamplePath { fill:none; stroke:red; stroke-width:5 }
-    .EndPoint { fill:none; stroke:#888888; stroke-width:2 }
-    .CtlPoint { fill:#888888; stroke:none }
-    .AutoCtlPoint { fill:none; stroke:blue; stroke-width:4 }
-    .Label { text-anchor:middle; font-size:22; font-family:Verdana }
+	.Border { fill:none; stroke:blue; stroke-width:1 }
+	.Connect { fill:none; stroke:#888888; stroke-width:2 }
+	.SamplePath { fill:none; stroke:red; stroke-width:5 }
+	.EndPoint { fill:none; stroke:#888888; stroke-width:2 }
+	.CtlPoint { fill:#888888; stroke:none }
+	.AutoCtlPoint { fill:none; stroke:blue; stroke-width:4 }
+	.Label { text-anchor:middle; font-size:22; font-family:Verdana }
   ]]></style>
 
   <rect class="Border" x="1" y="1" width="998" height="998" />
@@ -80,9 +80,9 @@
 
   <polyline class="Connect" points="875,900 900,800" />
   <path class="SamplePath" d="M600,800 C625,700 725,700 750,800
-                                       S875,900 900,800" />
+									   S875,900 900,800" />
   <path class="SamplePath" d="M600,800 c25,-100 125,-100 150,0
-                                       s125,100 150,0 l-100,-100" style="stroke:green"/>
+									   s125,100 150,0 l-100,-100" style="stroke:green"/>
   <circle class="EndPoint" cx="600" cy="800" r="10" />
   <circle class="EndPoint" cx="750" cy="800" r="10" />
   <circle class="EndPoint" cx="900" cy="800" r="10" />

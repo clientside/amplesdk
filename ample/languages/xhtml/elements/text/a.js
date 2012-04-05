@@ -31,8 +31,8 @@ cXHTMLElement_a.handlers	= {
 	"DOMActivate":	function(oEvent) {
 		// Handle @href="#href"
 		if (document.namespaces) {
-			var sHref= this.$getContainer().href,
-				aUrl = sHref.match(/^([^#]*)#(.*)/);
+			var sHref	= this.$getContainer().href,
+				aUrl	= sHref.match(/^([^#]*)#(.*)/);
 			if (aUrl && window.location.href.match(/^([^#]*)#/) && aUrl[1] == window.RegExp.$1)
 				ample.bookmark(aUrl[2]);
 		}

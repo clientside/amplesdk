@@ -85,7 +85,7 @@ cQuery.prototype.appendTo	= function(vArgument1) {
 			oSelf.each(function() {
 				var oNode	= nIndex ? fNode_cloneNode(this, true) : this;
 				fElement_appendChild(oParent, oNode);
-				oQuery[oQuery.length++] = oNode;
+				oQuery[oQuery.length++]	= oNode;
 			});
 		});
 	}
@@ -115,7 +115,7 @@ cQuery.prototype.prependTo	= function(vArgument1) {
 					fElement_insertBefore(oParent, oNode, oBefore);
 				else
 					fElement_appendChild(oParent, oNode);
-				oQuery[oQuery.length++] = oNode;
+				oQuery[oQuery.length++]	= oNode;
 			});
 		});
 	}
@@ -142,7 +142,7 @@ cQuery.prototype.insertBefore	= function(vArgument1) {
 			fQuery_each(oSelf, function() {
 				var oNode	= nIndex ? fNode_cloneNode(this, true) : this;
 				fElement_insertBefore(oParent, oNode, oBefore);
-				oQuery[oQuery.length++] = oNode;
+				oQuery[oQuery.length++]	= oNode;
 			});
 		});
 	}
@@ -172,7 +172,7 @@ cQuery.prototype.insertAfter	= function(vArgument1) {
 					fElement_insertBefore(oParent, oNode, oBefore == this ? oBefore.nextSibling : oBefore);
 				else
 					fElement_appendChild(oParent, oNode);
-				oQuery[oQuery.length++] = oNode;
+				oQuery[oQuery.length++]	= oNode;
 			});
 		});
 	}
@@ -199,7 +199,7 @@ cQuery.prototype.replaceAll	= function(vArgument1) {
 			fQuery_each(oSelf, function() {
 				var oNode	= nIndex ? fNode_cloneNode(this, true) : this;
 				fElement_insertBefore(oParent, oNode, oBefore);
-				oQuery[oQuery.length++] = oNode;
+				oQuery[oQuery.length++]	= oNode;
 			});
 			fElement_removeChild(this.parentNode, this);
 		});

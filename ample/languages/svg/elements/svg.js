@@ -128,10 +128,10 @@ if (cSVGElement.useVML) {
 			sHeightUnit	= aHeight[2] == "%" || !aHeight[2] ? "px" : aHeight[2];
 
 		return [
-		        [nLeft + sWidthUnit, nTop + sHeightUnit],
-		        [nWidthInner + sWidthUnit, nHeightInner + sHeightUnit],
-		        [sWidthOuter, sHeightOuter]/*,
-		        [aViewBox[2], aViewBox[3]]*/
+				[nLeft + sWidthUnit, nTop + sHeightUnit],
+				[nWidthInner + sWidthUnit, nHeightInner + sHeightUnit],
+				[sWidthOuter, sHeightOuter]/*,
+				[aViewBox[2], aViewBox[3]]*/
 		];
 	};
 

@@ -42,7 +42,7 @@ if (cSVGElement.useVML) {
 
 	cSVGElement_textPath.prototype.$mapAttribute	= function(sName, sValue) {
 		if (sName == "xlink:href") {
-			var oTextPath = this.ownerDocument.getElementById(sValue.substr(1));
+			var oTextPath	= this.ownerDocument.getElementById(sValue.substr(1));
 			if (oTextPath)
 				this.$getContainer().path	= cSVGElement_path.convert(oTextPath.getAttribute("d"));
 		}

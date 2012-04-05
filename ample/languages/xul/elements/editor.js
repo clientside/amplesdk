@@ -12,9 +12,9 @@
  */
 // component constructor
 var cXULElement_editor	= function() {
-    //
-    var that	= this;
-    this.contentFragment	= ample.createDocumentFragment();
+	//
+	var that	= this;
+	this.contentFragment	= ample.createDocumentFragment();
 	// Font names
 	this._elementFontName	= this.contentFragment.appendChild(ample.createElementNS(this.namespaceURI, "xul:menulist"));
 	this._elementFontName.tabIndex	=-1;
@@ -311,7 +311,7 @@ cXULElement_editor.htmlmap	= [
 
 cXULElement_editor.sanityze	= function(sHtml) {
 	for (var nIndex = 0; nIndex < cXULElement_editor.htmlmap.length; nIndex++)
-		sHtml = sHtml.replace(cXULElement_editor.htmlmap[nIndex][0], cXULElement_editor.htmlmap[nIndex][1]);
+		sHtml	= sHtml.replace(cXULElement_editor.htmlmap[nIndex][0], cXULElement_editor.htmlmap[nIndex][1]);
 
 	return sHtml.replace(/<a( target="_blank")?/g, '<a target="_blank"')
 				.replace(/\r?\n/g, "")
@@ -340,7 +340,7 @@ cXULElement_editor.initializeDocument	= function(oInstance) {
 			try {
 				oDOMElement.contentWindow.document.designMode	= "on";
 			} catch (e) {
-				var f = arguments.callee
+				var f	= arguments.callee
 				setTimeout(function(){f(oEvent)}, 0);
 				return;
 			}
@@ -388,7 +388,7 @@ cXULElement_editor.initializeDocument	= function(oInstance) {
 				}
 			}
 	};
-	var fUpdateState = function(oEvent) {
+	var fUpdateState	= function(oEvent) {
 		if (oInstance.$isAccessible())
 			cXULElement_editor.updateButtons(oInstance);
 	};

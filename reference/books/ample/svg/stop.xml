@@ -3,7 +3,7 @@
 <element name="stop" extends="svg:SVGElement">
 	<abstract>
 		<locale>
-			The ramp of colors to use on a gradient is defined by the 'stop' elements that are child elements to either the 'linearGradient'  element or the 'radialGradient'  element.
+			The ramp of colors to use on a gradient is defined by the 'stop' elements that are child elements to either the 'linearGradient' element or the 'radialGradient'  element.
 		</locale>
 	</abstract>
 	<examples />

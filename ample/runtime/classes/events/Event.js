@@ -36,8 +36,7 @@ cEvent.prototype._stopped			= false;
 cEvent.prototype._stoppedImmediately= false;
 
 // Public Methods
-cEvent.prototype.initEvent		= function(sType, bCanBubble, bCancelable)
-{
+cEvent.prototype.initEvent		= function(sType, bCanBubble, bCancelable) {
 /*
 //->Guard
 	fGuard(arguments, [
@@ -47,34 +46,29 @@ cEvent.prototype.initEvent		= function(sType, bCanBubble, bCancelable)
 	]);
 //<-Guard
 */
-    this.type       = sType;
-    this.bubbles    = bCanBubble;
-    this.cancelable = bCancelable;
+	this.type		= sType;
+	this.bubbles	= bCanBubble;
+	this.cancelable	= bCancelable;
 };
 
-cEvent.prototype.stopPropagation	= function()
-{
+cEvent.prototype.stopPropagation	= function() {
 	this._stopped	= this.bubbles;
 };
 
-cEvent.prototype.stopImmediatePropagation	= function()
-{
+cEvent.prototype.stopImmediatePropagation	= function() {
 	this._stoppedImmediately	= this._stopped	= this.bubbles;
 };
 
-cEvent.prototype.preventDefault	= function()
-{
+cEvent.prototype.preventDefault	= function() {
 	this.defaultPrevented	= this.cancelable;
 };
 
-cEvent.prototype.isPropagationStopped	= function()
-{
+cEvent.prototype.isPropagationStopped	= function() {
 	return this._stopped;
 };
 
 //->Source
-cEvent.prototype.toString	= function()
-{
+cEvent.prototype.toString	= function() {
 	return	"type:		" + this.type + "\n" +
 			"bubbles:		" + this.bubbles + "\n" +
 			"cancelable:	" + this.cancelable + "\n" +

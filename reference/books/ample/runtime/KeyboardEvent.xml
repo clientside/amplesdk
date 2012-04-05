@@ -190,12 +190,12 @@
 	<remarks>
 		<remark>
 			<locale>Events of that type:</locale>
-      <locale xml:lang="ru">События этого типа:</locale>
-      <ul>
-        <li><link type="event" href="runtime:Element">keydown</link></li>
-        <li><link type="event" href="runtime:Element">keyup</link></li>
-        <li><link type="event" href="runtime:Element">keypress</link></li>
-      </ul>
+			<locale xml:lang="ru">События этого типа:</locale>
+			<ul>
+				<li><link type="event" href="runtime:Element">keydown</link></li>
+				<li><link type="event" href="runtime:Element">keyup</link></li>
+				<li><link type="event" href="runtime:Element">keypress</link></li>
+			</ul>
 		</remark>
 	</remarks>
 	<examples />

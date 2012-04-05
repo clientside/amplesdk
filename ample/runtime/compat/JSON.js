@@ -13,11 +13,11 @@
 if (!oJSON) {
 	oJSON	= new cObject;
 
-	var rCx = /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,
-		rEscapable = /[\\\"\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,
+	var rCx	= /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,
+		rEscapable	= /[\\\"\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,
 		sGap,
 		sIndent,
-		hMeta = {	// table of character substitutions
+		hMeta	= {	// table of character substitutions
 			'\b': '\\b',
 			'\t': '\\t',
 			'\n': '\\n',
@@ -35,10 +35,10 @@ if (!oJSON) {
 // Otherwise we must also replace the offending characters with safe escape
 // sequences.
 
-		rEscapable.lastIndex = 0;
+		rEscapable.lastIndex	= 0;
 		return rEscapable.test(sValue) ?
 			'"' + sValue.replace(rEscapable, function (a) {
-				var c = hMeta[a];
+				var c	= hMeta[a];
 				return typeof c === "string" ? c :
 					'\\u' + ("0000" + a.charCodeAt(0).toString(16)).slice(-4);
 			}) + '"' :
@@ -49,26 +49,26 @@ if (!oJSON) {
 
 // Produce a string from holder[key].
 
-		var i,		  // The loop counter.
-			k,		  // The member key.
-			v,		  // The member value.
+		var i,			// The loop counter.
+			k,			// The member key.
+			v,			// The member value.
 			nLength,
-			sMind = sGap,
+			sMind	= sGap,
 			aPartial,
-			vValue = oHolder[sKey];
+			vValue	= oHolder[sKey];
 
 // If the value has a toJSON method, call it to obtain a replacement value.
 
 		if (vValue && typeof vValue === "object" &&
 				typeof vValue.toJSON === "function") {
-			vValue = vValue.toJSON(sKey);
+			vValue	= vValue.toJSON(sKey);
 		}
 
 // If we were called with a replacer function, then call the replacer to
 // obtain a replacement value.
 
 		if (typeof vRep === "function") {
-			vValue = vRep.call(oHolder, sKey, vValue);
+			vValue	= vRep.call(oHolder, sKey, vValue);
 		}
 
 // What happens next depends on the value's type.
@@ -107,7 +107,7 @@ if (!oJSON) {
 // Make an array to hold the partial results of stringifying this object value.
 
 			sGap += sIndent;
-			aPartial = [];
+			aPartial	= [];
 
 // Is the value an array?
 
@@ -116,31 +116,31 @@ if (!oJSON) {
 // The value is an array. Stringify every element. Use null as a placeholder
 // for non-JSON values.
 
-				nLength = vValue.length;
+				nLength	= vValue.length;
 				for (i = 0; i < nLength; i += 1) {
-					aPartial[i] = fStr(i, vValue) || "null";
+					aPartial[i]	= fStr(i, vValue) || "null";
 				}
 
 // Join all of the elements together, separated with commas, and wrap them in
 // brackets.
 
-				v = aPartial.length === 0 ? '[]' :
+				v	= aPartial.length === 0 ? '[]' :
 					sGap ? '[\n' + sGap +
 							aPartial.join(',\n' + sGap) + '\n' +
 								sMind + ']' :
-						  '[' + aPartial.join(',') + ']';
-				sGap = sMind;
+							'[' + aPartial.join(',') + ']';
+				sGap	= sMind;
 				return v;
 			}
 
 // If the replacer is an array, use it to select the members to be stringified.
 
 			if (vRep && typeof vRep === "object") {
-				nLength = vRep.length;
+				nLength	= vRep.length;
 				for (i = 0; i < nLength; i += 1) {
-					k = vRep[i];
+					k	= vRep[i];
 					if (typeof k === "string") {
-						v = fStr(k, vValue);
+						v	= fStr(k, vValue);
 						if (v) {
 							aPartial.push(fQuote(k) + (sGap ? ': ' : ':') + v);
 						}
@@ -152,7 +152,7 @@ if (!oJSON) {
 
 				for (k in vValue) {
 					if (cObject.hasOwnProperty.call(vValue, k)) {
-						v = fStr(k, vValue);
+						v	= fStr(k, vValue);
 						if (v) {
 							aPartial.push(fQuote(k) + (sGap ? ': ' : ':') + v);
 						}
@@ -163,17 +163,17 @@ if (!oJSON) {
 // Join all of the member texts together, separated with commas,
 // and wrap them in braces.
 
-			v = aPartial.length === 0 ? '{}' :
+			v	= aPartial.length === 0 ? '{}' :
 				sGap ? '{\n' + sGap + aPartial.join(',\n' + sGap) + '\n' +
 						sMind + '}' : '{' + aPartial.join(',') + '}';
-			sGap = sMind;
+			sGap	= sMind;
 			return v;
 		}
 	};
 
 // If the JSON object does not yet have a stringify method, give it one.
 
-	oJSON.stringify = function (vValue, vReplacer, vSpace) {
+	oJSON.stringify	= function (vValue, vReplacer, vSpace) {
 
 // The stringify method takes a value and an optional replacer, and an optional
 // space parameter, and returns a JSON text. The replacer can be a function
@@ -182,8 +182,8 @@ if (!oJSON) {
 // produce text that is more easily readable.
 
 		var i;
-		sGap = '';
-		sIndent = '';
+		sGap	= '';
+		sIndent	= '';
 
 // If the space parameter is a number, make an indent string containing that
 // many spaces.
@@ -196,13 +196,13 @@ if (!oJSON) {
 // If the space parameter is a string, it will be used as the indent string.
 
 		} else if (typeof vSpace === "string") {
-			sIndent = vSpace;
+			sIndent	= vSpace;
 		}
 
 // If there is a replacer, it must be a function or an array.
 // Otherwise, throw an error.
 
-		vRep = vReplacer;
+		vRep	= vReplacer;
 		if (vReplacer && typeof vReplacer !== "function" &&
 				(typeof vReplacer !== "object" ||
 				 typeof vReplacer.length !== "number")) {
@@ -218,7 +218,7 @@ if (!oJSON) {
 
 // If the JSON object does not yet have a parse method, give it one.
 
-	oJSON.parse = function(sText, fReviver) {
+	oJSON.parse	= function(sText, fReviver) {
 //->Guard
 		fGuard(arguments, [
 			["string",	cString],
@@ -236,13 +236,13 @@ if (!oJSON) {
 // The walk method is used to recursively walk the resulting structure so
 // that modifications can be made.
 
-			var k, v, vValue = oHolder[sKey];
+			var k, v, vValue	= oHolder[sKey];
 			if (vValue && typeof vValue === "object") {
 				for (k in vValue) {
 					if (cObject.hasOwnProperty.call(vValue, k)) {
-						v = fWalk(vValue, k);
+						v	= fWalk(vValue, k);
 						if (typeof v != "undefined") {
-							vValue[k] = v;
+							vValue[k]	= v;
 						} else {
 							delete vValue[k];
 						}
@@ -257,9 +257,9 @@ if (!oJSON) {
 // Unicode characters with escape sequences. JavaScript handles many characters
 // incorrectly, either silently deleting them, or treating them as line endings.
 
-		rCx.lastIndex = 0;
+		rCx.lastIndex	= 0;
 		if (rCx.test(sText)) {
-			sText = sText.replace(rCx, function (a) {
+			sText	= sText.replace(rCx, function (a) {
 				return '\\u' +
 					("0000" + a.charCodeAt(0).toString(16)).slice(-4);
 			});
@@ -288,7 +288,7 @@ replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
 // in JavaScript: it can begin a block or an object literal. We wrap the text
 // in parens to eliminate the ambiguity.
 
-			j = window.eval('(' + sText + ')');
+			j	= window.eval('(' + sText + ')');
 
 // In the optional fourth stage, we recursively walk the new structure, passing
 // each name/value pair to a reviver function for possible transformation.

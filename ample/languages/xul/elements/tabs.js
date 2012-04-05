@@ -8,8 +8,8 @@
  */
 
 var cXULElement_tabs	= function() {
-    // Collections
-    this.items      = new ample.classes.NodeList;
+	// Collections
+	this.items		= new ample.classes.NodeList;
 };
 cXULElement_tabs.prototype	= new cXULElement("tabs");
 cXULElement_tabs.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
@@ -19,62 +19,62 @@ cXULElement_tabs.prototype.tabIndex	= 0;
 cXULElement_tabs.prototype.$selectable	= false;
 
 // Public Properties
-cXULElement_tabs.prototype.selectedIndex	=-1;    // Not implemented
+cXULElement_tabs.prototype.selectedIndex	=-1;	// Not implemented
 cXULElement_tabs.prototype.selectedItem		= null; // Not implemented
 
 // Public Methods
-cXULElement_tabs.prototype.advanceSelectedTab    = function(nDir) {
-    if (nDir == 1)
-        this.goTo(this.parentNode.selectedIndex + 1);
-    else
-    if (nDir ==-1)
-        this.goTo(this.parentNode.selectedIndex - 1);
+cXULElement_tabs.prototype.advanceSelectedTab	= function(nDir) {
+	if (nDir == 1)
+		this.goTo(this.parentNode.selectedIndex + 1);
+	else
+	if (nDir ==-1)
+		this.goTo(this.parentNode.selectedIndex - 1);
 };
 
-cXULElement_tabs.prototype.goTo      = function(nIndex) {
-    // TODO
-    if (this.parentNode.selectedIndex != nIndex && this.items[nIndex]) {
-        // send onselect event
-        var oEvent  = this.ownerDocument.createEvent("Event");
-        oEvent.initEvent("beforeselect", false, true);
-        if (this.dispatchEvent(oEvent) == false)
-            return;
+cXULElement_tabs.prototype.goTo		= function(nIndex) {
+	// TODO
+	if (this.parentNode.selectedIndex != nIndex && this.items[nIndex]) {
+		// send onselect event
+		var oEvent	= this.ownerDocument.createEvent("Event");
+		oEvent.initEvent("beforeselect", false, true);
+		if (this.dispatchEvent(oEvent) == false)
+			return;
 
-        // Deselect old tab
-        if (this.parentNode.selectedTab)
-            this.parentNode.selectedTab.setAttribute("selected", "false");
-        if (this.parentNode.selectedPanel)
-            this.parentNode.selectedPanel.setAttribute("hidden", "true");
+		// Deselect old tab
+		if (this.parentNode.selectedTab)
+			this.parentNode.selectedTab.setAttribute("selected", "false");
+		if (this.parentNode.selectedPanel)
+			this.parentNode.selectedPanel.setAttribute("hidden", "true");
 
-        // Select new tab
-        this.parentNode.selectedTab      = this.items[nIndex];
-        this.parentNode.selectedTab.setAttribute("selected", "true");
-        if (this.parentNode.tabpanels && this.parentNode.tabpanels.items[nIndex]) {
-            this.parentNode.selectedPanel    = this.parentNode.tabpanels.items[nIndex];
-            this.parentNode.selectedPanel.setAttribute("hidden", "false");
-            // Schedule reflow
-            oXULReflowManager.schedule(this.parentNode.selectedPanel);
-        }
+		// Select new tab
+		this.parentNode.selectedTab		= this.items[nIndex];
+		this.parentNode.selectedTab.setAttribute("selected", "true");
+		if (this.parentNode.tabpanels && this.parentNode.tabpanels.items[nIndex]) {
+			this.parentNode.selectedPanel	= this.parentNode.tabpanels.items[nIndex];
+			this.parentNode.selectedPanel.setAttribute("hidden", "false");
+			// Schedule reflow
+			oXULReflowManager.schedule(this.parentNode.selectedPanel);
+		}
 
-        this.parentNode.selectedIndex    = nIndex;
+		this.parentNode.selectedIndex	= nIndex;
 
-        // send onselect event
-        var oEvent  = this.ownerDocument.createEvent("Event");
-        oEvent.initEvent("select", true, true);
-        this.dispatchEvent(oEvent);
-    }
+		// send onselect event
+		var oEvent	= this.ownerDocument.createEvent("Event");
+		oEvent.initEvent("select", true, true);
+		this.dispatchEvent(oEvent);
+	}
 };
 
-cXULElement_tabs.prototype.appendItem    = function(sLabel, sValue) {
-    this.insertItemAt(this.items.length, sLabel, sValue);
+cXULElement_tabs.prototype.appendItem	= function(sLabel, sValue) {
+	this.insertItemAt(this.items.length, sLabel, sValue);
 };
 
-cXULElement_tabs.prototype.insertItemAt  = function(nIndex, sLabel, sValue) {
-    // TODO
+cXULElement_tabs.prototype.insertItemAt	= function(nIndex, sLabel, sValue) {
+	// TODO
 };
 
-cXULElement_tabs.prototype.removeItemAt  = function(nIndex) {
-    // TODO
+cXULElement_tabs.prototype.removeItemAt	= function(nIndex) {
+	// TODO
 };
 
 // Class events handlers
@@ -96,11 +96,11 @@ cXULElement_tabs.handlers	= {
 	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		if (this.parentNode instanceof cXULElement_tabbox)
-			this.parentNode.tabs = this;
+			this.parentNode.tabs	= this;
 	},
 	"DOMNodeRemovedFromDocument":	function(oEvent) {
 		if (this.parentNode instanceof cXULElement_tabbox)
-			this.parentNode.tabs = null;
+			this.parentNode.tabs	= null;
 	}
 };
 

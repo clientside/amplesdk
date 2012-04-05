@@ -199,7 +199,7 @@ oAmple.get	= function(sUrl, vData, fCallback, sType) {
 oAmple.post	= function(sUrl, vData, fCallback, sType) {
 //->Guard
 	fGuard(arguments, [
-   		["url",		cString],
+			["url",		cString],
 		["data",	cObject,	true,	true],
 		["success",	cFunction,	true],
 		["dataType",cString,	true]

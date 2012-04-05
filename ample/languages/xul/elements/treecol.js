@@ -76,17 +76,17 @@ cXULElement_treecol.prototype.$mapAttribute	= function(sName, sValue) {
 cXULElement_treecol.prototype.$getTagOpen	= function() {
 	return '<td class="xul-treecol' +(this.attributes["class"] ? " " + this.attributes["class"] : "")+ '"' + (this.attributes["hidden"] == "true" ? ' style="display:none"' : "")+ '>\
 				<div class="xul-treecol--box" style="position:relative;width:100%;">\
-					<div class="xul-treecol--label xul-treecol--gateway" style="position:absolute;width:100%;overflow:hidden;"> ' +(this.attributes["label"]  ? ample.$encodeXMLCharacters(this.attributes["label"]) : "");
+					<div class="xul-treecol--label xul-treecol--gateway" style="position:absolute;width:100%;overflow:hidden;"> ' +(this.attributes["label"] ? ample.$encodeXMLCharacters(this.attributes["label"]) : "");
 };
 
 // Element Render: close
 cXULElement_treecol.prototype.$getTagClose	= function() {
-    return			'</div>\
+	return			'</div>\
 					<div class="xul-treecol--resizer" style="position: absolute;right:0px;"><br /></div>\
 				</div>\
 				<div class="xul-treecol--stretch" style="height:1pt;font-size:1px;' + (this.attributes["width"] ? 'width:' + this.attributes["width"] + 'px' : '') + '"></div>\
 				<div style="height:1pt;font-size:1px;' + (this.attributes["minwidth"] ? 'width:' + this.attributes["minwidth"] + 'px' : '') + '"></div>\
-    		</td>';
+			</td>';
 };
 
 // Register Element

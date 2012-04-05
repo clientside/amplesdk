@@ -18,8 +18,7 @@ cText.prototype.isElementContentWhitespace	= false;
 cText.prototype.wholeText	= null;
 
 // nsIDOMText
-cText.prototype.splitText	= function(nOffset)
-{
+cText.prototype.splitText	= function(nOffset) {
 //->Guard
 	fGuard(arguments, [
 		["offset",	cNumber]
@@ -37,12 +36,11 @@ cText.prototype.splitText	= function(nOffset)
 	this.nodeValue	= sData;
 	this.length	= sData.length;
 
-    // Fire Event
-    if (sValueOld != sData)
-    {
-	    var oEvent = new cMutationEvent;
-	    oEvent.initMutationEvent("DOMCharacterDataModified", true, false, null, sValueOld, sData, null, null);
-	    fNode_dispatchEvent(this, oEvent);
+	// Fire Event
+	if (sValueOld != sData) {
+		var oEvent	= new cMutationEvent;
+		oEvent.initMutationEvent("DOMCharacterDataModified", true, false, null, sValueOld, sData, null, null);
+		fNode_dispatchEvent(this, oEvent);
 	}
 
 	// Update presentation
@@ -51,8 +49,7 @@ cText.prototype.splitText	= function(nOffset)
 		oNode.nodeValue	= this.data;
 };
 
-cText.prototype.appendData	= function(sData)
-{
+cText.prototype.appendData	= function(sData) {
 	cCharacterData.prototype.appendData.call(this, sData);
 
 	// Update presentation
@@ -61,8 +58,7 @@ cText.prototype.appendData	= function(sData)
 		oNode.nodeValue	= this.data;
 };
 
-cText.prototype.deleteData	= function(nOffset, nLength)
-{
+cText.prototype.deleteData	= function(nOffset, nLength) {
 	cCharacterData.prototype.deleteData.call(this, nOffset, nLength);
 
 	// Update presentation
@@ -71,8 +67,7 @@ cText.prototype.deleteData	= function(nOffset, nLength)
 		oNode.nodeValue	= this.data;
 };
 
-cText.prototype.insertData	= function(nOffset, sData)
-{
+cText.prototype.insertData	= function(nOffset, sData) {
 	cCharacterData.prototype.insertData.call(this, nOffset, sData);
 
 	// Update presentation
@@ -81,8 +76,7 @@ cText.prototype.insertData	= function(nOffset, sData)
 		oNode.nodeValue	= this.data;
 };
 
-cText.prototype.replaceData	= function(nOffset, nLength, sData)
-{
+cText.prototype.replaceData	= function(nOffset, nLength, sData) {
 	cCharacterData.prototype.replaceData.call(this, nOffset, nLength, sData);
 
 	// Update presentation
@@ -106,14 +100,13 @@ cText.prototype.replaceWholeText	= function(sData) {
 
 
 	// Fire Mutation event
-    if (sValueOld != sData) {
-	    var oEvent = new cMutationEvent;
-	    oEvent.initMutationEvent("DOMCharacterDataModified", true, false, null, sValueOld, sData, null, null);
-	    fNode_dispatchEvent(this, oEvent);
+	if (sValueOld != sData) {
+		var oEvent	= new cMutationEvent;
+		oEvent.initMutationEvent("DOMCharacterDataModified", true, false, null, sValueOld, sData, null, null);
+		fNode_dispatchEvent(this, oEvent);
 	}
 };
 
-cText.prototype.$getTag	= function()
-{
+cText.prototype.$getTag	= function() {
 	return fUtilities_encodeXMLCharacters(this.nodeValue);
 };

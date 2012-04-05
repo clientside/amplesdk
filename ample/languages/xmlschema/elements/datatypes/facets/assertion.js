@@ -8,7 +8,7 @@
  */
 
 var cXSElement_assertion	= function(){};
-cXSElement_assertion.prototype    = new cXSElement("assertion");
+cXSElement_assertion.prototype	= new cXSElement("assertion");
 
 cXSElement_assertion.handlers	= {};
 cXSElement_assertion.handlers.DOMNodeInsertedIntoDocument	= function(oEvent) {

@@ -5,10 +5,10 @@ window.onload = function () {
 
 	var oFrame	= top.frames['book'];
 	if (oFrame) {
-		var oCollection = oFrame.document.getElementsByTagName('a');
+		var oCollection	= oFrame.document.getElementsByTagName('a');
 		for (var i=0; i<oCollection.length; i++) {
 			if (oCollection[i].href == location.href) {
-				var oTmp = oCollection[i];
+				var oTmp	= oCollection[i];
 				while (oTmp = oTmp.parentNode) {
 					if (oTmp.nodeName == 'UL' && oTmp.id && oFrame.document.getElementById(oTmp.id).style.display == 'none') {
 						oFrame.onTocClick(oTmp.id);
@@ -42,25 +42,21 @@ window.onload = function () {
 	prettyPrint();
 }
 
-function onTabClick(sId)
-{
-    var sCurrentId	= document.getElementById('eTableMembers').getAttribute("tab");
-    if (sCurrentId)
-    {
-        document.getElementById('eTab_'+sCurrentId).className		= document.getElementById('eTab_'+sCurrentId).className.replace('pressed', 'normal');
-        document.getElementById('ePane_'+sCurrentId).style.display	= 'none';
-    }
-    document.getElementById('eTab_'+sId).className		= document.getElementById('eTab_'+sId).className.replace(/hover|normal/, 'pressed');
-    document.getElementById('ePane_'+sId).style.display	= '';
-    document.getElementById('eTableMembers').setAttribute("tab", sId);
-    document.getElementById('eTableMembersHeader').innerHTML    = document.getElementById('eTab_'+sId).innerHTML;
+function onTabClick(sId) {
+	var sCurrentId	= document.getElementById('eTableMembers').getAttribute("tab");
+	if (sCurrentId) {
+		document.getElementById('eTab_'+sCurrentId).className		= document.getElementById('eTab_'+sCurrentId).className.replace('pressed', 'normal');
+		document.getElementById('ePane_'+sCurrentId).style.display	= 'none';
+	}
+	document.getElementById('eTab_'+sId).className		= document.getElementById('eTab_'+sId).className.replace(/hover|normal/, 'pressed');
+	document.getElementById('ePane_'+sId).style.display	= '';
+	document.getElementById('eTableMembers').setAttribute("tab", sId);
+	document.getElementById('eTableMembersHeader').innerHTML	= document.getElementById('eTab_'+sId).innerHTML;
 }
 
-function onMenuClick(oElement)
-{
+function onMenuClick(oElement) {
 	var oPane	= document.getElementById("eTableMembersPane");
-	if (window.top._helpOpen)
-	{
+	if (window.top._helpOpen) {
 		window.top._helpOpen	= false;
 		oElement.className	= oElement.className.replace("open", "close");
 		oPane.className		= oPane.className.replace("open", "close");

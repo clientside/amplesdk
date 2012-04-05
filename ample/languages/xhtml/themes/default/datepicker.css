@@ -45,11 +45,11 @@ datepicker-day:disabled {
 	color: #F0F0F0;
 }
 datepicker-day:selected {
-    color: #ffffff;
-    background-color: #3399FF;
+	color: #ffffff;
+	background-color: #3399FF;
 }
 datepicker-day:hover {
-    background-color: silver;
+	background-color: silver;
 }
 datepicker-week {
 	width: 1.5em;

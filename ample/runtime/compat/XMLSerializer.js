@@ -8,8 +8,8 @@
  */
 
 if (!cXMLSerializer) {
-	cXMLSerializer = function(){};
-	cXMLSerializer.prototype.serializeToString = function(oNode) {
+	cXMLSerializer	= function(){};
+	cXMLSerializer.prototype.serializeToString	= function(oNode) {
 //->Guard
 		fGuard(arguments, [
 			["node",	cXMLNode]

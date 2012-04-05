@@ -1,10 +1,10 @@
 <?php
 	$aFiles		= array();
-    $aFiles[]	= "elements.css";
+	$aFiles[]	= "elements.css";
 
-    $sOutput	= "@namespace aui \"http://www.amplesdk.com/ns/aui\";\n";
-    for ($nIndex = 0; $nIndex < count($aFiles); $nIndex++)
-        $sOutput	.= join('', file($aFiles[$nIndex])) . "\n";
+	$sOutput	= "@namespace aui \"http://www.amplesdk.com/ns/aui\";\n";
+	for ($nIndex = 0; $nIndex < count($aFiles); $nIndex++)
+		$sOutput	.= join('', file($aFiles[$nIndex])) . "\n";
 
 	header("Content-type: text/css");
 

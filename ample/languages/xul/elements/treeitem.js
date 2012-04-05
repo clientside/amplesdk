@@ -8,7 +8,7 @@
  */
 
 var cXULElement_treeitem	= function(){};
-cXULElement_treeitem.prototype   = new cXULElement("treeitem");
+cXULElement_treeitem.prototype	= new cXULElement("treeitem");
 
 // Public Properties
 cXULElement_treeitem.prototype.row		= null; // Reference to XULElement_treerow
@@ -17,15 +17,15 @@ cXULElement_treeitem.prototype.children	= null; // Reference to XULElement_treec
 // Public Methods
 
 // Private Methods
-cXULElement_treeitem.prototype._getNodeDepth = function() {
+cXULElement_treeitem.prototype._getNodeDepth	= function() {
 	var oElement= this.parentNode;
-    var nDepth  = 0;
-    while (oElement = oElement.parentNode.parentNode)
-        if (oElement instanceof cXULElement_tree)
-            break;
-        else
-            nDepth++;
-    return nDepth;
+	var nDepth	= 0;
+	while (oElement = oElement.parentNode.parentNode)
+		if (oElement instanceof cXULElement_tree)
+			break;
+		else
+			nDepth++;
+	return nDepth;
 };
 
 // Class Events Handlers
@@ -38,20 +38,20 @@ cXULElement_treeitem.handlers	= {
 		if (oEvent.target.parentNode != this && oEvent.target.parentNode.parentNode != this)
 			return;
 
-	    //
-	    if (oEvent.button == 2 && oView.selectedItems.$indexOf(this) !=-1)
-	        return;
+		//
+		if (oEvent.button == 2 && oView.selectedItems.$indexOf(this) !=-1)
+			return;
 
-	    if (oEvent.shiftKey) {
+		if (oEvent.shiftKey) {
 			if (oView.currentItem)
 				oView.selectItemRange(this, oView.currentItem);
-	    }
+		}
 		else {
-	        if (oEvent.ctrlKey)
-	        	oView.toggleItemSelection(this);
-	        else
-	        	oView.selectItem(this);
-	    }
+			if (oEvent.ctrlKey)
+				oView.toggleItemSelection(this);
+			else
+				oView.selectItem(this);
+		}
 	},
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this) {
@@ -60,7 +60,7 @@ cXULElement_treeitem.handlers	= {
 					// Show/hide child items
 					this.children.setAttribute("hidden", oEvent.newValue == "true" ? "false" : "true");
 					//
-					var oEvent = this.ownerDocument.createEvent("Event");
+					var oEvent	= this.ownerDocument.createEvent("Event");
 					oEvent.initEvent("OpenStateChange", true, false);
 					this.dispatchEvent(oEvent);
 				}
@@ -93,14 +93,14 @@ cXULElement_treeitem.prototype.$mapAttribute	= function(sName, sValue) {
 	if (sName == "selected") {
 		this.$setPseudoClass("selected", sValue == "true");
 		if (this.parentNode.tree.attributes["type"] == "checkbox" || this.parentNode.tree.attributes["type"] == "radio")
-			this.$getContainer("command").checked = sValue == "true";
+			this.$getContainer("command").checked	= sValue == "true";
 	}
 	else
 	if (sName == "open") {
 		// Change toc image at primary cell
 		if (this.parentNode.tree.head) {
-			var nDepth  = this._getNodeDepth(),
-				nIndex  = this.parentNode.tree.head._getPrimaryColIndex();
+			var nDepth	= this._getNodeDepth(),
+				nIndex	= this.parentNode.tree.head._getPrimaryColIndex();
 			if (nIndex !=-1 && this.row.cells[nIndex]) {
 				// Apply pseudo-class
 				this.row.cells[nIndex].$setPseudoClass("open", sValue == "true", "toc");

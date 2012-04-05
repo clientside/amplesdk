@@ -156,17 +156,17 @@ function fFocusManager_onMouseDown(oEvent) {
 
 	// Find new element to focus
 	var oFocusGroup	= null;
-    for (var oElement = oEvent.target; oElement.nodeType != 9 /* cNode.DOCUMENT_NODE */ && !oFocusGroup; oElement = oElement.parentNode) {
-//    	console.log(oElement.nodeName, fFocusManager_isTabStop(oElement, 0, true))
-    	if (fFocusManager_isTabStop(oElement, 0, true))
-    		oFocusGroup = oElement;
-    }
+	for (var oElement = oEvent.target; oElement.nodeType != 9 /* cNode.DOCUMENT_NODE */ && !oFocusGroup; oElement = oElement.parentNode) {
+//		console.log(oElement.nodeName, fFocusManager_isTabStop(oElement, 0, true))
+		if (fFocusManager_isTabStop(oElement, 0, true))
+			oFocusGroup	= oElement;
+	}
 
 	//
-    if (oFocusGroup)
-    	fFocusManager_focus(oFocusGroup);
-    else
-    if (oFocusManager_focusGroup)
+	if (oFocusGroup)
+		fFocusManager_focus(oFocusGroup);
+	else
+	if (oFocusManager_focusGroup)
 		fFocusManager_blur(oFocusManager_focusGroup);
 };
 

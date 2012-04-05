@@ -10,12 +10,12 @@
 		</locale>
 	</abstract>
 	<warning>
-	    <locale>
-	      The <link type="class">Attr</link> class is only used in order to define global language attributes.
-	    </locale>
-	    <locale xml:lang="ru">
-	      Класс <link type="class">Attr</link> используется только для объявления глобальных атрибутов языка.
-	    </locale>
+		<locale>
+			The <link type="class">Attr</link> class is only used in order to define global language attributes.
+		</locale>
+		<locale xml:lang="ru">
+			Класс <link type="class">Attr</link> используется только для объявления глобальных атрибутов языка.
+		</locale>
 	</warning>
 	<examples/>
 	<members>

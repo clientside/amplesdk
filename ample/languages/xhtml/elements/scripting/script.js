@@ -15,7 +15,7 @@ cXHTMLElement_script.handlers	= {
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		var sType	=(this.attributes["type"] || '').match(/(\w+)\/([-\w]+\+)?(?:x\-)?([-\w]+)?;?(.+)?/) ? RegExp.$3 : '';
 		if (this.attributes["src"])
-			this.$getContainer().src  = this.attributes["src"];
+			this.$getContainer().src	= this.attributes["src"];
 		else
 		if (this.firstChild &&(sType == "" || sType == "javascript" || sType == "ecmascript")) {
 			var oElement	= document.body.appendChild(document.createElement("script"));

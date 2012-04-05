@@ -10,13 +10,13 @@ xul|colorpicker-pane xul|menupopup::shadow-right {
 }
 
 xul|colorpicker-pane::palette {
-	width:  256px;
+	width:	256px;
 	height: 256px;
 	background-image: url(media/huesaturation.jpg);
 }
 
 xul|colorpicker-pane::palette-shader {
-	width:  256px;
+	width:	256px;
 	height: 256px;
 	background-color: #000000;
 }

@@ -8,7 +8,7 @@
  */
 
 var cXULElement_radio	= function(){};
-cXULElement_radio.prototype   = new cXULElement("radio");
+cXULElement_radio.prototype	= new cXULElement("radio");
 
 cXULElement_radio.prototype.$hoverable	= true;
 
@@ -24,7 +24,7 @@ cXULElement_radio.handlers	= {
 	"click":	function(oEvent) {
 		if (oEvent.button == 0) {
 			this.setAttribute("selected", "true");
-		    // Fire Event
+			// Fire Event
 			if (this.group)
 				cXULInputElement.dispatchChange(this.group);
 		}
@@ -41,12 +41,12 @@ cXULElement_radio.handlers	= {
 
 						oGroup.selectedIndex	= this.group.items.$indexOf(this);
 						oGroup.selectedItem		= this;
-						oGroup.attributes["value"]  = this.attributes["value"];
+						oGroup.attributes["value"]	= this.attributes["value"];
 					}
 					else {
 						oGroup.selectedIndex	=-1;
 						oGroup.selectedItem		= null;
-						oGroup.attributes["value"]  = "";
+						oGroup.attributes["value"]	= "";
 					}
 				}
 			}
@@ -58,7 +58,7 @@ cXULElement_radio.handlers	= {
 				break;
 		if (oElement) {
 			oElement.items.$add(this);
-			this.group   = oElement;
+			this.group	= oElement;
 			//
 			if (this.attributes["selected"] == "true") {
 				oElement.selectedIndex	= oElement.items.length - 1;
@@ -79,7 +79,7 @@ cXULElement_radio.handlers	= {
 			}
 			//
 			oElement.items.$remove(this);
-			this.group   = null;
+			this.group	= null;
 		}
 	}
 };
@@ -89,7 +89,7 @@ cXULElement_radio.prototype.$mapAttribute	= function(sName, sValue) {
 		this.$setPseudoClass("disabled", sValue == "true");
 	else
 	if (sName == "label")
-		this.$getContainer("label").innerHTML = sValue || '';
+		this.$getContainer("label").innerHTML	= sValue || '';
 	else
 	if (sName == "selected")
 		this.$setPseudoClass("selected", sValue == "true");

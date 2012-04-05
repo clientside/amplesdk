@@ -16,12 +16,12 @@ cXULElement_toolbox.attributes.orient	= "vertical";
 
 // Element Render: open
 cXULElement_toolbox.prototype.$getTagOpen		= function() {
-    return '<div class="xul-toolbox' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">';
+	return '<div class="xul-toolbox' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">';
 };
 
 // Element Render: close
 cXULElement_toolbox.prototype.$getTagClose	= function() {
-    return '</div>';
+	return '</div>';
 };
 
 // Register Element

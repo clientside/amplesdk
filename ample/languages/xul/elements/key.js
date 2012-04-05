@@ -55,10 +55,10 @@ cXULElement_key.handlers	= {
 		if (oEvent.target == this) {
 			switch (oEvent.attrName) {
 				case "keytext":
-			    	var aElements	= this.ownerDocument.querySelectorAll("[key='" + this.attributes["id"] + "']");
-			        for (var nIndex = 0, nLength = aElements.length; nIndex < nLength; nIndex++)
-			        	if (aElements[nIndex].namespaceURI == this.namespaceURI)
-				        	aElements[nIndex].setAttribute("acceltext", oEvent.newValue || '');
+					var aElements	= this.ownerDocument.querySelectorAll("[key='" + this.attributes["id"] + "']");
+					for (var nIndex = 0, nLength = aElements.length; nIndex < nLength; nIndex++)
+						if (aElements[nIndex].namespaceURI == this.namespaceURI)
+							aElements[nIndex].setAttribute("acceltext", oEvent.newValue || '');
 					break;
 			}
 		}

@@ -8,9 +8,9 @@
  */
 
 if (!cDOMParser) {
-	cDOMParser = function(){};
-	cDOMParser.prototype.baseURI = null;
-	cDOMParser.prototype.parseFromString = function(sXml, sType) {
+	cDOMParser	= function(){};
+	cDOMParser.prototype.baseURI	= null;
+	cDOMParser.prototype.parseFromString	= function(sXml, sType) {
 //->Guard
 		fGuard(arguments, [
 			["string",		cString],
@@ -18,7 +18,7 @@ if (!cDOMParser) {
 		]);
 //<-Guard
 
-		var oDocument   = new cActiveXObject("Microsoft.XMLDOM");
+		var oDocument	= new cActiveXObject("Microsoft.XMLDOM");
 		oDocument.async				= false;
 		oDocument.validateOnParse	= false;
 //		oDocument.preserveWhiteSpace= false;

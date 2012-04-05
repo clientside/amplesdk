@@ -50,12 +50,12 @@
 					</argument>
 					<argument name="value" type="String" required="false">
 						<description>
-							 A data value associated with new item.
+							A data value associated with new item.
 						</description>
 					</argument>
 				</arguments>
 				<description>
-					  Creates a new <link type="element">radio</link> element and inserts it at a specific position in the <link type="element">radiogroup</link>.
+					Creates a new <link type="element">radio</link> element and inserts it at a specific position in the <link type="element">radiogroup</link>.
 				</description>
 			</method>
 			<method name="removeItemAt" type="Element">
@@ -67,7 +67,7 @@
 					</argument>
 				</arguments>
 				<description>
-					 Removes the child item from the <link type="element">radiogroup</link> at the given index.
+					Removes the child item from the <link type="element">radiogroup</link> at the given index.
 				</description>
 			</method>
 -->

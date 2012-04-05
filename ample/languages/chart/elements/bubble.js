@@ -60,7 +60,7 @@ cChartElement_bubble.prototype.refresh	= function() {
 	// Draw lines
 	for (var nGroup = 0, nGroups = aData.length, oGroup; nGroup < nGroups; nGroup++) {
 		// Get DOM element
-		oGroup = this.childNodes[nGroup];
+		oGroup	= this.childNodes[nGroup];
 
 		// Draw items
 		var nX, nY, nSize,

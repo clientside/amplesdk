@@ -1,8 +1,8 @@
 xul|menupopup {
-    cursor:	default !important;
-    background-color: #F0F0F0;
+	cursor:	default !important;
+	background-color: #F0F0F0;
 	border:	solid 1px #A0A0A0;
-    padding:	2px;
+	padding:	2px;
 	z-index:	100;
 }
 
@@ -27,15 +27,15 @@ xul|menupopup::shadow-bottom {
 }
 
 xul|menuitem {
-    color: black;
+	color: black;
 }
 xul|menuitem:hover {
-    color: white;
-    background-color: #3399FF;
+	color: white;
+	background-color: #3399FF;
 }
 xul|menuitem:selected {
-    color: #ffffff;
-    background-color: #3399FF;
+	color: #ffffff;
+	background-color: #3399FF;
 }
 xul|menuitem:disabled {
 	color:	#808080;
@@ -61,12 +61,12 @@ xul|menu {
 	color: black;
 }
 xul|menu:hover {
-    color: white;
-    background-color: #3399FF;
+	color: white;
+	background-color: #3399FF;
 }
 xul|menu:selected {
-    color: #ffffff;
-    background-color: #3399FF;
+	color: #ffffff;
+	background-color: #3399FF;
 }
 xul|menu:disabled {
 	color: #808080;
@@ -100,7 +100,7 @@ xul|menu::arrow:disabled {
 	background-position: 0px -48px;
 }
 xul|menuseparator {
-    border-top:	solid 1px #A0A0A0;
+	border-top:	solid 1px #A0A0A0;
 	background-color:	#FFFFFF;
 	margin-top:		2px;
 	margin-bottom:	1px;

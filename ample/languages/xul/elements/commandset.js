@@ -8,8 +8,8 @@
  */
 
 var cXULElement_commandset	= function(){};
-cXULElement_commandset.prototype = new cXULElement("commandset");
-cXULElement_commandset.prototype.viewType    = cXULElement.VIEW_TYPE_VIRTUAL;
+cXULElement_commandset.prototype	= new cXULElement("commandset");
+cXULElement_commandset.prototype.viewType	= cXULElement.VIEW_TYPE_VIRTUAL;
 
 // Public Methods
 

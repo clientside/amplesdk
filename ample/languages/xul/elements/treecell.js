@@ -8,7 +8,7 @@
  */
 
 var cXULElement_treecell	= function(){};
-cXULElement_treecell.prototype   = new cXULElement("treecell");
+cXULElement_treecell.prototype	= new cXULElement("treecell");
 
 // Class Events Handlers
 cXULElement_treecell.handlers	= {
@@ -33,9 +33,9 @@ cXULElement_treecell.prototype.$mapAttribute	= function(sName, sValue) {
 	if (sName == "editable") {
 		if (sValue == "true") {
 			var oElementDOM	= this.$getContainer("gateway");
-			oElementDOM.innerHTML  = '<input style="border:none; margin:0px; margin-left: 2px; padding-left: 2px; padding-top:1px; width:100px;" onselectstart="event.cancelBubble=true;" onchange="ample.$instance(this).setAttribute(\'label\', this.value)" onblur="this.onchange();" onkeydown="if (event.keyCode == 13) this.onchange(); else if (event.keyCode == 27) ample.$instance(this).setAttribute(\'editable\', \'false\')"/>';
+			oElementDOM.innerHTML	= '<input style="border:none; margin:0px; margin-left: 2px; padding-left: 2px; padding-top:1px; width:100px;" onselectstart="event.cancelBubble=true;" onchange="ample.$instance(this).setAttribute(\'label\', this.value)" onblur="this.onchange();" onkeydown="if (event.keyCode == 13) this.onchange(); else if (event.keyCode == 27) ample.$instance(this).setAttribute(\'editable\', \'false\')"/>';
 			oElementDOM.firstChild.focus();
-			oElementDOM.firstChild.value   = this.attributes["label"] || '';
+			oElementDOM.firstChild.value	= this.attributes["label"] || '';
 		}
 		else
 			this.$mapAttribute("label", this.attributes["label"]);
@@ -49,30 +49,30 @@ cXULElement_treecell.prototype.$getTagOpen	= function() {
 	var oChildren	= this.parentNode.parentNode.parentNode,
 		oHead	= oChildren && oChildren.tree ? oChildren.tree.head : null,
 		nCellIndex	= this.parentNode.childNodes.$indexOf(this);
-	var sHtml   = '<td class="xul-treecell' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"' + (oHead && oHead.childNodes[nCellIndex] && oHead.childNodes[nCellIndex].attributes["hidden"] == "true" ? ' style="display:none"' : '') + '>';
-    sHtml  += '<div class="xul-treecell--box" style="position:relative;width:100%;"><div class="xul-treecell--label" style="position:absolute;width:100%;overflow:hidden;">';
+	var sHtml	= '<td class="xul-treecell' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"' + (oHead && oHead.childNodes[nCellIndex] && oHead.childNodes[nCellIndex].attributes["hidden"] == "true" ? ' style="display:none"' : '') + '>';
+	sHtml	+= '<div class="xul-treecell--box" style="position:relative;width:100%;"><div class="xul-treecell--label" style="position:absolute;width:100%;overflow:hidden;">';
 	if (oHead && oHead._getPrimaryColIndex() == nCellIndex) {
-        var oElementCurrent = this;
-        do {
-            if (oElementCurrent instanceof cXULElement_treeitem)
-                sHtml  += '<div class="xul-treecell-line" style="float:left;"><br /></div>';
-            else
-            if (oElementCurrent instanceof cXULElement_tree)
-                break;
-        } while(oElementCurrent = oElementCurrent.parentNode);
-    }
+		var oElementCurrent	= this;
+		do {
+			if (oElementCurrent instanceof cXULElement_treeitem)
+				sHtml	+= '<div class="xul-treecell-line" style="float:left;"><br /></div>';
+			else
+			if (oElementCurrent instanceof cXULElement_tree)
+				break;
+		} while(oElementCurrent = oElementCurrent.parentNode);
+	}
 
 	sHtml	+= '<div class="xul-treecell--gateway">';
-    if (this.attributes["src"])
-        sHtml  += '<img src="' + ample.$encodeXMLCharacters(this.attributes["src"]) + '" align="absmiddle"/> ';
-    sHtml  += this.attributes["label"] ? ample.$encodeXMLCharacters(this.attributes["label"]) : '';
+	if (this.attributes["src"])
+		sHtml	+= '<img src="' + ample.$encodeXMLCharacters(this.attributes["src"]) + '" align="absmiddle"/> ';
+	sHtml	+= this.attributes["label"] ? ample.$encodeXMLCharacters(this.attributes["label"]) : '';
 
-    return sHtml;
+	return sHtml;
 };
 
 // Element Render: close
 cXULElement_treecell.prototype.$getTagClose	= function() {
-    return '</div></div></div></td>';
+	return '</div></div></div></td>';
 };
 
 // Register Element

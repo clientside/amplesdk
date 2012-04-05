@@ -30,8 +30,7 @@
 		echo "GET path parameter missing.";
 	}
 
-	function fStripTags($sInput, $sTagName)
-	{
+	function fStripTags($sInput, $sTagName) {
 		return preg_replace('/\/\/\->' . $sTagName . '.+\/\/<\-' . $sTagName . '/Us', "", $sInput);
 	}
 ?>

@@ -8,7 +8,7 @@
  */
 
 var cXSElement_whiteSpace	= function(){};
-cXSElement_whiteSpace.prototype    = new cXSElement("whiteSpace");
+cXSElement_whiteSpace.prototype	= new cXSElement("whiteSpace");
 
 cXSElement_whiteSpace.handlers	= {};
 cXSElement_whiteSpace.handlers.DOMNodeInsertedIntoDocument	= function(oEvent) {

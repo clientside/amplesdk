@@ -13,8 +13,7 @@ cAUIElement_xhtml.prototype	= new cAUIElement("xhtml");
 // Public properties
 cAUIElement_xhtml.prototype.innerHTML	= null;
 
-cAUIElement_xhtml.prototype.$getTag	= function()
-{
+cAUIElement_xhtml.prototype.$getTag	= function() {
 	return this.innerHTML;
 };
 

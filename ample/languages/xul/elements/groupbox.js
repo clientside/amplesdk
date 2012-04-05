@@ -21,22 +21,22 @@ cXULElement_groupbox.attributes.orient	= "vertical";
 cXULElement_groupbox.prototype.$getTagOpen		= function() {
 	var sWidth	= this.attributes.width,
 		sHeight	= this.attributes.height;
-    return '<div class="xul-groupbox' +(this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="' +
+	return '<div class="xul-groupbox' +(this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="' +
 			(sWidth ? 'width:' + (isNaN(parseInt(sWidth)) ? sWidth : sWidth + 'px;') : '')+
 			(sHeight ? 'height:' + (isNaN(parseInt(sHeight)) ? sHeight : sHeight + 'px;') : '')+
-    			'">\
-	    		<table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%">\
-	    			<thead>\
-	    				<tr>\
-	    					<td class="xul-groupbox-head-left"></td>\
-	    					<td class="xul-groupbox-head"><span class="xul-groupbox--caption xul-caption" style="display:none;"></span></td>\
-	    					<td class="xul-groupbox-head-right"></td>\
-	    				</tr>\
-	    			</thead>\
-	    			<tbody>\
-	    				<tr>\
-	    					<td class="xul-groupbox-body-left"></td>\
-	    					<td height="100%" class="xul-groupbox-body">';
+				'">\
+				<table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%">\
+					<thead>\
+						<tr>\
+							<td class="xul-groupbox-head-left"></td>\
+							<td class="xul-groupbox-head"><span class="xul-groupbox--caption xul-caption" style="display:none;"></span></td>\
+							<td class="xul-groupbox-head-right"></td>\
+						</tr>\
+					</thead>\
+					<tbody>\
+						<tr>\
+							<td class="xul-groupbox-body-left"></td>\
+							<td height="100%" class="xul-groupbox-body">';
 };
 
 // Element Render: close

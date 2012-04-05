@@ -48,11 +48,11 @@ xul|datepicker-pane-day:disabled {
 	color: #F0F0F0;
 }
 xul|datepicker-pane-day:selected {
-    color: #ffffff;
-    background-color: #3399FF;
+	color: #ffffff;
+	background-color: #3399FF;
 }
 xul|datepicker-pane-day:hover {
-    background-color: silver;
+	background-color: silver;
 }
 xul|datepicker-pane-week {
 	width: 1.5em;

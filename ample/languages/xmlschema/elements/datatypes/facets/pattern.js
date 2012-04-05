@@ -8,7 +8,7 @@
  */
 
 var cXSElement_pattern	= function(){};
-cXSElement_pattern.prototype    = new cXSElement("pattern");
+cXSElement_pattern.prototype	= new cXSElement("pattern");
 
 cXSElement_pattern.handlers	= {};
 cXSElement_pattern.handlers.DOMNodeInsertedIntoDocument	= function(oEvent) {

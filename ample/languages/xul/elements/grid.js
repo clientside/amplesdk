@@ -8,8 +8,8 @@
  */
 
 var cXULElement_grid	= function() {
-    this.cols   = new ample.classes.NodeList;
-    this.rows   = new ample.classes.NodeList;
+	this.cols	= new ample.classes.NodeList;
+	this.rows	= new ample.classes.NodeList;
 };
 cXULElement_grid.prototype	= new cXULElement("grid");
 

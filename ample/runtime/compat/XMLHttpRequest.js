@@ -10,9 +10,9 @@
 if (bTrident) {
 	var oXMLHttpRequest	= cXMLHttpRequest;
 	//
-    cXMLHttpRequest = function() {
+	cXMLHttpRequest	= function() {
 		this._object	= oXMLHttpRequest && !(bTrident && nVersion == 7) ? new oXMLHttpRequest : new cActiveXObject("Microsoft.XMLHTTP");
-    };
+	};
 
 	// Public Properties
 	cXMLHttpRequest.prototype.readyState	= cXMLHttpRequest.UNSENT;
@@ -51,7 +51,7 @@ if (bTrident) {
 
 		// BUGFIX: IE - memory leak on page unload (inter-page leak)
 		if (/*bIE && */bAsync) {
-			fOnUnload = function() {
+			fOnUnload	= function() {
 				if (nState != cXMLHttpRequest.DONE) {
 					fCleanTransport(oRequest);
 					// Safe to abort here since onreadystatechange handler removed

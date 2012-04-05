@@ -850,20 +850,18 @@ else {
 	};
 
 	// Default Element Render: open
-	cSVGElement.prototype.$getTagOpen	= function()
-	{
-		var sHtml   = '<' + this.tagName;
+	cSVGElement.prototype.$getTagOpen	= function() {
+		var sHtml	= '<' + this.tagName;
 		for (var sName in this.attributes)
 			if (this.attributes.hasOwnProperty(sName) && sName != "id" && sName != "class")// && sName.indexOf(':') ==-1)
-				sHtml  += ' ' + sName + '="' + ample.$encodeXMLCharacters(this.attributes[sName]) + '"';
+				sHtml	+= ' ' + sName + '="' + ample.$encodeXMLCharacters(this.attributes[sName]) + '"';
 		sHtml	+= ' class="' + ('svg-' + this.localName + ' ') + (this.prefix ? this.prefix + '-' : '') + this.localName + ("class" in this.attributes ? ' ' + this.attributes["class"] : '') + '"';
-	    return sHtml + '>';
+		return sHtml + '>';
 	};
 
 	// Default Element Render: close
-	cSVGElement.prototype.$getTagClose	= function()
-	{
-	    return '</' + this.tagName + '>';
+	cSVGElement.prototype.$getTagClose	= function() {
+		return '</' + this.tagName + '>';
 	};
 };
 

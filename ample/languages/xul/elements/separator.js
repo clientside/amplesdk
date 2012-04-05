@@ -8,7 +8,7 @@
  */
 
 var cXULElement_separator	= function(){};
-cXULElement_separator.prototype = new cXULElement("separator");
+cXULElement_separator.prototype	= new cXULElement("separator");
 
 // Element Render: open
 cXULElement_separator.prototype.$getTagOpen	= function() {

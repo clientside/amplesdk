@@ -8,7 +8,7 @@
  */
 
 var cXSElement_union	= function(){};
-cXSElement_union.prototype    = new cXSElement("union");
+cXSElement_union.prototype	= new cXSElement("union");
 
 cXSElement_union.handlers	= {};
 cXSElement_union.handlers.DOMNodeInsertedIntoDocument	= function(oEvent) {

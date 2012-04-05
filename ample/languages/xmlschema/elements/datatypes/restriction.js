@@ -8,7 +8,7 @@
  */
 
 var cXSElement_restriction	= function(){};
-cXSElement_restriction.prototype    = new cXSElement("restriction");
+cXSElement_restriction.prototype	= new cXSElement("restriction");
 
 cXSElement_restriction.handlers	= {};
 cXSElement_restriction.handlers.DOMNodeInsertedIntoDocument	= function(oEvent) {

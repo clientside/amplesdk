@@ -52,18 +52,18 @@ cXULElement_tab.prototype.$mapAttribute	= function(sName, sValue) {
 
 // Element Render: open
 cXULElement_tab.prototype.$getTagOpen	= function() {
-    return '<div class="xul-tab' + (!this.$isAccessible() ? " xul-tab_disabled" : "") +(this.attributes["class"] ? " " + this.attributes["class"] : "") + '">\
-    			<div class="xul-tab--before" style="float:left;height:100%"></div>\
+	return '<div class="xul-tab' + (!this.$isAccessible() ? " xul-tab_disabled" : "") +(this.attributes["class"] ? " " + this.attributes["class"] : "") + '">\
+				<div class="xul-tab--before" style="float:left;height:100%"></div>\
 				<div class="xul-tab--after" style="float:right;height:100%"></div>\
-    			<div class="xul-tab--gateway">'+
-    				(this.attributes["image"] ? '<img src="' + ample.$encodeXMLCharacters(this.attributes["image"]) + '" border="0" align="absmiddle"/> ' : '')+
-    				(this.attributes["label"] ? ample.$encodeXMLCharacters(this.attributes["label"]) : '');
+				<div class="xul-tab--gateway">'+
+					(this.attributes["image"] ? '<img src="' + ample.$encodeXMLCharacters(this.attributes["image"]) + '" border="0" align="absmiddle"/> ' : '')+
+					(this.attributes["label"] ? ample.$encodeXMLCharacters(this.attributes["label"]) : '');
 };
 
 // Element Render: close
 cXULElement_tab.prototype.$getTagClose	= function() {
-    return '	</div>\
-    		</div>';
+	return '	</div>\
+			</div>';
 };
 
 // Register Element

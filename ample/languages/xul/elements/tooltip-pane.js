@@ -17,7 +17,7 @@ cXULElement_tooltip_pane.prototype.setText	= function(sValue) {
 
 // Render
 cXULElement_tooltip_pane.prototype.$getTagOpen	= function() {
-    return '<div class="xul-tooltip-pane" style="position:absolute;display:none;">\
+	return '<div class="xul-tooltip-pane" style="position:absolute;display:none;">\
 				<div class="xul-menupopup--shadow-right" style="position:absolute;"></div>\
 				<div class="xul-menupopup--shadow-bottom" style="position:absolute;"></div>\
 				<div class="xul-tooltip-pane--gateway">';

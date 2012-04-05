@@ -11,10 +11,10 @@
 	</abstract>
 	<warning>
 		<locale>
-		  This kind of node does not get instantiated in Ample SDK.
+			This kind of node does not get instantiated in Ample SDK.
 		</locale>
 		<locale xml:lang="ru">
-		  Этот тип узла не имеет экземпляров в Ample SDK.
+			Этот тип узла не имеет экземпляров в Ample SDK.
 		</locale>
 	</warning>
 	<remarks />

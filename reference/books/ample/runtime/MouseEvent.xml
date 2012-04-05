@@ -292,19 +292,19 @@
 	<remarks>
 		<remark>
 			<locale>Events of that type:</locale>
-      <locale xml:lang="ru">События этого типа:</locale>
-      <ul>
-        <li><link type="event" href="runtime:Element">click</link></li>
-        <li><link type="event" href="runtime:Element">dblclick</link></li>
-        <li><link type="event" href="runtime:Element">mousedown</link></li>
-        <li><link type="event" href="runtime:Element">mousemove</link></li>
-        <li><link type="event" href="runtime:Element">mouseout</link></li>
-        <li><link type="event" href="runtime:Element">mouseover</link></li>
-        <li><link type="event" href="runtime:Element">mouseup</link></li>
-        <li><link type="event" href="runtime:Element">contextmenu</link></li>
-        <li><link type="event" href="runtime:Element">mouseenter</link></li>
-        <li><link type="event" href="runtime:Element">mouseleave</link></li>
-      </ul>
+			<locale xml:lang="ru">События этого типа:</locale>
+			<ul>
+				<li><link type="event" href="runtime:Element">click</link></li>
+				<li><link type="event" href="runtime:Element">dblclick</link></li>
+				<li><link type="event" href="runtime:Element">mousedown</link></li>
+				<li><link type="event" href="runtime:Element">mousemove</link></li>
+				<li><link type="event" href="runtime:Element">mouseout</link></li>
+				<li><link type="event" href="runtime:Element">mouseover</link></li>
+				<li><link type="event" href="runtime:Element">mouseup</link></li>
+				<li><link type="event" href="runtime:Element">contextmenu</link></li>
+				<li><link type="event" href="runtime:Element">mouseenter</link></li>
+				<li><link type="event" href="runtime:Element">mouseleave</link></li>
+			</ul>
 		</remark>
 	</remarks>
 	<examples />

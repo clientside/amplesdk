@@ -43,35 +43,33 @@ var hUtilities_uriCache	= {};
  * Returns an array of uri components:
  * [scheme, authority, path, query, fragment]
  */
-function fUtilities_getUriComponents(sUri)
-{
+function fUtilities_getUriComponents(sUri) {
 	var aResult	= hUtilities_uriCache[sUri] ||(hUtilities_uriCache[sUri] = sUri.match(/^(([^:\/?#]+):)?(\/\/([^\/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?/));
 	return [aResult[1], aResult[3], aResult[5], aResult[6], aResult[8]];
 };
 
-function fUtilities_resolveUri(sUri, sBaseUri)
-{
+function fUtilities_resolveUri(sUri, sBaseUri) {
 	if (sUri == '' || sUri.charAt(0) == '#')
 		return sBaseUri;
 
-	var aUri = fUtilities_getUriComponents(sUri);
+	var aUri	= fUtilities_getUriComponents(sUri);
 	if (aUri[0])	// scheme
 		return sUri;
 
-	var aBaseUri = fUtilities_getUriComponents(sBaseUri);
-	aUri[0] = aBaseUri[0];	// scheme
+	var aBaseUri	= fUtilities_getUriComponents(sBaseUri);
+	aUri[0]	= aBaseUri[0];	// scheme
 
 	if (!aUri[1]) {
 		// authority
-		aUri[1] = aBaseUri[1];
+		aUri[1]	= aBaseUri[1];
 
 		// path
 		if (aUri[2].charAt(0) != '/') {
-			var aUriSegments = aUri[2].split('/'),
-				aBaseUriSegments = aBaseUri[2].split('/');
+			var aUriSegments		= aUri[2].split('/'),
+				aBaseUriSegments	= aBaseUri[2].split('/');
 			aBaseUriSegments.pop();
 
-			var nBaseUriStart = aBaseUriSegments[0] == '' ? 1 : 0;
+			var nBaseUriStart	= aBaseUriSegments[0] == '' ? 1 : 0;
 			for (var nIndex = 0, nLength = aUriSegments.length; nIndex < nLength; nIndex++) {
 				if (aUriSegments[nIndex] == '..') {
 					if (aBaseUriSegments.length > nBaseUriStart)
@@ -91,7 +89,7 @@ function fUtilities_resolveUri(sUri, sBaseUri)
 		}
 	}
 
-	var aResult = [];
+	var aResult	= [];
 	if (aUri[0])
 		aResult.push(aUri[0]);
 	if (aUri[1])	// '//'
@@ -116,7 +114,7 @@ function fUtilities_decodeXMLCharacters(sValue) {
 
 function fUtilities_translateStyleSheet(sCSS, sUri) {
 	// 1. Remove namespace declarations
-	var aNameSpaces = sCSS.match(/@namespace\s+([\w-]+\s+)?(url\()?(['"])?[^'";\s]+(['"])?\)?;?/g);
+	var aNameSpaces	= sCSS.match(/@namespace\s+([\w-]+\s+)?(url\()?(['"])?[^'";\s]+(['"])?\)?;?/g);
 	if (aNameSpaces)
 		for (var nIndex = 0; nIndex < aNameSpaces.length; nIndex++)
 			sCSS	= sCSS.replace(aNameSpaces[nIndex], '');
@@ -203,7 +201,7 @@ function fUtilities_translateStyleSheet(sCSS, sUri) {
 
 function fUtilities_toCssPropertyName(sName) {
 	for (var nIndex = 1, aValue = sName.split('-'); nIndex < aValue.length; nIndex++)
-    	aValue[nIndex] = aValue[nIndex].substr(0, 1).toUpperCase() + aValue[nIndex].substr(1);
+		aValue[nIndex]	= aValue[nIndex].substr(0, 1).toUpperCase() + aValue[nIndex].substr(1);
 	return aValue.join('');
 };
 

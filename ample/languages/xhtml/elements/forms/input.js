@@ -460,7 +460,7 @@ cXHTMLElement_input.prototype.$getTagOpen		= function() {
 					'</div>');
 	aHtml.push(	'</div>');
 	aHtml.push(	'<div class="' + sClassName + '--popup" style="position:absolute;display:none">');
-    return aHtml.join('');
+	return aHtml.join('');
 };
 
 // Element Render: close (cancel double tag)

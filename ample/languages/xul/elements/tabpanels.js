@@ -8,10 +8,10 @@
  */
 
 var cXULElement_tabpanels	= function() {
-    // Collections
-    this.items      = new ample.classes.NodeList;
+	// Collections
+	this.items		= new ample.classes.NodeList;
 };
-cXULElement_tabpanels.prototype  = new cXULElement("tabpanels");
+cXULElement_tabpanels.prototype	= new cXULElement("tabpanels");
 
 // Public Properties
 cXULElement_tabpanels.prototype.selectedIndex	= null; // Not implemented
@@ -23,16 +23,16 @@ cXULElement_tabpanels.prototype.selectedPanel	= null; // Not implemented
 cXULElement_tabpanels.handlers	= {
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		if (this.parentNode instanceof cXULElement_tabbox)
-			this.parentNode.tabpanels = this;
+			this.parentNode.tabpanels	= this;
 	},
 	"DOMNodeRemovedFromDocument":	function(oEvent) {
 		if (this.parentNode instanceof cXULElement_tabbox)
-			this.parentNode.tabpanels = null;
+			this.parentNode.tabpanels	= null;
 	}
 };
 
 // Element Render: open
-cXULElement_tabpanels.prototype.$getTagOpen    = function() {
+cXULElement_tabpanels.prototype.$getTagOpen	= function() {
 	return '<div class="xul-tabpanels' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">';
 };
 

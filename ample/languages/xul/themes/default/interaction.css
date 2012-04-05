@@ -41,9 +41,9 @@ xul|progressmeter::after {
 /* div */
 xul|panel,
 xul|tooltip {
-    cursor:	default;
-    background-color:	#fff;
-    border:	solid 1px #aca899;
+	cursor:	default;
+	background-color:	#fff;
+	border:	solid 1px #aca899;
 	padding:2px;
 	z-index:1;
 }

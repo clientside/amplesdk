@@ -1,10 +1,10 @@
 <?php
 	$aFiles		= array();
-    $aFiles[]	= "basic.css";
+	$aFiles[]	= "basic.css";
 
-    $sOutput	= "@namespace c \"http://www.amplesdk.com/ns/chart\";\n\n";
-    for ($nIndex = 0; $nIndex < count($aFiles); $nIndex++)
-        $sOutput	.= join('', file($aFiles[$nIndex])) . "\n";
+	$sOutput	= "@namespace c \"http://www.amplesdk.com/ns/chart\";\n\n";
+	for ($nIndex = 0; $nIndex < count($aFiles); $nIndex++)
+		$sOutput	.= join('', file($aFiles[$nIndex])) . "\n";
 
 	header("Content-type: text/css");
 

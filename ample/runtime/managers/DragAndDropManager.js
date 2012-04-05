@@ -45,8 +45,7 @@ function fDragAndDropManager_abortSession() {
 */
 
 // Handlers
-function fDragAndDropManager_onMouseDown(oEvent)
-{
+function fDragAndDropManager_onMouseDown(oEvent) {
 	if (oEvent.defaultPrevented || oEvent.button)
 		return;
 
@@ -54,15 +53,13 @@ function fDragAndDropManager_onMouseDown(oEvent)
 	if (nResizeManager_resizeState)
 		return;
 
-	for (var oElement = oEvent.target; oElement != this; oElement = oElement.parentNode)
-	{
-		if (oElement.$draggable)
-		{
+	for (var oElement = oEvent.target; oElement != this; oElement = oElement.parentNode) {
+		if (oElement.$draggable) {
 			// Start session
-		    nDragAndDropManager_dragState	= nDragAndDropManager_STATE_CAPTURED;
+			nDragAndDropManager_dragState	= nDragAndDropManager_STATE_CAPTURED;
 			oDragAndDropManager_dragSource	= oElement;
 
-		    // Simulate initial mousemove event
+			// Simulate initial mousemove event
 			nDragAndDropManager_timeout	= fSetTimeout(function() {
 				nDragAndDropManager_timeout	= 0;
 				//
@@ -74,8 +71,7 @@ function fDragAndDropManager_onMouseDown(oEvent)
 	}
 };
 
-function fDragAndDropManager_onMouseUp(oEvent)
-{
+function fDragAndDropManager_onMouseUp(oEvent) {
 	if (nDragAndDropManager_dragState == nDragAndDropManager_STATE_RELEASED)
 		return;
 
@@ -87,18 +83,15 @@ function fDragAndDropManager_onMouseUp(oEvent)
 		bDropPrevented	= false,
 		oRect0	= fElement_getBoundingClientRect(oDragAndDropManager_dragSource);
 
-	if (nDragAndDropManager_dragState == nDragAndDropManager_STATE_DRAGGED)
-	{
-		if (oDragAndDropManager_dropTarget)
-		{
+	if (nDragAndDropManager_dragState == nDragAndDropManager_STATE_DRAGGED) {
+		if (oDragAndDropManager_dropTarget) {
 			// fire ondrop event
-			if (!oEvent.defaultPrevented && !oEvent.button)
-			{
+			if (!oEvent.defaultPrevented && !oEvent.button) {
 				var oEventDrop	= new cDragEvent;
-			    oEventDrop.initDragEvent("drop", true, true, window, null, oDragAndDropManager_dataTransfer);
-			    oEventDrop.relatedTarget	= oDragAndDropManager_dragSource;
-			    oEventDrop.$pseudoTarget	= oEvent.$pseudoTarget;
-			    bDropPrevented	= !fNode_dispatchEvent(oDragAndDropManager_dropTarget, oEventDrop);
+				oEventDrop.initDragEvent("drop", true, true, window, null, oDragAndDropManager_dataTransfer);
+				oEventDrop.relatedTarget	= oDragAndDropManager_dragSource;
+				oEventDrop.$pseudoTarget	= oEvent.$pseudoTarget;
+				bDropPrevented	= !fNode_dispatchEvent(oDragAndDropManager_dropTarget, oEventDrop);
 			}
 
 			// Remove :drop pseudo-class
@@ -106,13 +99,13 @@ function fDragAndDropManager_onMouseUp(oEvent)
 
 			// fire ondragleave event
 			var oEventDragLeave	= new cDragEvent;
-		    oEventDragLeave.initDragEvent("dragleave", true, true, window, null, oDragAndDropManager_dataTransfer);
-		    oEventDragLeave.$pseudoTarget	= oEvent.$pseudoTarget;
-		    oEventDragLeave.relatedTarget	= oDragAndDropManager_dragSource;
-		    fNode_dispatchEvent(oDragAndDropManager_dropTarget, oEventDragLeave);
+			oEventDragLeave.initDragEvent("dragleave", true, true, window, null, oDragAndDropManager_dataTransfer);
+			oEventDragLeave.$pseudoTarget	= oEvent.$pseudoTarget;
+			oEventDragLeave.relatedTarget	= oDragAndDropManager_dragSource;
+			fNode_dispatchEvent(oDragAndDropManager_dropTarget, oEventDragLeave);
 		}
 
-	    // Clear array of drag target
+		// Clear array of drag target
 		aDragAndDropManager_dropTargets.length	= 0;
 
 		// Remove :drag pseudo-class
@@ -120,43 +113,42 @@ function fDragAndDropManager_onMouseUp(oEvent)
 
 		// fire ondragend event
 		var oEventDragEnd	= new cDragEvent;
-	    oEventDragEnd.initDragEvent("dragend", true, true, window, null, oDragAndDropManager_dataTransfer);
-	    oEventDragEnd.$pseudoTarget	= oEvent.$pseudoTarget;
-	    fNode_dispatchEvent(oDragAndDropManager_dragSource, oEventDragEnd);
+		oEventDragEnd.initDragEvent("dragend", true, true, window, null, oDragAndDropManager_dataTransfer);
+		oEventDragEnd.$pseudoTarget	= oEvent.$pseudoTarget;
+		fNode_dispatchEvent(oDragAndDropManager_dragSource, oEventDragEnd);
 
-	    var bDefaultPrevented	= oEvent.defaultPrevented || oEvent.button || bDropPrevented || oEventDragEnd.defaultPrevented,
-	    	bPlay	= oDOMConfiguration_values["ample-enable-transitions"] &&(bDefaultPrevented || oDragAndDropManager_dataTransfer.dropEffect == "move" || oDragAndDropManager_dataTransfer.dropEffect == "copy");
-	    if (bPlay) {
-	    	var oRect	= fElement_getBoundingClientRect(oDragAndDropManager_dragSource),
-	    		nLeft	=(oRect0.left - oRect.left + fParseInt(oElementDOM.style.left)),
-		    	nTop	=(oRect0.top - oRect.top + fParseInt(oElementDOM.style.top));
-		    // Commit
-		    oElementDOM.style.left	= sDragAndDropManager_originalLeft;
-		    oElementDOM.style.top	= sDragAndDropManager_originalTop;
-	    	var oRect1	= fElement_getBoundingClientRect(oDragAndDropManager_dragSource);
-	    	// Rollback
-		    oElementDOM.style.left	= nLeft + 'px';
-		    oElementDOM.style.top	= nTop + 'px';
-	    }
+		var bDefaultPrevented	= oEvent.defaultPrevented || oEvent.button || bDropPrevented || oEventDragEnd.defaultPrevented,
+			bPlay	= oDOMConfiguration_values["ample-enable-transitions"] &&(bDefaultPrevented || oDragAndDropManager_dataTransfer.dropEffect == "move" || oDragAndDropManager_dataTransfer.dropEffect == "copy");
+		if (bPlay) {
+			var oRect	= fElement_getBoundingClientRect(oDragAndDropManager_dragSource),
+				nLeft	=(oRect0.left - oRect.left + fParseInt(oElementDOM.style.left)),
+				nTop	=(oRect0.top - oRect.top + fParseInt(oElementDOM.style.top));
+			// Commit
+			oElementDOM.style.left	= sDragAndDropManager_originalLeft;
+			oElementDOM.style.top	= sDragAndDropManager_originalTop;
+			var oRect1	= fElement_getBoundingClientRect(oDragAndDropManager_dragSource);
+			// Rollback
+			oElementDOM.style.left	= nLeft + 'px';
+			oElementDOM.style.top	= nTop + 'px';
+		}
 
-	    // Execute default action
-	    if (!bDefaultPrevented && oDragAndDropManager_dropTarget && oDragAndDropManager_dropTarget != oDragAndDropManager_dragSource.parentNode) {
-		    if (oDragAndDropManager_dataTransfer.dropEffect == "copy")
-		    	fElement_appendChild(oDragAndDropManager_dropTarget, fNode_cloneNode(oDragAndDropManager_dragSource, true));	// TODO: remove @id attribute values
-		    else
-		    if (oDragAndDropManager_dataTransfer.dropEffect == "move")
-		    	fElement_appendChild(oDragAndDropManager_dropTarget, oDragAndDropManager_dragSource);
-	    }
+		// Execute default action
+		if (!bDefaultPrevented && oDragAndDropManager_dropTarget && oDragAndDropManager_dropTarget != oDragAndDropManager_dragSource.parentNode) {
+			if (oDragAndDropManager_dataTransfer.dropEffect == "copy")
+				fElement_appendChild(oDragAndDropManager_dropTarget, fNode_cloneNode(oDragAndDropManager_dragSource, true));	// TODO: remove @id attribute values
+			else
+			if (oDragAndDropManager_dataTransfer.dropEffect == "move")
+				fElement_appendChild(oDragAndDropManager_dropTarget, oDragAndDropManager_dragSource);
+		}
 
-		if (bDefaultPrevented || oDragAndDropManager_dataTransfer.dropEffect == "move" || oDragAndDropManager_dataTransfer.dropEffect == "copy")
-		{
+		if (bDefaultPrevented || oDragAndDropManager_dataTransfer.dropEffect == "move" || oDragAndDropManager_dataTransfer.dropEffect == "copy") {
 			var oStyle		= oElementDOM.style,
 				fRestore	= function() {
 					oStyle.left		= sDragAndDropManager_originalLeft;
 					oStyle.top		= sDragAndDropManager_originalTop;
 				};
 
-		    // Restore element position
+			// Restore element position
 			if (bPlay) {
 				// Commit
 				oStyle.left	= sDragAndDropManager_originalLeft;
@@ -190,12 +182,11 @@ function fDragAndDropManager_onMouseUp(oEvent)
 	}
 
 	oDragAndDropManager_dragSource	= null;
-    nDragAndDropManager_dragState	= nDragAndDropManager_STATE_RELEASED;
+	nDragAndDropManager_dragState	= nDragAndDropManager_STATE_RELEASED;
 	oDragAndDropManager_dropTarget	= null;
 };
 
-function fDragAndDropManager_onMouseMove(oEvent)
-{
+function fDragAndDropManager_onMouseMove(oEvent) {
 	if (nDragAndDropManager_dragState == nDragAndDropManager_STATE_RELEASED)
 		return;
 
@@ -203,17 +194,16 @@ function fDragAndDropManager_onMouseMove(oEvent)
 	if (nDragAndDropManager_timeout)
 		nDragAndDropManager_timeout	= fClearTimeout(nDragAndDropManager_timeout);
 
-   	// Stop event propagation
-   	oEvent.stopPropagation();
+		// Stop event propagation
+		oEvent.stopPropagation();
 
 	var oElementDOM	= oDragAndDropManager_dragSource.$getContainer(),
 		oRect	= fElement_getBoundingClientRect(oDragAndDropManager_dragSource),
 		oStyle	= oElementDOM.style;
 
 	// Turn mode to interactive
-    if (nDragAndDropManager_dragState == nDragAndDropManager_STATE_CAPTURED)
-    {
-    	// Initialize DataTransfer object
+	if (nDragAndDropManager_dragState == nDragAndDropManager_STATE_CAPTURED) {
+		// Initialize DataTransfer object
 		oDragAndDropManager_dataTransfer	= new cDataTransfer;
 
 		// Initialize drag image container
@@ -230,7 +220,7 @@ function fDragAndDropManager_onMouseMove(oEvent)
 
 		if (oEventDragStart.defaultPrevented) {
 			// end operation and return
-		    nDragAndDropManager_dragState	= nDragAndDropManager_STATE_RELEASED;
+			nDragAndDropManager_dragState	= nDragAndDropManager_STATE_RELEASED;
 			return;
 		}
 
@@ -256,12 +246,12 @@ function fDragAndDropManager_onMouseMove(oEvent)
 			if (aElements[nIndex].$droppable)
 				aDragAndDropManager_dropTargets.push(aElements[nIndex]);
 
-	    //
-    	nDragAndDropManager_dragState	= nDragAndDropManager_STATE_DRAGGED;
+		//
+		nDragAndDropManager_dragState	= nDragAndDropManager_STATE_DRAGGED;
 
 		// Init session
-	    nDragAndDropManager_mouseX	= oEvent.clientX;
-	    nDragAndDropManager_mouseY	= oEvent.clientY;
+		nDragAndDropManager_mouseX	= oEvent.clientX;
+		nDragAndDropManager_mouseY	= oEvent.clientY;
 
 		// move drag source position to (0, 0)
 		oStyle.left	= 0;
@@ -275,13 +265,13 @@ function fDragAndDropManager_onMouseMove(oEvent)
 		oStyle.top	= sDragAndDropManager_originalTop;
 
 		// save offset position
-	    nDragAndDropManager_offsetLeft	= oRect.left - oRect0.left;
-	    nDragAndDropManager_offsetTop	= oRect.top - oRect0.top;
+		nDragAndDropManager_offsetLeft	= oRect.left - oRect0.left;
+		nDragAndDropManager_offsetTop	= oRect.top - oRect0.top;
 
-	    // save initial scroll positions
-	    var oScroll	= fDragAndDropManager_getScroll(oElementDOM);
-	    nDragAndDropManager_scrollLeft	= oScroll.left;
-	    nDragAndDropManager_scrollTop	= oScroll.top;
+		// save initial scroll positions
+		var oScroll	= fDragAndDropManager_getScroll(oElementDOM);
+		nDragAndDropManager_scrollLeft	= oScroll.left;
+		nDragAndDropManager_scrollTop	= oScroll.top;
 	}
 
 	var oDropTarget	= null,
@@ -292,8 +282,7 @@ function fDragAndDropManager_onMouseMove(oEvent)
 		nIntersection,
 		nPartialMax	= 0;
 
-	for (var nIndex = 0, nLength = aDragAndDropManager_dropTargets.length; nIndex < nLength; nIndex++)
-	{
+	for (var nIndex = 0, nLength = aDragAndDropManager_dropTargets.length; nIndex < nLength; nIndex++) {
 		// if source is the target, continue
 		if (aDragAndDropManager_dropTargets[nIndex] == oDragAndDropManager_dragSource)
 			continue;
@@ -303,8 +292,8 @@ function fDragAndDropManager_onMouseMove(oEvent)
 			continue;
 
 		oRect2	= fElement_getBoundingClientRect(aDragAndDropManager_dropTargets[nIndex]);
-		nAreaTarget =(oRect2.right - oRect2.left) * (oRect2.bottom - oRect2.top);
-		nIntersection = fDragAndDropManager_intersectRectangle(oRect, oRect2);
+		nAreaTarget	=(oRect2.right - oRect2.left) * (oRect2.bottom - oRect2.top);
+		nIntersection	= fDragAndDropManager_intersectRectangle(oRect, oRect2);
 		if (nIntersection < nAreaSource) {
 			// partial intersection
 			if (nIntersection > nPartialMax) {
@@ -322,70 +311,65 @@ function fDragAndDropManager_onMouseMove(oEvent)
 	}
 
 	// if there was a drop target and it is different from a new one
-	if (oDragAndDropManager_dropTarget)
-	{
-		if (oDragAndDropManager_dropTarget != oDropTarget)
-		{
+	if (oDragAndDropManager_dropTarget) {
+		if (oDragAndDropManager_dropTarget != oDropTarget) {
 			// Remove :drop pseudo-class
 			fElement_setPseudoClass(oDragAndDropManager_dropTarget, "drop", false);
 			// fire ondragleave event
 			var oEventDragLeave	= new cDragEvent;
-		    oEventDragLeave.initDragEvent("dragleave", true, true, window, null, oDragAndDropManager_dataTransfer);
-		    oEventDragLeave.relatedTarget	= oDragAndDropManager_dragSource;
-		    oEventDragLeave.$pseudoTarget	= oEvent.$pseudoTarget;
-		    fNode_dispatchEvent(oDragAndDropManager_dropTarget, oEventDragLeave);
+			oEventDragLeave.initDragEvent("dragleave", true, true, window, null, oDragAndDropManager_dataTransfer);
+			oEventDragLeave.relatedTarget	= oDragAndDropManager_dragSource;
+			oEventDragLeave.$pseudoTarget	= oEvent.$pseudoTarget;
+			fNode_dispatchEvent(oDragAndDropManager_dropTarget, oEventDragLeave);
 		}
 	}
 
 	// fire ondrag event
 	var oEventDrag	= new cDragEvent;
-    oEventDrag.initDragEvent("drag", true, true, window, null, oDragAndDropManager_dataTransfer);
-    oEventDrag.$pseudoTarget	= oEvent.$pseudoTarget;
-    oEventDrag.relatedTarget	= oDropTarget;
-    fNode_dispatchEvent(oDragAndDropManager_dragSource, oEventDrag);
+	oEventDrag.initDragEvent("drag", true, true, window, null, oDragAndDropManager_dataTransfer);
+	oEventDrag.$pseudoTarget	= oEvent.$pseudoTarget;
+	oEventDrag.relatedTarget	= oDropTarget;
+	fNode_dispatchEvent(oDragAndDropManager_dragSource, oEventDrag);
 
 	//
-	if (oDropTarget)
-	{
-		if (oDropTarget != oDragAndDropManager_dropTarget)
-		{
+	if (oDropTarget) {
+		if (oDropTarget != oDragAndDropManager_dropTarget) {
 			// fire ondragenter event
 			var oEventDragEnter	= new cDragEvent;
-		    oEventDragEnter.initDragEvent("dragenter", true, true, window, null, oDragAndDropManager_dataTransfer);
-		    oEventDragEnter.$pseudoTarget	= oEvent.$pseudoTarget;
-		    oEventDragEnter.relatedTarget	= oDragAndDropManager_dragSource;
-		    fNode_dispatchEvent(oDropTarget, oEventDragEnter);
-		    if (oEventDragEnter.defaultPrevented)
-		    	oDropTarget	= null;
-		    else	// Add :drop pseudo-class
-		    	fElement_setPseudoClass(oDropTarget, "drop", true);
+			oEventDragEnter.initDragEvent("dragenter", true, true, window, null, oDragAndDropManager_dataTransfer);
+			oEventDragEnter.$pseudoTarget	= oEvent.$pseudoTarget;
+			oEventDragEnter.relatedTarget	= oDragAndDropManager_dragSource;
+			fNode_dispatchEvent(oDropTarget, oEventDragEnter);
+			if (oEventDragEnter.defaultPrevented)
+				oDropTarget	= null;
+			else	// Add :drop pseudo-class
+				fElement_setPseudoClass(oDropTarget, "drop", true);
 		}
 
 		// If dragenter was not canceled, fire dragover
-		if (oDropTarget)
-		{
+		if (oDropTarget) {
 			// fire ondragover event
 			var oEventDragOver	= new cDragEvent;
-		    oEventDragOver.initDragEvent("dragover", true, true, window, null, oDragAndDropManager_dataTransfer);
-		    oEventDragOver.$pseudoTarget	= oEvent.$pseudoTarget;
-		    oEventDragOver.relatedTarget	= oDragAndDropManager_dragSource;
-		    fNode_dispatchEvent(oDropTarget, oEventDragOver);
+			oEventDragOver.initDragEvent("dragover", true, true, window, null, oDragAndDropManager_dataTransfer);
+			oEventDragOver.$pseudoTarget	= oEvent.$pseudoTarget;
+			oEventDragOver.relatedTarget	= oDragAndDropManager_dragSource;
+			fNode_dispatchEvent(oDropTarget, oEventDragOver);
 		}
 	}
 
 	oDragAndDropManager_dropTarget	= oDropTarget;
 
-    var oScroll	= fDragAndDropManager_getScroll(oElementDOM);
-    if (!oEventDrag.defaultPrevented) {
+	var oScroll	= fDragAndDropManager_getScroll(oElementDOM);
+	if (!oEventDrag.defaultPrevented) {
 		// Move dragged element
-	    oStyle.left	=(oScroll.left - nDragAndDropManager_scrollLeft) + nDragAndDropManager_offsetLeft + (oEvent.clientX - nDragAndDropManager_mouseX) + 'px';
-	    oStyle.top	=(oScroll.top - nDragAndDropManager_scrollTop) + nDragAndDropManager_offsetTop + (oEvent.clientY - nDragAndDropManager_mouseY) + 'px';
+		oStyle.left	=(oScroll.left - nDragAndDropManager_scrollLeft) + nDragAndDropManager_offsetLeft + (oEvent.clientX - nDragAndDropManager_mouseX) + 'px';
+		oStyle.top	=(oScroll.top - nDragAndDropManager_scrollTop) + nDragAndDropManager_offsetTop + (oEvent.clientY - nDragAndDropManager_mouseY) + 'px';
 	}
 
-    if (oDragAndDropManager_image) {
-    	oDragAndDropManager_image.style.left	= oEvent.clientX + 'px';
-    	oDragAndDropManager_image.style.top		= oEvent.clientY + 'px';
-    }
+	if (oDragAndDropManager_image) {
+		oDragAndDropManager_image.style.left	= oEvent.clientX + 'px';
+		oDragAndDropManager_image.style.top		= oEvent.clientY + 'px';
+	}
 
 	// Opera doesn't support userSelect, so manual clearing of ranges is used
 	if (!bTrident)
@@ -410,13 +394,11 @@ function fDragAndDropManager_getScroll(oElementDOM) {
 	return oScroll;
 };
 
-function fDragAndDropManager_intersectRectangle(oRect1, oRect2)
-{
-    return fDragAndDropManager_intersectSegment(oRect1.left, oRect1.right - oRect1.left, oRect2.left, oRect2.right - oRect2.left) * fDragAndDropManager_intersectSegment(oRect1.top, oRect1.bottom - oRect1.top, oRect2.top, oRect2.bottom - oRect2.top);
+function fDragAndDropManager_intersectRectangle(oRect1, oRect2) {
+	return fDragAndDropManager_intersectSegment(oRect1.left, oRect1.right - oRect1.left, oRect2.left, oRect2.right - oRect2.left) * fDragAndDropManager_intersectSegment(oRect1.top, oRect1.bottom - oRect1.top, oRect2.top, oRect2.bottom - oRect2.top);
 };
 
-function fDragAndDropManager_intersectSegment(x, y, a, b)
-{
+function fDragAndDropManager_intersectSegment(x, y, a, b) {
 	return a > x ? (a <= x + y ? a + b < x + y ? b : x + y - a : 0) : (a >= x - b ? a + b < x + y ? a + b - x : y : 0);
 };
 

@@ -111,7 +111,7 @@ cXULWindowElement.prototype.show	= function (nLeft, nTop) {
 				if (that.getAttribute("buttons").split(/\s*,\s*/).indexOf(sButtonFocus) != -1)
 					that.buttons[sButtonFocus].focus();
 			//
-			var oEvent  = that.ownerDocument.createEvent("CustomEvent");
+			var oEvent	= that.ownerDocument.createEvent("CustomEvent");
 			oEvent.initCustomEvent("windowshown", true, false, null);
 			that.dispatchEvent(oEvent);
 		}
@@ -127,7 +127,7 @@ cXULWindowElement.prototype.showModal	= function (nTop, nLeft) {
 	this.show(nTop, nLeft);
 };
 
-cXULWindowElement.prototype.hide = function() {
+cXULWindowElement.prototype.hide	= function() {
 	var that	= this,
 		oContainer	= that.$getContainer(),
 		oHead	= that.$getContainer("head"),
@@ -187,7 +187,7 @@ cXULWindowElement.prototype.hide = function() {
 			oContainer.style.minWidth	= "";
 			oContainer.style.minHeight	= "";
 			//
-			var oEvent  = that.ownerDocument.createEvent("CustomEvent");
+			var oEvent	= that.ownerDocument.createEvent("CustomEvent");
 			oEvent.initCustomEvent("windowhidden", true, false, null);
 			that.dispatchEvent(oEvent);
 		}

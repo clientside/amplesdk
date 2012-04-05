@@ -8,7 +8,7 @@
  */
 
 var cXULElement_listcol	= function(){};
-cXULElement_listcol.prototype    = new cXULElement("listcol");
+cXULElement_listcol.prototype	= new cXULElement("listcol");
 
 // Class event handler
 cXULElement_listcol.handlers	= {
@@ -31,7 +31,7 @@ cXULElement_listcol.handlers	= {
 
 // Element Render: open
 cXULElement_listcol.prototype.$getTagOpen	= function() {
-    return '<td class="xul-listcol' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"><br /></td>';
+	return '<td class="xul-listcol' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"><br /></td>';
 };
 
 // Register Element

@@ -16,8 +16,7 @@ cComment.prototype.nodeName	= "#comment";
 // nsIDOMComment
 //->Source
 /*
-cComment.prototype.$getTag	= function()
-{
+cComment.prototype.$getTag	= function() {
 	return "<!--" + this.nodeValue + "-->";
 };
 */

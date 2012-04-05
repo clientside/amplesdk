@@ -8,16 +8,16 @@
  */
 
 var cXULElement_spacer	= function(){};
-cXULElement_spacer.prototype = new cXULElement("spacer");
+cXULElement_spacer.prototype	= new cXULElement("spacer");
 
 // Element Render: open
 cXULElement_spacer.prototype.$getTagOpen	= function() {
-    var sHtml   = '<div class="xul-spacer' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="';
-    sHtml  += 'width:'  +(this.attributes["width"] ? this.attributes["width"] : '0')+ 'px;';
-    sHtml  += 'height:' +(this.attributes["height"]? this.attributes["height"]: '0')+ 'px;';
-    sHtml  += '"><img height="1" width="1" /></div>';
+	var sHtml	= '<div class="xul-spacer' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="';
+	sHtml	+= 'width:' +(this.attributes["width"] ? this.attributes["width"] : '0')+ 'px;';
+	sHtml	+= 'height:' +(this.attributes["height"]? this.attributes["height"]: '0')+ 'px;';
+	sHtml	+= '"><img height="1" width="1" /></div>';
 
-    return sHtml;
+	return sHtml;
 };
 
 // Register Element

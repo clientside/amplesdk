@@ -22,8 +22,8 @@ cXULElement_menuitem.handlers	= {
 	},
 	"click":	function(oEvent) {
 		// If disabled, return
-	    if (!this.$isAccessible())
-	        return;
+		if (!this.$isAccessible())
+			return;
 
 		if (oEvent.button == 0)
 			this.$activate();
@@ -59,14 +59,14 @@ cXULElement_menuitem.handlers	= {
 			oMenuList.items.$remove(this);
 	},
 	"DOMActivate":	function(oEvent) {
-	    if (this.attributes["type"] == "checkbox")
-	        this.setAttribute("checked", this.attributes["checked"] == "true" ? "false" : "true");
-	    else
-	    if (this.attributes["type"] == "radio")
-	        this.setAttribute("checked", "true");
+		if (this.attributes["type"] == "checkbox")
+			this.setAttribute("checked", this.attributes["checked"] == "true" ? "false" : "true");
+		else
+		if (this.attributes["type"] == "radio")
+			this.setAttribute("checked", "true");
 
 		// Execute commands
-	    this.doCommand();
+		this.doCommand();
 	}
 };
 
@@ -84,7 +84,7 @@ cXULElement_menuitem.prototype.$mapAttribute	= function(sName, sValue) {
 	}
 	else
 	if (sName == "image")
-		this.$getContainer("image").style.backgroundImage   = sValue ? "url(" + sValue + ")" : '';
+		this.$getContainer("image").style.backgroundImage	= sValue ? "url(" + sValue + ")" : '';
 	else
 	if (sName == "type") {
 		// TODO
@@ -113,7 +113,7 @@ cXULElement_menuitem.prototype.scrollIntoView	= function() {
 cXULElement_menuitem.prototype.$getTagOpen		= function() {
 	return '<tr class="xul-menuitem' + (!this.$isAccessible() ? " xul-menuitem_disabled" : "") + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"' + (this.attributes["style"] ? ' style="' + this.attributes["style"] + '"' : '') + '>\
 				<td width="18"><div class="xul-menuitem-type---image' + (this.attributes["type"] ? ' xul-menuitem-type-' + this.attributes["type"] + '--image' +(this.attributes["checked"] == "true" ? ' xul-menuitem--image_checked' : '') : '') + '"' +(this.attributes["image"] ? ' style="background-image:url('+ ample.$encodeXMLCharacters(this.attributes["image"]) + ')"' : '')+ '></div></td>\
-				<td nowrap="nowrap" class="xul-menuitem--label" style="white-space:nowrap;">' +(this.attributes["label"]  ? ample.$encodeXMLCharacters(this.attributes["label"]) : ' ');
+				<td nowrap="nowrap" class="xul-menuitem--label" style="white-space:nowrap;">' +(this.attributes["label"] ? ample.$encodeXMLCharacters(this.attributes["label"]) : ' ');
 };
 
 // Element Render: open

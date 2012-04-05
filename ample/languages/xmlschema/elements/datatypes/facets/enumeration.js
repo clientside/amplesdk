@@ -8,7 +8,7 @@
  */
 
 var cXSElement_enumeration	= function(){};
-cXSElement_enumeration.prototype    = new cXSElement("enumeration");
+cXSElement_enumeration.prototype	= new cXSElement("enumeration");
 
 cXSElement_enumeration.handlers	= {};
 cXSElement_enumeration.handlers.DOMNodeInsertedIntoDocument	= function(oEvent) {

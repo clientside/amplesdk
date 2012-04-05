@@ -63,7 +63,7 @@ xul|wizard::footer xul|button.back,
 xul|wizard::footer xul|button.next,
 xul|wizard::footer xul|button.finish,
 xul|wizard::footer xul|button.cancel {
-    margin-right: 5px;
+	margin-right: 5px;
 	cursor: default !important;
 	width:	5em;
 }

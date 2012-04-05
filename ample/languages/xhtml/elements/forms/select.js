@@ -8,13 +8,13 @@
  */
 
 var cXHTMLElement_select	= function() {
-   	this.validity	= new cXHTMLValidityState;
+		this.validity	= new cXHTMLValidityState;
 	//
-    this.options	= new ample.classes.NodeList;
+	this.options	= new ample.classes.NodeList;
 
-    var oSelf	= this;
-    this.options.add	= function (oElement, nIndex) {oSelf.add(oElement, nIndex)};
-    this.options.remove	= function (nIndex) {oSelf.remove(nIndex)};
+	var oSelf	= this;
+	this.options.add	= function (oElement, nIndex) {oSelf.add(oElement, nIndex)};
+	this.options.remove	= function (nIndex) {oSelf.remove(nIndex)};
 };
 cXHTMLElement_select.prototype	= new cXHTMLInputElement("select");
 
@@ -126,22 +126,22 @@ cXHTMLElement_select.toggle	= function(oInstance, bForce) {
 
 // Renderers
 cXHTMLElement_select.prototype.$getTagOpen	= function() {
-    var sClassName	= (this.prefix ? this.prefix + '-' : '') + this.localName,
-    	bMultiple	= "multiple" in this.attributes || this.attributes.multiple == "true",
-    	bPopupMode	= bMultiple;
-    return '<span class="' + sClassName + ' ' + (bMultiple ? sClassName + '-multiple-' : '') +
+	var sClassName	= (this.prefix ? this.prefix + '-' : '') + this.localName,
+		bMultiple	= "multiple" in this.attributes || this.attributes.multiple == "true",
+		bPopupMode	= bMultiple;
+	return '<span class="' + sClassName + ' ' + (bMultiple ? sClassName + '-multiple-' : '') +
 					("class" in this.attributes ? ' ' + this.attributes["class"] : '')+
 					(this.attributes["required"] ? ' ' + sClassName + '_required' : '')+
 					(this.attributes["disabled"] ? ' ' + sClassName + '_disabled' : '')+
-    		'">\
+			'">\
 				<div style="position:absolute;margin-top:-2px;white-space:nowrap" class="' + sClassName + '--placeholder">' +(this.attributes["placeholder"] ? ample.$encodeXMLCharacters(this.attributes["placeholder"]) : '')+ '</div>\
-   				<div class="' + sClassName + '--field" style="position:relative;' + (bPopupMode ? 'display:none' : '') + '">\
-    				<div class="' + sClassName + '--button" style="right:0"></div>\
-    				<input class="' + sClassName + '--value" type="text" />\
-    				<div class="' + sClassName + '--label" />\
-   				</div>\
-   				<div class="' + sClassName + '--popup' + (bMultiple ? ' ' + sClassName + '-multiple---popup' : '') +'" style="' +(bPopupMode ? '' : 'position:absolute;display:none;')+ '">\
-    				<div class="' + sClassName + '--gateway" style="margin:1px">';
+					<div class="' + sClassName + '--field" style="position:relative;' + (bPopupMode ? 'display:none' : '') + '">\
+					<div class="' + sClassName + '--button" style="right:0"></div>\
+					<input class="' + sClassName + '--value" type="text" />\
+					<div class="' + sClassName + '--label" />\
+					</div>\
+					<div class="' + sClassName + '--popup' + (bMultiple ? ' ' + sClassName + '-multiple---popup' : '') +'" style="' +(bPopupMode ? '' : 'position:absolute;display:none;')+ '">\
+					<div class="' + sClassName + '--gateway" style="margin:1px">';
 };
 
 cXHTMLElement_select.prototype.$getTagClose	= function() {

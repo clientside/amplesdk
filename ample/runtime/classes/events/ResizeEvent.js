@@ -14,8 +14,7 @@ cResizeEvent.prototype.eventInterface	= "ResizeEvent";
 cResizeEvent.prototype.edge	= null;
 
 // nsIDOMResizeEvent
-cResizeEvent.prototype.initResizeEvent	= function(sType, bCanBubble, bCancelable, oView, nDetail, nEdge)
-{
+cResizeEvent.prototype.initResizeEvent	= function(sType, bCanBubble, bCancelable, oView, nDetail, nEdge) {
 	this.initUIEvent(sType, bCanBubble, bCancelable, oView, nDetail);
 
 	//

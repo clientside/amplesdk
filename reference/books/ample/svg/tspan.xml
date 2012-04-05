@@ -3,7 +3,7 @@
 <element name="tspan" extends="svg:SVGElement">
 	<abstract>
 		<locale>
-			Within a 'text' element, text and font properties and the current text position  can be adjusted with absolute or relative coordinate values by including a 'tspan' element.
+			Within a 'text' element, text and font properties and the current text position can be adjusted with absolute or relative coordinate values by including a 'tspan' element.
 		</locale>
 	</abstract>
 	<examples />

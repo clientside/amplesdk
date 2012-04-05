@@ -29,7 +29,7 @@ var cXULElement_datepicker	= function() {
 };
 
 // component prototype
-cXULElement_datepicker.prototype  = new cXULInputElement("datepicker");
+cXULElement_datepicker.prototype	= new cXULInputElement("datepicker");
 cXULElement_datepicker.prototype.$selectable	= true;
 
 //
@@ -95,11 +95,11 @@ cXULElement_datepicker.handlers	= {
 
 cXULElement_datepicker.prototype.$mapAttribute	= function(sName, sValue) {
 	if (sName == "value")
-		this.$getContainer("input").value = sValue || '';
+		this.$getContainer("input").value	= sValue || '';
 	else
 	if (sName == "disabled") {
 		this.$setPseudoClass("disabled", sValue == "true");
-		this.$getContainer("input").disabled = sValue == "true";
+		this.$getContainer("input").disabled	= sValue == "true";
 	}
 	else
 		cXULInputElement.prototype.$mapAttribute.call(this, sName, sValue);

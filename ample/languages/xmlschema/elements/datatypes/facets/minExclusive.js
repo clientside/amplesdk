@@ -8,7 +8,7 @@
  */
 
 var cXSElement_minExclusive	= function(){};
-cXSElement_minExclusive.prototype    = new cXSElement("minExclusive");
+cXSElement_minExclusive.prototype	= new cXSElement("minExclusive");
 
 cXSElement_minExclusive.handlers	= {};
 cXSElement_minExclusive.handlers.DOMNodeInsertedIntoDocument	= function(oEvent) {
