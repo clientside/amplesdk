@@ -635,17 +635,17 @@ function fNode_handleEvent(oNode, oEvent) {
 		hListeners	= oNode.$listeners;
 
 	// Process inline handler
-	if (oEvent.eventPhase != cEvent.CAPTURING_PHASE && oNode['on' + sType])
+	if (oEvent.eventPhase != 1 /* cEvent.CAPTURING_PHASE */ && oNode['on' + sType])
 		fNode_executeHandler(oNode, oNode['on' + sType], oEvent);
 
 	// Notify listeners
 	if (hListeners && hListeners[sType])
 		for (var nIndex = 0, aListeners = hListeners[sType]; nIndex < aListeners.length && !oEvent._stoppedImmediately; nIndex++)
-			if (aListeners[nIndex][1] == (oEvent.eventPhase == cEvent.CAPTURING_PHASE))
+			if (aListeners[nIndex][1] == (oEvent.eventPhase == 1 /* cEvent.CAPTURING_PHASE */))
 				fNode_executeHandler(oNode, aListeners[nIndex][0], oEvent);
 
 	// Event default actions implementation
-	if (oEvent.eventPhase != cEvent.CAPTURING_PHASE && !oEvent.defaultPrevented)
+	if (oEvent.eventPhase != 1 /* cEvent.CAPTURING_PHASE */ && !oEvent.defaultPrevented)
 		if (oNode.nodeType == 1 || oNode.nodeType == 2 || oNode.nodeType == 7) {
 			var fConstructor	= hClasses[oNode.nodeType != 7 ? (oNode.namespaceURI + '#' + (oNode.nodeType == 1 ? '' : '@') + oNode.localName): '?' + oNode.nodeName];
 			if (fConstructor && fConstructor.handlers && fConstructor.handlers[sType])
@@ -710,13 +710,13 @@ function fNode_routeEvent(oTarget, oEvent) {
 	// Propagate event
 	while (!oEvent._stopped) {
 		switch (oEvent.eventPhase) {
-			case cEvent.CAPTURING_PHASE:
+			case 1 /* cEvent.CAPTURING_PHASE */:
 				if (--nCurrent > 0) {
 					oEvent.currentTarget	= aTargets[nCurrent][0];
 					oEvent.target			= aTargets[nCurrent][1];
 				}
 				else {
-					oEvent.eventPhase		= cEvent.AT_TARGET;
+					oEvent.eventPhase		= 2 /* cEvent.AT_TARGET */;
 					oEvent.currentTarget	=
 					oEvent.target			= aTargets[nCurrent][1];
 					// Special case: handling capture-phase events on target
@@ -727,19 +727,19 @@ function fNode_routeEvent(oTarget, oEvent) {
 				}
 				break;
 
-			case cEvent.AT_TARGET:
+			case 2 /* cEvent.AT_TARGET */:
 				// if event does not bubble, return
 				if (!oEvent.bubbles)
 					return;
 				// if event current target doesn't have a parent
 				if (nCurrent < 0)
 					return;
-				oEvent.eventPhase	= cEvent.BUBBLING_PHASE;
+				oEvent.eventPhase	= 3 /* cEvent.BUBBLING_PHASE */;
 				// Do not handle bubbling between target and disabled element
 				if (nDisabled >-1)
 					nCurrent	= nDisabled;
 				// No break left intentionally
-			case cEvent.BUBBLING_PHASE:
+			case 3 /* cEvent.BUBBLING_PHASE */:
 				if (++nCurrent < nLength) {
 					oEvent.currentTarget	= aTargets[nCurrent][0];
 					oEvent.target			= aTargets[nCurrent][1];
@@ -752,13 +752,13 @@ function fNode_routeEvent(oTarget, oEvent) {
 				// Set current target
 				if (nLength > 1) {
 					nCurrent	= nLength - 1;
-					oEvent.eventPhase		= cEvent.CAPTURING_PHASE;
+					oEvent.eventPhase		= 1 /* cEvent.CAPTURING_PHASE */;
 					oEvent.currentTarget	= aTargets[nCurrent][0];
 					oEvent.target			= aTargets[nCurrent][1];
 				}
 				else {
 					nCurrent	= 0;
-					oEvent.eventPhase		= cEvent.AT_TARGET;
+					oEvent.eventPhase		= 2 /* cEvent.AT_TARGET */;
 					oEvent.currentTarget	=
 					oEvent.target			= oTarget;
 					// Special case: handling capture-phase events on target

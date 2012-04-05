@@ -599,7 +599,7 @@ function fDocument_register(oDocument, oElement) {
 						oEvent.initMutationEvent("DOMNodeInsertedIntoDocument", false, false, null, null, null, null, null);
 						oEvent.target	=
 						oEvent.currentTarget	= oAttribute;
-						oEvent.eventPhase		= cEvent.AT_TARGET;
+						oEvent.eventPhase		= 2 /* cEvent.AT_TARGET */;
 						fNode_handleEvent(oAttribute, oEvent);
 					}
 //->Debug

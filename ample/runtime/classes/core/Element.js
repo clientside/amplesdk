@@ -362,7 +362,7 @@ function fElement_setAttributeNS(oElement, sNameSpaceURI, sQName, sValue) {
 					oEvent.initMutationEvent("DOMNodeRemovedFromDocument", false, false, null, null, null, null, null);
 					oEvent.target	=
 					oEvent.currentTarget	= oAttribute;
-					oEvent.eventPhase		= cEvent.AT_TARGET;
+					oEvent.eventPhase		= 2 /*cEvent.AT_TARGET*/;
 					//
 					fNode_handleEvent(oAttribute, oEvent);
 				}
@@ -374,7 +374,7 @@ function fElement_setAttributeNS(oElement, sNameSpaceURI, sQName, sValue) {
 				oEvent.initMutationEvent("DOMNodeInsertedIntoDocument", false, false, null, null, null, null, null);
 				oEvent.target	=
 				oEvent.currentTarget	= oAttribute;
-				oEvent.eventPhase		= cEvent.AT_TARGET;
+				oEvent.eventPhase		= 2 /* cEvent.AT_TARGET */;
 				//
 				fNode_handleEvent(oAttribute, oEvent);
 			}
@@ -546,7 +546,7 @@ function fElement_removeAttributeNS(oElement, sNameSpaceURI, sLocalName) {
 				oEvent.initMutationEvent("DOMNodeRemovedFromDocument", false, false, null, null, null, null, null);
 				oEvent.target	=
 				oEvent.currentTarget	= oAttribute;
-				oEvent.eventPhase		= cEvent.AT_TARGET;
+				oEvent.eventPhase		= 2 /* cEvent.AT_TARGET */;
 				//
 				fNode_handleEvent(oAttribute, oEvent);
 			}
