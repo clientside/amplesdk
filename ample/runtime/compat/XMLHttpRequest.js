@@ -11,7 +11,7 @@ if (bTrident) {
 	var oXMLHttpRequest	= cXMLHttpRequest;
 	//
 	cXMLHttpRequest	= function() {
-		this._object	= oXMLHttpRequest && !(bTrident && nVersion == 7) ? new oXMLHttpRequest : new cActiveXObject("Microsoft.XMLHTTP");
+		this._object	= oXMLHttpRequest && !(/*bTrident && */nVersion == 7) ? new oXMLHttpRequest : new cActiveXObject("Microsoft.XMLHTTP");
 	};
 
 	// Constants
@@ -57,7 +57,7 @@ if (bTrident) {
 			fOnUnload;
 
 		// BUGFIX: IE - memory leak on page unload (inter-page leak)
-		if (/*bIE && */bAsync) {
+		if (/*bTrident && */nVersion < 9 && bAsync) {
 			fOnUnload	= function() {
 				if (nState != 4 /* cXMLHttpRequest.DONE */) {
 					fCleanTransport(oRequest);
@@ -81,7 +81,7 @@ if (bTrident) {
 		else
 			this._object.open(sMethod, sUrl, bAsync);
 /*
-		if (!bGecko && !bIE) {
+		if (!bGecko && !bTrident) {
 			this.readyState	= cXMLHttpRequest.OPENED;
 			fReadyStateChange(this);
 		}
@@ -111,7 +111,7 @@ if (bTrident) {
 				fCleanTransport(oRequest);
 
 				// BUGFIX: IE - memory leak in interrupted
-				if (/*bIE && */bAsync)
+				if (/*bTrident && */nVersion < 9 && bAsync)
 					fBrowser_detachEvent(window, "unload", fOnUnload);
 			}
 
