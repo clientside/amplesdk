@@ -250,12 +250,12 @@ function fNodeAnimation_parseValue(sValue) {
 		}
 		else {
 			if (aValue = sParameters.split(/\s*,\s*/g)) {
-				for (var nIndex = 0, oValue, oValueOut = [[], '', '']; nIndex < aValue.length; nIndex++)
+				for (var nIndex = 0, oValue, oValue2 = [[], '', '']; nIndex < aValue.length; nIndex++)
 					if (oValue = fNodeAnimation_parseValue(aValue[nIndex]))
-						oValueOut[0].push(oValue[0]);
-				oValueOut[2]	= sFunction;
-				if (oValueOut[0].length)
-					return oValueOut;
+						oValue2[0].push(oValue[0]);
+				oValue2[2]	= sFunction;
+				if (oValue2[0].length)
+					return oValue2;
 			}
 		}
 	}
@@ -264,14 +264,14 @@ function fNodeAnimation_parseValue(sValue) {
 		return [cNumber(aValue[1]), aValue[2] || '', ''];
 	// List of values
 	if ((aValue = sValue.split(/\s*,\s*|\s+/)) && aValue.length > 1) {
-		for (var nIndex = 0, oValue, oValueOut = [[], '', '']; nIndex < aValue.length; nIndex++) {
+		for (var nIndex = 0, oValue, oValue2 = [[], '', '']; nIndex < aValue.length; nIndex++) {
 			if (oValue = fNodeAnimation_parseValue(aValue[nIndex])) {
-				oValueOut[0].push(oValue[0]);
-				oValueOut[1]	= oValue[1];
+				oValue2[0].push(oValue[0]);
+				oValue2[1]	= oValue[1];
 			}
 		}
-		if (oValueOut[0].length)
-			return oValueOut;
+		if (oValue2[0].length)
+			return oValue2;
 	}
 	//
 	return [sValue, '', ''];
@@ -281,24 +281,24 @@ function fNodeAnimation_toHex(aValue) {
 	return ['#', ('000000' + (aValue[2] * 255 | (aValue[1] * 255 << 8) | (aValue[0] * 255 << 16)).toString(16)).slice(-6)];
 };
 
-function fNodeAnimation_sumValue(oValue1, oValue2) {
-	if (oValue1[0] instanceof cArray) {
-		for (var nIndex = 0, aValue = []; nIndex < oValue1[0].length; nIndex++)
-			aValue.push(oValue1[0][nIndex] + oValue2[0][nIndex]);
+function fNodeAnimation_sumValue(oValue, oValue2) {
+	if (oValue[0] instanceof cArray) {
+		for (var nIndex = 0, aValue = []; nIndex < oValue[0].length; nIndex++)
+			aValue.push(oValue[0][nIndex] + oValue2[0][nIndex]);
 		return [aValue, oValue2[1], oValue2[2]];
 	}
 	else
-		return [oValue1[0] + oValue2[0], oValue2[1], oValue2[2]];
+		return [oValue[0] + oValue2[0], oValue2[1], oValue2[2]];
 };
 
-function fNodeAnimation_subValue(oValue1, oValue2) {
-	if (oValue1[0] instanceof cArray) {
-		for (var nIndex = 0, aValue = []; nIndex < oValue1[0].length; nIndex++)
-			aValue.push(oValue1[0][nIndex] - oValue2[0][nIndex]);
+function fNodeAnimation_subValue(oValue, oValue2) {
+	if (oValue[0] instanceof cArray) {
+		for (var nIndex = 0, aValue = []; nIndex < oValue[0].length; nIndex++)
+			aValue.push(oValue[0][nIndex] - oValue2[0][nIndex]);
 		return [aValue, oValue2[1], oValue2[2]];
 	}
 	else
-		return [oValue1[0] - oValue2[0], oValue1[1], oValue1[2]];
+		return [oValue[0] - oValue2[0], oValue[1], oValue[2]];
 };
 
 function fNodeAnimation_mulValue(oValue, nTimes) {

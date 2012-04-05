@@ -106,9 +106,9 @@ function fSMILAnimationElement_getAttributeValue(oElement) {
 			var oElementDOM	= oElement.targetElement.$getContainer();
 			if (oElementDOM) {
 				var oComputedStyle	= fBrowser_getComputedStyle(oElementDOM),
-					oValue1	= fNodeAnimation_parseValue(oComputedStyle.top),
+					oValue	= fNodeAnimation_parseValue(oComputedStyle.top),
 					oValue2	= fNodeAnimation_parseValue(oComputedStyle.left);
-				aValue	= [[oValue1[0], oValue2[0]], oValue1[1]];
+				aValue	= [[oValue[0], oValue2[0]], oValue[1]];
 			}
 		}
 		else
