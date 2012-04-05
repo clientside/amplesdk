@@ -13,8 +13,8 @@ cWheelEvent.prototype.eventInterface	= "WheelEvent";
 
 // Constants
 cWheelEvent.DOM_DELTA_PIXEL	= 0;
-cWheelEvent.DOM_DELTA_LINE 	= 1;
-cWheelEvent.DOM_DELTA_PAGE 	= 2;
+cWheelEvent.DOM_DELTA_LINE	= 1;
+cWheelEvent.DOM_DELTA_PAGE	= 2;
 
 // nsIWheelEvent
 cWheelEvent.prototype.deltaMode	= null;

@@ -137,7 +137,7 @@
 					<argument name="offset" type="Number" required="true">
 						<description>
 							<locale>
-							 	The offset in seconds at which to begin the element.
+								The offset in seconds at which to begin the element.
 							</locale>
 						</description>
 					</argument>

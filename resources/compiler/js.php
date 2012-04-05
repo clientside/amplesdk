@@ -72,7 +72,7 @@
 		$oCompiler->stripComments();
 		$sOutput	= $oCompiler->output;
 
-		$sOutput	= 	"".
+		$sOutput	=	"".
 						"(function () {\n" .
 							$sOutput . "\n" .
 						"})()" .

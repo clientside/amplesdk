@@ -177,7 +177,7 @@
 												array('/', '.', '$'),
 												array('\/', '\.', '\$'),
 												$this->aStrings[$nIndex]
-											 ). '(?!\w)/',	"[_[" . $nIndex . ']]',	$sData);
+											). '(?!\w)/',	"[_[" . $nIndex . ']]',	$sData);
 
 				// Debug
 				if ($this->debug)
@@ -196,13 +196,13 @@
 			$nWString		= array_search("String",		$this->aStrings);
 			if (!$nWString)
 				$nWString	= array_push($this->aStrings, "String") - 1;
-			$nWMath			= array_search("Math", 			$this->aStrings);
+			$nWMath			= array_search("Math",			$this->aStrings);
 			if (!$nWMath)
 				$nWMath		= array_push($this->aStrings, "Math") - 1;
 			$nWRegExp		= array_search("RegExp",		$this->aStrings);
 			if (!$nWRegExp)
 				$nWRegExp	= array_push($this->aStrings, "RegExp") - 1;
-			$nWFunction		= array_search("Function", 		$this->aStrings);
+			$nWFunction		= array_search("Function",		$this->aStrings);
 			if (!$nWFunction)
 				$nWFunction	= array_push($this->aStrings, "Function") - 1;
 			$nWlength		= array_search("length",		$this->aStrings);
@@ -244,7 +244,7 @@
 				$sKeyWords	= join(" ", $aKeyWords);
 				$sKeyWords2	= "";
 				for ($nIndex = strlen($sKeyWords) - 1; $nIndex >= 0; $nIndex--)
-					$sKeyWords2 	.= chr(ord(substr($sKeyWords, $nIndex, 1)) + $nShift);
+					$sKeyWords2	.= chr(ord(substr($sKeyWords, $nIndex, 1)) + $nShift);
 				$sKeyWords	= $sKeyWords2;
 			}
 
@@ -256,7 +256,7 @@
 			$d	= $this->keyword[5];
 
 			// create JS wrapper
-			$sData	= 	"(function({$m},{$u},{$n},{$g},{$e},{$d}){";
+			$sData	=	"(function({$m},{$u},{$n},{$g},{$e},{$d}){";
 			if (true) {
 				// decode js keywords
 				$sData.=	"for({$g}={$u}[{$d}[$nWlength]]-1;{$g}>=0;{$g}--)".
@@ -288,7 +288,7 @@
 			// Restore prototype to proper reference
 //			$output	= str_replace("[$]", "[_[0]]", $output);
 
-			$sData	= 	"(function($,_,_\$){"
+			$sData	=	"(function($,_,_\$){"
 						. str_replace("window", "_\$", $output)
 						. "})('prototype','" . join(" ", $this->aStrings) . "'.split(' '),window)";
 

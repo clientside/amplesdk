@@ -77,7 +77,7 @@ cChartElement_line.prototype.refresh	= function() {
 		var nXFrom, nYFrom,
 			nXTo, nYTo,
 			nX, nY,
-			d 	= [];
+			d	= [];
 		for (var nItem = 0, nItems = aData[nGroup].length; nItem < nItems; nItem++) {
 			//
 			if (aYSumUp.length < nItem + 1)

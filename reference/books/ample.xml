@@ -517,7 +517,7 @@
 				<node title="sidebar" xurl="ample/aui/sidebar.xml"/>
 				<node title="sound" xurl="ample/aui/sound.xml"/>
 				<node title="xhtml" xurl="ample/aui/xhtml.xml"/>
- 			</node>
+			</node>
 		</node>
 	</node>
 </book>

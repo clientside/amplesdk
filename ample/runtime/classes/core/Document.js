@@ -20,12 +20,12 @@ cDocument.prototype.implementation	= null;
 
 // nsIDOM3Document interface
 cDocument.prototype.documentURI		= null;
-cDocument.prototype.domConfig 		= null;
-cDocument.prototype.inputEncoding 	= null;
-cDocument.prototype.strictErrorChecking 	= null;
-cDocument.prototype.xmlEncoding 	= null;
-cDocument.prototype.xmlStandalone 	= null;
-cDocument.prototype.xmlVersion 		= null;
+cDocument.prototype.domConfig		= null;
+cDocument.prototype.inputEncoding	= null;
+cDocument.prototype.strictErrorChecking	= null;
+cDocument.prototype.xmlEncoding		= null;
+cDocument.prototype.xmlStandalone	= null;
+cDocument.prototype.xmlVersion		= null;
 
 // Private Variables
 var nDocument_index	= 0,

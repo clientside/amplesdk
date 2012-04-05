@@ -115,11 +115,11 @@
 					</locale>
 				</description>
 			</method>
-			 -->
+			-->
 			<method name="first" type="Query">
 				<description>
 					<locale>
- 						Reduces the set of matched elements to the first in the set.
+						Reduces the set of matched elements to the first in the set.
 					</locale>
 				</description>
 			</method>
@@ -156,7 +156,7 @@
 					</locale>
 				</description>
 			</method>
-			 -->
+			-->
 			<method name="last" type="Query">
 				<description>
 					<locale>
@@ -181,7 +181,7 @@
 					</locale>
 				</description>
 			</method>
-			 -->
+			-->
 			<!--
 			<method name="not" type="Query">
 				<description>
@@ -190,7 +190,7 @@
 					</locale>
 				</description>
 			</method>
-			 -->
+			-->
 			<method name="slice" type="Query">
 				<arguments>
 					<argument name="first" type="Number">
@@ -707,7 +707,7 @@
 				</arguments>
 				<description>
 					<locale>
- 						Inserts every element in the set of matched elements to the beginning of the target.
+						Inserts every element in the set of matched elements to the beginning of the target.
 					</locale>
 				</description>
 			</method>
@@ -739,7 +739,7 @@
 				</arguments>
 				<description>
 					<locale>
-						 Inserts every element in the set of matched elements after the target.
+						Inserts every element in the set of matched elements after the target.
 					</locale>
 				</description>
 			</method>
@@ -810,7 +810,7 @@
 				</arguments>
 				<description>
 					<locale>
- 						Inserts content, specified by the parameter, after each element in the set of matched elements.
+						Inserts content, specified by the parameter, after each element in the set of matched elements.
 					</locale>
 				</description>
 			</method>

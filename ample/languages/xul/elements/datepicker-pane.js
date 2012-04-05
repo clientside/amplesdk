@@ -285,14 +285,14 @@ cXULElement_datepicker_pane.$getTagDays	= function(oInstance, oDate) {
 	aHtml.push('<table cellPadding="0" cellSpacing="1" border="0">\
 					<thead class="xul-datepicker-pane--header">\
 						<tr>\
-							 <td>&nbsp;</td>\
-							 <td class="xul-datepicker-pane-head-day">' + ample.locale.culture.calendar.days.namesShort[1] + '</td>\
-							 <td class="xul-datepicker-pane-head-day">' + ample.locale.culture.calendar.days.namesShort[2] + '</td>\
-							 <td class="xul-datepicker-pane-head-day">' + ample.locale.culture.calendar.days.namesShort[3] + '</td>\
-							 <td class="xul-datepicker-pane-head-day">' + ample.locale.culture.calendar.days.namesShort[4] + '</td>\
-							 <td class="xul-datepicker-pane-head-day">' + ample.locale.culture.calendar.days.namesShort[5] + '</td>\
-							 <td class="xul-datepicker-pane-head-day">' + ample.locale.culture.calendar.days.namesShort[6] + '</td>\
-							 <td class="xul-datepicker-pane-head-day">' + ample.locale.culture.calendar.days.namesShort[0] + '</td>\
+							<td>&nbsp;</td>\
+							<td class="xul-datepicker-pane-head-day">' + ample.locale.culture.calendar.days.namesShort[1] + '</td>\
+							<td class="xul-datepicker-pane-head-day">' + ample.locale.culture.calendar.days.namesShort[2] + '</td>\
+							<td class="xul-datepicker-pane-head-day">' + ample.locale.culture.calendar.days.namesShort[3] + '</td>\
+							<td class="xul-datepicker-pane-head-day">' + ample.locale.culture.calendar.days.namesShort[4] + '</td>\
+							<td class="xul-datepicker-pane-head-day">' + ample.locale.culture.calendar.days.namesShort[5] + '</td>\
+							<td class="xul-datepicker-pane-head-day">' + ample.locale.culture.calendar.days.namesShort[6] + '</td>\
+							<td class="xul-datepicker-pane-head-day">' + ample.locale.culture.calendar.days.namesShort[0] + '</td>\
 						</tr>\
 					</thead>\
 					<tbody>\

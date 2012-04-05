@@ -28,7 +28,7 @@
 					</argument>
 					<argument name="value" type="String" required="false">
 						<description>
-							 A data value associated with new item.
+							A data value associated with new item.
 						</description>
 					</argument>
 				</arguments>

@@ -1,5 +1,5 @@
 [
-	 {"id":	"meeting"},
-	 {"id":	"today"},
-	 {"id":	"other"}
+	{"id":	"meeting"},
+	{"id":	"today"},
+	{"id":	"other"}
 ]

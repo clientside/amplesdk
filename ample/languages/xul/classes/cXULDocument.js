@@ -22,7 +22,7 @@ var hXULDocument_overlayFragments	= {};
 cXULDocument.prototype.loadOverlay	= function(sUrl, fObserver) {
 	var oDocument	= this;
 	ample.ajax({
-			"url": 		sUrl,
+			"url":		sUrl,
 			"async":	true,
 			"dataType":	"xml",
 			"success":	function(oResponse) {

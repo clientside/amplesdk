@@ -14,7 +14,7 @@ var cDOMError	= function(sMessage, nSeverity, oException) {
 };
 
 cDOMError.SEVERITY_WARNING		= 1;
-cDOMError.SEVERITY_ERROR 		= 2;
+cDOMError.SEVERITY_ERROR		= 2;
 cDOMError.SEVERITY_FATAL_ERROR	= 3;
 
 cDOMError.prototype.severity	= null;

@@ -247,7 +247,7 @@ cXHTMLElement_input.handlers	= {
 					break;
 
 				case "checkbox":
-					if (sKey == "U+0020") 	// Space
+					if (sKey == "U+0020")	// Space
 						// TODO: Use keydown instead of click
 //						this.$activate();
 						break;

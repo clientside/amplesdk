@@ -130,7 +130,7 @@ cXULElement.prototype.reflow	= function() {
 			sMeasure	= bVertical ? "height" : "width",
 			sMeasureAlt	= bVertical ? "width" : "height",
 			nElements	= 0,
-			nVirtual 	= 0;
+			nVirtual	= 0;
 
 		// Count the amount of elements and their cumulative flex
 		for (var nIndex = 0; nIndex < nLength; nIndex++) {

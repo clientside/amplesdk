@@ -41,15 +41,15 @@
 					<value name="number">
 						<description>
 							<locale>
-							 	A textbox that only allows the user to enter numbers.
-							 	In addition, arrow buttons appear next to the textbox to let the user step through values.
+								A textbox that only allows the user to enter numbers.
+								In addition, arrow buttons appear next to the textbox to let the user step through values.
 							</locale>
 						</description>
 					</value>
 					<value name="search">
 						<description>
 							<locale>
-							 	A textbox intended for searching.
+								A textbox intended for searching.
 							</locale>
 						</description>
 					</value>

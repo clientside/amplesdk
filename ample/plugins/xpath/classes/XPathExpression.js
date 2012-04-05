@@ -17,7 +17,7 @@ cXPathExpression.prototype.evaluate	= function(oNode, nType, oResult) {
 	ample.guard(arguments, [
 		["context",		cNode],
 		["type",		cNumber,	true,	true],
-		["result",		cObject, 	true,	true]
+		["result",		cObject,	true,	true]
 	]);
 
 	// Invoke implementation

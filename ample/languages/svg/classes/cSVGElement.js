@@ -64,7 +64,7 @@ if (cSVGElement.useVML) {
 					case "matrix":		// (<a> <b> <c> <d> <e> <f>)
 						aMatrix	= cSVGElement.matrixMultiply(aMatrix, [ [aParameters[0],	aParameters[2],	aParameters[4]],
 																		[aParameters[1],	aParameters[3],	aParameters[5]],
-																		[0, 	0, 1]]);
+																		[0,	0, 1]]);
 						break;
 
 					case "scale":		// <sx> [<sy>]
@@ -73,7 +73,7 @@ if (cSVGElement.useVML) {
 
 						aMatrix	= cSVGElement.matrixMultiply(aMatrix, [ [iScaleX,	0,		0],
 																		[0,		iScaleY,	0],
-																		[0,		0, 			1]]);
+																		[0,		0,			1]]);
 						break;
 
 					case "rotate":		// <rotate-angle> [<cx> <cy>]
@@ -89,7 +89,7 @@ if (cSVGElement.useVML) {
 						// Rotation
 						aMatrix	= cSVGElement.matrixMultiply(aMatrix, [ [iCos,	-iSin,	0],
 																		[iSin,	iCos,	0],
-																		[0,		0, 		1]]);
+																		[0,		0,		1]]);
 						// Move back to the origin
 						if (aParameters.length == 3)
 							aMatrix	= cSVGElement.matrixMultiply(aMatrix, [ [1,	0,	-aParameters[1]],
@@ -103,7 +103,7 @@ if (cSVGElement.useVML) {
 
 						aMatrix	= cSVGElement.matrixMultiply(aMatrix, [ [1,		iTan,	0],
 																		[0,		1,		0],
-																		[0,		0, 		1]]);
+																		[0,		0,		1]]);
 						break;
 
 					case "skewY":		// <skew-angle>
@@ -112,7 +112,7 @@ if (cSVGElement.useVML) {
 
 						aMatrix	= cSVGElement.matrixMultiply(aMatrix, [ [1,		0,		0],
 																		[iTan,	1,		0],
-																		[0,		0, 		1]]);
+																		[0,		0,		1]]);
 						break;
 				}
 			}

@@ -27,7 +27,7 @@
 	<xsl:param name="show_inherited" select="true()" />
 	<!--
 	<xsl:param name="show_core" select="true()" />
- 	-->
+	-->
 
 	<!--  -->
 	<xsl:template match="@extends">
@@ -78,7 +78,7 @@
 				<xsl:with-param name="document" select="document(concat('../../books/ample/', substring-before(@name, ':'), '/', substring-after(@name, ':'), '.xml'))" />
 			</xsl:call-template>
 		</xsl:for-each>
-		 -->
+		-->
 	</xsl:template>
 
 	<xsl:template name="extend-members">
@@ -189,7 +189,7 @@
 				<label for="show_core" class="show_inherited">
 					<xsl:value-of select="$strings/members_show_inherited" />
 				</label>
-				 -->
+				-->
 			</p>
 			<table id="eTableMembers" cellPadding="0" cellSpacing="0" border="0" class="members">
 				<thead>

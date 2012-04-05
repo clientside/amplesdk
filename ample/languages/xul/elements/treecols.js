@@ -66,7 +66,7 @@ cXULElement_treecols.handlers	= {
 					oPositionSelf	= this.getBoundingClientRect();
 				//
 				oPopup.moveTo(	oPositionSelf.right - oPositionPopup.right,
-			 					oPositionSelf.bottom - oPositionPopup.top);
+								oPositionSelf.bottom - oPositionPopup.top);
 			}
 
 			this.ownerDocument.popupNode	= oPopup;

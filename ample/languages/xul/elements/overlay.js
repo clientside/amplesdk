@@ -14,7 +14,7 @@ cXULElement_overlay.prototype	= new cXULElement("overlay");
 function fXULElement_overlay_applyOverlays(oAmpleNode, oOverlayNode) {
 /*
 	For each child of the overlay node, if:
-	  - it does have an ID and:
+	- it does have an ID and:
 		-- that ID matches an existing node in the ample document, then if
 			--- it has an attribute "removeelement" with a value of "true", remove the element and all children,
 			if it exists
@@ -26,7 +26,7 @@ function fXULElement_overlay_applyOverlays(oAmpleNode, oOverlayNode) {
 			javascript insert.
 			--- otherwise, it gets inserted into the ample node passed in by this function
 			and the process repeats for all children.
-	  - it doesn't have an ID, then if
+	- it doesn't have an ID, then if
 			--- these are children of the root node, then
 			it gets inserted into the root of the document, and the process repeats for all children.
 			--- otherwise, it gets inserted into the ample node passed in by this function

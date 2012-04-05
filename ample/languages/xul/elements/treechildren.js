@@ -32,7 +32,7 @@ cXULElement_treechildren.prototype._refresh	= function(aStack, nPrimaryCol) {
 	var nDepth		= aStack.length,
 		oChildren	= aStack[nDepth - 1],
 		bTreeLines	= this.tree.attributes["treelines"] != "false",
-		nItems 		= oChildren.items.length;
+		nItems		= oChildren.items.length;
 
 	for (var nItem = 0, oItem, oElementDOM; nItem < nItems; nItem++) {
 		// Path

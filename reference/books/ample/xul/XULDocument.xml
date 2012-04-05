@@ -90,7 +90,7 @@
 					</locale>
 				</description>
 			</method>
-			 -->
+			-->
 		</methods>
 		<properties>
 			<property name="popupNode" readonly="true" type="Element">
@@ -121,7 +121,7 @@
 					</locale>
 				</description>
 			</property>
-			 -->
+			-->
 		</properties>
 	</members>
 </class>

@@ -246,26 +246,26 @@ cXULElement_editor.prototype.$mapAttribute	= function(sName, sValue) {
 cXULElement_editor.commands	= [
 	// command, display name, title
 	[
-	 	["undo",	"Undo",		ample.locale.localize("xul.editor.button.undo")],
-	 	["redo",	"Redo",		ample.locale.localize("xul.editor.button.redo")]
+		["undo",	"Undo",		ample.locale.localize("xul.editor.button.undo")],
+		["redo",	"Redo",		ample.locale.localize("xul.editor.button.redo")]
 	],
 	[
-		["justifyleft", 	"Left",		ample.locale.localize("xul.editor.button.justifyleft")],
+		["justifyleft",	"Left",		ample.locale.localize("xul.editor.button.justifyleft")],
 		["justifycenter",	"Center",	ample.locale.localize("xul.editor.button.justifycenter")],
 		["justifyright",	"Right",	ample.locale.localize("xul.editor.button.justifyright")],
 		["justifyfull",		"None",		ample.locale.localize("xul.editor.button.justifyfull")]
 	],
 	[
-	 	["outdent",		"Outdent",	ample.locale.localize("xul.editor.button.outdent")],
-	 	["indent",		"Indent",	ample.locale.localize("xul.editor.button.indent")]
+		["outdent",		"Outdent",	ample.locale.localize("xul.editor.button.outdent")],
+		["indent",		"Indent",	ample.locale.localize("xul.editor.button.indent")]
 	],
 	[
 		["insertunorderedlist",		"Unordered",	ample.locale.localize("xul.editor.button.insertunorderedlist")],
 		["insertorderedlist",		"Ordered",		ample.locale.localize("xul.editor.button.insertorderedlist")]
 	],
 	[
-	 	["createlink",	"Link",		ample.locale.localize("xul.editor.button.createlink")],
-	 	["unlink",		"Unlink",	ample.locale.localize("xul.editor.button.unlink")]
+		["createlink",	"Link",		ample.locale.localize("xul.editor.button.createlink")],
+		["unlink",		"Unlink",	ample.locale.localize("xul.editor.button.unlink")]
 	],
 	[
 		["bold",			"Bold",				ample.locale.localize("xul.editor.button.bold")],
@@ -279,13 +279,13 @@ cXULElement_editor.commands	= [
 	]
 	/*	// TODO
 	[
-	 	["fontsize", "Font size", "Font size"],
-	 	["fontname", "Font name", "Font name"],
-	 	["formatblock", "Format block", "Format block"]
+		["fontsize", "Font size", "Font size"],
+		["fontname", "Font name", "Font name"],
+		["formatblock", "Format block", "Format block"]
 	],
 	[
-	 	["forecolor", "Fore color", "Fore color"],
-	 	["backcolor", "Back color", "Back color"]
+		["forecolor", "Fore color", "Fore color"],
+		["backcolor", "Back color", "Back color"]
 	]*/
 ];
 
@@ -567,7 +567,7 @@ cXULElement_editor.prototype.$getTagOpen	= function() {
 };
 
 cXULElement_editor.prototype.$getTagClose	= function() {
-	return 		'</div>\
+	return		'</div>\
 			</div>';
 };
 

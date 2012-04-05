@@ -280,7 +280,7 @@ function fBrowser_onKeyUp(oEvent) {
 function fBrowser_onMouseOver(oEvent) {
 	var oTarget		= fBrowser_getEventTarget(oEvent),
 		oPseudo		= fBrowser_getUIEventPseudo(oEvent),
-		nButton 	= fBrowser_getUIEventButton(oEvent),
+		nButton		= fBrowser_getUIEventButton(oEvent),
 		oEventMouseOver,
 		oEventMouseOut;
 
@@ -436,7 +436,7 @@ oUADocument.attachEvent('on' + "mouseout", function(oEvent) {
 function fBrowser_onMouseMove(oEvent) {
 	var oTarget		= fBrowser_getEventTarget(oEvent),
 		oPseudo		= fBrowser_getUIEventPseudo(oEvent),
-		nButton 	= fBrowser_getUIEventButton(oEvent),
+		nButton		= fBrowser_getUIEventButton(oEvent),
 		nIndexCommon=-1,
 		aElements	= new cNodeList,
 		oElement,
@@ -607,7 +607,7 @@ function fBrowser_onDblClick(oEvent) {
 	// do not dispatch event if outside modal
 	if (!oBrowser_modalNode || fBrowser_isDescendant(oTarget, oBrowser_modalNode)) {
 		if (bTrident && nVersion < 9) {
-	 		// Simulate missing 'click' event in IE
+			// Simulate missing 'click' event in IE
 			oEventClick	= new cMouseEvent;
 			oEventClick.initMouseEvent("click", true, true, window, 2, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, null, nButton, null);
 			oEventClick.$pseudoTarget	= oPseudo;
@@ -739,7 +739,7 @@ function fBrowser_toggleSelect(bAllow) {
 		oStyle.WebkitUserSelect	=
 		oStyle.MozUserSelect	=
 		oStyle.OperaUserSelect	=
-		oStyle.KhtmlUserSelect 	=
+		oStyle.KhtmlUserSelect	=
 		oStyle.userSelect		= bAllow ? '' : "none";
 	}
 };
@@ -1109,7 +1109,7 @@ function fBrowser_processScripts() {
 					if (oParserMessage = oParserError.getElementsByTagName("div")[0])
 						oElementNew.textContent	= 'XML Parsing Error: ' + oParserMessage.textContent.replace(/.+:/, '') +
 													'Location: ' + oUALocation + '\n' +
-													 oParserMessage.textContent.replace(/:.+/, '');
+													oParserMessage.textContent.replace(/:.+/, '');
 				}
 				else
 				// Trident

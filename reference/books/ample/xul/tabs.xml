@@ -187,7 +187,7 @@
 <!--
 			<event name="beforeselect" type="Event" cancelable="true" bubbles="true">
 				<description>
-					 This event is sent to the <link type="element">tabs</link> element when the <link type="element">tab</link> is about to change. Return false if you want to prevent tab change.
+					This event is sent to the <link type="element">tabs</link> element when the <link type="element">tab</link> is about to change. Return false if you want to prevent tab change.
 				</description>
 			</event>
  -->

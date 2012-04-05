@@ -379,7 +379,7 @@ var oConfiguration	= oAmple_document.domConfig;
 fDOMConfiguration_setParameter(oConfiguration, "error-handler", null);
 fDOMConfiguration_setParameter(oConfiguration, "element-content-whitespace", false);	// in DOM-Core spec the default value is true
 fDOMConfiguration_setParameter(oConfiguration, "entities", false);	// in DOM-Core spec the default value is true
-fDOMConfiguration_setParameter(oConfiguration, "comments", false); 	// in DOM-Core spec the default value is true
+fDOMConfiguration_setParameter(oConfiguration, "comments", false);	// in DOM-Core spec the default value is true
 // set ample parameters
 fDOMConfiguration_setParameter(oConfiguration, "ample-module-history-fix", false);	// -> ample-history
 fDOMConfiguration_setParameter(oConfiguration, "ample-version", '@project_version@');

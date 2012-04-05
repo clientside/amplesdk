@@ -50,7 +50,7 @@ cSVGPathSegList.prototype.insertItemBefore	= function(oItem, nIndex) {
 	return oItem;
 };
 
-cSVGPathSegList.prototype.replaceItem 	= function(oItem, nIndex) {
+cSVGPathSegList.prototype.replaceItem	= function(oItem, nIndex) {
 	if (nIndex > this.numberOfItems || nIndex < 0)
 		throw new ample.classes.DOMException(DOMException.INDEX_SIZE_ERR);
 

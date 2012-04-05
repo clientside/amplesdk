@@ -86,7 +86,7 @@ c|funnel c|item:nth-child(0),
 c|pie c|item:nth-child(0),
 c|doughnut c|item:nth-child(0) {
 	stroke:	#54A14B;
-	fill: 	#54A14B;
+	fill:	#54A14B;
 }
 
 c|line c|group:nth-child(1),

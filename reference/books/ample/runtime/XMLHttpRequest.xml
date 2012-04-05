@@ -83,7 +83,7 @@
 								The HTTP method.
 							</locale>
 							<locale xml:lang="ru">
-								 Метод HTTP запроса.
+								Метод HTTP запроса.
 							</locale>
 						</description>
 					</argument>

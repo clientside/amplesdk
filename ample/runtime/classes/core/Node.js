@@ -318,11 +318,11 @@ cNode.prototype.setUserData	= function(sKey, sData, fHandler) {
 	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };
 
-cNode.prototype.isEqualNode 	= function(oNode) {
+cNode.prototype.isEqualNode	= function(oNode) {
 	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };
 
-cNode.prototype.isSameNode 	= function(oNode) {
+cNode.prototype.isSameNode	= function(oNode) {
 	return this == oNode;
 };
 

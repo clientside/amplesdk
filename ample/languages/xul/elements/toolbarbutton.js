@@ -113,11 +113,11 @@ cXULElement_toolbarbutton.prototype.$getTagOpen	= function() {
 						<td width="3" rowspan="3" class="xul-toolbarbutton-left"><div style="width:3px"/></td>\
 						<td class="xul-toolbarbutton-top"></td>'+
 					(sType == "menu-button"
-					 ? '<td width="3" rowspan="3" class="xul-toolbarbutton-right"></td>'
-					 : '')+
+						? '<td width="3" rowspan="3" class="xul-toolbarbutton-right"></td>'
+								: '')+
 					(sType == "menu" || sType == "menu-button"
-					 ? '<td class="xul-toolbarbutton-top"></td>'
-					 : '')+ '\
+						? '<td class="xul-toolbarbutton-top"></td>'
+								: '')+ '\
 						<td width="3" rowspan="3" class="xul-toolbarbutton-right"><div style="width:3px"/></td>\
 					</tr>\
 					<tr>\
@@ -141,14 +141,14 @@ cXULElement_toolbarbutton.prototype.$getTagClose	= function() {
 	return '				</div>\
 						</td>'+
 					(sType == "menu" || sType == "menu-button"
-					 ? '<td class="xul-toolbarbutton-arrow"><div class="xul-toolbarbutton--arrow"><br /></div></td>'
-					 : '') + '\
+						? '<td class="xul-toolbarbutton-arrow"><div class="xul-toolbarbutton--arrow"><br /></div></td>'
+						: '') + '\
 					</tr>\
 					<tr height="3">\
 						<td class="xul-toolbarbutton-bottom"></td>'+
 					(sType == "menu" || sType == "menu-button"
-					 ? '<td class="xul-toolbarbutton-bottom"></td>'
-					 : '')+ '\
+						? '<td class="xul-toolbarbutton-bottom"></td>'
+						: '')+ '\
 					</tr>\
 				</tbody>\
 			</table>';

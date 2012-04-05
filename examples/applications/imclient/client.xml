@@ -11,14 +11,14 @@
 	<!-- Broadcasters -->
 	<xul:broadcasterset>
 		<!-- Contacts Broadcasters -->
-		<xul:broadcaster id="brd_contact_chat"	 	label="Send Message..."	image="img/icons/message.gif"/>
-		<xul:broadcaster id="brd_contact_file"	 	label="Send File..." />
+		<xul:broadcaster id="brd_contact_chat"		label="Send Message..."	image="img/icons/message.gif"/>
+		<xul:broadcaster id="brd_contact_file"		label="Send File..." />
 
 		<xul:broadcaster id="brd_contact_rename"	label="Rename..."		image="img/icons/rename.gif"/>
 		<xul:broadcaster id="brd_contact_delete"	label="Delete"			image="img/icons/delete.gif"/>
 		<xul:broadcaster id="brd_contact_move"		label="Move to..."/>
 		<xul:broadcaster id="brd_contact_block"		label="Block" />
-		<xul:broadcaster id="brd_contact_details"	label="User Details" 	image="img/icons/info.gif"/>
+		<xul:broadcaster id="brd_contact_details"	label="User Details"	image="img/icons/info.gif"/>
 		<xul:broadcaster id="brd_contact_history"	label="Message History" image="img/icons/history.gif"/>
 
 		<!-- Groups Broadcasters -->
@@ -32,11 +32,11 @@
 		<xul:broadcaster id="brd_contactlist_show_groups"	label="Show Groups" />
 
 		<!-- Transports -->
-		<xul:broadcaster id="brd_transport_jab" label="Jabber" 	image="img/statuses/jab/on.gif"/>
-		<xul:broadcaster id="brd_transport_icq" label="ICQ" 	image="img/statuses/icq/on.gif"/>
-		<xul:broadcaster id="brd_transport_msn" label="MSN" 	image="img/statuses/msn/on.gif"/>
-		<xul:broadcaster id="brd_transport_yim" label="Yahoo!" 	image="img/statuses/yim/on.gif"/>
-		<xul:broadcaster id="brd_transport_aim" label="AOL" 	image="img/statuses/aim/on.gif"/>
+		<xul:broadcaster id="brd_transport_jab" label="Jabber"	image="img/statuses/jab/on.gif"/>
+		<xul:broadcaster id="brd_transport_icq" label="ICQ"		image="img/statuses/icq/on.gif"/>
+		<xul:broadcaster id="brd_transport_msn" label="MSN"		image="img/statuses/msn/on.gif"/>
+		<xul:broadcaster id="brd_transport_yim" label="Yahoo!"	image="img/statuses/yim/on.gif"/>
+		<xul:broadcaster id="brd_transport_aim" label="AOL"		image="img/statuses/aim/on.gif"/>
 
 		<!-- System Commands-->
 		<xul:broadcaster id="brd_progress"/>
@@ -69,7 +69,7 @@
 		<xul:command id="cmd_group_delete" />
 
 		<!-- Contactlist Broadcasters -->
-		<xul:command id="cmd_contactlist_groups_open" 	oncommand="onCmdGroupsOpen()"/>
+		<xul:command id="cmd_contactlist_groups_open"	oncommand="onCmdGroupsOpen()"/>
 		<xul:command id="cmd_contactlist_groups_close"	oncommand="onCmdGroupsClose()"/>
 		<xul:command id="cmd_contactlist_show_offline"	_oncommand="onCmdShowOffline()"/>
 		<xul:command id="cmd_contactlist_show_groups" disabled="true"/>
@@ -257,12 +257,12 @@
 						<xul:menupopup>
 							<xul:menuitem type="checkbox" label="Invisible" />
 							<xul:menuseparator/>
-							<xul:menuitem label="Online" 		image="img/statuses/jab/on.gif"/>
+							<xul:menuitem label="Online"		image="img/statuses/jab/on.gif"/>
 							<xul:menuitem label="Free for chat" image="img/statuses/jab/chat.gif"/>
-							<xul:menuitem label="Away" 			image="img/statuses/jab/away.gif"/>
+							<xul:menuitem label="Away"			image="img/statuses/jab/away.gif"/>
 							<xul:menuitem label="Don't disturb" image="img/statuses/jab/dnd.gif"/>
 							<xul:menuitem label="Not available" image="img/statuses/jab/xa.gif"/>
-							<xul:menuitem label="Offline" 		image="img/statuses/jab/off.gif"/>
+							<xul:menuitem label="Offline"		image="img/statuses/jab/off.gif"/>
 						</xul:menupopup>
 					</xul:toolbarbutton>
 				</xul:toolbar>

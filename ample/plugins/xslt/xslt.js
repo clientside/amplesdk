@@ -54,8 +54,8 @@ ample.extend({
 	xslt:	function(vXml, vXsl, fCallback, aParameters) {
 		// validate API
 		ample.guard(arguments, [
-			["xml", 		Object],
-			["xsl", 		Object],
+			["xml",			Object],
+			["xsl",			Object],
 			["callback",	Function,	true],
 			["parameters",	Array,		true,	true]
 		]);
@@ -70,8 +70,8 @@ ample.extend(ample.classes.Query.prototype, {
 	xslt:	function(vXml, vXsl, fCallback, aParameters) {
 		// validate API
 		ample.guard(arguments, [
-			["xml", 		Object],
-			["xsl", 		Object],
+			["xml",			Object],
+			["xsl",			Object],
 			["callback",	Function,	true],
 			["parameters",	Array,		true,	true]
 		]);

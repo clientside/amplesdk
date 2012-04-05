@@ -9,7 +9,7 @@
 
 // CSS Query driver
 var nNodeSelector_iterator	= 0,
-	rNodeSelector_comma 	= /\s*,\s*/;
+	rNodeSelector_comma		= /\s*,\s*/;
 
 function fNodeSelector_query(aBase, sQuery, fResolver, bMatchOne) {
 	// process comma separated selectors

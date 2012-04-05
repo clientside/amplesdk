@@ -173,7 +173,7 @@
 
 	<!--
 		Template: note
-	 -->
+	-->
 	<xsl:template match="note">
 		<p class="note">
 			<xsl:apply-templates />

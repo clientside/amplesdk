@@ -73,7 +73,7 @@ cAUIElement_panelset.prototype.$getTagOpen	= function() {
 };
 
 cAUIElement_panelset.prototype.$getTagClose	= function() {
-	return 	'</div>';
+	return '</div>';
 };
 
 // Register Element

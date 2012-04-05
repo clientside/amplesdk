@@ -113,7 +113,7 @@ if (cSVGElement.useVML) {
 		}
 		else {
 			nLeft	= (nWidthInner - (nWidthInner * nRatio)) / 2;
-			nWidthInner 	*= nRatio;
+			nWidthInner	*= nRatio;
 		}
 
 		// account for min-x, min-y

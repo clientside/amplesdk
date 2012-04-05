@@ -205,7 +205,7 @@ if (!oJSON) {
 		vRep	= vReplacer;
 		if (vReplacer && typeof vReplacer !== "function" &&
 				(typeof vReplacer !== "object" ||
-				 typeof vReplacer.length !== "number")) {
+				typeof vReplacer.length !== "number")) {
 			throw new cError("JSON" + '.' + "stringify");
 		}
 
