@@ -781,7 +781,7 @@ function fBrowser_parseXML(sText) {
 	try {
 		return new cDOMParser().parseFromString(sText, "text/xml");
 	}
-	catch (oError) {
+	catch (oException) {
 		return null;
 	}
 };
