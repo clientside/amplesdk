@@ -257,9 +257,15 @@ function fElement_setAttribute(oElement, sName, sValue) {
 		// Only operate on shadow if element is in the DOM
 		if (bRegistered && bCoreAttr) {
 			if (sName == 'id') {
-				if (sValue)
+				if (sValue) {
+//->Debug
+					if (oDocument_ids[sValue])
+						fUtilities_warn(sGUARD_NOT_UNIQUE_ID_WRN, [sValue]);
+//<-Debug
 					oDocument_ids[sValue]	= oElement;
-				delete oDocument_ids[sValueOld];
+				}
+				if (sValueOld)
+					delete oDocument_ids[sValueOld];
 			}
 			// Find shadow content
 			var oElementDOM	= oElement.$getContainer();
