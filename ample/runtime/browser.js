@@ -1328,10 +1328,10 @@ function fAmple_initialize() {
 		oAmple_root.style	= oBrowser_body.style;
 
 	// IE background images cache fix
-	try {
-		if (bTrident && nVersion < 7)
+	if (bTrident && nVersion < 7)
+		try {
 			oUADocument.execCommand("BackgroundImageCache", false, true);
-	} catch (oException){};
+		} catch (oException){};
 
 	// Fire Event
 	var oEventLoad	= new cEvent;
