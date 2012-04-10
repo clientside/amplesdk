@@ -266,11 +266,11 @@ function fElement_setAttribute(oElement, sName, sValue) {
 			// Update view
 			if (oElementDOM) {
 				if (sName == "class") {
-					var sValueClass	=(oElement.prefix ? oElement.prefix + '-' : '') + oElement.localName + (sValue ? ' ' + sValue : '');
+					var sClass	=(oElement.prefix ? oElement.prefix + '-' : '') + oElement.localName + (sValue ? ' ' + sValue : '');
 					if (bTrident && nVersion < 8)
-						oElementDOM.className	= sValueClass;
+						oElementDOM.className	= sClass;
 					else
-						oElementDOM.setAttribute("class", sValueClass);
+						oElementDOM.setAttribute("class", sClass);
 				}
 				else
 				if (sName == "style")
@@ -284,7 +284,7 @@ function fElement_setAttribute(oElement, sName, sValue) {
 
 		// Fire Mutation event
 		var oEvent	= new cMutationEvent;
-		oEvent.initMutationEvent("DOMAttrModified", true, false, null, bValue ? sValueOld : null, sValue, sName, bValue ? 1 /* cMutationEvent.MODIFICATION */ : 2 /* cMutationEvent.ADDITION */);
+		oEvent.initMutationEvent("DOMAttrModified", true, false, null, sValueOld, sValue, sName, bValue ? 1 /* cMutationEvent.MODIFICATION */ : 2 /* cMutationEvent.ADDITION */);
 		fNode_dispatchEvent(oElement, oEvent);
 
 		// Run mapper
@@ -476,11 +476,11 @@ function fElement_removeAttribute(oElement, sName) {
 			// Update view
 			if (oElementDOM) {
 				if (sName == "class") {
-					var sValueClass	=(oElement.prefix ? oElement.prefix + '-' : '') + oElement.localName;
+					var sClass	=(oElement.prefix ? oElement.prefix + '-' : '') + oElement.localName;
 					if (bTrident && nVersion < 8)
-						oElementDOM.className	= sValueClass;
+						oElementDOM.className	= sClass;
 					else
-						oElementDOM.setAttribute("class", sValueClass);
+						oElementDOM.setAttribute("class", sClass);
 				}
 				else
 				if (sName == "style")
