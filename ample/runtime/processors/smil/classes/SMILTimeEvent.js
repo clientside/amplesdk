@@ -10,6 +10,7 @@
 var cSMILTimeEvent	= function(){};
 
 cSMILTimeEvent.prototype	= new cEvent;
+cSMILTimeEvent.prototype.eventInterface	= "TimeEvent";
 
 cSMILTimeEvent.prototype.view	= null;
 cSMILTimeEvent.prototype.detail	= null;
@@ -20,3 +21,6 @@ cSMILTimeEvent.prototype.initTimeEvent	= function(sType, oView, nDetail) {
 	this.view	= oView;
 	this.detail	= nDetail;
 };
+
+// Register Event Interface
+fAmple_extend(cSMILTimeEvent);
