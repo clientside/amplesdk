@@ -16,11 +16,11 @@ cXULElement_toolbarbutton.prototype.$hoverable	= true;
 cXULElement_toolbarbutton.handlers	= {
 	"mouseout":		function(oEvent) {
 		if (this.getAttribute("open") != "true")
-				this.$setPseudoClass("active", false);
+			this.$setPseudoClass("active", false);
 	},
 	"mouseup":		function(oEvent) {
 		if (this.getAttribute("open") != "true")
-				this.$setPseudoClass("active", false);
+			this.$setPseudoClass("active", false);
 	},
 	"mousedown":	function(oEvent) {
 		if (!this.$isAccessible())
@@ -34,7 +34,7 @@ cXULElement_toolbarbutton.handlers	= {
 						this.setAttribute("open", "false");
 					else {
 						this.setAttribute("open", "true");
-							this.$setPseudoClass("active", true);
+						this.$setPseudoClass("active", true);
 					}
 				}
 				else
@@ -50,13 +50,20 @@ cXULElement_toolbarbutton.handlers	= {
 			}
 
 			//
-				this.$setPseudoClass("active", true);
+			this.$setPseudoClass("active", true);
 		}
 	},
 	"click":	function(oEvent) {
-		if (oEvent.target == this && oEvent.button == 0)
-			if (this.getAttribute("type") != "menu" && this.getAttribute("type") != "menu-button")
+		var sType	= this.getAttribute("type");
+		if (oEvent.target == this && oEvent.button == 0) {
+			if (sType == "menu-button") {
+				if (oEvent.$pseudoTarget != this.$getContainer("arrow"))
+					this.$activate();
+			}
+			else
+			if (sType != "menu")
 				this.$activate();
+		}
 	},
 	"DOMActivate":	function(oEvent) {
 		if (oEvent.target == this)
