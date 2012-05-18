@@ -383,7 +383,8 @@ if (cSVGElement.useVML) {
 			return sValue;
 
 		// check if parent is group
-		if (sValue == "inherit" || this.parentNode instanceof cSVGElement_g || this.parentNode instanceof cSVGElement_text || this.parentNode instanceof cSVGElement_a)
+		var oParent	= this.parentNode;
+		if (oParent && (sValue == "inherit" || oParent instanceof cSVGElement_g || oParent instanceof cSVGElement_text || oParent instanceof cSVGElement_a))
 			return this.parentNode.$getStyleComputed(sName);
 
 		return '';
