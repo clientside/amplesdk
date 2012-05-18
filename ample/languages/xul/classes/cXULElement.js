@@ -20,42 +20,48 @@ cXULElement.prototype	= new ample.classes.Element;
 cXULElement.prototype.namespaceURI	= "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
 cXULElement.prototype.localName		= "#element";
 cXULElement.prototype.viewType		= cXULElement.VIEW_TYPE_NORMAL;
-/*
+
 cXULElement.prototype.$getStyle	= function(sName) {
+	var sValue;
 	switch (sName) {
-		case "flex":
-		case "orient":
-		case "align":
-		case "pack":
+		case "-moz-box-flex":
+		case "-moz-box-orient":
+		case "-moz-box-pack":
+		case "-moz-box-align":
 		case "width":
 		case "height":
-			break;
+			// 1) first check if style specified
+			if (sValue = this.attributes["style"])
+				if (sValue.match(new RegExp(sName + "\\s*:\\s*[\'\"]?\\s*([^;\'\"]+)\\s*[\'\"]?")))
+					return RegExp.$1;
+
+			// 2) second check if attribute specified
+			if (sValue = this.attributes[sName.match(/\w+$/)])
+				return sValue;
+
+			return '';
+
 		default:
-			return ample.classes.Element.prototype.$getStyle(sName);
+			return ample.classes.Element.prototype.$getStyle.call(this, sName);
 	}
 };
 
 cXULElement.prototype.$setStyle	= function(sName, sValue) {
 	switch (sName) {
-		case "flex":
-			break;
-		case "orient":
-			break;
-		case "align":
-			break;
-		case "pack":
-			break;
+		case "-moz-box-flex":
+		case "-moz-box-orient":
+		case "-moz-box-pack":
+		case "-moz-box-align":
 		case "width":
-			break;
 		case "height":
+			this.$mapAttribute(sName.match(/\w+$/)[0], sValue);
 			break;
+
 		default:
-			return ample.classes.Element.prototype.$setStyle(sName, sValue);
+			ample.classes.Element.prototype.$setStyle.call(this, sName, sValue);
 	}
 };
-*/
 
-// Private Methods
 cXULElement.prototype.$mapAttribute	= function(sName, sValue) {
 	var oElementDOM	= this.$getContainer();
 	switch (sName) {
@@ -78,16 +84,16 @@ cXULElement.prototype.$mapAttribute	= function(sName, sValue) {
 			oElementDOM.style.display	=(sValue == "true" ? "none" : "");
 			break;
 
-		case "orient":
-			break;
-
 		case "debug":
 			break;
 
 		case "flex":
-			this.attributes[sName]	= sValue;
 			if (this.parentNode && this.parentNode.viewType == cXULElement.VIEW_TYPE_BOXED)
 				oXULReflowManager.schedule(this.parentNode);
+			break;
+
+		case "orient":
+			// TODO
 			break;
 
 		case "pack":
