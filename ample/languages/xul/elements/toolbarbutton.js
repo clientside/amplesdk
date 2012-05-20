@@ -27,7 +27,8 @@ cXULElement_toolbarbutton.handlers	= {
 			return;
 
 		if (oEvent.button == 0) {
-			if (this.getAttribute("type") == "menu-button") {
+			var sType	= this.getAttribute("type");
+			if (sType == "menu-button") {
 				// If click happend on "arrow" button
 				if (oEvent.$pseudoTarget == this.$getContainer("arrow")) {
 					if (this.getAttribute("open") == "true")
@@ -42,11 +43,33 @@ cXULElement_toolbarbutton.handlers	= {
 					return;
 			}
 			else
-			if (this.getAttribute("type") == "menu") {
+			if (sType == "menu") {
 				if (this.getAttribute("open") != "true")
 					this.setAttribute("open", "true");
 				else
 					return;
+			}
+			else
+			if (sType == "checkbox") {
+				if (this.getAttribute("checked") == "true")
+					this.setAttribute("checked", "false");
+				else
+					this.setAttribute("checked", "true");
+			}
+			else
+			if (sType == "radio") {
+				if (this.getAttribute("checked") != "true") {
+					var sGroup	= this.getAttribute("group").match(/^\w+$/),
+						sNamespaceURI	= this.namespaceURI;
+					if (sGroup) {
+						// Uncheck previous items
+						var aGroup	= this.ownerDocument.querySelectorAll("xul|toolbarbutton[group=" + sGroup[0] + "][checked=true]", function() {return sNamespaceURI;});
+						for (var nIndex = 0; nIndex < aGroup.length; nIndex++)
+							aGroup[nIndex].setAttribute("checked", "false");
+						// Check this item
+						this.setAttribute("checked", "true");
+					}
+				}
 			}
 
 			//
@@ -102,6 +125,12 @@ cXULElement_toolbarbutton.prototype.$mapAttribute	= function(sName, sValue) {
 		// TODO
 	}
 	else
+	if (sName == "checked") {
+		var sType	= this.getAttribute("type");
+		if (sType == "checkbox" || sType == "radio")
+			this.$setPseudoClass("checked", sValue == "true");
+	}
+	else
 	if (sName == "label")
 		this.$getContainer("label").innerHTML	=(this.attributes["image"] ? '<img src="' + this.attributes["image"] + '" align="absmiddle" />' : '') + ' ' + (sValue || '');
 	else
@@ -114,7 +143,10 @@ cXULElement_toolbarbutton.prototype.$mapAttribute	= function(sName, sValue) {
 // Element Render: open
 cXULElement_toolbarbutton.prototype.$getTagOpen	= function() {
 	var sType	= this.getAttribute("type");
-	return '<table cellpadding="0" cellspacing="0" border="0" class="xul-toolbarbutton' + (!this.$isAccessible() ? " xul-toolbarbutton_disabled" : "") + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">\
+	return '<table cellpadding="0" cellspacing="0" border="0" class="xul-toolbarbutton' +
+				(!this.$isAccessible() ? " xul-toolbarbutton_disabled" : "") +
+				((sType == "radio" || sType == "checkbox") && this.getAttribute("checked") == "true" ? " xul-toolbarbutton_checked" : "") +
+				(this.attributes["class"] ? " " + this.attributes["class"] : "") + '">\
 				<tbody>\
 					<tr height="3">\
 						<td width="3" rowspan="3" class="xul-toolbarbutton-left"><div style="width:3px"/></td>\

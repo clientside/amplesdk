@@ -59,7 +59,7 @@ xul|toolbarbutton::arrow {
 
 /* hover */
 xul|toolbarbutton:hover {
-
+	background-color: #F1F0E8;
 }
 
 xul|toolbarbutton:hover xul|toolbarbutton-top {
@@ -78,6 +78,11 @@ xul|toolbarbutton:hover xul|toolbarbutton-bottom {
 	background: url(media/toolbarbutton_bottom_hover.gif) repeat-x bottom;
 }
 
+/* checked */
+xul|toolbarbutton:checked {
+	background-color: #DED7D0;
+}
+
 /* active */
 xul|toolbarbutton:active {
 	background-color: #D8D2BD;
@@ -90,18 +95,22 @@ xul|toolbarbutton:active xul|toolbarbutton::label {
 	padding-bottom:0px;
 }
 
+xul|toolbarbutton:checked xul|toolbarbutton-top,
 xul|toolbarbutton:active xul|toolbarbutton-top {
 	background: url(media/toolbarbutton_top_pressed.gif) repeat-x top;
 }
 
+xul|toolbarbutton:checked xul|toolbarbutton-left,
 xul|toolbarbutton:active xul|toolbarbutton-left {
 	background: url(media/toolbarbutton_left_pressed.gif);
 }
 
+xul|toolbarbutton:checked xul|toolbarbutton-right,
 xul|toolbarbutton:active xul|toolbarbutton-right {
 	background: url(media/toolbarbutton_right_pressed.gif);
 }
 
+xul|toolbarbutton:checked xul|toolbarbutton-bottom,
 xul|toolbarbutton:active xul|toolbarbutton-bottom {
 	background: url(media/toolbarbutton_bottom_pressed.gif) repeat-x bottom;
 }
