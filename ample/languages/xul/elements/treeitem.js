@@ -17,16 +17,6 @@ cXULElement_treeitem.prototype.children	= null; // Reference to XULElement_treec
 // Public Methods
 
 // Private Methods
-cXULElement_treeitem.prototype._getNodeDepth	= function() {
-	var oElement= this.parentNode;
-	var nDepth	= 0;
-	while (oElement = oElement.parentNode.parentNode)
-		if (oElement instanceof cXULElement_tree)
-			break;
-		else
-			nDepth++;
-	return nDepth;
-};
 
 // Class Events Handlers
 cXULElement_treeitem.handlers	= {
@@ -90,17 +80,18 @@ cXULElement_treeitem.handlers	= {
 };
 
 cXULElement_treeitem.prototype.$mapAttribute	= function(sName, sValue) {
+	var oParent	= this.parentNode;
 	if (sName == "selected") {
 		this.$setPseudoClass("selected", sValue == "true");
-		if (this.parentNode.tree.attributes["type"] == "checkbox" || this.parentNode.tree.attributes["type"] == "radio")
-			this.$getContainer("command").checked	= sValue == "true";
+		if (oParent && oParent.tree)
+			if (oParent.tree.attributes["type"] == "checkbox" || oParent.tree.attributes["type"] == "radio")
+				this.$getContainer("command").checked	= sValue == "true";
 	}
 	else
 	if (sName == "open") {
 		// Change toc image at primary cell
-		if (this.parentNode.tree.head) {
-			var nDepth	= this._getNodeDepth(),
-				nIndex	= this.parentNode.tree.head._getPrimaryColIndex();
+		if (oParent && oParent.tree && this.row && oParent.tree.head) {
+			var nIndex	= oParent.tree.head._getPrimaryColIndex();
 			if (nIndex !=-1 && this.row.cells[nIndex]) {
 				// Apply pseudo-class
 				this.row.cells[nIndex].$setPseudoClass("open", sValue == "true", "toc");
