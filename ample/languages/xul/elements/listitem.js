@@ -62,7 +62,8 @@ cXULElement_listitem.prototype.$mapAttribute	= function(sName, sValue) {
 };
 
 cXULElement_listitem.prototype.$isAccessible	= function() {
-	return this.parentNode.parentNode.$isAccessible();
+	var oParent	= this.parentNode;
+	return oParent && oParent.parentNode ? oParent.parentNode.$isAccessible() : true;
 };
 
 // Events Handlers
