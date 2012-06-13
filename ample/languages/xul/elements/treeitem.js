@@ -14,6 +14,9 @@ cXULElement_treeitem.prototype	= new cXULElement("treeitem");
 cXULElement_treeitem.prototype.row		= null; // Reference to XULElement_treerow
 cXULElement_treeitem.prototype.children	= null; // Reference to XULElement_treechildren
 
+cXULElement_treeitem.attributes	= {};
+cXULElement_treeitem.attributes.open	= "false";
+
 // Public Methods
 
 // Private Methods

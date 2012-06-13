@@ -55,7 +55,7 @@ cXULElement_treecell.prototype.$getTagOpen	= function() {
 		var oElementCurrent	= this;
 		do {
 			if (oElementCurrent instanceof cXULElement_treeitem)
-				sHtml	+= '<div class="xul-treecell-line" style="float:left;"><br /></div>';
+				sHtml	+= '<div style="float:left;"><br /></div>';
 			else
 			if (oElementCurrent instanceof cXULElement_tree)
 				break;
