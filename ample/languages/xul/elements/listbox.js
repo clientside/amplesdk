@@ -76,6 +76,24 @@ cXULElement_listbox.handlers	= {
 			if (oEvent.attrName == "seltype") {
 				// TODO
 			}
+	},
+	"DOMNodeInserted":	function(oEvent) {
+		if (oEvent.target.parentNode == this) {
+			if (oEvent.target instanceof cXULElement_listbody)
+				this.body	= oEvent.target;
+			else
+			if (oEvent.target instanceof cXULElement_listhead)
+				this.head	= oEvent.target;
+		}
+	},
+	"DOMNodeRemoved":	function(oEvent) {
+		if (oEvent.target.parentNode == this) {
+			if (oEvent.target instanceof cXULElement_listbody)
+				this.body	= null;
+			else
+			if (oEvent.target instanceof cXULElement_listhead)
+				this.head	= null;
+		}
 	}
 };
 

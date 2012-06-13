@@ -72,13 +72,15 @@ cXULElement_listhead.handlers	= {
 			this.ownerDocument.popupNode	= oPopup;
 		}
 	},
-	"DOMNodeInsertedIntoDocument":	function(oEvent) {
-		if (this.parentNode instanceof cXULElement_listbox)
-			this.parentNode.head	= this;
+	"DOMNodeInserted":	function(oEvent) {
+		if (oEvent.target.parentNode == this)
+			if (oEvent.target instanceof cXULElement_listheader)
+				this.items.$add(oEvent.target);
 	},
-	"DOMNodeRemovedFromDocument":	function(oEvent) {
-		if (this.parentNode instanceof cXULElement_listbox)
-			this.parentNode.head	= null;
+	"DOMNodeRemoved":	function(oEvent) {
+		if (oEvent.target.parentNode == this)
+			if (oEvent.target instanceof cXULElement_listheader)
+				this.items.$remove(oEvent.target);
 	}
 };
 

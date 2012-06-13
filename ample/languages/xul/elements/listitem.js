@@ -36,19 +36,16 @@ cXULElement_listitem.handlers	= {
 				oView.selectItem(this);
 		}
 	},
-	"DOMNodeInsertedIntoDocument":	function(oEvent) {
-		if (this.parentNode instanceof cXULElement_listbody && this.parentNode.parentNode instanceof cXULElement_listbox)
-			this.parentNode.parentNode.items.$add(this);
+	"DOMNodeInserted":	function(oEvent) {
+		if (oEvent.target.parentNode == this)
+			if (oEvent.target instanceof cXULElement_listcell)
+				this.cells.$add(oEvent.target);
 	},
-	"DOMNodeRemovedFromDocument":	function(oEvent) {
-		if (this.parentNode instanceof cXULElement_listbody && this.parentNode.parentNode instanceof cXULElement_listbox) {
-			// remove from selection
-			if (this.parentNode.parentNode.selectedItems.$indexOf(this) !=-1)
-				this.parentNode.parentNode.removeItemFromSelection(this);
-
-			this.parentNode.parentNode.items.$remove(this);
-		}
-	}
+	"DOMNodeRemoved":	function(oEvent) {
+		if (oEvent.target.parentNode == this)
+			if (oEvent.target instanceof cXULElement_listcell)
+				this.cells.$remove(oEvent.target);
+	},
 };
 
 cXULElement_listitem.prototype.$mapAttribute	= function(sName, sValue) {

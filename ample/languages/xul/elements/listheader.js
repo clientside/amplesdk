@@ -54,14 +54,6 @@ cXULElement_listheader.handlers	= {
 					aItems[nIndex].cells[nCell].setAttribute("hidden", oEvent.newValue);
 			}
 		}
-	},
-	"DOMNodeInsertedIntoDocument":	function(oEvent) {
-		if (this.parentNode instanceof cXULElement_listhead)
-			this.parentNode.items.$add(this);
-	},
-	"DOMNodeRemovedFromDocument":	function(oEvent) {
-		if (this.parentNode instanceof cXULElement_listhead)
-			this.parentNode.items.$remove(this);
 	}
 };
 

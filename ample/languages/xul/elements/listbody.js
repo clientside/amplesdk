@@ -20,13 +20,26 @@ cXULElement_listbody.prototype._onScroll	= function() {
 
 // Class events handlers
 cXULElement_listbody.handlers	= {
-	"DOMNodeInsertedIntoDocument":	function(oEvent) {
-		if (this.parentNode instanceof cXULElement_listbox)
-			this.parentNode.body	= this;
+	"DOMNodeInserted":	function(oEvent) {
+		var oItem	= oEvent.target;
+		if (oItem.parentNode == this)
+			if (oItem instanceof cXULElement_listitem) {
+				if (oItem.nextSibling)
+					this.parentNode.items.$add(oItem, this.parentNode.items.$indexOf(oItem.nextSibling));
+				else
+					this.parentNode.items.$add(oItem);
+			}
 	},
-	"DOMNodeRemovedFromDocument":	function(oEvent) {
-		if (this.parentNode instanceof cXULElement_listbox)
-			this.parentNode.body	= null;
+	"DOMNodeRemoved":	function(oEvent) {
+		var oItem	= oEvent.target;
+		if (oItem.parentNode == this)
+			if (oItem instanceof cXULElement_listitem) {
+				// remove from selection
+				if (this.parentNode.selectedItems.$indexOf(oItem) !=-1)
+					this.parentNode.removeItemFromSelection(oItem);
+
+				this.parentNode.items.$remove(oItem);
+			}
 	}
 };
 

@@ -13,16 +13,6 @@ cXULElement_listcell.prototype	= new cXULElement("listcell");
 // Public Methods
 
 // Class Events Handlers
-cXULElement_listcell.handlers	= {
-	"DOMNodeInsertedIntoDocument":	function(oEvent) {
-		if (this.parentNode instanceof cXULElement_listitem)
-			this.parentNode.cells.$add(oEvent.target);
-	},
-	"DOMNodeRemovedFromDocument":	function(oEvent) {
-		if (this.parentNode instanceof cXULElement_listitem)
-			this.parentNode.cells.$remove(oEvent.target);
-	}
-};
 
 cXULElement_listcell.prototype.$mapAttribute	= function(sName, sValue) {
 	if (sName == "label")
