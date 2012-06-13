@@ -45,7 +45,7 @@ cXULElement_listitem.handlers	= {
 		if (oEvent.target.parentNode == this)
 			if (oEvent.target instanceof cXULElement_listcell)
 				this.cells.$remove(oEvent.target);
-	},
+	}
 };
 
 cXULElement_listitem.prototype.$mapAttribute	= function(sName, sValue) {
