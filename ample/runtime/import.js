@@ -53,8 +53,8 @@ var cString		= window.String,
 //
 	fGlobal		= arguments.callee,
 //
-	oUALocalStorage		= window.localStorage,
-	oUASessionStorage	= window.sessionStorage,
+//	oUALocalStorage		= window.localStorage,
+//	oUASessionStorage	= window.sessionStorage,
 // constants
 	nNaN		= window.NaN,
 	nInfinity	= window.Infinity,
