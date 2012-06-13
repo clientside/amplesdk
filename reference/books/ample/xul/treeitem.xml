@@ -59,6 +59,15 @@
 			</attribute>
 		</attributes>
 		<methods />
+		<events>
+			<event name="OpenStateChange" type="Event" bubbles="true" cancelable="false">
+				<description>
+					<locale>
+						Item is open or close.
+					</locale>
+				</description>
+			</event>
+		</events>
 		<properties>
 			<property name="row" readonly="true">
 				<description>
