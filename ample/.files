@@ -1,5 +1,20 @@
 # Runtime
 runtime/import.js
+#
+runtime/compat/Array.js
+runtime/compat/base64.js
+runtime/compat/Date.js
+runtime/compat/DOMParser.js
+runtime/compat/Function.js
+runtime/compat/JSON.js
+runtime/compat/Storage.js
+runtime/compat/String.js
+runtime/compat/XMLHttpRequest.js
+runtime/compat/XMLSerializer.js
+runtime/compat/XSLTProcessor.js
+# Ample addons
+runtime/classes/AmpleException.js
+runtime/classes/Query.js
 # DOM-Events
 runtime/classes/events/Event.js
 runtime/classes/events/CustomEvent.js
@@ -50,14 +65,32 @@ runtime/classes/misc/NodeAnimation.js
 runtime/classes/misc/NodeLoader.js
 # Range
 runtime/classes/range/Range.js
-# Ample addons
-runtime/classes/AmpleException.js
-runtime/classes/Query.js
 # Runtime
 runtime/utilities.js
 runtime/guard.js
 runtime/browser.js
 runtime/ample.js
+# Managers
+runtime/managers/FocusManager.js
+runtime/managers/ResizeManager.js
+runtime/managers/DragAndDropManager.js
+runtime/managers/SelectionManager.js
+runtime/managers/CaptureManager.js
+# Modules
+runtime/modules/ajax.js
+runtime/modules/attributes.js
+runtime/modules/css.js
+runtime/modules/data.js
+runtime/modules/dimensions.js
+runtime/modules/effects.js
+runtime/modules/event.js
+runtime/modules/history.js
+runtime/modules/locale.js
+runtime/modules/manipulation.js
+runtime/modules/modal.js
+runtime/modules/offset.js
+runtime/modules/queue.js
+runtime/modules/traversing.js
 # XML Events 1.0
 runtime/processors/xmlevents/classes/XMLEventsElement.js
 runtime/processors/xmlevents/elements/listener.js
@@ -95,38 +128,5 @@ runtime/processors/smil/elements/set.js
 #runtime/processors/rex/rex.js
 # XBL 2.0
 #runtime/processors/xbl/xbl.js
-# Managers
-runtime/managers/FocusManager.js
-runtime/managers/ResizeManager.js
-runtime/managers/DragAndDropManager.js
-runtime/managers/SelectionManager.js
-runtime/managers/CaptureManager.js
-# Modules
-runtime/modules/ajax.js
-runtime/modules/attributes.js
-runtime/modules/css.js
-runtime/modules/data.js
-runtime/modules/dimensions.js
-runtime/modules/effects.js
-runtime/modules/event.js
-runtime/modules/history.js
-runtime/modules/locale.js
-runtime/modules/manipulation.js
-runtime/modules/modal.js
-runtime/modules/offset.js
-runtime/modules/queue.js
-runtime/modules/traversing.js
-#
-runtime/compat/Array.js
-runtime/compat/base64.js
-runtime/compat/Date.js
-runtime/compat/DOMParser.js
-runtime/compat/Function.js
-runtime/compat/JSON.js
-runtime/compat/Storage.js
-runtime/compat/String.js
-runtime/compat/XMLHttpRequest.js
-runtime/compat/XMLSerializer.js
-runtime/compat/XSLTProcessor.js
 #
 runtime/export.js
