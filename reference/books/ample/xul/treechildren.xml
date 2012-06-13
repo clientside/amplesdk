@@ -21,7 +21,7 @@
 			<property name="tree" type="Element" readonly="true">
 				<description>
 					<locale>
-						Reference to a child <link type="element">tree</link> element.
+						Reference to a parent <link type="element">tree</link> element.
 					</locale>
 					<locale xml:lang="ru">
 						Ссылка на родительский элемент <link type="element">tree</link>.
