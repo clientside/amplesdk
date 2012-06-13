@@ -44,6 +44,18 @@ cXULElement_treerow.handlers	= {
 		if (oEvent.target.parentNode == this)
 			if (oEvent.target instanceof cXULElement_treecell)
 				this.cells.$remove(oEvent.target);
+	},
+	"DOMNodeInsertedIntoDocument":	function(oEvent) {
+		// Move view node if neccessary
+		var oItem	= this.parentNode,
+			aItems	= oItem.parentNode.tree.items;
+		var nItemIndex	= aItems.$indexOf(oItem);
+		if (aItems[nItemIndex - 1]) {
+			var oItemPrevious	= aItems[nItemIndex - 1].$getContainer();
+			var oRowContainer	= this.$getContainer();
+			if (oRowContainer != oItemPrevious.nextSibling)
+				oRowContainer.parentNode.insertBefore(oRowContainer, oItemPrevious.nextSibling);
+		}
 	}
 };
 
