@@ -206,7 +206,6 @@
 				DOMParser.js,
 				Function.js,
 				JSON.js,
-				Storage.js,
 				String.js,
 				XMLHttpRequest.js,
 				XMLSerializer.js,
