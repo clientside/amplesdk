@@ -85,6 +85,13 @@ cXULElement_listbox.handlers	= {
 			if (oEvent.target instanceof cXULElement_listhead)
 				this.head	= oEvent.target;
 		}
+		else
+		if (oEvent.target instanceof cXULElement_listitem) {
+			if (oEvent.target.nextSibling)
+				this.items.$add(oEvent.target, this.items.$indexOf(oEvent.target.nextSibling));
+			else
+				this.items.$add(oEvent.target);
+		}
 	},
 	"DOMNodeRemoved":	function(oEvent) {
 		if (oEvent.target.parentNode == this) {
@@ -93,6 +100,14 @@ cXULElement_listbox.handlers	= {
 			else
 			if (oEvent.target instanceof cXULElement_listhead)
 				this.head	= null;
+		}
+		else
+		if (oEvent.target instanceof cXULElement_listitem) {
+			// remove from selection
+			if (this.selectedItems.$indexOf(oEvent.target) !=-1)
+				this.removeItemFromSelection(oEvent.target);
+			//
+			this.items.$remove(oEvent.target);
 		}
 	}
 };
