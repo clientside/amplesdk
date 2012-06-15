@@ -22,8 +22,6 @@ cXULElement_tabpanel.attributes.width	= "100%";
 cXULElement_tabpanel.handlers	= {
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		if (this.parentNode instanceof cXULElement_tabpanels) {
-			this.parentNode.items.$add(this);
-
 			var oTabBox	= this.parentNode.parentNode;
 			if (oTabBox instanceof cXULElement_tabbox) {
 				if (!isNaN(oTabBox.attributes["selectedIndex"]) && oTabBox.tabs.items.length > oTabBox.attributes["selectedIndex"] && this.parentNode.items.$indexOf(this) == oTabBox.attributes["selectedIndex"] * 1)
@@ -33,10 +31,6 @@ cXULElement_tabpanel.handlers	= {
 					oTabBox.tabs.goTo(0);
 			}
 		}
-	},
-	"DOMNodeRemovedFromDocument":	function(oEvent) {
-		if (this.parentNode instanceof cXULElement_tabpanels)
-			this.parentNode.items.$remove(this);
 	}
 };
 

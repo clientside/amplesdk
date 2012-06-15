@@ -18,6 +18,28 @@ cXULElement_tabbox.prototype.selectedIndex	= -1;
 cXULElement_tabbox.prototype.selectedTab	= null; // not supported
 cXULElement_tabbox.prototype.selectedPanel	= null; // not supported
 
+//Class event handlers
+cXULElement_tabbox.handlers	= {
+	"DOMNodeInserted":	function(oEvent) {
+		if (oEvent.target.parentNode == this) {
+			if (oEvent.target instanceof cXULElement_tabs)
+				this.tabs	= oEvent.target;
+			else
+			if (oEvent.target instanceof cXULElement_tabpanels)
+				this.tabpanels	= oEvent.target;
+		}
+	},
+	"DOMNodeRemoved":	function(oEvent) {
+		if (oEvent.target.parentNode == this) {
+			if (oEvent.target instanceof cXULElement_tabs)
+				this.tabs	= oEvent.target;
+			else
+			if (oEvent.target instanceof cXULElement_tabpanels)
+				this.tabpanels	= oEvent.target;
+		}
+	}
+};
+
 // Attributes Defaults
 cXULElement_tabbox.attributes	= {};
 cXULElement_tabbox.attributes.orient	= "vertical";

@@ -21,13 +21,15 @@ cXULElement_tabpanels.prototype.selectedPanel	= null; // Not implemented
 
 // Class event handlers
 cXULElement_tabpanels.handlers	= {
-	"DOMNodeInsertedIntoDocument":	function(oEvent) {
-		if (this.parentNode instanceof cXULElement_tabbox)
-			this.parentNode.tabpanels	= this;
+	"DOMNodeInserted":	function(oEvent) {
+		if (oEvent.target.parentNode == this)
+			if (oEvent.target instanceof cXULElement_tabpanel)
+				this.items.$add(oEvent.target);
 	},
-	"DOMNodeRemovedFromDocument":	function(oEvent) {
-		if (this.parentNode instanceof cXULElement_tabbox)
-			this.parentNode.tabpanels	= null;
+	"DOMNodeRemoved":	function(oEvent) {
+		if (oEvent.target.parentNode == this)
+			if (oEvent.target instanceof cXULElement_tabpanel)
+				this.items.$remove(oEvent.target);
 	}
 };
 

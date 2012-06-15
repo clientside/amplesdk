@@ -23,14 +23,6 @@ cXULElement_tab.handlers	= {
 
 		this.parentNode.goTo(this.parentNode.items.$indexOf(this));
 		this.doCommand();
-	},
-	"DOMNodeInsertedIntoDocument":	function(oEvent) {
-		if (this.parentNode instanceof cXULElement_tabs)
-			this.parentNode.items.$add(this);
-	},
-	"DOMNodeRemovedFromDocument":	function(oEvent) {
-		if (this.parentNode instanceof cXULElement_tabs)
-			this.parentNode.items.$remove(this);
 	}
 };
 

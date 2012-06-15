@@ -94,13 +94,15 @@ cXULElement_tabs.handlers	= {
 				break;
 		}
 	},
-	"DOMNodeInsertedIntoDocument":	function(oEvent) {
-		if (this.parentNode instanceof cXULElement_tabbox)
-			this.parentNode.tabs	= this;
+	"DOMNodeInserted":	function(oEvent) {
+		if (oEvent.target.parentNode == this)
+			if (oEvent.target instanceof cXULElement_tab)
+				this.items.$add(oEvent.target);
 	},
-	"DOMNodeRemovedFromDocument":	function(oEvent) {
-		if (this.parentNode instanceof cXULElement_tabbox)
-			this.parentNode.tabs	= null;
+	"DOMNodeRemoved":	function(oEvent) {
+		if (oEvent.target.parentNode == this)
+			if (oEvent.target instanceof cXULElement_tab)
+				this.items.$remove(oEvent.target);
 	}
 };
 
