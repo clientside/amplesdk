@@ -16,7 +16,7 @@ cXULElement_treerow.prototype.$hoverable	= true;
 
 // Public Methods
 cXULElement_treerow.prototype.$isAccessible	= function() {
-	return this.parentNode.parentNode.tree.$isAccessible();
+	return this.parentNode && this.parentNode.parentNode && this.parentNode.parentNode.tree ? this.parentNode.parentNode.tree.$isAccessible() : true;
 };
 
 // Private members

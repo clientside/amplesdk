@@ -19,7 +19,7 @@ cXULElement_listheader.attributes	= {
 
 // Public Methods
 cXULElement_listheader.prototype.$isAccessible	= function() {
-	return this.parentNode.parentNode.$isAccessible();
+	return this.parentNode ? this.parentNode.$isAccessible() : true;
 };
 
 // Class Events Handlers

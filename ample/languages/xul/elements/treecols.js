@@ -15,7 +15,7 @@ cXULElement_treecols.prototype	= new cXULElement("treecols");
 
 // Public Methods
 cXULElement_treecols.$isAccessible	= function() {
-	return this.parentNode.$isAccessible();
+	return this.parentNode ? this.parentNode.$isAccessible() : true;
 };
 
 cXULElement_treecols.prototype._getPrimaryColIndex	= function() {

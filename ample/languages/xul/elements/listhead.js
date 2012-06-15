@@ -15,7 +15,7 @@ cXULElement_listhead.prototype	= new cXULElement("listhead");
 
 // Private Methods
 cXULElement_listhead.$isAccessible	= function() {
-	return this.parentNode.$isAccessible();
+	return this.parentNode ? this.parentNode.$isAccessible() : true;
 };
 
 cXULElement_listhead.prototype._getPrimaryColIndex	= function() {
