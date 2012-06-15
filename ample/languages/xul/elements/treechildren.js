@@ -77,38 +77,18 @@ cXULElement_treechildren.handlers	= {
 		var oItem	= oEvent.target;
 		if (oItem.parentNode == this)
 			if (oItem instanceof cXULElement_treeitem) {
-				// 1. Update own items collection
 				var oItemNext	= oItem.nextSibling;
 				if (oItemNext)
 					this.items.$add(oItem, this.items.$indexOf(oItemNext));
 				else
 					this.items.$add(oItem);
-
-				// 2. Update tree items collection
-				var oItemPrevious	= oItem.previousSibling;
-				if (oItemPrevious)
-					while (oItemPrevious.children && oItemPrevious.children.items.length)
-						oItemPrevious	= oItemPrevious.children.items[oItemPrevious.children.items.length - 1];
-				else
-					oItemPrevious	= oItem.parentNode.parentNode;
-				//
-				if (oItemPrevious instanceof cXULElement_treeitem)
-					this.tree.items.$add(oItem, this.tree.items.$indexOf(oItemPrevious) + 1);
-				else
-					this.tree.items.$add(oItem);
 			}
 	},
 	"DOMNodeRemoved":	function(oEvent) {
 		var oItem	= oEvent.target;
 		if (oItem.parentNode == this)
-			if (oItem instanceof cXULElement_treeitem) {
-				// Remove from selection
-				if (this.tree.selectedItems.$indexOf(oItem) !=-1)
-					this.tree.removeItemFromSelection(oItem);
-
+			if (oItem instanceof cXULElement_treeitem)
 				this.items.$remove(oItem);
-				this.tree.items.$remove(oItem);
-			}
 	}
 };
 

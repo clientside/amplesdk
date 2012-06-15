@@ -137,18 +137,47 @@ cXULElement_tree.handlers	= {
 		}
 	},
 	"DOMNodeInserted":	function(oEvent) {
-		if (oEvent.target instanceof cXULElement_treebody)
-			this.body	= oEvent.target;
-		else
-		if (oEvent.target instanceof cXULElement_treecols)
-			this.head	= oEvent.target;
+		if (oEvent.target.parentNode == this) {
+	 		if (oEvent.target instanceof cXULElement_treebody)
+				this.body	= oEvent.target;
+			else
+			if (oEvent.target instanceof cXULElement_treecols)
+				this.head	= oEvent.target;
+		}
+		else {
+			if (oEvent.target instanceof cXULElement_treeitem) {
+				// Update tree items collection
+				var oItemPrevious	= oEvent.target.previousSibling;
+				if (oItemPrevious)
+					while (oItemPrevious.children && oItemPrevious.children.items.length)
+						oItemPrevious	= oItemPrevious.children.items[oItemPrevious.children.items.length - 1];
+				else
+					oItemPrevious	= oEvent.target.parentNode.parentNode;
+				//
+				if (oItemPrevious instanceof cXULElement_treeitem)
+					this.items.$add(oEvent.target, this.items.$indexOf(oItemPrevious) + 1);
+				else
+					this.items.$add(oEvent.target);
+			}
+		}
 	},
 	"DOMNodeRemoved":	function(oEvent) {
-		if (oEvent.target instanceof cXULElement_treebody)
-			this.body	= null;
-		else
-		if (oEvent.target instanceof cXULElement_treecols)
-			this.head	= null;
+		if (oEvent.target.parentNode == this) {
+			if (oEvent.target instanceof cXULElement_treebody)
+				this.body	= null;
+			else
+			if (oEvent.target instanceof cXULElement_treecols)
+				this.head	= null;
+		}
+		else {
+			if (oEvent.target instanceof cXULElement_treeitem) {
+				// Remove from selection
+				if (this.selectedItems.$indexOf(oEvent.target) !=-1)
+					this.removeItemFromSelection(oEvent.target);
+				//
+				this.items.$remove(oEvent.target);
+			}
+		}
 	}
 };
 
