@@ -18,14 +18,6 @@ cXULElement_listcol.handlers	= {
 				// TODO: natural | descending | descending
 			}
 		}
-	},
-	"DOMNodeInsertedIntoDocument":	function(oEvent) {
-		if (this.parentNode instanceof cXULElement_listcols)
-			this.parentNode.items.$add(this);
-	},
-	"DOMNodeRemovedFromDocument":	function(oEvent) {
-		if (this.parentNode instanceof cXULElement_listcols)
-			this.parentNode.items.$remove(this);
 	}
 };
 

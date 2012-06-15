@@ -13,6 +13,20 @@ var cXULElement_listcols	= function() {
 };
 cXULElement_listcols.prototype	= new cXULElement("listcols");
 
+// Class event handler
+cXULElement_listcols.handlers	= {
+	"DOMNodeInserted":	function(oEvent) {
+		if (oEvent.target.parentNode == this)
+			if (oEvent.target instanceof cXULElement_listcol)
+				this.items.$add(oEvent.target);
+	},
+	"DOMNodeRemoved":	function(oEvent) {
+		if (oEvent.target.parentNode == this)
+			if (oEvent.target instanceof cXULElement_listcol)
+				this.items.$remove(oEvent.target);
+	}
+};
+
 // Element Render: open
 cXULElement_listcols.prototype.$getTagOpen	= function() {
 	return '<table cellpadding="0" cellspacing="0" border="0" width="100%" class="xul-listcols' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">\
