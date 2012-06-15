@@ -27,13 +27,9 @@ cXULElement_wizardpage.dispatchEvent_onPage	= function(oElement, sName) {
 
 cXULElement_wizardpage.handlers	= {
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
-		this.parentNode.wizardPages.$add(this);
 		//
 		if (!this.parentNode.currentPage)
 			cXULElement_wizard.goTo(this.parentNode, this);
-	},
-	"DOMNodeRemovedFromDocument":	function(oEvent) {
-		this.parentNode.wizardPages.$remove(this);
 	}
 };
 

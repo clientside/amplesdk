@@ -144,6 +144,16 @@ cXULElement_wizard.dispatchEvent_onWizard	= function(oElement, sName) {
 
 // Class events handlers
 cXULElement_wizard.handlers	= {
+	"DOMNodeInserted":	function(oEvent) {
+		if (oEvent.target.parentNode == this)
+			if (oEvent.target instanceof cXULElement_wizardpage)
+				this.wizardPages.$add(oEvent.target);
+	},
+	"DOMNodeRemoved":	function(oEvent) {
+		if (oEvent.target.parentNode == this)
+			if (oEvent.target instanceof cXULElement_wizardpage)
+				this.wizardPages.$remove(oEvent.target);
+	},
 	"dragstart":	function(oEvent) {
 		if (oEvent.target == this && oEvent.$pseudoTarget != this.$getContainer("title"))
 			oEvent.preventDefault();
