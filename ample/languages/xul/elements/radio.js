@@ -51,36 +51,6 @@ cXULElement_radio.handlers	= {
 				}
 			}
 		}
-	},
-	"DOMNodeInsertedIntoDocument":	function(oEvent) {
-		for (var oElement = this; oElement; oElement = oElement.parentNode)
-			if (oElement instanceof cXULElement_radiogroup)
-				break;
-		if (oElement) {
-			oElement.items.$add(this);
-			this.group	= oElement;
-			//
-			if (this.attributes["selected"] == "true") {
-				oElement.selectedIndex	= oElement.items.length - 1;
-				oElement.selectedItem	= this;
-			}
-		}
-	},
-	"DOMNodeRemovedFromDocument":	function(oEvent) {
-		for (var oElement = this; oElement; oElement = oElement.parentNode)
-			if (oElement instanceof cXULElement_radiogroup)
-				break;
-		if (oElement) {
-			if (this.attributes["selected"] == "true") {
-				if (oElement.selectedItem == this) {
-					oElement.selectedIndex	=-1;
-					oElement.selectedItem	= null;
-				}
-			}
-			//
-			oElement.items.$remove(this);
-			this.group	= null;
-		}
 	}
 };
 

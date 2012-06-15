@@ -49,6 +49,30 @@ cXULElement_radiogroup.handlers	= {
 				}
 			}
 		}
+	},
+	"DOMNodeInserted":	function(oEvent) {
+		if (oEvent.target instanceof cXULElement_radio) {
+			this.items.$add(oEvent.target);
+			oEvent.target.group	= this;
+			//
+			if (oEvent.target.attributes["selected"] == "true") {
+				this.selectedIndex	= this.items.length - 1;
+				this.selectedItem	= oEvent.target;
+			}
+		}
+	},
+	"DOMNodeRemoved":	function(oEvent) {
+		if (oEvent.target instanceof cXULElement_radio) {
+			//
+			if (oEvent.target.attributes["selected"] == "true") {
+				if (this.selectedItem == oEvent.target) {
+					this.selectedIndex	=-1;
+					this.selectedItem	= null;
+				}
+			}//
+			oEvent.target.group	= null;
+			this.items.$remove(oEvent.target);
+		}
 	}
 };
 
