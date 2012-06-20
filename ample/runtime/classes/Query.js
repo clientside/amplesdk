@@ -65,8 +65,20 @@ cQuery.prototype.eq	= function(nIndex) {
 	return oQuery;
 };
 
-cQuery.prototype.filter	= function() {
-	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
+cQuery.prototype.filter	= function(sQuery) {
+//->Guard
+	fGuard(arguments, [
+		["query",	cString]
+	]);
+//<-Guard
+
+	var oQuery	= new cQuery,
+		aResult = fNodeSelector_query(this, sQuery);
+	for (var nIndex = 0; nIndex < aResult.length; nIndex++)
+		oQuery[nIndex]	= aResult[nIndex];
+	oQuery.length	= aResult.length;
+
+	return oQuery;
 };
 
 cQuery.prototype.first	= function() {
