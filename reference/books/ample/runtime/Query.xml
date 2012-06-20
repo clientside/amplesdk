@@ -913,7 +913,7 @@
 				</arguments>
 				<description>
 					<locale>
-						Loads data from the server and apends it to the first element in colection.
+						Loads data from the server and places it to the first element matched.
 					</locale>
 				</description>
 			</method>
