@@ -34,7 +34,7 @@ function fGuard(aArguments, aParameters, oObject) {
 //<-Debug
 
 	// Check constructor
-	if (oObject && fCaller && oObject instanceof fCaller)
+	if (oObject && fCaller && fCaller != fEval && oObject instanceof fCaller)
 		throw new cAmpleException(cAmpleException.CANNOT_ACCESS_DOM_ERR, fCaller);
 
 	// Iterate over parameters list

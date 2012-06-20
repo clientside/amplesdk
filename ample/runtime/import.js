@@ -45,6 +45,7 @@ var cString		= window.String,
 	fParseFloat	= window.parseFloat,
 	fIsNaN		= window.isNaN,
 	fIsFinite	= window.isFinite,
+	fEval		= window.eval,
 	fEncodeURIComponent	= window.encodeURIComponent,
 //	window objects
 	oUANavigator= window.navigator,
