@@ -65,7 +65,7 @@ cQuery.prototype.eq	= function(nIndex) {
 	return oQuery;
 };
 
-cQuery.prototype.filter	= function(sQuery) {
+cQuery.prototype.filter	= function() {
 	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };
 
