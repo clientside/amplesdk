@@ -118,9 +118,13 @@ cQuery.prototype.show	= function(vDuration, fCallback) {
 
 	fQuery_each(this, function() {
 		var oElementDOM	= this.$getContainer(),
+			sStyle	= this.attributes.style,
 			oStyle	= oElementDOM.style;
 		if (oStyle.display == "none") {
+			if (sStyle)
+				this.attributes.style	= sStyle.replace(/display\s*:\s*[\w-]+\s*;?/, '');
 			oStyle.display	= '';
+			//
 			if (vDuration) {
 				var oProperties	= {},
 					oComputedStyle	= fBrowser_getComputedStyle(oElementDOM);
