@@ -37,25 +37,27 @@ cXULElement_treechildren.prototype._refresh	= function(aStack, nPrimaryCol) {
 	for (var nItem = 0, oItem, oElementDOM; nItem < nItems; nItem++) {
 		// Path
 		oItem		= oChildren.items[nItem];
-		oElementDOM	= oItem.row.cells[nPrimaryCol].$getContainer("label");
+		if (oItem.row && oItem.row.cells.length > nPrimaryCol) {
+			oElementDOM	= oItem.row.cells[nPrimaryCol].$getContainer("label");
 
-		if (bTreeLines) {
-			// Line
-			for (var nIndex = 0; nIndex < nDepth - 1; nIndex++)
-				oElementDOM.childNodes[nIndex].className = "xul-treecell-line" +(aStack[nIndex + 1].parentNode == aStack[nIndex + 1].parentNode.parentNode.items[aStack[nIndex + 1].parentNode.parentNode.items.length - 1] ? "" : " xul-treecell-line-regular");
+			if (bTreeLines) {
+				// Line
+				for (var nIndex = 0; nIndex < nDepth - 1; nIndex++)
+					oElementDOM.childNodes[nIndex].className = "xul-treecell-line" +(aStack[nIndex + 1].parentNode == aStack[nIndex + 1].parentNode.parentNode.items[aStack[nIndex + 1].parentNode.parentNode.items.length - 1] ? "" : " xul-treecell-line-regular");
 
-			// Leaf
-			oElementDOM.childNodes[nDepth - 1].className	= "xul-treecell-line xul-treecell-line-" +(nItem == nItems - 1 ? "last" : "next");
-		}
+				// Leaf
+				oElementDOM.childNodes[nDepth - 1].className	= "xul-treecell-line xul-treecell-line-" +(nItem == nItems - 1 ? "last" : "next");
+			}
 
-		// Toc
-		if (oItem.attributes["container"] == "true") {
-			// Step In
-			if (oItem.children)
-				this._refresh(aStack.concat(oItem.children), nPrimaryCol);
+			// Toc
+			if (oItem.attributes["container"] == "true") {
+				// Step In
+				if (oItem.children)
+					this._refresh(aStack.concat(oItem.children), nPrimaryCol);
 
-			// Add toc +/-
-			oElementDOM.childNodes[nDepth - 1].className = "xul-treecell--toc" +(oChildren.items[nItem].attributes["open"] == "true" ? " xul-treecell--toc_open" : "");
+				// Add toc +/-
+				oElementDOM.childNodes[nDepth - 1].className = "xul-treecell--toc" +(oChildren.items[nItem].attributes["open"] == "true" ? " xul-treecell--toc_open" : "");
+			}
 		}
 	}
 };

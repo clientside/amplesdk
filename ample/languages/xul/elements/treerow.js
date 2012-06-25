@@ -52,9 +52,11 @@ cXULElement_treerow.handlers	= {
 		var nItemIndex	= aItems.$indexOf(oItem);
 		if (aItems[nItemIndex - 1]) {
 			var oItemPrevious	= aItems[nItemIndex - 1].$getContainer();
-			var oRowContainer	= this.$getContainer();
-			if (oRowContainer != oItemPrevious.nextSibling)
-				oRowContainer.parentNode.insertBefore(oRowContainer, oItemPrevious.nextSibling);
+			if (oItemPrevious) {
+				var oRowContainer	= this.$getContainer();
+				if (oRowContainer != oItemPrevious.nextSibling)
+					oRowContainer.parentNode.insertBefore(oRowContainer, oItemPrevious.nextSibling);
+			}
 		}
 	}
 };
