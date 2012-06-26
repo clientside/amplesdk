@@ -123,6 +123,7 @@ cQuery.prototype.show	= function(vDuration, fCallback) {
 		if (oStyle.display == "none") {
 			if (sStyle)
 				this.attributes.style	= sStyle.replace(/display\s*:\s*[\w-]+\s*;?/, '');
+			//
 			oStyle.display	= '';
 			//
 			if (vDuration) {
@@ -174,6 +175,11 @@ cQuery.prototype.hide	= function(vDuration, fCallback) {
 				oStyle.overflow	= "hidden";
 				fBrowser_setStyle(oElementDOM, "opacity", '1');
 				fNodeAnimation_play(this, oProperties, vDuration, "ease", function() {
+					var sStyle	= this.attributes.style || '';
+					if (sStyle)
+						sStyle	= sStyle.replace(/display\s*:\s*[\w-]+\s*;?/, '');
+					this.attributes.style	= "display" + ':' + "none" + ';' + sStyle;
+					//
 					oStyle.display	= "none";
 					// Restore values
 					oStyle.width	= '';
