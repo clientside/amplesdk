@@ -36,9 +36,15 @@ cXULElement_treerow.prototype._onCommandClick	= function(oEvent) {
 // Class events handlers
 cXULElement_treerow.handlers	= {
 	"DOMNodeInserted":	function(oEvent) {
+		var oTarget	= oEvent.target;
 		if (oEvent.target.parentNode == this)
-			if (oEvent.target instanceof cXULElement_treecell)
-				this.cells.$add(oEvent.target);
+			if (oEvent.target instanceof cXULElement_treecell) {
+				var oCellNext	= oTarget.nextSibling;
+				if (oCellNext)
+					this.cells.$add(oTarget, this.cells.$indexOf(oCellNext));
+				else
+					this.cells.$add(oTarget);
+			}
 	},
 	"DOMNodeRemoved":	function(oEvent) {
 		if (oEvent.target.parentNode == this)
