@@ -104,7 +104,7 @@ cXULElement_treechildren.prototype.$mapAttribute	= function(sName, sValue) {
 
 // TODO: Temp hack
 cXULElement_treechildren.prototype.$getContainer	= function(sName) {
-	return sName == "gateway" ? this.parentNode.$getContainer("gateway") : null;
+	return this.parentNode && sName == "gateway" ? this.parentNode.$getContainer("gateway") : null;
 };
 
 // Register Element
