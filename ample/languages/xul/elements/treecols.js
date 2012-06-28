@@ -73,9 +73,15 @@ cXULElement_treecols.handlers	= {
 		}
 	},
 	"DOMNodeInserted":	function(oEvent) {
-		if (oEvent.target.parentNode == this)
-			if (oEvent.target instanceof cXULElement_treecol)
-				this.items.$add(oEvent.target);
+		var oTarget	= oEvent.target;
+		if (oTarget.parentNode == this)
+			if (oTarget instanceof cXULElement_treecol) {
+				var oColNext	= oTarget.nextSibling;
+				if (oColNext)
+					this.items.$add(oTarget, this.items.$indexOf(oColNext));
+				else
+					this.items.$add(oTarget);
+			}
 	},
 	"DOMNodeRemoved":	function(oEvent) {
 		if (oEvent.target.parentNode == this)
