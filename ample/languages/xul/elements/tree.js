@@ -147,17 +147,32 @@ cXULElement_tree.handlers	= {
 		else {
 			if (oEvent.target instanceof cXULElement_treeitem) {
 				// Update tree items collection
-				var oItemPrevious	= oEvent.target.previousSibling;
-				if (oItemPrevious)
-					while (oItemPrevious.children && oItemPrevious.children.items.length)
-						oItemPrevious	= oItemPrevious.children.items[oItemPrevious.children.items.length - 1];
-				else
-					oItemPrevious	= oEvent.target.parentNode.parentNode;
+				var oItemPrevious	= cXULElement_tree.getPreviousItem(oEvent.target);
 				//
-				if (oItemPrevious instanceof cXULElement_treeitem)
+				if (oItemPrevious)
 					this.items.$add(oEvent.target, this.items.$indexOf(oItemPrevious) + 1);
 				else
 					this.items.$add(oEvent.target);
+			}
+			else
+			if (oEvent.target instanceof cXULElement_treechildren) {
+				var oItemPrevious	= oEvent.target.parentNode instanceof cXULElement_treeitem ? oEvent.target.parentNode : null;
+				// caters for dynamic changes
+				var oTree	= this;
+				(function(oChildren, oItemPrevious) {
+					for (var nIndex = 0, oItem; nIndex < oChildren.items.length; nIndex++) {
+						oItem = oChildren.items[nIndex];
+						if (oItemPrevious) {
+							oTree.items.$add(oItem, oTree.items.$indexOf(oItemPrevious) + 1);
+							oItemPrevious	= oItem;
+						}
+						else
+							oTree.items.$add(oItem);
+						// Recurse
+						if (oItem.children)
+							arguments.callee(oItem.children, oItem);
+					}
+				})(oEvent.target, oItemPrevious);
 			}
 		}
 	},
@@ -177,8 +192,38 @@ cXULElement_tree.handlers	= {
 				//
 				this.items.$remove(oEvent.target);
 			}
+			else
+			if (oEvent.target instanceof cXULElement_treechildren) {
+				// caters for dynamic changes
+				var oTree	= this;
+				(function(oChildren) {
+					for (var nIndex = 0, oItem; nIndex < oChildren.items.length; nIndex++) {
+						oItem	= oChildren.items[nIndex];
+						oTree.items.$remove(oItem);
+						// Recurse
+						if (oItem.children)
+							arguments.callee(oItem.children);
+					}
+				})(oEvent.target);
+			}
 		}
 	}
+};
+
+cXULElement_tree.getPreviousItem	= function(oItem) {
+	var oItemPrevious	= oItem.previousSibling;
+	if (oItemPrevious)
+		while (oItemPrevious.children && oItemPrevious.children.items.length)
+			oItemPrevious	= oItemPrevious.children.items[oItemPrevious.children.items.length - 1];
+	else
+	if (oItem.parentNode && oItem.parentNode.parentNode instanceof cXULElement_treeitem)
+		oItemPrevious	= oItem.parentNode.parentNode;
+	//
+	return oItemPrevious;
+};
+
+cXULElement_tree.getNextItem		= function(oItem) {
+
 };
 
 // Element Render: open
