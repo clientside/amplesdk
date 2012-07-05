@@ -79,8 +79,9 @@ function fBrowser_render(oNode) {
 	if (oNode.nodeType == 1) {	// cNode.ELEMENT_NODE
 		var sHtml	= oNode.$getTag();
 		if (sHtml) {
-			if (bTrident && nVersion < 9) {
-				if (sHtml.match(/^<(\w*:)?(\w+)/)) {
+			if (sHtml.match(/^<(\w*:)?(\w+)/)) {
+				var oElement;
+				if (bTrident && nVersion < 9) {
 					var sTagName	= cRegExp.$2;
 					switch (sTagName) {
 						case 'td':
@@ -101,15 +102,22 @@ function fBrowser_render(oNode) {
 					}
 					// Render HTML
 					oBrowser_factory.innerHTML	= sHtml;
-					// Return Node
-					return oBrowser_factory.getElementsByTagName(sTagName)[0] || null;
+					//
+					oElement	= oBrowser_factory.getElementsByTagName(sTagName)[0].parentNode;
 				}
-			}
-			else {
-				// Add namespace declarations to the shadow content
-				if (!("xmlns" + (oNode.prefix ? ':' + oNode.prefix : '') in oNode.attributes) || (oNode.namespaceURI != sNS_SVG && oNode.namespaceURI != sNS_XHTML))
-					sHtml	= sHtml.replace(/^(<(?:(\w+)(:))?(\w+))/, '$1 ' + "xmlns" + '$3$2="' + (oNode.namespaceURI == sNS_SVG ? sNS_SVG : sNS_XHTML) + '"');
-				return oUADocument.importNode(fBrowser_parseXML('<!' + "DOCTYPE" + ' ' + "div" + '[' + sBrowser_entities + ']>' + sHtml).documentElement, true);
+				else {
+					// Add namespace declarations to the shadow content
+					if (!("xmlns" + (oNode.prefix ? ':' + oNode.prefix : '') in oNode.attributes) || (oNode.namespaceURI != sNS_SVG && oNode.namespaceURI != sNS_XHTML))
+						sHtml	= sHtml.replace(/^(<(?:(\w+)(:))?(\w+))/, '$1 ' + "xmlns" + '$3$2="' + (oNode.namespaceURI == sNS_SVG ? sNS_SVG : sNS_XHTML) + '"');
+					oElement	= oUADocument.importNode(fBrowser_parseXML('<!' + "DOCTYPE" + ' ' + "div" + '[' + sBrowser_entities + ']>' + '<div' + ' ' + "xmlns" + '="' + "http://www.w3.org/1999/xhtml" + '">' + sHtml + '</div>').documentElement, true);
+				}
+				// Move children to a new fragment and return fragment
+				if (oElement && oElement.firstChild) {
+					var oFragment	= oUADocument.createDocumentFragment();
+					while (oElement.firstChild)
+						oFragment.appendChild(oElement.firstChild);
+					return oFragment;
+				}
 			}
 		}
 	}
