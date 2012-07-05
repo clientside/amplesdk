@@ -109,7 +109,7 @@ function fBrowser_render(oNode) {
 					// Add namespace declarations to the shadow content
 					if (!("xmlns" + (oNode.prefix ? ':' + oNode.prefix : '') in oNode.attributes) || (oNode.namespaceURI != sNS_SVG && oNode.namespaceURI != sNS_XHTML))
 						sHtml	= sHtml.replace(/^(<(?:(\w+)(:))?(\w+))/, '$1 ' + "xmlns" + '$3$2="' + (oNode.namespaceURI == sNS_SVG ? sNS_SVG : sNS_XHTML) + '"');
-					oElement	= oUADocument.importNode(fBrowser_parseXML('<!' + "DOCTYPE" + ' ' + "div" + '[' + sBrowser_entities + ']>' + '<div' + ' ' + "xmlns" + '="' + "http://www.w3.org/1999/xhtml" + '">' + sHtml + '</div>').documentElement, true);
+					oElement	= oUADocument.importNode(fBrowser_parseXML('<!' + "DOCTYPE" + ' ' + "div" + '[' + sBrowser_entities + ']>' + '<div' + ' ' + "xmlns" + '="' + sNS_XHTML + '">' + sHtml + '</div>').documentElement, true);
 				}
 				// Move children to a new fragment and return fragment
 				if (oElement && oElement.firstChild) {
