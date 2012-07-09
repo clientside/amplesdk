@@ -842,152 +842,106 @@ var	aCSSTransition	= [
 	];
 
 function fElement_setPseudoClass(oElement, sName, bValue, sContainer) {
-	var oElementDOM	= oElement.$getContainer(sContainer),
-		sClass		= fElement_getAttribute(oElement, "class").trim(),
-		aClass		= sClass.length ? sClass.split(/\s+/g) : null,
-		sPseudoName	= sContainer ? '--' + sContainer : '',
-		sTagName	=(oElement.prefix ? oElement.prefix + '-' : '') + oElement.localName,
-		bTransition	= bTrident && nVersion < 10 && oDOMConfiguration_values["ample-enable-transitions"] &&!(nResizeManager_resizeState || nDragAndDropManager_dragState);
-
+	var oElementDOM	= oElement.$getContainer(sContainer);
 //->Source
 //console.warn("processing: " + oElement.tagName + ' ' + sName + '(' + (bValue ? 'true' : 'false') + ')');
 //console.log("before: ", oElementDOM.className);
 //<-Source
 	if (oElementDOM) {
-/*
-		if (oElement.$transition) {
-			fNodeAnimation_clear(oElement.$transition);
-			delete oElement.$transition;
-		}
-*/
-		// Transition effects
-		if (bTransition) {
-			var oComputedStyle	= fBrowser_getComputedStyle(oElementDOM),
-				sTransition	= oComputedStyle["transition"],
-				aTransitions= [],
-				oTransition,
-				nIndex, nLength, sKey;
-			if (sTransition) {
-				var aValue	= sTransition.trim().split(',');
-				for (nIndex = 0, nLength = aValue.length; nIndex < nLength; nIndex++) {
-					oTransition	= aValue[nIndex].trim().split(/\s+/);
-					sKey	= fUtilities_toCssPropertyName(oTransition[0]);
-					if (aCSSTransition.indexOf(sKey) !=-1)
-						aTransitions[aTransitions.length]	= [
-									sKey,
-									fSMILTimeElement_parseDuration(oTransition[1]),
-									oTransition[2],
-									fSMILTimeElement_parseDuration(oTransition[3]),
-									fBrowser_getStyle(oElementDOM, sKey, oComputedStyle)
-							];
-				}
-			}
-			else
-			if (sKey = oComputedStyle["transition-property"])
-				if (aCSSTransition.indexOf(sKey) !=-1)
-					aTransitions	= [
-								sKey,
-								fSMILTimeElement_parseDuration(oComputedStyle["transition-duration"]),
-								oComputedStyle["transition-timing-function"],
-								fSMILTimeElement_parseDuration(oComputedStyle["transition-delay"]),
-								fBrowser_getStyle(oElementDOM, sKey, oComputedStyle)
-						];
-			}
-		}
+		var sOldName	= bTrident && nVersion < 8 ? oElementDOM.className : oElementDOM.getAttribute("class") || '',
+			sNewName	= fElement_getPseudoClass(oElement, sName, bValue, sContainer, oElementDOM);
 
-		var sOldName= bTrident && nVersion < 8 ? oElementDOM.className : oElementDOM.getAttribute("class") || '',
-			bMatch	= sOldName.match(fElement_getRegExp(sName, sPseudoName)),
-			sPseudo,
-			sClass,
-			sNewName;
-		if (bValue) {
-			// Add class
-			if (!bMatch) {
-				var aPseudo	= sOldName.replace(/_\w+_\w+/g, '').match(/_\w+/g),
-					aNewName= [];
-				// create pair combinations :hover:focus, :focus:hover
-				if (aPseudo)
-					for (var nIndex = 0, nLength = aPseudo.length, oCache = {}; nIndex < nLength; nIndex++) {
-						sPseudo	= aPseudo[nIndex];
-						if (!oCache[sPseudo]) {
-							if (aClass)
-								for (var nClass = 0; nClass < aClass.length; nClass++) {
-									sClass	= aClass[nClass];
-									aNewName.push(	// ns|element.class(::pseudo-element)?:pseudo-class:pseudo-class2
-													' ' + sTagName + '-' + sClass + sPseudoName + '_' + sName + sPseudo +
-													// ns|element.class(::pseudo-element)?:pseudo-class2:pseudo-class
-													' ' + sTagName + '-' + sClass + sPseudoName + sPseudo + '_' + sName +
-													// .class(::pseudo-element)?:pseudo-class:pseudo-class2
-													' ' + sClass + sPseudoName + '_' + sName + sPseudo +
-													// .class(::pseudo-element)?:pseudo-class2:pseudo-class
-													' ' + sClass + sPseudoName + sPseudo + '_' + sName);
-								}
-							// ns|element(::pseudo-element)?:pseudo-class:pseudo-class2
-							aNewName.push(	' ' + sTagName + sPseudoName + '_' + sName + sPseudo);
-							// ns|element(::pseudo-element)?:pseudo-class2:pseudo-class
-							aNewName.push(	' ' + sTagName + sPseudoName + sPseudo + '_' + sName);
-							// indicate class name processed
-							oCache[sPseudo]	= true;
+		if (sOldName != sNewName) {
+			// Apply new class to get transition CSS properties
+			if (bTrident && nVersion < 8)
+				oElementDOM.className	= sNewName;
+			else
+				oElementDOM.setAttribute("class", sNewName);
+
+			// Transition effects in IE10-
+			if (bTrident && nVersion < 10 && oDOMConfiguration_values["ample-enable-transitions"] &&!(nResizeManager_resizeState || nDragAndDropManager_dragState)) {
+				//
+				var oComputedStyle	= fBrowser_getComputedStyle(oElementDOM),
+					sTransition	= oComputedStyle["transition"],
+					aTransitions= [],
+					sKey, nIndex, nLength;
+				if (sTransition) {
+					var aValue	= sTransition.trim().split(','),
+						oTransition;
+					for (nIndex = 0, nLength = aValue.length; nIndex < nLength; nIndex++) {
+						oTransition	= aValue[nIndex].trim().split(/\s+/);
+						sKey	= fUtilities_toCssPropertyName(oTransition[0]);
+						if (aCSSTransition.indexOf(sKey) !=-1)
+							aTransitions[aTransitions.length]	= [
+										sKey,
+										fSMILTimeElement_parseDuration(oTransition[1]),
+										oTransition[2],
+										fSMILTimeElement_parseDuration(oTransition[3])
+								];
+					}
+				}
+				else
+				if (sKey = oComputedStyle["transition-property"])
+					if (aCSSTransition.indexOf(sKey) !=-1)
+						aTransitions	= [
+									sKey,
+									fSMILTimeElement_parseDuration(oComputedStyle["transition-duration"]),
+									oComputedStyle["transition-timing-function"],
+									fSMILTimeElement_parseDuration(oComputedStyle["transition-delay"])
+							];
+
+				//
+				if (aTransitions.length) {
+/*
+					if (oElement.$transition) {
+						fNodeAnimation_clear(oElement.$transition);
+						delete oElement.$transition;
+					}
+*/
+					// Apply old class to get initial CSS values
+					if (bTrident && nVersion < 8)
+						oElementDOM.className	= sOldName;
+					else
+						oElementDOM.setAttribute("class", sOldName);
+
+					// Read initial CSS values
+					for (var nIndex = 0, nLength = aTransitions.length; nIndex < nLength; nIndex++)
+						aTransitions[nIndex][4]	= fBrowser_getStyle(oElementDOM, aTransitions[nIndex][0], oComputedStyle);
+
+					// Re-apply new class
+					if (bTrident && nVersion < 8)
+						oElementDOM.className	= sNewName;
+					else
+						oElementDOM.setAttribute("class", sNewName);
+
+					// FIXME: transition-delay property not implemented
+					var oTransition,
+						oProperties,
+						nIndex, nLength, sKey, sValue;
+					for (nIndex = 0, nLength = aTransitions.length; nIndex < nLength; nIndex++) {
+						oTransition	= aTransitions[nIndex];
+						sKey	= oTransition[0];
+						sValue	= fBrowser_getStyle(oElementDOM, sKey, oComputedStyle);
+						if (oTransition[4] != sValue) {
+							//
+							fBrowser_setStyle(oElementDOM, sKey, oTransition[4]);
+							oProperties	= {};
+							oProperties[sKey]	= sValue;
+							//
+							fNodeAnimation_play(oElement, oProperties, oTransition[1], oTransition[2], (function(sKey) {
+								return function() {fBrowser_setStyle(oElementDOM, sKey, '')};
+							})(sKey), sContainer);
 						}
 					}
-				if (aClass)
-					for (var nClass = 0; nClass < aClass.length; nClass++) {
-						sClass	= aClass[nClass];
-						aNewName.push(	// ns|element.class(::pseudo-element)?:pseudo-class
-										' ' + sTagName + '-' + sClass + sPseudoName + '_' + sName +
-										// .class(::pseudo-element)?:pseudo-class
-										' ' + sClass + sPseudoName + '_' + sName);
-					}
-				// ns|element(::pseudo-element)?:pseudo-class
-				aNewName.push(	' ' + sTagName + sPseudoName + '_' + sName);
-				sNewName	= aNewName.join('');
-				if (bTrident && nVersion < 8)
-					oElementDOM.className += sNewName;
-				else
-					oElementDOM.setAttribute("class", sOldName + sNewName);
-			}
-		}
-		else {
-			// Remove class
-			if (bMatch) {
-				// remove all classes having :pseudo-class
-				sNewName	= sOldName.replace(fElement_getRegExp(sName, sPseudoName), '');	// TODO: Remove space?
-				if (bTrident && nVersion < 8)
-					oElementDOM.className	= sNewName;
-				else
-					oElementDOM.setAttribute("class", sNewName);
-			}
-		}
-
-		// Transition effects
-		// FIXME: transition-delay property not implemented
-		if (bTransition) {
-			var oTransition,
-				oProperties,
-				nIndex, nLength, sKey, sValue;
-			for (nIndex = 0, nLength = aTransitions.length; nIndex < nLength; nIndex++) {
-				oTransition	= aTransitions[nIndex];
-				sKey	= oTransition[0];
-				sValue	= fBrowser_getStyle(oElementDOM, sKey, oComputedStyle);
-				if (oTransition[4] != sValue) {
-					//
-					fBrowser_setStyle(oElementDOM, sKey, oTransition[4]);
-					oProperties	= {};
-					oProperties[sKey]	= sValue;
-					//
-					fNodeAnimation_play(oElement, oProperties, oTransition[1], oTransition[2], (function(sKey) {
-						return function() {fBrowser_setStyle(oElementDOM, sKey, '')};
-					})(sKey), sContainer);
 				}
-			}
 /*
 				fEventTarget_addEventListener(oElement, "effectend", function() {
 					fEventTarget_removeEventListener(oElement, "effectend", arguments.callee);
 					delete oElement.$transition;
 				});
 */
-//			}
-//		}
+			}
+		}
 	}
 //->Debug
 	else
@@ -997,6 +951,70 @@ function fElement_setPseudoClass(oElement, sName, bValue, sContainer) {
 //->Source
 //console.log("after: ", oElementDOM.className);
 //<-Source
+};
+
+function fElement_getPseudoClass(oElement, sName, bValue, sContainer, oElementDOM) {
+	var sClass		= fElement_getAttribute(oElement, "class").trim(),
+		aClass		= sClass.length ? sClass.split(/\s+/g) : null,
+		sPseudoName	= sContainer ? '--' + sContainer : '',
+		sTagName	=(oElement.prefix ? oElement.prefix + '-' : '') + oElement.localName,
+		sOldName	= bTrident && nVersion < 8 ? oElementDOM.className : oElementDOM.getAttribute("class") || '',
+		bMatch	= sOldName.match(fElement_getRegExp(sName, sPseudoName)),
+		sNewName	= '',
+		sPseudo,
+		sClass;
+
+	if (bValue) {
+		// Add class
+		if (!bMatch) {
+			var aPseudo	= sOldName.replace(/_\w+_\w+/g, '').match(/_\w+/g),
+				aNewName= [];
+			// create pair combinations :hover:focus, :focus:hover
+			if (aPseudo)
+				for (var nIndex = 0, nLength = aPseudo.length, oCache = {}; nIndex < nLength; nIndex++) {
+					sPseudo	= aPseudo[nIndex];
+					if (!oCache[sPseudo]) {
+						if (aClass)
+							for (var nClass = 0; nClass < aClass.length; nClass++) {
+								sClass	= aClass[nClass];
+								aNewName.push(	// ns|element.class(::pseudo-element)?:pseudo-class:pseudo-class2
+												' ' + sTagName + '-' + sClass + sPseudoName + '_' + sName + sPseudo +
+												// ns|element.class(::pseudo-element)?:pseudo-class2:pseudo-class
+												' ' + sTagName + '-' + sClass + sPseudoName + sPseudo + '_' + sName +
+												// .class(::pseudo-element)?:pseudo-class:pseudo-class2
+												' ' + sClass + sPseudoName + '_' + sName + sPseudo +
+												// .class(::pseudo-element)?:pseudo-class2:pseudo-class
+												' ' + sClass + sPseudoName + sPseudo + '_' + sName);
+							}
+						// ns|element(::pseudo-element)?:pseudo-class:pseudo-class2
+						aNewName.push(	' ' + sTagName + sPseudoName + '_' + sName + sPseudo);
+						// ns|element(::pseudo-element)?:pseudo-class2:pseudo-class
+						aNewName.push(	' ' + sTagName + sPseudoName + sPseudo + '_' + sName);
+						// indicate class name processed
+						oCache[sPseudo]	= true;
+					}
+				}
+			if (aClass)
+				for (var nClass = 0; nClass < aClass.length; nClass++) {
+					sClass	= aClass[nClass];
+					aNewName.push(	// ns|element.class(::pseudo-element)?:pseudo-class
+									' ' + sTagName + '-' + sClass + sPseudoName + '_' + sName +
+									// .class(::pseudo-element)?:pseudo-class
+									' ' + sClass + sPseudoName + '_' + sName);
+				}
+			// ns|element(::pseudo-element)?:pseudo-class
+			aNewName.push(	' ' + sTagName + sPseudoName + '_' + sName);
+			sNewName	= sOldName + aNewName.join('');
+		}
+	}
+	else {
+		// Remove class
+		if (bMatch) {
+			// remove all classes having :pseudo-class
+			sNewName	= sOldName.replace(fElement_getRegExp(sName, sPseudoName), '');	// TODO: Remove space?
+		}
+	}
+	return sNewName || sOldName;
 };
 
 // Attaching to implementation
