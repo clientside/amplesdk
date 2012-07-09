@@ -828,30 +828,26 @@ function fElement_getRegExp(sName, sContainer) {
 		:	oElement_cache[sName + sContainer] = new cRegExp('(^|\\s)[-\\w]*' + sContainer + '(_\\w+)?' + '_' + sName + '(_\\w+)?' + '(|$)', 'g');
 };
 
-/*var aCSSAnimation	= [
-			"top", "left", "right", "bottom"
-			,"width", "height"
-//			,"fontSize", "fontWeight", "lineHeight"
-//			,"marginTop", "marginLeft", "marginRight", "marginBottom"
-//			,"paddingTop", "paddingLeft", "paddingRight", "paddingBottom"
-//			,"borderTopWidth", "borderLeftWidth", "borderRightWidth", "borderBottomWidth"
-//			,"outlineWidth"
-	];
 var	aCSSTransition	= [
-			"opacity", "color", "backgroundColor"
-//			,"backgroundPosition"
-//			,"borderTopColor", "borderLeftColor", "borderRightColor", "borderBottomColor"
-//			,"outlineColor"
+			"opacity", "color"
+			,"backgroundColor", "backgroundPosition"
+			,"borderTopColor", "borderLeftColor", "borderRightColor", "borderBottomColor"
+			,"borderTopWidth", "borderLeftWidth", "borderRightWidth", "borderBottomWidth"
+			,"top", "left", "right", "bottom"
+			,"width", "height"
+			,"fontSize", "fontWeight", "lineHeight"
+			,"marginTop", "marginLeft", "marginRight", "marginBottom"
+			,"paddingTop", "paddingLeft", "paddingRight", "paddingBottom"
+			,"outlineColor", "outlineWidth"
 	];
-*/
+
 function fElement_setPseudoClass(oElement, sName, bValue, sContainer) {
 	var oElementDOM	= oElement.$getContainer(sContainer),
 		sClass		= fElement_getAttribute(oElement, "class").trim(),
 		aClass		= sClass.length ? sClass.split(/\s+/g) : null,
 		sPseudoName	= sContainer ? '--' + sContainer : '',
-		sTagName	=(oElement.prefix ? oElement.prefix + '-' : '') + oElement.localName/*,
-		bTransition	= sName != "hover" && oDOMConfiguration_values["ample-enable-transitions"],
-		bAnimation	= bTransition &&!(nResizeManager_resizeState || nDragAndDropManager_dragState)*/;	// Disable animations
+		sTagName	=(oElement.prefix ? oElement.prefix + '-' : '') + oElement.localName,
+		bTransition	= bTrident && nVersion < 10 && oDOMConfiguration_values["ample-enable-transitions"] &&!(nResizeManager_resizeState || nDragAndDropManager_dragState);
 
 //->Source
 //console.warn("processing: " + oElement.tagName + ' ' + sName + '(' + (bValue ? 'true' : 'false') + ')');
@@ -864,20 +860,41 @@ function fElement_setPseudoClass(oElement, sName, bValue, sContainer) {
 			delete oElement.$transition;
 		}
 */
-/*
-		// Animation + Transition effects
-		if (bTransition || bAnimation) {
+		// Transition effects
+		if (bTransition) {
 			var oComputedStyle	= fBrowser_getComputedStyle(oElementDOM),
-				oBefore	= {},
+				sTransition	= oComputedStyle["transition"],
+				aTransitions= [],
+				oTransition,
 				nIndex, nLength, sKey;
-			if (bTransition)
-				for (nIndex = 0, nLength = aCSSTransition.length; nIndex < nLength; nIndex++)
-					oBefore[sKey = aCSSTransition[nIndex]]	= fBrowser_getStyle(oElementDOM, sKey, oComputedStyle);
-			if (bAnimation)
-				for (nIndex = 0, nLength = aCSSAnimation.length; nIndex < nLength; nIndex++)
-					oBefore[sKey = aCSSAnimation[nIndex]]	= fBrowser_getStyle(oElementDOM, sKey, oComputedStyle);
+			if (sTransition) {
+				var aValue	= sTransition.trim().split(',');
+				for (nIndex = 0, nLength = aValue.length; nIndex < nLength; nIndex++) {
+					oTransition	= aValue[nIndex].trim().split(/\s+/);
+					sKey	= fUtilities_toCssPropertyName(oTransition[0]);
+					if (aCSSTransition.indexOf(sKey) !=-1)
+						aTransitions[aTransitions.length]	= [
+									sKey,
+									fSMILTimeElement_parseDuration(oTransition[1]),
+									oTransition[2],
+									fSMILTimeElement_parseDuration(oTransition[3]),
+									fBrowser_getStyle(oElementDOM, sKey, oComputedStyle)
+							];
+				}
+			}
+			else
+			if (sKey = oComputedStyle["transition-property"])
+				if (aCSSTransition.indexOf(sKey) !=-1)
+					aTransitions	= [
+								sKey,
+								fSMILTimeElement_parseDuration(oComputedStyle["transition-duration"]),
+								oComputedStyle["transition-timing-function"],
+								fSMILTimeElement_parseDuration(oComputedStyle["transition-delay"]),
+								fBrowser_getStyle(oElementDOM, sKey, oComputedStyle)
+						];
+			}
 		}
-*/
+
 		var sOldName= bTrident && nVersion < 8 ? oElementDOM.className : oElementDOM.getAttribute("class") || '',
 			bMatch	= sOldName.match(fElement_getRegExp(sName, sPseudoName)),
 			sPseudo,
@@ -941,56 +958,36 @@ function fElement_setPseudoClass(oElement, sName, bValue, sContainer) {
 					oElementDOM.setAttribute("class", sNewName);
 			}
 		}
-/*
-		// Animation + Transition effects
-		if (bTransition || bAnimation) {
-			var oProperties	= {},
-				aProperties	= [],
-//				oStyle	= oElementDOM.style,
-				bPlay	= false,
+
+		// Transition effects
+		// FIXME: transition-delay property not implemented
+		if (bTransition) {
+			var oTransition,
+				oProperties,
 				nIndex, nLength, sKey, sValue;
-			if (bTransition)
-				for (nIndex = 0, nLength = aCSSTransition.length; nIndex < nLength; nIndex++) {
-					sKey	= aCSSTransition[nIndex];
-					sValue	= fBrowser_getStyle(oElementDOM, sKey, oComputedStyle);
-					if (oBefore[sKey] != sValue) {
-//						if (!oStyle[sValue])
-							aProperties.push(sKey);
-						fBrowser_setStyle(oElementDOM, sKey, oBefore[sKey]);
-						oProperties[sKey]	= sValue;
-						if (!bPlay)
-							bPlay	= true;
-					}
+			for (nIndex = 0, nLength = aTransitions.length; nIndex < nLength; nIndex++) {
+				oTransition	= aTransitions[nIndex];
+				sKey	= oTransition[0];
+				sValue	= fBrowser_getStyle(oElementDOM, sKey, oComputedStyle);
+				if (oTransition[4] != sValue) {
+					//
+					fBrowser_setStyle(oElementDOM, sKey, oTransition[4]);
+					oProperties	= {};
+					oProperties[sKey]	= sValue;
+					//
+					fNodeAnimation_play(oElement, oProperties, oTransition[1], oTransition[2], (function(sKey) {
+						return function() {fBrowser_setStyle(oElementDOM, sKey, '')};
+					})(sKey), sContainer);
 				}
-			if (bAnimation)
-				for (nIndex = 0, nLength = aCSSAnimation.length; nIndex < nLength; nIndex++) {
-					sKey	= aCSSAnimation[nIndex];
-					sValue	= fBrowser_getStyle(oElementDOM, sKey, oComputedStyle);
-					if (oBefore[sKey] != sValue) {
-//						if (!oStyle[sValue])
-							aProperties.push(sKey);
-						fBrowser_setStyle(oElementDOM, sKey, oBefore[sKey]);
-						oProperties[sKey]	= sValue;
-						if (!bPlay)
-							bPlay	= true;
-					}
-				}
-
-			if (bPlay) {
-//				oElement.$transition	=
-				fNodeAnimation_play(oElement, oProperties, "fast", "ease", function() {
-					for (var nIndex = 0; nIndex < aProperties.length; nIndex++)
-						fBrowser_setStyle(oElementDOM, aProperties[nIndex], '');
-				}, sContainer);
-
+			}
+/*
 				fEventTarget_addEventListener(oElement, "effectend", function() {
 					fEventTarget_removeEventListener(oElement, "effectend", arguments.callee);
 					delete oElement.$transition;
 				});
-
-			}
-		}
 */
+//			}
+//		}
 	}
 //->Debug
 	else
