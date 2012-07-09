@@ -871,7 +871,7 @@ function fElement_setPseudoClass(oElement, sName, bValue, sContainer) {
 					for (nIndex = 0, nLength = aValue.length; nIndex < nLength; nIndex++) {
 						oTransition	= aValue[nIndex].trim().split(/\s+/);
 						sKey	= fUtilities_toCssPropertyName(oTransition[0]);
-						if (aCSSTransition.indexOf(sKey) !=-1)
+						if (sKey != "none" && aCSSTransition.indexOf(sKey) !=-1)
 							aTransitions[aTransitions.length]	= [
 										sKey,
 										fSMILTimeElement_parseDuration(oTransition[1]),
@@ -881,14 +881,16 @@ function fElement_setPseudoClass(oElement, sName, bValue, sContainer) {
 					}
 				}
 				else
-				if (sKey = oComputedStyle["transition-property"])
-					if (aCSSTransition.indexOf(sKey) !=-1)
+				if (sKey = oComputedStyle["transition-property"]) {
+					sKey	= fUtilities_toCssPropertyName(sKey);
+					if (sKey != "none" && aCSSTransition.indexOf(sKey) !=-1)
 						aTransitions	= [
 									sKey,
 									fSMILTimeElement_parseDuration(oComputedStyle["transition-duration"]),
 									oComputedStyle["transition-timing-function"],
 									fSMILTimeElement_parseDuration(oComputedStyle["transition-delay"])
 							];
+				}
 
 				//
 				if (aTransitions.length) {
