@@ -836,21 +836,21 @@ function fElement_getRegExp(sName, sContainer) {
 //			,"paddingTop", "paddingLeft", "paddingRight", "paddingBottom"
 //			,"borderTopWidth", "borderLeftWidth", "borderRightWidth", "borderBottomWidth"
 //			,"outlineWidth"
-	];*/
+	];
 var	aCSSTransition	= [
 			"opacity", "color", "backgroundColor"
 //			,"backgroundPosition"
 //			,"borderTopColor", "borderLeftColor", "borderRightColor", "borderBottomColor"
 //			,"outlineColor"
 	];
-
+*/
 function fElement_setPseudoClass(oElement, sName, bValue, sContainer) {
 	var oElementDOM	= oElement.$getContainer(sContainer),
 		sClass		= fElement_getAttribute(oElement, "class").trim(),
 		aClass		= sClass.length ? sClass.split(/\s+/g) : null,
 		sPseudoName	= sContainer ? '--' + sContainer : '',
-		sTagName	=(oElement.prefix ? oElement.prefix + '-' : '') + oElement.localName,
-		bTransition	= sName != "hover" && oDOMConfiguration_values["ample-enable-transitions"]/*,
+		sTagName	=(oElement.prefix ? oElement.prefix + '-' : '') + oElement.localName/*,
+		bTransition	= sName != "hover" && oDOMConfiguration_values["ample-enable-transitions"],
 		bAnimation	= bTransition &&!(nResizeManager_resizeState || nDragAndDropManager_dragState)*/;	// Disable animations
 
 //->Source
@@ -864,19 +864,20 @@ function fElement_setPseudoClass(oElement, sName, bValue, sContainer) {
 			delete oElement.$transition;
 		}
 */
+/*
 		// Animation + Transition effects
-		if (bTransition/* || bAnimation*/) {
+		if (bTransition || bAnimation) {
 			var oComputedStyle	= fBrowser_getComputedStyle(oElementDOM),
 				oBefore	= {},
 				nIndex, nLength, sKey;
 			if (bTransition)
 				for (nIndex = 0, nLength = aCSSTransition.length; nIndex < nLength; nIndex++)
 					oBefore[sKey = aCSSTransition[nIndex]]	= fBrowser_getStyle(oElementDOM, sKey, oComputedStyle);
-/*			if (bAnimation)
+			if (bAnimation)
 				for (nIndex = 0, nLength = aCSSAnimation.length; nIndex < nLength; nIndex++)
-					oBefore[sKey = aCSSAnimation[nIndex]]	= fBrowser_getStyle(oElementDOM, sKey, oComputedStyle);*/
+					oBefore[sKey = aCSSAnimation[nIndex]]	= fBrowser_getStyle(oElementDOM, sKey, oComputedStyle);
 		}
-
+*/
 		var sOldName= bTrident && nVersion < 8 ? oElementDOM.className : oElementDOM.getAttribute("class") || '',
 			bMatch	= sOldName.match(fElement_getRegExp(sName, sPseudoName)),
 			sPseudo,
@@ -940,8 +941,9 @@ function fElement_setPseudoClass(oElement, sName, bValue, sContainer) {
 					oElementDOM.setAttribute("class", sNewName);
 			}
 		}
+/*
 		// Animation + Transition effects
-		if (bTransition/* || bAnimation*/) {
+		if (bTransition || bAnimation) {
 			var oProperties	= {},
 				aProperties	= [],
 //				oStyle	= oElementDOM.style,
@@ -960,7 +962,7 @@ function fElement_setPseudoClass(oElement, sName, bValue, sContainer) {
 							bPlay	= true;
 					}
 				}
-/*			if (bAnimation)
+			if (bAnimation)
 				for (nIndex = 0, nLength = aCSSAnimation.length; nIndex < nLength; nIndex++) {
 					sKey	= aCSSAnimation[nIndex];
 					sValue	= fBrowser_getStyle(oElementDOM, sKey, oComputedStyle);
@@ -972,7 +974,7 @@ function fElement_setPseudoClass(oElement, sName, bValue, sContainer) {
 						if (!bPlay)
 							bPlay	= true;
 					}
-				}*/
+				}
 
 			if (bPlay) {
 //				oElement.$transition	=
@@ -980,15 +982,15 @@ function fElement_setPseudoClass(oElement, sName, bValue, sContainer) {
 					for (var nIndex = 0; nIndex < aProperties.length; nIndex++)
 						fBrowser_setStyle(oElementDOM, aProperties[nIndex], '');
 				}, sContainer);
-/*
+
 				fEventTarget_addEventListener(oElement, "effectend", function() {
 					fEventTarget_removeEventListener(oElement, "effectend", arguments.callee);
 					delete oElement.$transition;
 				});
-*/
+
 			}
 		}
-
+*/
 	}
 //->Debug
 	else
