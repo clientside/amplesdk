@@ -14,6 +14,7 @@ var cXULElement_menupopup	= function() {
 cXULElement_menupopup.prototype	= new cXULPopupElement("menupopup");
 
 // Public Properties
+cXULElement_menupopup.prototype.items	= null;
 cXULElement_menupopup.prototype.selectedItem	= null;
 
 // Attributes Defaults
@@ -23,10 +24,13 @@ cXULElement_menupopup.attributes.hidden	= "true";
 // Public Methods
 cXULElement_menupopup.prototype.selectItem	= function(oItem) {
 	// Hide previously selected item
-	if (this.selectedItem && this.selectedItem != oItem) {
-		// hide previous popup
-		if (this.selectedItem.menupopup) {
-			var oMenuPopupOld	= this.selectedItem.menupopup;
+	if (this.selectedItem == oItem)
+		return;
+
+	// hide previous popup
+	if (this.selectedItem) {
+		var oMenuPopupOld	= this.selectedItem.menupopup;
+		if (oMenuPopupOld) {
 			this._timeOutHide	= setTimeout(function() {
 				oMenuPopupOld.hidePopup();
 			}, 300);
@@ -106,25 +110,27 @@ cXULElement_menupopup.prototype._onKeyDown	= function(oEvent) {
 cXULElement_menupopup.handlers	= {
 	"popuphidden":	function(oEvent) {
 		// deselect item that is selected
-		if (this.selectedItem)
+		if (oEvent.target == this && this.selectedItem)
 			this.selectItem(null);
-	},
-	"DOMNodeInsertedIntoDocument":	function(oEvent) {
-		var oParent	= this.parentNode;
-		if (oParent instanceof cXULElement_menulist || oParent instanceof cXULElement_menu)
-			oParent.menupopup	= this;
-	},
-	"DOMNodeRemovedFromDocument":	function(oEvent) {
-		var oParent	= this.parentNode;
-		if (oParent instanceof cXULElement_menulist || oParent instanceof cXULElement_menu)
-			oParent.menupopup	= null;
 	},
 	"DOMActivate":	function(oEvent) {
 		if (oEvent.target instanceof cXULElement_menuitem)
-				this.hidePopup();
+			this.hidePopup();
 		// if document popup is me
-			if (this.ownerDocument.popupNode == this)
+		if (this.ownerDocument.popupNode == this)
 			this.ownerDocument.popupNode	= null;
+	},
+	"DOMNodeInserted":	function(oEvent) {
+		if (oEvent.target.parentNode == this) {
+			if (oEvent.target instanceof cXULElement_menu || oEvent.target instanceof cXULElement_menuitem)
+				this.items.$add(oEvent.target);
+		}
+	},
+	"DOMNodeRemoved":	function(oEvent) {
+		if (oEvent.target.parentNode == this) {
+			if (oEvent.target instanceof cXULElement_menu || oEvent.target instanceof cXULElement_menuitem)
+				this.items.$remove(oEvent.target);
+		}
 	}
 };
 

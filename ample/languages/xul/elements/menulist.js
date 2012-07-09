@@ -19,6 +19,7 @@ cXULElement_menulist.attributes	= {
 };
 
 // Public Properties
+cXULElement_menulist.prototype.items	= null;
 cXULElement_menulist.prototype.menupopup	= null;
 
 cXULElement_menulist.prototype.selectedIndex	=-1;
@@ -128,8 +129,7 @@ cXULElement_menulist.handlers	= {
 			case "Down":
 				if (this.menupopup.getAttribute("hidden") == "true")
 					this.toggle(true);
-				else
-				{
+				else {
 					var nIndex	= this.selectedIndex;
 					while (++nIndex < this.items.length) {
 						if (this.items[nIndex].$getContainer().style.display != "none") {
@@ -200,7 +200,7 @@ cXULElement_menulist.handlers	= {
 	//				this.attributes["value"]	= this.items[nIndex].attributes["value"];
 					this.selectedIndex	= nIndex;
 				}
-					nOptions++;
+				nOptions++;
 			}
 		}
 
@@ -238,6 +238,24 @@ cXULElement_menulist.handlers	= {
 		});
 		if (oElement)
 			this.$getContainer("input").value	= oElement.getAttribute("label");
+	},
+	"DOMNodeInserted":	function(oEvent) {
+		if (oEvent.target.parentNode == this) {
+			if (oEvent.target instanceof cXULElement_menupopup)
+				this.menupopup	= oEvent.target;
+			else
+			if (oEvent.target instanceof cXULElement_menuitem)
+				this.items.$add(oEvent.target);
+		}
+	},
+	"DOMNodeRemoved":	function(oEvent) {
+		if (oEvent.target.parentNode == this) {
+			if (oEvent.target instanceof cXULElement_menupopup)
+				this.menupopup	= null;
+			else
+			if (oEvent.target instanceof cXULElement_menuitem)
+				this.items.$remove(oEvent.target);
+		}
 	}
 };
 

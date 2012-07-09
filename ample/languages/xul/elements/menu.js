@@ -19,28 +19,32 @@ cXULElement_menu.prototype.menupopup	= null;	// Reference link to a menupopup el
 cXULElement_menu.handlers	= {
 	"mouseenter":	function(oEvent) {
 		if (this.parentNode.selectedItem || this.parentNode instanceof cXULElement_menupopup)
-				this.parentNode.selectItem(this);
+			this.parentNode.selectItem(this);
 	},
 	"mousedown":	function(oEvent) {
-		if (!this.$isAccessible())
-			return;
+		if (oEvent.target == this) {
+			if (!this.$isAccessible())
+				return;
 
-		if (oEvent.target == this && oEvent.button == 0)
-			this.$activate();
-	},
-	"DOMNodeInsertedIntoDocument":	function(oEvent) {
-		var oParent	= this.parentNode;
-		if (oParent instanceof cXULElement_menupopup || oParent instanceof cXULElement_menubar)
-			oParent.items.$add(this);
-	},
-	"DOMNodeRemovedFromDocument":	function(oEvent) {
-		var oParent	= this.parentNode;
-		if (oParent instanceof cXULElement_menupopup || oParent instanceof cXULElement_menubar)
-			oParent.items.$remove(this);
+			if (oEvent.button == 0)
+				this.$activate();
+		}
 	},
 	"DOMActivate":	function(oEvent) {
 		if (oEvent.target.parentNode instanceof cXULElement_menubar)
-				this.parentNode.selectItem(this.parentNode.selectedItem == this ? null : this);
+			this.parentNode.selectItem(this.parentNode.selectedItem == this ? null : this);
+	},
+	"DOMNodeInserted":	function(oEvent) {
+		if (oEvent.target.parentNode == this) {
+			if (oEvent.target instanceof cXULElement_menupopup)
+				this.menupopup	= oEvent.target;
+		}
+	},
+	"DOMNodeRemoved":	function(oEvent) {
+		if (oEvent.target.parentNode == this) {
+			if (oEvent.target instanceof cXULElement_menupopup)
+				this.menupopup	= null;
+		}
 	}
 };
 
@@ -60,7 +64,7 @@ cXULElement_menu.prototype.$mapAttribute	= function(sName, sValue) {
 	else
 	if (sName == "image") {
 		if (this.parentNode instanceof cXULElement_menupopup)
-			this.$getContainer("control").style.backgroundImage	= sValue ? "url(" + sValue + ")" : '';
+			this.$getContainer("image").style.backgroundImage	= sValue ? "url(" + sValue + ")" : '';
 	}
 	else
 	if (sName == "disabled") {
@@ -76,7 +80,7 @@ cXULElement_menu.prototype.$mapAttribute	= function(sName, sValue) {
 cXULElement_menu.prototype.$getTagOpen	= function() {
 	if (this.parentNode instanceof cXULElement_menupopup)
 		return '<tr class="xul-menu' + (!this.$isAccessible() ? " xul-menu_disabled" : "") + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">\
-					<td width="18"><div class="xul-menu--control"' +(this.attributes["image"] ? ' style="background-image:url('+ ample.$encodeXMLCharacters(this.attributes["image"]) + ')"' : '')+ '></div></td>\
+					<td width="18"><div class="xul-menu--image"' +(this.attributes["image"] ? ' style="background-image:url('+ ample.$encodeXMLCharacters(this.attributes["image"]) + ')"' : '')+ '></div></td>\
 					<td nowrap="nowrap" class="xul-menu--label">' + (this.attributes["label"] ? ample.$encodeXMLCharacters(this.attributes["label"]) : ' ')+ '</td>\
 					<td valign="top" class="xul-menupopup--gateway">';
 	else
@@ -89,7 +93,7 @@ cXULElement_menu.prototype.$getTagOpen	= function() {
 cXULElement_menu.prototype.$getTagClose	= function() {
 	if (this.parentNode instanceof cXULElement_menupopup)
 		return 		'</td>\
-					<td width="16"><div class="xul-menu--arrow' + (!this.$isAccessible() ? ' xul-menu--arrow_disabled' : '')+ '"><br /></div></td>\
+					<td width="16"><div class="xul-menu--arrow' + (!this.$isAccessible() ? ' xul-menu--arrow_disabled' : '') + '"><br /></div></td>\
 				</tr>';
 	else
 		return '		</div>\

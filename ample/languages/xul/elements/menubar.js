@@ -15,50 +15,70 @@ cXULElement_menubar.prototype	= new cXULElement("menubar");
 cXULElement_menubar.prototype.$selectable	= false;
 
 // Public Properties
+cXULElement_menubar.prototype.items	= null;
 cXULElement_menubar.prototype.selectedItem	= null;
 
 // Attributes Defaults
 cXULElement_menubar.attributes	= {};
 cXULElement_menubar.attributes.active	= "false";
 
-cXULElement_menubar.prototype.selectItem	= function(oItem) {
-	if (this.selectedItem != oItem) {
-		// Hide previously active
-		if (this.selectedItem) {
-			this.attributes["active"]	= "false";
-
-			if (this.selectedItem.menupopup)
-				this.selectedItem.menupopup.hidePopup();
-			this.selectedItem.setAttribute("selected", "false");
+// Class events handlers
+cXULElement_menubar.handlers	= {
+	"DOMNodeInserted":	function(oEvent) {
+		if (oEvent.target.parentNode == this) {
+			if (oEvent.target instanceof cXULElement_menu || oEvent.target instanceof cXULElement_menuitem)
+				this.items.$add(oEvent.target);
 		}
+	},
+	"DOMNodeRemoved":	function(oEvent) {
+		if (oEvent.target.parentNode == this) {
+			if (oEvent.target instanceof cXULElement_menu || oEvent.target instanceof cXULElement_menuitem)
+				this.items.$remove(oEvent.target);
+		}
+	}
+};
 
-		// Show this element
-		if (oItem) {
-			if (oItem.menupopup && oItem.$isAccessible()) {
-				oItem.menupopup.showPopup(this, -1, -1, cXULPopupElement.POPUP_TYPE_POPUP);
-				oItem.menupopup.addEventListener("popuphidden", function() {
+cXULElement_menubar.prototype.selectItem	= function(oItem) {
+	if (this.selectedItem == oItem)
+		return;
+
+	// Hide previously active
+	if (this.selectedItem) {
+		this.removeAttribute("active");
+
+		if (this.selectedItem.menupopup)
+			this.selectedItem.menupopup.hidePopup();
+		this.selectedItem.setAttribute("selected", "false");
+	}
+
+	// Show this element
+	if (oItem) {
+		if (oItem.menupopup && oItem.$isAccessible()) {
+			oItem.menupopup.showPopup(this, -1, -1, cXULPopupElement.POPUP_TYPE_POPUP);
+			oItem.menupopup.addEventListener("popuphidden", function(oEvent) {
+				if (oEvent.target == this) {
 					if (this.opener.attributes["active"] == "true")	{
 						this.opener.selectedItem.setAttribute("selected", "false");
 						this.opener.selectedItem.$setPseudoClass("hover", false);
 						this.opener.selectedItem	= null;
 					}
-						this.removeEventListener("popuphidden", arguments.callee, false);
+					this.removeEventListener("popuphidden", arguments.callee, false);
 
 					this.opener	= null;
 					this.ownerDocument.popupNode	= null;
-				}, false);
-				//
-				oItem.menupopup.opener	= this;
-				this.ownerDocument.popupNode	= oItem.menupopup;
-			}
-
-			this.attributes["active"]	= "true";
-
-			oItem.setAttribute("selected", "true");
+				}
+			}, false);
+			//
+			oItem.menupopup.opener	= this;
+			this.ownerDocument.popupNode	= oItem.menupopup;
 		}
 
-		this.selectedItem	= oItem;
+		this.setAttribute("active", "true");
+
+		oItem.setAttribute("selected", "true");
 	}
+
+	this.selectedItem	= oItem;
 };
 
 // Element Render: open

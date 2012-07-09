@@ -54,7 +54,7 @@ xul|menuitem[type=radio]::image {
 	background-position: 0px 16px;	/* hidden */
 	background-image: url(media/menuitem_radio.gif);
 }
-xul|menuitem::image:checked {
+xul|menuitem:checked xul|menuitem::image {
 	background-position: 0px 0px;
 }
 xul|menu {
@@ -89,16 +89,16 @@ xul|menu::label {
 	padding-left:	5px;
 	padding-right:	5px;
 }
-xul|menuitem:selected xul|menuitem::image:checked,
-xul|menuitem:selected xul|menuitem::image:checked,
+
+xul|menuitem:checked:selected xul|menuitem::image,
 xul|menu::arrow:selected {
 	background-position: 0px -16px;
 }
-xul|menuitem:disabled xul|menuitem::image:checked,
-xul|menuitem:disabled xul|menuitem::image:checked,
+xul|menuitem:checked:disabled xul|menuitem::image,
 xul|menu::arrow:disabled {
 	background-position: 0px -48px;
 }
+
 xul|menuseparator {
 	border-top:	solid 1px #A0A0A0;
 	background-color:	#FFFFFF;

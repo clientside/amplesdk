@@ -18,6 +18,7 @@ cXULElement_menuitem.handlers	= {
 		this.parentNode.selectItem(this);
 	},
 	"mouseleave":	function(oEvent) {
+		// ???
 		this.parentNode.selectItem(null);
 	},
 	"click":	function(oEvent) {
@@ -34,29 +35,15 @@ cXULElement_menuitem.handlers	= {
 				// uncheck all the sibling items with the same name attribute
 				var oElement	= this.parentNode;
 				if (this.attributes["type"] == "radio" && oEvent.newValue == "true") {
-					for (var nIndex = 0; nIndex < oElement.items.length; nIndex++)
-						if (oElement.items[nIndex] instanceof cXULElement_menuitem && oElement.items[nIndex].attributes["type"] == "radio")
-							if (oElement.items[nIndex] != this && oElement.items[nIndex].attributes["name"] == this.attributes["name"])
-								oElement.items[nIndex].setAttribute("checked", "false");
+					for (var nIndex = 0, oItem; nIndex < oElement.items.length; nIndex++) {
+						oItem	= oElement.items[nIndex];
+						if (oItem instanceof cXULElement_menuitem && oItem.attributes["type"] == "radio")
+							if (oItem != this && oItem.attributes["name"] == this.attributes["name"])
+								oItem.setAttribute("checked", "false");
+					}
 				}
 			}
 		}
-	},
-	"DOMNodeInsertedIntoDocument":	function(oEvent) {
-		var oParent	= this.parentNode;
-		if (oParent instanceof cXULElement_menupopup || oParent instanceof cXULElement_menubar)
-			oParent.items.$add(this);
-		var oMenuList	= oParent.parentNode;
-		if (oMenuList instanceof cXULElement_menulist)
-			oMenuList.items.$add(this);
-	},
-	"DOMNodeRemovedFromDocument":	function(oEvent) {
-		var oParent	= this.parentNode;
-		if (oParent instanceof cXULElement_menupopup || oParent instanceof cXULElement_menubar)
-			oParent.items.$remove(this);
-		var oMenuList	= oParent.parentNode;
-		if (oMenuList instanceof cXULElement_menulist)
-			oMenuList.items.$remove(this);
 	},
 	"DOMActivate":	function(oEvent) {
 		if (this.attributes["type"] == "checkbox")
@@ -91,7 +78,7 @@ cXULElement_menuitem.prototype.$mapAttribute	= function(sName, sValue) {
 	}
 	else
 	if (sName == "checked")
-		this.$setPseudoClass("checked", sValue == "true", "image");
+		this.$setPseudoClass("checked", sValue == "true");
 	else
 	if (sName == "disabled")
 		this.$setPseudoClass("disabled", sValue == "true");
@@ -111,8 +98,10 @@ cXULElement_menuitem.prototype.scrollIntoView	= function() {
 
 // Element Render: open
 cXULElement_menuitem.prototype.$getTagOpen		= function() {
-	return '<tr class="xul-menuitem' + (!this.$isAccessible() ? " xul-menuitem_disabled" : "") + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"' + (this.attributes["style"] ? ' style="' + this.attributes["style"] + '"' : '') + '>\
-				<td width="18"><div class="xul-menuitem-type---image' + (this.attributes["type"] ? ' xul-menuitem-type-' + this.attributes["type"] + '--image' +(this.attributes["checked"] == "true" ? ' xul-menuitem--image_checked' : '') : '') + '"' +(this.attributes["image"] ? ' style="background-image:url('+ ample.$encodeXMLCharacters(this.attributes["image"]) + ')"' : '')+ '></div></td>\
+	var bDisabled	= !this.$isAccessible(),
+		bChecked	= this.attributes["checked"] == "true";
+	return '<tr class="xul-menuitem' + (bDisabled ? " xul-menuitem_disabled" : "") + (bChecked ? ' xul-menuitem_checked' : '') + (bChecked && bDisabled ? ' xul-menuitem_checked_disabled xul-menuitem_disabled_checked' : '') + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"' + (this.attributes["style"] ? ' style="' + this.attributes["style"] + '"' : '') + '>\
+				<td width="18"><div class="xul-menuitem--image xul-menuitem-type---image' + (this.attributes["type"] ? ' xul-menuitem-type-' + this.attributes["type"] + '--image' : '') + '"' +(this.attributes["image"] ? ' style="background-image:url('+ ample.$encodeXMLCharacters(this.attributes["image"]) + ')"' : '')+ '></div></td>\
 				<td nowrap="nowrap" class="xul-menuitem--label" style="white-space:nowrap;">' +(this.attributes["label"] ? ample.$encodeXMLCharacters(this.attributes["label"]) : ' ');
 };
 
