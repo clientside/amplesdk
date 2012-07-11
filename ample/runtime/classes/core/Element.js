@@ -884,12 +884,12 @@ function fElement_setPseudoClass(oElement, sName, bValue, sContainer) {
 				if (sKey = oComputedStyle["transition-property"]) {
 					sKey	= fUtilities_toCssPropertyName(sKey);
 					if (sKey != "none" && aCSSTransition.indexOf(sKey) !=-1)
-						aTransitions	= [
+						aTransitions	= [[
 									sKey,
 									fSMILTimeElement_parseDuration(oComputedStyle["transition-duration"]),
 									oComputedStyle["transition-timing-function"],
 									fSMILTimeElement_parseDuration(oComputedStyle["transition-delay"])
-							];
+							]];
 				}
 
 				//
