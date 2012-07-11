@@ -151,6 +151,9 @@ function fUtilities_translateStyleSheet(sCSS, sUri) {
 		// Rewrite text-overflow
 		sCSS	= sCSS
 					.replace(/(?:\s|;)(text-overflow\s*:\s*)(.+)(\n|;)/gi, sBefore + (bPresto ? 'o' : bGecko ? "moz" : "webkit") + sAfter);
+		// Rewrite transitions
+		sCSS	= sCSS
+					.replace(/(?:\s|;)(transition\-?\w*\s*:\s*)(.+)(\n|;)/gi, sBefore + (bPresto ? 'o' : bGecko ? "moz" : "webkit") + sAfter);
 		//
 		if (!bPresto) {
 			// Rewrite box-shadow
