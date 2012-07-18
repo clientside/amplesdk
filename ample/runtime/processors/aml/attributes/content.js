@@ -23,7 +23,7 @@ function fAMLAttr_content_map(oElement, sValue) {
 	if (!oElement.childNodes.length) {
 		var oElementDOM	= oElement.$getContainer("gateway") || oElement.$getContainer();
 		if (oElementDOM)
-			oElementDOM.innerHTML	= sValue ? ample.locale.localize(sValue) || '' : '';
+			oElementDOM.innerHTML	= sValue ? oAmple.locale.localize(sValue) || '' : '';
 	}
 };
 

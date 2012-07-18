@@ -25,7 +25,7 @@ function fAMLAttr_values_map(oElement, sValue) {
 	for (var nIndex = 0, nLength = aValues.length, aName, aValue, sValue; nIndex < nLength; nIndex++) {
 		aValue	= aValues[nIndex].split(/\s*:\s*/);
 		aName	= aValue[0].split('.');
-		sValue	= ample.locale.localize(aValue[1]) || '';
+		sValue	= oAmple.locale.localize(aValue[1]) || '';
 		if (aName[0] == '') {
 			// Property
 			switch (aName[1]) {
