@@ -28,7 +28,7 @@ cXULElement_listbox.handlers	= {
 				// Key: Up
 				var nIndex	= this.selectedItems[this.selectedItems.length-1].$getContainer().rowIndex;
 				if (nIndex > 0) {
-					if (oEvent.shiftKey) {
+					if (oEvent.shiftKey && this.getAttribute("seltype") !== "single") {
 						// Jump over the only selected item
 						if (this.selectedItems.length > 1)
 							if (this.currentItem.$getContainer().rowIndex > this.selectedItems[0].$getContainer().rowIndex)
@@ -37,7 +37,9 @@ cXULElement_listbox.handlers	= {
 						this.toggleItemSelection(this.items[nIndex-1]);
 					}
 					else
+					{
 						this.selectItem(this.items[nIndex-1]);
+					}
 
 					// Scroll to item if not visible
 					this.scrollToIndex(nIndex-1);
@@ -51,7 +53,7 @@ cXULElement_listbox.handlers	= {
 				// Key: Down
 				var nIndex	= this.selectedItems[this.selectedItems.length-1].$getContainer().rowIndex;
 				if (nIndex < this.items.length-1) {
-					if (oEvent.shiftKey) {
+					if (oEvent.shiftKey && this.getAttribute("seltype") !== "single") {
 						// Jump over the only selected item
 						if (this.selectedItems.length > 1)
 							if (this.currentItem.$getContainer().rowIndex < this.selectedItems[0].$getContainer().rowIndex)
@@ -74,7 +76,9 @@ cXULElement_listbox.handlers	= {
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this)
 			if (oEvent.attrName == "seltype") {
-				// TODO
+				if (this.selectedItems.length) {
+					this.selectItem(this.selectedItems[0]);
+				}
 			}
 	},
 	"DOMNodeInserted":	function(oEvent) {
