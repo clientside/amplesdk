@@ -49,8 +49,10 @@ oAmpleException_messages[cAmpleException.CANNOT_ACCESS_DOM_ERR]		= 'Cannot acces
 oAmpleException_messages[cAmpleException.MEMBER_MISSING_ERR]		= 'Object does not have a method named "%0"';
 //<-Debug
 
+//->Debug
 function fAmpleException_format(sMessage, aArguments) {
 	for (var nIndex = 0; nIndex < aArguments.length; nIndex++)
 		sMessage	= sMessage.replace('%' + nIndex, aArguments[nIndex]);
 	return sMessage;
 };
+//<-Debug
