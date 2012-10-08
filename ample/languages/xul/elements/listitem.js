@@ -24,16 +24,20 @@ cXULElement_listitem.handlers	= {
 		if (oEvent.button == 2 && oView.selectedItems.$indexOf(this) !=-1)
 			return;
 
-		if (oEvent.shiftKey) {
-			if (oView.currentItem)
-				oView.selectItemRange(this, oView.currentItem);
-		}
-		else
-		{
-			if (oEvent.ctrlKey)
-				oView.toggleItemSelection(this);
+		if (oView.getAttribute("seltype") == "single") {
+			oView.selectItem(this);
+		} else {
+			if (oEvent.shiftKey) {
+				if (oView.currentItem)
+					oView.selectItemRange(this, oView.currentItem);
+			}
 			else
-				oView.selectItem(this);
+			{
+				if (oEvent.ctrlKey)
+					oView.toggleItemSelection(this);
+				else
+					oView.selectItem(this);
+			}
 		}
 	},
 	"DOMNodeInserted":	function(oEvent) {
