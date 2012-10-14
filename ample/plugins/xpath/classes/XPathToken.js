@@ -109,8 +109,8 @@ cXPathToken.EOF				= 0;
 // 2.5.3 SequenceType Syntax
 cXPathToken.SequenceType		= 50;	// ("empty-sequence" "(" ")") | (ItemType OccurrenceIndicator?)
 cXPathToken.OccurrenceIndicator	= 51;	// "?" | "*" | "+"
-cXPathToken.ItemType			= 52;	// AtomicType | KindTest | "item" "(" ")"
-cXPathToken.AtomicType			= 53;	// KindTest | ("item" "(" ")") | AtomicType
+cXPathToken.ItemType			= 52;	// KindTest | ("item" "(" ")") | AtomicType
+cXPathToken.AtomicType			= 53;	// QName
 */
 // Kind tests
 cXPathToken.KindTest				= 54;	// DocumentTest | ElementTest | AttributeTest | SchemaElementTest | SchemaAttributeTest | PITest | CommentTest | TextTest | AnyKindTest
@@ -179,14 +179,14 @@ cXPathToken.AbbrevForwardStep	= 31;	// "@"? NodeTest
 cXPathToken.AbbrevReverseStep	= 34;	// ".."
 
 // 3.3 Sequence Expressions
-/*
+
 // 3.3.1 Constructing Sequences
 cXPathToken.RangeExpr		= 11;	// AdditiveExpr ("to" AdditiveExpr)?
-*/
+
 // 3.3.2 Filter Expressions
 cXPathToken.FilterExpr		= 38;	// PrimaryExpr PredicateList
 cXPathToken.PredicateList	= 39;	// Predicate*
-/*
+
 // 3.3.3 Combining Node Sequences
 cXPathToken.UnionExpr			= 14;	// IntersectExceptExpr (("union" | "|") IntersectExceptExpr)*
 cXPathToken.IntersectExceptExpr	= 15;	// InstanceofExpr (("intersect" | "except") InstanceofExpr)*
@@ -194,7 +194,6 @@ cXPathToken.IntersectExceptExpr	= 15;	// InstanceofExpr (("intersect" | "except"
 // 3.4 Arithmetic Expressions
 cXPathToken.AdditiveExpr		= 12;	// MultiplicativeExpr (("+" | "-") MultiplicativeExpr)*
 cXPathToken.MultiplicativeExpr	= 13;	// UnionExpr (("*" | "div" | "idiv" | "mod") UnionExpr)*
-*/
 cXPathToken.UnaryExpr			= 20;	// ("-" | "+")* ValueExpr
 cXPathToken.ValueExpr			= 21;	// PathExpr
 
