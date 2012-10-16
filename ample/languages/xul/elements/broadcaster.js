@@ -1,7 +1,7 @@
 /*
  * Ample SDK - JavaScript GUI Framework
  *
- * Copyright (c) 2012 Sergey Ilinsky
+ * Copyright (c) 2012 Sergey Ilinsky, Tudor Holton
  * Dual licensed under the MIT and GPL licenses.
  * See: http://www.amplesdk.com/about/licensing/
  *
@@ -25,6 +25,16 @@ cXULElement_broadcaster.handlers	= {
 								oElement.removeAttribute(oEvent.attrName);
 							else
 								oElement.setAttribute(oEvent.attrName, oEvent.newValue);
+						}
+					var aObservesElements	= this.ownerDocument.getElementsByTagNameNS(this.namespaceURI, "observes");
+					for (var nIndex = 0, oElement; oElement = aElements[nIndex]; nIndex++)
+						if (oElement.attributes["element"] == this.attributes["id"]) {
+							if (oEvent.newValue == null)
+								oElement.parentNode.removeAttribute(oEvent.attrName);
+							else
+								oElement.parentNode.setAttribute(oEvent.attrName, oEvent.newValue);
+							if (oElement.attributes["onbroadcast"])
+								oElement.doOnBroadcast();
 						}
 				}
 			}
