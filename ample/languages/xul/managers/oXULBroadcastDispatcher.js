@@ -8,20 +8,20 @@
  */
 
 cXULElement.prototype.doBroadcast		= function() {
-	var oBroadcast	= this,
-		sBroadcast	= this.attributes.element;
-	// If element is not broadcast and if it has broadcast attribute
-	if (!(this instanceof cXULElement_broadcaster) && sBroadcast) {
-		oBroadcast	= this.ownerDocument.getElementById(sBroadcast);
-		if (!(oBroadcast instanceof cXULElement_broadcaster))
-			oBroadcast	= null;
+	var oBroadcaster	= this,
+		sObserves	= this.attributes.observes;
+	// If element is not broadcaster and if it has observes attribute
+	if (!(this instanceof cXULElement_broadcaster) && sObserves) {
+		oBroadcaster	= this.ownerDocument.getElementById(sObserves);
+		if (!(oBroadcaster instanceof cXULElement_broadcaster))
+			oBroadcaster	= null;
 	}
 
 	// Fire Event on broadcast element
-	if (oBroadcast) {
+	if (oBroadcaster) {
 		var oEvent	= this.ownerDocument.createEvent("CustomEvent");
 		oEvent.initCustomEvent("broadcast", true, true, null);
-		oBroadcast.dispatchEvent(oEvent);
+		oBroadcaster.dispatchEvent(oEvent);
 	}
 };
 

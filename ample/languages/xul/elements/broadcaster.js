@@ -27,14 +27,14 @@ cXULElement_broadcaster.handlers	= {
 								oElement.setAttribute(oEvent.attrName, oEvent.newValue);
 						}
 					var aObservesElements	= this.ownerDocument.getElementsByTagNameNS(this.namespaceURI, "observes");
-					for (var nIndex = 0, oElement; oElement = aElements[nIndex]; nIndex++)
+					for (var nIndex = 0, oElement; oElement = aObservesElements[nIndex]; nIndex++)
 						if (oElement.attributes["element"] == this.attributes["id"]) {
 							if (oEvent.newValue == null)
 								oElement.parentNode.removeAttribute(oEvent.attrName);
 							else
 								oElement.parentNode.setAttribute(oEvent.attrName, oEvent.newValue);
-							if (oElement.attributes["onbroadcast"])
-								oElement.doOnBroadcast();
+							if (oElement.onbroadcast)
+								oElement.doBroadcast();
 						}
 				}
 			}

@@ -14,9 +14,6 @@ cXULElement_observes.prototype.viewType	= cXULElement.VIEW_TYPE_VIRTUAL;
 
 // Class Event Handlers
 cXULElement_observes.handlers	= {
-	"broadcast":	function(oEvent) {
-		alert("Do something!");
-	},
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this) {
 			// Skip attributes "id" and "persist" that should be not possible to set
