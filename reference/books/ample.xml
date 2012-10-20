@@ -480,7 +480,7 @@
 					<node title="commandset" url="ample/xul/commandset.xml"/>
 					<node title="broadcaster" url="ample/xul/broadcaster.xml"/>
 					<node title="broadcasterset" url="ample/xul/broadcasterset.xml"/>
-					<node title="observes" xurl="ample/xul/observes.xml"/>
+					<node title="observes" url="ample/xul/observes.xml"/>
 					<node title="key" url="ample/xul/key.xml"/>
 					<node title="keyset" url="ample/xul/keyset.xml"/>
 					<node title="stringbundle" xurl="ample/xul/stringbundle.xml"/>
