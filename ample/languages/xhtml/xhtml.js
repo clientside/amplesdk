@@ -21,7 +21,7 @@
 	for (var n = 0, file; n < files.length; n++) {
 		if ((file = files[n].replace(/^\s+/, "").replace(/\s+$/, "")) != '' && file.substr(0, 1) != "#") {
 			var oRequest	= new cXMLHttpRequest;
-			oRequest.open("GET", path + '/' + file, false);
+			oRequest.open("GET", path + file, false);
 			oRequest.send(null);
 			source[source.length]	= oRequest.responseText;
 		}
