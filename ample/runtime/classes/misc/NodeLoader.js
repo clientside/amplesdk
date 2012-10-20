@@ -73,6 +73,10 @@ function fNodeLoader_load(oElement, sUrl, vData, fCallback) {
 			oEvent.initEvent("error", false, false);
 			fNode_dispatchEvent(oElement, oEvent);
 		};
+		if (fCallback)
+			oSettings.complete	= function(oRequest, sStatus) {
+				fCallback(oRequest.responseText, sStatus, oRequest);
+			};
 
 		// Save in order to be able to cancel
 		oElement._request	= fQuery_ajax(oSettings);
