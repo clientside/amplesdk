@@ -1244,12 +1244,14 @@ function fBrowser_initialize() {
 };
 //
 fBrowser_attachEvent(window, "load", function() {
-	fBrowser_initialize();
-	// When running in Air, start in sync with onload
-	if (bWebKit && window.runtime)
-		fAmple_initialize();
-	else
-		fSetTimeout(fAmple_initialize, 0);
+	if (oAmple.readyState == "loading") {
+		fBrowser_initialize();
+		// When running in Air, start in sync with onload
+		if (bWebKit && window.runtime)
+			fAmple_initialize();
+		else
+			fSetTimeout(fAmple_initialize, 0);
+	}
 });
 
 function fBrowser_finalize() {
