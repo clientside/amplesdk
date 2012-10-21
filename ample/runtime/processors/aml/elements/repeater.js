@@ -82,22 +82,22 @@ cAMLElement_repeater.prototype.repeat	= function() {
 		aElements	= this.parentNode.childNodes;
 		for (nIndex = 0; oElement = aElements[nIndex]; nIndex++)
 			if (oElement.dataIndex)
-				fElement_removeChild(oElement.parentNode, oElement) && nIndex--;
+				oElement.parentNode.removeChild(oElement) && nIndex--;
 
 		// Generate new content
 		var oContext	= this,
-			oContextCache	= {},
+			oCache	= {},
 			fResolver	= function (sPrefix) {
-				return sPrefix in oContextCache ? oContextCache[sPrefix] : oContextCache[sPrefix] = fNode_lookupNamespaceURI(oContext, sPrefix);
+				return sPrefix in oCache ? oCache[sPrefix] : oCache[sPrefix] = fNode_lookupNamespaceURI(oContext, sPrefix);
 			};
 		aElements	= fNodeSelector_query([this.data], this.attributes["select"] || '', fResolver);
-		for (nIndex = 0; nIndex < aElements.length; nIndex++)
-			fElement_insertBefore(this.parentNode,
+		for (nIndex = 0; oElement = aElements[nIndex]; nIndex++)
+			this.parentNode.insertBefore(
 				fAMLElement_repeater_processNode(
-					fNode_cloneNode(this.firstChild, true),
-					aElements[nIndex],
+					this.firstChild.cloneNode(true),
+					oElement,
 					fResolver),
-				this).dataIndex	= nIndex + 1;
+				this.nextSibling).dataIndex	= nIndex + 1;
 	}
 };
 
@@ -106,8 +106,7 @@ var rAMLElement_repeater_regexp	= /(\{([^\}]+)\})/g;
 // 'Static' Methods
 function fAMLElement_repeater_processNode(oElement, oData, fResolver) {
 	var oNode, sName;
-	for (var nIndex = 0; nIndex < oElement.childNodes.length; nIndex++)	{
-		oNode	= oElement.childNodes[nIndex];
+	for (var nIndex = 0; oNode	= oElement.childNodes[nIndex]; nIndex++)	{
 		switch (oNode.nodeType) {
 			case 1:	// cNode.ELEMENT_NODE
 				for (sName in oNode.attributes)
