@@ -701,6 +701,15 @@
 					</locale>
 				</description>
 			</method>
+			<!-- Hooks -->
+			<method name="$init" type="Void">
+				<description>
+					<locale>
+						Forces Ample SDK to start initialization immediately.
+						Call this method to initialize Ample SDK in case you loaded framework resources after the page load.
+					</locale>
+				</description>
+			</method>
 		</methods>
 		<events>
 			<event name="configchange" type="CustomEvent" cancelable="false" bubbles="false">

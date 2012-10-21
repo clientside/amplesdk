@@ -1183,16 +1183,13 @@ function fBrowser_processStyleSheets() {
 };
 
 //
-fBrowser_attachEvent(window, "load", function(oEvent) {
+function fBrowser_initialize() {
 	//
 	oBrowser_body	= oUADocument.body;
 	oBrowser_head	= oUADocument.getElementsByTagName("head")[0];
 
-	// change readystate to "loaded"
-	fAmple_changeReadyState("loaded");
-
 //->Source
-	oUADocument.title	= "Initializing...";
+	oUADocument.title	= "Initializing browser...";
 //<-Source
 
 	// Add to document, otherwise will not render VML
@@ -1239,7 +1236,15 @@ fBrowser_attachEvent(window, "load", function(oEvent) {
 	fBrowser_attachEvent(oUADocument, "paste",			fBrowser_onClipboard);
 	fBrowser_attachEvent(oUADocument, "beforepaste",	fBrowser_onClipboard);
 
-	// Initialize
+	// Register unload handler
+	fBrowser_attachEvent(window, "unload", function() {
+		fBrowser_finalize();
+		fAmple_finalize();
+	});
+};
+//
+fBrowser_attachEvent(window, "load", function() {
+	fBrowser_initialize();
 	// When running in Air, start in sync with onload
 	if (bWebKit && window.runtime)
 		fAmple_initialize();
@@ -1247,9 +1252,9 @@ fBrowser_attachEvent(window, "load", function(oEvent) {
 		fSetTimeout(fAmple_initialize, 0);
 });
 
-fBrowser_attachEvent(window, "unload", function(oEvent) {
+function fBrowser_finalize() {
 //->Source
-	oUADocument.title	= "Finalizing...";
+	oUADocument.title	= "Finalizing browser...";
 //<-Source
 
 	// Remove factory from document
@@ -1294,10 +1299,7 @@ fBrowser_attachEvent(window, "unload", function(oEvent) {
 	// Unregister window event listeners
 	fBrowser_detachEvent(window, "resize", fBrowser_onResize);
 	fBrowser_detachEvent(window, "scroll", fBrowser_onScroll);
-
-	// Finalize
-	fAmple_finalize();
-});
+};
 
 function fAmple_changeReadyState(sValue) {
 	//
@@ -1311,8 +1313,11 @@ function fAmple_changeReadyState(sValue) {
 
 function fAmple_initialize() {
 //->Source
-	oUADocument.title	= "Processing...";
+	oUADocument.title	= "Initializing ample...";
 //<-Source
+
+	// change readystate to "loaded"
+	fAmple_changeReadyState("loaded");
 
 //->Source
 	var oDateCSS	= new cDate;
@@ -1360,6 +1365,10 @@ function fAmple_initialize() {
 };
 
 function fAmple_finalize() {
+//->Source
+	oUADocument.title	= "Finalizing ample...";
+//<-Source
+
 	// fire unload event on document
 	var oEventUnload	= new cEvent;
 	oEventUnload.initEvent("unload", false, false);

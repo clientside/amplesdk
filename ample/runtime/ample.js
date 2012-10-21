@@ -374,6 +374,14 @@ oAmple.resolveUri	= function(sUri, sBaseUri) {
 	return fUtilities_resolveUri(sUri, sBaseUri);
 };
 
+// Special hook to init runtime when Ample SDK was loaded lazily
+oAmple.$init	= function() {
+	if (oAmple.readyState == "loading") {
+		fBrowser_initialize();
+		fAmple_initialize();
+	}
+};
+
 // set standard parameters
 var oConfiguration	= oAmple_document.domConfig;
 fDOMConfiguration_setParameter(oConfiguration, "error-handler", null);
