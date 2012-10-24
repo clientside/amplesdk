@@ -39,7 +39,7 @@ if (!oJSON) {
 		return rEscapable.test(sValue) ?
 			'"' + sValue.replace(rEscapable, function (a) {
 				var c	= hMeta[a];
-				return typeof c === "string" ? c :
+				return typeof c == "string" ? c :
 					'\\u' + ("0000" + a.charCodeAt(0).toString(16)).slice(-4);
 			}) + '"' :
 			'"' + sValue + '"';
@@ -59,15 +59,15 @@ if (!oJSON) {
 
 // If the value has a toJSON method, call it to obtain a replacement value.
 
-		if (vValue && typeof vValue === "object" &&
-				typeof vValue.toJSON === "function") {
+		if (vValue && typeof vValue == "object" &&
+				typeof vValue.toJSON == "function") {
 			vValue	= vValue.toJSON(sKey);
 		}
 
 // If we were called with a replacer function, then call the replacer to
 // obtain a replacement value.
 
-		if (typeof vRep === "function") {
+		if (typeof vRep == "function") {
 			vValue	= vRep.call(oHolder, sKey, vValue);
 		}
 
@@ -135,11 +135,11 @@ if (!oJSON) {
 
 // If the replacer is an array, use it to select the members to be stringified.
 
-			if (vRep && typeof vRep === "object") {
+			if (vRep && typeof vRep == "object") {
 				nLength	= vRep.length;
 				for (i = 0; i < nLength; i += 1) {
 					k	= vRep[i];
-					if (typeof k === "string") {
+					if (typeof k == "string") {
 						v	= fStr(k, vValue);
 						if (v) {
 							aPartial.push(fQuote(k) + (sGap ? ': ' : ':') + v);
@@ -188,14 +188,14 @@ if (!oJSON) {
 // If the space parameter is a number, make an indent string containing that
 // many spaces.
 
-		if (typeof vSpace === "number") {
+		if (typeof vSpace == "number") {
 			for (i = 0; i < vSpace; i += 1) {
 				sIndent += ' ';
 			}
 
 // If the space parameter is a string, it will be used as the indent string.
 
-		} else if (typeof vSpace === "string") {
+		} else if (typeof vSpace == "string") {
 			sIndent	= vSpace;
 		}
 
@@ -203,9 +203,9 @@ if (!oJSON) {
 // Otherwise, throw an error.
 
 		vRep	= vReplacer;
-		if (vReplacer && typeof vReplacer !== "function" &&
-				(typeof vReplacer !== "object" ||
-				typeof vReplacer.length !== "number")) {
+		if (vReplacer && typeof vReplacer != "function" &&
+				(typeof vReplacer != "object" ||
+				typeof vReplacer.length != "number")) {
 			throw new cError("JSON" + '.' + "stringify");
 		}
 
@@ -237,7 +237,7 @@ if (!oJSON) {
 // that modifications can be made.
 
 			var k, v, vValue	= oHolder[sKey];
-			if (vValue && typeof vValue === "object") {
+			if (vValue && typeof vValue == "object") {
 				for (k in vValue) {
 					if (cObject.hasOwnProperty.call(vValue, k)) {
 						v	= fWalk(vValue, k);
@@ -293,7 +293,7 @@ replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
 // In the optional fourth stage, we recursively walk the new structure, passing
 // each name/value pair to a reviver function for possible transformation.
 
-			return typeof fReviver === "function" ?
+			return typeof fReviver == "function" ?
 				fWalk({'': j}, '') : j;
 		}
 

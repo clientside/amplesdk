@@ -52,9 +52,9 @@ oGlobalize = function(sCultureSelector) {
 	return new oGlobalize.prototype.init(sCultureSelector);
 };
 
-if (typeof require !== "undefined" &&
-	typeof exports !== "undefined" &&
-	typeof module !== "undefined") {
+if (typeof require != "undefined" &&
+	typeof exports != "undefined" &&
+	typeof module != "undefined") {
 	// Assume CommonJS
 	module.exports = oGlobalize;
 } else {
@@ -313,7 +313,7 @@ fExtend	= function() {
 		bDeep	= false;
 
 	// Handle a deep copy situation
-	if (typeof oTarget === "boolean") {
+	if (typeof oTarget == "boolean") {
 		bDeep	= oTarget;
 		oTarget	= arguments[1] || {};
 		// skip the boolean and the target
@@ -884,10 +884,10 @@ fGetEraYear	= function(dValue, oCalendar, nEra, bSortable) {
 	fExpandYear	= function(oCalendar, nYear) {
 		// expands 2-digit year into 4 digits.
 		if (nYear < 100) {
-			var dValue	= new cDate(),
+			var dValue	= new cDate,
 				nEraYear	= fGetEraYear(dValue, oCalendar, fGetEra(dValue)),
 				nMaxYear	= oCalendar.twoDigitYearMax;
-			nMaxYear	= typeof nMaxYear === "string" ? new cDate().getFullYear() % 100 + fParseInt(nMaxYear, 10) : nMaxYear;
+			nMaxYear	= typeof nMaxYear == "string" ? dValue.getFullYear() % 100 + fParseInt(nMaxYear, 10) : nMaxYear;
 			nYear += nEraYear - (nEraYear % 100);
 			if (nYear > nMaxYear) {
 				nYear -= 100;
@@ -1172,7 +1172,7 @@ fGetEraYear	= function(dValue, oCalendar, nEra, bSortable) {
 				}
 			}
 		}
-		var dValue	= new cDate(),
+		var dValue	= new cDate,
 			nDefaultYear,
 			oConvert	= oCalendar.convert;
 		nDefaultYear	= oConvert ? oConvert.fromGregorian(dValue)[0] : dValue.getFullYear();
@@ -1302,14 +1302,14 @@ oGlobalize.addCultureInfo = function(sCulture, sBaseCulture, oCulture) {
 	var oBaseCalture	= {},
 		bIsNew	= false;
 
-	if (typeof sCulture !== "string") {
+	if (typeof sCulture != "string") {
 		// sCulture argument is optional string. If not specified, assume oCulture is first
 		// and only argument. Specified oCulture deep-extends current culture.
 		oCulture	= sCulture;
 		// Changed: this.culture().name to this.culture.name
 		sCulture	= this.culture.name;
 		oBaseCalture	= this.cultures[sCulture];
-	} else if (typeof sBaseCulture !== "string") {
+	} else if (typeof sBaseCulture != "string") {
 		// sBaseCulture argument is optional string. If not specified, assume oCulture is second
 		// argument. Specified oCulture deep-extends specified culture.
 		// If specified culture does not exist, create by deep-extending default
@@ -1339,7 +1339,7 @@ oGlobalize.findClosestCulture	= function(vName) {
 	if (!vName) {
 		return this.findClosestCulture(this.cultureSelector) || hCultures["default"];
 	}
-	if (typeof vName === "string") {
+	if (typeof vName == "string") {
 		vName	= vName.split(',');
 	}
 	if (fIsArray(vName)) {
@@ -1424,7 +1424,7 @@ oGlobalize.format	= function(vValue, sFormat, sCultureSelector) {
 	if (vValue instanceof cDate) {
 		vValue	= fFormatDate(vValue, sFormat, oCulture);
 	}
-	else if (typeof vValue === "number") {
+	else if (typeof vValue == "number") {
 		vValue	= fFormatNumber(vValue, sFormat, oCulture);
 	}
 	return vValue;
@@ -1440,7 +1440,7 @@ oGlobalize.parseDate	= function(vValue, vFormat, sCultureSelector) {
 
 	var dValue, sKey, oPatterns;
 	if (vFormat) {
-		if (typeof vFormat === "string") {
+		if (typeof vFormat == "string") {
 			vFormat	= [vFormat];
 		}
 		if (vFormat.length) {
@@ -1473,7 +1473,7 @@ oGlobalize.parseInt	= function(vValue, nRadix, sCultureSelector) {
 
 oGlobalize.parseFloat	= function(vValue, nRadix, sCultureSelector) {
 	// nRadix argument is optional
-	if (typeof nRadix !== "number") {
+	if (typeof nRadix != "number") {
 		sCultureSelector	= nRadix;
 		nRadix	= 10;
 	}
@@ -1574,7 +1574,7 @@ oGlobalize.parseFloat	= function(vValue, nRadix, sCultureSelector) {
 /*
 oGlobalize.culture = function(sCultureSelector) {
 	// setter
-	if (typeof sCultureSelector !== "undefined") {
+	if (typeof sCultureSelector != "undefined") {
 		this.cultureSelector = sCultureSelector;
 	}
 	// getter
