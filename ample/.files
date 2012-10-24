@@ -92,6 +92,9 @@ runtime/modules/modal.js
 runtime/modules/offset.js
 runtime/modules/queue.js
 runtime/modules/traversing.js
+# Processing Instructions
+runtime/pis/xml.js
+runtime/pis/xml-stylesheet.js
 # XML Events 1.0
 runtime/processors/xmlevents/classes/XMLEventsElement.js
 runtime/processors/xmlevents/elements/listener.js

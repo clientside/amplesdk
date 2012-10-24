@@ -187,6 +187,10 @@
 				offset.js,
 				queue.js,
 				traversing.js"/>
+			<!-- Processing instructions -->
+			<filelist dir="${source.runtime.dir}/pis/" files="
+				xml.js,
+				xml-stylesheet.js"/>
 		</concat>
 	</target>
 

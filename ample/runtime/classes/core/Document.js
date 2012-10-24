@@ -465,24 +465,7 @@ function fDocument_importNode(oDocument, oElementDOM, bDeep, oParent) {
 			break;
 
 		case 7:	// cNode.PROCESSING_INSTRUCTION_NODE
-			switch (oElementDOM.target)	{
-				case "xml":
-					break;
-
-				case "xml-stylesheet":
-					if (oElementDOM.nodeValue.match(/href=["']([^"']+)["']/)) {
-						var sHref	= cRegExp.$1;
-						if (oElementDOM.nodeValue.match(/type=["']([^"']+)["']/))
-							if (cRegExp.$1 == "text/css" || cRegExp.$1 == "text/ample+css") {
-								var sCSS	= fBrowser_load(sHref, "text/css").responseText;
-								if (sCSS)
-									oBrowser_head.appendChild(fBrowser_createStyleSheet(sCSS, sHref));
-							}
-					}
-					// no break is left intentionally
-				default:
-					oNode	= fNode_appendChild(oParent, fDocument_createProcessingInstruction(oDocument, oElementDOM.nodeName, oElementDOM.nodeValue));
-			}
+			oNode	= fNode_appendChild(oParent, fDocument_createProcessingInstruction(oDocument, oElementDOM.nodeName, oElementDOM.nodeValue));
 			break;
 
 		case 9:	// cNode.DOCUMENT_NODE
