@@ -108,4 +108,4 @@ fExporter_sign(oAmple.locale,	"locale");
 fExporter_sign(cNodeSelector.pseudoClass,	"pseudoClass");
 fExporter_sign(oAmple_root.$getContainer,	"$getContainer");
 //
-fExporter_export(oAmple,	"ample", window);
+window["ample"]	= oAmple;
