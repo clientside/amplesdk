@@ -286,10 +286,10 @@ if (!oPrefixes[''])
 	oPrefixes['']		= sNS_XHTML;
 if (!oPrefixes["aml"])
 	oPrefixes["aml"]	= sNS_AML;
-if (!oPrefixes["ev"])
-	oPrefixes["ev"]		= sNS_XEVENTS;
-if (!oPrefixes["xi"])
-	oPrefixes["xi"]		= sNS_XINCLUDE;
+if (!oPrefixes['ev'])
+	oPrefixes['ev']		= sNS_XEVENTS;
+if (!oPrefixes['xi'])
+	oPrefixes['xi']		= sNS_XINCLUDE;
 if (!oPrefixes["smil"])
 	oPrefixes["smil"]	= sNS_SMIL;
 if (!oPrefixes["xlink"])
