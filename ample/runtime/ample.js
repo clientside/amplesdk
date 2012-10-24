@@ -197,7 +197,7 @@ oAmple.ready	= function(fHandler) {
 	]);
 //<-Guard
 
-	oAmple_document.addEventListener("load", fHandler, false);
+	fEventTarget_addEventListener(oAmple_document, "load", fHandler, false);
 };
 
 oAmple.guard	= function(aArguments, aParameters) {
