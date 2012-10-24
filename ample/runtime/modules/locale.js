@@ -363,12 +363,12 @@ fExtend	= function() {
 	return oTarget;
 };
 
-fIsArray	= function(vValue) {
-	return fGuard_instanceOf(vValue, cArray);
+fIsArray	= cArray.isArray || function(vValue) {
+	return cObject.prototype.toString.call(vValue) == '[' + "object" + ' ' + "Array" + ']';
 };
 
 fIsFunction	= function(vValue) {
-	return fGuard_instanceOf(vValue, cFunction);
+	return cObject.prototype.toString.call(vValue) == '[' + "object" + ' ' + "Function" + ']';
 };
 
 fIsObject	= function(vValue) {

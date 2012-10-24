@@ -72,7 +72,6 @@ function fGuard(aArguments, aParameters, oObject) {
 		}
 	}
 };
-//<-Guard
 
 var rGuard_object	= /object\s([^\s]+)\]/;
 function fGuard_instanceOf(vValue, cType) {
@@ -106,6 +105,8 @@ function fGuard_instanceOf(vValue, cType) {
 			return cType == cObject ? true : vValue instanceof cType;
 	}
 };
+//<-Guard
+
 /*
 function fGuard_typeof(vValue) {
 	if (typeof vValue == "string" || vValue instanceof cString)
