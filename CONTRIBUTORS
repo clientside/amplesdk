@@ -1,8 +1,12 @@
- Current developers / contributors:
+ Current contributors:
 
- * Sergey Ilinsky (Runtime, SVG implementation)
- * Lev Matematik (XUL implementation)
- * Rob Krueger (XHTML, testing)
- * Emil Stolk (Touch/Gesture events)
- * Zingus J. Rinkle (Italian localization in XUL)
- * Tudor Holton (XUL implementation)
+ * Sergey Ilinsky
+ * Tudor Holton
+ * Anton Yakimov
+
+ Past contributors:
+
+ * Lev Matematik
+ * Rob Krueger
+ * Emil Stolk
+ * Zingus J. Rinkle
