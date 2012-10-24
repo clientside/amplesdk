@@ -901,7 +901,7 @@ function fElement_setPseudoClass(oElement, sName, bValue, sContainer) {
 					}
 */
 					// Apply old class to get initial CSS values
-					if (bTrident && nVersion < 8)
+					if (nVersion < 8)
 						oElementDOM.className	= sOldName;
 					else
 						oElementDOM.setAttribute("class", sOldName);
@@ -911,7 +911,7 @@ function fElement_setPseudoClass(oElement, sName, bValue, sContainer) {
 						aTransitions[nIndex][4]	= fBrowser_getStyle(oElementDOM, aTransitions[nIndex][0], oComputedStyle);
 
 					// Re-apply new class
-					if (bTrident && nVersion < 8)
+					if (nVersion < 8)
 						oElementDOM.className	= sNewName;
 					else
 						oElementDOM.setAttribute("class", sNewName);
