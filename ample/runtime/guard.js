@@ -15,7 +15,6 @@
  */
 //->Debug
 var oGuard_endings	= 'st-nd-rd-th'.split('-'),
-	rGuard_object	= /object\s([^\s]+)\]/,
 	rGuard_function	= /function\s([^\s]+)\(/;
 //<-Debug
 
@@ -75,6 +74,7 @@ function fGuard(aArguments, aParameters, oObject) {
 };
 //<-Guard
 
+var rGuard_object	= /object\s([^\s]+)\]/;
 function fGuard_instanceOf(vValue, cType) {
 	var sType	= cObject.prototype.toString.call(vValue).match(rGuard_object)[1];
 	switch (cType) {
