@@ -111,7 +111,7 @@ if (!oJSON) {
 
 // Is the value an array?
 
-			if (cObject.prototype.toString.apply(vValue) === '[' + "object" + ' ' + "Array" + ']') {
+			if (cObject.prototype.toString.call(vValue) == '[' + "object" + ' ' + "Array" + ']') {
 
 // The value is an array. Stringify every element. Use null as a placeholder
 // for non-JSON values.
