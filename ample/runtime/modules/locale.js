@@ -363,16 +363,16 @@ fExtend	= function() {
 	return oTarget;
 };
 
-fIsArray	= cArray.isArray || function(vValue) {
-	return vValue instanceof cArray;	// cObject.prototype.toString.call(vValue) === "[object Array]";
+fIsArray	= function(vValue) {
+	return fGuard_instanceOf(vValue, cArray);
 };
 
 fIsFunction	= function(vValue) {
-	return vValue instanceof cFunction;	// cObject.prototype.toString.call(vValue) === "[object Function]";
+	return fGuard_instanceOf(vValue, cFunction);
 };
 
 fIsObject	= function(vValue) {
-	return typeof vValue == "object";	// cObject.prototype.toString.call(vValue) === "[object Object]";
+	return typeof vValue == "object";
 };
 
 fStartsWith	= function(sValue, sPattern) {

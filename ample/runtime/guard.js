@@ -15,6 +15,7 @@
  */
 //->Debug
 var oGuard_endings	= 'st-nd-rd-th'.split('-'),
+	rGuard_object	= /object\s([^\s\]]+)/,
 	rGuard_function	= /function\s([^\s]+)\(/;
 //<-Debug
 
@@ -75,15 +76,21 @@ function fGuard(aArguments, aParameters, oObject) {
 //<-Guard
 
 function fGuard_instanceOf(vValue, cType) {
-	var sType	= typeof vValue;
+	var sType	= cObject.prototype.toString.call(vValue).match(rGuard_object)[1];
 	switch (cType) {
 		// Primitive types
 		case cString:
-			return sType == "string" || vValue instanceof cType;
+			return sType == "String";
 		case cBoolean:
-			return sType == "boolean" || vValue instanceof cType;
+			return sType == "Boolean";
 		case cNumber:
-			return(sType == "number" || vValue instanceof cType) &&!fIsNaN(vValue);
+			return sType == "Number" &&!fIsNaN(vValue);
+		case cArray:
+			return sType == "Array";
+		case cFunction:
+			return sType == "Function";
+		case cRegExp:
+			return sType == "RegExp";
 		// Virtual types
 		case cXMLNode:
 			return vValue &&!fIsNaN(vValue.nodeType);
@@ -93,8 +100,8 @@ function fGuard_instanceOf(vValue, cType) {
 			return vValue && vValue.nodeType == 9;
 		// Special type Arguments (pseudo type for JavaScript arguments object)
 		case cArguments:
-			return sType == "object" && "callee" in vValue;
-		// Object and Complex types
+			return typeof vValue == "object" && "callee" in vValue;
+		// Object and other types
 		default:
 			return cType == cObject ? true : vValue instanceof cType;
 	}
