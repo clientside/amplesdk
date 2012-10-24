@@ -738,6 +738,7 @@ cNode.prototype.toXML	= function() {
 
 // EventTarget
 cNode.prototype.$listeners	= null;
+cNode.prototype.canDispatch	= cEventTarget.prototype.canDispatch;
 cNode.prototype.dispatchEvent	= cEventTarget.prototype.dispatchEvent;
 cNode.prototype.addEventListener	= cEventTarget.prototype.addEventListener;
 cNode.prototype.removeEventListener	= cEventTarget.prototype.removeEventListener;
