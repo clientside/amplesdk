@@ -668,7 +668,7 @@ fFormatDate	= function(dValue, sFormat, oCulture) {
 					(nPart <= 0 ? '+' : '-') + fPadZeros(cMath.floor(cMath.abs(nPart)), 2) +
 					// Hard coded ":" separator, rather than using oCalendar.TimeSeparator
 					// Repeated here for consistency, plus ":" was already assumed in date parsing.
-					":" + fPadZeros(cMath.abs(dValue.getTimezoneOffset() % 60), 2)
+					':' + fPadZeros(cMath.abs(dValue.getTimezoneOffset() % 60), 2)
 				);
 				break;
 			case 'g':

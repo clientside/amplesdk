@@ -408,7 +408,7 @@ function fBrowser_onClipboard(oEvent) {
 	}
 
 	// Init Clipboard event
-	oEventClipboard.initClipboardEvent(oEvent.type, oEvent.bubbles, oEvent.cancelable, "", null);
+	oEventClipboard.initClipboardEvent(oEvent.type, oEvent.bubbles, oEvent.cancelable, '', null);
 	oEventClipboard.$pseudoTarget	= oPseudo;
 
 	// do not dispatch event if outside modal
