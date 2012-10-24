@@ -15,7 +15,7 @@
  */
 //->Debug
 var oGuard_endings	= 'st-nd-rd-th'.split('-'),
-	rGuard_object	= /object\s([^\s\]]+)/,
+	rGuard_object	= /object\s([^\s]+)\]/,
 	rGuard_function	= /function\s([^\s]+)\(/;
 //<-Debug
 
