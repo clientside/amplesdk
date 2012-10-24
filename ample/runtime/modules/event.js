@@ -10,7 +10,7 @@
 // Events
 var aQuery_protectedEvents	= [
 	// UIEvent
-	,"focus", "blur"
+	"focus", "blur"
 	,"DOMFocusIn", "DOMFocusOut", "DOMActivate"
 	,"capture", "losecapture"
 	,"modal"
