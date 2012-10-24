@@ -50,7 +50,7 @@ function fQuery_history_onHashChange() {
 			if (sQuery_history_new != sHash) {
 				var oEvent	= new cHashChangeEvent;
 				oEvent.initHashChangeEvent("hashchange", true, false, sUrl + (sQuery_history_prev ? '#' : '') + sQuery_history_prev, sUrl + (sHash ? '#' : '') + sHash);
-				fNode_dispatchEvent(oAmple_document, oEvent);
+				fEventTarget_dispatchEvent(oAmple_document, oEvent);
 			}
 			//
 			sQuery_history_prev	= sHash;

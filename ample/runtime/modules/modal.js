@@ -28,7 +28,7 @@ oAmple.modal		= function(oNode) {
 			oEvent	= new cMouseEvent;
 			oEvent.initMouseEvent("mouseleave", false, false, window, null, 0, 0, 0, 0, false, false, false, false, 0, aBrowser_mouseNodes[nIndex + 1] || null);
 			oEvent.$pseudoTarget	= oElement.$getContainer();
-			fNode_dispatchEvent(oElement, oEvent);
+			fEventTarget_dispatchEvent(oElement, oEvent);
 		}
 		aBrowser_mouseNodes	= new cNodeList;
 		//

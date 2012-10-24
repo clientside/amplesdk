@@ -44,7 +44,7 @@ function fCaptureManager_releaseCapture(oNode) {
 		// Notify element on capture lose
 		var oEvent	= new cUIEvent;
 		oEvent.initUIEvent("losecapture", false, false, window, null);
-		fNode_dispatchEvent(oNode, oEvent);
+		fEventTarget_dispatchEvent(oNode, oEvent);
 
 		//
 		oBrowser_captureNode	= null;

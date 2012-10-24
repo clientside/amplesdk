@@ -224,31 +224,6 @@ cDocument.prototype.createEntityReference	= function(sName) {
 	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };
 
-cDocument.prototype.createEvent	= function(sName) {
-//->Guard
-	fGuard(arguments, [
-		["eventInterface",	cString]
-	]);
-//<-Guard
-
-	var fConstructor	= hClasses[sName.replace(/s$/, '')];
-	if (fConstructor && (fConstructor == cEvent || fConstructor.prototype instanceof cEvent))
-		return new fConstructor;
-	else
-		throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
-};
-
-cDocument.prototype.canDispatch	= function(sNameSpaceURI, sType) {
-//->Guard
-	fGuard(arguments, [
-		["namespaceURI",	cString, false, true],
-		["type",			cString]
-	]);
-//<-Guard
-
-	return true;
-};
-
 function fDocument_createDocumentFragment(oDocument) {
 	var oNode	= new cDocumentFragment;
 	oNode.ownerDocument	= oDocument;
@@ -583,7 +558,7 @@ function fDocument_register(oDocument, oElement) {
 						oEvent.target	=
 						oEvent.currentTarget	= oAttribute;
 						oEvent.eventPhase		= 2 /* cEvent.AT_TARGET */;
-						fNode_handleEvent(oAttribute, oEvent);
+						fEventTarget_handleEvent(oAttribute, oEvent);
 					}
 //->Debug
 					else
@@ -607,7 +582,7 @@ function fDocument_register(oDocument, oElement) {
 		// Fire Mutation event on Element
 		var oEvent	= new cMutationEvent;
 		oEvent.initMutationEvent("DOMNodeInsertedIntoDocument", false, false, null, null, null, null, null);
-		fNode_dispatchEvent(oElement, oEvent);
+		fEventTarget_dispatchEvent(oElement, oEvent);
 
 		// Process children
 		for (nIndex = 0; oNode = oElement.childNodes[nIndex]; nIndex++)
@@ -621,7 +596,7 @@ function fDocument_unregister(oDocument, oElement) {
 		// Fire Mutation event
 		var oEvent	= new cMutationEvent;
 		oEvent.initMutationEvent("DOMNodeRemovedFromDocument", false, false, null, null, null, null, null);
-		fNode_dispatchEvent(oElement, oEvent);
+		fEventTarget_dispatchEvent(oElement, oEvent);
 
 		// Unset style property
 		if (oDOMConfiguration_values["ample-enable-style"])
@@ -657,3 +632,6 @@ function fDocument_unregister(oDocument, oElement) {
 		}
 	}
 };
+
+// DocumentEvent
+cDocument.prototype.createEvent	= cDocumentEvent.prototype.createEvent;

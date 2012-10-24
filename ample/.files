@@ -17,6 +17,8 @@ runtime/compat/XSLTProcessor.js
 runtime/classes/AmpleException.js
 runtime/classes/Query.js
 # DOM-Events
+runtime/classes/events/DocumentEvent.js
+runtime/classes/events/EventTarget.js
 runtime/classes/events/Event.js
 runtime/classes/events/CustomEvent.js
 runtime/classes/events/UIEvent.js

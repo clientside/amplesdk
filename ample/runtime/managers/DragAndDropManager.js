@@ -91,7 +91,7 @@ function fDragAndDropManager_onMouseUp(oEvent) {
 				oEventDrop.initDragEvent("drop", true, true, window, null, oDragAndDropManager_dataTransfer);
 				oEventDrop.relatedTarget	= oDragAndDropManager_dragSource;
 				oEventDrop.$pseudoTarget	= oEvent.$pseudoTarget;
-				bDropPrevented	= !fNode_dispatchEvent(oDragAndDropManager_dropTarget, oEventDrop);
+				bDropPrevented	= !fEventTarget_dispatchEvent(oDragAndDropManager_dropTarget, oEventDrop);
 			}
 
 			// Remove :drop pseudo-class
@@ -102,7 +102,7 @@ function fDragAndDropManager_onMouseUp(oEvent) {
 			oEventDragLeave.initDragEvent("dragleave", true, true, window, null, oDragAndDropManager_dataTransfer);
 			oEventDragLeave.$pseudoTarget	= oEvent.$pseudoTarget;
 			oEventDragLeave.relatedTarget	= oDragAndDropManager_dragSource;
-			fNode_dispatchEvent(oDragAndDropManager_dropTarget, oEventDragLeave);
+			fEventTarget_dispatchEvent(oDragAndDropManager_dropTarget, oEventDragLeave);
 		}
 
 		// Clear array of drag target
@@ -115,7 +115,7 @@ function fDragAndDropManager_onMouseUp(oEvent) {
 		var oEventDragEnd	= new cDragEvent;
 		oEventDragEnd.initDragEvent("dragend", true, true, window, null, oDragAndDropManager_dataTransfer);
 		oEventDragEnd.$pseudoTarget	= oEvent.$pseudoTarget;
-		fNode_dispatchEvent(oDragAndDropManager_dragSource, oEventDragEnd);
+		fEventTarget_dispatchEvent(oDragAndDropManager_dragSource, oEventDragEnd);
 
 		var bDefaultPrevented	= oEvent.defaultPrevented || oEvent.button || bDropPrevented || oEventDragEnd.defaultPrevented,
 			bPlay	= oDOMConfiguration_values["ample-enable-transitions"] &&(bDefaultPrevented || oDragAndDropManager_dataTransfer.dropEffect == "move" || oDragAndDropManager_dataTransfer.dropEffect == "copy");
@@ -216,7 +216,7 @@ function fDragAndDropManager_onMouseMove(oEvent) {
 		var oEventDragStart	= new cDragEvent;
 		oEventDragStart.initDragEvent("dragstart", true, true, window, null, oDragAndDropManager_dataTransfer);
 		oEventDragStart.$pseudoTarget	= oEvent.$pseudoTarget;
-		fNode_dispatchEvent(oDragAndDropManager_dragSource, oEventDragStart);
+		fEventTarget_dispatchEvent(oDragAndDropManager_dragSource, oEventDragStart);
 
 		if (oEventDragStart.defaultPrevented) {
 			// end operation and return
@@ -320,7 +320,7 @@ function fDragAndDropManager_onMouseMove(oEvent) {
 			oEventDragLeave.initDragEvent("dragleave", true, true, window, null, oDragAndDropManager_dataTransfer);
 			oEventDragLeave.relatedTarget	= oDragAndDropManager_dragSource;
 			oEventDragLeave.$pseudoTarget	= oEvent.$pseudoTarget;
-			fNode_dispatchEvent(oDragAndDropManager_dropTarget, oEventDragLeave);
+			fEventTarget_dispatchEvent(oDragAndDropManager_dropTarget, oEventDragLeave);
 		}
 	}
 
@@ -329,7 +329,7 @@ function fDragAndDropManager_onMouseMove(oEvent) {
 	oEventDrag.initDragEvent("drag", true, true, window, null, oDragAndDropManager_dataTransfer);
 	oEventDrag.$pseudoTarget	= oEvent.$pseudoTarget;
 	oEventDrag.relatedTarget	= oDropTarget;
-	fNode_dispatchEvent(oDragAndDropManager_dragSource, oEventDrag);
+	fEventTarget_dispatchEvent(oDragAndDropManager_dragSource, oEventDrag);
 
 	//
 	if (oDropTarget) {
@@ -339,7 +339,7 @@ function fDragAndDropManager_onMouseMove(oEvent) {
 			oEventDragEnter.initDragEvent("dragenter", true, true, window, null, oDragAndDropManager_dataTransfer);
 			oEventDragEnter.$pseudoTarget	= oEvent.$pseudoTarget;
 			oEventDragEnter.relatedTarget	= oDragAndDropManager_dragSource;
-			fNode_dispatchEvent(oDropTarget, oEventDragEnter);
+			fEventTarget_dispatchEvent(oDropTarget, oEventDragEnter);
 			if (oEventDragEnter.defaultPrevented)
 				oDropTarget	= null;
 			else	// Add :drop pseudo-class
@@ -353,7 +353,7 @@ function fDragAndDropManager_onMouseMove(oEvent) {
 			oEventDragOver.initDragEvent("dragover", true, true, window, null, oDragAndDropManager_dataTransfer);
 			oEventDragOver.$pseudoTarget	= oEvent.$pseudoTarget;
 			oEventDragOver.relatedTarget	= oDragAndDropManager_dragSource;
-			fNode_dispatchEvent(oDropTarget, oEventDragOver);
+			fEventTarget_dispatchEvent(oDropTarget, oEventDragOver);
 		}
 	}
 

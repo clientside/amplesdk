@@ -1596,7 +1596,7 @@ fEventTarget_addEventListener(oAmple_document, "configchange",	function(oEvent) 
 				if (oDocument_all.hasOwnProperty(sId)) {
 					var oChangeEvent	= new cCustomEvent;
 					oChangeEvent.initCustomEvent("localechange", false, false, sLocale);
-					fNode_dispatchEvent(oDocument_all[sId], oChangeEvent);
+					fEventTarget_dispatchEvent(oDocument_all[sId], oChangeEvent);
 				}
 			// Dispatch localechange event to document
 			fQuery_trigger(oAmple_document, "localechange", sLocale);

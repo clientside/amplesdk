@@ -124,7 +124,7 @@ oAmple.unbind	= function(sType, fHandler, bCapture) {
 function fQuery_trigger(oNode, sType, oDetail) {
 	var oEvent	= new cCustomEvent;
 	oEvent.initCustomEvent(sType, true, true, oDetail);
-	fNode_dispatchEvent(oNode, oEvent);
+	fEventTarget_dispatchEvent(oNode, oEvent);
 };
 
 oAmple.trigger	= function(sType, oDetail) {

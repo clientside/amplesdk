@@ -53,7 +53,7 @@ function fNodeAnimation_play(oElement, oProperties, vDuration, vType, fHandler, 
 
 	var oEventEffectStart	= new cEvent;
 	oEventEffectStart.initEvent("effectstart", false, false);
-	fNode_dispatchEvent(oElement, oEventEffectStart);
+	fEventTarget_dispatchEvent(oElement, oEventEffectStart);
 
 	if (!nNodeAnimation_timeout)
 		nNodeAnimation_timeout	= fSetTimeout(fNodeAnimation_onTimeout, 20);
@@ -95,7 +95,7 @@ function fNodeAnimation_stop(nEffect) {
 
 	var oEventEffectEnd	= new cEvent;
 	oEventEffectEnd.initEvent("effectend", false, false);
-	fNode_dispatchEvent(oEffect._element, oEventEffectEnd);
+	fEventTarget_dispatchEvent(oEffect._element, oEventEffectEnd);
 
 	// clear effect
 	fNodeAnimation_remove(nEffect);

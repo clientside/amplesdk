@@ -113,6 +113,8 @@
 				Query.js"/>
 			<!-- DOM Core/Events/Selectors -->
 			<filelist dir="${source.runtime.dir}/classes/events/" files="
+				EventTarget.js,
+				DocumentEvent.js,
 				Event.js,
 				CustomEvent.js,
 				UIEvent.js,

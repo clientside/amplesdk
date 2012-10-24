@@ -40,7 +40,7 @@ cText.prototype.splitText	= function(nOffset) {
 	if (sValueOld != sData) {
 		var oEvent	= new cMutationEvent;
 		oEvent.initMutationEvent("DOMCharacterDataModified", true, false, null, sValueOld, sData, null, null);
-		fNode_dispatchEvent(this, oEvent);
+		fEventTarget_dispatchEvent(this, oEvent);
 	}
 
 	// Update presentation
@@ -103,7 +103,7 @@ cText.prototype.replaceWholeText	= function(sData) {
 	if (sValueOld != sData) {
 		var oEvent	= new cMutationEvent;
 		oEvent.initMutationEvent("DOMCharacterDataModified", true, false, null, sValueOld, sData, null, null);
-		fNode_dispatchEvent(this, oEvent);
+		fEventTarget_dispatchEvent(this, oEvent);
 	}
 };
 

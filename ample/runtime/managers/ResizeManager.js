@@ -157,7 +157,7 @@ function fResizeManager_onMouseMove(oEvent) {
 		var oEventResizeStart	= new cResizeEvent;
 		oEventResizeStart.initResizeEvent("resizestart", true, true, window, null, nResizeManager_resizeEdge);
 		oEventResizeStart.$pseudoTarget	= oEvent.$pseudoTarget;
-		fNode_dispatchEvent(oResizeManager_resizeNode, oEventResizeStart);
+		fEventTarget_dispatchEvent(oResizeManager_resizeNode, oEventResizeStart);
 
 		if (oEventResizeStart.defaultPrevented) {
 			// end operation and return
@@ -217,7 +217,7 @@ function fResizeManager_onMouseMove(oEvent) {
 	var oEventResize	= new cResizeEvent;
 	oEventResize.initResizeEvent("resize", true, true, window, null, nResizeManager_resizeEdge);
 	oEventResize.$pseudoTarget	= oEvent.$pseudoTarget;
-	fNode_dispatchEvent(oResizeManager_resizeNode, oEventResize);
+	fEventTarget_dispatchEvent(oResizeManager_resizeNode, oEventResize);
 
 	if (!oEventResize.defaultPrevented) {
 		var nWidth		= nResizeManager_offsetWidth	+ (oEvent.clientX - nResizeManager_mouseX) * (nResizeManager_resizeEdge & nResizeManager_EDGE_LEFT ? -1 : 1),
@@ -277,7 +277,7 @@ function fResizeManager_onMouseUp(oEvent) {
 		var oEventResizeEnd	= new cResizeEvent;
 		oEventResizeEnd.initResizeEvent("resizeend", true, true, window, null, nResizeManager_resizeEdge);
 		oEventResizeEnd.$pseudoTarget	= oEvent.$pseudoTarget;
-		fNode_dispatchEvent(oResizeManager_resizeNode, oEventResizeEnd);
+		fEventTarget_dispatchEvent(oResizeManager_resizeNode, oEventResizeEnd);
 
 		if (oEventResizeEnd.defaultPrevented || (oEvent.defaultPrevented || oEvent.button)) {
 			var oStyle		= oElementDOM.style,

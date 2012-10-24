@@ -37,11 +37,11 @@ function fFocusManager_focus(oElement) {
 
 			var oEvent	= new cFocusEvent;
 			oEvent.initFocusEvent("focus", false, false, window, null, null);
-			fNode_dispatchEvent(oElement, oEvent);
+			fEventTarget_dispatchEvent(oElement, oEvent);
 
 			var oEvent	= new cFocusEvent;
 			oEvent.initFocusEvent("DOMFocusIn", true, false, window, null, null);
-			fNode_dispatchEvent(oElement, oEvent);
+			fEventTarget_dispatchEvent(oElement, oEvent);
 		}
 	}
 };
@@ -70,11 +70,11 @@ function fFocusManager_blur(oElement) {
 			// If element has not been removed from DOM
 			var oEvent	= new cFocusEvent;
 			oEvent.initFocusEvent("blur", false, false, window, null, null);
-			fNode_dispatchEvent(oElement, oEvent);
+			fEventTarget_dispatchEvent(oElement, oEvent);
 
 			var oEvent	= new cFocusEvent;
 			oEvent.initFocusEvent("DOMFocusOut", true, false, window, null, null);
-			fNode_dispatchEvent(oElement, oEvent);
+			fEventTarget_dispatchEvent(oElement, oEvent);
 		}
 	}
 };

@@ -242,7 +242,7 @@ oAmple.config	= function(sName, oValue) {
 			if (oOldValue != oValue) {
 				var oEvent	= new cCustomEvent;
 				oEvent.initCustomEvent("configchange", false, false, sName);
-				fNode_dispatchEvent(oAmple_document, oEvent);
+				fEventTarget_dispatchEvent(oAmple_document, oEvent);
 			}
 		}
 //->Debug

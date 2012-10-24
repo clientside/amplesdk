@@ -121,7 +121,7 @@ function fElement_removeChild(oParent, oNode) {
 	// Fire Mutation event
 	var oEvent	= new cMutationEvent;
 	oEvent.initMutationEvent("DOMNodeRemoved", true, false, oParent, null, null, null, null);
-	fNode_dispatchEvent(oNode, oEvent);
+	fEventTarget_dispatchEvent(oNode, oEvent);
 
 	// Unregister Instance
 	if (oDocument_all[oParent.uniqueID])
@@ -291,7 +291,7 @@ function fElement_setAttribute(oElement, sName, sValue) {
 		// Fire Mutation event
 		var oEvent	= new cMutationEvent;
 		oEvent.initMutationEvent("DOMAttrModified", true, false, null, sValueOld, sValue, sName, bValue ? 1 /* cMutationEvent.MODIFICATION */ : 2 /* cMutationEvent.ADDITION */);
-		fNode_dispatchEvent(oElement, oEvent);
+		fEventTarget_dispatchEvent(oElement, oEvent);
 
 		// Run mapper
 		if (bRegistered && !bCoreAttr && (sName == "xlink:href" || sName.indexOf(':') ==-1))
@@ -370,7 +370,7 @@ function fElement_setAttributeNS(oElement, sNameSpaceURI, sQName, sValue) {
 					oEvent.currentTarget	= oAttribute;
 					oEvent.eventPhase		= 2 /*cEvent.AT_TARGET*/;
 					//
-					fNode_handleEvent(oAttribute, oEvent);
+					fEventTarget_handleEvent(oAttribute, oEvent);
 				}
 				// New attribute values
 				oAttribute.value		=
@@ -382,7 +382,7 @@ function fElement_setAttributeNS(oElement, sNameSpaceURI, sQName, sValue) {
 				oEvent.currentTarget	= oAttribute;
 				oEvent.eventPhase		= 2 /* cEvent.AT_TARGET */;
 				//
-				fNode_handleEvent(oAttribute, oEvent);
+				fEventTarget_handleEvent(oAttribute, oEvent);
 			}
 		}
 	}
@@ -501,7 +501,7 @@ function fElement_removeAttribute(oElement, sName) {
 		// Fire Mutation event
 		var oEvent	= new cMutationEvent;
 		oEvent.initMutationEvent("DOMAttrModified", true, false, null, sValueOld, null, sName, 3 /* cMutationEvent.REMOVAL */);
-		fNode_dispatchEvent(oElement, oEvent);
+		fEventTarget_dispatchEvent(oElement, oEvent);
 
 		// Run mapper
 		if (bRegistered && !bCoreAttr && (sName == "xlink:href" || sName.indexOf(':') ==-1))
@@ -554,7 +554,7 @@ function fElement_removeAttributeNS(oElement, sNameSpaceURI, sLocalName) {
 				oEvent.currentTarget	= oAttribute;
 				oEvent.eventPhase		= 2 /* cEvent.AT_TARGET */;
 				//
-				fNode_handleEvent(oAttribute, oEvent);
+				fEventTarget_handleEvent(oAttribute, oEvent);
 			}
 		}
 
@@ -655,7 +655,7 @@ cElement.prototype.blur	= function() {
 cElement.prototype.$activate	= function() {
 	var oEvent	= new cUIEvent;
 	oEvent.initUIEvent("DOMActivate", true, true, window, null);
-	fNode_dispatchEvent(this, oEvent);
+	fEventTarget_dispatchEvent(this, oEvent);
 };
 
 cElement.prototype.$getTag		= function() {

@@ -28,7 +28,7 @@ function fNodeLoader_abort(oElement) {
 		// Dispatch abort event
 		var oEvent	= new cEvent;
 		oEvent.initEvent("abort", false, false);
-		fNode_dispatchEvent(oElement, oEvent);
+		fEventTarget_dispatchEvent(oElement, oEvent);
 	}
 };
 
@@ -39,7 +39,7 @@ function fNodeLoader_load(oElement, sUrl, vData, fCallback) {
 	// Dispatch unload event
 	var oEvent	= new cEvent;
 	oEvent.initEvent("unload", false, false);
-	fNode_dispatchEvent(oElement, oEvent);
+	fEventTarget_dispatchEvent(oElement, oEvent);
 
 	// Remove nodes
 	while (oElement.lastChild)
@@ -65,13 +65,13 @@ function fNodeLoader_load(oElement, sUrl, vData, fCallback) {
 			// Dispatch load event
 			var oEvent		= new cEvent;
 			oEvent.initEvent("load", false, false);
-			fNode_dispatchEvent(oElement, oEvent);
+			fEventTarget_dispatchEvent(oElement, oEvent);
 		};
 		oSettings.error	= function(oRequest, sMessage) {
 			// Dispatch error event
 			var oEvent		= new cEvent;
 			oEvent.initEvent("error", false, false);
-			fNode_dispatchEvent(oElement, oEvent);
+			fEventTarget_dispatchEvent(oElement, oEvent);
 		};
 		if (fCallback)
 			oSettings.complete	= function(oRequest, sStatus) {

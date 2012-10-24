@@ -25,7 +25,7 @@ function fCharacterData_appendData(oNode, sData) {
 	if (sValueOld != oNode.data) {
 		var oEvent	= new cMutationEvent;
 		oEvent.initMutationEvent("DOMCharacterDataModified", true, false, null, sValueOld, oNode.data, null, null);
-		fNode_dispatchEvent(oNode, oEvent);
+		fEventTarget_dispatchEvent(oNode, oEvent);
 	}
 };
 
@@ -48,7 +48,7 @@ function fCharacterData_deleteData(oNode, nOffset, nLength) {
 	if (sValueOld != oNode.data) {
 		var oEvent	= new cMutationEvent;
 		oEvent.initMutationEvent("DOMCharacterDataModified", true, false, null, sValueOld, oNode.data, null, null);
-		fNode_dispatchEvent(oNode, oEvent);
+		fEventTarget_dispatchEvent(oNode, oEvent);
 	}
 };
 
@@ -77,7 +77,7 @@ function fCharacterData_insertData(oNode, nOffset, sData) {
 	if (sValueOld != oNode.data) {
 		var oEvent	= new cMutationEvent;
 		oEvent.initMutationEvent("DOMCharacterDataModified", true, false, null, sValueOld, oNode.data, null, null);
-		fNode_dispatchEvent(oNode, oEvent);
+		fEventTarget_dispatchEvent(oNode, oEvent);
 	}
 };
 
@@ -106,7 +106,7 @@ function fCharacterData_replaceData(oNode, nOffset, nLength, sData) {
 	if (sValueOld != oNode.data) {
 		var oEvent	= new cMutationEvent;
 		oEvent.initMutationEvent("DOMCharacterDataModified", true, false, null, sValueOld, oNode.data, null, null);
-		fNode_dispatchEvent(oNode, oEvent);
+		fEventTarget_dispatchEvent(oNode, oEvent);
 	}
 };
 
