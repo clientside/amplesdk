@@ -123,26 +123,26 @@ var aAmple_protectedEventInterfaces	= [
 	"GestureEvent", "TouchEvent"
 ];
 
-function fAmple_extend(oTarget, oSource) {
-	if (!oSource && oTarget instanceof cFunction) {
-		var oPrototype	= oTarget.prototype;
+function fAmple_extend(oSource, oTarget) {
+	if (!oTarget && oSource instanceof cFunction) {
+		var oPrototype	= oSource.prototype;
 		if (oPrototype instanceof cEvent) {
 			var sEventInterface	= oPrototype.eventInterface;
 			// Check if event triggering allowed
 			if (aAmple_protectedEventInterfaces.indexOf(sEventInterface) !=-1)
 				throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR, null, [sEventInterface]);
 
-			hClasses[sEventInterface]	= oTarget;
+			hClasses[sEventInterface]	= oSource;
 		}
 		else
 		if (oPrototype instanceof cElement)
-			hClasses[oPrototype.namespaceURI + '#' + oPrototype.localName]	= oTarget;
+			hClasses[oPrototype.namespaceURI + '#' + oPrototype.localName]	= oSource;
 		else
 		if (oPrototype instanceof cAttr)
-			hClasses[oPrototype.namespaceURI + '#' + '@' + oPrototype.localName]	= oTarget;
+			hClasses[oPrototype.namespaceURI + '#' + '@' + oPrototype.localName]	= oSource;
 		else
 		if (oPrototype instanceof cProcessingInstruction)
-			hClasses['?' + oPrototype.target]	= oTarget;
+			hClasses['?' + oPrototype.target]	= oSource;
 //->Guard
 		else
 			throw new cAmpleException(cAmpleException.ARGUMENT_WRONG_TYPE_ERR, null
@@ -151,12 +151,11 @@ function fAmple_extend(oTarget, oSource) {
 	//<-Debug
 			);
 //<-Guard
+		return oAmple;
 	}
 	else {
-		if (!oSource) {
-			oSource	= oTarget;
+		if (!oTarget)
 			oTarget	= oAmple;
-		}
 
 		//
 		for (var sName in oSource)
@@ -169,24 +168,24 @@ function fAmple_extend(oTarget, oSource) {
 					oTarget[sName]	= oSource[sName];
 			}
 		//
-		return oTarget;
+		return oSource;
 	}
 };
 
 // Extension Mechanism
-oAmple.extend	= function(oTarget, oSource) {
+oAmple.extend	= function(oSource, oTarget) {
 //->Guard
 	fGuard(arguments, [
-		["target",	cObject],
-		["source",	cObject, true]
+		["source",	cObject],
+		["target",	cObject, true]
 	]);
 //<-Guard
 
 	// Sign
-	fExporter_signMembers(oTarget, "plugin");
+	fExporter_signMembers(oSource, "plugin");
 
 	// Extend
-	return fAmple_extend(oTarget, oSource);
+	return fAmple_extend(oSource, oTarget);
 };
 
 // Ready event
