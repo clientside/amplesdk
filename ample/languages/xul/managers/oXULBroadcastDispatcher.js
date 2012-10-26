@@ -20,7 +20,7 @@ cXULElement.prototype.doBroadcast		= function() {
 	// Fire Event on broadcast element
 	if (oBroadcaster) {
 		var oEvent	= this.ownerDocument.createEvent("CustomEvent");
-		oEvent.initCustomEvent("broadcast", true, true, null);
+		oEvent.initCustomEvent("broadcast", false, false, null);
 		oBroadcaster.dispatchEvent(oEvent);
 	}
 };

@@ -19,23 +19,27 @@ cXULElement_broadcaster.handlers	= {
 			if (oEvent.attrName != "id" && oEvent.attrName != "persist") {
 				if (this.attributes["id"]) {
 					var aElements	= this.ownerDocument.getElementsByTagNameNS(this.namespaceURI, "*");
-					for (var nIndex = 0, oElement; oElement = aElements[nIndex]; nIndex++)
-						if (oElement.attributes["observes"] == this.attributes["id"]) {
-							if (oEvent.newValue == null)
-								oElement.removeAttribute(oEvent.attrName);
-							else
-								oElement.setAttribute(oEvent.attrName, oEvent.newValue);
-						}
-					var aObservesElements	= this.ownerDocument.getElementsByTagNameNS(this.namespaceURI, "observes");
-					for (var nIndex = 0, oElement; oElement = aObservesElements[nIndex]; nIndex++)
-						if (oElement.attributes["element"] == this.attributes["id"]) {
-							if (oEvent.newValue == null)
-								oElement.parentNode.removeAttribute(oEvent.attrName);
-							else
-								oElement.parentNode.setAttribute(oEvent.attrName, oEvent.newValue);
-							if (oElement.onbroadcast)
+					for (var nIndex = 0, oElement, sAttribute; oElement = aElements[nIndex]; nIndex++) {
+						if (oElement.localName == "observes") {
+							sAttribute	= oElement.attributes["attribute"];
+							if ((oElement.attributes["element"] == this.attributes["id"]) && (!sAttribute || sAttribute == "*" || sAttribute == oEvent.attrName)) {
+								if (oEvent.newValue == null)
+									oElement.parentNode.removeAttribute(oEvent.attrName);
+								else
+									oElement.parentNode.setAttribute(oEvent.attrName, oEvent.newValue);
+								// Dispatch broadcast event
 								oElement.doBroadcast();
+							}
 						}
+						else {
+							if (oElement.attributes["observes"] == this.attributes["id"]) {
+								if (oEvent.newValue == null)
+									oElement.removeAttribute(oEvent.attrName);
+								else
+									oElement.setAttribute(oEvent.attrName, oEvent.newValue);
+							}
+						}
+					}
 				}
 			}
 		}
