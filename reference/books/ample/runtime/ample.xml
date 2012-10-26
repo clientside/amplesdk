@@ -378,6 +378,15 @@
 						</description>
 					</argument>
 				</arguments>
+				<arguments>
+					<argument name="pi" type="Function">
+						<description>
+							<locale>
+								Processing instruction definition. Must have <link type="class">ProcessingInstruction</link> in its prototype chain.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
 				<description>
 					<locale>
 						Core extensibility API.
