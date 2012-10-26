@@ -35,11 +35,6 @@ var oXULCommandDispatcher	= (function () {
 					if (oElement.attributes.hasOwnProperty(sName))
 						if (sName != "id" && sName != "persist")
 							oEvent.target.setAttribute(sName, oElement.attributes[sName]);
-			if ((sValue = oEvent.target.attributes["observes"]) && (oElement = this.getElementById(sValue)) && oElement instanceof cXULElement_broadcaster)
-				for (sName in oElement.attributes)
-					if (oElement.attributes.hasOwnProperty(sName))
-						if (sName != "id" && sName != "persist")
-							oEvent.target.setAttribute(sName, oElement.attributes[sName]);
 		}
 	}, true);
 
