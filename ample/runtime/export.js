@@ -51,6 +51,7 @@ fExporter_export(cTextEvent,		"TextEvent");
 fExporter_export(cKeyboardEvent,	"KeyboardEvent");
 fExporter_export(cMouseEvent,		"MouseEvent");
 fExporter_export(cWheelEvent,		"WheelEvent");
+fExporter_export(cFocusEvent,		"FocusEvent");
 fExporter_export(cMutationEvent,	"MutationEvent");
 // Touch/Gesture
 fExporter_export(cGestureEvent,		"GestureEvent");
