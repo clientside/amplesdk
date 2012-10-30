@@ -23,15 +23,9 @@ function fNodeSelector_query(aBase, sQuery, fResolver, bMatchOne) {
 
 	for (nSelector = 0; nSelector < aSelectors.length; nSelector++) {
 		if (sSelector = fNodeSelector_parseSelector(aSelectors[nSelector])) {
-			// Optimization for #id (if element is found by id and it is in the tree)
-			if (sSelector.match(/^\s*\*#([-_a-z0-9]+)$/) && (aBase.length == 1 && aBase[0] == oAmple_document) && (oElement = oDocument_ids[cRegExp.$1]) && oDocument_all[oElement.uniqueID]) {
-				aFrom	= [];
-				// Make sure found element is a descendant of collection
-				for (var oNode = oElement; oNode && !aFrom.length; oNode = oNode.parentNode)
-					for (var nIndex = 0, nLength = aBase.length; (nIndex < nLength) && !aFrom.length; nIndex++)
-						if (aBase[nIndex] == oNode)
-							aFrom	= [oElement];
-			}
+			// Optimization for #id (if query context is ample document and element is found by id)
+			if (sSelector.match(/^\s*\*#([-_a-z0-9]+)$/) && (aBase.length == 1 && aBase[0] == oAmple_document) && (oElement = oDocument_ids[cRegExp.$1]))
+				aFrom	= [oElement];
 			else {
 				aFrom	= aBase;
 
