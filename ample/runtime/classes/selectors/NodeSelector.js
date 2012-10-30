@@ -15,6 +15,7 @@ function fNodeSelector_query(aBase, sQuery, fResolver, bMatchOne) {
 	// process comma separated selectors
 	var aMatch	= new cNodeList,
 		aFrom,
+		oElement,
 		aSelectors	= sQuery.split(rNodeSelector_comma),
 		sSelector,
 		nSelector,
@@ -22,19 +23,14 @@ function fNodeSelector_query(aBase, sQuery, fResolver, bMatchOne) {
 
 	for (nSelector = 0; nSelector < aSelectors.length; nSelector++) {
 		if (sSelector = fNodeSelector_parseSelector(aSelectors[nSelector])) {
-			// Optimization for #id
-			if (sSelector.match(/^\s*\*#([-_a-z0-9]+)$/i)) {
+			// Optimization for #id (if element is found by id and it is in the tree)
+			if (sSelector.match(/^\s*\*#([-_a-z0-9]+)$/) && (aBase.length == 1 && aBase[0] == oAmple_document) && (oElement = oDocument_ids[cRegExp.$1]) && oDocument_all[oElement.uniqueID]) {
 				aFrom	= [];
 				// Make sure found element is a descendant of collection
-				for (var oElement = oDocument_ids[cRegExp.$1], oNode = oElement; oNode; oNode = oNode.parentNode) {
-					for (var nIndex = 0, nLength = aBase.length; nIndex < nLength; nIndex++)
-						if (aBase[nIndex] == oNode) {
+				for (var oNode = oElement; oNode && !aFrom.length; oNode = oNode.parentNode)
+					for (var nIndex = 0, nLength = aBase.length; (nIndex < nLength) && !aFrom.length; nIndex++)
+						if (aBase[nIndex] == oNode)
 							aFrom	= [oElement];
-							break;
-						}
-					if (aFrom.length)
-						break;
-				}
 			}
 			else {
 				aFrom	= aBase;
