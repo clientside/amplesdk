@@ -161,7 +161,7 @@ function fAmple_extend(oTarget, oSource) {
 
 		//
 		for (var sName in oSource)
-			if (sName != "toString") {
+			if (sName != "toString" && sName != "prototype") {
 //->Debug
 				if (oTarget.hasOwnProperty(sName))
 					fUtilities_warn(sGUARD_REWRITING_MEMBER_WRN, [sName]);
