@@ -40,7 +40,7 @@ cCharacterData.prototype.appendData	= function(sData) {
 
 function fCharacterData_deleteData(oNode, nOffset, nLength) {
 	var sValueOld	= oNode.data;
-	oNode.data		= oNode.data.substring(0, nOffset) + oNode.data.substring(nOffset, nOffset + nLength);
+	oNode.data		= oNode.data.substring(0, nOffset) + oNode.data.substring(nOffset + nLength, sValueOld.length);
 	oNode.length	= oNode.data.length;
 	oNode.nodeValue	= oNode.data;
 
