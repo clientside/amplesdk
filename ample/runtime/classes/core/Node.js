@@ -432,7 +432,7 @@ function fNode_compareDocumentPosition(oNode, oChild) {
 			if (!oNode2.nextSibling)
 				return 4 /* cNode.DOCUMENT_POSITION_FOLLOWING */;
 			if (!oNode1.nextSibling)
-				return 1 /* cNode.DOCUMENT_POSITION_PRECEDING */;
+				return 2 /* cNode.DOCUMENT_POSITION_PRECEDING */;
 			for (oElement = oNode2.previousSibling; oElement; oElement = oElement.previousSibling)
 				if (oElement == oNode1)
 					return 4 /* cNode.DOCUMENT_POSITION_FOLLOWING */;
