@@ -199,7 +199,7 @@ cElement.prototype.replaceChild	= function(oNode, oOld) {
 				if (oBefore)
 					fElement_insertBefore(this, oNode.firstChild, oBefore);
 				else
-					fElement_appendChild(this, oNode);
+					fElement_appendChild(this, oNode.firstChild);
 		}
 		else
 		if (oBefore)
