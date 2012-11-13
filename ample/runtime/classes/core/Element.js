@@ -185,29 +185,30 @@ cElement.prototype.replaceChild	= function(oNode, oOld) {
 //->Guard
 	fGuard(arguments, [
 		["node",	cNode],
-		["old",		cNode, false, true]
+		["old",		cNode]
 	], this);
 //<-Guard
 
-	if (oOld) {
-		if (this.childNodes.$indexOf(oOld) !=-1) {
-			if (oNode.nodeType == 11)	// cNode.DOCUMENT_FRAGMENT_NODE
-				while (oNode.firstChild)
-					fElement_insertBefore(this, oNode.firstChild, oOld);
-			else
-				fElement_insertBefore(this, oNode, oOld);
-			fElement_removeChild(this, oOld);
+	if (this.childNodes.$indexOf(oOld) !=-1) {
+		var oBefore	= oOld.nextSibling;
+		// First remove node
+		fElement_removeChild(this, oOld);
+		//
+		if (oNode.nodeType == 11) {	// cNode.DOCUMENT_FRAGMENT_NODE
+			while (oNode.firstChild)
+				if (oBefore)
+					fElement_insertBefore(this, oNode.firstChild, oBefore);
+				else
+					fElement_appendChild(this, oNode);
 		}
 		else
-			throw new cDOMException(cDOMException.NOT_FOUND_ERR);
-	}
-	else {
-		if (oNode.nodeType == 11)	// cNode.DOCUMENT_FRAGMENT_NODE
-			while (oNode.firstChild)
-				fElement_appendChild(this, oNode.firstChild);
+		if (oBefore)
+			fElement_insertBefore(this, oNode, oBefore);
 		else
 			fElement_appendChild(this, oNode);
 	}
+	else
+		throw new cDOMException(cDOMException.NOT_FOUND_ERR);
 
 	//
 	return oOld;

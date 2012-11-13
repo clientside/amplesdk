@@ -232,15 +232,23 @@ cNode.prototype.removeChild	= function(oNode) {
 };
 
 function fNode_replaceChild(oParent, oNode, oOld) {
-	fNode_insertBefore(oParent, oNode, oOld);
-	return fNode_removeChild(oParent, oOld);
+	var oBefore	= oOld.nextSibling;
+	// First remove old child
+	fNode_removeChild(oParent, oOld);
+	// Next insert new child
+	if (oBefore)
+		fNode_insertBefore(oParent, oNode, oBefore);
+	else
+		fNode_appendChild(oParent, oNode);
+
+	return oOld;
 };
 
 cNode.prototype.replaceChild	= function(oNode, oOld) {
 //->Guard
 	fGuard(arguments, [
 		["node",	cNode],
-		["old",		cNode, false, true]
+		["old",		cNode]
 	]);
 //<-Guard
 
