@@ -12,7 +12,7 @@ var cDOMException	= function(nCode) {
 
 	var sMessage	= "DOMException" + ' ' + nCode;
 //->Debug
-	sMessage	+= '...' + ' ' + oDOMException_messages[nCode];
+	sMessage	+= ':' + ' ' + oDOMException_messages[nCode];
 //<-Debug
 	this.message= sMessage;
 	this.caller	= arguments[1] || cDOMException.caller.caller;
@@ -38,11 +38,13 @@ cDOMException.VALIDATION_ERR				= 16;	// DOM 3
 cDOMException.TYPE_MISMATCH_ERR				= 17;
 
 //
+cDOMException.prototype		= new cError;
+//
 cDOMException.prototype.code	= null;
 cDOMException.prototype.message	= null;
-
+//
 cDOMException.prototype.toString	= function() {
-	return '[' + this.message + ']';
+	return this.message;
 };
 
 //->Debug

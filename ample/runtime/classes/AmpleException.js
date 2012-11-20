@@ -9,13 +9,14 @@
 
 var cAmpleException	= function(nCode) {
 	this.code	= nCode;
+
 	var sMessage= "AmpleException" + ' ' + nCode;
 //->Debug
 	// Replace placeholders
 	var sValue	= oAmpleException_messages[nCode];
 	if (arguments.length > 2)
 		sValue	= fAmpleException_format(sValue, arguments[2]);
-	sMessage	+= '...' + ' ' + sValue;
+	sMessage	+= ':' + ' ' + sValue;
 //<-Debug
 
 	this.message= sMessage;
@@ -31,11 +32,13 @@ cAmpleException.CANNOT_ACCESS_DOM_ERR	= 5;
 cAmpleException.MEMBER_MISSING_ERR		= 6;
 
 //
+cAmpleException.prototype		= new cError;
+//
 cAmpleException.prototype.code		= null;
 cAmpleException.prototype.message	= null;
-
+//
 cAmpleException.prototype.toString	= function() {
-	return '[' + this.message + ']';
+	return this.message;
 };
 
 //->Debug
