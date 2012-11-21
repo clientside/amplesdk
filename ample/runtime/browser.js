@@ -476,7 +476,7 @@ function fBrowser_onMouseMove(oEvent) {
 				// do not dispatch event if outside modal
 				if (!oBrowser_modalNode || fBrowser_isDescendant(oElement, oBrowser_modalNode)) {
 					// Remove :hover pseudo-class
-					if (oElement.$hoverable && oElement.$isAccessible())
+					if ((oDOMConfiguration_values["ample-enable-css-hover"] || oElement.$hoverable) && oPseudo && oElement.$isAccessible())
 						fElement_setPseudoClass(oElement, "hover", false);
 					//
 					oEventMouseLeave	= new cMouseEvent;
@@ -492,7 +492,7 @@ function fBrowser_onMouseMove(oEvent) {
 				// do not dispatch event if outside modal
 				if (!oBrowser_modalNode || fBrowser_isDescendant(oElement, oBrowser_modalNode)) {
 					// Add :hover pseudo-class
-					if (oElement.$hoverable && oElement.$isAccessible())
+					if ((oDOMConfiguration_values["ample-enable-css-hover"] || oElement.$hoverable) && oPseudo && oElement.$isAccessible())
 						fElement_setPseudoClass(oElement, "hover", true);
 					//
 					oEventMouseEnter	= new cMouseEvent;

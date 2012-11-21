@@ -397,6 +397,7 @@ fDOMConfiguration_setParameter(oConfiguration, "ample-locale", 'en');
 fDOMConfiguration_setParameter(oConfiguration, "ample-user-locale", oUANavigator.language || oUANavigator.userLanguage || 'en-US');
 fDOMConfiguration_setParameter(oConfiguration, "ample-user-agent", '@project_userAgent@');
 fDOMConfiguration_setParameter(oConfiguration, "ample-enable-style", true);
+fDOMConfiguration_setParameter(oConfiguration, "ample-enable-css-hover", true);
 fDOMConfiguration_setParameter(oConfiguration, "ample-enable-guard", true);
 fDOMConfiguration_setParameter(oConfiguration, "ample-enable-transitions", true);
 
