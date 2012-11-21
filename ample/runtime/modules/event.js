@@ -65,6 +65,15 @@ cQuery.prototype.trigger	= function(sType, oDetail) {
 	});
 };
 
+function fQuery_bindunbind(oQuery, sType, fHandler, bCapture, bUnbind) {
+	var fFunction	= bUnbind ? fEventTarget_removeEventListener : fEventTarget_addEventListener;
+	fQuery_each(oQuery, function(nIndex, oNode) {
+		sType.split(/\s+/).forEach(function(sType) {
+			fFunction(oNode, sType, fHandler, bCapture || false);
+		});
+	});
+};
+
 cQuery.prototype.bind	= function(sType, fHandler, bCapture) {
 //->Guard
 	fGuard(arguments, [
@@ -74,9 +83,8 @@ cQuery.prototype.bind	= function(sType, fHandler, bCapture) {
 	]);
 //<-Guard
 
-	fQuery_each(this, function() {
-		fEventTarget_addEventListener(this, sType, fHandler, bCapture || false);
-	});
+	fQuery_bindunbind(this, sType, fHandler, bCapture);
+	//
 	return this;
 };
 
@@ -89,9 +97,8 @@ cQuery.prototype.unbind	= function(sType, fHandler, bCapture) {
 	]);
 //<-Guard
 
-	fQuery_each(this, function() {
-		fEventTarget_removeEventListener(this, sType, fHandler, bCapture || false);
-	});
+	fQuery_bindunbind(this, sType, fHandler, bCapture, true);
+	//
 	return this;
 };
 
@@ -106,7 +113,9 @@ oAmple.bind	= function(sType, fHandler, bCapture) {
 	]);
 //<-Guard
 
-	fEventTarget_addEventListener(oAmple_document, sType, fHandler, bCapture || false);
+	fQuery_bindunbind(fQuery_fromArray([oAmple_document]), sType, fHandler, bCapture);
+
+	return this;
 };
 
 oAmple.unbind	= function(sType, fHandler, bCapture) {
@@ -118,7 +127,9 @@ oAmple.unbind	= function(sType, fHandler, bCapture) {
 	]);
 //<-Guard
 
-	fEventTarget_removeEventListener(oAmple_document, sType, fHandler, bCapture || false);
+	fQuery_bindunbind(fQuery_fromArray([oAmple_document]), sType, fHandler, bCapture, true);
+
+	return this;
 };
 
 function fQuery_trigger(oNode, sType, oDetail) {

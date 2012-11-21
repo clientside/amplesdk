@@ -49,6 +49,14 @@ cQuery.prototype.toArray	= function() {
 	return fQuery_toArray(this);
 };
 
+function fQuery_fromArray(aQuery) {
+	var oQuery	= new cQuery;
+	aQuery.forEach(function(oItem) {
+		oQuery[oQuery.length++]	= oItem;
+	});
+	return oQuery;
+};
+
 // Filtering
 cQuery.prototype.eq	= function(nIndex) {
 //->Guard
