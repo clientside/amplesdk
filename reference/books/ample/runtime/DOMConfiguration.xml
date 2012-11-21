@@ -121,7 +121,7 @@
 				<ul>
 					<li><b>error-handler</b> - if an error is encountered in the document, the implementation will call back the ErrorHandler registered using this parameter</li>
 					<li><b>ample-module-history-fix</b> - fix initial value of the location.hash property in Internet Explorer</li>
-					<li><b>fix-ie-css-transitions</b> - fix IE6-9 transition style property</li>
+					<li><b>ample-fix-ie-css-transitions</b> - fix IE6-9 transition style property</li>
 					<li><b>ample-version</b> - Ample SDK version identifier</li>
 					<li><b>ample-locale</b> - Ample SDK culture</li>
 					<li><b>ample-user-agent</b> - Ample SDK user agent string</li>
