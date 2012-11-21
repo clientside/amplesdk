@@ -860,7 +860,7 @@ function fElement_setPseudoClass(oElement, sName, bValue, sContainer) {
 				oElementDOM.setAttribute("class", sNewName);
 
 			// Transition effects in IE10-
-			if (bTrident && nVersion < 10 && oDOMConfiguration_values["ample-enable-transitions"] &&!(nResizeManager_resizeState || nDragAndDropManager_dragState)) {
+			if (bTrident && nVersion < 10 && oDOMConfiguration_values["ample-fix-ie-css-transitions"] &&!(nResizeManager_resizeState || nDragAndDropManager_dragState)) {
 				//
 				var oComputedStyle	= fBrowser_getComputedStyle(oElementDOM),
 					sTransition	= oComputedStyle["transition"],

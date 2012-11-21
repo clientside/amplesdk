@@ -391,6 +391,7 @@ fDOMConfiguration_setParameter(oConfiguration, "entities", false);	// in DOM-Cor
 fDOMConfiguration_setParameter(oConfiguration, "comments", false);	// in DOM-Core spec the default value is true
 // set ample parameters
 fDOMConfiguration_setParameter(oConfiguration, "ample-module-history-fix", false);	// -> ample-history
+fDOMConfiguration_setParameter(oConfiguration, "ample-fix-ie-css-transitions", true);
 fDOMConfiguration_setParameter(oConfiguration, "ample-version", '@project_version@');
 fDOMConfiguration_setParameter(oConfiguration, "ample-locale", 'en');
 fDOMConfiguration_setParameter(oConfiguration, "ample-user-locale", oUANavigator.language || oUANavigator.userLanguage || 'en-US');
