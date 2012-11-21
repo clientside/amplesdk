@@ -67,15 +67,20 @@
 			// add vendor prefixed styles
 			$sBefore	= "$1$2$3$4-";
 			$sAfter		= "-$2$3$4";
+			// IE
+			$sCSS	= preg_replace("/([\s;{])(transition\-?\w*\s*:\s*)([^\n;}]+)([\n;}])/", $sBefore . "ms" . $sAfter, $sCSS);
+			$sCSS	= preg_replace("/([\s;{])(transform\-?\w*\s*:\s*)([^\n;}]+)([\n;}])/", $sBefore . "ms" . $sAfter, $sCSS);
 			// Opera
 			$sCSS	= preg_replace("/([\s;{])(text-overflow\s*:\s*)([^\n;}]+)([\n;}])/", $sBefore . "o" . $sAfter, $sCSS);
 			$sCSS	= preg_replace("/([\s;{])(transition\-?\w*\s*:\s*)([^\n;}]+)([\n;}])/", $sBefore . "o" . $sAfter, $sCSS);
+			$sCSS	= preg_replace("/([\s;{])(transform\-?\w*\s*:\s*)([^\n;}]+)([\n;}])/", $sBefore . "o" . $sAfter, $sCSS);
 			// WebKit
 			$sCSS	= preg_replace("/([\s;{])(text-overflow\s*:\s*)([^\n;}]+)([\n;}])/", $sBefore . "webkit" . $sAfter, $sCSS);
 			$sCSS	= preg_replace("/([\s;{])(box-shadow\s*:\s*)([^\n;}]+)([\n;}])/", $sBefore . "webkit" . $sAfter, $sCSS);
 			$sCSS	= preg_replace("/([\s;{])(outline-radius\s*:\s*)([^\n;}]+)([\n;}])/", $sBefore . "webkit" . $sAfter, $sCSS);
 			$sCSS	= preg_replace("/([\s;{])(border-radius\s*:\s*)([^\n;}]+)([\n;}])/", $sBefore . "webkit" . $sAfter, $sCSS);
 			$sCSS	= preg_replace("/([\s;{])(transition\-?\w*\s*:\s*)([^\n;}]+)([\n;}])/", $sBefore . "webkit" . $sAfter, $sCSS);
+			$sCSS	= preg_replace("/([\s;{])(transform\-?\w*\s*:\s*)([^\n;}]+)([\n;}])/", $sBefore . "webkit" . $sAfter, $sCSS);
 			// Gecko
 			$sCSS	= preg_replace("/([\s;{])(text-overflow\s*:\s*)([^\n;}]+)([\n;}])/", $sBefore . "moz" . $sAfter, $sCSS);
 			$sCSS	= preg_replace("/([\s;{])(box-shadow\s*:\s*)([^\n;}]+)([\n;}])/", $sBefore . "moz" . $sAfter, $sCSS);
@@ -83,6 +88,7 @@
 			$sCSS	= preg_replace("/([\s;{])(border-radius\s*:\s*)([^\n;}]+)([\n;}])/", $sBefore . "moz" . $sAfter, $sCSS);
 			$sCSS	= preg_replace("/([\s;{])(box-sizing\s*:\s*)([^\n;}]+)([\n;}])/", $sBefore . "moz" . $sAfter, $sCSS);
 			$sCSS	= preg_replace("/([\s;{])(transition\-?\w*\s*:\s*)([^\n;}]+)([\n;}])/", $sBefore . "moz" . $sAfter, $sCSS);
+			$sCSS	= preg_replace("/([\s;{])(transform\-?\w*\s*:\s*)([^\n;}]+)([\n;}])/", $sBefore . "moz" . $sAfter, $sCSS);
 			//
 			$sBefore	= $sBefore . 'moz-border-radius-';
 			$sAfter		= ':$3$4';

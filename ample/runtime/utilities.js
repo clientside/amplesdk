@@ -133,6 +133,15 @@ function fUtilities_translateStyleSheet(sCSS, sUri) {
 			if (aUrl = aImports[nIndex].match(/url\s*\(['"]?([^\)"']+)['"]?\)/i))
 				sCSS	= sCSS.replace(aImports[nIndex], fUtilities_translateStyleSheet(fBrowser_load(aUrl[1], "text/css").responseText, aUrl[1]));
 
+	var sPrefix	= bPresto ? 'o' : bGecko ? "moz" : bTrident ? "ms" : "webkit",
+		sBefore	= '$1$2$3-',
+		sAfter	= '-$1$2$3',
+		sValue	= sBefore + sPrefix + sAfter;
+
+	// Rewrite transitions, animations and transform
+	sCSS	= sCSS.replace(/(?:\s|;)(transition\-?\w*\s*:\s*)(.+)(\n|;)/gi, sValue);
+	sCSS	= sCSS.replace(/(?:\s|;)(transform\-?\w*\s*:\s*)(.+)(\n|;)/gi, sValue);
+
 	// 4. Convert styles
 	if (bTrident) {
 		// Rewrite display:inline-block to display:inline (IE8-)
@@ -146,26 +155,21 @@ function fUtilities_translateStyleSheet(sCSS, sUri) {
 	}
 	else
 	if (bGecko || bWebKit || bPresto) {
-		var sBefore	= '$1$2$3-',
-			sAfter	= '-$1$2$3';
 		// Rewrite text-overflow
 		sCSS	= sCSS
-					.replace(/(?:\s|;)(text-overflow\s*:\s*)(.+)(\n|;)/gi, sBefore + (bPresto ? 'o' : bGecko ? "moz" : "webkit") + sAfter);
-		// Rewrite transitions
-		sCSS	= sCSS
-					.replace(/(?:\s|;)(transition\-?\w*\s*:\s*)(.+)(\n|;)/gi, sBefore + (bPresto ? 'o' : bGecko ? "moz" : "webkit") + sAfter);
+					.replace(/(?:\s|;)(text-overflow\s*:\s*)(.+)(\n|;)/gi, sValue);
 		//
 		if (!bPresto) {
 			// Rewrite box-shadow
 			sCSS	= sCSS
-						.replace(/(?:\s|;)(box-shadow\s*:\s*)(.+)(\n|;)/gi, sBefore + (bGecko ? "moz" : "webkit") + sAfter)
-						.replace(/(?:\s|;)(outline-radius\s*:\s*)(.+)(\n|;)/gi, sBefore + (bGecko ? "moz" : "webkit") + sAfter)
-						.replace(/(?:\s|;)(border-radius\s*:\s*)(.+)(\n|;)/gi, sBefore + (bGecko ? "moz" : "webkit") + sAfter);
+						.replace(/(?:\s|;)(box-shadow\s*:\s*)(.+)(\n|;)/gi, sValue)
+						.replace(/(?:\s|;)(outline-radius\s*:\s*)(.+)(\n|;)/gi, sValue)
+						.replace(/(?:\s|;)(border-radius\s*:\s*)(.+)(\n|;)/gi, sValue);
 			if (bGecko) {
 				// Rewrite box-sizing
-				sCSS	= sCSS.replace(/(?:\s|;)(box-sizing\s*:\s*)(.+)(\n|;)/gi, sBefore + "moz" + sAfter);
+				sCSS	= sCSS.replace(/(?:\s|;)(box-sizing\s*:\s*)(.+)(\n|;)/gi, sValue);
 				// Rewrite border-radius
-				sBefore	= sBefore + 'moz-border-radius-';
+				sBefore	= sBefore + sPrefix + '-border-radius-';
 				sAfter	= ':$2$3';
 				sCSS	= sCSS
 							.replace(/(?:\s|;)(border-top-left-radius\s*:\s*)(.+)(\n|;)/gi, sBefore + 'topleft' + sAfter)
