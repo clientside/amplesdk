@@ -68,9 +68,9 @@ cQuery.prototype.trigger	= function(sType, oDetail) {
 
 function fQuery_bindunbind(oQuery, sType, fHandler, bCapture, bUnbind) {
 	var fFunction	= bUnbind ? fEventTarget_removeEventListener : fEventTarget_addEventListener;
-	fQuery_each(oQuery, function(nIndex, oNode) {
-		sType.split(/\s+/).forEach(function(sType) {
-			fFunction(oNode, sType, fHandler, bCapture || false);
+	sType.split(/\s+/).forEach(function(sType) {
+		fQuery_each(oQuery, function() {
+			fFunction(this, sType, fHandler, bCapture || false);
 		});
 	});
 };
@@ -134,10 +134,10 @@ oAmple.unbind	= function(sType, fHandler, bCapture) {
 };
 
 function fQuery_trigger(oQuery, sType, oDetail) {
-	fQuery_each(oQuery, function(nIndex, oNode) {
+	fQuery_each(oQuery, function() {
 		var oEvent	= new cCustomEvent;
 		oEvent.initCustomEvent(sType, true, true, oDetail);
-		fEventTarget_dispatchEvent(oNode, oEvent);
+		fEventTarget_dispatchEvent(this, oEvent);
 	});
 };
 
