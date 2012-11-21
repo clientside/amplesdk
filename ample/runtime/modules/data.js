@@ -55,7 +55,5 @@ oAmple.data	= function(oElement, sName, oValue) {
 	]);
 //<-Guard
 
-	var oQuery	= new cQuery;
-	oQuery[oQuery.length++]	= oElement;
-	return fQuery_data(oQuery, sName, oValue);
+	return fQuery_data(fQuery_fromArray([oElement]), sName, oValue);
 };
