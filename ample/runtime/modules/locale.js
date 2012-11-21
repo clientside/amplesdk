@@ -1599,7 +1599,7 @@ fEventTarget_addEventListener(oAmple_document, "configchange",	function(oEvent) 
 					fEventTarget_dispatchEvent(oDocument_all[sId], oChangeEvent);
 				}
 			// Dispatch localechange event to document
-			fQuery_trigger(oAmple_document, "localechange", sLocale);
+			fQuery_trigger(fQuery_fromArray([oAmple_document]), "localechange", sLocale);
 		}
 //->Debug
 		else

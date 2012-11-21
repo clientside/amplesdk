@@ -60,9 +60,10 @@ cQuery.prototype.trigger	= function(sType, oDetail) {
 
 	if (arguments.length < 2)
 		oDetail	= null;
-	fQuery_each(this, function() {
-		fQuery_trigger(this, sType, oDetail);
-	});
+
+	fQuery_trigger(this, sType, oDetail);
+
+	return this;
 };
 
 function fQuery_bindunbind(oQuery, sType, fHandler, bCapture, bUnbind) {
@@ -132,10 +133,12 @@ oAmple.unbind	= function(sType, fHandler, bCapture) {
 	return this;
 };
 
-function fQuery_trigger(oNode, sType, oDetail) {
-	var oEvent	= new cCustomEvent;
-	oEvent.initCustomEvent(sType, true, true, oDetail);
-	fEventTarget_dispatchEvent(oNode, oEvent);
+function fQuery_trigger(oQuery, sType, oDetail) {
+	fQuery_each(oQuery, function(nIndex, oNode) {
+		var oEvent	= new cCustomEvent;
+		oEvent.initCustomEvent(sType, true, true, oDetail);
+		fEventTarget_dispatchEvent(oNode, oEvent);
+	});
 };
 
 oAmple.trigger	= function(sType, oDetail) {
@@ -153,5 +156,7 @@ oAmple.trigger	= function(sType, oDetail) {
 	if (arguments.length < 2)
 		oDetail	= null;
 
-	fQuery_trigger(oAmple_document, sType, oDetail);
+	fQuery_trigger(fQuery_fromArray([oAmple_document]), sType, oDetail);
+
+	return this;
 };
