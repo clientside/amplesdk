@@ -177,7 +177,7 @@ function fDocument_createElementNS(oDocument, sNameSpaceURI, sQName) {
 		sName;
 
 	// DOM Properties
-	oElement.attributes		= {};
+	oElement.attributes		= new cNamedNodeMap;
 	oElement.ownerDocument	= oDocument;
 	oElement.prefix			= sPrefix;
 	oElement.nodeName		= sQName;
