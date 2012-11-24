@@ -384,16 +384,8 @@ function fDocument_importNode(oDocument, oElementDOM, bDeep, oParent) {
 						oAttributes[sName]	= sValue;
 				}
 
-				// Copy default attributes values if not specified
-				var fConstructor	= hClasses[sNameSpaceURI + '#' + sLocalName];
-				if (fConstructor) {
-					for (sName in fConstructor.attributes)
-						if (fConstructor.attributes.hasOwnProperty(sName) && !(sName in oAttributes))
-							oAttributes[sName]	= fConstructor.attributes[sName];
-				}
 //->Debug
-				else
-				if (!(sNameSpaceURI == sNS_XHTML && sLocalName == "div"))
+				if (!hClasses[sNameSpaceURI + '#' + sLocalName] && !(sNameSpaceURI == sNS_XHTML && sLocalName == "div"))
 					fUtilities_warn(sGUARD_UNKNOWN_ELEMENT_NS_WRN, [oElementDOM.nodeName, sNameSpaceURI]);
 //<-Debug
 
