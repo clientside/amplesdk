@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<element name="maxInclusive">
+<element name="minInclusive">
 	<abstract>
 		<locale>
-			Facet maxInclusive defines the inclusive lower bound of the ·value space· for a datatype with the ·ordered· property.
+			Facet minInclusive defines the inclusive lower bound of the ·value space· for a datatype with the ·ordered· property.
 		</locale>
 	</abstract>
 	<examples />
