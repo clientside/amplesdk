@@ -144,7 +144,7 @@ cXHTMLElement_colorpicker.prototype._onPointerPaletteMouseDown	= function(oEvent
 };
 
 cXHTMLElement_colorpicker.prototype.acceptDialog	= function() {
-	this.attributes.value	= this.$getContainer('value').value;
+	this.setAttribute("value", this.$getContainer('value').value);
 
 	// fire select event
 	var oEvent	= this.ownerDocument.createEvent("CustomEvent");
@@ -153,7 +153,7 @@ cXHTMLElement_colorpicker.prototype.acceptDialog	= function() {
 };
 
 cXHTMLElement_colorpicker.prototype.cancelDialog	= function() {
-	this.setAttribute("value", this.attributes.value);
+	this.setAttribute("value", this.getAttribute("value"));
 
 	// fire cancel event
 	var oEvent	= this.ownerDocument.createEvent("CustomEvent");
