@@ -59,6 +59,7 @@ fExporter_export(cTouchEvent,		"TouchEvent");
 
 // DOM-Core
 fExporter_export(cDOMStringList,	"DOMStringList");
+fExporter_export(cNamedNodeMap,		"NamedNodeMap");
 fExporter_export(cNode,				"Node");
 fExporter_export(cAttr,				"Attr");
 fExporter_export(cCDATASection,		"CDATASection");

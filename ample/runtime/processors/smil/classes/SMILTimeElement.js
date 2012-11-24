@@ -15,17 +15,17 @@ cSMILTimeElement.prototype	= new cSMILElement("#element-time");
 function fSMILTimeElement_init(oEvent) {
 	var oElement	= oEvent.currentTarget;
 	// Timing and Synchronization
-	oElement.begin			= fSMILTimeElement_parseDate(oElement.attributes["begin"]);
-	oElement.end			= fSMILTimeElement_parseDate(oElement.attributes["end"]);
-	oElement.dur			= fSMILTimeElement_parseDuration(oElement.attributes["dur"]);
+	oElement.begin			= fSMILTimeElement_parseDate(fElement_getAttribute(oElement, "begin"));
+	oElement.end			= fSMILTimeElement_parseDate(fElement_getAttribute(oElement, "end"));
+	oElement.dur			= fSMILTimeElement_parseDuration(fElement_getAttribute(oElement, "dur"));
 	// Repetition
-	oElement.repeatCount	= fSMILTimeElement_parseFloat(oElement.attributes["repeatCount"], 1);
-	oElement.repeatDur		= fSMILTimeElement_parseDuration(oElement.attributes["repeatDur"]);
+	oElement.repeatCount	= fSMILTimeElement_parseFloat(fElement_getAttribute(oElement, "repeatCount"), 1);
+	oElement.repeatDur		= fSMILTimeElement_parseDuration(fElement_getAttribute(oElement, "repeatDur"));
 	// Time Manipulations
-	oElement.autoReverse	= oElement.attributes["autoReverse"] == "true";
-	oElement.accelerate		= fSMILTimeElement_parseFloat(oElement.attributes["accelerate"], 0);
-	oElement.decelerate		= fSMILTimeElement_parseFloat(oElement.attributes["decelerate"], 0);
-	oElement.speed			= fSMILTimeElement_parseFloat(oElement.attributes["speed"], 1);
+	oElement.autoReverse	= fElement_getAttribute(oElement, "autoReverse") == "true";
+	oElement.accelerate		= fSMILTimeElement_parseFloat(fElement_getAttribute(oElement, "accelerate"), 0);
+	oElement.decelerate		= fSMILTimeElement_parseFloat(fElement_getAttribute(oElement, "decelerate"), 0);
+	oElement.speed			= fSMILTimeElement_parseFloat(fElement_getAttribute(oElement, "speed"), 1);
 
 	if (oElement.parentNode instanceof cSMILTimeElement)
 		return;

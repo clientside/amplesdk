@@ -32,7 +32,7 @@ cAMLElement_repeater.handlers["DOMAttrModified"]	= function(oEvent) {
 		}
 };
 cAMLElement_repeater.handlers["DOMNodeInsertedIntoDocument"]	= function(oEvent) {
-	var oElement	= oDocument_ids[this.attributes["data"]];
+	var oElement	= oDocument_ids[fElement_getAttribute(this, "data")];
 	if (oElement) {
 		this.bind(oElement);
 		//
@@ -90,7 +90,7 @@ cAMLElement_repeater.prototype.repeat	= function() {
 			fResolver	= function (sPrefix) {
 				return sPrefix in oCache ? oCache[sPrefix] : oCache[sPrefix] = fNode_lookupNamespaceURI(oContext, sPrefix);
 			};
-		aElements	= fNodeSelector_query([this.data], this.attributes["select"] || '', fResolver);
+		aElements	= fNodeSelector_query([this.data], fElement_getAttribute(this, "select") || '', fResolver);
 		for (nIndex = 0; oElement = aElements[nIndex]; nIndex++)
 			this.parentNode.insertBefore(
 				fAMLElement_repeater_processNode(
@@ -105,13 +105,13 @@ var rAMLElement_repeater_regexp	= /(\{([^\}]+)\})/g;
 
 // 'Static' Methods
 function fAMLElement_repeater_processNode(oElement, oData, fResolver) {
-	var oNode, sName;
+	var oNode;
 	for (var nIndex = 0; oNode	= oElement.childNodes[nIndex]; nIndex++)	{
 		switch (oNode.nodeType) {
 			case 1:	// cNode.ELEMENT_NODE
-				for (sName in oNode.attributes)
-					if (oNode.attributes.hasOwnProperty(sName) && oNode.attributes[sName].match(rAMLElement_repeater_regexp))
-						oNode.attributes[sName]	= oNode.attributes[sName].replace(cRegExp.$1, fAMLElement_repeater_resolveValue(cRegExp.$2, oData, fResolver));
+				for (var nAttribute = 0, nLengthAttribute = oNode.attributes.length, oAttribute; nIndex < nLengthAttribute; nIndex++)
+					if ((oAttribute = oNode.attributes.item(nAttribute)).match(rAMLElement_repeater_regexp))
+						fElement_setAttributeNS(oNode, oAttribute.namespaceURI, oAttribute.name, oAttribute.value.replace(cRegExp.$1, fAMLElement_repeater_resolveValue(cRegExp.$2, oData, fResolver)));
 				fAMLElement_repeater_processNode(oNode, oData, fResolver);
 				break;
 

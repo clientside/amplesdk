@@ -118,11 +118,11 @@ cQuery.prototype.show	= function(vDuration, fCallback) {
 
 	fQuery_each(this, function() {
 		var oElementDOM	= this.$getContainer(),
-			sValue	= this.attributes.style,
+			sValue	= fElement_getAttribute(this, "style"),
 			oStyle	= oElementDOM.style;
 		if (oStyle.display == "none") {
 			if (sValue)
-				this.attributes.style	= sValue.replace(/display\s*:\s*[\w-]+\s*;?/, '');
+				fElement_setAttribute(this, "style", sValue.replace(/display\s*:\s*[\w-]+\s*;?/, ''));
 			//
 			oStyle.display	= '';
 			//
@@ -175,10 +175,10 @@ cQuery.prototype.hide	= function(vDuration, fCallback) {
 				oStyle.overflow	= "hidden";
 				fBrowser_setStyle(oElementDOM, "opacity", '1');
 				fNodeAnimation_play(this, oProperties, vDuration, "ease", function() {
-					var sValue	= this.attributes.style || '';
+					var sValue	= fElement_getAttribute(this, "style") || '';
 					if (sValue)
 						sValue	= sValue.replace(/display\s*:\s*[\w-]+\s*;?/, '');
-					this.attributes.style	= "display" + ':' + "none" + ';' + sValue;
+					fElement_setAttribute(this, "style", "display" + ':' + "none" + ';' + sValue);
 					//
 					oStyle.display	= "none";
 					// Restore values

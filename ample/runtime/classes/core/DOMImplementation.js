@@ -37,7 +37,7 @@ function fDOMImplementation_createDocument(oImplementation, sNameSpaceURI, sQNam
 	if (sQName) {
 		oDocument.documentElement	= fDocument_createElementNS(oDocument, sNameSpaceURI, sQName);
 		if (sNameSpaceURI)
-			oDocument.documentElement.attributes["xmlns" + (sQName.match(/^([^:]+):/) ? ':' + cRegExp.$1 : '')]	= sNameSpaceURI;
+			fElement_setAttributeNS(oDocument.documentElement, sNS_XMLNS, "xmlns" + (sQName.match(/^([^:]+):/) ? ':' + cRegExp.$1 : ''), sNameSpaceURI);
 		fNode_appendChild(oDocument, oDocument.documentElement);
 		// Register
 		fDocument_register(oDocument, oDocument.documentElement);

@@ -7,7 +7,10 @@
  *
  */
 
-var cNamedNodeMap	= function() {};
+var cNamedNodeMap	= function() {
+	this.$map	= {};
+	this.$all	= [];
+};
 
 cNamedNodeMap.prototype.length	= 0;
 
@@ -21,7 +24,7 @@ cNamedNodeMap.prototype.getNamedItem	= function(sName) {
 
 cNamedNodeMap.prototype.setNamedItem	= function(oNode) {
 	var oOldNode	= this.removeNamedItem(oNode.name);
-	fNamedNodeMap_addItemByKey(this, oNode.name, oNode);
+	fNamedNodeMap_addItem(this, oNode);
 	return oOldNode;
 };
 
@@ -31,23 +34,23 @@ cNamedNodeMap.prototype.removeNamedItem	= function(sName) {
 
 // DOM Level 2
 cNamedNodeMap.prototype.getNamedItemNS	= function(sNameSpaceURI, sLocalName) {
-	return this.$map[sNameSpaceURI + '#' + sLocalName] || null;
+	return this.$map[(sNameSpaceURI ? sNameSpaceURI + '#' : '') + sLocalName] || null;
 };
 
 cNamedNodeMap.prototype.setNamedItemNS	= function(oNode) {
-	var oOldNode	= fNamedNodeMap_remove(oMap, oNode.namespaceURI, oNode.localName);
-	fNamedNodeMap_addItemByKey(this, oNode.namespaceURI + '#' + oNode.localName, oNode);
+	var oOldNode	= fNamedNodeMap_removeItemByKey(this, (oNode.namespaceURI ? oNode.namespaceURI + '#' : '') + oNode.localName);
+	fNamedNodeMap_addItem(this, oNode);
 	return oOldNode;
 };
 
 cNamedNodeMap.prototype.removeNamedItemNS	= function(sNameSpaceURI, sLocalName) {
-	return fNamedNodeMap_removeItemByKey(this, sNameSpaceURI + '#' + sLocalName);
+	return fNamedNodeMap_removeItemByKey(this, (sNameSpaceURI ? sNameSpaceURI + '#' : '') + sLocalName);
 };
 
-function fNamedNodeMap_addItemByKey(oMap, sKey, oNode) {
+function fNamedNodeMap_addItem(oMap, oNode) {
 	oMap.length++;
 	oMap.$all.push(oNode);
-	oMap.$map[sKey]	= oNode;
+	oMap.$map[oNode.nodeName]	= oNode;
 };
 
 function fNamedNodeMap_removeItemByKey(oMap, sKey) {

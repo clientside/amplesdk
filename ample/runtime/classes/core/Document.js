@@ -45,26 +45,21 @@ cDocument.prototype.createAttribute	= function(sName) {
 };
 
 function fDocument_createAttributeNS(oDocument, sNameSpaceURI, sQName) {
-//->Source
-/*
 	var oNode		= new cAttr,
 		aQName		= sQName.split(':'),
 		sLocalName	= aQName.pop(),
 		sPrefix		= aQName.pop() || null;
 
-	oNode.ownerDocument	= this;
+	oNode.ownerDocument	= oDocument;
 	oNode.localName		= sLocalName;
 	oNode.prefix		= sPrefix;
 	oNode.namespaceURI	= sNameSpaceURI;
-	oNode.nodeName		= sQName;
-	oNode.nodeValue		= '';
-	oNode.name			= oNode.nodeName;
-	oNode.value			= oNode.nodeValue;
+	oNode.nodeName		=
+	oNode.name			= sQName;
+	oNode.nodeValue		=
+	oNode.value			= '';
 
 	return oNode;
-*/
-//<-Source
-	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };
 
 cDocument.prototype.createAttributeNS	= function(sNameSpaceURI, sQName) {
@@ -192,7 +187,7 @@ function fDocument_createElementNS(oDocument, sNameSpaceURI, sQName) {
 		// Set default attributes, if defined
 		for (sName in fConstructor.attributes)
 			if (fConstructor.attributes.hasOwnProperty(sName))
-				oElement.attributes[sName]	= fConstructor.attributes[sName];
+				fElement_setAttribute(oElement, sName, fConstructor.attributes[sName]);
 	}
 	else {
 		// Set namespaceURI for unknown elements manually
@@ -357,8 +352,7 @@ function fDocument_importNode(oDocument, oElementDOM, bDeep, oParent) {
 				// Create element
 				oNode	= fDocument_createElementNS(oDocument, sNameSpaceURI, oElementDOM.nodeName);
 
-				var oAttributes	= oNode.attributes,
-					aAttributes	= oElementDOM.attributes,
+				var aAttributes	= oElementDOM.attributes,
 					oAttribute, sName, sValue;
 
 				for (var nIndex = 0, nLength = aAttributes.length; nIndex < nLength; nIndex++) {
@@ -370,8 +364,8 @@ function fDocument_importNode(oDocument, oElementDOM, bDeep, oParent) {
 					if (bGecko && sValue == sNS_XUL + '#')
 						sValue	= sNS_XUL;
 
-					// Inline event handler
-					if (sName.indexOf('on') == 0) {
+					// Inline event handler (only from null namespace)
+					if (!oAttribute.namespaceURI && sName.indexOf('on') == 0) {
 						try {
 							oNode[sName]	= new cFunction(sNameSpaceURI == sNS_SVG ? "evt" : "event", sValue);
 						} catch (oException) {
@@ -381,15 +375,16 @@ function fDocument_importNode(oDocument, oElementDOM, bDeep, oParent) {
 						}
 					}
 					else
-						oAttributes[sName]	= sValue;
+						fElement_setAttributeNS(oNode, oAttribute.namespaceURI || null, sName, sValue);
 				}
 
 				// Copy default attributes values if not specified
 				var fConstructor	= hClasses[sNameSpaceURI + '#' + sLocalName];
+				// TODO: Remove this duplicate code, as copying of attributes also happens in createElementNS
 				if (fConstructor) {
-					for (sName in fConstructor.attributes)
-						if (fConstructor.attributes.hasOwnProperty(sName) && !(sName in oAttributes))
-							oAttributes[sName]	= fConstructor.attributes[sName];
+					for (var sName in fConstructor.attributes)
+						if (fConstructor.attributes.hasOwnProperty(sName))
+							fElement_setAttribute(oNode, sName, fConstructor.attributes[sName]);
 				}
 //->Debug
 				else
@@ -513,7 +508,7 @@ function fDocument_register(oDocument, oElement) {
 //		oDocument_shadow[oElement.uniqueID]	= {};
 
 		// Register "identified" Instance
-		var sId	= oElement.attributes.id;
+		var sId	= fElement_getAttribute(oElement, 'id');
 		if (sId) {
 //->Debug
 			if (oDocument_ids[sId])
@@ -530,41 +525,22 @@ function fDocument_register(oDocument, oElement) {
 		}
 
 		// Global attributes module
-		for (var sName in oElement.attributes) {
-			if (oElement.attributes.hasOwnProperty(sName)) {
-				var aQName		= sName.split(':'),
-					sLocalName	= aQName.pop(),
-					sPrefix		= aQName.pop() || null,
-					sNameSpaceURI;
-
-				if (sName != "xmlns" && sPrefix && sPrefix != "xmlns" && (sNameSpaceURI = fNode_lookupNamespaceURI(oElement, sPrefix))) {
-					var fConstructor	= hClasses[sNameSpaceURI + '#' + '@' + sLocalName];
-					if (fConstructor)	{
-						// oAttribute used to create fake object
-						var oAttribute	= new fConstructor;
-						oAttribute.ownerDocument= oDocument;
-						oAttribute.ownerElement	= oElement;
-						oAttribute.name			=
-						oAttribute.nodeName		= sName;
-						oAttribute.value		=
-						oAttribute.nodeValue	= oElement.attributes[sName];
-						oAttribute.localName	= sLocalName;
-						oAttribute.prefix		= sPrefix;
-						oAttribute.namespaceURI	= sNameSpaceURI;
-
-						// Fire Mutation event (pseudo)
-						oEvent	= new cMutationEvent;
-						oEvent.initMutationEvent("DOMNodeInsertedIntoDocument", false, false, null, null, null, null, null);
-						oEvent.target	=
-						oEvent.currentTarget	= oAttribute;
-						oEvent.eventPhase		= 2 /* cEvent.AT_TARGET */;
-						fEventTarget_handleEvent(oAttribute, oEvent);
-					}
-//->Debug
-					else
-						fUtilities_warn(sGUARD_UNKNOWN_ATTRIBUTE_NS_WRN, [sLocalName, sNameSpaceURI]);
-//<-Debug
+		for (var nIndex = 0, nLength = oElement.attributes.length, oAttribute; nIndex < nLength; nIndex++) {
+			if ((oAttribute = oElement.attributes.item(nIndex)).namespaceURI && oAttribute.namespaceURI != sNS_XML && oAttribute.namespaceURI != sNS_XMLNS) {
+				var fConstructor	= hClasses[oAttribute.namespaceURI + '#' + '@' + oAttribute.localName];
+				if (fConstructor)	{
+					// Fire Mutation event (pseudo)
+					oEvent	= new cMutationEvent;
+					oEvent.initMutationEvent("DOMNodeInsertedIntoDocument", false, false, null, null, null, null, null);
+					oEvent.target	=
+					oEvent.currentTarget	= oAttribute;
+					oEvent.eventPhase		= 2 /* cEvent.AT_TARGET */;
+					fEventTarget_handleEvent(oAttribute, oEvent);
 				}
+//->Debug
+				else
+					fUtilities_warn(sGUARD_UNKNOWN_ATTRIBUTE_NS_WRN, [oAttribute.localName, oAttribute.namespaceURI]);
+//<-Debug
 			}
 		}
 
@@ -613,8 +589,9 @@ function fDocument_unregister(oDocument, oElement) {
 //		delete oDocument_shadow[oElement.uniqueID];
 
 		// Unregister "identified" Instance
-		if (oElement.attributes.id)
-			delete oDocument_ids[oElement.attributes.id];
+		var sId	= fElement_getAttribute(oElement, 'id');
+		if (sId)
+			delete oDocument_ids[sId];
 
 		var oFragment	= oElement.contentFragment,
 			nIndex,
