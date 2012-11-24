@@ -445,6 +445,7 @@ function fBrowser_onMouseMove(oEvent) {
 	var oTarget		= fBrowser_getEventTarget(oEvent),
 		oPseudo		= fBrowser_getUIEventPseudo(oEvent),
 		nButton		= fBrowser_getUIEventButton(oEvent),
+		oElementDOM,
 		nIndexCommon=-1,
 		aElements	= new cNodeList,
 		oElement,
@@ -476,12 +477,13 @@ function fBrowser_onMouseMove(oEvent) {
 				// do not dispatch event if outside modal
 				if (!oBrowser_modalNode || fBrowser_isDescendant(oElement, oBrowser_modalNode)) {
 					// Remove :hover pseudo-class
-					if ((oDOMConfiguration_values["ample-enable-css-hover"] || oElement.$hoverable) && oPseudo && oElement.$isAccessible())
+					oElementDOM	= oElement.$getContainer();
+					if ((oDOMConfiguration_values["ample-enable-css-hover"] || oElement.$hoverable) && oElementDOM && oElement.$isAccessible())
 						fElement_setPseudoClass(oElement, "hover", false);
 					//
 					oEventMouseLeave	= new cMouseEvent;
 					oEventMouseLeave.initMouseEvent("mouseleave", false, false, window, null, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, oEvent.metaKey, nButton, aBrowser_mouseNodes[nIndex + 1] || null);
-					oEventMouseLeave.$pseudoTarget	= oPseudo;
+					oEventMouseLeave.$pseudoTarget	= oElementDOM;
 					fEventTarget_dispatchEvent(oElement, oEventMouseLeave);
 				}
 			}
@@ -492,12 +494,13 @@ function fBrowser_onMouseMove(oEvent) {
 				// do not dispatch event if outside modal
 				if (!oBrowser_modalNode || fBrowser_isDescendant(oElement, oBrowser_modalNode)) {
 					// Add :hover pseudo-class
-					if ((oDOMConfiguration_values["ample-enable-css-hover"] || oElement.$hoverable) && oPseudo && oElement.$isAccessible())
+					oElementDOM	= oElement.$getContainer();
+					if ((oDOMConfiguration_values["ample-enable-css-hover"] || oElement.$hoverable) && oElementDOM && oElement.$isAccessible())
 						fElement_setPseudoClass(oElement, "hover", true);
 					//
 					oEventMouseEnter	= new cMouseEvent;
 					oEventMouseEnter.initMouseEvent("mouseenter", false, false, window, null, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, oEvent.metaKey, nButton, aElements[nIndex] || null);
-					oEventMouseEnter.$pseudoTarget	= oPseudo;
+					oEventMouseEnter.$pseudoTarget	= oElementDOM;
 					fEventTarget_dispatchEvent(oElement, oEventMouseEnter);
 				}
 			}
