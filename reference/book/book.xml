@@ -230,37 +230,32 @@
 	</node>
 	<node title="Plugins" open="true">
 		<node title="Cookie">
-			<node title="Cookie" xhref="plugins/cookie/cookie.xml" />
+			<node title="Overview" xurl="plugins/cookie/cookie.xml" />
 		</node>
 		<node title="Forms">
-			<node title="Form" xhref="plugins/forms/forms.xml"/>
+			<node title="Overview" xurl="plugins/forms/forms.xml"/>
+		</node>
+		<node title="RPC">
+			<node title="Overview" xurl="plugins/rpc/rpc.xml"/>
+			<node title="Objects">
+				<node title="RPCClient" xurl="plugins/rpc/RPCClient.xml" />
+			</node>
 		</node>
 		<node title="Store">
-			<node title="Store" xhref="plugins/store/store.xml"/>
+			<node title="Overview" xurl="plugins/store/store.xml"/>
 		</node>
-		<node title="XPath">
-			<node title="Objects">
-				<node title="XPathEvaluator" xhref="plugins/xpath/XPathEvaluator.xml"/>
-				<node title="XPathException" xhref="plugins/xpath/XPathException.xml"/>
-				<node title="XPathExpression" xhref="plugins/xpath/XPathExpression.xml"/>
-				<node title="XPathNamespace" xhref="plugins/xpath/XPathNamespace.xml"/>
-				<node title="XPathNSResolver" xhref="plugins/xpath/XPathNSResolver.xml"/>
-				<node title="XPathResult" xhref="plugins/xpath/XPathResult.xml"/>
-			</node>
-			<node title="XPath" xhref="plugins/xpath/xpath.xml"/>
+		<node title="Touch">
+			<node title="Overview" xurl="plugins/touch/touch.xml"/>
 		</node>
-		<node title="XSLT">
-			<node title="XSLT" xhref="plugins/xslt/xslt.xml"/>
-		</node>
-		<node title="SOAP">
-			<node title="SOAP" xhref="plugins/soap/soap.xml"/>
+		<node title="WebService">
+			<node title="Overview" xurl="plugins/webservice/webservice.xml"/>
 			<node title="Objects">
 				<node title="SoapRequest" xurl="plugins/soap/SoapRequest.xml"/>
 				<node title="SoapEnvelope" xurl="plugins/soap/SoapEnvelope.xml"/>
 			</node>
 		</node>
 		<node title="XMPP">
-			<node title="XMPP" xhref="ample/plugins/xmpp.xml"/>
+			<node title="Overview" xurl="plugins/xmpp/xmpp.xml"/>
 			<node title="Objects">
 				<node title="XmppConnection" xurl="plugins/xmpp/XmppConnection.xml"/>
 				<node title="XmppPacket" xurl="plugins/xmpp/XmppPacket.xml"/>
@@ -273,6 +268,17 @@
 				<node title="XmppChat" xurl="plugins/xmpp/XmppClient.xml"/>
 				<node title="XmppGroupChat" xurl="plugins/xmpp/XmppGroupClient.xml"/>
 			</node>
+		</node>
+		<node title="XPath">
+			<node title="Overview" xurl="plugins/xpath/xpath.xml"/>
+			<node title="Objects">
+				<node title="XPathEvaluator" xurl="plugins/xpath/XPathEvaluator.xml"/>
+				<node title="XPathException" xurl="plugins/xpath/XPathException.xml"/>
+				<node title="XPathResult" xurl="plugins/xpath/XPathResult.xml"/>
+			</node>
+		</node>
+		<node title="XSLT">
+			<node title="Overview" xurl="plugins/xslt/xslt.xml"/>
 		</node>
 	</node>
 	<node title="UI languages" open="true">
