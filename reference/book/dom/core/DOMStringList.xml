@@ -19,7 +19,7 @@
 			</property>
 		</properties>
 		<methods>
-			<method name="item" type="DOMString">
+			<method name="item" type="String">
 				<arguments>
 					<argument name="index" type="Number">
 						<description>

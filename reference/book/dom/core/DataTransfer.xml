@@ -23,7 +23,7 @@
 					</locale>
 				</description>
 			</property>
-			<property name="types" type="StringList" readonly="true">
+			<property name="types" type="dom:core:DOMStringList" readonly="true">
 				<description>
 					<locale>
 						Contains the list of formats that are stored in the DataTransfer object.
