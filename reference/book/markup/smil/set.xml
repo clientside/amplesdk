@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<element name="set" extends="smil:SMILAnimationElement">
+<element name="set" extends="markup:smil:SMILAnimationElement">
 	<abstract>
 		<locale>
 			The set element provides a simple means of just setting the value of an attribute for a specified duration.

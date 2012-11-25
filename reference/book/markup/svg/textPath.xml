@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<element name="text" extends="svg:SVGElement">
+<element name="text" extends="markup:svg:SVGElement">
 	<abstract>
 		<locale>
 			The 'textPath' element is used to indicate that a block of text is to be rendered along the shape of a 'path'.

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<class name="WheelEvent" extends="runtime:MouseEvent">
+<class name="WheelEvent" extends="core:events:MouseEvent">
 	<abstract>
 		<locale>
 			The WheelEvent interface provides specific contextual information associated with mouse wheel events.

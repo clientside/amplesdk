@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<element name="radialGradient" extends="svg:SVGElement">
+<element name="radialGradient" extends="markup:svg:SVGElement">
 	<abstract>
 		<locale>
 			The 'radialGradient' element is used to define radial gradients.

@@ -61,7 +61,7 @@
 
 	<xsl:template name="extend">
 		<xsl:param name="document" />
-		<xsl:param name="extends" select="document(concat('../../books/ample/', substring-before($document/*/@extends, ':'), '/', substring-after($document/*/@extends, ':'), '.xml'))"/>
+		<xsl:param name="extends" select="document(concat('../../book/', translate($document/*/@extends, ':', '/'), '.xml'))"/>
 		<xsl:if test="$extends">
 			<xsl:if test="$extends/*/@extends">
 				<xsl:call-template name="extend">

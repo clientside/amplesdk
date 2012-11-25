@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<class name="XULDocument" extends="runtime:Document">
+<class name="XULDocument" extends="dom:core:Document">
 	<abstract>
 		<locale>
 			Represent XUL Document Object

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<element name="animateMotion" extends="smil:SMILAnimationElement">
+<element name="animateMotion" extends="markup:smil:SMILAnimationElement">
 	<abstract>
 		<locale>
 			The animateMotion element will move an element along a path.

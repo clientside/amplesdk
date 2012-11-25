@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<element name="circle" extends="svg:SVGShapeElement">
+<element name="circle" extends="markup:svg:SVGShapeElement">
 	<abstract>
 		<locale>
 			The 'circle' element defines a circle based on a center point and a radius.

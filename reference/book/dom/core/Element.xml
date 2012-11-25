@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<class name="Element" extends="runtime:Node">
+<class name="Element" extends="dom:core:Node">
 	<abstract>
 		<locale>
 			Represents an element.

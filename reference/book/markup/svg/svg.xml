@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<element name="svg" extends="svg:SVGElement">
+<element name="svg" extends="markup:svg:SVGElement">
 	<abstract>
 		<locale>
 			A 'svg' element is the root element for the SVG document fragment.

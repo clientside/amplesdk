@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<element extends="aui:AUIElement" name="filepicker">
+<element extends="markup:aui:AUIElement" name="filepicker">
 	<abstract>
 		<warning>
 			<locale>

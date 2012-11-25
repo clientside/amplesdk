@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<class name="GestureEvent" extends="runtime:UIEvent">
+<class name="GestureEvent" extends="core:events:UIEvent">
 	<abstract>
 		<locale>
 			The <link type="class">GestureEvent</link> class encapsulates information about a multi-touch gesture.

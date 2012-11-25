@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<element name="polyline" extends="svg:SVGShapeElement">
+<element name="polyline" extends="markup:svg:SVGShapeElement">
 	<abstract>
 		<locale>
 			The 'polyline' element defines a set of connected straight line segments.

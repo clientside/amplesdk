@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<element extends="xul:XULElement" name="datepicker">
+<element extends="markup:xul:XULElement" name="datepicker">
 	<abstract>
 		<locale>
 			An element rendered as a textbox and a button beside.

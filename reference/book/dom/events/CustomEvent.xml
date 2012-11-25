@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<class name="CustomEvent" extends="runtime:Event">
+<class name="CustomEvent" extends="dom:events:Event">
 	<abstract>
 		<locale>
 			The CustomEvent interface is the recommended interface for application-specific event types.

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<class name="MutationEvent" extends="runtime:Event">
+<class name="MutationEvent" extends="dom:events:Event">
 	<abstract>
 		<locale>
 			The MutationEvent interface provides specific contextual information associated with Mutation events.

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<class name="ProcessingInstruction" extends="runtime:Node">
+<class name="ProcessingInstruction" extends="dom:core:Node">
 	<abstract>
 		<locale>
 			Represents a "processing instruction", used in XML as a way to keep processor-specific information in the text of the document.

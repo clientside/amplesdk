@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<class name="TouchEvent" extends="runtime:UIEvent">
+<class name="TouchEvent" extends="core:events:UIEvent">
 	<abstract>
 		<locale>
 			The <link type="class">TouchEvent</link> class encapsulates information about a touch event.

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<element name="linearGradient" extends="svg:SVGElement">
+<element name="linearGradient" extends="markup:svg:SVGElement">
 	<abstract>
 		<locale>
 			The 'linearGradient' element is used to define linear gradients.

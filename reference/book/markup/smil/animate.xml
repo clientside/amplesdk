@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<element name="animate" extends="smil:SMILAnimationElement">
+<element name="animate" extends="markup:smil:SMILAnimationElement">
 	<abstract>
 		<locale>
 			The animate element introduces a generic attribute animation that requires little or no semantic understanding of the attribute being animated.

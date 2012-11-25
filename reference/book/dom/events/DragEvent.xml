@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<class name="DragEvent" extends="runtime:UIEvent">
+<class name="DragEvent" extends="core:events:UIEvent">
 	<abstract>
 		<locale>
 			The DragEvent interface provides specific contextual information associated with Drag Events.
