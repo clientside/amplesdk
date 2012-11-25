@@ -243,19 +243,19 @@ cXULElement_menulist.handlers	= {
 		if (oEvent.target.parentNode == this) {
 			if (oEvent.target instanceof cXULElement_menupopup)
 				this.menupopup	= oEvent.target;
-			else
-			if (oEvent.target instanceof cXULElement_menuitem)
-				this.items.$add(oEvent.target);
 		}
+		else
+		if (oEvent.target instanceof cXULElement_menuitem)
+			this.items.$add(oEvent.target);
 	},
 	"DOMNodeRemoved":	function(oEvent) {
 		if (oEvent.target.parentNode == this) {
 			if (oEvent.target instanceof cXULElement_menupopup)
 				this.menupopup	= null;
-			else
-			if (oEvent.target instanceof cXULElement_menuitem)
-				this.items.$remove(oEvent.target);
 		}
+		else
+		if (oEvent.target instanceof cXULElement_menuitem)
+			this.items.$remove(oEvent.target);
 	}
 };
 
