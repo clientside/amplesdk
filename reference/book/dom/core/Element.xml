@@ -302,6 +302,46 @@
 					</locale>
 				</description>
 			</method>
+			<method name="getAttributeNode" type="Attr">
+				<arguments>
+					<argument name="name" type="String">
+						<description>
+							<locale>
+								The name (nodeName) of the attribute to retrieve.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						The Attr node with the specified name (nodeName) or null if there is no such attribute.
+					</locale>
+				</description>
+			</method>
+			<method name="getAttributeNodeNS" type="Attr">
+				<arguments>
+					<argument name="namespaceURI" type="String">
+						<description>
+							<locale>
+								The namespace URI of the attribute to retrieve.
+							</locale>
+						</description>
+					</argument>
+					<argument name="localName" type="String">
+						<description>
+							<locale>
+								The local name of the attribute to retrieve.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Retrieves an Attr node by local name and namespace URI.
+						Applications must use the value null as the namespaceURI parameter for methods if they wish to have no namespace.
+					</locale>
+				</description>
+			</method>
 			<method name="setAttribute" type="Void">
 				<arguments>
 					<argument name="name" type="String" required="true">
@@ -373,6 +413,42 @@
 					</locale>
 					<locale xml:lang="ru">
 						Выставляет значение заданного атрибута из заданного пространства имен.
+					</locale>
+				</description>
+			</method>
+			<method name="setAttributeNode" type="Attr">
+				<arguments>
+					<argument name="newAttr" type="Attr">
+						<description>
+							<locale>
+								The Attr node to add to the attribute list.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Adds a new attribute node.
+						If an attribute with that name (nodeName) is already present in the element, it is replaced by the new one.
+						If the newAttr attribute replaces an existing attribute, the replaced Attr node is returned, otherwise null is returned
+					</locale>
+				</description>
+			</method>
+			<method name="setAttributeNodeNS" type="Attr">
+				<arguments>
+					<argument name="newAttr" type="Attr">
+						<description>
+							<locale>
+								The Attr node to add to the attribute list.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Adds a new attribute.
+						If an attribute with that local name and that namespace URI is already present in the element, it is replaced by the new one.
+						If the newAttr attribute replaces an existing attribute, the replaced Attr node is returned, otherwise null is returned
 					</locale>
 				</description>
 			</method>
@@ -535,6 +611,22 @@
 					</locale>
 					<locale xml:lang="ru">
 						Удаляет заданный атрибут из заданного пространства имен у элемента.
+					</locale>
+				</description>
+			</method>
+			<method name="removeAttributeNode" type="Attr">
+				<arguments>
+					<argument name="oldAttr" type="Attr">
+						<description>
+							<locale>
+								The Attr node to remove from the attribute list.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Removes the specified attribute node.
 					</locale>
 				</description>
 			</method>

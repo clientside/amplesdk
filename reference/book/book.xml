@@ -18,6 +18,7 @@
 					<node title="DocumentFragment" url="dom/core/DocumentFragment.xml"/>
 					<node title="Element" url="dom/core/Element.xml"/>
 					<node title="EntityReference" url="dom/core/EntityReference.xml"/>
+					<node title="NamedNodeMap" url="dom/core/NamedNodeMap.xml"/>
 					<node title="Node" url="dom/core/Node.xml"/>
 					<node title="NodeList" url="dom/core/NodeList.xml"/>
 					<node title="ProcessingInstruction" url="dom/core/ProcessingInstruction.xml"/>

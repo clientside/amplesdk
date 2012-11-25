@@ -531,7 +531,7 @@
 					</locale>
 				</description>
 			</property>
-			<property name="attributes" type="Object" readonly="true">
+			<property name="attributes" type="NamedNodeMap" readonly="true">
 				<description>
 					<locale>
 						A collection containing the attributes of this node (if it is an <link type="class">Element</link>) or null otherwise.
