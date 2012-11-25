@@ -46,7 +46,7 @@
 					</locale>
 				</description>
 			</property>
-			<property name="location" type="DOMLocator">
+			<property name="location" type="Object"><!-- DOMLocator -->
 				<description>
 					<locale>
 						The location of the error.

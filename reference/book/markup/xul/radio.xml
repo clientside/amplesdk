@@ -61,7 +61,7 @@
 		<methods>
 		</methods>
 		<properties>
-			<property name="group" type="Element">
+			<property name="group" type="dom:core:Element">
 				<description>
 					<locale>
 						Contains a reference to parent <link type="element">radiogroup</link> element.

@@ -26,7 +26,7 @@
 		</attributes>
 		<methods />
 		<properties>
-			<property name="selectedItem" type="Element" readonly="true">
+			<property name="selectedItem" type="dom:core:Element" readonly="true">
 				<description>
 					<locale>
 						Contains a reference to currently selected <link type="element">menu</link> element.
@@ -36,7 +36,7 @@
 					</locale>
 				</description>
 			</property>
-			<property name="items" type="NodeList">
+			<property name="items" type="dom:core:NodeList">
 				<description>
 					<locale>
 						Contians a collection of <link type="element">menu</link> child elements.

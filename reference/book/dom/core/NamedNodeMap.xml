@@ -18,7 +18,7 @@
 			</property>
 		</properties>
 		<methods>
-			<method name="item" type="Attr">
+			<method name="item" type="dom:core:Attr">
 				<arguments>
 					<argument name="index" type="Number">
 						<description>
@@ -35,7 +35,7 @@
 					</locale>
 				</description>
 			</method>
-			<method name="getNamedItem" type="Attr">
+			<method name="getNamedItem" type="dom:core:Attr">
 				<arguments>
 					<argument name="name" type="String">
 						<description>
@@ -51,7 +51,7 @@
 					</locale>
 				</description>
 			</method>
-			<method name="getNamedItemNS" type="Attr">
+			<method name="getNamedItemNS" type="dom:core:Attr">
 				<arguments>
 					<argument name="namespaceURI" type="String">
 						<description>
@@ -74,7 +74,7 @@
 					</locale>
 				</description>
 			</method>
-			<method name="removeNamedItem" type="Attr">
+			<method name="removeNamedItem" type="dom:core:Attr">
 				<arguments>
 					<argument name="name" type="String">
 						<description>
@@ -90,7 +90,7 @@
 					</locale>
 				</description>
 			</method>
-			<method name="removeNamedItemNS" type="Attr">
+			<method name="removeNamedItemNS" type="dom:core:Attr">
 				<arguments>
 					<argument name="namespaceURI" type="String">
 						<description>
@@ -113,9 +113,9 @@
 					</locale>
 				</description>
 			</method>
-			<method name="setNamedItem" type="Attr">
+			<method name="setNamedItem" type="dom:core:Attr">
 				<arguments>
-					<argument name="node" type="Node">
+					<argument name="node" type="dom:core:Node">
 						<description>
 							<locale>
 								A node to store in this map.
@@ -132,9 +132,9 @@
 					</locale>
 				</description>
 			</method>
-			<method name="removeNamedItemNS" type="Attr">
+			<method name="removeNamedItemNS" type="dom:core:Attr">
 				<arguments>
-					<argument name="node" type="Node">
+					<argument name="node" type="dom:core:Node">
 						<description>
 							<locale>
 								A node to store in this map.

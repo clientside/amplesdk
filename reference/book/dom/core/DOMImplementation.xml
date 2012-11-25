@@ -13,7 +13,7 @@
 	<members>
 		<properties />
 		<methods>
-			<method name="createDocument" type="Document">
+			<method name="createDocument" type="dom:core:Document">
 				<arguments>
 					<argument name="namespaceURI" type="String" required="true">
 						<description>
@@ -35,7 +35,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="documentType" type="DocumentType" required="true">
+					<argument name="documentType" type="dom:core:DocumentType" required="true">
 						<description>
 							<locale>
 								The type of document to be created or null.
@@ -55,7 +55,7 @@
 					</locale>
 				</description>
 			</method>
-			<method name="createDocumentType" type="DocumentType">
+			<method name="createDocumentType" type="dom:core:DocumentType">
 				<arguments>
 					<argument name="QName" type="String" required="true">
 						<description>

@@ -24,7 +24,7 @@
 					</locale>
 				</description>
 			</property>
-			<property name="context" type="Node" readonly="true">
+			<property name="context" type="dom:core:Node" readonly="true">
 				<description>
 					<locale>
 						Holds the context of the selection query executed.
@@ -58,7 +58,7 @@
 				</description>
 			</method>
 			<!--
-			<method name="index" type="Element">
+			<method name="index" type="dom:core:Element">
 				<arguments>
 					<argument name="index" type="Number">
 						<description>
@@ -90,7 +90,7 @@
 				</description>
 			</method>
 			<!-- Filtering -->
-			<method name="eq" type="Element">
+			<method name="eq" type="dom:core:Element">
 				<arguments>
 					<argument name="index" type="Number">
 						<description>
@@ -108,7 +108,7 @@
 				</description>
 			</method>
 			<!--
-			<method name="filter" type="Query">
+			<method name="filter" type="dom:ample:Query">
 				<description>
 					<locale>
 
@@ -116,14 +116,14 @@
 				</description>
 			</method>
 			-->
-			<method name="first" type="Query">
+			<method name="first" type="dom:ample:Query">
 				<description>
 					<locale>
 						Reduces the set of matched elements to the first in the set.
 					</locale>
 				</description>
 			</method>
-			<method name="has" type="Query">
+			<method name="has" type="dom:ample:Query">
 				<arguments>
 					<argument name="selector" type="String">
 						<description>
@@ -134,7 +134,7 @@
 					</argument>
 				</arguments>
 				<arguments>
-					<argument name="element" type="Element">
+					<argument name="element" type="dom:core:Element">
 						<description>
 							<locale>
 								An element to match elements against.
@@ -149,7 +149,7 @@
 				</description>
 			</method>
 			<!--
-			<method name="is" type="Query">
+			<method name="is" type="dom:ample:Query">
 				<description>
 					<locale>
 
@@ -157,7 +157,7 @@
 				</description>
 			</method>
 			-->
-			<method name="last" type="Query">
+			<method name="last" type="dom:ample:Query">
 				<description>
 					<locale>
 						Reduces the set of matched elements to the last in the set.
@@ -165,7 +165,7 @@
 				</description>
 			</method>
 			<!--
-			<method name="map" type="Query">
+			<method name="map" type="dom:ample:Query">
 				<arguments>
 					<argument name="callback" type="Function">
 						<description>
@@ -183,7 +183,7 @@
 			</method>
 			-->
 			<!--
-			<method name="not" type="Query">
+			<method name="not" type="dom:ample:Query">
 				<description>
 					<locale>
 
@@ -191,7 +191,7 @@
 				</description>
 			</method>
 			-->
-			<method name="slice" type="Query">
+			<method name="slice" type="dom:ample:Query">
 				<arguments>
 					<argument name="first" type="Number">
 						<description>
@@ -216,7 +216,7 @@
 					</locale>
 				</description>
 			</method>
-			<method name="splice" type="Query">
+			<method name="splice" type="dom:ample:Query">
 				<arguments>
 					<argument name="first" type="Number">
 						<description>
@@ -239,7 +239,7 @@
 					</locale>
 				</description>
 			</method>
-			<method name="each" type="Query">
+			<method name="each" type="dom:ample:Query">
 				<arguments>
 					<argument name="callback" type="Function">
 						<description>
@@ -257,7 +257,7 @@
 			</method>
 
 			<!-- Effects -->
-			<method name="animate" type="Query">
+			<method name="animate" type="dom:ample:Query">
 				<arguments>
 					<argument name="properties" type="Object">
 						<description>
@@ -294,14 +294,14 @@
 					</locale>
 				</description>
 			</method>
-			<method name="stop" type="Query">
+			<method name="stop" type="dom:ample:Query">
 				<description>
 					<locale>
 						Stops all animations running on elements in the set.
 					</locale>
 				</description>
 			</method>
-			<method name="delay" type="Query">
+			<method name="delay" type="dom:ample:Query">
 				<arguments>
 					<argument name="duration" type="Variant">
 						<description>
@@ -317,7 +317,7 @@
 					</locale>
 				</description>
 			</method>
-			<method name="fadeIn" type="Query">
+			<method name="fadeIn" type="dom:ample:Query">
 				<arguments>
 					<argument name="duration" type="Variant" required="false">
 						<description>
@@ -340,7 +340,7 @@
 					</locale>
 				</description>
 			</method>
-			<method name="fadeOut" type="Query">
+			<method name="fadeOut" type="dom:ample:Query">
 				<arguments>
 					<argument name="duration" type="Variant" required="false">
 						<description>
@@ -363,7 +363,7 @@
 					</locale>
 				</description>
 			</method>
-			<method name="fadeTo" type="Query">
+			<method name="fadeTo" type="dom:ample:Query">
 				<arguments>
 					<argument name="duration" type="Variant">
 						<description>
@@ -393,7 +393,7 @@
 					</locale>
 				</description>
 			</method>
-			<method name="show" type="Query">
+			<method name="show" type="dom:ample:Query">
 				<arguments>
 					<argument name="duration" type="Variant" required="false">
 						<description>
@@ -417,7 +417,7 @@
 					</locale>
 				</description>
 			</method>
-			<method name="hide" type="Query">
+			<method name="hide" type="dom:ample:Query">
 				<arguments>
 					<argument name="duration" type="Variant" required="false">
 						<description>
@@ -441,7 +441,7 @@
 					</locale>
 				</description>
 			</method>
-			<method name="slideDown" type="Query">
+			<method name="slideDown" type="dom:ample:Query">
 				<arguments>
 					<argument name="duration" type="Variant" required="false">
 						<description>
@@ -464,7 +464,7 @@
 					</locale>
 				</description>
 			</method>
-			<method name="slideUp" type="Query">
+			<method name="slideUp" type="dom:ample:Query">
 				<arguments>
 					<argument name="duration" type="Variant" required="false">
 						<description>
@@ -524,7 +524,7 @@
 			</method>
 
 			<!-- Events -->
-			<method name="bind" type="Query">
+			<method name="bind" type="dom:ample:Query">
 				<arguments>
 					<argument name="type" type="String">
 						<description>
@@ -554,7 +554,7 @@
 					</locale>
 				</description>
 			</method>
-			<method name="unbind" type="Query">
+			<method name="unbind" type="dom:ample:Query">
 				<arguments>
 					<argument name="type" type="String">
 						<description>
@@ -584,7 +584,7 @@
 					</locale>
 				</description>
 			</method>
-			<method name="trigger" type="Query">
+			<method name="trigger" type="dom:ample:Query">
 				<arguments>
 					<argument name="type" type="String">
 						<description>
@@ -679,7 +679,7 @@
 					</locale>
 				</description>
 			</method>
-			<method name="appendTo" type="Query">
+			<method name="appendTo" type="dom:ample:Query">
 				<arguments>
 					<argument name="target" type="Variant">
 						<description>
@@ -695,7 +695,7 @@
 					</locale>
 				</description>
 			</method>
-			<method name="prependTo" type="Query">
+			<method name="prependTo" type="dom:ample:Query">
 				<arguments>
 					<argument name="target" type="Variant">
 						<description>
@@ -711,7 +711,7 @@
 					</locale>
 				</description>
 			</method>
-			<method name="insertBefore" type="Query">
+			<method name="insertBefore" type="dom:ample:Query">
 				<arguments>
 					<argument name="target" type="Variant">
 						<description>
@@ -727,7 +727,7 @@
 					</locale>
 				</description>
 			</method>
-			<method name="insertAfter" type="Query">
+			<method name="insertAfter" type="dom:ample:Query">
 				<arguments>
 					<argument name="target" type="Variant">
 						<description>
@@ -743,14 +743,14 @@
 					</locale>
 				</description>
 			</method>
-			<method name="replaceAll" type="Query">
+			<method name="replaceAll" type="dom:ample:Query">
 				<description>
 					<locale>
 						Replaces each target element with the set of matched elements.
 					</locale>
 				</description>
 			</method>
-			<method name="append" type="Query">
+			<method name="append" type="dom:ample:Query">
 				<arguments>
 					<argument name="content" type="Variant">
 						<description>
@@ -766,7 +766,7 @@
 					</locale>
 				</description>
 			</method>
-			<method name="prepend" type="Query">
+			<method name="prepend" type="dom:ample:Query">
 				<arguments>
 					<argument name="content" type="Variant">
 						<description>
@@ -782,7 +782,7 @@
 					</locale>
 				</description>
 			</method>
-			<method name="before" type="Query">
+			<method name="before" type="dom:ample:Query">
 				<arguments>
 					<argument name="content" type="Variant">
 						<description>
@@ -798,7 +798,7 @@
 					</locale>
 				</description>
 			</method>
-			<method name="after" type="Query">
+			<method name="after" type="dom:ample:Query">
 				<arguments>
 					<argument name="content" type="Variant">
 						<description>
@@ -814,21 +814,21 @@
 					</locale>
 				</description>
 			</method>
-			<method name="remove" type="Query">
+			<method name="remove" type="dom:ample:Query">
 				<description>
 					<locale>
 						Removes the set of matched elements from the DOM.
 					</locale>
 				</description>
 			</method>
-			<method name="empty" type="Query">
+			<method name="empty" type="dom:ample:Query">
 				<description>
 					<locale>
 						Removes all child nodes of the set of matched elements from the DOM.
 					</locale>
 				</description>
 			</method>
-			<method name="replaceWith" type="Query">
+			<method name="replaceWith" type="dom:ample:Query">
 				<arguments>
 					<argument name="content" type="Variant">
 						<description>
@@ -844,7 +844,7 @@
 					</locale>
 				</description>
 			</method>
-			<method name="clone" type="Query">
+			<method name="clone" type="dom:ample:Query">
 				<description>
 					<locale>
 						Creates a deep copy of the set of matched elements.
@@ -887,7 +887,7 @@
 				</description>
 			</method>
 			<!-- Ajax -->
-			<method name="load" type="Query">
+			<method name="load" type="dom:ample:Query">
 				<arguments>
 					<argument name="url" type="String">
 						<description>
@@ -917,7 +917,7 @@
 					</locale>
 				</description>
 			</method>
-			<method name="abort" type="Query">
+			<method name="abort" type="dom:ample:Query">
 				<description>
 					<locale>
 						Aborts loading operation.
@@ -1016,7 +1016,7 @@
 					</locale>
 				</description>
 			</method>
-			<method name="offsetParent" type="Element">
+			<method name="offsetParent" type="dom:core:Element">
 				<description>
 					<locale>
 						Gets the closest ancestor element that is positioned.
@@ -1063,7 +1063,7 @@
 		<events>
 			<!-- Global Ajax Event Handlers -->
 			<!--
-			<event name="ajaxComplete" type="CustomEvent" cancelable="false" bubbles="false">
+			<event name="ajaxComplete" type="dom:events:CustomEvent" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						Ajax requests completed.
@@ -1071,7 +1071,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="ajaxError" type="CustomEvent" cancelable="false" bubbles="false">
+			<event name="ajaxError" type="dom:events:CustomEvent" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						Ajax request completed with an error.
@@ -1079,7 +1079,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="ajaxSend" type="CustomEvent" cancelable="false" bubbles="false">
+			<event name="ajaxSend" type="dom:events:CustomEvent" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						Ajax request is about to be sent.
@@ -1087,7 +1087,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="ajaxSuccess" type="CustomEvent" cancelable="false" bubbles="false">
+			<event name="ajaxSuccess" type="dom:events:CustomEvent" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						Ajax request completed successfully.

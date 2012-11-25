@@ -60,7 +60,7 @@
 		</attributes>
 		<methods />
 		<events>
-			<event name="OpenStateChange" type="Event" bubbles="true" cancelable="false">
+			<event name="OpenStateChange" type="dom:events:Event" bubbles="true" cancelable="false">
 				<description>
 					<locale>
 						Item is open or close.

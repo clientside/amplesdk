@@ -12,7 +12,7 @@
 	<examples/>
 	<members>
 		<properties>
-			<property name="parameterNames" type="DOMStringList" readonly="true">
+			<property name="parameterNames" type="dom:core:DOMStringList" readonly="true">
 				<description>
 					<locale>
 						The list of the parameters supported by this DOMConfiguration object and for which at least one value can be set by the application.

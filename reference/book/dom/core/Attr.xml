@@ -12,7 +12,7 @@
 	<examples/>
 	<members>
 		<properties>
-			<property name="ownerElement" type="Element" readonly="true">
+			<property name="ownerElement" type="dom:core:Element" readonly="true">
 				<description>
 					<locale>
 						References element that attribute belongs to.

@@ -118,7 +118,7 @@
 		</methods>
 		<properties />
 		<events>
-			<event name="load" type="Event" cancelable="false" bubbles="false">
+			<event name="load" type="dom:events:Event" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						Fires after element is loaded.
@@ -128,7 +128,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="unload" type="Event" cancelable="false" bubbles="false">
+			<event name="unload" type="dom:events:Event" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						Fires before element is unloaded.
@@ -138,7 +138,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="dialogaccept" type="Event" cancelable="true" bubbles="true">
+			<event name="dialogaccept" type="dom:events:Event" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						Called when the accept button is pressed, or when the <link type="method">acceptDialog</link> method is called.
@@ -149,7 +149,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="dialogcancel" type="Event" cancelable="true" bubbles="true">
+			<event name="dialogcancel" type="dom:events:Event" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						Called when the "cancel" button is pressed or when the <link type="method">cancelDialog</link> method is called.
@@ -160,7 +160,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="dialogdisclosure" type="Event" cancelable="true" bubbles="true">
+			<event name="dialogdisclosure" type="dom:events:Event" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						Called when the "disclosure" button is pressed.
@@ -170,7 +170,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="dialoghelp" type="Event" cancelable="true" bubbles="true">
+			<event name="dialoghelp" type="dom:events:Event" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						Called when the "help" button is pressed.

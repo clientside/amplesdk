@@ -294,7 +294,7 @@
 		</attributes>
 		<properties />
 		<events>
-			<event name="popuphidden" type="Event" cancelable="false" bubbles="true">
+			<event name="popuphidden" type="dom:events:Event" cancelable="false" bubbles="true">
 				<description>
 					<locale>
 						This event is sent to a popup after it has been hidden.
@@ -304,7 +304,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="popuphiding" type="Event" cancelable="true" bubbles="true">
+			<event name="popuphiding" type="dom:events:Event" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						This event is sent to a popup when it is about to be hidden.
@@ -314,7 +314,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="popupshowing" type="Event" cancelable="true" bubbles="true">
+			<event name="popupshowing" type="dom:events:Event" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						This event is sent to a popup just before it is opened. This handler is usually used to dynamically set the contents when the user requests to display it.
@@ -327,7 +327,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="popupshown" type="Event" cancelable="false" bubbles="true">
+			<event name="popupshown" type="dom:events:Event" cancelable="false" bubbles="true">
 				<description>
 					<locale>
 						This event is sent to a popup after it has been opened, much like the onload event is sent to a window when it is opened.

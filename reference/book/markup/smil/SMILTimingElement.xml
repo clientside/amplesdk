@@ -102,21 +102,21 @@
 			</attribute>
 		</attributes>
 		<events>
-			<event name="begin" type="SMILTimeEvent" cancelable="false" bubbles="false">
+			<event name="begin" type="dom:events:SMILTimeEvent" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						This event is raised when the element local timeline begins to play. It will be raised each time the element begins the active duration.
 					</locale>
 				</description>
 			</event>
-			<event name="end" type="SMILTimeEvent" cancelable="false" bubbles="false">
+			<event name="end" type="dom:events:SMILTimeEvent" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						This event is raised at the active end of the element. Note that this event is not raised at the simple end of each repeat.
 					</locale>
 				</description>
 			</event>
-			<event name="repeat" type="SMILTimeEvent" cancelable="false" bubbles="false">
+			<event name="repeat" type="dom:events:SMILTimeEvent" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						This event is raised when the element local timeline repeats. It will be raised each time the element repeats, after the first iteration.

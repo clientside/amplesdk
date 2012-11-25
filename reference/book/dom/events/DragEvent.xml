@@ -64,7 +64,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="dataTransfer" type="DataTransfer" required="true">
+					<argument name="dataTransfer" type="dom:core:DataTransfer" required="true">
 						<description>
 							<locale>
 								References DataTransfer object associated with the event.
@@ -86,7 +86,7 @@
 			</method>
 		</methods>
 		<properties>
-			<property name="dataTransfer" type="DataTransfer">
+			<property name="dataTransfer" type="dom:core:DataTransfer">
 				<description>
 					<locale>
 						Keeps a reference to <link type="class">DataTransfer</link> object, associated with this object.

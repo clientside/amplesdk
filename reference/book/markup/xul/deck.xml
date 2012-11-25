@@ -41,7 +41,7 @@
 					</locale>
 				</description>
 			</property>
-			<property name="selectedPanel" type="Element" readonly="true">
+			<property name="selectedPanel" type="dom:core:Element" readonly="true">
 				<description>
 					<locale>
 						Holds a reference to the currently selected panel within a deck element.
@@ -53,7 +53,7 @@
 			</property>
 		</properties>
 		<events>
-			<event name="select" type="Event" cancelable="true" bubbles="true">
+			<event name="select" type="dom:events:Event" cancelable="true" bubbles="true">
 				<description>
 					<locale>
 						Fires when selected child element changes.

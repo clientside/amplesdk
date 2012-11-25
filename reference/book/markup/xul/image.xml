@@ -30,7 +30,7 @@
 		<methods />
 		<properties />
 		<events>
-			<event name="load" type="Event" cancelable="false" bubbles="false">
+			<event name="load" type="dom:events:Event" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						This event handler will be called on the <link type="element">image</link> element when the image has finished loading.
@@ -42,7 +42,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="error" type="Event" cancelable="false" bubbles="false">
+			<event name="error" type="dom:events:Event" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						This event is sent to an <link type="element">image</link> element when an error occurs loading the image.

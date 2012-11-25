@@ -25,7 +25,7 @@
 	<implements />
 	<members>
 		<properties>
-			<!--property name="activeElement" type="Element" readonly="true">
+			<!--property name="activeElement" type="dom:core:Element" readonly="true">
 				<description>
 					<locale>
 						Retrieves a reference to an element in the document that currently has focus.
@@ -54,7 +54,7 @@
 				</description>
 			</property>
 			<!-- Locale -->
-			<property name="locale" type="Locale" readonly="true">
+			<property name="locale" type="dom:ample:Locale" readonly="true">
 				<description>
 					<locale>
 						Retrieves a reference to localization API.
@@ -77,7 +77,7 @@
 		</properties>
 		<methods>
 			<!-- Query -->
-			<method name="query" type="Query">
+			<method name="query" type="dom:ample:Query">
 				<arguments>
 					<argument name="query" type="String">
 						<description>
@@ -86,7 +86,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="context" required="false" type="Node">
+					<argument name="context" required="false" type="dom:core:Node">
 						<description>
 							<locale>
 								Context object. If not specified, ample document object is in use.
@@ -111,7 +111,7 @@
 					</argument>
 				</arguments>
 				<arguments>
-					<argument name="element" type="Element">
+					<argument name="element" type="dom:core:Element">
 						<description>
 							<locale>
 								An Ample SDK Element object.
@@ -120,7 +120,7 @@
 					</argument>
 				</arguments>
 				<arguments>
-					<argument name="nodelist" type="NodeList">
+					<argument name="nodelist" type="dom:core:NodeList">
 						<description>
 							<locale>
 								An Ample SDK NodeList object.
@@ -129,7 +129,7 @@
 					</argument>
 				</arguments>
 				<arguments>
-					<argument name="query" type="Query">
+					<argument name="query" type="dom:ample:Query">
 						<description>
 							<locale>
 								Result of other call to ample.query
@@ -459,7 +459,7 @@
 				</description>
 			</method>
 			<!-- Elements -->
-			<method name="$instance" type="Element">
+			<method name="$instance" type="dom:core:Element">
 				<arguments>
 					<argument name="node" type="HTMLElement">
 						<description>
@@ -647,7 +647,7 @@
 			<!-- Data -->
 			<method name="data" type="Variant">
 				<arguments>
-					<argument name="element" type="Element">
+					<argument name="element" type="dom:core:Element">
 						<description>
 							<locale>
 								The DOM element.
@@ -663,7 +663,7 @@
 					</argument>
 				</arguments>
 				<arguments>
-					<argument name="element" type="Element">
+					<argument name="element" type="dom:core:Element">
 						<description>
 							<locale>
 								The DOM element.
@@ -695,7 +695,7 @@
 			<!-- Modal -->
 			<method name="modal" type="Void">
 				<arguments>
-					<argument name="element" type="Element" required="true">
+					<argument name="element" type="dom:core:Element" required="true">
 						<description>
 							<locale>
 								Element to be set as modal or null to reset.
@@ -723,7 +723,7 @@
 			</method>
 		</methods>
 		<events>
-			<event name="configchange" type="CustomEvent" cancelable="false" bubbles="false">
+			<event name="configchange" type="dom:events:CustomEvent" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						Fires after the config value changes.
@@ -731,7 +731,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="readystatechange" type="Event" cancelable="false" bubbles="false">
+			<event name="readystatechange" type="dom:events:Event" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						Fires when the state of the object has changed.
@@ -740,7 +740,7 @@
 				</description>
 			</event>
 			<!-- History -->
-			<event name="hashchange" type="HashChangeEvent" cancelable="false" bubbles="false">
+			<event name="hashchange" type="dom:events:HashChangeEvent" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						Fires on the document when user navigates browser history.
@@ -752,7 +752,7 @@
 				</description>
 			</event>
 			<!-- Locale -->
-			<event name="localechange" type="CustomEvent" cancelable="false" bubbles="false">
+			<event name="localechange" type="dom:events:CustomEvent" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						Fires on the document when locale has been successfully changed.
@@ -762,14 +762,14 @@
 			</event>
 			<!-- Global Ajax Event Handlers -->
 			<!--
-			<event name="ajaxStart" type="CustomEvent" cancelable="false" bubbles="false">
+			<event name="ajaxStart" type="dom:events:CustomEvent" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						First Ajax request in queue has been started.
 					</locale>
 				</description>
 			</event>
-			<event name="ajaxStop" type="CustomEvent" cancelable="false" bubbles="false">
+			<event name="ajaxStop" type="dom:events:CustomEvent" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						All Ajax requests in the queue have been completed.

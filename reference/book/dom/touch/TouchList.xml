@@ -18,7 +18,7 @@
 			</property>
 		</properties>
 		<methods>
-			<method name="item" type="Touch">
+			<method name="item" type="dom:touch:Touch">
 				<arguments>
 					<argument name="index" type="Number">
 						<description>

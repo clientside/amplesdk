@@ -31,7 +31,7 @@
 		</methods>
 		<properties />
 		<events>
-			<event name="spin" type="CustomEvent">
+			<event name="spin" type="dom:events:CustomEvent">
 				<description>
 					<locale>
 						Fired when user clicks the up or down buttons.

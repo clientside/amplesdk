@@ -44,7 +44,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="relatedNode" type="Node" required="true">
+					<argument name="relatedNode" type="dom:core:Node" required="true">
 						<description>
 							<locale>
 								Used to identify a secondary node related to a mutation event.
@@ -163,7 +163,7 @@
 					</locale>
 				</description>
 			</property>
-			<property name="relatedNode" type="Node" readonly="true">
+			<property name="relatedNode" type="dom:core:Node" readonly="true">
 				<description>
 					<locale>
 						Used to identify a secondary node related to a mutation event. For example, if a mutation event is dispatched to a node indicating that its parent has changed, the relatedNode is the changed parent. If an event is instead dispatched to a subtree indicating a node was changed within it, the relatedNode is the changed node. In the case of the DOMAttrModified event it indicates the Attr node which was modified, added, or removed.

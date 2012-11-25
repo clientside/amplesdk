@@ -470,7 +470,7 @@
 			<td nowrap="yes">
 				<xsl:choose>
 					<xsl:when test="not(@type='Object' or @type='Variant' or @type='String' or @type='Number' or @type='Boolean' or @type='Function' or @type='Void' or @type='XMLNode' or @type='XMLDocument' or @type='XMLDocumentFragment' or @type='XMLElement' or @type='HTMLElement' or @type='TimeStamp' or @type='CSSStyleDeclaration')">
-						<a href="../runtime/{@type}.xml" class="object"><xsl:value-of select="@type" /></a>
+						<a href="{concat('../../../book/', translate(@type, ':', '/'), '.xml')}" class="object"><xsl:value-of select="@type" /></a>
 					</xsl:when>
 					<xsl:otherwise>
 						<xsl:value-of select="@type" />
@@ -592,7 +592,7 @@
 			<td nowrap="yes">
 				<xsl:choose>
 					<xsl:when test="not(@type='Object' or @type='Variant' or @type='String' or @type='Number' or @type='Boolean' or @type='Function' or @type='Void' or @type='XMLNode' or @type='XMLDocument' or @type='XMLDocumentFragment' or @type='XMLElement' or @type='HTMLElement' or @type='TimeStamp' or @type='CSSStyleDeclaration')">
-						<a href="../runtime/{@type}.xml" class="object"><xsl:value-of select="@type" /></a>
+						<a href="{concat('../../../book/', translate(@type, ':', '/'), '.xml')}" class="object"><xsl:value-of select="@type" /></a>
 					</xsl:when>
 					<xsl:otherwise>
 						<xsl:value-of select="@type" />
@@ -643,7 +643,7 @@
 										<td nowrap="yes">
 											<xsl:choose>
 												<xsl:when test="not(@type='Object' or @type='Variant' or @type='String' or @type='Number' or @type='Boolean' or @type='Function' or @type='Void' or @type='XMLNode' or @type='XMLDocument' or @type='XMLDocumentFragment' or @type='XMLElement' or @type='HTMLElement' or @type='TimeStamp' or @type='CSSStyleDeclaration')">
-													<a href="../runtime/{@type}.xml" class="object"><xsl:value-of select="@type" /></a>
+													<a href="{concat('../../../book/', translate(@type, ':', '/'), '.xml')}" class="object"><xsl:value-of select="@type" /></a>
 												</xsl:when>
 												<xsl:otherwise>
 													<xsl:value-of select="@type" />
@@ -723,7 +723,7 @@
 				</xsl:choose>
 			</td>
 			<td nowrap="yes">
-				<a href="../runtime/{@type}.xml"><xsl:value-of select="@type" /></a>
+				<a href="{concat('../../../book/', translate(@type, ':', '/'), '.xml')}"><xsl:value-of select="@type" /></a>
 			</td>
 			<td><xsl:apply-templates select="description"/></td>
 		</tr>

@@ -14,9 +14,9 @@
 	<members>
 		<attributes />
 		<methods>
-			<method name="appendChild" type="Node">
+			<method name="appendChild" type="dom:core:Node">
 				<arguments>
-					<argument name="node" type="Node" required="true">
+					<argument name="node" type="dom:core:Node" required="true">
 						<description>
 							<locale>
 								The node to add.
@@ -36,9 +36,9 @@
 					</locale>
 				</description>
 			</method>
-			<method name="insertBefore" type="Node">
+			<method name="insertBefore" type="dom:core:Node">
 				<arguments>
-					<argument name="node" type="Node" required="true">
+					<argument name="node" type="dom:core:Node" required="true">
 						<description>
 							<locale>
 								The node to insert.
@@ -48,7 +48,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="before" type="Node" required="true">
+					<argument name="before" type="dom:core:Node" required="true">
 						<description>
 							<locale>
 								The reference node, i.e., the node before which the new node must be inserted.
@@ -68,9 +68,9 @@
 					</locale>
 				</description>
 			</method>
-			<method name="removeChild" type="Node">
+			<method name="removeChild" type="dom:core:Node">
 				<arguments>
-					<argument name="child" type="Node" required="true">
+					<argument name="child" type="dom:core:Node" required="true">
 						<description>
 							<locale>
 								The node being removed.
@@ -90,16 +90,16 @@
 					</locale>
 				</description>
 			</method>
-			<method name="replaceChild" type="Node">
+			<method name="replaceChild" type="dom:core:Node">
 				<arguments>
-					<argument name="new" type="Node" required="true">
+					<argument name="new" type="dom:core:Node" required="true">
 						<description>
 							<locale>
 								The new node to put in the child list.
 							</locale>
 						</description>
 					</argument>
-					<argument name="child" type="Node" required="true">
+					<argument name="child" type="dom:core:Node" required="true">
 						<description>
 							<locale>
 								The node being replaced in the list.
@@ -136,7 +136,7 @@
 					</locale>
 				</description>
 			</method>
-			<method name="cloneNode" type="Node">
+			<method name="cloneNode" type="dom:core:Node">
 				<arguments>
 					<argument name="deep" type="Boolean" required="true">
 						<description>
@@ -237,7 +237,7 @@
 			<!-- DOM Level 2 -->
 			<method name="dispatchEvent" type="Boolean">
 				<arguments>
-					<argument name="event" type="Event" required="true">
+					<argument name="event" type="dom:events:Event" required="true">
 						<description>
 							<locale>
 								The event to be dispatched.
@@ -376,7 +376,7 @@
 			</method>
 			<method name="compareDocumentPosition" type="Number">
 				<arguments>
-					<argument name="node" type="Node">
+					<argument name="node" type="dom:core:Node">
 						<description>
 							<locale>
 								The node to compare against the reference node.
@@ -401,7 +401,7 @@
 			</method>
 		</methods>
 		<properties>
-			<property name="parentNode" type="Node" readonly="true">
+			<property name="parentNode" type="dom:core:Node" readonly="true">
 				<description>
 					<locale>
 						Retrieves the parent object in the object hierarchy.
@@ -411,7 +411,7 @@
 					</locale>
 				</description>
 			</property>
-			<property name="firstChild" type="Node" readonly="true">
+			<property name="firstChild" type="dom:core:Node" readonly="true">
 				<description>
 					<locale>
 						Retrieves a reference to the first child for the object.
@@ -421,7 +421,7 @@
 					</locale>
 				</description>
 			</property>
-			<property name="lastChild" type="Node" readonly="true">
+			<property name="lastChild" type="dom:core:Node" readonly="true">
 				<description>
 					<locale>
 						Retrieves a reference to the last child for the object.
@@ -431,7 +431,7 @@
 					</locale>
 				</description>
 			</property>
-			<property name="nextSibling" type="Node" readonly="true">
+			<property name="nextSibling" type="dom:core:Node" readonly="true">
 				<description>
 					<locale>
 						Retrieves a reference to the next child of the parent for the object.
@@ -441,7 +441,7 @@
 					</locale>
 				</description>
 			</property>
-			<property name="previousSibling" type="Node" readonly="true">
+			<property name="previousSibling" type="dom:core:Node" readonly="true">
 				<description>
 					<locale>
 						Retrieves a reference to the previous child of the parent for the object.
@@ -521,7 +521,7 @@
 					</locale>
 				</description>
 			</property>
-			<property name="ownerDocument" type="Document" readonly="true">
+			<property name="ownerDocument" type="dom:core:Document" readonly="true">
 				<description>
 					<locale>
 						Retrieves the <link type="class">Document</link> object associated with the node.
@@ -531,7 +531,7 @@
 					</locale>
 				</description>
 			</property>
-			<property name="attributes" type="NamedNodeMap" readonly="true">
+			<property name="attributes" type="dom:core:NamedNodeMap" readonly="true">
 				<description>
 					<locale>
 						A collection containing the attributes of this node (if it is an <link type="class">Element</link>) or null otherwise.
@@ -541,7 +541,7 @@
 					</locale>
 				</description>
 			</property>
-			<property name="childNodes" type="NodeList" readonly="true">
+			<property name="childNodes" type="dom:core:NodeList" readonly="true">
 				<description>
 					<locale>
 						A NodeList that contains all direct children of this node.
@@ -675,21 +675,21 @@
 			</constant>
 		</constants>
 		<events>
-			<event name="DOMNodeInsertedIntoDocument" type="MutationEvent" cancelable="false" bubbles="false">
+			<event name="DOMNodeInsertedIntoDocument" type="dom:events:MutationEvent" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						A node has been inserted into a document.
 					</locale>
 				</description>
 			</event>
-			<event name="DOMNodeRemovedFromDocument" type="MutationEvent" cancelable="false" bubbles="false">
+			<event name="DOMNodeRemovedFromDocument" type="dom:events:MutationEvent" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						A node is being removed from a document.
 					</locale>
 				</description>
 			</event>
-			<event name="DOMNodeInserted" type="MutationEvent" cancelable="false" bubbles="true">
+			<event name="DOMNodeInserted" type="dom:events:MutationEvent" cancelable="false" bubbles="true">
 				<description>
 					<locale>
 						A node has been added as a child of another node or, in case of Attr nodes, has been added to an Element.
@@ -699,7 +699,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="DOMNodeRemoved" type="MutationEvent" cancelable="false" bubbles="true">
+			<event name="DOMNodeRemoved" type="dom:events:MutationEvent" cancelable="false" bubbles="true">
 				<description>
 					<locale>
 						A node is being removed from its parent node or, in case of Attr nodes, removed from its ownerElement.

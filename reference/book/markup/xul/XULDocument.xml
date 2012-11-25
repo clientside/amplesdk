@@ -38,11 +38,11 @@
 			<!--
 			<method name="addBroadcastListenerFor" type="Void">
 				<arguments>
-					<argument name="broadcaster" type="Element">
+					<argument name="broadcaster" type="dom:core:Element">
 						<description>
 						</description>
 					</argument>
-					<argument name="observer" type="Element">
+					<argument name="observer" type="dom:core:Element">
 						<description>
 							<locale xml:lang="ru">
 								Обсервер.
@@ -65,11 +65,11 @@
 			</method>
 			<method name="removeBroadcastListenerFor" type="Void">
 				<arguments>
-					<argument name="broadcaster" type="Element">
+					<argument name="broadcaster" type="dom:core:Element">
 						<description>
 						</description>
 					</argument>
-					<argument name="observer" type="Element">
+					<argument name="observer" type="dom:core:Element">
 						<description>
 							<locale xml:lang="ru">
 								Обсервер.
@@ -93,7 +93,7 @@
 			-->
 		</methods>
 		<properties>
-			<property name="popupNode" readonly="true" type="Element">
+			<property name="popupNode" readonly="true" type="dom:core:Element">
 				<description>
 					<locale>
 						Reference to a currently displayed popup element.
@@ -103,7 +103,7 @@
 					</locale>
 				</description>
 			</property>
-			<property name="tooltipNode" readonly="true" type="Element">
+			<property name="tooltipNode" readonly="true" type="dom:core:Element">
 				<description>
 					<locale>
 						Reference to a currently displayed tooltip element.

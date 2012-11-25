@@ -17,7 +17,7 @@
 		<attributes />
 		<methods />
 		<properties>
-			<property name="items" type="NodeList" readonly="true">
+			<property name="items" type="dom:core:NodeList" readonly="true">
 				<description>
 					<locale>
 						Contains a collection of <link type="element">listheader</link> child elements.

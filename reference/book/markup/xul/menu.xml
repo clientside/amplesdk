@@ -60,7 +60,7 @@
 		<methods>
 		</methods>
 		<properties>
-			<property name="popup" type="Element" readonly="false">
+			<property name="popup" type="dom:core:Element" readonly="false">
 				<description>
 					<locale>
 						A reference to the <link type="element">menupopup</link>.
@@ -73,7 +73,7 @@
 		</properties>
 		<events>
 <!--
-			<event name="command" type="Event" cancelable="false" bubbles="true">
+			<event name="command" type="dom:events:Event" cancelable="false" bubbles="true">
 				<description>
 				</description>
 			</event>

@@ -90,7 +90,7 @@
 		<methods />
 		<properties />
 		<events>
-			<event name="change" type="Event" cancelable="false" bubbles="true">
+			<event name="change" type="dom:events:Event" cancelable="false" bubbles="true">
 				<description>
 					<locale xml:lang="ru">
 						Загорается при изменении значения компонента.

@@ -107,7 +107,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="target" type="Element" required="true">
+					<argument name="target" type="dom:core:Element" required="true">
 						<description>
 							<locale>
 								The target of this gesture.
@@ -193,7 +193,7 @@
 					</locale>
 				</description>
 			</property>
-			<property name="target" type="Element" readonly="true">
+			<property name="target" type="dom:core:Element" readonly="true">
 				<description>
 					<locale>
 						The target of this gesture.

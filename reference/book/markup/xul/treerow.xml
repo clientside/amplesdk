@@ -20,7 +20,7 @@
 		<attributes />
 		<methods />
 		<properties>
-			<property name="cells" type="NodeList" readonly="true">
+			<property name="cells" type="dom:core:NodeList" readonly="true">
 				<description>
 					<locale>
 						Contains a collection of <link type="element">treecell</link> child elements.

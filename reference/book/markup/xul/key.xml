@@ -114,7 +114,7 @@
 		<methods />
 		<properties />
 		<events>
-			<event name="command" type="Event" cancelable="false" bubbles="true">
+			<event name="command" type="dom:events:Event" cancelable="false" bubbles="true">
 				<description>
 					<locale>
 						This event handler is called when the command is activated.

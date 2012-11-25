@@ -18,7 +18,7 @@
 		<attributes />
 		<methods />
 		<properties>
-			<property name="tree" type="Element" readonly="true">
+			<property name="tree" type="dom:core:Element" readonly="true">
 				<description>
 					<locale>
 						Reference to a parent <link type="element">tree</link> element.
@@ -28,7 +28,7 @@
 					</locale>
 				</description>
 			</property>
-			<property name="items" type="NodeList" readonly="true">
+			<property name="items" type="dom:core:NodeList" readonly="true">
 				<description>
 					<locale>
 						Collection of <link type="element">treeitem</link> child elements.

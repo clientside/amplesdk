@@ -41,7 +41,7 @@
 		<methods />
 		<properties />
 		<events>
-			<event name="load" type="Event" cancelable="false" bubbles="false">
+			<event name="load" type="dom:events:Event" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						Fires after element is loaded.
@@ -51,7 +51,7 @@
 					</locale>
 				</description>
 			</event>
-			<event name="unload" type="Event" cancelable="false" bubbles="false">
+			<event name="unload" type="dom:events:Event" cancelable="false" bubbles="false">
 				<description>
 					<locale>
 						Fires before element is unloaded.

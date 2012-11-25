@@ -89,7 +89,7 @@
 			</method>
 			<method name="setDragImage" type="Void">
 				<arguments>
-					<argument name="image" type="Element" required="true">
+					<argument name="image" type="dom:core:Element" required="true">
 						<description>
 							<locale>
 								Reference to an image element.
@@ -119,7 +119,7 @@
 			</method>
 			<method name="addElement" type="Void">
 				<arguments>
-					<argument name="node" type="Element" required="true">
+					<argument name="node" type="dom:core:Element" required="true">
 						<description>
 							<locale>
 								Reference to an element.

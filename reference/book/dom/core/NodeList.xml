@@ -13,7 +13,7 @@
 	<examples/>
 	<members>
 		<methods>
-			<method name="item" type="Node">
+			<method name="item" type="dom:core:Node">
 				<arguments>
 					<argument name="index" type="Number" required="true">
 						<description>

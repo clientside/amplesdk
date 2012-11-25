@@ -19,7 +19,7 @@
 		<attributes />
 		<methods>
 <!--
-			<method name="appendItem" type="Element">
+			<method name="appendItem" type="dom:core:Element">
 				<arguments>
 					<argument name="label" type="String" required="true">
 						<description>
@@ -36,7 +36,7 @@
 					Creates a new <link type="element">radio</link> element and adds it to the end of the <link type="element">radiogroup</link>. You may optionally set a value. The function returns the new item.
 				</description>
 			</method>
-			<method name="insertItemAt" type="Element">
+			<method name="insertItemAt" type="dom:core:Element">
 				<arguments>
 					<argument name="index" type="Number" required="true">
 						<description>
@@ -58,7 +58,7 @@
 					Creates a new <link type="element">radio</link> element and inserts it at a specific position in the <link type="element">radiogroup</link>.
 				</description>
 			</method>
-			<method name="removeItemAt" type="Element">
+			<method name="removeItemAt" type="dom:core:Element">
 				<arguments>
 					<argument name="index" type="Number" required="true">
 						<description>
@@ -73,7 +73,7 @@
 -->
 		</methods>
 		<properties>
-			<property name="items" type="NodeList">
+			<property name="items" type="dom:core:NodeList">
 				<description>
 					<locale>
 						Contains collection of <link type="element">radio</link> child elements.

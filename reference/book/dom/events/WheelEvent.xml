@@ -117,7 +117,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="relatedTarget" type="Node" required="true">
+					<argument name="relatedTarget" type="dom:core:Node" required="true">
 						<description>
 							<locale>
 								Specifies MouseEvent.relatedTarget. This value may be null.
