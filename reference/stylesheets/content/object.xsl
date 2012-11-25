@@ -473,7 +473,7 @@
 						<a href="{concat('../../../book/', translate(@type, ':', '/'), '.xml')}" class="object"><xsl:value-of select="substring-after(substring-after(@type, ':'), ':')" /></a>
 					</xsl:when>
 					<xsl:otherwise>
-						<xsl:value-of select="substring-after(substring-after(@type, ':'), ':')" />
+						<xsl:value-of select="@type" />
 					</xsl:otherwise>
 				</xsl:choose>
 			</td>
@@ -595,7 +595,7 @@
 						<a href="{concat('../../../book/', translate(@type, ':', '/'), '.xml')}" class="object"><xsl:value-of select="substring-after(substring-after(@type, ':'), ':')" /></a>
 					</xsl:when>
 					<xsl:otherwise>
-						<xsl:value-of select="substring-after(substring-after(@type, ':'), ':')" />
+						<xsl:value-of select="@type" />
 					</xsl:otherwise>
 				</xsl:choose>
 			</td>
@@ -646,7 +646,7 @@
 													<a href="{concat('../../../book/', translate(@type, ':', '/'), '.xml')}" class="object"><xsl:value-of select="substring-after(substring-after(@type, ':'), ':')" /></a>
 												</xsl:when>
 												<xsl:otherwise>
-													<xsl:value-of select="substring-after(substring-after(@type, ':'), ':')" />
+													<xsl:value-of select="@type" />
 												</xsl:otherwise>
 											</xsl:choose>
 										</td>
