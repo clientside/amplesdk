@@ -228,61 +228,8 @@
 			</node>
 		</node>
 	</node>
-	<node title="Plugins" open="true">
-		<node title="Cookie">
-			<node title="Overview" xurl="plugins/cookie/cookie.xml" />
-		</node>
-		<node title="Forms">
-			<node title="Overview" xurl="plugins/forms/forms.xml"/>
-		</node>
-		<node title="RPC">
-			<node title="Overview" xurl="plugins/rpc/rpc.xml"/>
-			<node title="Objects">
-				<node title="RPCClient" xurl="plugins/rpc/RPCClient.xml" />
-			</node>
-		</node>
-		<node title="Store">
-			<node title="Overview" xurl="plugins/store/store.xml"/>
-		</node>
-		<node title="Touch">
-			<node title="Overview" xurl="plugins/touch/touch.xml"/>
-		</node>
-		<node title="WebService">
-			<node title="Overview" xurl="plugins/webservice/webservice.xml"/>
-			<node title="Objects">
-				<node title="SoapRequest" xurl="plugins/soap/SoapRequest.xml"/>
-				<node title="SoapEnvelope" xurl="plugins/soap/SoapEnvelope.xml"/>
-			</node>
-		</node>
-		<node title="XMPP">
-			<node title="Overview" xurl="plugins/xmpp/xmpp.xml"/>
-			<node title="Objects">
-				<node title="XmppConnection" xurl="plugins/xmpp/XmppConnection.xml"/>
-				<node title="XmppPacket" xurl="plugins/xmpp/XmppPacket.xml"/>
-				<node title="XmppIQ" xurl="plugins/xmpp/XmppIQ.xml"/>
-				<node title="XmppMessage" xurl="plugins/xmpp/XmppMessage.xml"/>
-				<node title="XmppPresence" xurl="plugins/xmpp/XmppPresence.xml"/>
-				<node title="XmppRoster" xurl="plugins/xmpp/XmppRoster.xml"/>
-				<node title="XmppRosterEntry" xurl="plugins/xmpp/XmppRosterEntry.xml"/>
-				<node title="XmppRosterGroup" xurl="plugins/xmpp/XmppRosterGroup.xml"/>
-				<node title="XmppChat" xurl="plugins/xmpp/XmppClient.xml"/>
-				<node title="XmppGroupChat" xurl="plugins/xmpp/XmppGroupClient.xml"/>
-			</node>
-		</node>
-		<node title="XPath">
-			<node title="Overview" xurl="plugins/xpath/xpath.xml"/>
-			<node title="Objects">
-				<node title="XPathEvaluator" xurl="plugins/xpath/XPathEvaluator.xml"/>
-				<node title="XPathException" xurl="plugins/xpath/XPathException.xml"/>
-				<node title="XPathResult" xurl="plugins/xpath/XPathResult.xml"/>
-			</node>
-		</node>
-		<node title="XSLT">
-			<node title="Overview" xurl="plugins/xslt/xslt.xml"/>
-		</node>
-	</node>
+
 	<node title="UI languages" open="true">
-		<!--node title="UI languages" /-->
 		<node title="HTML 5">
 			<node title="Overview" url="markup/xhtml/index.xml" />
 		</node>
@@ -525,6 +472,60 @@
 				<node title="sound" xurl="markup/aui/sound.xml"/>
 				<node title="xhtml" xurl="markup/aui/xhtml.xml"/>
 			</node>
+		</node>
+	</node>
+
+	<node title="Plugins" open="true">
+		<node title="Cookie">
+			<node title="Overview" xurl="plugins/cookie/cookie.xml" />
+		</node>
+		<node title="Forms">
+			<node title="Overview" xurl="plugins/forms/forms.xml"/>
+		</node>
+		<node title="RPC">
+			<node title="Overview" xurl="plugins/rpc/rpc.xml"/>
+			<node title="Objects">
+				<node title="RPCClient" xurl="plugins/rpc/RPCClient.xml" />
+			</node>
+		</node>
+		<node title="Store">
+			<node title="Overview" xurl="plugins/store/store.xml"/>
+		</node>
+		<node title="Touch">
+			<node title="Overview" xurl="plugins/touch/touch.xml"/>
+		</node>
+		<node title="WebService">
+			<node title="Overview" xurl="plugins/webservice/webservice.xml"/>
+			<node title="Objects">
+				<node title="SoapRequest" xurl="plugins/soap/SoapRequest.xml"/>
+				<node title="SoapEnvelope" xurl="plugins/soap/SoapEnvelope.xml"/>
+			</node>
+		</node>
+		<node title="XMPP">
+			<node title="Overview" xurl="plugins/xmpp/xmpp.xml"/>
+			<node title="Objects">
+				<node title="XmppConnection" xurl="plugins/xmpp/XmppConnection.xml"/>
+				<node title="XmppPacket" xurl="plugins/xmpp/XmppPacket.xml"/>
+				<node title="XmppIQ" xurl="plugins/xmpp/XmppIQ.xml"/>
+				<node title="XmppMessage" xurl="plugins/xmpp/XmppMessage.xml"/>
+				<node title="XmppPresence" xurl="plugins/xmpp/XmppPresence.xml"/>
+				<node title="XmppRoster" xurl="plugins/xmpp/XmppRoster.xml"/>
+				<node title="XmppRosterEntry" xurl="plugins/xmpp/XmppRosterEntry.xml"/>
+				<node title="XmppRosterGroup" xurl="plugins/xmpp/XmppRosterGroup.xml"/>
+				<node title="XmppChat" xurl="plugins/xmpp/XmppClient.xml"/>
+				<node title="XmppGroupChat" xurl="plugins/xmpp/XmppGroupClient.xml"/>
+			</node>
+		</node>
+		<node title="XPath">
+			<node title="Overview" xurl="plugins/xpath/xpath.xml"/>
+			<node title="Objects">
+				<node title="XPathEvaluator" xurl="plugins/xpath/XPathEvaluator.xml"/>
+				<node title="XPathException" xurl="plugins/xpath/XPathException.xml"/>
+				<node title="XPathResult" xurl="plugins/xpath/XPathResult.xml"/>
+			</node>
+		</node>
+		<node title="XSLT">
+			<node title="Overview" xurl="plugins/xslt/xslt.xml"/>
 		</node>
 	</node>
 </book>
