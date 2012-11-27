@@ -7,6 +7,45 @@
  *
  */
 
+var rQuery_effects_display	= /display\s*:\s*(\w+)\s*(;?)/;
+
+function fQuery_effects_show(oQuery, fCallback, bIgnoreRuntimeCheck) {
+	fQuery_each(oQuery, function() {
+		var oElementDOM	= this.$getContainer(),
+			sValue	= this.attributes.style,
+			oStyle;
+
+		// Update model
+		if (sValue && sValue.match(rQuery_effects_display) && cRegExp.$1 == "none")
+			this.attributes.style	= sValue.replace(rQuery_effects_display, '$2');
+
+		// Update view, if available
+		if (oElementDOM && (oStyle = oElementDOM.style))
+			if (oStyle.display == "none" || bIgnoreRuntimeCheck)
+				fCallback(this, oElementDOM, oStyle);
+	});
+};
+
+function fQuery_effects_hide(oQuery, fCallback) {
+	fQuery_each(oQuery, function() {
+		var oElementDOM	= this.$getContainer(),
+			sValue	= this.attributes.style,
+			oStyle;
+
+		// Update model
+		if (!sValue)
+			this.attributes.style	= 'display:none';
+		else
+		if (sValue.match(rQuery_effects_display) && cRegExp.$1 != "none")
+			this.attributes.style	= sValue.replace(rQuery_effects_display, 'display:none' + '$2');
+
+		// Update view, if available
+		if (oElementDOM && (oStyle = oElementDOM.style))
+			if (oStyle.display != "none")
+				fCallback(this, oElementDOM, oStyle);
+	});
+};
+
 //
 cQuery.prototype.animate	= function(oProperties, vDuration, sEasing, fCallback) {
 //->Guard
@@ -59,14 +98,7 @@ cQuery.prototype.fadeIn	= function(vDuration, fCallback) {
 	]);
 //<-Guard
 
-	var oProperties	= {};
-	oProperties.opacity	= 1;
-	fQuery_each(this, function() {
-		fBrowser_setStyle(this.$getContainer(), "display", '');
-		fNodeAnimation_play(this, oProperties, vDuration, "ease", fCallback);
-	});
-
-	return this;
+	return fCallback ? this.fadeTo(vDuration, 1, fCallback) : this.fadeTo(vDuration, 1);
 };
 
 cQuery.prototype.fadeOut	= function(vDuration, fCallback) {
@@ -79,11 +111,12 @@ cQuery.prototype.fadeOut	= function(vDuration, fCallback) {
 
 	var oProperties	= {};
 	oProperties.opacity	= 0;
-	fQuery_each(this, function() {
-		fNodeAnimation_play(this, oProperties, vDuration, "ease", function() {
-			this.$getContainer().style.display	= "none";
+	//
+	fQuery_effects_hide(this, function(oElement, oElementDOM, oStyle) {
+		fNodeAnimation_play(oElement, oProperties, vDuration, "ease", function() {
+			oStyle.display	= "none";
 			if (fCallback)
-				fCallback.call(this);
+				fCallback.call(oElement);
 		});
 	});
 
@@ -101,9 +134,14 @@ cQuery.prototype.fadeTo	= function(vDuration, nOpacity, fCallback) {
 
 	var oProperties	= {};
 	oProperties.opacity	= nOpacity;
-	fQuery_each(this, function() {
-		fNodeAnimation_play(this, oProperties, vDuration, "ease", fCallback);
-	});
+	//
+	fQuery_effects_show(this, function(oElement, oElementDOM, oStyle) {
+		if (oStyle.display == "none") {
+			fBrowser_setStyle(oElementDOM, "opacity", '0');
+			oStyle.display	= '';
+		}
+		fNodeAnimation_play(oElement, oProperties, vDuration, "ease", fCallback);
+	}, true);
 
 	return this;
 };
@@ -116,38 +154,32 @@ cQuery.prototype.show	= function(vDuration, fCallback) {
 		]);
 //<-Guard
 
-	fQuery_each(this, function() {
-		var oElementDOM	= this.$getContainer(),
-			sValue	= this.attributes.style,
-			oStyle	= oElementDOM.style;
-		if (oStyle.display == "none") {
-			if (sValue)
-				this.attributes.style	= sValue.replace(/display\s*:\s*[\w-]+\s*;?/, '');
+	var oProperties	= {};
+	oProperties.opacity	= '1';
+	//
+	fQuery_effects_show(this, function(oElement, oElementDOM, oStyle) {
+		oStyle.display	= '';
+		if (vDuration) {
+			var oComputedStyle	= fBrowser_getComputedStyle(oElementDOM);
 			//
-			oStyle.display	= '';
+			oProperties.width	= fBrowser_adjustStyleValue(oElementDOM, "width", fBrowser_getStyle(oElementDOM, "width", oComputedStyle));
+			oProperties.height	= fBrowser_adjustStyleValue(oElementDOM, "height", fBrowser_getStyle(oElementDOM, "height", oComputedStyle));
 			//
-			if (vDuration) {
-				var oProperties	= {},
-					oComputedStyle	= fBrowser_getComputedStyle(oElementDOM);
-				oProperties.width	= fBrowser_adjustStyleValue(oElementDOM, "width", fBrowser_getStyle(oElementDOM, "width", oComputedStyle));
-				oProperties.height	= fBrowser_adjustStyleValue(oElementDOM, "height", fBrowser_getStyle(oElementDOM, "height", oComputedStyle));
-				oProperties.opacity	= '1';
-				//
-				oStyle.width	= 0;
-				oStyle.height	= 0;
-				oStyle.overflow	= "hidden";
-				fBrowser_setStyle(oElementDOM, "opacity", '0');
-				fNodeAnimation_play(this, oProperties, vDuration, "ease", function() {
-					// Restore values
-					oStyle.width	= '';
-					oStyle.height	= '';
-					oStyle.overflow	= '';
-					fBrowser_setStyle(oElementDOM, "opacity", '');
-					// Call callback
-					if (fCallback)
-						fCallback.call(this);
-				});
-			}
+			oStyle.width	= 0;
+			oStyle.height	= 0;
+			oStyle.overflow	= "hidden";
+			fBrowser_setStyle(oElementDOM, "opacity", '0');
+			//
+			fNodeAnimation_play(oElement, oProperties, vDuration, "ease", function() {
+				// Restore values
+				oStyle.width	= '';
+				oStyle.height	= '';
+				oStyle.overflow	= '';
+				fBrowser_setStyle(oElementDOM, "opacity", '');
+				// Call callback
+				if (fCallback)
+					fCallback.call(oElement);
+			});
 		}
 	});
 
@@ -162,38 +194,32 @@ cQuery.prototype.hide	= function(vDuration, fCallback) {
 		]);
 //<-Guard
 
-	fQuery_each(this, function() {
-		var oElementDOM	= this.$getContainer(),
-			oStyle	= oElementDOM.style;
-		if (oStyle.display != "none") {
-			if (vDuration) {
-				var oProperties	= {};
-				oProperties.width	= '0px';
-				oProperties.height	= '0px';
-				oProperties.opacity	= '0';
+	var oProperties	= {};
+	oProperties.width	= '0px';
+	oProperties.height	= '0px';
+	oProperties.opacity	= '0';
+	//
+	fQuery_effects_hide(this, function(oElement, oElementDOM, oStyle) {
+		if (vDuration) {
+			//
+			oStyle.overflow	= "hidden";
+			fBrowser_setStyle(oElementDOM, "opacity", '1');
+			//
+			fNodeAnimation_play(oElement, oProperties, vDuration, "ease", function() {
 				//
-				oStyle.overflow	= "hidden";
-				fBrowser_setStyle(oElementDOM, "opacity", '1');
-				fNodeAnimation_play(this, oProperties, vDuration, "ease", function() {
-					var sValue	= this.attributes.style || '';
-					if (sValue)
-						sValue	= sValue.replace(/display\s*:\s*[\w-]+\s*;?/, '');
-					this.attributes.style	= "display" + ':' + "none" + ';' + sValue;
-					//
-					oStyle.display	= "none";
-					// Restore values
-					oStyle.width	= '';
-					oStyle.height	= '';
-					oStyle.overflow	= '';
-					fBrowser_setStyle(oElementDOM, "opacity", '');
-					// Call callback
-					if (fCallback)
-						fCallback.call(this);
-				});
-			}
-			else
 				oStyle.display	= "none";
+				// Restore values
+				oStyle.width	= '';
+				oStyle.height	= '';
+				oStyle.overflow	= '';
+				fBrowser_setStyle(oElementDOM, "opacity", '');
+				// Call callback
+				if (fCallback)
+					fCallback.call(this);
+			});
 		}
+		else
+			oStyle.display	= "none";
 	});
 
 	return this;
@@ -207,29 +233,29 @@ cQuery.prototype.slideDown	= function(vDuration, fCallback) {
 	]);
 //<-Guard
 
-	fQuery_each(this, function() {
-		var oElementDOM	= this.$getContainer(),
-			oStyle	= oElementDOM.style;
-		if (oStyle.display == "none") {
-			oStyle.display	= '';
-			var oProperties	= {},
-				oComputedStyle	= fBrowser_getComputedStyle(oElementDOM);
-			oProperties.height	= fBrowser_adjustStyleValue(oElementDOM, "height", fBrowser_getStyle(oElementDOM, "height", oComputedStyle));
-			oProperties.opacity	= '1';
-			//
-			oStyle.height	= 0;
-			oStyle.overflow	= "hidden";
-			fBrowser_setStyle(oElementDOM, "opacity", '0');
-			fNodeAnimation_play(this, oProperties, vDuration || "normal", "ease", function() {
-				// Restore values
-				oStyle.height	= '';
-				oStyle.overflow	= '';
-				fBrowser_setStyle(oElementDOM, "opacity", '');
-				// Call callback
-				if (fCallback)
-					fCallback.call(this);
-			});
-		}
+	var oProperties	= {};
+	oProperties.opacity	= '1';
+	//
+	fQuery_effects_show(this, function(oElement, oElementDOM, oStyle) {
+		oStyle.display	= '';
+		//
+		var oComputedStyle	= fBrowser_getComputedStyle(oElementDOM);
+		//
+		oProperties.height	= fBrowser_adjustStyleValue(oElementDOM, "height", fBrowser_getStyle(oElementDOM, "height", oComputedStyle));
+		//
+		oStyle.height	= 0;
+		oStyle.overflow	= "hidden";
+		fBrowser_setStyle(oElementDOM, "opacity", '0');
+		//
+		fNodeAnimation_play(oElement, oProperties, vDuration || "normal", "ease", function() {
+			// Restore values
+			oStyle.height	= '';
+			oStyle.overflow	= '';
+			fBrowser_setStyle(oElementDOM, "opacity", '');
+			// Call callback
+			if (fCallback)
+				fCallback.call(oElement);
+		});
 	});
 
 	return this;
@@ -243,27 +269,25 @@ cQuery.prototype.slideUp		= function(vDuration, fCallback) {
 	]);
 //<-Guard
 
-	fQuery_each(this, function() {
-		var oElementDOM	= this.$getContainer(),
-			oStyle	= oElementDOM.style;
-		if (oStyle.display != "none") {
-			var oProperties	= {};
-			oProperties.height	= '0px';
-			oProperties.opacity	= '0';
-			//
-			oStyle.overflow	= "hidden";
-			fBrowser_setStyle(oElementDOM, "opacity", '1');
-			fNodeAnimation_play(this, oProperties, vDuration || "normal", "ease", function() {
-				oStyle.display	= "none";
-				// Restore values
-				oStyle.height	= '';
-				oStyle.overflow	= '';
-				fBrowser_setStyle(oElementDOM, "opacity", '');
-				// Call callback
-				if (fCallback)
-					fCallback.call(this);
-			});
-		}
+	var oProperties	= {};
+	oProperties.height	= '0px';
+	oProperties.opacity	= '0';
+	//
+	fQuery_effects_hide(this, function(oElement, oElementDOM, oStyle) {
+		//
+		oStyle.overflow	= "hidden";
+		fBrowser_setStyle(oElementDOM, "opacity", '1');
+		//
+		fNodeAnimation_play(oElement, oProperties, vDuration || "normal", "ease", function() {
+			oStyle.display	= "none";
+			// Restore values
+			oStyle.height	= '';
+			oStyle.overflow	= '';
+			fBrowser_setStyle(oElementDOM, "opacity", '');
+			// Call callback
+			if (fCallback)
+				fCallback.call(oElement);
+		});
 	});
 
 	return this;
