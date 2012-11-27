@@ -62,7 +62,7 @@ cXULElement_treecell.prototype.$getTagOpen	= function() {
 		} while(oElementCurrent = oElementCurrent.parentNode);
 	}
 
-	sHtml	+= '<div class="xul-treecell--gateway">';
+	sHtml	+= '<div class="xul-treecell--gateway" style="width:100%">';
 	if (this.attributes["src"])
 		sHtml	+= '<img src="' + ample.$encodeXMLCharacters(this.attributes["src"]) + '" align="absmiddle"/> ';
 	sHtml	+= this.attributes["label"] ? ample.$encodeXMLCharacters(this.attributes["label"]) : '';
