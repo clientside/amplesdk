@@ -480,7 +480,7 @@ cElement.prototype.setAttributeNodeNS	= function(oAttribute) {
 
 function fElement_getAttribute(oElement, sQName) {
 	var oAttribute	= fElement_getAttributeNode(oElement, sQName);
-	return oAttribute ? oAttribute.value : '';
+	return oAttribute ? oAttribute.value : null;
 };
 
 cElement.prototype.getAttribute	= function(sQName) {
@@ -495,7 +495,7 @@ cElement.prototype.getAttribute	= function(sQName) {
 
 function fElement_getAttributeNS(oElement, sNameSpaceURI, sLocalName) {
 	var oAttribute	= fElement_getAttributeNodeNS(oElement, sNameSpaceURI, sLocalName);
-	return oAttribute ? oAttribute.value : '';
+	return oAttribute ? oAttribute.value : null;
 };
 
 cElement.prototype.getAttributeNS	= function(sNameSpaceURI, sLocalName) {
@@ -999,15 +999,15 @@ function fElement_setPseudoClass(oElement, sName, bValue, sContainer) {
 };
 
 function fElement_getPseudoClass(oElement, sName, bValue, sContainer, oElementDOM) {
-	var sClass		= fElement_getAttribute(oElement, "class").trim(),
+	var sValue		= fElement_getAttribute(oElement, "class"),
+		sClass		= sValue ? sValue.trim() : '',
 		aClass		= sClass.length ? sClass.split(/\s+/g) : null,
 		sPseudoName	= sContainer ? '--' + sContainer : '',
 		sTagName	=(oElement.prefix ? oElement.prefix + '-' : '') + oElement.localName,
 		sOldName	= bTrident && nVersion < 8 ? oElementDOM.className : oElementDOM.getAttribute("class") || '',
-		bMatch	= sOldName.match(fElement_getRegExp(sName, sPseudoName)),
+		bMatch		= sOldName.match(fElement_getRegExp(sName, sPseudoName)),
 		sNewName	= '',
-		sPseudo,
-		sClass;
+		sPseudo;
 
 	if (bValue) {
 		// Add class
