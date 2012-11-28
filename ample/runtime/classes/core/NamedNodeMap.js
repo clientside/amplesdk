@@ -14,6 +14,12 @@ var cNamedNodeMap	= function() {
 cNamedNodeMap.prototype.length	= 0;
 
 cNamedNodeMap.prototype.item	= function(nIndex) {
+//->Guard
+	fGuard(arguments, [
+		["index",	cNumber]
+	]);
+//<-Guard
+
 	return this.length > nIndex ? this[nIndex] : null;
 };
 
@@ -30,21 +36,46 @@ function fNamedNodeMap_getNamedItem(oMap, sName) {
 };
 
 cNamedNodeMap.prototype.getNamedItem	= function(sName) {
+//->Guard
+	fGuard(arguments, [
+		["name",	cString]
+	]);
+//<-Guard
+
 	return fNamedNodeMap_getNamedItem(this, sName);
 };
 
 cNamedNodeMap.prototype.setNamedItem	= function(oNode) {
+//->Guard
+	fGuard(arguments, [
+		["node",	cNode]
+	]);
+//<-Guard
+
 	var oOldNode	= fNamedNodeMap_removeItemNS(this, null, oNode.name);
 	fNamedNodeMap_addItem(this, oNode);
 	return oOldNode;
 };
 
 cNamedNodeMap.prototype.removeNamedItem	= function(sName) {
+//->Guard
+	fGuard(arguments, [
+		["name",	cString]
+	]);
+//<-Guard
+
 	return fNamedNodeMap_removeItemNS(this, null, sName);
 };
 
 // DOM Level 2
 cNamedNodeMap.prototype.getNamedItemNS	= function(sNameSpaceURI, sLocalName) {
+//->Guard
+	fGuard(arguments, [
+		["namespaceURI",	cString, false, true],
+		["localName",		cString]
+	]);
+//<-Guard
+
 	// Slow lookup for names which are members of NamedNodeMap object
 	if (sNameSpaceURI == null)
 		return fNamedNodeMap_getNamedItem(this, sLocalName);
@@ -56,12 +87,25 @@ cNamedNodeMap.prototype.getNamedItemNS	= function(sNameSpaceURI, sLocalName) {
 };
 
 cNamedNodeMap.prototype.setNamedItemNS	= function(oNode) {
+//->Guard
+	fGuard(arguments, [
+		["node",	cNode]
+	]);
+//<-Guard
+
 	var oOldNode	= fNamedNodeMap_removeItemNS(this, oNode.namespaceURI, oNode.localName);
 	fNamedNodeMap_addItem(this, oNode);
 	return oOldNode;
 };
 
 cNamedNodeMap.prototype.removeNamedItemNS	= function(sNameSpaceURI, sLocalName) {
+//->Guard
+	fGuard(arguments, [
+		["namespaceURI",	cString, false, true],
+		["localName",		cString]
+	]);
+//<-Guard
+
 	return fNamedNodeMap_removeItemNS(this, sNameSpaceURI, sLocalName);
 };
 
