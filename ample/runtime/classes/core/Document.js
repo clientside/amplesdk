@@ -377,9 +377,8 @@ function fDocument_importNode(oDocument, oElementDOM, bDeep, oParent) {
 					else {
 						fElement_setAttributeNS(oNode, oAttribute.namespaceURI || null, sName, sValue);
 //->Debug
-						if (oAttribute.namespaceURI &&!(hClasses[oAttribute.namespaceURI + '#' + '@' + oAttribute.localName]))
-							if (sName != "xmlns" && oAttribute.prefix != "xml" && oAttribute.prefix != "xmlns")
-								fUtilities_warn(sGUARD_UNKNOWN_ATTRIBUTE_NS_WRN, [oAttribute.localName, oAttribute.namespaceURI]);
+						if (oAttribute.namespaceURI &&!sName.match(/^xml(:|ns(:|$))/) &&!(hClasses[oAttribute.namespaceURI + '#' + '@' + oAttribute.localName]))
+							fUtilities_warn(sGUARD_UNKNOWN_ATTRIBUTE_NS_WRN, [oAttribute.localName, oAttribute.namespaceURI]);
 //<-Debug
 					}
 				}
@@ -404,8 +403,8 @@ function fDocument_importNode(oDocument, oElementDOM, bDeep, oParent) {
 
 				// Render Children
 				if (bDeep)
-					for (var nIndex = 0, nLength = oElementDOM.childNodes.length; nIndex < nLength; nIndex++)
-						fDocument_importNode(oDocument, oElementDOM.childNodes[nIndex], bDeep, oNode);
+					for (var nIndex = 0, aElements = oElementDOM.childNodes, nLength = aElements.length; nIndex < nLength; nIndex++)
+						fDocument_importNode(oDocument, aElements[nIndex], bDeep, oNode);
 				//
 				return oNode;
 			}
@@ -413,8 +412,8 @@ function fDocument_importNode(oDocument, oElementDOM, bDeep, oParent) {
 
 		case 5:	// cNode.ENTITY_REFERENCE_NODE
 			// This is normally  executed only in IE
-			for (var nIndex = 0, nLength = oElementDOM.childNodes.length; nIndex < nLength; nIndex++)
-				fDocument_importNode(oDocument, oElementDOM.childNodes[nIndex], bDeep, oParent);
+			for (var nIndex = 0, aElements = oElementDOM.childNodes, nLength = aElements.length; nIndex < nLength; nIndex++)
+				fDocument_importNode(oDocument, aElements[nIndex], bDeep, oParent);
 			break;
 
 		case 3:	// cNode.TEXT_NODE
