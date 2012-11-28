@@ -531,7 +531,7 @@ function fDocument_register(oDocument, oElement) {
 
 		// Global attributes module
 		for (var nIndex = 0, nLength = oElement.attributes.length, oAttribute; nIndex < nLength; nIndex++) {
-			if ((oAttribute = oElement.attributes.item(nIndex)).namespaceURI && oAttribute.namespaceURI != sNS_XML && oAttribute.namespaceURI != sNS_XMLNS) {
+			if ((oAttribute = oElement.attributes[nIndex]).namespaceURI && oAttribute.namespaceURI != sNS_XML && oAttribute.namespaceURI != sNS_XMLNS) {
 				var fConstructor	= hClasses[oAttribute.namespaceURI + '#' + '@' + oAttribute.localName];
 				if (fConstructor)	{
 					// Fire Mutation event (pseudo)

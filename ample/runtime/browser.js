@@ -107,7 +107,7 @@ function fBrowser_render(oNode) {
 				}
 				else {
 					// Add namespace declarations to the shadow content
-					if (!oNode.attributes.getNamedItem("xmlns" + (oNode.prefix ? ':' + oNode.prefix : '')) || (oNode.namespaceURI != sNS_SVG && oNode.namespaceURI != sNS_XHTML))
+					if (!fNamedNodeMap_getNamedItem(oNode.attributes, "xmlns" + (oNode.prefix ? ':' + oNode.prefix : '')) || (oNode.namespaceURI != sNS_SVG && oNode.namespaceURI != sNS_XHTML))
 						sHtml	= sHtml.replace(/^(<(?:(\w+)(:))?(\w+))/, '$1 ' + "xmlns" + '$3$2="' + (oNode.namespaceURI == sNS_SVG ? sNS_SVG : sNS_XHTML) + '"');
 					oElement	= oUADocument.importNode(fBrowser_parseXML('<!' + "DOCTYPE" + ' ' + "div" + '[' + sBrowser_entities + ']>' + '<div' + ' ' + "xmlns" + '="' + sNS_XHTML + '">' + sHtml + '</div>').documentElement, true);
 				}

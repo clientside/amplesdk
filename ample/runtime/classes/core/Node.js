@@ -277,7 +277,7 @@ function fNode_cloneNode(oNode, bDeep) {
 
 			// Copy Attributes
 			for (var nIndex = 0, nLength = oNode.attributes.length; nIndex < nLength; nIndex++)
-				fElement_setAttributeNodeNS(oClone, fNode_cloneNode(oNode.attributes.item(nIndex)));
+				fElement_setAttributeNodeNS(oClone, fNode_cloneNode(oNode.attributes[nIndex]));
 
 			// Append Children
 			if (bDeep)
@@ -349,7 +349,7 @@ function fNode_lookupPrefix(oNode, sNameSpaceURI) {
 		else
 		if (oNode.nodeType == 1)	// cNode.ELEMENT_NODE
 			for (var nIndex = 0, nLength = oNode.attributes.length, oAttribute; nIndex < nLength; nIndex++)
-				if ((oAttribute = oNode.attributes.item(nIndex)).prefix == "xmlns") {
+				if ((oAttribute = oNode.attributes[nIndex]).prefix == "xmlns") {
 					sPrefix	= oAttribute.localName;
 					if (oAttribute.value == sNameSpaceURI)
 						return sPrefix in aPrefixes ? '' : sPrefix;
@@ -389,7 +389,7 @@ function fNode_isDefaultNamespace(oNode, sNameSpaceURI) {
 				if (!oNode.prefix)
 					return oNode.namespaceURI == sNameSpaceURI;
 				else
-				if (oAttribute = oNode.attributes.getNamedItem("xmlns"))
+				if (oAttribute = fNamedNodeMap_getNamedItem(oNode.attributes, "xmlns"))
 					return oAttribute.value == sNameSpaceURI;
 			return false;
 
@@ -420,7 +420,7 @@ function fNode_lookupNamespaceURI(oNode, sPrefix) {
 			return oNode.namespaceURI;
 		else
 		if (oNode.nodeType == 1)	// cNode.ELEMENT_NODE
-			if (oAttribute = oNode.attributes.getNamedItem("xmlns" + ':' + sPrefix))
+			if (oAttribute = fNamedNodeMap_getNamedItem(oNode.attributes, "xmlns" + ':' + sPrefix))
 				return oAttribute.value;
 	return null;
 };
@@ -671,7 +671,7 @@ function fNode_toXML(oNode) {
 		case 1:	// cNode.ELEMENT_NODE
 			aHtml.push('<' + oNode.nodeName);
 			for (var nIndex = 0, nLength = oNode.attributes.length; nIndex < nLength; nIndex++)
-				aHtml.push(' ' + oNode.attributes.item(nIndex).name + '=' + '"' + fUtilities_encodeXMLCharacters(oNode.attributes.item(nIndex).value) + '"');
+				aHtml.push(' ' + oNode.attributes[nIndex].nodeName + '=' + '"' + fUtilities_encodeXMLCharacters(oNode.attributes[nIndex].nodeValue) + '"');
 
 			if (oNode.hasChildNodes()) {
 				aHtml.push('>');

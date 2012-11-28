@@ -214,7 +214,7 @@ cElement.prototype.replaceChild	= function(oNode, oOld) {
 };
 
 function fElement_hazAttribute(oElement, sQName) {
-	return !!oElement.attributes.getNamedItem(sQName);
+	return !!fNamedNodeMap_getNamedItem(oElement.attributes, sQName);
 };
 
 cElement.prototype.hasAttribute	= function(sQName) {
@@ -228,7 +228,7 @@ cElement.prototype.hasAttribute	= function(sQName) {
 };
 
 function fElement_hazAttributeNS(oElement, sNameSpaceURI, sLocalName) {
-	return !!oElement.attributes.getNamedItemNS(sNameSpaceURI, sLocalName);
+	return !!fNamedNodeMap_getNamedItemNS(oElement.attributes, sNameSpaceURI, sLocalName);
 };
 
 cElement.prototype.hasAttributeNS	= function(sNameSpaceURI, sLocalName) {
@@ -273,7 +273,7 @@ function fElement_mapAttribute(oElement, sName, sValue, sValueOld) {
 };
 
 function fElement_setAttribute(oElement, sName, sValue) {
-	var oAttribute	= oElement.attributes.getNamedItem(sName);
+	var oAttribute	= fNamedNodeMap_getNamedItem(oElement.attributes, sName);
 	if (!oAttribute || oAttribute.value != sValue) {
 		if (oAttribute) {
 			var bRegistered	= oDocument_all[oElement.uniqueID],
@@ -410,7 +410,7 @@ cElement.prototype.setAttributeNode	= function(oAttribute) {
 };
 
 function fElement_setAttributeNode(oElement, oAttribute) {
-	var oOldAttribute	= oElement.attributes.setNamedItem(oAttribute);
+	var oOldAttribute	= fNamedNodeMap_setNamedItem(oElement.attributes, oAttribute);
 	// TODO
 	//
 	oAttribute.ownerElement	= oElement;
@@ -435,7 +435,7 @@ function fElement_setAttributeNode(oElement, oAttribute) {
 };
 
 function fElement_setAttributeNodeNS(oElement, oAttribute) {
-	var oOldAttribute	= oElement.attributes.setNamedItemNS(oAttribute);
+	var oOldAttribute	= fNamedNodeMap_setNamedItemNS(oElement.attributes, oAttribute);
 	//
 	oAttribute.ownerElement	= oElement;
 
@@ -510,7 +510,7 @@ cElement.prototype.getAttributeNS	= function(sNameSpaceURI, sLocalName) {
 };
 
 function fElement_getAttributeNode(oElement, sName) {
-	return oElement.attributes.getNamedItem(sName);
+	return fNamedNodeMap_getNamedItem(oElement.attributes, sName);
 };
 
 cElement.prototype.getAttributeNode	= function(sQName) {
@@ -524,7 +524,7 @@ cElement.prototype.getAttributeNode	= function(sQName) {
 };
 
 function fElement_getAttributeNodeNS(oElement, sNameSpaceURI, sLocalName) {
-	return oElement.attributes.getNamedItemNS(sNameSpaceURI, sLocalName);
+	return fNamedNodeMap_getNamedItemNS(oElement.attributes, sNameSpaceURI, sLocalName);
 };
 
 cElement.prototype.getAttributeNodeNS	= function(sNameSpaceURI, sLocalName) {
@@ -539,7 +539,7 @@ cElement.prototype.getAttributeNodeNS	= function(sNameSpaceURI, sLocalName) {
 };
 
 function fElement_removeAttribute(oElement, sName) {
-	var oAttribute	= oElement.attributes.getNamedItem(sName);
+	var oAttribute	= fNamedNodeMap_getNamedItem(oElement.attributes, sName);
 	if (oAttribute)
 		fElement_removeAttributeNode(oElement, oAttribute);
 };
@@ -556,7 +556,7 @@ cElement.prototype.removeAttribute	= function(sName) {
 
 function fElement_removeAttributeNS(oElement, sNameSpaceURI, sLocalName) {
 //	if (sNameSpaceURI != null && sLocalName != "xmlns" || sNameSpaceURI == sNS_XMLNS || sNameSpaceURI == sNS_XML) {
-		var oAttribute	= oElement.attributes.getNamedItemNS(oElement, sNameSpaceURI, sLocalName);
+		var oAttribute	= fNamedNodeMap_getNamedItemNS(oElement.attributes, sNameSpaceURI, sLocalName);
 		if (oAttribute)
 			fElement_removeAttributeNode(oElement, oAttribute);
 //	}
@@ -618,7 +618,7 @@ function fElement_removeAttributeNode(oElement, oAttribute) {
 			oElement.$mapAttribute(sName, null);
 	}
 	//
-	oElement.attributes.removeNamedItemNS(oAttribute.namespaceURI, oAttribute.localName);
+	fNamedNodeMap_removeNamedItemNS(oElement.attributes, oAttribute.namespaceURI, oAttribute.namespaceURI ? oAttribute.localName : oAttribute.nodeName);
 	//
 	oAttribute.ownerElement	= null;
 };
