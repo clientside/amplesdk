@@ -374,8 +374,14 @@ function fDocument_importNode(oDocument, oElementDOM, bDeep, oParent) {
 //<-Debug
 						}
 					}
-					else
+					else {
 						fElement_setAttributeNS(oNode, oAttribute.namespaceURI || null, sName, sValue);
+//->Debug
+						if (oAttribute.namespaceURI &&!(hClasses[oAttribute.namespaceURI + '#' + '@' + oAttribute.localName]))
+							if (sName != "xmlns" && oAttribute.prefix != "xml" && oAttribute.prefix != "xmlns")
+								fUtilities_warn(sGUARD_UNKNOWN_ATTRIBUTE_NS_WRN, [oAttribute.localName, oAttribute.namespaceURI]);
+//<-Debug
+					}
 				}
 
 				// Copy default attributes values if not specified
@@ -537,10 +543,6 @@ function fDocument_register(oDocument, oElement) {
 					oEvent.eventPhase		= 2 /* cEvent.AT_TARGET */;
 					fEventTarget_handleEvent(oAttribute, oEvent);
 				}
-//->Debug
-				else
-					fUtilities_warn(sGUARD_UNKNOWN_ATTRIBUTE_NS_WRN, [oAttribute.localName, oAttribute.namespaceURI]);
-//<-Debug
 			}
 		}
 
