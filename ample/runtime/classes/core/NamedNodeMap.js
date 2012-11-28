@@ -20,7 +20,7 @@ cNamedNodeMap.prototype.item	= function(nIndex) {
 	]);
 //<-Guard
 
-	return this.length > nIndex ? this[nIndex] : null;
+	return nIndex >-1 && this.length > nIndex ? this[nIndex] : null;
 };
 
 function fNamedNodeMap_getNamedItem(oMap, sName) {
