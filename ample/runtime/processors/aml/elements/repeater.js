@@ -110,7 +110,7 @@ function fAMLElement_repeater_processNode(oElement, oData, fResolver) {
 		switch (oNode.nodeType) {
 			case 1:	// cNode.ELEMENT_NODE
 				for (var nAttribute = 0, nLengthAttribute = oNode.attributes.length, oAttribute; nIndex < nLengthAttribute; nIndex++)
-					if ((oAttribute = oNode.attributes[nAttribute]).match(rAMLElement_repeater_regexp))
+					if ((oAttribute = oNode.attributes[nAttribute]).value.match(rAMLElement_repeater_regexp))
 						fElement_setAttributeNS(oNode, oAttribute.namespaceURI, oAttribute.name, oAttribute.value.replace(cRegExp.$1, fAMLElement_repeater_resolveValue(cRegExp.$2, oData, fResolver)));
 				fAMLElement_repeater_processNode(oNode, oData, fResolver);
 				break;
