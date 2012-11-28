@@ -576,7 +576,7 @@ cElement.prototype.removeAttributeNS	= function(sNameSpaceURI, sLocalName) {
 cElement.prototype.removeAttributeNode	= function(oAttribute) {
 //->Guard
 	fGuard(arguments, [
-		["attribute",	cAttr]
+		["node",	cAttr]
 	], this);
 //<-Guard
 
