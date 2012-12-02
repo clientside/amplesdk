@@ -31,7 +31,7 @@
 								The qualified name of the document element to be created or null.
 							</locale>
 							<locale xml:lang="ru">
-								Название (<a href="http://www.w3.org/TR/REC-xml-names/#ns-qualnames">Qualified Name</a>) документа, который будет создан, или null.
+								Название (<link href="http://www.w3.org/TR/REC-xml-names/#ns-qualnames">Qualified Name</link>) документа, который будет создан, или null.
 							</locale>
 						</description>
 					</argument>
@@ -63,7 +63,7 @@
 								The qualified name of the document type to be created.
 							</locale>
 							<locale xml:lang="ru">
-								Тип документа (<a href="http://www.w3.org/TR/REC-xml-names/#ns-qualnames">Qualified Name</a>), который будет создан.
+								Тип документа (<link href="http://www.w3.org/TR/REC-xml-names/#ns-qualnames">Qualified Name</link>), который будет создан.
 							</locale>
 						</description>
 					</argument>

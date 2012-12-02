@@ -255,15 +255,6 @@
 	</xsl:template>
 
 	<!--
-		Template: a
-	-->
-	<xsl:template match="a">
-		<a href="{@href}" title="{@title}">
-			<xsl:apply-templates />
-		</a>
-	</xsl:template>
-
-	<!--
 		Template: img
 	-->
 	<xsl:template match="img">

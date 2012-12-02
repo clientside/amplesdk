@@ -44,17 +44,17 @@
 				<locale>
 					At the present moment SMIL 3.0 in Ample SDK is in the development. Following modules are already available for testing:
 					<ul>
-						<li><a href="http://www.w3.org/TR/SMIL3/smil-timing.html">5. SMIL 3.0 Timing and Synchronization</a></li>
-						<li><a href="http://www.w3.org/TR/SMIL3/smil-animation.html">12. SMIL 3.0 Animation</a></li>
-						<li><a href="http://www.w3.org/TR/SMIL3/smil-timemanip.html">14. SMIL 3.0 Time Manipulations</a></li>
+						<li><link href="http://www.w3.org/TR/SMIL3/smil-timing.html">5. SMIL 3.0 Timing and Synchronization</link></li>
+						<li><link href="http://www.w3.org/TR/SMIL3/smil-animation.html">12. SMIL 3.0 Animation</link></li>
+						<li><link href="http://www.w3.org/TR/SMIL3/smil-timemanip.html">14. SMIL 3.0 Time Manipulations</link></li>
 					</ul>
 				</locale>
 				<locale xml:lang="ru">
 					В настоящее время реализация языка SMIL 3.0 в <b>Ample SDK</b> находится в стадии разработки. Следующие модули уже доступны для тестирования:
 					<ul>
-						<li><a href="http://www.w3.org/TR/SMIL3/smil-timing.html">5. SMIL 3.0 Timing and Synchronization</a></li>
-						<li><a href="http://www.w3.org/TR/SMIL3/smil-animation.html">12. SMIL 3.0 Animation</a></li>
-						<li><a href="http://www.w3.org/TR/SMIL3/smil-timemanip.html">14. SMIL 3.0 Time Manipulations</a></li>
+						<li><link href="http://www.w3.org/TR/SMIL3/smil-timing.html">5. SMIL 3.0 Timing and Synchronization</link></li>
+						<li><link href="http://www.w3.org/TR/SMIL3/smil-animation.html">12. SMIL 3.0 Animation</link></li>
+						<li><link href="http://www.w3.org/TR/SMIL3/smil-timemanip.html">14. SMIL 3.0 Time Manipulations</link></li>
 					</ul>
 				</locale>
 			</content>

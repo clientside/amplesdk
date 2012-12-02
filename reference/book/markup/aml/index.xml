@@ -37,10 +37,10 @@
 			</title>
 			<content>
 				<locale>
-					This language is being developed by <a href="http://www.amplesdk.com/community/">Ample SDK community</a>.
+					This language is being developed by <link href="http://www.amplesdk.com/community/">Ample SDK community</link>.
 				</locale>
 				<locale xml:lang="ru">
-					Этот язык разрабатывается и поддерживается <a href="http://www.amplesdk.com/community/">сообществом Ample SDK</a>.
+					Этот язык разрабатывается и поддерживается <link href="http://www.amplesdk.com/community/">сообществом Ample SDK</link>.
 				</locale>
 			</content>
 		</section>

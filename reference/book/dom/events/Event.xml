@@ -155,7 +155,7 @@
 						The name of the event (case-insensitive). The name must be an XML name.
 					</locale>
 					<locale xml:lang="ru">
-						Название события (чувствительно к регистру). Должно быть <a href="http://www.w3.org/TR/REC-xml#NT-Name">XML Name</a>.
+						Название события (чувствительно к регистру). Должно быть <link href="http://www.w3.org/TR/REC-xml#NT-Name">XML Name</link>.
 					</locale>
 				</description>
 			</property>
