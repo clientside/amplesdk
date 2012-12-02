@@ -117,7 +117,7 @@
 									</xsl:attribute>
 									<xsl:value-of select="."/>
 								</a>
-								<img src="../../../schemes/default/img/link_external.gif" width="16" height="11" align="absmiddle" style="margin-left: 5px" title="{$strings/link_external}"/>
+								<img src="../../../resources/img/link_external.gif" width="16" height="11" align="absmiddle" style="margin-left: 5px" title="{$strings/link_external}"/>
 							</xsl:otherwise>
 						</xsl:choose>
 					</xsl:otherwise>
