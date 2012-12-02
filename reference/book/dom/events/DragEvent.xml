@@ -77,7 +77,7 @@
 				</arguments>
 				<description>
 					<locale>
-						Initializes attributes of a <link type="class">DragEvent</link> object.
+						Initializes attributes of a <link type="class" href="reference://dom/events/DragEvent">DragEvent</link> object.
 					</locale>
 					<locale xml:lang="ru">
 						Метод initDragEvent используется для инициализации значения объекта DragEvent.
@@ -89,10 +89,10 @@
 			<property name="dataTransfer" type="dom:core:DataTransfer">
 				<description>
 					<locale>
-						Keeps a reference to <link type="class">DataTransfer</link> object, associated with this object.
+						Keeps a reference to <link type="class" href="reference://dom/core/DataTransfer">DataTransfer</link> object, associated with this object.
 					</locale>
 					<locale xml:lang="ru">
-						Содержит <link type="class">DataTransfer</link> object, ассоциированииое с данным событием.
+						Содержит <link type="class" href="reference://dom/core/DataTransfer">DataTransfer</link> object, ассоциированииое с данным событием.
 					</locale>
 				</description>
 			</property>
@@ -104,13 +104,13 @@
 			<locale>Events of that type:</locale>
 			<locale xml:lang="ru">События этого типа:</locale>
 			<ul>
-				<li><link type="event" href="runtime:Element">drag</link></li>
-				<li><link type="event" href="runtime:Element">dragend</link></li>
-				<li><link type="event" href="runtime:Element">dragenter</link></li>
-				<li><link type="event" href="runtime:Element">dragleave</link></li>
-				<li><link type="event" href="runtime:Element">dragover</link></li>
-				<li><link type="event" href="runtime:Element">dragstart</link></li>
-				<li><link type="event" href="runtime:Element">drop</link></li>
+				<li><link type="event" href="reference://dom/core/Element">drag</link></li>
+				<li><link type="event" href="reference://dom/core/Element">dragend</link></li>
+				<li><link type="event" href="reference://dom/core/Element">dragenter</link></li>
+				<li><link type="event" href="reference://dom/core/Element">dragleave</link></li>
+				<li><link type="event" href="reference://dom/core/Element">dragover</link></li>
+				<li><link type="event" href="reference://dom/core/Element">dragstart</link></li>
+				<li><link type="event" href="reference://dom/core/Element">drop</link></li>
 			</ul>
 		</remark>
 	</remarks>

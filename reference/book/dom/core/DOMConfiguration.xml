@@ -51,10 +51,10 @@
 				</arguments>
 				<description>
 					<locale>
-						Checks if <link type="class">DOMConfiguration</link> parameter value can be set.
+						Checks if <link type="class" href="reference://dom/core/DOMConfiguration">DOMConfiguration</link> parameter value can be set.
 					</locale>
 					<locale xml:lang="ru">
-						Проверяет, можно ли выставить указанное значение параметра объекта <link type="class">DOMConfiguration</link>.
+						Проверяет, можно ли выставить указанное значение параметра объекта <link type="class" href="reference://dom/core/DOMConfiguration">DOMConfiguration</link>.
 					</locale>
 				</description>
 			</method>
@@ -83,10 +83,10 @@
 				</arguments>
 				<description>
 					<locale>
-						Sets <link type="class">DOMConfiguration</link> parameter value.
+						Sets <link type="class" href="reference://dom/core/DOMConfiguration">DOMConfiguration</link> parameter value.
 					</locale>
 					<locale xml:lang="ru">
-						Устанавливает значение параметра объекта <link type="class">DOMConfiguration</link>.
+						Устанавливает значение параметра объекта <link type="class" href="reference://dom/core/DOMConfiguration">DOMConfiguration</link>.
 					</locale>
 				</description>
 			</method>
@@ -105,10 +105,10 @@
 				</arguments>
 				<description>
 					<locale>
-						Returns <link type="class">DOMConfiguration</link> parameter value.
+						Returns <link type="class" href="reference://dom/core/DOMConfiguration">DOMConfiguration</link> parameter value.
 					</locale>
 					<locale xml:lang="ru">
-						Возвращает значение параметра объекта <link type="class">DOMConfiguration</link>.
+						Возвращает значение параметра объекта <link type="class" href="reference://dom/core/DOMConfiguration">DOMConfiguration</link>.
 					</locale>
 				</description>
 			</method>

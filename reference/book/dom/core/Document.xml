@@ -73,7 +73,7 @@
 						Creates an empty DocumentFragment object.
 					</locale>
 					<locale xml:lang="ru">
-						Создает объект <link type="class">DocumentFragment</link>.
+						Создает объект <link type="class" href="reference://dom/core/DocumentFragment">DocumentFragment</link>.
 					</locale>
 				</description>
 			</method>
@@ -92,7 +92,7 @@
 						Creates a Text node given the specified string.
 					</locale>
 					<locale xml:lang="ru">
-						Создает объект <link type="class">Text</link> по заданной строке.
+						Создает объект <link type="class" href="reference://dom/core/Text">Text</link> по заданной строке.
 					</locale>
 				</description>
 			</method>
@@ -114,7 +114,7 @@
 						Creates a Comment node given the specified string.
 					</locale>
 					<locale xml:lang="ru">
-						Создает узел <link type="class">Comment</link> по заданной строке.
+						Создает узел <link type="class" href="reference://dom/core/Comment">Comment</link> по заданной строке.
 					</locale>
 				</description>
 			</method>
@@ -133,10 +133,10 @@
 				</arguments>
 				<description>
 					<locale>
-						Creates a <link type="class">CDATASection</link> node whose value is the specified string.
+						Creates a <link type="class" href="reference://dom/core/CDATASection">CDATASection</link> node whose value is the specified string.
 					</locale>
 					<locale xml:lang="ru">
-						Создает узел <link type="class">CDATASection</link>, значением которого будет заданная строка.
+						Создает узел <link type="class" href="reference://dom/core/CDATASection">CDATASection</link>, значением которого будет заданная строка.
 					</locale>
 				</description>
 			</method>
@@ -168,7 +168,7 @@
 						Creates a ProcessingInstruction node given the specified name and data strings.
 					</locale>
 					<locale xml:lang="ru">
-						Создает объект <link type="class">ProcessingInstruction</link> по заданным имени и данным.
+						Создает объект <link type="class" href="reference://dom/core/ProcessingInstruction">ProcessingInstruction</link> по заданным имени и данным.
 					</locale>
 				</description>
 			</method>
@@ -190,7 +190,7 @@
 						Creates an Attr of the given name.
 					</locale>
 					<locale xml:lang="ru">
-						Создает объект <link type="class">Attr</link> по заданному имени.
+						Создает объект <link type="class" href="reference://dom/core/Attr">Attr</link> по заданному имени.
 					</locale>
 				</description>
 			</method>
@@ -222,7 +222,7 @@
 						Creates an attribute of the given qualified name and namespace URI.
 					</locale>
 					<locale xml:lang="ru">
-						Создает объект <link type="class">Attr</link> по заданным имени и пространству имен.
+						Создает объект <link type="class" href="reference://dom/core/Attr">Attr</link> по заданным имени и пространству имен.
 					</locale>
 				</description>
 			</method>
@@ -234,7 +234,7 @@
 								The name of the entity to reference.
 							</locale>
 							<locale xml:lang="ru">
-								Имя создаваемого <link type="class">EntityReference</link>.
+								Имя создаваемого <link type="class" href="reference://dom/core/EntityReference">EntityReference</link>.
 							</locale>
 						</description>
 					</argument>
@@ -244,7 +244,7 @@
 						Creates an EntityReference object.
 					</locale>
 					<locale xml:lang="ru">
-						Создает объект <link type="class">EntityReference</link>.
+						Создает объект <link type="class" href="reference://dom/core/EntityReference">EntityReference</link>.
 					</locale>
 				</description>
 			</method>
@@ -266,7 +266,7 @@
 						Returns the Element that has an ID attribute with the given value.
 					</locale>
 					<locale xml:lang="ru">
-						Возвращает ссылку на <link type="class">Element</link>, у которого атрибут ID соответствует заданному.
+						Возвращает ссылку на <link type="class" href="reference://dom/core/Element">Element</link>, у которого атрибут ID соответствует заданному.
 					</locale>
 				</description>
 			</method>
@@ -285,10 +285,10 @@
 				</arguments>
 				<description>
 					<locale>
-						Returns a <link type="class">NodeList</link> of all the <link type="class">Element</link>s in document order with a given tag name and are contained in the document.
+						Returns a <link type="class" href="reference://dom/core/NodeList">NodeList</link> of all the <link type="class" href="reference://dom/core/Element">Element</link>s in document order with a given tag name and are contained in the document.
 					</locale>
 					<locale xml:lang="ru">
-						Возвращает коллекцию <link type="class">NodeList</link> из объектов <link type="class">Element</link> по заданному имени в порядке, в котором элементы следуют в документе.
+						Возвращает коллекцию <link type="class" href="reference://dom/core/NodeList">NodeList</link> из объектов <link type="class" href="reference://dom/core/Element">Element</link> по заданному имени в порядке, в котором элементы следуют в документе.
 					</locale>
 				</description>
 			</method>
@@ -317,10 +317,10 @@
 				</arguments>
 				<description>
 					<locale>
-						Returns a <link type="class">NodeList</link> of all the <link type="class">Element</link>s with a given local name and namespace URI in document order.
+						Returns a <link type="class" href="reference://dom/core/NodeList">NodeList</link> of all the <link type="class" href="reference://dom/core/Element">Element</link>s with a given local name and namespace URI in document order.
 					</locale>
 					<locale xml:lang="ru">
-						Возвращает коллекцию <link type="class">NodeList</link> из всех объектов <link type="class">Element</link> по заданным имени и пространству имен в порядке, в котором элементы следуют в документе.
+						Возвращает коллекцию <link type="class" href="reference://dom/core/NodeList">NodeList</link> из всех объектов <link type="class" href="reference://dom/core/Element">Element</link> по заданным имени и пространству имен в порядке, в котором элементы следуют в документе.
 					</locale>
 				</description>
 			</method>
@@ -399,10 +399,10 @@
 				</arguments>
 				<description>
 					<locale>
-						Returns <link type="class">Element</link> that matches CSS query.
+						Returns <link type="class" href="reference://dom/core/Element">Element</link> that matches CSS query.
 					</locale>
 					<locale xml:lang="ru">
-						Возвращает объект <link type="class">Element</link> по заданному CSS запросу.
+						Возвращает объект <link type="class" href="reference://dom/core/Element">Element</link> по заданному CSS запросу.
 					</locale>
 				</description>
 			</method>
@@ -425,10 +425,10 @@
 				</arguments>
 				<description>
 					<locale>
-						Returns <link type="class">NodeList</link> of <link type="class">Element</link> that match CSS query.
+						Returns <link type="class" href="reference://dom/core/NodeList">NodeList</link> of <link type="class" href="reference://dom/core/Element">Element</link> that match CSS query.
 					</locale>
 					<locale xml:lang="ru">
-						Возвращает коллекцию <link type="class">NodeList</link> из объектов <link type="class">Element</link> по заданному запросу в порядке, в котором элементы следуют в документе.
+						Возвращает коллекцию <link type="class" href="reference://dom/core/NodeList">NodeList</link> из объектов <link type="class" href="reference://dom/core/Element">Element</link> по заданному запросу в порядке, в котором элементы следуют в документе.
 					</locale>
 				</description>
 			</method>
@@ -450,17 +450,17 @@
 						The DOMImplementation object that handles this document.
 					</locale>
 					<locale xml:lang="ru">
-						Объект <link type="class">DOMImplementation</link> для документа.
+						Объект <link type="class" href="reference://dom/core/DOMImplementation">DOMImplementation</link> для документа.
 					</locale>
 				</description>
 			</property>
 			<property name="domConfig" type="dom:core:DOMConfiguration" readonly="true">
 				<description>
 					<locale>
-						The <link type="class">DOMConfiguration</link> associated with this document.
+						The <link type="class" href="reference://dom/core/DOMConfiguration">DOMConfiguration</link> associated with this document.
 					</locale>
 					<locale xml:lang="ru">
-						Объект <link type="class">DOMConfiguration</link> для документа.
+						Объект <link type="class" href="reference://dom/core/DOMConfiguration">DOMConfiguration</link> для документа.
 					</locale>
 				</description>
 			</property>

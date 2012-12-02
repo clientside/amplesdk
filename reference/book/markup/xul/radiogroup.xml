@@ -3,14 +3,14 @@
 <element extends="markup:xul:XULElement" name="radiogroup">
 	<abstract>
 		<locale>
-			A group of <link type="element">radio</link> buttons.
+			A group of <link type="element" href="reference://markup/xul/radio">radio</link> buttons.
 			Only one radio button inside the group can be selected at a time.
-			The <link type="element">radio</link> buttons may either direct children of the <link type="element">radiogroup</link> or descendants.
+			The <link type="element" href="reference://markup/xul/radio">radio</link> buttons may either direct children of the <link type="element" href="reference://markup/xul/radiogroup">radiogroup</link> or descendants.
 		</locale>
 		<locale xml:lang="ru">
-			Группа элементов <link type="element">radio</link>.
+			Группа элементов <link type="element" href="reference://markup/xul/radio">radio</link>.
 			Только один из дочерних элементов может быть выбран в один момент времени.
-			По умолчанию атрибут <link type="attribute">orient</link> имеет значение <b>vertical</b>.
+			По умолчанию атрибут <link type="attribute" href="reference://markup/xul/box">orient</link> имеет значение <b>vertical</b>.
 		</locale>
 	</abstract>
 	<remarks />
@@ -33,7 +33,7 @@
 					</argument>
 				</arguments>
 				<description>
-					Creates a new <link type="element">radio</link> element and adds it to the end of the <link type="element">radiogroup</link>. You may optionally set a value. The function returns the new item.
+					Creates a new <link type="element" href="reference://markup/xul/radio">radio</link> element and adds it to the end of the <link type="element" href="reference://markup/xul/radiogroup">radiogroup</link>. You may optionally set a value. The function returns the new item.
 				</description>
 			</method>
 			<method name="insertItemAt" type="dom:core:Element">
@@ -55,7 +55,7 @@
 					</argument>
 				</arguments>
 				<description>
-					Creates a new <link type="element">radio</link> element and inserts it at a specific position in the <link type="element">radiogroup</link>.
+					Creates a new <link type="element" href="reference://markup/xul/radio">radio</link> element and inserts it at a specific position in the <link type="element" href="reference://markup/xul/radiogroup">radiogroup</link>.
 				</description>
 			</method>
 			<method name="removeItemAt" type="dom:core:Element">
@@ -67,7 +67,7 @@
 					</argument>
 				</arguments>
 				<description>
-					Removes the child item from the <link type="element">radiogroup</link> at the given index.
+					Removes the child item from the <link type="element" href="reference://markup/xul/radiogroup">radiogroup</link> at the given index.
 				</description>
 			</method>
 -->
@@ -76,10 +76,10 @@
 			<property name="items" type="dom:core:NodeList">
 				<description>
 					<locale>
-						Contains collection of <link type="element">radio</link> child elements.
+						Contains collection of <link type="element" href="reference://markup/xul/radio">radio</link> child elements.
 					</locale>
 					<locale xml:lang="ru">
-						Колекция дочерних элементов <link type="element">radio</link>.
+						Колекция дочерних элементов <link type="element" href="reference://markup/xul/radio">radio</link>.
 					</locale>
 				</description>
 			</property>

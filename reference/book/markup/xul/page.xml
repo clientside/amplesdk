@@ -3,11 +3,11 @@
 <element extends="markup:xul:XULElement" name="page">
 	<abstract>
 		<locale>
-			Similar to a <link type="element">window</link>, except it should be used for XUL files that are to be loaded into an <link type="element">iframe</link>.
+			Similar to a <link type="element" href="reference://markup/xul/window">window</link>, except it should be used for XUL files that are to be loaded into an <link type="element" href="reference://markup/xul/iframe">iframe</link>.
 		</locale>
 		<locale xml:lang="ru">
-			Аналогичен элементу <link type="element">window</link> за исключением того,
-			что он используется для файлов, которые загружаются в <link type="element">iframe</link>.
+			Аналогичен элементу <link type="element" href="reference://markup/xul/window">window</link> за исключением того,
+			что он используется для файлов, которые загружаются в <link type="element" href="reference://markup/xul/iframe">iframe</link>.
 		</locale>
 	</abstract>
 	<remarks />

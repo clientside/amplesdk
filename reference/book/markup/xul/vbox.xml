@@ -4,11 +4,11 @@
 	<abstract>
 		<locale>
 			A container element which can contain any number of child elements.
-			This is equivalent to the <link type="element">box</link> element, except it defaults to vertical orientation.
+			This is equivalent to the <link type="element" href="reference://markup/xul/box">box</link> element, except it defaults to vertical orientation.
 		</locale>
 		<locale xml:lang="ru">
 			Элемент-контейнер, может содержать любое количество дочерних элементов.
-			Эквивалентен элементу <link type="element">box</link> с вертикальной ориентацией по умолчанию.
+			Эквивалентен элементу <link type="element" href="reference://markup/xul/box">box</link> с вертикальной ориентацией по умолчанию.
 		</locale>
 	</abstract>
 	<remarks />

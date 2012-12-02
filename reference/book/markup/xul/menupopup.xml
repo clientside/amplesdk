@@ -7,7 +7,7 @@
 			When a menupopup is open, it floats above the window and may extend outside the window border.
 		</locale>
 		<locale xml:lang="ru">
-			Контейнер для отрисовки меню. Помещается внутри <link type="element">menu</link>. Может содержать только элементы <link type="element">menuitem</link>.
+			Контейнер для отрисовки меню. Помещается внутри <link type="element" href="reference://markup/xul/menu">menu</link>. Может содержать только элементы <link type="element" href="reference://markup/xul/menuitem">menuitem</link>.
 		</locale>
 	</abstract>
 	<remarks />
@@ -19,20 +19,20 @@
 			<property name="selectedItem" type="dom:core:Element" readonly="true">
 				<description>
 					<locale>
-						Contains a reference top the selected <link type="element">menuitem</link> element.
+						Contains a reference top the selected <link type="element" href="reference://markup/xul/menuitem">menuitem</link> element.
 					</locale>
 					<locale xml:lang="ru">
-						Ссылка на выделенный в настоящий момент элемент <link type="element">menuitem</link>.
+						Ссылка на выделенный в настоящий момент элемент <link type="element" href="reference://markup/xul/menuitem">menuitem</link>.
 					</locale>
 				</description>
 			</property>
 			<property name="items" type="dom:core:NodeList">
 				<description>
 					<locale>
-						Contains a collection of <link type="element">menuitem</link> child elements.
+						Contains a collection of <link type="element" href="reference://markup/xul/menuitem">menuitem</link> child elements.
 					</locale>
 					<locale xml:lang="ru">
-						Коллекция всех дочерних элементов <link type="element">menuitem</link>.
+						Коллекция всех дочерних элементов <link type="element" href="reference://markup/xul/menuitem">menuitem</link>.
 					</locale>
 				</description>
 			</property>

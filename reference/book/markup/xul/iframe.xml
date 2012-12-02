@@ -4,15 +4,15 @@
 	<abstract>
 		<locale>
 			An inner frame that works much like the HTML iframe element.
-			The <link type="attribute">src</link> attribute can be used to specify the content of the frame.
+			The <link type="attribute" href="reference://markup/xul/iframe">src</link> attribute can be used to specify the content of the frame.
 			This content is a separate document.
-			The children of the <link type="element">iframe</link> are ignored.
+			The children of the <link type="element" href="reference://markup/xul/iframe">iframe</link> are ignored.
 		</locale>
 		<locale xml:lang="ru">
 			Аналогичен элементу <b>iframe</b> в HTML.
-			Атрибут <link type="attribute">src</link> используется для указания пути к содержимому фрейма.
+			Атрибут <link type="attribute" href="reference://markup/xul/iframe">src</link> используется для указания пути к содержимому фрейма.
 			Содержимое должно быть отдельным документом.
-			Если указаны дочерние элементы элемента <link type="element">iframe</link>,
+			Если указаны дочерние элементы элемента <link type="element" href="reference://markup/xul/iframe">iframe</link>,
 			они будут проигнорированы.
 		</locale>
 	</abstract>
@@ -26,7 +26,7 @@
 						The URL of the content to appear in the element.
 					</locale>
 					<locale xml:lang="ru">
-						URL документа, который будет отображен внутри элемента <link type="element">iframe</link>.
+						URL документа, который будет отображен внутри элемента <link type="element" href="reference://markup/xul/iframe">iframe</link>.
 					</locale>
 				</description>
 			</attribute>
@@ -39,7 +39,7 @@
 						This read-only property contains the document object in the element.
 					</locale>
 					<locale xml:lang="ru">
-						Ссылка на объект <b>Document</b> элемента <link type="class">iframe</link>.
+						Ссылка на объект <b>Document</b> элемента <link type="element" href="reference://markup/xul/iframe">iframe</link>.
 					</locale>
 				</description>
 			</property>
@@ -49,7 +49,7 @@
 						This read-only property contains the window object in the element.
 					</locale>
 					<locale xml:lang="ru">
-						Ссылка на объект <link type="class">window</link> элемента <link type="element">iframe</link>.
+						Ссылка на объект window элемента <link type="element" href="reference://markup/xul/iframe">iframe</link>.
 					</locale>
 				</description>
 			</property>

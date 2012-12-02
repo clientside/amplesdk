@@ -146,8 +146,8 @@
 						Указывает на пропорции распределения размеров пустого пространства внутри
 						блока родительского элемента между его дочерними элементами.
 						Это значение не принимается в расчет, если среди соседних элементов нет другого,
-						у которого так же выставлен атрибут <link type="attribute">flex</link>.
-						Элементы с большим значением атрибута <link type="attribute">flex</link> занимают больше места,
+						у которого так же выставлен атрибут <link type="attribute" href="reference://markup/xul/XULElement">flex</link>.
+						Элементы с большим значением атрибута <link type="attribute" href="reference://markup/xul/XULElement">flex</link> занимают больше места,
 						чем элементы с меньшим значением.
 					</locale>
 				</description>
@@ -172,7 +172,7 @@
 					<locale xml:lang="ru">
 						Указывает, будут ли дополнительная рамка вокруг элемента.
 						Может быть полезным при определении ориентации элемента,
-						а так же при выставлении значения атрибута <link type="attribute">flex</link>.
+						а так же при выставлении значения атрибута <link type="attribute" href="reference://markup/xul/XULElement">flex</link>.
 						Если выставлен в значение <b>true</b>, элементы, ориентированные горизонтально, будут отображаться с синей рамкой, а элементы, ориентированные вертикально, будут отображаться с красной рамкой.
 					</locale>
 				</description>
@@ -267,7 +267,7 @@
 					</locale>
 					<locale xml:lang="ru">
 						Стили CSS, применяемые к элементу.
-						Синтаксис идентичен синтаксису атрибута <link type="attribute">style</link> у HTML-элемента.
+						Синтаксис идентичен синтаксису атрибута style у HTML-элемента.
 					</locale>
 				</description>
 			</attribute-->
@@ -277,7 +277,7 @@
 						Should be set to the value of the id of the popup element that should appear when the user context-clicks on the element.
 					</locale>
 					<locale xml:lang="ru">
-						Должен быть выставлен в значение атрибута <link type="attribute">id</link> элемента <link type="element">popup</link>, который появится при контекстном нажатии.
+						Должен быть выставлен в значение атрибута <link type="attribute" href="reference://dom/core/Element">id</link> элемента <link type="element" href="reference://markup/xul/popup">popup</link>, который появится при контекстном нажатии.
 					</locale>
 				</description>
 			</attribute>
@@ -287,7 +287,7 @@
 						Should be set to the value of the id of the popup element that should appear when the user clicks on the element.
 					</locale>
 					<locale xml:lang="ru">
-						Должен быть выставлен в значение атрибута <link type="attribute">id</link> всплывающего элемента, который появится при обычном нажатии.
+						Должен быть выставлен в значение атрибута <link type="attribute" href="reference://dom/core/Element">id</link> всплывающего элемента, который появится при обычном нажатии.
 					</locale>
 				</description>
 			</attribute>
@@ -297,7 +297,7 @@
 						Should be set to the value of the id of the popup element that should be used as a tooltip window when the mouse hovers over the element for a moment.
 					</locale>
 					<locale xml:lang="ru">
-						Должен быть выставлен в значение атрибута <link type="attribute">id</link> элемента <link type="element">tooltip</link>, который появится при наведении мыши.
+						Должен быть выставлен в значение атрибута <link type="attribute" href="reference://dom/core/Element">id</link> элемента <link type="element" href="reference://markup/xul/tooltip">tooltip</link>, который появится при наведении мыши.
 					</locale>
 				</description>
 			</attribute>
@@ -307,15 +307,15 @@
 						Used to set the text which appears in the tooltip when the user moves the mouse over the element.
 					</locale>
 					<locale xml:lang="ru">
-						Текстовое значение, которое отображается в элементе <link type="element">tooltip</link>, появляющемся при наведении мыши.
+						Текстовое значение, которое отображается в элементе <link type="element" href="reference://markup/xul/tooltip">tooltip</link>, появляющемся при наведении мыши.
 					</locale>
 				</description>
 			</attribute>
 			<!--
 			<attribute name="context" default="" readonly="false">
 				<description>
-					Должен быть выставлен в значение атрибута <link type="attribute">id</link> элемента <link type="element">popup</link>, который появится при наведении мыши.
-					Should be set to the value of the id of the <link type="element">popup</link> element that should appear when the user context-clicks on the element. A context-click varies on each platform. Usually it will be a right click.
+					Должен быть выставлен в значение атрибута <link type="attribute" href="reference://dom/core/Element">id</link> элемента <link type="element" href="reference://markup/xul/popup">popup</link>, который появится при наведении мыши.
+					Should be set to the value of the id of the <link type="element" href="reference://markup/xul/popup">popup</link> element that should appear when the user context-clicks on the element. A context-click varies on each platform. Usually it will be a right click.
 				</description>
 			</attribute>
 			-->
@@ -367,7 +367,7 @@
 						Set to the id of a command element that is being observed by the element.
 					</locale>
 					<locale xml:lang="ru">
-						Выставлен в значение атрибута <link type="attribute">id</link> элемента <link type="element">command</link>, который с ним связан.
+						Выставлен в значение атрибута <link type="attribute" href="reference://dom/core/Element">id</link> элемента <link type="element" href="reference://markup/xul/command">command</link>, который с ним связан.
 					</locale>
 				</description>
 			</attribute>
@@ -378,7 +378,7 @@
 						If an attribute changes in the broadcaster it is also changed in the observer.
 					</locale>
 					<locale xml:lang="ru">
-						Выставлен в значение атрибута <link type="attribute">id</link> элемента <link type="element">broadcaster</link>, который с ним связан.
+						Выставлен в значение атрибута <link type="attribute" href="reference://dom/core/Element">id</link> элемента <link type="element" href="reference://markup/xul/broadcaster">broadcaster</link>, который с ним связан.
 					</locale>
 				</description>
 			</attribute>

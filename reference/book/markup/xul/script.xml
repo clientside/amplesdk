@@ -8,7 +8,7 @@
 		<locale xml:lang="ru">
 			Аналогично элементу <b>script</b> в HTML, используется для объявления скрипта,
 			который будет использоваться в документе <b>Ample SDK</b>.
-			Скрипты следует размещать в отдельных файлах, ссылаясь на них атрибутом <link type="attribute">src</link>.
+			Скрипты следует размещать в отдельных файлах, ссылаясь на них атрибутом <link type="attribute" href="reference://markup/xul/script">src</link>.
 		</locale>
 	</abstract>
 	<remarks />

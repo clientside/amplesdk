@@ -3,8 +3,8 @@
 <class name="TouchEvent" extends="core:events:UIEvent">
 	<abstract>
 		<locale>
-			The <link type="class">TouchEvent</link> class encapsulates information about a touch event.
-			The system continually sends <link type="class">TouchEvent</link> objects to an application as fingers touch and move across a surface.
+			The <link type="class" href="reference://dom/touch/TouchEvent">TouchEvent</link> class encapsulates information about a touch event.
+			The system continually sends <link type="class" href="reference://dom/touch/TouchEvent">TouchEvent</link> objects to an application as fingers touch and move across a surface.
 			A touch event provides a snapshot of all touches during a multi-touch sequence, most importantly the touches that are new or have changed for a particular target.
 			A multi-touch sequence begins when a finger first touches the surface.
 			Other fingers may subsequently touch the surface, and all fingers may move across the surface.
@@ -111,21 +111,21 @@
 					<argument name="touches" type="dom:touch:TouchList" required="true">
 						<description>
 							<locale>
-								A collection of <link type="class">Touch</link> objects representing all touches associated with this event.
+								A collection of <link type="class" href="reference://dom/touch/Touch">Touch</link> objects representing all touches associated with this event.
 							</locale>
 						</description>
 					</argument>
 					<argument name="targetTouches" type="dom:touch:TouchList" required="true">
 						<description>
 							<locale>
-								A collection of <link type="class">Touch</link> objects representing all touches associated with this target.
+								A collection of <link type="class" href="reference://dom/touch/Touch">Touch</link> objects representing all touches associated with this target.
 							</locale>
 						</description>
 					</argument>
 					<argument name="changedTouches" type="dom:touch:TouchList" required="true">
 						<description>
 							<locale>
-								A collection of <link type="class">Touch</link> objects representing all touches that changed in this event.
+								A collection of <link type="class" href="reference://dom/touch/Touch">Touch</link> objects representing all touches that changed in this event.
 							</locale>
 						</description>
 					</argument>
@@ -146,7 +146,7 @@
 				</arguments>
 				<description>
 					<locale>
-						Initializes attributes of a <link type="class">TouchEvent</link> object.
+						Initializes attributes of a <link type="class" href="reference://dom/touch/TouchEvent">TouchEvent</link> object.
 					</locale>
 				</description>
 			</method>
@@ -211,21 +211,21 @@
 			<property name="touches" type="dom:touch:TouchList" readonly="true">
 				<description>
 					<locale>
-						A collection of <link type="class">Touch</link> objects representing all touches associated with this event.
+						A collection of <link type="class" href="reference://dom/touch/Touch">Touch</link> objects representing all touches associated with this event.
 					</locale>
 				</description>
 			</property>
 			<property name="targetTouches" type="dom:touch:TouchList" readonly="true">
 				<description>
 					<locale>
-						A collection of <link type="class">Touch</link> objects representing all touches associated with this target.
+						A collection of <link type="class" href="reference://dom/touch/Touch">Touch</link> objects representing all touches associated with this target.
 					</locale>
 				</description>
 			</property>
 			<property name="changedTouches" type="dom:touch:TouchList" readonly="true">
 				<description>
 					<locale>
-						A collection of <link type="class">Touch</link> objects representing all touches that changed in this event.
+						A collection of <link type="class" href="reference://dom/touch/Touch">Touch</link> objects representing all touches that changed in this event.
 					</locale>
 				</description>
 			</property>
@@ -254,10 +254,10 @@
 		<remark>
 			<locale>Events of that type:</locale>
 			<ul>
-				<li><link type="event" href="runtime:Element">touchstart</link></li>
-				<li><link type="event" href="runtime:Element">touchchange</link></li>
-				<li><link type="event" href="runtime:Element">touchend</link></li>
-				<li><link type="event" href="runtime:Element">touchcancel</link></li>
+				<li><link type="event" href="reference://dom/core/Element">touchstart</link></li>
+				<li><link type="event" href="reference://dom/core/Element">touchchange</link></li>
+				<li><link type="event" href="reference://dom/core/Element">touchend</link></li>
+				<li><link type="event" href="reference://dom/core/Element">touchcancel</link></li>
 			</ul>
 		</remark>
 	</remarks>

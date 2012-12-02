@@ -3,7 +3,7 @@
 <class name="Query">
 	<abstract>
 		<locale>
-			Holds a collection of elements returned from <link type="object">ample</link>.<link type="method" href="runtime:ample">query</link>() function call.
+			Holds a collection of elements returned from <link type="object" href="reference://env/ample/ample">ample</link>.<link type="method" href="reference://env/ample/ample">query</link>() function call.
 		</locale>
 	</abstract>
 	<remarks />
@@ -78,14 +78,14 @@
 			<method name="size" type="Number">
 				<description>
 					<locale>
-						Returns the number of elements in the <link type="class">Query</link> collection.
+						Returns the number of elements in the <link type="class" href="reference://dom/ample/Query">Query</link> collection.
 					</locale>
 				</description>
 			</method>
 			<method name="toArray" type="Array">
 				<description>
 					<locale>
-						Retrieve all the elements contained in the <link type="class">Query</link> collection, as an array.
+						Retrieve all the elements contained in the <link type="class" href="reference://dom/ample/Query">Query</link> collection, as an array.
 					</locale>
 				</description>
 			</method>
@@ -684,7 +684,7 @@
 					<argument name="target" type="Variant">
 						<description>
 							<locale>
-								An element, selector, XML string, or <link type="class">Query</link> object.
+								An element, selector, XML string, or <link type="class" href="reference://dom/ample/Query">Query</link> object.
 							</locale>
 						</description>
 					</argument>
@@ -700,7 +700,7 @@
 					<argument name="target" type="Variant">
 						<description>
 							<locale>
-								An element, selector, XML string, or <link type="class">Query</link> object.
+								An element, selector, XML string, or <link type="class" href="reference://dom/ample/Query">Query</link> object.
 							</locale>
 						</description>
 					</argument>
@@ -716,7 +716,7 @@
 					<argument name="target" type="Variant">
 						<description>
 							<locale>
-								An element, selector, XML string, or <link type="class">Query</link> object.
+								An element, selector, XML string, or <link type="class" href="reference://dom/ample/Query">Query</link> object.
 							</locale>
 						</description>
 					</argument>
@@ -732,7 +732,7 @@
 					<argument name="target" type="Variant">
 						<description>
 							<locale>
-								An element, selector, XML string, or <link type="class">Query</link> object.
+								An element, selector, XML string, or <link type="class" href="reference://dom/ample/Query">Query</link> object.
 							</locale>
 						</description>
 					</argument>
@@ -755,7 +755,7 @@
 					<argument name="content" type="Variant">
 						<description>
 							<locale>
-								An element, XML string, or <link type="class">Query</link> object to insert.
+								An element, XML string, or <link type="class" href="reference://dom/ample/Query">Query</link> object to insert.
 							</locale>
 						</description>
 					</argument>
@@ -771,7 +771,7 @@
 					<argument name="content" type="Variant">
 						<description>
 							<locale>
-								An element, XML string, or <link type="class">Query</link> object to insert.
+								An element, XML string, or <link type="class" href="reference://dom/ample/Query">Query</link> object to insert.
 							</locale>
 						</description>
 					</argument>
@@ -787,7 +787,7 @@
 					<argument name="content" type="Variant">
 						<description>
 							<locale>
-								An element, XML string, or <link type="class">Query</link> object to insert.
+								An element, XML string, or <link type="class" href="reference://dom/ample/Query">Query</link> object to insert.
 							</locale>
 						</description>
 					</argument>
@@ -803,7 +803,7 @@
 					<argument name="content" type="Variant">
 						<description>
 							<locale>
-								An element, XML string, or <link type="class">Query</link> object to insert.
+								An element, XML string, or <link type="class" href="reference://dom/ample/Query">Query</link> object to insert.
 							</locale>
 						</description>
 					</argument>
@@ -833,7 +833,7 @@
 					<argument name="content" type="Variant">
 						<description>
 							<locale>
-								An element, XML string, or <link type="class">Query</link> object to insert.
+								An element, XML string, or <link type="class" href="reference://dom/ample/Query">Query</link> object to insert.
 							</locale>
 						</description>
 					</argument>
@@ -1067,7 +1067,7 @@
 				<description>
 					<locale>
 						Ajax requests completed.
-						Property <link type="property" href="runtime:CustomEvent">detail</link> holds the reference to the instance of <link type="class">XMLHttpRequest</link> object.
+						Property <link type="property" href="reference://core/events/CustomEvent">detail</link> holds the reference to the instance of <link type="class" href="reference://env/browser/XMLHttpRequest">XMLHttpRequest</link> object.
 					</locale>
 				</description>
 			</event>
@@ -1075,7 +1075,7 @@
 				<description>
 					<locale>
 						Ajax request completed with an error.
-						Property <link type="property" href="runtime:CustomEvent">detail</link> holds the reference to the instance of <link type="class">XMLHttpRequest</link> object.
+						Property <link type="property" href="reference://core/events/CustomEvent">detail</link> holds the reference to the instance of <link type="class" href="reference://env/browser/XMLHttpRequest">XMLHttpRequest</link> object.
 					</locale>
 				</description>
 			</event>
@@ -1083,7 +1083,7 @@
 				<description>
 					<locale>
 						Ajax request is about to be sent.
-						Property <link type="property" href="runtime:CustomEvent">detail</link> holds the reference to the instance of <link type="class">XMLHttpRequest</link> object.
+						Property <link type="property" href="reference://core/events/CustomEvent">detail</link> holds the reference to the instance of <link type="class" href="reference://env/browser/XMLHttpRequest">XMLHttpRequest</link> object.
 					</locale>
 				</description>
 			</event>
@@ -1091,7 +1091,7 @@
 				<description>
 					<locale>
 						Ajax request completed successfully.
-						Property <link type="property" href="runtime:CustomEvent">detail</link> holds the reference to the instance of <link type="class">XMLHttpRequest</link> object.
+						Property <link type="property" href="reference://core/events/CustomEvent">detail</link> holds the reference to the instance of <link type="class" href="reference://env/browser/XMLHttpRequest">XMLHttpRequest</link> object.
 					</locale>
 				</description>
 			</event>

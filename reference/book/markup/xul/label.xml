@@ -4,7 +4,7 @@
 	<abstract>
 		<locale>
 			This element is used to provide a label for a control element.
-			If the user clicks the label, it will move the focus to the associated control, specified with the <link type="attribute">control</link> attribute.
+			If the user clicks the label, it will move the focus to the associated control, specified with the <link type="attribute" href="reference://markup/xul/label">control</link> attribute.
 		</locale>
 		<locale xml:lang="ru">
 			Этот элемент используется для предоставления метки управляющему элементу. Так же может быть использовано для отображения текстовой информации.

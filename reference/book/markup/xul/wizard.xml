@@ -6,14 +6,14 @@
 			This element is used to construct a step-by-step wizard found in some applications to guide users through a task.
 			It is used for a window with several steps contained on several pages.
 			This element provides the header and buttons along the bottom, and also handles navigation between the pages.
-			Each page should be constructed using a <link type="element">wizardpage</link>.
+			Each page should be constructed using a <link type="element" href="reference://markup/xul/wizardpage">wizardpage</link>.
 		</locale>
 		<locale xml:lang="ru">
 			Используется для создания пошагового визарда, который может быть использован для выполнения задач,
 			расположенных на нескольких страницах, пользователем в определенной последовательности.
 			Этот элемент предоставляет заголовок и кнопки, расположенные снизу, а так же обработку навигации между страницами.
-			Каждая страница должна быть сформирована с импользованием элемента <link type="element">wizardpage</link>.
-			Страницы отображаются в том же порядке, в котором они располагаются внутри элемента <link type="element">wizardpage</link>,
+			Каждая страница должна быть сформирована с импользованием элемента <link type="element" href="reference://markup/xul/wizardpage">wizardpage</link>.
+			Страницы отображаются в том же порядке, в котором они располагаются внутри элемента <link type="element" href="reference://markup/xul/wizardpage">wizardpage</link>,
 			если не использованы атрибуты <b>next</b> и <b>pageid</b> для изменения последовательности.
 		</locale>
 	</abstract>
@@ -28,7 +28,7 @@
 					</locale>
 					<locale xml:lang="ru">
 						Заголовок отображается сверху визарда.
-						Он может быть переопределен атрибутом <link type="attribute">label</link> на каждой странице.
+						Он может быть переопределен атрибутом <link type="attribute" href="reference://markup/xul/wizard">label</link> на каждой странице.
 					</locale>
 				</description>
 			</attribute>
@@ -67,7 +67,7 @@
 					<locale xml:lang="ru">
 						Используется для перехода на следующую страницу.
 						Эквивалентно нажатию кнопки "next".
-						До того, как страница сменится, вызывается код, указанный в атрибуте <link type="event">wizardnext</link>.
+						До того, как страница сменится, вызывается код, указанный в атрибуте <link type="event" href="reference://markup/xul/wizard">wizardnext</link>.
 					</locale>
 				</description>
 			</method>
@@ -82,7 +82,7 @@
 					<locale xml:lang="ru">
 						Используется для перехода на предыдущую страницу.
 						Эквивалентно нажатию кнопки "back".
-						До того, как страница сменится, вызывается код, указанный в атрибуте <link type="event">wizardback</link>.
+						До того, как страница сменится, вызывается код, указанный в атрибуте <link type="event" href="reference://markup/xul/wizard">wizardback</link>.
 					</locale>
 				</description>
 			</method>
@@ -95,7 +95,7 @@
 					</locale>
 					<locale xml:lang="ru">
 						Используется для отказа от визарда и его закрытия.
-						До того, как визард закроется, вызывается код, указанный в атрибуте <link type="event">wizardcancel</link>.
+						До того, как визард закроется, вызывается код, указанный в атрибуте <link type="event" href="reference://markup/xul/wizard">wizardcancel</link>.
 					</locale>
 				</description>
 			</method>
@@ -119,7 +119,7 @@
 					</locale>
 					<locale xml:lang="ru">
 						Используется для перехода на другую страницу.
-						Код, указанный в атрибутах <link type="event">wizardback</link> и <link type="event">wizardnext</link> не исполняется.
+						Код, указанный в атрибутах <link type="event" href="reference://markup/xul/wizard">wizardback</link> и <link type="event" href="reference://markup/xul/wizard">wizardnext</link> не исполняется.
 					</locale>
 				</description>
 			</method>
@@ -138,10 +138,10 @@
 				</arguments>
 				<description>
 					<locale>
-						Returns the <link type="element">wizardpage</link> element corresponding to the specified pageID.
+						Returns the <link type="element" href="reference://markup/xul/wizardpage">wizardpage</link> element corresponding to the specified pageID.
 					</locale>
 					<locale xml:lang="ru">
-						Возвращает элемент <link type="element">wizardpage</link>, который соответствует аргументу.
+						Возвращает элемент <link type="element" href="reference://markup/xul/wizardpage">wizardpage</link>, который соответствует аргументу.
 					</locale>
 				</description>
 			</method>
@@ -161,10 +161,10 @@
 				</arguments>
 				<description>
 					<locale>
-						Returns the <link type="element">button</link> element in the dialog corresponding to the given type.
+						Returns the <link type="element" href="reference://markup/xul/button">button</link> element in the dialog corresponding to the given type.
 					</locale>
 					<locale xml:lang="ru">
-						Возвращает элемент <link type="element">button</link> указанного типа из визарда.
+						Возвращает элемент <link type="element" href="reference://markup/xul/button">button</link> указанного типа из визарда.
 					</locale>
 				</description>
 			</method>
@@ -173,11 +173,11 @@
 			<property name="currentPage" type="dom:core:Element" readonly="true">
 				<description>
 					<locale>
-						This property returns the <link type="element">wizardpage</link> element that is currently displayed.
+						This property returns the <link type="element" href="reference://markup/xul/wizardpage">wizardpage</link> element that is currently displayed.
 						You can modify this value to change the current page.
 					</locale>
 					<locale xml:lang="ru">
-						Указывает на элемент <link type="element">wizardpage</link>,
+						Указывает на элемент <link type="element" href="reference://markup/xul/wizardpage">wizardpage</link>,
 						который отображается в настоящее время.
 					</locale>
 				</description>
@@ -185,10 +185,10 @@
 			<property name="wizardPages" type="dom:core:NodeList" readonly="readonly">
 				<description>
 					<locale>
-						This property holds the list of <link type="element">wizardpage</link> elements in the <link type="element">wizard</link>.
+						This property holds the list of <link type="element" href="reference://markup/xul/wizardpage">wizardpage</link> elements in the <link type="element" href="reference://markup/xul/wizard">wizard</link>.
 					</locale>
 					<locale xml:lang="ru">
-						Содержит список элементов <link type="element">wizardpage</link> визарда.
+						Содержит список элементов <link type="element" href="reference://markup/xul/wizardpage">wizardpage</link> визарда.
 					</locale>
 				</description>
 			</property>

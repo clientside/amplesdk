@@ -230,7 +230,7 @@
 						Puts all Text nodes in the full depth of the sub-tree underneath this Node, including attribute nodes, into a "normal" form
 					</locale>
 					<locale xml:lang="ru">
-						Приводит все текстовые узлы, являющиеся потомками, включая <link type="class">Attr</link>, к "нормальной" форме.
+						Приводит все текстовые узлы, являющиеся потомками, включая <link type="class" href="reference://dom/core/Attr">Attr</link>, к "нормальной" форме.
 					</locale>
 				</description>
 			</method>
@@ -253,7 +253,7 @@
 						This method allows the dispatch of events into the implementation's event model. Return value indicates whether any of the listeners which handled the event called preventDefault method on Event object.
 					</locale>
 					<locale xml:lang="ru">
-						Этот метод позволяет отправить событие в реализацию модели событий. Возвращаемое значение указывает, вызвал ли один из обработчиков события метод preventDefault объекта <link type="class">Event</link>.
+						Этот метод позволяет отправить событие в реализацию модели событий. Возвращаемое значение указывает, вызвал ли один из обработчиков события метод preventDefault объекта <link type="class" href="reference://dom/events/Event">Event</link>.
 					</locale>
 				</description>
 			</method>
@@ -524,20 +524,20 @@
 			<property name="ownerDocument" type="dom:core:Document" readonly="true">
 				<description>
 					<locale>
-						Retrieves the <link type="class">Document</link> object associated with the node.
+						Retrieves the <link type="class" href="reference://dom/core/Document">Document</link> object associated with the node.
 					</locale>
 					<locale xml:lang="ru">
-						Объект <link type="class">Document</link>, в контексте которого находится узел.
+						Объект <link type="class" href="reference://dom/core/Document">Document</link>, в контексте которого находится узел.
 					</locale>
 				</description>
 			</property>
 			<property name="attributes" type="dom:core:NamedNodeMap" readonly="true">
 				<description>
 					<locale>
-						A collection containing the attributes of this node (if it is an <link type="class">Element</link>) or null otherwise.
+						A collection containing the attributes of this node (if it is an <link type="class" href="reference://dom/core/Element">Element</link>) or null otherwise.
 					</locale>
 					<locale xml:lang="ru">
-						Колекция атрибутов узла, если это <link type="class">Element</link> и null в противном случае.
+						Колекция атрибутов узла, если это <link type="class" href="reference://dom/core/Element">Element</link> и null в противном случае.
 					</locale>
 				</description>
 			</property>
@@ -547,7 +547,7 @@
 						A NodeList that contains all direct children of this node.
 					</locale>
 					<locale xml:lang="ru">
-						Объект <link type="class">NodeList</link>, содержаший все дочерние элементы.
+						Объект <link type="class" href="reference://dom/core/NodeList">NodeList</link>, содержаший все дочерние элементы.
 					</locale>
 				</description>
 			</property>
@@ -556,90 +556,90 @@
 			<constant name="ELEMENT_NODE" value="1">
 				<description>
 					<locale>
-						The node is an <link type="class">Element</link>.
+						The node is an <link type="class" href="reference://dom/core/Element">Element</link>.
 					</locale>
 					<locale xml:lang="ru">
-						Узел является <link type="class">Element</link>.
+						Узел является <link type="class" href="reference://dom/core/Element">Element</link>.
 					</locale>
 				</description>
 			</constant>
 			<constant name="ATTRIBUTE_NODE" value="2">
 				<description>
 					<locale>
-						The node is an <link type="class">Attr</link>.
+						The node is an <link type="class" href="reference://dom/core/Attr">Attr</link>.
 					</locale>
 					<locale xml:lang="ru">
-						Узел является <link type="class">Attr</link>.
+						Узел является <link type="class" href="reference://dom/core/Attr">Attr</link>.
 					</locale>
 				</description>
 			</constant>
 			<constant name="TEXT_NODE" value="3">
 				<description>
 					<locale>
-						The node is a <link type="class">Text</link> node.
+						The node is a <link type="class" href="reference://dom/core/Text">Text</link> node.
 					</locale>
 					<locale xml:lang="ru">
-						Узел является <link type="class">Text</link>.
+						Узел является <link type="class" href="reference://dom/core/Text">Text</link>.
 					</locale>
 				</description>
 			</constant>
 			<constant name="CDATA_SECTION_NODE" value="4">
 				<description>
 					<locale>
-						The node is a <link type="class">CDATASection</link>.
+						The node is a <link type="class" href="reference://dom/core/CDATASection">CDATASection</link>.
 					</locale>
 					<locale xml:lang="ru">
-						Узел является <link type="class">CDATASection</link>.
+						Узел является <link type="class" href="reference://dom/core/CDATASection">CDATASection</link>.
 					</locale>
 				</description>
 			</constant>
 			<constant name="ENTITY_REFERENCE_NODE" value="5">
 				<description>
 					<locale>
-						The node is an <link type="class">EntityReference</link>.
+						The node is an <link type="class" href="reference://dom/core/EntityReference">EntityReference</link>.
 					</locale>
 					<locale xml:lang="ru">
-						Узел является <link type="class">EntityReference</link>.
+						Узел является <link type="class" href="reference://dom/core/EntityReference">EntityReference</link>.
 					</locale>
 				</description>
 			</constant>
 			<constant name="ENTITY_NODE" value="6">
 				<description>
 					<locale>
-						The node is an <link type="class">EntityReference</link>.
+						The node is an <link type="class" href="reference://dom/core/EntityReference">EntityReference</link>.
 					</locale>
 					<locale xml:lang="ru">
-						Узел является <link type="class">EntityReference</link>.
+						Узел является <link type="class" href="reference://dom/core/EntityReference">EntityReference</link>.
 					</locale>
 				</description>
 			</constant>
 			<constant name="PROCESSING_INSTRUCTION_NODE" value="7">
 				<description>
 					<locale>
-						The node is a <link type="class">ProcessingInstruction</link>.
+						The node is a <link type="class" href="reference://dom/core/ProcessingInstruction">ProcessingInstruction</link>.
 					</locale>
 					<locale xml:lang="ru">
-						Узел является <link type="class">ProcessingInstruction</link>.
+						Узел является <link type="class" href="reference://dom/core/ProcessingInstruction">ProcessingInstruction</link>.
 					</locale>
 				</description>
 			</constant>
 			<constant name="COMMENT_NODE" value="8">
 				<description>
 					<locale>
-						The node is a <link type="class">Comment</link>.
+						The node is a <link type="class" href="reference://dom/core/Comment">Comment</link>.
 					</locale>
 					<locale xml:lang="ru">
-						Узел является <link type="class">Comment</link>.
+						Узел является <link type="class" href="reference://dom/core/Comment">Comment</link>.
 					</locale>
 				</description>
 			</constant>
 			<constant name="DOCUMENT_NODE" value="9">
 				<description>
 					<locale>
-						The node is a <link type="class">Document</link>.
+						The node is a <link type="class" href="reference://dom/core/Document">Document</link>.
 					</locale>
 					<locale xml:lang="ru">
-						Узел является <link type="class">Document</link>.
+						Узел является <link type="class" href="reference://dom/core/Document">Document</link>.
 					</locale>
 				</description>
 			</constant>
@@ -656,10 +656,10 @@
 			<constant name="DOCUMENT_FRAGMENT_NODE" value="11">
 				<description>
 					<locale>
-						The node is a <link type="class">DocumentFragment</link>.
+						The node is a <link type="class" href="reference://dom/core/DocumentFragment">DocumentFragment</link>.
 					</locale>
 					<locale xml:lang="ru">
-						Узел является <link type="class">DocumentFragment</link>.
+						Узел является <link type="class" href="reference://dom/core/DocumentFragment">DocumentFragment</link>.
 					</locale>
 				</description>
 			</constant>
@@ -695,7 +695,7 @@
 						A node has been added as a child of another node or, in case of Attr nodes, has been added to an Element.
 					</locale>
 					<locale xml:lang="ru">
-						Был добавлен узел в структуру или объект <link type="class">Attr</link> был добавлен к элементу.
+						Был добавлен узел в структуру или объект <link type="class" href="reference://dom/core/Attr">Attr</link> был добавлен к элементу.
 					</locale>
 				</description>
 			</event>
@@ -705,7 +705,7 @@
 						A node is being removed from its parent node or, in case of Attr nodes, removed from its ownerElement.
 					</locale>
 					<locale xml:lang="ru">
-						Был удален узел из структуры или объект <link type="class">Attr</link> был удален из элемента.
+						Был удален узел из структуры или объект <link type="class" href="reference://dom/core/Attr">Attr</link> был удален из элемента.
 					</locale>
 				</description>
 			</event>

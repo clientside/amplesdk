@@ -4,10 +4,10 @@
 	<abstract>
 		<locale>
 			A row of tabs.
-			A tabs element should be placed inside a <link type="element">tabbox</link> and should contain <link type="element">tab</link> elements.
+			A tabs element should be placed inside a <link type="element" href="reference://markup/xul/tabbox">tabbox</link> and should contain <link type="element" href="reference://markup/xul/tab">tab</link> elements.
 		</locale>
 		<locale xml:lang="ru">
-			Строка закадок. Элемент <link type="element">tabs</link> должен быть расположен внутри элемента <link type="element">tabbox</link>, а в качестве дочерних содержать элементы <link type="element">tab</link>.
+			Строка закадок. Элемент <link type="element" href="reference://markup/xul/tabs">tabs</link> должен быть расположен внутри элемента <link type="element" href="reference://markup/xul/tabbox">tabbox</link>, а в качестве дочерних содержать элементы <link type="element" href="reference://markup/xul/tab">tab</link>.
 		</locale>
 	</abstract>
 	<remarks />
@@ -34,7 +34,7 @@
 						If the argument dir is set to -1, the currently selected tab changes to the previous tab
 					</locale>
 					<locale xml:lang="ru">
-						Если аргумент <link type="attribute">nDir</link> выставлен в значение 1, выделение от текущей закладки перейдет к следующей. Если аргумент выставлен в значение -1, выделение от текущей закладки перейдет к предыдущей.
+						Если аргумент <link type="attribute" href="reference://markup/xul/XULElement">dir</link> выставлен в значение 1, выделение от текущей закладки перейдет к следующей. Если аргумент выставлен в значение -1, выделение от текущей закладки перейдет к предыдущей.
 					</locale>
 				</description>
 			</method>
@@ -68,7 +68,7 @@
 						The function returns the newly created element.
 					</locale>
 					<locale xml:lang="ru">
-						Создает новый элемент <link type="element">tab</link> и добавляет его в конец элемента <link type="element">tabs</link>.
+						Создает новый элемент <link type="element" href="reference://markup/xul/tab">tab</link> и добавляет его в конец элемента <link type="element" href="reference://markup/xul/tabs">tabs</link>.
 					</locale>
 				</description>
 			</method>
@@ -111,7 +111,7 @@
 						You may optionally set a value. The new item element is returned.
 					</locale>
 					<locale xml:lang="ru">
-						Создает новый элемент <link type="element">tab</link> и добавляет его в заданное место внутри элемента <link type="element">tabs</link>.
+						Создает новый элемент <link type="element" href="reference://markup/xul/tab">tab</link> и добавляет его в заданное место внутри элемента <link type="element" href="reference://markup/xul/tabs">tabs</link>.
 					</locale>
 				</description>
 			</method>
@@ -134,7 +134,7 @@
 						The method returns the removed item.
 					</locale>
 					<locale xml:lang="ru">
-						Удаляет дочерний элемент из элемента <link type="element">tabs</link> по порядковому номеру.
+						Удаляет дочерний элемент из элемента <link type="element" href="reference://markup/xul/tabs">tabs</link> по порядковому номеру.
 					</locale>
 				</description>
 			</method>
@@ -157,17 +157,17 @@
 						If no item is currently selected, this value will be null.
 					</locale>
 					<locale xml:lang="ru">
-						Ссылка на выбранный в настоящее время элемент <link type="element">tab</link>.
+						Ссылка на выбранный в настоящее время элемент <link type="element" href="reference://markup/xul/tab">tab</link>.
 					</locale>
 				</description>
 			</property>
 			<property name="items" type="dom:core:NodeList" readonly="true">
 				<description>
 					<locale>
-						Contains s collection of <link type="element">tab</link> child elements.
+						Contains s collection of <link type="element" href="reference://markup/xul/tab">tab</link> child elements.
 					</locale>
 					<locale xml:lang="ru">
-						Коллекция дочерних элементов <link type="element">tab</link>.
+						Коллекция дочерних элементов <link type="element" href="reference://markup/xul/tab">tab</link>.
 					</locale>
 				</description>
 			</property>
@@ -176,17 +176,17 @@
 			<event name="select" type="dom:events:Event" cancelable="true" bubbles="true">
 				<description>
 					<locale>
-						This event is sent to the tabs element when this <link type="element">tab</link> is changed.
+						This event is sent to the tabs element when this <link type="element" href="reference://markup/xul/tab">tab</link> is changed.
 					</locale>
 					<locale xml:lang="ru">
-						Загорается на элементе <link type="element">tabs</link>, когда изменяется выбранный элемент <link type="element">tab</link>.
+						Загорается на элементе <link type="element" href="reference://markup/xul/tabs">tabs</link>, когда изменяется выбранный элемент <link type="element" href="reference://markup/xul/tab">tab</link>.
 					</locale>
 				</description>
 			</event>
 <!--
 			<event name="beforeselect" type="dom:events:Event" cancelable="true" bubbles="true">
 				<description>
-					This event is sent to the <link type="element">tabs</link> element when the <link type="element">tab</link> is about to change. Return false if you want to prevent tab change.
+					This event is sent to the <link type="element" href="reference://markup/xul/tabs">tabs</link> element when the <link type="element" href="reference://markup/xul/tab">tab</link> is about to change. Return false if you want to prevent tab change.
 				</description>
 			</event>
  -->

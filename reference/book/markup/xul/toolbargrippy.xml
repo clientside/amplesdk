@@ -3,11 +3,11 @@
 <element extends="markup:xul:XULElement" name="toolbargrippy">
 	<abstract>
 		<locale>
-			The notch on the side of a <link type="element">toolbar</link> which can be used to collapse and expand it.
-			This element is used internally by the <link type="element">toolbar</link> and should only be used directly when modifying its theme.
+			The notch on the side of a <link type="element" href="reference://markup/xul/toolbar">toolbar</link> which can be used to collapse and expand it.
+			This element is used internally by the <link type="element" href="reference://markup/xul/toolbar">toolbar</link> and should only be used directly when modifying its theme.
 		</locale>
 		<locale xml:lang="ru">
-			Специальный элемент сбоку элемента <link type="element">toolbar</link>,
+			Специальный элемент сбоку элемента <link type="element" href="reference://markup/xul/toolbar">toolbar</link>,
 			который используется для сворачивания и разворачивания панели инструментов.
 		</locale>
 	</abstract>

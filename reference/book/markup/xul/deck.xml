@@ -7,7 +7,7 @@
 		</locale>
 		<locale xml:lang="ru">
 			Элемент, который одновременно может отображать только один дочерний элемент.
-			Атрибут <link type="attribute">selectedIndex</link> определяет этот дочерний элемент.
+			Атрибут <link type="attribute" href="reference://markup/xul/deck">selectedIndex</link> определяет этот дочерний элемент.
 		</locale>
 	</abstract>
 	<remarks />

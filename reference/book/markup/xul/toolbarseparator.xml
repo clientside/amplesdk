@@ -6,8 +6,8 @@
 			Creates a separator between groups of toolbar items.
 		</locale>
 		<locale xml:lang="ru">
-			Разделитель для элемента <link type="element">toolbar</link>,
-			который разделяет группы элементов <link type="element">toolbarbutton</link>.
+			Разделитель для элемента <link type="element" href="reference://markup/xul/toolbar">toolbar</link>,
+			который разделяет группы элементов <link type="element" href="reference://markup/xul/toolbarbutton">toolbarbutton</link>.
 		</locale>
 	</abstract>
 	<remarks />

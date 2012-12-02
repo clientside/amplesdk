@@ -12,10 +12,10 @@
 		</warning>
 		<locale>
 			A frame which is expected to contain an editable document.
-			Set the value of the <link type="attribute">editortype</link> attribute to html to create an editor document.
+			Set the value of the <link type="attribute" href="reference://markup/xul/editor">editortype</link> attribute to html to create an editor document.
 		</locale>
 		<locale xml:lang="ru">
-			Контейнер, содержащий документ с возможностью редактирования. При установке значения атрибута <link type="element">editortype</link> в "html", будет создан редактор документа.
+			Контейнер, содержащий документ с возможностью редактирования. При установке значения атрибута <link type="element" href="reference://markup/xul/editortype">editortype</link> в "html", будет создан редактор документа.
 		</locale>
 	</abstract>
 	<remarks />

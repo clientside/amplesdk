@@ -3,7 +3,7 @@
 <class name="TouchList">
 	<abstract>
 		<locale>
-			The <link type="class">TouchList</link> class is used to represent a collection of <link type="class">Touch</link> objects.
+			The <link type="class" href="reference://dom/touch/TouchList">TouchList</link> class is used to represent a collection of <link type="class" href="reference://dom/touch/Touch">Touch</link> objects.
 		</locale>
 	</abstract>
 	<examples/>
@@ -12,7 +12,7 @@
 			<property name="length" type="Number" readonly="true">
 				<description>
 					<locale>
-						The number of <link type="class">Touch</link> objects in this <link type="class">TouchList</link> object.
+						The number of <link type="class" href="reference://dom/touch/Touch">Touch</link> objects in this <link type="class" href="reference://dom/touch/TouchList">TouchList</link> object.
 					</locale>
 				</description>
 			</property>
@@ -30,7 +30,7 @@
 				</arguments>
 				<description>
 					<locale>
-						Returns the <link type="class">Touch</link> object at the given index.
+						Returns the <link type="class" href="reference://dom/touch/Touch">Touch</link> object at the given index.
 					</locale>
 				</description>
 			</method>

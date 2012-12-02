@@ -3,10 +3,10 @@
 <element extends="markup:xul:XULElement" name="listcell">
 	<abstract>
 		<locale>
-			A single cell of a <link type="element">listbox</link>.
+			A single cell of a <link type="element" href="reference://markup/xul/listbox">listbox</link>.
 		</locale>
 		<locale xml:lang="ru">
-			Ячейка элемента <link type="element">listbox</link>, содержащаяся внутри <link type="element">listitem</link>.
+			Ячейка элемента <link type="element" href="reference://markup/xul/listbox">listbox</link>, содержащаяся внутри <link type="element" href="reference://markup/xul/listitem">listitem</link>.
 		</locale>
 	</abstract>
 	<remarks />
@@ -19,7 +19,7 @@
 						The label that will appear on the element. If this is left out, no text appears.
 					</locale>
 					<locale xml:lang="ru">
-						Текстовая метка, которая появится в элементе <link type="element">listcell</link>.
+						Текстовая метка, которая появится в элементе <link type="element" href="reference://markup/xul/listcell">listcell</link>.
 					</locale>
 				</description>
 			</attribute>
@@ -30,7 +30,7 @@
 						If this attribute is empty or left out, no image appears.
 					</locale>
 					<locale xml:lang="ru">
-						URL к пиктограмме, которая будет использована в элементе <link type="element">listcell</link>.
+						URL к пиктограмме, которая будет использована в элементе <link type="element" href="reference://markup/xul/listcell">listcell</link>.
 					</locale>
 				</description>
 			</attribute>

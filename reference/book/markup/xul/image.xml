@@ -3,11 +3,11 @@
 <element extends="markup:xul:XULElement" name="image">
 	<abstract>
 		<locale>
-			An element that displays an image, much like the HTML img element. The <link type="attribute">src</link> attribute can be used to specify the URL of the image.
+			An element that displays an image, much like the HTML img element. The <link type="attribute" href="reference://markup/xul/image">src</link> attribute can be used to specify the URL of the image.
 		</locale>
 		<locale xml:lang="ru">
 			Аналогичен элементу <b>image</b> в HTML.
-			Атрибут <link type="attribute">src</link> используется для указания URL для картинки.
+			Атрибут <link type="attribute" href="reference://markup/xul/image">src</link> используется для указания URL для картинки.
 		</locale>
 	</abstract>
 	<remarks />
@@ -32,11 +32,11 @@
 			<event name="load" type="dom:events:Event" cancelable="false" bubbles="false">
 				<description>
 					<locale>
-						This event handler will be called on the <link type="element">image</link> element when the image has finished loading.
+						This event handler will be called on the <link type="element" href="reference://markup/xul/image">image</link> element when the image has finished loading.
 					</locale>
 					<locale xml:lang="ru">
 						Загорается по завершении загрузки картинки.
-						Если изменить атрибут <link type="attribute">src</link>,
+						Если изменить атрибут <link type="attribute" href="reference://markup/xul/image">src</link>,
 						событие произойдет когда загрузится новая картика.
 					</locale>
 				</description>
@@ -44,7 +44,7 @@
 			<event name="error" type="dom:events:Event" cancelable="false" bubbles="false">
 				<description>
 					<locale>
-						This event is sent to an <link type="element">image</link> element when an error occurs loading the image.
+						This event is sent to an <link type="element" href="reference://markup/xul/image">image</link> element when an error occurs loading the image.
 					</locale>
 					<locale xml:lang="ru">
 						Загорается при ошибке загрузки картинки.

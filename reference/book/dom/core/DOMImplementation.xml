@@ -48,10 +48,10 @@
 				</arguments>
 				<description>
 					<locale>
-						Creates a <link type="class">Document</link> object of the specified type with its document element.
+						Creates a <link type="class" href="reference://dom/core/Document">Document</link> object of the specified type with its document element.
 					</locale>
 					<locale xml:lang="ru">
-						Создает объект <link type="class">Document</link> указанного типа.
+						Создает объект <link type="class" href="reference://dom/core/Document">Document</link> указанного типа.
 					</locale>
 				</description>
 			</method>

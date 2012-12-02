@@ -86,10 +86,10 @@
 			<locale>Events of that type:</locale>
 			<locale xml:lang="ru">События этого типа:</locale>
 			<ul>
-				<li><link type="event" href="runtime:Element">focus</link></li>
-				<li><link type="event" href="runtime:Element">blur</link></li>
-				<li><link type="event" href="runtime:Element">DOMFocusIn</link></li>
-				<li><link type="event" href="runtime:Element">DOMFocusOut</link></li>
+				<li><link type="event" href="reference://dom/core/Element">focus</link></li>
+				<li><link type="event" href="reference://dom/core/Element">blur</link></li>
+				<li><link type="event" href="reference://dom/core/Element">DOMFocusIn</link></li>
+				<li><link type="event" href="reference://dom/core/Element">DOMFocusOut</link></li>
 			</ul>
 		</remark>
 	</remarks>

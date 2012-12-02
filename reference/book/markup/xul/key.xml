@@ -5,12 +5,12 @@
 		<locale>
 			The key element defines a keyboard shortcut.
 			Event handlers can be used to respond when the appropriate keys are pressed.
-			A key element must be placed inside a <link type="element">keyset</link> element.
+			A key element must be placed inside a <link type="element" href="reference://markup/xul/keyset">keyset</link> element.
 		</locale>
 		<locale xml:lang="ru">
-			Элемент <link type="element">key</link> определяет горячие клавиши.
+			Элемент <link type="element" href="reference://markup/xul/key">key</link> определяет горячие клавиши.
 			Когда активируются горячие клавиши, могут вызываться заранее определенные обработчики событий.
-			Элемент <link type="element">key</link> должен помещаться в элемент <link type="element">keyset</link>.
+			Элемент <link type="element" href="reference://markup/xul/key">key</link> должен помещаться в элемент <link type="element" href="reference://markup/xul/keyset">keyset</link>.
 		</locale>
 	</abstract>
 	<remarks />
@@ -33,7 +33,7 @@
 						For keys that do not have displayable characters, such as the Enter key or function keys, use this attribute instead of the key attribute.
 					</locale>
 					<locale xml:lang="ru">
-						Этот атрибут используется вместо атрибута <link type="attribute">key</link> для клавиш, которые не имеют отображения (например, клавиша ввода или функциональные клавиши).
+						Этот атрибут используется вместо атрибута <link type="attribute" href="reference://markup/xul/key">key</link> для клавиш, которые не имеют отображения (например, клавиша ввода или функциональные клавиши).
 					</locale>
 				</description>
 			</attribute>
@@ -43,7 +43,7 @@
 						A label for the keyboard shortcut.
 					</locale>
 					<locale xml:lang="ru">
-						Текстовая подсказка для горячей клавиши. Этот текст появится рядом с текстом элемента <link type="element">menuitem</link>, если этот элемент ассоциирован с элементом <link type="element">key</link> чрез атрибут <link type="attribute">key</link>.
+						Текстовая подсказка для горячей клавиши. Этот текст появится рядом с текстом элемента <link type="element" href="reference://markup/xul/menuitem">menuitem</link>, если этот элемент ассоциирован с элементом <link type="element" href="reference://markup/xul/key">key</link> чрез атрибут <link type="attribute" href="reference://markup/xul/key">key</link>.
 					</locale>
 				</description>
 			</attribute>
@@ -121,11 +121,11 @@
 					<locale xml:lang="ru">
 						Это событие загорается, когда элемент активируется.
 						В большинстве случаев доступно несколько способов активации этого элемента.
-						Например, элемент <link type="element">button</link> может быть активирован
+						Например, элемент <link type="element" href="reference://markup/xul/button">button</link> может быть активирован
 						нажатием на нем мыши или нажатием клавиши ввода в тот момент, когда он в фокусе.
 						Элементы меню могут быть активированы мышью или использванием клавиши быстрого доступа.
-						Всегда следует использовать событие <link type="event">command</link> вместо
-						события <link type="event">click</link>, так как оно будет вызвано всеми доступными способами.
+						Всегда следует использовать событие <link type="event" href="reference://markup/xul/key">command</link> вместо
+						события <link type="event" href="reference://markup/xul/key">click</link>, так как оно будет вызвано всеми доступными способами.
 					</locale>
 				</description>
 			</event>

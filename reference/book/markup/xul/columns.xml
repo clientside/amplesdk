@@ -3,7 +3,7 @@
 <element extends="markup:xul:XULElement" name="columns">
 	<abstract>
 		<locale>
-			Defines the columns of a <link type="element">grid</link>.
+			Defines the columns of a <link type="element" href="reference://markup/xul/grid">grid</link>.
 		</locale>
 	</abstract>
 	<remarks />

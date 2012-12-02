@@ -3,10 +3,10 @@
 <element extends="markup:xul:XULElement" name="row">
 	<abstract>
 		<locale>
-			A single row in a <link type="element">rows</link> element.
+			A single row in a <link type="element" href="reference://markup/xul/rows">rows</link> element.
 		</locale>
 		<locale xml:lang="ru">
-			Одна строка в элементе <link type="element">rows</link>.
+			Одна строка в элементе <link type="element" href="reference://markup/xul/rows">rows</link>.
 			Каждый дочерний элемент помещается в соответствующую ячейку грида.
 			Строка с наибольшим количеством дочерних элементов определяет количество столбцов.
 		</locale>

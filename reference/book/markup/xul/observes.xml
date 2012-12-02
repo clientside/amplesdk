@@ -3,8 +3,8 @@
 <element extends="markup:xul:XULElement" name="observes">
 	<abstract>
 		<locale>
-			The <link type="element">observes</link> element can be used to listen to a <link type="element">broadcaster</link> and receive events and attributes from it.
-			The <link type="element">observes</link> element should be placed inside the element that wants to observe the broadcaster.
+			The <link type="element" href="reference://markup/xul/observes">observes</link> element can be used to listen to a <link type="element" href="reference://markup/xul/broadcaster">broadcaster</link> and receive events and attributes from it.
+			The <link type="element" href="reference://markup/xul/observes">observes</link> element should be placed inside the element that wants to observe the broadcaster.
 			When an observed attribute is modified on the broadcaster,
 			the attribute's value will be forwarded and set on the parent element of the observer.
 		</locale>
@@ -26,7 +26,7 @@
 			<attribute name="element">
 				<description>
 					<locale>
-						The id of the <link type="element">broadcaster</link> element that the observer is observing.
+						The id of the <link type="element" href="reference://markup/xul/broadcaster">broadcaster</link> element that the observer is observing.
 					</locale>
 				</description>
 			</attribute>

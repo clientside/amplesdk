@@ -6,7 +6,7 @@
 			Specifies a reference to an audio file.
 		</locale>
 		<locale xml:lang="ru">
-			Элемент <link type="element">sound</link> предназначен для воспроизведения звуков.
+			Элемент <link type="element" href="reference://markup/aui/sound">sound</link> предназначен для воспроизведения звуков.
 		</locale>
 	</abstract>
 	<remarks />

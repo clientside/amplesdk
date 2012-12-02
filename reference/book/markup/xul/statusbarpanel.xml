@@ -3,12 +3,12 @@
 <element extends="markup:xul:XULElement" name="statusbarpanel">
 	<abstract>
 		<locale>
-			An individual element of a <link type="element">statusbar</link>.
+			An individual element of a <link type="element" href="reference://markup/xul/statusbar">statusbar</link>.
 		</locale>
 		<locale xml:lang="ru">
-			Один элемент из набора <link type="element">statusbar</link>.
-			Является специальным типом элемента <link type="element">button</link>,
-			отображаемым иным образом. В отличие от обычных кнопок, элемент <link type="element">statusbarpanel</link> может иметь либо текст, либо пиктограмму.
+			Один элемент из набора <link type="element" href="reference://markup/xul/statusbar">statusbar</link>.
+			Является специальным типом элемента <link type="element" href="reference://markup/xul/button">button</link>,
+			отображаемым иным образом. В отличие от обычных кнопок, элемент <link type="element" href="reference://markup/xul/statusbarpanel">statusbarpanel</link> может иметь либо текст, либо пиктограмму.
 			Этот элемент зачастую используется для отображения статуса.
 		</locale>
 	</abstract>

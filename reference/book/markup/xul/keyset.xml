@@ -3,10 +3,10 @@
 <element extends="markup:xul:XULElement" name="keyset">
 	<abstract>
 		<locale>
-			A container element for <link type="element">key</link> elements. The keyset and its descendants are not displayed.
+			A container element for <link type="element" href="reference://markup/xul/key">key</link> elements. The keyset and its descendants are not displayed.
 		</locale>
 		<locale xml:lang="ru">
-			Контейнер для элементов <link type="element">key</link>. Элемент <link type="element">keyset</link> и все содержащиеся в нем элементы не отображаются.
+			Контейнер для элементов <link type="element" href="reference://markup/xul/key">key</link>. Элемент <link type="element" href="reference://markup/xul/keyset">keyset</link> и все содержащиеся в нем элементы не отображаются.
 		</locale>
 	</abstract>
 	<remarks />

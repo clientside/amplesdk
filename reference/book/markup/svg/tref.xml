@@ -12,7 +12,7 @@
 			<attribute name="xlink:href">
 				<description>
 					<locale>
-						A URI reference to an <link type="element">text</link> within an SVG document.
+						A URI reference to an <link type="element" href="reference://markup/svg/text">text</link> within an SVG document.
 					</locale>
 				</description>
 			</attribute>

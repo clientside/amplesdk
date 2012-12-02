@@ -57,10 +57,10 @@
 				</arguments>
 				<description>
 					<locale>
-						Initializes attributes of a <link type="class">CustomEvent</link> object.
+						Initializes attributes of a <link type="class" href="reference://dom/events/CustomEvent">CustomEvent</link> object.
 					</locale>
 					<locale xml:lang="ru">
-						Этот метод используется для инициализации значения объекта <link type="class">CustomEvent</link>.
+						Этот метод используется для инициализации значения объекта <link type="class" href="reference://dom/events/CustomEvent">CustomEvent</link>.
 					</locale>
 				</description>
 			</method>

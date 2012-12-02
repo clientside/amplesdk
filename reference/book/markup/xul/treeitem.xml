@@ -3,13 +3,13 @@
 <element extends="markup:xul:XULElement" name="treeitem">
 	<abstract>
 		<locale>
-			A <link type="element">treeitem</link> should be placed inside a <link type="element">treechildren</link> element and should contain <link type="element">treerow</link> elements.
-			The <link type="element">treeitem</link> can be clicked by the user to select the row of the tree.
-			The <link type="element">treeitem</link> contains a single row and all of what appear to the user as that row's descendants.
+			A <link type="element" href="reference://markup/xul/treeitem">treeitem</link> should be placed inside a <link type="element" href="reference://markup/xul/treechildren">treechildren</link> element and should contain <link type="element" href="reference://markup/xul/treerow">treerow</link> elements.
+			The <link type="element" href="reference://markup/xul/treeitem">treeitem</link> can be clicked by the user to select the row of the tree.
+			The <link type="element" href="reference://markup/xul/treeitem">treeitem</link> contains a single row and all of what appear to the user as that row's descendants.
 		</locale>
 		<locale xml:lang="ru">
-			Размещается внутри элемента <link type="element">treechildren</link> и должен
-			содержать элемент <link type="element">treerow</link>.
+			Размещается внутри элемента <link type="element" href="reference://markup/xul/treechildren">treechildren</link> и должен
+			содержать элемент <link type="element" href="reference://markup/xul/treerow">treerow</link>.
 			Является строкой дерева и содержит все элементы, являющиеся потомками этой строки (например, дочерние строки).
 		</locale>
 	</abstract>
@@ -52,7 +52,7 @@
 			<attribute name="label">
 				<description>
 					<locale>
-						For trees with only a single column, the label may be placed directly on the <link type="element">treeitem</link> without the need for a <link type="element">treerow</link> and <link type="element">treecell</link> inside.
+						For trees with only a single column, the label may be placed directly on the <link type="element" href="reference://markup/xul/treeitem">treeitem</link> without the need for a <link type="element" href="reference://markup/xul/treerow">treerow</link> and <link type="element" href="reference://markup/xul/treecell">treecell</link> inside.
 					</locale>
 				</description>
 			</attribute>
@@ -71,20 +71,20 @@
 			<property name="row" readonly="true">
 				<description>
 					<locale>
-						Reference to a child <link type="element">treerow</link> element.
+						Reference to a child <link type="element" href="reference://markup/xul/treerow">treerow</link> element.
 					</locale>
 					<locale xml:lang="ru">
-						Ссылка на элемент <link type="element">treerow</link>.
+						Ссылка на элемент <link type="element" href="reference://markup/xul/treerow">treerow</link>.
 					</locale>
 				</description>
 			</property>
 			<property name="children" readonly="true">
 				<description>
 					<locale>
-						Reference to a child <link type="element">treechildren</link> element.
+						Reference to a child <link type="element" href="reference://markup/xul/treechildren">treechildren</link> element.
 					</locale>
 					<locale xml:lang="ru">
-						Ссылка на элемент <link type="element">treechildren</link>.
+						Ссылка на элемент <link type="element" href="reference://markup/xul/treechildren">treechildren</link>.
 					</locale>
 				</description>
 			</property>

@@ -6,7 +6,7 @@
 			DocumentFragment is a "lightweight" or "minimal" Document object.
 		</locale>
 		<locale xml:lang="ru">
-			DocumentFragment является "облегченным" или "минимальным" вариантом объекта <link type="class">Document</link>.
+			DocumentFragment является "облегченным" или "минимальным" вариантом объекта <link type="class" href="reference://dom/core/Document">Document</link>.
 		</locale>
 	</abstract>
 	<remarks />

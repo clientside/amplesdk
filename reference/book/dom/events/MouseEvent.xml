@@ -202,7 +202,7 @@
 						For mice configured for left handed use in which the button actions are reversed the values are instead read from right to left.
 					</locale>
 					<locale xml:lang="ru">
-						Если событие было вызвано нажатием или отпусканием кнопки мыши, свойство <link type="property">button</link> указывает на кнопку, которая изменила свое состояние.
+						Если событие было вызвано нажатием или отпусканием кнопки мыши, свойство <link type="property" href="reference://dom/events/MouseEvent">button</link> указывает на кнопку, которая изменила свое состояние.
 					</locale>
 				</description>
 			</property>
@@ -249,10 +249,12 @@
 			<property name="relatedTarget" type="dom:core:Node" readonly="true">
 				<description>
 					<locale>
-						Used to identify a secondary EventTarget related to a UI event. Currently this attribute is used with the mouseover event to indicate the EventTarget which the pointing device exited and with the mouseout event to indicate the EventTarget which the pointing device entered.
+						Used to identify a secondary EventTarget related to a UI event.
+						Currently this attribute is used with the mouseover event to indicate the EventTarget which the pointing device exited and with the mouseout event to indicate the EventTarget which the pointing device entered.
 					</locale>
 					<locale xml:lang="ru">
-						Используется для идентификации вторичного EventTarget для события. В настоящее время используется для события <link type="event">mouseover</link> чтобы указать, с какого элемента указатель ушел и для события <link type="event">mouseout</link> чтобы указать, с на какой элемент указатель пришел.
+						Используется для идентификации вторичного EventTarget для события.
+						В настоящее время используется для события <link type="event" href="reference://dom/core/Element">mouseover</link> чтобы указать, с какого элемента указатель ушел и для события <link type="event">mouseout</link> чтобы указать, с на какой элемент указатель пришел.
 					</locale>
 				</description>
 			</property>
@@ -294,16 +296,16 @@
 			<locale>Events of that type:</locale>
 			<locale xml:lang="ru">События этого типа:</locale>
 			<ul>
-				<li><link type="event" href="runtime:Element">click</link></li>
-				<li><link type="event" href="runtime:Element">dblclick</link></li>
-				<li><link type="event" href="runtime:Element">mousedown</link></li>
-				<li><link type="event" href="runtime:Element">mousemove</link></li>
-				<li><link type="event" href="runtime:Element">mouseout</link></li>
-				<li><link type="event" href="runtime:Element">mouseover</link></li>
-				<li><link type="event" href="runtime:Element">mouseup</link></li>
-				<li><link type="event" href="runtime:Element">contextmenu</link></li>
-				<li><link type="event" href="runtime:Element">mouseenter</link></li>
-				<li><link type="event" href="runtime:Element">mouseleave</link></li>
+				<li><link type="event" href="reference://dom/core/Element">click</link></li>
+				<li><link type="event" href="reference://dom/core/Element">dblclick</link></li>
+				<li><link type="event" href="reference://dom/core/Element">mousedown</link></li>
+				<li><link type="event" href="reference://dom/core/Element">mousemove</link></li>
+				<li><link type="event" href="reference://dom/core/Element">mouseout</link></li>
+				<li><link type="event" href="reference://dom/core/Element">mouseover</link></li>
+				<li><link type="event" href="reference://dom/core/Element">mouseup</link></li>
+				<li><link type="event" href="reference://dom/core/Element">contextmenu</link></li>
+				<li><link type="event" href="reference://dom/core/Element">mouseenter</link></li>
+				<li><link type="event" href="reference://dom/core/Element">mouseleave</link></li>
 			</ul>
 		</remark>
 	</remarks>

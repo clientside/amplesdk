@@ -13,17 +13,17 @@
 			Этот элемент используется в случаях, когда необходимо, чтобы несколько элементов
 			имели один или несколько общих значений атрибута, или же когда необходимо,
 			чтобы элементы реагировали на их изменение.
-			Любой элемент, который слушает элемент <link type="element">broadcaster</link> (обсервер),
+			Любой элемент, который слушает элемент <link type="element" href="reference://markup/xul/broadcaster">broadcaster</link> (обсервер),
 			будет предоставлять свои атрибуты, размещенные на нем, для общего использования.
-			Например, если элемент <link type="element">broadcaster</link> имеет атрибут <link type="attribute">label</link>,
+			Например, если элемент <link type="element" href="reference://markup/xul/broadcaster">broadcaster</link> имеет атрибут label,
 			обсерверы будут использовать его значение. Если его значение изменяется,
-			значение атрибута <link type="attribute">label</link> у всех обсерверов изменится
-			автоматически и загорится событие <link type="event">broadcast</link>.
-			Для элементов <link type="element">menuitem</link> и <link type="element">button</link> вместо
-			элемента <link type="element">broadcaster</link> следует использовать
-			элемент <link type="element">command</link>.
-			Элемент <link type="element">broadcater</link> должен быть размещен внутри
-			элемента <link type="element">broadcasterset</link>.
+			значение атрибута label у всех обсерверов изменится
+			автоматически и загорится событие <link type="event" href="reference://markup/xul/broadcaster">broadcast</link>.
+			Для элементов <link type="element" href="reference://markup/xul/menuitem">menuitem</link> и <link type="element" href="reference://markup/xul/button">button</link> вместо
+			элемента <link type="element" href="reference://markup/xul/broadcaster">broadcaster</link> следует использовать
+			элемент <link type="element" href="reference://markup/xul/command">command</link>.
+			Элемент <link type="element" href="reference://markup/xul/broadcater">broadcater</link> должен быть размещен внутри
+			элемента <link type="element" href="reference://markup/xul/broadcasterset">broadcasterset</link>.
 		</locale>
 	</abstract>
 	<remarks />
@@ -36,7 +36,7 @@
 <!--
 			<event name="broadcast" cancelable="false">
 				<description>
-					This event handler is called when the broadcast is activated. This occurs when some attribute of the element <link type="element">broadcaster</link> is changed.
+					This event handler is called when the broadcast is activated. This occurs when some attribute of the element <link type="element" href="reference://markup/xul/broadcaster">broadcaster</link> is changed.
 				</description>
 			</event>
 -->

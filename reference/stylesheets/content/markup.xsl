@@ -77,14 +77,14 @@
 			<xsl:otherwise>
 				<xsl:choose>
 					<xsl:when test="@type='element' or @type='class' or @type='object'">
-						<a href="{.}.xml" class="object">
+						<a href="../../{translate(substring-after(@href, 'reference://'), ':', '/')}.xml" class="object">
 							<xsl:value-of select="."/>
 						</a>
 					</xsl:when>
 					<xsl:when test="@type='attribute' or @type='event' or @type='method' or @type='property' or @type='constant'">
 						<xsl:choose>
 							<xsl:when test="@href">
-								<a href="../{translate(@href, ':', '/')}.xml#{@type}-{text()}">
+								<a href="../../{translate(substring-after(@href, 'reference://'), ':', '/')}.xml#{@type}-{text()}">
 									<xsl:value-of select="."/>
 								</a>
 							</xsl:when>

@@ -4,14 +4,14 @@
 	<abstract>
 		<locale>
 			Represents the state of an event.
-			Depending on the nature of occurance <link type="object">event</link> object may have different specialized interface,
-			every however extending on <link type="class">Event</link>.
+			Depending on the nature of occurance <link type="object" href="reference://env/ample/event">event</link> object may have different specialized interface,
+			every however extending on <link type="class" href="reference://dom/events/Event">Event</link>.
 		</locale>
 	</abstract>
 	<remarks>
 		<remark>
 			<locale>
-				The <link type="object">event</link> object is available only during an event—that is, you can use it in event handlers but not in other code.
+				The <link type="object" href="reference://env/ample/event">event</link> object is available only during an event—that is, you can use it in event handlers but not in other code.
 				<b>Note:</b> in SVG content you should use <b>evt</b> object instead.
 			</locale>
 		</remark>

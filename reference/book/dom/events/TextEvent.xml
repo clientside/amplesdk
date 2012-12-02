@@ -81,7 +81,7 @@
 				</arguments>
 				<description>
 					<locale>
-						Initializes attributes of a <link type="class">TextEvent</link> object.
+						Initializes attributes of a <link type="class" href="reference://dom/events/TextEvent">TextEvent</link> object.
 					</locale>
 					<locale xml:lang="ru">
 						Метод initTextEvent используется для инициализации значения объекта TextEvent.
@@ -194,7 +194,7 @@
 			<locale>Events of that type:</locale>
 			<locale xml:lang="ru">События этого типа:</locale>
 			<ul>
-				<li><link type="event" href="runtime:Element">textinput</link></li>
+				<li><link type="event" href="reference://dom/core/Element">textinput</link></li>
 			</ul>
 		</remark>
 	</remarks>

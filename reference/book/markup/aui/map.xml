@@ -3,7 +3,7 @@
 <element extends="markup:aui:AUIElement" name="map">
 	<abstract>
 		<locale>
-			This element can only have <link type="element">marker</link> elements children.
+			This element can only have <link type="element" href="reference://markup/aui/marker">marker</link> elements children.
 		</locale>
 	</abstract>
 	<remarks>

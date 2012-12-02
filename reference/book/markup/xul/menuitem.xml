@@ -3,10 +3,10 @@
 <element extends="markup:xul:XULElement" name="menuitem">
 	<abstract>
 		<locale>
-			A single choice in a <link type="element">menupopup</link> element.
+			A single choice in a <link type="element" href="reference://markup/xul/menupopup">menupopup</link> element.
 		</locale>
 		<locale xml:lang="ru">
-			Элемент, представляющий единичный выбор в элементе <link type="element">menupopup</link>. По поведению элемент напоминает кнопку.
+			Элемент, представляющий единичный выбор в элементе <link type="element" href="reference://markup/xul/menupopup">menupopup</link>. По поведению элемент напоминает кнопку.
 		</locale>
 	</abstract>
 	<remarks />
@@ -40,24 +40,24 @@
 					<value name="checkbox">
 						<description>
 							<locale>
-								The <link type="element">menuitem</link> is checked. The <link type="attribute">checked</link> attribute determines whether the <link type="element">menuitem</link> is checked or not.
+								The <link type="element" href="reference://markup/xul/menuitem">menuitem</link> is checked. The <link type="attribute" href="reference://markup/xul/menuitem">checked</link> attribute determines whether the <link type="element" href="reference://markup/xul/menuitem">menuitem</link> is checked or not.
 							</locale>
 							<locale xml:lang="ru">
-								Элемент является выделяемым. Атрибут <link type="attribute">checked</link> определяет, отмечен элемент или нет.
+								Элемент является выделяемым. Атрибут <link type="attribute" href="reference://markup/xul/menuitem">checked</link> определяет, отмечен элемент или нет.
 							</locale>
 						</description>
 					</value>
 					<value name="radio">
 						<description>
 							<locale>
-								The <link type="element">menuitem</link> becomes part of a radio group.
-								Other <link type="element">menuitem</link>s that have the same value for their <link type="attribute">name</link> attributes are part of the same radio group.
-								Only one <link type="element">menuitem</link> in the same radio group can be checked at once.
+								The <link type="element" href="reference://markup/xul/menuitem">menuitem</link> becomes part of a radio group.
+								Other <link type="element" href="reference://markup/xul/menuitem">menuitem</link>s that have the same value for their <link type="attribute" href="reference://markup/xul/menuitem">name</link> attributes are part of the same radio group.
+								Only one <link type="element" href="reference://markup/xul/menuitem">menuitem</link> in the same radio group can be checked at once.
 							</locale>
 							<locale xml:lang="ru">
 								Элемент становится частью группы выделяемых элементов.
-								Другие элементы <link type="element">menuitem</link> с тем же значением атрибута <link type="attribute">name</link> являются членами одной выделяемой группы.
-								В группе выделяемых элементов одновременно не может быть выделено более одного элемента <link type="element">menuitem</link>.
+								Другие элементы <link type="element" href="reference://markup/xul/menuitem">menuitem</link> с тем же значением атрибута <link type="attribute" href="reference://markup/xul/menuitem">name</link> являются членами одной выделяемой группы.
+								В группе выделяемых элементов одновременно не может быть выделено более одного элемента <link type="element" href="reference://markup/xul/menuitem">menuitem</link>.
 							</locale>
 						</description>
 					</value>
@@ -95,7 +95,7 @@
 				<description>
 					<locale>
 						Radio menuitems with the same name as put into a group.
-						Only one <link type="element">menuitem</link> in each radio group can be checked at a time.
+						Only one <link type="element" href="reference://markup/xul/menuitem">menuitem</link> in each radio group can be checked at a time.
 					</locale>
 				</description>
 			</attribute>

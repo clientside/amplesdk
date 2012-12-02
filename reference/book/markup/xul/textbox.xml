@@ -6,12 +6,12 @@
 			An input field where the user can enter text.
 			It is similar to the HTML input element.
 			Only one line of text is displayed by default.
-			The <link type="attribute">multiline</link> attribute can be specified to display a field with multiple rows.
+			The <link type="attribute" href="reference://markup/xul/textbox">multiline</link> attribute can be specified to display a field with multiple rows.
 		</locale>
 		<locale xml:lang="ru">
 			Поле для ввода текстовой информации.
 			По умолчанию, отображается только одна строка текста.
-			Для ввода многострочного текста может быть указан атрибут <link type="attribute">multiline</link> в значении <b>true</b>.
+			Для ввода многострочного текста может быть указан атрибут <link type="attribute" href="reference://markup/xul/textbox">multiline</link> в значении <b>true</b>.
 		</locale>
 	</abstract>
 	<remarks />
@@ -111,7 +111,7 @@
 						The number of rows to display in the element.
 					</locale>
 					<locale xml:lang="ru">
-						Количество строк элемента. Используется только при атрибуте <link type="attribute">multiline</link> выставленном в значение <b>true</b>.
+						Количество строк элемента. Используется только при атрибуте <link type="attribute" href="reference://markup/xul/textbox">multiline</link> выставленном в значение <b>true</b>.
 					</locale>
 				</description>
 			</attribute>
@@ -121,7 +121,7 @@
 						For multiline textboxes, the number of columns to display.
 					</locale>
 					<locale xml:lang="ru">
-						Количество столбцов элемента. Используется только при атрибуте <link type="attribute">multiline</link> выставленном в значение <b>true</b>.
+						Количество столбцов элемента. Используется только при атрибуте <link type="attribute" href="reference://markup/xul/textbox">multiline</link> выставленном в значение <b>true</b>.
 					</locale>
 				</description>
 			</attribute>

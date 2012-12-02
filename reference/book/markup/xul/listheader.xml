@@ -3,10 +3,10 @@
 <element extends="markup:xul:XULElement" name="listheader">
 	<abstract>
 		<locale>
-			A header for a single column in a <link type="element">listbox</link>.
+			A header for a single column in a <link type="element" href="reference://markup/xul/listbox">listbox</link>.
 		</locale>
 		<locale xml:lang="ru">
-			Заголовок столбца элемента <link type="element">listbox</link>. Размещается внутри элемента <link type="element">listhead</link>.
+			Заголовок столбца элемента <link type="element" href="reference://markup/xul/listbox">listbox</link>. Размещается внутри элемента <link type="element" href="reference://markup/xul/listhead">listhead</link>.
 		</locale>
 	</abstract>
 	<remarks />
@@ -16,10 +16,10 @@
 			<attribute name="label" readonly="false" default="">
 				<description>
 					<locale>
-						Text label inside <link type="element">listheader</link>.
+						Text label inside <link type="element" href="reference://markup/xul/listheader">listheader</link>.
 					</locale>
 					<locale xml:lang="ru">
-						Текстовая метка внутри элемента <link type="element">listheader</link>.
+						Текстовая метка внутри элемента <link type="element" href="reference://markup/xul/listheader">listheader</link>.
 					</locale>
 				</description>
 			</attribute>

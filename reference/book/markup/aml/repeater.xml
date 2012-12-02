@@ -6,7 +6,7 @@
 			Specifies a template for repetition.
 		</locale>
 		<locale xml:lang="ru">
-			Элемент <link type="element">repeater</link>.
+			Элемент <link type="element" href="reference://markup/aml/repeater">repeater</link>.
 		</locale>
 	</abstract>
 	<remarks />
@@ -16,7 +16,7 @@
 			<attribute name="data" readonly="true">
 				<description>
 					<locale>
-						Id of the <link type="element">data</link> element.
+						Id of the <link type="element" href="reference://markup/aml/data">data</link> element.
 					</locale>
 				</description>
 			</attribute>

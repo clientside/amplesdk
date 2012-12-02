@@ -3,10 +3,10 @@
 <element name="include">
 	<abstract>
 		<locale>
-			The <link type="element">include</link> elements in the source infoset serve as inclusion transformation instructions.
+			The <link type="element" href="reference://markup/xinclude/include">include</link> elements in the source infoset serve as inclusion transformation instructions.
 		</locale>
 		<locale xml:lang="ru">
-			Элементы <link type="element">include</link> в исходной структуре данных (<link href="http://www.w3.org/TR/2004/REC-xml-infoset-20040204/" title="XML Information Set (Second Edition)">XML Information Set</link>) позволяют подключать внешние ресурсы, изменяя исходную структуру.
+			Элементы <link type="element" href="reference://markup/xinclude/include">include</link> в исходной структуре данных (<link href="http://www.w3.org/TR/2004/REC-xml-infoset-20040204/" title="XML Information Set (Second Edition)">XML Information Set</link>) позволяют подключать внешние ресурсы, изменяя исходную структуру.
 		</locale>
 	</abstract>
 	<remarks />
@@ -67,27 +67,27 @@
 			<attribute name="xpointer" readonly="true">
 				<description>
 					<locale>
-						When <link type="attribute">parse</link> has value xml, the XPointer contained in the <link type="attribute">xpointer</link> attribute is evaluated to identify a portion of the resource to include.
+						When <link type="attribute" href="reference://markup/xinclude/include">parse</link> has value xml, the XPointer contained in the <link type="attribute" href="reference://markup/xinclude/include">xpointer</link> attribute is evaluated to identify a portion of the resource to include.
 					</locale>
 					<locale xml:lang="ru">
-						Если атрибут <link type="attribute">parse</link> выставен в значение "xml", <link href="http://www.w3.org/TR/xptr/" title="XML Pointer Language (XPointer)">XPointer</link> из атрибута <link type="attribute">xpointer</link> используется для определения фрагмента подключаемого ресурса.
+						Если атрибут <link type="attribute" href="reference://markup/xinclude/include">parse</link> выставен в значение "xml", <link href="http://www.w3.org/TR/xptr/" title="XML Pointer Language (XPointer)">XPointer</link> из атрибута <link type="attribute" href="reference://markup/xinclude/include">xpointer</link> используется для определения фрагмента подключаемого ресурса.
 					</locale>
 				</description>
 			</attribute>
 			<attribute name="encoding" readonly="true">
 				<description>
 					<locale>
-						The <link type="attribute">encoding</link> attribute specifies how the resource is to be translated.
+						The <link type="attribute" href="reference://markup/xinclude/include">encoding</link> attribute specifies how the resource is to be translated.
 					</locale>
 					<locale xml:lang="ru">
-						Указывает на кодировку подключаемого ресурса, так как в случае, если атрибут <link type="attribute">parse</link> выставлен в значение "text", не всегда представляется возможным определить кодировку.
+						Указывает на кодировку подключаемого ресурса, так как в случае, если атрибут <link type="attribute" href="reference://markup/xinclude/include">parse</link> выставлен в значение "text", не всегда представляется возможным определить кодировку.
 					</locale>
 				</description>
 			</attribute>
 			<attribute name="accept" readonly="true">
 				<description>
 					<locale>
-						The value of the <link type="attribute">accept</link> attribute may be used by the XInclude processor to aid in content negotiation.
+						The value of the <link type="attribute" href="reference://markup/xinclude/include">accept</link> attribute may be used by the XInclude processor to aid in content negotiation.
 					</locale>
 					<locale xml:lang="ru">
 						Значение может быть использовано процессором XInclude для согласования типа контента подключаемого ресурса с сервером, который его предоставляет.
@@ -97,7 +97,7 @@
 			<attribute name="accept-language" readonly="true">
 				<description>
 					<locale>
-						The value of the <link type="attribute">accept-language</link> attribute may be used by the XInclude processor to aid in content negotiation.
+						The value of the <link type="attribute" href="reference://markup/xinclude/include">accept-language</link> attribute may be used by the XInclude processor to aid in content negotiation.
 					</locale>
 					<locale xml:lang="ru">
 						Значение может быть использовано процессором XInclude для согласования языка контента подключаемого ресурса с сервером, который его предоставляет.

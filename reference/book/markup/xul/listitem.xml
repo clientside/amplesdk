@@ -3,13 +3,13 @@
 <element extends="markup:xul:XULElement" name="listitem">
 	<abstract>
 		<locale>
-			A single row in a <link type="element">listbox</link>.
-			The text of the <link type="element">listitem</link> is specified either using <link type="element">listcell</link> elements, or by placing a <link type="attribute">label</link> attribute directly on the <link type="element">listitem</link> element.
+			A single row in a <link type="element" href="reference://markup/xul/listbox">listbox</link>.
+			The text of the <link type="element" href="reference://markup/xul/listitem">listitem</link> is specified either using <link type="element" href="reference://markup/xul/listcell">listcell</link> elements, or by placing a <link type="attribute" href="reference://markup/xul/listitem">label</link> attribute directly on the <link type="element" href="reference://markup/xul/listitem">listitem</link> element.
 		</locale>
 		<locale xml:lang="ru">
-			Один элемент для <link type="element">listbox</link>.
-			Все элементы <link type="element">listitem</link> должны размещаться внутри элемента <link type="element">listbody</link>.
-			Для создания списков с несколькими столбцами, следует использовать элемент <link type="element">listcell</link>.
+			Один элемент для <link type="element" href="reference://markup/xul/listbox">listbox</link>.
+			Все элементы <link type="element" href="reference://markup/xul/listitem">listitem</link> должны размещаться внутри элемента <link type="element" href="reference://markup/xul/listbody">listbody</link>.
+			Для создания списков с несколькими столбцами, следует использовать элемент <link type="element" href="reference://markup/xul/listcell">listcell</link>.
 		</locale>
 	</abstract>
 	<remarks />

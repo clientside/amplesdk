@@ -3,12 +3,12 @@
 <element extends="markup:xul:XULElement" name="broadcasterset">
 	<abstract>
 		<locale>
-			A container element for <link type="element">broadcaster</link> elements.
+			A container element for <link type="element" href="reference://markup/xul/broadcaster">broadcaster</link> elements.
 			The broadcasterset and its descendants are not displayed.
 		</locale>
 		<locale xml:lang="ru">
-			Контейнер для элементов <link type="element">broadcaster</link>.
-			Элемент <link type="element">broadcasterset</link> и
+			Контейнер для элементов <link type="element" href="reference://markup/xul/broadcaster">broadcaster</link>.
+			Элемент <link type="element" href="reference://markup/xul/broadcasterset">broadcasterset</link> и
 			все содержащиеся в нем элементы не отображаются.
 		</locale>
 	</abstract>

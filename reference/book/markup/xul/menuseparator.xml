@@ -6,7 +6,7 @@
 			Used to create a separator between menu items. Typically drawn as a thin line.
 		</locale>
 		<locale xml:lang="ru">
-			Используется для создания разделителя между элементами <link type="element">menuitem</link>. Как правило, отображается в виде тонкой горизонтальной линии.
+			Используется для создания разделителя между элементами <link type="element" href="reference://markup/xul/menuitem">menuitem</link>. Как правило, отображается в виде тонкой горизонтальной линии.
 		</locale>
 	</abstract>
 	<remarks />

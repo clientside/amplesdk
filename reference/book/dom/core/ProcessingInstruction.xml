@@ -15,10 +15,10 @@
 <?xml-stylesheet href="stylesheet.css"?>
 			]]></code>
 			<locale>
-				This processing instruction has <link type="attribute">target</link> 'xml-stylesheet' and <link type="attribute">data</link> 'href="stylesheet.css"'.
+				This processing instruction has <link type="property" href="reference://dom/core/ProcessingInstruction">target</link> 'xml-stylesheet' and <link type="property" href="reference://dom/core/ProcessingInstruction">data</link> 'href="stylesheet.css"'.
 			</locale>
 			<locale xml:lang="ru">
-				Эта обрабатывающая инструкция имеет <link type="attribute">target</link> 'xml-stylesheet' и <link type="attribute">data</link> 'href="stylesheet.css"'.
+				Эта обрабатывающая инструкция имеет <link type="property" href="reference://dom/core/ProcessingInstruction">target</link> 'xml-stylesheet' и <link type="property" href="reference://dom/core/ProcessingInstruction">data</link> 'href="stylesheet.css"'.
 			</locale>
 		</example>
 	</examples>

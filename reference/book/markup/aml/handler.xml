@@ -3,10 +3,10 @@
 <element extends="dom:core:Element" name="handler">
 	<abstract>
 		<locale>
-			Element <link type="element">handler</link> is used to create inline event handlers
+			Element <link type="element" href="reference://markup/aml/handler">handler</link> is used to create inline event handlers
 		</locale>
 		<locale xml:lang="ru">
-			Элемент <link type="element">handler</link> предназначен для регистрации обработчиков событий других элементов.
+			Элемент <link type="element" href="reference://markup/aml/handler">handler</link> предназначен для регистрации обработчиков событий других элементов.
 		</locale>
 	</abstract>
 	<remarks />
@@ -39,7 +39,7 @@
 					<locale xml:lang="ru">
 						Задает тип события, для которого будет зарегистрирован обработчик.
 						Если этот атрибут не указан, обработчик будет вызван непосредственно
-						при обработке элемента <link type="element">handler</link> ядром.
+						при обработке элемента <link type="element" href="reference://markup/aml/handler">handler</link> ядром.
 					</locale>
 				</description>
 			</attribute>
@@ -129,7 +129,7 @@
 						Should the event propagation be stopped after this event handler is executed.
 					</locale>
 					<locale xml:lang="ru">
-						Необязательный атрибут <link type="attribute">propagate</link> указывает, будет ли распространено событие после исполнения всех обработчиков на текущем узле.
+						Необязательный атрибут <link type="attribute" href="reference://markup/aml/handler">propagate</link> указывает, будет ли распространено событие после исполнения всех обработчиков на текущем узле.
 					</locale>
 				</description>
 			</attribute>
@@ -155,7 +155,7 @@
 						Should the event default action be prevented after this event handler is executed.
 					</locale>
 					<locale xml:lang="ru">
-						Необязательный атрибут <link type="attribute">defaultAction</link> указывает, будет ли выполнена ответная реакция браузера по умолчанию на событие.
+						Необязательный атрибут <link type="attribute" href="reference://markup/aml/handler">defaultAction</link> указывает, будет ли выполнена ответная реакция браузера по умолчанию на событие.
 					</locale>
 				</description>
 			</attribute>

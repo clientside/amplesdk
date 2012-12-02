@@ -9,7 +9,7 @@
 	<remarks />
 	<warning>
 		<locale>
-			The <link type="class">RPCClient</link> object is in development and it is not included in distribution.
+			The <link type="class" href="reference://plugins/rpc/RPCClient">RPCClient</link> object is in development and it is not included in distribution.
 		</locale>
 	</warning>
 	<members>
@@ -79,7 +79,7 @@
 				</arguments>
 				<description>
 					<locale>
-						Constructs <link type="class">RPCClient</link> object.
+						Constructs <link type="class" href="reference://plugins/rpc/RPCClient">RPCClient</link> object.
 					</locale>
 				</description>
 			</method>

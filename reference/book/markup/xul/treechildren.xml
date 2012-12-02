@@ -3,12 +3,12 @@
 <element extends="markup:xul:XULElement" name="treechildren">
 	<abstract>
 		<locale>
-			This element is the body of the <link type="element">tree</link>.
+			This element is the body of the <link type="element" href="reference://markup/xul/tree">tree</link>.
 			For content trees, the content will be placed inside this element.
 			This element is also used to define container rows in the tree.
 		</locale>
 		<locale xml:lang="ru">
-			Контейнер для элементов <link type="element">treeitem</link> дерева.
+			Контейнер для элементов <link type="element" href="reference://markup/xul/treeitem">treeitem</link> дерева.
 		</locale>
 	</abstract>
 	<remarks />
@@ -20,20 +20,20 @@
 			<property name="tree" type="dom:core:Element" readonly="true">
 				<description>
 					<locale>
-						Reference to a parent <link type="element">tree</link> element.
+						Reference to a parent <link type="element" href="reference://markup/xul/tree">tree</link> element.
 					</locale>
 					<locale xml:lang="ru">
-						Ссылка на родительский элемент <link type="element">tree</link>.
+						Ссылка на родительский элемент <link type="element" href="reference://markup/xul/tree">tree</link>.
 					</locale>
 				</description>
 			</property>
 			<property name="items" type="dom:core:NodeList" readonly="true">
 				<description>
 					<locale>
-						Collection of <link type="element">treeitem</link> child elements.
+						Collection of <link type="element" href="reference://markup/xul/treeitem">treeitem</link> child elements.
 					</locale>
 					<locale xml:lang="ru">
-						Коллекция дочерних элементов <link type="element">treeitem</link>.
+						Коллекция дочерних элементов <link type="element" href="reference://markup/xul/treeitem">treeitem</link>.
 					</locale>
 				</description>
 			</property>

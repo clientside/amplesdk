@@ -4,12 +4,12 @@
 	<abstract>
 		<locale>
 			A heading row for a dialog box.
-			This element should be placed inside a <link type="element">dialog</link> element.
+			This element should be placed inside a <link type="element" href="reference://markup/xul/dialog">dialog</link> element.
 			The header may have a title and a description.
 		</locale>
 		<locale xml:lang="ru">
 			Строка заголовка для диалога.
-			Этот элемент должен быть размещен внутри элемента <link type="element">dialog</link>.
+			Этот элемент должен быть размещен внутри элемента <link type="element" href="reference://markup/xul/dialog">dialog</link>.
 			Заголовок может иметь название и описание.
 		</locale>
 	</abstract>

@@ -86,7 +86,7 @@
 			<locale>Events of that type:</locale>
 			<locale xml:lang="ru">События этого типа:</locale>
 			<ul>
-				<li><link type="event" href="runtime:ample">hashchange</link></li>
+				<li><link type="event" href="reference://env/ample/ample">hashchange</link></li>
 			</ul>
 		</remark>
 	</remarks>

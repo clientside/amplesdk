@@ -3,13 +3,13 @@
 <element extends="markup:xul:XULElement" name="treecell">
 	<abstract>
 		<locale>
-			A single cell in a <link type="element">tree</link>.
-			This element should be placed inside a <link type="element">treerow</link>.
-			You can set the text for the cell using the <link type="attribute">label</link> attribute.
+			A single cell in a <link type="element" href="reference://markup/xul/tree">tree</link>.
+			This element should be placed inside a <link type="element" href="reference://markup/xul/treerow">treerow</link>.
+			You can set the text for the cell using the <link type="attribute" href="reference://markup/xul/treecell">label</link> attribute.
 		</locale>
 		<locale xml:lang="ru">
-			Ячейка в элементе <link type="element">tree</link>.
-			Располагается внутри элемента <link type="element">treerow</link>.
+			Ячейка в элементе <link type="element" href="reference://markup/xul/tree">tree</link>.
+			Располагается внутри элемента <link type="element" href="reference://markup/xul/treerow">treerow</link>.
 		</locale>
 	</abstract>
 	<remarks />

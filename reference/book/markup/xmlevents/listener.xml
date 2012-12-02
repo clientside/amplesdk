@@ -3,11 +3,11 @@
 <element name="listener">
 	<abstract>
 		<locale>
-			Element <link type="element">listener</link> supports a subset of the DOM's EventListener interface.
+			Element <link type="element" href="reference://markup/xmlevents/listener">listener</link> supports a subset of the DOM's EventListener interface.
 			It is used to declare event listeners and register them with specific nodes in the DOM.
 		</locale>
 		<locale xml:lang="ru">
-			Элемент <link type="element">listener</link> поддерживает DOM интерфейс EventListener и предназначен для декларации обработчиков событий узлов в DOM.
+			Элемент <link type="element" href="reference://markup/xmlevents/listener">listener</link> поддерживает DOM интерфейс EventListener и предназначен для декларации обработчиков событий узлов в DOM.
 		</locale>
 	</abstract>
 	<remarks />
@@ -33,7 +33,7 @@
 			<!--attribute name="id" readonly="true">
 				<description>
 					<locale>
-						The optional <link type="attribute">id</link> attribute is a document-unique identifier.
+						The optional <link type="attribute" href="reference://markup/xmlevents/listener">id</link> attribute is a document-unique identifier.
 					</locale>
 					<locale xml:lang="ru">
 						Необязательный, является уникальным идентификатором элемента в рамках документа.
@@ -43,7 +43,7 @@
 			<attribute name="event" readonly="true">
 				<description>
 					<locale>
-						The required <link type="attribute">event</link> attribute specifies the event type for which the listener is being registered.
+						The required <link type="attribute" href="reference://markup/xmlevents/listener">event</link> attribute specifies the event type for which the listener is being registered.
 					</locale>
 					<locale xml:lang="ru">
 						Обязательный, указывает тип события, для которого регистрируется обработчик.
@@ -53,30 +53,30 @@
 			<attribute name="observer" readonly="true">
 				<description>
 					<locale>
-						The optional <link type="attribute">observer</link> attribute specifies the id of the element with which the event listener is to be registered.
+						The optional <link type="attribute" href="reference://markup/xmlevents/listener">observer</link> attribute specifies the id of the element with which the event listener is to be registered.
 					</locale>
 					<locale xml:lang="ru">
-						Необязательный, указывает идентификатор элемента, к которому привязывается регистрируемый обработчик. Если атрибут не указан, обработчик привязывается к родительскому элементу для элемента <link type="element">listener</link>.
+						Необязательный, указывает идентификатор элемента, к которому привязывается регистрируемый обработчик. Если атрибут не указан, обработчик привязывается к родительскому элементу для элемента <link type="element" href="reference://markup/xmlevents/listener">listener</link>.
 					</locale>
 				</description>
 			</attribute>
 			<attribute name="target" readonly="true">
 				<description>
 					<locale>
-						The optional <link type="attribute">target</link> attribute specifies the id of the target element of the event.
+						The optional <link type="attribute" href="reference://markup/xmlevents/listener">target</link> attribute specifies the id of the target element of the event.
 					</locale>
 					<locale xml:lang="ru">
-						Необязательный, указывает идентификатор элемента, на котором будет инициироваться обрабатываемое событие. Этот элемент должен быть потомком элемента, указанного в <link type="attribute">observer</link>, или самим <link type="attribute">observer</link>.
+						Необязательный, указывает идентификатор элемента, на котором будет инициироваться обрабатываемое событие. Этот элемент должен быть потомком элемента, указанного в <link type="attribute" href="reference://markup/xmlevents/listener">observer</link>, или самим <link type="attribute" href="reference://markup/xmlevents/listener">observer</link>.
 					</locale>
 				</description>
 			</attribute>
 			<attribute name="handler" readonly="true">
 				<description>
 					<locale>
-						The optional <link type="attribute">handler</link> attribute specifies the URI reference of a resource that defines the action that should be performed if the event reaches the observer.
+						The optional <link type="attribute" href="reference://markup/xmlevents/listener">handler</link> attribute specifies the URI reference of a resource that defines the action that should be performed if the event reaches the observer.
 					</locale>
 					<locale xml:lang="ru">
-						Необязательный, указывает URI ссылку на ресурс, который определяет код обработчика события, который исполнится при достижении событием элемента, указанного в атрибуте <link type="attribute">observer</link>.
+						Необязательный, указывает URI ссылку на ресурс, который определяет код обработчика события, который исполнится при достижении событием элемента, указанного в атрибуте <link type="attribute" href="reference://markup/xmlevents/listener">observer</link>.
 					</locale>
 				</description>
 			</attribute>
@@ -105,7 +105,7 @@
 				</values>
 				<description>
 					<locale>
-						The optional <link type="attribute">phase</link> attribute specifies when the listener will be activated by the desired event.
+						The optional <link type="attribute" href="reference://markup/xmlevents/listener">phase</link> attribute specifies when the listener will be activated by the desired event.
 					</locale>
 					<locale xml:lang="ru">
 						Необязательный атрибут, задает фазу активации обработчика события указанного типа.
@@ -137,10 +137,10 @@
 				</values>
 				<description>
 					<locale>
-						The optional <link type="attribute">propagate</link> attribute specifies whether after processing all listeners at the current node, the event is allowed to continue on its path (either in the capture or the bubble phase).
+						The optional <link type="attribute" href="reference://markup/xmlevents/listener">propagate</link> attribute specifies whether after processing all listeners at the current node, the event is allowed to continue on its path (either in the capture or the bubble phase).
 					</locale>
 					<locale xml:lang="ru">
-						Необязательный атрибут <link type="attribute">propagate</link> указывает, будет ли распространено событие после исполнения всех обработчиков на текущем узле.
+						Необязательный атрибут <link type="attribute" href="reference://markup/xmlevents/listener">propagate</link> указывает, будет ли распространено событие после исполнения всех обработчиков на текущем узле.
 					</locale>
 				</description>
 			</attribute>
@@ -169,7 +169,7 @@
 				</values>
 				<description>
 					<locale>
-						The optional <link type="attribute">defaultAction</link> attribute specifies whether after processing of all listeners for the event, the default action for the event (if any) should be performed or not.
+						The optional <link type="attribute" href="reference://markup/xmlevents/listener">defaultAction</link> attribute specifies whether after processing of all listeners for the event, the default action for the event (if any) should be performed or not.
 					</locale>
 					<locale xml:lang="ru">
 						Необязательный, указывает, будет ли выполнена ответная реакция браузера по умолчанию на событие.

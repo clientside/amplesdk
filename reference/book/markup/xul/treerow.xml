@@ -3,14 +3,14 @@
 <element extends="markup:xul:XULElement" name="treerow">
 	<abstract>
 		<locale>
-			A single row in a <link type="element">tree</link>.
-			It should be placed inside a <link type="element">treeitem</link> element.
-			Children of the <link type="element">treerow</link> should be <link type="element">treecell</link> elements.
-			If child rows are necessary, they should be placed in a <link type="element">treechildren</link> element inside the parent <link type="element">treeitem</link>.
+			A single row in a <link type="element" href="reference://markup/xul/tree">tree</link>.
+			It should be placed inside a <link type="element" href="reference://markup/xul/treeitem">treeitem</link> element.
+			Children of the <link type="element" href="reference://markup/xul/treerow">treerow</link> should be <link type="element" href="reference://markup/xul/treecell">treecell</link> elements.
+			If child rows are necessary, they should be placed in a <link type="element" href="reference://markup/xul/treechildren">treechildren</link> element inside the parent <link type="element" href="reference://markup/xul/treeitem">treeitem</link>.
 		</locale>
 		<locale xml:lang="ru">
-			Строка дерева. Размещается внутри элемента <link type="element">treeitem</link>.
-			Дочерними элементами являются <link type="element">treecell</link>.
+			Строка дерева. Размещается внутри элемента <link type="element" href="reference://markup/xul/treeitem">treeitem</link>.
+			Дочерними элементами являются <link type="element" href="reference://markup/xul/treecell">treecell</link>.
 		</locale>
 	</abstract>
 	<remarks />
@@ -22,10 +22,10 @@
 			<property name="cells" type="dom:core:NodeList" readonly="true">
 				<description>
 					<locale>
-						Contains a collection of <link type="element">treecell</link> child elements.
+						Contains a collection of <link type="element" href="reference://markup/xul/treecell">treecell</link> child elements.
 					</locale>
 					<locale xml:lang="ru">
-						Коллекция дочерних элементов <link type="element">treecell</link>.
+						Коллекция дочерних элементов <link type="element" href="reference://markup/xul/treecell">treecell</link>.
 					</locale>
 				</description>
 			</property>

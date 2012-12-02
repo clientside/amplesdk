@@ -467,10 +467,10 @@
 				</arguments>
 				<description>
 					<locale>
-						Retrieves a <link type="class">NodeList</link> collection of <link type="class">Element</link> objects based on the specified element name.
+						Retrieves a <link type="class" href="reference://dom/core/NodeList">NodeList</link> collection of <link type="class" href="reference://dom/core/Element">Element</link> objects based on the specified element name.
 					</locale>
 					<locale xml:lang="ru">
-						Возвращает коллекцию <link type="class">NodeList</link> объектов <link type="class">Element</link> по заданному имени в порядке следования их в документе.
+						Возвращает коллекцию <link type="class" href="reference://dom/core/NodeList">NodeList</link> объектов <link type="class" href="reference://dom/core/Element">Element</link> по заданному имени в порядке следования их в документе.
 					</locale>
 				</description>
 			</method>
@@ -499,10 +499,10 @@
 				</arguments>
 				<description>
 					<locale>
-						Retrieves a <link type="class">NodeList</link> collection of <link type="class">Element</link> objects based on the specified element name from the given namespace.
+						Retrieves a <link type="class" href="reference://dom/core/NodeList">NodeList</link> collection of <link type="class" href="reference://dom/core/Element">Element</link> objects based on the specified element name from the given namespace.
 					</locale>
 					<locale xml:lang="ru">
-						Возвращает коллекцию <link type="class">NodeList</link> объектов <link type="class">Element</link> по заданным имени и пространству имен в порядке следования их в документе.
+						Возвращает коллекцию <link type="class" href="reference://dom/core/NodeList">NodeList</link> объектов <link type="class" href="reference://dom/core/Element">Element</link> по заданным имени и пространству имен в порядке следования их в документе.
 					</locale>
 				</description>
 			</method>
@@ -524,7 +524,7 @@
 						Returns a value that indicates whether the object has specified attribute.
 					</locale>
 					<locale xml:lang="ru">
-						Возвращаемое значение указывает, имеет ли объект <link type="class">Element</link> заданный атрибут или нет.
+						Возвращаемое значение указывает, имеет ли объект <link type="class" href="reference://dom/core/Element">Element</link> заданный атрибут или нет.
 					</locale>
 				</description>
 			</method>
@@ -556,7 +556,7 @@
 						Returns a value that indicates whether the object has specified attribute from the given namespace.
 					</locale>
 					<locale xml:lang="ru">
-						Возвращаемое значение указывает, имеет ли объект <link type="class">Element</link> заданный атрибут из заданного пространства имен или нет.
+						Возвращаемое значение указывает, имеет ли объект <link type="class" href="reference://dom/core/Element">Element</link> заданный атрибут из заданного пространства имен или нет.
 					</locale>
 				</description>
 			</method>
@@ -650,10 +650,10 @@
 				</arguments>
 				<description>
 					<locale>
-						Returns <link type="class">Element</link> that matches CSS query.
+						Returns <link type="class" href="reference://dom/core/Element">Element</link> that matches CSS query.
 					</locale>
 					<locale xml:lang="ru">
-						Возвращает объект <link type="class">Element</link> по заданному CSS запросу.
+						Возвращает объект <link type="class" href="reference://dom/core/Element">Element</link> по заданному CSS запросу.
 					</locale>
 				</description>
 			</method>
@@ -676,10 +676,10 @@
 				</arguments>
 				<description>
 					<locale>
-						Returns <link type="class">NodeList</link> of <link type="class">Element</link> that match CSS query.
+						Returns <link type="class" href="reference://dom/core/NodeList">NodeList</link> of <link type="class" href="reference://dom/core/Element">Element</link> that match CSS query.
 					</locale>
 					<locale xml:lang="ru">
-						Возвращает коллекцию <link type="class">NodeList</link> из объектов <link type="class">Element</link> по заданному запросу в порядке, в котором элементы следуют в документе.
+						Возвращает коллекцию <link type="class" href="reference://dom/core/NodeList">NodeList</link> из объектов <link type="class" href="reference://dom/core/Element">Element</link> по заданному запросу в порядке, в котором элементы следуют в документе.
 					</locale>
 				</description>
 			</method>
@@ -687,7 +687,7 @@
 			<method name="$activate" type="Void">
 				<description>
 					<locale>
-						Activates element by dispatching <link type="event">DOMActivate</link> event to the element.
+						Activates element by dispatching <link type="event" href="reference://dom/core/Element">DOMActivate</link> event to the element.
 					</locale>
 				</description>
 			</method>
@@ -875,7 +875,7 @@
 						Retrieves the tag name of the object.
 					</locale>
 					<locale xml:lang="ru">
-						Возвращает имя тега для объекта <link type="class">Element</link>.
+						Возвращает имя тега для объекта <link type="class" href="reference://dom/core/Element">Element</link>.
 					</locale>
 				</description>
 			</property>
@@ -1095,7 +1095,7 @@
 			<event name="keypress" type="dom:events:KeyboardEvent" cancelable="true" bubbles="true">
 				<description>
 					<locale>
-						It is recommended that you use <link type="event">textInput</link> event instead.
+						It is recommended that you use <link type="event" href="reference://dom/core/Element">textInput</link> event instead.
 					</locale>
 					<locale xml:lang="ru">
 						Загорается, когда происходит нажатие клавиши клавиатуры.
@@ -1115,7 +1115,7 @@
 						Occurs after Attr.value has been modified and after an Attr node has been added to or removed from an Element.
 					</locale>
 					<locale xml:lang="ru">
-						Загорается, если значение объекта <link type="class">Attr</link> элемента было изменено или этот объект было добавлен/удален из элемента.
+						Загорается, если значение объекта <link type="class" href="reference://dom/core/Attr">Attr</link> элемента было изменено или этот объект было добавлен/удален из элемента.
 					</locale>
 				</description>
 			</event>
@@ -1373,7 +1373,7 @@
 					</locale>
 					<locale xml:lang="ru">
 						Загорается на объекте, когда пользователь начинает операцию над ним.
-						Свойство <link type="property">edge</link> содержит значение of the edge
+						Свойство <link type="property" href="reference://dom/core/Element">edge</link> содержит значение of the edge
 					</locale>
 				</description>
 			</event>
@@ -1384,7 +1384,7 @@
 					</locale>
 					<locale xml:lang="ru">
 						Загорается на объекте, когда пользователь отпускает кнопку мыши, заканчивая операцию над ним.
-						Свойство <link type="property">edge</link> содержит значение of the edge
+						Свойство <link type="property" href="reference://dom/core/Element">edge</link> содержит значение of the edge
 					</locale>
 				</description>
 			</event>
@@ -1395,7 +1395,7 @@
 					</locale>
 					<locale xml:lang="ru">
 						Загорается на объекте непрерывно, пока его размеры изменяются пользователем.
-						Свойство <link type="property">edge</link> содержит значение of the edge
+						Свойство <link type="property" href="reference://dom/core/Element">edge</link> содержит значение of the edge
 					</locale>
 				</description>
 			</event>
@@ -1404,7 +1404,7 @@
 				<description>
 					<locale>
 						Fires when locale has been successfully changed.
-						The <link type="property" href="runtime:CustomEvent">detail</link> property keeps the new locale name name.
+						The <link type="property" href="reference://dom/events/CustomEvent">detail</link> property keeps the new locale name name.
 					</locale>
 				</description>
 			</event>

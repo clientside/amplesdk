@@ -7,8 +7,8 @@
 			The grid is expected to contain both a columns element as a child which defines the structure of the columns and a rows element as child to define the rows.
 		</locale>
 		<locale xml:lang="ru">
-			Элемент <link type="element">grid</link> используется для табличного отображения элементов.
-			Дочерними элементами могут быть только элементы <link type="element">rows</link>.
+			Элемент <link type="element" href="reference://markup/xul/grid">grid</link> используется для табличного отображения элементов.
+			Дочерними элементами могут быть только элементы <link type="element" href="reference://markup/xul/rows">rows</link>.
 		</locale>
 	</abstract>
 	<remarks />

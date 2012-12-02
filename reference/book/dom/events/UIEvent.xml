@@ -111,9 +111,9 @@
 			<locale>Events of that type:</locale>
 			<locale xml:lang="ru">События этого типа:</locale>
 			<ul>
-				<li><link type="event" href="runtime:Element">DOMActivate</link></li>
-				<li><link type="event" href="runtime:Document">resize</link></li>
-				<li><link type="event" href="runtime:Document">scroll</link></li>
+				<li><link type="event" href="reference://dom/core/Element">DOMActivate</link></li>
+				<li><link type="event" href="reference://dom/core/Document">resize</link></li>
+				<li><link type="event" href="reference://dom/core/Document">scroll</link></li>
 			</ul>
 		</remark>
 	</remarks>

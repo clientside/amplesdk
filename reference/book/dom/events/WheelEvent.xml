@@ -163,7 +163,7 @@
 				</arguments>
 				<description>
 					<locale>
-						Initializes attributes of a <link type="class">WheelEvent</link> object.
+						Initializes attributes of a <link type="class" href="reference://dom/events/WheelEvent">WheelEvent</link> object.
 					</locale>
 					<locale xml:lang="ru">
 						Метод initWheelEvent используется для инициализации значения объекта MouseEvent.
@@ -231,7 +231,7 @@
 			<locale>Events of that type:</locale>
 			<locale xml:lang="ru">События этого типа:</locale>
 			<ul>
-				<li><link type="event" href="runtime:Element">mousewheel</link></li>
+				<li><link type="event" href="reference://dom/core/Element">mousewheel</link></li>
 			</ul>
 		</remark>
 	</remarks>

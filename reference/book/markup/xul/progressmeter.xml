@@ -5,13 +5,13 @@
 		<locale>
 			A meter which can be used to display the progress of a lengthy operation.
 			It is drawn as a bar that is filled as the operation completes.
-			In addition, an indeterminate progressmeter may be created by setting the <link type="attribute">mode</link> attribute to undetermined.
+			In addition, an indeterminate progressmeter may be created by setting the <link type="attribute" href="reference://markup/xul/progressmeter">mode</link> attribute to undetermined.
 			This is used when the length of time to complete an operation is not known beforehand.
 		</locale>
 		<locale xml:lang="ru">
 			Элемент, позволяющий отображать индикатор прогресса какой-либо продолжительной операции.
 			Отображается в виде полоски, заполняющейся по мере выполнения операции.
-			С использования атрибута <link type="attribute">mode</link> можно создать индикатор прогресса для неизмерямой операции.
+			С использования атрибута <link type="attribute" href="reference://markup/xul/progressmeter">mode</link> можно создать индикатор прогресса для неизмерямой операции.
 			Этот тип индикатора используется для операций, время выполнения которых не известно заранее.
 		</locale>
 	</abstract>
@@ -39,7 +39,7 @@
 							</locale>
 							<locale xml:lang="ru">
 								Время выполнения операции известно заранее.
-								Для определения заполненности индикатора используется атрибут <link type="attribute">value</link>.
+								Для определения заполненности индикатора используется атрибут <link type="attribute" href="reference://markup/xul/progressmeter">value</link>.
 							</locale>
 						</description>
 					</value>

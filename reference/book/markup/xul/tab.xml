@@ -3,12 +3,12 @@
 <element extends="markup:xul:XULElement" name="tab">
 	<abstract>
 		<locale>
-			A single tab which should be placed inside a <link type="element">tabs</link> element.
-			The user may click a tab to bring the associated page of the <link type="element">tabbox</link> to the front.
+			A single tab which should be placed inside a <link type="element" href="reference://markup/xul/tabs">tabs</link> element.
+			The user may click a tab to bring the associated page of the <link type="element" href="reference://markup/xul/tabbox">tabbox</link> to the front.
 		</locale>
 		<locale xml:lang="ru">
-			Закладка в элементе <link type="element">tabs</link>.
-			Выбирая этот элемент, происходит отображение ассоциированной страницы <link type="element">tabbox</link>.
+			Закладка в элементе <link type="element" href="reference://markup/xul/tabs">tabs</link>.
+			Выбирая этот элемент, происходит отображение ассоциированной страницы <link type="element" href="reference://markup/xul/tabbox">tabbox</link>.
 		</locale>
 	</abstract>
 	<remarks />

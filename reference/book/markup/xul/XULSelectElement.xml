@@ -55,7 +55,7 @@
 					</locale>
 					<locale xml:lang="ru">
 						Снимает выделение со всех элементов и выделяет заданный элемент.
-						После выделения отсылается событие <link type="event">select</link>.
+						После выделения отсылается событие <link type="event" href="reference://markup/xul/XULSelectElement">select</link>.
 					</locale>
 				</description>
 			</method>
@@ -163,7 +163,7 @@
 						Выделяет элементы между двумя заданными включительно.
 						Выделение со всех остальных элементов снимается.
 						Этот метод не имеет никакого эффекта для списков без множественного выделения.
-						После выделения отсылается событие <link type="event">select</link>.
+						После выделения отсылается событие <link type="event" href="reference://markup/xul/XULSelectElement">select</link>.
 					</locale>
 				</description>
 			</method>

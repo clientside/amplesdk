@@ -5,7 +5,7 @@
 		<locale>
 			An element used to create a status bar, usually placed along the bottom of a window.
 			It is virtually equivalent to a standard box, but may be rendered differently.
-			Contains <link type="element">statusbarpanel</link>s.
+			Contains <link type="element" href="reference://markup/xul/statusbarpanel">statusbarpanel</link>s.
 		</locale>
 		<locale xml:lang="ru">
 			Используется для создания статусной строки, которая размещается, как правило, внизу окна.

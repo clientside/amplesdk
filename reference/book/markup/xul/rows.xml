@@ -3,11 +3,11 @@
 <element extends="markup:xul:XULElement" name="rows">
 	<abstract>
 		<locale>
-			Defines the rows of a <link type="element">grid</link>.
+			Defines the rows of a <link type="element" href="reference://markup/xul/grid">grid</link>.
 		</locale>
 		<locale xml:lang="ru">
-			Описывает строки элемента <link type="element">grid</link>.
-			Дочерние элементы должны быть только элементами <link type="element">row</link>.
+			Описывает строки элемента <link type="element" href="reference://markup/xul/grid">grid</link>.
+			Дочерние элементы должны быть только элементами <link type="element" href="reference://markup/xul/row">row</link>.
 		</locale>
 	</abstract>
 	<remarks />

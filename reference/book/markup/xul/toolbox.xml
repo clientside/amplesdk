@@ -3,11 +3,11 @@
 <element extends="markup:xul:XULElement" name="toolbox">
 	<abstract>
 		<locale>
-			A container for <link type="element">toolbar</link>s. It is a type of box but defaults to vertical orientation.
+			A container for <link type="element" href="reference://markup/xul/toolbar">toolbar</link>s. It is a type of box but defaults to vertical orientation.
 		</locale>
 		<locale xml:lang="ru">
-			Контейнер для элементов <link type="element">toolbar</link>.
-			Этот элемент типа <link type="element">box</link> по умолчанию имеет вертикальную ориентацию.
+			Контейнер для элементов <link type="element" href="reference://markup/xul/toolbar">toolbar</link>.
+			Этот элемент типа <link type="element" href="reference://markup/xul/box">box</link> по умолчанию имеет вертикальную ориентацию.
 		</locale>
 	</abstract>
 	<remarks />

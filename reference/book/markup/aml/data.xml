@@ -6,7 +6,7 @@
 			Specifies a data island.
 		</locale>
 		<locale xml:lang="ru">
-			Элемент <link type="element">data</link> предназначен для определения островка данных.
+			Элемент <link type="element" href="reference://markup/aml/data">data</link> предназначен для определения островка данных.
 		</locale>
 	</abstract>
 	<remarks />

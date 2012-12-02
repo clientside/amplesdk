@@ -7,9 +7,9 @@
 			A palette of colors from which a user may select by clicking on one of the grid cells.
 		</locale>
 		<locale xml:lang="ru">
-			Элемент отображается как <link type="element">textbox</link> с расположенным рядом
-			элементом <link type="element">button</link>.
-			При нажатии на кнопку, появляется элемент <link type="element">popup</link> с палитрой цветов,
+			Элемент отображается как <link type="element" href="reference://markup/xul/textbox">textbox</link> с расположенным рядом
+			элементом <link type="element" href="reference://markup/xul/button">button</link>.
+			При нажатии на кнопку, появляется элемент <link type="element" href="reference://markup/xul/popup">popup</link> с палитрой цветов,
 			доступных для выбора.
 		</locale>
 	</abstract>
@@ -27,7 +27,7 @@
 			<attribute name="color">
 				<description>
 					<locale>
-						Not implemented yet (use <link type="attribute">value</link>)!
+						Not implemented yet (use <link type="attribute" href="reference://markup/xul/colorpicker">value</link>)!
 						The currently selected color.
 						This is modified when the user selects a color.
 						You can assign a string of the form #RRGGBB to this property to change the selected color.

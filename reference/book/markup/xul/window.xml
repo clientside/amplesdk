@@ -4,15 +4,15 @@
 	<abstract>
 		<locale>
 			Describes the structure of a top-level window.
-			It is by default a horizontally oriented <link type="element">box</link>.
+			It is by default a horizontally oriented <link type="element" href="reference://markup/xul/box">box</link>.
 			As it is a box, all box attributes can be used.
-			By default, the <link type="element">window</link> will have a platform-specific frame around it.
+			By default, the <link type="element" href="reference://markup/xul/window">window</link> will have a platform-specific frame around it.
 		</locale>
 		<locale xml:lang="ru">
 			Описывает структуру окна верхнего уровня.
 			По умолчанию этот элемент является контейнером с горизонтальной ориентацией.
-			Поскольку <link type="element">window</link> является <link type="element">box</link>, моно использовать
-			атрибуты элемента <link type="element">box</link>.
+			Поскольку <link type="element" href="reference://markup/xul/window">window</link> является <link type="element" href="reference://markup/xul/box">box</link>, моно использовать
+			атрибуты элемента <link type="element" href="reference://markup/xul/box">box</link>.
 		</locale>
 	</abstract>
 	<remarks />

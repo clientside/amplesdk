@@ -3,7 +3,7 @@
 <class name="Touch">
 	<abstract>
 		<locale>
-			The <link type="class">Touch</link> class represents a single touch on the surface.
+			The <link type="class" href="reference://dom/touch/Touch">Touch</link> class represents a single touch on the surface.
 			A touch is the presence or movement of a finger that is part of a unique multi-touch sequence.
 		</locale>
 	</abstract>

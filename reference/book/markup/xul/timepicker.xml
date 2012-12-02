@@ -13,7 +13,7 @@
 			<attribute name="value" readonly="false">
 				<description>
 					<locale>
-						The initial value of the <link type="element">timepicker</link> in either the form HH:MM:SS or HH:MM.
+						The initial value of the <link type="element" href="reference://markup/xul/timepicker">timepicker</link> in either the form HH:MM:SS or HH:MM.
 					</locale>
 					<locale xml:lang="ru">
 						Содержит значение компонента.

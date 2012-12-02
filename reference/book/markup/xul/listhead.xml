@@ -3,11 +3,11 @@
 <element extends="markup:xul:XULElement" name="listhead">
 	<abstract>
 		<locale>
-			A header row of a <link type="element">listbox</link>.
-			It is usual to place <link type="element">listheader</link> elements inside the <link type="element">listhead</link>, one for each column.
+			A header row of a <link type="element" href="reference://markup/xul/listbox">listbox</link>.
+			It is usual to place <link type="element" href="reference://markup/xul/listheader">listheader</link> elements inside the <link type="element" href="reference://markup/xul/listhead">listhead</link>, one for each column.
 		</locale>
 		<locale xml:lang="ru">
-			Строка-заголовок элемента <link type="element">listbox</link>. Как правило, элемент <link type="element">listheader</link> помещается внутри элемента <link type="element">listhead</link> для каждого столбца.
+			Строка-заголовок элемента <link type="element" href="reference://markup/xul/listbox">listbox</link>. Как правило, элемент <link type="element" href="reference://markup/xul/listheader">listheader</link> помещается внутри элемента <link type="element" href="reference://markup/xul/listhead">listhead</link> для каждого столбца.
 		</locale>
 	</abstract>
 	<remarks />
@@ -19,10 +19,10 @@
 			<property name="items" type="dom:core:NodeList" readonly="true">
 				<description>
 					<locale>
-						Contains a collection of <link type="element">listheader</link> child elements.
+						Contains a collection of <link type="element" href="reference://markup/xul/listheader">listheader</link> child elements.
 					</locale>
 					<locale xml:lang="ru">
-						Коллекция элементов <link type="element">listheader</link>.
+						Коллекция элементов <link type="element" href="reference://markup/xul/listheader">listheader</link>.
 					</locale>
 				</description>
 			</property>

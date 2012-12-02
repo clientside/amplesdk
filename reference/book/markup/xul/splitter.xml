@@ -8,10 +8,10 @@
 		</locale>
 		<locale xml:lang="ru">
 			Может быть размещен внутри контейнера перед или после элемента.
-			При перетаскивании элемента <link type="element">splitter</link> прилегающие к нему элементы изменяют свой размер.
-			При размещении элемента <link type="element">splitter</link> внутри горизонтально ориентированного контейнера,
+			При перетаскивании элемента <link type="element" href="reference://markup/xul/splitter">splitter</link> прилегающие к нему элементы изменяют свой размер.
+			При размещении элемента <link type="element" href="reference://markup/xul/splitter">splitter</link> внутри горизонтально ориентированного контейнера,
 			изменяется горизонтальный размер прилегающих элементов.
-			При размещении элемента <link type="element">splitter</link> внутри вертикально ориентированного контейнера,
+			При размещении элемента <link type="element" href="reference://markup/xul/splitter">splitter</link> внутри вертикально ориентированного контейнера,
 			изменяется вертикальный размер прилегающих элементов.
 		</locale>
 	</abstract>
@@ -54,7 +54,7 @@
 						This attribute indicates which element to the right or below the splitter should be resized when the splitter is repositioned.
 					</locale>
 					<locale xml:lang="ru">
-						Указывает, какой элемент справа или снизу от элемента <link type="element">splitter</link> должен изменять свой размер при перемещении элемента <link type="element">splitter</link>.
+						Указывает, какой элемент справа или снизу от элемента <link type="element" href="reference://markup/xul/splitter">splitter</link> должен изменять свой размер при перемещении элемента <link type="element" href="reference://markup/xul/splitter">splitter</link>.
 					</locale>
 				</description>
 			</attribute>
@@ -93,8 +93,8 @@
 						This attribute indicates which element to the left or above the splitter should be resized when the splitter is repositioned.
 					</locale>
 					<locale xml:lang="ru">
-						Указывает, какой элемент слева или сверху от элемента <link type="element">splitter</link>
-						должен изменять свой размер при перемещении элемента <link type="element">splitter</link>.
+						Указывает, какой элемент слева или сверху от элемента <link type="element" href="reference://markup/xul/splitter">splitter</link>
+						должен изменять свой размер при перемещении элемента <link type="element" href="reference://markup/xul/splitter">splitter</link>.
 					</locale>
 				</description>
 			</attribute>

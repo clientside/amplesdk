@@ -4,19 +4,19 @@
 	<abstract>
 		<locale>
 			Represents the Ample SDK document created out of all Ample SDK fragments found on the page.
-			In addition to the members listed in the table below it also has all members of <link type="class">Document</link> object.
+			In addition to the members listed in the table below it also has all members of <link type="class" href="reference://dom/core/Document">Document</link> object.
 		</locale>
 	</abstract>
 	<abstract>
 		<locale>
-			If you are coming from the jQuery universe, you will most likely enjoy using <link type="object">ample</link>.<link type="method">query</link> function,
+			If you are coming from the jQuery universe, you will most likely enjoy using <link type="object" href="reference://env/ample/ample">ample</link>.<link type="method">query</link> function,
 			which is the jQuery-like API to Ample SDK. The function is overloaded and it can be called in any of the following flavours:
 			<ul>
-				<li><link type="class">Query</link> <link type="object">ample</link>.query(String <em>selector</em>[, <link type="class">Node</link> <em>context</em>[, Function <em>resolver</em>]])</li>
-				<li><link type="class">Query</link> <link type="object">ample</link>.query(String <em>xml</em>)</li>
-				<li><link type="class">Query</link> <link type="object">ample</link>.query(<link type="class">Query</link> <em>collection</em>)</li>
-				<li><link type="class">Query</link> <link type="object">ample</link>.query(<link type="class">Element</link> <em>element</em>)</li>
-				<li><link type="class">Query</link> <link type="object">ample</link>.query(<link type="class">NodeList</link> <em>nodelist</em>)</li>
+				<li><link type="class" href="reference://dom/ample/Query">Query</link> <link type="object" href="reference://env/ample/ample">ample</link>.query(String <em>selector</em>[, <link type="class" href="reference://dom/core/Node">Node</link> <em>context</em>[, Function <em>resolver</em>]])</li>
+				<li><link type="class" href="reference://dom/ample/Query">Query</link> <link type="object" href="reference://env/ample/ample">ample</link>.query(String <em>xml</em>)</li>
+				<li><link type="class" href="reference://dom/ample/Query">Query</link> <link type="object" href="reference://env/ample/ample">ample</link>.query(<link type="class" href="reference://dom/ample/Query">Query</link> <em>collection</em>)</li>
+				<li><link type="class" href="reference://dom/ample/Query">Query</link> <link type="object" href="reference://env/ample/ample">ample</link>.query(<link type="class" href="reference://dom/core/Element">Element</link> <em>element</em>)</li>
+				<li><link type="class" href="reference://dom/ample/Query">Query</link> <link type="object" href="reference://env/ample/ample">ample</link>.query(<link type="class" href="reference://dom/core/NodeList">NodeList</link> <em>nodelist</em>)</li>
 			</ul>
 		</locale>
 	</abstract>
@@ -217,7 +217,7 @@
 					<argument name="success" type="Function" required="false">
 						<description>
 							<locale>
-								A callback function that is executed if the request succeeds. Consult <link type="method">ajax</link> function for parameters.
+								A callback function that is executed if the request succeeds. Consult <link type="method" href="reference://env/ample/ample">ajax</link> function for parameters.
 							</locale>
 						</description>
 					</argument>
@@ -247,7 +247,7 @@
 					<argument name="success" type="Function" required="false">
 						<description>
 							<locale>
-								A callback function that is executed if the request succeeds. Consult <link type="method">ajax</link> function for parameters.
+								A callback function that is executed if the request succeeds. Consult <link type="method" href="reference://env/ample/ample">ajax</link> function for parameters.
 							</locale>
 						</description>
 					</argument>
@@ -356,7 +356,7 @@
 					<argument name="element" type="Function">
 						<description>
 							<locale>
-								Element definition. Must have <link type="class">Element</link> in its prototype chain.
+								Element definition. Must have <link type="class" href="reference://dom/core/Element">Element</link> in its prototype chain.
 							</locale>
 						</description>
 					</argument>
@@ -365,7 +365,7 @@
 					<argument name="attribute" type="Function">
 						<description>
 							<locale>
-								Attribute definition. Must have <link type="class">Attr</link> in its prototype chain.
+								Attribute definition. Must have <link type="class" href="reference://dom/core/Attr">Attr</link> in its prototype chain.
 							</locale>
 						</description>
 					</argument>
@@ -374,7 +374,7 @@
 					<argument name="event" type="Function">
 						<description>
 							<locale>
-								Event interface definition. Must have <link type="class">Event</link> in its prototype chain.
+								Event interface definition. Must have <link type="class" href="reference://dom/events/Event">Event</link> in its prototype chain.
 							</locale>
 						</description>
 					</argument>
@@ -383,7 +383,7 @@
 					<argument name="pi" type="Function">
 						<description>
 							<locale>
-								Processing instruction definition. Must have <link type="class">ProcessingInstruction</link> in its prototype chain.
+								Processing instruction definition. Must have <link type="class" href="reference://dom/core/ProcessingInstruction">ProcessingInstruction</link> in its prototype chain.
 							</locale>
 						</description>
 					</argument>
@@ -438,7 +438,7 @@
 				</arguments>
 				<description>
 					<locale>
-						Loads JavaScript file. Calls to <link type="object">ample</link>.<link type="method">include</link>() from within the loaded file will properly resolve relative file locations.
+						Loads JavaScript file. Calls to <link type="object" href="reference://env/ample/ample">ample</link>.<link type="method" href="reference://env/ample/ample">include</link>() from within the loaded file will properly resolve relative file locations.
 					</locale>
 				</description>
 			</method>
@@ -707,7 +707,7 @@
 						Sets element in a modal state when element reference provided,
 						Unsets modal state from the modal element if null passed.
 						UI Events originated outside this element get supressed,
-						except for one <link type="event" href="runtime:Element">modal</link> that is fired upon a click outside modal area.
+						except for one <link type="event" href="reference://dom/core/Element">modal</link> that is fired upon a click outside modal area.
 					</locale>
 				</description>
 			</method>
@@ -726,7 +726,7 @@
 				<description>
 					<locale>
 						Fires after the config value changes.
-						The <link type="property" href="runtime:CustomEvent">detail</link> property keeps the name of the parameter name changed.
+						The <link type="property" href="reference://dom/events/CustomEvent">detail</link> property keeps the name of the parameter name changed.
 					</locale>
 				</description>
 			</event>
@@ -734,7 +734,7 @@
 				<description>
 					<locale>
 						Fires when the state of the object has changed.
-						You can use the <link type="property">readyState</link> property to query the current state of the element when the <link type="event">readystatechange</link> event fires.
+						You can use the <link type="property" href="reference://env/ample/ample">readyState</link> property to query the current state of the element when the <link type="event">readystatechange</link> event fires.
 					</locale>
 				</description>
 			</event>
@@ -743,10 +743,10 @@
 				<description>
 					<locale>
 						Fires on the document when user navigates browser history.
-						Please note this event is not fired when <link type="method">bookmark</link> method is called.
+						Please note this event is not fired when <link type="method" href="reference://env/ample/ample">bookmark</link> method is called.
 					</locale>
 					<locale xml:lang="ru">
-						Загорается на объекте <link type="class">Document</link>, когда пользователь перемещается по истории навигации браузера.
+						Загорается на объекте <link type="class" href="reference://dom/core/Document">Document</link>, когда пользователь перемещается по истории навигации браузера.
 					</locale>
 				</description>
 			</event>
@@ -755,7 +755,7 @@
 				<description>
 					<locale>
 						Fires on the document when locale has been successfully changed.
-						The <link type="property" href="runtime:CustomEvent">detail</link> property keeps the new locale name name.
+						The <link type="property" href="reference://dom/events/CustomEvent">detail</link> property keeps the new locale name name.
 					</locale>
 				</description>
 			</event>

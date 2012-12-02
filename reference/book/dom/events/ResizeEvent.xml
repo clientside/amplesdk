@@ -74,7 +74,7 @@
 				</arguments>
 				<description>
 					<locale>
-						Initializes attributes of a <link type="class">ResizeEvent</link> object.
+						Initializes attributes of a <link type="class" href="reference://dom/events/ResizeEvent">ResizeEvent</link> object.
 					</locale>
 					<locale xml:lang="ru">
 						Метод initResizeEvent используется для инициализации значения объекта ResizeEvent.
@@ -98,9 +98,9 @@
 			<locale>Events of that type:</locale>
 			<locale xml:lang="ru">События этого типа:</locale>
 			<ul>
-				<li><link type="event" href="runtime:Element">resize</link></li>
-				<li><link type="event" href="runtime:Element">resizestart</link></li>
-				<li><link type="event" href="runtime:Element">resizeend</link></li>
+				<li><link type="event" href="reference://dom/core/Element">resize</link></li>
+				<li><link type="event" href="reference://dom/core/Element">resizestart</link></li>
+				<li><link type="event" href="reference://dom/core/Element">resizeend</link></li>
 			</ul>
 		</remark>
 	</remarks>

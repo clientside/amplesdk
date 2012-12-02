@@ -3,19 +3,19 @@
 <element name="fallback">
 	<abstract>
 		<locale>
-			The <link type="element">fallback</link> element appears as a child of an <link type="element">include</link> element. It provides a mechanism for recovering from missing resources.
+			The <link type="element" href="reference://markup/xinclude/fallback">fallback</link> element appears as a child of an <link type="element" href="reference://markup/xinclude/include">include</link> element. It provides a mechanism for recovering from missing resources.
 		</locale>
 		<locale xml:lang="ru">
-			Элемент <link type="element">fallback</link> является дочерним для элемента <link type="element">include</link>, предоставляя механизм обработки случаев, когда ресурс, подключаемый элементом <link type="element">include</link> недоступен для загрузки.
+			Элемент <link type="element" href="reference://markup/xinclude/fallback">fallback</link> является дочерним для элемента <link type="element" href="reference://markup/xinclude/include">include</link>, предоставляя механизм обработки случаев, когда ресурс, подключаемый элементом <link type="element" href="reference://markup/xinclude/include">include</link> недоступен для загрузки.
 		</locale>
 	</abstract>
 	<remarks>
 		<remark>
 			<locale>
-				The <link type="element">fallback</link> element can appear only as a child of an <link type="element">include</link> element.
+				The <link type="element" href="reference://markup/xinclude/fallback">fallback</link> element can appear only as a child of an <link type="element" href="reference://markup/xinclude/include">include</link> element.
 			</locale>
 			<locale xml:lang="ru">
-				Элемент <link type="element">fallback</link> может быть использован только внутри элемента <link type="element">include</link>.
+				Элемент <link type="element" href="reference://markup/xinclude/fallback">fallback</link> может быть использован только внутри элемента <link type="element" href="reference://markup/xinclude/include">include</link>.
 			</locale>
 		</remark>
 	</remarks>

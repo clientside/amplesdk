@@ -5,9 +5,9 @@
 		<description>
 			<locale>
 				An element that can be used for drop-down choice lists.
-				The user may select one of the elements displayed in the <link type="element">menulist</link>.
-				The currently selected choice is displayed on the <link type="element">menulist</link> element.
-				To create the drop-down, put a <link type="element">menupopup</link> inside the <link type="element">menulist</link> containing the choices as <link type="element">menuitem</link> elements.
+				The user may select one of the elements displayed in the <link type="element" href="reference://markup/xul/menulist">menulist</link>.
+				The currently selected choice is displayed on the <link type="element" href="reference://markup/xul/menulist">menulist</link> element.
+				To create the drop-down, put a <link type="element" href="reference://markup/xul/menupopup">menupopup</link> inside the <link type="element" href="reference://markup/xul/menulist">menulist</link> containing the choices as <link type="element" href="reference://markup/xul/menuitem">menuitem</link> elements.
 			</locale>
 		</description>
 	</abstract>
@@ -25,7 +25,7 @@
 			<attribute name="editable">
 				<description>
 					<locale>
-						Indicates that the value of the <link type="element">menulist</link> can be modified by typing directly into the value field.
+						Indicates that the value of the <link type="element" href="reference://markup/xul/menulist">menulist</link> can be modified by typing directly into the value field.
 					</locale>
 				</description>
 			</attribute>

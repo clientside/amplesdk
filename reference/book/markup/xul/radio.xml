@@ -4,14 +4,14 @@
 	<abstract>
 		<locale>
 			An element that can be turned on and off. Radio buttons are almost always grouped together in groups.
-			Only one <link type="element">radio</link> button within the same <link type="element">radiogroup</link> may be selected at a time.
+			Only one <link type="element" href="reference://markup/xul/radio">radio</link> button within the same <link type="element" href="reference://markup/xul/radiogroup">radiogroup</link> may be selected at a time.
 		</locale>
 		<locale xml:lang="ru">
 			Элемент, который может быть включенным и выключенным.
 			Практически всегда элементы объединяются в группы.
-			Только один элемент <link type="element">radio</link> в одной группе (<link type="element">radiogroup</link>) может быть выделен одно и то же время.
-			При выделении одного из элементов <link type="element">radio</link>, все остальные из этой же группы становятся невыделенными.
-			Для описания назначения элемента, рядом с ним может быть размещен текст с использованием атрибута <link type="attribute">label</link>.
+			Только один элемент <link type="element" href="reference://markup/xul/radio">radio</link> в одной группе (<link type="element" href="reference://markup/xul/radiogroup">radiogroup</link>) может быть выделен одно и то же время.
+			При выделении одного из элементов <link type="element" href="reference://markup/xul/radio">radio</link>, все остальные из этой же группы становятся невыделенными.
+			Для описания назначения элемента, рядом с ним может быть размещен текст с использованием атрибута <link type="attribute" href="reference://markup/xul/radio">label</link>.
 		</locale>
 	</abstract>
 	<remarks />
@@ -63,10 +63,10 @@
 			<property name="group" type="dom:core:Element">
 				<description>
 					<locale>
-						Contains a reference to parent <link type="element">radiogroup</link> element.
+						Contains a reference to parent <link type="element" href="reference://markup/xul/radiogroup">radiogroup</link> element.
 					</locale>
 					<locale xml:lang="ru">
-						Ссылка на родительский элемент <link type="element">radiogroup</link>.
+						Ссылка на родительский элемент <link type="element" href="reference://markup/xul/radiogroup">radiogroup</link>.
 					</locale>
 				</description>
 			</property>

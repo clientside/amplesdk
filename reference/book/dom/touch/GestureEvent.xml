@@ -3,12 +3,12 @@
 <class name="GestureEvent" extends="core:events:UIEvent">
 	<abstract>
 		<locale>
-			The <link type="class">GestureEvent</link> class encapsulates information about a multi-touch gesture.
-			<link type="class">GestureEvent</link> objects are high-level events that encapsulate the low-level <link type="class">TouchEvent</link> objects.
-			Both <link type="class">GestureEvent</link> and <link type="class">TouchEvent</link> events are sent during a multi-touch sequence.
+			The <link type="class" href="reference://dom/touch/GestureEvent">GestureEvent</link> class encapsulates information about a multi-touch gesture.
+			<link type="class" href="reference://dom/touch/GestureEvent">GestureEvent</link> objects are high-level events that encapsulate the low-level <link type="class" href="reference://dom/touch/TouchEvent">TouchEvent</link> objects.
+			Both <link type="class" href="reference://dom/touch/GestureEvent">GestureEvent</link> and <link type="class" href="reference://dom/touch/TouchEvent">TouchEvent</link> events are sent during a multi-touch sequence.
 			Gesture events contain scaling and rotation information allowing gestures to be combined, if supported by the platform.
 			If not supported, one gesture ends before another starts.
-			Listen for <link type="class">GestureEvent</link> events if you want to respond to gestures only, not process the low-level <link type="class">TouchEvent</link> objects.
+			Listen for <link type="class" href="reference://dom/touch/GestureEvent">GestureEvent</link> events if you want to respond to gestures only, not process the low-level <link type="class" href="reference://dom/touch/TouchEvent">TouchEvent</link> objects.
 		</locale>
 	</abstract>
 	<examples/>
@@ -131,7 +131,7 @@
 				</arguments>
 				<description>
 					<locale>
-						Initializes attributes of a <link type="class">GestureEvent</link> object.
+						Initializes attributes of a <link type="class" href="reference://dom/touch/GestureEvent">GestureEvent</link> object.
 					</locale>
 				</description>
 			</method>
@@ -225,9 +225,9 @@
 		<remark>
 			<locale>Events of that type:</locale>
 			<ul>
-				<li><link type="event" href="runtime:Element">gesturestart</link></li>
-				<li><link type="event" href="runtime:Element">gesturechange</link></li>
-				<li><link type="event" href="runtime:Element">gestureend</link></li>
+				<li><link type="event" href="reference://dom/core/Element">gesturestart</link></li>
+				<li><link type="event" href="reference://dom/core/Element">gesturechange</link></li>
+				<li><link type="event" href="reference://dom/core/Element">gestureend</link></li>
 			</ul>
 		</remark>
 	</remarks>
