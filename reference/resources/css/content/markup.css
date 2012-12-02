@@ -101,6 +101,11 @@ p.note {
 	padding: 1em;
 }
 
+acronym {
+	border-bottom-style: dotted;
+	border-bottom-width: 1px;
+}
+
 /* overriding prettify styles */
 pre.prettyprint {
 	font-size: 1em;

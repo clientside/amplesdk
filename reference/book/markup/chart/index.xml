@@ -16,7 +16,7 @@
 			</title>
 			<content>
 				<locale>
-					Chart Markup Language defines a namespaces associated with the URI <b>http://www.amplesdk.com/ns/chart</b>.
+					Chart Markup Language defines a namespaces associated with the URI <uri>http://www.amplesdk.com/ns/chart</uri>.
 				</locale>
 			</content>
 		</section>

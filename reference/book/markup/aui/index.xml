@@ -23,7 +23,7 @@
 			</title>
 			<content>
 				<locale>
-					AUI 1.0 defines a namespaces associated with the URI <b>http://www.amplesdk.com/ns/aui</b>.
+					AUI 1.0 defines a namespaces associated with the URI <uri>http://www.amplesdk.com/ns/aui</uri>.
 				</locale>
 				<locale xml:lang="ru">
 					Пространство имен AUI 1.0 определяется URI <uri>http://www.amplesdk.com/ns/aui</uri>.

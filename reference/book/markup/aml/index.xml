@@ -19,7 +19,7 @@
 			</title>
 			<content>
 				<locale>
-					AML 1.0 defines a namespaces associated with the URI <b>http://www.amplesdk.com/ns/aml</b>.
+					AML 1.0 defines a namespaces associated with the URI <uri>http://www.amplesdk.com/ns/aml</uri>.
 				</locale>
 				<locale xml:lang="ru">
 					Пространство имен AML 1.0 определяется URI <uri>http://www.amplesdk.com/ns/aml</uri>.
