@@ -33,7 +33,7 @@
 	<xsl:template match="@extends">
 		<p class="headline"><xsl:value-of select="$strings/title_extends" /></p>
 		<blockquote>
-			<a href="../{substring-before(., ':')}/{substring-after(., ':')}.xml">
+			<a href="../../{translate(., ':', '/')}.xml">
 				<xsl:value-of select="substring-after(substring-after(., ':'), ':')" />
 			</a>
 		</blockquote>
