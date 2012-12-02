@@ -76,7 +76,7 @@
 			</xsl:when>
 			<xsl:otherwise>
 				<xsl:choose>
-					<xsl:when test="@type='element' or @type='class' or @type='interface' or @type='object'">
+					<xsl:when test="@type='element' or @type='class' or @type='object'">
 						<a href="{.}.xml" class="object">
 							<xsl:value-of select="."/>
 						</a>

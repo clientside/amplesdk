@@ -21,7 +21,7 @@
 					<xsl:if test="string-length($abstract) &gt; 75">...</xsl:if>
 				</entry>
 			</xsl:when>
-			<xsl:when test="$page[object | class | element | interface]">
+			<xsl:when test="$page[object | class | element]">
 				<xsl:variable name="name" select="$page/*/@name" />
 				<xsl:variable name="abstract" select="normalize-space($page/*/abstract/locale[@xml:lang='en' or not(@xml:lang)])" />
 				<entry title="{$name}" href="{$url}">

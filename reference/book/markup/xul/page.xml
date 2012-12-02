@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
 <element extends="markup:xul:XULElement" name="page">
-	<implements />
 	<abstract>
 		<locale>
 			Similar to a <link type="element">window</link>, except it should be used for XUL files that are to be loaded into an <link type="element">iframe</link>.

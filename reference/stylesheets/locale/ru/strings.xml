@@ -3,15 +3,12 @@
 	<title_element>Элемент</title_element>
 	<title_object>Объект</title_object>
 	<title_class>Класс</title_class>
-	<title_interface>Интерфейс</title_interface>
 	<title_extends>Расширяет</title_extends>
 
 	<members>Члены</members>
 	<members_description>В таблице представлены члены {name}. Выберите закладку слева для выбора типа членов.</members_description>
 	<members_show_inherited>Показывать наследованные члены (помечены *)</members_show_inherited>
 
-	<impl_title>Реализации</impl_title>
-	<impl_descr>Элемент {name} реализует следующие интерфейсы: </impl_descr>
 	<remarks>Примечания</remarks>
 	<examples>Примеры</examples>
 	<seealso>Смотри так же</seealso>

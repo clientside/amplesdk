@@ -3,15 +3,12 @@
 	<title_element>Element</title_element>
 	<title_object>Object</title_object>
 	<title_class>Class</title_class>
-	<title_interface>Interface</title_interface>
 	<title_extends>Extends</title_extends>
 
 	<members>Members Table</members>
 	<members_description>The following table lists the members exposed by the {name} object.</members_description>
 	<members_show_inherited>Show inherited members (marked with *)</members_show_inherited>
 
-	<impl_title>Implements</impl_title>
-	<impl_descr>Object {name} implements following functionality: </impl_descr>
 	<remarks>Remarks</remarks>
 	<examples>Examples</examples>
 	<seealso>See also</seealso>

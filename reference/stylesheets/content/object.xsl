@@ -39,26 +39,6 @@
 		</blockquote>
 	</xsl:template>
 
-	<xsl:template match="implements">
-		<xsl:if test="*">
-			<p class="headline"><xsl:value-of select="$strings/impl_title" /></p>
-			<blockquote>
-				<xsl:if test="interface">
-					<xsl:value-of select="substring-before($strings/impl_descr, '{name}')" />
-						<b><xsl:value-of select="$name"/></b>
-					<xsl:value-of select="substring-after($strings/impl_descr, '{name}')" />
-					<xsl:for-each select="interface">
-						<xsl:if test="position()!=1">, </xsl:if>
-						<a href="../{substring-before(@name, ':')}/{substring-after(@name, ':')}.xml">
-							<xsl:value-of select="substring-after(@name, ':')"/>
-						</a>
-					</xsl:for-each>
-					<xsl:text>.</xsl:text>
-				</xsl:if>
-			</blockquote>
-		</xsl:if>
-	</xsl:template>
-
 	<xsl:template name="extend">
 		<xsl:param name="document" />
 		<xsl:param name="extends" select="document(concat('../../book/', translate($document/*/@extends, ':', '/'), '.xml'))"/>
@@ -72,28 +52,12 @@
 				<xsl:with-param name="document" select="$extends" />
 			</xsl:call-template>
 		</xsl:if>
-		<!--
-		<xsl:for-each select="$document/*/implements/interface">
-			<xsl:call-template name="extend-members">
-				<xsl:with-param name="document" select="document(concat('../../books/ample/', substring-before(@name, ':'), '/', substring-after(@name, ':'), '.xml'))" />
-			</xsl:call-template>
-		</xsl:for-each>
-		-->
 	</xsl:template>
 
 	<xsl:template name="extend-members">
 		<xsl:param name="document" />
 		<xsl:copy-of select="$document/*/members/*[not(local-name(.) = 'constants')]" />
 	</xsl:template>
-
-	<!--xsl:template name="implement">
-		<xsl:param name="document" />
-		<xsl:for-each select="$document/*/implements/interface">
-			<xsl:call-template name="inherit">
-				<xsl:with-param name="extends" select="$document/*/@name" />
-			</xsl:call-template>
-		</xsl:for-each>
-	</xsl:template-->
 
 	<!--
 		Template: Members

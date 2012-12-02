@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
 <element extends="markup:xul:XULElement" name="menu">
-	<implements />
 	<abstract>
 		<locale>
 			An element, much like a button, that is placed on a <link type="element">menubar</link>.

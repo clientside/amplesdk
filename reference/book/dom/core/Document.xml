@@ -11,7 +11,6 @@
 	</abstract>
 	<remarks />
 	<examples/>
-	<implements />
 	<members>
 		<methods>
 			<method name="createElement" type="dom:core:Element">

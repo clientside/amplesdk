@@ -22,7 +22,6 @@
 	</abstract>
 	<remarks />
 	<examples />
-	<implements />
 	<members>
 		<properties>
 			<!--property name="activeElement" type="dom:core:Element" readonly="true">

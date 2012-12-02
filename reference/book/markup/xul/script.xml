@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
 <element extends="markup:xul:XULElement" name="script">
-	<implements />
 	<abstract>
 		<locale>
 			Much like the HTML script element, this is used to declare a script to be used by the XUL window.

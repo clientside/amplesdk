@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
 <element extends="markup:xul:XULElement" name="treebody">
-	<implements />
 	<abstract>
 		<locale>
 			Can only be placed as direct child of <link type="element">tree</link>.
