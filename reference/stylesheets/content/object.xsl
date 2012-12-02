@@ -33,7 +33,7 @@
 	<xsl:template match="@extends">
 		<p class="headline"><xsl:value-of select="$strings/title_extends" /></p>
 		<blockquote>
-			<a href="../../{translate(., ':', '/')}.xml">
+			<a href="../../{translate(., ':', '/')}.xml" class="object">
 				<xsl:value-of select="substring-after(substring-after(., ':'), ':')" />
 			</a>
 		</blockquote>
@@ -687,7 +687,7 @@
 				</xsl:choose>
 			</td>
 			<td nowrap="yes">
-				<a href="{concat('../../../book/', translate(@type, ':', '/'), '.xml')}"><xsl:value-of select="substring-after(substring-after(@type, ':'), ':')" /></a>
+				<a href="{concat('../../../book/', translate(@type, ':', '/'), '.xml')}" class="object"><xsl:value-of select="substring-after(substring-after(@type, ':'), ':')" /></a>
 			</td>
 			<td><xsl:apply-templates select="description"/></td>
 		</tr>
