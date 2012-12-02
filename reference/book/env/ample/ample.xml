@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<object name="ample" xextends="core:dom:Document">
+<object name="ample" xextends="dom:core:Document">
 	<abstract>
 		<locale>
 			Represents the Ample SDK document created out of all Ample SDK fragments found on the page.

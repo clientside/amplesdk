@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<class name="Text" extends="core:dom:CharacterData">
+<class name="Text" extends="dom:core:CharacterData">
 	<abstract>
 		<locale>
 			Represents the textual content of element or attribute.

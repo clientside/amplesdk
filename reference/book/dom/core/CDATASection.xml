@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<class name="CDATASection" extends="core:dom:Text">
+<class name="CDATASection" extends="dom:core:Text">
 	<abstract>
 		<locale>
 			Represents a CDATA Section.

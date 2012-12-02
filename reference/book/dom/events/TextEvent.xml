@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<class name="TextEvent" extends="core:events:UIEvent">
+<class name="TextEvent" extends="dom:events:UIEvent">
 	<abstract>
 		<locale>
 			The TextEvent interface provides specific contextual information associated with Text Events.

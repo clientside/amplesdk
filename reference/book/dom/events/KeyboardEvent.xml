@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<class name="KeyboardEvent" extends="core:events:UIEvent">
+<class name="KeyboardEvent" extends="dom:events:UIEvent">
 	<abstract>
 		<locale>
 			The KeyboardEvent interface provides specific contextual information associated with keyboard devices.

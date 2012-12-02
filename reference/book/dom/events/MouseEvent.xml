@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<class name="MouseEvent" extends="core:events:UIEvent">
+<class name="MouseEvent" extends="dom:events:UIEvent">
 	<abstract>
 		<locale>
 			The MouseEvent interface provides specific contextual information associated with Mouse events.
