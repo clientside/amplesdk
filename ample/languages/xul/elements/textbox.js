@@ -52,7 +52,7 @@ cXULElement_textbox.handlers	= {
 		}
 	},
 	"keyup":	function(oEvent) {
-		this.attributes["value"]	= this.$getContainer("input").value;
+		this.setAttribute("value", this.$getContainer("input").value);
 	},
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this) {
@@ -118,8 +118,6 @@ cXULElement_textbox.prototype._onChange	= function(oEvent) {
 // Element Render: open
 cXULElement_textbox.prototype.$getTagOpen	= function(oElement) {
 	var bMultiline	= this.getAttribute("multiline") == "true";
-	if (this.getAttribute("type") == "number")
-		this.spinButtons.attributes["disabled"]	= this.$isAccessible() ? "false" : "true";
 	return	'<div class="xul-textbox' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + (bMultiline ? ' xul-textbox-multiline-true' : '') + " xul-textbox-type-" + (this.getAttribute("type") || '') + (!this.$isAccessible() ? " xul-textbox_disabled" : '')+ '" style="'+
 				(this.hasAttribute("height") ? 'height:' + this.getAttribute("height") + ';' : '')+
 				(this.hasAttribute("width") ? 'width:' + this.getAttribute("width") + ';' : '')+

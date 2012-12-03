@@ -172,7 +172,6 @@ cXULElement_timepicker.setEditComponent	= function(oInstance, sComponent) {
 // Element Render: open
 cXULElement_timepicker.prototype.$getTagOpen		= function() {
 	var aTime	= this.getAttribute("value").split(":");
-	this.spinButtons.attributes["disabled"]	= this.$isAccessible() ? "false" : "true";
 	return '<div class="xul-timepicker' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + (!this.$isAccessible() ? " xul-timepicker_disabled" : '') + '">\
 				<div class="xul-timepicker--field">\
 						' + this.spinButtons.$getTag() + '\

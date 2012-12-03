@@ -20,7 +20,7 @@ cAUIElement_filepicker.prototype.$isAccessible	= function() {
 
 // Events Handlers
 cAUIElement_filepicker.prototype._onChange	= function(oEvent) {
-	this.attributes["value"]	= this.$getContainer("input").value;
+	this.setAttribute("value", this.$getContainer("input").value);
 
 	// Fire Event
 	var oEvent	= this.ownerDocument.createEvent("Event");
@@ -40,7 +40,7 @@ cAUIElement_filepicker.handlers	= {
 		if (oEvent.target == this) {
 			switch (oEvent.attrName) {
 				case "disabled":
-						var oElementDOM	= this.$getContainer();
+					var oElementDOM	= this.$getContainer();
 					oElementDOM.className	= oElementDOM.className.replace(oEvent.newValue == "true" ? "normal" : "disabled", oEvent.newValue == "true" ? "disabled" : "normal");
 					this.$getContainer("input").disabled	=(oEvent.newValue == "true");
 					break;

@@ -197,7 +197,7 @@ cXULElement_menulist.handlers	= {
 						this.items[this.selectedIndex].setAttribute("selected", "false");
 					this.items[nIndex].setAttribute("selected", "true");
 					this.items[nIndex].scrollIntoView();
-	//				this.attributes["value"]	= this.items[nIndex].getAttribute("value");
+	//				this.setAttribute("value", this.items[nIndex].getAttribute("value"));
 					this.selectedIndex	= nIndex;
 				}
 				nOptions++;

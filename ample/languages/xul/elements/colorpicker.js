@@ -57,7 +57,7 @@ cXULElement_colorpicker.prototype.toggle	= function(bState) {
 
 // Events handlers
 cXULElement_colorpicker.prototype._onChange	= function(oEvent) {
-	this.attributes["value"]	= this.$getContainer("input").value;
+	this.setAttribute("value", this.$getContainer("input").value);
 
 	// Fire Event
 	cXULInputElement.dispatchChange(this);

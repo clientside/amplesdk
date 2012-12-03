@@ -70,9 +70,6 @@ cXULElement_treerow.handlers	= {
 // Element Render: open
 cXULElement_treerow.prototype.$getTagOpen	= function() {
 	var oTree	= this.parentNode.parentNode.tree;
-	if (this.parentNode.parentNode.parentNode.getAttribute("open") == "false")
-		this.parentNode.parentNode.attributes["hidden"] = "true";
-
 	return '<tr class="xul-treerow' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : '') + '" style="height:1.2em;vertical-align:top;' + (this.parentNode.parentNode.parentNode.getAttribute("open") == "false" ? 'display:none' : '')+ '">' +
 			(this.parentNode.hasAttribute("label") || (oTree && (oTree.getAttribute("type") == "checkbox" || oTree.getAttribute("type") == "radio"))
 			? ('<td style="padding:0" onmousedown="event.cancelBubble=true" class="xul-treecell">' +

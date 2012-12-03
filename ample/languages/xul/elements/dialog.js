@@ -175,28 +175,6 @@ cXULElement_dialog.prototype.$getTagOpen	= function() {
 
 // Element Render: close
 cXULElement_dialog.prototype.$getTagClose	= function() {
-	var sButtons	= this.getAttribute("buttons");
-	if (sButtons.indexOf("accept") ==-1)
-		this.buttons.accept.attributes["hidden"]= "true";
-	if (this.hasAttribute("buttonlabelaccept"))
-		this.buttons.accept.attributes["label"]	= this.getAttribute("buttonlabelaccept");
-	if (sButtons.indexOf("cancel") ==-1)
-		this.buttons.cancel.attributes["hidden"]= "true";
-	if (this.hasAttribute("buttonlabelcancel"))
-		this.buttons.cancel.attributes["label"]	= this.getAttribute("buttonlabelcancel");
-	if (sButtons.indexOf("help") ==-1)
-		this.buttons.help.attributes["hidden"]	= "true";
-	if (this.hasAttribute("buttonlabelhelp"))
-		this.buttons.help.attributes["label"]	= this.getAttribute("buttonlabelhelp");
-	if (sButtons.indexOf("extra1") ==-1)
-		this.buttons.extra1.attributes["hidden"]= "true";
-	if (this.hasAttribute("buttonlabelextra1"))
-		this.buttons.extra1.attributes["label"]	= this.getAttribute("buttonlabelextra1");
-	if (sButtons.indexOf("extra2") ==-1)
-		this.buttons.extra2.attributes["hidden"]= "true";
-	if (this.hasAttribute("buttonlabelextra2"))
-		this.buttons.extra2.attributes["label"]	= this.getAttribute("buttonlabelextra2");
-
 	return '	</div>\
 				<div class="xul-dialog--footer">\
 					<table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%" align="' +(this.getAttribute("buttonalign") == "start" ? "left" : this.getAttribute("buttonalign") == "center" ? "center" : "right")+ '">\

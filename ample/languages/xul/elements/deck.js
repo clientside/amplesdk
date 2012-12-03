@@ -57,9 +57,9 @@ cXULElement_deck.prototype.$mapAttribute	= function(sName, sValue) {
 
 cXULElement_deck.prototype.reflow	= function() {
 	// Temp fix
-	var sValue	= this.attributes["selectedIndex"];
+	var sValue	= this.getAttribute("selectedIndex");
 	if (sValue) {
-		delete this.attributes["selectedIndex"];
+		this.removeAttribute("selectedIndex");
 		this.setAttribute("selectedIndex", sValue);
 	}
 	//

@@ -41,12 +41,12 @@ cXULElement_radio.handlers	= {
 
 						oGroup.selectedIndex	= this.group.items.$indexOf(this);
 						oGroup.selectedItem		= this;
-						oGroup.attributes["value"]	= this.getAttribute("value");
+						oGroup.setAttribute("value", this.getAttribute("value") || '');
 					}
 					else {
 						oGroup.selectedIndex	=-1;
 						oGroup.selectedItem		= null;
-						oGroup.attributes["value"]	= "";
+						oGroup.setAttribute("value", "");
 					}
 				}
 			}

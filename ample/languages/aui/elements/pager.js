@@ -40,7 +40,7 @@ cAUIElement_pager.prototype.goTo	= function(nIndex) {
 		oElement.tBodies[0].rows[0].cells[this.getAttribute("pagestep")].className	= oElement.tBodies[0].rows[0].cells[this.getAttribute("pagestep")].className.replace("selected", "normal");
 		oElement.tBodies[0].rows[0].cells[nIndex].className	= oElement.tBodies[0].rows[0].cells[nIndex].className.replace(/normal|hover|active/, "selected");
 
-		this.attributes["pagestep"]	= nIndex;
+		this.setAttribute("pagestep", nIndex);
 	}
 
 	// Fire event
