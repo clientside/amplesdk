@@ -9,9 +9,10 @@
 
 // JavaScript 1.5
 // Adds method where it is not available or fixes existing if malfunctioning
-if (!cNumber.prototype.toFixed || ((0.6).toFixed(1) != '1'))
-	fExporter_export(function(nPrecision) {
-		var nPower	= cMath.pow(10, nPrecision || 0),
+if (!cNumber.prototype.toFixed || ((0.6).toFixed() != '1'))
+	fExporter_export(function(vPrecision) {
+		var nPrecision	= fIsNaN(vPrecision) ? 0 : vPrecision * 1,
+			nPower	= cMath.pow(10, nPrecision),
 			sValue	= cString(cMath.round(this * nPower) / nPower);
 		if (nPrecision > 0) {
 			// Pad decimal zeros if missing
