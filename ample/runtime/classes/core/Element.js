@@ -602,11 +602,13 @@ function fElement_removeAttributeNode(oElement, oAttribute) {
 		}
 	}
 	else {
-		var bRegistered	= oDocument_all[oElement.uniqueID],
+		var sName	= oAttribute.name,
+			sValue	= oAttribute.value,
+			bRegistered	= oDocument_all[oElement.uniqueID],
 			bCoreAttr	= sName == 'id' || sName == "class" || sName == "style";
 
 		if (bRegistered && bCoreAttr)
-			fElement_mapAttribute(oElement, oAttribute.name, '', oAttribute.value);
+			fElement_mapAttribute(oElement, sName, '', sValue);
 
 		// Fire Mutation event
 		var oEvent	= new cMutationEvent;
