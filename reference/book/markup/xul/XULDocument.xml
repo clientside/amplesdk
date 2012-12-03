@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<class name="XULDocument" extends="dom:core:Document">
+	<abstract>
+		<locale>
+			Represent XUL Document Object
+		</locale>
+		<locale xml:lang="ru">
+			Является документом XUL в окне браузера.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples/>
+	<members>
+		<methods>
+			<method name="loadOverlay" type="Void">
+				<arguments>
+					<argument name="url" type="String">
+						<description>
+							<locale>
+								A string containing the URL of the overlay to load.
+							</locale>
+							<locale xml:lang="ru">
+								URL ресурса для загрузки
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Loads a XUL overlay and merges it with the current document, notifying an observer when the merge is complete.
+					</locale>
+					<locale xml:lang="ru">
+						Загружает ресурс с фрагментом XUL, склеивает его с текущим документом, а по завершении склеивания передает событие обсерверу.
+					</locale>
+				</description>
+			</method>
+			<!--
+			<method name="addBroadcastListenerFor" type="Void">
+				<arguments>
+					<argument name="broadcaster" type="dom:core:Element">
+						<description>
+						</description>
+					</argument>
+					<argument name="observer" type="dom:core:Element">
+						<description>
+							<locale xml:lang="ru">
+								Обсервер.
+							</locale>
+						</description>
+					</argument>
+					<argument name="attribute" type="String">
+						<description>
+							<locale xml:lang="ru">
+								Атрибут, для которого регистрируется обсервер.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale xml:lang="ru">
+						Регистрирует обсервер для атрибута.
+					</locale>
+				</description>
+			</method>
+			<method name="removeBroadcastListenerFor" type="Void">
+				<arguments>
+					<argument name="broadcaster" type="dom:core:Element">
+						<description>
+						</description>
+					</argument>
+					<argument name="observer" type="dom:core:Element">
+						<description>
+							<locale xml:lang="ru">
+								Обсервер.
+							</locale>
+						</description>
+					</argument>
+					<argument name="attribute" type="String">
+						<description>
+							<locale xml:lang="ru">
+								Атрибут, для которого был зарегистрирован обсервер.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale xml:lang="ru">
+						Убирает ранее зарегистрированый обсервер для атрибута.
+					</locale>
+				</description>
+			</method>
+			-->
+		</methods>
+		<properties>
+			<property name="popupNode" readonly="true" type="dom:core:Element">
+				<description>
+					<locale>
+						Reference to a currently displayed popup element.
+					</locale>
+					<locale xml:lang="ru">
+						Ссылка на отображаемый в настоящее время popup элемент.
+					</locale>
+				</description>
+			</property>
+			<property name="tooltipNode" readonly="true" type="dom:core:Element">
+				<description>
+					<locale>
+						Reference to a currently displayed tooltip element.
+					</locale>
+					<locale xml:lang="ru">
+						Ссылка отображаемую в настоящий момент всплывающую подсказку.
+					</locale>
+				</description>
+			</property>
+			<!--
+			<property name="commandDispatcher" readonly="true" type="XULCommandDispatcher">
+				<description>
+					<locale xml:lang="ru">
+						Возвращает объект CommandDispatcher.
+					</locale>
+				</description>
+			</property>
+			-->
+		</properties>
+	</members>
+</class>

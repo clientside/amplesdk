@@ -82,8 +82,8 @@ cXULElement_menulist.prototype.toggle	= function(bState) {
 cXULElement_menulist.prototype._onChange = function(oEvent) {
 	var oInput	= this.$getContainer("input");
 
-//	if (this.items[this.selectedIndex] && this.items[this.selectedIndex].attributes["label"].substring(0, oInput.value.length) == oInput.value)
-//		oInput.value	= this.items[this.selectedIndex].attributes["label"];
+//	if (this.items[this.selectedIndex] && this.items[this.selectedIndex].getAttribute("label").substring(0, oInput.value.length) == oInput.value)
+//		oInput.value	= this.items[this.selectedIndex].getAttribute("label") || '';
 };
 
 // Class event handlers
@@ -188,7 +188,7 @@ cXULElement_menulist.handlers	= {
 			bFound;
 		for (var nIndex = 0; nIndex < this.items.length; nIndex++) {
 			bFound	= this.items[nIndex].getAttribute("label").substring(0, sSelectedText.length) == sSelectedText;
-			if (this.attributes["filter"] == "true")
+			if (this.getAttribute("filter") == "true")
 				this.items[nIndex].$getContainer().style.display	= bFound ? "block" : "none";
 
 			if (this.items[nIndex].$getContainer().style.display != "none" && bFound) {
@@ -197,7 +197,7 @@ cXULElement_menulist.handlers	= {
 						this.items[this.selectedIndex].setAttribute("selected", "false");
 					this.items[nIndex].setAttribute("selected", "true");
 					this.items[nIndex].scrollIntoView();
-	//				this.attributes["value"]	= this.items[nIndex].attributes["value"];
+	//				this.setAttribute("value", this.items[nIndex].getAttribute("value"));
 					this.selectedIndex	= nIndex;
 				}
 				nOptions++;
@@ -273,10 +273,10 @@ cXULElement_menulist.prototype.$mapAttribute	= function(sName, sValue) {
 
 // Element Render: open
 cXULElement_menulist.prototype.$getTagOpen		= function() {
-	return	'<div class="xul-menulist' +(!this.$isAccessible() ? " xul-menulist_disabled" : '') + (this.attributes["class"] ? ' ' + this.attributes["class"] : '') + '"' + (this.attributes["style"] ? ' style="' + this.attributes["style"] + '"' : '') +'>\
+	return	'<div class="xul-menulist' +(!this.$isAccessible() ? " xul-menulist_disabled" : '') + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '') + '"' + (this.hasAttribute("style") ? ' style="' + this.getAttribute("style") + '"' : '') +'>\
 				<div class="xul-menulist--field">\
 					<div class="xul-menulist--button" onmouseout="ample.$instance(this).$setPseudoClass(\'active\', false, \'button\');" onmousedown="if (ample.$instance(this).$isAccessible()) ample.$instance(this).$setPseudoClass(\'active\', true, \'button\');" onmouseup="if (ample.$instance(this).$isAccessible()) ample.$instance(this).$setPseudoClass(\'active\', false, \'button\');" oncontextmenu="return false;"><br /></div>\
-					<input class="xul-menulist--input" type="text" autocomplete="off" style="border:0px solid white;width:100%;" onselectstart="event.cancelBubble=true;" onchange="ample.$instance(this)._onChange(event)" value="' + this.attributes["value"] + '"' + (!this.$isAccessible() ? ' disabled="disabled"' : '') + (this.attributes["editable"] != "true" || this.attributes["readonly"] ? ' readonly="true"' : '') + (this.attributes["name"] ? ' name="' + this.attributes["name"] + '"' : '') + '/>\
+					<input class="xul-menulist--input" type="text" autocomplete="off" style="border:0px solid white;width:100%;" onselectstart="event.cancelBubble=true;" onchange="ample.$instance(this)._onChange(event)" value="' + this.getAttribute("value") + '"' + (!this.$isAccessible() ? ' disabled="disabled"' : '') + (this.getAttribute("editable") != "true" || this.hasAttribute("readonly") ? ' readonly="true"' : '') + (this.hasAttribute("name") ? ' name="' + this.getAttribute("name") + '"' : '') + '/>\
 				</div>\
 				<div class="xul-menulist--gateway">';
 };

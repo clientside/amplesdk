@@ -9,9 +9,9 @@
 
 cXULElement.prototype.doBroadcast		= function() {
 	var oBroadcaster	= this,
-		sObserves	= this.attributes.observes;
+		sObserves	= this.getAttribute("observes");
 	// If element is not broadcaster and if it has observes attribute
-	if (!(this instanceof cXULElement_broadcaster) && sObserves) {
+	if (sObserves &&!(this instanceof cXULElement_broadcaster)) {
 		oBroadcaster	= this.ownerDocument.getElementById(sObserves);
 		if (!(oBroadcaster instanceof cXULElement_broadcaster))
 			oBroadcaster	= null;
@@ -29,22 +29,20 @@ var oXULBroadcastDispatcher	= (function () {
 	// Broadcast attributes on element insertion
 	ample.bind("DOMNodeInsertedIntoDocument", function(oEvent) {
 		if (oEvent.target instanceof cXULElement) {
-			var oElement, sName, sValue, sAttribute;
+			var oElement, sValue, sAttribute;
 			if (oEvent.target.localName == "observes") {
-				if ((sValue = oEvent.target.attributes["element"]) && (oElement = this.getElementById(sValue)) && oElement instanceof cXULElement_broadcaster) {
-					sAttribute	= oEvent.target.attributes["attribute"];
-					for (sName in oElement.attributes)
-						if (oElement.attributes.hasOwnProperty(sName))
-							if ((sName != "id" && sName != "persist") && (!sAttribute || sAttribute == "*" || sAttribute == sName))
-								oEvent.target.parentNode.setAttribute(sName, oElement.attributes[sName]);
+				if ((sValue = oEvent.target.getAttribute("element")) && (oElement = this.getElementById(sValue)) && oElement instanceof cXULElement_broadcaster) {
+					sAttribute	= oEvent.target.getAttribute("attribute");
+					for (var nIndex = 0, oAttribute; nIndex < oElement.attributes.length; nIndex++)
+						if (((oAttribute = oElement.attributes[nIndex]).name != "id" && oAttribute.name != "persist") && (!sAttribute || sAttribute == "*" || sAttribute == oAttribute.name))
+							oEvent.target.parentNode.setAttribute(oAttribute.name, oAttribute.value);
 				}
 			}
 			else {
-				if ((sValue = oEvent.target.attributes["observes"]) && (oElement = this.getElementById(sValue)) && oElement instanceof cXULElement_broadcaster)
-					for (sName in oElement.attributes)
-						if (oElement.attributes.hasOwnProperty(sName))
-							if (sName != "id" && sName != "persist")
-								oEvent.target.setAttribute(sName, oElement.attributes[sName]);
+				if ((sValue = oEvent.target.getAttribute("observes")) && (oElement = this.getElementById(sValue)) && oElement instanceof cXULElement_broadcaster)
+					for (var nIndex = 0, oAttribute; nIndex < oElement.attributes.length; nIndex++)
+						if ((oAttribute = oElement.attributes[nIndex]).name != "id" && oAttribute.name != "persist")
+							oEvent.target.setAttribute(oAttribute.name, oAttribute.value);
 			}
 		}
 	}, true);

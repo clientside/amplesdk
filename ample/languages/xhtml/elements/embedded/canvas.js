@@ -13,8 +13,8 @@ cXHTMLElement_canvas.prototype	= new cXHTMLElement("canvas");
 // Class Events Handlers
 cXHTMLElement_canvas.handlers	= {
 	"DOMNodeInsertedIntoDocument":	function() {
-		this.width	= this.attributes["width"];
-		this.height	= this.attributes["height"];
+		this.width	= this.getAttribute("width");
+		this.height	= this.getAttribute("height");
 	},
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this)

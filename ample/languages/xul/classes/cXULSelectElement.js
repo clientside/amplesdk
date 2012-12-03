@@ -210,10 +210,10 @@ cXULSelectElement.prototype.scrollToIndex	= function(nIndex) {
 //Static Methods
 cXULSelectElement.fireEventOnSelect	= function(oInstance) {
 	if (oInstance.head) {
-		if (oInstance.attributes["type"] == "checkbox")
+		if (oInstance.getAttribute("type") == "checkbox")
 			oInstance.head.$getContainer("command").checked	= oInstance.selectedItems.length == oInstance.items.length ? true : false;
 		else
-		if (oInstance.attributes["type"] == "radio")
+		if (oInstance.getAttribute("type") == "radio")
 			oInstance.head.$getContainer("command").checked	= oInstance.selectedItems.length != 0;
 	}
 

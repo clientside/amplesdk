@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<article>
+	<title>Abstract XML Markup Language (AML 1.0)</title>
+	<abstract>
+		<locale>
+			The AML language contains common functional elements and attributes.
+		</locale>
+	</abstract>
+	<content>
+		<section>
+			<title>
+				<locale>
+					Namespace URI
+				</locale>
+				<locale xml:lang="ru">
+					Пространство имен
+				</locale>
+			</title>
+			<content>
+				<locale>
+					AML 1.0 defines a namespaces associated with the URI <uri>http://www.amplesdk.com/ns/aml</uri>.
+				</locale>
+				<locale xml:lang="ru">
+					Пространство имен AML 1.0 определяется URI <uri>http://www.amplesdk.com/ns/aml</uri>.
+				</locale>
+			</content>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Ample SDK implementation details
+				</locale>
+				<locale xml:lang="ru">
+					Реализация в Ample SDK
+				</locale>
+			</title>
+			<content>
+				<locale>
+					This language is being developed by <link href="http://www.amplesdk.com/community/">Ample SDK community</link>.
+				</locale>
+				<locale xml:lang="ru">
+					Этот язык разрабатывается и поддерживается <link href="http://www.amplesdk.com/community/">сообществом Ample SDK</link>.
+				</locale>
+			</content>
+		</section>
+	</content>
+</article>

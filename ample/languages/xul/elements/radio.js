@@ -41,12 +41,12 @@ cXULElement_radio.handlers	= {
 
 						oGroup.selectedIndex	= this.group.items.$indexOf(this);
 						oGroup.selectedItem		= this;
-						oGroup.attributes["value"]	= this.attributes["value"];
+						oGroup.setAttribute("value", this.getAttribute("value") || '');
 					}
 					else {
 						oGroup.selectedIndex	=-1;
 						oGroup.selectedItem		= null;
-						oGroup.attributes["value"]	= "";
+						oGroup.setAttribute("value", "");
 					}
 				}
 			}
@@ -69,11 +69,11 @@ cXULElement_radio.prototype.$mapAttribute	= function(sName, sValue) {
 
 // Element Render: open
 cXULElement_radio.prototype.$getTagOpen		= function() {
-	var bSelected	= this.attributes["selected"] == "true",
+	var bSelected	= this.getAttribute("selected") == "true",
 		bDisabled	= !this.$isAccessible();
-	return '<div class="xul-radio' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + (bDisabled ? " xul-radio_disabled" : "") + (bSelected ? " xul-radio_selected" : "") + (bSelected && bDisabled ? " xul-radio_selected_disabled xul-radio_disabled_selected" : "") + '">\
+	return '<div class="xul-radio' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + (bDisabled ? " xul-radio_disabled" : "") + (bSelected ? " xul-radio_selected" : "") + (bSelected && bDisabled ? " xul-radio_selected_disabled xul-radio_disabled_selected" : "") + '">\
 				<div class="xul-radio--input"><br /></div>\
-				<div class="xul-radio--label">' +(this.attributes["label"] ? ample.$encodeXMLCharacters(this.attributes["label"]) : '')+ '</div>';
+				<div class="xul-radio--label">' +(this.hasAttribute("label") ? ample.$encodeXMLCharacters(this.getAttribute("label")) : '')+ '</div>';
 };
 
 // Element Render: close

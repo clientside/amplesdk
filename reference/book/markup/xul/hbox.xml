@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="markup:xul:XULElement" name="hbox">
+	<abstract>
+		<locale>
+			A container element which can contain any number of child elements.
+			This is equivalent to the <link type="element" href="reference://markup/xul/box">box</link> element.
+		</locale>
+		<locale xml:lang="ru">
+			Элемент-контейнер, может содержать любое количество дочерних элементов.
+			Эквивалентен элементу <link type="element" href="reference://markup/xul/box">box</link> с горизонтальной ориентацией по умолчанию.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes />
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

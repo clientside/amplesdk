@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="dom:core:Element" name="data">
+	<abstract>
+		<locale>
+			Specifies a data island.
+		</locale>
+		<locale xml:lang="ru">
+			Элемент <link type="element" href="reference://markup/aml/data">data</link> предназначен для определения островка данных.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="src">
+				<description>
+					<locale>
+						Data location.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="async">
+				<description>
+					<locale>
+						Data retrieval mode.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="type" readonly="true">
+				<values>
+					<value name="text/xml"></value>
+					<value name="text/csv"></value>
+					<value name="text/json"></value>
+					<value name="application/xml"></value>
+				</values>
+				<description>
+					<locale>
+						Type of the data.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

@@ -136,6 +136,7 @@
 				DOMConfiguration.js,
 				DOMException.js,
 				DOMError.js,
+				NamedNodeMap.js,
 				Node.js,
 				NodeList.js,
 				Attr.js,

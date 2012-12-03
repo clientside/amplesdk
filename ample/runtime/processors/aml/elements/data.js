@@ -32,8 +32,9 @@ cAMLElement_data.prototype.notify	= function() {
 // Class Event Handlers
 cAMLElement_data.handlers	= {};
 cAMLElement_data.handlers["DOMNodeInsertedIntoDocument"]	= function(oEvent) {
-	if (this.attributes["src"])
-		fNodeLoader_load(this, this.attributes["src"]);
+	var sSrc	= fElement_getAttribute(this, "src");
+	if (sSrc)
+		fNodeLoader_load(this, sSrc);
 };
 cAMLElement_data.handlers["DOMNodeRemovedFromDocument"]	= function(oEvent) {
 	// TODO: unregister customers
@@ -42,15 +43,15 @@ cAMLElement_data.handlers["DOMNodeRemovedFromDocument"]	= function(oEvent) {
 };
 // These listeners will notify data observers on data changes
 cAMLElement_data.handlers["DOMNodeInserted"]	= function(oEvent) {
-	if (this.attributes["type"] == "application/xml")
+	if (fElement_getAttribute(this, "type") == "application/xml")
 		this.notify(oEvent.target);
 };
 cAMLElement_data.handlers["DOMNodeRemoved"]	= function(oEvent) {
-	if (this.attributes["type"] == "application/xml")
+	if (fElement_getAttribute(this, "type") == "application/xml")
 		this.notify(oEvent.target);
 };
 cAMLElement_data.handlers["DOMCharacterDataModified"]	= function(oEvent) {
-	if (this.attributes["type"] == "application/xml")
+	if (fElement_getAttribute(this, "type") == "application/xml")
 		this.notify(oEvent.target);
 };
 cAMLElement_data.handlers["DOMAttrModified"]	= function(oEvent) {
@@ -64,7 +65,7 @@ cAMLElement_data.handlers["DOMAttrModified"]	= function(oEvent) {
 				throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 		}
 	else
-	if (this.attributes["type"] == "application/xml")
+	if (fElement_getAttribute(this, "type") == "application/xml")
 		this.notify(oEvent.target);
 };
 

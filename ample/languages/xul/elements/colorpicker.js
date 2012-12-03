@@ -57,7 +57,7 @@ cXULElement_colorpicker.prototype.toggle	= function(bState) {
 
 // Events handlers
 cXULElement_colorpicker.prototype._onChange	= function(oEvent) {
-	this.attributes["value"]	= this.$getContainer("input").value;
+	this.setAttribute("value", this.$getContainer("input").value);
 
 	// Fire Event
 	cXULInputElement.dispatchChange(this);
@@ -120,7 +120,7 @@ cXULElement_colorpicker.prototype.$getTagOpen	= function() {
 	return '<div class="xul-colorpicker' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '') + (!this.$isAccessible() ? " xul-colorpicker_disabled" : "") + '">\
 				<div class="xul-colorpicker--field">\
 					<div class="xul-colorpicker--button"><br /></div>\
-					<input class="xul-colorpicker--input" type="text" autocomplete="off" value="' + this.attributes["value"] + '"' + (!this.$isAccessible() ? ' disabled="true"' : '') +' maxlength="7" onchange="ample.$instance(this)._onChange(event)" style="border:0px solid white;width:100%;" onselectstart="event.cancelBubble=true;" />\
+					<input class="xul-colorpicker--input" type="text" autocomplete="off" value="' + this.getAttribute("value") + '"' + (!this.$isAccessible() ? ' disabled="true"' : '') +' maxlength="7" onchange="ample.$instance(this)._onChange(event)" style="border:0px solid white;width:100%;" onselectstart="event.cancelBubble=true;" />\
 				</div>\
 				<div class="xul-colorpicker--gateway">' + this.popup.$getTag() + '</div>\
 			</div>';

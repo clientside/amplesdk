@@ -14,11 +14,11 @@ var cXULElement_grid	= function() {
 cXULElement_grid.prototype	= new cXULElement("grid");
 
 cXULElement_grid.prototype.$getTagOpen	= function() {
-	var sWidth	= this.attributes.width,
-		sHeight	= this.attributes.height;
-	return '<div class="xul-grid' +(this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="' +
-		(sWidth ? 'width:' + (isNaN(parseInt(sWidth)) ? sWidth : sWidth + 'px;') : '')+
-		(sHeight ? 'height:' + (isNaN(parseInt(sHeight)) ? sHeight : sHeight + 'px;') : '')+
+	var sWidth	= this.getAttribute("width"),
+		sHeight	= this.getAttribute("height");
+	return '<div class="xul-grid' +(this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '" style="' +
+		(sWidth ? 'width:' + (isNaN(parseInt(sWidth, 10)) ? sWidth : sWidth + 'px;') : '')+
+		(sHeight ? 'height:' + (isNaN(parseInt(sHeight, 10)) ? sHeight : sHeight + 'px;') : '')+
 	'">';
 };
 

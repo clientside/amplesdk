@@ -76,15 +76,15 @@
 			</xsl:when>
 			<xsl:otherwise>
 				<xsl:choose>
-					<xsl:when test="@type='element' or @type='class' or @type='interface' or @type='object'">
-						<a href="{.}.xml" class="object">
+					<xsl:when test="@type='element' or @type='class' or @type='object'">
+						<a href="../../{translate(substring-after(@href, 'reference://'), ':', '/')}.xml" class="object">
 							<xsl:value-of select="."/>
 						</a>
 					</xsl:when>
 					<xsl:when test="@type='attribute' or @type='event' or @type='method' or @type='property' or @type='constant'">
 						<xsl:choose>
 							<xsl:when test="@href">
-								<a href="../{translate(@href, ':', '/')}.xml#{@type}-{text()}">
+								<a href="../../{translate(substring-after(@href, 'reference://'), ':', '/')}.xml#{@type}-{text()}">
 									<xsl:value-of select="."/>
 								</a>
 							</xsl:when>
@@ -117,7 +117,7 @@
 									</xsl:attribute>
 									<xsl:value-of select="."/>
 								</a>
-								<img src="../../../schemes/default/img/link_external.gif" width="16" height="11" align="absmiddle" style="margin-left: 5px" title="{$strings/link_external}"/>
+								<img src="../../../resources/img/link_external.gif" width="16" height="11" align="absmiddle" style="margin-left: 5px" title="{$strings/link_external}"/>
 							</xsl:otherwise>
 						</xsl:choose>
 					</xsl:otherwise>
@@ -252,15 +252,6 @@
 	-->
 	<xsl:template match="br">
 		<br />
-	</xsl:template>
-
-	<!--
-		Template: a
-	-->
-	<xsl:template match="a">
-		<a href="{@href}" title="{@title}">
-			<xsl:apply-templates />
-		</a>
 	</xsl:template>
 
 	<!--

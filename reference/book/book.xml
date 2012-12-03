@@ -1,0 +1,531 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../stylesheets/book.xsl"?>
+<book name="Ample SDK 1.0">
+	<node title="Runtime" open="true">
+		<node title="JavaScript technologies" open="true">
+			<node title="ample" url="env/ample/ample.xml"/>
+			<!--node title="event" url="env/ample/event.xml"/-->
+			<!--node title="JavaScript technologies" /-->
+			<node title="DOM Level 2/3" open="true">
+				<!--node title="DOM Level 2/3" xurl="dom/dom.xml"/-->
+				<node title="Query" url="dom/ample/Query.xml"/>
+				<node title="DOM Core">
+					<node title="Attr" url="dom/core/Attr.xml"/>
+					<node title="CDATASection" url="dom/core/CDATASection.xml"/>
+					<node title="CharacterData" url="dom/core/CharacterData.xml"/>
+					<node title="Comment" url="dom/core/Comment.xml"/>
+					<node title="Document" url="dom/core/Document.xml"/>
+					<node title="DocumentFragment" url="dom/core/DocumentFragment.xml"/>
+					<node title="Element" url="dom/core/Element.xml"/>
+					<node title="EntityReference" url="dom/core/EntityReference.xml"/>
+					<node title="NamedNodeMap" url="dom/core/NamedNodeMap.xml"/>
+					<node title="Node" url="dom/core/Node.xml"/>
+					<node title="NodeList" url="dom/core/NodeList.xml"/>
+					<node title="ProcessingInstruction" url="dom/core/ProcessingInstruction.xml"/>
+					<node title="Text" url="dom/core/Text.xml"/>
+					<node title="DOMImplementation" url="dom/core/DOMImplementation.xml"/>
+					<node title="DOMConfiguration" url="dom/core/DOMConfiguration.xml"/>
+					<node title="DOMError" url="dom/core/DOMError.xml"/>
+					<node title="DOMException" url="dom/core/DOMException.xml"/>
+					<node title="DOMStringList" url="dom/core/DOMStringList.xml"/>
+				</node>
+				<node title="DOM Events">
+					<node title="Event" url="dom/events/Event.xml"/>
+					<node title="CustomEvent" url="dom/events/CustomEvent.xml"/>
+					<node title="UIEvent" url="dom/events/UIEvent.xml"/>
+					<node title="FocusEvent" url="dom/events/FocusEvent.xml"/>
+					<node title="MouseEvent" url="dom/events/MouseEvent.xml"/>
+					<node title="WheelEvent" url="dom/events/WheelEvent.xml"/>
+					<node title="KeyboardEvent" url="dom/events/KeyboardEvent.xml"/>
+					<node title="TextEvent" url="dom/events/TextEvent.xml"/>
+					<node title="MutationEvent" url="dom/events/MutationEvent.xml"/>
+					<node title="ResizeEvent" url="dom/events/ResizeEvent.xml"/>
+					<node title="DragEvent" url="dom/events/DragEvent.xml"/>
+					<node title="HashChangeEvent" url="dom/events/HashChangeEvent.xml"/>
+				</node>
+				<node title="DOM Range">
+					<node title="Range" xurl="dom/range/Range.xml"/>
+				</node>
+				<node title="DOM Load/Save">
+					<node title="LSReader" xurl="dom/ls/LSReader.xml"/>
+					<node title="LSWriter" xurl="dom/ls/LSWriter.xml"/>
+					<node title="LSParser" xurl="dom/ls/LSParser.xml"/>
+					<node title="LSSerializer" xurl="dom/ls/LSSerializer.xml"/>
+				</node>
+				<node title="DOM Helper Objects">
+					<node title="DataTransfer" url="dom/core/DataTransfer.xml"/>
+					<node title="Locale" url="dom/ample/Locale.xml"/>
+				</node>
+			</node>
+			<node title="Touch UI" open="true">
+				<node title="Touch Core">
+					<node title="Touch" url="dom/touch/Touch.xml"/>
+					<node title="TouchList" url="dom/touch/TouchList.xml"/>
+				</node>
+				<node title="Touch Events">
+					<node title="TouchEvent" url="dom/touch/TouchEvent.xml"/>
+					<node title="GestureEvent" url="dom/touch/GestureEvent.xml"/>
+				</node>
+			</node>
+			<node title="JS objects">
+				<node title="JSON" url="env/browser/JSON.xml"/>
+			</node>
+			<node title="XML objects">
+				<node title="DOMParser" url="env/browser/DOMParser.xml"/>
+				<node title="XMLSerializer" url="env/browser/XMLSerializer.xml"/>
+				<node title="XSLTProcessor" url="env/browser/XSLTProcessor.xml"/>
+			</node>
+			<node title="I/O Objects">
+				<node title="XMLHttpRequest" url="env/browser/XMLHttpRequest.xml"/>
+			</node>
+			<node title="AmpleException" url="dom/ample/AmpleException.xml"/>
+		</node>
+
+		<node title="XML technologies" open="true">
+			<!--node title="XML technologies" /-->
+			<node title="XInclude 1.0">
+				<node title="Overview" url="markup/xinclude/index.xml"/>
+				<node title="XML Schema" url="markup/xinclude/xinclude10.xsd" />
+				<node title="Elements">
+					<node title="include" url="markup/xinclude/include.xml"/>
+					<node title="fallback" url="markup/xinclude/fallback.xml"/>
+				</node>
+			</node>
+			<node title="XML Events 1.0">
+				<node title="Overview" url="markup/xmlevents/index.xml"/>
+				<node title="XML Schema" url="markup/xmlevents/xmlevents10.xsd" />
+				<node title="Elements">
+					<node title="listener" url="markup/xmlevents/listener.xml"/>
+				</node>
+			</node>
+			<node title="AML 1.0">
+				<node title="Overview" url="markup/aml/index.xml"/>
+				<node title="XML Schema" url="markup/aml/aml.xsd" />
+				<node title="Elements">
+					<node title="data" url="markup/aml/data.xml"/>
+					<node title="handler" url="markup/aml/handler.xml"/>
+					<node title="repeater" url="markup/aml/repeater.xml"/>
+				</node>
+			</node>
+			<node title="SMIL 3.0">
+				<node title="Overview" url="markup/smil/index.xml"/>
+				<node title="XML Schema" xurl="markup/smil/smil30-ample.xsd" />
+				<node title="Objects">
+					<node title="SMILTimingElement" url="markup/smil/SMILTimingElement.xml"/>
+					<node title="SMILAnimationElement" url="markup/smil/SMILAnimationElement.xml"/>
+				</node>
+				<node title="Elements">
+					<node title="animate" url="markup/smil/animate.xml" />
+					<node title="animateMotion" url="markup/smil/animateMotion.xml" />
+					<node title="animateColor" url="markup/smil/animateColor.xml" />
+					<node title="set" url="markup/smil/set.xml" />
+					<node title="par" url="markup/smil/par.xml" />
+					<node title="seq" url="markup/smil/seq.xml" />
+					<node title="excl" url="markup/smil/excl.xml" />
+				</node>
+			</node>
+			<node title="XML Schema 1.1">
+				<node title="Overview" url="markup/xmlschema/index.xml"/>
+				<node title="XML Schema" xurl="markup/xmlschema/xmlschema11-datatypes-ample.xsd"/>
+				<node title="Elements">
+					<node title="Datatypes">
+						<node title="simpleType" url="markup/xmlschema/simpleType.xml" />
+						<!--  -->
+						<node title="union" url="markup/xmlschema/union.xml" />
+						<node title="list" url="markup/xmlschema/list.xml" />
+						<node title="restriction" url="markup/xmlschema/restriction.xml" />
+						<!--  -->
+						<node title="enumeration" url="markup/xmlschema/enumeration.xml" />
+						<node title="assertion" url="markup/xmlschema/assertion.xml" />
+						<!--  -->
+						<node title="length" url="markup/xmlschema/length.xml" />
+						<node title="minLength" url="markup/xmlschema/minLength.xml" />
+						<node title="maxLength" url="markup/xmlschema/maxLength.xml" />
+						<node title="pattern" url="markup/xmlschema/pattern.xml" />
+						<node title="whiteSpace" url="markup/xmlschema/whiteSpace.xml" />
+						<node title="maxInclusive" url="markup/xmlschema/maxInclusive.xml" />
+						<node title="minInclusive" url="markup/xmlschema/minInclusive.xml" />
+						<node title="maxExclusive" url="markup/xmlschema/maxExclusive.xml" />
+						<node title="minExclusive" url="markup/xmlschema/minExclusive.xml" />
+						<node title="totalDigits" url="markup/xmlschema/totalDigits.xml" />
+						<node title="fractionDigits" url="markup/xmlschema/fractionDigits.xml" />
+						<node title="minScale" url="markup/xmlschema/minScale.xml" />
+						<node title="maxScale" url="markup/xmlschema/maxScale.xml" />
+						<!--  -->
+						<node title="explicitTimezone" xurl="markup/xmlschema/explicitTimezone.xml" />
+					</node>
+					<node title="Structures">
+						<node title="complexType" xurl="markup/xmlschema/complexType.xml" />
+						<!--  -->
+						<node title="override" xurl="markup/xmlschema/override.xml" />
+						<node title="redefine" xurl="markup/xmlschema/redefine.xml" />
+						<!--  -->
+						<node title="element" xurl="markup/xmlschema/element.xml" />
+						<node title="group" xurl="markup/xmlschema/group.xml" />
+						<node title="attribute" xurl="markup/xmlschema/attribute.xml" />
+						<node title="attributeGroup" xurl="markup/xmlschema/attributeGroup.xml" />
+						<!--  -->
+						<node title="notation" xurl="markup/xmlschema/notation.xml" />
+						<!--  -->
+						<node title="simpleContent" xurl="markup/xmlschema/simpleContent.xml" />
+						<node title="complexContent" xurl="markup/xmlschema/complexContent.xml" />
+						<!--  -->
+						<node title="assert" xurl="markup/xmlschema/assert.xml" />
+						<!--  -->
+						<node title="openContent" xurl="markup/xmlschema/openContent.xml" />
+						<node title="defaultOpenContent" xurl="markup/xmlschema/defaultOpenContent.xml" />
+						<!--  -->
+						<node title="any" xurl="markup/xmlschema/any.xml" />
+						<node title="anyAttribute" xurl="markup/xmlschema/anyAttribute.xml" />
+						<!--  -->
+						<node title="restriction" xurl="markup/xmlschema/restriction.xml" />
+						<node title="extension" xurl="markup/xmlschema/restriction.xml" />
+						<!--  -->
+						<node title="sequence" xurl="markup/xmlschema/sequence.xml" />
+						<node title="choice" xurl="markup/xmlschema/choice.xml" />
+						<node title="all" xurl="markup/xmlschema/all.xml" />
+						<!--  Identity-constraint Definition -->
+						<node title="key" xurl="markup/xmlschema/key.xml" />
+						<node title="selector" xurl="markup/xmlschema/selector.xml" />
+						<node title="field" xurl="markup/xmlschema/field.xml" />
+						<node title="keyref" xurl="markup/xmlschema/keyref.xml" />
+						<node title="unique" xurl="markup/xmlschema/unique.xml" />
+					</node>
+					<node title="schema" url="markup/xmlschema/schema.xml" />
+					<node title="import" xurl="markup/xmlschema/import.xml" />
+					<node title="include" xurl="markup/xmlschema/include.xml" />
+					<!--  -->
+					<node title="appinfo" xurl="markup/xmlschema/appinfo.xml" />
+					<node title="annotation" xurl="markup/xmlschema/annotation.xml" />
+					<node title="documentation" xurl="markup/xmlschema/documentation.xml" />
+				</node>
+			</node>
+			<node title="REX 1.0">
+				<node title="Overview" url="markup/rex/index.xml" />
+				<node title="XML Schema" />
+				<node title="Elements">
+					<node title="rex" />
+					<node title="event" />
+				</node>
+			</node>
+			<node title="XBL 2.0">
+				<node title="Overview" url="markup/xbl/index.xml"/>
+				<node title="XML Schema" />
+				<node title="Elements">
+					<node title="binding" />
+					<node title="script" />
+					<node title="handlers" />
+					<node title="handler" />
+					<node title="implementation" />
+					<node title="resources" />
+					<node title="style" />
+					<node title="prefetch" />
+					<node title="template" />
+					<node title="content" />
+					<node title="inherited" />
+					<node title="xbl" />
+				</node>
+			</node>
+		</node>
+	</node>
+
+	<node title="UI languages" open="true">
+		<node title="HTML 5">
+			<node title="Overview" url="markup/xhtml/index.xml" />
+		</node>
+		<node title="SVG 1.1">
+			<node title="Overview" url="markup/svg/index.xml"/>
+			<node title="XML Schema" xurl="markup/svg/svg11-ample.xsd"/>
+			<node title="Objects">
+				<node title="SVGElement" url="markup/svg/SVGElement.xml"/>
+				<node title="SVGShapeElement" url="markup/svg/SVGShapeElement.xml"/>
+			</node>
+			<node title="Elements">
+				<node title="a" url="markup/svg/a.xml"/>
+				<node title="circle" url="markup/svg/circle.xml"/>
+				<node title="defs" url="markup/svg/defs.xml"/>
+				<node title="desc" url="markup/svg/desc.xml"/>
+				<node title="ellipse" url="markup/svg/ellipse.xml"/>
+				<node title="foreignObject" url="markup/svg/foreignObject.xml"/>
+				<node title="g" url="markup/svg/g.xml"/>
+				<node title="image" url="markup/svg/image.xml"/>
+				<node title="line" url="markup/svg/line.xml"/>
+				<node title="linearGradient" url="markup/svg/linearGradient.xml"/>
+				<node title="marker" xurl="markup/svg/marker.xml"/>
+				<node title="path" url="markup/svg/path.xml"/>
+				<node title="pattern" xurl="markup/svg/pattern.xml"/>
+				<node title="polygon" url="markup/svg/polygon.xml"/>
+				<node title="polyline" url="markup/svg/polyline.xml"/>
+				<node title="radialGradient" url="markup/svg/radialGradient.xml"/>
+				<node title="rect" url="markup/svg/rect.xml"/>
+				<node title="script" url="markup/svg/script.xml"/>
+				<node title="stop" url="markup/svg/stop.xml"/>
+				<node title="style" url="markup/svg/style.xml"/>
+				<node title="svg" url="markup/svg/svg.xml"/>
+				<node title="switch" xurl="markup/svg/switch.xml"/>
+				<node title="text" url="markup/svg/text.xml"/>
+				<node title="textPath" url="markup/svg/textPath.xml"/>
+				<node title="title" url="markup/svg/title.xml"/>
+				<node title="tspan" url="markup/svg/tspan.xml"/>
+				<node title="tref" url="markup/svg/tref.xml"/>
+				<node title="use" url="markup/svg/use.xml"/>
+			</node>
+		</node>
+		<node title="XForms 1.1">
+			<node title="Overview" url="markup/xforms/index.xml"/>
+			<node title="XML Schema" xurl="markup/xforms/xforms11-ample.xsd"/>
+			<!-- node title="Elements" /-->
+		</node>
+		<node title="Chart">
+			<node title="Overview" url="markup/chart/index.xml"/>
+			<node title="XML Schema" xurl="markup/chart/chart.xsd"/>
+			<node title="Objects">
+				<node title="ChartElement" url="markup/chart/ChartElement.xml"/>
+				<node title="ChartCanvasElement" url="markup/chart/ChartCanvasElement.xml"/>
+			</node>
+			<node title="Elements">
+				<node title="area" url="markup/chart/area.xml"/>
+				<node title="bar" url="markup/chart/bar.xml"/>
+				<node title="bubble" url="markup/chart/bubble.xml"/>
+				<node title="column" url="markup/chart/column.xml"/>
+				<node title="doughnut" url="markup/chart/doughnut.xml"/>
+				<node title="funnel" url="markup/chart/funnel.xml"/>
+				<node title="group" url="markup/chart/group.xml"/>
+				<node title="item" url="markup/chart/item.xml"/>
+				<node title="line" url="markup/chart/line.xml"/>
+				<node title="map" url="markup/chart/map.xml"/>
+				<node title="pie" url="markup/chart/pie.xml"/>
+				<node title="radar" url="markup/chart/radar.xml"/>
+				<node title="stream" url="markup/chart/stream.xml"/>
+			</node>
+		</node>
+		<node title="XUL">
+			<node title="Overview" url="markup/xul/index.xml"/>
+			<node title="XML Schema" xurl="markup/xul/xul.xsd"/>
+			<node title="Objects">
+				<node title="XULElement" url="markup/xul/XULElement.xml"/>
+				<node title="XULDocument" url="markup/xul/XULDocument.xml"/>
+				<node title="XULPopupElement" url="markup/xul/XULPopupElement.xml"/>
+				<node title="XULSelectElement" url="markup/xul/XULSelectElement.xml"/>
+				<node title="XULWindowElement" url="markup/xul/XULWindowElement.xml"/>
+				<node title="XULCommandDispatcher" xurl="markup/xul/XULCommandDispatcher.xml"/>
+				<node title="XULControllers" xurl="markup/xul/XULControllers.xml"/>
+			</node>
+			<node title="Elements">
+				<node title="Windows">
+					<node title="dialog" url="markup/xul/dialog.xml"/>
+					<node title="overlay" url="markup/xul/overlay.xml"/>
+					<node title="preference" xurl="markup/xul/preference.xml"/>
+					<node title="preferences" xurl="markup/xul/preferences.xml"/>
+					<node title="prefpane" xurl="markup/xul/prefpane.xml"/>
+					<node title="prefwindow" xurl="markup/xul/prefwindow.xml"/>
+					<node title="page" url="markup/xul/page.xml"/>
+					<node title="window" url="markup/xul/window.xml"/>
+					<node title="wizard" url="markup/xul/wizard.xml"/>
+					<node title="wizardpage" url="markup/xul/wizardpage.xml"/>
+				</node>
+				<node title="Window structure">
+					<node title="browser" xurl="markup/xul/browser.xml"/>
+					<node title="tabbrowser" xurl="markup/xul/tabbrowser.xml"/>
+					<!-- editor on Mozilla belongs here -->
+					<node title="iframe" url="markup/xul/iframe.xml"/>
+					<node title="titlebar" xurl="markup/xul/titlebar.xml"/>
+					<node title="dialogheader" url="markup/xul/dialogheader.xml"/>
+					<node title="resizer" xurl="markup/xul/resizer.xml"/>
+					<node title="statusbar" url="markup/xul/statusbar.xml"/>
+					<node title="statusbarpanel" url="markup/xul/statusbarpanel.xml"/>
+					<node title="notification" xurl="markup/xul/notification.xml"/>
+					<node title="notificationbox" xurl="markup/xul/notificationbox.xml"/>
+				</node>
+				<node title="Menus and popups">
+					<node title="menu" url="markup/xul/menu.xml"/>
+					<node title="menubar" url="markup/xul/menubar.xml"/>
+					<node title="menuitem" url="markup/xul/menuitem.xml"/>
+					<node title="menupopup" url="markup/xul/menupopup.xml"/>
+					<node title="menuseparator" url="markup/xul/menuseparator.xml"/>
+					<node title="panel" url="markup/xul/panel.xml"/>
+					<node title="popupset" url="markup/xul/popupset.xml"/>
+					<node title="tooltip" url="markup/xul/tooltip.xml"/>
+				</node>
+				<node title="Toolbars">
+					<node title="toolbar" url="markup/xul/toolbar.xml"/>
+					<node title="toolbarbutton" url="markup/xul/toolbarbutton.xml"/>
+					<node title="toolbargrippy" url="markup/xul/toolbargrippy.xml"/>
+					<node title="toolbaritem" xurl="markup/xul/toolbaritem.xml"/>
+					<node title="toolbarpalette" xurl="markup/xul/toolbarpalette.xml"/>
+					<node title="toolbarseparator" url="markup/xul/toolbarseparator.xml"/>
+					<node title="toolbarset" xurl="markup/xul/toolbarset.xml"/>
+					<node title="toolbarspacer" xurl="markup/xul/toolbarspacer.xml"/>
+					<node title="toolbarspring" xurl="markup/xul/toolbarspring.xml"/>
+					<node title="toolbox" url="markup/xul/toolbox.xml"/>
+				</node>
+				<node title="Tabs and grouping">
+					<node title="caption" url="markup/xul/caption.xml"/>
+					<node title="groupbox" url="markup/xul/groupbox.xml"/>
+					<node title="separator" url="markup/xul/separator.xml"/>
+					<node title="spacer" url="markup/xul/spacer.xml"/>
+					<node title="tabbox" url="markup/xul/tabbox.xml"/>
+					<node title="tab" url="markup/xul/tab.xml"/>
+					<node title="tabs" url="markup/xul/tabs.xml"/>
+					<node title="tabpanel" url="markup/xul/tabpanel.xml"/>
+					<node title="tabpanels" url="markup/xul/tabpanels.xml"/>
+				</node>
+				<node title="Controls">
+					<node title="button" url="markup/xul/button.xml"/>
+					<node title="checkbox" url="markup/xul/checkbox.xml"/>
+					<node title="colorpicker" url="markup/xul/colorpicker.xml"/>
+					<node title="datepicker" url="markup/xul/datepicker.xml"/>
+					<node title="editor" url="markup/xul/editor.xml"/>
+					<node title="menulist" url="markup/xul/menulist.xml"/>
+					<node title="progressmeter" url="markup/xul/progressmeter.xml"/>
+					<node title="radio" url="markup/xul/radio.xml"/>
+					<node title="radiogroup" url="markup/xul/radiogroup.xml"/>
+					<node title="scale" url="markup/xul/scale.xml"/>
+					<!-- splitter on Mozilla belongs here -->
+					<node title="textbox" url="markup/xul/textbox.xml"/>
+					<node title="timepicker" url="markup/xul/timepicker.xml"/>
+				</node>
+				<node title="Text and images">
+					<node title="description" url="markup/xul/description.xml"/>
+					<node title="label" url="markup/xul/label.xml"/>
+					<node title="image" url="markup/xul/image.xml"/>
+				</node>
+				<node title="Lists">
+					<node title="listbody" url="markup/xul/listbody.xml"/>
+					<node title="listbox" url="markup/xul/listbox.xml"/>
+					<node title="listcell" url="markup/xul/listcell.xml"/>
+					<node title="listcol" xurl="markup/xul/listcol.xml"/>
+					<node title="listcols" xurl="markup/xul/listcols.xml"/>
+					<node title="listhead" url="markup/xul/listhead.xml"/>
+					<node title="listheader" url="markup/xul/listheader.xml"/>
+					<node title="listitem" url="markup/xul/listitem.xml"/>
+					<node title="richlistbox" xurl="markup/xul/richlistbox.xml"/>
+					<node title="richlistitem" xurl="markup/xul/richlistitem.xml"/>
+				</node>
+				<node title="Trees">
+					<node title="tree" url="markup/xul/tree.xml"/>
+					<node title="treebody" url="markup/xul/treebody.xml"/>
+					<node title="treecell" url="markup/xul/treecell.xml"/>
+					<node title="treechildren" url="markup/xul/treechildren.xml"/>
+					<node title="treecol" url="markup/xul/treecol.xml"/>
+					<node title="treecols" url="markup/xul/treecols.xml"/>
+					<node title="treeitem" url="markup/xul/treeitem.xml"/>
+					<node title="treerow" url="markup/xul/treerow.xml"/>
+					<node title="treeseparator" xurl="markup/xul/treeseparator.xml"/>
+				</node>
+				<node title="Layout">
+					<node title="box" url="markup/xul/box.xml"/>
+					<node title="hbox" url="markup/xul/hbox.xml"/>
+					<node title="vbox" url="markup/xul/vbox.xml"/>
+					<node title="bbox" xurl="markup/xul/bbox.xml"/>
+					<node title="deck" url="markup/xul/deck.xml"/>
+					<node title="stack" url="markup/xul/stack.xml"/>
+					<node title="grid" url="markup/xul/grid.xml"/>
+					<node title="column" url="markup/xul/column.xml"/>
+					<node title="columns" url="markup/xul/columns.xml"/>
+					<node title="row" url="markup/xul/row.xml"/>
+					<node title="rows" url="markup/xul/rows.xml"/>
+					<node title="scrollbox" xurl="markup/xul/scrollbox.xml"/>
+					<node title="splitter" url="markup/xul/splitter.xml"/>
+				</node>
+				<node title="Scripting">
+					<node title="script" url="markup/xul/script.xml"/>
+					<node title="command" url="markup/xul/command.xml"/>
+					<node title="commandset" url="markup/xul/commandset.xml"/>
+					<node title="broadcaster" url="markup/xul/broadcaster.xml"/>
+					<node title="broadcasterset" url="markup/xul/broadcasterset.xml"/>
+					<node title="observes" url="markup/xul/observes.xml"/>
+					<node title="key" url="markup/xul/key.xml"/>
+					<node title="keyset" url="markup/xul/keyset.xml"/>
+					<node title="stringbundle" xurl="markup/xul/stringbundle.xml"/>
+					<node title="stringbundleset" xurl="markup/xul/stringbundleset.xml"/>
+				</node>
+				<node title="Helper elements">
+					<node title="arrowscrollbox" url="markup/xul/arrowscrollbox.xml"/>
+					<node title="grippy" xurl="markup/xul/grippy.xml"/>
+					<node title="dropmarker" xurl="markup/xul/dropmarker.xml"/>
+					<node title="scrollbar" xurl="markup/xul/scrollbar.xml"/>
+					<node title="scrollcorner" xurl="markup/xul/scrollcorner.xml"/>
+					<node title="spinbuttons" url="markup/xul/spinbuttons.xml"/>
+					<!-- spinbuttons on Mozilla belongs here -->
+				</node>
+			</node>
+		</node>
+		<node title="AUI 1.0">
+			<node title="Overview" url="markup/aui/index.xml" />
+			<node title="XML Schema" url="markup/aui/aui.xsd"/>
+			<node title="Objects">
+				<node title="AUIElement" url="markup/aui/AUIElement.xml"/>
+			</node>
+			<node title="Elements">
+				<node title="Maps">
+					<node title="map" url="markup/aui/map.xml"/>
+					<node title="marker" url="markup/aui/marker.xml"/>
+					<node title="route" xurl="markup/aui/route.xml"/>
+					<node title="checkpoint" xurl="markup/aui/checkpoint.xml"/>
+				</node>
+				<node title="filepicker" url="markup/aui/filepicker.xml"/>
+				<node title="pager" xurl="markup/aui/pager.xml"/>
+				<node title="panel" xurl="markup/aui/panel.xml"/>
+				<node title="panelset" xurl="markup/aui/panelset.xml"/>
+				<node title="sidebar" xurl="markup/aui/sidebar.xml"/>
+				<node title="sound" xurl="markup/aui/sound.xml"/>
+				<node title="xhtml" xurl="markup/aui/xhtml.xml"/>
+			</node>
+		</node>
+	</node>
+
+	<node title="Plugins" open="true">
+		<node title="Cookie">
+			<node title="Overview" xurl="plugins/cookie/cookie.xml" />
+		</node>
+		<node title="Forms">
+			<node title="Overview" xurl="plugins/forms/forms.xml"/>
+		</node>
+		<node title="RPC">
+			<node title="Overview" xurl="plugins/rpc/rpc.xml"/>
+			<node title="Objects">
+				<node title="RPCClient" xurl="plugins/rpc/RPCClient.xml" />
+			</node>
+		</node>
+		<node title="Store">
+			<node title="Overview" xurl="plugins/store/store.xml"/>
+		</node>
+		<node title="Touch">
+			<node title="Overview" xurl="plugins/touch/touch.xml"/>
+		</node>
+		<node title="WebService">
+			<node title="Overview" xurl="plugins/webservice/webservice.xml"/>
+			<node title="Objects">
+				<node title="SoapRequest" xurl="plugins/soap/SoapRequest.xml"/>
+				<node title="SoapEnvelope" xurl="plugins/soap/SoapEnvelope.xml"/>
+			</node>
+		</node>
+		<node title="XMPP">
+			<node title="Overview" xurl="plugins/xmpp/xmpp.xml"/>
+			<node title="Objects">
+				<node title="XmppConnection" xurl="plugins/xmpp/XmppConnection.xml"/>
+				<node title="XmppPacket" xurl="plugins/xmpp/XmppPacket.xml"/>
+				<node title="XmppIQ" xurl="plugins/xmpp/XmppIQ.xml"/>
+				<node title="XmppMessage" xurl="plugins/xmpp/XmppMessage.xml"/>
+				<node title="XmppPresence" xurl="plugins/xmpp/XmppPresence.xml"/>
+				<node title="XmppRoster" xurl="plugins/xmpp/XmppRoster.xml"/>
+				<node title="XmppRosterEntry" xurl="plugins/xmpp/XmppRosterEntry.xml"/>
+				<node title="XmppRosterGroup" xurl="plugins/xmpp/XmppRosterGroup.xml"/>
+				<node title="XmppChat" xurl="plugins/xmpp/XmppClient.xml"/>
+				<node title="XmppGroupChat" xurl="plugins/xmpp/XmppGroupClient.xml"/>
+			</node>
+		</node>
+		<node title="XPath">
+			<node title="Overview" xurl="plugins/xpath/xpath.xml"/>
+			<node title="Objects">
+				<node title="XPathEvaluator" xurl="plugins/xpath/XPathEvaluator.xml"/>
+				<node title="XPathException" xurl="plugins/xpath/XPathException.xml"/>
+				<node title="XPathResult" xurl="plugins/xpath/XPathResult.xml"/>
+			</node>
+		</node>
+		<node title="XSLT">
+			<node title="Overview" xurl="plugins/xslt/xslt.xml"/>
+		</node>
+	</node>
+</book>

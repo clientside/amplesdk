@@ -132,11 +132,11 @@ cXULElement_scale.redraw	= function(oInstance) {
 
 // Element Render: open
 cXULElement_scale.prototype.$getTagOpen	= function() {
-	return '<div class="xul-scale' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + (!this.$isAccessible() ? " xul-scale_disabled" : '') + (" xul-scale-orient-" +(this.attributes["orient"] == "vertical" ? "vertical" : "horizontal")) + '"' + (this.attributes["style"] ? ' style="' + this.attributes["style"] + '"': '') + '>\
+	return '<div class="xul-scale' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + (!this.$isAccessible() ? " xul-scale_disabled" : '') + (" xul-scale-orient-" +(this.getAttribute("orient") == "vertical" ? "vertical" : "horizontal")) + '"' + (this.hasAttribute("style") ? ' style="' + this.getAttribute("style") + '"': '') + '>\
 				<div class="xul-scale--before" style="float:left"></div>\
 				<div class="xul-scale--after" style="float:right"></div>\
 				<div class="xul-scale--bar" onmousedown="return false" style="position:relative"></div>\
-				<input type="text" value="' + this.attributes["value"] + '" autocomplete="off" style="display:none;width:1px;height:1px;" class="xul-scale--input"/>\
+				<input type="text" value="' + this.getAttribute("value") + '" autocomplete="off" style="display:none;width:1px;height:1px;" class="xul-scale--input"/>\
 			</div>';
 };
 

@@ -12,7 +12,7 @@ cXSElement_schema.prototype	= new cXSElement("schema");
 
 cXSElement_schema.handlers	= {};
 cXSElement_schema.handlers.DOMNodeInsertedIntoDocument	= function(oEvent) {
-	var sNameSpaceURI	= this.attributes["targetNamespace"];
+	var sNameSpaceURI	= this.getAttribute("targetNamespace");
 	if (sNameSpaceURI) {
 		// Create new namespace item
 		var oNamespaceItem	= new cXSNamespaceItem;

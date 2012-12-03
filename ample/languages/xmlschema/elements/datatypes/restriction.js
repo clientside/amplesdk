@@ -14,7 +14,7 @@ cXSElement_restriction.handlers	= {};
 cXSElement_restriction.handlers.DOMNodeInsertedIntoDocument	= function(oEvent) {
 	var oType	= this.parentNode.$type;
 	//
-	var sBase	= this.attributes["base"];
+	var sBase	= this.getAttribute("base");
 	if (sBase) {
 		var aQName	= sBase.split(':'),
 			sLocalName		= aQName[1],

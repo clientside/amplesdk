@@ -155,16 +155,16 @@ cXULElement_dialog.prototype.$mapAttribute	= function(sName, sValue) {
 
 // Element Renders
 cXULElement_dialog.prototype.$getTagOpen	= function() {
-	return '<div class="xul-dialog' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="' +
-				(this.attributes["width"] ? 'width:' + this.attributes["width"] + 'px;' : '') +
-				(this.attributes["height"] ? 'height:' + (this.attributes["height"] - 40) + 'px;' : '') +
-				(this.attributes["hidden"] == "true" ? 'display:none;' : '') +
-				(this.attributes["style"] ? this.attributes["style"] : '') + '">\
-				<div class="xul-dialog--head" ' +(this.attributes["hidechrome"] == "true" ? ' style="display:none"': '')+ '>\
+	return '<div class="xul-dialog' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '" style="' +
+				(this.hasAttribute("width") ? 'width:' + this.getAttribute("width") + 'px;' : '') +
+				(this.hasAttribute("height") ? 'height:' + (this.getAttribute("height") - 40) + 'px;' : '') +
+				(this.getAttribute("hidden") == "true" ? 'display:none;' : '') +
+				(this.hasAttribute("style") ? this.getAttribute("style") : '') + '">\
+				<div class="xul-dialog--head" ' +(this.getAttribute("hidechrome") == "true" ? ' style="display:none"': '')+ '>\
 					<table cellpadding="0" cellspacing="0" border="0" width="100%">\
 						<tbody>\
 							<tr>\
-								<td class="xul-dialog--title">' + (this.attributes["title"] ? ample.$encodeXMLCharacters(this.attributes["title"]) : " ") + '</td>\
+								<td class="xul-dialog--title">' + (this.hasAttribute("title") ? ample.$encodeXMLCharacters(this.getAttribute("title")) : " ") + '</td>\
 							</tr>\
 						</tbody>\
 					</table>\
@@ -175,30 +175,9 @@ cXULElement_dialog.prototype.$getTagOpen	= function() {
 
 // Element Render: close
 cXULElement_dialog.prototype.$getTagClose	= function() {
-	if (this.attributes["buttons"].indexOf("accept") ==-1)
-		this.buttons.accept.attributes["hidden"]= "true";
-	if (this.attributes["buttonlabelaccept"])
-		this.buttons.accept.attributes["label"]	= this.attributes["buttonlabelaccept"];
-	if (this.attributes["buttons"].indexOf("cancel") ==-1)
-		this.buttons.cancel.attributes["hidden"]= "true";
-	if (this.attributes["buttonlabelcancel"])
-		this.buttons.cancel.attributes["label"]	= this.attributes["buttonlabelcancel"];
-	if (this.attributes["buttons"].indexOf("help") ==-1)
-		this.buttons.help.attributes["hidden"]	= "true";
-	if (this.attributes["buttonlabelhelp"])
-		this.buttons.help.attributes["label"]	= this.attributes["buttonlabelhelp"];
-	if (this.attributes["buttons"].indexOf("extra1") ==-1)
-		this.buttons.extra1.attributes["hidden"]= "true";
-	if (this.attributes["buttonlabelextra1"])
-		this.buttons.extra1.attributes["label"]	= this.attributes["buttonlabelextra1"];
-	if (this.attributes["buttons"].indexOf("extra2") ==-1)
-		this.buttons.extra2.attributes["hidden"]= "true";
-	if (this.attributes["buttonlabelextra2"])
-		this.buttons.extra2.attributes["label"]	= this.attributes["buttonlabelextra2"];
-
 	return '	</div>\
 				<div class="xul-dialog--footer">\
-					<table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%" align="' +(this.attributes["buttonalign"] == "start" ? "left" : this.attributes["buttonalign"] == "center" ? "center" : "right")+ '">\
+					<table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%" align="' +(this.getAttribute("buttonalign") == "start" ? "left" : this.getAttribute("buttonalign") == "center" ? "center" : "right")+ '">\
 						<tbody>\
 							<tr>\
 								<td width="100%">' + this.buttons['help'].$getTag() + '</td>\

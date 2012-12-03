@@ -31,7 +31,7 @@ cXULElement_treechildren.prototype.reflow	= function() {
 cXULElement_treechildren.prototype._refresh	= function(aStack, nPrimaryCol) {
 	var nDepth		= aStack.length,
 		oChildren	= aStack[nDepth - 1],
-		bTreeLines	= this.tree.attributes["treelines"] != "false",
+		bTreeLines	= this.tree.getAttribute("treelines") != "false",
 		nItems		= oChildren.items.length;
 
 	for (var nItem = 0, oItem, oElementDOM; nItem < nItems; nItem++) {
@@ -50,13 +50,13 @@ cXULElement_treechildren.prototype._refresh	= function(aStack, nPrimaryCol) {
 			}
 
 			// Toc
-			if (oItem.attributes["container"] == "true") {
+			if (oItem.getAttribute("container") == "true") {
 				// Step In
 				if (oItem.children)
 					this._refresh(aStack.concat(oItem.children), nPrimaryCol);
 
 				// Add toc +/-
-				oElementDOM.childNodes[nDepth - 1].className = "xul-treecell--toc" +(oChildren.items[nItem].attributes["open"] == "true" ? " xul-treecell--toc_open" : "");
+				oElementDOM.childNodes[nDepth - 1].className = "xul-treecell--toc" +(oChildren.items[nItem].getAttribute("open") == "true" ? " xul-treecell--toc_open" : "");
 			}
 		}
 	}
@@ -69,7 +69,7 @@ cXULElement_treechildren.handlers	= {
 			if (oEvent.attrName == "hidden") {
 				for (var nIndex = 0; nIndex < this.items.length; nIndex++) {
 					this.items[nIndex].setAttribute("hidden", oEvent.newValue);
-					if (this.items[nIndex].children && this.items[nIndex].attributes["open"] != "false")
+					if (this.items[nIndex].children && this.items[nIndex].getAttribute("open") != "false")
 						this.items[nIndex].children.setAttribute("hidden", oEvent.newValue);
 				}
 			}

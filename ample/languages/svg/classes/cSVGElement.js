@@ -41,7 +41,7 @@ if (cSVGElement.useVML) {
 	};
 
 	cSVGElement.getMatrixOwn	= function(oElement) {
-		var sValue		= oElement.attributes["transform"] || '',
+		var sValue		= oElement.getAttribute("transform") || '',
 			aCommands	= sValue.match(/\w+\([^\)]+\s*,?\)/g),
 			aMatrix		= cSVGElement.matrixCreate();
 
@@ -169,17 +169,16 @@ if (cSVGElement.useVML) {
 					cSVGElement.applyTransform(oElement.childNodes[nIndex]);
 	};
 
-	// Note! Performance optimization: Getting attribute values in a hacky way here ".attributes[]" instead of ".getAttribute()"
 	cSVGElement.prototype.$getStyle	= function(sName) {
 		var sValue;
 
 		// 1) first check if style specified
-		if (sValue = this.attributes["style"])
+		if (sValue = this.getAttribute("style"))
 			if (sValue.match(new RegExp(sName + "\\s*:\\s*[\'\"]?\\s*([^;\'\"]+)\\s*[\'\"]?")))
 				return RegExp.$1;
 
 		// 2) second check if attribute specified
-		if (sValue = this.attributes[sName])
+		if (sValue = this.getAttribute(sName))
 			return sValue;
 
 		return '';
@@ -306,7 +305,7 @@ if (cSVGElement.useVML) {
 					nStrokeWidth	= aStrokeWidth[1] * cSVGElement.getScaleFactor(this) * Math.sqrt(Math.abs(cSVGElement.matrixDeterminant(cSVGElement.getMatrix(this))));
 				oElementDOM.stroke.weight	= nStrokeWidth + (aStrokeWidth[2] || 'px');
 				if (nStrokeWidth < 1 && !(this instanceof cSVGElement_text || this instanceof cSVGElement_tspan || this instanceof cSVGElement_textPath))
-					oElementDOM.stroke.opacity	= (this.attributes["stroke-opacity"] || 1) * nStrokeWidth;
+					oElementDOM.stroke.opacity	= (this.getAttribute("stroke-opacity") || 1) * nStrokeWidth;
 				else
 					oElementDOM.stroke.opacity	= 1;
 				break;
@@ -501,9 +500,9 @@ if (cSVGElement.useVML) {
 		var aAspect	= [1, 1],
 			oNode	= cSVGElement.getViewportElement(oElement);
 		if (oNode) {
-			var aViewBox= (oNode.attributes["viewBox"] || "").split(/[\s,]/),
-				aWidth	= (oNode.attributes["width"] || "").match(/([\d.]+)([%\w]*)/),
-				aHeight	= (oNode.attributes["height"] || "").match(/([\d.]+)([%\w]*)/);
+			var aViewBox= (oNode.getAttribute("viewBox") || "").split(/[\s,]/),
+				aWidth	= (oNode.getAttribute("width") || "").match(/([\d.]+)([%\w]*)/),
+				aHeight	= (oNode.getAttribute("height") || "").match(/([\d.]+)([%\w]*)/);
 			// Assume some values
 			if (aViewBox.length < 4) {
 				if (!aWidth)
@@ -853,10 +852,10 @@ else {
 	// Default Element Render: open
 	cSVGElement.prototype.$getTagOpen	= function() {
 		var sHtml	= '<' + this.tagName;
-		for (var sName in this.attributes)
-			if (this.attributes.hasOwnProperty(sName) && sName != "id" && sName != "class")// && sName.indexOf(':') ==-1)
-				sHtml	+= ' ' + sName + '="' + ample.$encodeXMLCharacters(this.attributes[sName]) + '"';
-		sHtml	+= ' class="' + ('svg-' + this.localName + ' ') + (this.prefix ? this.prefix + '-' : '') + this.localName + ("class" in this.attributes ? ' ' + this.attributes["class"] : '') + '"';
+		for (var nIndex = 0, oAttribute; nIndex < this.attributes.length; nIndex++)
+			if ((oAttribute = this.attributes[nIndex]).name != "id" && oAttribute.name != "class")// && sName.indexOf(':') ==-1)
+				sHtml	+= ' ' + oAttribute.name + '="' + ample.$encodeXMLCharacters(oAttribute.value) + '"';
+		sHtml	+= ' class="' + ('svg-' + this.localName + ' ') + (this.prefix ? this.prefix + '-' : '') + this.localName + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '') + '"';
 		return sHtml + '>';
 	};
 

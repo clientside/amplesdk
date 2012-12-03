@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="markup:xul:XULElement" name="broadcasterset">
+	<abstract>
+		<locale>
+			A container element for <link type="element" href="reference://markup/xul/broadcaster">broadcaster</link> elements.
+			The broadcasterset and its descendants are not displayed.
+		</locale>
+		<locale xml:lang="ru">
+			Контейнер для элементов <link type="element" href="reference://markup/xul/broadcaster">broadcaster</link>.
+			Элемент <link type="element" href="reference://markup/xul/broadcasterset">broadcasterset</link> и
+			все содержащиеся в нем элементы не отображаются.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes />
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

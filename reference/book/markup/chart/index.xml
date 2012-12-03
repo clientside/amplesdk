@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<article>
+	<title>Chart Markup Language</title>
+	<abstract>
+		<locale>
+			The Chart Markup Language contains common chart components.
+		</locale>
+	</abstract>
+	<content>
+		<section>
+			<title>
+				<locale>
+					Namespace URI
+				</locale>
+			</title>
+			<content>
+				<locale>
+					Chart Markup Language defines a namespaces associated with the URI <uri>http://www.amplesdk.com/ns/chart</uri>.
+				</locale>
+			</content>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Ample SDK implementation details
+				</locale>
+			</title>
+			<content>
+				<locale>
+					This language is being developed by <link href="http://www.amplesdk.com/community/">Ample SDK community</link>.
+				</locale>
+				<locale xml:lang="ru">
+					Этот язык разрабатывается и поддерживается <link href="http://www.amplesdk.com/community/">сообществом Ample SDK</link>.
+				</locale>
+			</content>
+		</section>
+	</content>
+</article>

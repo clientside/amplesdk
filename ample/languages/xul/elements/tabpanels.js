@@ -35,7 +35,7 @@ cXULElement_tabpanels.handlers	= {
 
 // Element Render: open
 cXULElement_tabpanels.prototype.$getTagOpen	= function() {
-	return '<div class="xul-tabpanels' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">';
+	return '<div class="xul-tabpanels' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '">';
 };
 
 // Element Render: close

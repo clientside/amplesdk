@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<class name="NamedNodeMap">
+	<abstract>
+		<locale>
+			Represent collections of nodes that can be accessed by name.
+		</locale>
+	</abstract>
+	<examples/>
+	<members>
+		<properties>
+			<property name="length" type="Number" readonly="true">
+				<description>
+					<locale>
+						The number of nodes in this map.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<methods>
+			<method name="item" type="dom:core:Attr">
+				<arguments>
+					<argument name="index" type="Number">
+						<description>
+							<locale>
+								Index into this map.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Returns the index-th item in the map.
+						If index is greater than or equal to the number of nodes in this map, this returns null.
+					</locale>
+				</description>
+			</method>
+			<method name="getNamedItem" type="dom:core:Attr">
+				<arguments>
+					<argument name="name" type="String">
+						<description>
+							<locale>
+								The nodeName of a node to retrieve.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Retrieves a node specified by name.
+					</locale>
+				</description>
+			</method>
+			<method name="getNamedItemNS" type="dom:core:Attr">
+				<arguments>
+					<argument name="namespaceURI" type="String">
+						<description>
+							<locale>
+								The namespace URI of the node to retrieve.
+							</locale>
+						</description>
+					</argument>
+					<argument name="localName" type="String">
+						<description>
+							<locale>
+								The local name of the node to retrieve.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Retrieves a node specified by local name and namespace URI.
+					</locale>
+				</description>
+			</method>
+			<method name="removeNamedItem" type="dom:core:Attr">
+				<arguments>
+					<argument name="name" type="String">
+						<description>
+							<locale>
+								The nodeName of the node to remove.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Removes a node specified by name.
+					</locale>
+				</description>
+			</method>
+			<method name="removeNamedItemNS" type="dom:core:Attr">
+				<arguments>
+					<argument name="namespaceURI" type="String">
+						<description>
+							<locale>
+								The namespace URI of the node to remove.
+							</locale>
+						</description>
+					</argument>
+					<argument name="localName" type="String">
+						<description>
+							<locale>
+								The local name of the node to remove.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Removes a node specified by local name and namespace URI.
+					</locale>
+				</description>
+			</method>
+			<method name="setNamedItem" type="dom:core:Attr">
+				<arguments>
+					<argument name="node" type="dom:core:Node">
+						<description>
+							<locale>
+								A node to store in this map.
+								The node will later be accessible using the value of its nodeName attribute.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Adds a node using its nodeName attribute.
+						If a node with that name is already present in this map, it is replaced by the new one.
+						Returns node if the new Node replaces an existing node the replaced Node is returned, otherwise null.
+					</locale>
+				</description>
+			</method>
+			<method name="removeNamedItemNS" type="dom:core:Attr">
+				<arguments>
+					<argument name="node" type="dom:core:Node">
+						<description>
+							<locale>
+								A node to store in this map.
+								The node will later be accessible using the value of its namespaceURI and localName attributes.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Adds a node using its namespaceURI and localName.
+						If a node with that namespace URI and that local name is already present in this map, it is replaced by the new one.
+						Returns node if the new Node replaces an existing node the replaced Node is returned, otherwise null.
+					</locale>
+				</description>
+			</method>
+		</methods>
+	</members>
+</class>

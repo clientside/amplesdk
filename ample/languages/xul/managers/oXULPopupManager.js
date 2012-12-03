@@ -16,20 +16,20 @@ var oXULPopupManager	= (function () {
 	ample.bind("mouseenter",	function(oEvent) {
 		for (var oElement = oEvent.target, oTooltip; oElement.nodeType != ample.classes.Node.DOCUMENT_NODE; oElement = oElement.parentNode) {
 			if (oElement.$isAccessible()) {
-				if (oElement.attributes["tooltiptext"]) {
+				if (oElement.hasAttribute("tooltiptext")) {
 					oTooltip	= oTooltipPane;
 					if (!oTooltip)	{
 						//
 						oTooltip	= this.documentElement.appendChild(this.createElementNS(oElement.namespaceURI, "xul:tooltip-pane"));
 						oTooltipPane	= oTooltip;
 					}
-					oTooltip.setText(oElement.attributes["tooltiptext"]);
+					oTooltip.setText(oElement.getAttribute("tooltiptext"));
 					oTooltip.showPopup(null, oEvent.clientX + document.documentElement.scrollLeft, oEvent.clientY + 18 + document.documentElement.scrollTop, cXULPopupElement.POPUP_TYPE_TOOLTIP);
 					ample.tooltipNode	= oTooltip;
 				}
 				else
-				if (oElement.attributes["tooltip"]) {
-					oTooltip	= this.getElementById(oElement.attributes["tooltip"]);
+				if (oElement.hasAttribute("tooltip")) {
+					oTooltip	= this.getElementById(oElement.getAttribute("tooltip"));
 					if (oTooltip) {
 						oTooltip.showPopup(null, oEvent.clientX + document.documentElement.scrollLeft, oEvent.clientY + 18 + document.documentElement.scrollTop, cXULPopupElement.POPUP_TYPE_TOOLTIP);
 						ample.tooltipNode	= oTooltip;
@@ -49,8 +49,8 @@ var oXULPopupManager	= (function () {
 	ample.bind("contextmenu", function(oEvent) {
 		for (var oElement = oEvent.target, oPopup; oElement.nodeType != ample.classes.Node.DOCUMENT_NODE; oElement = oElement.parentNode) {
 			if (oElement.$isAccessible()) {
-				if (oElement.attributes["context"]) {
-					if (oPopup = this.getElementById(oElement.attributes["context"])) {
+				if (oElement.hasAttribute("context")) {
+					if (oPopup = this.getElementById(oElement.getAttribute("context"))) {
 						oPopup.showPopup(oElement, oEvent.clientX + document.documentElement.scrollLeft, oEvent.clientY + document.documentElement.scrollTop, cXULPopupElement.POPUP_TYPE_POPUP);
 						this.popupNode	= oPopup;
 					}
@@ -64,8 +64,8 @@ var oXULPopupManager	= (function () {
 	ample.bind("click", function(oEvent) {
 		for (var oElement = oEvent.target, oPopup; oElement.nodeType != ample.classes.Node.DOCUMENT_NODE; oElement = oElement.parentNode) {
 			if (oElement.$isAccessible()) {
-				if (oElement.attributes["popup"]) {
-					if (oPopup = this.getElementById(oElement.attributes["popup"])) {
+				if (oElement.hasAttribute("popup")) {
+					if (oPopup = this.getElementById(oElement.getAttribute("popup"))) {
 						oPopup.showPopup(oElement, oEvent.clientX + document.documentElement.scrollLeft, oEvent.clientY + document.documentElement.scrollTop, cXULPopupElement.POPUP_TYPE_POPUP);
 						this.popupNode	= oPopup;
 					}

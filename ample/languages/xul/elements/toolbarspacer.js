@@ -12,7 +12,7 @@ cXULElement_toolbarspacer.prototype	= new cXULElement("toolbarspacer");
 
 // Element Render: open
 cXULElement_toolbarspacer.prototype.$getTagOpen	= function() {
-	return '<div class="xul-toolbarspacer' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"><br /></div>';
+	return '<div class="xul-toolbarspacer' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '"><br /></div>';
 };
 
 // Register Element

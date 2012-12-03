@@ -13,14 +13,14 @@ cXMLEventsElement_listener.prototype	= new cXMLEventsElement("listener");
 // Class Event Handlers
 cXMLEventsElement_listener.handlers	= {};
 cXMLEventsElement_listener.handlers["DOMNodeInsertedIntoDocument"]	= function(oEvent) {
-	var sValue	= this.attributes["handler"] || '';
+	var sValue	= fElement_getAttribute(this, "handler") || '';
 	fEventTarget_addEventListener(this.parentNode,
-		this.attributes["event"],
-		cFunction("event",	(this.attributes["propagate"] == "stop" ? "event" + '.' + "stopPropagation" + '();' : '') +
-							(this.attributes["defaultAction"] == "cancel" ? "event" + '.' + "preventDefault" + '();' : '') +
+		fElement_getAttribute(this, "event"),
+		cFunction("event",	(fElement_getAttribute(this, "propagate") == "stop" ? "event" + '.' + "stopPropagation" + '();' : '') +
+							(fElement_getAttribute(this, "defaultAction") == "cancel" ? "event" + '.' + "preventDefault" + '();' : '') +
 							(sValue.indexOf("javascript" + ':') == 0 ? sValue.substr(cString("javascript" + ':').length) : '')
 					),
-		this.attributes["phase"] == "capture"
+		fElement_getAttribute(this, "phase") == "capture"
 	);
 };
 

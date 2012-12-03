@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="markup:xul:XULElement" name="treecols">
+	<abstract>
+		<locale>
+			A group of <link type="element" href="reference://markup/xul/treecol">treecol</link> elements. There should one and only one <link type="element" href="reference://markup/xul/treecols">treecols</link> element in a <link type="element" href="reference://markup/xul/tree">tree</link>.
+		</locale>
+		<locale xml:lang="ru">
+			Группа элементов <link type="element" href="reference://markup/xul/treecol">treecol</link>.
+			Допускается использование только одного элемента <link type="element" href="reference://markup/xul/treecols">treecols</link> в дереве.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes />
+		<methods />
+		<properties>
+			<property name="items" type="dom:core:NodeList" readonly="true">
+				<description>
+					<locale>
+						Contains a collection of <link type="element" href="reference://markup/xul/treecol">treecol</link> child elements.
+					</locale>
+					<locale xml:lang="ru">
+						Коллекция элементов <link type="element" href="reference://markup/xul/treecol">treecol</link>.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<events />
+	</members>
+</element>

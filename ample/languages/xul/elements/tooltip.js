@@ -13,7 +13,7 @@ cXULElement_tooltip.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
 
 // Element Render: open
 cXULElement_tooltip.prototype.$getTagOpen		= function() {
-	return '<div style="display:none;position:absolute;" class="xul-tooltip' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">';
+	return '<div style="display:none;position:absolute;" class="xul-tooltip' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '">';
 };
 
 // Element Render: close

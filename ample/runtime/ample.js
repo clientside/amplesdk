@@ -299,10 +299,10 @@ if (!oPrefixes["xlink"])
 // Add known prefixes to ample.documentElement
 for (var sKey in oPrefixes)
 	if (oPrefixes.hasOwnProperty(sKey) && sKey != '')
-		oAmple_root.attributes["xmlns" + ':' + sKey]	= oPrefixes[sKey];
+		fElement_setAttributeNS(oAmple_root, sNS_XMLNS, "xmlns" + ':' + sKey, oPrefixes[sKey]);
 
 // Set xml:base
-oAmple_root.attributes["xml:base"]	= fUtilities_resolveUri('.', sAmple_include);
+fElement_setAttributeNS(oAmple_root, sNS_XML, "xml:base", fUtilities_resolveUri('.', sAmple_include));
 
 //
 oAmple.open	= function() {

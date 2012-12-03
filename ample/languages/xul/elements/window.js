@@ -28,16 +28,16 @@ cXULElement_window.handlers	= {
 
 // Element Renders
 cXULElement_window.prototype.$getTagOpen	= function() {
-	return '<div class="xul-window'+(this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="' +
-				(this.attributes["width"] ? 'width:' + this.attributes["width"] + 'px;' : '') +
-				(this.attributes["height"] ? 'height:' + this.attributes["height"] + 'px;' : '') +
-				(this.attributes["hidden"] == "true" ? 'display:none;' : '') +
-				(this.attributes["style"] ? this.attributes["style"] : '') + '">\
-				<div class="xul-window--head" ' +(this.attributes["hidechrome"] == "true" ? ' style="display:none"': '')+ '>\
+	return '<div class="xul-window'+(this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '" style="' +
+				(this.hasAttribute("width") ? 'width:' + this.getAttribute("width") + 'px;' : '') +
+				(this.hasAttribute("height") ? 'height:' + this.getAttribute("height") + 'px;' : '') +
+				(this.getAttribute("hidden") == "true" ? 'display:none;' : '') +
+				(this.hasAttribute("style") ? this.getAttribute("style") : '') + '">\
+				<div class="xul-window--head" ' +(this.getAttribute("hidechrome") == "true" ? ' style="display:none"': '')+ '>\
 					<table cellpadding="0" cellspacing="0" border="0" width="100%" height="20">\
 						<tbody>\
 							<tr>\
-								<td class="xul-window--title">' +(this.attributes["title"] ? ample.$encodeXMLCharacters(this.attributes["title"]) : " ")+ '</td>\
+								<td class="xul-window--title">' +(this.hasAttribute("title") ? ample.$encodeXMLCharacters(this.getAttribute("title")) : " ")+ '</td>\
 								<td width="1"><div class="xul-window--button-close xul-window--button-close_normal" onclick="ample.$instance(this).hide()" onmouseover="this.className=this.className.replace(\'normal\', \'hover\')" onmouseout="this.className=this.className.replace(/hover|active/, \'normal\')" onmousedown="this.className=this.className.replace(\'hover\', \'active\')" onmouseup="this.className=this.className.replace(\'active\', \'normal\')"><br /></div></td>\
 							</tr>\
 						</tbody>\

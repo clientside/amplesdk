@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<article>
+	<title>Scalable Vector Graphics (SVG) 1.1</title>
+	<abstract>
+		<locale>
+			SVG 1.1 is the modularized language for describing two-dimensional vector and mixed vector/raster graphics in XML.
+		</locale>
+	</abstract>
+	<content>
+		<section>
+			<title>
+				<locale>
+					Namespace URI
+				</locale>
+				<locale xml:lang="ru">
+					Пространство имен
+				</locale>
+			</title>
+			<content>
+				<locale>
+					SVG 1.1 defines a namespaces associated with the URI <uri>http://www.w3.org/2000/svg</uri>.
+				</locale>
+				<locale xml:lang="ru">
+					Пространство имен SVG 1.1 определяется URI <uri>http://www.w3.org/2000/svg</uri>
+				</locale>
+			</content>
+		</section>
+		<section>
+			<title>
+				<locale>
+					Ample SDK implementation details
+				</locale>
+				<locale xml:lang="ru">
+					Реализация в Ample SDK
+				</locale>
+			</title>
+			<content>
+				<locale>
+					Following modules are supported:
+					<ul>
+						<li><link href="http://www.w3.org/TR/SVG/struct.html">5. Document Structure</link></li>
+						<li><link href="http://www.w3.org/TR/SVG/styling.html">6. Styling</link></li>
+						<li><link href="http://www.w3.org/TR/SVG/paths.html">8. Paths</link></li>
+						<li><link href="http://www.w3.org/TR/SVG/shapes.html">9. Basic Shapes</link></li>
+						<li><link href="http://www.w3.org/TR/SVG/text.html">10. Text</link></li>
+						<li><link href="http://www.w3.org/TR/SVG/painting.html">11. Painting: Filling, Stroking and Marker Symbols</link></li>
+						<li><link href="http://www.w3.org/TR/SVG/pservers.html">13. Gradients and Patterns</link> (Partial implementation)</li>
+						<li><link href="http://www.w3.org/TR/SVG/script.html">18. Scripting</link></li>
+						<li><link href="http://www.w3.org/TR/SVG/animate.html">19. Animation</link></li>
+						<li><link href="http://www.w3.org/TR/SVG/extend.html">23. Extensibility</link></li>
+					</ul>
+				</locale>
+				<locale xml:lang="ru">
+					В настоящее время реализация языка SVG 1.1 в <b>Ample SDK</b> находится в стадии разработки. Следующие модули уже доступны для тестирования:
+					<ul>
+						<li><link href="http://www.w3.org/TR/SVG/struct.html">5. Document Structure</link></li>
+						<li><link href="http://www.w3.org/TR/SVG/paths.html">8. Paths</link></li>
+						<li><link href="http://www.w3.org/TR/SVG/shapes.html">9. Basic Shapes</link></li>
+						<li><link href="http://www.w3.org/TR/SVG/text.html">10. Text</link></li>
+					</ul>
+				</locale>
+			</content>
+		</section>
+	</content>
+	<seealso>
+		<link href="http://www.w3.org/TR/SVGTiny12/">Scalable Vector Graphics (SVG) 1.2 Tiny Specification (W3C)</link>
+	</seealso>
+</article>

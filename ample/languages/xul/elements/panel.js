@@ -9,7 +9,7 @@ cXULElement_panel.attributes.width	= "150";
 
 // Element Render: open
 cXULElement_panel.prototype.$getTagOpen	= function() {
-	return '<div class="xul-panel' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="display:none;position:absolute;width:' + this.attributes["width"] + 'px;" onmousedown="event.cancelBubble=true;" oncontextmenu="return false">';
+	return '<div class="xul-panel' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '" style="display:none;position:absolute;width:' + this.getAttribute("width") + 'px;" onmousedown="event.cancelBubble=true;" oncontextmenu="return false">';
 };
 
 // Element Render: close

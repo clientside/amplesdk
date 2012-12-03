@@ -12,11 +12,12 @@ cXHTMLElement_br.prototype	= new cXHTMLElement("br");
 
 // Element Render: close (cancel double tag)
 cXHTMLElement_br.prototype.$getTagOpen	= function() {
-	var sHtml	= '<' + this.localName;
-	for (var sName in this.attributes)
-		if (this.attributes.hasOwnProperty(sName) && sName != "class" && sName != "id" && sName.indexOf(':') ==-1)
-			sHtml	+= ' ' + sName + '="' + ample.$encodeXMLCharacters(this.attributes[sName]) + '"';
-	sHtml	+= ' class="' + (this.prefix ? this.prefix + '-' : '') + this.localName + ("class" in this.attributes ? ' ' + this.attributes["class"] : '') + '"';
+	var sHtml	= '<' + (this.localName in cXHTMLElement.html524 ? cXHTMLElement.html524[this.localName] : this.localName),
+		sClass	= this.getAttribute("class");
+	for (var nIndex = 0, oAttribute; nIndex < this.attributes.length; nIndex++)
+		if ((oAttribute = this.attributes[nIndex]) && oAttribute.name != "class" && oAttribute.name != "id" && !oAttribute.prefix)
+			sHtml	+= ' ' + oAttribute.name + '="' + ample.$encodeXMLCharacters(oAttribute.value) + '"';
+	sHtml	+= ' class="' + (this.prefix ? this.prefix + '-' : '') + this.localName + (sClass ? ' ' + sClass : '') + '"';
 	return sHtml + '/>';
 };
 

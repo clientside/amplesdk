@@ -42,7 +42,7 @@ cXULElement_radiogroup.handlers	= {
 		if (oEvent.target == this) {
 			if (oEvent.attrName == "value") {
 				for (var nIndex = 0; nIndex < this.items.length; nIndex++) {
-					if (this.items[nIndex].attributes["value"] == oEvent.newValue) {
+					if (this.items[nIndex].getAttribute("value") == oEvent.newValue) {
 						this.items[nIndex].setAttribute("selected", "true");
 						break;
 					}
@@ -55,7 +55,7 @@ cXULElement_radiogroup.handlers	= {
 			this.items.$add(oEvent.target);
 			oEvent.target.group	= this;
 			//
-			if (oEvent.target.attributes["selected"] == "true") {
+			if (oEvent.target.getAttribute("selected") == "true") {
 				this.selectedIndex	= this.items.length - 1;
 				this.selectedItem	= oEvent.target;
 			}
@@ -64,7 +64,7 @@ cXULElement_radiogroup.handlers	= {
 	"DOMNodeRemoved":	function(oEvent) {
 		if (oEvent.target instanceof cXULElement_radio) {
 			//
-			if (oEvent.target.attributes["selected"] == "true") {
+			if (oEvent.target.getAttribute("selected") == "true") {
 				if (this.selectedItem == oEvent.target) {
 					this.selectedIndex	=-1;
 					this.selectedItem	= null;
@@ -85,7 +85,7 @@ cXULElement_radiogroup.prototype.$mapAttribute	= function(sName, sValue) {
 
 // Element Render: open
 cXULElement_radiogroup.prototype.$getTagOpen	= function() {
-	return '<div class="xul-radiogroup' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + (!this.$isAccessible() ? " xul-radiogroup_disabled" : "") + '">';
+	return '<div class="xul-radiogroup' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + (!this.$isAccessible() ? " xul-radiogroup_disabled" : "") + '">';
 };
 
 // Element Render: close

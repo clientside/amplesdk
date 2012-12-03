@@ -9,9 +9,9 @@
 
 cXULElement.prototype.doCommand		= function() {
 	var oCommand	= this,
-		sCommand	= this.attributes.command;
+		sCommand	= this.getAttribute("command");
 	// If element is not command and if it has command attribute
-	if (!(this instanceof cXULElement_command) && sCommand) {
+	if (sCommand &&!(this instanceof cXULElement_command)) {
 		oCommand	= this.ownerDocument.getElementById(sCommand);
 		if (!(oCommand instanceof cXULElement_command))
 			oCommand	= null;
@@ -29,12 +29,11 @@ var oXULCommandDispatcher	= (function () {
 	//
 	ample.bind("DOMNodeInsertedIntoDocument", function(oEvent) {
 		if (oEvent.target instanceof cXULElement) {
-			var oElement, sName, sValue;
-			if ((sValue = oEvent.target.attributes["command"]) && (oElement = this.getElementById(sValue)) && oElement instanceof cXULElement_command)
-				for (sName in oElement.attributes)
-					if (oElement.attributes.hasOwnProperty(sName))
-						if (sName != "id" && sName != "persist")
-							oEvent.target.setAttribute(sName, oElement.attributes[sName]);
+			var oElement, sValue;
+			if ((sValue = oEvent.target.getAttribute("command")) && (oElement = this.getElementById(sValue)) && oElement instanceof cXULElement_command)
+				for (var nIndex = 0, oAttribute; nIndex < oElement.attributes.length; nIndex++)
+					if ((oAttribute = oElement.attributes[nIndex]).name != "id" && oAttribute.name != "persist")
+						oEvent.target.setAttribute(oAttribute.name, oAttribute.value);
 		}
 	}, true);
 

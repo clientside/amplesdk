@@ -43,11 +43,12 @@ cXHTMLElement_textarea.handlers	= {
 // Renderers
 cXHTMLElement_textarea.prototype.$getTagOpen	= function() {
 	var sClassName	= (this.prefix ? this.prefix + '-' : '') + this.localName,
+		sClass	= this.getAttribute("class"),
 		aHtml	=['<span'];
-	for (var sName in this.attributes)
-		if (this.attributes.hasOwnProperty(sName) && sName != "class" && sName != "id" && sName.indexOf(':') ==-1)
-			aHtml.push(' ' + sName + '="' + ample.$encodeXMLCharacters(this.attributes[sName]) + '"');
-	aHtml.push(' class="' + sClassName + ("class" in this.attributes ? ' ' + this.attributes["class"] : '') + '">');
+	for (var nIndex = 0, oAttribute; nIndex < this.attributes.length; nIndex++)
+		if ((oAttribute = this.attributes[nIndex]) && oAttribute.name != "class" && oAttribute.name != "id" && !oAttribute.prefix)
+			aHtml.push(' ' + oAttribute.name + '="' + ample.$encodeXMLCharacters(oAttribute.value) + '"');
+	aHtml.push(	' class="' + (this.prefix ? this.prefix + '-' : '') + this.localName + (sClass ? ' ' + sClass : '') + '">');
 	aHtml.push(	'<div style="position:absolute;margin-top:-2px;white-space:nowrap" class="' + sClassName + '--placeholder">' +(this.getAttribute("placeholder") || '')+ '</div>');
 	aHtml.push(	'<div class="' + sClassName + '--field" style="position:relative;height:100%;">');
 	aHtml.push(		'<textarea class="' + sClassName + '--value" onchange="ample.$instance(this)._onChange(event)" style="width:100%;height:100%">');

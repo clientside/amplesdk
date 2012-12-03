@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<class extends="dom:core:Element" name="AUIElement">
+	<abstract>
+		<locale>
+			Represents the base object for all the elements from AUI namespace.
+		</locale>
+		<locale xml:lang="ru">
+			Является базовым объектом для всех эдементов из пространства имен языка AUI.
+		</locale>
+	</abstract>
+	<remarks>
+		<remark>
+			<locale>
+				All the attributes prefixes should be bound to AUI namespace.
+			</locale>
+			<locale xml:lang="ru">
+				Все префиксы атрибутов должны быть привязаны к пространству имен языка AUI.
+			</locale>
+		</remark>
+	</remarks>
+	<examples />
+	<members>
+		<attributes />
+		<methods />
+		<properties />
+		<events />
+	</members>
+</class>

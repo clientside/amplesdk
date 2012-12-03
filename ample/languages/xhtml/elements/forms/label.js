@@ -17,7 +17,7 @@ cXHTMLElement_label.handlers	= {
 	},
 	"DOMActivate":	function(oEvent) {
 		var oControl;
-		if (this.attributes["for"] && (oControl = this.ownerDocument.getElementById(this.attributes["for"])))
+		if (this.hasAttribute("for") && (oControl = this.ownerDocument.getElementById(this.getAttribute("for"))))
 			if (oControl instanceof cXHTMLInputElement)
 				oControl.focus();
 	}

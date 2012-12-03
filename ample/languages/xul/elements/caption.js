@@ -26,10 +26,10 @@ cXULElement_caption.prototype.$mapAttribute	= function(sName, sValue) {
 		return;
 	//
 	if (sName == "label")
-		this.parentNode.$getContainer("caption").innerHTML	=(this.attributes["image"] ? '<img src="' + this.attributes["image"] + '" align="absmiddle" /> ' : '')+ (sValue || '');
+		this.parentNode.$getContainer("caption").innerHTML	=(this.hasAttribute("image") ? '<img src="' + this.getAttribute("image") + '" align="absmiddle" /> ' : '')+ (sValue || '');
 	else
 	if (sName == "image")
-		this.parentNode.$getContainer("caption").innerHTML	=(sValue ? '<img src="' + sValue + '" align="absmiddle" /> ' : '') + (this.attributes["label"] ? this.attributes["label"] : '');
+		this.parentNode.$getContainer("caption").innerHTML	=(sValue ? '<img src="' + sValue + '" align="absmiddle" /> ' : '') + (this.getAttribute("label") || '');
 	else
 	if (sName == "hidden")
 		this.parentNode.$getContainer("caption").style.display	= sValue == "true" ? "none" : "";

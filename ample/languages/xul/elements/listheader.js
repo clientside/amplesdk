@@ -63,7 +63,7 @@ cXULElement_listheader.prototype.$mapAttribute	= function(sName, sValue) {
 	else
 	if (sName == "width") {
 		this.$getContainer("stretch").style.width	= sValue != null ? sValue + "px" : '';
-		this.parentNode.parentNode.body.$getContainer("foot").rows[0].cells[this.parentNode.items.$indexOf(this) + (this.parentNode.parentNode.attributes["type"] ? 1 : 0)].getElementsByTagName("div")[0].style.width	= sValue != null ? sValue + "px" : '';
+		this.parentNode.parentNode.body.$getContainer("foot").rows[0].cells[this.parentNode.items.$indexOf(this) + (this.parentNode.parentNode.getAttribute("type") ? 1 : 0)].getElementsByTagName("div")[0].style.width	= sValue != null ? sValue + "px" : '';
 	}
 	else
 	if (sName == "label")
@@ -72,7 +72,7 @@ cXULElement_listheader.prototype.$mapAttribute	= function(sName, sValue) {
 	if (sName == "hidden") {
 		var nCell	= this.parentNode.items.$indexOf(this);
 		this.$getContainer().style.display	= sValue == "true" ? "none" : "";
-		this.parentNode.parentNode.body.$getContainer("foot").rows[0].cells[nCell + (this.parentNode.parentNode.attributes["type"] ? 1 : 0)].style.display	= sValue == "true" ? "none" : "";
+		this.parentNode.parentNode.body.$getContainer("foot").rows[0].cells[nCell + (this.parentNode.parentNode.getAttribute("type") ? 1 : 0)].style.display	= sValue == "true" ? "none" : "";
 	}
 	else
 		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
@@ -80,9 +80,9 @@ cXULElement_listheader.prototype.$mapAttribute	= function(sName, sValue) {
 
 // Element Render: open
 cXULElement_listheader.prototype.$getTagOpen	= function() {
-	return '<td class="xul-listheader' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"' +(this.attributes["hidden"] == "true" ? ' style="display:none"' : "")+ '>\
+	return '<td class="xul-listheader' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '"' +(this.getAttribute("hidden") == "true" ? ' style="display:none"' : "")+ '>\
 				<div class="xul-listheader--box" style="position:relative;width:100%;">\
-					<div class="xul-listheader--label xul-listheader--gateway" style="position:absolute;width:100%;overflow:hidden;"> ' + (this.attributes["label"] ? ample.$encodeXMLCharacters(this.attributes["label"]) : "");
+					<div class="xul-listheader--label xul-listheader--gateway" style="position:absolute;width:100%;overflow:hidden;"> ' + (this.hasAttribute("label") ? ample.$encodeXMLCharacters(this.getAttribute("label")) : "");
 };
 
 // Element Render: close
@@ -90,8 +90,8 @@ cXULElement_listheader.prototype.$getTagClose	= function() {
 	return			'</div>\
 					<div class="xul-listheader--resizer" style="position: absolute;right:0px;"><br /></div>\
 				</div>\
-				<div class="xul-listheader--stretch" style="height:1pt;font-size:1px;' + (this.attributes["width"] ? 'width:' + this.attributes["width"] + 'px' : "") + '"></div>\
-				<div style="height:1pt;font-size:1px;' + (this.attributes["minwidth"] ? 'width:' + this.attributes["minwidth"] + 'px' : '') + '"></div>\
+				<div class="xul-listheader--stretch" style="height:1pt;font-size:1px;' + (this.hasAttribute("width") ? 'width:' + this.getAttribute("width") + 'px' : "") + '"></div>\
+				<div style="height:1pt;font-size:1px;' + (this.hasAttribute("minwidth") ? 'width:' + this.getAttribute("minwidth") + 'px' : '') + '"></div>\
 			</td>';
 };
 

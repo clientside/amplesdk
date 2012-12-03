@@ -118,7 +118,7 @@ cXULElement_wizard.prototype.goTo	= function(sId) {
 
 cXULElement_wizard.prototype.getPageById	= function(sId) {
 	for (var nIndex = 0; nIndex < this.wizardPages.length; nIndex++)
-		if (this.wizardPages[nIndex].attributes["pageid"] == sId)
+		if (this.wizardPages[nIndex].getAttribute("pageid") == sId)
 			return this.wizardPages[nIndex];
 
 	return null;
@@ -184,9 +184,9 @@ cXULElement_wizard.goTo	= function(oElement, oPage) {
 	oPage.$getContainer().style.display	= "";
 
 	// Set header label and description
-	oElement.$getContainer("label").innerHTML	= oPage.attributes["label"] || " ";
-	oElement.$getContainer("description").innerHTML	= oPage.attributes["description"] || " ";
-	oElement.$getContainer("header").className	= "xul-wizardheader xul-wizard--header " + (oPage.attributes["class"] || "");
+	oElement.$getContainer("label").innerHTML	= oPage.getAttribute("label") || " ";
+	oElement.$getContainer("description").innerHTML	= oPage.getAttribute("description") || " ";
+	oElement.$getContainer("header").className	= "xul-wizardheader xul-wizard--header " + (oPage.getAttribute("class") || "");
 
 	// Set buttons state
 	var bNext	= cXULElement_wizard.getNextPage(oElement, oPage) != null,	// Is there next page?
@@ -201,10 +201,10 @@ cXULElement_wizard.goTo	= function(oElement, oPage) {
 };
 
 cXULElement_wizard.getPrevPage	= function(oElement, oPage) {
-	var sId	= oPage.attributes["pageid"];
+	var sId	= oPage.getAttribute("pageid");
 	if (sId)
 		for (var oNode = oElement.lastChild; oNode; oNode = oNode.previousSibling)
-			if (oNode instanceof cXULElement_wizardpage && oNode.attributes["next"] == sId)
+			if (oNode instanceof cXULElement_wizardpage && oNode.getAttribute("next") == sId)
 				return oNode;
 	while (oPage = oPage.previousSibling)
 		if (oPage instanceof cXULElement_wizardpage)
@@ -213,10 +213,10 @@ cXULElement_wizard.getPrevPage	= function(oElement, oPage) {
 };
 
 cXULElement_wizard.getNextPage	= function(oElement, oPage) {
-	var sId	= oPage.attributes["next"];
+	var sId	= oPage.getAttribute("next");
 	if (sId)
 		for (var oNode = oElement.firstChild; oNode; oNode = oNode.nextSibling)
-			if (oNode instanceof cXULElement_wizardpage && oNode.attributes["pageid"] == sId)
+			if (oNode instanceof cXULElement_wizardpage && oNode.getAttribute("pageid") == sId)
 				return oNode;
 	while (oPage = oPage.nextSibling)
 		if (oPage instanceof cXULElement_wizardpage)
@@ -226,15 +226,15 @@ cXULElement_wizard.getNextPage	= function(oElement, oPage) {
 
 // Element Render: open
 cXULElement_wizard.prototype.$getTagOpen	= function() {
-	return '<div class="xul-wizard'+(this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="' +
-				(this.attributes["width"] ? 'width:' + this.attributes["width"] + 'px;' : '') +
-				(this.attributes["height"] ? 'height:' + (this.attributes["height"] - 100) + 'px;' : '') +
-				(this.attributes["hidden"] == "true" ? 'display:none;' : '') +
-				(this.attributes["style"] ? this.attributes["style"] : '') + '">\
-				<div class="xul-wizard--head" ' +(this.attributes["hidechrome"] == "true" ? ' style="display:none"': '')+ '>\
+	return '<div class="xul-wizard'+(this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '" style="' +
+				(this.hasAttribute("width") ? 'width:' + this.getAttribute("width") + 'px;' : '') +
+				(this.hasAttribute("height") ? 'height:' + (this.getAttribute("heigh") - 100) + 'px;' : '') +
+				(this.getAttribute("hidden") == "true" ? 'display:none;' : '') +
+				(this.hasAttribute("style") ? this.getAttribute("style") : '') + '">\
+				<div class="xul-wizard--head" ' +(this.getAttribute("hidechrome") == "true" ? ' style="display:none"': '')+ '>\
 					<table cellpadding="0" cellspacing="0" border="0" width="100%">\
 						<tbody>\
-							<tr><td class="xul-wizard--title">' +(this.attributes["title"] ? ample.$encodeXMLCharacters(this.attributes["title"]) : " ")+ '</td></tr>\
+							<tr><td class="xul-wizard--title">' +(this.hasAttribute("title") ? ample.$encodeXMLCharacters(this.getAttribute("title")) : " ")+ '</td></tr>\
 						</tbody>\
 					</table>\
 				</div>\
@@ -247,7 +247,7 @@ cXULElement_wizard.prototype.$getTagOpen	= function() {
 cXULElement_wizard.prototype.$getTagClose	= function() {
 	return '		</div>\
 					<div class="xul-wizard--footer">\
-						<table cellpadding="0" cellspacing="0" border="0" height="100%" align="' +(this.attributes["buttonalign"] == "start" ? "left" : this.attributes["buttonalign"] == "center" ? "center" : "right")+ '">\
+						<table cellpadding="0" cellspacing="0" border="0" height="100%" align="' +(this.getAttribute("buttonalign") == "start" ? "left" : this.getAttribute("buttonalign") == "center" ? "center" : "right")+ '">\
 							<tbody>\
 								<tr>\
 									<td>' + this.buttons['back'].$getTag() + '</td>\

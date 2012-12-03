@@ -55,7 +55,7 @@ cXULElement_listitem.handlers	= {
 cXULElement_listitem.prototype.$mapAttribute	= function(sName, sValue) {
 	if (sName == "selected") {
 		this.$setPseudoClass("selected", sValue == "true");
-		if (this.parentNode.parentNode.attributes["type"] == "checkbox" || this.parentNode.parentNode.attributes["type"] == "radio")
+		if (this.parentNode.parentNode.getAttribute("type") == "checkbox" || this.parentNode.parentNode.getAttribute("type") == "radio")
 			this.$getContainer("command").checked	= sValue == "true";
 	}
 	else
@@ -70,10 +70,10 @@ cXULElement_listitem.prototype.$isAccessible	= function() {
 // Events Handlers
 cXULElement_listitem.prototype._onCommandClick	= function(oEvent) {
 	if (this.$getContainer("command").checked) {
-		if (this.parentNode.parentNode.attributes["type"] == "radio")
+		if (this.parentNode.parentNode.getAttribute("type") == "radio")
 			this.parentNode.parentNode.selectItem(this);
 		else
-		if (this.parentNode.parentNode.attributes["type"] == "checkbox")
+		if (this.parentNode.parentNode.getAttribute("type") == "checkbox")
 			this.parentNode.parentNode.addItemToSelection(this);
 	}
 	else {
@@ -84,14 +84,14 @@ cXULElement_listitem.prototype._onCommandClick	= function(oEvent) {
 // Element Render: open
 cXULElement_listitem.prototype.$getTagOpen	= function() {
 	var oListBox	= this.parentNode.parentNode;
-	return '<tr class="xul-listitem' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="height:1.2em;vertical-align:top">' +
-				(this.attributes["label"] || (oListBox && (oListBox.attributes["type"] == "checkbox" || oListBox.attributes["type"] == "radio"))
+	return '<tr class="xul-listitem' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '" style="height:1.2em;vertical-align:top">' +
+				(this.hasAttribute("label") || (oListBox && (oListBox.getAttribute("type") == "checkbox" || oListBox.getAttribute("type") == "radio"))
 				? ('<td style="padding:0" onmousedown="event.cancelBubble=true;" class="xul-listcell">' +
-					(this.attributes["label"]
-					? '<div class="xul-listcell--gateway">' + ample.$encodeXMLCharacters(this.attributes["label"]) + '</div>'
-					: (this.parentNode.parentNode.attributes["type"] == "checkbox"
+					(this.hasAttribute("label")
+					? '<div class="xul-listcell--gateway">' + ample.$encodeXMLCharacters(this.getAttribute("label")) + '</div>'
+					: (this.parentNode.parentNode.getAttribute("type") == "checkbox"
 						? '<input type="checkbox" name="' + oListBox.uniqueID + '_cmd" class="xul-listitem--command" onclick="return ample.$instance(this)._onCommandClick(event);" autocomplete="off"/>'
-							: (this.parentNode.parentNode.attributes["type"] == "radio"
+							: (this.parentNode.parentNode.getAttribute("type") == "radio"
 							? '<input type="radio" name="' + oListBox.uniqueID + '_cmd" class="xul-listitem--command" onclick="return ample.$instance(this)._onCommandClick(event);"/>'
 						: ' ')))+
 				'</td>')

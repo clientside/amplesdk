@@ -14,9 +14,9 @@ cXULElement_box.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
 
 // Renderers
 cXULElement_box.prototype.$getTagOpen	= function() {
-	var sWidth	= this.attributes.width,
-		sHeight	= this.attributes.height;
-	return '<div class="xul-' + this.localName +(this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="' +
+	var sWidth	= this.getAttribute("width"),
+		sHeight	= this.getAttribute("height");
+	return '<div class="xul-' + this.localName +(this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '" style="' +
 		(sWidth ? 'width:' + (isNaN(parseInt(sWidth)) ? sWidth : sWidth + 'px;') : '')+
 		(sHeight ? 'height:' + (isNaN(parseInt(sHeight)) ? sHeight : sHeight + 'px;') : '')+
 	'">';

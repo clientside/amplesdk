@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="markup:xul:XULElement" name="spinbuttons">
+	<abstract>
+		<locale>
+			Spin buttons are two arrows, one to increase a value and one to decrease a value.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes />
+		<methods>
+			<method name="spin" type="Void">
+				<arguments>
+					<argument name="direction" type="Boolean">
+						<description>
+							<locale>
+								Direction of the spin effect.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Causes spin event to fire.
+					</locale>
+				</description>
+			</method>
+		</methods>
+		<properties />
+		<events>
+			<event name="spin" type="dom:events:CustomEvent">
+				<description>
+					<locale>
+						Fired when user clicks the up or down buttons.
+						The event is being continiously dispatched while user is holding the button.
+					</locale>
+				</description>
+			</event>
+		</events>
+	</members>
+</element>

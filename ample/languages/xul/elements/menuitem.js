@@ -34,11 +34,11 @@ cXULElement_menuitem.handlers	= {
 			if (oEvent.attrName == "checked") {
 				// uncheck all the sibling items with the same name attribute
 				var oElement	= this.parentNode;
-				if (this.attributes["type"] == "radio" && oEvent.newValue == "true") {
+				if (oElement && this.getAttribute("type") == "radio" && oEvent.newValue == "true") {
 					for (var nIndex = 0, oItem; nIndex < oElement.items.length; nIndex++) {
 						oItem	= oElement.items[nIndex];
-						if (oItem instanceof cXULElement_menuitem && oItem.attributes["type"] == "radio")
-							if (oItem != this && oItem.attributes["name"] == this.attributes["name"])
+						if (oItem instanceof cXULElement_menuitem && oItem.getAttribute("type") == "radio")
+							if (oItem != this && oItem.getAttribute("name") == this.getAttribute("name"))
 								oItem.setAttribute("checked", "false");
 					}
 				}
@@ -46,10 +46,10 @@ cXULElement_menuitem.handlers	= {
 		}
 	},
 	"DOMActivate":	function(oEvent) {
-		if (this.attributes["type"] == "checkbox")
-			this.setAttribute("checked", this.attributes["checked"] == "true" ? "false" : "true");
+		if (this.getAttribute("type") == "checkbox")
+			this.setAttribute("checked", this.getAttribute("checked") == "true" ? "false" : "true");
 		else
-		if (this.attributes["type"] == "radio")
+		if (this.getAttribute("type") == "radio")
 			this.setAttribute("checked", "true");
 
 		// Execute commands
@@ -99,10 +99,10 @@ cXULElement_menuitem.prototype.scrollIntoView	= function() {
 // Element Render: open
 cXULElement_menuitem.prototype.$getTagOpen		= function() {
 	var bDisabled	= !this.$isAccessible(),
-		bChecked	= this.attributes["checked"] == "true";
-	return '<tr class="xul-menuitem' + (bDisabled ? " xul-menuitem_disabled" : "") + (bChecked ? ' xul-menuitem_checked' : '') + (bChecked && bDisabled ? ' xul-menuitem_checked_disabled xul-menuitem_disabled_checked' : '') + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"' + (this.attributes["style"] ? ' style="' + this.attributes["style"] + '"' : '') + '>\
-				<td width="18"><div class="xul-menuitem--image xul-menuitem-type---image' + (this.attributes["type"] ? ' xul-menuitem-type-' + this.attributes["type"] + '--image' : '') + '"' +(this.attributes["image"] ? ' style="background-image:url('+ ample.$encodeXMLCharacters(this.attributes["image"]) + ')"' : '')+ '></div></td>\
-				<td nowrap="nowrap" class="xul-menuitem--label" style="white-space:nowrap;">' +(this.attributes["label"] ? ample.$encodeXMLCharacters(this.attributes["label"]) : ' ');
+		bChecked	= this.getAttribute("checked") == "true";
+	return '<tr class="xul-menuitem' + (bDisabled ? " xul-menuitem_disabled" : "") + (bChecked ? ' xul-menuitem_checked' : '') + (bChecked && bDisabled ? ' xul-menuitem_checked_disabled xul-menuitem_disabled_checked' : '') + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '"' + (this.hasAttribute("style") ? ' style="' + this.getAttribute("style") + '"' : '') + '>\
+				<td width="18"><div class="xul-menuitem--image xul-menuitem-type---image' + (this.hasAttribute("type") ? ' xul-menuitem-type-' + this.getAttribute("type") + '--image' : '') + '"' +(this.hasAttribute("image") ? ' style="background-image:url('+ ample.$encodeXMLCharacters(this.getAttribute("image")) + ')"' : '')+ '></div></td>\
+				<td nowrap="nowrap" class="xul-menuitem--label" style="white-space:nowrap;">' +(this.hasAttribute("label") ? ample.$encodeXMLCharacters(this.getAttribute("label")) : ' ');
 };
 
 // Element Render: open

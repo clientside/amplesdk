@@ -38,7 +38,7 @@ cXHTMLElement_select.handlers	= {
 	},
 	"blur":		function(oEvent) {
 		// Hide popup if open
-		if (!this.attributes.multiple)
+		if (!this.hasAttribute("multiple"))
 			cXHTMLElement_select.toggle(this, false);
 		this.$getContainer("value").blur();
 	},
@@ -127,14 +127,14 @@ cXHTMLElement_select.toggle	= function(oInstance, bForce) {
 // Renderers
 cXHTMLElement_select.prototype.$getTagOpen	= function() {
 	var sClassName	= (this.prefix ? this.prefix + '-' : '') + this.localName,
-		bMultiple	= "multiple" in this.attributes || this.attributes.multiple == "true",
+		bMultiple	=this.hasAttribute("multiple"),
 		bPopupMode	= bMultiple;
 	return '<span class="' + sClassName + ' ' + (bMultiple ? sClassName + '-multiple-' : '') +
-					("class" in this.attributes ? ' ' + this.attributes["class"] : '')+
-					(this.attributes["required"] ? ' ' + sClassName + '_required' : '')+
-					(this.attributes["disabled"] ? ' ' + sClassName + '_disabled' : '')+
+					(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+
+					(this.hasAttribute("required") ? ' ' + sClassName + '_required' : '')+
+					(this.hasAttribute("disabled") ? ' ' + sClassName + '_disabled' : '')+
 			'">\
-				<div style="position:absolute;margin-top:-2px;white-space:nowrap" class="' + sClassName + '--placeholder">' +(this.attributes["placeholder"] ? ample.$encodeXMLCharacters(this.attributes["placeholder"]) : '')+ '</div>\
+				<div style="position:absolute;margin-top:-2px;white-space:nowrap" class="' + sClassName + '--placeholder">' +(this.hasAttribute("placeholder") ? ample.$encodeXMLCharacters(this.getAttribute("placeholder")) : '')+ '</div>\
 					<div class="' + sClassName + '--field" style="position:relative;' + (bPopupMode ? 'display:none' : '') + '">\
 					<div class="' + sClassName + '--button" style="right:0"></div>\
 					<input class="' + sClassName + '--value" type="text" />\

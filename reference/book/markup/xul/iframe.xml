@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="markup:xul:XULElement" name="iframe">
+	<abstract>
+		<locale>
+			An inner frame that works much like the HTML iframe element.
+			The <link type="attribute" href="reference://markup/xul/iframe">src</link> attribute can be used to specify the content of the frame.
+			This content is a separate document.
+			The children of the <link type="element" href="reference://markup/xul/iframe">iframe</link> are ignored.
+		</locale>
+		<locale xml:lang="ru">
+			Аналогичен элементу <b>iframe</b> в HTML.
+			Атрибут <link type="attribute" href="reference://markup/xul/iframe">src</link> используется для указания пути к содержимому фрейма.
+			Содержимое должно быть отдельным документом.
+			Если указаны дочерние элементы элемента <link type="element" href="reference://markup/xul/iframe">iframe</link>,
+			они будут проигнорированы.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="src" default="about:blank" readonly="false">
+				<description>
+					<locale>
+						The URL of the content to appear in the element.
+					</locale>
+					<locale xml:lang="ru">
+						URL документа, который будет отображен внутри элемента <link type="element" href="reference://markup/xul/iframe">iframe</link>.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods />
+		<properties>
+			<property name="contentDocument" readonly="true" type="dom:core:Document">
+				<description>
+					<locale>
+						This read-only property contains the document object in the element.
+					</locale>
+					<locale xml:lang="ru">
+						Ссылка на объект <b>Document</b> элемента <link type="element" href="reference://markup/xul/iframe">iframe</link>.
+					</locale>
+				</description>
+			</property>
+			<property name="contentWindow" readonly="true" type="window">
+				<description>
+					<locale>
+						This read-only property contains the window object in the element.
+					</locale>
+					<locale xml:lang="ru">
+						Ссылка на объект window элемента <link type="element" href="reference://markup/xul/iframe">iframe</link>.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<events>
+<!--
+			<event name="load" type="dom:events:Event" cancelable="false" bubbles="false">
+				<description>
+					<locale xml:lang="ru">
+						Fires immediately after the document is loaded.
+					</locale>
+				</description>
+			</event>
+			<event name="unload" type="dom:events:Event" cancelable="false" bubbles="false">
+				<description>
+					<locale xml:lang="ru">
+						Fires immediately before the document is unloaded.
+					</locale>
+				</description>
+			</event>
+-->
+		</events>
+	</members>
+</element>

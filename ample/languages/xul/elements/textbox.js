@@ -46,18 +46,18 @@ cXULElement_textbox.handlers	= {
 			this.$getContainer("placeholder").style.display	= "";
 	},
 	"keydown":	function(oEvent) {
-		if (this.attributes["type"] == "number") {
+		if (this.getAttribute("type") == "number") {
 			if (oEvent.keyIdentifier == "Up" || oEvent.keyIdentifier == "Down")
 				this.spinButtons.spin(oEvent.keyIdentifier == "Up");
 		}
 	},
 	"keyup":	function(oEvent) {
-		this.attributes["value"]	= this.$getContainer("input").value;
+		this.setAttribute("value", this.$getContainer("input").value);
 	},
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this) {
 			if (oEvent.attrName == "disabled") {
-				if (this.attributes["type"] == "number")
+				if (this.getAttribute("type") == "number")
 					this.spinButtons.setAttribute("disabled", oEvent.newValue == "true" ? "true" : "false");
 			}
 			else
@@ -98,12 +98,12 @@ cXULElement_textbox.prototype.$mapAttribute	= function(sName, sValue) {
 	}
 	else
 	if (sName == "row") {
-		if (this.attributes["multiline"] == "true")
+		if (this.getAttribute("multiline") == "true")
 			this.$getContainer("input").rows	= sValue || '';
 	}
 	else
 	if (sName == "cols") {
-		if (this.attributes["multiline"] == "true")
+		if (this.getAttribute("multiline") == "true")
 			this.$getContainer("input").cols	= sValue || '';
 	}
 	else
@@ -117,30 +117,28 @@ cXULElement_textbox.prototype._onChange	= function(oEvent) {
 
 // Element Render: open
 cXULElement_textbox.prototype.$getTagOpen	= function(oElement) {
-	var bMultiline	= this.attributes["multiline"] == "true";
-	if (this.attributes["type"] == "number")
-		this.spinButtons.attributes["disabled"]	= this.$isAccessible() ? "false" : "true";
-	return	'<div class="xul-textbox' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + (bMultiline ? ' xul-textbox-multiline-true' : '') + " xul-textbox-type-" + (this.attributes["type"] || '') + (!this.$isAccessible() ? " xul-textbox_disabled" : '')+ '" style="'+
-				(this.attributes["height"] ? 'height:' + this.attributes["height"] + ';' : '')+
-				(this.attributes["width"] ? 'width:' + this.attributes["width"] + ';' : '')+
-				(this.attributes["style"] ? this.attributes["style"] : '')+'">\
-				<div class="xul-textbox--placeholder" style="position:absolute;' + (this.getAttribute("value") == '' ? '' : 'display:none')+ '" onmousedown="var o = ample.$instance(this); setTimeout(function(){o.$getContainer(\'input\').focus();o.$getContainer(\'input\').select()}, 0)">' + (this.attributes["placeholder"] ? ample.$encodeXMLCharacters(this.attributes["placeholder"]) : '') + '</div>\
+	var bMultiline	= this.getAttribute("multiline") == "true";
+	return	'<div class="xul-textbox' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + (bMultiline ? ' xul-textbox-multiline-true' : '') + " xul-textbox-type-" + (this.getAttribute("type") || '') + (!this.$isAccessible() ? " xul-textbox_disabled" : '')+ '" style="'+
+				(this.hasAttribute("height") ? 'height:' + this.getAttribute("height") + ';' : '')+
+				(this.hasAttribute("width") ? 'width:' + this.getAttribute("width") + ';' : '')+
+				(this.hasAttribute("style") ? this.getAttribute("style") : '')+'">\
+				<div class="xul-textbox--placeholder" style="position:absolute;' + (this.getAttribute("value") == '' ? '' : 'display:none')+ '" onmousedown="var o = ample.$instance(this); setTimeout(function(){o.$getContainer(\'input\').focus();o.$getContainer(\'input\').select()}, 0)">' + (this.hasAttribute("placeholder") ? ample.$encodeXMLCharacters(this.getAttribute("placeholder")) : '') + '</div>\
 				<div class="xul-textbox--field">\
-					' + (this.attributes["type"] == "number" ? this.spinButtons.$getTag() : this.attributes["type"] == "search" ? '<div class="xul-textbox--button" onmousedown="return false"></div>' : '')+ '\
+					' + (this.getAttribute("type") == "number" ? this.spinButtons.$getTag() : this.getAttribute("type") == "search" ? '<div class="xul-textbox--button" onmousedown="return false"></div>' : '')+ '\
 					<' +
 					(bMultiline
-						?("textarea" + (this.attributes["rows"] ? ' rows="' + this.attributes["rows"] + '"' : '')+(this.attributes["cols"] ? ' cols="' + this.attributes["cols"] + '"' : ''))
-						: this.attributes["type"] == "password"
+						?("textarea" + (this.hasAttribute("rows") ? ' rows="' + this.getAttribute("rows") + '"' : '')+(this.hasAttribute("cols") ? ' cols="' + this.getAttribute("cols") + '"' : ''))
+						: this.getAttribute("type") == "password"
 							? 'input type="password"'
 							: 'input type="text"')+
-						' class="xul-textbox--input" name="' + ample.$encodeXMLCharacters(this.attributes["name"] || '') + '" autocomplete="off" style="width:100%;' + (bMultiline ? 'height:100%;' : '') + 'border:0px solid white;"'+
+						' class="xul-textbox--input" name="' + ample.$encodeXMLCharacters(this.getAttribute("name") || '') + '" autocomplete="off" style="width:100%;' + (bMultiline ? 'height:100%;' : '') + 'border:0px solid white;"'+
 						' onblur="ample.$instance(this)._onChange(event)" onselectstart="event.cancelBubble=true;"'+
 						(!this.$isAccessible() ? ' disabled="true"' : '')+
-						(this.attributes["readonly"] == "true" ? ' readonly="true"' : '')+
+						(this.getAttribute("readonly") == "true" ? ' readonly="true"' : '')+
 						(this.hasAttribute("maxlength") ? ' maxlength="' + this.getAttribute("maxlength") + '"' : '')+
 					(bMultiline
-						? '>' + (this.attributes["value"] ? ample.$encodeXMLCharacters(this.attributes["value"]) : '') + '</textarea>'
-						:(this.attributes["value"] ? ' value="' + ample.$encodeXMLCharacters(this.attributes["value"]) + '"' : '') +' />')+ '\
+						? '>' + (this.hasAttribute("value") ? ample.$encodeXMLCharacters(this.getAttribute("value")) : '') + '</textarea>'
+						:(this.hasAttribute("value") ? ' value="' + ample.$encodeXMLCharacters(this.getAttribute("value")) + '"' : '') +' />')+ '\
 				</div>\
 			</div>';
 };

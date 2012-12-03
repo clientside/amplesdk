@@ -56,7 +56,7 @@ cNode.DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC	= 32;
 function fNode_getBaseURI(oNode) {
 	var sBaseUri	= '';
 	for (var oParent = oNode, sUri; oParent; oParent = oParent.parentNode)
-		if (oParent.nodeType == 1 /* cNode.ELEMENT_NODE */ && (sUri = oParent.attributes["xml:base"]))
+		if (oParent.nodeType == 1 /* cNode.ELEMENT_NODE */ && (sUri = fElement_getAttribute(oParent, "xml:base")))
 			sBaseUri	= fUtilities_resolveUri(sUri, sBaseUri);
 	return sBaseUri;
 };
@@ -276,14 +276,19 @@ function fNode_cloneNode(oNode, bDeep) {
 			oClone	= fDocument_createElementNS(oNode.ownerDocument, oNode.namespaceURI, oNode.nodeName);
 
 			// Copy Attributes
-			for (var sName in oNode.attributes)
-				if (oNode.attributes.hasOwnProperty(sName))
-					oClone.attributes[sName]	= oNode.attributes[sName];
+			for (var nIndex = 0, nLength = oNode.attributes.length; nIndex < nLength; nIndex++)
+				fElement_setAttributeNodeNS(oClone, fNode_cloneNode(oNode.attributes[nIndex]));
 
 			// Append Children
 			if (bDeep)
 				for (var nIndex = 0; nIndex < oNode.childNodes.length; nIndex++)
 					fNode_appendChild(oClone, fNode_cloneNode(oNode.childNodes[nIndex], bDeep));
+			break;
+
+		case 2:	// cNode.ATTRIBUTE_NODE
+			oClone	= fDocument_createAttributeNS(oNode.ownerDocument, oNode.namespaceURI, oNode.nodeName);
+			oClone.value	=
+			oClone.nodeValue	= oNode.value;
 			break;
 
 		case 3:	// cNode.TEXT_NODE
@@ -332,15 +337,21 @@ cNode.prototype.isSameNode	= function(oNode) {
 };
 
 function fNode_lookupPrefix(oNode, sNameSpaceURI) {
+	// XML prefixes
+	if (sNameSpaceURI == sNS_XML)
+		return "xml";
+	if (sNameSpaceURI == sNS_XMLNS)
+		return "xmlns";
+	// Custom prefixes
 	for (var aPrefixes = {}, sPrefix; oNode && oNode.nodeType != 9; oNode = oNode.parentNode) {
 		if (oNode.namespaceURI == sNameSpaceURI)
 			return oNode.prefix;
 		else
 		if (oNode.nodeType == 1)	// cNode.ELEMENT_NODE
-			for (var sAttribute in oNode.attributes)
-				if (oNode.attributes.hasOwnProperty(sAttribute) && sAttribute.indexOf("xmlns" + ':') == 0) {
-					sPrefix	= sAttribute.substr(6);
-					if (oNode.attributes[sAttribute] == sNameSpaceURI)
+			for (var nIndex = 0, nLength = oNode.attributes.length, oAttribute; nIndex < nLength; nIndex++)
+				if ((oAttribute = oNode.attributes[nIndex]).prefix == "xmlns") {
+					sPrefix	= oAttribute.localName;
+					if (oAttribute.value == sNameSpaceURI)
 						return sPrefix in aPrefixes ? '' : sPrefix;
 					else
 						aPrefixes[sPrefix]	= true;
@@ -374,12 +385,12 @@ function fNode_isDefaultNamespace(oNode, sNameSpaceURI) {
 			return false;
 
 		case 1:		// cNode.ELEMENT_NODE
-			for (; oNode && oNode.nodeType != 9 /* cNode.DOCUMENT_NODE */ ; oNode = oNode.parentNode)
+			for (var oAttribute; oNode && oNode.nodeType != 9 /* cNode.DOCUMENT_NODE */ ; oNode = oNode.parentNode)
 				if (!oNode.prefix)
 					return oNode.namespaceURI == sNameSpaceURI;
 				else
-				if (oNode.attributes.hasOwnProperty("xmlns"))
-					return oNode.attributes["xmlns"] == sNameSpaceURI;
+				if (oAttribute = fNamedNodeMap_getNamedItem(oNode.attributes, "xmlns"))
+					return oAttribute.value == sNameSpaceURI;
 			return false;
 
 		default:
@@ -398,14 +409,19 @@ cNode.prototype.isDefaultNamespace	= function(sNameSpaceURI) {
 };
 
 function fNode_lookupNamespaceURI(oNode, sPrefix) {
-	for (; oNode && oNode.nodeType != 9 /* cNode.DOCUMENT_NODE */ ; oNode = oNode.parentNode)
+	// XML namespaces
+	if (sPrefix == "xml")
+		return sNS_XML;
+	if (sPrefix == "xmlns")
+		return sNS_XMLNS;
+	// Custom namespaces
+	for (var oAttribute; oNode && oNode.nodeType != 9 /* cNode.DOCUMENT_NODE */ ; oNode = oNode.parentNode)
 		if (oNode.prefix == sPrefix)
 			return oNode.namespaceURI;
 		else
 		if (oNode.nodeType == 1)	// cNode.ELEMENT_NODE
-			for (var sAttribute in oNode.attributes)
-				if (oNode.attributes.hasOwnProperty(sAttribute) && sAttribute.indexOf("xmlns" + ':') == 0 && sAttribute.substr(6) == sPrefix)
-					return oNode.attributes[sAttribute];
+			if (oAttribute = fNamedNodeMap_getNamedItem(oNode.attributes, "xmlns" + ':' + sPrefix))
+				return oAttribute.value;
 	return null;
 };
 
@@ -556,11 +572,7 @@ cNode.prototype.hasAttributes	= function() {
 	], this);
 //<-Guard
 
-	if (this.attributes)
-		for (var sAttribute in this.attributes)
-			if (this.attributes.hasOwnProperty(sAttribute))
-				return true;
-	return false;
+	return !!this.attributes && !!this.attributes.length;
 };
 
 cNode.prototype.normalize		= function() {
@@ -650,27 +662,24 @@ cNode.prototype.$getTag	= function() {
 };
 
 function fNode_toXML(oNode) {
-	var aHtml	= [],
-		nIndex	= 0;
+	var aHtml	= [];
 //->Source
 	var nDepth	= arguments.length > 1 ? arguments[1] : 1;
 	aHtml.push(new cArray(nDepth).join('\t'));
 //<-Source
 	switch (oNode.nodeType) {
 		case 1:	// cNode.ELEMENT_NODE
-			var sName, oAttributes;
 			aHtml.push('<' + oNode.nodeName);
-			oAttributes	= oNode.attributes;
-			for (sName in oAttributes)
-				if (oAttributes.hasOwnProperty(sName))
-					aHtml.push(' ' + sName + '=' + '"' + fUtilities_encodeXMLCharacters(oAttributes[sName]) + '"');
-//			aHtml.push(' ' + '_' + '=' + '"' + oNode.uniqueID + '"');
+			for (var nIndex = 0, nLength = oNode.attributes.length; nIndex < nLength; nIndex++)
+				aHtml.push(' ' + oNode.attributes[nIndex].nodeName + '=' + '"' + fUtilities_encodeXMLCharacters(oNode.attributes[nIndex].nodeValue) + '"');
+
 			if (oNode.hasChildNodes()) {
 				aHtml.push('>');
 //->Source
 				aHtml.push('\n');
 				nDepth++;
 //<-Source
+				var nIndex	= 0;
 				while (nIndex < oNode.childNodes.length)
 					aHtml.push(fNode_toXML(oNode.childNodes[nIndex++]
 //->Source
@@ -717,6 +726,7 @@ function fNode_toXML(oNode) {
 */
 		case 11:	// cNode.DOCUMENT_FRAGMENT_NODE
 		case 9:		// cNode.DOCUMENT_NODE
+			var nIndex	= 0;
 			while (nIndex < oNode.childNodes.length)
 				aHtml.push(fNode_toXML(oNode.childNodes[nIndex++]
 //->Source

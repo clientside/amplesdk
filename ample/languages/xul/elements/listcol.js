@@ -23,7 +23,7 @@ cXULElement_listcol.handlers	= {
 
 // Element Render: open
 cXULElement_listcol.prototype.$getTagOpen	= function() {
-	return '<td class="xul-listcol' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"><br /></td>';
+	return '<td class="xul-listcol' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '"><br /></td>';
 };
 
 // Register Element

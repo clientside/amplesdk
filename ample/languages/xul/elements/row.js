@@ -18,7 +18,7 @@ cXULElement_row.attributes.orient	= "horizontal";
 
 // Element Render: open
 cXULElement_row.prototype.$getTagOpen		= function() {
-	return '<tr class="xul-row' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"' +(this.attributes["height"] ? ' height="' + this.attributes["height"] + '"' : '')+(this.attributes["hidden"] == "true" ? ' style="display:none"' : '')+'>';
+	return '<tr class="xul-row' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '"' +(this.hasAttribute("height") ? ' height="' + this.getAttribute("height") + '"' : '')+(this.getAttribute("hidden") == "true" ? ' style="display:none"' : '')+'>';
 };
 
 // Element Render: close

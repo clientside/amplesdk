@@ -18,7 +18,7 @@ cXHTMLElement.prototype.accessKey	= null;
 
 // Public methods
 cXHTMLElement.prototype.$isAccessible	= function() {
-	return !this.attributes["disabled"];
+	return !this.hasAttribute("disabled");
 };
 
 cXHTMLElement.prototype.$mapAttribute	= function(sName, sValue) {
@@ -52,11 +52,12 @@ cXHTMLElement.html524	= {
 
 // Default Element Render: open
 cXHTMLElement.prototype.$getTagOpen	= function() {
-	var sHtml	= '<' + (this.localName in cXHTMLElement.html524 ? cXHTMLElement.html524[this.localName] : this.localName);
-	for (var sName in this.attributes)
-		if (this.attributes.hasOwnProperty(sName) && sName != "class" && sName != "id" && sName.indexOf(':') ==-1)
-			sHtml	+= ' ' + sName + '="' + ample.$encodeXMLCharacters(this.attributes[sName]) + '"';
-	sHtml	+= ' class="' + (this.prefix ? this.prefix + '-' : '') + this.localName + ("class" in this.attributes ? ' ' + this.attributes["class"] : '') + '"';
+	var sHtml	= '<' + (this.localName in cXHTMLElement.html524 ? cXHTMLElement.html524[this.localName] : this.localName),
+		sClass	= this.getAttribute("class");
+	for (var nIndex = 0, oAttribute; nIndex < this.attributes.length; nIndex++)
+		if ((oAttribute = this.attributes[nIndex]) && oAttribute.name != "class" && oAttribute.name != "id" && !oAttribute.prefix)
+			sHtml	+= ' ' + oAttribute.name + '="' + ample.$encodeXMLCharacters(oAttribute.value) + '"';
+	sHtml	+= ' class="' + (this.prefix ? this.prefix + '-' : '') + this.localName + (sClass ? ' ' + sClass : '') + '"';
 	return sHtml + '>';
 };
 

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="markup:xul:XULElement" name="popupset">
+	<abstract>
+		<locale>
+			A container for <link type="element" href="reference://markup/xul/menupopup">menupopup</link>, <link type="element" href="reference://markup/xul/panel">panel</link> and <link type="element" href="reference://markup/xul/tooltip">tooltip</link> elements.
+		</locale>
+		<locale xml:lang="ru">
+			Контейнер для элементов <link type="element" href="reference://markup/xul/menupopup">menupopup</link>, <link type="element" href="reference://markup/xul/panel">panel</link> и <link type="element" href="reference://markup/xul/tooltip">tooltip</link>.
+			Все всплывающие элементы должны быть объявлены в нем. Этот элемент не отображается.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes />
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

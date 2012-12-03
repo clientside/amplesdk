@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="markup:xul:XULElement" name="toolbarseparator">
+	<abstract>
+		<locale>
+			Creates a separator between groups of toolbar items.
+		</locale>
+		<locale xml:lang="ru">
+			Разделитель для элемента <link type="element" href="reference://markup/xul/toolbar">toolbar</link>,
+			который разделяет группы элементов <link type="element" href="reference://markup/xul/toolbarbutton">toolbarbutton</link>.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes />
+		<methods />
+		<properties />
+		<events />
+	</members>
+</element>

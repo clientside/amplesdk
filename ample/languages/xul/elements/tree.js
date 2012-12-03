@@ -30,7 +30,7 @@ cXULElement_tree.prototype.changeOpenState		= function(oRow, bState) {
 cXULElement_tree.prototype.ensureRowIsVisible	= function(nIndex) {
 	var oElement	= this.items[nIndex];
 	do {
-		if (oElement.parentNode.attributes["hidden"] == "true")
+		if (oElement.parentNode.getAttribute("hidden") == "true")
 			return false;
 		oElement	= oElement.parentNode.parentNode;
 	} while (oElement != this.body);
@@ -100,7 +100,7 @@ cXULElement_tree.handlers	= {
 			if (oEvent.keyIdentifier == "Right") {
 				// Key: Right
 				if (this.currentItem.children) {
-					if (this.currentItem.attributes["open"] == "true")
+					if (this.currentItem.getAttribute("open") == "true")
 						this.selectItem(this.currentItem.children.items[0]);
 					else
 						this.currentItem.setAttribute("open", "true");
@@ -112,7 +112,7 @@ cXULElement_tree.handlers	= {
 			else
 			if (oEvent.keyIdentifier == "Left") {
 				// Key: Left
-				if (this.currentItem.children && this.currentItem.attributes["open"] == "true")
+				if (this.currentItem.children && this.currentItem.getAttribute("open") == "true")
 					this.currentItem.setAttribute("open", "false");
 				else
 				if (this.currentItem.parentNode.parentNode != this.body)
@@ -125,7 +125,7 @@ cXULElement_tree.handlers	= {
 			if (oEvent.keyIdentifier == "Enter") {
 				// Key: Enter
 				if (this.currentItem.children)
-					this.currentItem.setAttribute("open", this.currentItem.attributes["open"] == "true" ? "false" : "true");
+					this.currentItem.setAttribute("open", this.currentItem.getAttribute("open") == "true" ? "false" : "true");
 			}
 		}
 	},
@@ -228,9 +228,9 @@ cXULElement_tree.getNextItem		= function(oItem) {
 
 // Element Render: open
 cXULElement_tree.prototype.$getTagOpen		= function() {
-	var sHeight	= this.attributes["height"],
-		sWidth	= this.attributes["width"];
-	return '<div class="xul-tree' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + (!this.$isAccessible() ? " xul-tree_disabled" : "") + '" style="' + (sHeight ? 'height:' + (sHeight * 1 == sHeight ? sHeight + "px" : sHeight) + ';' : '') + (sWidth ? 'width:' + (sWidth * 1 == sWidth ? sWidth + "px" : sWidth) + ';' : '') + (this.attributes["style"] ? this.attributes["style"] + '' : '') + '">\
+	var sHeight	= this.getAttribute("height"),
+		sWidth	= this.getAttribute("width");
+	return '<div class="xul-tree' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + (!this.$isAccessible() ? " xul-tree_disabled" : "") + '" style="' + (sHeight ? 'height:' + (sHeight * 1 == sHeight ? sHeight + "px" : sHeight) + ';' : '') + (sWidth ? 'width:' + (sWidth * 1 == sWidth ? sWidth + "px" : sWidth) + ';' : '') + (this.hasAttribute("style") ? this.getAttribute("style") : '') + '">\
 				<div style="position:relative;height:100%;top:0;padding-bottom:inherit;">\
 					<div class="xul-tree--resizer" style="height:100%;position:absolute;top:0px;display:none;z-index:1"></div>\
 					<table cellpadding="0" cellspacing="0" border="0" height="100%" width="100%" style="position:absolute">\

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<class name="XULWindowElement" extends="markup:xul:XULElement">
+	<abstract>
+		<locale>
+			Represents base functionality for windowed elements.
+		</locale>
+	</abstract>
+	<examples/>
+	<members>
+		<attributes>
+			<attribute name="width">
+				<description>
+					<locale>
+						Specifies width of the window.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="height">
+				<description>
+					<locale>
+						Specifies height of the window.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="screenX">
+				<description>
+					<locale>
+						Specifies x location on the screen.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="screenY">
+				<description>
+					<locale>
+						Specifies y location on the screen.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods>
+			<method name="show" type="Void">
+				<arguments>
+					<argument name="x" type="Number" required="false">
+						<description>
+							<locale>
+								screenX position.
+							</locale>
+						</description>
+					</argument>
+					<argument name="y" type="Number" required="false">
+						<description>
+							<locale>
+								screenY position.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Shows the window at a specific screen position specified by x and y.
+					</locale>
+				</description>
+			</method>
+			<method name="showModal" type="Void">
+				<arguments>
+					<argument name="x" type="Number" required="false">
+						<description>
+							<locale>
+								screenX position.
+							</locale>
+						</description>
+					</argument>
+					<argument name="y" type="Number" required="false">
+						<description>
+							<locale>
+								screenY position.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Shows the window at a specific screen position specified by x and y in a modal state.
+					</locale>
+				</description>
+			</method>
+			<method name="hide" type="Void">
+				<description>
+					<locale>
+						Hides the window.
+					</locale>
+				</description>
+			</method>
+		</methods>
+		<events>
+			<event name="windowshown" type="">
+				<description>
+					<locale>
+						This event is sent to a window after it has been shown.
+					</locale>
+				</description>
+			</event>
+			<event name="windowhidden" type="">
+				<description>
+					<locale>
+						This event is sent to a window after it has been hidden.
+					</locale>
+				</description>
+			</event>
+		</events>
+	</members>
+</class>

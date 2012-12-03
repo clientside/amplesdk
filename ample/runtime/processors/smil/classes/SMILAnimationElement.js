@@ -15,21 +15,21 @@ cSMILAnimationElement.prototype	= new cSMILTimeElement("#element-animation");
 function fSMILAnimationElement_init(oEvent) {
 	var oElement	= oEvent.currentTarget;
 	// Target
-	oElement.targetElement	= oElement.attributes["targetElement"] || oElement.attributes["xlink:href"];
-	oElement.attributeName	= oElement.attributes["attributeName"];
-	oElement.attributeType	= oElement.attributes["attributeType"];
+	oElement.targetElement	= fElement_getAttribute(oElement, "targetElement") || fElement_getAttribute(oElement, "xlink:href");
+	oElement.attributeName	= fElement_getAttribute(oElement, "attributeName");
+	oElement.attributeType	= fElement_getAttribute(oElement, "attributeType");
 	// Simple Animation
-	oElement.from		= fNodeAnimation_parseValue(oElement.attributes["from"]);
-	oElement.to			= fNodeAnimation_parseValue(oElement.attributes['to']);
-	oElement.by			= fNodeAnimation_parseValue(oElement.attributes['by']);
-	oElement.values		= fSMILElement_parseValues(oElement.attributes["values"]);
+	oElement.from		= fNodeAnimation_parseValue(fElement_getAttribute(oElement, "from"));
+	oElement.to			= fNodeAnimation_parseValue(fElement_getAttribute(oElement, 'to'));
+	oElement.by			= fNodeAnimation_parseValue(fElement_getAttribute(oElement, 'by'));
+	oElement.values		= fSMILElement_parseValues(fElement_getAttribute(oElement, "values"));
 	//
-	oElement.calcMode	= oElement.attributes["calcMode"];
+	oElement.calcMode	= fElement_getAttribute(oElement, "calcMode");
 	// Fill
-	oElement.fill		= oElement.attributes["fill"];
+	oElement.fill		= fElement_getAttribute(oElement, "fill");
 	// Additive and Cumulative animation
-	oElement.additive	= oElement.attributes["additive"];		// sum|replace, "replace" is default
-	oElement.accumulate	= oElement.attributes["accumulate"];	// sum|none, "none" is default
+	oElement.additive	= fElement_getAttribute(oElement, "additive");		// sum|replace, "replace" is default
+	oElement.accumulate	= fElement_getAttribute(oElement, "accumulate");	// sum|none, "none" is default
 
 	if (!oElement.targetElement)
 		for (var oParent = oElement; oParent = oParent.parentNode;)
@@ -148,7 +148,7 @@ function fSMILAnimationElement_setAttributeValue(oElement, aValue) {
 				throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 			else
 			if (oElement instanceof cSMILElement_animateTransform)
-				oElement.targetElement.setAttribute(oElement.attributeName, aValue[0] ? oElement.attributes.type + '(' + aValue[0] + ')' : '');
+				oElement.targetElement.setAttribute(oElement.attributeName, aValue[0] ? fElement_getAttribute(oElement, "type") + '(' + aValue[0] + ')' : '');
 			else
 				oElement.targetElement.setAttribute(oElement.attributeName, aValue[2] ? aValue[2] + '(' + aValue[0] + ')' : aValue.join(''));
 		}

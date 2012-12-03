@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<element extends="dom:core:Element" name="repeater">
+	<abstract>
+		<locale>
+			Specifies a template for repetition.
+		</locale>
+		<locale xml:lang="ru">
+			Элемент <link type="element" href="reference://markup/aml/repeater">repeater</link>.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members>
+		<attributes>
+			<attribute name="data" readonly="true">
+				<description>
+					<locale>
+						Id of the <link type="element" href="reference://markup/aml/data">data</link> element.
+					</locale>
+				</description>
+			</attribute>
+			<attribute name="select" readonly="true">
+				<description>
+					<locale>
+						CSSQuery to be used as iterator.
+					</locale>
+				</description>
+			</attribute>
+		</attributes>
+		<methods><!--
+			<method name="bind">
+				<arguments>
+					<argument name="id">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+			<method name="update">
+				<arguments>
+					<argument name="query">
+						<description>
+							<locale>
+
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+
+					</locale>
+				</description>
+			</method>
+		--></methods>
+		<properties />
+		<events />
+	</members>
+</element>

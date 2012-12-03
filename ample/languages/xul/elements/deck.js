@@ -57,9 +57,9 @@ cXULElement_deck.prototype.$mapAttribute	= function(sName, sValue) {
 
 cXULElement_deck.prototype.reflow	= function() {
 	// Temp fix
-	var sValue	= this.attributes["selectedIndex"];
+	var sValue	= this.getAttribute("selectedIndex");
 	if (sValue) {
-		delete this.attributes["selectedIndex"];
+		this.removeAttribute("selectedIndex");
 		this.setAttribute("selectedIndex", sValue);
 	}
 	//
@@ -68,7 +68,7 @@ cXULElement_deck.prototype.reflow	= function() {
 
 // Element Render: open
 cXULElement_deck.prototype.$getTagOpen	= function() {
-	return '<div class="xul-deck' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">';
+	return '<div class="xul-deck' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '">';
 };
 
 // Element Render: close

@@ -33,35 +33,15 @@
 	<xsl:template match="@extends">
 		<p class="headline"><xsl:value-of select="$strings/title_extends" /></p>
 		<blockquote>
-			<a href="../{substring-before(., ':')}/{substring-after(., ':')}.xml">
-				<xsl:value-of select="substring-after(., ':')" />
+			<a href="../../{translate(., ':', '/')}.xml" class="object">
+				<xsl:value-of select="substring-after(substring-after(., ':'), ':')" />
 			</a>
 		</blockquote>
 	</xsl:template>
 
-	<xsl:template match="implements">
-		<xsl:if test="*">
-			<p class="headline"><xsl:value-of select="$strings/impl_title" /></p>
-			<blockquote>
-				<xsl:if test="interface">
-					<xsl:value-of select="substring-before($strings/impl_descr, '{name}')" />
-						<b><xsl:value-of select="$name"/></b>
-					<xsl:value-of select="substring-after($strings/impl_descr, '{name}')" />
-					<xsl:for-each select="interface">
-						<xsl:if test="position()!=1">, </xsl:if>
-						<a href="../{substring-before(@name, ':')}/{substring-after(@name, ':')}.xml">
-							<xsl:value-of select="substring-after(@name, ':')"/>
-						</a>
-					</xsl:for-each>
-					<xsl:text>.</xsl:text>
-				</xsl:if>
-			</blockquote>
-		</xsl:if>
-	</xsl:template>
-
 	<xsl:template name="extend">
 		<xsl:param name="document" />
-		<xsl:param name="extends" select="document(concat('../../books/ample/', substring-before($document/*/@extends, ':'), '/', substring-after($document/*/@extends, ':'), '.xml'))"/>
+		<xsl:param name="extends" select="document(concat('../../book/', translate($document/*/@extends, ':', '/'), '.xml'))"/>
 		<xsl:if test="$extends">
 			<xsl:if test="$extends/*/@extends">
 				<xsl:call-template name="extend">
@@ -72,28 +52,12 @@
 				<xsl:with-param name="document" select="$extends" />
 			</xsl:call-template>
 		</xsl:if>
-		<!--
-		<xsl:for-each select="$document/*/implements/interface">
-			<xsl:call-template name="extend-members">
-				<xsl:with-param name="document" select="document(concat('../../books/ample/', substring-before(@name, ':'), '/', substring-after(@name, ':'), '.xml'))" />
-			</xsl:call-template>
-		</xsl:for-each>
-		-->
 	</xsl:template>
 
 	<xsl:template name="extend-members">
 		<xsl:param name="document" />
 		<xsl:copy-of select="$document/*/members/*[not(local-name(.) = 'constants')]" />
 	</xsl:template>
-
-	<!--xsl:template name="implement">
-		<xsl:param name="document" />
-		<xsl:for-each select="$document/*/implements/interface">
-			<xsl:call-template name="inherit">
-				<xsl:with-param name="extends" select="$document/*/@name" />
-			</xsl:call-template>
-		</xsl:for-each>
-	</xsl:template-->
 
 	<!--
 		Template: Members
@@ -470,7 +434,7 @@
 			<td nowrap="yes">
 				<xsl:choose>
 					<xsl:when test="not(@type='Object' or @type='Variant' or @type='String' or @type='Number' or @type='Boolean' or @type='Function' or @type='Void' or @type='XMLNode' or @type='XMLDocument' or @type='XMLDocumentFragment' or @type='XMLElement' or @type='HTMLElement' or @type='TimeStamp' or @type='CSSStyleDeclaration')">
-						<a href="../runtime/{@type}.xml" class="object"><xsl:value-of select="@type" /></a>
+						<a href="{concat('../../../book/', translate(@type, ':', '/'), '.xml')}" class="object"><xsl:value-of select="substring-after(substring-after(@type, ':'), ':')" /></a>
 					</xsl:when>
 					<xsl:otherwise>
 						<xsl:value-of select="@type" />
@@ -592,7 +556,7 @@
 			<td nowrap="yes">
 				<xsl:choose>
 					<xsl:when test="not(@type='Object' or @type='Variant' or @type='String' or @type='Number' or @type='Boolean' or @type='Function' or @type='Void' or @type='XMLNode' or @type='XMLDocument' or @type='XMLDocumentFragment' or @type='XMLElement' or @type='HTMLElement' or @type='TimeStamp' or @type='CSSStyleDeclaration')">
-						<a href="../runtime/{@type}.xml" class="object"><xsl:value-of select="@type" /></a>
+						<a href="{concat('../../../book/', translate(@type, ':', '/'), '.xml')}" class="object"><xsl:value-of select="substring-after(substring-after(@type, ':'), ':')" /></a>
 					</xsl:when>
 					<xsl:otherwise>
 						<xsl:value-of select="@type" />
@@ -643,7 +607,7 @@
 										<td nowrap="yes">
 											<xsl:choose>
 												<xsl:when test="not(@type='Object' or @type='Variant' or @type='String' or @type='Number' or @type='Boolean' or @type='Function' or @type='Void' or @type='XMLNode' or @type='XMLDocument' or @type='XMLDocumentFragment' or @type='XMLElement' or @type='HTMLElement' or @type='TimeStamp' or @type='CSSStyleDeclaration')">
-													<a href="../runtime/{@type}.xml" class="object"><xsl:value-of select="@type" /></a>
+													<a href="{concat('../../../book/', translate(@type, ':', '/'), '.xml')}" class="object"><xsl:value-of select="substring-after(substring-after(@type, ':'), ':')" /></a>
 												</xsl:when>
 												<xsl:otherwise>
 													<xsl:value-of select="@type" />
@@ -723,7 +687,7 @@
 				</xsl:choose>
 			</td>
 			<td nowrap="yes">
-				<a href="../runtime/{@type}.xml"><xsl:value-of select="@type" /></a>
+				<a href="{concat('../../../book/', translate(@type, ':', '/'), '.xml')}" class="object"><xsl:value-of select="substring-after(substring-after(@type, ':'), ':')" /></a>
 			</td>
 			<td><xsl:apply-templates select="description"/></td>
 		</tr>

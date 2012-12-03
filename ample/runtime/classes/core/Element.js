@@ -142,7 +142,6 @@ function fElement_removeChild(oParent, oNode) {
 	// Call parent class method
 	fNode_removeChild(oParent, oNode);
 
-
 	return oNode;
 };
 
@@ -214,26 +213,22 @@ cElement.prototype.replaceChild	= function(oNode, oOld) {
 	return oOld;
 };
 
-function fElement_hazAttribute(oElement, sName) {
-	return oElement.attributes.hasOwnProperty(sName);
+function fElement_hazAttribute(oElement, sQName) {
+	return !!fNamedNodeMap_getNamedItem(oElement.attributes, sQName);
 };
 
-cElement.prototype.hasAttribute	= function(sName) {
+cElement.prototype.hasAttribute	= function(sQName) {
 //->Guard
 	fGuard(arguments, [
 		["name",		cString]
 	], this);
 //<-Guard
 
-	return fElement_hazAttribute(this, sName);
+	return fElement_hazAttribute(this, sQName);
 };
 
 function fElement_hazAttributeNS(oElement, sNameSpaceURI, sLocalName) {
-	if (sNameSpaceURI == null)
-		return fElement_hazAttribute(oElement, sLocalName);
-
-	var sPrefix	= fNode_lookupPrefix(oElement, sNameSpaceURI);
-	return sPrefix ? fElement_hazAttribute(oElement, sPrefix + ':' + sLocalName) : false;
+	return !!fNamedNodeMap_getNamedItemNS(oElement.attributes, sNameSpaceURI, sLocalName);
 };
 
 cElement.prototype.hasAttributeNS	= function(sNameSpaceURI, sLocalName) {
@@ -247,61 +242,68 @@ cElement.prototype.hasAttributeNS	= function(sNameSpaceURI, sLocalName) {
 	return fElement_hazAttributeNS(this, sNameSpaceURI, sLocalName);
 };
 
-function fElement_setAttribute(oElement, sName, sValue) {
-	var bValue	= sName in oElement.attributes,
-		sValueOld	= bValue ? oElement.attributes[sName] : null;
-
-	if (sValueOld != sValue) {
-		var bRegistered	= oDocument_all[oElement.uniqueID],
-			bCoreAttr	= sName == 'id' || sName == "class" || sName == "style";
-
-		// Only operate on shadow if element is in the DOM
-		if (bRegistered && bCoreAttr) {
-			if (sName == 'id') {
-				if (sValue) {
+function fElement_mapAttribute(oElement, sName, sValue, sValueOld) {
+	if (sName == 'id') {
+		if (sValue) {
 //->Debug
-					if (oDocument_ids[sValue])
-						fUtilities_warn(sGUARD_NOT_UNIQUE_ID_WRN, [sValue]);
+			if (oDocument_ids[sValue])
+				fUtilities_warn(sGUARD_NOT_UNIQUE_ID_WRN, [sValue]);
 //<-Debug
-					oDocument_ids[sValue]	= oElement;
-				}
-				if (sValueOld)
-					delete oDocument_ids[sValueOld];
-			}
-			// Find shadow content
-			var oElementDOM	= oElement.$getContainer();
-			// Update view
-			if (oElementDOM) {
-				if (sName == "class") {
-					var sClass	=(oElement.prefix ? oElement.prefix + '-' : '') + oElement.localName + (sValue ? ' ' + sValue : '');
-					if (bTrident && nVersion < 8)
-						oElementDOM.className	= sClass;
-					else
-						oElementDOM.setAttribute("class", sClass);
-				}
-				else
-				if (sName == "style")
-					oElementDOM.style.cssText	= sValue;
-				else
-					oElementDOM.id	= sValue ? sValue : oElement.uniqueID;
-			}
+			oDocument_ids[sValue]	= oElement;
 		}
-		//
-		oElement.attributes[sName]	= sValue;
-
-		// Fire Mutation event
-		var oEvent	= new cMutationEvent;
-		oEvent.initMutationEvent("DOMAttrModified", true, false, null, sValueOld, sValue, sName, bValue ? 1 /* cMutationEvent.MODIFICATION */ : 2 /* cMutationEvent.ADDITION */);
-		fEventTarget_dispatchEvent(oElement, oEvent);
-
-		// Run mapper
-		if (bRegistered && !bCoreAttr && (sName == "xlink:href" || sName.indexOf(':') ==-1))
-			oElement.$mapAttribute(sName, sValue);
+		if (sValueOld)
+			delete oDocument_ids[sValueOld];
+	}
+	// Update view
+	var oElementDOM	= oElement.$getContainer();
+	if (oElementDOM) {
+		if (sName == "class") {
+			var sClass	=(oElement.prefix ? oElement.prefix + '-' : '') + oElement.localName + (sValue ? ' ' + sValue : '');
+			if (bTrident && nVersion < 8)
+				oElementDOM.className	= sClass;
+			else
+				oElementDOM.setAttribute("class", sClass);
+		}
+		else
+		if (sName == "style")
+			oElementDOM.style.cssText	= sValue;
+		else
+			oElementDOM.id	= sValue ? sValue : oElement.uniqueID;
 	}
 };
 
-cElement.prototype.$mapAttribute	= function(sName, sValue) {
-	// Should be implemented in elements
+function fElement_setAttribute(oElement, sName, sValue) {
+	var oAttribute	= fNamedNodeMap_getNamedItem(oElement.attributes, sName);
+	if (!oAttribute || oAttribute.value != sValue) {
+		if (oAttribute) {
+			var bRegistered	= oDocument_all[oElement.uniqueID],
+				bCoreAttr	= sName == 'id' || sName == "class" || sName == "style",
+				sValueOld	= oAttribute.value;
+			//
+			oAttribute.value	=
+			oAttribute.nodeValue= sValue;
+
+			if (bRegistered && bCoreAttr)
+				fElement_mapAttribute(oElement, sName, sValue, sValueOld);
+
+			// Fire Mutation event
+			var oEvent	= new cMutationEvent;
+			oEvent.initMutationEvent("DOMAttrModified", true, false, null, sValueOld, sValue, sName, 1 /* cMutationEvent.MODIFICATION */);
+			fEventTarget_dispatchEvent(oElement, oEvent);
+
+			// Run mapper
+			if (bRegistered && !bCoreAttr && (sName == "xlink:href" || !oAttribute.prefix))
+				oElement.$mapAttribute(sName, sValue);
+		}
+		else {
+			oAttribute	= fDocument_createAttributeNS(oElement.ownerDocument, null, sName);
+			//
+			oAttribute.value	=
+			oAttribute.nodeValue= sValue;
+			//
+			fElement_setAttributeNode(oElement, oAttribute);
+		}
+	}
 };
 
 cElement.prototype.setAttribute	= function(sName, sValue) {
@@ -316,66 +318,31 @@ cElement.prototype.setAttribute	= function(sName, sValue) {
 };
 
 function fElement_setAttributeNS(oElement, sNameSpaceURI, sQName, sValue) {
-	if (sNameSpaceURI != null) {
-		var sElementPrefix	= fNode_lookupPrefix(oElement, sNameSpaceURI),
-			aQName		= sQName.split(':'),
-			sLocalName	= aQName.pop(),
-			sPrefix		= aQName.pop() || null;
+	if (sNameSpaceURI == null)
+		return fElement_setAttribute(oElement, sQName, sValue);
 
-		if (sPrefix) {
-			if (!sElementPrefix || (sPrefix != sElementPrefix))
-				// Put namespace declaration
-				oElement.attributes["xmlns" + ':' + sPrefix]	= sNameSpaceURI;
-		}
-		else
-		{
-			if (sElementPrefix)
-				sPrefix	= sElementPrefix;
-			else
-			{
-				// Create fake prefix
-				sPrefix	= '_' + 'p' + nElement_prefix++;
+	var aQName		= sQName.split(':'),
+		sLocalName	= aQName.pop(),
+		sPrefix		= aQName.pop() || null;
 
-				// Put namespace declaration
-				oElement.attributes["xmlns" + ':' + sPrefix]	= sNameSpaceURI;
-			}
-			//
-			sQName	= sPrefix + ':' + sLocalName;
-		}
-
-		// Global attributes module
-		if (!(sQName == "xmlns" || sNameSpaceURI == sNS_XMLNS || sNameSpaceURI == sNS_XML)) {
-			var fConstructor	= hClasses[sNameSpaceURI + '#' + '@' + sLocalName],
-				oAttribute,
-				oEvent;
-
+	var oAttribute	= fElement_getAttributeNS(oElement, sNameSpaceURI, sLocalName);
+	if (!oAttribute || oAttribute.value != sValue) {
+		// Create new attribute if there is no old
+		if (oAttribute) {
+			// Global attributes module
+			var fConstructor	= hClasses[oAttribute.namespaceURI + '#' + '@' + oAttribute.localName];
 			if (fConstructor) {
-				// oAttribute used to create fake object
-				oAttribute	= new fConstructor;
-				oAttribute.ownerDocument= oElement.ownerDocument;
-				oAttribute.ownerElement	= oElement;
-				oAttribute.name			=
-				oAttribute.nodeName		= sQName;
-				oAttribute.localName	= sLocalName;
-				oAttribute.prefix		= sPrefix;
-				oAttribute.namespaceURI	= sNameSpaceURI;
+				var oEvent;
 
-				if (sQName in oElement.attributes) {
-					// Old attribute values
-					oAttribute.value		=
-					oAttribute.nodeValue	= oElement.attributes[sQName];
-					// Fire Mutation event (pseudo)
-					oEvent	= new cMutationEvent;
-					oEvent.initMutationEvent("DOMNodeRemovedFromDocument", false, false, null, null, null, null, null);
-					oEvent.target	=
-					oEvent.currentTarget	= oAttribute;
-					oEvent.eventPhase		= 2 /*cEvent.AT_TARGET*/;
-					//
-					fEventTarget_handleEvent(oAttribute, oEvent);
-				}
-				// New attribute values
-				oAttribute.value		=
-				oAttribute.nodeValue	= sValue;
+				// Fire Mutation event (pseudo)
+				oEvent	= new cMutationEvent;
+				oEvent.initMutationEvent("DOMNodeRemovedFromDocument", false, false, null, null, null, null, null);
+				oEvent.target	=
+				oEvent.currentTarget	= oAttribute;
+				oEvent.eventPhase		= 2 /*cEvent.AT_TARGET*/;
+				//
+				fEventTarget_handleEvent(oAttribute, oEvent);
+
 				// Fire Mutation event (pseudo)
 				oEvent	= new cMutationEvent;
 				oEvent.initMutationEvent("DOMNodeInsertedIntoDocument", false, false, null, null, null, null, null);
@@ -386,10 +353,36 @@ function fElement_setAttributeNS(oElement, sNameSpaceURI, sQName, sValue) {
 				fEventTarget_handleEvent(oAttribute, oEvent);
 			}
 		}
+		else {
+			// Add prefix declaration for non-system namespaces
+			if (sNameSpaceURI != sNS_XMLNS && sNameSpaceURI != sNS_XML) {
+				var sElementPrefix	= fNode_lookupPrefix(oElement, sNameSpaceURI);
+				if (sPrefix) {
+					if (!sElementPrefix || (sPrefix != sElementPrefix))
+						// Put namespace declaration
+						fElement_setAttributeNS(oElement, sNS_XMLNS, "xmlns" + ':' + sPrefix, sNameSpaceURI);
+				}
+				else {
+					if (sElementPrefix)
+						sPrefix	= sElementPrefix;
+					else {
+						// Create new prefix
+						sPrefix	= '_' + 'p' + nElement_prefix++;
+						// Put namespace declaration
+						fElement_setAttributeNS(oElement, sNS_XMLNS, "xmlns" + ':' + sPrefix, sNameSpaceURI);
+					}
+					//
+					sQName	= sPrefix + ':' + sLocalName;
+				}
+			}
+			oAttribute	= fDocument_createAttributeNS(oElement.ownerDocument, sNameSpaceURI, sQName);
+			// New attribute values
+			oAttribute.value		=
+			oAttribute.nodeValue	= sValue;
+			//
+			fElement_setAttributeNodeNS(oElement, oAttribute);
+		}
 	}
-
-	// Set attribute
-	fElement_setAttribute(oElement, sQName, sValue);
 };
 
 cElement.prototype.setAttributeNS	= function(sNameSpaceURI, sQName, sValue) {
@@ -405,7 +398,72 @@ cElement.prototype.setAttributeNS	= function(sNameSpaceURI, sQName, sValue) {
 };
 
 cElement.prototype.setAttributeNode	= function(oAttribute) {
-	this.setAttributeNodeNS(oAttribute);
+//->Guard
+	fGuard(arguments, [
+		["node",		cAttr]
+	]);
+//<-Guard
+
+	// TODO: consider removing if it was attached somewhere else before
+
+	fElement_setAttributeNode(this, oAttribute);
+};
+
+function fElement_setAttributeNode(oElement, oAttribute) {
+	var oOldAttribute	= fNamedNodeMap_setNamedItem(oElement.attributes, oAttribute);
+	// TODO
+	//
+	oAttribute.ownerElement	= oElement;
+	//
+	var sName	= oAttribute.name,
+		sValue	= oAttribute.value;
+	//
+	var bRegistered	= oDocument_all[oElement.uniqueID],
+		bCoreAttr	= sName == 'id' || sName == "class" || sName == "style";
+
+	if (bRegistered && bCoreAttr)
+		fElement_mapAttribute(oElement, sName, sValue, '');
+
+	// Fire Mutation event
+	var oEvent	= new cMutationEvent;
+	oEvent.initMutationEvent("DOMAttrModified", true, false, null, '', sValue, sName, 2 /* cMutationEvent.ADDITION */);
+	fEventTarget_dispatchEvent(oElement, oEvent);
+
+	// Run mapper
+	if (bRegistered && !bCoreAttr && (sName == "xlink:href" || !oAttribute.prefix))
+		oElement.$mapAttribute(sName, sValue);
+};
+
+function fElement_setAttributeNodeNS(oElement, oAttribute) {
+	var oOldAttribute	= fNamedNodeMap_setNamedItemNS(oElement.attributes, oAttribute);
+	//
+	oAttribute.ownerElement	= oElement;
+
+	// Global attributes module
+	var fConstructor	= hClasses[oAttribute.namespaceURI + '#' + '@' + oAttribute.localName];
+	if (fConstructor) {
+		var oEvent;
+
+		if (oOldAttribute) {
+			// Fire Mutation event (pseudo)
+			oEvent	= new cMutationEvent;
+			oEvent.initMutationEvent("DOMNodeRemovedFromDocument", false, false, null, null, null, null, null);
+			oEvent.target	=
+			oEvent.currentTarget	= oOldAttribute;
+			oEvent.eventPhase		= 2 /*cEvent.AT_TARGET*/;
+			//
+			fEventTarget_handleEvent(oOldAttribute, oEvent);
+		}
+
+		// Fire Mutation event (pseudo)
+		oEvent	= new cMutationEvent;
+		oEvent.initMutationEvent("DOMNodeInsertedIntoDocument", false, false, null, null, null, null, null);
+		oEvent.target	=
+		oEvent.currentTarget	= oAttribute;
+		oEvent.eventPhase		= 2 /* cEvent.AT_TARGET */;
+		//
+		fEventTarget_handleEvent(oAttribute, oEvent);
+	}
 };
 
 cElement.prototype.setAttributeNodeNS	= function(oAttribute) {
@@ -415,35 +473,29 @@ cElement.prototype.setAttributeNodeNS	= function(oAttribute) {
 	]);
 //<-Guard
 
-//->Source
-/*
-	oAttribute.ownerElement	= this;
-	this.setAttributeNS(oAttribute.namespaceURI, oAttribute.nodeName, oAttribute.nodeValue);
-*/
-//<-Source
-	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
+	// TODO: consider removing if it was attached somewhere else before
+
+	fElement_setAttributeNodeNS(this, oAttribute);
 };
 
-function fElement_getAttribute(oElement, sName) {
-	return oElement.attributes.hasOwnProperty(sName) ? oElement.attributes[sName] : '';
+function fElement_getAttribute(oElement, sQName) {
+	var oAttribute	= fElement_getAttributeNode(oElement, sQName);
+	return oAttribute ? oAttribute.value : null;
 };
 
-cElement.prototype.getAttribute	= function(sName) {
+cElement.prototype.getAttribute	= function(sQName) {
 //->Guard
 	fGuard(arguments, [
 		["name",		cString]
 	], this);
 //<-Guard
 
-	return fElement_getAttribute(this, sName);
+	return fElement_getAttribute(this, sQName);
 };
 
 function fElement_getAttributeNS(oElement, sNameSpaceURI, sLocalName) {
-	if (sNameSpaceURI == null)
-		return fElement_getAttribute(oElement, sLocalName);
-
-	var sPrefix	= fNode_lookupPrefix(oElement, sNameSpaceURI);
-	return sPrefix ? fElement_getAttribute(oElement, sPrefix + ':' + sLocalName) : '';
+	var oAttribute	= fElement_getAttributeNodeNS(oElement, sNameSpaceURI, sLocalName);
+	return oAttribute ? oAttribute.value : null;
 };
 
 cElement.prototype.getAttributeNS	= function(sNameSpaceURI, sLocalName) {
@@ -457,57 +509,39 @@ cElement.prototype.getAttributeNS	= function(sNameSpaceURI, sLocalName) {
 	return fElement_getAttributeNS(this, sNameSpaceURI, sLocalName);
 };
 
-cElement.prototype.getAttributeNode	= function(sName) {
-	return this.getAttributeNodeNS(null, sName);
+function fElement_getAttributeNode(oElement, sName) {
+	return fNamedNodeMap_getNamedItem(oElement.attributes, sName);
+};
+
+cElement.prototype.getAttributeNode	= function(sQName) {
+//->Guard
+	fGuard(arguments, [
+		["name",		cString]
+	], this);
+//<-Guard
+
+	return fElement_getAttributeNode(this, sQName);
+};
+
+function fElement_getAttributeNodeNS(oElement, sNameSpaceURI, sLocalName) {
+	return fNamedNodeMap_getNamedItemNS(oElement.attributes, sNameSpaceURI, sLocalName);
 };
 
 cElement.prototype.getAttributeNodeNS	= function(sNameSpaceURI, sLocalName) {
-	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
+//->Guard
+	fGuard(arguments, [
+		["namespaceURI",	cString, false, true],
+		["localName",		cString]
+	], this);
+//<-Guard
+
+	return fElement_getAttributeNodeNS(this, sNameSpaceURI, sLocalName);
 };
 
 function fElement_removeAttribute(oElement, sName) {
-	var bValue	= sName in oElement.attributes,
-		sValueOld	= bValue ? oElement.attributes[sName] : null;
-
-	if (bValue) {
-		var bRegistered	= oDocument_all[oElement.uniqueID],
-			bCoreAttr	= sName == 'id' || sName == "class" || sName == "style";
-
-		// Only operate on shadow if element is in the DOM
-		if (bRegistered && bCoreAttr) {
-			if (sName == 'id')
-				delete oDocument_ids[sValueOld];
-
-			// Find shadow content
-			var oElementDOM	= oElement.$getContainer();
-			// Update view
-			if (oElementDOM) {
-				if (sName == "class") {
-					var sClass	=(oElement.prefix ? oElement.prefix + '-' : '') + oElement.localName;
-					if (bTrident && nVersion < 8)
-						oElementDOM.className	= sClass;
-					else
-						oElementDOM.setAttribute("class", sClass);
-				}
-				else
-				if (sName == "style")
-					oElementDOM.style.cssText	= '';
-				else
-					oElementDOM.id	= oElement.uniqueID;
-			}
-		}
-		//
-		delete oElement.attributes[sName];
-
-		// Fire Mutation event
-		var oEvent	= new cMutationEvent;
-		oEvent.initMutationEvent("DOMAttrModified", true, false, null, sValueOld, null, sName, 3 /* cMutationEvent.REMOVAL */);
-		fEventTarget_dispatchEvent(oElement, oEvent);
-
-		// Run mapper
-		if (bRegistered && !bCoreAttr && (sName == "xlink:href" || sName.indexOf(':') ==-1))
-			oElement.$mapAttribute(sName, null);
-	}
+	var oAttribute	= fNamedNodeMap_getNamedItem(oElement.attributes, sName);
+	if (oAttribute)
+		fElement_removeAttributeNode(oElement, oAttribute);
 };
 
 cElement.prototype.removeAttribute	= function(sName) {
@@ -521,49 +555,11 @@ cElement.prototype.removeAttribute	= function(sName) {
 };
 
 function fElement_removeAttributeNS(oElement, sNameSpaceURI, sLocalName) {
-	if (sNameSpaceURI != null) {
-		var sPrefix	= fNode_lookupPrefix(oElement, sNameSpaceURI),
-			sQName	= sPrefix + ':' + sLocalName;
-
-		if (!sPrefix)
-			return;
-
-		// Global attributes module
-		if (sQName in oElement.attributes && !(sLocalName == "xmlns" || sNameSpaceURI == sNS_XMLNS || sNameSpaceURI == sNS_XML)) {
-			var fConstructor= hClasses[sNameSpaceURI + '#' + '@' + sLocalName],
-				sValue		= oElement.attributes[sQName],
-				oAttribute,
-				oEvent;
-
-			if (fConstructor) {
-				// oAttribute used to create fake object
-				oAttribute	= new fConstructor;
-				oAttribute.ownerDocument= oElement.ownerDocument;
-				oAttribute.ownerElement	= oElement;
-				oAttribute.name			=
-				oAttribute.nodeName		= sQName;
-				oAttribute.localName	= sLocalName;
-				oAttribute.prefix		= sPrefix;
-				oAttribute.namespaceURI	= sNameSpaceURI;
-				oAttribute.value		=
-				oAttribute.nodeValue	= sValue;
-
-				// Fire Mutation event (pseudo)
-				oEvent	= new cMutationEvent;
-				oEvent.initMutationEvent("DOMNodeRemovedFromDocument", false, false, null, null, null, null, null);
-				oEvent.target	=
-				oEvent.currentTarget	= oAttribute;
-				oEvent.eventPhase		= 2 /* cEvent.AT_TARGET */;
-				//
-				fEventTarget_handleEvent(oAttribute, oEvent);
-			}
-		}
-
-		//
-		sLocalName	= sQName;
-	}
-
-	fElement_removeAttribute(oElement, sLocalName);
+//	if (sNameSpaceURI != null && sLocalName != "xmlns" || sNameSpaceURI == sNS_XMLNS || sNameSpaceURI == sNS_XML) {
+		var oAttribute	= fNamedNodeMap_getNamedItemNS(oElement.attributes, sNameSpaceURI, sLocalName);
+		if (oAttribute)
+			fElement_removeAttributeNode(oElement, oAttribute);
+//	}
 };
 
 cElement.prototype.removeAttributeNS	= function(sNameSpaceURI, sLocalName) {
@@ -578,7 +574,55 @@ cElement.prototype.removeAttributeNS	= function(sNameSpaceURI, sLocalName) {
 };
 
 cElement.prototype.removeAttributeNode	= function(oAttribute) {
-	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
+//->Guard
+	fGuard(arguments, [
+		["node",	cAttr]
+	], this);
+//<-Guard
+
+	if (oAttribute.ownerElement != this)
+		throw new cDOMException(cDOMException.HIERARCHY_REQUEST_ERR);
+	//
+	fElement_removeAttributeNode(this, oAttribute);
+};
+
+function fElement_removeAttributeNode(oElement, oAttribute) {
+	// Global attributes module
+	if (oAttribute.namespaceURI) {
+		var fConstructor= hClasses[oAttribute.namespaceURI + '#' + '@' + oAttribute.localName];
+		if (fConstructor) {
+			// Fire Mutation event (pseudo)
+			var oEvent	= new cMutationEvent;
+			oEvent.initMutationEvent("DOMNodeRemovedFromDocument", false, false, null, null, null, null, null);
+			oEvent.target	=
+			oEvent.currentTarget	= oAttribute;
+			oEvent.eventPhase		= 2 /* cEvent.AT_TARGET */;
+			//
+			fEventTarget_handleEvent(oAttribute, oEvent);
+		}
+	}
+	else {
+		var sName	= oAttribute.name,
+			sValue	= oAttribute.value,
+			bRegistered	= oDocument_all[oElement.uniqueID],
+			bCoreAttr	= sName == 'id' || sName == "class" || sName == "style";
+
+		if (bRegistered && bCoreAttr)
+			fElement_mapAttribute(oElement, sName, '', sValue);
+
+		// Fire Mutation event
+		var oEvent	= new cMutationEvent;
+		oEvent.initMutationEvent("DOMAttrModified", true, false, null, sValue, null, sName, 3 /* cMutationEvent.REMOVAL */);
+		fEventTarget_dispatchEvent(oElement, oEvent);
+
+		// Run mapper
+		if (bRegistered && !bCoreAttr && (sName == "xlink:href" || sName.indexOf(':') ==-1))
+			oElement.$mapAttribute(sName, null);
+	}
+	//
+	fNamedNodeMap_removeNamedItemNS(oElement.attributes, oAttribute.namespaceURI, oAttribute.namespaceURI ? oAttribute.localName : oAttribute.nodeName);
+	//
+	oAttribute.ownerElement	= null;
 };
 
 cElement.prototype.hasChildNodes	= function() {
@@ -660,7 +704,7 @@ cElement.prototype.$activate	= function() {
 };
 
 cElement.prototype.$getTag		= function() {
-	var aHtml	= [this.$getTagOpen().replace(/^(\s*<[\w:]+)/, '$1 id="' +(this.attributes.id || this.uniqueID)+ '"')];
+	var aHtml	= [this.$getTagOpen().replace(/^(\s*<[\w:]+)/, '$1 id="' +(fElement_getAttribute(this, 'id') || this.uniqueID)+ '"')];
 	for (var nIndex = 0, oNode; oNode = this.childNodes[nIndex]; nIndex++)
 		aHtml[aHtml.length]	= oNode.$getTag();
 	return aHtml.join('') + this.$getTagClose();
@@ -745,7 +789,7 @@ cElement.prototype.$getContainer	= function(sName) {
 	if (sShadow in oCache)
 		return oCache[sShadow];
 	else {
-		var oNode	= oUADocument.getElementById(this.attributes.id || this.uniqueID);
+		var oNode	= oUADocument.getElementById(fElement_getAttribute(this, 'id') || this.uniqueID);
 		if (sName && oNode) {
 			var rClass	= new cRegExp('--' + sName + '(\\s|$)');
 			oNode	= (function (oContext, oNode) {
@@ -779,7 +823,7 @@ function fElement_getContainerTraverse(oNode, rClass) {
 };
 
 cElement.prototype.$getContainer	= function(sName) {
-	var oElement	= oUADocument.getElementById(this.attributes.id || this.uniqueID);
+	var oElement	= oUADocument.getElementById(fElement_getAttribute(this, 'id') || this.uniqueID);
 	if (sName && oElement)
 		oElement	= fElement_getContainerTraverse(oElement, new cRegExp('--' + sName + '(\\s|$)'));
 	return oElement;
@@ -793,7 +837,7 @@ cElement.prototype.$getContainer	= function(sName) {
 	if (sPseudo in oCache)
 		return oCache[sPseudo];
 	else {
-		var oElement	= oUADocument.getElementById(this.attributes.id || this.uniqueID);
+		var oElement	= oUADocument.getElementById(fElement_getAttribute(this, 'id') || this.uniqueID);
 		if (sName && oElement)
 			oElement	= fElement_getContainerTraverse(oElement, new cRegExp(sPseudo + '(\\s|$)'));
 		return oCache[sPseudo] = oElement;
@@ -957,15 +1001,15 @@ function fElement_setPseudoClass(oElement, sName, bValue, sContainer) {
 };
 
 function fElement_getPseudoClass(oElement, sName, bValue, sContainer, oElementDOM) {
-	var sClass		= fElement_getAttribute(oElement, "class").trim(),
+	var sValue		= fElement_getAttribute(oElement, "class"),
+		sClass		= sValue ? sValue.trim() : '',
 		aClass		= sClass.length ? sClass.split(/\s+/g) : null,
 		sPseudoName	= sContainer ? '--' + sContainer : '',
 		sTagName	=(oElement.prefix ? oElement.prefix + '-' : '') + oElement.localName,
 		sOldName	= bTrident && nVersion < 8 ? oElementDOM.className : oElementDOM.getAttribute("class") || '',
-		bMatch	= sOldName.match(fElement_getRegExp(sName, sPseudoName)),
+		bMatch		= sOldName.match(fElement_getRegExp(sName, sPseudoName)),
 		sNewName	= '',
-		sPseudo,
-		sClass;
+		sPseudo;
 
 	if (bValue) {
 		// Add class
@@ -1047,6 +1091,10 @@ cElement.prototype.$setStyle	= function(sName, sValue) {
 cElement.prototype.$getStyleComputed	= function(sName) {
 	var oElementDOM	= this.$getContainer();
 	return oElementDOM ? fBrowser_getStyle(oElementDOM, fUtilities_toCssPropertyName(sName)) : '';
+};
+
+cElement.prototype.$mapAttribute	= function(sName, sValue) {
+	// Should be implemented in elements
 };
 
 cElement.prototype.scrollIntoView	= function(bTop) {

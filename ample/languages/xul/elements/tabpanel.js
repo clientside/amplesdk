@@ -24,8 +24,9 @@ cXULElement_tabpanel.handlers	= {
 		if (this.parentNode instanceof cXULElement_tabpanels) {
 			var oTabBox	= this.parentNode.parentNode;
 			if (oTabBox instanceof cXULElement_tabbox) {
-				if (!isNaN(oTabBox.attributes["selectedIndex"]) && oTabBox.tabs.items.length > oTabBox.attributes["selectedIndex"] && this.parentNode.items.$indexOf(this) == oTabBox.attributes["selectedIndex"] * 1)
-					oTabBox.tabs.goTo(oTabBox.attributes["selectedIndex"] * 1);
+				var sSelectedIndex	= oTabBox.getAttribute("selectedIndex");
+				if (!isNaN(sSelectedIndex) && oTabBox.tabs.items.length > sSelectedIndex && this.parentNode.items.$indexOf(this) == sSelectedIndex * 1)
+					oTabBox.tabs.goTo(sSelectedIndex * 1);
 				else
 				if (!this.nextSibling)
 					oTabBox.tabs.goTo(0);
@@ -36,7 +37,7 @@ cXULElement_tabpanel.handlers	= {
 
 // Element Render: open
 cXULElement_tabpanel.prototype.$getTagOpen	= function() {
-	return '<div class="xul-tabpanel' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"' +(this.attributes["hidden"] != "false" ? ' style="display:none"' : '')+ '>';
+	return '<div class="xul-tabpanel' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '"' +(this.getAttribute("hidden") != "false" ? ' style="display:none"' : '')+ '>';
 };
 
 // Element Render: close

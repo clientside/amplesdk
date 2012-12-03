@@ -46,7 +46,7 @@ cXULElement_tabbox.attributes.orient	= "vertical";
 
 // Element Render: open
 cXULElement_tabbox.prototype.$getTagOpen	= function() {
-	return '<div class="xul-tabbox' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">';
+	return '<div class="xul-tabbox' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '">';
 };
 
 // Element Render: close

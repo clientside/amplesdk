@@ -23,10 +23,10 @@ cXULElement_treerow.prototype.$isAccessible	= function() {
 cXULElement_treerow.prototype._onCommandClick	= function(oEvent) {
 	var oTree	= this.parentNode.parentNode.tree;
 	if (this.$getContainer("command").checked) {
-		if (oTree.attributes["type"] == "radio")
+		if (oTree.getAttribute("type") == "radio")
 			oTree.selectItem(this.parentNode);
 		else
-		if (oTree.attributes["type"] == "checkbox")
+		if (oTree.getAttribute("type") == "checkbox")
 			oTree.addItemToSelection(this.parentNode);
 	}
 	else
@@ -70,17 +70,14 @@ cXULElement_treerow.handlers	= {
 // Element Render: open
 cXULElement_treerow.prototype.$getTagOpen	= function() {
 	var oTree	= this.parentNode.parentNode.tree;
-	if (this.parentNode.parentNode.parentNode.attributes["open"] == "false")
-		this.parentNode.parentNode.attributes["hidden"] = "true";
-
-	return '<tr class="xul-treerow' + (this.attributes["class"] ? " " + this.attributes["class"] : '') + '" style="height:1.2em;vertical-align:top;' + (this.parentNode.parentNode.parentNode.attributes["open"] == "false" ? 'display:none' : '')+ '">' +
-			(this.parentNode.attributes["label"] || (oTree && (oTree.attributes["type"] == "checkbox" || oTree.attributes["type"] == "radio"))
+	return '<tr class="xul-treerow' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : '') + '" style="height:1.2em;vertical-align:top;' + (this.parentNode.parentNode.parentNode.getAttribute("open") == "false" ? 'display:none' : '')+ '">' +
+			(this.parentNode.hasAttribute("label") || (oTree && (oTree.getAttribute("type") == "checkbox" || oTree.getAttribute("type") == "radio"))
 			? ('<td style="padding:0" onmousedown="event.cancelBubble=true" class="xul-treecell">' +
-				(this.parentNode.attributes["label"]
-				? '<div class="xul-treecell--gateway">' + this.parentNode.attributes["label"] + '</div>'
-				: (oTree.attributes["type"] == "checkbox"
+				(this.parentNode.hasAttribute("label")
+				? '<div class="xul-treecell--gateway">' + this.parentNode.getAttribute("label") + '</div>'
+				: (oTree.getAttribute("type") == "checkbox"
 					? '<input type="checkbox" name="' + oTree.uniqueID + '_cmd" class="xul-treeitem--command" onclick="ample.$instance(this)._onCommandClick(event);" autocomplete="off"/>'
-						: (oTree.attributes["type"] == "radio"
+						: (oTree.getAttribute("type") == "radio"
 						? '<input type="radio" name="' + oTree.uniqueID + '_cmd" class="xul-treeitem--command" onclick="ample.$instance(this)._onCommandClick(event);"/>'
 					: ' ')))+
 			'</td>')

@@ -192,6 +192,11 @@ cXULElement_datepicker_pane.handlers	= {
 					}
 				}
 			}
+			else
+			if (oEvent.attrName == "disabled") {
+				this._elementMonth.setAttribute("disabled", oEvent.newValue == "true" ? "true" : "false");
+				this._elementYear.setAttribute("disabled", oEvent.newValue == "true" ? "true" : "false");
+			}
 	},
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
 		//
@@ -213,11 +218,6 @@ cXULElement_datepicker_pane.handlers	= {
 cXULElement_datepicker_pane.prototype.$mapAttribute	= function(sName, sValue) {
 	if (sName == "value")
 		this.refresh();
-	else
-	if (sName == "disabled") {
-		this._elementMonth.setAttribute("disabled", sValue == "true" ? "true" : "false");
-		this._elementYear.setAttribute("disabled", sValue == "true" ? "true" : "false");
-	}
 	else
 		cXULPopupElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
@@ -352,9 +352,6 @@ cXULElement_datepicker_pane.$getTagDays	= function(oInstance, oDate) {
 
 // component renderers
 cXULElement_datepicker_pane.prototype.$getTagOpen	= function() {
-	//
-	this._elementMonth.attributes["disabled"]	= this.$isAccessible() ? "false" : "true";
-	this._elementYear.attributes["disabled"]	= this.$isAccessible() ? "false" : "true";
 	//
 	return '<div class="xul-datepicker-pane xul-menupopup' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '') + '" style="' +
 				(this.getAttribute("hidden") == "true" ? "display:none;" : '') +

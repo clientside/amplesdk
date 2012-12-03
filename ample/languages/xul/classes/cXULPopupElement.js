@@ -24,13 +24,13 @@ cXULPopupElement.prototype.popupType	= cXULPopupElement.POPUP_TYPE_POPUP;
 
 cXULPopupElement.prototype.$mapAttribute	= function(sName, sValue) {
 	if (sName == "top") {
-		if (!isNaN(sValue) && !isNaN(this.attributes["left"]))
-			this.moveTo(this.attributes["left"] * 1, sValue * 1);
+		if (!isNaN(sValue) && !isNaN(this.getAttribute("left")))
+			this.moveTo(this.getAttribute("left") * 1, sValue * 1);
 	}
 	else
 	if (sName == "left") {
-		if (!isNaN(sValue) && !isNaN(this.attributes["top"]))
-			this.moveTo(sValue * 1, this.attributes["top"] * 1);
+		if (!isNaN(sValue) && !isNaN(this.getAttribute("top")))
+			this.moveTo(sValue * 1, this.getAttribute("top") * 1);
 	}
 	else
 		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);

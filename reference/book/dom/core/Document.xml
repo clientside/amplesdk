@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<class name="Document" extends="dom:core:Node">
+	<abstract>
+		<locale>
+			Represents the Ample SDK document created out of all Ample SDK fragments found on the page.
+		</locale>
+		<locale xml:lang="ru">
+			Документ в окне браузера.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples/>
+	<members>
+		<methods>
+			<method name="createElement" type="dom:core:Element">
+				<arguments>
+					<argument name="name" type="String" required="true">
+						<description>
+							<locale>
+								The name of the element type to instantiate
+							</locale>
+							<locale xml:lang="ru">
+								Название элемента, экземпляр которого будет создан.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Creates an element of the type specified.
+					</locale>
+					<locale xml:lang="ru">
+						Создает элемент указанного типа.
+					</locale>
+				</description>
+			</method>
+			<method name="createElementNS" type="dom:core:Element">
+				<arguments>
+					<argument name="namespaceURI" type="String" required="true">
+						<description>
+							<locale>
+								Namespace of the element to be created.
+							</locale>
+							<locale xml:lang="ru">
+								Пространство имен создаваемого элемента.
+							</locale>
+						</description>
+					</argument>
+					<argument name="QName" type="String" required="true">
+						<description>
+							<locale>
+								Element's qualified name to be created.
+							</locale>
+							<locale xml:lang="ru">
+								Имя создаваемого элемента (qualified name).
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Creates an element of the given qualified name and namespace URI.
+					</locale>
+					<locale xml:lang="ru">
+						Создает элемент с заданным именем в заданном пространстве имен.
+					</locale>
+				</description>
+			</method>
+			<method name="createDocumentFragment" type="dom:core:DocumentFragment">
+				<description>
+					<locale>
+						Creates an empty DocumentFragment object.
+					</locale>
+					<locale xml:lang="ru">
+						Создает объект <link type="class" href="reference://dom/core/DocumentFragment">DocumentFragment</link>.
+					</locale>
+				</description>
+			</method>
+			<method name="createTextNode" type="dom:core:Text">
+				<arguments>
+					<argument name="data" type="String">
+						<description>
+							<locale>
+								The data for the node.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Creates a Text node given the specified string.
+					</locale>
+					<locale xml:lang="ru">
+						Создает объект <link type="class" href="reference://dom/core/Text">Text</link> по заданной строке.
+					</locale>
+				</description>
+			</method>
+			<method name="createComment" type="dom:core:Comment">
+				<arguments>
+					<argument name="data" type="String">
+						<description>
+							<locale>
+								The data for the node.
+							</locale>
+							<locale xml:lang="ru">
+								Данные для узла.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Creates a Comment node given the specified string.
+					</locale>
+					<locale xml:lang="ru">
+						Создает узел <link type="class" href="reference://dom/core/Comment">Comment</link> по заданной строке.
+					</locale>
+				</description>
+			</method>
+			<method name="createCDATASection" type="dom:core:CDATASection">
+				<arguments>
+					<argument name="data" type="String">
+						<description>
+							<locale>
+								The data for the node.
+							</locale>
+							<locale xml:lang="ru">
+								Данные для узла.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Creates a <link type="class" href="reference://dom/core/CDATASection">CDATASection</link> node whose value is the specified string.
+					</locale>
+					<locale xml:lang="ru">
+						Создает узел <link type="class" href="reference://dom/core/CDATASection">CDATASection</link>, значением которого будет заданная строка.
+					</locale>
+				</description>
+			</method>
+			<method name="createProcessingInstruction" type="dom:core:ProcessingInstruction">
+				<arguments>
+					<argument name="target" type="String">
+						<description>
+							<locale>
+								The target part of the processing instruction.
+							</locale>
+							<locale xml:lang="ru">
+								Название обрабатывающей инструкции.
+							</locale>
+						</description>
+					</argument>
+					<argument name="data" type="String">
+						<description>
+							<locale>
+								The data for the node.
+							</locale>
+							<locale xml:lang="ru">
+								Данные для узла.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Creates a ProcessingInstruction node given the specified name and data strings.
+					</locale>
+					<locale xml:lang="ru">
+						Создает объект <link type="class" href="reference://dom/core/ProcessingInstruction">ProcessingInstruction</link> по заданным имени и данным.
+					</locale>
+				</description>
+			</method>
+			<method name="createAttribute" type="dom:core:Attr">
+				<arguments>
+					<argument name="name" type="String">
+						<description>
+							<locale>
+								The name of the attribute.
+							</locale>
+							<locale xml:lang="ru">
+								Имя атрибута.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Creates an Attr of the given name.
+					</locale>
+					<locale xml:lang="ru">
+						Создает объект <link type="class" href="reference://dom/core/Attr">Attr</link> по заданному имени.
+					</locale>
+				</description>
+			</method>
+			<method name="createAttributeNS" type="dom:core:Attr">
+				<arguments>
+					<argument name="namespaceURI" type="String" required="true">
+						<description>
+							<locale>
+								Namespace of the attribute to be created.
+							</locale>
+							<locale xml:lang="ru">
+								Пространство имен создаваемого атрибута.
+							</locale>
+						</description>
+					</argument>
+					<argument name="QName" type="String" required="true">
+						<description>
+							<locale>
+								Attr's qualified name to be created.
+							</locale>
+							<locale xml:lang="ru">
+								Имя создаваемого атрибута (qualified name).
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Creates an attribute of the given qualified name and namespace URI.
+					</locale>
+					<locale xml:lang="ru">
+						Создает объект <link type="class" href="reference://dom/core/Attr">Attr</link> по заданным имени и пространству имен.
+					</locale>
+				</description>
+			</method>
+			<method name="createEntityReference" type="dom:core:EntityReference">
+				<arguments>
+					<argument name="name" type="String" required="true">
+						<description>
+							<locale>
+								The name of the entity to reference.
+							</locale>
+							<locale xml:lang="ru">
+								Имя создаваемого <link type="class" href="reference://dom/core/EntityReference">EntityReference</link>.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Creates an EntityReference object.
+					</locale>
+					<locale xml:lang="ru">
+						Создает объект <link type="class" href="reference://dom/core/EntityReference">EntityReference</link>.
+					</locale>
+				</description>
+			</method>
+			<method name="getElementById" type="dom:core:Element">
+				<arguments>
+					<argument name="id" type="String" required="true">
+						<description>
+							<locale>
+								Element identifier
+							</locale>
+							<locale xml:lang="ru">
+								Идентификатор элемента.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Returns the Element that has an ID attribute with the given value.
+					</locale>
+					<locale xml:lang="ru">
+						Возвращает ссылку на <link type="class" href="reference://dom/core/Element">Element</link>, у которого атрибут ID соответствует заданному.
+					</locale>
+				</description>
+			</method>
+			<method name="getElementsByTagName" type="dom:core:NodeList">
+				<arguments>
+					<argument name="name" type="String" required="true">
+						<description>
+							<locale>
+								Element tag name.
+							</locale>
+							<locale xml:lang="ru">
+								Имя элемента.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Returns a <link type="class" href="reference://dom/core/NodeList">NodeList</link> of all the <link type="class" href="reference://dom/core/Element">Element</link>s in document order with a given tag name and are contained in the document.
+					</locale>
+					<locale xml:lang="ru">
+						Возвращает коллекцию <link type="class" href="reference://dom/core/NodeList">NodeList</link> из объектов <link type="class" href="reference://dom/core/Element">Element</link> по заданному имени в порядке, в котором элементы следуют в документе.
+					</locale>
+				</description>
+			</method>
+			<method name="getElementsByTagNameNS" type="dom:core:NodeList">
+				<arguments>
+					<argument name="namespaceURI" type="String" required="true">
+						<description>
+							<locale>
+								Namespace URI.
+							</locale>
+							<locale xml:lang="ru">
+								URI пространства имен элемента.
+							</locale>
+						</description>
+					</argument>
+					<argument name="localName" type="String" required="true">
+						<description>
+							<locale>
+								Local name.
+							</locale>
+							<locale xml:lang="ru">
+								Имя элемента.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Returns a <link type="class" href="reference://dom/core/NodeList">NodeList</link> of all the <link type="class" href="reference://dom/core/Element">Element</link>s with a given local name and namespace URI in document order.
+					</locale>
+					<locale xml:lang="ru">
+						Возвращает коллекцию <link type="class" href="reference://dom/core/NodeList">NodeList</link> из всех объектов <link type="class" href="reference://dom/core/Element">Element</link> по заданным имени и пространству имен в порядке, в котором элементы следуют в документе.
+					</locale>
+				</description>
+			</method>
+			<method name="importNode" type="dom:core:Node">
+				<arguments>
+					<argument name="node" type="dom:core:Node" required="true">
+						<description>
+							<locale>
+								The node to import.
+							</locale>
+							<locale xml:lang="ru">
+								Узел для импорта.
+							</locale>
+						</description>
+					</argument>
+					<argument name="deep" type="Boolean" required="true">
+						<description>
+							<locale>
+								If true, recursively import the subtree under the specified node; if false, import only the node itself
+							</locale>
+							<locale xml:lang="ru">
+								Если true, импортировать узел с его структурой, с противном случае импортировать непосредственно сам узел без его структуры.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Imports a node from another document to this document, without altering or removing the source node from the original document.
+					</locale>
+					<locale xml:lang="ru">
+						Импортирует узел из одного документа в другой без изменения или удаления узла в оригинальном документе.
+					</locale>
+				</description>
+			</method>
+			<!-- DOM Level 3 -->
+			<method name="createEvent" type="dom:events:Event">
+				<arguments>
+					<argument name="eventInterface" type="String" required="true">
+						<description>
+							<locale>
+								The name of the interface to be supported by the created event object.
+							</locale>
+							<locale xml:lang="ru">
+								The name of the interface to be supported by the created event object.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Creates an event object with the interface name specified.
+					</locale>
+					<locale xml:lang="ru">
+						Creates an event object with the interface name specified.
+					</locale>
+				</description>
+			</method>
+			<!-- DOM-Selectors -->
+			<method name="querySelector" type="dom:core:Element">
+				<arguments>
+					<argument name="selector" type="String" required="true">
+						<description>
+							<locale>
+								CSS query.
+							</locale>
+						</description>
+					</argument>
+					<argument name="NSResolver" type="Function" required="false">
+						<description>
+							<locale>
+								Resolver function used to resolve namespace prefixes used in query.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Returns <link type="class" href="reference://dom/core/Element">Element</link> that matches CSS query.
+					</locale>
+					<locale xml:lang="ru">
+						Возвращает объект <link type="class" href="reference://dom/core/Element">Element</link> по заданному CSS запросу.
+					</locale>
+				</description>
+			</method>
+			<method name="querySelectorAll" type="dom:core:NodeList">
+				<arguments>
+					<argument name="selector" type="String" required="true">
+						<description>
+							<locale>
+								CSS query.
+							</locale>
+						</description>
+					</argument>
+					<argument name="NSResolver" type="Function" required="false">
+						<description>
+							<locale>
+								Resolver function used to resolve namespace prefixes used in query.
+							</locale>
+						</description>
+					</argument>
+				</arguments>
+				<description>
+					<locale>
+						Returns <link type="class" href="reference://dom/core/NodeList">NodeList</link> of <link type="class" href="reference://dom/core/Element">Element</link> that match CSS query.
+					</locale>
+					<locale xml:lang="ru">
+						Возвращает коллекцию <link type="class" href="reference://dom/core/NodeList">NodeList</link> из объектов <link type="class" href="reference://dom/core/Element">Element</link> по заданному запросу в порядке, в котором элементы следуют в документе.
+					</locale>
+				</description>
+			</method>
+		</methods>
+		<properties>
+			<property name="documentElement" type="dom:core:Element" readonly="true">
+				<description>
+					<locale>
+						Retrieves a reference to the root node of the document.
+					</locale>
+					<locale xml:lang="ru">
+						Возвращает ссылку на корневой узел документа.
+					</locale>
+				</description>
+			</property>
+			<property name="implementation" type="dom:core:DOMImplementation" readonly="true">
+				<description>
+					<locale>
+						The DOMImplementation object that handles this document.
+					</locale>
+					<locale xml:lang="ru">
+						Объект <link type="class" href="reference://dom/core/DOMImplementation">DOMImplementation</link> для документа.
+					</locale>
+				</description>
+			</property>
+			<property name="domConfig" type="dom:core:DOMConfiguration" readonly="true">
+				<description>
+					<locale>
+						The <link type="class" href="reference://dom/core/DOMConfiguration">DOMConfiguration</link> associated with this document.
+					</locale>
+					<locale xml:lang="ru">
+						Объект <link type="class" href="reference://dom/core/DOMConfiguration">DOMConfiguration</link> для документа.
+					</locale>
+				</description>
+			</property>
+			<property name="doctype" type="dom:core:DocumentType" readonly="true">
+				<description>
+					<locale>
+						The Document Type Declaration associated with this document.
+					</locale>
+					<locale xml:lang="ru">
+						Определение типа документа (DTD - Document Type Definition), ассоциированное с документом.
+					</locale>
+				</description>
+			</property>
+		</properties>
+		<events>
+			<event name="load" type="dom:events:Event" cancelable="false" bubbles="false">
+				<description>
+					<locale>
+						Fires immediately after the engine loads the object.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается сразу же после загрузки объекта ядром.
+					</locale>
+				</description>
+			</event>
+			<event name="unload" type="dom:events:Event" cancelable="false" bubbles="false">
+				<description>
+					<locale>
+						Fires immediately before the object is unloaded.
+					</locale>
+					<locale xml:lang="ru">
+						Загорается непосредственно перед тем, как объект будет выгружен.
+					</locale>
+				</description>
+			</event>
+			<event name="abort" type="dom:events:Event" cancelable="false" bubbles="true">
+				<description>
+					<locale>
+						The loading of the document, or a resource linked from it, is stopped before being entirely loaded.
+					</locale>
+					<locale xml:lang="ru">
+						Загрузка документа или ресурса, связанного с ним, была прервана до полной его загрузки.
+					</locale>
+				</description>
+			</event>
+			<event name="error" type="dom:events:Event" cancelable="false" bubbles="true">
+				<description>
+					<locale>
+						A resource failed to load, or has been loaded but cannot be interpreted according to its semantics such as an invalid image, a script execution error, or non-well-formed XML.
+					</locale>
+					<locale xml:lang="ru">
+						Ресурс не бы загружен или был загружен, но не был должным образом обработан вследствие неверной семантики (например, ошибки исполнения скрипта, некорректной структуры XML документа).
+					</locale>
+				</description>
+			</event>
+			<event name="resize" type="dom:events:UIEvent" cancelable="false" bubbles="true">
+				<description>
+					<locale>
+						A document view has been resized.
+					</locale>
+					<locale xml:lang="ru">
+						Произошло изменение размеров документа.
+					</locale>
+				</description>
+			</event>
+			<event name="scroll" type="dom:events:UIEvent" cancelable="false" bubbles="true">
+				<description>
+					<locale>
+						A document view has been scrolled.
+					</locale>
+					<locale xml:lang="ru">
+						Произошла прокрутка документа.
+					</locale>
+				</description>
+			</event>
+		</events>
+	</members>
+</class>

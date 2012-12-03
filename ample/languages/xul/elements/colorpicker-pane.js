@@ -129,7 +129,7 @@ cXULElement_colorpicker_pane.prototype._onPointerPaletteMouseDown	= function(oEv
 
 // Overrride dialog methods
 cXULElement_colorpicker_pane.prototype.acceptDialog	= function() {
-	this.attributes.value	= this.$getContainer('value').value;
+	this.setAttribute("value", this.$getContainer('value').value);
 
 	// fire select event
 	var oEvent	= this.ownerDocument.createEvent("Event");
@@ -138,7 +138,7 @@ cXULElement_colorpicker_pane.prototype.acceptDialog	= function() {
 };
 
 cXULElement_colorpicker_pane.prototype.cancelDialog	= function() {
-	this.setAttribute("value", this.attributes.value);
+	this.setAttribute("value", this.getAttribute("value"));
 
 	// fire cancel event
 	var oEvent	= this.ownerDocument.createEvent("Event");

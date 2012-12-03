@@ -42,6 +42,7 @@ runtime/classes/core/DOMConfiguration.js
 runtime/classes/core/DOMImplementation.js
 runtime/classes/core/DOMException.js
 runtime/classes/core/DOMError.js
+runtime/classes/core/NamedNodeMap.js
 runtime/classes/core/Node.js
 runtime/classes/core/NodeList.js
 runtime/classes/core/Attr.js

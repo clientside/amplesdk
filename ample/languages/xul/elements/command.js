@@ -17,10 +17,11 @@ cXULElement_command.handlers	= {
 		if (oEvent.target == this) {
 			// Skip attributes "id" and "persist" that should be not possible to set
 			if (oEvent.attrName != "id" && oEvent.attrName != "persist") {
-				if (this.attributes["id"]) {
+				var sId	= this.getAttribute("id");
+				if (sId) {
 					var aElements	= this.ownerDocument.getElementsByTagNameNS(this.namespaceURI, "*");
 					for (var nIndex = 0, oElement; oElement = aElements[nIndex]; nIndex++)
-						if (oElement.attributes["command"] == this.attributes["id"]) {
+						if (oElement.getAttribute("command") == sId) {
 							if (oEvent.newValue == null)
 								oElement.removeAttribute(oEvent.attrName);
 							else

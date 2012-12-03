@@ -20,21 +20,21 @@ cXULElement_listhead.$isAccessible	= function() {
 
 cXULElement_listhead.prototype._getPrimaryColIndex	= function() {
 	for (var nIndex = 0; nIndex < this.items.length; nIndex++)
-		if (this.items[nIndex].attributes["primary"] == "true")
+		if (this.items[nIndex].getAttribute("primary") == "true")
 			return nIndex;
 	return -1;
 };
 
 // Events Handlers
 cXULElement_listhead.prototype._onCommandClick	= function(oEvent) {
-	if (this.parentNode.attributes["type"] == "checkbox") {
+	if (this.parentNode.getAttribute("type") == "checkbox") {
 		if (this.$getContainer("command").checked)
 			this.parentNode.selectAll();
 		else
 			this.parentNode.clearSelection();
 	}
 	else
-	if (this.parentNode.attributes["type"] == "radio") {
+	if (this.parentNode.getAttribute("type") == "radio") {
 		if (this.$getContainer("command").checked)
 			this.parentNode.clearSelection();
 	}
@@ -86,19 +86,19 @@ cXULElement_listhead.handlers	= {
 
 // Element Render: open
 cXULElement_listhead.prototype.$getTagOpen	= function() {
-	return '<tr' + (this.attributes["hidden"] == "true" ? ' style="display:none"' : '') + '>\
+	return '<tr' + (this.getAttribute("hidden") == "true" ? ' style="display:none"' : '') + '>\
 				<td class="xul-listhead--container">\
 					<div class="xul-listheader" style="float:right;width:16px"><div class="xul-listhead--settings"><br /></div></div>\
 					<div class="xul-listhead--area" style="height:20px;overflow:hidden;position:relative;">\
-						<table cellpadding="0" cellspacing="0" border="0" style="position:absolute;" class="xul-listhead' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">\
+						<table cellpadding="0" cellspacing="0" border="0" style="position:absolute;" class="xul-listhead' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '">\
 							<tbody>\
 								<tr class="xul-listhead--gateway" style="height:1em;vertical-align:top">' +
-									(this.parentNode.attributes["type"] == "checkbox" || this.parentNode.attributes["type"] == "radio"
+									(this.parentNode.getAttribute("type") == "checkbox" || this.parentNode.getAttribute("type") == "radio"
 									? ('<td class="xul-listheader" style="width:20px;padding:0;">' +
 											'<div>' +
-												(this.parentNode.attributes["type"] == "checkbox"
+												(this.parentNode.getAttribute("type") == "checkbox"
 												? '<input type="checkbox" name="' + this.parentNode.uniqueID + '_cmd" class="xul-listheader--command" onclick="return ample.$instance(this)._onCommandClick(event)" autocomplete="off" />'
-												: (this.parentNode.attributes["type"] == "radio"
+												: (this.parentNode.getAttribute("type") == "radio"
 													? '<input type="radio" name="' + this.parentNode.uniqueID + '_cmd" class="xul-listheader--command" checked="true" onclick="return ample.$instance(this)._onCommandClick(event)"/>'
 													: ' ')) +
 											'</div>' +

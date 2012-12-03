@@ -14,24 +14,24 @@ function fXHTMLElement_isInputInForm(oElement) {
 ample.extend(ample.classes.NodeSelector.pseudoClass, {
 	"default":		function(oElement) {
 		return fXHTMLElement_isInputInForm(oElement)
-				&& (oElement.attributes.type == "checkbox" || oElement.attributes.type == "radio")
-				&& (oElement.attributes.checked == oElement.defaultChecked);
+				&& (oElement.getAttribute("type") == "checkbox" || oElement.getAttribute("type") == "radio")
+				&& (oElement.getAttribute("checked") == oElement.defaultChecked);
 	},
 	"optional":		function(oElement) {
 		return fXHTMLElement_isInputInForm(oElement)
-				&&!(oElement.attributes["required"] == "" || oElement.attributes["required"] == "true");
+				&&!(oElement.getAttribute("required") == "" || oElement.getAttribute("required") == "true");
 	},
 	"required":		function(oElement) {
 		return fXHTMLElement_isInputInForm(oElement)
-				&& (oElement.attributes["required"] == "" || oElement.attributes["required"] == "true");
+				&& (oElement.getAttribute("required") == "" || oElement.getAttribute("required") == "true");
 	},
 	"read-write":	function(oElement) {
 		return fXHTMLElement_isInputInForm(oElement)
-				&&!(oElement.attributes["readonly"] == "" || oElement.attributes["readonly"] == "true");
+				&&!(oElement.getAttribute("readonly") == "" || oElement.getAttribute("readonly") == "true");
 	},
 	"read-only":	function(oElement) {
 		return fXHTMLElement_isInputInForm(oElement)
-				&& (oElement.attributes["readonly"] == "" || oElement.attributes["readonly"] == "true");
+				&& (oElement.getAttribute("readonly") == "" || oElement.getAttribute("readonly") == "true");
 	},
 	"invalid":		function(oElement) {
 		return fXHTMLElement_isInputInForm(oElement)

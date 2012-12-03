@@ -52,7 +52,7 @@ cXHTMLInputElement.register	= function(oInstance) {
 		oInstance.tabIndex	= oInstance.getAttribute("tabIndex") * 1;
 	if (oInstance.hasAttribute("accessKey"))
 		oInstance.accessKey	= oInstance.getAttribute("accessKey");
-	if (oInstance.attributes["autofocus"])
+	if (oInstance.hasAttribute("autofocus"))
 		oInstance.focus();
 };
 

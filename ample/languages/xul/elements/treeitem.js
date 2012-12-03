@@ -87,7 +87,7 @@ cXULElement_treeitem.prototype.$mapAttribute	= function(sName, sValue) {
 	if (sName == "selected") {
 		this.$setPseudoClass("selected", sValue == "true");
 		if (oParent && oParent.tree)
-			if (oParent.tree.attributes["type"] == "checkbox" || oParent.tree.attributes["type"] == "radio")
+			if (oParent.tree.getAttribute("type") == "checkbox" || oParent.tree.getAttribute("type") == "radio")
 				this.$getContainer("command").checked	= sValue == "true";
 	}
 	else

@@ -16,10 +16,10 @@ cXULElement_listcell.prototype	= new cXULElement("listcell");
 
 cXULElement_listcell.prototype.$mapAttribute	= function(sName, sValue) {
 	if (sName == "label")
-		this.$getContainer("gateway").innerHTML	=(this.attributes["src"] ? '<img src="' + this.attributes["src"] + '" align="absmiddle" /> ' :'') + (sValue || '');
+		this.$getContainer("gateway").innerHTML	=(this.hasAttribute("src") ? '<img src="' + this.getAttribute("src") + '" align="absmiddle" /> ' :'') + (sValue || '');
 	else
 	if (sName == "src")
-		this.$getContainer("gateway").innerHTML	=(sValue ? '<img src="' + sValue + '" align="absmiddle" /> ' :'') + (this.attributes["label"] || '');
+		this.$getContainer("gateway").innerHTML	=(sValue ? '<img src="' + sValue + '" align="absmiddle" /> ' :'') + (this.getAttribute("label") || '');
 	else
 		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
@@ -27,11 +27,11 @@ cXULElement_listcell.prototype.$mapAttribute	= function(sName, sValue) {
 // Element Render: open
 cXULElement_listcell.prototype.$getTagOpen	= function() {
 	var oHeader	= this.parentNode.parentNode.parentNode.firstChild.childNodes[this.parentNode.childNodes.$indexOf(this)];
-	var sHtml	= '<td class="xul-listcell' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"' + (oHeader && oHeader.attributes["hidden"] == "true" ? ' style="display:none;"' : '') + '><div class="xul-listcell--box" style="position:relative;width:100%;"><div class="xul-listcell--label xul-listcell--gateway" style="position:absolute;width:100%;overflow:hidden;">';
-	if (this.attributes["image"])
-		sHtml	+= '<img src="' + ample.$encodeXMLCharacters(this.attributes["image"]) + '" align="absmiddle"/> ';
-	if (this.attributes["label"])
-		sHtml	+= ample.$encodeXMLCharacters(this.attributes["label"]);
+	var sHtml	= '<td class="xul-listcell' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '"' + (oHeader && oHeader.getAttribute("hidden") == "true" ? ' style="display:none;"' : '') + '><div class="xul-listcell--box" style="position:relative;width:100%;"><div class="xul-listcell--label xul-listcell--gateway" style="position:absolute;width:100%;overflow:hidden;">';
+	if (this.hasAttribute("image"))
+		sHtml	+= '<img src="' + ample.$encodeXMLCharacters(this.getAttribute("image")) + '" align="absmiddle"/> ';
+	if (this.hasAttribute("label"))
+		sHtml	+= ample.$encodeXMLCharacters(this.getAttribute("label"));
 
 	return sHtml;
 };

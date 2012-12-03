@@ -69,7 +69,7 @@ cAUIElement_panelset.prototype.refresh	= function() {
 
 // Renderers
 cAUIElement_panelset.prototype.$getTagOpen	= function() {
-	return '<div class="aui-panelset' + (this.hasAttribute("rows") ? ' aui-panelset-rows-' : this.hasAttribute("cols") ? ' aui-panelset-cols-' : '')+ '"' + (this.attributes["style"] ? ' style="' + this.attributes["style"] + '"' : '') + '>';
+	return '<div class="aui-panelset' + (this.hasAttribute("rows") ? ' aui-panelset-rows-' : this.hasAttribute("cols") ? ' aui-panelset-cols-' : '')+ '"' + (this.hasAttribute("style") ? ' style="' + this.getAttribute("style") + '"' : '') + '>';
 };
 
 cAUIElement_panelset.prototype.$getTagClose	= function() {
