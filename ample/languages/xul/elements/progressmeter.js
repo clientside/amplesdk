@@ -44,7 +44,7 @@ cXULElement_progressmeter.handlers	= {
 
 cXULElement_progressmeter.prototype.$mapAttribute	= function(sName, sValue) {
 	if (sName == "value") {
-		if (this.attributes["mode"] != "undetermined")
+		if (this.getAttribute("mode") != "undetermined")
 			this.$getContainer("value").style.width	= sValue + '%';
 	}
 	else
@@ -68,7 +68,7 @@ cXULElement_progressmeter.prototype.$mapAttribute	= function(sName, sValue) {
 				this._interval	= null;
 			}
 			var oElementDOM	= this.$getContainer("value");
-			oElementDOM.style.width	= this.attributes["value"] + '%';
+			oElementDOM.style.width	= this.getAttribute("value") + '%';
 			oElementDOM.style.left	= '0%';
 		}
 	}
@@ -78,13 +78,13 @@ cXULElement_progressmeter.prototype.$mapAttribute	= function(sName, sValue) {
 
 // Element Render: open
 cXULElement_progressmeter.prototype.$getTagOpen	= function() {
-	return '<div class="xul-progressmeter' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="'+
-				'width:' + (this.attributes["width"] ? this.attributes["width"] : "100%") + ';' +
-				(this.attributes["hidden"] == "true" ? 'display:none;' : "") + '">\
+	return '<div class="xul-progressmeter' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '" style="'+
+				'width:' + (this.hasAttribute("width") ? this.getAttribute("width") : "100%") + ';' +
+				(this.getAttribute("hidden") == "true" ? 'display:none;' : "") + '">\
 				<div class="xul-progressmeter--before" style="float:left"></div>\
 				<div class="xul-progressmeter--after" style="float:right"></div>\
 				<div class="xul-progressmeter--bar">\
-					<div class="xul-progressmeter--value" style="position:relative;font-size:1px;width:' + this.attributes["value"] + '%"></div>\
+					<div class="xul-progressmeter--value" style="position:relative;font-size:1px;width:' + this.getAttribute("value") + '%"></div>\
 				</div>\
 			</div>';
 };

@@ -108,7 +108,7 @@ cXULElement_tabs.handlers	= {
 
 // Element Render: open
 cXULElement_tabs.prototype.$getTagOpen	= function() {
-	return '<div class="xul-tabs' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">';
+	return '<div class="xul-tabs' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '">';
 };
 
 // Element Render: close

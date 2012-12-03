@@ -78,20 +78,20 @@ cXULElement_splitter.handlers	= {
 		}
 
 		// check previous sibling
-		if (this.previousSibling &&(nValue = this.previousSibling.attributes[sMeasure] * 1)) {
+		if (this.previousSibling &&(nValue = this.previousSibling.getAttribute(sMeasure) * 1)) {
 			nValue2	= nValue + nOffset;
-			if (nMin = this.previousSibling.attributes["min" + sMeasure])
+			if (nMin = this.previousSibling.getAttribute("min" + sMeasure))
 				nValue2	= Math.max(nMin, nValue2);
-			if (nMax = this.previousSibling.attributes["max" + sMeasure])
+			if (nMax = this.previousSibling.getAttribute("max" + sMeasure))
 				nValue2	= Math.min(nMax, nValue2);
 			this.previousSibling.setAttribute(sMeasure, nValue2);
 		}
 		// check next sibling
-		if (this.nextSibling &&(nValue = this.nextSibling.attributes[sMeasure] * 1)) {
+		if (this.nextSibling &&(nValue = this.nextSibling.getAttribute(sMeasure) * 1)) {
 			nValue2	= nValue - nOffset;
-			if (nMin = this.nextSibling.attributes["min" + sMeasure])
+			if (nMin = this.nextSibling.getAttribute("min" + sMeasure))
 				nValue2	= Math.max(nMin, nValue2);
-			if (nMax = this.nextSibling.attributes["max" + sMeasure])
+			if (nMax = this.nextSibling.getAttribute("max" + sMeasure))
 				nValue2	= Math.min(nMax, nValue2);
 			this.nextSibling.setAttribute(sMeasure, nValue2);
 		}
@@ -110,12 +110,12 @@ cXULElement_splitter.handlers	= {
 				nMax;
 
 			// Check previous sibling
-			if (this.previousSibling &&(nValue = this.previousSibling.attributes[sMeasure] * 1))
-				if (!((nMin = this.previousSibling.attributes["min" + sMeasure]) && nMin > nValue + nOffset) && !((nMax = this.previousSibling.attributes["max" + sMeasure]) && nMax < nValue + nOffset))
+			if (this.previousSibling &&(nValue = this.previousSibling.getAttribute(sMeasure) * 1))
+				if (!((nMin = this.previousSibling.getAttribute("min" + sMeasure)) && nMin > nValue + nOffset) && !((nMax = this.previousSibling.getAttribute("max" + sMeasure)) && nMax < nValue + nOffset))
 					oElementDOM.style[this.parentNode.getAttribute("orient") == "vertical" ? "top" : "left"]	=(cXULElement_splitter.offset + nOffset)+ "px";
 			// check next sibling
-			if (this.nextSibling &&(nValue = this.nextSibling.attributes[sMeasure] * 1))
-				if (!((nMin = this.nextSibling.attributes["min" + sMeasure]) && nMin > nValue - nOffset) && !((nMax = this.nextSibling.attributes["max" + sMeasure]) && nMax < nValue - nOffset))
+			if (this.nextSibling &&(nValue = this.nextSibling.getAttribute(sMeasure) * 1))
+				if (!((nMin = this.nextSibling.getAttribute("min" + sMeasure)) && nMin > nValue - nOffset) && !((nMax = this.nextSibling.getAttribute("max" + sMeasure)) && nMax < nValue - nOffset))
 					oElementDOM.style[this.parentNode.getAttribute("orient") == "vertical" ? "top" : "left"]	=(cXULElement_splitter.offset + nOffset)+ "px";
 		}
 	}
@@ -123,7 +123,7 @@ cXULElement_splitter.handlers	= {
 
 // Element Render: open
 cXULElement_splitter.prototype.$getTagOpen	= function() {
-	return '<div class="xul-splitter' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + ' xul-splitter-' +(this.parentNode.attributes["orient"] == "vertical" ? "vertical" : "horizontal")+ '" style="line-height:1px"><div class="xul-splitter--image"></div>';
+	return '<div class="xul-splitter' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + ' xul-splitter-' +(this.parentNode.getAttribute("orient") == "vertical" ? "vertical" : "horizontal")+ '" style="line-height:1px"><div class="xul-splitter--image"></div>';
 };
 
 // Element Render: close

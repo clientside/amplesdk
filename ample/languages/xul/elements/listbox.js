@@ -119,14 +119,18 @@ cXULElement_listbox.handlers	= {
 // Static Methods
 cXULElement_listbox.sort	= function(oInstance, nCell, bDir) {
 	// correct for different types
-	if (oInstance.attributes["type"] != "radio" && oInstance.attributes["type"] != "checkbox")
+	if (oInstance.getAttribute("type") != "radio" && oInstance.getAttribute("type") != "checkbox")
 		nCell++;
 
 	if (oInstance.items.length) {
 		var aElements	= [];
 		for (var nIndex = 0; nIndex < oInstance.items.length; nIndex++)
 			aElements.push(oInstance.items[nIndex]);
-		aElements.sort(function(oElement1, oElement2){return oElement1.cells[nCell-1].attributes["label"] > oElement2.cells[nCell-1].attributes["label"] ? bDir ? 1 :-1 : oElement1.cells[nCell-1].attributes["label"] == oElement2.cells[nCell-1].attributes["label"] ? 0 : bDir ?-1 : 1;});
+		aElements.sort(function(oElement1, oElement2){
+			var sLabel1	= oElement1.cells[nCell-1].getAttribute("label"),
+				sLabel2	= oElement2.cells[nCell-1].getAttribute("label");
+			return sLabel1 > sLabel2 ? bDir ? 1 :-1 : sLabel1 == sLabel2 ? 0 : bDir ?-1 : 1;
+		});
 		oInstance.items	= new ample.classes.NodeList;
 		for (var nIndex = 0; nIndex < aElements.length; nIndex++)
 			oInstance.items.$add(aElements[nIndex]);
@@ -134,7 +138,7 @@ cXULElement_listbox.sort	= function(oInstance, nCell, bDir) {
 		var oElementDOM	= oInstance.body.$getContainer("gateway");
 		for (var nIndex = 0; nIndex < oInstance.items.length; nIndex++) {
 			oElementDOM.appendChild(oInstance.items[nIndex].$getContainer());
-			if (oInstance.items[nIndex].attributes["selected"] == "true")
+			if (oInstance.items[nIndex].getAttribute("selected") == "true")
 				oInstance.items[nIndex].setAttribute("selected", "true");
 		}
 	}
@@ -142,9 +146,9 @@ cXULElement_listbox.sort	= function(oInstance, nCell, bDir) {
 
 // Element Render: open
 cXULElement_listbox.prototype.$getTagOpen	= function() {
-	var sHeight	= this.attributes["height"],
-		sWidth	= this.attributes["width"];
-	return '<div class="xul-listbox' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + (!this.$isAccessible() ? " xul-listbox_disabled" : "") + '" style="' + (sHeight ? 'height:' + (sHeight * 1 == sHeight ? sHeight + "px" : sHeight) + ';' : '') + (sWidth ? 'width:' + (sWidth * 1 == sWidth ? sWidth + "px" : sWidth) + ';' : '') + (this.attributes["style"] ? this.attributes["style"] + '' : '') + '">\
+	var sHeight	= this.getAttribute("height"),
+		sWidth	= this.getAttribute("width");
+	return '<div class="xul-listbox' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + (!this.$isAccessible() ? " xul-listbox_disabled" : "") + '" style="' + (sHeight ? 'height:' + (sHeight * 1 == sHeight ? sHeight + "px" : sHeight) + ';' : '') + (sWidth ? 'width:' + (sWidth * 1 == sWidth ? sWidth + "px" : sWidth) + ';' : '') + (this.getAttribute("style") || '') + '">\
 				<div style="position:relative;height:100%;top:0;padding-bottom:inherit;">\
 					<div class="xul-listbox--resizer" style="height:100%;position:absolute;top:0px;display:none;z-index:1"></div>\
 					<table cellpadding="0" cellspacing="0" border="0" height="100%" width="100%" style="position:absolute">\

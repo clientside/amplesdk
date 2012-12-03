@@ -107,7 +107,7 @@ cXULWindowElement.prototype.show	= function (nLeft, nTop) {
 
 			// Focus
 			var sButtonFocus	= that.getAttribute("defaultButton");
-			if (sButtonFocus != "")
+			if (sButtonFocus != "" && that.hasAttribute("buttons"))
 				if (that.getAttribute("buttons").split(/\s*,\s*/).indexOf(sButtonFocus) != -1)
 					that.buttons[sButtonFocus].focus();
 			//

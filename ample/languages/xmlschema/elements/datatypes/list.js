@@ -14,7 +14,7 @@ cXSElement_list.handlers	= {};
 cXSElement_list.handlers.DOMNodeInsertedIntoDocument	= function(oEvent) {
 	var oType	= this.parentNode.$type;
 	//
-	var sItemType	= this.attributes["itemType"];
+	var sItemType	= this.getAttribute("itemType");
 	if (sItemType) {
 		var aQName	= sItemType.split(':'),
 			sLocalName		= aQName[1],

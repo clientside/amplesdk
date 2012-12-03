@@ -54,8 +54,8 @@ cXHTMLElement.html524	= {
 cXHTMLElement.prototype.$getTagOpen	= function() {
 	var sHtml	= '<' + (this.localName in cXHTMLElement.html524 ? cXHTMLElement.html524[this.localName] : this.localName),
 		sClass	= this.getAttribute("class");
-	for (var nIndex = 0, nLength = this.attributes.length, oAttribute; nIndex < nLength; nIndex++)
-		if ((oAttribute = this.attributes.item(nIndex)) && oAttribute.name != "class" && oAttribute.name != "id" && !oAttribute.prefix)
+	for (var nIndex = 0, oAttribute; nIndex < this.attributes.length; nIndex++)
+		if ((oAttribute = this.attributes[nIndex]) && oAttribute.name != "class" && oAttribute.name != "id" && !oAttribute.prefix)
 			sHtml	+= ' ' + oAttribute.name + '="' + ample.$encodeXMLCharacters(oAttribute.value) + '"';
 	sHtml	+= ' class="' + (this.prefix ? this.prefix + '-' : '') + this.localName + (sClass ? ' ' + sClass : '') + '"';
 	return sHtml + '>';

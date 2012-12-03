@@ -15,7 +15,7 @@ cXSElement_simpleType.handlers.DOMNodeInsertedIntoDocument	= function(oEvent) {
 	if (this.parentNode instanceof cXSElement_schema) {
 		var oNamespaceItem	= this.parentNode.$namespaceItem;
 		//
-		var sName	= this.attributes["name"];
+		var sName	= this.getAttribute("name");
 		if (sName) {
 			var oType	= new cXSSimpleTypeDefinition;
 			// XSObject

@@ -19,11 +19,11 @@ cXULElement_groupbox.attributes.orient	= "vertical";
 
 // Element Render: open
 cXULElement_groupbox.prototype.$getTagOpen		= function() {
-	var sWidth	= this.attributes.width,
-		sHeight	= this.attributes.height;
-	return '<div class="xul-groupbox' +(this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="' +
-			(sWidth ? 'width:' + (isNaN(parseInt(sWidth)) ? sWidth : sWidth + 'px;') : '')+
-			(sHeight ? 'height:' + (isNaN(parseInt(sHeight)) ? sHeight : sHeight + 'px;') : '')+
+	var sWidth	= this.getAttribute("width"),
+		sHeight	= this.getAttribute("height");
+	return '<div class="xul-groupbox' +(this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '" style="' +
+			(sWidth ? 'width:' + (isNaN(parseInt(sWidth, 10)) ? sWidth : sWidth + 'px;') : '')+
+			(sHeight ? 'height:' + (isNaN(parseInt(sHeight, 10)) ? sHeight : sHeight + 'px;') : '')+
 				'">\
 				<table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%">\
 					<thead>\

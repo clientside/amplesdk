@@ -34,22 +34,22 @@ cXULElement_tab.prototype.$mapAttribute	= function(sName, sValue) {
 		this.$setPseudoClass("selected", sValue == "true");
 	else
 	if (sName == "label")
-		this.$getContainer("gateway").innerHTML	=(this.attributes["image"] ? '<img src="' + this.attributes["image"] + '" align="absmiddle" /> ' :'') + (sValue || '');
+		this.$getContainer("gateway").innerHTML	=(this.hasAttribute("image") ? '<img src="' + this.getAttribute("image") + '" align="absmiddle" /> ' :'') + (sValue || '');
 	else
 	if (sName == "image")
-		this.$getContainer("gateway").innerHTML	=(sValue ? '<img src="' + sValue + '" align="absmiddle" /> ' :'') + (this.attributes["label"] || '');
+		this.$getContainer("gateway").innerHTML	=(sValue ? '<img src="' + sValue + '" align="absmiddle" /> ' :'') + (this.getAttribute("label") || '');
 	else
 		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
 // Element Render: open
 cXULElement_tab.prototype.$getTagOpen	= function() {
-	return '<div class="xul-tab' + (!this.$isAccessible() ? " xul-tab_disabled" : "") +(this.attributes["class"] ? " " + this.attributes["class"] : "") + '">\
+	return '<div class="xul-tab' + (!this.$isAccessible() ? " xul-tab_disabled" : "") +(this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '">\
 				<div class="xul-tab--before" style="float:left;height:100%"></div>\
 				<div class="xul-tab--after" style="float:right;height:100%"></div>\
 				<div class="xul-tab--gateway">'+
-					(this.attributes["image"] ? '<img src="' + ample.$encodeXMLCharacters(this.attributes["image"]) + '" border="0" align="absmiddle"/> ' : '')+
-					(this.attributes["label"] ? ample.$encodeXMLCharacters(this.attributes["label"]) : '');
+					(this.hasAttribute("image") ? '<img src="' + ample.$encodeXMLCharacters(this.getAttribute("image")) + '" border="0" align="absmiddle"/> ' : '')+
+					(this.hasAttribute("label") ? ample.$encodeXMLCharacters(this.getAttribute("label")) : '');
 };
 
 // Element Render: close

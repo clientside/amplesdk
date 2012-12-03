@@ -57,11 +57,11 @@ cXULElement_checkbox.prototype.$mapAttribute	= function(sName, sValue) {
 
 // Element Render: open
 cXULElement_checkbox.prototype.$getTagOpen		= function() {
-	var bChecked	= this.attributes["checked"] == "true",
+	var bChecked	= this.getAttribute("checked") == "true",
 		bDisabled	= !this.$isAccessible();
 	return '<div class="xul-checkbox' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '') + (bDisabled ? " xul-checkbox_disabled" : "") + (bChecked ? " xul-checkbox_checked" : "") + (bChecked && bDisabled ? " xul-checkbox_checked_disabled xul-checkbox_disabled_checked" : "") + '">\
 				<div class="xul-checkbox--input"><br /></div>\
-				<div class="xul-checkbox--label">' + (this.attributes["label"] ? ample.$encodeXMLCharacters(this.attributes["label"]) : '') + '</div>';
+				<div class="xul-checkbox--label">' + (this.hasAttribute("label") ? ample.$encodeXMLCharacters(this.getAttribute("label")) : '') + '</div>';
 };
 
 // Element Render: close

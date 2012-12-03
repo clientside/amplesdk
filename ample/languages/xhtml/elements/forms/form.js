@@ -87,10 +87,10 @@ cXHTMLElement_form.prototype._onReset	= function() {
 // Default Element Render: open
 cXHTMLElement_form.prototype.$getTagOpen	= function() {
 	var sHtml	= '<' + this.localName + ' onsubmit="var oElement = ample.$instance(this); if (oElement._onSubmit()) oElement.submit(); return false;" onreset="var oElement = ample.$instance(this); if (oElement._onReset()) oElement.reset(); return false;"';
-	for (var sName in this.attributes)
-		if (this.attributes.hasOwnProperty(sName) && sName != "class" && sName != "id" && sName.indexOf(':') ==-1)
-			sHtml	+= ' ' + sName + '="' + ample.$encodeXMLCharacters(this.attributes[sName]) + '"';
-	sHtml	+= ' class="' + (this.prefix ? this.prefix + '-' : '') + this.localName + ("class" in this.attributes ? ' ' + this.attributes["class"] : '') + '"';
+	for (var nIndex = 0, oAttribute; nIndex < this.attributes.length; nIndex++)
+		if ((oAttribute = this.attributes[nIndex]).name != "class" && oAttribute.name != "id" && oAttribute.name.indexOf(':') ==-1)
+			sHtml	+= ' ' + oAttribute.name + '="' + ample.$encodeXMLCharacters(oAttribute.value) + '"';
+	sHtml	+= ' class="' + (this.prefix ? this.prefix + '-' : '') + this.localName + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '') + '"';
 	return sHtml + '>';
 };
 

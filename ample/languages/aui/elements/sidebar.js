@@ -40,8 +40,8 @@ cAUIElement_sidebar.handlers	= {
 
 // Element Renderers
 cAUIElement_sidebar.prototype.$getTagOpen	= function() {
-	var sHtml	= '<div' + (this.attributes["style"] ? ' style="' + this.attributes["style"] + '"' : '') + ' class="aui-sidebar';
-	sHtml	+=(this.attributes["class"] ? " " + "aui-sidebar-" + this.attributes["class"] : '') + '">';
+	var sHtml	= '<div' + (this.hasAttribute("style") ? ' style="' + this.getAttribute("style") + '"' : '') + ' class="aui-sidebar';
+	sHtml	+=(this.hasAttribute("style") ? " " + "aui-sidebar-" + this.getAttribute("class") : '') + '">';
 
 	return sHtml;
 };

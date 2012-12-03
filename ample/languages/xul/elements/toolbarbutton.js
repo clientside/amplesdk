@@ -132,10 +132,10 @@ cXULElement_toolbarbutton.prototype.$mapAttribute	= function(sName, sValue) {
 	}
 	else
 	if (sName == "label")
-		this.$getContainer("label").innerHTML	=(this.attributes["image"] ? '<img src="' + this.attributes["image"] + '" align="absmiddle" />' : '') + ' ' + (sValue || '');
+		this.$getContainer("label").innerHTML	=(this.hasAttribute("image") ? '<img src="' + this.getAttribute("image") + '" align="absmiddle" />' : '') + ' ' + (sValue || '');
 	else
 	if (sName == "image")
-		this.$getContainer("label").innerHTML	=(sValue ? '<img src="' + sValue + '" align="absmiddle" />' : '') + ' ' + (this.attributes["label"] || '');
+		this.$getContainer("label").innerHTML	=(sValue ? '<img src="' + sValue + '" align="absmiddle" />' : '') + ' ' + (this.getAttribute("label") || '');
 	else
 		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
@@ -146,7 +146,7 @@ cXULElement_toolbarbutton.prototype.$getTagOpen	= function() {
 	return '<table cellpadding="0" cellspacing="0" border="0" class="xul-toolbarbutton' +
 				(!this.$isAccessible() ? " xul-toolbarbutton_disabled" : "") +
 				((sType == "radio" || sType == "checkbox") && this.getAttribute("checked") == "true" ? " xul-toolbarbutton_checked" : "") +
-				(this.attributes["class"] ? " " + this.attributes["class"] : "") + '">\
+				(this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '">\
 				<tbody>\
 					<tr height="3">\
 						<td width="3" rowspan="3" class="xul-toolbarbutton-left"><div style="width:3px"/></td>\

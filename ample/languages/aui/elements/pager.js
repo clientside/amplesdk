@@ -34,10 +34,10 @@ cAUIElement_pager.handlers	= {
 
 // Public Methods
 cAUIElement_pager.prototype.goTo	= function(nIndex) {
-	if (nIndex * 1 < this.attributes["pagesamount"] * 1 && nIndex * 1 >= 0) {
+	if (nIndex * 1 < this.getAttribute("pagesamount") * 1 && nIndex * 1 >= 0) {
 		// deselect previously selected and select new item
 		var oElement	= this.$getContainer("body");
-		oElement.tBodies[0].rows[0].cells[this.attributes["pagestep"]].className	= oElement.tBodies[0].rows[0].cells[this.attributes["pagestep"]].className.replace("selected", "normal");
+		oElement.tBodies[0].rows[0].cells[this.getAttribute("pagestep")].className	= oElement.tBodies[0].rows[0].cells[this.getAttribute("pagestep")].className.replace("selected", "normal");
 		oElement.tBodies[0].rows[0].cells[nIndex].className	= oElement.tBodies[0].rows[0].cells[nIndex].className.replace(/normal|hover|active/, "selected");
 
 		this.attributes["pagestep"]	= nIndex;
@@ -56,13 +56,13 @@ cAUIElement_pager.prototype._onItemClick	= function(oEvent, nIndex) {
 
 cAUIElement_pager.prototype._onButtonClick	= function(oEvent, sButtonType) {
 	if (sButtonType == "next") {
-		if (this.attributes["pagestep"] * 1 + 1 < this.attributes["pagesamount"] * 1)
-			this.goTo(this.attributes["pagestep"] * 1 + 1);
+		if (this.getAttribute("pagestep") * 1 + 1 < this.getAttribute("pagesamount") * 1)
+			this.goTo(this.getAttribute("pagestep") * 1 + 1);
 	}
 	else
 	if (sButtonType == "back") {
-		if (this.attributes["pagestep"] * 1 - 1 >= 0)
-			this.goTo(this.attributes["pagestep"] * 1 - 1);
+		if (this.getAttribute("pagestep") * 1 - 1 >= 0)
+			this.goTo(this.getAttribute("pagestep") * 1 - 1);
 	}
 };
 
@@ -76,7 +76,7 @@ cAUIElement_pager.prototype.$getTagOpen	= function() {
 	sHtml	+= '<table cellpadding="0" cellspacing="0" border="0" height="100%" class="aui-pager--body">';
 	sHtml	+= '<tbody>';
 	sHtml	+= '<tr>';
-	for (var nIndex = 0; nIndex < this.attributes["pagesamount"] * 1; nIndex++)
+	for (var nIndex = 0, nLength = this.getAttribute("pagesamount") * 1; nIndex < nLength; nIndex++)
 		sHtml	+= '<td class="aui-pager-item" onmouseover="this.className=this.className.replace(\'normal\', \'hover\');" onmouseout="this.className=this.className.replace(\'hover\', \'normal\');" onmousedown="this.className=this.className.replace(\'hover\', \'active\');" onmouseup="this.className=this.className.replace(\'active\', \'hover\');" onclick="ample.$instance(this)._onItemClick(event, this.cellIndex)">' + nIndex + '</td>';
 	sHtml	+= '</tr>';
 	sHtml	+= '</tbody>';

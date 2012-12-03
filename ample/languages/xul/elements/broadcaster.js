@@ -17,12 +17,13 @@ cXULElement_broadcaster.handlers	= {
 		if (oEvent.target == this) {
 			// Skip attributes "id" and "persist" that should be not possible to set
 			if (oEvent.attrName != "id" && oEvent.attrName != "persist") {
-				if (this.attributes["id"]) {
+				var sId	= this.getAttribute("id");
+				if (sId) {
 					var aElements	= this.ownerDocument.getElementsByTagNameNS(this.namespaceURI, "*");
 					for (var nIndex = 0, oElement, sAttribute; oElement = aElements[nIndex]; nIndex++) {
 						if (oElement.localName == "observes") {
-							sAttribute	= oElement.attributes["attribute"];
-							if ((oElement.attributes["element"] == this.attributes["id"]) && (!sAttribute || sAttribute == "*" || sAttribute == oEvent.attrName)) {
+							sAttribute	= oElement.getAttribute("attribute");
+							if ((oElement.getAttribute("element") == sId) && (!sAttribute || sAttribute == "*" || sAttribute == oEvent.attrName)) {
 								if (oEvent.newValue == null)
 									oElement.parentNode.removeAttribute(oEvent.attrName);
 								else
@@ -32,7 +33,7 @@ cXULElement_broadcaster.handlers	= {
 							}
 						}
 						else {
-							if (oElement.attributes["observes"] == this.attributes["id"]) {
+							if (oElement.getAttribute("observes") == sId) {
 								if (oEvent.newValue == null)
 									oElement.removeAttribute(oEvent.attrName);
 								else

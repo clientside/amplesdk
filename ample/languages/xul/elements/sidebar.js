@@ -19,8 +19,9 @@ cXULElement_sidebar.attributes.height	= "100%";
 
 // Element Renders
 cXULElement_sidebar.prototype.$getTagOpen	= function() {
-	return '<div class="xul-sidebar' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="' +
-				(this.attributes["style"] ? this.attributes["style"] : '') + '">';
+	return '<div class="xul-sidebar' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '"' +
+				(this.hasAttribute("style") ? ' style="' + this.getAttribute("style") + '"' : '') +
+			'>';
 };
 
 // Element Render: close

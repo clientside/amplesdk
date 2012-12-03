@@ -51,7 +51,7 @@ cAUIElement_filepicker.handlers	= {
 
 // Element Render: open
 cAUIElement_filepicker.prototype.$getTagOpen	= function() {
-	return '<span class="aui-filepicker"><input type="file" class="aui-filepicker--input"' +(this.attributes["disabled"] ? ' disabled="true"' : '')+ ' style="padding-left:3px;" onselectstart="event.cancelBubble=true;" />';
+	return '<span class="aui-filepicker"><input type="file" class="aui-filepicker--input"' +(this.hasAttribute("disabled") ? ' disabled="true"' : '')+ ' style="padding-left:3px;" onselectstart="event.cancelBubble=true;" />';
 };
 
 // Element Render: close

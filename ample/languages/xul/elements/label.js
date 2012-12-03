@@ -21,7 +21,7 @@ cXULElement_label.handlers	= {
 	"DOMActivate":	function(oEvent) {
 		var oControl;
 		if (!oEvent.defaultPrevented)
-			if (this.attributes["control"] && (oControl = this.ownerDocument.getElementById(this.attributes["control"])))
+			if (this.hasAttribute("control") && (oControl = this.ownerDocument.getElementById(this.getAttribute("control"))))
 				oControl.focus();
 	}
 };
@@ -35,7 +35,7 @@ cXULElement_label.prototype.$mapAttribute	= function(sName, sValue) {
 
 // Element Render: open
 cXULElement_label.prototype.$getTagOpen	= function() {
-	return '<label class="xul-label' +(this.attributes["class"] ? " " + this.attributes["class"] : "")+ '">' + (this.attributes["value"] ? ample.$encodeXMLCharacters(this.attributes["value"]) : '');
+	return '<label class="xul-label' +(this.hasAttribute("class") ? " " + this.getAttribute("class") : "")+ '">' + (this.hasAttribute("value") ? ample.$encodeXMLCharacters(this.getAttribute("value")) : '');
 };
 
 // Element Render: close

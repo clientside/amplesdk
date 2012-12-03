@@ -40,7 +40,7 @@ cXHTMLElement_input.prototype.valueAsDate	= null;
 cXHTMLElement_input.prototype.$captured	= false;
 
 cXHTMLElement_input.prototype.$isAccessible	= function() {
-	return cXHTMLElement.prototype.$isAccessible.call(this) && this.attributes["type"] != "hidden";
+	return cXHTMLElement.prototype.$isAccessible.call(this) && this.getAttribute("type") != "hidden";
 };
 
 // Public methods
@@ -53,10 +53,10 @@ cXHTMLElement_input.prototype.setSelectionRange	= function() {
 };
 
 cXHTMLElement_input.prototype.stepUp	= function() {
-	var nValue	= parseFloat(this.attributes["value"]),
-		nStep	= parseFloat(this.attributes["step"]) || 1,
-		nMin	= parseFloat(this.attributes["min"]),
-		nMax	= parseFloat(this.attributes["max"]);
+	var nValue	= parseFloat(this.getAttribute("value")),
+		nStep	= parseFloat(this.getAttribute("step")) || 1,
+		nMin	= parseFloat(this.getAttribute("min")),
+		nMax	= parseFloat(this.getAttribute("max"));
 
 	if (isNaN(nMin))
 		nMin	= 0;
@@ -79,10 +79,10 @@ cXHTMLElement_input.prototype.stepUp	= function() {
 };
 
 cXHTMLElement_input.prototype.stepDown	= function() {
-	var nValue	= parseFloat(this.attributes["value"]),
-		nStep	= parseFloat(this.attributes["step"]) || 1,
-		nMin	= parseFloat(this.attributes["min"]),
-		nMax	= parseFloat(this.attributes["max"]);
+	var nValue	= parseFloat(this.getAttribute("value")),
+		nStep	= parseFloat(this.getAttribute("step")) || 1,
+		nMin	= parseFloat(this.getAttribute("min")),
+		nMax	= parseFloat(this.getAttribute("max"));
 
 	if (isNaN(nMin))
 		nMin	= 0;
@@ -113,9 +113,9 @@ cXHTMLElement_input.handlers	= {
 	},
 	"blur":		function(oEvent) {
 //		try {this.$getContainer("value").blur();}catch(e){}
-		this.$getContainer("placeholder").style.display	= this.attributes.value ? "none" : "";
+		this.$getContainer("placeholder").style.display	= this.getAttribute("value") ? "none" : "";
 		// Hide popup
-		switch (this.attributes["type"]) {
+		switch (this.getAttribute("type")) {
 			case "date":
 			case "color":
 			case "datetime":
@@ -129,7 +129,7 @@ cXHTMLElement_input.handlers	= {
 	"click":	function(oEvent) {
 		if (oEvent.target == this) {
 			if (oEvent.$pseudoTarget == this.$getContainer("button")) {
-				switch (this.attributes["type"]) {
+				switch (this.getAttribute("type")) {
 					case "file":
 					case "date":
 					case "color":
@@ -142,7 +142,7 @@ cXHTMLElement_input.handlers	= {
 				}
 			}
 			else {
-				switch (this.attributes["type"]) {
+				switch (this.getAttribute("type")) {
 					case "radio":
 					case "checkbox":
 						this.$activate();
@@ -153,7 +153,7 @@ cXHTMLElement_input.handlers	= {
 	},
 	"mousedown":	function(oEvent) {
 		if (oEvent.target == this) {
-			switch (this.attributes["type"]) {
+			switch (this.getAttribute("type")) {
 				case "range":
 					if (oEvent.$pseudoTarget != this.$getContainer("button"))
 						break;
@@ -169,7 +169,7 @@ cXHTMLElement_input.handlers	= {
 	},
 	"mouseup":	function(oEvent) {
 		if (oEvent.target == this) {
-			switch (this.attributes["type"]) {
+			switch (this.getAttribute("type")) {
 				case "reset":
 				case "submit":
 				case "button":
@@ -179,7 +179,7 @@ cXHTMLElement_input.handlers	= {
 						this.releaseCapture();
 						this.$setPseudoClass("active", false);
 						//
-						if (this.attributes["type"] == "range")
+						if (this.getAttribute("type") == "range")
 							this.setAttribute("value", this.valueAsNumber);
 					}
 					break;
@@ -188,16 +188,16 @@ cXHTMLElement_input.handlers	= {
 	},
 	"mousemove":	function(oEvent) {
 		if (oEvent.target == this) {
-			switch (this.attributes["type"]) {
+			switch (this.getAttribute("type")) {
 				case "range":
 					if (this.$captured) {
 						var oRect	= this.getBoundingClientRect("field"),
 							nLeft	= Math.max(oRect.left, Math.min(oEvent.clientX, oRect.right)),
 							nRatio	= (nLeft - oRect.left) / (oRect.right - oRect.left);
 
-						var nStep	= parseFloat(this.attributes["step"]) || 1,
-							nMin	= parseFloat(this.attributes["min"]),
-							nMax	= parseFloat(this.attributes["max"]);
+						var nStep	= parseFloat(this.getAttribute("step")) || 1,
+							nMin	= parseFloat(this.getAttribute("min")),
+							nMax	= parseFloat(this.getAttribute("max"));
 
 						if (isNaN(nMin))
 							nMin	= 0;
@@ -218,7 +218,7 @@ cXHTMLElement_input.handlers	= {
 		// Handle spin buttons
 		if (oEvent.target == this) {
 			var sKey	= oEvent.keyIdentifier;
-			switch (this.attributes["type"]) {
+			switch (this.getAttribute("type")) {
 				case "range":
 					if (sKey == "Right") {
 						this.stepUp();
@@ -259,7 +259,7 @@ cXHTMLElement_input.handlers	= {
 	},
 	"DOMActivate":	function(oEvent) {
 		if (oEvent.target == this) {
-			switch (this.attributes["type"]) {
+			switch (this.getAttribute("type")) {
 				case "file":
 					this.$getContainer("value").click();
 					break;
@@ -274,15 +274,15 @@ cXHTMLElement_input.handlers	= {
 					break;
 
 				case "checkbox":
-					this.setAttribute("checked", this.attributes["checked"] == "true" ? "false" : "true");
+					this.setAttribute("checked", this.getAttribute("checked") == "true" ? "false" : "true");
 					break;
 
 				case "radio":
-					var sName	= this.attributes["name"];
+					var sName	= this.getAttribute("name");
 					if (sName && this.form)
 						for (var nIndex = 0, oElement; nIndex < this.form.elements.length; nIndex++)
-							if ((oElement = this.form.elements[nIndex]) && oElement.attributes["type"] == "radio" && oElement.attributes["name"] == sName)
-								if (oElement.attributes["checked"] == "true")
+							if ((oElement = this.form.elements[nIndex]) && oElement.getAttribute("type") == "radio" && oElement.getAttribute("name") == sName)
+								if (oElement.getAttribute("checked") == "true")
 									this.form.elements[nIndex].removeAttribute("checked");
 					this.setAttribute("checked", "true");
 					break;
@@ -293,7 +293,7 @@ cXHTMLElement_input.handlers	= {
 		//
 		cXHTMLInputElement.register(this);
 		//
-		this.$selectable	= this.attributes["type"] != "range";
+		this.$selectable	= this.getAttribute("type") != "range";
 	},
 	"DOMNodeRemovedFromDocument":	function(oEvent) {
 		//
@@ -324,7 +324,7 @@ cXHTMLElement_input.prototype.$mapAttribute	= function(sName, sValue) {
 	}
 	else
 	if (sName == "value") {
-		if (this.attributes["type"] == "range") {
+		if (this.getAttribute("type") == "range") {
 			this.$getContainer("button").style.left	= cXHTMLElement_input.getRangeOffset(this, sValue || '');
 		}
 		else {
@@ -348,7 +348,7 @@ cXHTMLElement_input.toggle	= function(oInstance, bForce) {
 		oPopup.style.display	= "none";
 	}
 
-	switch (oInstance.attributes.type) {
+	switch (oInstance.getAttribute("type")) {
 		case "date":
 		case "datetime":
 		case "datetime-local":
@@ -360,7 +360,7 @@ cXHTMLElement_input.toggle	= function(oInstance, bForce) {
 				oInstance.contentFragment.appendChild(oElement);
 				oInstance.datepicker	= oElement;
 			}
-			oInstance.datepicker.setAttribute("value", "2010-11-23"/*oInstance.attributes["value"]*/);
+			oInstance.datepicker.setAttribute("value", "2010-11-23"/*oInstance.getAttribute("value")*/);
 			break;
 
 		case "color":
@@ -370,14 +370,14 @@ cXHTMLElement_input.toggle	= function(oInstance, bForce) {
 				oInstance.contentFragment.appendChild(oElement);
 				oInstance.colorpicker	= oElement;
 			}
-			oInstance.colorpicker.setAttribute("value", "#ffffff"/*oInstance.attributes["value"]*/);
+			oInstance.colorpicker.setAttribute("value", "#ffffff"/*oInstance.getAttribute("value")*/);
 			break;
 	}
 };
 
 cXHTMLElement_input.getRangeOffset	= function(oInstance, nValue) {
-	var nMax	= parseFloat(oInstance.attributes.max),
-		nMin	= parseFloat(oInstance.attributes.min);
+	var nMax	= parseFloat(oInstance.getAttribute("max")),
+		nMin	= parseFloat(oInstance.getAttribute("min"));
 
 	if (isNaN(nMin))
 		nMin	= 0;
@@ -409,24 +409,24 @@ cXHTMLElement_input.html524	= {
 
 // Element Render: open
 cXHTMLElement_input.prototype.$getTagOpen		= function() {
-	var sType	= this.attributes.type || "text",
-		sValue	= this.attributes.value || "",
+	var sType	= this.getAttribute("type") || "text",
+		sValue	= this.getAttribute("value") || "",
 		sClassName	=(this.prefix ? this.prefix + '-' : '') + this.localName,
 		sClassNameType	= sClassName + '-type-' + sType,
-		bChecked	= this.attributes["checked"] && this.attributes["checked"] != "false",
-		bRequired	= this.attributes["required"] && this.attributes["required"] != "false",
-		bDisabled	= this.attributes["disabled"] && this.attributes["disabled"] != "false",
-		bReadonly	= this.attributes["readonly"] && this.attributes["readonly"] != "false",
+		bChecked	= this.hasAttribute("checked") && this.getAttribute("checked") != "false",
+		bRequired	= this.hasAttribute("required") && this.getAttribute("required") != "false",
+		bDisabled	= this.hasAttribute("disabled") && this.getAttribute("disabled") != "false",
+		bReadonly	= this.hasAttribute("readonly") && this.getAttribute("readonly") != "false",
 		bValid		= cXHTMLInputElement.isValid(this),
 		aHtml	= [];
 	aHtml.push('<span class="' + sClassName + ' ' + sClassNameType +
-						("class" in this.attributes ? ' ' + this.attributes["class"] : '') +
+						(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '') +
 						' ' + sClassName + '_' + (bChecked ? 'checked' : '') + ' '+
 						' ' + sClassName + '_' + (bRequired ? 'required' : 'optional') + ' '+
 						' ' + sClassName + '_' + (bDisabled ? 'disabled' : 'enabled') + ' '+
 						' ' + sClassName + '_' + (bReadonly ? 'read-only' : 'read-write') + ' '+
 						' ' + sClassName + '_' + (bValid ? 'valid' : 'invalid') + ' '+
-				'" ' +(this.attributes.style ? ' style="' + this.attributes.style + '"' : '')+ '>');
+				'" ' +(this.hasAttribute("style") ? ' style="' + this.getAttribute("style") + '"' : '')+ '>');
 	aHtml.push(	'<div style="position:absolute;white-space:nowrap;' + (sValue == '' ? '' : 'display:none')+ '" class="' + sClassName + '--placeholder">' +
 					(this.getAttribute("placeholder") || '')+
 				'</div>');
@@ -444,11 +444,11 @@ cXHTMLElement_input.prototype.$getTagOpen		= function() {
 	aHtml.push(		'<input class="' + sClassName + '--value ' + sClassNameType + '--value" \
 						type="' +(cXHTMLElement_input.html524[sType] || "text")+ '" \
 						onchange="var o = ample.$instance(this).$getContainer(\'label\'); o.innerText = o.textContent = this.value"' +
-						(this.attributes["readonly"] ? ' readonly="true"' : '') +
-						(this.attributes["disabled"] ? ' disabled="true"' : '') +
-						(this.attributes["maxlength"] ? ' maxlength="' + this.attributes["maxlength"] + '"' : '') +
+						(this.hasAttribute("readonly") ? ' readonly="true"' : '') +
+						(this.hasAttribute("disabled") ? ' disabled="true"' : '') +
+						(this.hasAttribute("maxlength") ? ' maxlength="' + this.getAttribute("maxlength") + '"' : '') +
 						(sValue ? ' value="' + ample.$encodeXMLCharacters(sValue) + '"' : '') +
-						(this.attributes["name"] ? ' name="' + ample.$encodeXMLCharacters(this.attributes["name"]) + '"' : '')+
+						(this.hasAttribute("name") ? ' name="' + ample.$encodeXMLCharacters(this.getAttribute("name")) + '"' : '')+
 					'/>');
 	aHtml.push(		'<div class="' + sClassName + '--label ' + sClassNameType + '--label">' +
 						(sType == "reset" || sType == "submit" || sType == "button"
@@ -475,7 +475,7 @@ cXHTMLElement_input.prototype.$getTagClose	= function() {
 ample.extend(cXHTMLElement_input);
 
 /*
-switch (this.attributes["type"]) {
+switch (this.getAttribute("type")) {
 // Hidden
 // .value
 case "hidden":	// n/a

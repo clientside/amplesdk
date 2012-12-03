@@ -44,11 +44,11 @@ cXHTMLElement_button.handlers	= {
 
 cXHTMLElement_button.prototype.$getTagOpen	= function() {
 	var sClassName	=(this.prefix ? this.prefix + '-' : '') + this.localName,
-		bDisabled	= this.attributes["disabled"] && this.attributes["disabled"] != "false";
+		bDisabled	= this.hasAttribute("disabled") && this.getAttribute("disabled") != "false";
 	return '<span class="' + sClassName + ' ' +
-				("class" in this.attributes ? ' ' + this.attributes["class"] : '') +
+				(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '') +
 				' ' + sClassName + '_' + (bDisabled ? 'disabled' : 'enabled') + ' '+
-				'" ' +(this.attributes.style ? ' style="' + this.attributes.style + '"' : '')+ '>\
+				'" ' +(this.hasAttribute("style") ? ' style="' + this.getAttribute("style") + '"' : '')+ '>\
 				<span class="' + sClassName + '--before" style="float:left"></span>\
 				<span class="' + sClassName + '--after" style="float:right"></span>\
 				<div class="' + sClassName + '--field" style="position:relative">\

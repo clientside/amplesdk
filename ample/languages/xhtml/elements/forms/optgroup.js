@@ -39,11 +39,11 @@ cXHTMLElement_optgroup.handlers	= {
 cXHTMLElement_optgroup.prototype.$getTagOpen	= function() {
 	var sClassName	= (this.prefix ? this.prefix + '-' : '') + this.localName;
 	return '<div class="' +	sClassName +
-				("class" in this.attributes ? ' ' + this.attributes["class"] : '')+
-				(this.attributes["disabled"] ? ' ' + sClassName + '_disabled' : '')+
+				(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+
+				(this.hasAttribute("disabled") ? ' ' + sClassName + '_disabled' : '')+
 			'">\
 				<div class="' + sClassName + '--gap" style="height:1em;float:left"></div>\
-				<div class="' + sClassName + '--value">' +(this.attributes.label || '')+ '</div>\
+				<div class="' + sClassName + '--value">' +(this.getAttribute("label") || '')+ '</div>\
 				<div class="' + sClassName + '--gateway">';
 };
 

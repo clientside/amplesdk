@@ -40,31 +40,31 @@ cXULElement_button.prototype.$mapAttribute	= function(sName, sValue) {
 		this.$getContainer().disabled	= sValue == "true";
 	else
 	if (sName == "label")
-		this.$getContainer().innerHTML	=(this.attributes["image"] ? '<img src="' + this.attributes["image"] + '" align="absmiddle" /> ' :'') + (sValue || '');
+		this.$getContainer().innerHTML	=(this.hasAttribute("image") ? '<img src="' + this.getAttribute("image") + '" align="absmiddle" /> ' :'') + (sValue || '');
 	else
 	if (sName == "image")
-		this.$getContainer().innerHTML	=(sValue ? '<img src="' + sValue + '" align="absmiddle" /> ' :'') + (this.attributes["label"] || '');
+		this.$getContainer().innerHTML	=(sValue ? '<img src="' + sValue + '" align="absmiddle" /> ' :'') + (this.getAttribute("label") || '');
 	else
 		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
 // Element Render: open
 cXULElement_button.prototype.$getTagOpen	= function() {
-	var sHtml	= '<button class="xul-button' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"';
+	var sHtml	= '<button class="xul-button' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '"';
 	if (!this.$isAccessible())
 		sHtml  += ' disabled="true"';
 	sHtml  += ' style="';
-	if (this.attributes["width"])
-		sHtml  += 'width:'+this.attributes["width"]+';';
-	if (this.attributes["height"])
-		sHtml  += 'height:'+this.attributes["height"]+';';
-	if (this.attributes["hidden"] == "true")
+	if (this.hasAttribute("width"))
+		sHtml  += 'width:'+this.getAttribute("width")+';';
+	if (this.hasAttribute("height"))
+		sHtml  += 'height:'+this.getAttribute("height")+';';
+	if (this.getAttribute("hidden") == "true")
 		sHtml  += 'display:none';
 	sHtml  += '">';
-	if (this.attributes["image"])
-		sHtml  += '<img src="' + ample.$encodeXMLCharacters(this.attributes["image"]) + '" align="absmiddle"/> ';
-	if (this.attributes["label"])
-		sHtml  += ample.$encodeXMLCharacters(this.attributes["label"]);
+	if (this.hasAttribute("image"))
+		sHtml  += '<img src="' + ample.$encodeXMLCharacters(this.getAttribute("image")) + '" align="absmiddle"/> ';
+	if (this.hasAttribute("label"))
+		sHtml  += ample.$encodeXMLCharacters(this.getAttribute("label"));
 
 	return sHtml;
 };

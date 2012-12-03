@@ -50,7 +50,7 @@ cAUIElement_map.handlers	= {
 
 // Element Render: open
 cAUIElement_map.prototype.$getTagOpen	= function() {
-	return '<div' + (this.attributes["style"] ? ' style="' + this.attributes["style"] + '"' : '') + '>';
+	return '<div' + (this.hasAttribute("style") ? ' style="' + this.getAttribute("style") + '"' : '') + '>';
 };
 
 // Element Render: close

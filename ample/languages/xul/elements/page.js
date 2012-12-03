@@ -19,10 +19,12 @@ cXULElement_page.attributes.height	= "100%";
 
 // Element Renders
 cXULElement_page.prototype.$getTagOpen	= function() {
-	return '<div class="xul-page' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="' +
-				(this.attributes["width"] ? 'width:' +(isNaN(this.attributes["width"]) ? this.attributes["width"] : this.attributes["width"] + "px") : '')+ ';' +
-				(this.attributes["height"] ? 'height:' +(isNaN(this.attributes["height"]) ? this.attributes["height"] : this.attributes["height"] + "px") : '')+ ';' +
-				(this.attributes["style"] ? this.attributes["style"] : '') + '">';
+	var sWidth	= this.getAttribute("width"),
+		sHeight	= this.getAttribute("height");
+	return '<div class="xul-page' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '" style="' +
+				(this.hasAttribute("width") ? 'width:' +(isNaN(sWidth) ? sWidth : sWidth + "px") : '')+ ';' +
+				(this.hasAttribute("height") ? 'height:' +(isNaN(sHeight) ? sHeight : sHeight + "px") : '')+ ';' +
+				(this.hasAttribute("style") ? this.getAttribute("style") : '') + '">';
 };
 
 // Element Render: close

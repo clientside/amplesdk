@@ -16,7 +16,7 @@ cXULElement_toolbar.prototype.$selectable	= false;
 
 // Element Render: open
 cXULElement_toolbar.prototype.$getTagOpen		= function() {
-	return '<div class="xul-toolbar' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">';
+	return '<div class="xul-toolbar' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '">';
 };
 
 // Element Render: close

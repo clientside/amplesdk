@@ -16,7 +16,7 @@ cXULElement_toolbarspring.attributes.flex	= "1";
 
 // Element Render: open
 cXULElement_toolbarspring.prototype.$getTagOpen	= function() {
-	return '<div class="xul-toolbarspring' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"><br /></div>';
+	return '<div class="xul-toolbarspring' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '"><br /></div>';
 };
 
 // Register Element

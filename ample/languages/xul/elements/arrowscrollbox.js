@@ -44,17 +44,17 @@ cXULElement_arrowscrollbox.prototype._onButtonOut	= function(oEvent) {
 
 // Element Render: open
 cXULElement_arrowscrollbox.prototype.$getTagOpen	= function() {
-	var sHtml	= '<table cellpadding="0" cellspacing="0" border="0" class="xul-arrowscrollbox' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">';
+	var sHtml	= '<table cellpadding="0" cellspacing="0" border="0" class="xul-arrowscrollbox' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '">';
 	sHtml	+= '<tbody>';
 	sHtml	+= '<tr>';
-	if (this.attributes["orient"] == "vertical") {
+	if (this.getAttribute("orient") == "vertical") {
 		sHtml	+= '<td height="1" class="xul-arrowscrollbox-button xul-arrowscrollbox-button-normal xul-arrowscrollbox-button-up xul-arrowscrollbox-button-up-normal" onmouseover="this.className=this.className.replace(/normal/g, \'hover\'); ample.$instance(this)._onButtonOver(event, \'vertical\', -1);" onmouseout="this.className=this.className.replace(/hover/g, \'normal\'); ample.$instance(this)._onButtonOut(event);"><div><br /></div></td>';
 		sHtml	+= '</tr><tr>';
 	}
 	else
 		sHtml	+= '<td width="1" class="xul-arrowscrollbox-button xul-arrowscrollbox-button-normal xul-arrowscrollbox-button-left xul-arrowscrollbox-button-left-normal" onmouseover="this.className=this.className.replace(/normal/g, \'hover\'); ample.$instance(this)._onButtonOver(event, \'horizontal\', -1);" onmouseout="this.className=this.className.replace(/hover/g, \'normal\'); ample.$instance(this)._onButtonOut(event);"><div><br /></div></td>';
 	sHtml	+= '<td>';
-	sHtml	+= '<div class="xul-arrowscrollbox--gateway" style="position:relative; height:' +(this.attributes["height"] -(this.attributes["orient"] == "vertical" ? 18 : 0))+ '; width:' +(this.attributes["width"] -(this.attributes["orient"] != "vertical" ? 18 : 0))+ '; overflow:hidden;">';
+	sHtml	+= '<div class="xul-arrowscrollbox--gateway" style="position:relative; height:' +(this.getAttribute("height") -(this.getAttribute("orient") == "vertical" ? 18 : 0))+ '; width:' +(this.getAttribute("width") -(this.getAttribute("orient") != "vertical" ? 18 : 0))+ '; overflow:hidden;">';
 
 	return sHtml;
 };
@@ -63,7 +63,7 @@ cXULElement_arrowscrollbox.prototype.$getTagOpen	= function() {
 cXULElement_arrowscrollbox.prototype.$getTagClose	= function() {
 	var sHtml	= '</div>';
 	sHtml  += '</td>';
-	if (this.attributes["orient"] == "vertical") {
+	if (this.getAttribute("orient") == "vertical") {
 		sHtml  += '</tr><tr>';
 		sHtml  += '<td height="1" class="xul-arrowscrollbox-button xul-arrowscrollbox-button-normal xul-arrowscrollbox-button-down xul-arrowscrollbox-button-down-normal" onmouseover="this.className=this.className.replace(/normal/g, \'hover\'); ample.$instance(this)._onButtonOver(event, \'vertical\', 1);" onmouseout="this.className=this.className.replace(/hover/g, \'normal\');ample.$instance(this)._onButtonOut(event);"><div><br /></div></td>';
 	}

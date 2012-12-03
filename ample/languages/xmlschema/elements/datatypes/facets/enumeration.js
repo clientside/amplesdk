@@ -14,7 +14,7 @@ cXSElement_enumeration.handlers	= {};
 cXSElement_enumeration.handlers.DOMNodeInsertedIntoDocument	= function(oEvent) {
 	var oType	= this.parentNode.$type;
 	//
-	var sValue	= this.attributes["value"],
+	var sValue	= this.getAttribute("value"),
 		nFacet	= cXSSimpleTypeDefinition.FACET_ENUMERATION;
 	if (sValue) {
 		// check if facet defined
@@ -26,7 +26,7 @@ cXSElement_enumeration.handlers.DOMNodeInsertedIntoDocument	= function(oEvent) {
 		if (!oFacet) {
 			oFacet	= new cXSMultiValueFacet;
 			// XSMultiValueFacet
-			oFacet.fixed	= this.attributes["fixed"] == "true";
+			oFacet.fixed	= this.getAttribute("fixed") == "true";
 			oFacet.facetKind= nFacet;
 
 			// Add facet to type

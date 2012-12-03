@@ -12,9 +12,9 @@ cXULElement_spacer.prototype	= new cXULElement("spacer");
 
 // Element Render: open
 cXULElement_spacer.prototype.$getTagOpen	= function() {
-	var sHtml	= '<div class="xul-spacer' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '" style="';
-	sHtml	+= 'width:' +(this.attributes["width"] ? this.attributes["width"] : '0')+ 'px;';
-	sHtml	+= 'height:' +(this.attributes["height"]? this.attributes["height"]: '0')+ 'px;';
+	var sHtml	= '<div class="xul-spacer' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '" style="';
+	sHtml	+= 'width:' +(this.hasAttribute("width") ? this.getAttribute("width") : '0')+ 'px;';
+	sHtml	+= 'height:' +(this.hasAttribute("height")? this.getAttribute("height"): '0')+ 'px;';
 	sHtml	+= '"><img height="1" width="1" /></div>';
 
 	return sHtml;

@@ -16,22 +16,22 @@ cXULElement_statusbarpanel.attributes.align	= "center";
 
 cXULElement_statusbarpanel.prototype.$mapAttribute	= function(sName, sValue) {
 	if (sName == "label")
-		this.$getContainer().innerHTML	=(this.attributes["image"] ? '<img src="' + this.attributes["image"] + '" align="absmiddle"/>' : '') + (sValue || '');
+		this.$getContainer().innerHTML	=(this.hasAttribute("image") ? '<img src="' + this.getAttribute("image") + '" align="absmiddle"/>' : '') + (sValue || '');
 	else
 	if (sName == "image")
-		this.$getContainer().innerHTML	=(sValue ? '<img src="' + sValue + '" align="absmiddle"/>' : '') + (this.attributes["label"] || '');
+		this.$getContainer().innerHTML	=(sValue ? '<img src="' + sValue + '" align="absmiddle"/>' : '') + (this.getAttribute("label") || '');
 	else
 		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
 
 // Element Render: open
 cXULElement_statusbarpanel.prototype.$getTagOpen	= function() {
-	var sHtml	= '<div class="xul-statusbarpanel' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">';
-	if (this.attributes["image"])
-		sHtml	+= '<img src="' + ample.$encodeXMLCharacters(this.attributes["image"]) + '" align="absmiddle"/>';
+	var sHtml	= '<div class="xul-statusbarpanel' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '">';
+	if (this.hasAttribute("image"))
+		sHtml	+= '<img src="' + ample.$encodeXMLCharacters(this.getAttribute("image")) + '" align="absmiddle"/>';
 	else
-	if (this.attributes["label"])
-		sHtml	+= ample.$encodeXMLCharacters(this.attributes["label"]);
+	if (this.hasAttribute("label"))
+		sHtml	+= ample.$encodeXMLCharacters(this.getAttribute("label"));
 //	else
 //		sHtml	+= ' ';
 	return sHtml;

@@ -57,7 +57,7 @@ cXULElement_menubar.prototype.selectItem	= function(oItem) {
 			oItem.menupopup.showPopup(this, -1, -1, cXULPopupElement.POPUP_TYPE_POPUP);
 			oItem.menupopup.addEventListener("popuphidden", function(oEvent) {
 				if (oEvent.target == this) {
-					if (this.opener.attributes["active"] == "true")	{
+					if (this.opener.getAttribute("active") == "true")	{
 						this.opener.selectedItem.setAttribute("selected", "false");
 						this.opener.selectedItem.$setPseudoClass("hover", false);
 						this.opener.selectedItem	= null;
@@ -83,7 +83,7 @@ cXULElement_menubar.prototype.selectItem	= function(oItem) {
 
 // Element Render: open
 cXULElement_menubar.prototype.$getTagOpen		= function() {
-	return '<div class="xul-menubar' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">\
+	return '<div class="xul-menubar' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '">\
 				<table cellpadding="0" cellspacing="0" border="0" width="100%">\
 					<tbody>\
 						<tr class="xul-menubar--gateway">';

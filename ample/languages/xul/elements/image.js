@@ -27,7 +27,11 @@ cXULElement_image.prototype._onLoad	= function(oEvent) {
 
 // Element Render: open
 cXULElement_image.prototype.$getTagOpen	= function() {
-	return '<img class="xul-image' +(this.attributes["class"] ? " " + this.attributes["class"] : "") + '"' +(this.attributes["width"] ? ' width="' + this.attributes["width"] + '"' : '')+(this.attributes["height"] ? ' height="' + this.attributes["height"] + '"' : '') + (this.attributes["src"] ? ' src="' + ample.$encodeXMLCharacters(this.attributes["src"]) + '"' :'') + ' onload="ample.$instance(this)._onLoad(event)"/>';
+	return '<img class="xul-image' +(this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '" onload="ample.$instance(this)._onLoad(event)"' +
+				(this.hasAttribute("width") ? ' width="' + this.getAttribute("width") + '"' : '')+
+				(this.hasAttribute("height") ? ' height="' + this.getAttribute("height") + '"' : '') +
+				(this.hasAttribute("src") ? ' src="' + ample.$encodeXMLCharacters(this.getAttribute("src")) + '"' :'') +
+				'/>';
 };
 
 // Register Element

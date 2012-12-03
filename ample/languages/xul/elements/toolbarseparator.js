@@ -12,7 +12,7 @@ cXULElement_toolbarseparator.prototype	= new cXULElement("toolbarseparator");
 
 // Element Render: open
 cXULElement_toolbarseparator.prototype.$getTagOpen	= function() {
-	return '<div class="xul-toolbarseparator' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"><br /></div>';
+	return '<div class="xul-toolbarseparator' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '"><br /></div>';
 };
 
 // Register Element

@@ -19,8 +19,8 @@ cXULElement_script.attributes.hidden	= "true";
 // Element Handlers
 cXULElement_script.handlers	= {
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
-		if (this.attributes["src"])
-			this.$getContainer().src	= this.attributes["src"];
+		if (this.hasAttribute("src"))
+			this.$getContainer().src	= this.getAttribute("src");
 		else
 		if (this.firstChild) {
 			var oElement	= document.body.appendChild(document.createElement("script"));

@@ -25,9 +25,9 @@ if (cSVGElement.useVML) {
 						oNode.removeAttribute("id");
 
 						// Copy attributes from "use" element to the clone
-						for (var sAttribute in this.attributes)
-							if (this.attributes.hasOwnProperty(sAttribute) && sAttribute != "id" && sAttribute != "xlink:href")
-								oNode.attributes[sAttribute]	= this.attributes[sAttribute];
+						for (var nIndex = 0, oAttribute; nIndex < this.attributes.length; nIndex++)
+							if ((oAttribute = this.attributes[nIndex]).name != "id" && oAttribute.name != "xlink:href" && oAttribute.name != "xmlns" && oAttribute.prefix != "xmlns")
+								oNode.setAttributeNS(oAttribute.namespaceURI, oAttribute.name, oAttribute.value);
 
 						that.parentNode.insertBefore(oNode, that);
 					}

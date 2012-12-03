@@ -45,8 +45,8 @@ cXHTMLElement_textarea.prototype.$getTagOpen	= function() {
 	var sClassName	= (this.prefix ? this.prefix + '-' : '') + this.localName,
 		sClass	= this.getAttribute("class"),
 		aHtml	=['<span'];
-	for (var nIndex = 0, nLength = this.attributes.length, oAttribute; nIndex < nLength; nIndex++)
-		if ((oAttribute = this.attributes.item(nIndex)) && oAttribute.name != "class" && oAttribute.name != "id" && !oAttribute.prefix)
+	for (var nIndex = 0, oAttribute; nIndex < this.attributes.length; nIndex++)
+		if ((oAttribute = this.attributes[nIndex]) && oAttribute.name != "class" && oAttribute.name != "id" && !oAttribute.prefix)
 			aHtml.push(' ' + oAttribute.name + '="' + ample.$encodeXMLCharacters(oAttribute.value) + '"');
 	aHtml.push(	' class="' + (this.prefix ? this.prefix + '-' : '') + this.localName + (sClass ? ' ' + sClass : '') + '">');
 	aHtml.push(	'<div style="position:absolute;margin-top:-2px;white-space:nowrap" class="' + sClassName + '--placeholder">' +(this.getAttribute("placeholder") || '')+ '</div>');

@@ -68,7 +68,7 @@ cXULElement_deck.prototype.reflow	= function() {
 
 // Element Render: open
 cXULElement_deck.prototype.$getTagOpen	= function() {
-	return '<div class="xul-deck' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '">';
+	return '<div class="xul-deck' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '">';
 };
 
 // Element Render: close
