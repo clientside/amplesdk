@@ -161,6 +161,7 @@ cQuery.prototype.show	= function(vDuration, fCallback) {
 		oStyle.display	= '';
 		if (vDuration) {
 			var oComputedStyle	= fBrowser_getComputedStyle(oElementDOM);
+
 			//
 			oProperties.width	= fBrowser_adjustStyleValue(oElementDOM, "width", fBrowser_getStyle(oElementDOM, "width", oComputedStyle));
 			oProperties.height	= fBrowser_adjustStyleValue(oElementDOM, "height", fBrowser_getStyle(oElementDOM, "height", oComputedStyle));
