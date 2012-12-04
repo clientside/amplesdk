@@ -7,15 +7,22 @@
 		<script type="text/javascript" src="../../../ample/languages/xmlschema/xmlschema.js"></script>
 		<link type="text/ample+css" href="../../../ample/languages/xhtml/themes/default/style.css" rel="stylesheet"/>
 		<style type="text/ample+css">
-			.input:valid {
+			input:schema-valid {
 				background-color: lightgreen;
-				border: solid 1px gray;
 			}
-			.input:invalid {
+			input:schema-invalid {
 				background-color: pink;
-				border: solid 1px red;
 			}
 		</style>
+		<script>
+			function validate(oElement, sNameSpaceURI, sLocalName) {
+				var oType	= ample.schema.getTypeDefinition(sNameSpaceURI, sLocalName);
+				var bValid	= oType.$validate(oElement.getAttribute("value") || "");
+
+				oElement.$setPseudoClass("schema-valid", bValid);
+				oElement.$setPseudoClass("schema-invalid", !bValid);
+			}
+		</script>
 	</head>
 	<body>
 		<script type="application/ample+xml" xmlns:my="http://my">
@@ -29,10 +36,10 @@
 			</xs:schema>
 
 			<form action="/" target="#target">
-				xs:integer: <input type="text" aml:type="xs:integer" onvalidate="" /> (not required)<br />
-				xs:boolean: <input type="text" aml:type="xs:boolean" aml:required="true" onvalidate="" /> (required)<br />
-				xs:NCName <input type="text" aml:type="xs:NCName" aml:required="true" onvalidate="" /> (required)<br />
-				my:gender: <input type="text" aml:type="my:gender" aml:required="true" onvalidate="" /> (required), 'male' or 'female'<br />
+				xs:integer: <input type="text" onchange="validate(this, 'http://www.w3.org/2001/XMLSchema', 'integer')" /><br />
+				xs:boolean: <input type="text" onchange="validate(this, 'http://www.w3.org/2001/XMLSchema', 'boolean')" /><br />
+				xs:NCName <input type="text" onchange="validate(this, 'http://www.w3.org/2001/XMLSchema', 'NCName')" /> <br />
+				my:gender: <input type="text" onchange="validate(this, 'http://my', 'gender')" />'male' or 'female'<br />
 				<input type="submit" value="send" />
 			</form>
 			<div id="target"></div>

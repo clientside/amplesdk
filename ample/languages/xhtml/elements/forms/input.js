@@ -145,6 +145,9 @@ cXHTMLElement_input.handlers	= {
 				switch (this.getAttribute("type")) {
 					case "radio":
 					case "checkbox":
+					//
+					case "submit":
+					case "reset":
 						this.$activate();
 						break;
 				}
@@ -260,6 +263,16 @@ cXHTMLElement_input.handlers	= {
 	"DOMActivate":	function(oEvent) {
 		if (oEvent.target == this) {
 			switch (this.getAttribute("type")) {
+				case "submit":
+					if (this.form)
+						this.form.submit();
+					break;
+
+				case "reset":
+					if (this.form)
+						this.form.reset();
+					break;
+
 				case "file":
 					this.$getContainer("value").click();
 					break;
