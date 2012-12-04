@@ -64,9 +64,9 @@ cChartElement_doughnut.prototype.refresh	= function() {
 
 if (!cChartElement.useVML) {
 	cChartElement_doughnut.prototype.$getTagOpen	= function() {
-		return '<div class="c-doughnut' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
+		return '<div class="c-doughnut' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '"' + (this.hasAttribute("style") ? ' style="' + this.getAttribute("style") + '"' : '') + '>\
 					<svg:svg class="c-doughnut--canvas" viewBox="0 0 300 300" style="width:inherit;height:inherit" xmlns:svg="http://www.w3.org/2000/svg">\
-						<svg:text class="c-doughnut--title" y="30" x="150">' + ample.$encodeXMLCharacters(this.getAttribute("title")) + '</svg:text>\
+						<svg:text class="c-doughnut--title" y="30" x="150">' + (this.hasAttribute("title") ? ample.$encodeXMLCharacters(this.getAttribute("title")) : '') + '</svg:text>\
 						<svg:g class="c-doughnut--gateway">';
 	};
 
@@ -135,11 +135,11 @@ else {
 	};
 
 	cChartElement_doughnut.prototype.$getTagOpen	= function() {
-		return '<div class="c-doughnut' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="overflow:hidden;' + this.getAttribute("style") + '">\
+		return '<div class="c-doughnut' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="overflow:hidden;' + (this.hasAttribute("style") ? this.getAttribute("style") : '') + '">\
 					<chart2vml:group class="c-doughnut--canvas" style="position:absolute;display:none;" coordOrigin="0 0" coordSize="300 300">\
 						<chart2vml:shape class="c-doughnut--title" path="m0,0 l300,0" fillcolor="black" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%;top:30px;xleft:150px">\
 							<chart2vml:path textpathok="true" />\
-							<chart2vml:textpath on="true" string="' + ample.$encodeXMLCharacters(this.getAttribute("title")) + '" style="v-text-align:center"/>\
+							<chart2vml:textpath on="true" string="' + (this.hasAttribute("title") ? ample.$encodeXMLCharacters(this.getAttribute("title")) : '') + '" style="v-text-align:center"/>\
 						</chart2vml:shape>\
 						<chart2vml:group class="c-doughnut--gateway" style="position:absolute;width:100%;height:100%">';
 	};

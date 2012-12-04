@@ -88,7 +88,7 @@ cXULElement_listitem.prototype.$getTagOpen	= function() {
 				(this.hasAttribute("label") || (oListBox && (oListBox.getAttribute("type") == "checkbox" || oListBox.getAttribute("type") == "radio"))
 				? ('<td style="padding:0" onmousedown="event.cancelBubble=true;" class="xul-listcell">' +
 					(this.hasAttribute("label")
-					? '<div class="xul-listcell--gateway">' + ample.$encodeXMLCharacters(this.getAttribute("label")) + '</div>'
+					? '<div class="xul-listcell--gateway">' + (this.hasAttribute("label") ? ample.$encodeXMLCharacters(this.getAttribute("label")) : '') + '</div>'
 					: (this.parentNode.parentNode.getAttribute("type") == "checkbox"
 						? '<input type="checkbox" name="' + oListBox.uniqueID + '_cmd" class="xul-listitem--command" onclick="return ample.$instance(this)._onCommandClick(event);" autocomplete="off"/>'
 							: (this.parentNode.parentNode.getAttribute("type") == "radio"

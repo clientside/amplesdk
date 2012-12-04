@@ -27,13 +27,12 @@ cChartElement_group.handlers	= {
 
 if (!cChartElement.useVML) {
 	cChartElement_group.prototype.$getTagOpen	= function() {
-		return '<svg:g class="c-group c-group_nth-child-' + this.parentNode.childNodes.$indexOf(this) +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" xmlns:svg="http://www.w3.org/2000/svg" \
-					style="' + this.getAttribute("style") + '">\
+		return '<svg:g class="c-group c-group_nth-child-' + this.parentNode.childNodes.$indexOf(this) +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" xmlns:svg="http://www.w3.org/2000/svg"' + (this.hasAttribute("style") ? ' style="' + this.getAttribute("style") + '"' : '') +'>\
 					<svg:path class="c-group--path" />\
 					<svg:path class="c-group--shadow" style="fill:none;stroke-linejoin:round" transform="translate(2, 2)"/>\
 					<svg:path class="c-group--line" style="fill:none;stroke-linejoin:round"/>\
 					<svg:path class="c-group--area" style="stroke:none"/>\
-					<svg:text class="c-group--label" style="stroke:none">' + ample.$encodeXMLCharacters(this.getAttribute("label")) + '</svg:text>\
+					<svg:text class="c-group--label" style="stroke:none">' + (this.hasAttribute("label") ? ample.$encodeXMLCharacters(this.getAttribute("label")) : '') + '</svg:text>\
 					<svg:g class="c-group--gateway">';
 	};
 
@@ -80,14 +79,14 @@ else {
 
 	cChartElement_group.prototype.$getTagOpen	= function() {
 		return '<chart2vml:group class="c-group c-group_nth-child-' + this.parentNode.childNodes.$indexOf(this) +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" \
-					style="position:absolute;width:100%;height:100%;' + this.getAttribute("style") + '">\
+					style="position:absolute;width:100%;height:100%;' + (this.getAttribute("style") || '') + '">\
 					<chart2vml:shape class="c-group--shadow" filled="false" style="position:absolute;width:100%;height:100%;margin-left:2px;margin-top:2px;"/>\
 					<chart2vml:shape class="c-group--path" style="position:absolute;width:100%;height:100%" />\
 					<chart2vml:shape class="c-group--line" filled="false" style="position:absolute;width:100%;height:100%"/>\
 					<chart2vml:shape class="c-group--area" stroked="false" fillcolor="black" style="position:absolute;width:100%;height:100%"/>\
 					<chart2vml:shape path="m0,0 l100,0" class="c-group--label" stroked="false" fillcolor="black" allowoverlap="true" style="position:absolute;width:100%;height:100%;margin-left:0;margin-top:0">\
 						<chart2vml:path textpathok="true" />\
-						<chart2vml:textpath on="true" string="' + ample.$encodeXMLCharacters(this.getAttribute("label")) + '" style="v-text-align:left" />\
+						<chart2vml:textpath on="true" string="' + (this.hasAttribute("label") ? ample.$encodeXMLCharacters(this.getAttribute("label")) : '') + '" style="v-text-align:left" />\
 					</chart2vml:shape>\
 					<chart2vml:group class="c-group--gateway" style="position:absolute;width:100%;height:100%">';
 	};

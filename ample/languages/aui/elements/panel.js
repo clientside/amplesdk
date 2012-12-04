@@ -31,7 +31,7 @@ cAUIElement_panel.prototype.$getTagOpen	= function() {
 	return '<div class="aui-panel"' + (this.hasAttribute("style") ? ' style="' + this.getAttribute("style") + '"' : '') + '>\
 				<div class="aui-panel--head">\
 					<div class="aui-panel--icon"><br /></div>\
-					<div class="aui-panel--label">' + ample.$encodeXMLCharacters(this.getAttribute("label")) + '</div>\
+					<div class="aui-panel--label">' + (this.hasAttribute("label") ? ample.$encodeXMLCharacters(this.getAttribute("label")) : '') + '</div>\
 				</div>\
 				<div class="aui-panel--gateway">';
 };

@@ -45,8 +45,8 @@ if (cSVGElement.useVML) {
 
 	// presentation
 	cSVGElement_image.prototype.$getTagOpen	= function() {
-		var aWidth	= this.getAttribute("width").match(/([\d.]+)([%\w]*)/),
-			aHeight	= this.getAttribute("height").match(/([\d.]+)([%\w]*)/),
+		var aWidth	=(this.getAttribute("width") || '').match(/([\d.]+)([%\w]*)/),
+			aHeight	=(this.getAttribute("height") || '').match(/([\d.]+)([%\w]*)/),
 			nOpacity= this.$getStyleComputed("opacity") * 1 || 1;
 		return '<svg2vml:shape class="svg-image' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '"\
 					style="position:absolute;padding:10cm;width:' + aWidth[1] + (aWidth[2] || 'px') + ';height:' + aHeight[1] + (aHeight[2] || 'px') + ';left:' + this.getAttribute("x") + 'px;top:' + this.getAttribute("y") + 'px;filter:progid:DXImageTransform.Microsoft.Matrix(sizingMethod=\'clip\',enabled=false) progid:DXImageTransform.Microsoft.Alpha(' + (nOpacity != 1 ? 'opacity:' + nOpacity * 100 : 'enabled=false')+ ')" stroked="false"\

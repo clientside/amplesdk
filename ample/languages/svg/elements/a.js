@@ -17,7 +17,7 @@ if (cSVGElement.useVML) {
 	cSVGElement_a.handlers	= {
 		'DOMNodeInsertedIntoDocument':	function(oEvent) {
 			var sValue	= this.getAttribute("xlink:href");
-			if (sValue != "")
+			if (sValue)
 				this.$mapAttributesValue(sValue);
 		},
 		'mouseenter':	function(oEvent) {

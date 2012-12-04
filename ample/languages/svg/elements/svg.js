@@ -66,9 +66,9 @@ if (cSVGElement.useVML) {
 	};
 
 	cSVGElement_svg.getBox	= function(oInstance) {
-		var aViewBox= oInstance.getAttribute("viewBox").split(/[\s,]/),
-			aWidth	= oInstance.getAttribute("width").match(/([\d.]+)([%\w]*)/),
-			aHeight	= oInstance.getAttribute("height").match(/([\d.]+)([%\w]*)/);
+		var aViewBox=(oInstance.getAttribute("viewBox") || '').split(/[\s,]/),
+			aWidth	=(oInstance.getAttribute("width") || '').match(/([\d.]+)([%\w]*)/),
+			aHeight	=(oInstance.getAttribute("height") || '').match(/([\d.]+)([%\w]*)/);
 
 		// Assume some values
 		if (aViewBox.length < 4) {
@@ -147,9 +147,9 @@ if (cSVGElement.useVML) {
 
 	// presentation
 	cSVGElement_svg.prototype.$getTagOpen	= function() {
-		var aViewBox= this.getAttribute("viewBox").split(/[\s,]/) || [],
-			aWidth	= this.getAttribute("width").match(/([\d.]+)([%\w]*)/) || [],
-			aHeight	= this.getAttribute("height").match(/([\d.]+)([%\w]*)/) || [];
+		var aViewBox=(this.getAttribute("viewBox") || '').split(/[\s,]/) || [],
+			aWidth	=(this.getAttribute("width") || '').match(/([\d.]+)([%\w]*)/) || [],
+			aHeight	=(this.getAttribute("height") || '').match(/([\d.]+)([%\w]*)/) || [];
 		return '<div class="svg-svg' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="position:relative;display:block;overflow:hidden;' + (this.hasAttribute("style") ? this.getAttribute("style") : '') + '">\
 					<svg2vml:group class="svg-svg--gateway" style="position:absolute;display:none;"\
 						coordOrigin="0,0"\

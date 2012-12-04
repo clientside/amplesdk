@@ -74,15 +74,15 @@ cChartElement_radar.prototype.refresh	= function() {
 
 if (!cChartElement.useVML) {
 	cChartElement_radar.prototype.$getTagOpen	= function() {
-		return '<div class="c-radar' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
+		return '<div class="c-radar' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '"' + (this.hasAttribute("style") ? ' style="' + this.getAttribute("style") + '"' : '') + '>\
 					<svg:svg class="c-radar--canvas" viewBox="0 0 400 300" style="width:inherit;height:inherit" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">\
-						<svg:text class="c-radar--title" y="30" x="150">' + ample.$encodeXMLCharacters(this.getAttribute("title")) + '</svg:text>\
+						<svg:text class="c-radar--title" y="30" x="150">' + (this.hasAttribute("title") ? ample.$encodeXMLCharacters(this.getAttribute("title")) : '') + '</svg:text>\
 						<svg:rect x="260" y="50" width="120" height="120" rx="10" class="c-legend"/>\
 						<svg:path class="c-grid c-radar--grid"/>\
 						<svg:g class="c-rAxis">\
 							<svg:path class="c-radar--rAxis" d="m150,150 v-100" style="fill:none"/>\
 							<svg:path id="r' + this.uniqueID + '" d="M140,150 v-150" style="fill:none;stroke:none"/>\
-							<svg:text class="c-rAxis--label c-radar--rAxisLabel"><svg:textPath xlink:href="#r' + this.uniqueID + '">' + ample.$encodeXMLCharacters(this.getAttribute("rAxisLabel")) + '</svg:textPath></svg:text>\
+							<svg:text class="c-rAxis--label c-radar--rAxisLabel"><svg:textPath xlink:href="#r' + this.uniqueID + '">' + (this.hasAttribute("rAxisLabel") ? ample.$encodeXMLCharacters(this.getAttribute("rAxisLabel")) : '') + '</svg:textPath></svg:text>\
 							<svg:path class="c-rAxis--marks c-radar--rAxisMarks" />\
 						</svg:g>\
 						<svg:g class="c-radar--gateway">';
@@ -158,11 +158,11 @@ else {
 	};
 
 	cChartElement_radar.prototype.$getTagOpen	= function() {
-		return '<div class="c-radar' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="overflow:hidden;' + this.getAttribute("style") + '">\
+		return '<div class="c-radar' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="overflow:hidden;' + (this.hasAttribute("style") ? this.getAttribute("style") : '') + '">\
 					<chart2vml:group class="c-radar--canvas" style="position:absolute;display:none;" coordOrigin="0 0" coordSize="400 300">\
 						<chart2vml:shape class="c-radar--title" path="m0,0 l300,0" fillcolor="black" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%;top:30px;xleft:150px">\
 							<chart2vml:path textpathok="true" />\
-							<chart2vml:textpath on="true" string="' + ample.$encodeXMLCharacters(this.getAttribute("title")) + '" style="v-text-align:center"/>\
+							<chart2vml:textpath on="true" string="' + (this.hasAttribute("title") ? ample.$encodeXMLCharacters(this.getAttribute("title")) : '') + '" style="v-text-align:center"/>\
 						</chart2vml:shape>\
 						<chart2vml:shape path="' + cChartElement.roundRectPath(260, 50, 120, 120, 10, 10) + '" class="c-legend c-radar--legend" style="position:absolute;width:100%;height:100%"/>\
 						<chart2vml:shape class="c-grid c-radar--grid" style="position:absolute;width:100%;height:100%" fillcolor="black"/>\
@@ -170,7 +170,7 @@ else {
 							<chart2vml:shape class="c-radar--rAxis" path="m150,150 v-100" style="position:absolute;width:100%;height:100%"/>\
 							<chart2vml:shape class="c-rAxis--label c-radar--rAxisLabel" path="m140,150 r0,-100 e" fillcolor="black" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%">\
 								<chart2vml:path textpathok="true" />\
-								<chart2vml:textpath on="true" string="' + ample.$encodeXMLCharacters(this.getAttribute("rAxisLabel")) + '" style="v-text-align:right"/>\
+								<chart2vml:textpath on="true" string="' + (this.hasAttribute("rAxisLabel") ? ample.$encodeXMLCharacters(this.getAttribute("rAxisLabel")) : '') + '" style="v-text-align:right"/>\
 							</chart2vml:shape>\
 							<chart2vml:shape class="c-rAxis--marks c-radar--rAxisMarks" stroked="true" filled="false" style="position:absolute;width:100%;height:100%" />\
 						</chart2vml:group>\

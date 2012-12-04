@@ -63,7 +63,7 @@ cChartElement_chart.prototype.zoom	= function() {
 	this.$getContainer("throbber").style.left	= (this.from * 500) + "px";
 
 	// Draw view
-	var aValue	= this.getAttribute("data").split(";"),
+	var aValue	=(this.getAttribute("data") || '').split(";"),
 		aData	= [];
 	for (var nItem = 0; nItem < aValue.length; nItem++)
 		aData.push(aValue[nItem].split(","));
@@ -76,7 +76,7 @@ cChartElement_chart.prototype.zoom	= function() {
 };
 
 cChartElement_chart.prototype.refresh	= function() {
-	var aValue	= this.getAttribute("data").split(";"),
+	var aValue	=(this.getAttribute("data") || '').split(";"),
 		aData	= [];
 	for (var nItem = 0; nItem < aValue.length; nItem++)
 		aData.push(aValue[nItem].split(","));
@@ -247,10 +247,10 @@ cChartElement_chart.prototype._onViewMove	= function(oEvent) {
 };
 
 cChartElement_chart.prototype.$getTagOpen	= function() {
-	return '<div class="c-chart' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
+	return '<div class="c-chart' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '"' + (this.hasAttribute("style") ? ' style="' + this.getAttribute("style") + '"' : '') + '>\
 				<div onmousedown="ample.$instance(this)._onViewDown(event); return false" style="height:300px">\
 					<svg:svg class="c-chart--canvas" viewBox="0 0 600 300" style="width:inherit;height:inherit" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">\
-						<svg:text class="c-chart--title" y="30" x="300">' + ample.$encodeXMLCharacters(this.getAttribute("title")) + '</svg:text>\
+						<svg:text class="c-chart--title" y="30" x="300">' + (this.hasAttribute("title") ? ample.$encodeXMLCharacters(this.getAttribute("title")) : '') + '</svg:text>\
 						<svg:path class="c-grid c-chart--grid"/>\
 						<svg:path class="c-chart--view" style="fill:lightblue;fill-opacity:0.5;"/>\
 					</svg:svg>\

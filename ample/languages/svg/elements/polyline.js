@@ -38,7 +38,7 @@ if (cSVGElement.useVML) {
 	};
 
 	cSVGElement_polyline.toPath	= function(oElement) {
-		var aPoints	= oElement.getAttribute("points").split(/[ ,]/);
+		var aPoints	=(oElement.getAttribute("points") || '').split(/[ ,]/);
 		return "m " + aPoints.slice(0, 2).map(Math.round)+ " l " + aPoints.slice(2).map(Math.round) + " e";
 	};
 

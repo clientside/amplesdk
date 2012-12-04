@@ -44,7 +44,7 @@ if (cSVGElement.useVML) {
 		if (sName == "xlink:href") {
 			var oTextPath	= this.ownerDocument.getElementById(sValue.substr(1));
 			if (oTextPath)
-				this.$getContainer().path	= cSVGElement_path.convert(oTextPath.getAttribute("d"));
+				this.$getContainer().path	= cSVGElement_path.convert(oTextPath.getAttribute("d") || '');
 		}
 	};
 

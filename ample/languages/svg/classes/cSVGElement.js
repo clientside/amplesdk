@@ -214,10 +214,10 @@ if (cSVGElement.useVML) {
 					if (oGradient = this.ownerDocument.getElementById(aValue[1])) {
 						if (oGradient instanceof cSVGElement_linearGradient || oGradient instanceof cSVGElement_radialGradient) {
 							if (oGradient instanceof cSVGElement_linearGradient) {
-								var x1	= parseFloat(oGradient.getAttribute("x1") || "0") / (oGradient.getAttribute("x1").indexOf("%") ==-1 ? 1 : 100),
-									x2	= parseFloat(oGradient.getAttribute("x2") || "1") / (oGradient.getAttribute("x2").indexOf("%") ==-1 ? 1 : 100),
-									y1	= parseFloat(oGradient.getAttribute("y1") || "0") / (oGradient.getAttribute("y1").indexOf("%") ==-1 ? 1 : 100),
-									y2	= parseFloat(oGradient.getAttribute("y2") || "0") / (oGradient.getAttribute("y2").indexOf("%") ==-1 ? 1 : 100);
+								var x1	= parseFloat(oGradient.getAttribute("x1") || "0") / ((oGradient.getAttribute("x1") || '').indexOf("%") ==-1 ? 1 : 100),
+									x2	= parseFloat(oGradient.getAttribute("x2") || "1") / ((oGradient.getAttribute("x2") || '').indexOf("%") ==-1 ? 1 : 100),
+									y1	= parseFloat(oGradient.getAttribute("y1") || "0") / ((oGradient.getAttribute("y1") || '').indexOf("%") ==-1 ? 1 : 100),
+									y2	= parseFloat(oGradient.getAttribute("y2") || "0") / ((oGradient.getAttribute("y2") || '').indexOf("%") ==-1 ? 1 : 100);
 
 								if (x1 == x2 && y1 == y2) {
 									oElementDOM.fill.type		= "solid";
@@ -229,8 +229,8 @@ if (cSVGElement.useVML) {
 								}
 							}
 							else {
-								var cx	= parseFloat(oGradient.getAttribute("cx") || "0.5") / (oGradient.getAttribute("cx").indexOf("%") ==-1 ? 1 : 100),
-									cy	= parseFloat(oGradient.getAttribute("cy") || "0.5") / (oGradient.getAttribute("cy").indexOf("%") ==-1 ? 1 : 100);
+								var cx	= parseFloat(oGradient.getAttribute("cx") || "0.5") / ((oGradient.getAttribute("cx") || '').indexOf("%") ==-1 ? 1 : 100),
+									cy	= parseFloat(oGradient.getAttribute("cy") || "0.5") / ((oGradient.getAttribute("cy") || '').indexOf("%") ==-1 ? 1 : 100);
 								oElementDOM.fill.type		= "gradientTitle";
 								oElementDOM.fill.focus		= "100%";	// Must be set to 100%, otherwise no gradient visible
 								// Properties specific to radial gradients
@@ -241,7 +241,7 @@ if (cSVGElement.useVML) {
 							oElementDOM.fill.method		= "sigma";
 
 							// Find referred gradient with stops
-							for (var oGradientStop = oGradient; oGradientStop && oGradientStop.hasAttribute("xlink:href"); oGradientStop = this.ownerDocument.getElementById(oGradientStop.getAttribute("xlink:href").substr(1)))
+							for (var oGradientStop = oGradient; oGradientStop && oGradientStop.hasAttribute("xlink:href"); oGradientStop = this.ownerDocument.getElementById((oGradientStop.getAttribute("xlink:href") || '').substr(1)))
 								if (oGradientStop.hasChildNodes())
 									break;
 
@@ -251,7 +251,7 @@ if (cSVGElement.useVML) {
 									nOpacity	=(this.$getStyleComputed("opacity") || 1) * (this.$getStyleComputed("fill-opacity") || 1);
 								for (var i = 0, oStop, sColor; oStop = oGradientStop.childNodes[i]; i++)
 									if (oGradientStop.childNodes[i] instanceof cSVGElement_stop)
-										aColors.push([parseFloat(oStop.getAttribute("offset") || "1") / (oStop.getAttribute("offset").indexOf("%") ==-1 ? 1 : 100), ((sColor = oStop.$getStyle("stop-color")) in oSVGElement_colors ? 'rgb(' + oSVGElement_colors[sColor] + ')' : cSVGElement.correctColor(sColor)), nOpacity * parseFloat(oStop.$getStyle("stop-opacity") || "1")]);
+										aColors.push([parseFloat(oStop.getAttribute("offset") || "1") / ((oStop.getAttribute("offset") || '').indexOf("%") ==-1 ? 1 : 100), ((sColor = oStop.$getStyle("stop-color")) in oSVGElement_colors ? 'rgb(' + oSVGElement_colors[sColor] + ')' : cSVGElement.correctColor(sColor)), nOpacity * parseFloat(oStop.$getStyle("stop-opacity") || "1")]);
 
 								var nLength	= aColors.length;
 								if (nLength) {

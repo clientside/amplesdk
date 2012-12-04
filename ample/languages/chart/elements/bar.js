@@ -75,7 +75,7 @@ cChartElement_bar.prototype.refresh	= function() {
 
 		// Draw vertical axis labels (labels)
 		var oParent	= this.$getContainer("yAxisItems"),
-			aAxisValueLabels	= this.getAttribute("xAxisValueLabels").split(","),
+			aAxisValueLabels	=(this.getAttribute("xAxisValueLabels") || '').split(","),
 			oElement,
 			d	= [];
 		for (var x = 0, l = oParent.childNodes.length; x < l; x++)
@@ -104,7 +104,7 @@ cChartElement_bar.prototype.refresh	= function() {
 
 		// Draw horizontal axis labels (labels)
 		var oParent	= this.$getContainer("xAxisItems"),
-			aAxisValueLabels	= this.getAttribute("xAxisValueLabels").split(","),
+			aAxisValueLabels	=(this.getAttribute("xAxisValueLabels") || '').split(","),
 			oElement,
 			d	= [];
 		for (var x = 0, l = oParent.childNodes.length; x < l; x++)
@@ -266,22 +266,22 @@ cChartElement_bar.prototype.refresh	= function() {
 
 if (!cChartElement.useVML) {
 	cChartElement_bar.prototype.$getTagOpen	= function() {
-		return '<div class="c-bar' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="' + this.getAttribute("style") + '">\
+		return '<div class="c-bar' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '"' +(this.hasAttribute("style") ? ' style="' + this.getAttribute("style") + '"' : '') + '>\
 					<svg:svg class="c-bar--canvas" viewBox="0 0 600 300" style="width:inherit;height:inherit" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">\
-						<svg:text class="c-bar--title" y="30" x="300">' + ample.$encodeXMLCharacters(this.getAttribute("title"))+ '</svg:text>\
+						<svg:text class="c-bar--title" y="30" x="300">' + (this.hasAttribute("title") ? ample.$encodeXMLCharacters(this.getAttribute("title")) : '')+ '</svg:text>\
 						<svg:rect x="460" y="50" width="120" height="120" rx="10" class="c-legend"/>\
 						<svg:path class="c-grid c-bar--grid"/>\
 						<svg:g class="c-xAxis">\
 							<svg:path class="c-bar--xAxis" d="m50,250 h400,0" style="fill:none"/>\
 							<svg:path id="x' + this.uniqueID + '" d="m300,280 h400,0" style="fill:none;stroke:none"/>\
-							<svg:text class="c-xAxis--label c-bar--xAxisLabel"><svg:textPath xlink:href="#x' + this.uniqueID + '">' + ample.$encodeXMLCharacters(this.getAttribute("xAxisLabel")) + '</svg:textPath></svg:text>\
+							<svg:text class="c-xAxis--label c-bar--xAxisLabel"><svg:textPath xlink:href="#x' + this.uniqueID + '">' + (this.hasAttribute("xAxisLabel") ? ample.$encodeXMLCharacters(this.getAttribute("xAxisLabel")) : '') + '</svg:textPath></svg:text>\
 							<svg:path class="c-xAxis--marks c-bar--xAxisMarks" xtransform="translate(0,2)"/>\
 							<svg:g class="c-xAxis--scale c-bar--xAxisItems" style="stroke:none" transform="translate(-3,0)"/>\
 						</svg:g>\
 						<svg:g class="c-yAxis">\
 							<svg:path class="c-bar--yAxis" d="m50,250 v0,-200" style="fill:none"/>\
 							<svg:path id="y' + this.uniqueID + '" d="m20,200 v0,-200" style="fill:none;stroke:none"/>\
-							<svg:text class="c-yAxis--label c-bar--yAxisLabel"><svg:textPath xlink:href="#y' + this.uniqueID + '">' + ample.$encodeXMLCharacters(this.getAttribute("yAxisLabel")) + '</svg:textPath></svg:text>\
+							<svg:text class="c-yAxis--label c-bar--yAxisLabel"><svg:textPath xlink:href="#y' + this.uniqueID + '">' + (this.hasAttribute("yAxisLabel") ? ample.$encodeXMLCharacters(this.getAttribute("yAxisLabel")) : '') + '</svg:textPath></svg:text>\
 							<svg:path class="c-yAxis--marks c-bar--yAxisMarks" xtransform="translate(-2,0)" />\
 							<svg:g class="c-yAxis--scale c-bar--yAxisItems" style="stroke:none" transform="translate(0,3)"/>\
 						</svg:g>\
@@ -361,11 +361,11 @@ else {
 	};
 
 	cChartElement_bar.prototype.$getTagOpen	= function() {
-		return '<div class="c-bar' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="overflow:hidden;' + this.getAttribute("style") + '">\
+		return '<div class="c-bar' +(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '" style="overflow:hidden;' + (this.getAttribute("style") || '') + '">\
 					<chart2vml:group class="c-bar--canvas" style="position:absolute;display:none;" coordOrigin="0 0" coordSize="600 300">\
 						<chart2vml:shape class="c-bar--title" path="m0,0 l600,0" fillcolor="black" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%;top:30px;xleft:150px">\
 							<chart2vml:path textpathok="true" />\
-							<chart2vml:textpath on="true" string="' + ample.$encodeXMLCharacters(this.getAttribute("title")) + '" style="v-text-align:center"/>\
+							<chart2vml:textpath on="true" string="' + (this.hasAttribute("title") ? ample.$encodeXMLCharacters(this.getAttribute("title")) : '') + '" style="v-text-align:center"/>\
 						</chart2vml:shape>\
 						<chart2vml:shape path="' + cChartElement.roundRectPath(460, 50, 120, 120, 10, 10) + '" class="c-legend c-bar--legend" style="position:absolute;width:100%;height:100%"/>\
 						<chart2vml:shape class="c-grid c-bar--grid" style="position:absolute;width:100%;height:100%"/>\
@@ -373,7 +373,7 @@ else {
 							<chart2vml:shape class="c-bar--xAxis" path="m50,250 r400,0 e" style="position:absolute;width:100%;height:100%"/>\
 							<chart2vml:shape class="c-xAxis--label c-bar--xAxisLabel" path="m50,280 r400,0 e" fillcolor="black" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%">\
 								<chart2vml:path textpathok="true" />\
-								<chart2vml:textpath on="true" string="' + ample.$encodeXMLCharacters(this.getAttribute("xAxisLabel")) + '" style="v-text-align:right"/>\
+								<chart2vml:textpath on="true" string="' + (this.hasAttribute("xAxisLabel") ? ample.$encodeXMLCharacters(this.getAttribute("xAxisLabel")) : '') + '" style="v-text-align:right"/>\
 							</chart2vml:shape>\
 							<chart2vml:shape class="c-xAxis--marks c-bar--xAxisMarks" style="position:absolute;width:100%;height:100%"/>\
 							<chart2vml:group class="c-xAxis--scale c-bar--xAxisItems" style="top:3px"/>\
@@ -382,7 +382,7 @@ else {
 							<chart2vml:shape class="c-bar--yAxis" path="m50,250 r0,-200 e" style="position:absolute;width:100%;height:100%"/>\
 							<chart2vml:shape class="c-yAxis--label c-bar--yAxisLabel" path="m20,250 r0,-200 e" fillcolor="black" stroked="false" allowoverlap="true" style="position:absolute;width:100%;height:100%">\
 								<chart2vml:path textpathok="true" />\
-								<chart2vml:textpath on="true" string="' + ample.$encodeXMLCharacters(this.getAttribute("yAxisLabel")) + '" style="v-text-align:right"/>\
+								<chart2vml:textpath on="true" string="' + (this.hasAttribute("yAxisLabel") ? ample.$encodeXMLCharacters(this.getAttribute("yAxisLabel")) : '') + '" style="v-text-align:right"/>\
 							</chart2vml:shape>\
 							<chart2vml:shape class="c-yAxis--marks c-bar--yAxisMarks" style="position:absolute;width:100%;height:100%"/>\
 							<chart2vml:group class="c-yAxis--scale c-bar--yAxisItems" style="top:3px"/>\
