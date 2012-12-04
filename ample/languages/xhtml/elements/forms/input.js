@@ -113,9 +113,12 @@ cXHTMLElement_input.handlers	= {
 	},
 	"blur":		function(oEvent) {
 //		try {this.$getContainer("value").blur();}catch(e){}
+		// Hide placeholder
 		this.$getContainer("placeholder").style.display	= this.getAttribute("value") ? "none" : "";
-		// Hide popup
-		switch (this.getAttribute("type")) {
+
+		var sType	= this.getAttribute("type");
+		switch (sType) {
+			// Hide popup
 			case "date":
 			case "color":
 			case "datetime":
@@ -124,7 +127,15 @@ cXHTMLElement_input.handlers	= {
 			case "week":
 				cXHTMLElement_input.toggle(this, false);
 				break;
+
+			default:
+				this.setAttribute("value", this.$getContainer("value").value);
 		}
+
+		// Dispatch change event
+		var oChangeEvent	= this.ownerDocument.createEvent("UIEvent");
+		oChangeEvent.initUIEvent("change", true, false, window, null);
+		this.dispatchEvent(oChangeEvent);
 	},
 	"click":	function(oEvent) {
 		if (oEvent.target == this) {
