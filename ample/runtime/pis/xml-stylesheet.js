@@ -15,14 +15,19 @@ cXmlStylesheetPI.prototype.target	= "xml-stylesheet";
 
 cXmlStylesheetPI.handlers	= {};
 cXmlStylesheetPI.handlers["DOMNodeInserted"]	= function(oEvent) {
-	if (this.target.match(/href=["']([^"']+)["']/)) {
-		var sHref	= cRegExp.$1;
-		if (this.target.match(/type=["']([^"']+)["']/))
-			if (cRegExp.$1 == "text/css" || cRegExp.$1 == "text/ample+css") {
+	var aMatch,
+		sHref,
+		sType;
+	if (aMatch = this.target.match(/href=["']([^"']+)["']/)) {
+		sHref	= aMatch[1];
+		if (aMatch = this.target.match(/type=["']([^"']+)["']/)) {
+			sType	= aMatch[1];
+			if (sType == "text/css" || sType == "text/ample+css") {
 				var sCSS	= fBrowser_load(sHref, "text/css").responseText;
 				if (sCSS)
 					oBrowser_head.appendChild(fBrowser_createStyleSheet(sCSS, sHref));
 			}
+		}
 	}
 };
 

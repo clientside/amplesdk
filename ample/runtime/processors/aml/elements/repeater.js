@@ -105,20 +105,21 @@ var rAMLElement_repeater_regexp	= /(\{([^\}]+)\})/g;
 
 // 'Static' Methods
 function fAMLElement_repeater_processNode(oElement, oData, fResolver) {
-	var oNode;
+	var oNode,
+		aMatch;
 	for (var nIndex = 0; oNode	= oElement.childNodes[nIndex]; nIndex++)	{
 		switch (oNode.nodeType) {
 			case 1:	// cNode.ELEMENT_NODE
 				for (var nAttribute = 0, nLengthAttribute = oNode.attributes.length, oAttribute; nIndex < nLengthAttribute; nIndex++)
-					if ((oAttribute = oNode.attributes[nAttribute]).value.match(rAMLElement_repeater_regexp))
-						fElement_setAttributeNS(oNode, oAttribute.namespaceURI, oAttribute.name, oAttribute.value.replace(cRegExp.$1, fAMLElement_repeater_resolveValue(cRegExp.$2, oData, fResolver)));
+					if (aMatch = (oAttribute = oNode.attributes[nAttribute]).value.match(rAMLElement_repeater_regexp))
+						fElement_setAttributeNS(oNode, oAttribute.namespaceURI, oAttribute.name, oAttribute.value.replace(aMatch[1], fAMLElement_repeater_resolveValue(aMatch[2], oData, fResolver)));
 				fAMLElement_repeater_processNode(oNode, oData, fResolver);
 				break;
 
 			case 3:	// cNode.TEXT_NODE
 			case 4:	// cNode.CDATA_SECTION_NODE
-				if (oNode.data.match(rAMLElement_repeater_regexp)) {
-					oNode.data	= oNode.data.replace(cRegExp.$1, fAMLElement_repeater_resolveValue(cRegExp.$2, oData, fResolver));
+				if (aMatch = oNode.data.match(rAMLElement_repeater_regexp)) {
+					oNode.data	= oNode.data.replace(aMatch[1], fAMLElement_repeater_resolveValue(aMatch[2], oData, fResolver));
 					oNode.nodeValue	= oNode.data;
 					oNode.length= oNode.data.length;
 				}

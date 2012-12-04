@@ -1020,9 +1020,9 @@ function fBrowser_processScripts() {
 			// retrieve namespaces list (in older than IE6, attributes on script tag are not parsed into collection)
 			if (bTrident && (nVersion < 6 || nVersion > 8)) {
 				if (aAttributes	= oElementDOM.outerHTML.match(/<script([^\>]+)/i)[1].match(/[^=]+=("[^"]+"|[^\s]+)/gi))
-					for (var nAttribute = 0; oAttribute = aAttributes[nAttribute]; nAttribute++)
-						if (oAttribute.match(/\s([^=]+)="?([^"]+)"?/i) && (sAttribute = cRegExp.$1) != "type")
-							hAttributes[sAttribute]	= cRegExp.$2;
+					for (var nAttribute = 0, aMatch; oAttribute = aAttributes[nAttribute]; nAttribute++)
+						if ((aMatch = oAttribute.match(/\s([^=]+)="?([^"]+)"?/i)) && (sAttribute = aMatch[1]) != "type")
+							hAttributes[sAttribute]	= aMatch[2];
 			}
 			else {
 				aAttributes	= oElementDOM.attributes;

@@ -13,10 +13,11 @@ function fQuery_effects_show(oQuery, fCallback, bIgnoreRuntimeCheck) {
 	fQuery_each(oQuery, function() {
 		var oElementDOM	= this.$getContainer(),
 			sValue	= this.attributes.style,
+			aMatch,
 			oStyle;
 
 		// Update model
-		if (sValue && sValue.match(rQuery_effects_display) && cRegExp.$1 == "none")
+		if (sValue && (aMatch = sValue.match(rQuery_effects_display)) && aMatch[1] == "none")
 			this.attributes.style	= sValue.replace(rQuery_effects_display, '$2');
 
 		// Update view, if available
