@@ -76,7 +76,7 @@ cDocument.prototype.createAttributeNS	= function(sNameSpaceURI, sQName) {
 function fDocument_createTextNode(oDocument, sData) {
 	var oNode	= new cText;
 	oNode.ownerDocument	= oDocument;
-	oNode.nodeValue	= sData;
+	oNode.nodeValue	=
 	oNode.data		= sData;
 	oNode.length	= sData.length;
 
@@ -99,7 +99,7 @@ cDocument.prototype.createTextNode	= function(sData) {
 function fDocument_createCDATASection(oDocument, sData) {
 	var oNode	= new cCDATASection;
 	oNode.ownerDocument	= oDocument;
-	oNode.nodeValue	= sData;
+	oNode.nodeValue	=
 	oNode.data		= sData;
 	oNode.length	= sData.length;
 
@@ -124,7 +124,7 @@ cDocument.prototype.createCDATASection	= function(sData) {
 function fDocument_createComment(oDocument, sData) {
 	var oNode	= new cComment;
 	oNode.ownerDocument	= oDocument;
-	oNode.nodeValue	= sData;
+	oNode.nodeValue	=
 	oNode.data		= sData;
 	oNode.length	= sData.length;
 
@@ -175,7 +175,7 @@ function fDocument_createElementNS(oDocument, sNameSpaceURI, sQName) {
 	oElement.attributes		= new cNamedNodeMap;
 	oElement.ownerDocument	= oDocument;
 	oElement.prefix			= sPrefix;
-	oElement.nodeName		= sQName;
+	oElement.nodeName		=
 	oElement.tagName		= sQName;
 	oElement.childNodes		= new cNodeList;
 
@@ -234,8 +234,10 @@ cDocument.prototype.createDocumentFragment	= function() {
 function fDocument_createProcessingInstruction(oDocument, sTarget, sData) {
 	var oNode	= new (hClasses['?' + sTarget] || cProcessingInstruction);
 	oNode.ownerDocument	= oDocument;
-	oNode.nodeName	= oNode.target	= sTarget;
-	oNode.nodeValue	= oNode.data	= sData;
+	oNode.nodeName	=
+	oNode.target	= sTarget;
+	oNode.nodeValue	=
+	oNode.data		= sData;
 
 	return oNode;
 };
