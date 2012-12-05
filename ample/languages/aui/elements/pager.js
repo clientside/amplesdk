@@ -8,13 +8,7 @@
  */
 
 var cAUIElement_pager	= function(){};
-cAUIElement_pager.prototype	= new cAUIElement("marker");
-
-// Default Attributes
-cAUIElement_pager.attributes	= {
-	pagestep:		"1",
-	pagesamount:	"10"
-};
+cAUIElement_pager.prototype	= new cAUIElement("pager");
 
 cAUIElement_pager.handlers	= {
 	"DOMAttrModified":	function(oEvent) {
@@ -34,10 +28,12 @@ cAUIElement_pager.handlers	= {
 
 // Public Methods
 cAUIElement_pager.prototype.goTo	= function(nIndex) {
-	if (nIndex * 1 < this.getAttribute("pagesamount") * 1 && nIndex * 1 >= 0) {
+	var nStep	= this.hasAttribute("pagestep") ? this.getAttribute("pagestep") * 1 : 1,
+		nPages	= this.hasAttribute("pagesamount") ? this.getAttribute("pagesamount") * 1 : 10;
+	if (nIndex * 1 < nPages && nIndex * 1 >= 0) {
 		// deselect previously selected and select new item
 		var oElement	= this.$getContainer("body");
-		oElement.tBodies[0].rows[0].cells[this.getAttribute("pagestep")].className	= oElement.tBodies[0].rows[0].cells[this.getAttribute("pagestep")].className.replace("selected", "normal");
+		oElement.tBodies[0].rows[0].cells[nStep].className	= oElement.tBodies[0].rows[0].cells[nStep].className.replace("selected", "normal");
 		oElement.tBodies[0].rows[0].cells[nIndex].className	= oElement.tBodies[0].rows[0].cells[nIndex].className.replace(/normal|hover|active/, "selected");
 
 		this.setAttribute("pagestep", nIndex);
@@ -55,14 +51,16 @@ cAUIElement_pager.prototype._onItemClick	= function(oEvent, nIndex) {
 };
 
 cAUIElement_pager.prototype._onButtonClick	= function(oEvent, sButtonType) {
+	var nStep	= this.hasAttribute("pagestep") ? this.getAttribute("pagestep") * 1 : 1,
+		nPages	= this.hasAttribute("pagesamount") ? this.getAttribute("pagesamount") * 1 : 10;
 	if (sButtonType == "next") {
-		if (this.getAttribute("pagestep") * 1 + 1 < this.getAttribute("pagesamount") * 1)
-			this.goTo(this.getAttribute("pagestep") * 1 + 1);
+		if (nStep + 1 < nPages)
+			this.goTo(nStep + 1);
 	}
 	else
 	if (sButtonType == "back") {
-		if (this.getAttribute("pagestep") * 1 - 1 >= 0)
-			this.goTo(this.getAttribute("pagestep") * 1 - 1);
+		if (nPages - 1 >= 0)
+			this.goTo(nPages - 1);
 	}
 };
 
@@ -76,7 +74,7 @@ cAUIElement_pager.prototype.$getTagOpen	= function() {
 	sHtml	+= '<table cellpadding="0" cellspacing="0" border="0" height="100%" class="aui-pager--body">';
 	sHtml	+= '<tbody>';
 	sHtml	+= '<tr>';
-	for (var nIndex = 0, nLength = this.getAttribute("pagesamount") * 1; nIndex < nLength; nIndex++)
+	for (var nIndex = 0, nLength = this.hasAttribute("pagesamount") ? this.getAttribute("pagesamount") * 1 : 10; nIndex < nLength; nIndex++)
 		sHtml	+= '<td class="aui-pager-item" onmouseover="this.className=this.className.replace(\'normal\', \'hover\');" onmouseout="this.className=this.className.replace(\'hover\', \'normal\');" onmousedown="this.className=this.className.replace(\'hover\', \'active\');" onmouseup="this.className=this.className.replace(\'active\', \'hover\');" onclick="ample.$instance(this)._onItemClick(event, this.cellIndex)">' + nIndex + '</td>';
 	sHtml	+= '</tr>';
 	sHtml	+= '</tbody>';
