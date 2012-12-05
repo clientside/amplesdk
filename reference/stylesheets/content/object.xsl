@@ -111,28 +111,26 @@
 			</xsl:if>
 		</xsl:param>
 
-		<xsl:if test="$members | exslt:node-set($members_inherited)/*[*]">
-			<xsl:choose>
+		<xsl:choose>
 				<!-- EXSLT way -->
-				<xsl:when test="$implementation-node-set = 'exslt'">
-					<xsl:call-template name="members">
-						<xsl:with-param name="members" select="$members | exslt:node-set($members_inherited)/*[*]" />
-					</xsl:call-template>
-				</xsl:when>
-				<!-- MSXSL way -->
-				<xsl:when test="$implementation-node-set = 'msxsl'">
-					<xsl:call-template name="members">
-						<xsl:with-param name="members" select="$members | msxsl:node-set($members_inherited)/*[*]" />
-					</xsl:call-template>
-				</xsl:when>
-				<!-- OTHERWISE -->
-				<xsl:otherwise>
-					<xsl:call-template name="members">
-						<xsl:with-param name="members" select="$members" />
-					</xsl:call-template>
-				</xsl:otherwise>
-			</xsl:choose>
-		</xsl:if>
+			<xsl:when test="$implementation-node-set = 'exslt'">
+				<xsl:call-template name="members">
+					<xsl:with-param name="members" select="$members | exslt:node-set($members_inherited)/*[*]" />
+				</xsl:call-template>
+			</xsl:when>
+			<!-- MSXSL way -->
+			<xsl:when test="$implementation-node-set = 'msxsl'">
+				<xsl:call-template name="members">
+					<xsl:with-param name="members" select="$members | msxsl:node-set($members_inherited)/*[*]" />
+				</xsl:call-template>
+			</xsl:when>
+			<!-- OTHERWISE -->
+			<xsl:otherwise>
+				<xsl:call-template name="members">
+					<xsl:with-param name="members" select="$members" />
+				</xsl:call-template>
+			</xsl:otherwise>
+		</xsl:choose>
 	</xsl:template>
 
 	<xsl:template name="members">
