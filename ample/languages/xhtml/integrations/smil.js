@@ -18,7 +18,6 @@ function copyElements(sSourceNS, sTargetNS, aElements) {
 		fTarget.prototype.namespaceURI	= sTargetNS;
 		// Statics Object Members
 		fTarget.handlers	= fSource.handlers;
-		fTarget.attributes	= fSource.attributes;
 		//
 		ample.extend(fTarget);
 	}

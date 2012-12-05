@@ -168,8 +168,7 @@ function fDocument_createElementNS(oDocument, sNameSpaceURI, sQName) {
 		sLocalName	= aQName.pop(),
 		sPrefix		= aQName.pop() || null,
 		fConstructor= hClasses[sNameSpaceURI + '#' + sLocalName],
-		oElement	= new (fConstructor || cElement),
-		sName;
+		oElement	= new (fConstructor || cElement);
 
 	// DOM Properties
 	oElement.attributes		= new cNamedNodeMap;
@@ -183,14 +182,8 @@ function fDocument_createElementNS(oDocument, sNameSpaceURI, sQName) {
 	oElement.uniqueID	= 'ele_' + nDocument_index++;
 
 	//
-	if (fConstructor) {
-		// Set default attributes, if defined
-		for (sName in fConstructor.attributes)
-			if (fConstructor.attributes.hasOwnProperty(sName))
-				fElement_setAttribute(oElement, sName, fConstructor.attributes[sName]);
-	}
-	else {
-		// Set namespaceURI for unknown elements manually
+	if (!fConstructor) {
+		// Set namespaceURI and localName for unknown elements explicitly
 		oElement.namespaceURI	= sNameSpaceURI;
 		oElement.localName		= sLocalName;
 	}
