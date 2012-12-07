@@ -439,12 +439,40 @@ function fNode_compareDocumentPosition(oNode, oChild) {
 	if (oChild == oNode)
 		return 0;
 
-	var aChain1	= [], nLength1, oNode1,
-		aChain2	= [], nLength2, oNode2,
-		oElement, nIndex;
 	//
+	var oAttr1	= null,
+		oAttr2	= null,
+		oAttr, oElement, nIndex;
+	if (oNode.nodeType == 2 /* cNode.ATTRIBUTE_NODE */) {
+		oAttr1	= oNode;
+		oNode	= oAttr1.ownerElement;
+	}
+	if (oChild.nodeType == 2 /* cNode.ATTRIBUTE_NODE */) {
+		oAttr2	= oChild;
+		oChild	= oAttr2.ownerElement;
+	}
+
+	// Compare attributes from same element
+	if (oAttr1 && oAttr2 && oNode && oNode == oChild) {
+		for (nIndex = 0; nIndex < oNode.attributes.length; nIndex++) {
+			oAttr	= oNode.attributes[nIndex];
+			if (oAttr == oAttr1)
+				return 32 /* cNode.DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC */ | 4 /* cNode.DOCUMENT_POSITION_FOLLOWING */;
+			if (oAttr == oAttr2)
+				return 32 /* cNode.DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC */ | 2 /* cNode.DOCUMENT_POSITION_PRECEDING */;
+		}
+	}
+
+	//
+	var aChain1	= [], nLength1, oNode1,
+		aChain2	= [], nLength2, oNode2;
+	//
+	if (oAttr1)
+		aChain1.push(oAttr1);
 	for (oElement = oNode; oElement; oElement = oElement.parentNode)
 		aChain1.push(oElement);
+	if (oAttr2)
+		aChain2.push(oAttr2);
 	for (oElement = oChild; oElement; oElement = oElement.parentNode)
 		aChain2.push(oElement);
 	// If nodes are from different documents or if they do not have common top, they are disconnected
@@ -453,6 +481,12 @@ function fNode_compareDocumentPosition(oNode, oChild) {
 	//
 	for (nIndex = cMath.min(nLength1 = aChain1.length, nLength2 = aChain2.length); nIndex; --nIndex)
 		if ((oNode1 = aChain1[--nLength1]) != (oNode2 = aChain2[--nLength2])) {
+			//
+			if (oNode1.nodeType == 2 /* cNode.ATTRIBUTE_NODE */)
+				return 4 /* cNode.DOCUMENT_POSITION_FOLLOWING */;
+			if (oNode2.nodeType == 2 /* cNode.ATTRIBUTE_NODE */)
+				return 2 /* cNode.DOCUMENT_POSITION_PRECEDING */;
+			//
 			if (!oNode2.nextSibling)
 				return 4 /* cNode.DOCUMENT_POSITION_FOLLOWING */;
 			if (!oNode1.nextSibling)
