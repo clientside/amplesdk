@@ -59,7 +59,7 @@ cXULElement_radio.prototype.$mapAttribute	= function(sName, sValue) {
 		this.$setPseudoClass("disabled", sValue == "true");
 	else
 	if (sName == "label")
-		this.$getContainer("label").innerHTML	= sValue || '';
+		this.$getContainer("label").innerHTML	= ample.$encodeXMLCharacters(sValue || '');
 	else
 	if (sName == "selected")
 		this.$setPseudoClass("selected", sValue == "true");

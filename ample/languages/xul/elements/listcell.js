@@ -16,10 +16,10 @@ cXULElement_listcell.prototype	= new cXULElement("listcell");
 
 cXULElement_listcell.prototype.$mapAttribute	= function(sName, sValue) {
 	if (sName == "label")
-		this.$getContainer("gateway").innerHTML	=(this.hasAttribute("src") ? '<img src="' + this.getAttribute("src") + '" align="absmiddle" /> ' :'') + (sValue || '');
+		this.$getContainer("gateway").innerHTML	=(this.hasAttribute("src") ? '<img src="' + ample.$encodeXMLCharacters(this.getAttribute("src")) + '" align="absmiddle" /> ' :'') + ample.$encodeXMLCharacters(sValue || '');
 	else
 	if (sName == "src")
-		this.$getContainer("gateway").innerHTML	=(sValue ? '<img src="' + sValue + '" align="absmiddle" /> ' :'') + (this.getAttribute("label") || '');
+		this.$getContainer("gateway").innerHTML	=(sValue ? '<img src="' + ample.$encodeXMLCharacters(sValue) + '" align="absmiddle" /> ' :'') + ample.$encodeXMLCharacters(this.getAttribute("label") || '');
 	else
 		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
 };

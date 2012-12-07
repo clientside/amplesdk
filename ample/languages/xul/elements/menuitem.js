@@ -67,7 +67,7 @@ cXULElement_menuitem.prototype.$mapAttribute	= function(sName, sValue) {
 		if (document.namespaces)
 			oCell.innerText	= sValue || '';
 		else
-			oCell.innerHTML	= sValue || '';
+			oCell.innerHTML	= ample.$encodeXMLCharacters(sValue || '');
 	}
 	else
 	if (sName == "image")

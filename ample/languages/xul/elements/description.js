@@ -12,7 +12,7 @@ cXULElement_description.prototype	= new cXULElement("description");
 
 cXULElement_description.prototype.$mapAttribute	= function(sName, sValue) {
 	if (sName == "value")
-		this.$getContainer().innerHTML	= sValue || '';
+		this.$getContainer().innerHTML	= ample.$encodeXMLCharacters(sValue || '');
 	else
 		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
