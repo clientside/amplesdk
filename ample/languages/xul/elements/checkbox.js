@@ -50,7 +50,7 @@ cXULElement_checkbox.prototype.$mapAttribute	= function(sName, sValue) {
 		this.$setPseudoClass("checked", sValue == "true");
 	else
 	if (sName == "label")
-		this.$getContainer("label").innerHTML	= sValue || '';
+		this.$getContainer("label").innerHTML	= ample.$encodeXMLCharacters(sValue || '');
 	else
 		cXULInputElement.prototype.$mapAttribute.call(this, sName, sValue);
 };
