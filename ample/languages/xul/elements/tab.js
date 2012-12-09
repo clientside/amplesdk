@@ -34,10 +34,10 @@ cXULElement_tab.prototype.$mapAttribute	= function(sName, sValue) {
 		this.$setPseudoClass("selected", sValue == "true");
 	else
 	if (sName == "label")
-		this.$getContainer("gateway").innerHTML	=(this.hasAttribute("image") ? '<img src="' + this.getAttribute("image") + '" align="absmiddle" /> ' :'') + (sValue || '');
+		this.$getContainer("gateway").innerHTML	=(this.hasAttribute("image") ? '<img src="' + ample.$encodeXMLCharacters(this.getAttribute("image")) + '" align="absmiddle" /> ' :'') + ample.$encodeXMLCharacters(sValue || '');
 	else
 	if (sName == "image")
-		this.$getContainer("gateway").innerHTML	=(sValue ? '<img src="' + sValue + '" align="absmiddle" /> ' :'') + (this.getAttribute("label") || '');
+		this.$getContainer("gateway").innerHTML	=(sValue ? '<img src="' + ample.$encodeXMLCharacters(sValue) + '" align="absmiddle" /> ' :'') + ample.$encodeXMLCharacters(this.getAttribute("label") || '');
 	else
 		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
 };

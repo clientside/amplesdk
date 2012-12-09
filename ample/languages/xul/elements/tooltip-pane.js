@@ -12,7 +12,7 @@ cXULElement_tooltip_pane.prototype	= new cXULPopupElement("tooltip-pane");
 
 // Public Methods
 cXULElement_tooltip_pane.prototype.setText	= function(sValue) {
-	this.$getContainer("gateway").innerHTML	= sValue;
+	this.$getContainer("gateway").innerHTML	= ample.$encodeXMLCharacters(sValue);
 };
 
 // Render

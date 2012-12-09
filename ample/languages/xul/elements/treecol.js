@@ -44,7 +44,7 @@ cXULElement_treecol.handlers	= {
 	},
 	"DOMAttrModified":	function(oEvent) {
 		if (oEvent.target == this) {
-			if (oEvent.attrName ==  "hidden") {
+			if (oEvent.attrName ==  "hidden" && this.parentNode) {
 				var nCell	= this.parentNode.items.$indexOf(this);
 				for (var nIndex = 0, aItems = this.parentNode.parentNode.items; nIndex < aItems.length; nIndex++)
 					if (aItems[nIndex].row)
@@ -61,7 +61,7 @@ cXULElement_treecol.prototype.$mapAttribute	= function(sName, sValue) {
 	}
 	else
 	if (sName == "label")
-		this.$getContainer("label").innerHTML	= sValue || '';
+		this.$getContainer("label").innerHTML	= ample.$encodeXMLCharacters(sValue || '');
 	else
 	if (sName == "hidden") {
 		var nCell	= this.parentNode.items.$indexOf(this);
