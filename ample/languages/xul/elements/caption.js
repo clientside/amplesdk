@@ -14,7 +14,7 @@ cXULElement_caption.prototype.viewType	= cXULElement.VIEW_TYPE_VIRTUAL;
 // Class Events Handlers
 cXULElement_caption.handlers	= {
 	"DOMNodeInsertedIntoDocument":	function(oEvent) {
-		this.parentNode.$getContainer("caption").innerHTML	= (this.hasAttribute("image") ? '<img src="' + this.getAttribute("image") + '" align="absmiddle" /> ' : '')+(this.hasAttribute("label") ? this.getAttribute("label") : '');
+		this.parentNode.$getContainer("caption").innerHTML	= (this.hasAttribute("image") ? '<img src="' + ample.$encodeXMLCharacters(this.getAttribute("image")) + '" align="absmiddle" /> ' : '')+(this.hasAttribute("label") ? ample.$encodeXMLCharacters(this.getAttribute("label")) : '');
 		if (this.getAttribute("hidden") != "true")
 			this.parentNode.$getContainer("caption").style.display	= "";
 	}
@@ -26,10 +26,10 @@ cXULElement_caption.prototype.$mapAttribute	= function(sName, sValue) {
 		return;
 	//
 	if (sName == "label")
-		this.parentNode.$getContainer("caption").innerHTML	=(this.hasAttribute("image") ? '<img src="' + this.getAttribute("image") + '" align="absmiddle" /> ' : '')+ (sValue || '');
+		this.parentNode.$getContainer("caption").innerHTML	=(this.hasAttribute("image") ? '<img src="' + ample.$encodeXMLCharacters(this.getAttribute("image")) + '" align="absmiddle" /> ' : '')+ ample.$encodeXMLCharacters(sValue || '');
 	else
 	if (sName == "image")
-		this.parentNode.$getContainer("caption").innerHTML	=(sValue ? '<img src="' + sValue + '" align="absmiddle" /> ' : '') + (this.getAttribute("label") || '');
+		this.parentNode.$getContainer("caption").innerHTML	=(sValue ? '<img src="' + ample.$encodeXMLCharacters(sValue) + '" align="absmiddle" /> ' : '') + ample.$encodeXMLCharacters(this.getAttribute("label") || '');
 	else
 	if (sName == "hidden")
 		this.parentNode.$getContainer("caption").style.display	= sValue == "true" ? "none" : "";

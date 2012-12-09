@@ -184,8 +184,8 @@ cXULElement_wizard.goTo	= function(oElement, oPage) {
 	oPage.$getContainer().style.display	= "";
 
 	// Set header label and description
-	oElement.$getContainer("label").innerHTML	= oPage.getAttribute("label") || " ";
-	oElement.$getContainer("description").innerHTML	= oPage.getAttribute("description") || " ";
+	oElement.$getContainer("label").innerHTML	= ample.$encodeXMLCharacters(oPage.getAttribute("label") || " ");
+	oElement.$getContainer("description").innerHTML	= ample.$encodeXMLCharacters(oPage.getAttribute("description") || " ");
 	oElement.$getContainer("header").className	= "xul-wizardheader xul-wizard--header " + (oPage.getAttribute("class") || "");
 
 	// Set buttons state

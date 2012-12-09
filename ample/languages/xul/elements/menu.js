@@ -60,7 +60,7 @@ cXULElement_menu.prototype.$mapAttribute	= function(sName, sValue) {
 	}
 	else
 	if (sName == "label")
-		this.$getContainer("label").innerHTML	= sValue;
+		this.$getContainer("label").innerHTML	= ample.$encodeXMLCharacters(sValue || '');
 	else
 	if (sName == "image") {
 		if (this.parentNode instanceof cXULElement_menupopup)

@@ -26,12 +26,12 @@ cXULElement_dialogheader.handlers	= {
 cXULElement_dialogheader.prototype.$mapAttribute	= function(sName, sValue) {
 	if (sName == "title") {
 		if (this.parentNode instanceof cXULElement_dialog)
-			this.parentNode.$getContainer("label").innerHTML	= sValue || " ";
+			this.parentNode.$getContainer("label").innerHTML	= ample.$encodeXMLCharacters(sValue || " ");
 	}
 	else
 	if (sName == "description") {
 		if (this.parentNode instanceof cXULElement_dialog)
-			this.parentNode.$getContainer("description").innerHTML = sValue || " ";
+			this.parentNode.$getContainer("description").innerHTML = ample.$encodeXMLCharacters(sValue || " ");
 	}
 	else
 		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);

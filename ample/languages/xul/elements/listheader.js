@@ -67,7 +67,7 @@ cXULElement_listheader.prototype.$mapAttribute	= function(sName, sValue) {
 	}
 	else
 	if (sName == "label")
-		this.$getContainer("label").innerHTML	= sValue || '';
+		this.$getContainer("label").innerHTML	= ample.$encodeXMLCharacters(sValue || '');
 	else
 	if (sName == "hidden") {
 		var nCell	= this.parentNode.items.$indexOf(this);
