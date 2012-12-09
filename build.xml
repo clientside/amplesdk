@@ -18,16 +18,16 @@
 	<!-- Project-related -->
 	<property name="copyright.year" value="${tstamp.year}" />
 	<property name="copyright.name" value="Sergey Ilinsky" />
+	<property name="license.file" value="${project.license}.txt" />
 
 	<!-- Build-related -->
-	<property name="build.package" value="ample-${project.version}" />
+	<property name="build.package" value="${project.name}-${project.version}" />
 	<property name="build.signature" value="${tstamp.full}" />
 
-	<property name="temp.dir" value="${build.dir}/temp/"/>
-	<property name="work.dir" value="${build.dir}/work/"/>
-
-	<property name="target.dir" value="${work.dir}/${build.package}/"/>
-	<property name="target.zip" value="${work.dir}/${build.package}.zip"/>
+	<property name="temp.dir" value="${temp.dir}"/>
+	<property name="target.docs.dir" value="${docs.dir}/${build.package}/"/>
+	<property name="target.dir" value="${build.dir}/${build.package}/"/>
+	<property name="target.zip" value="${build.dir}/${build.package}.zip"/>
 
 	<property name="copying.js" value="resources/COPYING.js" />
 
@@ -35,6 +35,7 @@
 	<target name="BUILD" description="Builds Ample SDK project">
 
 		<delete dir="${target.dir}" failonerror="false"/>
+		<delete dir="${target.docs.dir}" failonerror="false"/>
 		<delete file="${target.zip}" />
 
 		<mkdir dir="${temp.dir}" />
@@ -45,9 +46,9 @@
 		<antcall target="BUILD_REFERENCE" />
 		<antcall target="BUILD_LICENSE" />
 
-		<copy file="CONTRIBUTORS" tofile="${target.dir}/CONTRIBUTORS" />
-		<copy file="COPYING" tofile="${target.dir}/COPYING" />
-		<copy file="resources/README" tofile="${target.dir}/README" />
+		<copy file="CONTRIBUTORS" tofile="${target.docs.dir}/CONTRIBUTORS" />
+		<copy file="COPYING" tofile="${target.docs.dir}/COPYING" />
+		<copy file="resources/README" tofile="${target.docs.dir}/README" />
 
 		<!-- Zip finally -->
 		<zip destfile="${target.zip}">
@@ -58,7 +59,7 @@
 	<!-- Ample -->
 	<target name="BUILD_AMPLE" unless="skip.ample">
 		<property name="source.ample.dir" value="ample/" />
-		<property name="target.ample.dir" value="${target.dir}/ample/" />
+		<property name="target.ample.dir" value="${target.dir}" />
 
 		<mkdir dir="${target.ample.dir}" />
 
@@ -70,7 +71,7 @@
 
 	<target name="BUILD_AMPLE_RUNTIME" unless="skip.ample.runtime">
 		<property name="source.runtime.dir" value="ample/runtime/" />
-		<property name="target.runtime.dir" value="${target.dir}/ample/" />
+		<property name="target.runtime.dir" value="${target.dir}" />
 		<property name="temp.runtime.dir" value="${temp.dir}/runtime/" />
 
 		<mkdir dir="${temp.runtime.dir}" />
@@ -317,13 +318,15 @@
 	</target>
 
 	<target name="BUILD_AMPLE_RUNTIME_DEVELOPMENT">
-		<mkdir dir="${target.dir}/ample/" />
+		<mkdir dir="${target.dir}" />
 		<exec executable="${executable.php}" failonerror="true">
 			<arg value="resources/compiler/js.php" />
 			<arg value="${temp.runtime.dir}/runtime-raw.js" />
 			<arg value="${temp.runtime.dir}/runtime.js" />
-			<arg value="--obfuscate" />
+			<!--arg value="––obfuscate" /-->
 			<arg value="--strip-Source" />
+			<!--arg value="––strip-Debug" /-->
+			<arg value="--strip-Guard" />
 		</exec>
 		<replace file="${temp.runtime.dir}/runtime.js">
 			<replacefilter token="@project_version@"	value="${project.name}/${project.version} (build:${build.signature})"	/>
@@ -739,7 +742,7 @@
 
 	<target name="BUILD_AMPLE_CULTURES" unless="skip.ample.cultures">
 		<property name="source.cultures.dir" value="ample/cultures/" />
-		<property name="target.cultures.dir" value="${target.dir}/ample/cultures/" />
+		<property name="target.cultures.dir" value="${target.dir}/cultures/" />
 
 		<mkdir dir="${target.cultures.dir}" />
 
@@ -750,7 +753,7 @@
 
 	<target name="BUILD_AMPLE_PLUGINS" unless="skip.ample.plugins">
 		<property name="source.ample.plugins.dir" value="ample/plugins/" />
-		<property name="target.ample.plugins.dir" value="${target.dir}/ample/plugins/" />
+		<property name="target.ample.plugins.dir" value="${target.dir}/plugins/" />
 		<property name="temp.ample.plugins.dir" value="${temp.dir}/plugins/" />
 
 		<mkdir dir="${temp.ample.plugins.dir}" />
@@ -940,7 +943,7 @@
 
 	<!-- Examples -->
 	<target name="BUILD_EXAMPLES" unless="skip.examples">
-		<copy todir="${target.dir}/examples/">
+		<copy todir="${target.docs.dir}/examples/">
 			<fileset dir="examples/">
 				<include name="helloworld.html" />
 				<include name="index.html" />
@@ -957,7 +960,7 @@
 	<!-- Reference -->
 	<target name="BUILD_REFERENCE" unless="skip.reference">
 		<property name="source.reference.dir" value="reference/" />
-		<property name="target.reference.dir" value="${target.dir}/reference/" />
+		<property name="target.reference.dir" value="${target.docs.dir}/reference/" />
 		<!-- copy reference -->
 		<copy todir="${target.reference.dir}">
 			<fileset dir="${source.reference.dir}" />
@@ -970,10 +973,11 @@
 
 	<!-- Licenses -->
 	<target name="BUILD_LICENSE" unless="skip.license">
-		<mkdir dir="${target.dir}/license/" />
-		<copy todir="${target.dir}/license/">
+		<mkdir dir="${target.docs.dir}/license/" />
+		<copy todir="${target.docs.dir}/license/">
 			<fileset dir="license/" />
 		</copy>
+		<copy file="license/${license.file}" tofile="${target.dir}/LICENSE.txt" />
 	</target>
 
 </project>
