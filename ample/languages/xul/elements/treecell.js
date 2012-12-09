@@ -25,20 +25,20 @@ cXULElement_treecell.handlers	= {
 
 cXULElement_treecell.prototype.$mapAttribute	= function(sName, sValue) {
 	if (sName == "label")
-		this.$getContainer("gateway").innerHTML	=(this.attributes["src"] ? '<img src="' + this.attributes["src"] + '" align="absmiddle" /> ' :'') + (sValue || '');
+		this.$getContainer("gateway").innerHTML	=(this.hasAttribute("src") ? '<img src="' + ample.$encodeXMLCharacters(this.getAttribute("src")) + '" align="absmiddle" /> ' :'') + ample.$encodeXMLCharacters(sValue || '');
 	else
 	if (sName == "src")
-		this.$getContainer("gateway").innerHTML	=(sValue ? '<img src="' + sValue + '" align="absmiddle" /> ' :'') + (this.attributes["label"] || '');
+		this.$getContainer("gateway").innerHTML	=(sValue ? '<img src="' + ample.$encodeXMLCharacters(sValue) + '" align="absmiddle" /> ' :'') + ample.$encodeXMLCharacters(this.getAttribute("label") || '');
 	else
 	if (sName == "editable") {
 		if (sValue == "true") {
 			var oElementDOM	= this.$getContainer("gateway");
 			oElementDOM.innerHTML	= '<input style="border:none; margin:0px; margin-left: 2px; padding-left: 2px; padding-top:1px; width:100px;" onselectstart="event.cancelBubble=true;" onchange="ample.$instance(this).setAttribute(\'label\', this.value)" onblur="this.onchange();" onkeydown="if (event.keyCode == 13) this.onchange(); else if (event.keyCode == 27) ample.$instance(this).setAttribute(\'editable\', \'false\')"/>';
 			oElementDOM.firstChild.focus();
-			oElementDOM.firstChild.value	= this.attributes["label"] || '';
+			oElementDOM.firstChild.value	= this.getAttribute("label") || '';
 		}
 		else
-			this.$mapAttribute("label", this.attributes["label"]);
+			this.$mapAttribute("label", this.getAttribute("label"));
 	}
 	else
 		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
@@ -49,7 +49,7 @@ cXULElement_treecell.prototype.$getTagOpen	= function() {
 	var oChildren	= this.parentNode.parentNode.parentNode,
 		oHead	= oChildren && oChildren.tree ? oChildren.tree.head : null,
 		nCellIndex	= this.parentNode.childNodes.$indexOf(this);
-	var sHtml	= '<td class="xul-treecell' + (this.attributes["class"] ? " " + this.attributes["class"] : "") + '"' + (oHead && oHead.childNodes[nCellIndex] && oHead.childNodes[nCellIndex].attributes["hidden"] == "true" ? ' style="display:none"' : '') + '>';
+	var sHtml	= '<td class="xul-treecell' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '"' + (oHead && oHead.childNodes[nCellIndex] && oHead.childNodes[nCellIndex].getAttribute("hidden") == "true" ? ' style="display:none"' : '') + '>';
 	sHtml	+= '<div class="xul-treecell--box" style="position:relative;width:100%;"><div class="xul-treecell--label" style="position:absolute;width:100%;overflow:hidden;">';
 	if (oHead && oHead._getPrimaryColIndex() == nCellIndex) {
 		var oElementCurrent	= this;
@@ -61,11 +61,11 @@ cXULElement_treecell.prototype.$getTagOpen	= function() {
 				break;
 		} while(oElementCurrent = oElementCurrent.parentNode);
 	}
-
 	sHtml	+= '<div class="xul-treecell--gateway" style="width:100%">';
-	if (this.attributes["src"])
-		sHtml	+= '<img src="' + ample.$encodeXMLCharacters(this.attributes["src"]) + '" align="absmiddle"/> ';
-	sHtml	+= this.attributes["label"] ? ample.$encodeXMLCharacters(this.attributes["label"]) : '';
+	if (this.hasAttribute("src"))
+		sHtml	+= '<img src="' + ample.$encodeXMLCharacters(this.getAttribute("src")) + '" align="absmiddle"/> ';
+	if (this.hasAttribute("label"))
+		sHtml	+= ample.$encodeXMLCharacters(this.getAttribute("label"));
 
 	return sHtml;
 };

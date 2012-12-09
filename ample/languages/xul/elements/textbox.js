@@ -87,7 +87,7 @@ cXULElement_textbox.prototype.$mapAttribute	= function(sName, sValue) {
 		this.$getContainer("input").readOnly	= sValue == "true";
 	else
 	if (sName == "placeholder")
-		this.$getContainer("placeholder").innerHTML	= sValue || '';
+		this.$getContainer("placeholder").innerHTML	= ample.$encodeXMLCharacters(sValue || '');
 	else
 	if (sName == "type") {
 		// TODO

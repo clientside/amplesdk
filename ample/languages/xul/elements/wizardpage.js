@@ -36,12 +36,12 @@ cXULElement_wizardpage.handlers	= {
 cXULElement_wizardpage.prototype.$mapAttribute	= function(sName, sValue) {
 	if (sName == "label") {
 		if (this.parentNode.currentPage == this)
-			this.parentNode.$getContainer("label").innerHTML	= sValue || '';
+			this.parentNode.$getContainer("label").innerHTML	= ample.$encodeXMLCharacters(sValue || '');
 	}
 	else
 	if (sName == "description") {
 		if (this.parentNode.currentPage == this)
-			this.parentNode.$getContainer("description").innerHTML	= sValue || '';
+			this.parentNode.$getContainer("description").innerHTML	= ample.$encodeXMLCharacters(sValue || '');
 	}
 	else
 	if (sName == "class") {

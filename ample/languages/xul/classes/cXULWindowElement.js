@@ -20,7 +20,7 @@ cXULWindowElement.modalWindow	= null;
 
 cXULWindowElement.prototype.$mapAttribute	= function(sName, sValue) {
 	if (sName == "title")
-		this.$getContainer("title").innerHTML	= sValue || '';
+		this.$getContainer("title").innerHTML	= ample.$encodeXMLCharacters(sValue || '');
 	else
 		cXULElement.prototype.$mapAttribute.call(this, sName, sValue);
 };

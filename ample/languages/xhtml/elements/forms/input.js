@@ -311,7 +311,7 @@ cXHTMLElement_input.prototype.$mapAttribute	= function(sName, sValue) {
 	}
 	else
 	if (sName == "placeholder") {
-		this.$getContainer("placeholder").innerHTML	= sValue || '';
+		this.$getContainer("placeholder").innerHTML	= ample.$encodeXMLCharacters(sValue || '');
 	}
 	else
 	if (sName == "checked") {
