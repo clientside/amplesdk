@@ -11,7 +11,7 @@ var oQuery_cache	= {};
 
 function fQuery_data(oQuery, sName, oValue) {
 	if (typeof oValue != "undefined") {
-		fQuery_each(oQuery, function() {
+		return fQuery_each(oQuery, function() {
 			var oCache	= oQuery_cache[this.uniqueID];
 			if (!oCache)
 				oCache	= oQuery_cache[this.uniqueID]	= {};
@@ -20,7 +20,6 @@ function fQuery_data(oQuery, sName, oValue) {
 			else
 				oCache[sName]	= oValue;
 		});
-		return oQuery;
 	}
 	else
 	if (oQuery.length) {

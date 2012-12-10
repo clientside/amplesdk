@@ -62,20 +62,16 @@ cQuery.prototype.animate	= function(oProperties, vDuration, sEasing, fCallback) 
 //<-Guard
 
 	var sPseudo	= arguments[4];
-	fQuery_each(this, function() {
+	return fQuery_each(this, function() {
 		fNodeAnimation_play(this, oProperties, vDuration, sEasing, fCallback, sPseudo);
 	});
-
-	return this;
 };
 
 cQuery.prototype.stop	= function() {
 	// Invoke implementation
-	fQuery_each(this, function() {
+	return fQuery_each(this, function() {
 		fNodeAnimation_stop(this);
 	});
-
-	return this;
 };
 
 cQuery.prototype.delay	= function(vDuration) {
@@ -85,11 +81,9 @@ cQuery.prototype.delay	= function(vDuration) {
 	]);
 //<-Guard
 
-	fQuery_each(this, function() {
+	return fQuery_each(this, function() {
 		fNodeAnimation_delay(this, vDuration);
 	});
-
-	return this;
 };
 
 
