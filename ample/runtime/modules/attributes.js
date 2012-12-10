@@ -23,13 +23,12 @@ cQuery.prototype.attr	= function(sQName, sValue) {
 		sNameSpaceURI	= this.resolver ? this.resolver(sPrefix) : oAmple.prefixes[sPrefix] || null;
 
 	if (arguments.length > 1) {
-		fQuery_each(this, function() {
+		return fQuery_each(this, function() {
 			if (sValue == null)
 				sNameSpaceURI == null ? this.removeAttribute(sQName) : this.removeAttributeNS(sNameSpaceURI, sLocalName);
 			else
 				sNameSpaceURI == null ? this.setAttribute(sQName, sValue) : this.setAttributeNS(sNameSpaceURI, sQName, sValue);
 		});
-		return this;
 	}
 	else
 	if (this.length)

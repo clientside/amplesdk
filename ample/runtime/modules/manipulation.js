@@ -18,7 +18,7 @@ cQuery.prototype.text	= function(sValue) {
 
 	if (arguments.length > 0) {
 		// Replace children with a text node
-		fQuery_each(this, function() {
+		return fQuery_each(this, function() {
 			if (this.childNodes.length == 1 && this.firstChild.nodeType == 3) {
 				this.firstChild.replaceData(0, this.firstChild.length, cString(sValue));
 			}
@@ -28,7 +28,6 @@ cQuery.prototype.text	= function(sValue) {
 				this.appendChild(fDocument_createTextNode(this.ownerDocument, cString(sValue)));
 			}
 		});
-		return this;
 	}
 	else {
 		// Get inner text
@@ -344,19 +343,17 @@ cQuery.prototype.replaceWith	= function(vArgument1) {
 //
 cQuery.prototype.remove	= function() {
 	// Invoke implementation
-	fQuery_each(this, function() {
+	return fQuery_each(this, function() {
 		fElement_removeChild(this.parentNode, this);
 	});
-	return this;
 };
 
 function fQuery_empty(oQuery) {
 	// Invoke implementation
-	fQuery_each(oQuery, function() {
+	return fQuery_each(oQuery, function() {
 		while (this.lastChild)
 			fElement_removeChild(this, this.lastChild);
 	});
-	return oQuery;
 };
 
 cQuery.prototype.empty	= function() {

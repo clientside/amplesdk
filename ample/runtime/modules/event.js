@@ -61,9 +61,7 @@ cQuery.prototype.trigger	= function(sType, oDetail) {
 	if (arguments.length < 2)
 		oDetail	= null;
 
-	fQuery_trigger(this, sType, oDetail);
-
-	return this;
+	return fQuery_trigger(this, sType, oDetail);
 };
 
 function fQuery_bindunbind(oQuery, sType, fHandler, bCapture, bUnbind) {
@@ -134,7 +132,7 @@ oAmple.unbind	= function(sType, fHandler, bCapture) {
 };
 
 function fQuery_trigger(oQuery, sType, oDetail) {
-	fQuery_each(oQuery, function() {
+	return fQuery_each(oQuery, function() {
 		var oEvent	= new cCustomEvent;
 		oEvent.initCustomEvent(sType, true, true, oDetail);
 		fEventTarget_dispatchEvent(this, oEvent);

@@ -226,17 +226,13 @@ cQuery.prototype.load	= function(sUrl, vData, fCallback) {
 	]);
 //<-Guard
 
-	fQuery_each(this, function() {
+	return fQuery_each(this, function() {
 		fNodeLoader_load(this, sUrl, vData, fCallback);
 	});
-
-	return this;
 };
 
 cQuery.prototype.abort	= function() {
-	fQuery_each(this, function() {
+	return fQuery_each(this, function() {
 		fNodeLoader_abort(this);
 	});
-
-	return this;
 };

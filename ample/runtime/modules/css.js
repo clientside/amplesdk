@@ -17,10 +17,9 @@ cQuery.prototype.css	= function(sName, sValue) {
 
 	if (arguments.length > 1) {
 		sValue	= sValue == null ? '' : cString(sValue);
-		fQuery_each(this, function() {
+		return fQuery_each(this, function() {
 			this.$setStyle(sName, sValue);
 		});
-		return this;
 	}
 	else
 	if (this.length)

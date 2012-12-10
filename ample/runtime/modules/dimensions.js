@@ -16,12 +16,11 @@ cQuery.prototype.width	= function(sValue) {
 //<-Guard
 
 	if (arguments.length) {
-		fQuery_each(this, function() {
+		return fQuery_each(this, function() {
 			var oElementDOM	= this.$getContainer();
 			if (oElementDOM)
 				fBrowser_setStyle(oElementDOM, "width", sValue +(fIsNaN(sValue) ? '' : 'px'));
 		});
-		return this;
 	}
 	else
 	if (this.length) {
@@ -46,12 +45,11 @@ cQuery.prototype.height	= function(sValue) {
 //<-Guard
 
 	if (arguments.length) {
-		fQuery_each(this, function() {
+		return fQuery_each(this, function() {
 			var oElementDOM	= this.$getContainer();
 			if (oElementDOM)
 				fBrowser_setStyle(oElementDOM, "height", sValue +(fIsNaN(sValue) ? '' : 'px'));
 		});
-		return this;
 	}
 	else
 	if (this.length) {
