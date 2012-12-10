@@ -153,6 +153,8 @@ cQuery.prototype.splice	= function(nFirst, nLength/*vValue1, vValue2,..vValueN*/
 function fQuery_each(oQuery, fCallback, aArguments) {
 	for (var nIndex = 0; nIndex < oQuery.length; nIndex++)
 		fCallback.apply(oQuery[nIndex], aArguments || [nIndex, oQuery[nIndex]]);
+	//
+	return oQuery;
 };
 
 cQuery.prototype.each	= function(fCallback, aArguments) {
@@ -163,7 +165,5 @@ cQuery.prototype.each	= function(fCallback, aArguments) {
 	]);
 //<-Guard
 
-	fQuery_each(this, fCallback, aArguments);
-
-	return this;
+	return fQuery_each(this, fCallback, aArguments);
 };
