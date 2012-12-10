@@ -9,7 +9,7 @@
 
 var rQuery_effects_display	= /display\s*:\s*(\w+)\s*(;?)/;
 
-function fQuery_effects_show(oQuery, fCallback, bIgnoreRuntimeCheck) {
+function fQuery_effects_show(oQuery, fCallback) {
 	fQuery_each(oQuery, function() {
 		var oElementDOM	= this.$getContainer(),
 //			sValue	= fElement_getAttribute(this, "style"),
@@ -23,7 +23,7 @@ function fQuery_effects_show(oQuery, fCallback, bIgnoreRuntimeCheck) {
 
 		// Update view, if available
 		if (oElementDOM && (oStyle = oElementDOM.style))
-			if (oStyle.display == "none" || bIgnoreRuntimeCheck)
+			if (oStyle.display == "none")
 				fCallback(this, oElementDOM, oStyle);
 	});
 };
@@ -94,6 +94,31 @@ cQuery.prototype.delay	= function(vDuration) {
 
 
 // Pre-defined animations
+cQuery_effects_fadeTo	= function(oQuery, vDuration, nOpacity, fCallback) {
+	var oProperties	= {};
+		oProperties.opacity	= nOpacity;
+
+	return fQuery_each(oQuery, function() {
+		var oElement	= this,
+			oElementDOM	= this.$getContainer(),
+			oStyle;
+
+		// Update view, if available
+		if (oElementDOM && (oStyle = oElementDOM.style)) {
+			if (oStyle.display == "none" && nOpacity)
+				oStyle.display	= '';
+
+			fNodeAnimation_play(oElement, oProperties, vDuration, "ease", function() {
+				if (!nOpacity)
+					oStyle.display	= 'none';
+				//
+				if (fCallback)
+					fCallback(oElement);
+			});
+		}
+	});
+};
+
 cQuery.prototype.fadeIn	= function(vDuration, fCallback) {
 //->Guard
 	fGuard(arguments, [
@@ -102,7 +127,7 @@ cQuery.prototype.fadeIn	= function(vDuration, fCallback) {
 	]);
 //<-Guard
 
-	return fCallback ? this.fadeTo(vDuration, 1, fCallback) : this.fadeTo(vDuration, 1);
+	return cQuery_effects_fadeTo(this, vDuration, 1, fCallback);
 };
 
 cQuery.prototype.fadeOut	= function(vDuration, fCallback) {
@@ -113,18 +138,7 @@ cQuery.prototype.fadeOut	= function(vDuration, fCallback) {
 	]);
 //<-Guard
 
-	var oProperties	= {};
-	oProperties.opacity	= 0;
-	//
-	fQuery_effects_hide(this, function(oElement, oElementDOM, oStyle) {
-		fNodeAnimation_play(oElement, oProperties, vDuration, "ease", function() {
-			oStyle.display	= "none";
-			if (fCallback)
-				fCallback.call(oElement);
-		});
-	});
-
-	return this;
+	return cQuery_effects_fadeTo(this, vDuration, 0, fCallback);
 };
 
 cQuery.prototype.fadeTo	= function(vDuration, nOpacity, fCallback) {
@@ -136,18 +150,7 @@ cQuery.prototype.fadeTo	= function(vDuration, nOpacity, fCallback) {
 	]);
 //<-Guard
 
-	var oProperties	= {};
-	oProperties.opacity	= nOpacity;
-	//
-	fQuery_effects_show(this, function(oElement, oElementDOM, oStyle) {
-		if (oStyle.display == "none") {
-			fBrowser_setStyle(oElementDOM, "opacity", '0');
-			oStyle.display	= '';
-		}
-		fNodeAnimation_play(oElement, oProperties, vDuration, "ease", fCallback);
-	}, true);
-
-	return this;
+	return cQuery_effects_fadeTo(this, vDuration, nOpacity, fCallback);
 };
 
 cQuery.prototype.show	= function(vDuration, fCallback) {
