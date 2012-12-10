@@ -255,7 +255,7 @@ function fElement_mapAttribute(oElement, sName, sValue, sValueOld) {
 		if (sValueOld)
 			delete oDocument_ids[sValueOld];
 		
-		oElementDOM = oUADocument.getElementById(sValueOld || this.uniqueID);
+		oElementDOM = oUADocument.getElementById(sValueOld || oElement.uniqueID);
 	}
 	else
 		oElementDOM	= oElement.$getContainer();
