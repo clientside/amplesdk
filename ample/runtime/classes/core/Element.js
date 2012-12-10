@@ -824,6 +824,12 @@ function fElement_getContainerTraverse(oNode, rClass) {
 
 cElement.prototype.$getContainer	= function(sName) {
 	var oElement	= oUADocument.getElementById(fElement_getAttribute(this, 'id') || this.uniqueID);
+
+	// when called from fElement_mapAttribute (line 273) after an id attribute has been added, this
+	// id has not been propagated to the view document before, so we need to search for the uniqueID
+	// once more.
+	if (!oElement) oElement = oUADocument.getElementById(this.uniqueID);
+	
 	if (sName && oElement)
 		oElement	= fElement_getContainerTraverse(oElement, new cRegExp('--' + sName + '(\\s|$)'));
 	return oElement;
