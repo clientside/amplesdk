@@ -243,6 +243,7 @@ cElement.prototype.hasAttributeNS	= function(sNameSpaceURI, sLocalName) {
 };
 
 function fElement_mapAttribute(oElement, sName, sValue, sValueOld) {
+	var oElementDOM = null;
 	if (sName == 'id') {
 		if (sValue) {
 //->Debug
@@ -253,9 +254,13 @@ function fElement_mapAttribute(oElement, sName, sValue, sValueOld) {
 		}
 		if (sValueOld)
 			delete oDocument_ids[sValueOld];
+		
+		oElementDOM = oUADocument.getElementById(sValueOld || this.uniqueID);
 	}
+	else
+		oElementDOM	= oElement.$getContainer();
+
 	// Update view
-	var oElementDOM	= oElement.$getContainer();
 	if (oElementDOM) {
 		if (sName == "class") {
 			var sClass	=(oElement.prefix ? oElement.prefix + '-' : '') + oElement.localName + (sValue ? ' ' + sValue : '');
@@ -824,7 +829,6 @@ function fElement_getContainerTraverse(oNode, rClass) {
 
 cElement.prototype.$getContainer	= function(sName) {
 	var oElement	= oUADocument.getElementById(fElement_getAttribute(this, 'id') || this.uniqueID);
-	if (!oElement) oElement = oUADocument.getElementById(this.uniqueID);
 	if (sName && oElement)
 		oElement	= fElement_getContainerTraverse(oElement, new cRegExp('--' + sName + '(\\s|$)'));
 	return oElement;
