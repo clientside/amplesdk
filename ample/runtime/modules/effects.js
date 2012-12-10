@@ -12,13 +12,14 @@ var rQuery_effects_display	= /display\s*:\s*(\w+)\s*(;?)/;
 function fQuery_effects_show(oQuery, fCallback, bIgnoreRuntimeCheck) {
 	fQuery_each(oQuery, function() {
 		var oElementDOM	= this.$getContainer(),
-			sValue	= this.attributes.style,
-			aMatch,
+//			sValue	= fElement_getAttribute(this, "style"),
+//			aMatch,
 			oStyle;
 
 		// Update model
-		if (sValue && (aMatch = sValue.match(rQuery_effects_display)) && aMatch[1] == "none")
-			this.attributes.style	= sValue.replace(rQuery_effects_display, '$2');
+		// FIXME: Implement @style attribute updates
+//		if (sValue && (aMatch = sValue.match(rQuery_effects_display)) && aMatch[1] == "none")
+//			fElement_setAttribute(this, "style", sValue.replace(rQuery_effects_display, '$2'));
 
 		// Update view, if available
 		if (oElementDOM && (oStyle = oElementDOM.style))
@@ -30,15 +31,17 @@ function fQuery_effects_show(oQuery, fCallback, bIgnoreRuntimeCheck) {
 function fQuery_effects_hide(oQuery, fCallback) {
 	fQuery_each(oQuery, function() {
 		var oElementDOM	= this.$getContainer(),
-			sValue	= this.attributes.style,
+//			sValue	= fElement_getAttribute(this, "style"),
+//			aMatch,
 			oStyle;
 
 		// Update model
-		if (!sValue)
-			this.attributes.style	= 'display:none';
-		else
-		if (sValue.match(rQuery_effects_display) && cRegExp.$1 != "none")
-			this.attributes.style	= sValue.replace(rQuery_effects_display, 'display:none' + '$2');
+		// FIXME: Implement @style attribute updates
+//		if (!sValue)
+//			fElement_setAttribute(this, "style", 'display:none');
+//		else
+//		if ((aMatch = sValue.match(rQuery_effects_display)) && aMatch[1] != "none")
+//			fElement_setAttribute(this, "style", sValue.replace(rQuery_effects_display, 'display:none' + '$2'));
 
 		// Update view, if available
 		if (oElementDOM && (oStyle = oElementDOM.style))
@@ -156,7 +159,7 @@ cQuery.prototype.show	= function(vDuration, fCallback) {
 //<-Guard
 
 	var oProperties	= {};
-	oProperties.opacity	= '1';
+	oProperties.opacity	= 1;
 	//
 	fQuery_effects_show(this, function(oElement, oElementDOM, oStyle) {
 		oStyle.display	= '';
@@ -199,7 +202,7 @@ cQuery.prototype.hide	= function(vDuration, fCallback) {
 	var oProperties	= {};
 	oProperties.width	= '0px';
 	oProperties.height	= '0px';
-	oProperties.opacity	= '0';
+	oProperties.opacity	= 0;
 	//
 	fQuery_effects_hide(this, function(oElement, oElementDOM, oStyle) {
 		if (vDuration) {
@@ -236,7 +239,7 @@ cQuery.prototype.slideDown	= function(vDuration, fCallback) {
 //<-Guard
 
 	var oProperties	= {};
-	oProperties.opacity	= '1';
+	oProperties.opacity	= 1;
 	//
 	fQuery_effects_show(this, function(oElement, oElementDOM, oStyle) {
 		oStyle.display	= '';
@@ -273,7 +276,7 @@ cQuery.prototype.slideUp		= function(vDuration, fCallback) {
 
 	var oProperties	= {};
 	oProperties.height	= '0px';
-	oProperties.opacity	= '0';
+	oProperties.opacity	= 0;
 	//
 	fQuery_effects_hide(this, function(oElement, oElementDOM, oStyle) {
 		//
