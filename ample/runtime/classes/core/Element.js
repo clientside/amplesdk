@@ -279,12 +279,14 @@ function fElement_setAttribute(oElement, sName, sValue) {
 			var bRegistered	= oDocument_all[oElement.uniqueID],
 				bCoreAttr	= sName == 'id' || sName == "class" || sName == "style",
 				sValueOld	= oAttribute.value;
-			//
-			oAttribute.value	=
-			oAttribute.nodeValue= sValue;
 
+			// Update view
 			if (bRegistered && bCoreAttr)
 				fElement_mapAttribute(oElement, sName, sValue, sValueOld);
+
+			// Set new value
+			oAttribute.value	=
+			oAttribute.nodeValue= sValue;
 
 			// Fire Mutation event
 			var oEvent	= new cMutationEvent;
@@ -410,10 +412,6 @@ cElement.prototype.setAttributeNode	= function(oAttribute) {
 };
 
 function fElement_setAttributeNode(oElement, oAttribute) {
-	var oOldAttribute	= fNamedNodeMap_setNamedItem(oElement.attributes, oAttribute);
-	// TODO
-	//
-	oAttribute.ownerElement	= oElement;
 	//
 	var sName	= oAttribute.name,
 		sValue	= oAttribute.value;
@@ -421,8 +419,14 @@ function fElement_setAttributeNode(oElement, oAttribute) {
 	var bRegistered	= oDocument_all[oElement.uniqueID],
 		bCoreAttr	= sName == 'id' || sName == "class" || sName == "style";
 
+	// Update view
 	if (bRegistered && bCoreAttr)
 		fElement_mapAttribute(oElement, sName, sValue, '');
+
+	// Add attribute to element's collection
+	var oOldAttribute	= fNamedNodeMap_setNamedItem(oElement.attributes, oAttribute);
+	//
+	oAttribute.ownerElement	= oElement;
 
 	// Fire Mutation event
 	var oEvent	= new cMutationEvent;
@@ -445,7 +449,7 @@ function fElement_setAttributeNodeNS(oElement, oAttribute) {
 		var oEvent;
 
 		if (oOldAttribute) {
-			// Fire Mutation event (pseudo)
+			// Fire Mutation event (fake)
 			oEvent	= new cMutationEvent;
 			oEvent.initMutationEvent("DOMNodeRemovedFromDocument", false, false, null, null, null, null, null);
 			oEvent.target	=
@@ -455,7 +459,7 @@ function fElement_setAttributeNodeNS(oElement, oAttribute) {
 			fEventTarget_handleEvent(oOldAttribute, oEvent);
 		}
 
-		// Fire Mutation event (pseudo)
+		// Fire Mutation event
 		oEvent	= new cMutationEvent;
 		oEvent.initMutationEvent("DOMNodeInsertedIntoDocument", false, false, null, null, null, null, null);
 		oEvent.target	=
