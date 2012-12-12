@@ -7,9 +7,14 @@
  *
  */
 
-var cXPathException	= function(nCode, sMessage) {
+var cXPathException	= function(nCode) {
 	this.code	= nCode;
-	this.message= sMessage || oXPathException_messages[nCode];
+	var sMessage= 'DOM XPath Exception' + ' ' + nCode;
+//->Debug
+	if (arguments.length > 1)
+		sMessage	= arguments[1];
+//<-Debug
+	this.message	= oXPathException_messages[nCode] + ':' + ' ' + sMessage;
 };
 
 cXPathException.prototype	= new cError;
@@ -21,9 +26,14 @@ cXPathException.prototype.message	= null;
 cXPathException.INVALID_EXPRESSION_ERR	= 51;
 cXPathException.TYPE_ERR				= 52;
 
+cXPathException.prototype.toString	= function() {
+	return this.message;
+};
+
 var oXPathException_messages	= {};
-oXPathException_messages[cXPathException.INVALID_EXPRESSION_ERR]	= "INVALID_EXPRESSION_ERR: DOM XPath Exception 51";
-oXPathException_messages[cXPathException.TYPE_ERR]					= "TYPE_ERR: DOM XPath Exception 52";
+oXPathException_messages[cXPathException.INVALID_EXPRESSION_ERR]	= "INVALID_EXPRESSION_ERR";
+oXPathException_messages[cXPathException.TYPE_ERR]					= "TYPE_ERR";
+
 
 //
 ample.publish(cXPathException,	"XPathException");
