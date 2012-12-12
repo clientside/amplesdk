@@ -2,8 +2,8 @@
 RewriteEngine on
 
 ## Runtime
-RewriteRule		runtime.js						../resources/assemble.php?path=../ample/
-RewriteRule		runtime-prod.js					../resources/assemble.php?path=../ample/&prod=true
+RewriteRule		runtime.js						../resources/assemble.php?path=../ample/runtime/
+RewriteRule		runtime-prod.js					../resources/assemble.php?path=../ample/runtime/&prod=true
 
 ## Languages
 RewriteRule		languages/([a-z]+)/([a-z]+).js	../resources/assemble.php?path=../ample/languages/$1/

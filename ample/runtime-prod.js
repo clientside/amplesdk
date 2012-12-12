@@ -11,5 +11,5 @@
 	// Remove self
 	self.parentNode.removeChild(self);
 	// Include loader
-	document.write('<script type="text/javascript" src="' + base + '../resources/assemble.js?path=' + base + '"></script>');
+	document.write('<script type="text/javascript" src="' + base + '../resources/assemble.js?path=' + base + 'runtime/"></script>');
 })();
