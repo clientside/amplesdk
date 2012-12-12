@@ -7,7 +7,7 @@
  *
  */
 
-function cXPathException(nCode, sMessage) {
+var cXPathException	= function(nCode, sMessage) {
 	this.code	= nCode;
 	this.message= sMessage || oXPathException_messages[nCode];
 };

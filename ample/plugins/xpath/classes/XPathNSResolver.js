@@ -6,7 +6,7 @@
  * See: http://www.amplesdk.com/about/licensing/
  *
  */
-function cXPathNSResolver(oNode) {
+var cXPathNSResolver	= function(oNode) {
 	this.node	= oNode;
 };
 

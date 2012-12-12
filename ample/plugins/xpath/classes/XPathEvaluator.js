@@ -7,7 +7,7 @@
  *
  */
 
-function cXPathEvaluator() {
+var cXPathEvaluator	= function() {
 
 };
 
@@ -22,11 +22,12 @@ oXPathContext.defaultElementNamespace	= "http://www.w3.org/1999/xhtml";
 
 //
 cXPathEvaluator.prototype.createExpression	= function(sExpression, oResolver) {
-	// validate API
-//	fGuard(arguments, [
-//		["expression",	cString],
-//		["resolver",	cObject,	true,	true]
-//	]);
+//->Guard
+	ample.guard(arguments, [
+		["expression",	cString],
+		["resolver",	cObject,	true,	true]
+	]);
+//<-Guard
 
 	oXPathContext.namespaceResolver	= oResolver;
 
@@ -35,24 +36,26 @@ cXPathEvaluator.prototype.createExpression	= function(sExpression, oResolver) {
 };
 
 cXPathEvaluator.prototype.createNSResolver	= function(oNode) {
-	// validate API
-//	fGuard(arguments, [
-//		["node",	cNode]
-//	]);
+//->Guard
+	ample.guard(arguments, [
+		["node",	ample.classes.Node]
+	]);
+//<-Guard
 
 	// Invoke implementation
 	return new cXPathNSResolver(oNode);
 };
 
 cXPathEvaluator.prototype.evaluate	= function(sExpression, oNode, oResolver, nType, oResult) {
-	// validate API
-//	fGuard(arguments, [
-//		["expression",	cString],
-//		["context",		cNode],
-//		["resolver",	cObject,		true,	true],
-//		["type",		cNumber,		true,	true],
-//		["result",		cXPathResult,	true,	true]
-//	]);
+//->Guard
+	ample.guard(arguments, [
+		["expression",	cString],
+		["context",		ample.classes.Node],
+		["resolver",	cObject,		true,	true],
+		["type",		cNumber,		true,	true],
+		["result",		cXPathResult,	true,	true]
+	]);
+//<-Guard
 
 	// Invoke implementation
 	return fXPathExpression_evaluate(cXPathEvaluator.prototype.createExpression.call(this, sExpression, oResolver), oNode, nType, oResult);

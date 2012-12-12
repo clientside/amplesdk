@@ -7,7 +7,7 @@
  *
  */
 
-function cXPathExpression(sExpression, oStaticContext) {
+var cXPathExpression	= function(sExpression, oStaticContext) {
 	try {
 		this.staticContext	= oStaticContext;
 		this.expression	= new cExpression(sExpression, oStaticContext);
@@ -25,12 +25,13 @@ function cXPathExpression(sExpression, oStaticContext) {
 };
 
 cXPathExpression.prototype.evaluate	= function(oNode, nType, oResult) {
-	// validate API
-//	fGuard(arguments, [
-//		["context",		cNode],
-//		["type",		cNumber,	true,	true],
-//		["result",		cObject,	true,	true]
-//	]);
+//->Guard
+	ample.guard(arguments, [
+		["context",		ample.classes.Node],
+		["type",		cNumber,	true,	true],
+		["result",		cObject,	true,	true]
+	]);
+//<-Guard
 
 	// Invoke implementation
 	return fXPathExpression_evaluate(this, oNode, nType, oResult);

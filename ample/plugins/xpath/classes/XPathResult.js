@@ -7,7 +7,7 @@
  *
  */
 
-function cXPathResult() {
+var cXPathResult	= function() {
 
 };
 
@@ -45,10 +45,11 @@ cXPathResult.prototype.iterateNext	= function() {
 };
 
 cXPathResult.prototype.snapshotItem	= function(nIndex) {
-	// validate API
-//	fGuard(arguments, [
-//		["index",	cNumber,	true,	true]
-//	]);
+//->Guard
+	ample.guard(arguments, [
+		["index",	cNumber,	true,	true]
+	]);
+//<-Guard
 
 	// Invoke implementation
 	if (this.resultType == 6 || this.resultType == 7) {
