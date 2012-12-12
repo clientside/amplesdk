@@ -1,3 +1,0 @@
-function fXPathResolver_resolvePath() {
-
-};

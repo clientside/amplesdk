@@ -6,17 +6,19 @@
  * See: http://www.amplesdk.com/about/licensing/
  *
  */
-
 function cXPathNSResolver(oNode) {
-	this.$node	= oNode;
+	this.node	= oNode;
 };
 
 cXPathNSResolver.prototype.lookupNamespaceURI	= function(sPrefix) {
 	// validate API
-	ample.guard(arguments, [
-		["expression",	String]
-	]);
+//	fGuard(arguments, [
+//		["expression",	cString,	true,	true]
+//	]);
 
 	// Invoke implementation
-	return this.$node.lookupNamespaceURI(sPrefix);
+	return this.node.lookupNamespaceURI(sPrefix);
 };
+
+//
+ample.publish(cXPathNSResolver,	"XPathNSResolver");

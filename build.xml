@@ -881,17 +881,12 @@
 
 		<echo message="Merging into: ${temp.ample.plugins.dir}/xpath-raw.js" level="info"/>
 		<concat destfile="${temp.ample.plugins.dir}/xpath-raw.js" fixlastline="yes">
+			<!-- TODO: once xpath2.js module referenced in source, include it in build-->
+			<fileset dir="${source.xpath.dir}/">
+				<include name="DOMAdapter.js" />
+			</fileset>
 			<fileset dir="${source.xpath.dir}/classes/">
 				<include name="*.js" />
-			</fileset>
-			<fileset dir="${source.xpath.dir}/evaluator/">
-				<include name="*.js" />
-			</fileset>
-			<fileset dir="${source.xpath.dir}/parser/">
-				<include name="*.js" />
-			</fileset>
-			<fileset dir="${source.xpath.dir}/">
-				<include name="xpath.js" />
 			</fileset>
 		</concat>
 

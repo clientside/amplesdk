@@ -7,19 +7,74 @@
  *
  */
 
-function cXPathExpression(sExpression, oResolver) {
-	this.$expression	= fXPathParser_parse(sExpression, 1, 1);
-	this.$resolver		= oResolver;
+function cXPathExpression(sExpression, oStaticContext) {
+	try {
+		this.staticContext	= oStaticContext;
+		this.expression	= new cExpression(sExpression, oStaticContext);
+	}
+	catch (e) {
+		if (e instanceof cException)
+			throw new cXPathException(cXPathException.INVALID_EXPRESSION_ERR
+//->Debug
+					, e.message
+//<-Debug
+			);
+		else
+			throw e;
+	}
 };
 
 cXPathExpression.prototype.evaluate	= function(oNode, nType, oResult) {
 	// validate API
-	ample.guard(arguments, [
-		["context",		cNode],
-		["type",		cNumber,	true,	true],
-		["result",		cObject,	true,	true]
-	]);
+//	fGuard(arguments, [
+//		["context",		cNode],
+//		["type",		cNumber,	true,	true],
+//		["result",		cObject,	true,	true]
+//	]);
 
 	// Invoke implementation
 	return fXPathExpression_evaluate(this, oNode, nType, oResult);
 };
+
+function fXPathExpression_evaluate(oExpression, oNode, nType, oResult) {
+	if (typeof oNode == "undefined")
+		oNode	= null;
+
+	var oSequence	= [];
+
+	// Evaluate expression
+	try {
+		var aSequence	= oExpression.expression.evaluate(new cDynamicContext(oExpression.staticContext, oNode, null, oDOMAdapter));
+		for (var nIndex = 0, nLength = aSequence.length, oItem; nIndex < nLength; nIndex++)
+			oSequence[oSequence.length]	= oDOMAdapter.isNode(oItem = aSequence[nIndex]) ? oItem : cStaticContext.xs2js(oItem);
+	}
+	catch (e) {
+		if (e instanceof cException)
+			throw new cXPathException(cXPathException.TYPE_ERR
+//->Debug
+					, e.message
+//<-Debug
+			);
+		else
+			throw e;
+	}
+	// Determine type if not specified
+	if (!nType) {
+		nType	= 4;	// Default: XPathResult.UNORDERED_NODE_ITERATOR_TYPE
+		if (oSequence.length) {
+			var sType	= typeof oSequence[0];
+			if (sType == "number")
+				nType	= 1;	// XPathResult.NUMBER_TYPE
+			else
+			if (sType == "string")
+				nType	= 2;	// XPathResult.STRING_TYPE
+			else
+			if (sType == "boolean")
+				nType	= 3;	// XPathResult.BOOLEAN_TYPE
+		}
+	}
+	return fXPathResult_init(oResult ? fXPathResult_clear(oResult) : new cXPathResult, nType, oSequence);
+};
+
+//
+ample.publish(cXPathExpression,	"XPathExpression");
