@@ -1,5 +1,0 @@
-## Rewrite engine
-RewriteEngine on
-
-##
-RewriteRule xpath.js ../../../resources/assemble.php?path=../ample/plugins/xpath/

@@ -22,7 +22,7 @@
       requests for all other files referenced from it that make up certain library.
 
    2. Running with Apache HTTP web server with mod_rewrite, .htaccess support and PHP
-      In this scenario server redirects the requests to ample/source-builder.php script that
+      In this scenario server redirects the requests to resources/assemble.php script that
       concatenates source folders contents into single files on the fly. This is faster
       compared to the first option.
 
