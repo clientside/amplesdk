@@ -2,13 +2,14 @@
 RewriteEngine on
 
 ## Runtime
-RewriteRule runtime.js ../resources/assemble.php?path=../ample/
-RewriteRule runtime-prod.js ../resources/assemble.php?prod=true&path=../ample/
+RewriteRule		runtime.js						../resources/assemble.php?path=../ample/
+RewriteRule		runtime-prod.js					../resources/assemble.php?path=../ample/&prod=true
 
 ## Languages
-RewriteRule languages/([a-z]+)/([a-z]+).js ../resources/assemble.php?path=../ample/languages/$1/
-RewriteRule ^(.*)-prod.css($|\?) $1.php?prod=true
-RewriteRule ^(.*).css($|\?) $1.php
+RewriteRule		languages/([a-z]+)/([a-z]+).js	../resources/assemble.php?path=../ample/languages/$1/
+##
+RewriteRule		languages/(.*)-prod.css($|\?)	languages/$1.php?prod=true
+RewriteRule		languages/(.*).css($|\?)		languages/$1.php
 
 ## Plugins
-RewriteRule plugins/xpath/xpath.js ../resources/assemble.php?path=../ample/plugins/xpath/
+RewriteRule		plugins/xpath/xpath.js			../resources/assemble.php?path=../ample/plugins/xpath/
