@@ -9,13 +9,15 @@
 
 var cDOMException	= function(nCode) {
 	this.code	= nCode;
-
 	var sMessage	= "DOMException" + ' ' + nCode;
+
 //->Debug
 	sMessage	+= ':' + ' ' + oDOMException_messages[nCode];
-//<-Debug
-	this.message= sMessage;
+	//
 	this.caller	= arguments[1] || cDOMException.caller.caller;
+//<-Debug
+
+	this.message= sMessage;
 };
 
 // nsIDOMException

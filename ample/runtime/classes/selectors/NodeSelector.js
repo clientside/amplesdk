@@ -50,11 +50,12 @@ function fNodeSelector_query(aBase, sQuery, fResolver, bMatchOne) {
 						sArguments	= sArguments.slice(0, -1);
 					}
 					if (typeof sFilter == "undefined")
-						throw new cDOMException(cDOMException.SYNTAX_ERR, fNodeSelector_query.caller.caller
+						throw new cDOMException(cDOMException.SYNTAX_ERR
 //->Debug
-												, [sQuery]
+								, fNodeSelector_query.caller.caller
+								, [sQuery]
 //<-Debug
-										);
+						);
 					// process a token/filter pair use cached results if possible
 					aFrom	= fNodeSelector_select(aFrom, sToken, sFilter, sArguments, fResolver);
 				}
@@ -71,9 +72,10 @@ function fNodeSelector_query(aBase, sQuery, fResolver, bMatchOne) {
 			}
 		}
 		else
-			throw new cDOMException(cDOMException.SYNTAX_ERR, fNodeSelector_query.caller.caller
+			throw new cDOMException(cDOMException.SYNTAX_ERR
 //->Debug
-										, [sQuery]
+					, fNodeSelector_query.caller.caller
+					, [sQuery]
 //<-Debug
 			);
 	}
@@ -102,8 +104,9 @@ function fNodeSelector_select(aFrom, sToken, sFilter, sArguments, fResolver) {
 	if (oNodeSelector_elementSelectors[sToken])
 		oNodeSelector_elementSelectors[sToken](aReturn, aFrom, sFilter, sArguments, fResolver);
 	else
-		throw new cDOMException(cDOMException.SYNTAX_ERR, fNodeSelector_query.caller.caller
+		throw new cDOMException(cDOMException.SYNTAX_ERR
 //->Debug
+				, fNodeSelector_query.caller.caller
 				, [sToken]
 //<-Debug
 		);
@@ -298,8 +301,9 @@ oNodeSelector_elementSelectors['@']	= function(aReturn, aFrom, sString, sArgumen
 					aReturn.push(oElement);
 		}
 		else
-			throw new cDOMException(cDOMException.SYNTAX_ERR, fNodeSelector_query.caller.caller
+			throw new cDOMException(cDOMException.SYNTAX_ERR
 //->Debug
+					, fNodeSelector_query.caller.caller
 					, [sCompare]
 //<-Debug
 			);

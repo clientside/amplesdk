@@ -56,7 +56,12 @@ cQuery.prototype.trigger	= function(sType, oDetail) {
 
 	// Check if event triggering allowed
 	if (aQuery_protectedEvents.indexOf(sType) !=-1)
-		throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR, null, [sType]);
+		throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR
+//->Debug
+				, null
+				, [sType]
+//<-Debug
+		);
 
 	if (arguments.length < 2)
 		oDetail	= null;
@@ -149,7 +154,12 @@ oAmple.trigger	= function(sType, oDetail) {
 
 	// Check if event triggering allowed
 	if (aQuery_protectedEvents.indexOf(sType) !=-1)
-		throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR, null, [sType]);
+		throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR
+//->Debug
+				, null
+				, [sType]
+//<-Debug
+		);
 
 	if (arguments.length < 2)
 		oDetail	= null;

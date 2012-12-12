@@ -28,7 +28,11 @@ function fQuery(vArgument1, vArgument2, vArgument3) {
 				//
 				var oDocument	= fBrowser_createFragment(vArgument1, aNameSpaces.join(' '));
 				if (!oDocument || ((bTrident && nVersion < 9 && oDocument.parseError != 0) || !oDocument.documentElement || oDocument.getElementsByTagName("parsererror").length))
-					throw new cDOMException(cDOMException.SYNTAX_ERR, fQuery.caller);
+					throw new cDOMException(cDOMException.SYNTAX_ERR
+//->Debug
+							, fQuery.caller
+//<-Debug
+					);
 				else
 					for (var nIndex = 0, aElements = oDocument.documentElement.childNodes; nIndex < aElements.length; nIndex++)
 						if (aElements[nIndex].nodeType == 1)	// cNode.ELEMENT_NODE
@@ -40,9 +44,10 @@ function fQuery(vArgument1, vArgument2, vArgument3) {
 				if (arguments.length > 1) {
 //->Guard
 					if (!(vArgument2 instanceof cNode) &&!(vArgument2 instanceof cQuery))
-						throw new cAmpleException(cAmpleException.ARGUMENT_WRONG_TYPE_ERR, fQuery.caller
+						throw new cAmpleException(cAmpleException.ARGUMENT_WRONG_TYPE_ERR
 	//->Debug
-							, ['2' + oGuard_endings[1], "context", "query", "Node" + '" ' + 'or' + ' "' + "Query"]
+								, fQuery.caller
+								, ['2' + oGuard_endings[1], "context", "query", "Node" + '" ' + 'or' + ' "' + "Query"]
 	//<-Debug
 						);
 //<-Guard
@@ -53,9 +58,10 @@ function fQuery(vArgument1, vArgument2, vArgument3) {
 				if (arguments.length > 2 && vArgument3 !== null) {
 //->Guard
 					if (!(vArgument3 instanceof cFunction))
-						throw new cAmpleException(cAmpleException.ARGUMENT_WRONG_TYPE_ERR, fQuery.caller
+						throw new cAmpleException(cAmpleException.ARGUMENT_WRONG_TYPE_ERR
 	//->Debug
-							, ['3' + oGuard_endings[2], "resolver", "query", "Function"]
+								, fQuery.caller
+								, ['3' + oGuard_endings[2], "resolver", "query", "Function"]
 	//<-Debug
 						);
 //<-Guard
@@ -72,8 +78,11 @@ function fQuery(vArgument1, vArgument2, vArgument3) {
 					aResult	= fNodeSelector_query(vArgument2 instanceof cNode ? [vArgument2] : vArgument2, vArgument1, vArgument3);
 				}
 				catch (oException) {
-					// Re-point caller property and re-throw error
+//->Debug
+					// Re-point caller property
 					oException.caller	= fQuery.caller;
+//<-Debug
+					// Re-throw error
 					throw oException;
 				}
 				for (var nIndex = 0; nIndex < aResult.length; nIndex++)
@@ -96,9 +105,10 @@ function fQuery(vArgument1, vArgument2, vArgument3) {
 			});
 //->Guard
 		else
-			throw new cAmpleException(cAmpleException.ARGUMENT_WRONG_TYPE_ERR, fQuery.caller
+			throw new cAmpleException(cAmpleException.ARGUMENT_WRONG_TYPE_ERR
 	//->Debug
-				, ['1' + oGuard_endings[0], "query", "query", "String" + '", "' + "Query" + '" or "' + "Element"]
+					, fQuery.caller
+					, ['1' + oGuard_endings[0], "query", "query", "String" + '", "' + "Query" + '" or "' + "Element"]
 	//<-Debug
 			);
 //<-Guard
@@ -130,7 +140,12 @@ function fAmple_extend(oTarget, oSource) {
 			var sEventInterface	= oPrototype.eventInterface;
 			// Check if event triggering allowed
 			if (aAmple_protectedEventInterfaces.indexOf(sEventInterface) !=-1)
-				throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR, null, [sEventInterface]);
+				throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR
+//->Debug
+						, null
+						, [sEventInterface]
+//<-Debug
+				);
 
 			hClasses[sEventInterface]	= oTarget;
 		}
@@ -145,9 +160,10 @@ function fAmple_extend(oTarget, oSource) {
 			hClasses['?' + oPrototype.target]	= oTarget;
 //->Guard
 		else
-			throw new cAmpleException(cAmpleException.ARGUMENT_WRONG_TYPE_ERR, null
+			throw new cAmpleException(cAmpleException.ARGUMENT_WRONG_TYPE_ERR
 	//->Debug
-				, ['1' + oGuard_endings[0], "source", "extend", "Attr" + '" or "' + "Element"]
+					, null
+					, ['1' + oGuard_endings[0], "source", "extend", "Attr" + '" or "' + "Element"]
 	//<-Debug
 			);
 //<-Guard
