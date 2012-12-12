@@ -16,7 +16,7 @@ var cXPathExpression	= function(sExpression, oStaticContext) {
 		if (e instanceof cException)
 			throw new cXPathException(cXPathException.INVALID_EXPRESSION_ERR
 //->Debug
-					, e.message
+					, '[err:' + e.code + ']' + ' ' + e.message
 //<-Debug
 			);
 		else
@@ -53,7 +53,7 @@ function fXPathExpression_evaluate(oExpression, oNode, nType, oResult) {
 		if (e instanceof cException)
 			throw new cXPathException(cXPathException.TYPE_ERR
 //->Debug
-					, e.message
+					,  '[err:' + e.code + ']' + ' ' + e.message
 //<-Debug
 			);
 		else
