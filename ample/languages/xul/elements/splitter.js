@@ -27,26 +27,27 @@ cXULElement_splitter.active	= false;
 cXULElement_splitter.handlers	= {
 	"mousedown":	function(oEvent) {
 		// handle left-click only
-		if (oEvent.button != 0)
+		var oElementDOM, oRectOffsParent, oRectImage, oRectParent;
+		if (oEvent.button !== 0) {
 			return;
-
+		}
 		this.setCapture(true);
 		this.$setPseudoClass("active", true);
-		cXULElement_splitter.active	= true;
-
-		//
-		var oElementDOM	= this.$getContainer("image"),
-			oRectImage	= this.getBoundingClientRect("image"),
-			oRectParent	= this.parentNode.getBoundingClientRect();
-		if (this.parentNode.getAttribute("orient") == "vertical") {
-			cXULElement_splitter.offset	= oRectImage.top;
-			cXULElement_splitter.client	= oEvent.clientY;
-			oElementDOM.style.width	=(oRectParent.right - oRectParent.left - 2)+ "px";
+		cXULElement_splitter.active = true;
+		oElementDOM = this.$getContainer("image");
+		oRectOffsParent = oElementDOM.offsetParent.getBoundingClientRect();
+		oRectImage = this.getBoundingClientRect("image");
+		oRectParent = this.parentNode.getBoundingClientRect();
+		if (this.parentNode.getAttribute("orient") === "vertical") {
+			cXULElement_splitter.offset = oRectImage.top - oRectOffsParent.top;
+			cXULElement_splitter.client = oEvent.clientY;
+			oElementDOM.style.width = (oRectParent.right - oRectParent.left - 2) + "px";
 		}
 		else {
-			cXULElement_splitter.offset	= oRectImage.left;
-			cXULElement_splitter.client	= oEvent.clientX;
-			oElementDOM.style.height	=(oRectParent.bottom - oRectParent.top - 2)+ "px";
+			cXULElement_splitter.offset = oRectImage.left - oRectOffsParent.left;
+			cXULElement_splitter.offset = oRectImage.left;
+			cXULElement_splitter.client = oEvent.clientX;
+			oElementDOM.style.height = (oRectParent.bottom - oRectParent.top - 2) + "px";
 		}
 	},
 	"mouseup":		function(oEvent) {
