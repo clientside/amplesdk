@@ -14,7 +14,7 @@ var cXULElement_timepicker	= function() {
 	//
 	var that	= this;
 	this.spinButtons.addEventListener("spin", function(oEvent) {
-		var aTime	= that.$getContainer("input").value.split(":"),
+		var aTime	= that.getAttribute("value").split(":"),
 			aRange	= cXULInputElement.getSelectionRange(that);
 		var sComponent	= cXULElement_timepicker.getEditComponent(that),
 			nComponent;
@@ -112,6 +112,9 @@ cXULElement_timepicker.handlers	= {
 					break;
 			}
 			oEvent.preventDefault();
+		}
+		else {
+			this.setAttribute("value", this.$getContainer("input").value);
 		}
 	},
 	"mouseup":	function(oEvent) {
