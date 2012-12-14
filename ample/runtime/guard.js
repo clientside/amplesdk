@@ -35,7 +35,11 @@ function fGuard(aArguments, aParameters, oObject) {
 
 	// Check constructor
 	if (oObject && fCaller && fCaller != fEval && oObject instanceof fCaller)
-		throw new cAmpleException(cAmpleException.CANNOT_ACCESS_DOM_ERR, fCaller);
+		throw new cAmpleException(cAmpleException.CANNOT_ACCESS_DOM_ERR
+//->Debug
+				, fCaller
+//<-Debug
+		);
 
 	// Iterate over parameters list
 	for (var nIndex = 0, nLength = aArguments.length, aParameter, vValue; aParameter = aParameters[nIndex]; nIndex++) {
@@ -45,9 +49,10 @@ function fGuard(aArguments, aParameters, oObject) {
 //<-Debug
 		// see if argument is missing
 		if (typeof vValue == "undefined" && !aParameter[2])
-			throw new cAmpleException(cAmpleException.ARGUMENT_MISSING_ERR, fCaller
+			throw new cAmpleException(cAmpleException.ARGUMENT_MISSING_ERR
 //->Debug
-								, [sArgument, aParameter[0], sFunction]
+					, fCaller
+					, [sArgument, aParameter[0], sFunction]
 //<-Debug
 			);
 
@@ -55,18 +60,20 @@ function fGuard(aArguments, aParameters, oObject) {
 			if (vValue === null) {
 				// See if null is allowed
 				if (!aParameter[3])
-					throw new cAmpleException(cAmpleException.ARGUMENT_NULL_ERR, fCaller
+					throw new cAmpleException(cAmpleException.ARGUMENT_NULL_ERR
 //->Debug
-										, [sArgument, aParameter[0], sFunction]
+							, fCaller
+							, [sArgument, aParameter[0], sFunction]
 //<-Debug
 					);
 			}
 			else
 			// see if argument has correct type
 			if (!fGuard_instanceOf(vValue, aParameter[1]))
-				throw new cAmpleException(cAmpleException.ARGUMENT_WRONG_TYPE_ERR, fCaller
+				throw new cAmpleException(cAmpleException.ARGUMENT_WRONG_TYPE_ERR
 //->Debug
-									, [sArgument, aParameter[0], sFunction, cString(aParameter[1]).match(rGuard_function) ? cRegExp.$1 : "anonymous"]
+						, fCaller
+						, [sArgument, aParameter[0], sFunction, cString(aParameter[1]).match(rGuard_function) ? cRegExp.$1 : "anonymous"]
 //<-Debug
 				);
 		}

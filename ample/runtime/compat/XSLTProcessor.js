@@ -109,7 +109,12 @@ if (!cXSLTProcessor) {
 
 		// check if importStylesheet initialized processor
 		if (!oProcessor)
-			throw new cAmpleException(cAmpleException.NOT_INITIALIZED_ERR, null, ["XSLTProcessor"]);
+			throw new cAmpleException(cAmpleException.NOT_INITIALIZED_ERR
+//->Debug
+					, null
+					, ["XSLTProcessor"]
+//<-Debug
+			);
 
 		// Execute transformation
 		oProcessor.input	= oNode;
@@ -132,7 +137,12 @@ if (!cXSLTProcessor) {
 
 		// check if importStylesheet initialized processor
 		if (!oProcessor)
-			throw new cAmpleException(cAmpleException.NOT_INITIALIZED_ERR, null, ["XSLTProcessor"]);
+			throw new cAmpleException(cAmpleException.NOT_INITIALIZED_ERR
+//->Debug
+					, null
+					, ["XSLTProcessor"]
+//<-Debug
+			);
 
 		// Execute transformation
 		oProcessor.input	= oNode;

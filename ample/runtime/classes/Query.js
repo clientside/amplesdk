@@ -8,7 +8,15 @@
  */
 
 // Query function
-var cQuery	= function(){};
+var cQuery	= function(vItem) {
+	if (arguments.length) {
+		var oQuery	= this;
+		cArray.isArray(vItem) ? vItem.forEach(function(vItem) {
+			oQuery[oQuery.length++]	= vItem;
+		}) : oQuery[oQuery.length++]	= vItem;
+	}
+};
+
 cQuery.prototype.length		= 0;
 cQuery.prototype.selector	= '';
 cQuery.prototype.context	= null;
@@ -47,14 +55,6 @@ function fQuery_toArray(oQuery) {
 
 cQuery.prototype.toArray	= function() {
 	return fQuery_toArray(this);
-};
-
-function fQuery_fromArray(aQuery) {
-	var oQuery	= new cQuery;
-	aQuery.forEach(function(oItem) {
-		oQuery[oQuery.length++]	= oItem;
-	});
-	return oQuery;
 };
 
 // Filtering

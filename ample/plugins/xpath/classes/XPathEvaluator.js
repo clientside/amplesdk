@@ -7,42 +7,61 @@
  *
  */
 
-function cXPathEvaluator() {
+var cXPathEvaluator	= function() {
 
 };
 
+var cError	= window.Error,
+	oUADocument	= window.document;
+
+// Create static context
+var oXPathContext	= {};//new cStaticContext;
+oXPathContext.baseURI	= oUADocument.location.href;
+oXPathContext.defaultFunctionNamespace	= "http://www.w3.org/2005/xpath-functions";
+oXPathContext.defaultElementNamespace	= "http://www.w3.org/1999/xhtml";
+
+//
 cXPathEvaluator.prototype.createExpression	= function(sExpression, oResolver) {
-	// validate API
+//->Guard
 	ample.guard(arguments, [
 		["expression",	cString],
-		["resolver",	cXPathNSResolver,	true,	true]
+		["resolver",	cObject,	true,	true]
 	]);
+//<-Guard
+
+	oXPathContext.namespaceResolver	= oResolver;
 
 	// Invoke implementation
-	return new cXPathExpression(sExpression, oResolver);
+	return new cXPathExpression(sExpression, oXPathContext);
 };
 
 cXPathEvaluator.prototype.createNSResolver	= function(oNode) {
-	// validate API
+//->Guard
 	ample.guard(arguments, [
-		["node",	cNode]
+		["node",	ample.classes.Node]
 	]);
+//<-Guard
 
 	// Invoke implementation
 	return new cXPathNSResolver(oNode);
 };
 
 cXPathEvaluator.prototype.evaluate	= function(sExpression, oNode, oResolver, nType, oResult) {
-	// validate API
+//->Guard
 	ample.guard(arguments, [
 		["expression",	cString],
-		["context",		cNode],
-		["resolver",	cXPathNSResolver,	true,	true],
-		["type",		cNumber,				true,	true],
-		["result",		cXPathResult,		true,	true]
+		["context",		ample.classes.Node],
+		["resolver",	cObject,		true,	true],
+		["type",		cNumber,		true,	true],
+		["result",		cXPathResult,	true,	true]
 	]);
+//<-Guard
 
 	// Invoke implementation
-	var oExpression	= new cXPathExpression(sExpression, oResolver);
-	return oExpression.evaluate(oNode, nType || cXPathResult.ANY_TYPE, oResult);
+	return fXPathExpression_evaluate(cXPathEvaluator.prototype.createExpression.call(this, sExpression, oResolver), oNode, nType, oResult);
 };
+
+//
+ample.publish(cXPathEvaluator,	"XPathEvaluator");
+//
+ample.extend(ample.classes.Document.prototype, cXPathEvaluator.prototype);

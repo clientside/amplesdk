@@ -7,6 +7,4 @@
  *
  */
 
-function fXPathExpression_parse(oParser, sExpression) {
-
-};
+var oDOMAdapter	= new cDOMAdapter;

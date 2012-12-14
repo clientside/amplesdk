@@ -9,18 +9,19 @@
 
 var cAmpleException	= function(nCode) {
 	this.code	= nCode;
-
 	var sMessage= "AmpleException" + ' ' + nCode;
+
 //->Debug
 	// Replace placeholders
 	var sValue	= oAmpleException_messages[nCode];
 	if (arguments.length > 2)
 		sValue	= fAmpleException_format(sValue, arguments[2]);
 	sMessage	+= ':' + ' ' + sValue;
+	//
+	this.caller	= arguments[1] || cAmpleException.caller.caller;
 //<-Debug
 
 	this.message= sMessage;
-	this.caller	= arguments[1] || cAmpleException.caller.caller;
 };
 
 // Constants

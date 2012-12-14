@@ -149,7 +149,12 @@ function fEventTarget_executeHandler(oNode, fHandler, oEvent) {
 			bValue	= fHandler.handleEvent(oEvent);
 //->Guard
 		else
-			throw new cAmpleException(cAmpleException.MEMBER_MISSING_ERR, null, ["handleEvent"]);
+			throw new cAmpleException(cAmpleException.MEMBER_MISSING_ERR
+	//->Debug
+					, null
+					, ["handleEvent"]
+	//<-Debug
+			);
 //<-Guard
 		// Emulate preventDefault call if handler returned false
 		if (bValue === false)
@@ -167,7 +172,12 @@ function fEventTarget_executeHandler(oNode, fHandler, oEvent) {
 					fErrorHandler.handleError(oError);
 //->Guard
 				else
-					throw new cAmpleException(cAmpleException.MEMBER_MISSING_ERR, null, ["handleError"]);
+					throw new cAmpleException(cAmpleException.MEMBER_MISSING_ERR
+	//->Debug
+							, null
+							, ["handleError"]
+	//<-Debug
+					);
 //<-Guard
 			}
 		}

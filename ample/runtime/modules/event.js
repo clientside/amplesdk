@@ -56,7 +56,12 @@ cQuery.prototype.trigger	= function(sType, oDetail) {
 
 	// Check if event triggering allowed
 	if (aQuery_protectedEvents.indexOf(sType) !=-1)
-		throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR, null, [sType]);
+		throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR
+//->Debug
+				, null
+				, [sType]
+//<-Debug
+		);
 
 	if (arguments.length < 2)
 		oDetail	= null;
@@ -112,7 +117,7 @@ oAmple.bind	= function(sType, fHandler, bCapture) {
 	]);
 //<-Guard
 
-	fQuery_bindunbind(fQuery_fromArray([oAmple_document]), sType, fHandler, bCapture);
+	fQuery_bindunbind(new cQuery(oAmple_document), sType, fHandler, bCapture);
 
 	return this;
 };
@@ -126,7 +131,7 @@ oAmple.unbind	= function(sType, fHandler, bCapture) {
 	]);
 //<-Guard
 
-	fQuery_bindunbind(fQuery_fromArray([oAmple_document]), sType, fHandler, bCapture, true);
+	fQuery_bindunbind(new cQuery(oAmple_document), sType, fHandler, bCapture, true);
 
 	return this;
 };
@@ -149,12 +154,17 @@ oAmple.trigger	= function(sType, oDetail) {
 
 	// Check if event triggering allowed
 	if (aQuery_protectedEvents.indexOf(sType) !=-1)
-		throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR, null, [sType]);
+		throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR
+//->Debug
+				, null
+				, [sType]
+//<-Debug
+		);
 
 	if (arguments.length < 2)
 		oDetail	= null;
 
-	fQuery_trigger(fQuery_fromArray([oAmple_document]), sType, oDetail);
+	fQuery_trigger(new cQuery(oAmple_document), sType, oDetail);
 
 	return this;
 };

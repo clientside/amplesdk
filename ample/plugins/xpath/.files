@@ -1,0 +1,10 @@
+# XPath 2.0 engine
+xpath2.js/src/.files
+# Ample SDK DOM Adapter
+DOMAdapter.js
+# DOM 3 XPath API
+classes/XPathEvaluator.js
+classes/XPathException.js
+classes/XPathExpression.js
+classes/XPathNSResolver.js
+classes/XPathResult.js
