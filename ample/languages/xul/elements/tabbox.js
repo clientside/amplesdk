@@ -9,6 +9,7 @@
 
 var cXULElement_tabbox	= function(){};
 cXULElement_tabbox.prototype	= new cXULElement("tabbox");
+cXULElement_tabbox.prototype.viewType	= cXULElement.VIEW_TYPE_BOXED;
 
 // Public Properties
 cXULElement_tabbox.prototype.tabs		= null; // Reference to tabs child element
