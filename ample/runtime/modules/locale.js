@@ -1451,10 +1451,11 @@ oGlobalize.format	= function(vValue, sFormat, sCultureSelector) {
 };
 
 oGlobalize.localize	= function(sKey, sCultureSelector) {
-	var sValue = this.findClosestCulture(sCultureSelector).messages[sKey] ||
-		this.cultures["default"].messages[sKey] || "";
+	var oCulture = this.findClosestCulture(sCultureSelector),
+		sValue = oCulture.messages[sKey];
+	sValue = sValue || this.cultures["default"].messages[sKey] || "";
 	if (!sValue && window.console && console.warn) {
-		console.warn("Missing translation for " + sKey + " in " + sCultureSelector);
+		console.warn("Missing translation for " + sKey + " in " + oCulture.name);
 	}
 	return sValue;
 };
