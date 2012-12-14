@@ -1431,8 +1431,12 @@ oGlobalize.format	= function(vValue, sFormat, sCultureSelector) {
 };
 
 oGlobalize.localize	= function(sKey, sCultureSelector) {
-	return this.findClosestCulture(sCultureSelector).messages[sKey] ||
-		this.cultures["default"].messages[sKey];
+	var sValue this.findClosestCulture(sCultureSelector).messages[sKey] ||
+		this.cultures["default"].messages[sKey] || "";
+	if (!sValue && window.console && console.warn) {
+		console.warn("Missing translation for " + sKey + " in " + sCultureSelector);
+	}
+	return sValue;
 };
 
 oGlobalize.parseDate	= function(vValue, vFormat, sCultureSelector) {
