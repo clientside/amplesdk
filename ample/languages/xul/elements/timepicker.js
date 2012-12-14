@@ -14,7 +14,7 @@ var cXULElement_timepicker	= function() {
 	//
 	var that	= this;
 	this.spinButtons.addEventListener("spin", function(oEvent) {
-		var aTime	= that.getAttribute("value").split(":"),
+		var aTime	= that.$getContainer("input").value.split(":"),
 			aRange	= cXULInputElement.getSelectionRange(that);
 		var sComponent	= cXULElement_timepicker.getEditComponent(that),
 			nComponent;
