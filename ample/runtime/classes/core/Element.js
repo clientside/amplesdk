@@ -828,7 +828,6 @@ function fElement_getContainerTraverse(oNode, rClass) {
 
 cElement.prototype.$getContainer	= function(sName) {
 	var oElement	= oUADocument.getElementById(fElement_getAttribute(this, 'id') || this.uniqueID);
-	if (!oElement) oElement = oUADocument.getElementById(this.uniqueID);
 	if (sName && oElement)
 		oElement	= fElement_getContainerTraverse(oElement, new cRegExp('--' + sName + '(\\s|$)'));
 	return oElement;
