@@ -373,13 +373,13 @@ cXULElement.getBoxOpenChild	= function(oElement) {
 		var sHtml2	= "top";
 		if (oElement.getAttribute("orient") == "vertical") {
 			if (sPack)
-				sHtml2	= sPack	== "start" ? "top"	: sPack	== "end" ? "bottom" : "center";
+				sHtml2	= sPack	== "start" ? "top"	: sPack	== "end" ? "bottom" : "middle";
 			if (sAlign)
 				sHtml1	= sAlign == "start" ? "left" : sAlign == "end" ? "right"	: "center";
 		}
 		else {
 			if (sAlign)
-				sHtml2	= sAlign == "start" ? "top"	: sAlign == "end" ? "bottom" : "center";
+				sHtml2	= sAlign == "start" ? "top"	: sAlign == "end" ? "bottom" : "middle";
 			if (sPack)
 				sHtml1	= sPack	== "start" ? "left" : sPack	== "end" ? "right"	: "center";
 		}
