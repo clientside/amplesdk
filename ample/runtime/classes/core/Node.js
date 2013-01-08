@@ -62,13 +62,76 @@ function fNode_getBaseURI(oNode) {
 };
 
 function fNode_getTextContent(oNode) {
-	for (var nIndex = 0, aText = [], oChild; oChild = oNode.childNodes[nIndex]; nIndex++)
-		if (oChild.nodeType == 3 /* cNode.TEXT_NODE */ || oChild.nodeType == 4 /* cNode.CDATA_SECTION_NODE */)
-			aText.push(oChild.data);
-		else
-		if (oChild.nodeType == 1 /* cNode.ELEMENT_NODE */ && oChild.firstChild)
-			aText.push(fNode_getTextContent(oChild));
-	return aText.join('');
+	var nIndex, nLength, sTextContent = null;
+	switch (oNode.nodeType) {
+		case cNode.DOCUMENT_NODE:
+		case cNode.DOCUMENT_TYPE_NODE:
+		case cNode.NOTATION_NODE:
+			break;
+		case cNode.ATTRIBUTE_NODE:
+		case cNode.TEXT_NODE:
+		case cNode.CDATA_SECTION_NODE:
+		case cNode.COMMENT_NODE:
+		case cNode.PROCESSING_INSTRUCTION_NODE:
+			sTextContent = oNode.nodeValue;
+			break;
+		case cNode.ELEMENT_NODE:
+		case cNode.ENTITY_NODE:
+		case cNode.ENTITY_REFERENCE_NODE:
+		case cNode.DOCUMENT_FRAGMENT_NODE:
+			sTextContent = "";
+			for (nIndex = 0, nLength = oNode.childNodes.length; nIndex < nLength; nIndex++) {
+				switch (oNode.childNodes[nIndex].nodeType) {
+					case cNode.DOCUMENT_NODE:
+					case cNode.DOCUMENT_TYPE_NODE:
+					case cNode.NOTATION_NODE:
+					case cNode.COMMENT_NODE:
+					case cNode.PROCESSING_INSTRUCTION_NODE:
+						break;
+					default:
+						sTextContent += oNode.childNodes[nIndex].getTextContent() || "";
+				}
+			}
+			break;
+	}
+	return sTextContent;
+}
+
+function fNode_setTextContent (oNode, sData) {
+	switch (oNode.nodeType) {
+		case cNode.DOCUMENT_NODE:
+		case cNode.DOCUMENT_TYPE_NODE:
+		case cNode.NOTATION_NODE:
+			break;
+		case cNode.ATTRIBUTE_NODE:
+			if (oNode.ownerElement) {
+				oNode.ownerElement.setAttributeNS(
+					oNode.namespaceURI,
+					oNode.nodeName,
+					sData
+				);
+			}
+			else {
+				oNode.value = sData;
+				oNode.nodeValue = sData;
+			}
+			break;
+		case cNode.TEXT_NODE:
+		case cNode.CDATA_SECTION_NODE:
+		case cNode.COMMENT_NODE:
+			oNode.replaceData(0, oNode.length, sData);
+			break;
+		case cNode.PROCESSING_INSTRUCTION_NODE:
+			oNode.data = sData;
+			break;
+		case cNode.ELEMENT_NODE:
+		case cNode.ENTITY_NODE:
+		case cNode.ENTITY_REFERENCE_NODE:
+		case cNode.DOCUMENT_FRAGMENT_NODE:
+			while (oNode.lastChild) oNode.removeChild(oNode.lastChild);
+			oNode.appendChild(fDocument_createTextNode(oNode.ownerDocument, sData));
+			break;
+	}
 };
 
 // nsIDOMNode
@@ -787,6 +850,8 @@ function fNode_toXML(oNode) {
 cNode.prototype.toXML	= function() {
 	return fNode_toXML(this);
 };
+
+
 
 // EventTarget
 cNode.prototype.$listeners	= null;
