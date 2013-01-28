@@ -37,14 +37,15 @@ cXULElement_splitter.handlers	= {
 		//
 		var oElementDOM	= this.$getContainer("image"),
 			oRectImage	= this.getBoundingClientRect("image"),
+			oRectOffsParent = oElementDOM.offsetParent.getBoundingClientRect(),
 			oRectParent	= this.parentNode.getBoundingClientRect();
 		if (this.parentNode.getAttribute("orient") == "vertical") {
-			cXULElement_splitter.offset	= oRectImage.top;
+			cXULElement_splitter.offset	= oRectImage.top - oRectOffsParent.top;
 			cXULElement_splitter.client	= oEvent.clientY;
 			oElementDOM.style.width	=(oRectParent.right - oRectParent.left - 2)+ "px";
 		}
 		else {
-			cXULElement_splitter.offset	= oRectImage.left;
+			cXULElement_splitter.offset	= oRectImage.left - oRectOffsParent.left;
 			cXULElement_splitter.client	= oEvent.clientX;
 			oElementDOM.style.height	=(oRectParent.bottom - oRectParent.top - 2)+ "px";
 		}

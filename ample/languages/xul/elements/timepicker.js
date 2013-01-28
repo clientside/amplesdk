@@ -113,6 +113,9 @@ cXULElement_timepicker.handlers	= {
 			}
 			oEvent.preventDefault();
 		}
+		else {
+			this.setAttribute("value", this.$getContainer("input").value);
+		}
 	},
 	"mouseup":	function(oEvent) {
 		if (oEvent.$pseudoTarget == this.$getContainer("input"))
