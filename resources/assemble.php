@@ -39,11 +39,11 @@
 			if (($file = trim($files[$n])) != "" && substr($file, 0, 1) != "#") {
 				$file	= fResolveUri($file, $descriptor);
 				if (preg_match("/\.files$/", $file, $match))
-					$source	.= fAssemble($file);
+                    $output	.= fAssemble($file);
 				else
-					$source	.= join('', file($file)) . "\n";
+                    $output	.= join('', file($file)) . "\n";
 			}
-		return $source;
+		return $output;
 	};
 
 	// Uri utilities
@@ -51,7 +51,7 @@
 	function fGetUriComponents($sUri) {
 		if (!isset($hUriCache[$sUri])) {
 			preg_match("/^(([^:\/?#]+):)?(\/\/([^\/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?/", $sUri, $match);
-			$hUriCache[$sUri]	= array($match[1], $match[3], $match[5], $match[6], $match[8]);
+			$hUriCache[$sUri]	= array(@$match[1], @$match[3], @$match[5], @$match[6], @$match[8]);
 		}
 		return $hUriCache[$sUri];
 	};
