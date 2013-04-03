@@ -39,9 +39,9 @@
 			if (($file = trim($files[$n])) != "" && substr($file, 0, 1) != "#") {
 				$file	= fResolveUri($file, $descriptor);
 				if (preg_match("/\.files$/", $file, $match))
-                    $output	.= fAssemble($file);
+					$output	.= fAssemble($file);
 				else
-                    $output	.= join('', file($file)) . "\n";
+					$output	.= join('', file($file)) . "\n";
 			}
 		return $output;
 	};
