@@ -101,13 +101,13 @@ cAMLElement_repeater.prototype.repeat	= function() {
 	}
 };
 
-var rAMLElement_repeater_regexp	= /(\{([^\}]+)\})/g;
+var rAMLElement_repeater_regexp	= /(\{([^\}]+)\})/;
 
 // 'Static' Methods
 function fAMLElement_repeater_processNode(oElement, oData, fResolver) {
 	var oNode,
 		aMatch;
-	for (var nIndex = 0; oNode	= oElement.childNodes[nIndex]; nIndex++)	{
+	for (var nIndex = 0; oNode	= oElement.childNodes[nIndex]; nIndex++) {
 		switch (oNode.nodeType) {
 			case 1:	// cNode.ELEMENT_NODE
 				for (var nAttribute = 0, nLengthAttribute = oNode.attributes.length, oAttribute; nIndex < nLengthAttribute; nIndex++)
