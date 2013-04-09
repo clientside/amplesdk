@@ -379,8 +379,8 @@ function fDocument_importNode(oDocument, oElementDOM, bDeep, oParent) {
 					else {
 						fElement_setAttributeNS(oNode, oAttribute.namespaceURI || null, sName, sValue);
 //->Debug
-						if (oAttribute.namespaceURI &&!sName.match(/^xml(:|ns(:|$))/) &&!(hClasses[oAttribute.namespaceURI + '#' + '@' + oAttribute.localName]))
-							fUtilities_warn(sGUARD_UNKNOWN_ATTRIBUTE_NS_WRN, [oAttribute.localName, oAttribute.namespaceURI]);
+						if (oAttribute.namespaceURI &&!sName.match(/^xml(:|ns(:|$))/) &&!(hClasses[oAttribute.namespaceURI + '#' + '@' + (oAttribute.localName || oAttribute.baseName)]))
+							fUtilities_warn(sGUARD_UNKNOWN_ATTRIBUTE_NS_WRN, [(oAttribute.localName || oAttribute.baseName), oAttribute.namespaceURI]);
 //<-Debug
 					}
 				}
