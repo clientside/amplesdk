@@ -636,6 +636,8 @@ function fBrowser_onMouseDown(oEvent) {
 	var oTarget		= fBrowser_getEventTarget(oEvent),
 		oPseudo		= fBrowser_getUIEventPseudo(oEvent),
 		nButton		= fBrowser_getUIEventButton(oEvent),
+		dMouseDate	= new cDate,
+		oMouseNode	= oEvent.target || oEvent.srcElement,
 		bCapture	= false,
 		oEventMouseDown	= new cMouseEvent;
 
@@ -644,13 +646,14 @@ function fBrowser_onMouseDown(oEvent) {
 
 	// Fix mousedown in IE10
 	if (bTrident && nVersion == 10) {
-		if (new cDate - dBrowser_nodeMouseDown > 500)
+		if (dMouseDate - dBrowser_nodeMouseDown > 500)
 			nBrowser_nodeMouseDown	= 1;
 		else
-		if (fBrowser_isDescendant(oBrowser_nodeMouseDown, oBrowser_nodeMouseDown = oEvent.target || oEvent.srcElement))
+		if (fBrowser_isDescendant(oBrowser_nodeMouseDown, oMouseNode))
 			nBrowser_nodeMouseDown++;
 		//
-		dBrowser_nodeMouseDown	= new cDate;
+		oBrowser_nodeMouseDown	= oMouseNode;
+		dBrowser_nodeMouseDown	= dMouseDate;
 	}
 	else
 		nBrowser_nodeMouseDown	= oEvent.detail || 1;
