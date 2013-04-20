@@ -292,7 +292,7 @@ oAmple.include	= function(sSrc) {
 
 // Lookup namespaces
 var oPrefixes	= oAmple.prefixes;
-if (bTrident)
+if (bTrident && nVersion < 10)
 	for (var nIndex = 0, aAttributes = oUADocument.namespaces, oAttribute, nLength = aAttributes.length; nIndex < nLength; nIndex++)
 		oPrefixes[(oAttribute = aAttributes[nIndex]).name]	= oAttribute.urn;
 else

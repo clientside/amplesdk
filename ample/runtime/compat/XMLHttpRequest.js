@@ -7,7 +7,7 @@
  *
  */
 
-if (bTrident) {
+if (bTrident && nVersion < 10) {
 	var oXMLHttpRequest	= cXMLHttpRequest;
 	//
 	cXMLHttpRequest	= function() {

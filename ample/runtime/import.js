@@ -73,29 +73,37 @@ var cString		= window.String,
 	sNS_XINCLUDE= "http://www.w3.org/2001/XInclude";
 
 // Browser detection code
-var bTrident	= false,
+var aUserAgent	= oUANavigator.userAgent.match(/(MSIE|rv\:|AppleWebKit|Presto)(?:[\/\s])?(\d+\.\d+)/),
+	bTrident	= false,
 	bGecko		= false,
 	bPresto		= false,
 	bWebKit		= false,
-/*	bKHTML		= false,*/
 	nVersion	= 0;
 
 if (!!oUADocument.namespaces) {
 	bTrident	= true;
-	nVersion	= 1 * oUANavigator.userAgent.match(/MSIE\s(\d+\.\d+)/)[1];
+	nVersion	= 1 * aUserAgent[2];
 }
 else
 if (!!window.controllers) {
 	bGecko		= true;
-	nVersion	= 1 * oUANavigator.userAgent.match(/rv:(\d+\.\d+)/)[1];
+	nVersion	= 1 * aUserAgent[2];
 }
 else
 if (!!window.opera) {
 	bPresto		= true;
-	nVersion	= 1 * oUANavigator.userAgent.match(/Presto\/(\d+\.\d+)/)[1];
+	nVersion	= 1 * aUserAgent[2];
 }
 else
-if (oUANavigator.userAgent.match(/AppleWebKit\/(\d+\.\d+)/)) {
-	bWebKit		= true;
-	nVersion	= 1 * cRegExp.$1;
+if (aUserAgent) {
+	if (aUserAgent[1] == "MSIE") {
+		bTrident	= true;
+		nVersion	= 1 * aUserAgent[2];
+	}
+	else
+	if (aUserAgent[1] == "AppleWebKit") {
+		bWebKit		= true;
+		nVersion	= 1 * aUserAgent[2];
+	}
 }
+
