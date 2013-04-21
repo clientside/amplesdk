@@ -38,8 +38,8 @@ if (cSVGElement.useVML) {
 
 	cSVGElement_tspan.prototype.$mapAttribute	= function(sName, sValue) {
 		if (sName == "x" || sName == "y" || sName == "dx" || sName == "dy") {
-			var nLeft	=((this.getAttribute("x") || (this.parentNode ? this.parentNode.getAttribute("x") : "0")).match(/([0-9\.]+)?/)[1] * 1 || 0) + (this.getAttribute("dx") * 1 || 0),
-				nTop	=((this.getAttribute("y") || (this.parentNode ? this.parentNode.getAttribute("y") : "0")).match(/([0-9\.]+)?/)[1] * 1 || 0) + (this.getAttribute("dy") * 1 || 0);
+			var nLeft	=((this.getAttribute("x") || (this.parentNode ? this.parentNode.getAttribute("x") : "0")).match(/(-?[0-9\.]+)?/)[1] * 1 || 0) + (this.getAttribute("dx") * 1 || 0),
+				nTop	=((this.getAttribute("y") || (this.parentNode ? this.parentNode.getAttribute("y") : "0")).match(/(-?[0-9\.]+)?/)[1] * 1 || 0) + (this.getAttribute("dy") * 1 || 0);
 			this.$getContainer().path	= 'm ' + [nLeft, nTop].map(Math.round) + ' r 1000,0 x';
 		}
 		else
@@ -57,8 +57,8 @@ if (cSVGElement.useVML) {
 			sFontSize	= this.$getStyleComputed("font-size"),
 			sFontStyle	= this.$getStyleComputed("font-style"),
 			sTextAnchor	= this.$getStyleComputed("text-anchor"),
-			nLeft	=((this.getAttribute("x") || (this.parentNode ? this.parentNode.getAttribute("x") : "0")).match(/([0-9\.]+)?/)[1] * 1 || 0) + (this.getAttribute("dx") * 1 || 0),
-			nTop	=((this.getAttribute("y") || (this.parentNode ? this.parentNode.getAttribute("y") : "0")).match(/([0-9\.]+)?/)[1] * 1 || 0) + (this.getAttribute("dy") * 1 || 0),
+			nLeft	=((this.getAttribute("x") || (this.parentNode ? this.parentNode.getAttribute("x") : "0")).match(/(-?[0-9\.]+)?/)[1] * 1 || 0) + (this.getAttribute("dx") * 1 || 0),
+			nTop	=((this.getAttribute("y") || (this.parentNode ? this.parentNode.getAttribute("y") : "0")).match(/(-?[0-9\.]+)?/)[1] * 1 || 0) + (this.getAttribute("dy") * 1 || 0),
 			// Font size calculations
 			aFontSize	= sFontSize.match(/(^[\d.]*)(.*)$/),
 			sFontSizeUnit	= aFontSize[2] || "px",
