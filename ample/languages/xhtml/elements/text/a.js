@@ -38,8 +38,9 @@ cXHTMLElement_a.handlers	= {
 		}
 
 		// Handle @target="#target"
-		var oTarget;
-		if (this.getAttribute("target").match(/#(.+)$/) && (oTarget = this.ownerDocument.getElementById(window.RegExp.$1)))	{
+		var sTarget	= this.getAttribute("target"),
+			oTarget;
+		if (sTarget && sTarget.match(/#(.+)$/) && (oTarget = this.ownerDocument.getElementById(window.RegExp.$1)))	{
 			// Load content into target
 			ample.query(oTarget).load(this.getAttribute("href"));
 
@@ -47,7 +48,7 @@ cXHTMLElement_a.handlers	= {
 			oEvent.preventDefault();
 		}
 	}
-}
+};
 
 // Register Element
 ample.extend(cXHTMLElement_a);
