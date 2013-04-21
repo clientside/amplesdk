@@ -330,11 +330,17 @@ cQuery.prototype.replaceWith	= function(vArgument1) {
 		//
 		fQuery_each(this, function(nIndex) {
 			var oParent	= this.parentNode,
-				oBefore	= this;
+				oBefore	= this.nextSibling;
+			// First remove self
+			fElement_removeChild(oParent, this);
+			// Then insert/append
 			fQuery_each(vArgument1, function() {
-				fElement_insertBefore(oParent, nIndex ? fNode_cloneNode(this, true) : this, oBefore);
+				var oNode	= nIndex ? fNode_cloneNode(this, true) : this;
+				if (oBefore)
+					fElement_insertBefore(oParent, oNode, oBefore);
+				else
+					fElement_appendChild(oParent, oNode);
 			});
-			fElement_removeChild(this.parentNode, this);
 		});
 	}
 	return this;
