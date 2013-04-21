@@ -87,7 +87,7 @@ cXULElement_listhead.handlers	= {
 // Element Render: open
 cXULElement_listhead.prototype.$getTagOpen	= function() {
 	return '<tr' + (this.getAttribute("hidden") == "true" ? ' style="display:none"' : '') + '>\
-				<td class="xul-listhead--container">\
+				<td class="xul-listhead--container" valign="top">\
 					<div class="xul-listheader" style="float:right;width:16px"><div class="xul-listhead--settings"><br /></div></div>\
 					<div class="xul-listhead--area" style="height:20px;overflow:hidden;position:relative;">\
 						<table cellpadding="0" cellspacing="0" border="0" style="position:absolute;" class="xul-listhead' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '">\
