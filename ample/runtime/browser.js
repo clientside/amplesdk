@@ -615,7 +615,7 @@ function fBrowser_onDblClick(oEvent) {
 	}
 
 	// Init DblClick event
-	oEventDblClick.initMouseEvent("dblclick", true, true, window, oEvent.detail || 2, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, oEvent.metaKey, nButton, null);
+	oEventDblClick.initMouseEvent("dblclick", true, true, window, bTrident && nVersion == 10 ? 2 : oEvent.detail || 2, oEvent.screenX, oEvent.screenY, oEvent.clientX, oEvent.clientY, oEvent.ctrlKey, oEvent.altKey, oEvent.shiftKey, oEvent.metaKey, nButton, null);
 	oEventDblClick.$pseudoTarget	= oPseudo;
 
 	// do not dispatch event if outside modal
