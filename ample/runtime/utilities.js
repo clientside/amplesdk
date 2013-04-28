@@ -113,6 +113,10 @@ function fUtilities_decodeXMLCharacters(sValue) {
 };
 
 function fUtilities_translateStyleSheet(sCSS, sUri) {
+	// TODO: Get rid of aNameSpaces, aVariables, aImports.
+	// TODO: Take variables to the head
+	// TODO: Check .length in for conditions
+
 	// 1. Remove namespace declarations
 	var aNameSpaces	= sCSS.match(/@namespace\s+([\w-]+\s+)?(url\()?(['"])?[^'";\s]+(['"])?\)?;?/g);
 	if (aNameSpaces)
@@ -125,6 +129,18 @@ function fUtilities_translateStyleSheet(sCSS, sUri) {
 		for (var nIndex = 0, nLength = aCSS.length, aUrl; nIndex < nLength; nIndex++)
 			if (aUrl = aCSS[nIndex].match(/url\s*\(['"]?([^\)"']+)['"]?\)/i))
 				sCSS	= sCSS.replace(aCSS[nIndex], "url" + '("' + fUtilities_resolveUri(aUrl[1], sUri) + '")');
+
+	// Process variables
+	var aVariables	= sCSS.match(/@var\s+([^\s]+)\s+(?:['"]([^'"]+)['"]|([^\s;]+))\s*;?/g);
+	if (aVariables)
+		for (var nIndex = 0, nLength = aVariables.length, aVariable; nIndex < nLength; nIndex++) {
+			aVariable	= aVariables[nIndex].match(/@var\s+([^\s]+)\s+(?:['"]([^'"]+)['"]|([^\s;]+))\s*;?/);
+			// Apply variables
+			sCSS	= sCSS.replace('$' + aVariable[1], aVariable[2] || aVariable[3]);
+
+			// Remove variable declarations
+			sCSS	= sCSS.replace(aVariables[nIndex], '');
+		}
 
 	// 3. Process imports
 	var aImports	= sCSS.match(/@import\s+url\s*\(\s*['"]?[^'"]+['"]?\s*\)\s*;?/g);
