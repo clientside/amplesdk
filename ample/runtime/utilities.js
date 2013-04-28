@@ -113,41 +113,38 @@ function fUtilities_decodeXMLCharacters(sValue) {
 };
 
 function fUtilities_translateStyleSheet(sCSS, sUri) {
-	// TODO: Get rid of aNameSpaces, aVariables, aImports.
-	// TODO: Take variables to the head
-	// TODO: Check .length in for conditions
+	var nIndex,
+		nLength,
+		aMatch,
+		aValue;
 
 	// 1. Remove namespace declarations
-	var aNameSpaces	= sCSS.match(/@namespace\s+([\w-]+\s+)?(url\()?(['"])?[^'";\s]+(['"])?\)?;?/g);
-	if (aNameSpaces)
-		for (var nIndex = 0; nIndex < aNameSpaces.length; nIndex++)
-			sCSS	= sCSS.replace(aNameSpaces[nIndex], '');
+	if (aMatch = sCSS.match(/@namespace\s+([\w-]+\s+)?(url\()?(['"])?[^'";\s]+(['"])?\)?;?/g))
+		for (nIndex = 0, nLength = aMatch.length; nIndex < nLength; nIndex++)
+			sCSS	= sCSS.replace(aMatch[nIndex], '');
 
 	// 2. Rewrite Relative URLs
-	var aCSS	= sCSS.match(/url\s*\([^\)]+\)/g);
-	if (aCSS)
-		for (var nIndex = 0, nLength = aCSS.length, aUrl; nIndex < nLength; nIndex++)
-			if (aUrl = aCSS[nIndex].match(/url\s*\(['"]?([^\)"']+)['"]?\)/i))
-				sCSS	= sCSS.replace(aCSS[nIndex], "url" + '("' + fUtilities_resolveUri(aUrl[1], sUri) + '")');
+	if (aMatch = sCSS.match(/url\s*\([^\)]+\)/g))
+		for (nIndex = 0, nLength = aMatch.length; nIndex < nLength; nIndex++)
+			if (aValue = aMatch[nIndex].match(/url\s*\(['"]?([^\)"']+)['"]?\)/i))
+				sCSS	= sCSS.replace(aMatch[nIndex], "url" + '("' + fUtilities_resolveUri(aValue[1], sUri) + '")');
 
 	// Process variables
-	var aVariables	= sCSS.match(/@var\s+([^\s]+)\s+(?:['"]([^'"]+)['"]|([^\s;]+))\s*;?/g);
-	if (aVariables)
-		for (var nIndex = 0, nLength = aVariables.length, aVariable; nIndex < nLength; nIndex++) {
-			aVariable	= aVariables[nIndex].match(/@var\s+([^\s]+)\s+(?:['"]([^'"]+)['"]|([^\s;]+))\s*;?/);
-			// Apply variables
-			sCSS	= sCSS.replace('$' + aVariable[1], aVariable[2] || aVariable[3]);
+	if (aMatch = sCSS.match(/@var\s+([^\s]+)\s+(?:['"]([^'"]+)['"]|([^\s;]+))\s*;?/g))
+		for (nIndex = 0, nLength = aMatch.length; nIndex < nLength; nIndex++)
+			if (aValue = aMatch[nIndex].match(/@var\s+([^\s]+)\s+(?:['"]([^'"]+)['"]|([^\s;]+))\s*;?/)) {
+				// Apply variables
+				sCSS	= sCSS.replace('$' + aValue[1], aValue[2] || aValue[3]);
 
-			// Remove variable declarations
-			sCSS	= sCSS.replace(aVariables[nIndex], '');
-		}
+				// Remove variable declarations
+				sCSS	= sCSS.replace(aMatch[nIndex], '');
+			}
 
 	// 3. Process imports
-	var aImports	= sCSS.match(/@import\s+url\s*\(\s*['"]?[^'"]+['"]?\s*\)\s*;?/g);
-	if (aImports)
-		for (var nIndex = 0, nLength = aImports.length; nIndex < nLength; nIndex++)
-			if (aUrl = aImports[nIndex].match(/url\s*\(['"]?([^\)"']+)['"]?\)/i))
-				sCSS	= sCSS.replace(aImports[nIndex], fUtilities_translateStyleSheet(fBrowser_load(aUrl[1], "text/css").responseText, aUrl[1]));
+	if (aMatch = sCSS.match(/@import\s+url\s*\(\s*['"]?[^'"]+['"]?\s*\)\s*;?/g))
+		for (nIndex = 0, nLength = aMatch.length; nIndex < nLength; nIndex++)
+			if (aValue = aMatch[nIndex].match(/url\s*\(['"]?([^\)"']+)['"]?\)/i))
+				sCSS	= sCSS.replace(aMatch[nIndex], fUtilities_translateStyleSheet(fBrowser_load(aValue[1], "text/css").responseText, aValue[1]));
 
 	var sPrefix	= bPresto ? 'o' : bGecko ? "moz" : bTrident ? "ms" : "webkit",
 		sBefore	= '$1$2$3-',
@@ -199,12 +196,11 @@ function fUtilities_translateStyleSheet(sCSS, sUri) {
 	}
 
 	// 5. Modify selectors
-	var aCSS	= [],
-		aRules	= sCSS.match(/[^{]+{[^}]*}/g);
-	if (aRules) {
-		for (var nIndex = 0, nLength = aRules.length, aRule; nIndex < nLength; nIndex++) {
-			aRule	= aRules[nIndex].match(/([^{]+)({[^}]*})/);
-			aCSS.push(aRule[1]
+	if (aMatch = sCSS.match(/[^{]+{[^}]*}/g)) {
+		var aCSS	= [];
+		for (nIndex = 0, nLength = aMatch.length; nIndex < nLength; nIndex++) {
+			if (aValue = aMatch[nIndex].match(/([^{]+)({[^}]*})/))
+				aCSS.push(aValue[1]
 //						.replace(/([\s>+~,])(?:([\w]+)\|)?([\w]+)/g, '$1.$2-$3')		// Element
 						.replace(/\|/g, '-')							// Namespace
 						.replace(/(^|[\s>+~,]|not\()([\w-])/g, '$1.$2')	// Element
@@ -214,7 +210,7 @@ function fUtilities_translateStyleSheet(sCSS, sUri) {
 						.replace(/:(?!last-child|first-child|not)/g, '_')	// Pseudo-class
 //						.replace(/>/g, '--' + "gateway" + '>').replace(/(--gateway){2,}/g, '--' + "gateway")// > selector
 						,
-						aRule[2]);
+						aValue[2]);
 		}
 		sCSS	= aCSS.join('');
 	}
