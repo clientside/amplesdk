@@ -40,10 +40,23 @@ cXULElement_datepicker.prototype.toggle	= function(bState) {
 	var bHidden	= this.popup.getAttribute("hidden") == "true";
 	if (bState === true || (!arguments.length && bHidden)) {
 		// Update pane state
-		this.popup.setAttribute("min", this.getAttribute("min"));
-		this.popup.setAttribute("max", this.getAttribute("max"));
-		this.popup.setAttribute("value", this.getAttribute("value"));
+		if (this.hasAttribute("min")) {
+			this.popup.setAttribute("min", this.getAttribute("min"));
+		} else {
+			this.popup.removeAttribute("min");
+		}
 
+		if (this.hasAttribute("max")) {
+			this.popup.setAttribute("max", this.getAttribute("max"));
+		} else {
+			this.popup.removeAttribute("max");
+		}
+
+		if (this.hasAttribute("value")) {
+			this.popup.setAttribute("value", this.getAttribute("value"));
+		} else {
+			this.popup.removeAttribute("value");
+		}
 		// show pane
 		this.popup.showPopup(this, -1, -1, cXULPopupElement.POPUP_TYPE_POPUP);
 	}
