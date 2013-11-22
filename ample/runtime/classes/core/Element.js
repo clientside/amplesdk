@@ -327,7 +327,7 @@ function fElement_setAttributeNS(oElement, sNameSpaceURI, sQName, sValue) {
 		sLocalName	= aQName.pop(),
 		sPrefix		= aQName.pop() || null;
 
-	var oAttribute	= fElement_getAttributeNS(oElement, sNameSpaceURI, sLocalName);
+	var oAttribute	= fElement_getAttributeNodeNS(oElement, sNameSpaceURI, sLocalName);
 	if (!oAttribute || oAttribute.value != sValue) {
 		// Create new attribute if there is no old
 		if (oAttribute) {
