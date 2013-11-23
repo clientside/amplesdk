@@ -67,8 +67,8 @@ if (cSVGElement.useVML) {
 			sFontStyle	= this.$getStyleComputed("font-style"),
 			sTextAnchor	= this.$getStyleComputed("text-anchor"),
 //			sTextSpacing= this.$getStyleComputed("letter-spacing") || "0",
-			nLeft	=(this.getAttribute("x").match(/(-?[0-9\.]+)?/)[1] * 1 || 0) + (this.getAttribute("dx") * 1 || 0),
-			nTop	=(this.getAttribute("y").match(/(-?[0-9\.]+)?/)[1] * 1 || 0) + (this.getAttribute("dy") * 1 || 0),
+			nLeft	=((this.getAttribute("x") || "0").match(/(-?[0-9\.]+)?/)[1] * 1 || 0) + (this.getAttribute("dx") * 1 || 0),
+			nTop	=((this.getAttribute("y") || "0").match(/(-?[0-9\.]+)?/)[1] * 1 || 0) + (this.getAttribute("dy") * 1 || 0),
 			// Font size calculations
 			aFontSize	= sFontSize.match(/(^[\d.]*)(.*)$/),
 			sFontSizeUnit	= aFontSize[2] || "px",
