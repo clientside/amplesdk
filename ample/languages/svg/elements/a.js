@@ -18,7 +18,7 @@ if (cSVGElement.useVML) {
 		'DOMNodeInsertedIntoDocument':	function(oEvent) {
 			var sValue	= this.getAttribute("xlink:href");
 			if (sValue)
-				this.$mapAttributesValue(sValue);
+				this.$mapAttribute("xlink:href", sValue);
 		},
 		'mouseenter':	function(oEvent) {
 			cSVGElement_a.recalcCSS(this);
