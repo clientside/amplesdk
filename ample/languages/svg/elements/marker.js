@@ -18,11 +18,11 @@ if (cSVGElement.useVML) {
 
 	// presentation
 	cSVGElement_marker.prototype.$getTagOpen	= function() {
-		return '';
+		return '<svg2vml:group style="top:0;left:0;width:100%;height:100%;display:none">';
 	};
 
 	cSVGElement_marker.prototype.$getTagClose	= function() {
-		return '';
+		return '</svg2vml:group>';
 	};
 };
 
