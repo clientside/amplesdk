@@ -441,7 +441,7 @@ if (cSVGElement.useVML) {
 			}
 //		}, 0);
 	};
-
+/*
 	cSVGElement.applyCSSSizes	= function(oElement) {
 		var oElementDOM	= oElement.$getContainer();
 		if (!oElementDOM)	// Element was removed
@@ -461,7 +461,7 @@ if (cSVGElement.useVML) {
 			if (!(oChild instanceof cSVGElement_g))
 				cSVGElement.applyCSSSizes(oChild);
 	};
-
+*/
 	// Utilities
 	cSVGElement.matrixCreate	= function() {
 		return [
@@ -798,11 +798,16 @@ if (cSVGElement.useVML) {
 	};
 
 	cSVGElement.prototype.refresh	= function() {
+		var sValue;
 		switch (this.localName) {
 			case "text":
 			case "textPath":
 			case "tspan":
-				this.$setStyle("font-size", this.$getStyleComputed("font-size") || "16px");
+				var oElementDOM = this.$getContainer();
+				if (oElementDOM) {
+					if (sValue = oElementDOM.currentStyle["font-size"])
+						this.$setStyle("font-size", sValue);
+				}
 				// No break intentially left here
 			case "circle":
 			case "ellipse":
