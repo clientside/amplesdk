@@ -1028,7 +1028,7 @@ function fBrowser_processScripts() {
 		if (sType == "application/ample+xml" || sType == "text/ample+xml") {
 			if (oElementDOM.parentNode == oBrowser_head) {
 //->Debug
-				fUtilities_warn(sQUARD_FRAGMENT_POSITION_WRN);
+				fUtilities_warn(sGUARD_FRAGMENT_POSITION_WRN);
 //<-Debug
 				nSkip++;
 				continue;
