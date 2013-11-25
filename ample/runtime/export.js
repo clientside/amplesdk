@@ -43,6 +43,7 @@ function fExporter_export(cObject, sName, oObject, sOrigin) {
 };
 
 // publish classes to window
+fExporter_export(cEventTarget,		"EventTarget");
 // DOM-Events
 fExporter_export(cEvent,			"Event");
 fExporter_export(cCustomEvent,		"CustomEvent");

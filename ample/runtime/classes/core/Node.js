@@ -8,6 +8,7 @@
  */
 
 var cNode	= function(){};
+cNode.prototype	= new cEventTarget;
 
 // nsIDOMNode
 
@@ -787,10 +788,3 @@ function fNode_toXML(oNode) {
 cNode.prototype.toXML	= function() {
 	return fNode_toXML(this);
 };
-
-// EventTarget
-cNode.prototype.$listeners	= null;
-cNode.prototype.canDispatch	= cEventTarget.prototype.canDispatch;
-cNode.prototype.dispatchEvent	= cEventTarget.prototype.dispatchEvent;
-cNode.prototype.addEventListener	= cEventTarget.prototype.addEventListener;
-cNode.prototype.removeEventListener	= cEventTarget.prototype.removeEventListener;

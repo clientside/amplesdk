@@ -10,6 +10,8 @@
 // nsIDOMEventTarget
 var cEventTarget	= function(){};
 
+cEventTarget.prototype.$listeners	= null;
+
 function fEventTarget_routeEvent(oTarget, oEvent) {
 	var aTargets	= [],
 		nLength		= 0,
