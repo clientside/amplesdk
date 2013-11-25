@@ -959,8 +959,8 @@
 		</copy>
 		<!-- create index file -->
 		<xslt style="resources/reference/index.xsl"
-			in="${target.reference.dir}/books/ample.xml"
-			out="${target.reference.dir}/books/ample-index.xml"/>
+			in="${target.reference.dir}/book/book.xml"
+			out="${target.reference.dir}/book/book-index.xml"/>
 	</target>
 
 	<!-- Licenses -->
