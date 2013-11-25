@@ -88,7 +88,7 @@ cQuery.prototype.delay	= function(vDuration) {
 
 
 // Pre-defined animations
-cQuery_effects_fadeTo	= function(oQuery, vDuration, nOpacity, fCallback) {
+function fQuery_effects_fadeTo(oQuery, vDuration, nOpacity, fCallback) {
 	var oProperties	= {};
 		oProperties.opacity	= nOpacity;
 
@@ -121,7 +121,7 @@ cQuery.prototype.fadeIn	= function(vDuration, fCallback) {
 	]);
 //<-Guard
 
-	return cQuery_effects_fadeTo(this, vDuration, 1, fCallback);
+	return fQuery_effects_fadeTo(this, vDuration, 1, fCallback);
 };
 
 cQuery.prototype.fadeOut	= function(vDuration, fCallback) {
@@ -132,7 +132,7 @@ cQuery.prototype.fadeOut	= function(vDuration, fCallback) {
 	]);
 //<-Guard
 
-	return cQuery_effects_fadeTo(this, vDuration, 0, fCallback);
+	return fQuery_effects_fadeTo(this, vDuration, 0, fCallback);
 };
 
 cQuery.prototype.fadeTo	= function(vDuration, nOpacity, fCallback) {
@@ -144,7 +144,7 @@ cQuery.prototype.fadeTo	= function(vDuration, nOpacity, fCallback) {
 	]);
 //<-Guard
 
-	return cQuery_effects_fadeTo(this, vDuration, nOpacity, fCallback);
+	return fQuery_effects_fadeTo(this, vDuration, nOpacity, fCallback);
 };
 
 cQuery.prototype.show	= function(vDuration, fCallback) {
