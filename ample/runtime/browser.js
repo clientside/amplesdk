@@ -986,6 +986,7 @@ function fBrowser_processScripts() {
 		oElement,
 		oElementDOM,
 		oElementNew,
+		oParent,
 		oAttribute,
 		sAttribute,
 		sPrefix,
@@ -1015,24 +1016,18 @@ function fBrowser_processScripts() {
 
 	// Process script tags
 	aElements	= oUADocument.getElementsByTagName("script");
-	for (var nIndex = 0, nSkip = 0, sType, sSrc, sText; aElements.length > nSkip; nIndex++) {
+	for (var nIndex = 0, nSkip = 0, sType, sSrc, sText, sHtml; aElements.length > nSkip; nIndex++) {
 		// Current Script
 		oElementDOM	= aElements[nSkip];
+		oParent	= oElementDOM.parentNode;
 		sType	= oElementDOM.type;
 		sText	= oElementDOM.text;
 		sSrc	= oElementDOM.src;
 		if (sText)
 			sText	= sText.replace(/^\s*(<!\[CDATA\[)?\s*/, '').replace(/\s*(\]\]>)\s*$/, '');
 
-		// Skip if differenet mime-type
+		// Skip if different mime-type
 		if (sType == "application/ample+xml" || sType == "text/ample+xml") {
-			if (oElementDOM.parentNode == oBrowser_head) {
-//->Debug
-				fUtilities_warn(sGUARD_FRAGMENT_POSITION_WRN);
-//<-Debug
-				nSkip++;
-				continue;
-			}
 			hAttributes	= {};
 			bReferenced	= false;
 
@@ -1056,11 +1051,12 @@ function fBrowser_processScripts() {
 				oDocument	= fBrowser_getResponseDocument(oRequest);
 				bReferenced	= true;
 			}
-			else
+			else {
 				oDocument	= fBrowser_createFragment(
 									sText.replace(/^\s*<\?xml.+\?>/, '').replace(/<script(.|\n|\r)+$/, ''),
 									fHashToString(hAttributes)
 								);
+			}
 
 			oParserError	= oDocument ? oDocument.getElementsByTagName("parsererror")[0] : null;
 			if (oDocument && oDocument.documentElement && !oParserError) {
@@ -1085,73 +1081,84 @@ function fBrowser_processScripts() {
 					oElement.tagName	= "script";
 */
 //				}
-				// render Ample DOM
-				if (bTrident && nVersion < 9) {
-					oElementNew	= oUADocument.createElement("div");
-					fBrowser_replaceNode(oElementDOM, oElementNew);
-					oElementNew.innerHTML	= bReferenced ? oElement.$getTag() : fGetTagChildren(oElement);
 
-					// Map attributes
-					if (oElementDOM.style.cssText)
-						oElementNew.style.cssText	= oElementDOM.style.cssText;
-					if (oElementDOM.className)
-						oElementNew.className	= oElementDOM.className;
-					// duplicate id problem
-					if (!bReferenced)
-						oElementNew.setAttribute('id', oElementDOM.getAttribute('id') || oElement.uniqueID);
+				if (oParent == oBrowser_head) {
+					oParent.removeChild(oElementDOM);
 				}
 				else {
-					for (sAttribute in hAttributes)
-						if (hAttributes.hasOwnProperty(sAttribute) && (sAttribute.substr(0, 2) == 'on' || sAttribute == "src"))
-							delete hAttributes[sAttribute];
-					// duplicate id problem
-					if (!bReferenced && !hAttributes['id'])
-						hAttributes['id']	= oElement.uniqueID;
+					// render Ample DOM
+					sHtml	= bReferenced ? oElement.$getTag() : fGetTagChildren(oElement);
+					if (bTrident && nVersion < 9) {
+						oElementNew	= oUADocument.createElement("div");
+						fBrowser_replaceNode(oElementDOM, oElementNew);
+						oElementNew.innerHTML	= sHtml;
 
-					oElementNew	= oUADocument.importNode(
-										fBrowser_createFragment(
-												bReferenced ? oElement.$getTag() : fGetTagChildren(oElement),
-												fHashToString(hAttributes)
-											).documentElement,
-										true);
-					oElementDOM.parentNode.replaceChild(oElementNew, oElementDOM);
+						// Map attributes
+						if (oElementDOM.style.cssText)
+							oElementNew.style.cssText	= oElementDOM.style.cssText;
+						if (oElementDOM.className)
+							oElementNew.className	= oElementDOM.className;
+						// duplicate id problem
+						if (!bReferenced)
+							oElementNew.setAttribute('id', oElementDOM.getAttribute('id') || oElement.uniqueID);
+					}
+					else {
+						for (sAttribute in hAttributes)
+							if (hAttributes.hasOwnProperty(sAttribute) && (sAttribute.substr(0, 2) == 'on' || sAttribute == "src"))
+								delete hAttributes[sAttribute];
+						// duplicate id problem
+						if (!bReferenced && !hAttributes['id'])
+							hAttributes['id']	= oElement.uniqueID;
+
+						oElementNew	= oUADocument.importNode(
+											fBrowser_createFragment(
+													sHtml,
+													fHashToString(hAttributes)
+												).documentElement,
+											true);
+						oParent.replaceChild(oElementNew, oElementDOM);
+					}
 				}
 
-				//
+				// Append to Ample model
 				fNode_appendChild(oAmple_root, oElement);
 
 				// Register tree
 				fDocument_register(oAmple_document, oElement);
 			}
 			else {
-				oElementNew	= oUADocument.createElement("pre");
-				fBrowser_replaceNode(oElementDOM, oElementNew);
-				oElementNew.innerHTML	= "script" + ' ' + "parsererror";
+				if (oParent == oBrowser_head) {
+					oParent.removeChild(oElementDOM);
+				}
+				else {
+					oElementNew	= oUADocument.createElement("pre");
+					fBrowser_replaceNode(oElementDOM, oElementNew);
+					oElementNew.innerHTML	= "script" + ' ' + "parsererror";
 //->Debug
-				// First "standard" errors output
-				if (oParserError) {
-					// Gecko/Presto
-					if (oParserMessage = oParserError.getElementsByTagName('sourcetext')[0])
-						oElementNew.textContent	= oParserError.firstChild.textContent + '\n' +
-															oParserMessage.textContent;
+					// First "standard" errors output
+					if (oParserError) {
+						// Gecko/Presto
+						if (oParserMessage = oParserError.getElementsByTagName('sourcetext')[0])
+							oElementNew.textContent	= oParserError.firstChild.textContent + '\n' +
+																oParserMessage.textContent;
+						else
+						// Webkit
+						if (oParserMessage = oParserError.getElementsByTagName("div")[0])
+							oElementNew.textContent	= 'XML Parsing Error: ' + oParserMessage.textContent.replace(/.+:/, '') +
+														'Location: ' + oUALocation + '\n' +
+														oParserMessage.textContent.replace(/:.+/, '');
+					}
 					else
-					// Webkit
-					if (oParserMessage = oParserError.getElementsByTagName("div")[0])
-						oElementNew.textContent	= 'XML Parsing Error: ' + oParserMessage.textContent.replace(/.+:/, '') +
-													'Location: ' + oUALocation + '\n' +
-													oParserMessage.textContent.replace(/:.+/, '');
-				}
-				else
-				// Trident
-				if (oDocument && oDocument.parseError) {
-					oElementNew.innerText	= 'XML Parsing Error: ' + oDocument.parseError.reason + '\n' +
-													'Location: ' + (oDocument.parseError.url || oUALocation) + '\n' +
-													'Line Number: ' + oDocument.parseError.line + ', Column ' + oDocument.parseError.linepos + ':\n'+
-													oDocument.parseError.srcText + '\n' +
-													new cArray(oDocument.parseError.linepos).join('-') + '^';
-				}
+					// Trident
+					if (oDocument && oDocument.parseError) {
+						oElementNew.innerText	= 'XML Parsing Error: ' + oDocument.parseError.reason + '\n' +
+														'Location: ' + (oDocument.parseError.url || oUALocation) + '\n' +
+														'Line Number: ' + oDocument.parseError.line + ', Column ' + oDocument.parseError.linepos + ':\n'+
+														oDocument.parseError.srcText + '\n' +
+														new cArray(oDocument.parseError.linepos).join('-') + '^';
+					}
 //<-Debug
-
+				}
 //->Debug
 				fUtilities_warn(sGUARD_XML_SYNTAX_WRN);
 //<-Debug

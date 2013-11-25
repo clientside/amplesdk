@@ -11,7 +11,6 @@
 var sGUARD_XML_SYNTAX_WRN				= 'Not well-formed XML',
 	sGUARD_JSON_SYNTAX_WRN				= 'JSON syntax error: %0',
 	sGUARD_JAVASCRIPT_SYNTAX_WRN		= 'JavaScript syntax error: %0',
-	sGUARD_FRAGMENT_POSITION_WRN		= 'XML fragment is not allowed in head section. Fragment processing skipped',
 	sGUARD_NOT_UNIQUE_ID_WRN			= 'Duplicate ID attribute value "%0" used',
 	sGUARD_NOT_FOUND_SHADOW_WRN			= 'Shadow content was not found. Element "%0" queried for pseudo-element "%1"',
 	sGUARD_FEATURE_DEPRECATED_WRN		= 'Feature "%0" had been deprecated. Use "%1" instead',
