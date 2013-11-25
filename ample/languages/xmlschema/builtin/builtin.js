@@ -29,11 +29,12 @@ function fXSBuiltin_createSimpleType(nType, nBaseType, aFacets, aMultiValueFacet
 		oType.variety	= cXSSimpleTypeDefinition.VARIETY_ATOMIC;
 	oType.builtInKind	= nType;
 
+	var nIndex;
 	if (aFacets)
-		for (var nIndex = 0; nIndex < aFacets.length; nIndex++)
+		for (nIndex = 0; nIndex < aFacets.length; nIndex++)
 			oType.facets.$add(aFacets[nIndex]);
 	if (aMultiValueFacets)
-		for (var nIndex = 0; nIndex < aMultiValueFacets.length; nIndex++)
+		for (nIndex = 0; nIndex < aMultiValueFacets.length; nIndex++)
 			oType.multiValueFacets.$add(aMultiValueFacets[nIndex]);
 
 	return oType;
@@ -50,11 +51,12 @@ function fXSBuiltin_createListType(nType, nItemType, aFacets, aMultiValueFacets)
 	oType.itemType		= oXSBuiltin_types[nItemType];
 	oType.builtInKind	= nType;
 
+	var nIndex;
 	if (aFacets)
-		for (var nIndex = 0; nIndex < aFacets.length; nIndex++)
+		for (nIndex = 0; nIndex < aFacets.length; nIndex++)
 			oType.facets.$add(aFacets[nIndex]);
 	if (aMultiValueFacets)
-		for (var nIndex = 0; nIndex < aMultiValueFacets.length; nIndex++)
+		for (nIndex = 0; nIndex < aMultiValueFacets.length; nIndex++)
 			oType.multiValueFacets.$add(aMultiValueFacets[nIndex]);
 
 	return oType;

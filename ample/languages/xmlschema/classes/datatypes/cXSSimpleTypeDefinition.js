@@ -336,7 +336,7 @@ function fXSSimpleTypeDefinition_getWhiteSpace(oType, sValue) {
 	var sWhiteSpace	= null;
 	if (oType.variety == cXSSimpleTypeDefinition.VARIETY_ATOMIC) {
 		// find whiteSpace facet specified
-		for (var oBaseType = oType, bFound = false; oBaseType && sWhiteSpace == null; oBaseType = oBaseType.baseType)
+		for (var oBaseType = oType; oBaseType && sWhiteSpace == null; oBaseType = oBaseType.baseType)
 			for (var nIndex = 0, oFacet; oFacet = oBaseType.facets[nIndex] && sWhiteSpace == null; nIndex++)
 				if (oFacet.facetKind == cXSSimpleTypeDefinition.FACET_WHITESPACE)
 					sWhiteSpace	= oFacet.lexicalFacetValue;
