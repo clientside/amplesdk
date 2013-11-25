@@ -23,10 +23,8 @@
 				oElement.$setPseudoClass("schema-invalid", !bValid);
 			}
 		</script>
-	</head>
-	<body>
-		<script type="application/ample+xml" xmlns:my="http://my">
-			<xs:schema targetNamespace="http://my" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+		<script type="application/ample+xml">
+			<xs:schema targetNamespace="http://my" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:my="http://my">
 				<xs:simpleType name="gender">
 					<xs:restriction base="xs:NCName">
 						<xs:enumeration value="male" />
@@ -34,13 +32,18 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:schema>
-
+		</script>
+	</head>
+	<body>
+		<script type="application/ample+xml">
+			<p>
+				Type values conforming XSD types
+			</p>
 			<form action="/" target="#target">
 				xs:integer: <input type="text" onchange="validate(this, 'http://www.w3.org/2001/XMLSchema', 'integer')" /><br />
 				xs:boolean: <input type="text" onchange="validate(this, 'http://www.w3.org/2001/XMLSchema', 'boolean')" /><br />
 				xs:NCName <input type="text" onchange="validate(this, 'http://www.w3.org/2001/XMLSchema', 'NCName')" /> <br />
 				my:gender: <input type="text" onchange="validate(this, 'http://my', 'gender')" />'male' or 'female'<br />
-				<input type="submit" value="send" />
 			</form>
 			<div id="target"></div>
 		</script>
