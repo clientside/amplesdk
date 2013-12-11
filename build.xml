@@ -214,6 +214,7 @@
 				Function.js,
 				JSON.js,
 				Number.js,
+				Object.js,
 				String.js,
 				XMLHttpRequest.js,
 				XMLSerializer.js,
