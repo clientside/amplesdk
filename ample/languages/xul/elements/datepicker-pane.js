@@ -10,7 +10,7 @@
 // component constructor
 var cXULElement_datepicker_pane	= function() {
 	var oDate	= new Date();
-	this.current	= new Date(oDate.getFullYear(), oDate.getMonth(), oDate.getDate());
+	this.current	= new Date(oDate.getFullYear(), oDate.getMonth(), 1);
 	//
 	var that	= this;
 	this.contentFragment	= ample.createDocumentFragment();
@@ -82,8 +82,6 @@ cXULElement_datepicker_pane.prototype.refresh	= function() {
 };
 
 cXULElement_datepicker_pane.prototype._onSelectDay	= function(nDay) {
-	// set current "day" in data object
-	this.current.setDate(nDay);
 	var nMonth	= this.current.getMonth() + 1;
 	var nYear	= this.current.getFullYear();
 
@@ -188,7 +186,7 @@ cXULElement_datepicker_pane.handlers	= {
 					var oDate	= cXULElement_datepicker_pane.parseDateFromString(oEvent.newValue);
 					if (oDate) {
 						this.value	= oDate;
-						this.current= new Date(oDate);
+						this.current= new Date(oDate.getFullYear(), oDate.getMonth(), 1);
 					}
 				}
 			}
@@ -205,7 +203,7 @@ cXULElement_datepicker_pane.handlers	= {
 			var oDate	= cXULElement_datepicker_pane.parseDateFromString(sValue);
 			if (oDate) {
 				this.value	= oDate;
-				this.current= new Date(oDate);
+				this.current= new Date(oDate.getFullYear(), oDate.getMonth(), 1);
 			}
 		}
 		this._elementMonth.setAttribute("value", ample.locale.culture.calendar.months.names[this.current.getMonth()]);
