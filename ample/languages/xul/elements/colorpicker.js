@@ -44,7 +44,12 @@ cXULElement_colorpicker.prototype.toggle	= function(bState) {
 	var bHidden	= this.popup.getAttribute("hidden") == "true";
 	if (bState === true || (!arguments.length && bHidden)) {
 		// Update pane state
-		this.popup.setAttribute("value", this.getAttribute("value"));
+		if (this.hasAttribute("value")) {
+			this.popup.setAttribute("value", this.getAttribute("value"));
+		}
+		else {
+			this.popup.removeAttribute("value");
+		}
 
 		// show pane
 		this.popup.showPopup(this, -1, -1, cXULPopupElement.POPUP_TYPE_POPUP);
