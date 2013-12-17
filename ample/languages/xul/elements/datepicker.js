@@ -35,6 +35,9 @@ cXULElement_datepicker.prototype.$selectable	= true;
 //
 cXULElement_datepicker.prototype.popup	= null;
 
+cXULElement_datepicker.attributes	= {};
+cXULElement_datepicker.attributes.value	= "";
+
 // Public Methods
 cXULElement_datepicker.prototype.toggle	= function(bState) {
 	var bHidden	= this.popup.getAttribute("hidden") == "true";
