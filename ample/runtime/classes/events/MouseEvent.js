@@ -23,7 +23,7 @@ cMouseEvent.prototype.screenX		= null;
 cMouseEvent.prototype.screenY		= null;
 cMouseEvent.prototype.shiftKey		= null;
 
-cMouseEvent.prototype.initMouseEvent	= function(sType, bCanBubble, bCancelable, oView, nDetail, nScreenX, nScreenY, nClientX, nClientY, bCtrlKey, bAltKey, bShiftKey, bMetaKey, nButton, oRelatedTarget) {
+cMouseEvent.prototype.initMouseEvent	= function(sType, bBubbles, bCancelable, oView, nDetail, nScreenX, nScreenY, nClientX, nClientY, bCtrlKey, bAltKey, bShiftKey, bMetaKey, nButton, oRelatedTarget) {
 /*
 //->Guard
 	fGuard(arguments, [
@@ -33,7 +33,7 @@ cMouseEvent.prototype.initMouseEvent	= function(sType, bCanBubble, bCancelable, 
 	]);
 //<-Guard
 */
-	this.initUIEvent(sType, bCanBubble, bCancelable, oView, nDetail);
+	this.initUIEvent(sType, bBubbles, bCancelable, oView, nDetail);
 
 	this.button		= nButton;
 	this.ctrlKey	= bCtrlKey;

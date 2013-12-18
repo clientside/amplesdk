@@ -17,8 +17,8 @@ cStorageEvent.prototype.newValue	= null;
 cStorageEvent.prototype.url			= null;
 cStorageEvent.prototype.storageArea	= null;
 
-cStorageEvent.prototype.initStorageEvent	= function(sType, bCanBubble, bCancelable, sKey, sOldValue, sNewValue, sUrl, oStorage) {
-	this.initEvent(sType, bCanBubble, bCancelable);
+cStorageEvent.prototype.initStorageEvent	= function(sType, bBubbles, bCancelable, sKey, sOldValue, sNewValue, sUrl, oStorage) {
+	this.initEvent(sType, bBubbles, bCancelable);
 	//
 	this.key	= sKey;
 	this.url	= sUrl;

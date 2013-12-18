@@ -27,7 +27,7 @@ cTextEvent.prototype.data	= null;
 cTextEvent.prototype.inputMethod	= null;
 cTextEvent.prototype.locale	= null;
 
-cTextEvent.prototype.initTextEvent	= function(sType, bCanBubble, bCancelable, oView, sData, nInputMethod, sLocale) {
+cTextEvent.prototype.initTextEvent	= function(sType, bBubbles, bCancelable, oView, sData, nInputMethod, sLocale) {
 /*
 //->Guard
 	fGuard(arguments, [
@@ -37,7 +37,7 @@ cTextEvent.prototype.initTextEvent	= function(sType, bCanBubble, bCancelable, oV
 	]);
 //<-Guard
 */
-	this.initUIEvent(sType, bCanBubble, bCancelable, oView, null);
+	this.initUIEvent(sType, bBubbles, bCancelable, oView, null);
 
 	this.data	= sData;
 	this.inputMethod	= nInputMethod;

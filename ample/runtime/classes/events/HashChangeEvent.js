@@ -15,8 +15,8 @@ cHashChangeEvent.prototype.eventInterface	= "HashChangeEvent";
 cHashChangeEvent.prototype.oldURL	= null;
 cHashChangeEvent.prototype.newURL	= null;
 
-cHashChangeEvent.prototype.initHashChangeEvent	= function(sType, bCanBubble, bCancelable, sOldUrl, sNewUrl) {
-	this.initEvent(sType, bCanBubble, bCancelable);
+cHashChangeEvent.prototype.initHashChangeEvent	= function(sType, bBubbles, bCancelable, sOldUrl, sNewUrl) {
+	this.initEvent(sType, bBubbles, bCancelable);
 
 	this.oldURL	= sOldUrl;
 	this.newURL	= sNewUrl;

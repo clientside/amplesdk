@@ -26,7 +26,7 @@ cKeyboardEvent.prototype.metaKey	= null;
 cKeyboardEvent.prototype.shiftKey	= null;
 
 // Public Methods
-cKeyboardEvent.prototype.initKeyboardEvent	= function(sType, bCanBubble, bCancelable, oView, sKeyIdentifier, nKeyLocation, sModifiersList) {
+cKeyboardEvent.prototype.initKeyboardEvent	= function(sType, bBubbles, bCancelable, oView, sKeyIdentifier, nKeyLocation, sModifiersList) {
 /*
 //->Guard
 	fGuard(arguments, [
@@ -36,7 +36,7 @@ cKeyboardEvent.prototype.initKeyboardEvent	= function(sType, bCanBubble, bCancel
 	]);
 //<-Guard
 */
-	this.initUIEvent(sType, bCanBubble, bCancelable, oView, null);
+	this.initUIEvent(sType, bBubbles, bCancelable, oView, null);
 
 	//
 	this.ctrlKey	= sModifiersList.indexOf("Control") >-1;

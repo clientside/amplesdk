@@ -14,7 +14,7 @@ cCustomEvent.prototype.eventInterface	= "CustomEvent";
 // nsIDOMCustomEvent
 cCustomEvent.prototype.detail	= null;
 
-cCustomEvent.prototype.initCustomEvent	= function(sType, bCanBubble, bCancelable, oDetail) {
+cCustomEvent.prototype.initCustomEvent	= function(sType, bBubbles, bCancelable, oDetail) {
 //->Guard
 	fGuard(arguments, [
 		["type",		cString],
@@ -24,7 +24,7 @@ cCustomEvent.prototype.initCustomEvent	= function(sType, bCanBubble, bCancelable
 	]);
 //<-Guard
 
-	this.initEvent(sType, bCanBubble, bCancelable);
+	this.initEvent(sType, bBubbles, bCancelable);
 
 	this.detail	= oDetail;
 };

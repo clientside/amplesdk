@@ -14,8 +14,8 @@ cDragEvent.prototype.eventInterface	= "DragEvent";
 // nsIDOMDragEvent
 cDragEvent.prototype.dataTransfer	= null;
 
-cDragEvent.prototype.initDragEvent	= function(sType, bCanBubble, bCancelable, oView, nDetail, oDataTransfer) {
-	this.initUIEvent(sType, bCanBubble, bCancelable, oView, nDetail);
+cDragEvent.prototype.initDragEvent	= function(sType, bBubbles, bCancelable, oView, nDetail, oDataTransfer) {
+	this.initUIEvent(sType, bBubbles, bCancelable, oView, nDetail);
 
 	//
 	this.dataTransfer	= oDataTransfer;

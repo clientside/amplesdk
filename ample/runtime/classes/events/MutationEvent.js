@@ -22,7 +22,7 @@ cMutationEvent.prototype.newValue	= null;
 cMutationEvent.prototype.attrName	= null;
 cMutationEvent.prototype.attrChange	= null;
 
-cMutationEvent.prototype.initMutationEvent	= function(sType, bCanBubble, bCancelable, oRelatedNode, sOldValue, sNewValue, sAttrName, nAttrChange) {
+cMutationEvent.prototype.initMutationEvent	= function(sType, bBubbles, bCancelable, oRelatedNode, sOldValue, sNewValue, sAttrName, nAttrChange) {
 /*
 //->Guard
 	fGuard(arguments, [
@@ -32,7 +32,7 @@ cMutationEvent.prototype.initMutationEvent	= function(sType, bCanBubble, bCancel
 	]);
 //<-Guard
 */
-	this.initEvent(sType, bCanBubble, bCancelable);
+	this.initEvent(sType, bBubbles, bCancelable);
 
 	this.relatedNode	= oRelatedNode;
 	this.prevValue		= sOldValue;

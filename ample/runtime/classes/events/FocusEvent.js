@@ -14,8 +14,8 @@ cFocusEvent.prototype.eventInterface	= "FocusEvent";
 // nsIDOMFocusEvent
 cFocusEvent.prototype.relatedTarget	= null;
 
-cFocusEvent.prototype.initFocusEvent	= function(sType, bCanBubble, bCancelable, oView, nDetail, oRelatedTarget) {
-	this.initUIEvent(sType, bCanBubble, bCancelable, oView, nDetail);
+cFocusEvent.prototype.initFocusEvent	= function(sType, bBubbles, bCancelable, oView, nDetail, oRelatedTarget) {
+	this.initUIEvent(sType, bBubbles, bCancelable, oView, nDetail);
 
 	this.relatedTarget	= oRelatedTarget;
 };

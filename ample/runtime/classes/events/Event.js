@@ -36,7 +36,7 @@ cEvent.prototype._stopped			= false;
 cEvent.prototype._stoppedImmediately= false;
 
 // Public Methods
-cEvent.prototype.initEvent		= function(sType, bCanBubble, bCancelable) {
+cEvent.prototype.initEvent		= function(sType, bBubbles, bCancelable) {
 /*
 //->Guard
 	fGuard(arguments, [
@@ -47,7 +47,7 @@ cEvent.prototype.initEvent		= function(sType, bCanBubble, bCancelable) {
 //<-Guard
 */
 	this.type		= sType;
-	this.bubbles	= bCanBubble;
+	this.bubbles	= bBubbles;
 	this.cancelable	= bCancelable;
 };
 

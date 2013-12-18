@@ -14,7 +14,7 @@ cClipboardEvent.prototype.eventInterface	= "ClipboardEvent";
 // nsIDOMClipboardEvent
 cClipboardEvent.prototype.clipboardData	= null;
 
-cClipboardEvent.prototype.initClipboardEvent	= function(sType, bCanBubble, bCancelable, sType, vData) {
+cClipboardEvent.prototype.initClipboardEvent	= function(sType, bBubbles, bCancelable, sType, vData) {
 //->Guard
 	fGuard(arguments, [
 		["type",		cString],
@@ -25,7 +25,7 @@ cClipboardEvent.prototype.initClipboardEvent	= function(sType, bCanBubble, bCanc
 	]);
 //<-Guard
 
-	this.initEvent(sType, bCanBubble, bCancelable);
+	this.initEvent(sType, bBubbles, bCancelable);
 
 	// TODO
 	this.clipboardData	= new cClipboard;

@@ -18,7 +18,7 @@ cUIEvent.prototype.detail	= null;
 // Ample properties
 cUIEvent.prototype.$pseudoTarget	= null;	// readonly
 
-cUIEvent.prototype.initUIEvent	= function(sType, bCanBubble, bCancelable, oView, nDetail) {
+cUIEvent.prototype.initUIEvent	= function(sType, bBubbles, bCancelable, oView, nDetail) {
 /*
 //->Guard
 	fGuard(arguments, [
@@ -28,7 +28,7 @@ cUIEvent.prototype.initUIEvent	= function(sType, bCanBubble, bCancelable, oView,
 	]);
 //<-Guard
 */
-	this.initEvent(sType, bCanBubble, bCancelable);
+	this.initEvent(sType, bBubbles, bCancelable);
 
 	this.view	= oView;
 	this.detail	= nDetail;
