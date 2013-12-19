@@ -14,9 +14,9 @@ cAMLElement_handler.prototype	= new cAMLElement("handler");
 cAMLElement_handler.handlers	= {};
 cAMLElement_handler.handlers["DOMNodeInsertedIntoDocument"]	= function(oEvent) {
 	if (this.firstChild) {
-		var sEvent	= fElement_getAttribute(this, "event");
-		if (sEvent)
-			fEventTarget_addEventListener(this.parentNode, sEvent, new cFunction("event", this.firstChild.nodeValue), fElement_getAttribute(this, "phase") == "capture");
+		var sName	= fElement_getAttribute(this, "event");
+		if (sName)
+			fEventTarget_addEventListener(this.parentNode, sName, new cFunction("event", this.firstChild.nodeValue), fElement_getAttribute(this, "phase") == "capture");
 		else
 			fBrowser_eval(this.firstChild.nodeValue);
 	}
