@@ -109,7 +109,7 @@
 					</locale>
 				</description>
 			</property>
-			<property name="currentTarget" type="dom:core:Node" readonly="true">
+			<property name="currentTarget" type="dom:events:EventTarget" readonly="true">
 				<description>
 					<locale>
 						Used to indicate the EventTarget whose EventListeners are currently being processed. This is particularly useful during capturing and bubbling.
@@ -129,7 +129,7 @@
 					</locale>
 				</description>
 			</property>
-			<property name="target" type="dom:core:Node" readonly="true">
+			<property name="target" type="dom:events:EventTarget" readonly="true">
 				<description>
 					<locale>
 						Used to indicate the EventTarget to which the event was originally dispatched.
