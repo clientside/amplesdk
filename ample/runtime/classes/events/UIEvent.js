@@ -8,10 +8,7 @@
  */
 
 var cUIEvent	= function(sType) {
-	this.type	= sType;
-	// Initializer
-	if (arguments.length > 1)
-		fUIEvent_init(this, arguments[1]);
+	fUIEvent_init(this, sType, arguments[1]);
 };
 cUIEvent.prototype	= new cEvent('#' + "UIEvent");
 
@@ -22,8 +19,8 @@ cUIEvent.prototype.detail	= null;
 // Ample properties
 cUIEvent.prototype.$pseudoTarget	= null;	// readonly
 
-function fUIEvent_getDictionary(sType, bBubbles, bCancelable, oView, nDetail) {
-	var oValue	= fEvent_getDictionary(sType, bBubbles, bCancelable);
+function fUIEvent_getDictionary(bBubbles, bCancelable, oView, nDetail) {
+	var oValue	= fEvent_getDictionary(bBubbles, bCancelable);
 	//
 	oValue.view			= oView;
 	oValue.detail		= nDetail;
@@ -31,13 +28,15 @@ function fUIEvent_getDictionary(sType, bBubbles, bCancelable, oView, nDetail) {
 	return oValue;
 };
 
-function fUIEvent_init(oEvent, oValue) {
-	fEvent_init(oEvent, oValue);
+function fUIEvent_init(oEvent, sType, oValue) {
+	fEvent_init(oEvent, sType, oValue);
 	//
-	if ("view" in oValue)
-		oEvent.view		= oValue.view;
-	if ("detail" in oValue)
-		oEvent.detail	= oValue.detail;
+	if (oValue) {
+		if ("view" in oValue)
+			oEvent.view		= oValue.view;
+		if ("detail" in oValue)
+			oEvent.detail	= oValue.detail;
+	}
 };
 
 // Public Methods
@@ -51,5 +50,5 @@ cUIEvent.prototype.initUIEvent	= function(sType, bBubbles, bCancelable, oView, n
 	]);
 //<-Guard
 */
-	fUIEvent_init(this, fUIEvent_getDictionary(sType, bBubbles, bCancelable, oView, nDetail));
+	fUIEvent_init(this, sType, fUIEvent_getDictionary(bBubbles, bCancelable, oView, nDetail));
 };

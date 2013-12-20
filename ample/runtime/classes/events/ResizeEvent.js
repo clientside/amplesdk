@@ -8,31 +8,30 @@
  */
 
 var cResizeEvent	= function(sType) {
-	this.type	= sType;
-	// Initializer
-	if (arguments.length > 1)
-		fResizeEvent_init(arguments[1]);
+	fResizeEvent_init(this, sType, arguments[1]);
 };
 cResizeEvent.prototype	= new cUIEvent('#' + "ResizeEvent");
 
 cResizeEvent.prototype.edge	= null;
 
-function fResizeEvent_getDictionary(sType, bBubbles, bCancelable, oView, nDetail, nEdge) {
-	var oValue	= fUIEvent_getDictionary(sType, bBubbles, bCancelable, oView, nDetail);
+function fResizeEvent_getDictionary(bBubbles, bCancelable, oView, nDetail, nEdge) {
+	var oValue	= fUIEvent_getDictionary(bBubbles, bCancelable, oView, nDetail);
 	//
 	oValue.edge	= nEdge;
 
 	return oValue;
 };
 
-function fResizeEvent_init(oEvent, oValue) {
-	fUIEvent_init(oEvent, oValue);
+function fResizeEvent_init(oEvent, sType, oValue) {
+	fUIEvent_init(oEvent, sType, oValue);
 	//
-	if ("edge" in oValue)
-		oEvent.edge	= oValue.edge;
+	if (oValue) {
+		if ("edge" in oValue)
+			oEvent.edge	= oValue.edge;
+	}
 };
 
 // nsIDOMResizeEvent
 cResizeEvent.prototype.initResizeEvent	= function(sType, bBubbles, bCancelable, oView, nDetail, nEdge) {
-	fResizeEvent_init(this, fResizeEvent_getDictionary(sType, bBubbles, bCancelable, oView, nDetail, nEdge));
+	fResizeEvent_init(this, sType, fResizeEvent_getDictionary(bBubbles, bCancelable, oView, nDetail, nEdge));
 };

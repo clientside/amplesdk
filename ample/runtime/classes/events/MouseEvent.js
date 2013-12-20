@@ -8,10 +8,7 @@
  */
 
 var cMouseEvent	= function(sType) {
-	this.type	= sType;
-	// Initializer
-	if (arguments.length > 1)
-		fMouseEvent_init(this, arguments[1]);
+	fMouseEvent_init(this, sType, arguments[1]);
 };
 cMouseEvent.prototype	= new cUIEvent('#' + "MouseEvent");
 
@@ -27,8 +24,8 @@ cMouseEvent.prototype.screenX		= null;
 cMouseEvent.prototype.screenY		= null;
 cMouseEvent.prototype.shiftKey		= null;
 
-function fMouseEvent_getDictionary(sType, bBubbles, bCancelable, oView, nDetail, nScreenX, nScreenY, nClientX, nClientY, bCtrlKey, bAltKey, bShiftKey, bMetaKey, nButton, oRelatedTarget) {
-	var oValue	= fUIEvent_getDictionary(sType, bBubbles, bCancelable, oView, nDetail);
+function fMouseEvent_getDictionary(bBubbles, bCancelable, oView, nDetail, nScreenX, nScreenY, nClientX, nClientY, bCtrlKey, bAltKey, bShiftKey, bMetaKey, nButton, oRelatedTarget) {
+	var oValue	= fUIEvent_getDictionary(bBubbles, bCancelable, oView, nDetail);
 	//
 	oValue.screenX	= nScreenX;
 	oValue.screenY	= nScreenY;
@@ -44,29 +41,31 @@ function fMouseEvent_getDictionary(sType, bBubbles, bCancelable, oView, nDetail,
 	return oValue;
 };
 
-function fMouseEvent_init(oEvent, oValue) {
-	fUIEvent_init(oEvent, oValue);
+function fMouseEvent_init(oEvent, sType, oValue) {
+	fUIEvent_init(oEvent, sType, oValue);
 	//
-	if ("screenX" in oValue)
-		oEvent.screenX	= oValue.screenX;
-	if ("screenY" in oValue)
-		oEvent.screenY	= oValue.screenY;
-	if ("clientX" in oValue)
-		oEvent.clientX	= oValue.clientX;
-	if ("clientY" in oValue)
-		oEvent.clientY	= oValue.clientY;
-	if ("ctrlKey" in oValue)
-		oEvent.ctrlKey	= oValue.ctrlKey;
-	if ("altKey" in oValue)
-		oEvent.altKey	= oValue.altKey;
-	if ("shiftKey" in oValue)
-		oEvent.shiftKey	= oValue.shiftKey;
-	if ("metaKey" in oValue)
-		oEvent.metaKey	= oValue.metaKey;
-	if ("button" in oValue)
-		oEvent.button	= oValue.button;
-	if ("relatedTarget" in oValue)
-		oEvent.relatedTarget	= oValue.relatedTarget;
+	if (oValue) {
+		if ("screenX" in oValue)
+			oEvent.screenX	= oValue.screenX;
+		if ("screenY" in oValue)
+			oEvent.screenY	= oValue.screenY;
+		if ("clientX" in oValue)
+			oEvent.clientX	= oValue.clientX;
+		if ("clientY" in oValue)
+			oEvent.clientY	= oValue.clientY;
+		if ("ctrlKey" in oValue)
+			oEvent.ctrlKey	= oValue.ctrlKey;
+		if ("altKey" in oValue)
+			oEvent.altKey	= oValue.altKey;
+		if ("shiftKey" in oValue)
+			oEvent.shiftKey	= oValue.shiftKey;
+		if ("metaKey" in oValue)
+			oEvent.metaKey	= oValue.metaKey;
+		if ("button" in oValue)
+			oEvent.button	= oValue.button;
+		if ("relatedTarget" in oValue)
+			oEvent.relatedTarget	= oValue.relatedTarget;
+	}
 };
 
 //
@@ -80,7 +79,7 @@ cMouseEvent.prototype.initMouseEvent	= function(sType, bBubbles, bCancelable, oV
 	]);
 //<-Guard
 */
-	fMouseEvent_init(this, fMouseEvent_getDictionary(sType, bBubbles, bCancelable, oView, nDetail, nScreenX, nScreenY, nClientX, nClientY, bCtrlKey, bAltKey, bShiftKey, bMetaKey, nButton, oRelatedTarget));
+	fMouseEvent_init(this, sType, fMouseEvent_getDictionary(bBubbles, bCancelable, oView, nDetail, nScreenX, nScreenY, nClientX, nClientY, bCtrlKey, bAltKey, bShiftKey, bMetaKey, nButton, oRelatedTarget));
 };
 
 cMouseEvent.prototype.getModifierState	= function(sModifier) {

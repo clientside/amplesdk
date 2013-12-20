@@ -8,10 +8,7 @@
  */
 
 var cKeyboardEvent	= function(sType) {
-	this.type	= sType;
-	// Initializer
-	if (arguments.length > 1)
-		fKeyboardEvent_init(this, arguments[1]);
+	fKeyboardEvent_init(this, sType, arguments[1]);
 };
 cKeyboardEvent.prototype	= new cUIEvent('#' + "KeyboardEvent");
 
@@ -29,8 +26,8 @@ cKeyboardEvent.prototype.ctrlKey	= null;
 cKeyboardEvent.prototype.metaKey	= null;
 cKeyboardEvent.prototype.shiftKey	= null;
 
-function fKeyboardEvent_getDictionary(sType, bBubbles, bCancelable, oView, sKeyIdentifier, nKeyLocation, sModifiersList) {
-	var oValue	= fUIEvent_getDictionary(sType, bBubbles, bCancelable, oView, 0);
+function fKeyboardEvent_getDictionary(bBubbles, bCancelable, oView, sKeyIdentifier, nKeyLocation, sModifiersList) {
+	var oValue	= fUIEvent_getDictionary(bBubbles, bCancelable, oView, 0);
 	//
 	oValue.ctrlKey	= sModifiersList.indexOf("Control") >-1;
 	oValue.altKey	= sModifiersList.indexOf("Alt") >-1;
@@ -43,21 +40,23 @@ function fKeyboardEvent_getDictionary(sType, bBubbles, bCancelable, oView, sKeyI
 	return oValue;
 };
 
-function fKeyboardEvent_init(oEvent, oValue) {
-	fUIEvent_init(oEvent, oValue);
+function fKeyboardEvent_init(oEvent, sType, oValue) {
+	fUIEvent_init(oEvent, sType, oValue);
 	//
-	if ("keyIdentifier" in oValue)
-		oEvent.keyIdentifier	= oValue.keyIdentifier;
-	if ("keyLocation" in oValue)
-		oEvent.keyLocation	= oValue.keyLocation;
-	if ("ctrlKey" in oValue)
-		oEvent.ctrlKey	= oValue.ctrlKey;
-	if ("shiftKey" in oValue)
-		oEvent.shiftKey	= oValue.shiftKey;
-	if ("altKey" in oValue)
-		oEvent.altKey	= oValue.altKey;
-	if ("metaKey" in oValue)
-		oEvent.metaKey	= oValue.metaKey;
+	if (oValue) {
+		if ("keyIdentifier" in oValue)
+			oEvent.keyIdentifier	= oValue.keyIdentifier;
+		if ("keyLocation" in oValue)
+			oEvent.keyLocation	= oValue.keyLocation;
+		if ("ctrlKey" in oValue)
+			oEvent.ctrlKey	= oValue.ctrlKey;
+		if ("shiftKey" in oValue)
+			oEvent.shiftKey	= oValue.shiftKey;
+		if ("altKey" in oValue)
+			oEvent.altKey	= oValue.altKey;
+		if ("metaKey" in oValue)
+			oEvent.metaKey	= oValue.metaKey;
+	}
 };
 
 // Public Methods
@@ -71,7 +70,7 @@ cKeyboardEvent.prototype.initKeyboardEvent	= function(sType, bBubbles, bCancelab
 	]);
 //<-Guard
 */
-	fKeyboardEvent_init(this, fKeyboardEvent_getDictionary(sType, bBubbles, bCancelable, oView, sKeyIdentifier, nKeyLocation, sModifiersList));
+	fKeyboardEvent_init(this, sType, fKeyboardEvent_getDictionary(bBubbles, bCancelable, oView, sKeyIdentifier, nKeyLocation, sModifiersList));
 };
 
 cKeyboardEvent.prototype.getModifierState	= function(sModifier) {

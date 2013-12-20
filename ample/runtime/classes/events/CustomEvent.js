@@ -8,29 +8,28 @@
  */
 
 var cCustomEvent	= function(sType) {
-	this.type	= sType;
-	// Initializer
-	if (arguments.length > 1)
-		fCustomEvent_init(this, arguments[1]);
+	fCustomEvent_init(this, sType, arguments[1]);
 };
 cCustomEvent.prototype	= new cEvent('#' + "CustomEvent");
 
 // nsIDOMCustomEvent
 cCustomEvent.prototype.detail	= null;
 
-function fCustomEvent_getDictionary(sType, bBubbles, bCancelable, oDetail) {
-	var oValue	= fEvent_getDictionary(sType, bBubbles, bCancelable);
+function fCustomEvent_getDictionary(bBubbles, bCancelable, oDetail) {
+	var oValue	= fEvent_getDictionary(bBubbles, bCancelable);
 	//
 	oValue.detail	= oDetail;
 
 	return oValue;
 };
 
-function fCustomEvent_init(oEvent, oValue) {
-	fEvent_init(oEvent, oValue);
+function fCustomEvent_init(oEvent, sType, oValue) {
+	fEvent_init(oEvent, sType, oValue);
 	//
-	if ("detail" in oValue)
-		oEvent.detail	= oValue.detail;
+	if (oValue) {
+		if ("detail" in oValue)
+			oEvent.detail	= oValue.detail;
+	}
 };
 
 //
@@ -44,5 +43,5 @@ cCustomEvent.prototype.initCustomEvent	= function(sType, bBubbles, bCancelable, 
 	]);
 //<-Guard
 
-	fCustomEvent_init(this, fCustomEvent_getDictionary(sType, bBubbles, bCancelable, oDetail));
+	fCustomEvent_init(this, sType, fCustomEvent_getDictionary(bBubbles, bCancelable, oDetail));
 };

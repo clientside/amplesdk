@@ -8,10 +8,7 @@
  */
 
 var cTouchEvent	= function(sType) {
-	this.type	= sType;
-	// Initializer
-	if (arguments.length > 1)
-		fTouchEvent_init(this, arguments[1]);
+	fTouchEvent_init(this, sType, arguments[1]);
 };
 cTouchEvent.prototype	= new cUIEvent('#' + "TouchEvent");
 
@@ -30,8 +27,8 @@ cTouchEvent.prototype.changedTouches= null;
 cTouchEvent.prototype.rotation	= null;
 cTouchEvent.prototype.scale		= null;
 
-function fTouchEvent_getDictionary(sType, bBubbles, bCancelable, oView, nDetail, nScreenX, nScreenY, nClientX, nClientY, bCtrlKey, bAltKey, bShiftKey, bMetaKey, oTouches, oTargetTouches, oChangedTouches, nScale, nRotation) {
-	var oValue	= fUIEvent_getDictionary(sType, bBubbles, bCancelable, oView, nDetail);
+function fTouchEvent_getDictionary(bBubbles, bCancelable, oView, nDetail, nScreenX, nScreenY, nClientX, nClientY, bCtrlKey, bAltKey, bShiftKey, bMetaKey, oTouches, oTargetTouches, oChangedTouches, nScale, nRotation) {
+	var oValue	= fUIEvent_getDictionary(bBubbles, bCancelable, oView, nDetail);
 	//
 	oValue.screenX	= nScreenX;
 	oValue.screenY	= nScreenY;
@@ -50,38 +47,40 @@ function fTouchEvent_getDictionary(sType, bBubbles, bCancelable, oView, nDetail,
 	return oValue;
 };
 
-function fTouchEvent_init(oEvent, oValue) {
-	fUIEvent_init(oEvent, oValue);
+function fTouchEvent_init(oEvent, sType, oValue) {
+	fUIEvent_init(oEvent, sType, oValue);
 	//
-	if ("screenX" in oValue)
-		oEvent.screenX	= oValue.screenX;
-	if ("screenY" in oValue)
-		oEvent.screenY	= oValue.screenY;
-	if ("clientX" in oValue)
-		oEvent.clientX	= oValue.clientX;
-	if ("clientY" in oValue)
-		oEvent.clientY	= oValue.clientY;
-	if ("ctrlKey" in oValue)
-		oEvent.ctrlKey	= oValue.ctrlKey;
-	if ("altKey" in oValue)
-		oEvent.altKey	= oValue.altKey;
-	if ("shiftKey" in oValue)
-		oEvent.shiftKey	= oValue.shiftKey;
-	if ("metaKey" in oValue)
-		oEvent.metaKey	= oValue.metaKey;
-	if ("touches" in oValue)
-		oEvent.touches	= oValue.touches;
-	if ("targetTouches" in oValue)
-		oEvent.targetTouches	= oValue.targetTouches;
-	if ("changedTouches" in oValue)
-		oEvent.changedTouches	= oValue.changedTouches;
-	if ("scale" in oValue)
-		oEvent.scale	= oValue.scale;
-	if ("rotation" in oValue)
-		oEvent.rotation	= oValue.rotation;
+	if (oValue) {
+		if ("screenX" in oValue)
+			oEvent.screenX	= oValue.screenX;
+		if ("screenY" in oValue)
+			oEvent.screenY	= oValue.screenY;
+		if ("clientX" in oValue)
+			oEvent.clientX	= oValue.clientX;
+		if ("clientY" in oValue)
+			oEvent.clientY	= oValue.clientY;
+		if ("ctrlKey" in oValue)
+			oEvent.ctrlKey	= oValue.ctrlKey;
+		if ("altKey" in oValue)
+			oEvent.altKey	= oValue.altKey;
+		if ("shiftKey" in oValue)
+			oEvent.shiftKey	= oValue.shiftKey;
+		if ("metaKey" in oValue)
+			oEvent.metaKey	= oValue.metaKey;
+		if ("touches" in oValue)
+			oEvent.touches	= oValue.touches;
+		if ("targetTouches" in oValue)
+			oEvent.targetTouches	= oValue.targetTouches;
+		if ("changedTouches" in oValue)
+			oEvent.changedTouches	= oValue.changedTouches;
+		if ("scale" in oValue)
+			oEvent.scale	= oValue.scale;
+		if ("rotation" in oValue)
+			oEvent.rotation	= oValue.rotation;
+	}
 };
 
 //
 cTouchEvent.prototype.initTouchEvent	= function(sType, bBubbles, bCancelable, oView, nDetail, nScreenX, nScreenY, nClientX, nClientY, bCtrlKey, bAltKey, bShiftKey, bMetaKey, oTouches, oTargetTouches, oChangedTouches, nScale, nRotation) {
-	fTouchEvent_init(this, fTouchEvent_getDictionary(sType, bBubbles, bCancelable, oView, nDetail, nScreenX, nScreenY, nClientX, nClientY, bCtrlKey, bAltKey, bShiftKey, bMetaKey, oTouches, oTargetTouches, oChangedTouches, nScale, nRotation));
+	fTouchEvent_init(this, sType, fTouchEvent_getDictionary(bBubbles, bCancelable, oView, nDetail, nScreenX, nScreenY, nClientX, nClientY, bCtrlKey, bAltKey, bShiftKey, bMetaKey, oTouches, oTargetTouches, oChangedTouches, nScale, nRotation));
 };

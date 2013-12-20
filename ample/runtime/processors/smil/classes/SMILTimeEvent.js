@@ -8,10 +8,7 @@
  */
 
 var cSMILTimeEvent	= function(sType) {
-	this.type	= sType;
-	// Initializer
-	if (arguments.length > 1)
-		fSMILTimeEvent_init(this, arguments[1]);
+	fSMILTimeEvent_init(this, sType, arguments[1]);
 };
 
 cSMILTimeEvent.prototype	= new cEvent('#' + "TimeEvent");
@@ -19,8 +16,8 @@ cSMILTimeEvent.prototype	= new cEvent('#' + "TimeEvent");
 cSMILTimeEvent.prototype.view	= null;
 cSMILTimeEvent.prototype.detail	= null;
 
-function fSMILTimeEvent_getDictionary(sType, oView, nDetail) {
-	var oValue	= fEvent_getDictionary(sType, false, false);
+function fSMILTimeEvent_getDictionary(oView, nDetail) {
+	var oValue	= fEvent_getDictionary(false, false);
 	//
 	oValue.view		= oView;
 	oValue.detail	= nDetail;
@@ -28,18 +25,20 @@ function fSMILTimeEvent_getDictionary(sType, oView, nDetail) {
 	return oValue;
 };
 
-function fSMILTimeEvent_init(oEvent, oValue) {
-	fEvent_init(oEvent, oValue);
+function fSMILTimeEvent_init(oEvent, sType, oValue) {
+	fEvent_init(oEvent, sType, oValue);
 	//
-	if ("view" in oValue)
-		oEvent.view		= oValue.view;
-	if ("detail" in oValue)
-		oEvent.detail	= oValue.detail;
+	if (oValue) {
+		if ("view" in oValue)
+			oEvent.view		= oValue.view;
+		if ("detail" in oValue)
+			oEvent.detail	= oValue.detail;
+	}
 };
 
 //
 cSMILTimeEvent.prototype.initTimeEvent	= function(sType, oView, nDetail) {
-	fSMILTimeEvent_init(this, fSMILTimeEvent_getDictionary(sType, oView, nDetail));
+	fSMILTimeEvent_init(this, sType, fSMILTimeEvent_getDictionary(oView, nDetail));
 };
 
 // Register Event Interface

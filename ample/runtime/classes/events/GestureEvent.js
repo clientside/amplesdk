@@ -8,10 +8,7 @@
  */
 
 var cGestureEvent	= function(sType) {
-	this.type	= sType;
-	// Initializer
-	if (arguments.length > 1)
-		fGestureEvent_init(arguments[1]);
+	fGestureEvent_init(this, sType, arguments[1]);
 };
 cGestureEvent.prototype	= new cUIEvent('#' + "GestureEvent");
 
@@ -28,8 +25,8 @@ cGestureEvent.prototype.shiftKey	= null;
 cGestureEvent.prototype.rotation	= null;
 cGestureEvent.prototype.scale		= null;
 
-function fGestureEvent_getDictionary(sType, bBubbles, bCancelable, oView, nDetail, nScreenX, nScreenY, nClientX, nClientY, bCtrlKey, bAltKey, bShiftKey, bMetaKey, oTarget, nScale, nRotation) {
-	var oValue	= fUIEvent_getDictionary(sType, bBubbles, bCancelable, oView, nDetail);
+function fGestureEvent_getDictionary(bBubbles, bCancelable, oView, nDetail, nScreenX, nScreenY, nClientX, nClientY, bCtrlKey, bAltKey, bShiftKey, bMetaKey, oTarget, nScale, nRotation) {
+	var oValue	= fUIEvent_getDictionary(bBubbles, bCancelable, oView, nDetail);
 	//
 	oValue.screenX	= nScreenX;
 	oValue.screenY	= nScreenY;
@@ -46,34 +43,36 @@ function fGestureEvent_getDictionary(sType, bBubbles, bCancelable, oView, nDetai
 	return oValue;
 };
 
-function fGestureEvent_init(oEvent, oValue) {
-	fUIEvent_init(oEvent, oValue);
+function fGestureEvent_init(oEvent, sType, oValue) {
+	fUIEvent_init(oEvent, sType, oValue);
 	//
-	if ("screenX" in oValue)
-		oEvent.screenX	= oValue.screenX;
-	if ("screenY" in oValue)
-		oEvent.screenY	= oValue.screenY;
-	if ("clientX" in oValue)
-		oEvent.clientX	= oValue.clientX;
-	if ("clientY" in oValue)
-		oEvent.clientY	= oValue.clientY;
-	if ("ctrlKey" in oValue)
-		oEvent.ctrlKey	= oValue.ctrlKey;
-	if ("altKey" in oValue)
-		oEvent.altKey	= oValue.altKey;
-	if ("shiftKey" in oValue)
-		oEvent.shiftKey	= oValue.shiftKey;
-	if ("metaKey" in oValue)
-		oEvent.metaKey	= oValue.metaKey;
-//	if ("target" in oValue)
-//		oEvent.target	= oValue.target;
-	if ("scale" in oValue)
-		oEvent.scale	= oValue.scale;
-	if ("rotation" in oValue)
-		oEvent.rotation	= oValue.rotation;
+	if (oValue) {
+		if ("screenX" in oValue)
+			oEvent.screenX	= oValue.screenX;
+		if ("screenY" in oValue)
+			oEvent.screenY	= oValue.screenY;
+		if ("clientX" in oValue)
+			oEvent.clientX	= oValue.clientX;
+		if ("clientY" in oValue)
+			oEvent.clientY	= oValue.clientY;
+		if ("ctrlKey" in oValue)
+			oEvent.ctrlKey	= oValue.ctrlKey;
+		if ("altKey" in oValue)
+			oEvent.altKey	= oValue.altKey;
+		if ("shiftKey" in oValue)
+			oEvent.shiftKey	= oValue.shiftKey;
+		if ("metaKey" in oValue)
+			oEvent.metaKey	= oValue.metaKey;
+//		if ("target" in oValue)
+//			oEvent.target	= oValue.target;
+		if ("scale" in oValue)
+			oEvent.scale	= oValue.scale;
+		if ("rotation" in oValue)
+			oEvent.rotation	= oValue.rotation;
+	}
 };
 
 //
 cGestureEvent.prototype.initGestureEvent	= function(sType, bBubbles, bCancelable, oView, nDetail, nScreenX, nScreenY, nClientX, nClientY, bCtrlKey, bAltKey, bShiftKey, bMetaKey, oTarget, nScale, nRotation) {
-	fFocusEvent_init(this, fFocusEvent_getDictionary(sType, bBubbles, bCancelable, oView, nDetail, nScreenX, nScreenY, nClientX, nClientY, bCtrlKey, bAltKey, bShiftKey, bMetaKey, oTarget, nScale, nRotation));
+	fFocusEvent_init(this, sType, fFocusEvent_getDictionary(bBubbles, bCancelable, oView, nDetail, nScreenX, nScreenY, nClientX, nClientY, bCtrlKey, bAltKey, bShiftKey, bMetaKey, oTarget, nScale, nRotation));
 };

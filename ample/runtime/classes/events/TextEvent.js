@@ -8,10 +8,7 @@
  */
 
 var cTextEvent	= function(sType) {
-	this.type	= sType;
-	// Initializer
-	if (arguments.length > 1)
-		fTextEvent_init(arguments[1]);
+	fTextEvent_init(this, sType, arguments[1]);
 };
 cTextEvent.prototype	= new cUIEvent('#' + "TextEvent");
 
@@ -31,8 +28,8 @@ cTextEvent.prototype.data	= null;
 cTextEvent.prototype.inputMethod	= null;
 cTextEvent.prototype.locale	= null;
 
-function fTextEvent_getDictionary(sType, bBubbles, bCancelable, oView, sData, nInputMethod, sLocale) {
-	var oValue	= fUIEvent_getDictionary(sType, bBubbles, bCancelable, oView, 0);
+function fTextEvent_getDictionary(bBubbles, bCancelable, oView, sData, nInputMethod, sLocale) {
+	var oValue	= fUIEvent_getDictionary(bBubbles, bCancelable, oView, 0);
 	//
 	oValue.data		= sData;
 	oValue.inputMethod	= nInputMethod;
@@ -41,15 +38,17 @@ function fTextEvent_getDictionary(sType, bBubbles, bCancelable, oView, sData, nI
 	return oValue;
 };
 
-function fTextEvent_init(oEvent, oValue) {
-	fUIEvent_init(oEvent, oValue);
+function fTextEvent_init(oEvent, sType, oValue) {
+	fUIEvent_init(oEvent, sType, oValue);
 	//
-	if ("data" in oValue)
-		oEvent.data	= oValue.data;
-	if ("inputMethod" in oValue)
-		oEvent.inputMethod	= oValue.inputMethod;
-	if ("locale" in oValue)
-		oEvent.locale	= oValue.locale;
+	if (oValue) {
+		if ("data" in oValue)
+			oEvent.data	= oValue.data;
+		if ("inputMethod" in oValue)
+			oEvent.inputMethod	= oValue.inputMethod;
+		if ("locale" in oValue)
+			oEvent.locale	= oValue.locale;
+	}
 };
 
 //
@@ -63,5 +62,5 @@ cTextEvent.prototype.initTextEvent	= function(sType, bBubbles, bCancelable, oVie
 	]);
 //<-Guard
 */
-	fTextEvent_init(this, fTextEvent_getDictionary(sType, bBubbles, bCancelable, oView, sData, nInputMethod, sLocale));
+	fTextEvent_init(this, sType, fTextEvent_getDictionary(bBubbles, bCancelable, oView, sData, nInputMethod, sLocale));
 };

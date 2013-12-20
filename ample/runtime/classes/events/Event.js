@@ -8,10 +8,7 @@
  */
 
 var cEvent	= function(sType) {
-	this.type	= sType;
-	// Initializer
-	if (arguments.length > 1)
-		fEvent_init(this, arguments[1]);
+	fEvent_init(this, sType, arguments[1]);
 };
 
 cEvent.CAPTURING_PHASE	= 1;
@@ -39,23 +36,24 @@ cEvent.prototype.defaultPrevented	= false;// readonly
 cEvent.prototype._stopped			= false;
 cEvent.prototype._stoppedImmediately= false;
 
-function fEvent_getDictionary(sType, bBubbles, bCancelable) {
+function fEvent_getDictionary(bBubbles, bCancelable) {
 	var oValue	= {};
 	//
-	oValue.type			= sType;
 	oValue.bubbles		= bBubbles;
 	oValue.cancelable	= bCancelable;
 
 	return oValue;
 };
 
-function fEvent_init(oEvent, oValue) {
-	if ("type" in oValue)
-		oEvent.type			= oValue.type;
-	if ("bubbles" in oValue)
-		oEvent.bubbles		= oValue.bubbles;
-	if ("cancelable" in oValue)
-		oEvent.cancelable	= oValue.cancelable;
+function fEvent_init(oEvent, sType, oValue) {
+	oEvent.type	= sType;
+	//
+	if (oValue) {
+		if ("bubbles" in oValue)
+			oEvent.bubbles		= oValue.bubbles;
+		if ("cancelable" in oValue)
+			oEvent.cancelable	= oValue.cancelable;
+	}
 };
 
 // Public Methods
@@ -69,7 +67,7 @@ cEvent.prototype.initEvent		= function(sType, bBubbles, bCancelable) {
 	]);
 //<-Guard
 */
-	fEvent_init(this, fEvent_getDictionary(sType, bBubbles, bCancelable));
+	fEvent_init(this, sType, fEvent_getDictionary(bBubbles, bCancelable));
 };
 
 cEvent.prototype.stopPropagation	= function() {

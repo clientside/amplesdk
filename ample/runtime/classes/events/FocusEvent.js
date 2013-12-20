@@ -8,32 +8,31 @@
  */
 
 var cFocusEvent	= function(sType) {
-	this.type	= sType;
-	// Initializer
-	if (arguments.length > 1)
-		fFocusEvent_init(this, arguments[1]);
+	fFocusEvent_init(this, sType, arguments[1]);
 };
 cFocusEvent.prototype	= new cUIEvent('#' + "FocusEvent");
 
 // nsIDOMFocusEvent
 cFocusEvent.prototype.relatedTarget	= null;
 
-function fFocusEvent_getDictionary(sType, bBubbles, bCancelable, oView, nDetail, oRelatedTarget) {
-	var oValue	= fUIEvent_getDictionary(sType, bBubbles, bCancelable, oView, nDetail);
+function fFocusEvent_getDictionary(bBubbles, bCancelable, oView, nDetail, oRelatedTarget) {
+	var oValue	= fUIEvent_getDictionary(bBubbles, bCancelable, oView, nDetail);
 	//
 	oValue.relatedTarget	= oRelatedTarget;
 
 	return oValue;
 };
 
-function fFocusEvent_init(oEvent, oValue) {
-	fUIEvent_init(oEvent, oValue);
+function fFocusEvent_init(oEvent, sType, oValue) {
+	fUIEvent_init(oEvent, sType, oValue);
 	//
-	if ("relatedTarget" in oValue)
-		oEvent.relatedTarget		= oValue.relatedTarget;
+	if (oValue) {
+		if ("relatedTarget" in oValue)
+			oEvent.relatedTarget		= oValue.relatedTarget;
+	}
 };
 
 //
 cFocusEvent.prototype.initFocusEvent	= function(sType, bBubbles, bCancelable, oView, nDetail, oRelatedTarget) {
-	fFocusEvent_init(this, fFocusEvent_getDictionary(sType, bBubbles, bCancelable, oView, nDetail, oRelatedTarget));
+	fFocusEvent_init(this, sType, fFocusEvent_getDictionary(bBubbles, bCancelable, oView, nDetail, oRelatedTarget));
 };
