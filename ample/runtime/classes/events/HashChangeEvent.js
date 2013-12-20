@@ -8,16 +8,35 @@
  */
 
 //
-var cHashChangeEvent	= function() {};
-cHashChangeEvent.prototype	= new cEvent;
-cHashChangeEvent.prototype.eventInterface	= "HashChangeEvent";
+var cHashChangeEvent	= function(sType) {
+	this.type	= sType;
+	// Initializer
+	if (arguments.length > 1)
+		fHashChangeEvent_init(this, arguments[1]);
+};
+cHashChangeEvent.prototype	= new cEvent('#' + "HashChangeEvent");
 //
 cHashChangeEvent.prototype.oldURL	= null;
 cHashChangeEvent.prototype.newURL	= null;
 
-cHashChangeEvent.prototype.initHashChangeEvent	= function(sType, bBubbles, bCancelable, sOldUrl, sNewUrl) {
-	this.initEvent(sType, bBubbles, bCancelable);
+function fHashChangeEvent_getDictionary(sType, bBubbles, bCancelable, sOldUrl, sNewUrl) {
+	var oValue	= fEvent_getDictionary(sType, bBubbles, bCancelable);
+	//
+	oValue.oldURL	= sOldUrl;
+	oValue.newURL	= sNewUrl;
 
-	this.oldURL	= sOldUrl;
-	this.newURL	= sNewUrl;
+	return oValue;
+};
+
+function fHashChangeEvent_init(oEvent, oValue) {
+	fEvent_init(oEvent, oValue);
+	//
+	if ("oldURL" in oValue)
+		oEvent.oldURL	= oValue.oldURL;
+	if ("newURL" in oValue)
+		oEvent.newURL	= oValue.newURL;
+};
+
+cHashChangeEvent.prototype.initHashChangeEvent	= function(sType, bBubbles, bCancelable, sOldUrl, sNewUrl) {
+	fHashChangeEvent_init(this, fHashChangeEvent_getDictionary(sType, bBubbles, bCancelable, sOldUrl, sNewUrl));
 };

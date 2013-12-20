@@ -7,19 +7,39 @@
  *
  */
 
-var cSMILTimeEvent	= function(){};
+var cSMILTimeEvent	= function(sType) {
+	this.type	= sType;
+	// Initializer
+	if (arguments.length > 1)
+		fSMILTimeEvent_init(this, arguments[1]);
+};
 
-cSMILTimeEvent.prototype	= new cEvent;
-cSMILTimeEvent.prototype.eventInterface	= "TimeEvent";
+cSMILTimeEvent.prototype	= new cEvent('#' + "TimeEvent");
 
 cSMILTimeEvent.prototype.view	= null;
 cSMILTimeEvent.prototype.detail	= null;
 
-cSMILTimeEvent.prototype.initTimeEvent	= function(sType, oView, nDetail) {
-	this.initEvent(sType, false, false);
+function fSMILTimeEvent_getDictionary(sType, oView, nDetail) {
+	var oValue	= fEvent_getDictionary(sType, false, false);
 	//
-	this.view	= oView;
-	this.detail	= nDetail;
+	oValue.view		= oView;
+	oValue.detail	= nDetail;
+
+	return oValue;
+};
+
+function fSMILTimeEvent_init(oEvent, oValue) {
+	fEvent_init(oEvent, oValue);
+	//
+	if ("view" in oValue)
+		oEvent.view		= oValue.view;
+	if ("detail" in oValue)
+		oEvent.detail	= oValue.detail;
+};
+
+//
+cSMILTimeEvent.prototype.initTimeEvent	= function(sType, oView, nDetail) {
+	fSMILTimeEvent_init(this, fSMILTimeEvent_getDictionary(sType, oView, nDetail));
 };
 
 // Register Event Interface

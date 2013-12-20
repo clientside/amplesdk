@@ -7,9 +7,13 @@
  *
  */
 
-var cMutationEvent	= function(){};
-cMutationEvent.prototype	= new cEvent;
-cMutationEvent.prototype.eventInterface	= "MutationEvent";
+var cMutationEvent	= function(sType) {
+	this.type	= sType;
+	// Initializer
+	if (arguments.length > 1)
+		fMutationEvent_init(this, arguments[1]);
+};
+cMutationEvent.prototype	= new cEvent('#' + "MutationEvent");
 
 // nsIDOMMutationEvent
 cMutationEvent.MODIFICATION	= 1;
@@ -22,6 +26,34 @@ cMutationEvent.prototype.newValue	= null;
 cMutationEvent.prototype.attrName	= null;
 cMutationEvent.prototype.attrChange	= null;
 
+function fMutationEvent_getDictionary(sType, bBubbles, bCancelable, oRelatedNode, sOldValue, sNewValue, sAttrName, nAttrChange) {
+	var oValue	= fEvent_getDictionary(sType, bBubbles, bCancelable);
+	//
+	oValue.relatedNode	= oRelatedNode;
+	oValue.prevValue	= sOldValue;
+	oValue.newValue		= sNewValue;
+	oValue.attrName		= sAttrName;
+	oValue.attrChange	= nAttrChange;
+
+	return oValue;
+};
+
+function fMutationEvent_init(oEvent, oValue) {
+	fEvent_init(oEvent, oValue);
+	//
+	if ("relatedNode" in oValue)
+		oEvent.relatedNode	= oValue.relatedNode;
+	if ("prevValue" in oValue)
+		oEvent.prevValue	= oValue.prevValue;
+	if ("newValue" in oValue)
+		oEvent.newValue	= oValue.newValue;
+	if ("attrName" in oValue)
+		oEvent.attrName	= oValue.attrName;
+	if ("attrChange" in oValue)
+		oEvent.attrChange	= oValue.attrChange;
+};
+
+//
 cMutationEvent.prototype.initMutationEvent	= function(sType, bBubbles, bCancelable, oRelatedNode, sOldValue, sNewValue, sAttrName, nAttrChange) {
 /*
 //->Guard
@@ -32,11 +64,5 @@ cMutationEvent.prototype.initMutationEvent	= function(sType, bBubbles, bCancelab
 	]);
 //<-Guard
 */
-	this.initEvent(sType, bBubbles, bCancelable);
-
-	this.relatedNode	= oRelatedNode;
-	this.prevValue		= sOldValue;
-	this.newValue		= sNewValue;
-	this.attrName		= sAttrName;
-	this.attrChange		= nAttrChange;
+	fMutationEvent_init(this, fMutationEvent_getDictionary(sType, bBubbles, bCancelable, oRelatedNode, sOldValue, sNewValue, sAttrName, nAttrChange));
 };

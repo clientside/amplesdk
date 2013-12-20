@@ -7,9 +7,13 @@
  *
  */
 
-var cKeyboardEvent	= function(){};
-cKeyboardEvent.prototype	= new cUIEvent;
-cKeyboardEvent.prototype.eventInterface	= "KeyboardEvent";
+var cKeyboardEvent	= function(sType) {
+	this.type	= sType;
+	// Initializer
+	if (arguments.length > 1)
+		fKeyboardEvent_init(this, arguments[1]);
+};
+cKeyboardEvent.prototype	= new cUIEvent('#' + "KeyboardEvent");
 
 // Constants
 cKeyboardEvent.DOM_KEY_LOCATION_STANDARD	= 0;
@@ -25,6 +29,37 @@ cKeyboardEvent.prototype.ctrlKey	= null;
 cKeyboardEvent.prototype.metaKey	= null;
 cKeyboardEvent.prototype.shiftKey	= null;
 
+function fKeyboardEvent_getDictionary(sType, bBubbles, bCancelable, oView, sKeyIdentifier, nKeyLocation, sModifiersList) {
+	var oValue	= fUIEvent_getDictionary(sType, bBubbles, bCancelable, oView, 0);
+	//
+	oValue.ctrlKey	= sModifiersList.indexOf("Control") >-1;
+	oValue.altKey	= sModifiersList.indexOf("Alt") >-1;
+	oValue.shiftKey	= sModifiersList.indexOf("Shift") >-1;
+	oValue.metaKey	= sModifiersList.indexOf("Meta") >-1;
+
+	oValue.keyIdentifier	= sKeyIdentifier;
+	oValue.keyLocation		= nKeyLocation;
+
+	return oValue;
+};
+
+function fKeyboardEvent_init(oEvent, oValue) {
+	fUIEvent_init(oEvent, oValue);
+	//
+	if ("keyIdentifier" in oValue)
+		oEvent.keyIdentifier	= oValue.keyIdentifier;
+	if ("keyLocation" in oValue)
+		oEvent.keyLocation	= oValue.keyLocation;
+	if ("ctrlKey" in oValue)
+		oEvent.ctrlKey	= oValue.ctrlKey;
+	if ("shiftKey" in oValue)
+		oEvent.shiftKey	= oValue.shiftKey;
+	if ("altKey" in oValue)
+		oEvent.altKey	= oValue.altKey;
+	if ("metaKey" in oValue)
+		oEvent.metaKey	= oValue.metaKey;
+};
+
 // Public Methods
 cKeyboardEvent.prototype.initKeyboardEvent	= function(sType, bBubbles, bCancelable, oView, sKeyIdentifier, nKeyLocation, sModifiersList) {
 /*
@@ -36,16 +71,7 @@ cKeyboardEvent.prototype.initKeyboardEvent	= function(sType, bBubbles, bCancelab
 	]);
 //<-Guard
 */
-	this.initUIEvent(sType, bBubbles, bCancelable, oView, null);
-
-	//
-	this.ctrlKey	= sModifiersList.indexOf("Control") >-1;
-	this.altKey		= sModifiersList.indexOf("Alt") >-1;
-	this.shiftKey	= sModifiersList.indexOf("Shift") >-1;
-	this.metaKey	= sModifiersList.indexOf("Meta") >-1;
-
-	this.keyIdentifier	= sKeyIdentifier;
-	this.keyLocation	= nKeyLocation;
+	fKeyboardEvent_init(this, fKeyboardEvent_getDictionary(sType, bBubbles, bCancelable, oView, sKeyIdentifier, nKeyLocation, sModifiersList));
 };
 
 cKeyboardEvent.prototype.getModifierState	= function(sModifier) {

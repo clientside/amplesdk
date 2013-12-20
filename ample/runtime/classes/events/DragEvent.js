@@ -7,18 +7,35 @@
  *
  */
 
-var cDragEvent	= function(){};
-cDragEvent.prototype	= new cUIEvent;
-cDragEvent.prototype.eventInterface	= "DragEvent";
+var cDragEvent	= function(sType) {
+	this.type	= sType;
+	// Initializer
+	if (arguments.length > 1)
+		fDragEvent_init(this, arguments[1]);
+};
+cDragEvent.prototype	= new cUIEvent('#' + "DragEvent");
 
 // nsIDOMDragEvent
 cDragEvent.prototype.dataTransfer	= null;
 
-cDragEvent.prototype.initDragEvent	= function(sType, bBubbles, bCancelable, oView, nDetail, oDataTransfer) {
-	this.initUIEvent(sType, bBubbles, bCancelable, oView, nDetail);
-
+function fDragEvent_getDictionary(sType, bBubbles, bCancelable, oView, nDetail, oDataTransfer) {
+	var oValue	= fUIEvent_getDictionary(sType, bBubbles, bCancelable, oView, nDetail);
 	//
-	this.dataTransfer	= oDataTransfer;
+	oValue.dataTransfer	= oDataTransfer;
+
+	return oValue;
+};
+
+function fDragEvent_init(oEvent, oValue) {
+	fUIEvent_init(oEvent, oValue);
+	//
+	if ("dataTransfer" in oValue)
+		oEvent.dataTransfer	= oValue.dataTransfer;
+};
+
+//
+cDragEvent.prototype.initDragEvent	= function(sType, bBubbles, bCancelable, oView, nDetail, oDataTransfer) {
+	fDragEvent_init(this, fDragEvent_getDictionary(sType, bBubbles, bCancelable, oView, nDetail, oDataTransfer));
 };
 
 cDragEvent.prototype.getModifierState	= function(sModifier) {

@@ -7,8 +7,12 @@
  *
  */
 
-var cEvent	= function(){};
-cEvent.prototype.eventInterface	= "Event";
+var cEvent	= function(sType) {
+	this.type	= sType;
+	// Initializer
+	if (arguments.length > 1)
+		fEvent_init(this, arguments[1]);
+};
 
 cEvent.CAPTURING_PHASE	= 1;
 cEvent.AT_TARGET		= 2;
@@ -21,19 +25,38 @@ cEvent.BUBBLING_PHASE	= "BUBBLING_PHASE";
 //<-Source
 
 // nsIDOMEvent
-cEvent.prototype.bubbles		= null;	// readonly
-cEvent.prototype.cancelable		= null;	// readonly
+cEvent.prototype.bubbles		= false;	// readonly
+cEvent.prototype.cancelable		= false;	// readonly
 cEvent.prototype.currentTarget	= null;	// readonly
 cEvent.prototype.eventPhase		= null;	// readonly
 cEvent.prototype.target			= null;	// readonly
 cEvent.prototype.timeStamp		= null;	// readonly
-cEvent.prototype.type			= null;	// readonly
+cEvent.prototype.type			= '#' + "Event";	// readonly
 cEvent.prototype.namespaceURI	= null;	// readonly
 cEvent.prototype.defaultPrevented	= false;// readonly
 
 // Private Properties
 cEvent.prototype._stopped			= false;
 cEvent.prototype._stoppedImmediately= false;
+
+function fEvent_getDictionary(sType, bBubbles, bCancelable) {
+	var oValue	= {};
+	//
+	oValue.type			= sType;
+	oValue.bubbles		= bBubbles;
+	oValue.cancelable	= bCancelable;
+
+	return oValue;
+};
+
+function fEvent_init(oEvent, oValue) {
+	if ("type" in oValue)
+		oEvent.type			= oValue.type;
+	if ("bubbles" in oValue)
+		oEvent.bubbles		= oValue.bubbles;
+	if ("cancelable" in oValue)
+		oEvent.cancelable	= oValue.cancelable;
+};
 
 // Public Methods
 cEvent.prototype.initEvent		= function(sType, bBubbles, bCancelable) {
@@ -46,9 +69,7 @@ cEvent.prototype.initEvent		= function(sType, bBubbles, bCancelable) {
 	]);
 //<-Guard
 */
-	this.type		= sType;
-	this.bubbles	= bBubbles;
-	this.cancelable	= bCancelable;
+	fEvent_init(this, fEvent_getDictionary(sType, bBubbles, bCancelable));
 };
 
 cEvent.prototype.stopPropagation	= function() {

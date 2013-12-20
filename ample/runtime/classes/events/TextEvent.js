@@ -7,9 +7,13 @@
  *
  */
 
-var cTextEvent	= function(){};
-cTextEvent.prototype	= new cUIEvent;
-cTextEvent.prototype.eventInterface	= "TextEvent";
+var cTextEvent	= function(sType) {
+	this.type	= sType;
+	// Initializer
+	if (arguments.length > 1)
+		fTextEvent_init(arguments[1]);
+};
+cTextEvent.prototype	= new cUIEvent('#' + "TextEvent");
 
 // nsIDOMTextEvent
 cTextEvent.DOM_INPUT_METHOD_UNKNOWN		= 0;
@@ -27,6 +31,28 @@ cTextEvent.prototype.data	= null;
 cTextEvent.prototype.inputMethod	= null;
 cTextEvent.prototype.locale	= null;
 
+function fTextEvent_getDictionary(sType, bBubbles, bCancelable, oView, sData, nInputMethod, sLocale) {
+	var oValue	= fUIEvent_getDictionary(sType, bBubbles, bCancelable, oView, 0);
+	//
+	oValue.data		= sData;
+	oValue.inputMethod	= nInputMethod;
+	oValue.locale	= sLocale;
+
+	return oValue;
+};
+
+function fTextEvent_init(oEvent, oValue) {
+	fUIEvent_init(oEvent, oValue);
+	//
+	if ("data" in oValue)
+		oEvent.data	= oValue.data;
+	if ("inputMethod" in oValue)
+		oEvent.inputMethod	= oValue.inputMethod;
+	if ("locale" in oValue)
+		oEvent.locale	= oValue.locale;
+};
+
+//
 cTextEvent.prototype.initTextEvent	= function(sType, bBubbles, bCancelable, oView, sData, nInputMethod, sLocale) {
 /*
 //->Guard
@@ -37,9 +63,5 @@ cTextEvent.prototype.initTextEvent	= function(sType, bBubbles, bCancelable, oVie
 	]);
 //<-Guard
 */
-	this.initUIEvent(sType, bBubbles, bCancelable, oView, null);
-
-	this.data	= sData;
-	this.inputMethod	= nInputMethod;
-	this.locale	= sLocale;
+	fTextEvent_init(this, fTextEvent_getDictionary(sType, bBubbles, bCancelable, oView, sData, nInputMethod, sLocale));
 };

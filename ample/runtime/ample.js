@@ -137,7 +137,7 @@ function fAmple_extend(oTarget, oSource) {
 	if (!oSource && oTarget instanceof cFunction) {
 		var oPrototype	= oTarget.prototype;
 		if (oPrototype instanceof cEvent) {
-			var sEventInterface	= oPrototype.eventInterface;
+			var sEventInterface	= oPrototype.type.substr(1);
 			// Check if event triggering allowed
 			if (aAmple_protectedEventInterfaces.indexOf(sEventInterface) !=-1)
 				throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR

@@ -7,15 +7,33 @@
  *
  */
 
-var cFocusEvent	= function(){};
-cFocusEvent.prototype	= new cUIEvent;
-cFocusEvent.prototype.eventInterface	= "FocusEvent";
+var cFocusEvent	= function(sType) {
+	this.type	= sType;
+	// Initializer
+	if (arguments.length > 1)
+		fFocusEvent_init(this, arguments[1]);
+};
+cFocusEvent.prototype	= new cUIEvent('#' + "FocusEvent");
 
 // nsIDOMFocusEvent
 cFocusEvent.prototype.relatedTarget	= null;
 
-cFocusEvent.prototype.initFocusEvent	= function(sType, bBubbles, bCancelable, oView, nDetail, oRelatedTarget) {
-	this.initUIEvent(sType, bBubbles, bCancelable, oView, nDetail);
+function fFocusEvent_getDictionary(sType, bBubbles, bCancelable, oView, nDetail, oRelatedTarget) {
+	var oValue	= fUIEvent_getDictionary(sType, bBubbles, bCancelable, oView, nDetail);
+	//
+	oValue.relatedTarget	= oRelatedTarget;
 
-	this.relatedTarget	= oRelatedTarget;
+	return oValue;
+};
+
+function fFocusEvent_init(oEvent, oValue) {
+	fUIEvent_init(oEvent, oValue);
+	//
+	if ("relatedTarget" in oValue)
+		oEvent.relatedTarget		= oValue.relatedTarget;
+};
+
+//
+cFocusEvent.prototype.initFocusEvent	= function(sType, bBubbles, bCancelable, oView, nDetail, oRelatedTarget) {
+	fFocusEvent_init(this, fFocusEvent_getDictionary(sType, bBubbles, bCancelable, oView, nDetail, oRelatedTarget));
 };
