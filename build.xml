@@ -122,7 +122,7 @@
 				ResizeEvent.js,
 				FocusEvent.js,
 				KeyboardEvent.js,
-				TextEvent.js,
+				InputEvent.js,
 				MouseEvent.js,
 				WheelEvent.js,
 				MutationEvent.js,

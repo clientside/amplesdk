@@ -30,7 +30,7 @@ classes/events/MutationEvent.js
 classes/events/MouseEvent.js
 classes/events/WheelEvent.js
 classes/events/KeyboardEvent.js
-classes/events/TextEvent.js
+classes/events/InputEvent.js
 classes/events/HashChangeEvent.js
 # Clipboard
 classes/events/ClipboardEvent.js

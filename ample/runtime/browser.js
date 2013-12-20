@@ -232,8 +232,10 @@ function fBrowser_onKeyPress(oEvent) {
 
 	var oTarget		= oAmple.activeElement || oAmple_root,	// FF bugfix
 		oPseudo		= fBrowser_getUIEventPseudo(oEvent),
+		sData		= cString.fromCharCode(oEvent.charCode || oEvent.keyCode),
 		oEventKeyPress	= new cKeyboardEvent,
-		oEventTextInput	= new cTextEvent;
+		oEventBeforeInput	= new cInputEvent,
+		oEventInput		= new cInputEvent;
 
 	// if modal, do not dispatch event
 	if (oBrowser_captureNode && !fBrowser_isDescendant(oTarget, oBrowser_captureNode)) {
@@ -245,18 +247,24 @@ function fBrowser_onKeyPress(oEvent) {
 	oEventKeyPress.initKeyboardEvent("keypress", true, true, window, null, fBrowser_getKeyboardEventIdentifier(oEvent), null, fBrowser_getKeyboardEventModifiersList(oEvent), false);
 	oEventKeyPress.$pseudoTarget	= oPseudo;
 
-	// Init TextInput event
-	oEventTextInput.initTextEvent("textinput", true, true, window, cString.fromCharCode(oEvent.charCode || oEvent.keyCode), 1 /* TextEvent.DOM_INPUT_METHOD_KEYBOARD */, '');
-	oEventTextInput.$pseudoTarget	= oPseudo;
-
 	if (!oBrowser_modalNode || fBrowser_isDescendant(oTarget, oBrowser_modalNode)) {
+		// Init BeforeInput event
+		oEventInput.initInputEvent("beforeinput", true, true, sData);
+		oEventInput.$pseudoTarget	= oPseudo;
+		//
+		fEventTarget_dispatchEvent(oTarget, oEventBeforeInput);
 		//
 		fEventTarget_dispatchEvent(oTarget, oEventKeyPress);
 		//
-		fEventTarget_dispatchEvent(oTarget, oEventTextInput);
-		//
-		if (oEventTextInput.defaultPrevented)
+		if (oEventBeforeInput.defaultPrevented)
 			oEventKeyPress.preventDefault();
+		else {
+			// Init Input event
+			oEventInput.initInputEvent("input", true, false, sData);
+			oEventInput.$pseudoTarget	= oPseudo;
+			//
+			fEventTarget_dispatchEvent(oTarget, oEventInput);
+		}
 	}
 
 	//

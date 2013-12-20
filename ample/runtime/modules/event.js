@@ -25,8 +25,8 @@ var aQuery_protectedEvents	= [
 	,"mouseenter", "mousewheel"
 	,"touchstart", "touchmove", "touchend", "touchcancel"
 	,"gesturestart", "gesturechange", "gestureend"
-	// TextEvent
-	,"textinput"
+	// InputEvent
+	,"beforeinput", "input"
 	// Legacy events
 	,"contextmenu", "dblclick", "keypress"
 	// MutationEvent

@@ -48,7 +48,7 @@ fExporter_export(cEventTarget,		"EventTarget");
 fExporter_export(cEvent,			"Event");
 fExporter_export(cCustomEvent,		"CustomEvent");
 fExporter_export(cUIEvent,			"UIEvent");
-fExporter_export(cTextEvent,		"TextEvent");
+fExporter_export(cInputEvent,		"InputEvent");
 fExporter_export(cKeyboardEvent,	"KeyboardEvent");
 fExporter_export(cMouseEvent,		"MouseEvent");
 fExporter_export(cWheelEvent,		"WheelEvent");

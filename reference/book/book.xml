@@ -37,7 +37,7 @@
 					<node title="MouseEvent" url="dom/events/MouseEvent.xml"/>
 					<node title="WheelEvent" url="dom/events/WheelEvent.xml"/>
 					<node title="KeyboardEvent" url="dom/events/KeyboardEvent.xml"/>
-					<node title="TextEvent" url="dom/events/TextEvent.xml"/>
+					<node title="InputEvent" url="dom/events/InputEvent.xml"/>
 					<node title="MutationEvent" url="dom/events/MutationEvent.xml"/>
 					<node title="ResizeEvent" url="dom/events/ResizeEvent.xml"/>
 					<node title="DragEvent" url="dom/events/DragEvent.xml"/>

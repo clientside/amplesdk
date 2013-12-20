@@ -1095,17 +1095,24 @@
 			<event name="keypress" type="dom:events:KeyboardEvent" cancelable="true" bubbles="true">
 				<description>
 					<locale>
-						It is recommended that you use <link type="event" href="reference://dom/core/Element">textInput</link> event instead.
+						It is recommended that you use <link type="event" href="reference://dom/core/Element">input</link> event instead.
 					</locale>
 					<locale xml:lang="ru">
 						Загорается, когда происходит нажатие клавиши клавиатуры.
 					</locale>
 				</description>
 			</event>
-			<event name="textinput" type="dom:events:TextEvent" cancelable="true" bubbles="true">
+			<event name="beforeinput" type="dom:events:InputEvent" cancelable="true" bubbles="true">
 				<description>
 					<locale>
-						User typed in a character.
+						User typed in a character. Dispatches before DOM updated.
+					</locale>
+				</description>
+			</event>
+			<event name="input" type="dom:events:InputEvent" cancelable="false" bubbles="true">
+				<description>
+					<locale>
+						User typed in a character. Dispatches after DOM updated.
 					</locale>
 				</description>
 			</event>

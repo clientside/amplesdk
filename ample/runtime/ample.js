@@ -127,7 +127,7 @@ oAmple.readyState	= "loading";
 
 var aAmple_protectedEventInterfaces	= [
 	"Event", "CustomEvent", "MutationEvent",
-	"UIEvent", "MouseEvent", "KeyboardEvent", "FocusEvent", "WheelEvent", "TextEvent",
+	"UIEvent", "MouseEvent", "KeyboardEvent", "FocusEvent", "WheelEvent", "InputEvent",
 	"DragEvent", "ResizeEvent",
 	"ClipboardEvent",
 	"GestureEvent", "TouchEvent"
