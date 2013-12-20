@@ -24,7 +24,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="canBubble" type="Boolean" required="true">
+					<argument name="bubbles" type="Boolean" required="true">
 						<description>
 							<locale>
 								Indicates whether an event can bubble. If true, the event can bubble; otherwise, it cannot.

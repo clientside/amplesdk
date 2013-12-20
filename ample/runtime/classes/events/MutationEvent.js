@@ -58,7 +58,7 @@ cMutationEvent.prototype.initMutationEvent	= function(sType, bBubbles, bCancelab
 //->Guard
 	fGuard(arguments, [
 		["type",		cString],
-		["canBubble",	cBoolean],
+		["bubbles",		cBoolean],
 		["cancelable",	cBoolean]
 	]);
 //<-Guard

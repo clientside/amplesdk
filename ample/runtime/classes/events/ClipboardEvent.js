@@ -19,7 +19,7 @@ cClipboardEvent.prototype.initClipboardEvent	= function(sType, bBubbles, bCancel
 //->Guard
 	fGuard(arguments, [
 		["type",		cString],
-		["canBubble",	cBoolean],
+		["bubbles",	cBoolean],
 		["cancelable",	cBoolean],
 		["dataType",	cString],
 		["data",		cObject,	false,	true]

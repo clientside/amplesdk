@@ -37,7 +37,7 @@ cCustomEvent.prototype.initCustomEvent	= function(sType, bBubbles, bCancelable, 
 //->Guard
 	fGuard(arguments, [
 		["type",		cString],
-		["canBubble",	cBoolean],
+		["bubbles",		cBoolean],
 		["cancelable",	cBoolean],
 		["detail",		cObject,	false, true]
 	]);

@@ -62,7 +62,7 @@ cEvent.prototype.initEvent		= function(sType, bBubbles, bCancelable) {
 //->Guard
 	fGuard(arguments, [
 		["type",		cString],
-		["canBubble",	cBoolean],
+		["bubbles",		cBoolean],
 		["cancelable",	cBoolean]
 	]);
 //<-Guard

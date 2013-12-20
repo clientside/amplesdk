@@ -45,7 +45,7 @@ cUIEvent.prototype.initUIEvent	= function(sType, bBubbles, bCancelable, oView, n
 //->Guard
 	fGuard(arguments, [
 		["type",		cString],
-		["canBubble",	cBoolean],
+		["bubbles",		cBoolean],
 		["cancelable",	cBoolean]
 	]);
 //<-Guard

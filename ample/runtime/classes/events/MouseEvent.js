@@ -74,7 +74,7 @@ cMouseEvent.prototype.initMouseEvent	= function(sType, bBubbles, bCancelable, oV
 //->Guard
 	fGuard(arguments, [
 		["type",		cString],
-		["canBubble",	cBoolean],
+		["bubbles",		cBoolean],
 		["cancelable",	cBoolean]
 	]);
 //<-Guard

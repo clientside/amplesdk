@@ -37,7 +37,7 @@ cInputEvent.prototype.initInputEvent	= function(sType, bBubbles, bCancelable, sD
 //->Guard
 	fGuard(arguments, [
 		["type",		cString],
-		["canBubble",	cBoolean],
+		["bubbles",		cBoolean],
 		["cancelable",	cBoolean]
 	]);
 //<-Guard

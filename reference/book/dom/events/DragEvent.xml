@@ -24,7 +24,7 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="canBubble" type="Boolean" required="true">
+					<argument name="bubbles" type="Boolean" required="true">
 						<description>
 							<locale xml:lang="ru">
 								Указывает, может ли событие распространяться в фазе "bubbling".

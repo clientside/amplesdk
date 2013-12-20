@@ -70,7 +70,7 @@ cKeyboardEvent.prototype.initKeyboardEvent	= function(sType, bBubbles, bCancelab
 //->Guard
 	fGuard(arguments, [
 		["type",		cString],
-		["canBubble",	cBoolean],
+		["bubbles",		cBoolean],
 		["cancelable",	cBoolean]
 	]);
 //<-Guard
