@@ -11,11 +11,13 @@ var cEvent	= function(sType) {
 	fEvent_init(this, sType, arguments[1]);
 };
 
+cEvent.NONE				= 0;
 cEvent.CAPTURING_PHASE	= 1;
 cEvent.AT_TARGET		= 2;
 cEvent.BUBBLING_PHASE	= 3;
 
 //->Source
+cEvent.NONE				= "NONE";
 cEvent.CAPTURING_PHASE	= "CAPTURING_PHASE";
 cEvent.AT_TARGET		= "AT_TARGET";
 cEvent.BUBBLING_PHASE	= "BUBBLING_PHASE";
@@ -25,7 +27,7 @@ cEvent.BUBBLING_PHASE	= "BUBBLING_PHASE";
 cEvent.prototype.bubbles		= false;	// readonly
 cEvent.prototype.cancelable		= false;	// readonly
 cEvent.prototype.currentTarget	= null;	// readonly
-cEvent.prototype.eventPhase		= null;	// readonly
+cEvent.prototype.eventPhase		= 0 /* cEvent.NONE */;	// readonly
 cEvent.prototype.target			= null;	// readonly
 cEvent.prototype.timeStamp		= null;	// readonly
 cEvent.prototype.type			= '#' + "Event";	// readonly

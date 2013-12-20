@@ -181,6 +181,13 @@
 			</property>
 		</properties>
 		<constants>
+			<constant name="NONE" value="0">
+				<description>
+					<locale>
+						The current event is not being dispatched.
+					</locale>
+				</description>
+			</constant>
 			<constant name="CAPTURING_PHASE" value="1">
 				<description>
 					<locale>
