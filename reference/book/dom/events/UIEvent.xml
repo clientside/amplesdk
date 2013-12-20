@@ -76,7 +76,7 @@
 			</method>
 		</methods>
 		<properties>
-			<property name="detail" type="Number">
+			<property name="detail" type="Number" readonly="true">
 				<description>
 					<locale>
 						Specifies some detail information about the Event, depending on the type of event.
@@ -86,7 +86,7 @@
 					</locale>
 				</description>
 			</property>
-			<property name="view" type="Object">
+			<property name="view" type="Object" readonly="true">
 				<description>
 					<locale>
 						The view attribute identifies the AbstractView from which the event was generated.
@@ -96,7 +96,7 @@
 					</locale>
 				</description>
 			</property>
-			<property name="$pseudoTarget" type="HTMLElement">
+			<property name="$pseudoTarget" type="HTMLElement" readonly="true">
 				<description>
 					<locale>
 						Keeps the reference to pseudo element where event originated.

@@ -86,7 +86,7 @@
 			</method>
 		</methods>
 		<properties>
-			<property name="dataTransfer" type="dom:core:DataTransfer">
+			<property name="dataTransfer" type="dom:core:DataTransfer" readonly="true">
 				<description>
 					<locale>
 						Keeps a reference to <link type="class" href="reference://dom/core/DataTransfer">DataTransfer</link> object, associated with this object.

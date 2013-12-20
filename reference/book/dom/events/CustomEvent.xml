@@ -66,7 +66,7 @@
 			</method>
 		</methods>
 		<properties>
-			<property name="detail" type="Object">
+			<property name="detail" type="Object" readonly="true">
 				<description>
 					<locale>
 						Specifies some detail information about the Event.
