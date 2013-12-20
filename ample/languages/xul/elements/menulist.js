@@ -106,7 +106,7 @@ cXULElement_menulist.handlers	= {
 	"keydown":	function(oEvent) {
 		if (!this.menupopup)
 			return;
-		switch (oEvent.keyIdentifier) {
+		switch (oEvent.key) {
 			case "Up":
 				if (this.menupopup.getAttribute("hidden") == "true")
 					this.toggle(true);
@@ -166,7 +166,7 @@ cXULElement_menulist.handlers	= {
 		}
 	},
 	"keyup":	function(oEvent) {
-		switch (oEvent.keyIdentifier) {
+		switch (oEvent.key) {
 			case "U+001B":	// Esc
 			case "Enter":
 			case "U+0009":	// Tab

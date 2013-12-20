@@ -95,7 +95,7 @@ cXULElement_datepicker.handlers	= {
 		if (!this.$isAccessible())
 			return;
 
-		if (oEvent.keyIdentifier == "U+001B")	// Esc
+		if (oEvent.key == "U+001B")	// Esc
 			this.toggle(false);
 	},
 	// focus

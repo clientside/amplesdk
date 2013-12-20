@@ -207,7 +207,7 @@ function fBrowser_onKeyDown(oEvent) {
 	}
 
 	// Init KeyDown event
-	oEventKeyDown.initKeyboardEvent("keydown", true, true, window, fBrowser_getKeyboardEventIdentifier(oEvent), null, fBrowser_getKeyboardEventModifiersList(oEvent));
+	oEventKeyDown.initKeyboardEvent("keydown", true, true, window, null, fBrowser_getKeyboardEventIdentifier(oEvent), null, fBrowser_getKeyboardEventModifiersList(oEvent), false);
 	oEventKeyDown.$pseudoTarget	= oPseudo;
 
 	// do not dispatch event if outside modal
@@ -242,7 +242,7 @@ function fBrowser_onKeyPress(oEvent) {
 	}
 
 	// Init KeyPress event
-	oEventKeyPress.initKeyboardEvent("keypress", true, true, window, fBrowser_getKeyboardEventIdentifier(oEvent), null, fBrowser_getKeyboardEventModifiersList(oEvent));
+	oEventKeyPress.initKeyboardEvent("keypress", true, true, window, null, fBrowser_getKeyboardEventIdentifier(oEvent), null, fBrowser_getKeyboardEventModifiersList(oEvent), false);
 	oEventKeyPress.$pseudoTarget	= oPseudo;
 
 	// Init TextInput event
@@ -275,7 +275,7 @@ function fBrowser_onKeyUp(oEvent) {
 	}
 
 	// Init KeyUp event
-	oEventKeyUp.initKeyboardEvent("keyup", true, true, window, fBrowser_getKeyboardEventIdentifier(oEvent), null, fBrowser_getKeyboardEventModifiersList(oEvent));
+	oEventKeyUp.initKeyboardEvent("keyup", true, true, window, null, fBrowser_getKeyboardEventIdentifier(oEvent), null, fBrowser_getKeyboardEventModifiersList(oEvent), false);
 	oEventKeyUp.$pseudoTarget	= oPseudo;
 
 	// do not dispatch event if outside modal

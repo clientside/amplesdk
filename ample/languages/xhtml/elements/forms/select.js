@@ -47,7 +47,7 @@ cXHTMLElement_select.handlers	= {
 			cXHTMLElement_select.toggle(this);
 	},
 	"keydown":	function(oEvent) {
-		if (oEvent.keyIdentifier == "Up") {
+		if (oEvent.key == "Up") {
 			// Deselect previously selected item
 			if (this.selectedIndex !=-1)
 				this.options[this.selectedIndex].removeAttribute("selected");
@@ -66,7 +66,7 @@ cXHTMLElement_select.handlers	= {
 			oEvent.preventDefault();
 		}
 		else
-		if (oEvent.keyIdentifier == "Down") {
+		if (oEvent.key == "Down") {
 			// Deselect previously selected item
 			if (this.selectedIndex !=-1)
 				this.options[this.selectedIndex].removeAttribute("selected");

@@ -176,10 +176,10 @@ function fFocusManager_onKeyDown(oEvent) {
 		return;
 
 	// Prevent system tab combinations handling
-	if (oEvent.keyIdentifier == "U+0009" && (oEvent.altKey || oEvent.ctrlKey))
+	if (oEvent.key == "U+0009" && (oEvent.altKey || oEvent.ctrlKey))
 		return;
 
-	if (oEvent.keyIdentifier == "U+0009") {
+	if (oEvent.key == "U+0009") {
 		var oFocusGroup	= null,
 			nTabIndexCurrent	= 0;
 

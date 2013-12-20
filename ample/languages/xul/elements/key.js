@@ -28,14 +28,14 @@ cXULElement_key._handleKeyDown	= function(oEvent, oElement) {
 
 	// filter out by key
 	if (oElement.hasAttribute("key")) {
-		var sIdentifier	= oEvent.keyIdentifier,
+		var sIdentifier	= oEvent.key,
 			sKey	= oElement.getAttribute("key");
 		if (sIdentifier.match(/^U\+(\d+)/)) {
 			if (String.fromCharCode(parseInt(RegExp.$1, 16)).toLowerCase() != sKey.toLowerCase())
 				return;
 		}
 		else
-		if (oEvent.keyIdentifier != sKey)
+		if (sIdentifier != sKey)
 			return;
 	}
 

@@ -80,7 +80,7 @@ cXULElement_tabs.prototype.removeItemAt	= function(nIndex) {
 // Class events handlers
 cXULElement_tabs.handlers	= {
 	"keydown":	function(oEvent) {
-		switch (oEvent.keyIdentifier) {
+		switch (oEvent.key) {
 			case "Left":
 				var oTabBox	= this.parentNode;
 				if (oTabBox.selectedTab && oTabBox.selectedTab.previousSibling)

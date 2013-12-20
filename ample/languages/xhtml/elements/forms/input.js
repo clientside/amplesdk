@@ -231,7 +231,7 @@ cXHTMLElement_input.handlers	= {
 	"keydown":	function(oEvent) {
 		// Handle spin buttons
 		if (oEvent.target == this) {
-			var sKey	= oEvent.keyIdentifier;
+			var sKey	= oEvent.key;
 			switch (this.getAttribute("type")) {
 				case "range":
 					if (sKey == "Right") {

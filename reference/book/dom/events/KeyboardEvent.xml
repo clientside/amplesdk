@@ -51,14 +51,24 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="keyIdentifier" type="String" required="true">
+					<argument name="detail" type="Number" required="true">
+						<description>
+							<locale>
+								Specifies detail.
+							</locale>
+							<locale xml:lang="ru">
+								Указывает дополнительное значение, ассоциированииое с данным событием.
+							</locale>
+						</description>
+					</argument>
+					<argument name="key" type="String" required="true">
 						<description>
 							<locale>
 								Specifies key identifier.
 							</locale>
 						</description>
 					</argument>
-					<argument name="keyLocaltion" type="Number" required="true">
+					<argument name="location" type="Number" required="true">
 						<description>
 							<locale>
 								Specifies key location.
@@ -69,6 +79,13 @@
 						<description>
 							<locale>
 								Specifies list of modifiers.
+							</locale>
+						</description>
+					</argument>
+					<argument name="repeat" type="Boolean" required="true">
+						<description>
+							<locale>
+								Specifies whether the key event is repeating.
 							</locale>
 						</description>
 					</argument>
@@ -101,14 +118,14 @@
 		</methods>
 		<attributes />
 		<properties>
-			<property name="keyIdentifier" type="String" readonly="true">
+			<property name="key" type="String" readonly="true">
 				<description>
 					<locale>
 						Holds the identifier of the key.
 					</locale>
 				</description>
 			</property>
-			<property name="keyLocation" type="Number" readonly="true">
+			<property name="location" type="Number" readonly="true">
 				<description>
 					<locale>
 						Contains an indication of the location of they key on the device.
@@ -152,6 +169,13 @@
 					</locale>
 					<locale xml:lang="ru">
 						Указывает, была ли нажата клавиша ALT в момент возникновения события. На некоторых платформах эта клавиша может быть ассоциирована с другим названием.
+					</locale>
+				</description>
+			</property>
+			<property name="repeat" type="Boolean" readonly="true">
+				<description>
+					<locale>
+						Specifies whether the key event is repeating.
 					</locale>
 				</description>
 			</property>

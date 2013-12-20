@@ -47,8 +47,8 @@ cXULElement_textbox.handlers	= {
 	},
 	"keydown":	function(oEvent) {
 		if (this.getAttribute("type") == "number") {
-			if (oEvent.keyIdentifier == "Up" || oEvent.keyIdentifier == "Down")
-				this.spinButtons.spin(oEvent.keyIdentifier == "Up");
+			if (oEvent.key == "Up" || oEvent.key == "Down")
+				this.spinButtons.spin(oEvent.key == "Up");
 		}
 	},
 	"keyup":	function(oEvent) {

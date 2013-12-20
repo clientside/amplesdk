@@ -208,7 +208,7 @@ cXULWindowElement.oncapture	= function(oEvent) {
 
 cXULWindowElement.onkeydown	= function(oEvent) {
 	if (oEvent.target == oEvent.currentTarget)
-		if (oEvent.keyIdentifier == "U+001B")	// Esc
+		if (oEvent.key == "U+001B")	// Esc
 			oEvent.target.hide();
 };
 

@@ -24,7 +24,7 @@ cXULElement_listbox.prototype.body	= null; // Reference to oXULElement_listitems
 cXULElement_listbox.handlers	= {
 	"keydown":	function(oEvent) {
 		if (this.currentItem) {
-			if (oEvent.keyIdentifier == "Up") {
+			if (oEvent.key == "Up") {
 				// Key: Up
 				var nIndex	= this.selectedItems[this.selectedItems.length-1].$getContainer().rowIndex;
 				if (nIndex > 0) {
@@ -49,7 +49,7 @@ cXULElement_listbox.handlers	= {
 				oEvent.preventDefault();
 			}
 			else
-			if (oEvent.keyIdentifier == "Down") {
+			if (oEvent.key == "Down") {
 				// Key: Down
 				var nIndex	= this.selectedItems[this.selectedItems.length-1].$getContainer().rowIndex;
 				if (nIndex < this.items.length-1) {

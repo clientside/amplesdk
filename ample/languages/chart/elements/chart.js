@@ -32,9 +32,9 @@ cChartElement_chart.handlers	= {
 		oEvent.preventDefault();
 	},
 	'keydown':	function(oEvent) {
-		var sKeyIdentifier	= oEvent.keyIdentifier;
-		if (sKeyIdentifier == "Left" || sKeyIdentifier == "Right") {
-			var nOffset	=(sKeyIdentifier == "Left" ? -1 : 1) * (this.to - this.from) / 100;
+		var sKey	= oEvent.key;
+		if (sKey == "Left" || sKey == "Right") {
+			var nOffset	=(sKey == "Left" ? -1 : 1) * (this.to - this.from) / 100;
 			if (this.from + nOffset >= 0)
 				this.from	+= nOffset;
 			else

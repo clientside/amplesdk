@@ -43,7 +43,7 @@ cXULElement_tree.prototype.ensureRowIsVisible	= function(nIndex) {
 cXULElement_tree.handlers	= {
 	"keydown":	function(oEvent) {
 		if (this.currentItem) {
-			if (oEvent.keyIdentifier == "Up") {
+			if (oEvent.key == "Up") {
 				// Key: Up
 				var nIndex	= this.selectedItems[this.selectedItems.length-1].$getContainer().rowIndex;
 
@@ -70,7 +70,7 @@ cXULElement_tree.handlers	= {
 				oEvent.preventDefault();
 			}
 			else
-			if (oEvent.keyIdentifier == "Down") {
+			if (oEvent.key == "Down") {
 				// Key: Down
 				var nIndex	= this.selectedItems[this.selectedItems.length-1].$getContainer().rowIndex;
 
@@ -97,7 +97,7 @@ cXULElement_tree.handlers	= {
 				oEvent.preventDefault();
 			}
 			else
-			if (oEvent.keyIdentifier == "Right") {
+			if (oEvent.key == "Right") {
 				// Key: Right
 				if (this.currentItem.children) {
 					if (this.currentItem.getAttribute("open") == "true")
@@ -110,7 +110,7 @@ cXULElement_tree.handlers	= {
 				oEvent.preventDefault();
 			}
 			else
-			if (oEvent.keyIdentifier == "Left") {
+			if (oEvent.key == "Left") {
 				// Key: Left
 				if (this.currentItem.children && this.currentItem.getAttribute("open") == "true")
 					this.currentItem.setAttribute("open", "false");
@@ -122,7 +122,7 @@ cXULElement_tree.handlers	= {
 				oEvent.preventDefault();
 			}
 			else
-			if (oEvent.keyIdentifier == "Enter") {
+			if (oEvent.key == "Enter") {
 				// Key: Enter
 				if (this.currentItem.children)
 					this.currentItem.setAttribute("open", this.currentItem.getAttribute("open") == "true" ? "false" : "true");
@@ -138,7 +138,7 @@ cXULElement_tree.handlers	= {
 	},
 	"DOMNodeInserted":	function(oEvent) {
 		if (oEvent.target.parentNode == this) {
-	 		if (oEvent.target instanceof cXULElement_treebody)
+			if (oEvent.target instanceof cXULElement_treebody)
 				this.body	= oEvent.target;
 			else
 			if (oEvent.target instanceof cXULElement_treecols)

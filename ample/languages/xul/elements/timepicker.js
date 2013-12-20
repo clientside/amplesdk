@@ -80,17 +80,17 @@ cXULElement_timepicker.handlers	= {
 		oInput.blur();
 	},
 	"keydown":	function(oEvent) {
-		if (oEvent.keyIdentifier == "Up") {
+		if (oEvent.key == "Up") {
 			this.spinButtons.spin(true);
 			oEvent.preventDefault();
 		}
 		else
-		if (oEvent.keyIdentifier == "Down") {
+		if (oEvent.key == "Down") {
 			this.spinButtons.spin(false);
 			oEvent.preventDefault();
 		}
 		else
-		if (oEvent.keyIdentifier == "Left") {
+		if (oEvent.key == "Left") {
 			switch (cXULElement_timepicker.getEditComponent(this)) {
 				case "s":
 					cXULElement_timepicker.setEditComponent(this, 'm');
@@ -102,7 +102,7 @@ cXULElement_timepicker.handlers	= {
 			oEvent.preventDefault();
 		}
 		else
-		if (oEvent.keyIdentifier == "Right") {
+		if (oEvent.key == "Right") {
 			switch (cXULElement_timepicker.getEditComponent(this)) {
 				case "m":
 					cXULElement_timepicker.setEditComponent(this, 's');

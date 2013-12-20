@@ -23,7 +23,7 @@ cXULElement_button.handlers	= {
 		this.$getContainer().blur();
 	},
 	"keydown":	function(oEvent) {
-		if (oEvent.keyIdentifier == "Enter" || oEvent.keyIdentifier == "U+0020")
+		if (oEvent.key == "Enter" || oEvent.key == "U+0020")
 			this.$activate();
 	},
 	"click":	function(oEvent) {

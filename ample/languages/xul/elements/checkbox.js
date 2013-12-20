@@ -17,7 +17,7 @@ cXULElement_checkbox.prototype.$hoverable	= true;
 // Class Events handlers
 cXULElement_checkbox.handlers	= {
 	"keydown":	function(oEvent) {
-		if (oEvent.keyIdentifier == "U+0020") {
+		if (oEvent.key == "U+0020") {
 			this.$activate();
 			cXULInputElement.dispatchChange(this);
 		}
