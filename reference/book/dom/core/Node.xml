@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<class name="Node">
+<class name="Node" extends="dom:events:EventTarget">
 	<abstract>
 		<locale>
 			The Node object is the primary datatype for the entire Ample Document Object Model.
@@ -231,113 +231,6 @@
 					</locale>
 					<locale xml:lang="ru">
 						Приводит все текстовые узлы, являющиеся потомками, включая <link type="class" href="reference://dom/core/Attr">Attr</link>, к "нормальной" форме.
-					</locale>
-				</description>
-			</method>
-			<!-- DOM Level 2 -->
-			<method name="dispatchEvent" type="Boolean">
-				<arguments>
-					<argument name="event" type="dom:events:Event" required="true">
-						<description>
-							<locale>
-								The event to be dispatched.
-							</locale>
-							<locale xml:lang="ru">
-								Событие для передачи.
-							</locale>
-						</description>
-					</argument>
-				</arguments>
-				<description>
-					<locale>
-						This method allows the dispatch of events into the implementation's event model. Return value indicates whether any of the listeners which handled the event called preventDefault method on Event object.
-					</locale>
-					<locale xml:lang="ru">
-						Этот метод позволяет отправить событие в реализацию модели событий. Возвращаемое значение указывает, вызвал ли один из обработчиков события метод preventDefault объекта <link type="class" href="reference://dom/events/Event">Event</link>.
-					</locale>
-				</description>
-			</method>
-			<method name="addEventListener" type="Void">
-				<arguments>
-					<argument name="type" type="String" required="true">
-						<description>
-							<locale>
-								Specifies the Event.type associated with the event for which the user is registering.
-							</locale>
-							<locale xml:lang="ru">
-								Тип события (Event.type), для которого регистрируется обработчик.
-							</locale>
-						</description>
-					</argument>
-					<argument name="listener" type="Function" required="true">
-						<description>
-							<locale>
-								Function to be called when the event occurs.
-							</locale>
-							<locale xml:lang="ru">
-								Функция, которая должна быть вызвана, если произойдет событие.
-							</locale>
-						</description>
-					</argument>
-					<argument name="useCapture" type="Boolean" required="true">
-						<description>
-							<locale>
-								If true, user wishes to add the event listener for the capture phase only, if false - for target and bubbling phases.
-							</locale>
-							<locale xml:lang="ru">
-								Если true, обработчик добавляется только для фазы "capture", с противном случае - для фаз "target" и "bubbling".
-							</locale>
-						</description>
-					</argument>
-				</arguments>
-				<description>
-					<locale>
-						This method allows the registration of an event listener in the default group and, depending on the useCapture parameter, on the capture phase of the DOM event flow or its target and bubbling phases.
-					</locale>
-					<locale xml:lang="ru">
-						Этот метод позволяет зарегистрировать обработчик события.
-					</locale>
-				</description>
-			</method>
-			<method name="removeEventListener" type="Void">
-				<arguments>
-					<argument name="type" type="String" required="true">
-						<description>
-							<locale>
-								Specifies the Event.type for which the user registered the event listener.
-							</locale>
-							<locale xml:lang="ru">
-								Тип события (Event.type), для которого был зарегистрирован обработчик.
-							</locale>
-						</description>
-					</argument>
-					<argument name="listener" type="Function" required="true">
-						<description>
-							<locale>
-								Listener to be removed.
-							</locale>
-							<locale xml:lang="ru">
-								Обработчик, который следует удалить.
-							</locale>
-						</description>
-					</argument>
-					<argument name="useCapture" type="Boolean" required="true">
-						<description>
-							<locale>
-								Specifies whether the EventListener being removed was registered for the capture phase or not.
-							</locale>
-							<locale xml:lang="ru">
-								Указывает на то, был ли обработчик зарегистрирован для фазы "capture" или нет.
-							</locale>
-						</description>
-					</argument>
-				</arguments>
-				<description>
-					<locale>
-						This method allows the removal of event listeners from the default group.
-					</locale>
-					<locale xml:lang="ru">
-						Этот метод позволяет удалить обработчик события.
 					</locale>
 				</description>
 			</method>

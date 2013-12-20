@@ -31,6 +31,7 @@
 				</node>
 				<node title="DOM Events">
 					<node title="Event" url="dom/events/Event.xml"/>
+					<node title="EventTarget" url="dom/events/EventTarget.xml"/>
 					<node title="CustomEvent" url="dom/events/CustomEvent.xml"/>
 					<node title="UIEvent" url="dom/events/UIEvent.xml"/>
 					<node title="FocusEvent" url="dom/events/FocusEvent.xml"/>
