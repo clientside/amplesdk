@@ -252,14 +252,3 @@ cEventTarget.prototype.dispatchEvent	= function(oEvent) {
 
 	return fEventTarget_dispatchEvent(this, oEvent);
 };
-
-cEventTarget.prototype.canDispatch	= function(sNameSpaceURI, sType) {
-//->Guard
-	fGuard(arguments, [
-		["namespaceURI",	cString, false, true],
-		["type",			cString]
-	]);
-//<-Guard
-
-	return true;
-};

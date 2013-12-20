@@ -342,38 +342,6 @@
 				</description>
 			</method>
 			<!-- DOM Level 3 -->
-			<method name="canDispatch" type="Void">
-				<arguments>
-					<argument name="namespaceURI" type="String" required="true">
-						<description>
-							<locale>
-								NamespaceURI of the event to be tested.
-							</locale>
-							<locale xml:lang="ru">
-								URI пространства имен события.
-							</locale>
-						</description>
-					</argument>
-					<argument name="type" type="String" required="true">
-						<description>
-							<locale>
-								Event type.
-							</locale>
-							<locale xml:lang="ru">
-								Тип события (Event.type).
-							</locale>
-						</description>
-					</argument>
-				</arguments>
-				<description>
-					<locale>
-						Tests wether event of the specified namespace and type can be dispatched.
-					</locale>
-					<locale xml:lang="ru">
-						Проверяет, может ли событие с заданными типом и пространством имен быть отправлено в реализацию.
-					</locale>
-				</description>
-			</method>
 			<method name="compareDocumentPosition" type="Number">
 				<arguments>
 					<argument name="node" type="dom:core:Node">
