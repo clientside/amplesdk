@@ -239,6 +239,9 @@ cEventTarget.prototype.removeEventListener	= function(sType, fHandler, bUseCaptu
 function fEventTarget_dispatchEvent(oTarget, oEvent) {
 	// Start event flow
 	fEventTarget_routeEvent(oTarget, oEvent);
+	// Release event
+	oEvent.currentTarget	= null;
+	oEvent.eventPhase		= 0 /* cEvent.NONE */;
 
 	return !oEvent.defaultPrevented;
 };
@@ -249,6 +252,9 @@ cEventTarget.prototype.dispatchEvent	= function(oEvent) {
 		["event",	cEvent]
 	], this);
 //<-Guard
+	//
+	if (oEvent.eventPhase != 0)
+		throw new cDOMException(cDOMException.INVALID_STATE_ERR);
 
 	return fEventTarget_dispatchEvent(this, oEvent);
 };
