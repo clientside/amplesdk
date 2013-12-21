@@ -249,8 +249,7 @@ function fBrowser_onKeyPress(oEvent) {
 
 	if (!oBrowser_modalNode || fBrowser_isDescendant(oTarget, oBrowser_modalNode)) {
 		// Init BeforeInput event
-		oEventInput.initInputEvent("beforeinput", true, true, sData);
-		oEventInput.$pseudoTarget	= oPseudo;
+		oEventBeforeInput.initInputEvent("beforeinput", true, true, sData);
 		//
 		fEventTarget_dispatchEvent(oTarget, oEventBeforeInput);
 		//
@@ -261,7 +260,6 @@ function fBrowser_onKeyPress(oEvent) {
 		else {
 			// Init Input event
 			oEventInput.initInputEvent("input", true, false, sData);
-			oEventInput.$pseudoTarget	= oPseudo;
 			//
 			fEventTarget_dispatchEvent(oTarget, oEventInput);
 		}
