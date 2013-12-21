@@ -56,4 +56,15 @@
 			</method>
 		</methods>
 	</members>
+	<remarks>
+		<remark>
+			<locale>Events of that type:</locale>
+			<locale xml:lang="ru">События этого типа:</locale>
+			<ul>
+				<li><link type="event" href="reference://markup/smil/SMILTimingElement">begin</link></li>
+				<li><link type="event" href="reference://markup/smil/SMILTimingElement">end</link></li>
+				<li><link type="event" href="reference://markup/smil/SMILTimingElement">repeat</link></li>
+			</ul>
+		</remark>
+	</remarks>
 </class>
