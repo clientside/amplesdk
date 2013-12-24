@@ -848,27 +848,6 @@ cElement.prototype.$getContainer	= function(sName) {
 	}
 };
 */
-/*
-function fElement_setPseudoClass(oElement, sName, bValue, sContainer) {
-	var oElementDOM	= oElement.$getContainer(sContainer);
-	oElementDOM.className	= oElementDOM.className.replace(/(\w+-[a-z\-]+)?_(\w+)?/ig, '$1_' + (bValue ? sName : ''));
-};
-*/
-/*
-function fElement_addClass(oElement, sClass) {
-	if (!fElement_hasClass(oElement, sClass))
-		oElement.className += ' ' + sClass;
-};
-
-function fElement_hasClass(oElement, sClass) {
-	return oElement.className.match(fElement_getRegExp(sClass));
-};
-
-function fElement_removeClass(oElement, sClass) {
-	if (fElement_hasClass(oElement, sClass))
-		oElement.className	= oElement.className.replace(fElement_getRegExp(sClass), ' ');
-};
-*/
 
 var oElement_cache	= {};
 function fElement_getRegExp(sName) {
