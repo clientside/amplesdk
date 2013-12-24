@@ -55,7 +55,7 @@ if (cPromise) {
 	/*
 	 * then
 	 */
-	function fPromise_then(oPromise, fResolve, fReject) {
+	function fPromise_then(oPromise, fFulfill, fReject) {
 		throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 	};
 	cPromise.prototype.then	= function() {
