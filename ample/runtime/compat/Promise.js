@@ -7,7 +7,7 @@
  *
  */
 
-if (cPromise) {
+if (!cPromise) {
 	cPromise	= function(fCallback) {
 //->Guard
 		fGuard(arguments, [
