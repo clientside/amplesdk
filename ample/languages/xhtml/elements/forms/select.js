@@ -131,8 +131,8 @@ cXHTMLElement_select.prototype.$getTagOpen	= function() {
 		bPopupMode	= bMultiple;
 	return '<span class="' + sClassName + ' ' + (bMultiple ? sClassName + '-multiple-' : '') +
 					(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+
-					(this.hasAttribute("required") ? ' ' + sClassName + '_required' : '')+
-					(this.hasAttribute("disabled") ? ' ' + sClassName + '_disabled' : '')+
+					(this.hasAttribute("required") ? ' ' + 'required' : '')+
+					(this.hasAttribute("disabled") ? ' ' + 'disabled' : '')+
 			'">\
 				<div style="position:absolute;margin-top:-2px;white-space:nowrap" class="' + sClassName + '--placeholder">' +(this.hasAttribute("placeholder") ? ample.$encodeXMLCharacters(this.getAttribute("placeholder")) : '')+ '</div>\
 					<div class="' + sClassName + '--field" style="position:relative;' + (bPopupMode ? 'display:none' : '') + '">\

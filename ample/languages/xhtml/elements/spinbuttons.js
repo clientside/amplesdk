@@ -74,7 +74,7 @@ cXHTMLElement_spinbuttons.prototype.spin	= function(bForward) {
 
 // Element Render: open
 cXHTMLElement_spinbuttons.prototype.$getTagOpen	= function() {
-	return '<div class="spinbuttons' + (!this.$isAccessible() ? ' spinbuttons_disabled' : '')+ '" onmousedown="return false" onselectstart="return false">\
+	return '<div class="spinbuttons' + (!this.$isAccessible() ? ' disabled' : '')+ '" onmousedown="return false" onselectstart="return false">\
 				<div class="spinbuttons--button-up" onmouseover="if (ample.$instance(this).$isAccessible()) ample.$instance(this).$setPseudoClass(\'hover\', true, \'button-up\')" onmouseout="if (ample.$instance(this).$isAccessible()) ample.$instance(this).$setPseudoClass(\'hover\', false, \'button-up\')"><br/></div>\
 				<div class="spinbuttons--button-down" onmouseover="if (ample.$instance(this).$isAccessible()) ample.$instance(this).$setPseudoClass(\'hover\', true, \'button-down\')" onmouseout="if (ample.$instance(this).$isAccessible()) ample.$instance(this).$setPseudoClass(\'hover\', false, \'button-down\')"><br/></div>\
 			</div>';

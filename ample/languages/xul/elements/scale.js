@@ -104,7 +104,7 @@ cXULElement_scale.startSession	= function(oInstance, oThumb) {
 	cXULElement_scale.prevValue	= oInstance.getAttribute("value");
 	oInstance.setCapture(true);
 	//
-	oElement.className	+= ' xul-scale--button_active';
+	oElement.className	+= ' active';
 };
 
 cXULElement_scale.finishSession	= function(oInstance) {
@@ -114,7 +114,7 @@ cXULElement_scale.finishSession	= function(oInstance) {
 	cXULElement_scale.clientRect	= null;
 	oInstance.releaseCapture();
 	//
-	oElement.className	= oElement.className.replace(/ xul-scale--button_active/, '');
+	oElement.className	= oElement.className.replace(/\sactive\b/, '');
 };
 
 cXULElement_scale.redraw	= function(oInstance) {
@@ -125,14 +125,14 @@ cXULElement_scale.redraw	= function(oInstance) {
 		aHtml	= [];
 	for (var nIndex = 0, nValue; nIndex < aValue.length; nIndex++) {
 		nValue	= Math.min(nMax, Math.max(nMin, aValue[nIndex]));
-		aHtml.push('<div class="xul-scale--button" style="position:absolute;' + (bOrient ? "top" : "left")+ ':' + (100 * (nValue - nMin) / (nMax - nMin)) + '%" onmouseover="if (ample.$instance(this).$isAccessible()) this.className += \' xul-scale--button_hover\'" onmouseout="if (ample.$instance(this).$isAccessible()) if (!this.className.match(/_disabled/)) this.className = this.className.replace(\' xul-scale--button_hover\', \'\')"></div>');
+		aHtml.push('<div class="xul-scale--button" style="position:absolute;' + (bOrient ? "top" : "left")+ ':' + (100 * (nValue - nMin) / (nMax - nMin)) + '%" onmouseover="if (ample.$instance(this).$isAccessible()) this.className += \' hover\'" onmouseout="if (ample.$instance(this).$isAccessible()) if (!this.className.match(/\\sdisabled\\b/)) this.className = this.className.replace(/\\shover\\b/, \'\')"></div>');
 	}
 	oInstance.$getContainer("bar").innerHTML	= aHtml.join('');
 };
 
 // Element Render: open
 cXULElement_scale.prototype.$getTagOpen	= function() {
-	return '<div class="xul-scale' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + (!this.$isAccessible() ? " xul-scale_disabled" : '') + (" xul-scale-orient-" +(this.getAttribute("orient") == "vertical" ? "vertical" : "horizontal")) + '"' + (this.hasAttribute("style") ? ' style="' + this.getAttribute("style") + '"': '') + '>\
+	return '<div class="xul-scale' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + (!this.$isAccessible() ? " disabled" : '') + (" xul-scale-orient-" +(this.getAttribute("orient") == "vertical" ? "vertical" : "horizontal")) + '"' + (this.hasAttribute("style") ? ' style="' + this.getAttribute("style") + '"': '') + '>\
 				<div class="xul-scale--before" style="float:left"></div>\
 				<div class="xul-scale--after" style="float:right"></div>\
 				<div class="xul-scale--bar" onmousedown="return false" style="position:relative"></div>\

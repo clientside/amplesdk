@@ -71,7 +71,7 @@ cXULElement_radio.prototype.$mapAttribute	= function(sName, sValue) {
 cXULElement_radio.prototype.$getTagOpen		= function() {
 	var bSelected	= this.getAttribute("selected") == "true",
 		bDisabled	= !this.$isAccessible();
-	return '<div class="xul-radio' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + (bDisabled ? " xul-radio_disabled" : "") + (bSelected ? " xul-radio_selected" : "") + (bSelected && bDisabled ? " xul-radio_selected_disabled xul-radio_disabled_selected" : "") + '">\
+	return '<div class="xul-radio' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + (bDisabled ? " disabled" : "") + (bSelected ? " selected" : "") + '">\
 				<div class="xul-radio--input"><br /></div>\
 				<div class="xul-radio--label">' +(this.hasAttribute("label") ? ample.$encodeXMLCharacters(this.getAttribute("label")) : '')+ '</div>';
 };

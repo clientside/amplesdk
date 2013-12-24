@@ -318,10 +318,10 @@ cXULElement_datepicker_pane.$getTagDays	= function(oInstance, oDate) {
 		bDateDisabled	= (oInstance.min && oDateCurrent < oInstance.min) || (oInstance.max && oDateCurrent > oInstance.max);
 		aHtml.push('	<td align="center" valign="center">\
 							<div type="button"\
-								class="xul-datepicker-pane-day' +(nWeekDay > 4 ? " xul-datepicker-pane-weekend" : '') + (oInstance.value && oDateCurrent.getTime() == oInstance.value.getTime() ? ' xul-datepicker-pane-day_selected' : '') + '\
-								' + (oDateToday.getDate() == oDateCurrent.getDate() && oDateToday.getMonth() == oDateCurrent.getMonth() && oDateToday.getFullYear() == oDateCurrent.getFullYear() ? ' xul-datepicker-pane-day_today' : '') + '\
-								' + (bDateDisabled ? ' xul-datepicker-pane-day_disabled' : '" onclick="ample.$instance(this)._onSelectDay(' + nIndex + ')') + '"\
-								onmouseover="this.className += \' xul-datepicker-pane-day_hover\'" onmouseout="this.className = this.className.replace(\' xul-datepicker-pane-day_hover\', \'\')"\
+								class="xul-datepicker-pane-day' +(nWeekDay > 4 ? " xul-datepicker-pane-weekend" : '') + (oInstance.value && oDateCurrent.getTime() == oInstance.value.getTime() ? ' selected' : '') + '\
+								' + (oDateToday.getDate() == oDateCurrent.getDate() && oDateToday.getMonth() == oDateCurrent.getMonth() && oDateToday.getFullYear() == oDateCurrent.getFullYear() ? ' today' : '') + '\
+								' + (bDateDisabled ? ' disabled' : '" onclick="ample.$instance(this)._onSelectDay(' + nIndex + ')') + '"\
+								onmouseover="this.className += \' hover\'" onmouseout="this.className = this.className.replace(/\\shover\\b/, \'\')"\
 								>' + nIndex + '</div>\
 						</td>');
 		if ((nWeekDay == 6) && (nIndex < nDays)) {

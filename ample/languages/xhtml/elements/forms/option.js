@@ -69,7 +69,7 @@ cXHTMLElement_option.prototype.$getTagOpen	= function() {
 	var sClassName	= (this.prefix ? this.prefix + '-' : '') + this.localName;
 	return '<div class="' +	sClassName +
 				(this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+
-				(this.hasAttribute("disabled") ? ' ' + sClassName + '_disabled' : '')+
+				(this.hasAttribute("disabled") ? ' ' + 'disabled' : '')+
 			'">\
 				<div class="' + sClassName + '--gap" style="height:1em;float:left"></div>\
 				<div class="' + sClassName + '--gateway">' +(this.getAttribute("label") || '');

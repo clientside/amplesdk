@@ -465,19 +465,19 @@ cXULElement_editor.updateButtons	= function(oInstance) {
 			if (sCommand != "indent" && sCommand != "outdent" && sCommand != "createlink" && sCommand != "unlink" && sCommand != "undo" && sCommand != "redo") {
 				// Command executed
 				if (oDOMDocument.queryCommandState(sCommand)) {
-					if (!oButton.className.match(/ xul-button_active/))
-						oButton.className += " xul-button_active";
+					if (!oButton.className.match(/\sactive\b/))
+						oButton.className += " active";
 				}
 				else
-					oButton.className	= oButton.className.replace(/ xul-button_active/, '');
+					oButton.className	= oButton.className.replace(/\sactive\b/, '');
 			}
 			// Command enabled
 			if (!oDOMDocument.queryCommandEnabled(sCommand)) {
-				if (!oButton.className.match(/ xul-button_disabled/))
-					oButton.className += " xul-button_disabled";
+				if (!oButton.className.match(/\sdisabled\b/))
+					oButton.className += " disabled";
 			}
 			else
-				oButton.className	= oButton.className.replace(/ xul-button_disabled/, '');
+				oButton.className	= oButton.className.replace(/\sdisabled\b/, '');
 		}
 	// Lists
 	sValue	= String(oDOMDocument.queryCommandValue("fontname")).replace(/^'|'$/g, '');
@@ -507,9 +507,9 @@ cXULElement_editor.resetButtons	= function(oInstance) {
 		for (var nIndex = 0; nIndex < cXULElement_editor.commands[nGroup].length; nIndex++) {
 			oButton	= oToolBar.getElementsByTagName("p")[nGroup].getElementsByTagName("button")[nIndex];
 			sCommand= cXULElement_editor.commands[nGroup][nIndex][0];
-			oButton.className	= oButton.className.replace(/ xul-button_active/, '');
-			if (!oButton.className.match(/ xul-button_disabled/))
-				oButton.className += " xul-button_disabled";
+			oButton.className	= oButton.className.replace(/\sactive\b/, '');
+			if (!oButton.className.match(/\sdisabled\b/))
+				oButton.className += " disabled";
 		}
 	oInstance._elementFontName.setAttribute("disabled", "true");
 	oInstance._elementFontSize.setAttribute("disabled", "true");
@@ -518,7 +518,7 @@ cXULElement_editor.resetButtons	= function(oInstance) {
 
 // presentation
 cXULElement_editor.prototype.$getTagOpen	= function() {
-	return '<div class="xul-editor' + (this.getAttribute("disabled") == "true" ? ' xul-editor_disabled' : '') + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '"' + (this.hasAttribute("style") ? ' style="' + this.getAttribute("style") + '"' : '')+ '>\
+	return '<div class="xul-editor' + (this.getAttribute("disabled") == "true" ? ' disabled' : '') + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '')+ '"' + (this.hasAttribute("style") ? ' style="' + this.getAttribute("style") + '"' : '')+ '>\
 				<div class="xul-editor--toolbar" style="position:relative" xonmousedown="return false">\
 					<div>'+
 						(function(){
@@ -526,11 +526,11 @@ cXULElement_editor.prototype.$getTagOpen	= function() {
 							for (var nGroup = 0; nGroup < 5; nGroup++) {
 								aHtml.push('<p class="xul-editor-buttonbar" style="display:inline' + (navigator.userAgent.match(/MSIE ([\d\.]+)/) && RegExp.$1 < 8 ? '' : '-block') + '">');
 								for (var nIndex = 0; nIndex < cXULElement_editor.commands[nGroup].length; nIndex++)
-									aHtml.push('<button class="xul-button ' + cXULElement_editor.commands[nGroup][nIndex][0] + ' xul-button_disabled" \
+									aHtml.push('<button class="xul-button ' + cXULElement_editor.commands[nGroup][nIndex][0] + ' disabled" \
 													title="' + cXULElement_editor.commands[nGroup][nIndex][2] + '"\
 													onclick="ample.$instance(this)._onButtonClick(\'' + cXULElement_editor.commands[nGroup][nIndex][0] + '\')"\
-													onmouseover="if (ample.$instance(this).$isAccessible()) this.className += \' xul-button_hover\'"\
-													onmouseout="if (ample.$instance(this).$isAccessible()) this.className = this.className.replace(/ xul-button_hover/, \'\')"\
+													onmouseover="if (ample.$instance(this).$isAccessible()) this.className += \' hover\'"\
+													onmouseout="if (ample.$instance(this).$isAccessible()) this.className = this.className.replace(/\\shover\\b/, \'\')"\
 													></button>');
 								aHtml.push('</p>');
 							}
@@ -543,11 +543,11 @@ cXULElement_editor.prototype.$getTagOpen	= function() {
 							for (var nGroup = 5; nGroup < cXULElement_editor.commands.length; nGroup++) {
 								aHtml.push('<p class="xul-editor-buttonbar" style="display:inline' + (navigator.userAgent.match(/MSIE ([\d\.]+)/) && RegExp.$1 < 8 ? '' : '-block') + '">');
 								for (var nIndex = 0; nIndex < cXULElement_editor.commands[nGroup].length; nIndex++)
-									aHtml.push('<button class="xul-button ' + cXULElement_editor.commands[nGroup][nIndex][0] + ' xul-button_disabled" \
+									aHtml.push('<button class="xul-button ' + cXULElement_editor.commands[nGroup][nIndex][0] + ' disabled" \
 													title="' + cXULElement_editor.commands[nGroup][nIndex][2] + '"\
 													onclick="ample.$instance(this)._onButtonClick(\'' + cXULElement_editor.commands[nGroup][nIndex][0] + '\')"\
-													onmouseover="if (ample.$instance(this).$isAccessible()) this.className += \' xul-button_hover\'"\
-													onmouseout="if (ample.$instance(this).$isAccessible()) this.className = this.className.replace(/ xul-button_hover/, \'\')"\
+													onmouseover="if (ample.$instance(this).$isAccessible()) this.className += \' hover\'"\
+													onmouseout="if (ample.$instance(this).$isAccessible()) this.className = this.className.replace(/\\shover\\b/, \'\')"\
 													></button>');
 								aHtml.push('</p>');
 							}

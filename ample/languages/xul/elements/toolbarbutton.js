@@ -144,8 +144,8 @@ cXULElement_toolbarbutton.prototype.$mapAttribute	= function(sName, sValue) {
 cXULElement_toolbarbutton.prototype.$getTagOpen	= function() {
 	var sType	= this.getAttribute("type");
 	return '<table cellpadding="0" cellspacing="0" border="0" class="xul-toolbarbutton' +
-				(!this.$isAccessible() ? " xul-toolbarbutton_disabled" : "") +
-				((sType == "radio" || sType == "checkbox") && this.getAttribute("checked") == "true" ? " xul-toolbarbutton_checked" : "") +
+				(!this.$isAccessible() ? " disabled" : "") +
+				((sType == "radio" || sType == "checkbox") && this.getAttribute("checked") == "true" ? " checked" : "") +
 				(this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '">\
 				<tbody>\
 					<tr height="3">\

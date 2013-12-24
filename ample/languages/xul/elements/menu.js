@@ -79,12 +79,12 @@ cXULElement_menu.prototype.$mapAttribute	= function(sName, sValue) {
 // Element Render: open
 cXULElement_menu.prototype.$getTagOpen	= function() {
 	if (this.parentNode instanceof cXULElement_menupopup)
-		return '<tr class="xul-menu' + (!this.$isAccessible() ? " xul-menu_disabled" : "") + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '">\
+		return '<tr class="xul-menu' + (!this.$isAccessible() ? " disabled" : "") + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '">\
 					<td width="18"><div class="xul-menu--image"' +(this.hasAttribute("image") ? ' style="background-image:url('+ ample.$encodeXMLCharacters(this.getAttribute("image")) + ')"' : '')+ '></div></td>\
 					<td nowrap="nowrap" class="xul-menu--label">' + (this.hasAttribute("label") ? ample.$encodeXMLCharacters(this.getAttribute("label")) : ' ')+ '</td>\
 					<td valign="top" class="xul-menupopup--gateway">';
 	else
-		return '	<td nowrap="nowrap" valign="center" class="xul-menu' + (!this.$isAccessible() ? " xul-menu_disabled" : "") + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '">\
+		return '	<td nowrap="nowrap" valign="center" class="xul-menu' + (!this.$isAccessible() ? " disabled" : "") + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '">\
 						<div class="xul-menu--label">' + (this.hasAttribute("label") ? ample.$encodeXMLCharacters(this.getAttribute("label")) : ' ') + '</div>\
 						<div class="xul-menu--gateway">';
 };
@@ -93,7 +93,7 @@ cXULElement_menu.prototype.$getTagOpen	= function() {
 cXULElement_menu.prototype.$getTagClose	= function() {
 	if (this.parentNode instanceof cXULElement_menupopup)
 		return 		'</td>\
-					<td width="16"><div class="xul-menu--arrow' + (!this.$isAccessible() ? ' xul-menu--arrow_disabled' : '') + '"><br /></div></td>\
+					<td width="16"><div class="xul-menu--arrow' + (!this.$isAccessible() ? ' disabled' : '') + '"><br /></div></td>\
 				</tr>';
 	else
 		return '		</div>\

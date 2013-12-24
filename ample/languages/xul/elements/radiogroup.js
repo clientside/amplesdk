@@ -85,7 +85,7 @@ cXULElement_radiogroup.prototype.$mapAttribute	= function(sName, sValue) {
 
 // Element Render: open
 cXULElement_radiogroup.prototype.$getTagOpen	= function() {
-	return '<div class="xul-radiogroup' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + (!this.$isAccessible() ? " xul-radiogroup_disabled" : "") + '">';
+	return '<div class="xul-radiogroup' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + (!this.$isAccessible() ? " disabled" : "") + '">';
 };
 
 // Element Render: close

@@ -347,10 +347,10 @@ cXHTMLElement_datepicker.$getTagDays	= function(oInstance, oDate) {
 		bDateDisabled	= (oInstance.min && oDateCurrent < oInstance.min) || (oInstance.max && oDateCurrent > oInstance.max);
 		aHtml.push('	<td align="center" valign="center">\
 							<div type="button"\
-								class="datepicker-day' +(nWeekDay > 4 ? " datepicker-weekend" : '') + (oInstance.value && oDateCurrent.getTime() == oInstance.value.getTime() ? ' datepicker-day_selected' : '') + '\
-								' + (oDateToday.getDate() == oDateCurrent.getDate() && oDateToday.getMonth() == oDateCurrent.getMonth() && oDateToday.getFullYear() == oDateCurrent.getFullYear() ? ' datepicker-day_today' : '') + '\
-								' + (bDateDisabled ? ' datepicker-day_disabled' : '" onclick="ample.$instance(this)._onSelectDay(' + nIndex + ')') + '"\
-								onmouseover="this.className += \' datepicker-day_hover\'" onmouseout="this.className = this.className.replace(\' datepicker-day_hover\', \'\')"\
+								class="datepicker-day' +(nWeekDay > 4 ? " datepicker-weekend" : '') + (oInstance.value && oDateCurrent.getTime() == oInstance.value.getTime() ? ' selected' : '') + '\
+								' + (oDateToday.getDate() == oDateCurrent.getDate() && oDateToday.getMonth() == oDateCurrent.getMonth() && oDateToday.getFullYear() == oDateCurrent.getFullYear() ? ' today' : '') + '\
+								' + (bDateDisabled ? ' disabled' : '" onclick="ample.$instance(this)._onSelectDay(' + nIndex + ')') + '"\
+								onmouseover="this.className += \' hover\'" onmouseout="this.className = this.className.replace(/\\shover\\b/, \'\')"\
 								>' + nIndex + '</div>\
 						</td>');
 		if ((nWeekDay == 6) && (nIndex < nDays)) {

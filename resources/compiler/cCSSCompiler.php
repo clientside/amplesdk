@@ -111,7 +111,7 @@
 					$sCSSSelector	= preg_replace("/\[([\w-]+)=?([\w-]+)?\]/", '-$1-$2', $sCSSSelector);	// Attribute
 					$sCSSSelector	= preg_replace("/::/", '--', $sCSSSelector);							// Pseudo-element
 					$sCSSSelector	= preg_replace("/:nth-child\((\d+)\)/", '_nth-child-$1', $sCSSSelector);// Pseudo-class nth-child
-					$sCSSSelector	= preg_replace("/:(?!last-child|first-child|not)/", '_', $sCSSSelector);// Pseudo-class
+					$sCSSSelector	= preg_replace("/:(?!last-child|first-child|not)/", '.', $sCSSSelector);// Pseudo-class
 //					$sCSSSelector	= preg_replace("/>/g, '--' + "gateway" + '>', $sCSSSelector);
 //					$sCSSSelector	= preg_replace("/(--gateway){2,}/g, '--' + "gateway", $sCSSSelector);	// > selector
 

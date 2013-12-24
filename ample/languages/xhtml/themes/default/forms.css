@@ -234,26 +234,26 @@ select:focus {
 	border-width: 2px;
 }
 
-input[type=file].input_focus,
-input[type=checkbox].input_focus,
-input[type=radio].input_focus,
-input[type=range].input_focus {
+input[type=file].input:focus,
+input[type=checkbox].input:focus,
+input[type=radio].input:focus,
+input[type=range].input:focus {
 	background: none;
 	border-style: solid;
 	border-width: 1px;
 	border-radius: 2px;
 }
 
-button.button_focus,
-input[type=button].input_focus,
-input[type=submit].input_focus,
-input[type=reset].input_focus {
+button.button:focus,
+input[type=button].input:focus,
+input[type=submit].input:focus,
+input[type=reset].input:focus {
 	background: none;
 	border: none;
 	margin: 1px;
 }
 
-input[type=range].input_focus {
+input[type=range].input:focus {
 	margin-top: 5px;
 	margin-bottom: 5px;
 }

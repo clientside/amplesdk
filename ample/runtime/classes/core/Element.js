@@ -871,10 +871,10 @@ function fElement_removeClass(oElement, sClass) {
 */
 
 var oElement_cache	= {};
-function fElement_getRegExp(sName, sContainer) {
-	return	oElement_cache[sName + sContainer]
-		?	oElement_cache[sName + sContainer]
-		:	oElement_cache[sName + sContainer] = new cRegExp('(^|\\s)[-\\w]*' + sContainer + '(_\\w+)?' + '_' + sName + '(_\\w+)?' + '(|$)', 'g');
+function fElement_getRegExp(sName) {
+	return	oElement_cache[sName]
+		?	oElement_cache[sName]
+		:	oElement_cache[sName] = new cRegExp('\\s' + sName + '\\b', 'g');
 };
 
 var	aCSSTransition	= [
@@ -898,7 +898,8 @@ function fElement_setPseudoClass(oElement, sName, bValue, sContainer) {
 //<-Source
 	if (oElementDOM) {
 		var sOldName	= bTrident && nVersion < 8 ? oElementDOM.className : oElementDOM.getAttribute("class") || '',
-			sNewName	= fElement_getPseudoClass(oElement, sName, bValue, sContainer, oElementDOM);
+			bMatch		= sOldName.match(fElement_getRegExp(sName)),
+			sNewName	= bValue &&!bMatch ? sOldName + ' ' + sName : bMatch &&!bValue ? sOldName.replace(fElement_getRegExp(sName), '') : sOldName;
 
 		if (sOldName != sNewName) {
 			// Apply new class to get transition CSS properties
@@ -1002,70 +1003,6 @@ function fElement_setPseudoClass(oElement, sName, bValue, sContainer) {
 //->Source
 //console.log("after: ", oElementDOM.className);
 //<-Source
-};
-
-function fElement_getPseudoClass(oElement, sName, bValue, sContainer, oElementDOM) {
-	var sValue		= fElement_getAttribute(oElement, "class"),
-		sClass		= sValue ? sValue.trim() : '',
-		aClass		= sClass.length ? sClass.split(/\s+/g) : null,
-		sPseudoName	= sContainer ? '--' + sContainer : '',
-		sTagName	=(oElement.prefix ? oElement.prefix + '-' : '') + oElement.localName,
-		sOldName	= bTrident && nVersion < 8 ? oElementDOM.className : oElementDOM.getAttribute("class") || '',
-		bMatch		= sOldName.match(fElement_getRegExp(sName, sPseudoName)),
-		sNewName	= '',
-		sPseudo;
-
-	if (bValue) {
-		// Add class
-		if (!bMatch) {
-			var aPseudo	= sOldName.replace(/_\w+_\w+/g, '').match(/_\w+/g),
-				aNewName= [];
-			// create pair combinations :hover:focus, :focus:hover
-			if (aPseudo)
-				for (var nIndex = 0, nLength = aPseudo.length, oCache = {}; nIndex < nLength; nIndex++) {
-					sPseudo	= aPseudo[nIndex];
-					if (!oCache[sPseudo]) {
-						if (aClass)
-							for (var nClass = 0; nClass < aClass.length; nClass++) {
-								sClass	= aClass[nClass];
-								aNewName.push(	// ns|element.class(::pseudo-element)?:pseudo-class:pseudo-class2
-												' ' + sTagName + '-' + sClass + sPseudoName + '_' + sName + sPseudo +
-												// ns|element.class(::pseudo-element)?:pseudo-class2:pseudo-class
-												' ' + sTagName + '-' + sClass + sPseudoName + sPseudo + '_' + sName +
-												// .class(::pseudo-element)?:pseudo-class:pseudo-class2
-												' ' + sClass + sPseudoName + '_' + sName + sPseudo +
-												// .class(::pseudo-element)?:pseudo-class2:pseudo-class
-												' ' + sClass + sPseudoName + sPseudo + '_' + sName);
-							}
-						// ns|element(::pseudo-element)?:pseudo-class:pseudo-class2
-						aNewName.push(	' ' + sTagName + sPseudoName + '_' + sName + sPseudo);
-						// ns|element(::pseudo-element)?:pseudo-class2:pseudo-class
-						aNewName.push(	' ' + sTagName + sPseudoName + sPseudo + '_' + sName);
-						// indicate class name processed
-						oCache[sPseudo]	= true;
-					}
-				}
-			if (aClass)
-				for (var nClass = 0; nClass < aClass.length; nClass++) {
-					sClass	= aClass[nClass];
-					aNewName.push(	// ns|element.class(::pseudo-element)?:pseudo-class
-									' ' + sTagName + '-' + sClass + sPseudoName + '_' + sName +
-									// .class(::pseudo-element)?:pseudo-class
-									' ' + sClass + sPseudoName + '_' + sName);
-				}
-			// ns|element(::pseudo-element)?:pseudo-class
-			aNewName.push(	' ' + sTagName + sPseudoName + '_' + sName);
-			sNewName	= sOldName + aNewName.join('');
-		}
-	}
-	else {
-		// Remove class
-		if (bMatch) {
-			// remove all classes having :pseudo-class
-			sNewName	= sOldName.replace(fElement_getRegExp(sName, sPseudoName), '');	// TODO: Remove space?
-		}
-	}
-	return sNewName || sOldName;
 };
 
 // Attaching to implementation

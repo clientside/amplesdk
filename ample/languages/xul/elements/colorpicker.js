@@ -122,7 +122,7 @@ cXULElement_colorpicker.prototype.$mapAttribute	= function(sName, sValue) {
 
 // Element Render: open
 cXULElement_colorpicker.prototype.$getTagOpen	= function() {
-	return '<div class="xul-colorpicker' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '') + (!this.$isAccessible() ? " xul-colorpicker_disabled" : "") + '">\
+	return '<div class="xul-colorpicker' + (this.hasAttribute("class") ? ' ' + this.getAttribute("class") : '') + (!this.$isAccessible() ? " disabled" : "") + '">\
 				<div class="xul-colorpicker--field">\
 					<div class="xul-colorpicker--button"><br /></div>\
 					<input class="xul-colorpicker--input" type="text" autocomplete="off" value="' + this.getAttribute("value") + '"' + (!this.$isAccessible() ? ' disabled="true"' : '') +' maxlength="7" onchange="ample.$instance(this)._onChange(event)" style="border:0px solid white;width:100%;" onselectstart="event.cancelBubble=true;" />\

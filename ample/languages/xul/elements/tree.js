@@ -230,7 +230,7 @@ cXULElement_tree.getNextItem		= function(oItem) {
 cXULElement_tree.prototype.$getTagOpen		= function() {
 	var sHeight	= this.getAttribute("height"),
 		sWidth	= this.getAttribute("width");
-	return '<div class="xul-tree' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + (!this.$isAccessible() ? " xul-tree_disabled" : "") + '" style="' + (sHeight ? 'height:' + (sHeight * 1 == sHeight ? sHeight + "px" : sHeight) + ';' : '') + (sWidth ? 'width:' + (sWidth * 1 == sWidth ? sWidth + "px" : sWidth) + ';' : '') + (this.hasAttribute("style") ? this.getAttribute("style") : '') + '">\
+	return '<div class="xul-tree' + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + (!this.$isAccessible() ? " disabled" : "") + '" style="' + (sHeight ? 'height:' + (sHeight * 1 == sHeight ? sHeight + "px" : sHeight) + ';' : '') + (sWidth ? 'width:' + (sWidth * 1 == sWidth ? sWidth + "px" : sWidth) + ';' : '') + (this.hasAttribute("style") ? this.getAttribute("style") : '') + '">\
 				<div style="position:relative;height:100%;top:0;padding-bottom:inherit;">\
 					<div class="xul-tree--resizer" style="height:100%;position:absolute;top:0px;display:none;z-index:1"></div>\
 					<table cellpadding="0" cellspacing="0" border="0" height="100%" width="100%" style="position:absolute">\

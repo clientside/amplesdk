@@ -233,7 +233,7 @@ oNodeSelector_elementSelectors[':']	= function(aReturn, aFrom, sClass, sArgument
 function fNodeSelector_pseudoClass(oElement, sClass) {
 	if (oElement.nodeType == 1) {	// cNode.ELEMENT_NODE
 		var oElementDOM	= oElement.$getContainer();
-		if (oElementDOM && (bTrident && nVersion < 8 ? oElementDOM.className : oElementDOM.getAttribute("class") || '').match(fElement_getRegExp(sClass, '')))
+		if (oElementDOM && (bTrident && nVersion < 8 ? oElementDOM.className : oElementDOM.getAttribute("class") || '').match(fElement_getRegExp(sClass)))
 			return true;
 	}
 	return false;

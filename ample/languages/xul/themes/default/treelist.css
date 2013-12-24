@@ -69,13 +69,13 @@ xul|treerow:hover {
 }
 
 xul|listitem:selected,
-xul|treeitem:selected {
+xul|treerow:selected {
 	background-color: gray;
 	color: white;
 }
 
 xul|listbox:focus xul|listitem:selected,
-xul|tree:focus xul|treeitem:selected {
+xul|tree:focus xul|treerow:selected {
 	background-color: #316AC5;
 }
 

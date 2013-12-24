@@ -44,7 +44,7 @@ cXULElement_tab.prototype.$mapAttribute	= function(sName, sValue) {
 
 // Element Render: open
 cXULElement_tab.prototype.$getTagOpen	= function() {
-	return '<div class="xul-tab' + (!this.$isAccessible() ? " xul-tab_disabled" : "") +(this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '">\
+	return '<div class="xul-tab' + (!this.$isAccessible() ? " disabled" : "") +(this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '">\
 				<div class="xul-tab--before" style="float:left;height:100%"></div>\
 				<div class="xul-tab--after" style="float:right;height:100%"></div>\
 				<div class="xul-tab--gateway">'+

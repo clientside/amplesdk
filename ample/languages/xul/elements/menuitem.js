@@ -100,7 +100,7 @@ cXULElement_menuitem.prototype.scrollIntoView	= function() {
 cXULElement_menuitem.prototype.$getTagOpen		= function() {
 	var bDisabled	= !this.$isAccessible(),
 		bChecked	= this.getAttribute("checked") == "true";
-	return '<tr class="xul-menuitem' + (bDisabled ? " xul-menuitem_disabled" : "") + (bChecked ? ' xul-menuitem_checked' : '') + (bChecked && bDisabled ? ' xul-menuitem_checked_disabled xul-menuitem_disabled_checked' : '') + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '"' + (this.hasAttribute("style") ? ' style="' + this.getAttribute("style") + '"' : '') + '>\
+	return '<tr class="xul-menuitem' + (bDisabled ? " disabled" : "") + (bChecked ? ' checked' : '') + (this.hasAttribute("class") ? " " + this.getAttribute("class") : "") + '"' + (this.hasAttribute("style") ? ' style="' + this.getAttribute("style") + '"' : '') + '>\
 				<td width="18"><div class="xul-menuitem--image xul-menuitem-type---image' + (this.hasAttribute("type") ? ' xul-menuitem-type-' + this.getAttribute("type") + '--image' : '') + '"' +(this.hasAttribute("image") ? ' style="background-image:url('+ ample.$encodeXMLCharacters(this.getAttribute("image")) + ')"' : '')+ '></div></td>\
 				<td nowrap="nowrap" class="xul-menuitem--label" style="white-space:nowrap;">' +(this.hasAttribute("label") ? ample.$encodeXMLCharacters(this.getAttribute("label")) : ' ');
 };

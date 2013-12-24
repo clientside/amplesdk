@@ -262,12 +262,12 @@ cChartElement_map.countries	= {
 if (!cChartElement.useVML) {
 	cChartElement_map.prototype._onMouseOver	= function(oElementDOM) {
 		if (oElementDOM.parentNode == this.$getContainer("underlay"))
-			oElementDOM.setAttribute("class", oElementDOM.getAttribute("class").replace(/(c-item--underlay_hover)?$/, " c-item--underlay_hover"));
+			oElementDOM.setAttribute("class", oElementDOM.getAttribute("class").replace(/(\shover\b)?$/, " hover"));
 	};
 
 	cChartElement_map.prototype._onMouseOut	= function(oElementDOM) {
 		if (oElementDOM.parentNode == this.$getContainer("underlay"))
-			oElementDOM.setAttribute("class", oElementDOM.getAttribute("class").replace(/ c-item--underlay_hover/, ""));
+			oElementDOM.setAttribute("class", oElementDOM.getAttribute("class").replace(/\shover\b/, ""));
 	};
 
 	cChartElement_map.prototype.$getTagOpen	= function() {
@@ -357,14 +357,14 @@ else {
 
 	cChartElement_map.prototype._onMouseOver	= function(oElementDOM) {
 		if (oElementDOM.parentNode == this.$getContainer("underlay")) {
-			oElementDOM.className	= oElementDOM.className.replace(/(c-item--underlay_hover)?$/, " c-item--underlay_hover");
+			oElementDOM.className	= oElementDOM.className.replace(/(\shover\b)?$/, " hover");
 			cChartElement.applyCSS(oElementDOM);
 		}
 	};
 
 	cChartElement_map.prototype._onMouseOut	= function(oElementDOM) {
 		if (oElementDOM.parentNode == this.$getContainer("underlay")) {
-			oElementDOM.className	= oElementDOM.className.replace(/ c-item--underlay_hover/, "");
+			oElementDOM.className	= oElementDOM.className.replace(/\shover\b/, "");
 			cChartElement.applyCSS(oElementDOM);
 		}
 	};
