@@ -26,6 +26,9 @@ cXULElement_menuitem.handlers	= {
 		if (!this.$isAccessible())
 			return;
 
+		if (oEvent.target instanceof cXULInputElement)
+			return;
+
 		if (oEvent.button == 0)
 			this.$activate();
 	},
