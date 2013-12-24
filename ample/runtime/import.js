@@ -17,6 +17,7 @@ var cString		= window.String,
 	cDate		= window.Date,
 	cFunction	= window.Function,
 	cMath		= window.Math,
+	cPromise	= window.Promise,
 	cArguments	= function(){},
 // Error Objects
 	cError		= window.Error,
