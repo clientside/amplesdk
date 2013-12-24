@@ -230,6 +230,15 @@ oAmple.guard	= function(aArguments, aParameters) {
 //<-Guard
 };
 
+oAmple.import	= function(sSrc) {
+//->Guard
+	fGuard(arguments, [
+		["src",		cString]
+	]);
+//<-Guard
+	return fRequire(sSrc);
+};
+
 oAmple.publish	= function(oSource, sName, oTarget) {
 //->Guard
 	fGuard(arguments, [
@@ -271,25 +280,6 @@ oAmple.config	= function(sName, oValue) {
 		return oOldValue;
 };
 
-var sAmple_include	= oUALocation.href;
-oAmple.include	= function(sSrc) {
-//->Guard
-	fGuard(arguments, [
-		["src",	cString]
-	]);
-//<-Guard
-
-	var sValue	= sAmple_include;
-	// Save current location
-	sAmple_include	= fUtilities_resolveUri(sSrc, sValue);
-	//
-	var oRequest	= fBrowser_load(sAmple_include, "text/javascript");
-	// Evaluate result
-	fBrowser_eval(oRequest.responseText);
-	// Restore base location
-	sAmple_include	= sValue;
-};
-
 // Lookup namespaces
 var oPrefixes	= oAmple.prefixes;
 if (bTrident && nVersion < 10)
@@ -318,7 +308,7 @@ for (var sKey in oPrefixes)
 		fElement_setAttributeNS(oAmple_root, sNS_XMLNS, "xmlns" + ':' + sKey, oPrefixes[sKey]);
 
 // Set xml:base
-fElement_setAttributeNS(oAmple_root, sNS_XML, "xml:base", fUtilities_resolveUri('.', sAmple_include));
+fElement_setAttributeNS(oAmple_root, sNS_XML, "xml:base", fUtilities_resolveUri('.', oUALocation.href));
 
 //
 oAmple.open	= function() {

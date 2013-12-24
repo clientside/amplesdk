@@ -74,6 +74,7 @@ classes/range/Range.js
 utilities.js
 guard.js
 browser.js
+require.js
 ample.js
 # Managers
 managers/FocusManager.js

@@ -166,6 +166,7 @@
 				utilities.js,
 				guard.js,
 				browser.js,
+				require.js,
 				ample.js"/>
 			<!-- UI Managers -->
 			<filelist dir="${source.runtime.dir}/managers/" files="
