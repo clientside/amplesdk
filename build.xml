@@ -216,6 +216,7 @@
 				JSON.js,
 				Number.js,
 				Object.js,
+				Promise.js,
 				String.js,
 				XMLHttpRequest.js,
 				XMLSerializer.js,

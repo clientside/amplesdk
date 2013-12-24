@@ -9,6 +9,7 @@ compat/Function.js
 compat/JSON.js
 compat/Number.js
 compat/Object.js
+compat/Promise.js
 #compat/Storage.js
 compat/String.js
 compat/XMLHttpRequest.js

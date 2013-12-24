@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
+<class name="Promise">
+	<abstract>
+		<locale>
+			Creates Promise object.
+		</locale>
+	</abstract>
+	<remarks />
+	<examples />
+	<members />
+</class>

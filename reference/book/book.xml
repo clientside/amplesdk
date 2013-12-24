@@ -70,6 +70,7 @@
 			</node>
 			<node title="JS objects">
 				<node title="JSON" url="env/browser/JSON.xml"/>
+				<node title="Promise" url="env/browser/Promise.xml"/>
 			</node>
 			<node title="XML objects">
 				<node title="DOMParser" url="env/browser/DOMParser.xml"/>
