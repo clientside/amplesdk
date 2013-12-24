@@ -7,21 +7,7 @@
  *
  */
 
-var sAmple_include	= oUALocation.href;
-fRequire	= function(sSrc) {
-//->Guard
-	fGuard(arguments, [
-		["src",	cString]
-	]);
-//<-Guard
-
-	var sValue	= sAmple_include;
-	// Save current location
-	sAmple_include	= fUtilities_resolveUri(sSrc, sValue);
-	//
-	var oRequest	= fBrowser_load(sAmple_include, "text/javascript");
-	// Evaluate result
-	fBrowser_eval(oRequest.responseText);
-	// Restore base location
-	sAmple_include	= sValue;
+var sAmple_require	= oUALocation.href;
+function fAmple_require(aDependencies, fSuccess, fFailure) {
+	throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };

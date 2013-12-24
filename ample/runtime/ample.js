@@ -230,13 +230,16 @@ oAmple.guard	= function(aArguments, aParameters) {
 //<-Guard
 };
 
-oAmple.import	= function(sSrc) {
+oAmple.require	= function(aDependencies, fSuccess, fFailure) {
 //->Guard
 	fGuard(arguments, [
-		["src",		cString]
+		["dependencies",cArray],
+		["success",		cFunction, true],
+		["failure",		cFunction, true]
 	]);
 //<-Guard
-	return fRequire(sSrc);
+
+	return fAmple_require(aDependencies, fSuccess, fFailure);
 };
 
 oAmple.publish	= function(oSource, sName, oTarget) {
