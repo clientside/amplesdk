@@ -8,7 +8,15 @@
  */
 
 if (!cXMLSerializer) {
-	cXMLSerializer	= function(){};
+	cXMLSerializer	= function(){
+		if (!(this instanceof cXMLSerializer))
+			throw new cAmpleException(cAmpleException.OBJECT_CONSTRUCTOR_ERR
+//->Debug
+					, cXMLSerializer.caller
+					, ["XMLSerializer"]
+//<-Debug
+			);
+	};
 	cXMLSerializer.prototype.serializeToString	= function(oNode) {
 //->Guard
 		fGuard(arguments, [

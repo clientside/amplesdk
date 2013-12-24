@@ -31,6 +31,7 @@ cAmpleException.ARGUMENT_NULL_ERR		= 3;
 cAmpleException.NOT_INITIALIZED_ERR		= 4;
 cAmpleException.CANNOT_ACCESS_DOM_ERR	= 5;
 cAmpleException.MEMBER_MISSING_ERR		= 6;
+cAmpleException.OBJECT_CONSTRUCTOR_ERR	= 7;
 
 //
 cAmpleException.prototype		= new cError;
@@ -51,6 +52,7 @@ oAmpleException_messages[cAmpleException.ARGUMENT_NULL_ERR]			= 'null is not all
 oAmpleException_messages[cAmpleException.NOT_INITIALIZED_ERR]		= 'Object "%0" has not been initialized';
 oAmpleException_messages[cAmpleException.CANNOT_ACCESS_DOM_ERR]		= 'Cannot access DOM in element constructor';
 oAmpleException_messages[cAmpleException.MEMBER_MISSING_ERR]		= 'Object does not have a method named "%0"';
+oAmpleException_messages[cAmpleException.OBJECT_CONSTRUCTOR_ERR]	= 'Failed to construct "%0": Please use the "new" operator';
 //<-Debug
 
 //->Debug

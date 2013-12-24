@@ -9,6 +9,14 @@
 
 if (!cXSLTProcessor) {
 	cXSLTProcessor	= function() {
+		if (!(this instanceof cXSLTProcessor))
+			throw new cAmpleException(cAmpleException.OBJECT_CONSTRUCTOR_ERR
+//->Debug
+					, cXSLTProcessor.caller
+					, ["XSLTProcessor"]
+//<-Debug
+			);
+
 		this._template	= new cActiveXObject("MSXML2" + '.' + "XSLTemplate");
 		this.reset();
 	};

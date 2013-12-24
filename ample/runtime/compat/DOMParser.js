@@ -8,7 +8,15 @@
  */
 
 if (!cDOMParser) {
-	cDOMParser	= function(){};
+	cDOMParser	= function(){
+		if (!(this instanceof cDOMParser))
+			throw new cTypeError(cAmpleException.OBJECT_CONSTRUCTOR_ERR
+//->Debug
+					, cDOMParser.caller
+					, ["DOMParser"]
+//<-Debug
+			);
+	};
 	cDOMParser.prototype.baseURI	= null;
 	cDOMParser.prototype.parseFromString	= function(sXml, sType) {
 //->Guard

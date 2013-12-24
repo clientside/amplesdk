@@ -11,6 +11,14 @@ if (bTrident && nVersion < 10) {
 	var oXMLHttpRequest	= cXMLHttpRequest;
 	//
 	cXMLHttpRequest	= function() {
+		if (!(this instanceof cXMLHttpRequest))
+			throw new cAmpleException(cAmpleException.OBJECT_CONSTRUCTOR_ERR
+//->Debug
+					, cXMLHttpRequest.caller
+					, ["XMLHttpRequest"]
+//<-Debug
+			);
+
 		this._object	= oXMLHttpRequest && !(/*bTrident && */nVersion == 7) ? new oXMLHttpRequest : new cActiveXObject("Microsoft.XMLHTTP");
 	};
 

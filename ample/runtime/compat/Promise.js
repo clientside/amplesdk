@@ -7,8 +7,16 @@
  *
  */
 
-if (!cPromise) {
+if (1||!cPromise) {
 	cPromise	= function(fCallback) {
+		if (!(this instanceof cPromise))
+			throw new cAmpleException(cAmpleException.OBJECT_CONSTRUCTOR_ERR
+//->Debug
+					, cPromise.caller
+					, ["Promise"]
+//<-Debug
+			);
+
 //->Guard
 		fGuard(arguments, [
 			["callback",	cFunction]

@@ -68,6 +68,13 @@
 					</locale>
 				</description>
 			</constant>
+			<constant name="OBJECT_CONSTRUCTOR_ERR" value="7">
+				<description>
+					<locale>
+						Failed to construct an object. The "new" operator required.
+					</locale>
+				</description>
+			</constant>
 		</constants>
 	</members>
 </class>
