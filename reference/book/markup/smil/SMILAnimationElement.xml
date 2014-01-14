@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../../../stylesheets/page.xsl"?>
-<element name="SMILAnimationElement" extends="markup:smil:SMILTimingElement">
+<class name="SMILAnimationElement" extends="markup:smil:SMILTimingElement">
 	<abstract>
 		<locale>
 			The base class for all animation elements.
@@ -110,4 +110,4 @@
 			</attribute>
 		</attributes>
 	</members>
-</element>
+</class>
