@@ -27,6 +27,10 @@ var oBrowser_factory	= oUADocument.createElement("span"),
 	bBrowser_keyDown	= false,	// Holds keydown state
 	bBrowser_userSelect	= true;
 
+// Change
+if (sPlatform == "Mac")
+	hBrowser_keyIdentifiers['91']	= "Meta";
+
 // Events handling
 function fBrowser_attachEvent(oNode, sType, fHandler) {
 	if (oNode.addEventListener)

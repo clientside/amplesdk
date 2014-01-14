@@ -75,6 +75,8 @@ var cString		= window.String,
 
 // Browser detection code
 var aUserAgent	= oUANavigator.userAgent.match(/(MSIE|rv\:|AppleWebKit|Presto)(?:[\/\s])?(\d+\.\d+)/),
+	aPlatform	= oUANavigator.platform.match(/^(Win|Mac)/),
+	sPlatform	= null,
 	bTrident	= false,
 	bGecko		= false,
 	bPresto		= false,
@@ -108,3 +110,7 @@ if (aUserAgent) {
 	}
 }
 
+// Platform detection code
+if (aPlatform) {
+	sPlatform	= aPlatform[1];
+}
