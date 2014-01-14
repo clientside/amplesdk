@@ -113,6 +113,7 @@
 				<node title="Overview" url="markup/smil/index.xml"/>
 				<node title="XML Schema" xurl="markup/smil/smil30-ample.xsd" />
 				<node title="Objects">
+					<node title="SMILTimeEvent" url="markup/smil/SMILTimeEvent.xml"/>
 					<node title="SMILTimingElement" url="markup/smil/SMILTimingElement.xml"/>
 					<node title="SMILAnimationElement" url="markup/smil/SMILAnimationElement.xml"/>
 				</node>
