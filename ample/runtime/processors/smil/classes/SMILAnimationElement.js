@@ -170,5 +170,5 @@ function fSMILElement_parseValues(sValue) {
 	return aValues;
 };
 
-//Register Element
+// Register Element
 fAmple_extend(cSMILAnimationElement);

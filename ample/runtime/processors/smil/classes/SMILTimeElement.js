@@ -356,5 +356,5 @@ function fSMILTimeElement_parseFloat(sValue, nDefault) {
 };
 
 
-//Register Element
+// Register Element
 fAmple_extend(cSMILTimeElement);

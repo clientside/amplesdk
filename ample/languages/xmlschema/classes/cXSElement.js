@@ -15,5 +15,5 @@ cXSElement.prototype	= new ample.classes.Element;
 cXSElement.prototype.namespaceURI	= "http://www.w3.org/2001/XMLSchema";
 cXSElement.prototype.localName		= "#element";
 
-//Register Element
+// Register Element
 ample.extend(cXSElement);
