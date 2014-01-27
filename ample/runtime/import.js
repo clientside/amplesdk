@@ -39,6 +39,12 @@ var cString		= window.String,
 //	intervals/timeouts
 	fSetTimeout		= window.setTimeout,
 	fClearTimeout	= window.clearTimeout,
+	fRequestAnimationFrame	= window.requestAnimationFrame || function(fCallback) {
+		return fSetTimeout(fCallback, 20);
+	},
+	fCancelAnimationFrame	= window.cancelAnimationFrame || function(nTimeout) {
+		fClearTimeout(nTimeout);
+	},
 //	fSetInterval	= window.setInterval,
 //	fClearInterval	= window.clearInterval,
 //	misc

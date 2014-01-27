@@ -183,8 +183,7 @@ function fSMILTimeElement_onTimeout() {
 	}
 
 	// Continue timer
-	if (aSMILTimeElement_activeElements.length)
-		nSMILTimeElement_timeout	= fSetTimeout(fSMILTimeElement_onTimeout, 10);
+	nSMILTimeElement_timeout	= aSMILTimeElement_activeElements.length ? fRequestAnimationFrame(fSMILTimeElement_onTimeout) : 0;
 };
 
 //
@@ -229,7 +228,7 @@ function fSMILTimeElement_beginElement(oElement) {
 
 	// Start timer
 	if (aSMILTimeElement_activeElements.length && !nSMILTimeElement_timeout)
-		nSMILTimeElement_timeout	= fSetTimeout(fSMILTimeElement_onTimeout, 0);
+		nSMILTimeElement_timeout	= fRequestAnimationFrame(fSMILTimeElement_onTimeout);
 
 	// Dispatch end event
 	var oEvent	= new cSMILTimeEvent;
@@ -263,7 +262,7 @@ function fSMILTimeElement_endElement(oElement) {
 
 	// Stop timer
 	if (!aSMILTimeElement_activeElements.length && nSMILTimeElement_timeout)
-		nSMILTimeElement_timeout	= fClearTimeout(nSMILTimeElement_timeout);
+		nSMILTimeElement_timeout	= fCancelAnimationFrame(nSMILTimeElement_timeout);
 
 	// Dispatch end event
 	var oEvent	= new cSMILTimeEvent;

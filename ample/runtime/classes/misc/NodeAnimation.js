@@ -55,10 +55,10 @@ function fNodeAnimation_play(oElement, oProperties, vDuration, vType, fHandler, 
 	oEventEffectStart.initEvent("effectstart", false, false);
 	fEventTarget_dispatchEvent(oElement, oEventEffectStart);
 
-	if (!nNodeAnimation_timeout)
-		nNodeAnimation_timeout	= fSetTimeout(fNodeAnimation_onTimeout, 20);
-
 	aNodeAnimation_effects.push(oEffect);
+
+	if (!nNodeAnimation_timeout)
+		nNodeAnimation_timeout	= fRequestAnimationFrame(fNodeAnimation_onTimeout);
 
 	// return effect resource identificator
 	return oEffect._identifier;
@@ -127,7 +127,7 @@ function fNodeAnimation_onTimeout() {
 		}
 	}
 	//
-	nNodeAnimation_timeout	= aNodeAnimation_effects.length ? fSetTimeout(fNodeAnimation_onTimeout, 20) : 0;
+	nNodeAnimation_timeout	= aNodeAnimation_effects.length ? fRequestAnimationFrame(fNodeAnimation_onTimeout) : 0;
 };
 
 function fNodeAnimation_process(oEffect) {
