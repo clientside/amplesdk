@@ -336,10 +336,10 @@
 							</locale>
 						</description>
 					</argument>
-					<argument name="deep" type="Boolean" required="true">
+					<argument name="deep" type="Boolean" required="false">
 						<description>
 							<locale>
-								If true, recursively import the subtree under the specified node; if false, import only the node itself
+								If true or omitted, recursively import the subtree under the specified node; if false, import only the node itself.
 							</locale>
 							<locale xml:lang="ru">
 								Если true, импортировать узел с его структурой, с противном случае импортировать непосредственно сам узел без его структуры.

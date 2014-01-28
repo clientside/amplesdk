@@ -452,12 +452,12 @@ cDocument.prototype.importNode	= function(oNode, bDeep) {
 //->Guard
 	fGuard(arguments, [
 		["node",	cXMLNode],
-		["deep",	cBoolean]
+		["deep",	cBoolean,	true]
 	]);
 //<-Guard
 
 	if (oNode.nodeType == 1)	// cNode.ELEMENT_NODE
-		return fDocument_importNode(this, oNode, bDeep);
+		return fDocument_importNode(this, oNode, arguments.length < 2 || bDeep);
 	else
 		throw new cDOMException(cDOMException.NOT_SUPPORTED_ERR);
 };
