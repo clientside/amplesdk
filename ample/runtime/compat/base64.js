@@ -38,7 +38,7 @@ if (!window.btoa) {
 		}
 		return aValue.join('');
 	}, "btoa", window);
-};
+}
 
 if (!window.atob) {
 	var aBase64DecodeChars	= new cArray(
@@ -101,4 +101,4 @@ if (!window.atob) {
 		}
 		return aValue.join('');
 	}, "atob", window);
-};
+}

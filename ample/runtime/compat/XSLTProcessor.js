@@ -165,4 +165,4 @@ if (!cXSLTProcessor) {
 
 	// Export
 	fExporter_export(cXSLTProcessor,	"XSLTProcessor",	window);
-};
+}

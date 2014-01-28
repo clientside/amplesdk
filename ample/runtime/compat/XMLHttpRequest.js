@@ -225,4 +225,4 @@ if (bTrident && nVersion < 10) {
 
 	// Export
 	fExporter_export(cXMLHttpRequest,	"XMLHttpRequest",	window);
-};
+}

@@ -36,4 +36,4 @@ if (!cDOMParser) {
 	};
 	// Export object
 	fExporter_export(cDOMParser,		"DOMParser",		window);
-};
+}

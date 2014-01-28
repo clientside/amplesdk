@@ -29,4 +29,4 @@ if (!cXMLSerializer) {
 
 	// Export
 	fExporter_export(cXMLSerializer,	"XMLSerializer",	window);
-};
+}
