@@ -8,6 +8,7 @@
  */
 
 var bObject_hasDontEnumBug = !({toString: null}).propertyIsEnumerable("toString"),
+	fObject_constructor	= new cFunction,
 	aObject_dontEnums = [
 		"toString",
 		"toLocaleString",
@@ -39,16 +40,13 @@ if (!cObject.keys)
 	}, "keys", cObject);
 
 // ECMA Script 5.1
-if (1||!cObject.create)
-	fExporter_export((function() {
-		var fConstructor	= new cFunction;
-		return function(oPrototype) {
-			var sType	= typeof oPrototype;
-			if (!(sType == "object" || sType == "function"))
-				throw new cTypeError("Object" + ' ' + "prototype" + ' ' + 'may only be an' + ' ' + "Object" + ' ' + 'or' + ' ' + 'null');
-			if (!(arguments.length == 1))
-				throw new cTypeError("Object" + '.' + "create" + ' ' + "implementation" + ' ' + 'only accepts one parameter.');
-			fConstructor.prototype = oPrototype;
-			return new fConstructor();
-		};
-	})(), "create", cObject);
+if (!cObject.create)
+	fExporter_export(function(oPrototype) {
+		var sType	= typeof oPrototype;
+		if (!(sType == "object" || sType == "function"))
+			throw new cTypeError("Object" + ' ' + "prototype" + ' ' + 'may only be an' + ' ' + "Object" + ' ' + 'or' + ' ' + 'null');
+		if (!(arguments.length == 1))
+			throw new cTypeError("Object" + '.' + "create" + ' ' + "implementation" + ' ' + 'only accepts one parameter.');
+		fObject_constructor.prototype = oPrototype;
+		return new fObject_constructor();
+	}, "create", cObject);
