@@ -2,7 +2,7 @@
 <xul:vbox flex="1" id="asdasd"
 	xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 	<xul:toolbar>
-		<xul:toolbarbutton label="Archieve" observes="brd_message_selected"/>
+		<xul:toolbarbutton label="Archive" observes="brd_message_selected"/>
 		<xul:toolbarbutton label="Report spam" observes="brd_message_selected" />
 		<xul:toolbarbutton label="Delete" observes="brd_message_selected" />
 		<xul:toolbarbutton label="Mark as read" observes="brd_message_selected" />
@@ -42,12 +42,16 @@
 			<xul:spacer width="5" />
 		</xul:hbox>
 	</xul:toolbar>
-	<xul:listbox minheight="100" maxheight="300" height="200" onselect="ample.query('#brd_message_selected').attr('disabled', this.selectedItems.length ? 'false' : 'true');">
+	<xul:listbox minheight="100" maxheight="300" height="200" onselect="
+		ample.query('#brd_message_selected').attr('disabled', this.selectedItems.length ? 'false' : 'true');
+		ample.query('#brd_message_selected').attr('from', this.selectedItems[0].childNodes.item(0).childNodes.item(0).nodeValue);
+		ample.query('#brd_message_selected').attr('header', this.selectedItems[0].childNodes.item(1).childNodes.item(0).nodeValue);
+		">
 		<xul:listhead>
 			<xul:listheader minwidth="100" width="200" label="From"/>
 			<xul:listheader minwidth="300" width="300" label="Subject"/>
 			<xul:listheader minwidth="50" width="100" label="Labels"/>
-			<xul:listheader minwidth="50" width="100" label="Attachements"/>
+			<xul:listheader minwidth="50" width="100" label="Attachments"/>
 			<xul:listheader minwidth="50" width="120" label="Date"/>
 		</xul:listhead>
 		<xul:listbody id="messages"/>
@@ -57,11 +61,15 @@
 		<xul:rows>
 			<xul:row>
 				<xul:label value="From:" />
-				<xul:label />
+				<xul:label id="from">
+					<xul:observes element="brd_message_selected" onbroadcast="this.parentNode.setAttribute('value',this.parentNode.getAttribute('from'));" />
+				</xul:label>
 			</xul:row>
 			<xul:row>
 				<xul:label value="Header:" />
-				<xul:label />
+				<xul:label id="header">
+					<xul:observes element="brd_message_selected" onbroadcast="this.parentNode.setAttribute('value',this.parentNode.getAttribute('header'));" />
+				</xul:label>
 			</xul:row>
 		</xul:rows>
 	</xul:grid>
