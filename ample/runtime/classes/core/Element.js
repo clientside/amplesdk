@@ -243,6 +243,7 @@ cElement.prototype.hasAttributeNS	= function(sNameSpaceURI, sLocalName) {
 };
 
 function fElement_mapAttribute(oElement, sName, sValue, sValueOld) {
+	var oElementDOM = null;
 	if (sName == 'id') {
 		if (sValue) {
 //->Debug
@@ -253,9 +254,13 @@ function fElement_mapAttribute(oElement, sName, sValue, sValueOld) {
 		}
 		if (sValueOld)
 			delete oDocument_ids[sValueOld];
+		
+		oElementDOM = oUADocument.getElementById(sValueOld || oElement.uniqueID);
 	}
+	else
+		oElementDOM	= oElement.$getContainer();
+
 	// Update view
-	var oElementDOM	= oElement.$getContainer();
 	if (oElementDOM) {
 		if (sName == "class") {
 			var sClass	=(oElement.prefix ? oElement.prefix + '-' : '') + oElement.localName + (sValue ? ' ' + sValue : '');
